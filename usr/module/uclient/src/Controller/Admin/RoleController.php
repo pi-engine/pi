@@ -90,65 +90,59 @@ class RoleController extends ActionController
 
         $roles = Pi::registry('role')->read();
         $model = Pi::model('user_role');
-        $message = '';
+        //$message = '';
         if ($op && $name) {
-            if ($name) {
-                if ('remove' == $op) {
-                    $uid = (int) $name;
+            if ('remove' == $op) {
+                $uid = (int) $name;
+                $data = array('role' => $role, 'uid' => $uid);
+                $count = $model->count($data);
+                if ($count) {
+                    $status = 1;
+                    $model->delete($data);
+                    $message = _a('User removed from the role.');
+                    $data = array('id' => $uid);
+                } else {
+                    $status = 0;
+                    $message = _a('User not in the role.');
+                    $data = array('id' => $uid);
+                }
+            } else {
+                if ('uid' == $field) {
+                    $name   = (int) $name;
+                    $field  = 'id';
+                }
+                $user = Pi::service('user')->getUser($name, $field);
+                $uid = $user ? (int) $user->get('id') : 0;
+                if ($uid) {
                     $data = array('role' => $role, 'uid' => $uid);
                     $count = $model->count($data);
-                    if ($count) {
+                    if (!$count) {
                         $status = 1;
-                        $model->delete($data);
-                        $message = _a('User removed from the role.');
-                        $data = array('id' => $uid);
-                    } else {
-                        $status = 0;
-                        $message = _a('User not in the role.');
-                        $data = array('id' => $uid);
-                    }
-                } else {
-                    if ('uid' == $field) {
-                        $name   = (int) $name;
-                        $field  = 'id';
-                    }
-                    $user = Pi::service('user')->getUser($name, $field);
-                    $uid = $user ? (int) $user->get('id') : 0;
-                    if ($uid) {
-                        $data = array('role' => $role, 'uid' => $uid);
-                        $count = $model->count($data);
-                        if (!$count) {
-                            $status = 1;
-                            $data['section'] = $roles[$role]['section'];
-                            $row = $model->createRow($data);
-                            $row->save();
-                            $message = _a('User added to the role.');
-                            $data = array(
-                                'id'    => $uid,
-                                'name'  => Pi::service('user')->get($uid, 'name'),
-                                'url'   => Pi::service('user')->getUrl(
-                                    'profile',
-                                    $uid
-                                ),
-                            );
-                            if (1 == $status) {
-                                $this->setAccount($user, $role);
-                            }
-                        } else {
-                            $status = 0;
-                            $message = _a('User already in the role.');
-                            $data = array('uid' => $uid);
+                        $data['section'] = $roles[$role]['section'];
+                        $row = $model->createRow($data);
+                        $row->save();
+                        $message = _a('User added to the role.');
+                        $data = array(
+                            'id'    => $uid,
+                            'name'  => Pi::service('user')->get($uid, 'name'),
+                            'url'   => Pi::service('user')->getUrl(
+                                'profile',
+                                $uid
+                            ),
+                        );
+                        if (1 == $status) {
+                            $this->setAccount($user, $role);
                         }
                     } else {
                         $status = 0;
-                        $message = _a('User not found.');
-                        $data = array('name' => $name);
+                        $message = _a('User already in the role.');
+                        $data = array('uid' => $uid);
                     }
+                } else {
+                    $status = 0;
+                    $message = _a('User not found.');
+                    $data = array('name' => $name);
                 }
-            } else {
-                $status = 0;
-                $message = _a('User not specified.');
-                $data = array('name' => $name);
             }
 
             return compact('status', 'message', 'data');

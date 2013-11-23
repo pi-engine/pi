@@ -78,11 +78,9 @@
           <td>
             <input type="checkbox" ng-model="user.checked" style="margin-top: -2px;">
           <td>
-            <i class="icon-circle text-success" ng-if="user.active"
-               tooltip="{{'ACTIVE' | translate}}">
+            <i class="icon-circle text-success" ng-if="user.active" tooltip="{{'ACTIVE' | translate}}">
             </i>
-            <i class="icon-circle muted" ng-if="!user.active"
-               tooltip="{{'INACTIVE' | translate}}">
+            <i class="icon-circle muted" ng-if="!user.active" tooltip="{{'INACTIVE' | translate}}">
             </i>
           <td>
                 {{user.id}}
@@ -94,7 +92,12 @@
               <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
             </div>
           <td>
-            <a href="{{user.link}}" target="_blank">{{user.name}}</a>
+            <span ng-show="user.active">
+                <a href="{{user.link}}" target="_blank">{{user.name}}</a>
+            </span>
+            <span ng-show="!user.active">
+                {{user.name}}
+            </span>
           <td>{{user.email}}
           <td class="text-center">
             <div class="pi-status" ng-class="{'active': !user.time_disabled}"

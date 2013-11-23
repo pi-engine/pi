@@ -89,7 +89,7 @@
               <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
             </div>
           <td>
-            <a href="{{user.link}}" target="_blank">{{user.name}}</a>
+            {{user.name}}
           <td>{{user.email}}
           <td class="text-center">
             <div class="pi-status" ng-class="{'active': !user.time_disabled}"

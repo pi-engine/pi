@@ -661,7 +661,7 @@ class IndexController extends ActionController
             $user['link'] = Pi::service('user')->getUrl('profile', array(
                 'id'    => (int) $user['id'],
             ));
-            $user['active']         = (int) $user['active'];
+            $user['active']         = (bool) $user['active'];
             $user['time_disabled']  = $user['time_disabled']
                 ? _date($user['time_disabled']) : 0;
             $user['time_activated']  = $user['time_activated']
