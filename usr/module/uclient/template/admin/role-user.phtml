@@ -18,6 +18,7 @@
         foreach ($users as $uid => $user) {
     ?>
         <dl class="dl-horizontal">
+            <dt><?php echo $uid; ?></dt>
             <dt><?php echo _escape($user['name']); ?></dt>
             <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo _escape($user['name']); ?>">
                     <?php echo _a('Profile'); ?>

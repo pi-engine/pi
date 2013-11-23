@@ -15,9 +15,12 @@
       <th>{{'USERS' | translate}}
   <tbody>
     <tr ng-repeat="user in users">
-      <td>
-        <a href="{{user.url}}" target="_blank">{{user.name}}</a>
-      <td>
+        <td>
+            <a href="{{user.url}}" target="_blank">{{user.id}}</a>
+        <td>
+        <td>
+            <a href="{{user.url}}" target="_blank">{{user.name}}</a>
+        <td>
         <i class="icon-remove pi-icon-cursor" ng-click="removeAction($index)"></i>
 </table>
 <pagination ng-show="paginator.count > paginator.limit" 

@@ -24,7 +24,7 @@
                 if (item.admin_roles) {
                   item.admin_roles = item.admin_roles.join(',');
                 }
-                item.time_created *= 1000;
+                //item.time_created *= 1000;
               })
               angular.extend(data, server.getRoles());
               if (params.action == 'remote') {

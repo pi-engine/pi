@@ -92,16 +92,11 @@ class RoleController extends ActionController
         $model = Pi::model('user_role');
         $message = '';
         if ($op && $name) {
-            if ('uid' == $field) {
-                $name   = (int) $name;
-                $field  = 'id';
-            }
-            $user = Pi::service('user')->getUser($name, $field);
-            $uid = $user ? (int) $user->get('id') : 0;
-            if ($uid) {
-                $data = array('role' => $role, 'uid' => $uid);
-                $count = $model->count($data);
+            if ($name) {
                 if ('remove' == $op) {
+                    $uid = (int) $name;
+                    $data = array('role' => $role, 'uid' => $uid);
+                    $count = $model->count($data);
                     if ($count) {
                         $status = 1;
                         $model->delete($data);
@@ -113,33 +108,47 @@ class RoleController extends ActionController
                         $data = array('id' => $uid);
                     }
                 } else {
-                    if (!$count) {
-                        $status = 1;
-                        $data['section'] = $roles[$role]['section'];
-                        $row = $model->createRow($data);
-                        $row->save();
-                        $message = _a('User added to the role.');
-                        $data = array(
-                            'id'    => $uid,
-                            'name'  => Pi::service('user')->get($uid, 'name'),
-                            'url'   => Pi::service('user')->getUrl(
-                                'profile',
-                                $uid
-                            ),
-                        );
+                    if ('uid' == $field) {
+                        $name   = (int) $name;
+                        $field  = 'id';
+                    }
+                    $user = Pi::service('user')->getUser($name, $field);
+                    $uid = $user ? (int) $user->get('id') : 0;
+                    if ($uid) {
+                        $data = array('role' => $role, 'uid' => $uid);
+                        $count = $model->count($data);
+                        if (!$count) {
+                            $status = 1;
+                            $data['section'] = $roles[$role]['section'];
+                            $row = $model->createRow($data);
+                            $row->save();
+                            $message = _a('User added to the role.');
+                            $data = array(
+                                'id'    => $uid,
+                                'name'  => Pi::service('user')->get($uid, 'name'),
+                                'url'   => Pi::service('user')->getUrl(
+                                    'profile',
+                                    $uid
+                                ),
+                            );
+                            if (1 == $status) {
+                                $this->setAccount($user, $role);
+                            }
+                        } else {
+                            $status = 0;
+                            $message = _a('User already in the role.');
+                            $data = array('uid' => $uid);
+                        }
                     } else {
                         $status = 0;
-                        $message = _a('User already in the role.');
-                        $data = array('uid' => $uid);
+                        $message = _a('User not found.');
+                        $data = array('name' => $name);
                     }
-                }
-                if (1 == $status && 'remove' != $op) {
-                    $this->setAccount($user, $role);
                 }
             } else {
                 $status = 0;
-                $message = _a('User not found.');
-                $data = array('id' => $uid);
+                $message = _a('User not specified.');
+                $data = array('name' => $name);
             }
 
             return compact('status', 'message', 'data');
@@ -156,12 +165,21 @@ class RoleController extends ActionController
         foreach ($rowset as $row) {
             $uids[] = (int) $row['uid'];
         }
-        $users = Pi::service('user')->mget($uids, array('uid', 'name'));
+        $users = Pi::service('user')->mget($uids, array('id', 'name'));
         $avatars = Pi::service('avatar')->getList($uids, 'small');
         array_walk($users, function (&$user) use ($avatars) {
             //$user['avatar'] = $avatars[$uid];
             $user['url'] = Pi::service('user')->getUrl('profile', $user['id']);
         });
+        foreach ($uids as $uid) {
+            if (isset($users[$uid])) {
+                continue;
+            }
+            $users[$uid] = array(
+                'id'    => $uid,
+                'name'  => '',
+            );
+        }
         $count = $model->count(array('role' => $role));
         if ($count >= $limit) {
             $count = $model->count(array('role' => $role));
@@ -219,17 +237,18 @@ class RoleController extends ActionController
         $model = Pi::model('user_account');
         $row = $model->find($uid);
         if ($row) {
-            return;
+            $row->assign(array('identity' => $user['identity']));
+        } else {
+            $row = $model->createRow(array(
+                'id'             => $uid,
+                'identity'       => $user->get('identity'),
+                //'active'         => 1,
+                //'time_activated' => time(),
+                //'time_created'   => time(),
+                'credential'     => md5(uniqid(mt_rand(), true)),
+            ));
+            $row->prepare();
         }
-        $row = $model->createRow(array(
-            'id'             => $uid,
-            'identity'       => $user->get('identity'),
-            'active'         => 1,
-            'time_activated' => time(),
-            'time_created'   => time(),
-            'credential'     => md5(uniqid(mt_rand(), true)),
-        ));
-        $row->prepare();
         $row->save();
     }
 }

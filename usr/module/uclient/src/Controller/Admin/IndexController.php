@@ -68,6 +68,11 @@ class IndexController extends ActionController
         } else {
             $users = array();
         }
+        array_walk($users, function (&$user) {
+            if ($user['time_created']) {
+                $user['time_created'] = _date($user['time_created']);
+            }
+        });
 
         // Set paginator
         $paginator = array(
@@ -130,6 +135,17 @@ class IndexController extends ActionController
             $message = _a('No user available.');
         }
         */
+
+        array_walk($data['users'], function (&$user) use ($fields) {
+            foreach ($fields as $field) {
+                if (!isset($user[$field])) {
+                    $user[$field] = null;
+                }
+            }
+            if ($user['time_created']) {
+                $user['time_created'] = _date($user['time_created']);
+            }
+        });
 
         // Set paginator
         $paginator = array(
@@ -209,7 +225,6 @@ class IndexController extends ActionController
         $result['message'] = _a('Role assignment succeeded.');
 
         return $result;
-
     }
 
     /**
@@ -341,6 +356,13 @@ class IndexController extends ActionController
                 $uids[] = (int) $row['uid'];
             }
             $users = Pi::service('user')->mget($uids, $fields);
+            foreach ($uids as $uid) {
+                if (!isset($users[$uid])) {
+                    $users[$uid] = array(
+                        'id'    => $uid,
+                    );
+                }
+            }
             $users = $this->renderRole($users);
         }
 
@@ -399,15 +421,20 @@ class IndexController extends ActionController
             );
             $model = Pi::model('user_account');
             foreach ($users as $uid => $user) {
-                $row = $model->createRow(array(
-                    'id'             => $uid,
-                    'identity'       => $user['identity'],
-                    'active'         => 1,
-                    'time_activated' => time(),
-                    'time_created'   => time(),
-                    'credential'     => md5(uniqid(mt_rand(), true)),
-                ));
-                $row->prepare();
+                $row = $model->find($uid);
+                if ($row) {
+                    $row->assign(array('identity' => $user['identity']));
+                } else {
+                    $row = $model->createRow(array(
+                        'id'             => $uid,
+                        'identity'       => $user['identity'],
+                        //'active'         => 1,
+                        //'time_activated' => time(),
+                        //'time_created'   => time(),
+                        'credential'     => md5(uniqid(mt_rand(), true)),
+                    ));
+                    $row->prepare();
+                }
                 $row->save();
             }
         }
