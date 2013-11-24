@@ -25,11 +25,6 @@ $config = array(
     // cURL specific configs
     'curl'      => array(
         'timeout'   => 1,
-        /*
-        'httpauth'  => '',
-        'username'  => '',
-        'password'  => '',
-        */
         'maxredirects'  => 10,
         'curloptions'   => array(
             CURLOPT_FOLLOWLOCATION  => true,

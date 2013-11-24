@@ -607,6 +607,12 @@ class User extends AbstractUseApi
             } else {
                 $result = array();
             }
+        } else {
+            $sorted = array();
+            foreach ($uid as $id) {
+                $sorted[$id] = $result[$id];
+            }
+            $result = $sorted;
         }
 
         return $result;

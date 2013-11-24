@@ -502,9 +502,9 @@ class User extends AbstractUseApi
                 $fields = $this->getFields($uids, $type, $fields, $filter, $activeOnly);
                 foreach ($fields as $id => $data) {
                     if (isset($result[$id])) {
-                        $result[$id] += $data;
+                        $result[$id] = array_merge($result[$id], (array) $data);
                     } else {
-                        $result[$id] = $data;
+                        $result[$id] = (array) $data;
                     }
                 }
             }
@@ -1166,13 +1166,6 @@ class User extends AbstractUseApi
                 } else {
                     $mFields[] = $field;
                 }
-                /*
-                $handler = new $meta[$field]['handler']($field);
-                $data  = $handler->mget($uids, $filter);
-                foreach ($data as $id => $user) {
-                    $result[$id][$field] = $user;
-                }
-                */
             }
             if ($pFields || $activeOnly) {
                 if ('account' == $type) {
@@ -1261,6 +1254,12 @@ class User extends AbstractUseApi
             } else {
                 $result = array();
             }
+        } else {
+            $sorted = array();
+            foreach ($uid as $id) {
+                $sorted[$id] = $result[$id];
+            }
+            $result = $sorted;
         }
 
         return $result;

@@ -45,6 +45,7 @@ class IndexController extends ActionController
         $page   = (int) $this->params('p', 1);
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
+        $order  = 'id DESC';
 
         $condition = array();
         $condition['identity']  = _get('identity') ?: '';
@@ -61,7 +62,7 @@ class IndexController extends ActionController
                 $condition,
                 $limit,
                 $offset,
-                '',
+                $order,
                 $fields
             );
             $users = $this->renderRole($users);
@@ -99,6 +100,7 @@ class IndexController extends ActionController
         $page   = (int) $this->params('p', 1);
         $limit  = 10;
         $offset = (int) ($page -1) * $limit;
+        $order  = 'id DESC';
 
         $condition = array();
         $condition['front_role']  = _get('front_role') ?: '';
@@ -113,7 +115,7 @@ class IndexController extends ActionController
             $roles,
             $limit,
             $offset,
-            '',
+            $order,
             $fields
         );
         /*
@@ -272,7 +274,7 @@ class IndexController extends ActionController
         array $roles,
         $limit = 0,
         $offset = 0,
-        $order = 'id DESC',
+        $order = '',
         $fields = array()
     ) {
         $frontRoles = Pi::registry('role')->read('front');
