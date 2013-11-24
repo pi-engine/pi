@@ -11,7 +11,7 @@ namespace Module\User\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Acl\Acl as AclManager;
+//use Pi\Acl\Acl as AclManager;
 use Module\User\Form\LoginForm;
 use Module\User\Form\LoginFilter;
 
@@ -106,9 +106,13 @@ class LoginController extends ActionController
         Pi::service('user')->destroy();
         Pi::service('event')->trigger('logout', $uid);
 
+        $redirect = $this->params('redirect');
+        $redirect = $redirect
+            ? urldecode($redirect) : array('route' => 'home');
+
         $this->jump(
-            array('route' => 'home'),
-            __('You logged out successfully. Now go back to homepage.')
+            $redirect,
+            __('You logged out successfully.')
         );
     }
 
@@ -135,7 +139,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs = Pi::service('registry')->config->read('user');
+        $configs = Pi::service('module')->config();
 
         $values = $form->getData();
         $identity = $values['identity'];
@@ -157,7 +161,10 @@ class LoginController extends ActionController
             }
         }
 
-        $result = Pi::user()->authenticate($identity, $credential);
+        $result = Pi::service('authentication')->authenticate(
+            $identity,
+            $credential
+        );
 
         if (!$result->isValid()) {
             if (!empty($configs['attempts'])) {

@@ -41,32 +41,48 @@ class IndexController extends ActionController
         Pi::service('authentication')->logout(array('redirect' => $redirect));
     }
 
-    public function initAction() {
-        $has_login  = Pi::service('authentication')->getData();
+    public function initAction()
+    {
+        $isAuthenticated  = Pi::service('authentication')->getData();
 
-        if(!empty($has_login)){
-            echo '';
-        }else{
-            echo ('document.write("<iframe id=\'check-sso\' src=\'/saml/index/check\' border=\'0\' frameborder=\'0\' width=\'0\' height=\'0\' style=\'position:absolute;\'></iframe>");');
+        if (!$isAuthenticated) {
+            $checkUrl = $this->url('', array('action' => 'check'));
+            $load =<<<"EOT"
+document.write(
+    "<iframe id=\'check-sso\' src=\'{$checkUrl}' border=\'0\' frameborder=\'0\' width=\'0\' height=\'0\' style=\'position:absolute;\'></iframe>"
+);
+EOT;
+            echo $load;
         }
+
         exit;
     }
 
     public function checkAction()
     {
-        $has_login  = Pi::service('authentication')->getData();
+        $isAuthenticated  = Pi::service('authentication')->getData();
 
-        if (empty($has_login)) {
-            $redirect   = $this->url('', array('action' => 'check', 'update'=>'yes'));
+        if (!$isAuthenticated) {
+            $redirect   = $this->url('', array(
+                'action'    => 'check',
+                'update'    =>'yes'
+            ));
             Pi::service('authentication')->login(array('redirect' => $redirect));
+
             exit();
         }
 
         $update = $this->params('update');
         if ($update == 'yes') {
-            echo '<html><head></head><body><script type="text/javascript">top.location.reload();</script></body></html>';
+            $load =<<<'EOT'
+<html><head></head><body>
+<script type="text/javascript">top.location.reload();</script>
+</body></html>
+EOT;
+            echo $load;
         }
-        exit();
+
+        exit;
     }
 
 
@@ -122,6 +138,7 @@ class IndexController extends ActionController
     public function getdataAction()
     {
         $data = Pi::service('authentication')->getData();
+        //return $data;
         echo json_encode($data);
         exit;
     }
