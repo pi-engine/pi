@@ -198,10 +198,12 @@ class AccountController extends ActionController
         // Set log
         $oldEmail = $userRow->email;
         $args = array($oldEmail, $email);
-        Pi::service('audit')->attach('custom', array(
+        /*
+        Pi::service('audit')->attach('reset-email', array(
             'file'  => Pi::path('log') . '/reset.email.csv'
         ));
-        Pi::service('audit')->log('custom', $args);
+        */
+        Pi::service('audit')->log('reset-email', $args);
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
 
@@ -232,6 +234,13 @@ class AccountController extends ActionController
             return $result;
         }
         // Verify
+        $identity = $user['identity'];
+        $authResult = Pi::service('authentication')->authenticate($identity, $credential);
+        if ($authResult->isValid()) {
+            $result['message'] = __('Correct password');
+            $result['status']  = 1;
+        }
+        /*
         $credential = md5(sprintf(
             '%s%s%s',
             $user['salt'],
@@ -242,6 +251,7 @@ class AccountController extends ActionController
             $result['message'] = __('Correct password');
             $result['status']  = 1;
         }
+        */
 
         return $result;
 
