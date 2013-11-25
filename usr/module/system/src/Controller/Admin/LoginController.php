@@ -64,7 +64,7 @@ class LoginController extends LoginControllerFront
     protected function preProcess()
     {
         if (!$this->request->isPost()) {
-            $this->jump(array('action' => 'index'), _a('Invalid request.'));
+            $this->jump(array('action' => 'index'), _a('Invalid request.'), 'error');
 
             return;
         }

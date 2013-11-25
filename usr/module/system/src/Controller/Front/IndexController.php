@@ -54,7 +54,7 @@ class IndexController extends ActionController
     /**
      * For page transition jump
      */
-    public function jumpAction()
+    public function ____jumpAction()
     {
         $this->view()->setTemplate('jump')->setLayout('layout-simple');
         //$params = Pi::service('session')->jump->params;

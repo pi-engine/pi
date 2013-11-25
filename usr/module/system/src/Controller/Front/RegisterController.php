@@ -33,7 +33,7 @@ class RegisterController extends ActionController
             $this->jump(
                 array('route' => 'home'),
                 __('Registration is disabled. Please come back later.'),
-                5
+                'error'
             );
 
             return;

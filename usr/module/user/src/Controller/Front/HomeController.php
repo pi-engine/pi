@@ -111,7 +111,7 @@ class HomeController extends ActionController
                     'action'     => 'index'
                 ),
                 __('User was not found.'),
-                3
+                'error'
             );
         }
 

@@ -106,7 +106,7 @@ class PostController extends ActionController
             */
             $post['operations'] = $operations;
         } else {
-            $this->jump(array('route' => 'home'), __('Comment post not found.'));
+            $this->jump(array('route' => 'home'), __('Comment post not found.'), 'error');
         }
 
         $title = __('Comment post');
@@ -421,7 +421,7 @@ class PostController extends ActionController
                     'post' => $id
                 ));
             }
-            $this->jump($redirect, $message);
+            $this->jump($redirect, $message, $status == 1 ? 'success' : 'error');
         } else {
             $result = array(
                 'status'    => (int) $status,
@@ -473,7 +473,7 @@ class PostController extends ActionController
             if (!$redirect) {
                 $redirect = Pi::service('url')->assemble('comment');
             }
-            $this->jump($redirect, $message);
+            $this->jump($redirect, $message, $status > 0 ? 'success' : 'error');
         } else {
             $this->response->setStatusCode($status);
             return array(

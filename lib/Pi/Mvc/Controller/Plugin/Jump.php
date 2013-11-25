@@ -20,7 +20,7 @@ use Zend\Http\Response;
  *
  * ```
  *  // Jump to a direct URL
- *  $this->jump(<URI>, <Message>, <Transition time in seconds>);
+ *  $this->jump(<URI>, <Message>, <type: error, success, info, default>);
  *
  *  // Jump to a routed URL
  *  $this->jump(array('route' => <route-name>,
@@ -31,23 +31,20 @@ use Zend\Http\Response;
  */
 class Jump extends AbstractPlugin
 {
-    /** @var string Namespace for session */
-    //protected static $sessionNamespace = 'PI_JUMP';
-
     /**
-     * Generates a URL based on a route
+     * Jump to a page with message
      *
      * @param string|array $params URI or params to assemble URI
      * @param string $message Message to display on transition page
-     * @param int $time Time to wait on transition page before directed, in seconds
+     * @param string $namespace success, error, info, default
      * @param bool $allowExternal Allow external links
      *
-     * @return Response
+     * @return void
      */
     public function __invoke(
         $params,
         $message        = '',
-        $time           = 3,
+        $namespace      = '',
         $allowExternal  = false
     ) {
         if (is_array($params)) {
@@ -71,31 +68,16 @@ class Jump extends AbstractPlugin
             }
         }
 
-        $jumpParams = array(
-            'time'      => $time,
-            'message'   => $message,
-            'url'       => $url,
-        );
-        //$_SESSION[static::$sessionNamespace] = $jumpParams;
-        Pi::service('cookie')->set('PI_JUMP', $jumpParams, 30);
-        //vd($jumpParams); exit();
-
         $controller = $this->getController();
-        $controller->view()->setTemplate(false);
-        /**/
-        $route = 'admin' == Pi::engine()->application()->getSection()
-            ? 'admin' : 'default';
-        /**/
-        $response = $controller->plugin('redirect')->toRoute(
-            $route,
-            array(
-                'module'        => 'system',
-                'controller'    => 'jump',
-        ));
-        if ($response instanceof Response) {
-            $response->send();
+        if ($message) {
+            $messenger = $controller->plugin('flashMessenger');
+            if ($namespace && is_string($namespace)) {
+                $messenger->setNamespace($namespace);
+            }
+            $messenger->addMessage($message);
         }
+        $controller->plugin('redirect')->toUrl($url);
 
-        return $response;
+        exit;
     }
 }

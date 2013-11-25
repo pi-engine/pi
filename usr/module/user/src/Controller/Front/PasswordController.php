@@ -70,7 +70,8 @@ class PasswordController extends ActionController
                     Pi::config('salt')
                 ));
 
-                if ($credential == $row->credential) {
+                if ($row['credential'] == $row->transformCredential($credential)) {
+                    //if ($credential == $row->credential) {
                     // Update password
                     Pi::api('user', 'user')->updateAccount(
                         $uid,

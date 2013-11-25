@@ -100,7 +100,7 @@ class DashboardController extends ActionController
             $this->jump(
                 array('action' => 'system'),
                 __('No permitted operation available.'),
-                1
+                'error'
             );
 
             return;

@@ -95,8 +95,7 @@ class StaticController extends WidgetController
             $status = $this->processPost($form);
             if ($status > 0) {
                 $message = _a('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''),
-                            $message);
+                $this->jump(array('action' => 'index', 'name' => ''), $message);
 
                 return;
             } elseif ($status < 0) {

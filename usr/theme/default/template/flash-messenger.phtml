@@ -1,21 +1,22 @@
 <?php
+$typeMap = array(
+    'getMessages'           => 'alert alert-info',
+    'getErrorMessages'      => 'alert alert-error',
+    'getSuccessMessages'    => 'alert alert-success',
+);
 $flashMessenger = $this->flashMessenger();
-$messages = $flashMessenger->getMessages();
+$messages = array();
+
+foreach ($typeMap as $type => $class) {
+    $messages = $flashMessenger->{$type}();
+    if ($messages) {
+        break;
+    }
+}
+
 if (!$messages) {
     return;
 }
-
-$namespace = $flashMessenger->getNamespace();
-switch ($namespace) {
-    case 'success':
-    case 'error':
-        $type = $namespace;
-        break;
-    default:
-        $type = 'info';
-        break;
-}
-$class = sprintf('alert alert-%s', $type);
 $this->bootstrap('js/bootstrap.min.js');
 ?>
 

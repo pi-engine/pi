@@ -88,7 +88,7 @@ class ProfileController extends ActionController
                     'action'     => 'index'
                 ),
                 __('User was not found.'),
-                3
+                'error'
             );
         }
 
@@ -172,7 +172,7 @@ class ProfileController extends ActionController
                     'action'     => 'index'
                 ),
                 __('An error occurred.'),
-                3
+                'error'
             );
         }
 
@@ -275,7 +275,7 @@ class ProfileController extends ActionController
                     'action'     => 'index'
                 ),
                 __('An error occurred.'),
-                3
+                'error'
             );
         }
 
@@ -329,7 +329,7 @@ class ProfileController extends ActionController
                     'action'     => 'index'
                 ),
                 __('An error occurred.'),
-                3
+                'error'
             );
         }
 

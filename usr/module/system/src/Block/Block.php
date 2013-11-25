@@ -136,7 +136,7 @@ class Block
             $route = $options['route'];
             unset($options['route']);
         } else {
-            $route = 'sysuser';
+            $route = Pi::service('user')->getRoute();
         }
         if (!empty($options['action'])) {
             $action = $options['action'];

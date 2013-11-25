@@ -113,7 +113,7 @@ class CategoryController extends ActionController
         }
 
         if (!$return) {
-            $this->jump(array('action' => 'index'), $message);
+            $this->jump(array('action' => 'index'), $message, $status == 1 ? 'success' : 'error');
         } else {
             $result = array(
                 'status'    => (int) $status,

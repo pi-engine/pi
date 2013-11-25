@@ -228,7 +228,7 @@ class Local extends System
      */
     public function getRoute()
     {
-        return parent::getRoute();
+        return Pi::api('user', 'user')->getRoute();
     }
 
     /**

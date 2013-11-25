@@ -124,7 +124,7 @@ class LoginController extends ActionController
     public function processAction()
     {
         if (!$this->request->isPost()) {
-            $this->jump(array('action' => 'index'), __('Invalid request.'));
+            $this->jump(array('action' => 'index'), __('Invalid request.'), 'error');
             return;
         }
 
@@ -154,7 +154,7 @@ class LoginController extends ActionController
                 $this->jump(
                     array('route' => 'home'),
                     __('You have tried too many times. Please try later.'),
-                    5
+                    'error'
                 );
 
                 return;
@@ -236,7 +236,7 @@ class LoginController extends ActionController
         if ($configs['profile_complete_form']) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
             if (!$completeProfile) {
-                return $this->redirect(
+                $this->redirect(
                     'user',
                     array(
                         'controller' => 'register',
@@ -246,7 +246,7 @@ class LoginController extends ActionController
             }
         }
 
-        $this->jump($redirect, __('You have logged in successfully.'), 2);
+        $this->jump($redirect, __('You have logged in successfully.'));
     }
 
     /**

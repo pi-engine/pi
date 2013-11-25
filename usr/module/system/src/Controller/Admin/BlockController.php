@@ -129,7 +129,8 @@ class BlockController extends ComponentController
                 $message = _a('The block is not allowed to clone.');
                 $this->jump(
                     array('action' => 'index', 'name' => $rootRow->module),
-                    $message
+                    $message,
+                    'error'
                 );
                 return;
             }
@@ -167,7 +168,8 @@ class BlockController extends ComponentController
                 $message = _a('The block is not allowed to clone.');
                 $this->jump(
                     array('action' => 'index', 'name' => $rootRow->module),
-                    $message
+                    $message,
+                    'error'
                 );
                 return;
             }
@@ -248,7 +250,7 @@ class BlockController extends ComponentController
             $blockRow = Pi::model('block')->find($id);
             if (!$blockRow) {
                 $message = _a('Block is not found.');
-                $this->jump(array('action' => 'index'), $message);
+                $this->jump(array('action' => 'index'), $message, 'error');
                 return;
             }
             $rootRow = Pi::model('block_root')->find($blockRow->root);

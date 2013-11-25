@@ -240,7 +240,7 @@ class PostController extends ActionController
                     'id'        => $id,
                 ));
             }
-            $this->jump($redirect, $message);
+            $this->jump($redirect, $message, $status == 1 ? 'success' : 'error');
         } else {
             $result = array(
                 'status'    => (int) $status,
@@ -314,7 +314,7 @@ class PostController extends ActionController
             } else {
                 $redirect = $this->url('', array('controller' => 'list'));
             }
-            $this->jump($redirect, $message);
+            $this->jump($redirect, $message, $status == 1 ? 'success' : 'error');
         } else {
             $result = array(
                 'status'    => (int) $status,
