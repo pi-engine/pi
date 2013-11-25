@@ -10,8 +10,17 @@ module.exports = function(grunt) {
 
   var vendor = 'www/static/vendor/';
   var angularSrc = vendor + 'angular/';
-  //Configuration modules, you can change for your need
-  var modules = ['system', 'user', 'message'];
+  //Auto load modules list, or you can change for your need
+  var modules = (function() {
+    var fs = require('fs');
+    var modules = [];
+    fs.readdirSync('usr/module')
+      .forEach(function(path) {
+        if (~path.indexOf('.')) return;
+        modules.push(path);
+      });
+    return modules; //or return ['system', 'user']
+  })();
 
   function handlerMouldes(type) {
     var ret = {};
