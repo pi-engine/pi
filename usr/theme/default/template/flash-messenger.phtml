@@ -1,0 +1,27 @@
+<?php
+$flashMessenger = $this->flashMessenger();
+$messages = $flashMessenger->getMessages();
+if (!$messages) {
+    return;
+}
+
+$namespace = $flashMessenger->getNamespace();
+switch ($namespace) {
+    case 'success':
+    case 'error':
+        $type = $namespace;
+        break;
+    default:
+        $type = 'info';
+        break;
+}
+$class = sprintf('alert alert-%s', $type);
+$this->bootstrap('js/bootstrap.min.js');
+?>
+
+<div class="<?php echo $class; ?>">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <?php foreach ($messages as $msg): ?>
+        <?php echo $msg ?>
+    <?php endforeach; ?>
+</div>

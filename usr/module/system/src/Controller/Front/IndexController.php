@@ -26,6 +26,8 @@ class IndexController extends ActionController
         //return $this->jumpToDenied('Demo for denied');
         //return $this->jumpToException('Demo for 503', 503);
 
+        //$this->flashMessenger()->addMessage('Test for flash messenger.');
+        //$this->flashMessenger('Test for flash messenger.');
         $this->view()->setTemplate('system-home');
     }
 

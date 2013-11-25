@@ -28,6 +28,10 @@ $this->css(array(
     </div>
 
     <div class="container">
+
+        <!-- Flash messenger -->
+        <?php include 'flash-messenger.phtml'; ?>
+
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>
             <div class="pi-zone-module row-fluid"><?php echo $content; ?></div>

@@ -20,6 +20,7 @@ $module = Pi::service('module')->current();
 </head>
 
 <body id="pi-<?php echo $module; ?>" class="<?php echo $locale; ?>">
+
     <!-- pi header bar: fixed-->
     <div id="pi-header-bar" class="clearfix">
         <a href="<?php echo $this->url(''); ?>" title="<?php echo _escape($sitename); ?>" class="pi-admin-logo">Pi</a>
@@ -58,6 +59,7 @@ $module = Pi::service('module')->current();
     </div>
 
     <div id="pi-wrapper">
+
         <div id="pi-modules-menu">
         <!-- modules list link : sidemenu,fixed-->
         <?php $navigation = $this->adminNav($module)->side(); ?>
@@ -68,7 +70,8 @@ $module = Pi::service('module')->current();
 
         <!-- modules content -->
         <div id="pi-content">
-                <!-- each module or system  link : operation or manage -->
+
+            <!-- each module or system  link : operation or manage -->
             <?php $navigation = $this->adminNav($module)->top(); ?>
             <?php if ($navigation) {  ?>
             <div class="clearfix pi-module-menu">
@@ -78,6 +81,10 @@ $module = Pi::service('module')->current();
             <?php } ?>
 
             <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
+
+                <!-- Flash messenger -->
+                <?php include 'flash-messenger.phtml'; ?>
+
                 <div class="clearfix pi-main-content">
                     <?php echo $content; ?>
                 </div>
