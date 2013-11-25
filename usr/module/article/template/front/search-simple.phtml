@@ -12,7 +12,7 @@
         <span class="muted span2" style="margin: 10px 0 0 10px">
             (<?php echo $this->escape($count) . __(' articles'); ?>)
         </span>
-        <div style="margin-right: 10px">
+        <div style="margin-right: -30px">
             <?php
                 $form->setAttributes(array(
                     'action' => $this->url('', array('action' => 'simple')),
@@ -26,7 +26,7 @@
                 <?php
                 $element = $form->get('keyword');
                 $element->setAttributes(array(
-                    'class'       => 'input-append',
+                    'class'       => 'input-append span7',
                     'placeholder' => __('title'),
                 ));
                 echo $this->formElement($element);
