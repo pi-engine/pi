@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     var modules = [];
     fs.readdirSync('usr/module')
       .forEach(function(path) {
-        if (~path.indexOf('.')) return;
+        if (~path.indexOf('.') || path == 'widget') return;
         modules.push(path);
       });
     return modules; //or return ['system', 'user']
