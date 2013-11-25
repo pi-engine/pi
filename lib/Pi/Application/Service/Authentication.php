@@ -128,11 +128,11 @@ class Authentication extends AbstractService
     /**
      * Load current session user and bind to user service
      *
-     * @return bool
+     * @return void
      */
     public function bind()
     {
-        return $this->getStrategy()->bind();
+        $this->getStrategy()->bind();
     }
 
     /**
@@ -160,11 +160,11 @@ class Authentication extends AbstractService
     /**
      * Clears the identity from persistent storage
      *
-     * @return bool
+     * @return void
      */
     public function clearIdentity()
     {
-        return $this->getStrategy()->clearIdentity();
+        $this->getStrategy()->clearIdentity();
     }
 
     /**
@@ -189,7 +189,7 @@ class Authentication extends AbstractService
      */
     public function requireLogin(array $params = array())
     {
-        return $this->getStrategy()->requireLogin($params);
+        $this->getStrategy()->requireLogin($params);
     }
 
     /**
@@ -201,7 +201,7 @@ class Authentication extends AbstractService
      */
     public function login(array $params = array())
     {
-        return $this->getStrategy()->login($params);
+        $this->getStrategy()->login($params);
     }
 
     /**
@@ -213,7 +213,7 @@ class Authentication extends AbstractService
      */
     public function logout(array $params = array())
     {
-        return $this->getStrategy()->logout($params);
+        $this->getStrategy()->logout($params);
     }
 
     /**

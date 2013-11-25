@@ -169,7 +169,7 @@ abstract class AbstractStrategy
      *
      * @param array $params
      *
-     * @return bool
+     * @return void
      */
     abstract public function requireLogin(array $params = array());
 
