@@ -234,12 +234,18 @@ class AccountController extends ActionController
             return $result;
         }
         // Verify
+        if ($user['credential'] == $user->transformCredential($credential)) {
+            $result['message'] = __('Correct password');
+            $result['status']  = 1;
+        }
+        /*
         $identity = $user['identity'];
         $authResult = Pi::service('authentication')->authenticate($identity, $credential);
         if ($authResult->isValid()) {
             $result['message'] = __('Correct password');
             $result['status']  = 1;
         }
+        */
         /*
         $credential = md5(sprintf(
             '%s%s%s',
