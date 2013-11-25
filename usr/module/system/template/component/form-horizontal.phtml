@@ -29,7 +29,7 @@
     echo sprintf(
         '<div class="control-group"><div class="controls">%s%s</div></div>', 
         $this->formElement($elements['submit']),
-        empty($ResetShow) ? '' : '<input type="reset" value="cancel" class="btn btn-link js-cancel">'
+        empty($ResetShow) ? '' : '<input type="reset" value="' . __('cancel') . '" class="btn btn-link js-cancel">'
     );
     echo $this->form()->closeTag();
 ?>
