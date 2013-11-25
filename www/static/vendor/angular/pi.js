@@ -270,9 +270,3 @@ angular.module('pi', [])
     }
   }
 ]);
-
-if (typeof d === 'undefined') {
-  var d = function(obj) {
-    console.log(obj);
-  }
-}
