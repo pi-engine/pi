@@ -33,10 +33,6 @@
 
     $scope.submit = function() {
       server.get($scope.entity).success(function(data) {
-        var user = data.user;
-        user.time_activated *= 1000;
-        user.time_disabled *= 1000;
-
         angular.extend($scope, data);
         $scope.entity.data = '';
       });
