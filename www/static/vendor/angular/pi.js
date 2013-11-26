@@ -247,9 +247,16 @@ angular.module('pi', [])
               return response;
             },
             responseError: function(rejection) {
+              var data = rejection.data;
               $rootScope.alert = {
                 status: 0,
-                message: rejection.data.message
+                message: data.message
+              }
+              //For pi ajax debug
+              if (angular.isDefined(piLoggerSetCategoryDisplay) && data.exception) {
+                document.getElementById('pi-logger-category-debug')
+                        .innerHTML = '<pre>' + data.exception.xdebug_message + '</pre>';
+                piLoggerSetCategoryDisplay('debug', 1);
               }
               return $q.reject(rejection);
             }
