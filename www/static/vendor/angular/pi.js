@@ -196,15 +196,21 @@ angular.module('pi', [])
     $scope.inputShow = function() {
       $scope.editing = 1;
       $timeout(function() {
-        $element.find('input')[0].focus();
+        var input = $element.find('input');
+        input.val('');
+        input[0].focus();
+        input.val($scope.text);
       });
     }
 
     $scope.editTextAction = save;
-
+  
     $scope.enterSaveAction = function(e) {
       if (e.which == 13) {
         $scope.editing = 0;
+        $timeout(function() {
+          e.target.blur();
+        });
       }
     }
   } 
