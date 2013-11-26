@@ -200,7 +200,7 @@ angular.module('pi', [])
         input.val('');
         input[0].focus();
         input.val($scope.text);
-      });
+      }, 0, false);
     }
 
     $scope.editTextAction = save;
@@ -210,7 +210,7 @@ angular.module('pi', [])
         $scope.editing = 0;
         $timeout(function() {
           e.target.blur();
-        });
+        }, 0, false);
       }
     }
   } 
