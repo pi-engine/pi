@@ -16,88 +16,83 @@ return array(
     // Event list
     'event'    => array(
         // Register user event
-        'register_user' => array(
+        'user_register' => array(
             // title
-            'title' => __('Register user'),
+            'title' => __('User registered'),
         ),
 
         // Activate user event
-        'activate_user' => array(
+        'user_activate' => array(
             // title
-            'title' => __('Active user'),
-        ),
-
-        // Update email event
-        'update_email' => array(
-            // title
-            'title' => __('Update email'),
-        ),
-
-        // Update display name event
-        'update_name' => array(
-            // title
-            'title' => __('Update display name'),
-        ),
-
-        // Update password event
-        'update_password' => array(
-            // title
-            'title' => __('Update password'),
-        ),
-
-        // Update avatar event
-        'update_avatar' => array(
-            // title
-            'title' => __('Update avatar'),
+            'title' => __('User activated'),
         ),
 
         // Enable user
-        'enable_user' => array(
+        'user_enable' => array(
             // title
-            'title' => __('Enable user'),
+            'title' => __('User enabled'),
         ),
 
         // Disable user
-        'disable_user' => array(
+        'user_disable' => array(
             // title
-            'title' => __('Disable user'),
+            'title' => __('User disabled'),
         ),
 
         // Delete user
-        'delete_user' => array(
+        'user_delete' => array(
             // title
-            'title' => __('Delete user'),
+            'title' => __('User deleted'),
+        ),
+
+        // Update display name event
+        'user_update' => array(
+            // title
+            'title' => __('User profile updated'),
+        ),
+
+        // Update email event
+        'email_change' => array(
+            // title
+            'title' => __('Email changed'),
+        ),
+
+        // Update password event
+        'password_change' => array(
+            // title
+            'title' => __('Password_changed'),
         ),
 
         // Assign role
-        'assign_role' => array(
+        'role_assign' => array(
             // title
-            'title' => __('Assign role'),
+            'title' => __('Role assigned'),
         ),
 
         // Remove role
-        'remove_role' => array(
+        'role_remove' => array(
             // title
-            'title' => __('Remove role'),
+            'title' => __('Role removed'),
         ),
 
         // Login
-        'login' => array(
+        'user_login' => array(
             // title
-            'title' => __('Login'),
+            'title' => __('User logged in'),
         ),
 
         // Logout
-        'logout' => array(
+        'user_logout' => array(
             // title
-            'title' => __('Logout'),
+            'title' => __('User logged out'),
         ),
     ),
+
     // Listener list
     'listener' => array(
         array(
             // event info: module, event name
-            'event'     => array('user', 'activate_user'),
+            'event'     => array('user', 'user_activate'),
             // listener callback: class, method
             'callback'  => array('event', 'joincommunity'),
         ),
