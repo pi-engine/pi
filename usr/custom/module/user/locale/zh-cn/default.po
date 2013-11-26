@@ -1,0 +1,629 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-custom-user\n"
+"POT-Creation-Date: 2013-11-21 09:28+0800\n"
+"PO-Revision-Date: 2013-11-22 02:59+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_t;_a;_b\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\custom\\module\\user\n"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/eefocus.register.php:28
+msgid "Confirm credential"
+msgstr "确认密码"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/eefocus.register.php:60
+msgid "Please type the word."
+msgstr "验证码"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:20
+msgid "chuangan/MEMS"
+msgstr "传感/MEMS"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:21
+msgid "kongzhiqi/chuliqi/DSP"
+msgstr "控制器/处理器/DSP"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:22
+msgid "baohu/geli"
+msgstr "控制器/处理器/DSP"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:23
+msgid "kaiguan/duolufuyongqi"
+msgstr "开关/多路复用器"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:24
+msgid "fadahexianxingchanpin"
+msgstr "放大和线性产品"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:25
+msgid "cunchu"
+msgstr "存储"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:26
+msgid "lianjieqi"
+msgstr "连接器"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:27
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:57
+msgid "ceshiceliang"
+msgstr "测试测量"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:28
+msgid "shujuzhuanhuanqi"
+msgstr "测试测量"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:29
+msgid "jiekou"
+msgstr "测试测量"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:30
+msgid "guangdian/xianshi"
+msgstr "光电/显示"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:31
+msgid "qianrushikaifagongju"
+msgstr "嵌入式开发工具"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:32
+msgid "dianyuan/dianchiguanli"
+msgstr "电源/电池管理"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:33
+msgid "yin/shipin"
+msgstr "音/视频"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:34
+msgid "RF/weibo"
+msgstr "RF/微波"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:35
+msgid "EDA/IP/IC/PCBsheji"
+msgstr "EDA/IP/IC/PCB设计"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:36
+msgid "shuzi/kebianchengluoji"
+msgstr "数字/可编程逻辑"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:37
+msgid "fenli/wuyuanqijian"
+msgstr "分立/无源器件"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:38
+msgid "tongxin/wangluoIC"
+msgstr "通信/网络IC"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:39
+msgid "zhizao/fengzhuang"
+msgstr "制造/封装"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:40
+msgid "shizhong/dingshi"
+msgstr "时钟/定时"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:54
+msgid "qianrushixitongsheji"
+msgstr "嵌入式系统设计"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:55
+msgid "wuxian&shepin"
+msgstr "无线&射频"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:56
+msgid "lvsesheji"
+msgstr "绿色设计"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:58
+msgid "xiaofeidianzi"
+msgstr "消费电子"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:59
+msgid "dianzizixunjinji"
+msgstr "电子资讯集锦"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:60
+msgid "moni&dianyuan"
+msgstr "模拟&电源"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:61
+msgid "gongyedianzi"
+msgstr "工业电子"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:83
+msgid "Full name"
+msgstr "姓名"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:92
+msgid "Language"
+msgstr "语言"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:99
+msgid "Country"
+msgstr "地区"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:109
+msgid "Province"
+msgstr "省"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:117
+msgid "City"
+msgstr "市"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:125
+msgid "Telephone"
+msgstr "手机"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:139
+msgid "Registered source"
+msgstr "注册来源"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:147
+msgid "Phone"
+msgstr "电话"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:154
+msgid "Address"
+msgstr "详细地址"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:166
+msgid "Postcode"
+msgstr "邮编"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:179
+msgid "Interest"
+msgstr "感兴趣的产品技术"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:192
+msgid "Subscriptions"
+msgstr "订阅信息"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:208
+msgid "Education"
+msgstr "教育经历"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:216
+msgid "School name"
+msgstr "学校"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:222
+msgid "Department"
+msgstr "院系"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:228
+msgid "Major"
+msgstr "专业"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:234
+msgid "Degree"
+msgstr "学历"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:240
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:327
+msgid "Start time"
+msgstr "开始时间"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:244
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:331
+msgid "End time"
+msgstr "结束时间"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:248
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:317
+msgid "Description"
+msgstr "描述"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:263
+msgid "Work"
+msgstr "工作经验"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:271
+msgid "Company name"
+msgstr "公司"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:277
+msgid "Work Department"
+msgstr "部门"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:283
+msgid "Industry"
+msgstr "行业"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:290
+msgid "Sector"
+msgstr "领域"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:294
+msgid "Job Position"
+msgstr "职位描述"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:299
+msgid "Select"
+msgstr "请选择"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:300
+msgid "R&D"
+msgstr "研发"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:301
+msgid "Management"
+msgstr "研发管理/项目管理"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:302
+msgid "Measurement"
+msgstr "测试测量"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:303
+msgid "QA"
+msgstr "生产管理/质量控制"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:304
+msgid "Market"
+msgstr "采购/市场/服务"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:305
+msgid "Student"
+msgstr "学生"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:311
+msgid "Job title"
+msgstr "职务职称"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:346
+msgid "Community bbs"
+msgstr "社区帖子"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:353
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:393
+msgid "CNDZZ"
+msgstr "CNDZZ"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:360
+msgid "Blog"
+msgstr "博客"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:367
+msgid "Community"
+msgstr "加入的社区"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:376
+msgid "EEFOCUS"
+msgstr "EEFOCUS"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:381
+msgid "Article channel"
+msgstr "----- 资讯频道"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:385
+msgid "Blog channel"
+msgstr "----- 博客频道"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:389
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:402
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:415
+msgid "Forum"
+msgstr "----- 论坛"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:398
+msgid "Diagram"
+msgstr "----- 电路图"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:406
+msgid "EEboard"
+msgstr "EEboard"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:411
+msgid "Kaifaban"
+msgstr "----- 开发板"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/config/user.php:419
+msgid "Datasheet 5"
+msgstr "Datasheet 5"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/account-reset-email.phtml:10
+msgid "Change email"
+msgstr "修改邮箱"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/account-reset-email.phtml:15
+msgid "Congratulations!"
+msgstr "恭喜！"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/account-reset-email.phtml:16
+msgid "Your email has been changed."
+msgstr "邮箱修改成功。"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/account-reset-email.phtml:18
+msgid "Sorry, the link has expired, or maybe your email has been changed."
+msgstr "对不起，链接已过期，或邮箱已经修改成功。"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:30
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:106
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:43
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:221
+msgid "Topic"
+msgstr "帖子"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:34
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:47
+msgid "Reply"
+msgstr "回复"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:43
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:72
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:68
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:97
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:126
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:155
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:184
+msgid "Title"
+msgstr "标题"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:45
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:74
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:70
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:99
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:128
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:157
+msgid "Publish time"
+msgstr "发布时间"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:47
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:76
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:72
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:101
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:130
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:159
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:190
+msgid "Belong to community"
+msgstr "所属社区"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:62
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:91
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:87
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:116
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:145
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:174
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:206
+msgid "No content"
+msgstr "没有内容"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:103
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:128
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:218
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:243
+msgid "Manage"
+msgstr "管理"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-cndzz.phtml:131
+msgid "Circuit diagram"
+msgstr "电路图"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:51
+msgid "Question"
+msgstr "提问"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:55
+msgid "Answer"
+msgstr "回答"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:59
+msgid "Project"
+msgstr "项目"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:186
+msgid "Create time"
+msgstr "创建时间"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:188
+msgid "Update time"
+msgstr "更新时间"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community-bbs.phtml:246
+msgid "Relationship"
+msgstr "关系"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community.phtml:16
+msgid "Point"
+msgstr "积分："
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/activity-community.phtml:30
+msgid "You do not join in community"
+msgstr "尚未加入社区"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-find.phtml:9
+msgid "Find password"
+msgstr "找回密码"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-find.phtml:24
+msgid "An reset password link has been sent to your email"
+msgstr "重设密码的链接已经发往您的邮箱。"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-process.phtml:18
+msgid "set password"
+msgstr "密码设置"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-process.phtml:28
+msgid "Password Recovery fails"
+msgstr "密码找回失败，请"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-process.phtml:30
+msgid "Retrieve password"
+msgstr "重新找回密码"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-process.phtml:37
+msgid "Password Recovery is successful"
+msgstr "密码找回成功，请"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/password-process.phtml:38
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-activate.phtml:15
+msgid "log in"
+msgstr "登录"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-activate.phtml:9
+msgid "User activates"
+msgstr "用户激活"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-activate.phtml:14
+msgid "Activation was successful"
+msgstr "激活成功，请"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-activate.phtml:18
+msgid ""
+"Sorry, this link has expired. Maybe you have to complete the activation, or "
+"exceed the effective activation time."
+msgstr "对不起，此链接已失效。可能您已完成激活，或者超过有效激活时间。"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-activate.phtml:21
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:108
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:109
+msgid "Resend activation email"
+msgstr "重新发送激活邮件"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:18
+msgid "already registered,havent activited"
+msgstr "已注册，未激活？"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:19
+msgid "resend activited email"
+msgstr "重新发送激活邮件"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:27
+msgid "shenglingyufeitongxingzheng"
+msgstr "申领与非网通行证"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:28
+msgid "qinsongshixianrengwoxing"
+msgstr "轻松实现“任我行”"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:31
+msgid "queefocus"
+msgstr "去“与非网”交流技术"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:32
+msgid "qucndzz"
+msgstr "去“电子电路网”下载电路图"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:33
+msgid "qud5"
+msgstr "去“集成电路查询网”查询器件信息"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:34
+msgid "queeboard"
+msgstr "去“爱板网”选购开发板"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:42
+msgid "I have read and agree to"
+msgstr "我已经阅读并同意相关"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:42
+msgid "Terms of Service"
+msgstr "服务条款"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:54
+msgid "tell eefocus what you like"
+msgstr "告诉与非你喜欢的"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:55
+msgid "eefocus offer what you want"
+msgstr "与非提供你想要的"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:58
+msgid "we will provide service according to your interest"
+msgstr "我们会根据您的兴趣打造专属服务"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:59
+msgid "send gift"
+msgstr "我们会依据您的地址快递获奖礼品"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:60
+msgid "We will cherish your trust"
+msgstr "我们更会珍视您的这份信任"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:62
+msgid "eefocus solemnly promise:"
+msgstr "与非网郑重承诺："
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:63
+msgid "We will protect the security of your information"
+msgstr "我们一定保护您的信息资料安全"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:84
+msgid "System has been to you mailbox"
+msgstr "系统已经向你的邮箱"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:86
+msgid "Send an email"
+msgstr "发送了一封电子邮件"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:88
+msgid "Please click on the link in the email to complete your registration"
+msgstr "请点击邮件中的链接，以完成注册"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:93
+msgid "What to do when you did not receive the activation email?"
+msgstr "没有收到激活邮件怎么办？"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:97
+msgid "Email addresses are wrong?"
+msgstr "Email 地址是否写错？"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:99
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:100
+msgid "Reregister"
+msgstr "重新注册"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:103
+msgid "To see is it in the trash"
+msgstr "看看是否在垃圾箱中"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:104
+msgid "Wait a few minutes to check"
+msgstr "稍等几分钟再看"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:106
+msgid "or"
+msgstr "或者"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-index.phtml:137
+msgid "Message has been sent"
+msgstr "邮件已发送"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-profile-complete.phtml:9
+msgid "Complete profile"
+msgstr "完善资料"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-profile-complete.phtml:12
+msgid "Complete profile description"
+msgstr "完善个人资料，以便100多万与非用户认识您！"
+
+#: D:\GitHub\custom-pi\usr\custom\module\user/template/front/register-resend-activate-mail.phtml:10
+msgid "Resend activate email"
+msgstr "重新发送激活邮件"
+
+#~ msgid "You can"
+#~ msgstr "你可以选择"
+
+#~ msgid ",or"
+#~ msgstr "，或"
+
+#~ msgid "<a href=\"%s\">Login right now</a>"
+#~ msgstr "<a href=\"%s\">立即登录</a>"
+
+#~ msgid "Find password proceed:"
+#~ msgstr "找回密码流程："
+
+#~ msgid "input email address,send find password email"
+#~ msgstr "填写 Email 地址, 发送找回密码邮件"
+
+#~ msgid "click the link in email"
+#~ msgstr "查收邮件，点击邮件中的修改密码链接"
+
+#~ msgid "change password"
+#~ msgstr "修改密码"
+
+#~ msgid "done"
+#~ msgstr "完成"

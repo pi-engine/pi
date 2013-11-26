@@ -301,8 +301,9 @@ class Config extends AbstractResource
                 }
                 // Update existent category
                 if (!empty($isChanged)) {
-                    $status = $row->save();
-                    if (!$status) {
+                    try {
+                        $row->save();
+                    } catch (\Exception $e) {
                         $msg = 'Category "%s" is not updated.';
                         return array(
                             'status'    => false,

@@ -1,0 +1,231 @@
+.pi-comment {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+.pi-comment-header {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dddddd;
+}
+a.highlight {
+    color: #0088cc;
+}
+.pi-comment-form {
+    margin-top: 15px;
+}
+div.media > .pull-left {
+    margin-right: 15px;
+}
+img {
+    border-radius: 3px;
+}
+/*textarea {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: 38px;
+    max-height: 38px;
+    min-height: 38px;
+}
+textarea:focus {
+    border: 0px;
+    box-shadow: none;
+}*/
+.media-body .form-textarea {
+    border: 1px solid #dddddd;
+    padding: 4px 6px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border-radius: 4px;
+    height: 38px;
+}
+.form-unsign {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    background-color: #eeeeee;
+    color: #808080;
+    height: 44px;
+    line-height: 44px;
+    vertical-align: middle;
+    padding-left: 20px;
+}
+.form-submit {
+    margin-top: 10px;
+}
+.pi-comment-list .media {
+    margin-top: 20px;
+}
+.pi-comment-user {
+    font-weight: bold;
+    margin-right: 20px;
+    font-size: 14px;
+}
+.pi-comment-time {
+    font-size: 13px;
+    font-family: 'Arial';
+    margin-left: 5px;
+}
+.pi-comment-content {
+    margin-top: 10px;
+    color: #333333;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+}
+.pi-comment-operation {
+    margin-top: 10px;
+    font-size: 13px;
+}
+.pi-comment-operation .operation {
+    margin-right: 10px;
+}
+.operation i {
+    margin-right: 2px;
+}
+.operation a {
+    color: #999999;
+}
+a.muted:hover,
+.operation a:hover {
+    color: #0088cc;
+}
+.pi-comment-view-all {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.pi-comment-view-all a {
+    width: 100%;
+    color: #808080;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.pi-comment-none {
+    height: 140px;
+    line-height: 140px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    color: #999999;
+}
+
+.pi-comment-article-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0 20px 0;
+}
+
+.pi-comment-desc {
+    margin: 10px 0 0 0;
+    font-size: 13px;
+}
+.form-cancel {
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 10px;
+}
+
+.nav-tabs a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0088cc;
+    font-family: helvetica;
+}
+
+.comment-title-hidden {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: auto;
+    max-width: 40%;
+    word-break: keep-all;
+    margin: 0 20px 0 5px;
+}
+
+.pi-comment-count {
+    width: 40px;
+    border-radius: 4px;
+    background: rgb(204, 204, 204);
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 5px 1px #eeeeee;
+}
+a.pi-comment-count:hover {
+    background: #0088cc;
+    box-shadow: 0 5px 1px rgb(217, 236, 238);
+    text-decoration: none;
+    color: #fff;
+}
+.common-article-title {
+    color: #333333;
+    font-size: 13px;
+}
+.pi-comment-article {
+    margin-bottom: 20px; 
+}
+.pi-comment-article .media {
+    border-bottom: 1px solid #eee;
+}
+.pi-comment-article .media-body {
+    margin-bottom: 20px;
+}
+.pi-comment-article .media:last-child {
+    border: 0;
+}
+.pi-comment-tab {
+    margin-top: 10px;
+    font-size: 13px;
+}
+.pi-comment-tab a {
+    color: #0088cc;
+}
+.pi-comment-portal ul {
+    margin: 10px;
+    font-size: 13px;
+}
+.pi-comment-portal li {
+    padding: 2px 0 3px 5px;
+}
+
+
+/* Liaowei */
+
+/* Comments list */
+.comments-panel {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  padding: 0 15px 20px;
+  margin-bottom: 20px;
+}
+
+.comments-header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+
+.comment-item {
+  margin-top: 20px;
+}
+
+.comment-operation a {
+  margin-right: 5px;
+}
+
+.comment-btn-all {
+  margin-top: 20px;
+}

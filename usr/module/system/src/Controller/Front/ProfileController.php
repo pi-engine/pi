@@ -20,41 +20,65 @@ use Pi\Mvc\Controller\ActionController;
 class ProfileController extends ActionController
 {
     /**
-     * Profile data
+     * Profile data of mine
      *
      * @return void
      */
     public function indexAction()
     {
-        $id = $this->params('id');
-        if (!$id) {
-            $this->redirect()->toRoute(
-                'user',
-                array('controller' => 'account')
-            );
+        Pi::service('authentication')->requireLogin();
 
-            return;
+        $userRow = Pi::user()->getUser();
+        $roles   = $userRow->role();
+        $roleList = Pi::registry('role')->read();
+        $userRole = array();
+        foreach ($roles as $role) {
+            $userRole[] = $roleList[$role]['title'];
         }
-        if (is_numeric($id)) {
-            $row = Pi::model('user')->find($id);
-        } else {
-            $row = Pi::model('user')->find($id, 'identity');
-        }
-        $role = Pi::model('user_role')->find($row->id, 'user')->role;
-        $roleRow = Pi::model('acl_role')->find($role, 'name');
-        $user = array(
-            __('ID')        => $row->id,
-            __('Identity')  => $row->identity,
-            __('Email')     => $row->email,
-            __('Name')      => $row->name,
-            __('Role')      => __($roleRow->title),
+        $roleString = implode(' | ', $userRole);
+
+        $pwUrl = $this->url('', array('controller' => 'password'));
+        $pwString = sprintf(
+            '<a href="%s" title="">%s</a>',
+            $pwUrl,
+            __('Change password')
         );
 
+        $loUrl = Pi::service('authentication')->getUrl('logout');
+        $loString = sprintf(
+            '<a href="%s" title="">%s</a>',
+            $loUrl,
+            __('Logout')
+        );
+        $user = array(
+            __('ID')        => $userRow->id,
+            __('Username')  => $userRow->identity,
+            __('Email')     => $userRow->email,
+            __('Name')      => $userRow->name,
+            __('Role')      => $roleString,
+            __('Password')  => $pwString,
+            __('Logout')    => $loString,
+        );
+
+        $avatar = Pi::service('avatar')->get($userRow->id);
         $title = __('User profile');
         $this->view()->assign(array(
-            'title' => $title,
-            'user'  => $user,
+            'title'     => $title,
+            'user'      => $user,
+            'avatar'    => $avatar,
         ));
         $this->view()->setTemplate('profile');
+    }
+
+    /**
+     * Profile data of specified user
+     *
+     * Not used
+     *
+     * @return void
+     */
+    public function viewAction()
+    {
+        $this->redirect('', array('action' => 'index'));
     }
 }

@@ -1,0 +1,214 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-Engine\n"
+"POT-Creation-Date: 2013-11-09 19:05+0800\n"
+"PO-Revision-Date: 2013-11-09 19:05+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: Pi Engine\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_t;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\lib\\Pi\n"
+"X-Poedit-SearchPath-1: C:\\wamp\\www\\master\\www\n"
+"X-Poedit-SearchPath-2: C:\\wamp\\www\\master\\lib\\usr\\editor\n"
+
+#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:346
+msgid "Theme updated successfully."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:353
+msgid "Theme failed to update."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:355
+msgid "Theme upgraded successfully."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:359
+msgid "Theme asset publish failed."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Application/Service/Comment.php:456
+msgid "Posted a new comment."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
+msgid "A table must be supplied for the DbTable authentication adapter."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
+msgid ""
+"An identity column must be supplied for the DbTable authentication adapter."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
+msgid ""
+"A credential column must be supplied for the DbTable authentication adapter."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
+msgid ""
+"A value for the identity was not provided prior to authentication with "
+"DbTable."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
+msgid ""
+"A credential value was not provided prior to authentication with DbTable."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
+msgid "A record with the supplied identity could not be found."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
+msgid "More than one record matches the supplied identity."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+msgid "Supplied credential is invalid."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+msgid "Authentication successful."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Editor/Factory.php:76
+msgid "Pi Default Editor"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Feed/Model.php:198
+#, php-format
+msgid "Feed of %s - %s"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Filter/Gender.php:39
+msgid "Male"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Filter/Gender.php:43
+msgid "Female"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Filter/Gender.php:48
+msgid "Unknown gender"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Filter/YesNo.php:40
+msgid "No"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Filter/YesNo.php:43
+msgid "Yes"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:32
+#: C:\wamp\www\master\lib\Pi/Form/Element/Role.php:37
+#: C:\wamp\www\master\lib\Pi/Form/Element/RoleAdmin.php:35
+#: C:\wamp\www\master\lib\Pi/Form/Element/RoleUser.php:35
+msgid "None"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:33
+msgid "Locale"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:34
+msgid "Role"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:35
+msgid "User"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:32
+msgid "No cache"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:33
+#, php-format
+msgid "%d seconds"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:34
+msgid "1 minute"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:35
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:36
+#, php-format
+msgid "%d minutes"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:37
+msgid "1 hour"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:38
+#, php-format
+msgid "%d hours"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:39
+msgid "1 day"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:40
+msgid "1 week"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:41
+msgid "1 month"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Form/Element/Locale.php:33
+msgid "Auto-detection"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Mvc/Controller/ActionController.php:98
+msgid "The requested action was not found."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Mvc/Controller/Plugin/Terminate.php:39
+msgid "Login"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/Mvc/Controller/Plugin/Terminate.php:42
+#, php-format
+msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/View/Helper/AdminNav.php:59
+msgid "Operation"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/View/Helper/AdminNav.php:63
+msgid "Setting"
+msgstr ""
+
+#: C:\wamp\www\master\lib\Pi/View/Helper/AdminNav.php:67
+msgid "Deployment"
+msgstr ""
+
+#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:221
+msgid "Manager"
+msgstr ""
+
+#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:228
+msgid "Moderator"
+msgstr ""
+
+#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:235
+msgid "Editor"
+msgstr ""
+
+#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:242
+msgid "Staff"
+msgstr ""
+
+#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:249
+msgid "Member"
+msgstr ""

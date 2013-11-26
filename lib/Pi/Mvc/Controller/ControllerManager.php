@@ -20,7 +20,7 @@ use Zend\Mvc\Controller\ControllerManager as ZendControllerManager;
 class ControllerManager extends ZendControllerManager
 {
     /**
-     * Canonicalize name
+     * Canonize name
      *
      * @param  string $name
      * @return string

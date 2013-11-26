@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'Widget',
+        'title'         => _a('Widget'),
         // Description, for admin, optional
-        'description'   => 'Management of custom blocks/widgets.',
+        'description'   => _a('Management of custom blocks/widgets.'),
         // Version number, required
         'version'       => '1.0.0',
         // Distribution license, required
@@ -26,34 +26,31 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Taiwen Jiang',
+        'Dev'      => 'Taiwen Jiang; Zongshu Lin; Liao Wei',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://pialog.org',
+        'Website'   => 'http://pialog.org',
         // Credits and aknowledgement, optional
-        'credits'   => 'Pi Engine Team; EEFOCUS Team.'
+        'Credits'   => 'Pi Engine Team; EEFOCUS Team.'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
 
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall
-                'schema'    => array(
-                    'widget'          => 'table',
-                )
-            ),
-            // ACL specs
-            'acl'           => 'acl.php',
-            // View pages
-            'page'          => 'page.php',
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-        )
-    )
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall
+            'schema'    => array(
+                'widget'          => 'table',
+            )
+        ),
+        // Permission specs
+        'permission'    => 'permission.php',
+        // View pages
+        'page'          => 'page.php',
+        // Navigation definition
+        'navigation'    => 'nav.php',
+    ),
 );

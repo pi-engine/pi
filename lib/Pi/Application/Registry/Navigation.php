@@ -11,12 +11,11 @@
 namespace Pi\Application\Registry;
 
 use Pi;
-use Pi\Acl\Acl as AclManager;
 
 /**
  * Navigation list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Navigation extends AbstractRegistry
 {
@@ -25,6 +24,9 @@ class Navigation extends AbstractRegistry
 
     /** @var string Section */
     protected $section = 'front';
+
+    /** @var bool Check access permission to pages */
+    protected $checkPermission = true;
 
     /**
      * Columns for URI pages
@@ -67,6 +69,7 @@ class Navigation extends AbstractRegistry
         'callback',
         'pages',
 
+        'section',
         'route',
         'module',
         'controller',
@@ -118,16 +121,19 @@ class Navigation extends AbstractRegistry
 
         $row = Pi::model('navigation_node')->find($name, 'navigation');
         if (!$row) {
-            return array();
+            return false;
         }
         $this->module = $row->module;
 
         // Translate global admin navigation
+        /*
         if ($this->module) {
             $domain = sprintf('module/%s:navigation', $this->module);
         } else {
             $domain = 'usr:navigation';
         }
+        */
+        $domain = '';
 
         $navigation = $this->translateConfig($row->data, $domain, $locale);
 
@@ -187,7 +193,17 @@ class Navigation extends AbstractRegistry
     ) {
         //$this->cache = false;
         if (null === $role) {
-            $role = Pi::service('user')->getUser()->role;
+            if (Pi::service('permission')->isAdmin()) {
+                $role = 'admin';
+            }
+        } elseif (Pi::service('permission')->isAdminRole($role)) {
+            $role = 'admin';
+        }
+        if ('admin' === $role) {
+            $this->checkPermission = false;
+        } else {
+            $this->checkPermission = true;
+            $role = $this->canonizeRole($role);
         }
         $options = compact('name', 'module', 'section', 'role', 'locale');
         $data = $this->loadData($options);
@@ -253,7 +269,7 @@ class Navigation extends AbstractRegistry
     protected function translateConfig($config, $domain, $locale)
     {
         if ($config) {
-            Pi::service('i18n')->load($domain, $locale);
+            //Pi::service('i18n')->load($domain, $locale);
             foreach ($config as $p => &$page) {
                 $this->translatePage($page, $config, $p, true);
             }
@@ -267,7 +283,7 @@ class Navigation extends AbstractRegistry
      *
      * <ul>Note:
      *  <li>Declaration:
-     *      'callback' must befined as a direct property of a page,
+     *      'callback' must defined as a direct property of a page,
      *      as a direct method string, or an array of class and method
      *      <ul>
      *          <li>Direct callback
@@ -562,35 +578,25 @@ class Navigation extends AbstractRegistry
      */
     public function isAllowed($page)
     {
-        if (!empty($page['resource'])) {
-            return $this->isAllowedResource($page['resource']);
+        if ($this->checkPermission
+            && !empty($page['resource'])
+            && !empty($page['resource']['resource'])
+        ) {
+            $params = $page['resource'];
+            $section = empty($params['section'])
+                ? $this->section : $params['section'];
+            $module = empty($params['module'])
+                ? $this->module : $params['module'];
+            $resource = $params['resource'];
+            $result = Pi::service('permission')->hasPermission(array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => $resource,
+            ), array_values($this->roles));
+
+            return $result;
         }
 
         return true;
-    }
-
-    /**
-     * Check if a resource is allowed
-     *
-     * @param array $params
-     * @return bool
-     */
-    protected function isAllowedResource($params)
-    {
-        $module = null;
-        $section = empty($params['section'])
-            ? $this->section : $params['section'];
-        $resource = $params['resource'];
-        if (!empty($params['item'])) {
-            $resource = array($resource, $params['item']);
-        }
-        $privilege = empty($params['privilege']) ? null : $params['privilege'];
-        $module = empty($params['module']) ? $this->module : $params['module'];
-
-        $acl = new AclManager($section);
-        $acl->setModule($module);
-        $result = $acl->checkAccess($resource, $privilege);
-
-        return $result;
     }
 }

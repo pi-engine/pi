@@ -1,0 +1,52 @@
+<?php
+    $this->css($this->assetModule('front/front.css'));
+?>
+<?php include '_user-media.phtml'; ?>
+<style>
+    .user-profile-item:hover .user-legend-edit {
+        display: block;
+    }
+</style>
+<div class="user-min-body user-profile-list">
+    <?php foreach ($profile_group as $group) {?>
+    <div class="user-profile-item">
+        <div class="clearfix user-legend">
+            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+            <?php
+                if ($group['compound']) {
+                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']));
+                    $addUrl = $editUrl . '#user-info-add';
+                } else {
+                    $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']));
+                }
+            ?>
+            <a class="btn hide user-legend-edit" href="<?php echo $editUrl; ?>">
+                <i class="icon-pencil"></i>
+                <?php _e('Edit'); ?>
+            </a>
+            <div class="user-legend-linea"></div>
+        </div>
+        <?php if ($group['fields']) { ?>
+        <div class="user-field">
+        <?php
+            foreach ($group['fields'] as $key => $field) {
+                echo '<dl class="dl-horizontal user-field-dl">';
+                foreach ($field as $value) {
+                    echo sprintf(
+                        '<dt>%s<dd>%s', 
+                        $value['title'],
+                        $value['value'] ? _escape($value['value']) : '<em class="muted">' . __('Unfiled') . '</em>'
+                    );
+                }
+                echo '</dl>';
+            }
+        ?>
+        </div>
+        <?php } else { ?>
+        <a href="<?php echo $addUrl; ?>" class="well text-center" style="display: block;">
+            <?php echo sprintf(__('Add %s'), $group['title']); ?>
+        </a>
+        <?php } ?>
+    </div>
+    <?php } ?>
+</div>

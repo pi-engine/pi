@@ -64,17 +64,25 @@ class Event extends AbstractService
     {
         if (is_array($event)) {
             list($module, $event) = $event;
+        } elseif (false !== ($pos = strpos($event, '-'))) {
+            list($module, $event) = explode('-', $event, 2);
         } else {
             $module = Pi::service('module')->current();
         }
 
         // Load pre-defined listeners
         $listeners = $this->loadListeners($module, $event);
+        if (false === $listeners) {
+            return true;
+        }
+
         $isStopped = false;
         foreach ($listeners as $listener) {
             $moduleName = array_pop($listener);
-            $result = call_user_func_array($listener,
-                array($object, $moduleName));
+            $result = call_user_func_array(
+                $listener,
+                array($object, $moduleName)
+            );
             if ($shortcircuit) {
                 $status = call_user_func($shortcircuit, $result);
                 if ($status) {
@@ -111,7 +119,7 @@ class Event extends AbstractService
      *
      * @param string    $module
      * @param string    $event
-     * @return array
+     * @return array|bool
      */
     public function loadListeners($module, $event)
     {
@@ -121,13 +129,13 @@ class Event extends AbstractService
     /**
      * Attach a predefined observer to an event in run-time
      *
-     * @param string    $module     Event module
-     * @param string    $event      Event name
-     * @param array     $listener   Listener callback:
+     * @param string        $module     Event module
+     * @param string        $event      Event name
+     * @param array         $listener   Listener callback:
      *      <class>, <method>[, <module>]
      * @return $this
      */
-    public function attach($module, $event, $listener)
+    public function attach($module, $event, array $listener)
     {
         $key = implode('-', $listener);
         $this->container[$module][$event][$key] = $listener;

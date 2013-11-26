@@ -1,0 +1,31 @@
+about
+text
+About Us
+
+contact
+text
+Contact Us
+
+terms
+text
+Terms of Service
+
+privacy
+text
+Privacy Guidelines
+
+join
+text
+Join Us
+
+license
+text
+License
+
+help
+text
+Help
+
+sitemap
+html
+Sitemap

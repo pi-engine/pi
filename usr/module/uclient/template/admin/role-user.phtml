@@ -1,0 +1,44 @@
+<div class="page-header"><?php echo _escape($title); ?>
+
+    <form name="comment-post" method="GET" action="<?php echo $this->url('', array('action' => 'user')); ?>">
+        <dl>
+            <input type="text" name="uid" placeholder="<?php echo _a('Added a user')?>" />
+            <input type="hidden" name="op" value="add" />
+            <input type="hidden" name="role" value="<?php echo $role; ?>" />
+            <input type="submit" value="<?php echo _a('Add'); ?>" />
+        </dl>
+    </form>
+
+
+    <?php
+    if ($message) {
+        echo '<div class="alert">' . _escape($message) . '</div>';
+    }
+    if ($users) {
+        foreach ($users as $uid => $user) {
+    ?>
+        <dl class="dl-horizontal">
+            <dt><?php echo $uid; ?></dt>
+            <dt><?php echo _escape($user['name']); ?></dt>
+            <dd><a href="<?php echo $user['url']; ?>" target="_blank" title="<?php echo _escape($user['name']); ?>">
+                    <?php echo _a('Profile'); ?>
+                </a>
+                <a href="<?php echo $this->url('', array('action' => 'user', 'uid' => $uid, 'role' => $role, 'op' => 'remove')); ?>" target="_blank" title="<?php echo _escape($user['name']); ?>">
+                    <?php echo _a('Remove'); ?>
+                </a>
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd><?php echo $user['avatar']; ?></dd>
+        </dl>
+    <?php
+    }
+    ?>
+</div>
+<?php
+if ($paginator) {
+    echo $this->pagination($paginator);
+}
+} else {
+    echo _a('No users available yet.');
+}
+?>

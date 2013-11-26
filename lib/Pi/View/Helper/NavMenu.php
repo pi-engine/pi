@@ -10,14 +10,16 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 
 /**
  * Helper for rendering menu
  *
- * Usage inside a phtml template, default as vertical
+ * Usage inside a phtml template, default as vertical with data attributes:
+ * - label
+ * - href
+ * - active
  *
  * ```
  *  $this->navMenu($data, 'horizontal');
@@ -65,11 +67,12 @@ class NavMenu extends AbstractHtmlElement
      * );
      *  ```
      *
-     * @param array         $items
+     * @param array        $items
      *      Navigation data, list of item data or list of assembled list
-     * @param array|string  $attribs
+     * @param array|string $attribs
      *      UL attributes or type (vertical|horizontal)
-     * @param bool          $escape     To escape HTML tags
+     *
+     * @internal param bool $escape To escape HTML tags
      * @return string
      */
     public function __invoke(array $items, $attribs = array())

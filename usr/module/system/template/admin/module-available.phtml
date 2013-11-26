@@ -5,20 +5,20 @@
     $this->backbone();
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
-    <li class="disabled"><a><?php _e('Repository'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
+    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
 </ul>
 
 <div class="avail-module-page" id="js-module">
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 10%;"><?php _e('Icon'); ?></th>
-                <th style="width: 15%;"><?php _e('Title'); ?></th>
-                <th style="width: 15%;"><?php _e('Version'); ?></th>
-                <th style="width: 30%;"><?php _e('Description'); ?></th>
-                <th><?php _e('Action'); ?></th>
+                <th style="width: 10%;"><?php echo _a('Icon'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Title'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Version'); ?></th>
+                <th style="width: 30%;"><?php echo _a('Description'); ?></th>
+                <th><?php echo _a('Action'); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -28,23 +28,23 @@
                 data-clone="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
                 <td>
                     <div class="module-item-logo">
-                        <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo $this->escape($module['meta']['title']); ?>">
+                        <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo _escape($module['meta']['title']); ?>">
                     </div>
                 </td>
                 <td>
                     <div class="module-item-title">
-                        <strong><?php echo $this->escape($module['meta']['title']); ?></strong>
+                        <strong><?php echo _escape($module['meta']['title']); ?></strong>
                     </div>
                 </td>
                 <td>
                     <?php echo $module['meta']['version']; ?>
                 </td>
                 <td>
-                    <div class="module-p"><?php echo $this->escape($module['meta']['description']); ?></div>
-                    <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
+                    <div class="module-p"><?php echo _escape($module['meta']['description']); ?></div>
+                    <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
                     <div class="hide well well-small">
                         <dl class="dl-horizontal">
-                            <dt><?php _e('Directory:'); ?></dt>
+                            <dt><?php echo _a('Directory:'); ?></dt>
                             <dd><?php echo $directory; ?></dd>
                             <dd>&nbsp;
                             <?php foreach ($module['author'] as $key => $value) {
@@ -64,10 +64,10 @@
                             $buttonClass = ' disabled';
                             $installUrl = 'javascript:void(0)';
                         }
-                        echo sprintf('<a class="btn%s" href="%s">%s</a>', $buttonClass, $installUrl, __('Install'));
+                        echo sprintf('<a class="btn%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
                     ?>
                     <?php if (!empty($module['meta']['clonable'])) { ?>
-                    <span class="btn module-clone"><?php _e('Clone'); ?></span>
+                    <span class="btn module-clone"><?php echo _a('Clone'); ?></span>
                     <?php } ?>
                     </div>
                 </td>

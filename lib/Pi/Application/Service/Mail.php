@@ -183,7 +183,7 @@ class Mail extends AbstractService
      * Send mail
      *
      * @param MailHandler\Message $message
-     * @param string $body
+     *
      * @return bool
      */
     public function send(MailHandler\Message $message)
@@ -292,19 +292,27 @@ class Mail extends AbstractService
                 $file .= '.txt';
             }
 
-            // Assemble module mail template
-            $path = Pi::service('i18n')->getPath(
-                array('module/' . $module, 'mail/' . $file),
-                $locale
-            );
-            // Load english template if current locale is not available
-            if (!file_exists($path)) {
-                $locale = 'en';
+            $lookup = function ($file, $locale) use ($module) {
+                // Assemble module mail template
                 $path = Pi::service('i18n')->getPath(
-                    array('module/' . $module, 'mail/' . $file),
+                    array('custom/module/' . $module, 'mail/' . $file),
                     $locale
                 );
-            }
+                // Load default template if custom template is not available
+                if (!file_exists($path)) {
+                    $path = Pi::service('i18n')->getPath(
+                        array('module/' . $module, 'mail/' . $file),
+                        $locale
+                    );
+                }
+                if (!file_exists($path)) {
+                    $path = '';
+                }
+
+                return $path;
+            };
+
+            $path = $lookup($file, $locale) ?: $lookup($file, 'en');
         }
 
         // Load content from file
@@ -413,7 +421,9 @@ class Mail extends AbstractService
     /**
      * Create a mime message
      *
-     * @param array $parts
+     * @param array|string $data
+     * @param null|string $type
+     *
      * @return Mime\Message
      */
     public function mimeMessage($data, $type = null)

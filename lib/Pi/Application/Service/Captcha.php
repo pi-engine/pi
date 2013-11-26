@@ -26,6 +26,9 @@ class Captcha extends AbstractService
     /**
      * Load CAPTCHA adapter
      *
+     * @param string  $type
+     * @param array $options
+     *
      * @return AdapterInterface
      */
     public function load($type = null, $options = array())

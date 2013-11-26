@@ -48,8 +48,9 @@ class PageDuplicate extends AbstractValidator
             'controller'    => $value
         );
 
-        $rowset = Pi::model('page')->select($where);
-        if ($rowset->count()) {
+        //$rowset = Pi::model('page')->select($where);
+        $count = Pi::model('page')->count($where);
+        if ($count) {
             $this->error(static::PAGEEXISTS);
             return false;
         }

@@ -42,10 +42,10 @@ class Install extends BasicInstall
         $block = array(
             'module'        => 'widget',
             'name'          => 'feature',
-            'title'         => __('Pi Engine features'),
-            'description'   => __('Introduction to Pi Engine.'),
+            'title'         => _a('Pi Engine features'),
+            'description'   => _a('Introduction to Pi Engine.'),
             'type'          => 'html',
-            'content'       => __('WIDGET_PI_ENGINE_FEATURE'),
+            'content'       => _a('WIDGET_PI_ENGINE_FEATURE'),
         );
         $result = Pi::api('system', 'block')->add($block);
         $id = $result['root'];
@@ -66,20 +66,20 @@ class Install extends BasicInstall
         $block = array(
             'module'        => 'widget',
             'name'          => 'highlights',
-            'title'         => __('Pi Highlights'),
-            'description'   => __('Introduction to Pi Engine with carousel.'),
+            'title'         => _a('Pi Highlights'),
+            'description'   => _a('Introduction to Pi Engine with carousel.'),
             'type'          => 'carousel',
-            'template'      => 'carousel-bootstrap',
+            'template'      => 'carousel/bootstrap',
         );
         $block['config'] = array(
             'interval' => array(
-                'title'         => __('Time interval (ms)'),
+                'title'         => _a('Time interval (ms)'),
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 2000,
             ),
             'pause' => array(
-                'title'         => __('Mouse event to pause cycle'),
+                'title'         => _a('Mouse event to pause cycle'),
                 'edit'          => array(
                     'type'  =>  'select',
                     'options'   => array(
@@ -93,26 +93,26 @@ class Install extends BasicInstall
         );
         $images = array(
             array(
-                'caption'   => __('Sustainable ecosystem'),
-                'desc'      => __('A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.'),
+                'caption'   => _a('Sustainable ecosystem'),
+                'desc'      => _a('A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('www/static/image/pi-ecosystem.png'),
             ),
             array(
-                'caption'   => __('Engineered development'),
-                'desc'      => __('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.'),
+                'caption'   => _a('Engineered development'),
+                'desc'      => _a('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('www/static/image/pi-engineering.png'),
             ),
             array(
-                'caption'   => __('Visualization of application management'),
-                'desc'      => __('Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism.'),
+                'caption'   => _a('Visualization of application management'),
+                'desc'      => _a('Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('www/static/image/pi-visualization.png'),
             ),
             array(
-                'caption'   => __('Agile compliant development workflow'),
-                'desc'      => __('Role oriented architecture and deployment skeleton supports managable agile development workflow.'),
+                'caption'   => _a('Agile compliant development workflow'),
+                'desc'      => _a('Role oriented architecture and deployment skeleton supports managable agile development workflow.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('www/static/image/pi-agile.png'),
             ),

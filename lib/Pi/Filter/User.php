@@ -33,7 +33,7 @@ class User extends AbstractFilter
         // Pattern for user identity
         'pattern'       => '@([a-zA-Z0-9]{3,32})',
         // Direct replacement for user identity:
-        // <a href="/url/to/user/%user%" title="%user%">%user%</a>
+        // <a href="/url/to/user/name/%user%" title="%user%">%user%</a>
         'replacement'   => '',
         // Callback for user identity replacement if no direct replacement
         'callback'      => '',
@@ -50,13 +50,18 @@ class User extends AbstractFilter
         if (empty($this->options['replacement'])
             && empty($this->options['callback'])
         ) {
-            $this->options['callback'] = function ($identity) {
-                $service = Pi::service('user')->bind($identity, 'identity');
-                $url = $service->getProfileUrl();
-                $name = $service->getName();
-                $service->restore();
-                return sprintf('<a href="%s" title="%s">@%s</a>',
-                               $url, $name, $identity);
+            $this->options['callback'] = function ($name) {
+                $url = Pi::service('user')->getUrl(
+                    'profile',
+                    array('name' => $name)
+                );
+                $escapedName = _escape($name);
+                return sprintf(
+                    '<a href="%s" title="%s">@%s</a>',
+                    $url,
+                    $escapedName,
+                    $escapedName
+                );
             };
         }
     }

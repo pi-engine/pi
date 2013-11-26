@@ -19,7 +19,7 @@ use Pi\Db\RowGateway\RowGateway;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class DbTable implements SaveHandlerInterface
+class DbTable implements SaveHandlerInterface, UserAwarenessInterface
 {
     /**
      * Session table model
@@ -57,6 +57,9 @@ class DbTable implements SaveHandlerInterface
      */
     protected $sessionName;
 
+    /** @var  int User id */
+    protected $uid;
+
     /**
      * Constructor
      *
@@ -84,8 +87,10 @@ class DbTable implements SaveHandlerInterface
      *
      * $lifetime === false resets lifetime to session.gc_maxlifetime
      *
-     * @param int           $lifetime
-     * @param bool|null     $overrideLifetime (optional)
+     * @param int       $lifetime
+     * @param bool|null $overrideLifetime (optional)
+     *
+     * @throws \InvalidArgumentException
      * @return self
      */
     public function setLifetime($lifetime, $overrideLifetime = null)
@@ -209,7 +214,13 @@ class DbTable implements SaveHandlerInterface
         }
         $row = ($this->row && $id == $this->row->id)
             ? $this->row : $this->model->find($id);
-        $data = array('modified' => time(), 'data' => (string) $data);
+        $data = array(
+            'modified'  => time(),
+            'data'      => (string) $data,
+        );
+        if (null !== $this->uid) {
+            $data['uid'] = (int) $this->uid;
+        }
 
         try {
             if ($row) {
@@ -261,6 +272,42 @@ class DbTable implements SaveHandlerInterface
             . $this->model->quoteValue(time()));
 
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser($uid)
+    {
+        $this->uid = (int) $uid;
+
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function killUser($uid)
+    {
+        $result = null;
+        if ($uid) {
+            $row = null;
+            try {
+                $row = $this->model->find($uid, 'uid');
+            } catch (\Exception $e) {
+                $result = false;
+            }
+            if ($row) {
+                try {
+                    $row->delete();
+                    $result = true;
+                } catch (\Exception $e) {
+                    $result = false;
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**

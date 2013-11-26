@@ -1,0 +1,71 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 12%;">
+      <th ng-repeat="role in roles" class="text-center">
+        {{role.title}}
+      <td style="width: 5%;">
+  <tbody>
+    <tr>
+      <th colspan="{{cols}}">{{'GLOBAL' | translate}}
+    <tr ng-repeat="item in resources.global">
+      <td class="pi-indent">{{item.title}}
+      <td ng-repeat="role in item.roles" class="text-center">
+          <button class="btn btn-small" ng-class="{'btn-success': role.value}"
+                  ng-click="assignAction(role, item)">
+            <i class="icon-ok" ng-class="{'muted': !role.value}"></i>
+          </button>
+      <td>
+        <div ng-include src="'allResource.html'"></div>
+    <tr ng-if="resources.module.length">
+      <th colspan="{{cols}}">{{'MODULE' | translate}}
+    <tr ng-repeat="item in resources.module">
+      <td class="pi-indent">{{item.title}}
+      <td ng-repeat="role in item.roles" class="text-center">
+          <button class="btn btn-small" ng-class="{'btn-success': role.value}"
+                  ng-click="assignAction(role, item)">
+            <i class="icon-ok" ng-class="{'muted': !role.value}"></i>
+          </button>
+      <td>
+          <div ng-include src="'allResource.html'"></div>
+    <tr ng-if="resources.block.length">
+      <th colspan="{{cols}}">{{'BLOCK' | translate}}
+    <tr ng-repeat="item in resources.block">
+      <td class="pi-indent">{{item.title}}
+      <td ng-repeat="role in item.roles" class="text-center">
+        <button class="btn btn-small" ng-class="{'btn-success': role.value}"
+                ng-click="assignAction(role, item)">
+          <i class="icon-ok" ng-class="{'muted': !role.value}"></i>
+        </button>
+      <td>
+        <div ng-include src="'allResource.html'"></div>
+    <tr>
+      <td>
+      <td ng-repeat="item in roles" class="text-center">
+          <div ng-include src="'allRole.html'"></div>
+      <td>
+</table>
+<script type="text/ng-template" id="allRole.html">
+  <div class="btn-group">
+    <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+            ng-click="assignAllResource(item, 1)">
+      <i class="icon-ok"></i>
+    </button>
+    <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+            ng-click="assignAllResource(item, 0)">
+      <i class="icon-remove"></i>
+    </button>
+  </div>
+</script>
+<script type="text/ng-template" id="allResource.html">
+  <div class="btn-group">
+    <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+            ng-click="assignAllRole(item, 1)">
+      <i class="icon-ok"></i>
+    </button>
+    <button class="btn btn-small" tooltip="{{'ALL' | translate}}" tooltip-append-to-body="1"
+            ng-click="assignAllRole(item, 0)">
+      <i class="icon-remove"></i>
+    </button>
+  </div>
+</script>

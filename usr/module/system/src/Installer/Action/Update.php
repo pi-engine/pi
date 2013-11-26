@@ -43,8 +43,8 @@ class Update extends BasicUpdate
     {
         $model = Pi::model('update', $this->module);
         $data = array(
-            'title'     => __('System updated'),
-            'content'   => __('The system is updated successfully.'),
+            'title'     => _a('System updated'),
+            'content'   => _a('The system is updated successfully.'),
             'uri'       => Pi::url('www', true),
             'time'      => time(),
         );
@@ -60,6 +60,26 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
+
+        if (version_compare($moduleVersion, '3.2.4', '<')):
+
+            $adapter = Pi::db()->getAdapter();
+            // Change fields from 'tinytext' to 'text'
+            $table = Pi::model('page')->getTable();
+            $sql = sprintf('ALTER TABLE %s ADD `cache_type` enum(\'page\', \'action\') NOT NULL AFTER `permission`', $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+
+        endif;
 
         if (version_compare($moduleVersion, '3.1.1', '<')):
 
@@ -90,9 +110,7 @@ EOD;
 
         if (version_compare($moduleVersion, '3.1.0', '<')):
 
-        $sqlHandler = new SqlSchema;
         $adapter = Pi::db()->getAdapter();
-
         // Change fields from 'tinytext' to 'text'
         $table = Pi::model('config')->getTable();
         $sql = sprintf('ALTER TABLE %s MODIFY `edit` text', $table);

@@ -42,6 +42,7 @@ return array(
                 'var'       => '/path/to/pi/var',
                 'module'    => '/path/to/pi/usr/module',
                 'theme'     => '/path/to/pi/usr/theme',
+                'custom'    => '/path/to/pi/usr/custom',
 
                 'upload'    => '/path/to/pi/upload',
                 'asset'     => '/path/to/pi/asset',
@@ -50,7 +51,6 @@ return array(
                 'vendor'    => '/path/to/pi/vendor',
 
                 'config'    => '/path/to/pi/config',
-                'custom'    => '/path/to/pi/custom',
                 'cache'     => '/path/to/pi/cache',
                 'log'       => '/path/to/pi/log',
             ),

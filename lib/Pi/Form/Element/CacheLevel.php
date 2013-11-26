@@ -31,8 +31,9 @@ class CacheLevel extends Select
             $this->valueOptions = array(
                 'none'      => __('None'),
                 'locale'    => __('Locale'),
+                'auth'      => __('Authenticated'),
                 'role'      => __('Role'),
-                'user'      => __('User'),
+                //'user'      => __('User'),
             );
         }
 

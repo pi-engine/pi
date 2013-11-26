@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -25,7 +25,7 @@ use Zend\Db\Sql\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class EventController extends ActionController
+class EventController extends ComponentController
 {
     /**
      * List of event/listener sorted by module
@@ -35,14 +35,18 @@ class EventController extends ActionController
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
 
+        if (!$this->permission($name, 'event')) {
+            return;
+        }
+
         // Events of the module
         $events = array();
         $rowset = Pi::model('event')->select(array('module' => $name));
         foreach ($rowset as $row) {
             $events[$row->name] = array(
                 'id'        => $row->id,
-                'title'     => __($row->title),
-                'active'    => $row->active,
+                'title'     => _a($row->title),
+                'active'    => (int) $row->active,
                 'listeners' => array(),
             );
         }
@@ -58,7 +62,7 @@ class EventController extends ActionController
                     'module'    => $row->module,
                     'class'     => $row->class,
                     'method'    => $row->method,
-                    'active'    => $row->active,
+                    'active'    => (int) $row->active,
                 );
             }
         }
@@ -72,25 +76,34 @@ class EventController extends ActionController
         foreach ($rowset as $row) {
             $listeners[$row->id] = array(
                 'id'        => $row->id,
-                'active'    => $row->active,
+                'active'    => (int) $row->active,
                 'title'     => sprintf('%s::%s', $row->class, $row->method),
                 'event'     => sprintf('%s-%s',
                                        $row->event_module, $row->event_name),
             );
         }
-
-        $this->view()->assign('events', $events);
-        $this->view()->assign('listeners', $listeners);
-        $this->view()->assign('name', $name);
+	
+        $this->view()->assign(array(
+            'events'     => $events,
+            'listeners'  => $listeners,
+            'name'       => $name
+        ));
+        $this->view()->setTemplate('event');
     }
 
     /**
      * List of listener/event sorted by module
+     *
+     * Not used yet
      */
     public function listenerAction()
     {
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
+
+        if (!$this->permission($name, 'event')) {
+            return;
+        }
 
         // Listeners of the module
         $select = Pi::model('event_listener')->select()
@@ -127,7 +140,7 @@ class EventController extends ActionController
         $this->view()->assign('modules', $modules);
         $this->view()->assign(
             'title',
-            sprintf(__('Event listeners of module %s'), $name)
+            sprintf(_a('Event listeners of module %s'), $name)
         );
 
         $this->view()->setTemplate('event-listener');
@@ -152,7 +165,7 @@ class EventController extends ActionController
         }
         if (!$row) {
             $status = -1;
-            $message = __('The item not found.');
+            $message = _a('The item not found.');
         } else {
             // Disable
             if ($row->active) {
@@ -167,14 +180,14 @@ class EventController extends ActionController
                     $status = 0;
                 }
                 if (!$status) {
-                    $message = __('The item is not allowed to activate since module is inactive.');
+                    $message = _a('The item is not allowed to activate since module is inactive.');
                 } else {
                     $row->active = 1;
                 }
             }
             if ($status) {
                 $row->save();
-                $message = __('The item updated successfully.');
+                $message = _a('The item updated successfully.');
 
                 $flush = 'listener' == $type
                     ? $row->event_module : $row->module;

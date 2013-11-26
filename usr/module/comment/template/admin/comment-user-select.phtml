@@ -1,0 +1,7 @@
+<div style="font-size: 16px; font-weight: bold"><?php echo _escape($title); ?></div>
+<div style="margin-top: 10px" class="muted"><?php echo _a('Filter comments by a specific user.'); ?></div>
+
+<form name="comment-user" method="GET" action="<?php echo $url; ?>" style="margin-top: 20px" class="form-inline">
+    <input type="text" name="uid" value="" placeholder="<?php echo _a('Type user id or identity'); ?>">
+    <button type="submit" class="btn"><?php echo _a('Submit'); ?></button>
+</form>

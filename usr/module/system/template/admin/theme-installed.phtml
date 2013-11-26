@@ -6,10 +6,10 @@
     $this->js($this->assetModule('script/system-msg.js'));
 ?>
 <ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php _e('Theme in action'); ?>"><?php _e('Theme in action'); ?></a></li>
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
-    <li class="disabled"><a><?php _e('Repository'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php echo _a('Theme in action'); ?>"><?php echo _a('Theme in action'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
+    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
 </ul>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
@@ -17,7 +17,7 @@
 <div class="theme-list" id="js-theme"></div>
 <script id="temp-theme" type="text/template">
     <a href="" class="theme-screenshot">
-        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php _e('Click To preview'); ?>">
+        <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php echo _a('Click To preview'); ?>">
     </a>
     <div class="caption">
         <h5 class="clearfix">
@@ -26,18 +26,18 @@
         </h5>
         <div class="clearfix theme-actions" style="margin-left: -5px;">
             <% if(name!="default") { %>
-            <span class="pull-right btn theme-uninstall"><?php _e('Uninstall'); ?></span>
+            <span class="pull-right btn theme-uninstall"><?php echo _a('Uninstall'); ?></span>
             <% } %>
-            <span class="no-select btn btn-link theme-detail theme-btn"><?php _e('Detail'); ?></span><span class="muted">|</span>
-            <span class="btn btn-link theme-Check theme-btn"><?php _e('Check'); ?></span><span class="muted">|</span>
-            <span class="btn btn-link theme-update theme-btn"><?php _e('Update'); ?></span>
+            <span class="no-select btn btn-link theme-detail theme-btn"><?php echo _a('Detail'); ?></span><span class="muted">|</span>
+            <span class="btn btn-link theme-Check theme-btn"><?php echo _a('Check'); ?></span><span class="muted">|</span>
+            <span class="btn btn-link theme-update theme-btn"><?php echo _a('Update'); ?></span>
         </div>
         <dl class="hide">
-            <dt><?php _e('Version'); ?>
+            <dt><?php echo _a('Version'); ?>
             <dd><%= version %>
-            <dt><?php _e('Type'); ?>
+            <dt><?php echo _a('Type'); ?>
             <dd><%= type %>
-            <dt><?php _e('Description'); ?>
+            <dt><?php echo _a('Description'); ?>
             <dd><%= description %>
         <dl>  
    </div>
@@ -68,7 +68,7 @@ var ThemeItemView = Backbone.View.extend({
         this.model.fetch({
             url:'<?php echo $this->url('', array('action' => 'update', 'name' => '')); ?>' + this.model.get('name'),
             success: function() {
-                systemMessage.succ('<?php _e('theme Update ok!')?>');
+                systemMessage.succ('<?php echo _a('theme Update ok!')?>');
             },
             error: function() {
                 systemMessage.fail();
@@ -76,7 +76,7 @@ var ThemeItemView = Backbone.View.extend({
         });
     },
     uninstall: function() {
-        if (confirm('<?php _e('Are you sure to uninstall this theme ? ') ?>')) {
+        if (confirm('<?php echo _a('Are you sure to uninstall this theme ? ') ?>')) {
             this.model.destroy({
                url:'<?php echo $this->url('', array('action' => 'uninstall', 'name' => '')); ?>' + this.model.get('name')
             });

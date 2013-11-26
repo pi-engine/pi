@@ -1,0 +1,21 @@
+<legend>
+  {{'EDIT_TITLE' | translate}}:
+  <span style="margin-left: 20px;">{{user.name}}</span>
+</legend>
+<ul class="nav nav-pills">
+  <li ng-repeat="item in nav" ng-class="{active: item.name == action}" ng-click="navChange(item)">
+    <a href="{{item.href}}">{{item.title}}</a>
+</ul>
+<div ng-include="formHtmlUrl">
+</div>
+<script type="text/ng-template" id="avatar-template.html">
+  <p>
+    <img src="{{avatar}}">
+  </p>
+  <div>
+    <button class="btn btn-link" ng-click="defaultAvatarAction()">
+      {{'REPLACE_AVATAR' | translate}}
+    </button>
+  </div>
+</script>
+

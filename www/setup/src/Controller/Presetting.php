@@ -60,7 +60,6 @@ class Presetting extends AbstractController
                 $title = Locale::getDisplayName($localeName) ?: $title;
             }
             $iconFile = $fileinfo->getPathname() . '/icon.gif';
-            //$meta = include $fileinfo->getPathname() . '/.meta.php';
             $languageList[$localeName] = array(
                 'title' => $title,
                 'icon'  => $iconFile
@@ -172,7 +171,6 @@ SCRIPT;
                   . '</p>';
         foreach ($this->result['system'] as $item => $result) {
             $value = $result['value'];
-            $style = 'success';
             switch ($result['status']) {
                 case -1:
                     $style = 'failure';
@@ -180,7 +178,7 @@ SCRIPT;
                     break;
                 case 0:
                     $style = 'warning';
-                    $value = $value ?: _s('Not desired');
+                    $value = $value ?: _s('Not available');
                     break;
                 case 1:
                 default:
@@ -214,7 +212,7 @@ SCRIPT;
                     break;
                 case 0:
                     $style = 'warning';
-                    $value = $value ?: _s('Not desired');
+                    $value = $value ?: _s('Not available');
                     break;
                 case 1:
                 default:
@@ -313,6 +311,7 @@ SCRIPT;
             'status'    => $status,
             'value'     => $value,
         );
+
         return $result;
     }
 
@@ -357,13 +356,16 @@ SCRIPT;
             if (function_exists('apache_get_modules')) {
                 $modules = apache_get_modules();
                 if (!in_array('mod_rewrite', $modules)) {
-                    $status = 0;
+                    $status = -1;
                 }
             } elseif (getenv('HTTP_MOD_REWRITE') != 'On') {
                 ob_start();
                 phpinfo(INFO_MODULES);
                 $contents = ob_get_contents();
                 ob_end_clean();
+                // The status should not be set to -1 directly
+                // since mod_rewrite is not detected for some environments,
+                // for instance if PHP runs with cgi mode
                 if (strpos($contents, 'mod_rewrite') === false) {
                     $status = 0;
                 }
@@ -381,6 +383,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 
@@ -400,6 +403,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 
@@ -425,6 +429,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 
@@ -455,6 +460,7 @@ SCRIPT;
             'value'     => $value,
             'message'   => $message,
         );
+
         return $result;
     }
 }

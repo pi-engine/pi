@@ -34,7 +34,14 @@ use Zend\Mvc\InjectApplicationEventInterface;
  * Set page template
  *
  * ```
+ *  // Template from current module, current section
  *  $this->view()->setTemplate('page-template');
+ *
+ *  // Template from specified module, specified section
+ *  $this->view()->setTemplate('<module>:<section>/<template-name>');
+ *
+ *  // Template from specified module, specified section
+ *  $this->view()->setTemplate(<template-name>, <module>, <section>);
  *
  *  // Disable template
  *  $this->view()->setTemplate(false);
@@ -205,22 +212,25 @@ class View extends AbstractPlugin
      * Set the view model template
      *
      * @see Pi\Mvc\View\InjectTemplateListener::injectTemplate()
-     * @param  string $template
-     * @param  string $module
+     *
+     * @param string $template
+     * @param string $module
+     * @param string $section
+     *
      * @return $this
      */
-    public function setTemplate($template, $module = '')
+    public function setTemplate($template, $module = '', $section = '')
     {
+        if (!$template) {
+            $template = static::NULL_TEMPLATE;
         // Set module prefix and section folder
-        if ($template) {
+        } elseif (false !== $module) {
             if (false === strpos($template, ':')) {
                 $module = $module ?: $this->getController()->getModule();
-                $template = $module . ':'
-                          . $this->getEvent()->getApplication()->getSection()
-                          . '/' . $template;
+                $section = $section
+                    ?: $this->getEvent()->getApplication()->getSection();
+                $template = $module . ':' . $section . '/' . $template;
             }
-        } else {
-            $template = static::NULL_TEMPLATE;
         }
         $this->getViewModel()->setTemplate($template);
 
@@ -350,8 +360,8 @@ class View extends AbstractPlugin
     public function helper($name)
     {
         $render = $this->getController()->getServiceLocator()
-            ->get('ViewManager')->getRenderer();
-        $helper = $render->plugin($name);
+            ->get('ViewManager')->getHelperManager();
+        $helper = $render->get($name);
 
         return $helper;
     }

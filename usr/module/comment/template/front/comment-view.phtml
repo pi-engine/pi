@@ -1,0 +1,72 @@
+<?php
+$this->jQuery();
+$this->backbone();
+$this->css($this->assetModule('css/front.css', 'comment'));
+
+// Target data:
+// Title, time, user
+// uid, name, avatar, profile_url
+$target = $comment['target'];
+
+// Comment post
+// content, time, user
+$post = $comment['post'];
+?>
+
+<div class="pi-comment">
+    <div class="pi-comment-header"><?php _e('Comment detail'); ?></div>
+    <div class="media">
+        <a class="pull-left" href="<?php echo $url; ?>">
+            <?php echo Pi::avatar()->get($post['uid'], 'medium'); ?>
+        </a>
+        <div class="media-body">
+        <?php
+            if ($post) {
+        ?>
+            <div>
+                <span class="pi-comment-user">
+                    <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
+                        <?php echo $post['user']['name']; ?>
+                    </a>
+                </span>
+                <?php if ($post['reply']) { ?>
+                <span style="font-size: 14px"><?php _e('In reply to:'); ?></span>
+                <span style="font-size: 14px"><a class="highlight" href="<?php echo Pi::service('comment')->getUrl('post', array('post' => $post['reply'])); ?>" target="_blank" title="<?php _e('Click to open'); ?>">
+                        <?php echo sprintf(__('Comment #%d'), $post['reply']); ?>
+                    </a>
+                </span>
+            <?php } ?>
+                <span class="pull-right muted pi-comment-time"><?php echo _date($post['time']); ?></span>
+            </div>
+            <div class="pi-comment-desc">
+                <span class="muted pull-left"><?php _e('Commented on '); ?></span>
+                <a class="highlight comment-title-hidden" href="<?php echo $target['url']; ?>" title="<?php echo _escape($target['title']); ?>" style="max-width: 70%">
+                    <?php echo _escape($target['title']); ?>
+                </a>
+            </div>
+            <div class="pi-comment-content">
+                <?php echo $post['content']; ?>
+            </div>
+            <div class="pi-comment-operation">
+            <?php 
+                foreach ($post['operations'] as $operation => $optData) {
+            ?>
+                <span class="operation muted">
+                    <a href="<?php echo $optData['url']; ?>"<?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are sure want to delete this comment?')) : ''; ?>>
+                        <?php echo _escape($optData['title']); ?>
+                    </a>
+                </span>
+            <?php
+                }
+            ?>
+            </div>
+        <?php
+            } else {
+        ?>
+            <div class="pi-comment-none"><?php _e('No content.'); ?></div>
+        <?php
+            }
+        ?>
+        </div>
+    </div>
+</div>

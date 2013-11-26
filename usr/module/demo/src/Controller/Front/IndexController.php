@@ -71,13 +71,7 @@ class IndexController extends ActionController
             // Use router to build URL for each page
             'page_param'    => 'p',
             'total_param'   => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()
-                ->getMatchedRouteName(),
             'params'        => array(
-                'module'        => $this->getModule(),
-                'controller'    => 'index',
-                'action'        => 'page',
                 'f'             => $flag,
             ),
             // Or use a URL template to create URLs
@@ -108,11 +102,14 @@ class IndexController extends ActionController
         }
 
         //$data = $rowset->toArray();
+        /*
         $select = $model->select()
             ->columns(array('count' => new Expression('count(*)')))
             ->where(array('flag' => $flag));
-        $count = $model->selectWith($select)->current()->count;
+        */
+        $count = $model->count(array('flag' => $flag));
 
+        /*
         $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
@@ -120,18 +117,39 @@ class IndexController extends ActionController
             // Use router to build URL for each page
             'page_param'    => 'p',
             'total_param'   => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()
-                ->getMatchedRouteName(),
             'params'        => array(
-                'module'        => $this->getModule(),
-                'controller'    => 'index',
-                'action'        => 'simple',
                 'f'             => $flag,
             ),
             // Or use a URL template to create URLs
-            //'template'      => '/url/p/%page%/t/%total%',
+            //'template'      => '/url/p/__page__/t/__total__',
+            'template'  => Pi::service('url')->assemble('', array(
+                'p' => '__page__',
+                't' => '__total__',
+                'f' => $flag,
+            ), true),
+        ));
+        */
+        $paginator = Paginator::factory(intval($count), array(
+            'limit' => $limit,
+            'page'  => $page,
+            'url_options'           => array(
+                // Use router to build URL for each page
+                'page_param'    => 'p',
+                'total_param'   => 't',
+                'params'        => array(
+                    'f'             => $flag,
+                ),
 
+                // Or use a URL template to create URLs
+                //'template'      => '/url/p/__page__/t/__total__',
+                /*
+                'template'  => Pi::service('url')->assemble('', array(
+                    'p' => '__page__',
+                    't' => '__total__',
+                    'f' => $flag,
+                ), true),
+                */
+            ),
         ));
         $this->view()->assign('items', $items);
         $this->view()->assign('paginator', $paginator);

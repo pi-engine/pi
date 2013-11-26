@@ -1,0 +1,68 @@
+<?php $this->jQuery(); ?>
+<legend>
+    <?php echo _a('Edit user: '); ?> <?php echo $user['name']; ?>
+</legend>
+<ul class="nav nav-tabs">
+    <?php foreach ($nav as $value) { ?>
+    <li class="<?php if($value['name']== $name) { echo 'active'; } ?>">
+    <a href="<?php echo $value['link']; ?>"><?php echo $value['title']; ?></a>
+    <?php } ?>
+</ul>
+<?php
+    if (isset($result)) {
+        echo sprintf('<div class="alert %s">%s
+            <button data-dismiss="alert" class="close" type="button">&times;</button></div>',
+            $result['status'] ? 'alert-success' : 'alert-error',
+            $result['message']);
+    }
+?>
+<?php
+    if ($name == 'info') {
+        include $this->templateComponent('form-horizontal');
+        return;
+    } 
+?>
+<?php
+    if ($name == 'avatar') {
+    echo sprintf('
+    <form method="post" action="">
+        <p>%s<p>
+        <button class="btn btn-link">%s</button>
+    </form>
+    ',
+    $avatar,
+    _a('Replace with defalt avatar.'));
+    return;
+    }
+?>
+<?php
+     if (!$forms) {
+        echo sprintf('<div class="alert">%s</div>', _a('This user doesn\'t have any you can view'));
+        return;
+     }
+ ?>
+<?php foreach ($forms as $key => $form) { ?>
+    <div class="pi-widget" style="width: 800px;">
+        <div class="clearfix pi-widget-header">
+            <button type="button" class="close js-user-compound-delete"
+                    data-url="<?php echo $this->url('', array(
+                    'controller' => 'edit', 
+                    'action'     => 'deleteCompound',
+                    'uid'        => $user['id'],
+                    'name'       => $name,
+                    'set'        => $key,
+                    )); ?>">
+            &times;
+            </button>
+        </div>
+        <div class="pi-widget-body" style="padding-left: 0;">   
+            <?php include $this->templateComponent('form-horizontal'); ?>
+        </div>
+    </div>
+<?php } ?>
+<script>
+    $('.js-user-compound-delete').click(function() {
+        if (!confirm('<?php echo _a('Are you sure delete this group?'); ?>')) return;
+        location.href = $(this).attr('data-url');
+    });
+</script>

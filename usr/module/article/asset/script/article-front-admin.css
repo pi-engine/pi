@@ -1,0 +1,458 @@
+/* List page */
+.tab-content >.active.table {
+    display: table;
+}
+.nav-list > .active > a {
+    cursor: text;
+}
+.row-actions {
+    visibility: hidden;
+}
+tr:hover .row-actions {
+    visibility: visible;
+}
+td {
+    word-break: break-all;
+}
+#pi-article .nav-pills > .active > a {
+    color: #333;
+    font-weight: bold;
+    background: none;
+    cursor: text;
+}
+#jsList  .table-striped tbody tr:nth-child(2n+1) th {
+    background: #eee;
+}
+#jsList .table-striped {
+    border: 1px solid #ccc;
+}
+#jsList .form-inline {
+    margin-bottom: 15px;
+}
+#jsList .form-search {
+    margin: 0 20px 0 0;
+}
+
+/* Image Upload */
+.upload-image-bg {
+    border: 1px solid #ccc;
+    background: #FAFAFA;
+    border-radius: 4px;
+    width: 102px;
+    text-align: center;
+    font-size: 80px;
+    color: #A7A7A7;
+    margin-bottom: 10px;
+    height: 102px;
+    position: relative;
+}
+.form-horizontal .upload-image-bg {
+    float: left;
+}
+.form-horizontal .upload {
+    float: left;
+    margin-left: 20px;
+}
+.upload-image-bg i {
+    display: block;
+    margin-top: 10px;
+}
+.default-author-img {
+    font-size: 40px;
+}
+.default-author-img i {
+    width: 40px;
+    height: 40px;
+    display: block;
+    color: #A8A8A8;
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 3px;
+}
+/* draft edit page */
+div.widget {
+    border: none;
+    margin-bottom: 20px;
+}
+.widget-header {
+    padding: 5px 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+.widget-header * {
+    margin-bottom: 0;
+}
+.widget-body {
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 10px;
+}
+.widget-body ul {
+    margin: 0;
+}
+.ellipsis {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.link-btn {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #0088cc;
+}
+div.modal {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+div.modal-header {
+    padding: 6px 15px;
+}
+div.modal-footer {
+    padding: 10px 15px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.attachment-list {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background: none repeat scroll 0 0 #F5F5F5;
+}
+.attachment-item:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.attachment-item {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    background: #F5F5F5;
+}
+.attachment-item .progress {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    height: 28px;
+    margin: 0;
+    z-index: 2;
+    border-radius: 0;
+}
+.media-item:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+}
+.media-item {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    background: #F5F5F5;
+}
+.media-item .progress {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 0;
+    height: 28px;
+    margin: 0;
+    z-index: 2;
+    border-radius: 0;
+}
+.uploaded-media-name {
+    float: left;
+    margin: 0 10px 0 10px;
+    z-index: 10;
+    color: #808080;
+}
+.progress-text {
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.attachment-name {
+    float: left;
+    margin: 0 10px 0 10px;
+    z-index: 10;
+    color: #808080;
+}
+.attachment-action {
+    float: right;
+    margin-right: 20px;
+}
+.progress-text:hover .visible-hide {
+    visibility: visible;
+}
+.fileinput-button {
+    overflow: hidden;
+    margin-right: 6px;
+    cursor: pointer;
+    position: relative;
+}
+.fileinput-button input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    filter: alpha(opacity=0);
+}
+.upload-image-wrap {
+    display: inline-block;
+    width: 120px;
+    height: 90px;
+    position: relative;
+    margin: 10px 10px 0 0;
+    vertical-align: top;
+    background: url(../image/uploadImgBg.png);
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.media-upload-image {
+    width: 320px;
+    height: 240px;
+    position: relative;
+    vertical-align: middle;
+    line-height: 240px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.black-bg {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    background: rgba(0,0,0,.8);
+    width: 100%;
+    line-height: 20px;
+}
+.black-bg .icon-remove {
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 0 5px 0 0;
+    float: right;
+    font-size: 14px;
+}
+.black-bg span {
+    margin-left: 6px;
+    width: 79%;
+}
+.upload-image-wrap .progress {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    height: 15px;
+}
+#jsFeature .upload-image-wrap {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 100px;
+    height: 75px;
+}
+.tag-list {
+    position: relative;
+    cursor: text;
+    border: 1px solid #ccc;
+    padding: 5px 4px;
+    border-radius: 3px;
+}
+.tag-list > input {
+    width: 98%;
+    border: none;
+}
+.tag-list .label {
+    display: inline-block;
+    margin: 0 6px 2px 0;
+    cursor: default;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 6px;
+}
+.tag-list .icon-remove {
+    margin-left: 8px;
+    cursor: pointer;
+}
+.tag-list .typeahead {
+    width: 99%;
+    overflow: auto;
+}
+.seo-other {
+    margin-top: 10px;
+    border-top: 1px dashed #ccc;
+    padding-top: 10px;
+}
+.article-related-list {
+    border: 1px solid #ccc;
+    background: #FAFAFA;
+    border-radius: 3px;
+    padding: 4px 0;
+}
+.article-related-list li {
+    height: 20px;
+    padding: 0 10px;
+    line-height: 20px;
+    list-style: none;
+}
+.article-related-list li:hover {
+    background: #D8EEF6;
+}
+.article-related-list .icon-remove-sign,
+.a-related-modal li .icon-remove-sign {
+    height: 20px;
+    float: right;
+    cursor: pointer;
+    color: #999;
+    font-size: 20px;
+}
+div.a-related-modal {
+    width: 650px;
+}
+.a-related-modal input[type='text'],
+.a-related-modal select {
+    width: 160px;
+}
+.a-related-modal .widget-header {
+    background: #F5F5F5;
+}
+.a-related-modal .widget-body {
+    box-shadow: 0 1px 1px rgba(0,0,0,.2) inset;
+    height: 203px;
+    overflow: auto;
+}
+.a-related-modal li input {
+    margin: 0 2px 0 0;
+}
+.article-flow {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.modal .icon-remove {
+    float: right;
+    color: #888;
+    cursor: pointer;
+}
+.time-edit-wrap {
+    width: 250px;
+}
+.time-control-item {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+.time-control-item input {
+    position: absolute;
+    left: 0;
+    width: 30px;
+}
+.time-control-item div {
+    right: 0;
+    position: absolute;
+}
+.time-control-item i {
+    position: absolute;
+    cursor: pointer;
+    right: 1px;
+    font-size: 18px;
+    color: #555;
+    top: 4px;
+    height: 10px;
+}
+.time-control-item .icon-sort-down {
+    top: 10px;
+}
+.article-flow .save-time,
+.article-flow .cancel-time,
+.time-edit-wrap {
+    display: none;
+}
+.editing .save-time,
+.editing .cancel-time {
+    display: inline;
+}
+.editing .edit-time {
+    display: none;
+}
+.editing .time-edit-wrap {
+    display: block;
+}
+.form-inline input.error,
+.form-inline select.error {
+    border-color: #B94A48;
+    box-shadow: 0 1px 1px rgba(200, 0, 0, .1) inset;
+}
+.cke_skin_kama .auto-save-bg {
+    padding-left: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0;
+    background: #eee;
+}
+.cke_skin_kama .auto-save-time {
+    float: right;
+    margin-right: 20px;
+}
+.visible-hide {
+    visibility: hidden;
+}
+[name="subject"] {
+    background: url(../image/scale.png) repeat-x 0 bottom;
+}
+#jsGallery .icon-caret-down,
+#jsGallery .icon-caret-up,
+#jsSeo .icon-caret-up,
+#jsSeo .icon-caret-down {
+    float: right;
+    color: #808080;
+}
+#jsGallery .icon-caret-down,
+#jsSeo .icon-caret-down {
+    display: none;
+}
+#jsGallery .active .icon-caret-down,
+#jsSeo  .active .icon-caret-down {
+    display: inline-block;
+}
+#jsGallery .active .icon-caret-up,
+#jsSeo .active .icon-caret-up {
+    display: none;
+}
+.modal.a-related-modal {
+    font-size: 12px;
+    width: 750px;
+}
+.article-related-list .ellipsis {
+    width: 85%;
+}
+.a-related-modal .ellipsis {
+    width: 210px;
+}
+.list-image {
+    border: 1px solid #cccccc;
+    border-radius: 3px 3px 3px 3px;
+    color: #a8a8a8;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    width: 40px;
+    font-size: 30px;
+}

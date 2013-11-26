@@ -64,31 +64,39 @@ class Install extends BasicInstall
         $module = $e->getParam('module');
         $message = array();
 
+        // Add system roles
+        $roleFile = Pi::service('module')->path($module) . '/config/role.php';
+        $roles = include $roleFile;
+        $roleModel = Pi::model('role');
+        foreach ($roles as $section => $roleList) {
+            foreach ($roleList as $role => $roleTitle) {
+                $row = $roleModel->createRow(array(
+                    'section'   => $section,
+                    'module'    => $module,
+                    'name'      => $role,
+                    'title'     => $roleTitle,
+                    'active'    => 1,
+                ));
+                $row->save();
+            }
+        }
+
         // Add default taxonomy domain
         Pi::service('taxonomy')->addDomain(array(
             'name'          => 'taxon',
-            'title'         => __('Default taxonomy'),
+            'title'         => _a('Default taxonomy'),
             'description'   =>
-                __('Default global taxonomy domain. Not allowed to change.'),
+                _a('Default global taxonomy domain. Not allowed to change.'),
         ), false);
 
-
         // Add system messages
-        $type       = 'admin-welcome';
-        $message    = array(
-            'content'   => __('Welcome to Pi powered system.'),
-            'time'      => time(),
-        );
-        $row = Pi::model('user_repo')->createRow(array(
-            'module'    => $module,
-            'type'      => $type,
-            'content'   => $message,
-        ));
-        $row->save();
+        $name       = 'admin-welcome';
+        $message    = _a('Welcome to Pi powered system.');
+        Pi::user()->data->set(0, $name, $message, $module);
 
         // Add quick links
         $user   = 1;
-        $type   = 'admin-link';
+        $name   = 'admin-link';
         $links  = array(
             array(
                 'title' => 'Pi Engine Development',
@@ -107,24 +115,20 @@ class Install extends BasicInstall
                 'url'   => 'https://twitter.com/PiEnable',
             ),
         );
-
-        $row = Pi::model('user_repo')->createRow(array(
-            'user'      => $user,
-            'module'    => $module,
-            'type'      => $type,
-            'content'   => $links,
-        ));
-        $row->save();
+        Pi::user()->data->set($user, $name, $links, $module);
 
         // Add update list
+        /*
         $model = Pi::model('update', $module);
         $data = array(
-            'title'     => __('System installed'),
-            'content'   => __('The system is installed successfully.'),
+            'title'     => _a('System installed'),
+            'content'   => _a('The system is installed successfully.'),
             'uri'       => Pi::url('www', true),
             'time'      => time(),
         );
         $model->insert($data);
+        */
+        Pi::service('event')->trigger('system-module_install', 'system');
     }
 
     /**
@@ -147,6 +151,7 @@ class Install extends BasicInstall
         } else {
             $status = (bool) $result;
         }
+
         return $status;
     }
 

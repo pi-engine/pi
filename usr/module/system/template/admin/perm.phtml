@@ -1,0 +1,34 @@
+<?php
+$this->angular(array(
+    'angular-route.js',
+    'ui-bootstrap-custom-tpls-0.6.0.js',
+    'pi.js'
+));
+?>
+<div ng-app="systemPermModule">
+    <div pi-message="alert"></div>
+    <div pi-nav-tabs></div>
+    <div ng-view></div>
+</div>
+<script>
+angular
+    .module('systemPermModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'perm')); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        name: '<?php echo $name ?>',
+        navTabs: [
+            { text: '<?php echo _a('Front'); ?>', href: '#!/front' },
+            { text: '<?php echo _a('Admin'); ?>', href: '#!/admin' },
+        ],
+        t: {
+            GLOBAL: '<?php echo _a('Module Global permission'); ?>',
+            MODULE: '<?php echo _a('Module resource'); ?>',
+            BLOCK: '<?php echo _a('Block'); ?>',
+            ERROR: '<?php echo _a('Error, please try again later.'); ?>',
+            FRONT: '<?php echo _a('Front'); ?>',
+            ADMIN: '<?php echo _a('Admin'); ?>'
+        }
+   });
+</script>
+<script src="<?php echo $this->assetModule('admin/perm.js'); ?>"></script>

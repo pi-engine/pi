@@ -1,0 +1,25 @@
+<?php
+    $this->css($this->assetModule('front/front.css'));
+?>
+<?php include '_user-side-nav.phtml' ?>
+<div class="span9">
+    <div class="page-header">
+        <h3 style="margin: -5px 0 9px;"><?php echo $title; ?></h3>
+        <div class="muted" style="margin: 0 0 11px;">
+            <?php echo sprintf(__('Change your %s info'), $title); ?>
+        </div>
+    </div>
+    <?php
+    if (isset($result)) {
+        $this->bootstrap('js/bootstrap.min.js');
+        echo sprintf('
+            <div class="alert %s">
+                <button data-dismiss="alert" class="close" type="button">&times;</button>
+                %s
+            </div>',
+            $result['status'] ? 'alert-success' : 'alert-error',
+            $result['message']);
+    }
+    ?>
+	<?php include $this->templateComponent('form-horizontal'); ?>
+</div>

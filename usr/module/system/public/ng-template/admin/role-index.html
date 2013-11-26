@@ -1,0 +1,123 @@
+<legend>{{'FRONT_TITLE' | translate}}</legend>
+<button class="btn" ng-click="modal('front')">{{'FRONT_ADD' | translate}}</button>
+<table class="table table-striped system-table">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 20%;">{{'TITLE' | translate}}
+        <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
+        <th>{{'ACTION' | translate}}
+    <tbody>
+      <tr ng-repeat="role in roles | filter: {section: 'front'}">
+        <td>{{role.name}}
+        <td>
+          <div pi-hover-input="role" text="role.title"></div>
+        <td class="text-center">
+          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
+               ng-click="activeAction(role)">
+            <div class="pi-status-director"></div>
+          </div>
+        <td>
+          <button class="btn btn-link" ng-if="role.custom"
+                  ng-click="deleteAction(role)">
+            {{'DELETE' | translate}}
+          </button>
+</table>
+<legend>{{'ADMIN_TITLE' | translate}}</legend>
+<button class="btn" ng-click="modal('admin')">{{'ADMIN_ADD' | translate}}</button>
+<table class="table table-striped system-table">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 20%;">{{'TITLE' | translate}}
+        <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
+        <th>{{'ACTION' | translate}}
+    <tbody>
+      <tr ng-repeat="role in roles | filter: {section: 'admin'}">
+        <td>{{role.name}}
+        <td>
+          <div pi-hover-input="role" text="role.title"></div>
+        <td class="text-center">
+          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
+               ng-click="activeAction(role)">
+            <div class="pi-status-director"></div>
+          </div>
+        <td>
+          <button class="btn btn-link" ng-if="role.custom"
+                  ng-click="deleteAction(role)">
+            {{'DELETE' | translate}}
+          </button>
+</table>
+<div class="modal" ng-if="entity" style="width: 600px; margin-left: -300px;">
+  <form class="form-horizontal" name="roleForm" ng-submit="addRoleAction()" 
+        style="margin-bottom: 0;" id="popup-form" novalidate>
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="cancelModal()">&times;</button>
+      <h3>{{'ROLE_ADD' | translate}}</h3>
+    </div>
+    <div class="modal-body">
+      <div class="control-group"
+           ng-class="{'error': roleForm.name.$dirty && roleForm.name.$invalid}">
+        <label class="control-label">{{'ROLE_NAME' | translate}}</label>
+        <div class="controls">
+          <input type="text" ng-model="entity.name" name="name" required pi-unique="{{uniqueUrl}}">
+          <span class="help-inline" ng-show="roleForm.name.$valid">
+            <i class="icon-ok text-success"></i>
+          </span>
+          <span class="help-inline" 
+            ng-show="roleForm.name.$error.required">
+            {{'REQUIRED' | translate}}
+          </span>
+          <span class="help-inline" 
+            ng-show="roleForm.name.$error.unique">
+            {{'ROLE_NAME_TOKEN' | translate}}
+          </span>
+        </div>
+      </div>
+      <div class="control-group"
+           ng-class="{'error': roleForm.title.$dirty && roleForm.title.$invalid}">
+        <label class="control-label">{{'ROLE_TITLE' | translate}}</label>
+        <div class="controls">
+          <input type="text" ng-model="entity.title" name="title" required>
+          <span class="help-inline" ng-show="roleForm.title.$valid">
+            <i class="icon-ok text-success"></i>
+          </span>
+          <span class="help-inline" 
+            ng-show="roleForm.title.$error.required">
+            {{'REQUIRED' | translate}}
+          </span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">{{'TYPE' | translate}}</label>
+        <div class="controls">
+          <select ng-model="entity.section">
+            <option value="front">{{'FRONT' | translate}}</option>
+            <option value="admin">{{'ADMIN' | translate}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">{{'STATUS' | translate}}</label>
+        <div class="controls">
+          <div class="btn-group">
+              <span class="btn" ng-class="{'btn-danger active': !entity.active}"
+                      ng-click=" entity.active = 0">
+                  {{'INACTIVE' | translate}}
+              </span>
+              <span class="btn" ng-class="{'btn-success active': entity.active}"
+                      ng-click=" entity.active = 1">
+                  {{'ACTIVE' | translate}}
+              </span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input class="btn btn-primary" type="submit"
+             ng-disabled="roleForm.$invalid" value="{{'SUBMIT' | translate}}">
+    </div>
+  </form>
+</div>
+<div class="modal-backdrop fade in" ng-if="entity" ng-click="cancelModal()">
+</div>

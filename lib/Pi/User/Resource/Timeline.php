@@ -16,48 +16,82 @@ use Pi;
  *
  * Timeline APIs:
  *
- *   - timeline([$id])->get($limit[, $offset[, $condition]])
- *   - timeline([$id])->getCount([$condition]])
- *   - timeline([$id])->add($message, $module[, $tag[, $time]])
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
- *   - timeline([$id])->delete([$condition])
+ *   - get($limit[, $offset[, $condition]])
+ *   - getCount([$condition]])
+ *   - add(array(
+ *          'uid'       => <uid>,
+ *          'message'   => <message>,
+ *          'module'    => <module-name>,
+ *          'timeline'  => <timeline-name>,
+ *          'link'      => <link-href>,
+ *          'time'      => <timestamp>,
+ *     ))
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Timeline extends AbstractResource
 {
     /**
-     * If user module available for time handling
-     * @var bool|null
-     */
-    protected $isAvailable = null;
-
-    /**
-     * Check if relation function available
+     * Get timeline log list
      *
-     * @return bool
+     * @param int          $uid
+     * @param int          $limit
+     * @param int          $offset
+     *
+     * @return array
      */
-    protected function isAvailable()
+    public function get($uid, $limit, $offset = 0)
     {
-        if (null === $this->isAvailable) {
-            $this->isAvailable = Pi::service('module')->isActive('user');
-        }
+        $result = array();
 
-        return $this->isAvailable;
+        if (!$this->isAvailable()) {
+            return $result;
+        }
+        $result = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
+
+        return $result;
     }
 
     /**
-     * Placeholder for APIs
+     * Get timeline log count subject to type(s)
      *
-     * @param string $method
-     * @param array $args
-     * @return bool|void
+     * @param int           $uid
+     *
+     * @return int
      */
-    public function __call($method, $args)
+    public function getCount($uid)
     {
-        if (!$this->isAvailable) {
+        $result = 0;
+
+        if (!$this->isAvailable()) {
+            return $result;
+        }
+        $result = Pi::api('user', 'timeline')->getCount($uid);
+
+        return $result;
+    }
+
+    /**
+     * Write a timeline log
+     *
+     * Log array:
+     *  - uid
+     *  - message
+     *  - timeline
+     *  - module
+     *  - link
+     *  - time
+     *
+     * @param array $log
+     * @return bool
+     */
+    public function add(array $log)
+    {
+        if (!$this->isAvailable()) {
             return false;
         }
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('user', 'timeline')->add($log);
+
+        return $result;
     }
 }

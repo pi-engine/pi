@@ -33,13 +33,8 @@ class PasswordController extends ActionController
      */
     public function indexAction()
     {
-        $identity = Pi::service('authentication')->getIdentity();
-        // Redirect login page if not logged in
-        if (!$identity) {
-            $this->redirect()->toRoute('', array('controller' => 'login'));
-
-            return;
-        }
+        Pi::service('authentication')->requireLogin();
+        $identity = Pi::service('user')->getIdentity();
 
         $form = new PasswordForm('password-change');
         if ($this->request->isPost()) {

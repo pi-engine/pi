@@ -3,7 +3,7 @@
     $this->jQuery('ui/jquery-ui.custom.min.js');
     $this->Backbone();
 ?>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
 <?php
     if (!empty($success)) {
         $message = $success;
@@ -61,13 +61,13 @@ foreach ($elements['hidden'] as $element) {
 <script id="temp-block" type="text/template">
     <i class="icon-remove-sign"></i>
     <div class="control-group">
-        <label class="control-label"><?php _e('Caption'); ?></label>
+        <label class="control-label"><?php echo _a('Caption'); ?></label>
         <div class="controls">
             <input type="text"   value="<%= caption %>" name="caption">
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label"><?php _e('Link'); ?></label>
+        <label class="control-label"><?php echo _a('Link'); ?></label>
         <div class="controls">
             <input type="text"  value="<%= link %>" name="link">
         </div>
@@ -146,7 +146,7 @@ echo $this->form()->closeTag();
                                 ul.find("[data-id=" + m.get("id") + "]").addClass("selected");
                             });
                         } else {
-                            ul.html('<span class="label label-info"><?php _e('No Blocks'); ?></span>');
+                            ul.html('<span class="label label-info"><?php echo _a('No Blocks'); ?></span>');
                         }
                     }
                });

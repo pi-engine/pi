@@ -24,32 +24,52 @@ class Role extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $model = Pi::model('acl_role');
-        $ancestors = $model->getAncestors($options['role']);
+        $result = array();
+        $model = Pi::model('role');
+        $where = array('active' => 1);
+        if (!empty($options['section'])) {
+            $where['section'] = $options['section'];
+        }
+        $select = $model->select();
+        $select->order(array('section', 'title ASC'));
+        $select->where($where);
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[$row['name']] = array(
+                'section'   => $row['section'],
+                'title'     => $row['title'],
+                'id'        => (int) $row['id'],
+            );
+        }
 
-        return $ancestors;
+        return $result;
     }
 
     /**
      * {@inheritDoc}
-     * @param string $role
+     * @param string $section
      */
-    public function read($role = '')
+    public function read($section = '')
     {
-        //$this->cache = false;
-        $options = compact('role');
+        $options = compact('section');
+        $data = $this->loadData($options);
+        /*
+        if ($section) {
+            $data = $data[$section];
+        }
+        */
 
-        return $this->loadData($options);
+        return $data;
     }
 
     /**
      * {@inheritDoc}
-     * @param string $role
+     * @param string $section
      */
-    public function create($role = '')
+    public function create($section = '')
     {
-        $this->clear($role);
-        $this->read($role);
+        $this->clear($section);
+        $this->read($section);
 
         return true;
     }

@@ -11,6 +11,7 @@ namespace Module\System\Form;
 
 use Pi;
 use Zend\InputFilter\InputFilter;
+use Module\System\Validator;
 
 /**
  * Page adding form filter
@@ -41,8 +42,8 @@ class PageAddFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
-                new \Module\System\Validator\ControllerAvailable(),
-                new \Module\System\Validator\PageDuplicate(),
+                new Validator\ControllerAvailable(),
+                new Validator\PageDuplicate(),
             ),
         ));
 
@@ -55,8 +56,13 @@ class PageAddFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
-                new \Module\System\Validator\ActionAvailable(),
+                new Validator\ActionAvailable(),
             ),
+        ));
+
+        $this->add(array(
+            'name'      => 'cache_type',
+            'required'  => false,
         ));
 
         $this->add(array(

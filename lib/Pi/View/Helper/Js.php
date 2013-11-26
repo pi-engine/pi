@@ -45,6 +45,9 @@ use Pi;
  */
 class Js extends AssetCanonize
 {
+    /** @var array Container for loaded files */
+    static protected $loaded = array();
+
     /**
      * Load JavaScript file
      *
@@ -57,9 +60,35 @@ class Js extends AssetCanonize
      */
     public function __invoke($files = null, $attributes = 'append')
     {
+        if (null === $files) {
+            return $this;
+        }
+
+        $this->load($files, $attributes);
+
+        return $this;
+    }
+
+    /**
+     * Load JavaScript file
+     *
+     * @param   string|array $files
+     * @param   string|array $attributes
+     *      Only applicable when $files is scalar,
+     *      default as string for position,
+     *      append or prepend, default as 'append'
+     * @return  self
+     */
+    public function load($files = null, $attributes = 'append')
+    {
         $files = $this->canonize($files, $attributes);
         $helper = $this->view->headScript();
         foreach ($files as $file => $attrs) {
+            if (isset(static::$loaded[$file])) {
+                continue;
+            } else {
+                static::$loaded[$file] = $attrs;
+            }
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('prepend' == $position) {

@@ -16,8 +16,10 @@ class Render
     /**
      * Magic method to access custom widget renderer
      *
-     * @param string $name Custom widget name
-     * @param array  block options
+     * @param string $name  Custom widget name
+     * @param        array  block options
+     *
+     * @return mixed
      */
     public static function __callStatic($name, $args = null)
     {
@@ -25,8 +27,14 @@ class Render
         //return $options;
 
         $module = array_shift($args);
-        $class = __NAMESPACE__ . '\\Render\\' . ucfirst($name);
-        if (class_exists($class)) {
+        $class = 'Custom\Widget\Render\\' . ucfirst($name);
+        if (!class_exists($class)) {
+            $class = __NAMESPACE__ . '\Render\\' . ucfirst($name);
+            if (!class_exists($class)) {
+                $class = '';
+            }
+        }
+        if ($class) {
             return $class::render($options, $module);
         }
 

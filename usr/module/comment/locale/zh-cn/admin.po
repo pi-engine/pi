@@ -1,0 +1,609 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: comment\n"
+"POT-Creation-Date: 2013-11-20 11:42+0800\n"
+"PO-Revision-Date: 2013-11-20 11:44+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"Language-Team: eefocus\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _t;_a\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: Z:\\article\\usr\\module\\comment\n"
+
+#: Z:\article\usr\module\comment/config/block.php:13
+msgid "Recent comments"
+msgstr "最新评论"
+
+#: Z:\article\usr\module\comment/config/block.php:14
+msgid "Recent active comment posts."
+msgstr "最新活跃评论"
+
+#: Z:\article\usr\module\comment/config/block.php:20
+msgid "Post count"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:21
+msgid "Number of posts to display."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:28
+#: Z:\article\usr\module\comment/config/block.php:53
+msgid "Module"
+msgstr "模块"
+
+#: Z:\article\usr\module\comment/config/block.php:29
+msgid "Select module for articles"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:38
+#: Z:\article\usr\module\comment/config/nav.php:20
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:62
+msgid "Commented articles"
+msgstr "已评论文章"
+
+#: Z:\article\usr\module\comment/config/block.php:39
+msgid "Articles being commented."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:45
+msgid "Article count"
+msgstr "文章数"
+
+#: Z:\article\usr\module\comment/config/block.php:46
+msgid "Number of articles to display."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:54
+msgid "Select module for articles."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:60
+msgid "Sort order"
+msgstr "排序"
+
+#: Z:\article\usr\module\comment/config/block.php:61
+msgid "Criteria to select articles."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:66
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:89
+msgid "Most commented"
+msgstr "热评文章排行"
+
+#: Z:\article\usr\module\comment/config/block.php:67
+msgid "Last commented"
+msgstr "最新评论文章"
+
+#: Z:\article\usr\module\comment/config/block.php:68
+msgid "Last published"
+msgstr "最后发布"
+
+#: Z:\article\usr\module\comment/config/block.php:79
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:25
+msgid "Top posters"
+msgstr "热心网友排行"
+
+#: Z:\article\usr\module\comment/config/block.php:80
+msgid "Users with most posts"
+msgstr "最活跃用户"
+
+#: Z:\article\usr\module\comment/config/block.php:86
+msgid "User count"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:87
+msgid "Number of users to display."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:94
+msgid "Excluded user ids"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:95
+msgid "Users to exclude, separated by \",\"."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:101
+msgid "Excluded roles"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/block.php:102
+msgid "Roles to exclude."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/module.php:17
+msgid "Comment"
+msgstr "评论"
+
+#: Z:\article\usr\module\comment/config/module.php:18
+msgid "Comment management and services."
+msgstr "评论管理与服务"
+
+#: Z:\article\usr\module\comment/config/comment.php:18
+msgid "Article comments"
+msgstr "文章评论"
+
+#: Z:\article\usr\module\comment/config/comment.php:29
+msgid "Custom comments"
+msgstr "定制评论"
+
+#: Z:\article\usr\module\comment/config/user.php:20
+msgid "Comment posts by me"
+msgstr "我发表的评论"
+
+#: Z:\article\usr\module\comment/config/user.php:26
+msgid "Comment posts on my articles"
+msgstr "我文章里面的评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:14
+#: Z:\article\usr\module\comment/config/nav.php:61
+msgid "All comments"
+msgstr "全部评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:26
+msgid "My comments"
+msgstr "我的评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:35
+msgid "My received"
+msgstr "我收到的评论"
+
+#: Z:\article\usr\module\comment/config/nav.php:44
+msgid "My articles"
+msgstr "我的文章"
+
+#: Z:\article\usr\module\comment/config/nav.php:55
+msgid "Portal"
+msgstr "评论首页"
+
+#: Z:\article\usr\module\comment/config/nav.php:90
+msgid "Categories"
+msgstr "分类"
+
+#: Z:\article\usr\module\comment/config/nav.php:96
+msgid "By module"
+msgstr "通过模块查询"
+
+#: Z:\article\usr\module\comment/config/nav.php:102
+msgid "By user"
+msgstr "通过用户查询"
+
+#: Z:\article\usr\module\comment/config/nav.php:108
+msgid "By article"
+msgstr "通过文章查询"
+
+#: Z:\article\usr\module\comment/config/config.php:12
+msgid "Leading page comment limit."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:13
+msgid "Number of comments on leading page."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:19
+msgid "List page comment limit."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:20
+msgid "Number of comments on list page."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:26
+msgid "Display operation"
+msgstr "显示设置"
+
+#: Z:\article\usr\module\comment/config/config.php:27
+msgid "Level of operations on post list pages."
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:33
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:41
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:38
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:30
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:37
+msgid "Disable"
+msgstr "屏蔽"
+
+#: Z:\article\usr\module\comment/config/config.php:34
+msgid "For members"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:35
+msgid "For authors"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:36
+msgid "For administrators"
+msgstr ""
+
+#: Z:\article\usr\module\comment/config/config.php:43
+msgid "Auto approve submission."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:22
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:276
+msgid "Comment categories"
+msgstr "评论分类"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:33
+msgid "Active"
+msgstr "激活"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:33
+msgid "Disabled"
+msgstr "关闭"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:41
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:33
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:25
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:32
+msgid "Enable"
+msgstr "激活"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:91
+msgid "Category was not found."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:95
+msgid "Invalid operation."
+msgstr "无效操作"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:101
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:598
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:224
+msgid "Operation succeeded."
+msgstr "操作成功"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/CategoryController.php:104
+msgid "Operation failed."
+msgstr "操作失败"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:84
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:39
+msgid "All comment posts"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:86
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:54
+msgid "All inactive comment posts"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:88
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:46
+msgid "All active comment posts"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:111
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:237
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:414
+msgid "All Posts"
+msgstr "全部评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:118
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:245
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:423
+msgid "Active Posts"
+msgstr "激活评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:126
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:254
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:433
+msgid "Inactive Posts"
+msgstr "已屏蔽评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:165
+msgid "Comments by username or id"
+msgstr "根据用户名或ID搜索评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:204
+msgid "Comment posts of user"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:371
+#, php-format
+msgid "Comment posts of Module %s with Category %s"
+msgstr "%s 模块 %s 分类的评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:377
+#, php-format
+msgid "Comment posts of Module %s"
+msgstr "%s 模块的评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:487
+msgid "Guest"
+msgstr "访客"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:526
+msgid "All commented articles"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:528
+msgid "All active commented articles"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:540
+msgid "Articles with comments"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/ListController.php:547
+msgid "Articles with active comments"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:23
+#, php-format
+msgid "Comment portal for %s"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:26
+msgid "Build comment data for demo articles"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:33
+msgid "Demo article with comments"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:69
+msgid "Comment posts by user"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:76
+msgid "Comment posts by module"
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:87
+msgid "Total posts"
+msgstr "全部评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:95
+msgid "Active posts"
+msgstr "激活评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:104
+msgid "Inactive posts"
+msgstr "已屏蔽评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/IndexController.php:277
+#, php-format
+msgid "Demo comment %d."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:44
+msgid "Edit"
+msgstr "编辑"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:51
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:42
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:34
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:41
+msgid "Delete"
+msgstr "删除"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:67
+msgid "Comment post"
+msgstr "发表评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:91
+msgid "Comment post edit"
+msgstr "编辑评论"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:175
+msgid "Comment post saved successfully."
+msgstr "评论成功"
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:178
+msgid "Comment post not saved."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:182
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:186
+msgid "Invalid submission."
+msgstr ""
+
+#: Z:\article\usr\module\comment/src/Controller/Admin/PostController.php:224
+msgid "Operation failed"
+msgstr "操作失败"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:18
+#: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:5
+msgid "Type user id or identity"
+msgstr "输入用户ID或用户名"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:19
+#: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:6
+msgid "Submit"
+msgstr "提交"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:103
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:95
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:102
+msgid "Pending"
+msgstr "屏蔽"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:117
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:109
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:116
+msgid "No comments available yet."
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:197
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:189
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:196
+msgid "Are you sure delete these comments?"
+msgstr "确认删除这些评论？"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user.phtml:243
+#: Z:\article\usr\module\comment/template/admin/comment-list.phtml:235
+#: Z:\article\usr\module\comment/template/admin/comment-module.phtml:242
+msgid "Are you sure delete this article?"
+msgstr "确认删除这篇文章？"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:3
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:3
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:9
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:52
+msgid "Title"
+msgstr "标题"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:4
+msgid "Enable Category"
+msgstr "启用分类评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:5
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:4
+msgid "Action"
+msgstr "动作"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:11
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:27
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:11
+#: Z:\article\usr\module\comment/template/admin/comment-module-select.phtml:20
+msgid "View comments"
+msgstr "查看评论"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:20
+msgid "Yes"
+msgstr "是"
+
+#: Z:\article\usr\module\comment/template/admin/comment-category.phtml:23
+msgid "No"
+msgstr "不"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:6
+msgid "Comment stats"
+msgstr "评论数据"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:10
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:53
+msgid "Amounts"
+msgstr "数量"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:29
+msgid "Submitters"
+msgstr "提交者"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:30
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:94
+msgid "Comments"
+msgstr "评论数"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:49
+msgid "Active comment posts by module"
+msgstr "分类下的激活评论数"
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:76
+msgid "Links"
+msgstr ""
+
+#: Z:\article\usr\module\comment/template/admin/comment-index.phtml:93
+msgid "Article title"
+msgstr "文章标题"
+
+#: Z:\article\usr\module\comment/template/admin/comment-user-select.phtml:2
+msgid "Filter comments by a specific user."
+msgstr "根据具体用户来过滤评论"
+
+#~ msgid "Please login."
+#~ msgstr "请登录。"
+
+#~ msgid "My active comments"
+#~ msgstr "我的激活评论"
+
+#~ msgid "My pending comments"
+#~ msgstr "我的评论草稿"
+
+#~ msgid "All"
+#~ msgstr "全部"
+
+#~ msgid "My articles with active comments"
+#~ msgstr "我的被评论文章"
+
+#~ msgid "Reply"
+#~ msgstr "回复"
+
+#~ msgid "Operation denied."
+#~ msgstr "禁止操作"
+
+#~ msgid "Comment is disabled."
+#~ msgstr "评论已关闭"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Enable/Disable"
+#~ msgstr "打开/关闭"
+
+#~ msgid "Type your content"
+#~ msgstr "请发表评论……"
+
+#, fuzzy
+#~ msgid "Commented on "
+#~ msgstr "发表评论"
+
+#, fuzzy
+#~ msgid "Comment edit"
+#~ msgstr "编辑评论"
+
+#, fuzzy
+#~ msgid "No content."
+#~ msgstr "请发表评论……"
+
+#, fuzzy
+#~ msgid "All comments "
+#~ msgstr "全部评论"
+
+#, fuzzy
+#~ msgid " to leave comments."
+#~ msgstr "我的激活评论"
+
+#, fuzzy
+#~ msgid "Post"
+#~ msgstr "全部评论"
+
+#, fuzzy
+#~ msgid "No one has commented yet."
+#~ msgstr "热评文章排行"
+
+#, fuzzy
+#~ msgid "commented on "
+#~ msgstr "热评文章排行"
+
+#, fuzzy
+#~ msgid "All active comments "
+#~ msgstr "我的激活评论"
+
+#, fuzzy
+#~ msgid "%s comments"
+#~ msgstr "我的评论"
+
+#, fuzzy
+#~ msgid "Last commented: "
+#~ msgstr "最新评论文章"
+
+#, fuzzy
+#~ msgid "Comments for %s module"
+#~ msgstr "我发表的评论"
+
+#, fuzzy
+#~ msgid "Comment detail"
+#~ msgstr "发表评论"
+
+#, fuzzy
+#~ msgid "Comment #%d"
+#~ msgstr "评论"
+
+#, fuzzy
+#~ msgid "Comment reply to %s"
+#~ msgstr "发表评论"
+
+#, fuzzy
+#~ msgid "View all comments"
+#~ msgstr "全部评论"

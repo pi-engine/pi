@@ -40,7 +40,7 @@ class Resource implements ListenerAggregateInterface
     /**
      * Attach listeners
      *
-     * @param  Events $events
+     * @param  EventManagerInterface $events
      * @return void
      */
     public function attach(EventManagerInterface $events)
@@ -121,17 +121,21 @@ class Resource implements ListenerAggregateInterface
             if (!preg_match('/^([^\.]+)\.php$/', $fileName, $matches)) {
                 continue;
             }
-            $resource = strtolower($matches[1]);
-            if ($resource == 'config' || $resource == 'abstractresource') {
+            $resource = $matches[1];
+            if ($resource == 'Config' || $resource == 'AbstractResource') {
                 continue;
             }
-            $resourceList[] = $resource;
+            $resourceName = strtolower(implode(
+                '_',
+                array_filter(preg_split('/(?=[A-Z])/', $resource))
+            ));
+            $resourceList[] = $resourceName;
         }
         $resourceList[] = 'config';
 
         $config = $this->event->getParam('config');
-        if (!empty($config['maintenance']['resource'])) {
-            $resources = array_keys($config['maintenance']['resource']);
+        if (!empty($config['resource'])) {
+            $resources = array_keys($config['resource']);
             $resourceList = array_unique(
                 array_merge($resources, $resourceList)
             );
@@ -141,7 +145,7 @@ class Resource implements ListenerAggregateInterface
     }
 
     /**
-     * Load and performe resource actions
+     * Load and perform resource actions
      *
      * Returns result of the resource, null for failure but ignored, or array:
      *
@@ -152,7 +156,7 @@ class Resource implements ListenerAggregateInterface
      *  );
      * </code>
      *
-     * @param strint $resource Resource name
+     * @param string $resource Resource name
      * @return array|null
      */
     protected function loadResource($resource)
@@ -160,16 +164,24 @@ class Resource implements ListenerAggregateInterface
         $e                  = $this->event;
         $config             = $e->getParam('config');
         $moduleDirectory    = $e->getParam('directory');
+
+        $resourceName = str_replace(
+            ' ',
+            '',
+            ucwords(str_replace('_', ' ', $resource))
+        );
+
+        //$resourceName = ucfirst($resource);
         $resourceClass      = sprintf(
             'Module\\%s\Installer\Resource\\%s',
             ucfirst($moduleDirectory),
-            ucfirst($resource)
+            $resourceName
         );
         if (!class_exists($resourceClass)) {
             $resourceClass = sprintf(
                 '%s\Resource\\%s',
                 __NAMESPACE__,
-                ucfirst($resource)
+                $resourceName
             );
         }
         if (!class_exists($resourceClass)) {
@@ -179,8 +191,8 @@ class Resource implements ListenerAggregateInterface
         if (!method_exists($resourceClass, $methodAction)) {
             return;
         }
-        $options = isset($config['maintenance']['resource'][$resource])
-            ? $config['maintenance']['resource'][$resource] : array();
+        $options = isset($config['resource'][$resource])
+            ? $config['resource'][$resource] : array();
         if (is_string($options)) {
             $optionsFile = sprintf(
                 '%s/%s/config/%s',

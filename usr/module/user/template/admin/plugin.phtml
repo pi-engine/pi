@@ -1,0 +1,41 @@
+<?php
+$this->jQuery('ui/jquery-ui-1.10.3.custom.min.js');
+$this->angular(array(
+    'angular-route.js',
+    'ui-bootstrap-custom-tpls-0.6.0.js',
+    'pi.js',
+    'pi-sortable.js'
+));
+?>
+<div ng-app="userPluginModule">
+    <div pi-message="alert"></div>
+    <div pi-nav-tabs></div>
+    <div ng-view></div>
+</div>
+<script>
+angular
+    .module('userPluginModule', ['ngRoute', 'ui.bootstrap', 'pi', 'ui.sortable'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        navTabs: [
+            { text: '<?php echo _a('Timeline'); ?>', href: '#!/timeline' },
+            { text: '<?php echo _a('Activity'); ?>', href: '#!/activity' },
+            { text: '<?php echo _a('Quicklink'); ?>', href: '#!/quicklink' }
+        ],
+        t: {
+            ITEM_NAME: '<?php echo _a('Item name'); ?>',
+            FROM: '<?php echo _a('From module'); ?>',
+            DISPLAY: '<?php echo _a('Display'); ?>',
+            TITLE: '<?php echo _a('Items displayed on the homepage timeline'); ?>',
+            YES: '<?php echo _a('Yes'); ?>',
+            NO: '<?php echo _a('No'); ?>',
+            ACTIVITIES: '<?php echo _a('Activities'); ?>',
+            ACTIVITIES_REPOSITORY: '<?php echo _a('Activities items repository'); ?>',
+            ACTIVITIES_DESC: '<?php echo _a("Items to display on the user\'s homepage, Drag items vertically to determine the order displays"); ?>',
+            QUICKLINK: '<?php echo _a('Quicklinks'); ?>',
+            QUICKLINK_REPOSITORY: '<?php echo _a('Quicklinks items repository'); ?>'
+        }
+    });
+</script>
+<script src="<?php echo $this->assetModule('admin/plugin.js'); ?>"></script>

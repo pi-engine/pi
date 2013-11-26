@@ -155,7 +155,7 @@ class Session extends AbstractService
     }
 
     /**
-     * Megaic method to get session container
+     * Magic method to get session container
      *
      * @param string $name
      * @return Container

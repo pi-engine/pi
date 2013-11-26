@@ -1,0 +1,35 @@
+<?php
+    $form->setAttribute('class', 'form-horizontal');
+    $form->prepare();
+    $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
+    $elements = $form->elementList();
+    echo $this->form()->openTag($form);
+    foreach ($elements['active'] as $element) {
+        $rendered = sprintf(
+            '<div class="control-group%s">',
+            $element->getMessages() ? ' error' : ''
+        );
+        if ($element->getAttribute('type') != 'checkbox') {
+            $rendered .= sprintf(
+                '<label class="control-label">%s</label>',
+                $element->getOption('label')
+            );
+        }
+        $rendered .= sprintf(
+            '<div class="controls">%s<span class="help-inline%s">%s</span></div></div>',
+            $this->formElement($element),
+            $element->getMessages() ? '' : ' hide',
+            $this->formElementErrors($element)
+        );
+        echo $rendered;
+    }
+    foreach ($elements['hidden'] as $element) {
+        echo $this->formElement($element);
+    }
+    echo sprintf(
+        '<div class="control-group"><div class="controls">%s%s</div></div>', 
+        $this->formElement($elements['submit']),
+        empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
+    );
+    echo $this->form()->closeTag();
+?>

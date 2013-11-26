@@ -38,18 +38,23 @@ use Zend\View\Model\ClearableModelInterface;
  */
 class ErrorStrategy extends AbstractListenerAggregate
 {
+    /** @var  bool If event already triggered */
+    protected $isTriggered = false;
+
     /**
      * {@inheritDoc}
      */
     public function attach(EventManagerInterface $events)
     {
         $sharedEvents = $events->getSharedManager();
+
         $sharedEvents->attach(
-            'Zend\Stdlib\DispatchableInterface',
+            'PI_CONTROLLER',
             MvcEvent::EVENT_DISPATCH,
             array($this, 'prepareErrorViewModel'),
             -85
         );
+
 
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_DISPATCH,
@@ -71,6 +76,10 @@ class ErrorStrategy extends AbstractListenerAggregate
      */
     public function prepareErrorViewModel(MvcEvent $e)
     {
+        if ($this->isTriggered) {
+            return;
+        }
+
         // Do nothing if no error in the event
         $error = $e->getError();
         if (empty($error)) {
@@ -93,14 +102,15 @@ class ErrorStrategy extends AbstractListenerAggregate
                 $templateName = 'denied_template';
                 break;
             case 404:
-                // Handled by RouteNotFoundStrategy
+                // Controller route error is handled by RouteNotFoundStrategy
+                $templateName = 'not_found_template';
                 break;
             case 503:
             default:
                 if ($statusCode >= 400) {
-                    $templateName = 'error_tempalte';
+                    $templateName = 'error_template';
                 }
-            break;
+                break;
         }
         if (!$templateName) {
             return;
@@ -113,20 +123,17 @@ class ErrorStrategy extends AbstractListenerAggregate
             $viewModel = $result;
         }
 
-        if (!$viewModel->getTemplate()) {
-            $config = $e->getApplication()->getServiceManager()->get('Config');
-            $viewConfig = $config['view_manager'];
-            $template = isset($viewConfig[$templateName])
-                ? $viewConfig[$templateName] : 'error';
-            $viewModel->setTemplate($template);
-        }
+        //if (!$viewModel->getTemplate()) {
+        $config = $e->getApplication()->getServiceManager()->get('Config');
+        $viewConfig = $config['view_manager'];
+        $template = isset($viewConfig[$templateName])
+            ? $viewConfig[$templateName] : 'error';
+        $viewModel->setTemplate($template);
+        //}
 
-        if (!$viewModel->getVariable('message')) {
-            $errorMessage = $e->getError();
-            if (!is_string($errorMessage)) {
-                $errorMessage = '';
-            }
-            $viewModel->setVariable('message', $errorMessage ?: '');
+        if (!$viewModel->getVariable('message') && is_string($error)) {
+        //if (is_string($error)) {
+            $viewModel->setVariable('message', $error);
         }
         $viewModel->setVariable('code', $statusCode);
 
@@ -139,5 +146,7 @@ class ErrorStrategy extends AbstractListenerAggregate
             $model->clearChildren();
         }
         $model->addChild($viewModel);
+
+        $this->isTriggered = true;
     }
 }

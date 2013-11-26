@@ -1,0 +1,266 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-uclient\n"
+"POT-Creation-Date: 2013-11-21 10:13+0800\n"
+"PO-Revision-Date: 2013-11-21 10:14+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\uclient\n"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/module.php:17
+msgid "User Client"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/module.php:18
+msgid "Client for user services."
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/nav.php:21
+msgid "User"
+msgstr "用户"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/nav.php:31
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:26
+msgid "Role"
+msgstr "角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/nav.php:40
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:30
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:34
+msgid "Front role"
+msgstr "前台角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/nav.php:49
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:31
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:35
+msgid "Admin role"
+msgstr "后台角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/permission.php:18
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:33
+msgid "Users"
+msgstr "用户"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/permission.php:24
+msgid "Roles"
+msgstr "角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/config/permission.php:30
+msgid "Maintenance"
+msgstr "维护"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/IndexController.php:166
+msgid "Assign role failed: invalid parameters."
+msgstr "分配角色失败：不合法参数。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/IndexController.php:172
+msgid "Assign role failed: invalid user ids."
+msgstr "分配角色失败：用户id不存在。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/IndexController.php:177
+msgid "Assign role failed: invalid operation."
+msgstr "分配角色失败：不合法操作。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/IndexController.php:186
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/IndexController.php:197
+msgid "Assign role failed."
+msgstr "分配角色失败"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/IndexController.php:209
+msgid "Assign role successfully."
+msgstr "分配角色成功"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/RoleController.php:108
+msgid "User removed from the role."
+msgstr "已从该角色中移除用户。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/RoleController.php:112
+msgid "User not in the role."
+msgstr "用户不在该角色内。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/RoleController.php:121
+msgid "User added to the role."
+msgstr "已添加用户到本角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/RoleController.php:132
+msgid "User already in the role."
+msgstr "用户已在本角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/RoleController.php:141
+msgid "User not found."
+msgstr "未找到用户。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/src/Controller/Admin/RoleController.php:179
+#, php-format
+msgid "Users of role %s"
+msgstr "用户角色 %s"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role-user.phtml:5
+msgid "Added a user"
+msgstr "添加用户"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role-user.phtml:8
+msgid "Add"
+msgstr "添加"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role-user.phtml:23
+msgid "Profile"
+msgstr "资料"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role-user.phtml:26
+msgid "Remove"
+msgstr "移除"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role-user.phtml:41
+msgid "No users available yet."
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:19
+msgid "Admin roles"
+msgstr "后台角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:20
+msgid "Front roles"
+msgstr "前台角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:21
+msgid "Name"
+msgstr "名称"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:22
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:25
+msgid "Title"
+msgstr "标题"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:23
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:31
+msgid "Users in role"
+msgstr "用户数量"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:24
+msgid "Action"
+msgstr "动作"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:26
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:36
+msgid "Submit"
+msgstr "提交"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:27
+msgid "Required"
+msgstr "必填"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:28
+msgid "Type"
+msgstr "类型"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:29
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:43
+msgid "Front"
+msgstr "前台"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:30
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:44
+msgid "Admin"
+msgstr "后台"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:32
+msgid "User id or name"
+msgstr "用户 id 或 用户名"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:34
+msgid "First"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:35
+msgid "User id"
+msgstr "用户 ID"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:36
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:24
+msgid "Username"
+msgstr "用户名"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:37
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:25
+msgid "Display name"
+msgstr "昵称"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:38
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:29
+msgid "Email"
+msgstr "邮箱"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:39
+msgid "Add user"
+msgstr "添加用户"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/role.phtml:40
+msgid "None user in this role."
+msgstr "该角色内无用户。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:20
+msgid "Select roles"
+msgstr "选择角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:21
+msgid "Any"
+msgstr ""
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:22
+msgid "None"
+msgstr "无"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:23
+msgid "Apply"
+msgstr "应用"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:27
+msgid "Register time"
+msgstr "注册时间"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:28
+msgid "Back to users list"
+msgstr "返回用户列表"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:32
+msgid "Assign role"
+msgstr "分配角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:33
+msgid "Remove role"
+msgstr "移除角色"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:37
+msgid "required"
+msgstr "必填"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:38
+msgid "Register IP"
+msgstr "注册IP"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:39
+msgid "User ID"
+msgstr "用户 ID"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:40
+msgid "No user matched your request."
+msgstr "未找到匹配用户。"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:41
+msgid "From"
+msgstr "从"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:42
+msgid "To"
+msgstr "到"
+
+#: D:\GitHub\custom-pi\usr\module\uclient/template/admin/user.phtml:45
+msgid "Choose at least one item before submission."
+msgstr "请至少选择一项提交。"

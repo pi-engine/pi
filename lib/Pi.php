@@ -14,13 +14,13 @@ use Pi\Application\Engine\AbstractEngine;
 use Pi\Application\Service;
 use Pi\Application\Service\AbstractService;
 use Pi\Application\Config;
-use Pi\Application\Db;
-use Pi\Debug\Debug;
-use Pi\Utility\Filter;
 use Pi\Application\Service\User;
 use Pi\Application\Model\Model;
 use Pi\Application\Registry\AbstractRegistry;
 use Pi\Application\AbstractApi;
+use Pi\Db\DbGateway;
+use Pi\Debug\Debug;
+use Pi\Utility\Filter;
 
 /**
  * Pi Engine
@@ -29,7 +29,7 @@ use Pi\Application\AbstractApi;
  *
  * Boot up process:
  *
- * - init: instantiate and initialize gobal APIs
+ * - init: instantiate and initialize global APIs
  *
  *   - host()
  *   - config()
@@ -41,20 +41,7 @@ use Pi\Application\AbstractApi;
  * - boot: boot up engine
  *
  *   - config()
- *   - bootstrap()
- *   - application()
- *
- * - bootstrap: boostap application
- *
- *   - bootstrap(application)
- *
- * - run: run application and returns response
- *
- *   - run(): route, dispatch
- *
- * - send response
- *
- *   - send()
+ *   - boot()
  *
  * Global APIs:
  *
@@ -130,11 +117,11 @@ class Pi
      * Reference to config handler
      * @var Config
      */
-    protected static $config = null;
+    //protected static $config = null;
 
     /**
-     * Reference to Db handler
-     * @var Db
+     * Reference to Db instance and gateway
+     * @var DbGateway
      */
     protected static $db = null;
 
@@ -196,8 +183,8 @@ class Pi
         $options = array(
             // Top namespaces
             'top'           => array(
-                'Pi'    => static::path('lib') . '/Pi',
-                'Zend'  => static::path('lib') . '/Zend',
+                'Pi'        => static::path('lib') . '/Pi',
+                'Zend'      => static::path('lib') . '/Zend',
             ),
             // Regular namespaces
             'namespace'     => array(
@@ -207,10 +194,10 @@ class Pi
             ),
             // Directory of modules
             'module_path'   => static::path('module'),
-            // Directory of extras
-            'extra_path'    => !empty($paths['extra'])
-                               ? $paths['extra']
-                               : static::path('usr') . '/extra',
+            // Directory of module custom classes
+            'custom_path'   => !empty($paths['custom'])
+                               ? $paths['custom'] . '/module'
+                               : static::path('usr') . '/custom/module',
             // Vendor directory
             'include_path'  => !empty($paths['vendor'])
                                ? $paths['vendor']
@@ -303,7 +290,7 @@ class Pi
     {
         // Instantiate the application engine
         $engine = static::engine();
-        // Performe application boot
+        // Perform application boot
         $status = $engine->run();
         // Skip registered shutdown on failure
         if (false === $status) {
@@ -323,9 +310,6 @@ class Pi
         }
     }
 
-    /**#@+
-     * System API
-     */
     /**
      * Instantiate application host
      *
@@ -363,6 +347,8 @@ class Pi
 
     /**
      * Loads autoloader handler
+     *
+     * @param array $options
      *
      * @return  Autoloader
      */
@@ -454,6 +440,9 @@ class Pi
      *  Pi::service('registry')->handler(<name>, <module>)->read(<...>);
      * ```
      *
+     * @param string $name
+     * @param string $module
+     *
      * @return AbstractRegistry
      * @api
      */
@@ -479,6 +468,9 @@ class Pi
      *  Pi::service('api')->handler(<module-name>, <api-name>)->{<method>}(<args>);
      * ```
      *
+     * @param string $module
+     * @param string $api
+     *
      * @return AbstractApi
      * @api
      */
@@ -488,9 +480,9 @@ class Pi
     }
 
     /**
-     * Load database identifier
+     * Load database gateway
      *
-     * @return Db
+     * @return DbGateway
      * @api
      */
     public static function db()
@@ -530,18 +522,12 @@ class Pi
      */
     public static function config($name = null, $domain = null)
     {
-        // config handler
-        if (!isset(static::$config)) {
-            static::$config = new Config(
-                static::path('config')
-            );
-        }
-        // Return config handler
+        // Return config service
         if (null === $name) {
-            return static::$config;
+            return static::service('config');
         }
         // Read a config
-        $value = static::$config->get($name, $domain);
+        $value = static::service('config')->get($name, $domain);
 
         return $value;
     }
@@ -585,11 +571,7 @@ class Pi
             array_unshift(static::$shutdown, $callback);
         }
     }
-    /**#@-*/
 
-    /**#@+
-     * Global APIs proxy to sub objects
-     */
     /**
      * Convert a path to a physical one, proxy to host handler
      *
@@ -599,7 +581,8 @@ class Pi
      *  - Otherwise, first part as section, map to `www` if no section matched
      *
      * @see Host::path()
-     * @param string $url  Path to be converted
+     * @param string $path  Path to be converted
+     *
      * @return string
      * @api
      */
@@ -641,7 +624,25 @@ class Pi
     {
         static::service('log')->audit($message, $extra);
     }
-    /**#@-*/
+
+    /**
+     * Magic method to load service
+     *
+     * @param string    $method
+     * @param array     $args
+     *
+     * @return AbstractService|bool
+     */
+    public static function __callStatic($method, array $args)
+    {
+        if (count($args) > 1 || ($args && !is_array($args[0]))) {
+            return false;
+        }
+        $options = $args ? $args[0] : array();
+        $service = static::service($method, $options);
+
+        return $service;
+    }
 }
 
 /**

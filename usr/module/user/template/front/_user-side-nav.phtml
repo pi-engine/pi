@@ -1,0 +1,44 @@
+<div class="span3">
+    <a class="media user-profile-back" href="<?php echo $this->url('', array('controller' => 'profile')); ?>">
+        <div class="pull-left">
+            <?php echo Pi::avatar()->get($user['id'], 'medium'); ?>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading"><?php echo _escape($user['name']); ?></h4>
+            <span class="muted"><?php _e('View my profile'); ?></span>
+        </div>
+    </a>
+    <div class="well" style="padding: 8px 0;">
+        <ul class="nav nav-list">
+            <li class="<?php if ($controller == 'account') echo 'active'; ?>">
+                <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index'));?>">
+                    <?php _e('Account settings')?>
+                </a>
+            </li>
+            <li class="<?php if ($controller == 'password') echo 'active'; ?>">
+                <a href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'index')); ?>">
+                    <?php _e('Password');?>
+                </a>
+            </li>
+            <li class="<?php if ($controller == 'avatar') echo 'active'; ?>">
+                <a href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+                    <?php _e('Avatar');?>
+                </a>
+            </li>
+            <li class="nav-header"><?php _e('Edit profile');?></li>
+            <?php  foreach ($groups as $key => $group) { ?>
+            <li class="<?php if (isset($group_id)) { echo $group_id == $key ? 'active' : ''; } ?>">
+                <a href="<?php echo $group['link']; ?>">
+                    <?php echo _escape($group['title']); ?>
+                </a>
+            </li>
+            <?php } ?>
+            <li class="divider"></li>
+            <li class="<?php if ($controller == 'privacy') echo 'active'; ?>">
+                <a href="<?php echo $this->url('', array('controller' => 'privacy', 'action' => 'index')); ?>">
+                    <?php _e('Privacy'); ?>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

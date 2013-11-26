@@ -10,6 +10,7 @@
 
 namespace Pi\Form;
 
+use Pi;
 use Zend\Form\Form as ZendForm;
 
 /**
@@ -64,6 +65,22 @@ class Form extends ZendForm
         }
 
         return $this->factory;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Load translation for validators
+     */
+    public function isValid()
+    {
+        if ($this->hasValidated) {
+            return $this->isValid;
+        }
+
+        Pi::service('i18n')->load('validator');
+
+        return parent::isValid();
     }
 
     /**

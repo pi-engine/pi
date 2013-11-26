@@ -66,7 +66,9 @@ class Update extends AbstractAction
         $row->assign($meta);
 
         // save module entry into database
-        if (!$row->save()) {
+        try {
+            $row->save();
+        } catch (\Exception $e) {
             $this->setResult('module', array(
                 'status'    => false,
                 'message'   => array('Module upgrade failed')

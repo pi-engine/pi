@@ -10,7 +10,7 @@
 namespace Pi\User\Adapter;
 
 use Pi;
-use Pi\User\Model\System as UserModel;
+//use Pi\User\Model\System as UserModel;
 
 /**
  * Pi Engine built-in user service provided by system module
@@ -19,40 +19,18 @@ use Pi\User\Model\System as UserModel;
  */
 class System extends AbstractAdapter
 {
+    /** @var string Route for user URLs */
+    //protected $route = 'sysuser';
+
     /**#@+
      * Meta operations
      */
     /**
      * {@inheritDoc}
      */
-    public function getMeta($type = 'account')
+    public function getMeta($type = '', $action = '')
     {
-        $metaAccount = array(
-            'id',
-            'identity',
-            'credential',
-            'salt',
-            'email',
-            'name',
-            'active',
-        );
-        $metaProfile = array(
-            'uid',
-        );
-        $meta = array();
-        switch ($type) {
-            case 'account':
-                $meta = $metaAccount;
-                break;
-            case 'profile':
-                $meta = $metaProfile;
-                break;
-            default:
-                $meta = $metaAccount + $metaProfile;
-                break;
-        }
-
-        return $meta;
+        return Pi::api('system', 'user')->getMeta($type, $action);
     }
     /**#@-*/
 
@@ -62,12 +40,14 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUser($id = null, $field = 'id')
+    public function getUser($uid = null, $field = 'id')
     {
-        if (null !== $id) {
-            $model = new UserModel($id, $field);
-        } else {
+        if ($this->model
+            && (null === $uid || $this->model->get($field) == $uid)
+        ) {
             $model = $this->model;
+        } else {
+            $model = $this->getUserModel($uid, $field);
         }
 
         return $model;
@@ -76,21 +56,41 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUserList($ids)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIds(
+    public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
         $order      = ''
     ) {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('system', 'user')->getUids(
+            $condition,
+            $limit,
+            $offset,
+            $order
+        );
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList(
+        array $condition  = array(),
+        $limit      = 0,
+        $offset     = 0,
+        $order      = '',
+        array $field  = array()
+    ) {
+        $result = Pi::api('system', 'user')->getList(
+            $condition,
+            $limit,
+            $offset,
+            $order,
+            $field
+        );
+
+        return $result;
     }
 
     /**
@@ -98,94 +98,135 @@ class System extends AbstractAdapter
      */
     public function getCount($condition = array())
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        $result = Pi::api('system', 'user')->getCount($condition);
+
+        return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function addUser($data)
+    public function addUser($data, $setRole = true)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('system', 'user')->addUser($data, $setRole);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function updateUser($data, $id = null)
+    public function updateUser($uid, $data)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('system', 'user')->updateUser($uid, $data);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deleteUser($id)
+    public function deleteUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        if ($this->isRoot($uid)) {
+            return false;
+        }
+        return Pi::api('system', 'user')->deleteUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function activateUser($id)
+    public function activateUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('system', 'user')->activateUser($uid);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deactivateUser($id)
+    public function enableUser($uid)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('system', 'user')->enableUser($uid);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function disableUser($uid)
+    {
+        if ($this->isRoot($uid)) {
+            return false;
+        }
+        return Pi::api('system', 'user')->disableUser($uid);
     }
     /**#@-*/
 
     /**#@+
      * User account/Profile fields operations
      */
-
     /**
      * {@inheritDoc}
      */
-    public function get($key, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('system', 'user')->get(
+            $uid,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getList($key, $ids)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+    public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    ) {
+        return Pi::api('system', 'user')->mget(
+            $uids,
+            $field,
+            $filter,
+            $activeOnly
+        );
     }
 
     /**
      * {@inheritDoc}
      */
-    public function set($key, $value, $id = null)
+    public function set($uid, $field, $value)
     {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function increment($key, $value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setPassword($value, $id = null)
-    {
-        trigger_error(__METHOD__ . ' not implemented yet', E_USER_NOTICE);
+        return Pi::api('system', 'user')->set($uid, $field, $value);
     }
     /**#@-*/
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setRole($uid, $role)
+    {
+        return Pi::api('system', 'user')->setRole($uid, $role);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function revokeRole($uid, $role)
+    {
+        return Pi::api('user', 'user')->revokeRole($uid, $role);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRole($uid, $section = '')
+    {
+        return Pi::api('system', 'user')->getRole($uid, $section);
+    }
 
     /**#@+
      * Utility APIs
@@ -193,46 +234,173 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrl($type, $id = null)
+    public function getRoute()
     {
+        return Pi::api('system', 'user')->getRoute();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+     */
+    public function getUrl($type, $var = null)
+    {
+        return Pi::api('system', 'user')->getUrl($type, $var);
+
+        /*
+        $route      = $this->getRoute();
+        $redirect   = '';
         switch ($type) {
-            case 'account':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'account',
-                    'id'            => $id,
-                ));
-                break;
             case 'profile':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'profile',
-                    'id'            => $id,
-                ));
+                $params = array();
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } elseif (is_string($var)) {
+                    $params['name'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'profile';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
+
             case 'login':
-            case 'signin':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'login'
-                ));
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $redirect = Pi::service('url')->getRequestUri();
+                }
+                if (!isset($params['module'])) {
+                    $params['module'] = 'system';
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'login';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
+
             case 'logout':
-            case 'signout':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'login',
-                    'action'        => 'logout',
-                ));
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                }
+                if (!isset($params['module'])) {
+                    $params['module'] = 'system';
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'login';
+                }
+                if (!isset($params['action'])) {
+                    $params['action'] = 'logout';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                if (isset($params['section'])) {
+                    $section = $params['section'];
+                    unset($params['section']);
+                } else {
+                    $section = Pi::engine()->application()->getSection();
+                }
+                if ('admin' == $section) {
+                    $route = 'admin';
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
+
             case 'register':
-            case 'signup':
-                $url = Pi::service('url')->assemble('user', array(
-                    'controller'    => 'register',
-                ));
+                $params = (array) $var;
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'register';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
+
+            case 'password':
+                $params = (array) $var;
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'password';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
+                break;
+
             default:
-                $url = '';
+            case 'home':
+                $params = array();
+                if (is_numeric($var)) {
+                    $params['id'] = (int) $var;
+                } elseif (is_string($var)) {
+                    $params['name'] = $var;
+                } else {
+                    $params = (array) $var;
+                }
+                if (!isset($params['controller'])) {
+                    $params['controller'] = 'home';
+                }
+                if (isset($params['route'])) {
+                    $route = $params['route'];
+                    unset($params['route']);
+                }
+                $url = Pi::service('url')->assemble($route, $params);
                 break;
         }
 
+        // Append redirect with query
+        // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+        if ($redirect) {
+            if (false == strpos($url, '?')) {
+                $url .= '?redirect=' . rawurlencode($redirect);
+            } else {
+                $url .= '&redirect=' . rawurlencode($redirect);
+            }
+        }
+
         return $url;
+        */
     }
 
     /**
@@ -249,20 +417,26 @@ class System extends AbstractAdapter
 
         return $result;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function killUser($uid)
+    {
+        $result = Pi::service('session')->killUser($uid);
+
+        return $result;
+    }
+
     /**#@-*/
 
     /**
-     * Method handler allows a shortcut
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
+     * {@inheritDoc}
      */
-    public function __call($method, $args)
+    public function getUserModel($uid, $field = 'id')
     {
-        trigger_error(
-            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE
-        );
+        $model = Pi::api('system', 'user')->getUser($uid, $field);
+
+        return $model;
     }
 }

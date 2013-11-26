@@ -1,0 +1,72 @@
+<?php
+$this->css($this->assetModule('css/front.css'));
+
+// Count
+$count = $comment['count'];
+// Article list:
+// title, url, time, user
+// comment_user, comment_time, comment_url
+$targets = $comment['targets'];
+// Pagination object
+$paginator = $comment['paginator'];
+?>
+
+<?php 
+    if (empty($tabs)) {
+?>
+<div class="pi-comment-header" style="margin: 20px 0; border-bottom: 0">
+    <?php echo _escape($comment['title']); ?>
+</div>
+<?php
+    } else {
+        echo $this->tab($tabs);
+    }
+?>
+    
+<?php
+if ($targets) {
+?>
+<div class="pi-comment-article pi-comment-list">
+<?php
+    foreach ($targets as $root => $target) {
+?>
+    <div class="media">
+        <a class="pi-comment-count pull-left" href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php echo sprintf(__('%s comments'), $target['count']); ?>" target="_blank">
+            <?php echo $target['count']; ?>
+        </a>
+        <div class="media-body">
+            <div style="font-size: 13px">
+                <a class="common-article-title comment-title-hidden pull-left" href="<?php echo $target['url']; ?>" target="_blank" title="<?php echo _escape($target['title']); ?>" style="margin: 0; font-weight: normal; max-width: 60%;">
+                    <?php echo _escape($target['title']); ?>
+                </a>
+                <span class="muted">&nbsp;-<span>
+                <a class="muted" href="<?php echo $target['user']['url']; ?>" target="_blank">
+                    <?php echo $target['user']['name']; ?>
+                </a>
+                <span class="pull-right muted pi-comment-time"><?php echo _date($target['time']); ?></span>
+            </div>
+            <div class="pi-comment-desc">
+                <span class="muted pull-left"><?php _e('Last commented: '); ?></span>
+                <a class="highlight pull-left" href="<?php echo $target['comment_user']['url']; ?>" style="margin-left: 5px">
+                    <?php echo $target['comment_user']['name']; ?>
+                </a>
+                <span class="muted" style="margin-left: 5px">
+                    <?php echo sprintf(__(' at %s'), _date($target['comment_time'])); ?>
+                </span>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if ($paginator) {
+        echo $this->pagination($paginator);
+    }
+?>
+</div>
+<?php
+} else {
+?>
+<div class="pi-comment-none"><?php _e('No data available yet.'); ?></div>
+<?php
+}
+?>

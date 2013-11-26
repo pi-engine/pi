@@ -1,8 +1,12 @@
 <div class="alert alert-error">
 
     <h2 class="page-header"><?php _e('A 404 error occurred'); ?></h2>
-    <p><?php echo $this->escape($message); ?></p>
-
+    <p><?php echo $message ?: __('The page request is not found.'); ?></p>
+    <p class="text-right">
+        <a href="<?php echo Pi::url('www'); ?>">
+            <?php echo _escape(Pi::config('sitename')); ?>
+        </a>
+    </p>
 </div>
 
 <?php if ('production' == Pi::environment()) return; ?>
@@ -40,22 +44,22 @@
 
     <dl>
         <dt>Controller:</dt>
-        <dd><?php echo $this->escape($this->controller);
+        <dd><?php echo _escape($this->controller);
             if (isset($this->controller_class)
                 && $this->controller_class
                 && $this->controller_class != $this->controller
             ) {
-                echo ' (resolves to '  . $this->escape($this->controller_class) . ')';
+                echo ' (resolves to '  . _escape($this->controller_class) . ')';
             }
             ?>
         </dd>
-
+    </dl>
     <?php endif ?>
 
     <?php if (isset($this->exception) && $this->exception): ?>
 
     <h3 class="page-header">Exception:</h3>
-    <p><?php echo $this->escape(Pi::service('security')->path($this->exception->getMessage())); ?></p>
+    <p><?php echo _escape(Pi::service('security')->path($this->exception->getMessage())); ?></p>
 
     <h4 class="page-header">Stack trace</h4>
     <pre>

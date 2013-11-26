@@ -27,9 +27,9 @@ class StaticController extends WidgetController
     protected function contentTypes()
     {
         $contentTypes = array(
-            'html'      => __('HTML'),
-            'text'      => __('Text'),
-            'markdown'  => __('Markdown'),
+            'html'      => _a('HTML'),
+            'text'      => _a('Text'),
+            'markdown'  => _a('Markdown'),
         );
 
         return $contentTypes;
@@ -57,7 +57,7 @@ class StaticController extends WidgetController
 
         $this->view()->assign('types', $contentTypes);
         $this->view()->assign('widgets', $widgets);
-        $this->view()->assign('title', __('Static widgets'));
+        $this->view()->assign('title', _a('Static widgets'));
         $this->view()->setTemplate('list-static');
     }
 
@@ -94,15 +94,14 @@ class StaticController extends WidgetController
         if ($this->request->isPost()) {
             $status = $this->processPost($form);
             if ($status > 0) {
-                $message = __('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''),
-                            $message);
+                $message = _a('Block data saved successfully.');
+                $this->jump(array('action' => 'index', 'name' => ''), $message);
 
                 return;
             } elseif ($status < 0) {
-                $message = __('Block data not saved.');
+                $message = _a('Block data not saved.');
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $blockRow = Pi::model('block_root')->find($widget->block);
@@ -114,7 +113,7 @@ class StaticController extends WidgetController
             $message = '';
         }
 
-        $this->view()->assign('title', __('Block edit'));
+        $this->view()->assign('title', _a('Block edit'));
         $this->view()->assign('form', $form);
         $this->view()->assign('message', $message);
 

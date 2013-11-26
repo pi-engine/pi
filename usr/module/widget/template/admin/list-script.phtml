@@ -5,25 +5,25 @@
 ?>
 <div id="js-widget">
     <fieldset>
-        <legend><?php _e('Installed widgets'); ?></legend>
+        <legend><?php echo _a('Installed widgets'); ?></legend>
         <ul class="widget-list" data-list="add">
             <?php  foreach ($widgets['active'] as $id => $widget) {  ?>
             <li data-name="<?php echo $widget['name']; ?>">
-                <div class="widget-hd"><strong><?php echo $this->escape($widget['block']['title']); ?></strong></div>
+                <div class="widget-hd"><strong><?php echo _escape($widget['block']['title']); ?></strong></div>
                 <div class="widget-description">
-                    <?php echo $this->escape($widget['block']['description']); ?>
+                    <?php echo _escape($widget['block']['description']); ?>
                 </div>
             <?php } ?>
         </ul>
     </fieldset>
     <fieldset>
-        <legend><?php _e('Available widgets'); ?></legend>
+        <legend><?php echo _a('Available widgets'); ?></legend>
         <ul class="widget-list" data-list="delete">
             <?php foreach ($widgets['available'] as $id => $block) { ?>
             <li data-name="<?php echo $block['name']; ?>">
-                <div class="widget-hd"><strong><?php echo $this->escape($block['title']); ?></strong></div>
+                <div class="widget-hd"><strong><?php echo _escape($block['title']); ?></strong></div>
                 <div class="widget-description">
-                    <?php echo $this->escape($block['description']); ?>
+                    <?php echo _escape($block['description']); ?>
                 </div>
             <?php } ?>
         </ul>

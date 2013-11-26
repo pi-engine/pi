@@ -374,21 +374,26 @@ namespace Pi\Application\Service
         {
             if (!$this->__translator) {
                 $translator = new Translator;
-                if (!empty($this->options['translator']['pluginManager'])) {
-                    $pluginManager =
-                        new $this->options['translator']['pluginManager'];
+                if ($this->getOption('translator', 'pluginManager')) {
+                    $class = $this->getOption('translator', 'pluginManager');
+                    $pluginManager = new $class;
                 } else {
                     $pluginManager = new LoaderPluginManager;
                 }
                 $translator->setPluginManager($pluginManager);
                 $loader =
-                    $pluginManager->get($this->options['translator']['type']);
+                    $pluginManager->get($this->getOption('translator', 'type'));
                 $translator->setLoader($loader);
-                if (!empty($this->options['translator']['options'])
+                if ($this->getOption('translator', 'options')
                     && is_callable(array($loader, 'setOptions'))
                 ) {
                     $loader->setOptions(
-                        $this->options['translator']['options']
+                        $this->getOption('translator', 'options')
+                    );
+                }
+                if ($this->getOption('translator', 'extension')) {
+                    $translator->setExtension(
+                        $this->getOption('translator', 'extension')
                     );
                 }
                 $this->__translator = $translator;
@@ -516,10 +521,10 @@ namespace Pi\Application\Service
          * Normalize domain in Intl resources,
          * including Translator, Locale, Date, NumberFormatter, etc.
          *
-         * @param string $domain
-         * @return array Pair of component and domain
+         * @param string $rawDomain
+         * @return string[] Pair of component and domain
          */
-        public function normalizeDomain($rawDomain)
+        public function canonizeDomain($rawDomain)
         {
             if (false !== strpos($rawDomain, ':')) {
                 list($component, $domain) = explode(':', $rawDomain, 2);
@@ -542,7 +547,7 @@ namespace Pi\Application\Service
         public function load($domain, $locale = null)
         {
             $domain = is_array($domain)
-                ? $domain : $this->normalizeDomain($domain);
+                ? $domain : $this->canonizeDomain($domain);
             $locale = $locale ?: $this->getLocale();
             $result = $this->getTranslator()->load($domain, $locale);
 
@@ -611,7 +616,7 @@ namespace Pi\Application\Service
                 list($component, $normalizedDomain) = $domain;
             } else {
                 list($component, $normalizedDomain) =
-                    $this->normalizeDomain($domain);
+                    $this->canonizeDomain($domain);
             }
             $locale = (null === $locale) ? $this->getLocale() : $locale;
             $path = sprintf(
@@ -656,7 +661,7 @@ namespace Pi\Application\Service
         public function translate($message, $domain = null, $locale = null)
         {
             if (null !== $domain) {
-                $domain = $this->normalizeDomain($domain);
+                $domain = $this->canonizeDomain($domain);
             }
 
             return $this->getTranslator()->translate(
@@ -684,12 +689,12 @@ namespace Pi\Application\Service
          * @return IntlDateFormatter|null
          */
         public function getDateFormatter(
-            $locale = null,
-            $datetype = null,
-            $timetype = null,
-            $timezone = null,
-            $calendar = null,
-            $pattern = null
+            $locale     = null,
+            $datetype   = null,
+            $timetype   = null,
+            $timezone   = null,
+            $calendar   = null,
+            $pattern    = null
         ) {
             if (!class_exists('IntlDateFormatter')) {
                 return null;
@@ -863,7 +868,8 @@ namespace
      */
     function __($message, $domain = null, $locale = null)
     {
-        return Pi::service('i18n')->translator
+        //return $message;
+        return Pi::service('i18n')->getTranslator()
             ->translate($message, $domain, $locale);
     }
 
@@ -878,6 +884,34 @@ namespace
     function _e($message, $domain = null, $locale = null)
     {
         echo __($message, $domain, $locale);
+    }
+
+    /**
+     * Translate a message for block
+     *
+     *
+     * @param string    $message    The string to be localized
+     * @param string    $domain     (optional) textdomain to use
+     * @param string    $locale     (optional) Locale/Language to use
+     * @return string
+     */
+    function _b($message, $domain = null, $locale = null)
+    {
+        return __($message, $domain, $locale);
+    }
+
+    /**
+     * Translate a message for admin
+     *
+     *
+     * @param string    $message    The string to be localized
+     * @param string    $domain     (optional) textdomain to use
+     * @param string    $locale     (optional) Locale/Language to use
+     * @return string
+     */
+    function _a($message, $domain = null, $locale = null)
+    {
+        return __($message, $domain, $locale);
     }
 
     /**
@@ -905,18 +939,20 @@ namespace
      * Locale-dependent formatting/parsing of date-time
      * using pattern strings and/or canned patterns
      *
+     * @param int|null          $value
      * @param array|string|null $locale
-     * @param string|null $datetype
+     * @param string|null       $datetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timetype
+     * @param string|null       $timetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
-     * @param string|null $timezone
-     * @param int|string|null $calendar
-     * @param string|null $pattern
+     * @param string|null       $timezone
+     * @param int|string|null   $calendar
+     * @param string|null       $pattern
      *      Be aware that both datetype and timetype are ignored
      *      if the pattern is set.
-     * @param string|null $format
+     * @param string|null       $format
      *      Legacy format for date() in case Intl is not available
+     *
      * @return string
      */
     function _date(
@@ -931,16 +967,14 @@ namespace
     ) {
         $value = intval(null === $value ? time() : $value);
         // Formatted using date() in case Intl is not available
-        if (!_intl()) {
-            if (is_array($locale)) {
-                $format = isset($locale['format'])
-                    ? $locale['format'] : $format;
-            }
-            if (!$format) {
-                $format = Pi::config('date_format', 'intl');
-            }
-            $result = date($format, $value);
+        if (is_array($locale)) {
+            extract($locale);
+        }
 
+        $format = $format ?: Pi::config('date_format', 'intl');
+
+        if (!_intl() || $format) {
+            $result = date($format, $value);
             return $result;
         }
 
@@ -957,10 +991,12 @@ namespace
      * Locale-dependent formatting/parsing of number
      * using pattern strings and/or canned patterns
      *
+     * @param int|float   $value
      * @param string|null $style
      * @param string|null $pattern
      * @param string|null $locale
      * @param string|null $type
+     *
      * @return mixed
      */
     function _number(
@@ -994,6 +1030,7 @@ namespace
      * Locale-dependent formatting/parsing of number
      * using pattern strings and/or canned patterns
      *
+     * @param int|float $value
      * @param string|null $currency
      * @param string|null $locale
      * @return string

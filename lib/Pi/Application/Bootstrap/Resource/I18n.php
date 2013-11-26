@@ -12,6 +12,7 @@ namespace Pi\Application\Bootstrap\Resource;
 use Pi;
 use Locale;
 use Zend\Mvc\MvcEvent;
+use Zend\Validator\AbstractValidator;
 
 /**
  * I18n bootstrap
@@ -44,11 +45,16 @@ class I18n extends AbstractResource
         // Preload translations
         if (!empty($this->options['translator'])) {
             $translator = Pi::service('i18n')->getTranslator();
-            if (!empty($this->options['translator']['global'])) {
-                foreach ((array) $this->options['translator']['global']
-                         as $domain
-                ) {
+
+            // Load global translations
+            $global = !empty($this->options['translator']['global'])
+                ? $this->options['translator']['global']
+                : array();
+            if ($global) {
+                foreach ($global as $domain) {
                     $translator->load($domain);
+                    // Custom translations
+                    //$translator->load('custom:' . $domain);
                 }
             }
             // Register listener to load module translation
@@ -59,6 +65,12 @@ class I18n extends AbstractResource
                 );
             }
         }
+
+        // Set default translator for validators
+        AbstractValidator::setDefaultTranslator(
+            Pi::service('i18n')->getTranslator(),
+            'validator'
+        );
     }
 
     /**
@@ -69,8 +81,10 @@ class I18n extends AbstractResource
      */
     public function loadTranslator(MvcEvent $e)
     {
+        $module = Pi::service('module')->current();
         foreach ((array) $this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
+            //Pi::service('i18n')->load('custom/' . $module . ':' . $domain);
         }
     }
 }

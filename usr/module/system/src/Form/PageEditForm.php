@@ -25,16 +25,26 @@ class PageEditForm extends BaseForm
     public function init()
     {
         $this->add(array(
+            'name'          => 'cache_type',
+            'type'          => 'select',
+            'options'       => array(
+                'label' => __('Cache type'),
+            ),
+            'attributes'    => array(
+                'options'   => array(
+                    'page'      => __('Page wide'),
+                    'action'    => __('Action data'),
+                ),
+                'value'     => 'page',
+            ),
+        ));
+
+        $this->add(array(
             'name'          => 'cache_ttl',
             'type'          => 'cacheTtl',
             'options'       => array(
                 'label' => __('Cache TTL'),
             ),
-            /*
-            'attributes'    => array(
-                'type'  => 'select',
-            )
-            */
         ));
 
         $this->add(array(
@@ -43,11 +53,6 @@ class PageEditForm extends BaseForm
             'options'       => array(
                 'label' => __('Cache level'),
             ),
-            /*
-            'attributes'    => array(
-                'type'  => 'select',
-            )
-            */
         ));
 
         $this->add(array(

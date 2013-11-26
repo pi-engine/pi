@@ -11,24 +11,17 @@
  */
 
 $config = include __DIR__ . '/application.front.php';
-// Translations
-$config['resource']['i18n'] = array(
-    'translator'    => array(
-        'global'    => array('usr:feed'),
-        'module'    => array('feed'),
-    ),
-);
 // Session resource, load configs from resource.session.php and instantiate session service
 $config['resource']['session'] = false;
 // Load authentication configs from resource.authentication.php and instantiate authentication service
 $config['resource']['authentication'] = false;
 // Instantiate use handler
 $config['resource']['user'] = false;
-// Instantiate ACL manager and register listeners
-$config['resource']['acl'] = false;
+// Instantiate permission manager and register listeners
+$config['resource']['permission'] = false;
 // Rendering cache
-$config['resource']['render'] = array(
-    'page'  => true,
+$config['resource']['render_cache'] = array(
+    //'page'  => true,
 );
 
 // Application service configuration

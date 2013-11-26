@@ -11,6 +11,11 @@ namespace Module\Demo;
 
 use Pi;
 
+/**
+ * Demo for event/listener hook
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 class Event
 {
     public static function message($data, $module)
@@ -25,20 +30,23 @@ class Event
 
     public static function moduleupdate($data, $module)
     {
-        Pi::service('logger')->log("Called by {$module} through "
-            . __METHOD__);
+        Pi::service('log')->log(
+            "Called by {$module} through " . __METHOD__
+        );
     }
 
     public static function moduleinstall($data, $module)
     {
-        Pi::service('logger')->log("Called by {$module} through "
-            . __METHOD__);
+        Pi::service('log')->log(
+            "Called by {$module} through " . __METHOD__
+        );
     }
 
     public static function runtime($data, $module)
     {
-        Pi::service('logger')->log("Called by {$module} through "
-            . __METHOD__);
+        Pi::service('log')->log(
+            "Called by {$module} through " . __METHOD__
+        );
     }
 
     public static function register($data, $module)

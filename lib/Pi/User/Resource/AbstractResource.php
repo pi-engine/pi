@@ -10,36 +10,49 @@
 namespace Pi\User\Resource;
 
 use Pi;
-use Pi\User\Model\AbstractModel as UserModel;
-use Pi\User\BindInterface;
+use Pi\User\Adapter\AbstractAdapter;
 
 /**
  * User resource handler abstraction
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class AbstractResource implements BindInterface
+class AbstractResource
 {
-    /**
-     * Bound user account
-     * @var UserModel
-     */
-    protected $model;
+    /** @var  AbstractAdapter */
+    protected $adapter;
 
     /** @var array Options */
     protected $options = array();
 
     /**
-     * Bind a user
-     *
-     * @param UserModel $user
-     * @return AbstractHandler
+     * If user module available for time handling
+     * @var bool|null
      */
-    public function bind(UserModel $model = null)
-    {
-        $this->model = $model;
+    protected $isAvailable = null;
 
-        return $this;
+    /**
+     * Constructor
+     *
+     * @param AbstractAdapter $adapter
+     */
+    public function __construct(AbstractAdapter $adapter = null)
+    {
+        $this->adapater = $adapter;
+    }
+
+    /**
+     * Check if relation function available
+     *
+     * @return bool
+     */
+    protected function isAvailable()
+    {
+        if (null === $this->isAvailable) {
+            $this->isAvailable = Pi::service('module')->isActive('user');
+        }
+
+        return $this->isAvailable;
     }
 
     /**

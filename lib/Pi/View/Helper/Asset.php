@@ -32,17 +32,28 @@ class Asset extends AbstractHelper
     /**
      * Get URI of an asset
      *
-     * @param   string  $component
-     * @param   string  $file
-     * @param   bool    $versioning Flag to append version to generated URL
+     * @param   string    $component
+     * @param   string    $file
+     * @param   bool      $isPublic
+     * @param   bool|null $appendVersion
+     *
      * @return  string
      */
-    public function __invoke($component, $file, $versioning = true)
-    {
-        return Pi::service('asset')->getAssetUrl(
+    public function __invoke(
+        $component,
+        $file,
+        $isPublic = false,
+        $appendVersion = null
+    ) {
+        $type = $isPublic ? 'public' : 'asset';
+
+        $result = Pi::service('asset')->getAssetUrl(
             $component,
             $file,
-            $versioning
+            $type,
+            $appendVersion
         );
+
+        return $result;
     }
 }

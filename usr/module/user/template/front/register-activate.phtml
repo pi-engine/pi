@@ -1,0 +1,14 @@
+<h2 class="page-header"><?php _e('Activate account'); ?></h2>
+<?php if (isset($result) && $result['status']) { ?>
+    <p><?php _e('Congratulations!'); ?></p>
+    <p><?php _e('Your account has been activated.'); ?></p>
+    <p><a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>">
+        <?php _e('Login right now.'); ?>
+        </a>
+    </p>
+<?php } else { ?>
+    <p><?php _e('Sorry, the link has expired.'); ?></p>
+    <p>
+        <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('resend active mail');?></a>
+    </p>
+<?php } ?>

@@ -9,6 +9,9 @@
 
 namespace Pi\Application;
 
+use Pi;
+use Pi\Application\Persist;
+
 /**
  * Autoloader handler
  *
@@ -18,11 +21,11 @@ namespace Pi\Application;
  *
  * 1. class map
  * 2. PSR standard
- *    1. module namespace
+ *    1. module namespace: `class_alias` is used for cloned module classes
  *    2. Pi and Zend namespace
  *    3. registered namespace
  *    4. vendor namespace
- * 3. fallbacks
+ * 3. fallback
  *    1. custom autoloader
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -32,19 +35,19 @@ class Autoloader
     /** @var string Top namespace for modules */
     const TOP_NAMESPACE_MODULE = 'Module';
 
-    /** @var string Top namespace for extras */
-    const TOP_NAMESPACE_EXTRA = 'Extra';
+    /** @var string Top namespace for module custom classes */
+    const TOP_NAMESPACE_CUSTOM = 'Custom';
 
     /**
-     * Directory for module and extra source code.
+     * Directory for module and extra custom source code.
      * Module classes are located in `/usr/module/<module-name>/src/`
-     * and extra classes in `/usr/extra/<module-name>/src/`
+     * and custom classes in `/usr/custom/module/<module-name>/src/`
      * @var string
      */
     const MODULE_SOURCE_DIRECTORY = 'src';
 
     /**
-     * Namespace speparator
+     * Namespace separator
      *
      * @var string
      */
@@ -74,10 +77,10 @@ class Autoloader
     protected $modulePath = '';
 
     /**
-     * Directory of extras
+     * Directory of extra custom
      * @var string
      */
-    protected $extraPath = '';
+    protected $customPath = '';
 
     /**#@+
      * Factory variables
@@ -117,13 +120,14 @@ class Autoloader
      *
      *   - include_path:    path to set for vendors
      *   - module_path:     path to modules
-     *   - extra_path:      path to extras
+     *   - custom_path:     path to custom extras
      *   - top:             paths to top namespaces
      *   - namespace:       paths to regular namespaces
      *   - class_map:       class-path map
      *
      * @param  array|Traversable $options
-     * @return void
+     *
+     * @return \Pi\Application\Autoloader
      */
     public function __construct($options = array())
     {
@@ -137,9 +141,9 @@ class Autoloader
         if (!empty($options['module_path'])) {
             $this->modulePath = $options['module_path'];
         }
-        // Extra directory
-        if (!empty($options['extra_path'])) {
-            $this->extraPath = $options['extra_path'];
+        // Extra custom directory
+        if (!empty($options['custom_path'])) {
+            $this->customPath = $options['custom_path'];
         }
         // class map
         if (!empty($options['class_map'])) {
@@ -159,10 +163,10 @@ class Autoloader
     /**
      * Set persist handler for class/file map
      *
-     * @param Persist\PersistInterface $persist
+     * @param Persist\AbstractStorage $persist
      * @return $this
      */
-    public function setPersist(Persist\PersistInterface $persist)
+    public function setPersist(Persist\AbstractStorage $persist)
     {
         $this->persist = $persist;
 
@@ -257,22 +261,36 @@ class Autoloader
                 $class,
                 3
             );
+            $directory = Pi::service('module')->directory($module);
+            $directory = $directory ? ucfirst($directory) : $module;
+            // Use class_alias for cloned modules
+            // Skip current loading and switch to original class
+            if ($directory != $module) {
+                $originalClass = implode(
+                    static::NS_SEPARATOR,
+                    array($top, $directory, $trimmedClass)
+                );
+                class_alias($originalClass, $class);
+
+                return;
+            }
+
             $path = $this->modulePath . DIRECTORY_SEPARATOR
-                  . strtolower($module) . DIRECTORY_SEPARATOR
+                  . strtolower($directory) . DIRECTORY_SEPARATOR
                   . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
                 $path
             );
 
-        // Extra classes, Extra\ModuleName\ClassNamespace\ClassName
-        } elseif (static::TOP_NAMESPACE_EXTRA === $top) {
+        // Extra classes, Custom\ModuleName\ClassNamespace\ClassName
+        } elseif (static::TOP_NAMESPACE_CUSTOM === $top) {
             list($top, $module, $trimmedClass) = explode(
                 static::NS_SEPARATOR,
                 $class,
                 3
             );
-            $path = $this->extraPath . DIRECTORY_SEPARATOR
+            $path = $this->customPath . DIRECTORY_SEPARATOR
                   . strtolower($module) . DIRECTORY_SEPARATOR
                   . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
@@ -358,6 +376,8 @@ class Autoloader
      * Register multiple top namespace/directory pairs at once
      *
      * @param  string[] $namespaces
+     *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function registerTops($namespaces)
@@ -478,7 +498,10 @@ class Autoloader
      * An autoload map should be an associative array containing
      * classname/file pairs.
      *
-     * @param  string|array $location
+     * @param string|array $map
+     *
+     * @throws \InvalidArgumentException
+     * @internal param array|string $location
      * @return $this
      */
     public function registerAutoloadMap($map)
@@ -509,6 +532,8 @@ class Autoloader
      * Register many autoload maps at once
      *
      * @param  array $locations
+     *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function registerAutoloadMaps($locations)
@@ -629,6 +654,8 @@ class Autoloader
      * Register many namespace/directory pairs at once
      *
      * @param  array $namespaces
+     *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function registerNamespaces($namespaces)
@@ -680,7 +707,8 @@ interface SplAutoloader
      * Allow configuration of the autoloader via the constructor.
      *
      * @param  null|array|Traversable $options
-     * @return void
+     *
+     * @return \Pi\Application\SplAutoloader
      */
     public function __construct($options = null);
 
@@ -703,6 +731,9 @@ interface SplAutoloader
      * <code>
      *  spl_autoload_register(array($this, 'autoload'));
      * </code>
+     *
+     * @param bool $throw
+     * @param bool $prepend
      *
      * @return void
      */

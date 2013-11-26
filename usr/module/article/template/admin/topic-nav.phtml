@@ -1,0 +1,12 @@
+<ul class="nav nav-pills">
+    <li class="<?php if ('list-topic' == $action) echo 'active'; ?>">
+        <a href="<?php echo $this->url('', array('action' => 'list-topic')); ?>">
+            <?php  echo _a('All Topics'); ?>
+        </a>
+    </li>
+    <li class="<?php if ('add' == $action) echo 'active'; ?>">
+        <a href="<?php echo $this->url('', array('action' => 'add')); ?>">
+            <?php  echo _a('Add Topic'); ?>
+        </a>
+    </li>
+</ul>

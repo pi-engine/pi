@@ -89,18 +89,22 @@ abstract class WidgetController extends ActionController
         }
         if (empty($row)) {
             $status = 0;
-            $message = __('The widget does not exist.');
+            $message = _a('The widget does not exist.');
         } else {
             $result = Pi::api('system', 'block')->delete($row->block, true);
             extract($result);
             if ($status) {
                 $row->delete();
                 Pi::registry('block')->clear($this->getModule());
-                $message = sprintf(__('The widget "%s" is uninstalled.'),
-                                   $row->name);
+                $message = sprintf(
+                    _a('The widget "%s" is uninstalled.'),
+                    $row->name
+                );
             } else {
-                $message = sprintf(__('The widget "%s" is not uninstalled.'),
-                                   $row->name);
+                $message = sprintf(
+                    _a('The widget "%s" is not uninstalled.'),
+                    $row->name
+                );
             }
         }
 
@@ -176,17 +180,19 @@ abstract class WidgetController extends ActionController
         if ($this->request->isPost()) {
             $status = $this->processPost($form);
             if ($status > 0) {
-                $message = __('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''),
-                            $message);
+                $message = _a('Block data saved successfully.');
+                $this->jump(
+                    array('action' => 'index', 'name' => ''),
+                    $message
+                );
 
                 return;
             } elseif ($status < 0) {
-                $message = __('Block data not saved.');
+                $message = _a('Block data not saved.');
             } else {
                 $formMessage = $form->getMessage();
                 $message = $formMessage
-                    ?: __('Invalid data, please check and re-submit.');
+                    ?: _a('Invalid data, please check and re-submit.');
             }
             $content = $this->request->getPost('content');
             $content = $content ? json_decode($content, true) : array();
@@ -198,7 +204,7 @@ abstract class WidgetController extends ActionController
         $this->view()->assign('form', $form);
         $this->view()->assign('content', $content);
         $this->view()->assign('message', $message);
-        $this->view()->assign('title', __('Add a block'));
+        $this->view()->assign('title', _a('Add a block'));
     }
 
     /**
@@ -210,15 +216,17 @@ abstract class WidgetController extends ActionController
         if ($this->request->isPost()) {
             $status = $this->processPost($form);
             if ($status > 0) {
-                $message = __('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''),
-                            $message);
+                $message = _a('Block data saved successfully.');
+                $this->jump(
+                    array('action' => 'index', 'name' => ''),
+                    $message
+                );
 
                 return;
             } elseif ($status < 0) {
-                $message = __('Block data not saved.');
+                $message = _a('Block data not saved.');
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
             $content = $this->request->getPost('content');
         } else {
@@ -233,7 +241,7 @@ abstract class WidgetController extends ActionController
             $message = '';
         }
 
-        $this->view()->assign('title', __('Block edit'));
+        $this->view()->assign('title', _a('Block edit'));
         $this->view()->assign('content', $content);
         $this->view()->assign('form', $form);
         $this->view()->assign('message', $message);

@@ -67,13 +67,14 @@ class Registry extends AbstractService
      */
     protected function loadHandler($name, $module = null)
     {
+        $name = str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
         if (empty($module)) {
-            $class = sprintf('Pi\Application\Registry\\%s', ucfirst($name));
+            $class = sprintf('Pi\Application\Registry\\%s', $name);
         } else {
             $class = sprintf(
                 'Module\\%s\Registry\\%s',
                 ucfirst($module),
-                ucfirst($name)
+                $name
             );
         }
         $handler = new $class;
@@ -125,6 +126,8 @@ class Registry extends AbstractService
      * `Pi::service('registry')-><registry-method>(<registry-name>, $args);`
      *
      * @param string $handlerName
+     * @param array  $args
+     *
      * @return mixed
      */
     public function __call($handlerName, $args)
@@ -196,7 +199,10 @@ class Registry extends AbstractService
             ) {
                 continue;
             }
-            $registryList[] = strtolower(basename($directory, '.php'));
+            $name = basename($directory, '.php');
+            $words = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
+            $registry = strtolower(implode('_', $words));
+            $registryList[] = $registry;
         }
 
         return $registryList;

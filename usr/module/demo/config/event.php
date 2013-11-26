@@ -13,7 +13,7 @@ return array(
         // event name (unique)
         'user_call' => array(
             // title
-            'title' => __('Event hook demo'),
+            'title' => _a('Event hook demo'),
         ),
     ),
     // Listener list

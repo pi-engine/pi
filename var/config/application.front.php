@@ -38,10 +38,10 @@ return array(
             // Translations to be loaded on bootstrap
             'translator'    => array(
                 // Global available
-                'global'    => array('usr:main'),
+                'global'    => array('default'),
                 // Module wide
-                'module'    => array('main'),
-            )
+                'module'    => array('default'),
+            ),
         ),
         // Module resource, instantiate module service and load module configs
         'module'    => array(),
@@ -50,24 +50,23 @@ return array(
         // Session resource, load configs from resource.session.php and instantiate session service
         'session'   => array(),
         // Load authentication configs from resource.authentication.php and instantiate authentication service
-        //'authentication'    => array(),
+        'authentication'    => array(),
         // Instantiate use handler
-        'user'      => array(),
-        // Instantiate ACL manager and register listeners
+        //'user'      => array(),
 
-        'acl'       => array(
+        'permission'    => array(
             // Default access perm in case not defined: true for allowed, false for denied
-            'default'       => true,
+            //'default_allow' => true,
             // If check page access
             'check_page'    => false,
         ),
 
         // Instantiate render cache manager
-        'render'     => array(
+        'render_cache'     => array(
             // Enable page caching, default as false
-            'page'      => true,
+            //'page'      => false,
             // Enable action caching, default as false
-            'action'    => false,
+            //'action'    => true,
         ),
     ),
 

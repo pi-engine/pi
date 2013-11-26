@@ -12,7 +12,6 @@ namespace Module\System\Api;
 use Pi;
 use Pi\Application\AbstractApi;
 use Pi\Db\RowGateway\RowGateway;
-use Pi\Acl\Acl as AclHandler;
 
 /**
  * Block manipulation APIs
@@ -62,10 +61,12 @@ class Block extends AbstractApi
         if (isset($block['name']) && empty($block['name'])) {
             $block['name'] = null;
         }
+        /*
         if (isset($block['access'])) {
             $access = $block['access'];
             unset($block['access']);
         }
+        */
         foreach (array_keys($block) as $key) {
             if (in_array($key, $this->rootColumns)) {
                 $root[$key] = $block[$key];
@@ -92,12 +93,11 @@ class Block extends AbstractApi
             'id'        => 0,
             'root'      => 0,
         );
-        list($block, $root, $access) = $this->canonize($block);
+        list($block, $root) = $this->canonize($block);
 
         $module = (string) $block['module'];
         $modelBlock = Pi::model('block');
         $modelRoot = Pi::model('block_root');
-        $modelRule = Pi::model('acl_rule');
 
         // Create block root for module block
         if ($module && empty($block['root'])) {
@@ -139,11 +139,14 @@ class Block extends AbstractApi
             return $return;
         }
 
-        // Build ACL rules
+        // Build permission rules
         $roles = array('guest', 'member');
         foreach ($roles as $role) {
-            $rule = isset($access[$role]) ? $access[$role] : 1;
-            AclHandler::addRule($rule, $role, 'block', $module, $rowBlock->id);
+            Pi::service('permission')->grantPermission($role, array(
+                'section'   => 'front',
+                'module'    => $module,
+                'resource'  => 'block-' . $rowBlock->id
+            ));
         }
         $return['status'] = 1;
         $return['id'] = $rowBlock->id;
@@ -192,7 +195,12 @@ class Block extends AbstractApi
 
         // Update root
         $rootRow->assign($root);
-        $status = $rootRow->save();
+        try {
+            $rootRow->save();
+            $status = true;
+        } catch (\Exception $e) {
+            $status = false;
+        }
 
         $update = array(
             'render'        => isset($block['render']) ? $block['render'] : '',
@@ -217,7 +225,12 @@ class Block extends AbstractApi
             if ($configAdd) {
                 $blockRow->config = array_merge($configAdd, $blockRow->config);
             }
-            $status = $blockRow->save();
+            try {
+                $blockRow->save();
+                $status = true;
+            } catch (\Exception $e) {
+                $status = false;
+            }
         }
 
         return array(
@@ -241,7 +254,7 @@ class Block extends AbstractApi
         );
         $modelBlock = Pi::model('block');
         $modelRoot = Pi::model('block_root');
-        $modelRule = Pi::model('acl_rule');
+        $modelRule = Pi::model('permission_rule');
         $modelPage = Pi::model('page');
         $modelPageBlock = Pi::model('page_block');
 
@@ -283,10 +296,10 @@ class Block extends AbstractApi
             // delete from rule table
             try {
                 $status = $modelRule->delete(
-                    array('resource' => $blockRow->id, 'section' => 'block')
+                    array('resource' => 'block-' . $blockRow->id, 'section' => 'front')
                 );
             } catch (\Exception $e) {
-                $return['message'] = 'ACL rules are not deleted: '
+                $return['message'] = 'Permission rules are not deleted: '
                                    . $e->getMessage();
                 return $return;
             }
@@ -316,7 +329,7 @@ class Block extends AbstractApi
                     $modules[$row->module] = 1;
                 }
                 foreach (array_keys($modules) as $mod) {
-                    if ($module == $mod) continue;
+                    //if ($module == $mod) continue;
                     Pi::registry('block')->flush($mod);
                 }
             }
@@ -346,7 +359,12 @@ class Block extends AbstractApi
 
         // Update block
         $blockRow->assign($block);
-        $status = $blockRow->save();
+        try {
+            $blockRow->save();
+            $status = true;
+        } catch (\Exception $e) {
+            $status = false;
+        }
 
         return array(
             'status'    => 1,

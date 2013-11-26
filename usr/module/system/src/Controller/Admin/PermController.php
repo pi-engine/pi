@@ -10,102 +10,163 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
-use Pi\Acl\Acl as AclHandler;
-use Pi\Application\Bootstrap\Resource\AdminMode;
+use Module\System\Controller\ComponentController;
 
 /**
  * Permission controller
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class PermController extends ActionController
+class PermController extends ComponentController
 {
     /**
-     * Get roles of a section
+     * Get exceptions for permission check
      *
-     * @param string $section
-     * @param string $role
-     * @return array
+     * @return string
      */
-    protected function getRoles($section, &$role)
+    public function permissionException()
     {
-        $rowset = Pi::model('acl_role')->select(array('section' => $section));
-        $roles = array();
-        foreach ($rowset as $row) {
-            if ('admin' == $row->name) {
-                continue;
-            }
-            $roles[$row->name] = __($row->title);
-            if (!$role) {
-                $role = $row->name;
-            }
-        }
-
-        return $roles;
+        return 'assign';
     }
 
     /**
-     * Form managed module permission components
+     * Section permissions
      */
     public function indexAction()
     {
         $module = $this->params('name', 'system');
-        $section = $this->params('section', 'front');
-        $role = $this->params('role');
 
-        $roles = $this->getRoles($section, $role);
-
-        $rowset = Pi::model('acl_resource')
-            ->select(array(
-                'module'    => $module,
-                'section'   => $section,
-                'type'      => 'system'
-            ));
-        if ($rowset->count()) {
-            Pi::service('i18n')->load('module/' . $module . ':permission');
+        if (!$this->permission($module, 'permission')) {
+            return;
         }
-        $resources = array();
+        
+        $this->view()->setTemplate('perm');
+        $this->view()->assign('name', $module);
+    }
+
+    public function resourcesAction() 
+    {
+        $section = _get('section') ? : 'front';
+        $module = _get('name') ? : 'system';
+        $roles = Pi::registry('role')->read($section);
+
+        if (!$this->permission($module, 'permission')) {
+            return;
+        }
+
+        $resourceList = array(
+            'front' => array(
+                'global'    => array(),
+                'module'    => array(),
+                'block'     => array(),
+            ),
+            'admin' => array(
+                'global'    => array(),
+                'module'    => array(),
+            ),
+        );
+        $resources = $resourceList[$section];
+        Pi::service('i18n')->load('module/' . $module . ':permission');
+        
+        $resources['global']['module-access'] = array(
+            'section'   => $section,
+            'module'    => $module,
+            'resource'  => 'module-access',
+            'title'     => _a('Module access'),
+            'roles'     => array(),
+        );
+        $resources['global']['module-admin'] = array(
+            'section'   => $section,
+            'module'    => $module,
+            'resource'  => 'module-admin',
+            'title'     => _a('Module admin'),
+            'roles'     => array(),
+        );
+
+
+        $rowset = Pi::model('permission_resource')->select(array(
+            'module'    => $module,
+            'section'   => $section,
+        ));
+        $callback = '';
         foreach ($rowset as $row) {
-            $resources[$row->id] = array(
+            if ('custom' == $row['type']) {
+                $callback = $row['name'];
+                continue;
+            }
+            $resources['module'][$row['name']] = array(
                 'section'   => $section,
-                'name'      => $module,
-                'resource'  => $row->id,
-                'title'     => __($row->title),
-                'perm'      => null,
-                'direct'    => 0,
+                'module'    => $module,
+                'resource'  => $row['name'],
+                'title'     => _a($row['title']),
+                'roles'     => array(),
             );
         }
-        ksort($resources);
-
-        if ($resources) {
-            $rowset = Pi::model('acl_rule')
-                ->select(array(
-                    'role'      => $role,
+        if ($callback) {
+            $callbackClass      = $callback;
+            $callbackHandler    = new $callbackClass($module);
+            $resourceCustom     = $callbackHandler->getResources();
+            foreach ($resourceCustom as $name => $title) {
+                $key = $name;
+                $resources['module'][$key] = array(
                     'section'   => $section,
-                    'resource'  => array_keys($resources),
-                    'module'    => $module
-                ));
-            foreach ($rowset as $row) {
-                $perm = $row->deny ? -1 : 1;
-                $resources[$row->resource]['perm'] = $perm;
-                $resources[$row->resource]['direct'] = $perm;
-            }
-            $aclHandler = new AclHandler($section);
-            $aclHandler->setModule($module)->setRole($role);
-            foreach (array_keys($resources) as $key) {
-                $resources[$key]['perm'] = $aclHandler->checkAccess(
-                    $resources[$key]['resource']
-                ) ? 1 : -1;
+                    'module'    => $module,
+                    'title'     => $title,
+                    'resource'  => $key,
+                    'roles'     => array(),
+                );
             }
         }
 
-        $this->view()->assign('name', $module);
-        $this->view()->assign('role', $role);
-        $this->view()->assign('section', $section);
-        $this->view()->assign('title', __('Module permissions'));
-        $this->view()->assign('roles', $roles);
-        $this->view()->assign('resources', array_values($resources));
+        // Load block resources
+        if ('front' == $section) {
+            $model = Pi::model('block');
+            $select = $model->select()
+                ->where(array('module' => $module))->order(array('id ASC'));
+            $rowset = $model->selectWith($select);
+            foreach ($rowset as $row) {
+                $key = 'block-' . $row['id'];
+                $resources['block'][$key] = array(
+                    'section'   => 'front',
+                    'module'    => $module,
+                    'resource'  => $key,
+                    'title'     => $row['title'],
+                    'roles'     => array(),
+                );
+            }
+        }
+ 
+
+        $rowset = Pi::model('permission_rule')->select(array(
+            'module'    => $module,
+            'section'   => $section,
+        ));
+        $rules = array();
+        foreach ($rowset as $row) {
+            $rules[$row['resource']][$row['role']] = 1;
+        }
+
+        $roleList = array_fill_keys(array_keys($roles), 0);
+        $resourceData = array();
+        foreach ($resources as $type => &$typeList) {
+            foreach ($typeList as $name => &$resource) {
+                $perms = array();
+                foreach ($roleList as $role => $val) {
+                    $item = array(
+                        'name'  => $role,
+                        'value' => isset($rules[$name][$role]) ? $rules[$name][$role] : $val
+                    );
+                    $perms[] = $item;
+                }
+                $resource['roles'] = $perms;
+                $resourceData[$type][] = $resource;
+            }
+        }
+
+        return array(
+            'resources' => $resourceData,
+            'roles'     => $roles
+        );
     }
 
     /**
@@ -117,207 +178,145 @@ class PermController extends ActionController
     {
         $role       = $this->params('role');
         $resource   = $this->params('resource');
-        $direct     = (int) $this->params('direct');
-        $perm       = (int) $this->params('perm');
         $section    = $this->params('section');
         $module     = $this->params('name');
+        $op         = $this->params('op', 'grant');
+        //$all        = $this->params('all', ''); // role, resource
 
-        // Remove permission
-        if (empty($direct)) {
-            AclHandler::removeRule($role, $section, $module, $resource);
+        $model = Pi::model('permission_rule');
+        // Grant/revoke permissions on all roles for a resource
+        if ('_all' == $role) {
+            $where = array(
+                'section'   => $section,
+                'module'    => $module,
+                'resource'  => $resource,
+            );
+            if ('revoke' == $op) {
+                $model->delete($where);
+            } else {
+                $roles = Pi::registry('role')->read($section);
+                $rowset = $model->select($where);
+                foreach ($rowset as $row) {
+                    unset($roles[$row['role']]);
+                }
+                foreach (array_keys($roles) as $role) {
+                    $data = $where + array('role' => $role);
+                    $row = $model->createRow($data);
+                    $row->save();
+                }
+            }
+        // Grant/revoke permissions on all resources for a role
+        } elseif ('_all' == $resource) {
+            $where = array(
+                'section'   => $section,
+                'module'    => $module,
+                'role'      => $role,
+            );
+            $model->delete($where);
+            if ('revoke' == $op) {
+                //$model->delete($where);
+            } else {
+                $resources = array();
+                $callback = '';
+                $rowset = Pi::model('permission_resource')->select(array(
+                    'section'   => $section,
+                    'module'    => $module,
+                ));
+                foreach ($rowset as $row) {
+                    if ('custom' == $row['type']) {
+                        $callback = $row['name'];
+                        continue;
+                    }
+                    $resources[$row['name']] = 1;
+                }
+                $rowset = $model->select($where);
+                foreach ($rowset as $row) {
+                    unset($resources[$row['resource']]);
+                }
+
+                // Load global resources
+                $resources['module-access'] = $resources['module-admin'] = 1;
+                /*
+                if ('admin' == $section) {
+                    $resources['module-manage'] = 1;
+                }
+                */
+
+                // Load module defined resources
+                if ($callback && is_subclass_of(
+                        $callback,
+                        'Pi\Application\AbstractModuleAwareness'
+                    )
+                ) {
+                    $callbackClass      = $callback;
+                    $callbackHandler    = new $callbackClass($module);
+                    $resourceCustom     = $callbackHandler->getResources();
+                    foreach (array_keys($resourceCustom) as $name) {
+                        $resources[$name] = 1;
+                    }
+                }
+
+                // Load block resources
+                if ('front' == $section) {
+                    // Add all block resources
+                    $modelBlock = Pi::model('block');
+                    $select = $modelBlock->select()
+                        ->where(array('module' => $module));
+                    $rowset = $modelBlock->selectWith($select);
+                    foreach ($rowset as $row) {
+                        $resources['block-' . $row['id']] = 1;
+                    }
+
+                    /*
+                    // Load module defined resources
+                    if ($callback && is_subclass_of(
+                            $callback,
+                            'Pi\Application\AbstractModuleAwareness'
+                        )
+                    ) {
+                        $callbackHandler = new $callback($module);
+                        $resourceCustom = $callbackHandler->getResources();
+                        foreach (array_keys($resourceCustom) as $name) {
+                            $resources[$name] = 1;
+                        }
+                    }
+                    */
+                }
+
+                foreach (array_keys($resources) as $resource) {
+                    $data = $where + array('resource' => $resource);
+                    $row = $model->createRow($data);
+                    $row->save();
+                }
+            }
+        // Grant/revoke permission on a resource for a role
         } else {
-            AclHandler::setRule($perm, $role, $section, $module, $resource);
+            $row = $model->select(compact(
+                'section',
+                'module',
+                'resource',
+                'role'
+            ))->current();
+            if ($row && 'revoke' == $op) {
+                $row->delete();
+            } elseif (!$row && 'grant' == $op) {
+                $row = $model->createRow(compact(
+                    'section',
+                    'module',
+                    'resource',
+                    'role'
+                ));
+                $row->save();
+            }
         }
 
-        Pi::registry('moduleperm')->flush();
-
-        $aclHandler = new AclHandler($section);
-        $aclHandler->setModule($module)->setRole($role);
-        if (in_array(
-            $section,
-            array('admin', 'module-admin', 'module-manage')
-        )) {
-            $aclHandler->setDefault(false);
-            Pi::registry('navigation')->flush();
-        } else {
-            $aclHandler->setDefault(true);
-        }
-        $perm = $aclHandler->checkAccess($resource) ? 1 : -1;
+        Pi::registry('navigation')->flush();
 
         $status = 1;
-        $message = __('Permission assigned successfully.');
+        $message = _a('Permission assigned successfully.');
         return array(
             'status'    => $status,
             'message'   => $message,
-            'data'      => array(
-                'perm'      => $perm,
-                'direct'    => $direct,
-                'section'   => $section,
-                'name'      => $module,
-                'resource'  => $resource,
-            ),
         );
-    }
-
-    /**
-     * For front permssion assignment
-     */
-    public function frontAction()
-    {
-        $section = 'front';
-        $role = $this->params('role');
-
-        $roles = $this->getRoles($section, $role);
-
-        $modules = Pi::registry('modulelist')->read();
-        foreach (array_keys($modules) as $key) {
-            $modules[$key]['section'] = 'module-' . $section;
-            $modules[$key]['resource'] = $key;
-            $modules[$key]['perm'] = null;
-            $modules[$key]['direct'] = 0;
-        }
-        $rowset = Pi::model('acl_rule')->select(array(
-            'role'      => $role,
-            'section'   => 'module-' . $section,
-            'resource'  => array_keys($modules),
-            'module'    => array_keys($modules)
-        ));
-        foreach ($rowset as $row) {
-            $perm = $row->deny ? -1 : 1;
-            $modules[$row->resource]['perm'] = $perm;
-            $modules[$row->resource]['direct'] = $perm;
-        }
-
-        $modulesAllowed = Pi::registry('moduleperm')
-            ->read($section, $role);
-        if (null !== $modulesAllowed && is_array($modulesAllowed)) {
-            foreach (array_keys($modules) as $key) {
-                $modules[$key]['perm'] = in_array($key, $modulesAllowed)
-                    ? 1 : -1;
-            }
-        }
-
-        //$this->view()->assign('name', $module);
-        $this->view()->assign('role', $role);
-        $this->view()->assign('section', $section);
-        $this->view()->assign('title', __('Module permissions'));
-        $this->view()->assign('roles', $roles);
-        $this->view()->assign('modules', array_values($modules));
-
-    }
-
-    /**
-     * Get module blocks to which a role has access
-     *
-     * @return int[]
-     */
-    public function blocksAction()
-    {
-        //$section = 'front';
-        $role = $this->params('role');
-        $name = $this->params('name');
-
-        $model = Pi::model('block');
-        $select = $model->select()
-            ->where(array('module' => $name))->order(array('id ASC'));
-        $rowset = $model->selectWith($select);
-        $blocks = array();
-        foreach ($rowset as $row) {
-            $blocks[$row->id] = array(
-                'section'       => 'block',
-                'name'          => $name,
-                'resource'      => $row->id,
-                'title'         => $row->title,
-                'perm'          => 1,
-                'direct'        => 0,
-            );
-        }
-        if ($blocks) {
-            $rowset = Pi::model('acl_rule')->select(array(
-                'role'      => $role,
-                'section'   => 'block',
-                'resource'  => array_keys($blocks)
-            ));
-            $checked = array();
-            foreach ($rowset as $row) {
-                $perm = $row->deny ? -1 : 1;
-                $blocks[$row->resource]['perm'] = $perm;
-                $blocks[$row->resource]['direct'] = $perm;
-                $checked[] = $row->resource;
-            }
-            //$remaining = array_diff(array_keys($blocks), $checked);
-            $remaining = array_keys($blocks);
-            if ($remaining) {
-                $acl = new AclHandler('block');
-                $acl->setRole($role);
-                $where = Pi::db()->where(array('resource' => $remaining));
-                $blocksDenied = $acl->getResources($where, false);
-                foreach ($blocksDenied as $id) {
-                    $blocks[$id]['perm'] = -1;
-                }
-            }
-        }
-
-        $blockList = array_values($blocks);
-
-        return $blockList;
-    }
-
-    /**
-     * For admin permission assignment
-     */
-    public function adminAction()
-    {
-        $section = AdminMode::MODE_ADMIN;
-        $role = $this->params('role');
-
-        $roles = $this->getRoles($section, $role);
-
-        $modulesInstalled = Pi::registry('modulelist')->read();
-        foreach (array_keys($modulesInstalled) as $key) {
-            $modulesInstalled[$key]['name'] = $key;
-            $modulesInstalled[$key]['resource'] = $key;
-            $modulesInstalled[$key]['perm'] = null;
-            $modulesInstalled[$key]['direct'] = 0;
-        }
-
-        $moduleList = array();
-        foreach (
-            array(AdminMode::MODE_ADMIN, AdminMode::MODE_SETTING)
-            as $section
-        ) {
-            $modules = $modulesInstalled;
-            $rowset = Pi::model('acl_rule')->select(array(
-                'role'      => $role,
-                'section'   => 'module-' . $section,
-                'resource'  => array_keys($modules),
-                'module'    => array_keys($modules)
-            ));
-            foreach ($rowset as $row) {
-                $modules[$row->resource]['section'] = 'module-' . $section;
-                $perm = $row->deny ? -1 : 1;
-                $modules[$row->resource]['perm'] = $perm;
-                $modules[$row->resource]['direct'] = $perm;
-            }
-
-            $modulesAllowed = Pi::registry('moduleperm')
-                ->read($section, $role);
-            if (null !== $modulesAllowed && is_array($modulesAllowed)) {
-                foreach (array_keys($modules) as $key) {
-                    $modules[$key]['section'] = 'module-' . $section;
-                    $modules[$key]['perm'] = in_array($key, $modulesAllowed)
-                        ? 1 : -1;
-                }
-            }
-
-            $moduleList[$section] = array_values($modules);
-        }
-
-        //$this->view()->assign('name', $module);
-        $this->view()->assign('role', $role);
-        $this->view()->assign('section', $section);
-        $this->view()->assign('title', __('System permissions'));
-        $this->view()->assign('roles', $roles);
-        $this->view()->assign('modules', $moduleList);
     }
 }

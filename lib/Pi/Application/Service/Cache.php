@@ -16,7 +16,7 @@ use Zend\Cache\StorageFactory;
 use Zend\Cache\Storage\Adapter\AbstractAdapter;
 
 /**
- * Cache handler servie
+ * Cache handler service
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -81,8 +81,10 @@ class Cache extends AbstractService
     /**
      * Set namespace to current cache storage adapter
      *
-     * @param string                $namespace
+     * @param string                                      $namespace
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return $this
      */
     public function setNamespace(
@@ -111,8 +113,10 @@ class Cache extends AbstractService
     /**
      * Clear cache by namespace to current cache storage adapter
      *
-     * @param string                $namespace
+     * @param string                                      $namespace
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return $this
      */
     public function clearByNamespace(
@@ -162,10 +166,12 @@ class Cache extends AbstractService
     /**
      * Set item with namespace
      *
-     * @param  string               $key
-     * @param  mixed                $value
-     * @param  string|array         $options
+     * @param  string                                     $key
+     * @param  mixed                                      $value
+     * @param  string|array                               $options
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return Cache
      */
     public function setItem(
@@ -215,9 +221,11 @@ class Cache extends AbstractService
     /**
      * Get item with namespace
      *
-     * @param  string               $key
-     * @param  string|array         $options
+     * @param  string                                     $key
+     * @param  string|array                               $options
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return mixed
      */
     public function getItem(
@@ -234,7 +242,6 @@ class Cache extends AbstractService
         $ttlOld         = null;
         if (is_string($options)) {
             $namespace = $options;
-            $options = array();
         } else {
             if (isset($options['ttl'])) {
                 $ttl = $options['ttl'];
@@ -266,9 +273,11 @@ class Cache extends AbstractService
     /**
      * Remove item with namespace
      *
-     * @param  string               $key
-     * @param  string|array         $options
+     * @param  string                                     $key
+     * @param  string|array                               $options
+     * @param \Zend\Cache\Storage\Adapter\AbstractAdapter $storage
      * @params AbstractAdapter|null $storage
+     *
      * @return $this
      */
     public function removeItem(
@@ -298,5 +307,69 @@ class Cache extends AbstractService
         }
 
         return $data;
+    }
+
+    /**
+     * Flush all cached contents
+     *
+     * Be careful
+     *
+     * @param string $type
+     * @param string $item
+     *
+     * @return void
+     */
+    public function flush($type = '', $item = '')
+    {
+        $type = $type ?: 'all';
+
+        if ('apc' == $type || 'all' == $type) {
+            if (function_exists('apc_clear_cache')) {
+                apc_clear_cache();
+            }
+        }
+        if ('comment' == $type || 'all' == $type) {
+            Pi::service('cache')->clearByNamespace('comment');
+        }
+        if ('file' == $type || 'all' == $type) {
+            $path = Pi::path('cache');
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($path),
+                \RecursiveIteratorIterator::CHILD_FIRST
+            );
+            foreach ($iterator as $object) {
+                $filename = $object->getFilename();
+                if ($object->isFile() && 'index.html' !== $filename) {
+                    unlink($object->getPathname());
+                } elseif ($object->isDir() && '.' != $filename[0]) {
+                    rmdir($object->getPathname());
+                }
+            }
+        }
+        if ('application' == $type || 'all' == $type) {
+            Pi::service('cache')->clearByNamespace();
+        }
+        if ('module' == $type || 'all' == $type) {
+            $modules = Pi::service('module')->meta();
+            foreach (array_keys($modules) as $module) {
+                Pi::service('cache')->clearByNamespace($module);
+            }
+        }
+        if ('page' == $type || 'all' == $type) {
+            Pi::service('render_cache')->flushCache($item ?: null);
+        }
+        if ('persis' == $type || 'all' == $type) {
+            Pi::persist()->flush();
+        }
+        if ('registry' == $type || 'all' == $type) {
+            if (!empty($item)) {
+                Pi::registry($item)->flush();
+            } else {
+                Pi::service('registry')->flush();
+            }
+        }
+        if ('stat' == $type || 'all' == $type) {
+            clearstatcache(true);
+        }
     }
 }

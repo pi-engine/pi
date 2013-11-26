@@ -237,15 +237,21 @@ class Debugger extends AbstractWriter
         $system['PHP Version'] = PHP_VERSION;
 
         // MySQL version
-        $pdo = Pi::db()->getAdapter()->getDriver()
-            ->getConnection()->connect()->getResource();
-        $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
-        $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
-        $system['MySQL Version'] = sprintf('Server: %s; Client: %s',
-            $server_version, $client_version);
+        if (Pi::hasService('database')) {
+            $pdo = Pi::hasService('database')->db()->getAdapter()->getDriver()
+                ->getConnection()->connect()->getResource();
+            $server_version = $pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+            $client_version = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
+            $system['MySQL Version'] = sprintf(
+                'Server: %s; Client: %s',
+                $server_version,
+                $client_version
+            );
+        }
 
         // Application versions
-        $system['Pi Version'] = PiVersion::version();
+        $system['Pi Environment'] = PiVersion::version()
+                                  . ' ' . Pi::environment();
         $system['Zend Version'] = PiVersion::version('zend');
         $system['Persist Engine'] = Pi::persist()->getType();
         if (Pi::service()->hasService('cache')) {

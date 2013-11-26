@@ -35,6 +35,8 @@ use Pi;
  *  - empty method: hide the data
  *  - method is array(<module>, <element>):
  *      transform raw data via Module\Profile::method
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class User extends AbstractRegistry
 {
@@ -43,8 +45,7 @@ class User extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $parseView = function ($row)
-        {
+        $parseView = function ($row) {
             $view = array();
             if (!empty($row->view)) {
                 $view['method'] = array($row->module . '_profile', $row->view);
@@ -86,8 +87,7 @@ class User extends AbstractRegistry
             return $input;
         };
 
-        $parseSearch = function ($row)
-        {
+        $parseSearch = function ($row) {
             if (!is_null($row->search)) {
                 $input = $row->search;
             } elseif (!empty($row->edit)) {
@@ -179,7 +179,7 @@ class User extends AbstractRegistry
     {
         $this->clear('');
         $this->read($action);
-        
+
         return true;
     }
 

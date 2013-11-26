@@ -48,9 +48,9 @@ abstract class AbstractRegistry
      */
     protected $cache;
 
-   /**
+    /**
      * Namespace of current registry
-    *
+     *
      * @var string
      */
     protected $namespace;
@@ -63,6 +63,12 @@ abstract class AbstractRegistry
      * @var string[]
      */
     protected $namespaceMeta = array();
+
+    /**
+     * Roles in process loop
+     * @var array
+     */
+    protected $roles = array();
 
     /**
      * Data generator
@@ -81,7 +87,7 @@ abstract class AbstractRegistry
      * Load dynamic data from database
      *
      * @param array $options
-     * @return mixed
+     * @return mixed|bool
      * @throws \Exception
      */
     protected function loadDynamic($options)
@@ -137,14 +143,25 @@ abstract class AbstractRegistry
     }
 
     /**
-     * Normalize value
+     * Canonize role(s)
      *
-     * @param string $val
-     * @return string
+     * @param null|int|string|string[] $role Int for uid and string for role
+     *
+     * @return string[]
      */
-    protected function normalizeValue($val)
+    protected function canonizeRole($role)
     {
-        return str_replace(array(':', '-', '.', '/'), '_', strval($val));
+        $roles = Pi::service('permission')->canonizeRole($role);
+        $roleList = Pi::registry('role')->read();
+        foreach ($roles as $roleName) {
+            $id = $roleList[$roleName]['id'];
+            $this->roles[$id] = $roleName;
+        }
+        if ($this->roles) {
+            ksort($this->roles);
+        }
+
+        return $roles;
     }
 
     /**
@@ -162,11 +179,19 @@ abstract class AbstractRegistry
                     continue;
                 }
             }
+            if ('role' == $var) {
+                if (null === $this->roles) {
+                    $this->canonizeRole($meta[$var]);
+                }
+                $meta[$var] = $this->roles;
+            }
             if (null === $meta[$var]) {
                 switch ($var) {
+                    /*
                     case 'role':
                         $meta[$var] = Pi::service('user')->getUser()->role();
                         break;
+                    */
                     case 'locale':
                         $meta[$var] = Pi::service('i18n')->locale;
                         break;
@@ -175,7 +200,16 @@ abstract class AbstractRegistry
                 }
             }
             if (null !== $meta[$var]) {
-                $key .= '_' . $this->normalizeValue($meta[$var]);
+                if (!is_scalar($meta[$var])) {
+                    $val = md5(json_encode($meta[$var]));
+                } else {
+                    $val = str_replace(
+                        array(':', '-', '.', '/'),
+                        '_',
+                        strval($meta[$var])
+                    );
+                }
+                $key .= '_' . $val;
             }
         }
         $key = $key ?: static::TAG;
@@ -214,7 +248,7 @@ abstract class AbstractRegistry
      * Load data matching the meta
      *
      * @param array $meta
-     * @return array
+     * @return array|bool
      */
     protected function loadData($meta = array())
     {

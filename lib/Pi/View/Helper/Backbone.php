@@ -30,14 +30,14 @@ use Pi;
  *
  *  // Load a list of files
  *  $this->backbone(array(
- *      'some.css',
- *      'some.js',
+ *      'a.js',
+ *      'b.js',
  *  ));
  *
  *  // Load a list of files with corresponding attributes
  *  $this->backbone(array(
- *      'some.css' => array('media' => '...', 'conditional' => '...'),
- *      'some.js',
+ *      'a.js' => array('media' => '...', 'conditional' => '...'),
+ *      'b.js',
  *  ));
  * ```
  *
@@ -52,26 +52,31 @@ class Backbone extends AssetCanonize
     protected static $rootLoaded;
 
     /**
-     * Load bootstrap files
+     * Load backbone files
      *
      * @param   null|string|array $files
      * @param   array $attributes
-     * @return  self
+     * @param   bool|null $appendVersion
+     *
+     * @return  $this
      */
-    public function __invoke($files = null, $attributes = array())
-    {
+    public function __invoke(
+        $files = null,
+        $attributes = array(),
+        $appendVersion = null
+    ) {
         $files = $this->canonize($files, $attributes);
         if (!static::$rootLoaded) {
             $autoLoad = array();
             // Required underscore js
-            if (!isset($files['underscore.min.js'])) {
+            if (!isset($files['underscore-min.js'])) {
                 $autoLoad += array(
                     'underscore-min.js' =>
                         $this->canonizeFile('underscore-min.js')
                 );
             }
             // Required primary js
-            if (!isset($files['backbone.min.js'])) {
+            if (!isset($files['backbone-min.js'])) {
                 $autoLoad += array(
                     'backbone-min.js' => $this->canonizeFile('backbone-min.js')
                 );
@@ -82,7 +87,7 @@ class Backbone extends AssetCanonize
 
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $file);
+            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ($attrs['ext'] == 'css') {

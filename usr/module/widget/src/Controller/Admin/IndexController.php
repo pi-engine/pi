@@ -41,25 +41,31 @@ class IndexController extends WidgetController
         }
 
         $available = array();
-        $metaPath = Pi::service('module')->path($this->getModule()) . '/meta';
-        $iterator = new \DirectoryIterator($metaPath);
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isFile()) {
-                continue;
+        $paths = array(
+            Pi::service('module')->path($this->getModule()) . '/meta',
+            Pi::path('custom') . '/module/' . $this->getModule() . '/meta',
+        );
+        foreach ($paths as $metaPath) {
+            $iterator = new \DirectoryIterator($metaPath);
+            foreach ($iterator as $fileinfo) {
+                if (!$fileinfo->isFile()) {
+                    continue;
+                }
+                $name = $fileinfo->getFilename();
+                $extension = pathinfo($name, PATHINFO_EXTENSION);
+                if ('php' != $extension) {
+                    continue;
+                }
+                $name = pathinfo($name, PATHINFO_FILENAME);
+                if (isset($installed[$name])
+                    || preg_match('/[^a-z0-9_\-]/', $name)
+                ) {
+                    continue;
+                }
+                $config = include $fileinfo->getPathname();
+                $config['name'] = $name;
+                $available[$name] = $config;
             }
-            $name = $fileinfo->getFilename();
-            $extension = pathinfo($name, PATHINFO_EXTENSION);
-            if ('php' != $extension) {
-                continue;
-            }
-            $name = pathinfo($name, PATHINFO_FILENAME);
-            if (isset($installed[$name])
-                || preg_match('/[^a-z0-9_\-]/', $name)) {
-                continue;
-            }
-            $config = include $fileinfo->getPathname();
-            $config['name'] = $name;
-            $available[$name] = $config;
         }
         $list = array(
             'active'    => $widgets,
@@ -67,7 +73,7 @@ class IndexController extends WidgetController
         );
 
         $this->view()->assign('widgets', $list);
-        $this->view()->assign('title', __('Widget list'));
+        $this->view()->assign('title', _a('Widget list'));
         $this->view()->setTemplate('list-script');
     }
 
@@ -77,10 +83,24 @@ class IndexController extends WidgetController
     public function addAction()
     {
         $module = $this->getModule();
-        $name = _filter($this->params('name'), 'regexp',
-                        array('regexp' => '/^[a-z0-9_\-]+$/'));
-        $meta = sprintf('%s/meta/%s.php',
-                        Pi::service('module')->path($module), $name);
+        $name = _filter(
+            $this->params('name'),
+            'regexp',
+            array('regexp' => '/^[a-z0-9_\-]+$/')
+        );
+        $meta = sprintf(
+            '%s/meta/%s.php',
+            Pi::service('module')->path($module),
+            $name
+        );
+        if (!file_exists($meta)) {
+            $meta = sprintf(
+                '%s/module/%s/meta/%s.php',
+                Pi::path('custom'),
+                $module,
+                $name
+            );
+        }
         $block = include $meta;
         $block['type'] = $this->type;
         $block['name'] = $name;
@@ -90,9 +110,16 @@ class IndexController extends WidgetController
             if (is_array($block['render'])) {
                 $block['render'] = $block['render'][0] . '::'
                                  . $block['render'][1];
+                $class = $block['render'][0];
+                $method = $block['render'][1];
+            } else {
+                list($class, $method) = explode('::', $block['render'], 2);
             }
-            $block['render'] = sprintf('Module\Widget\Render\\%s',
-                                       ucfirst($block['render']));
+            $renderClass = 'Custom\Widget\Render\\' . ucfirst($class);
+            if (!class_exists($renderClass)) {
+                $renderClass = 'Module\Widget\Render\\' . ucfirst($class);
+            }
+            $block['render'] = $renderClass . '::' . $method;
         }
         if (!isset($block['template'])) {
             $block['template'] = $name;
@@ -101,9 +128,9 @@ class IndexController extends WidgetController
         $status = $this->addBlock($block);
 
         if ($status) {
-            $message = sprintf(__('The widget "%s" is installed.'), $name);
+            $message = sprintf(_a('The widget "%s" is installed.'), $name);
         } else {
-            $message = sprintf(__('The widget "%s" is not installed.'), $name);
+            $message = sprintf(_a('The widget "%s" is not installed.'), $name);
         }
 
         return array(

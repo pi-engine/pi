@@ -27,23 +27,19 @@ class LoginForm extends BaseForm
         $config = Pi::registry('config')->read('', 'user');
 
         $this->add(array(
+            'type'          => 'text',
             'name'          => 'identity',
             'options'       => array(
                 'label' => __('Username'),
             ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
         ));
 
         $this->add(array(
+            'type'          => 'password',
             'name'          => 'credential',
             'options'       => array(
                 'label' => __('Password'),
             ),
-            'attributes'    => array(
-                'type'  => 'password',
-            )
         ));
 
         if ($config['rememberme']) {
@@ -76,25 +72,36 @@ class LoginForm extends BaseForm
             'type'  => 'csrf',
         ));
 
+        /*
         $request = Pi::engine()->application()->getRequest();
         $redirect = $request->getQuery('redirect');
         if (null === $redirect) {
             $redirect = $request->getServer('HTTP_REFERER')
                 ?: $request->getRequestUri();
         }
-        $redirect = $redirect ? urlencode($redirect) : '';
+        $redirect = $redirect ? rawurlencode($redirect) : '';
+        */
         $this->add(array(
             'name'  => 'redirect',
             'type'  => 'hidden',
+            /*
             'attributes'    => array(
                 'value' => $redirect,
             ),
+            */
         ));
+
+        /*
+        $this->add(array(
+            'name'  => 'section',
+            'type'  => 'hidden',
+        ));
+        */
 
         $this->add(array(
             'name'          => 'submit',
+             'type'         => 'submit',
             'attributes'    => array(
-                'type'  => 'submit',
                 'value' => __('Login'),
                 'class' => 'btn',
             )

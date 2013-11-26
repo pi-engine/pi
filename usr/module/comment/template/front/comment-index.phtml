@@ -1,0 +1,15 @@
+<?php
+    $this->css($this->assetModule('css/front.css', 'comment'));
+?>
+<div class="pi-comment-portal">
+    <div class="pi-comment-header"><?php echo _escape($title); ?></div>
+    <ul>
+        <?php foreach ($links as $key => $link) { ?>
+        <li>
+            <a href="<?php echo $link['url']; ?>" title="<?php echo _escape($link['title']); ?>" target="_blank">
+                <?php echo _escape($link['title']); ?>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+</div>

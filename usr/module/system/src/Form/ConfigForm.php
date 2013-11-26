@@ -72,21 +72,42 @@ class ConfigForm extends BaseForm
         return parent::isValid();
     }
 
+    /**
+     * Add config element
+     *
+     * @param $config
+     */
     protected function addElement($config)
     {
         $attributes = isset($config->edit['attributes'])
             ? $config->edit['attributes'] : array();
         $attributes['value'] = $config->value;
-        //$attributes['label'] = __($config->title);
         $attributes['description'] = __($config->description);
 
         $options = array(
-                'label'     => __($config->title),
-                'module'    => $this->module,
+            'label'     => __($config->title),
+            'module'    => $this->module,
         );
         if (!empty($config->edit['options'])) {
             $options = array_merge($config->edit['options'], $options);
         }
+
+        $valueOptions = array();
+        if (isset($options['options'])) {
+            $valueOptions = $options['options'];
+            unset($options['options']);
+        }
+        if (isset($options['value_options'])) {
+            $valueOptions = $options['value_options'];
+            unset($options['value_options']);
+        }
+        if ($valueOptions) {
+            array_walk($valueOptions, function (&$opt) {
+                $opt = __($opt);
+            });
+            $options['value_options'] = $valueOptions;
+        }
+
         $element = array(
             'name'          => $config->name,
             'attributes'    => $attributes,

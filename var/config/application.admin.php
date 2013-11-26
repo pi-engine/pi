@@ -16,25 +16,26 @@ $config = include __DIR__ . '/application.front.php';
 // Translations
 $config['resource']['i18n'] = array(
     'translator'    => array(
-        'global'    => array('user:main', 'usr:admin'),
-        'module'    => array('main', 'admin'),
+        'global'    => array('default', 'admin'),
+        'module'    => array('default', 'admin'),
     ),
 );
 
-// Permission ACL
-$config['resource']['acl'] = array(
-    // Default access perm in case not defined
-    'default'       => false,
+// Permission check
+$config['resource']['permission'] = array(
+    // Default access perm in case not defined: true for allowed, false for denied
+    //'default_allow' => false,
     // If check page access
     'check_page'    => true,
     // Managed components
     'component'     => array('block', 'config', 'page', 'resource', 'event'),
-    // Admin entries
-    'entry'         => array('index', 'dashboard'),
+    // Admin entrances
+    'entrance'      => array('index', 'dashboard'),
 );
 
+
 // Render caching
-$config['resource']['render'] = false;
+$config['resource']['render_cache'] = false;
 
 // Audit
 /*
@@ -52,11 +53,18 @@ $config['resource']['audit'] = array(
 );
 
 // Admin mode detection
-$config['resource']['adminmode'] = array();
+$config['resource']['admin_mode'] = array();
 
 // Session settings
 $config['resource']['session'] = array(
-    //'service'   => 'service.session-admin.php',
+    'service'   => 'service.session-admin.php',
+);
+
+// Load authentication configs
+$config['resource']['authentication'] = array(
+    'service'   => array(
+        'strategy'  => 'Local',
+    ),
 );
 
 // Application service configuration

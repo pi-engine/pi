@@ -14,5 +14,5 @@ namespace Pi\Application;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractSearch extends AbstractApi
+abstract class AbstractSearch extends AbstractModuleAwareness
 {}

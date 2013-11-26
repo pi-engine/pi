@@ -1,0 +1,22 @@
+<p class="muted">
+  {{'PRIVACY_DESC' | translate}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>{{'FIELD_TITLE' | translate}}
+      <th>{{'VISIABLE_OBJECT' | translate}}
+      <th>{{'SET' | translate}}
+  <tbody>
+    <tr ng-repeat="item in fields">
+      <td width="20%">{{item.title}}
+      <td width="20%">
+        <select ng-model="item.value" style="margin-bottom: 0;" class="input-medium"
+                ng-options="limit.value as limit.text for limit in limits"
+                ng-change="setPrivacyAction(item)">
+        </select>
+      <td>
+        <div class="pi-status" ng-class="{'active': item.is_forced}"
+             ng-click="forcePrivacyAction(item)">
+          <div class="pi-status-director"></div>
+        </div>
+</table>

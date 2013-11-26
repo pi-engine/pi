@@ -1,0 +1,60 @@
+.pi-dashed {
+    overflow: hidden;
+    margin: 12px 0;
+    border-top: 1px dashed #d6d6d6;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+
+/* Subheader */
+.pi-subheader {
+    margin-bottom: 26px;
+}
+
+.pi-subheader img {
+    display: block;
+}
+
+/* Step reg */
+.pi-step-reg {
+    margin: 20px 0 60px;
+    height: 63px;
+    background: url(step-register.png) no-repeat;
+}
+
+.pi-step-reg1 {
+    background-position: 0 0;
+}
+
+.pi-step-reg2 {
+    background-position: 0 -63px;
+}
+
+.pi-step-reg3 {
+    background-position: 0 -126px;
+}
+
+/* Adjust captcha style */
+.controls img {
+    margin-left: 74px;
+}
+
+input[name="captcha[input]"] {
+    margin-top: -80px;
+    *margin-top: -50px;
+    width: 57px;
+}
+
+input[name="captcha[input]"] + .help-inline {
+    margin-top: -80px;
+    *margin-top: -44px;
+    margin-left: 150px;
+    display: inline-block !important;
+}
+
+/* Profile complete */
+.register-desc {
+    font-size: 16px;
+    margin-bottom: 20px;
+}

@@ -35,9 +35,21 @@ class Timezone extends Select
         if (empty($this->valueOptions)) {
             if (!static::$timezones) {
                 Pi::service('i18n')->load('timezone');
+                $groups = array();
                 foreach (DateTimeZone::listIdentifiers() as $timezone) {
-                    static::$timezones[$timezone] = __($timezone);
+                    if ($pos = strpos($timezone, '/')) {
+                        $group = substr($timezone, 0, $pos);
+                    } else {
+                        $group = $timezone;
+                    }
+                    $groups[$group]['options'][$timezone] = __($timezone);
                 }
+                array_walk($groups, function (&$data, $group) {
+                    $data['label'] = __($group);
+                    $data['value'] = $group;
+                });
+
+                static::$timezones = $groups;
             }
             $this->valueOptions = static::$timezones;
         }

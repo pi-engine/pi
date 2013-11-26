@@ -1,0 +1,40 @@
+<?php
+$this->css($this->assetModule('front/front.css'));
+?>
+<?php include '_user-media.phtml'; ?>
+<div class="user-min-body">
+    <?php foreach ($profile_group as $group) {?>
+        <div class="clearfix user-legend">
+            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+            <div class="user-legend-linea"></div>
+        </div>
+        <?php if ($group['fields']) { ?>
+            <div class="user-field">
+                <?php
+                foreach ($group['fields'] as $key => $field) {
+                    echo '<dl class="dl-horizontal user-field-dl">';
+                    foreach ($field as $value) {
+                        echo sprintf(
+                            '<dt>%s<dd>%s',
+                            $value['title'],
+                            $value['value'] ? _escape($value['value']) : '<em class="muted">' . __('Unfiled') . '</em>'
+                        );
+                    }
+                    echo '</dl>';
+                }
+                ?>
+            </div>
+        <?php } else { ?>
+        <div class="well text-center">
+            <?php 
+            echo sprintf(
+                '%s %s %s',
+                _escape($user['name']),
+                __('does not have any'),
+                $group['title']
+            );
+            ?>
+        </div>
+        <?php } ?>
+    <?php } ?>
+</div>

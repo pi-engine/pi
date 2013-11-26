@@ -1,0 +1,83 @@
+<?php $this->bootstrap('js/bootstrap.min.js'); ?>
+
+<style>
+    .tab-pane li {
+        color: #999999;
+    }
+    .list-content {
+        color: #48484C;
+        font-weight: bolder;
+    }
+    .article-block-submitter-statistics {
+        padding: 10px;
+    }
+</style>
+
+<div class="article-block-submitter-statistics">
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#today" data-toggle="tab"><?php echo _b('Today'); ?></a></li>
+            <li><a href="#7days" data-toggle="tab"><?php echo _b('7 days'); ?></a></li>
+            <li><a href="#30days" data-toggle="tab"><?php echo _b('30 days'); ?></a></li>
+            <li><a href="#all" data-toggle="tab"><?php echo _b('All'); ?></a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="today">
+                <ul>
+                    <?php foreach ($block['day'] as $detail) { 
+                        $identity = isset($detail['identity']) ? $detail['identity'] : '';
+                        $total    = isset($detail['total']) ? $detail['total'] : '';
+                    ?>
+                    <li>
+                        <span class="list-content"><?php echo $this->escape($identity); ?></span>
+                        <span style="float: right"><?php echo $this->escape($total); ?></span>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="tab-pane" id="7days">
+                <ul>
+                    <?php foreach ($block['week'] as $detail) { 
+                        $identity = isset($detail['identity']) ? $detail['identity'] : '';
+                        $total    = isset($detail['total']) ? $detail['total'] : '';
+                    ?>
+                    <li>
+                        <span class="list-content"><?php echo $this->escape($identity); ?></span>
+                        <span style="float: right"><?php echo $this->escape($total); ?></span>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="tab-pane" id="30days">
+                <ul>
+                    <?php foreach ($block['month'] as $detail) { 
+                        $identity = isset($detail['identity']) ? $detail['identity'] : '';
+                        $total    = isset($detail['total']) ? $detail['total'] : '';
+                    ?>
+                    <li>
+                        <span class="list-content"><?php echo $this->escape($identity); ?></span>
+                        <span style="float: right"><?php echo $this->escape($total); ?></span>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="tab-pane" id="all">
+                <ul>
+                    <?php foreach ($block['history'] as $detail) { 
+                        $identity = isset($detail['identity']) ? $detail['identity'] : '';
+                        $total    = isset($detail['total']) ? $detail['total'] : '';
+                    ?>
+                    <li>
+                        <span class="list-content"><?php echo $this->escape($identity); ?></span>
+                        <span style="float: right"><?php echo $this->escape($total); ?></span>
+                    </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.article-block-submitter-statistics').parent().addClass('block-nopadding');
+</script>

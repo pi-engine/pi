@@ -1,0 +1,62 @@
+.pi-comment-batch-operation {
+    margin-left: 10px;
+}
+input.check-all {
+    margin-right: 10px;
+}
+.pi-comment-list {
+    margin-top: 20px;
+}
+.pi-comment-list td {
+    padding: 10px;
+}
+.pi-comment-list .comment-important {
+    background-color: #eeeeee;
+}
+.pi-comment-list td {
+    vertical-align: top;
+}
+.pi-comment-list img {
+    border-radius: 4px;
+}
+.pi-comment-content {
+    margin-top: 10px;
+    color: #333333;
+}
+.pi-comment-none {
+    height: 140px;
+    line-height: 140px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    color: #999999;
+}
+.one-action {
+    margin-top: 10px;
+}
+.one-action .operation {
+    margin-right: 10px;
+}
+.operation i {
+    margin-right: 2px;
+}
+.pi-comment-portal {
+    margin: 20px 0 0 0;
+}
+.pi-comment-portal .portal-header {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.pi-comment-portal table {
+    margin-top: 5px;
+    border: 1px solid #dddddd;
+}
+.pi-comment-portal .table-striped tbody > tr:nth-child(2n+1) > th {
+    background: #eeeeee;
+}
+.pi-comment-portal ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}

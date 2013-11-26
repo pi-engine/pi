@@ -1,0 +1,80 @@
+<?php
+if (isset($root['active']) && empty($root['active'])) {
+    echo '<div class="well well-small">' . __('Comment is disabled.') . '</div>';
+    return;
+}
+
+//$uid = Pi::user()->getId();
+
+if (!empty($root['id'])) {
+    $formData = array(
+        'root' => $root['id']
+    );
+} else {
+    $formData = array(
+        'module'    => $root['module'],
+        'category'  => $root['category'],
+        'item'      => $root['item'],
+    );
+}
+$formData['redirect'] = rawurlencode($uri);
+$form = Pi::service('comment')->getForm($formData);
+?>
+<div class="comment-item" id="js-comment-form">
+    <textarea placeholder="<?php _e('Type your content'); ?>" class="input-block-level js-comment-txt" rows="3"></textarea>
+    <div class="hide clearfix comment-form">
+        <?php echo $this->form()->openTag($form); ?>
+        <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="input-block-level" rows="3"></textarea>
+        <?php
+        foreach (array( 'id', 'root', 'reply', 'module', 'category', 'item', 'redirect', 'markup') as $hiddenElement) {
+            echo $this->formElement($form->get($hiddenElement));
+        }
+        ?>
+        <div class="pull-right js-comment-btn">
+            <button class="btn btn-primary">
+                <?php _e('Post comment'); ?>
+            </button>
+        </div>
+    </div>
+    <?php echo $this->form()->closeTag(); ?>
+    <div class="hide well well-small">
+        <?php echo sprintf(__('Please <a href="%s">login</a> to leave comments.'), Pi::service('authentication')->getUrl('login', $uri)); ?>
+    </div>
+</div>
+<?php
+$url = Pi::service('url')->assemble('default', array(
+    'module'        => 'system',
+    'controller'    => 'index',
+    'action'        => 'user',
+));
+
+?>
+<script>
+(function ($) {
+var comment = {
+    el: $('#js-comment-form'),
+    $: function (selector) {
+        return this.el.find(selector);
+    },
+    init: function () {
+        this.textarea = this.$('.js-comment-txt');
+        this.events();
+    },
+    events: function () {
+        var self = this;
+        this.textarea.focus(function () {
+            $.getJSON('<?php echo $url; ?>?' + new Date().getTime()).done(function (data) {
+                self.textarea.hide();
+                if (data.uid) {
+                    self.$('.comment-form').show();
+                    self.$('[name=content]').focus();
+                } else {
+                    self.$('.well').show();
+                }
+            });
+        });
+    }
+};
+comment.init();
+})(jQuery)
+</script>

@@ -27,7 +27,7 @@ class DashboardController extends ActionController
      */
     public function modeAction()
     {
-        $mode = $this->params('mode', AdminMode::MODE_ADMIN);
+        $mode = $this->params('mode', AdminMode::MODE_ACCESS);
         // Set run mode
         if (!empty($mode)) {
             $_SESSION['PI_BACKOFFICE'] = array(
@@ -38,7 +38,7 @@ class DashboardController extends ActionController
 
         $modules = Pi::registry('modulelist')->read();
         $moduleList = array_keys($modules);
-        $allowed = Pi::registry('moduleperm')->read($mode);
+        $allowed = Pi::service('permission')->moduleList($mode);
         if (null === $allowed || !is_array($allowed)) {
             $allowed = $moduleList;
         } else {
@@ -52,13 +52,20 @@ class DashboardController extends ActionController
         $name = array_shift($allowed);
         $link = '';
         switch ($mode) {
-            case AdminMode::MODE_ADMIN:
+            case AdminMode::MODE_ACCESS:
                 $link = $this->url('admin', array(
                     'module'        => $name,
                     'controller'    => 'dashboard',
                 ));
                 break;
-            case AdminMode::MODE_SETTING:
+            case AdminMode::MODE_ADMIN:
+                $link = $this->url('admin', array(
+                    'module'        => 'system',
+                    'controller'    => 'component',
+                    'name'          => $name,
+                ));
+                break;
+                /*
                 $controller = '';
                 $navConfig = Pi::registry('navigation')
                     ->read('system-component') ?: array();
@@ -74,19 +81,30 @@ class DashboardController extends ActionController
                         'controller'    => $controller,
                         'name'          => $name,
                     ));
+                } else {
+                    $link = $this->url('admin', array(
+                        'module'        => 'system',
+                        'controller'    => 'dashboard',
+                    ));
                 }
                 break;
+                */
             case AdminMode::MODE_DEPLOYMENT:
             default:
                 break;
         }
         if (!$link) {
+            //$this->terminate(__('No permitted operation available.'));
+            //return;
+
             $this->jump(
                 array('action' => 'system'),
-                __('No permitted operation available.')
+                __('No permitted operation available.'),
+                'error'
             );
 
             return;
+
         }
         //d($link);exit;
         $this->redirect()->toUrl($link);
@@ -113,7 +131,8 @@ class DashboardController extends ActionController
 
         // Fetch all permitted modules
         $modules = Pi::registry('modulelist')->read('active');
-        $modulesPermitted = Pi::registry('moduleperm')->read('admin');
+        //$modulesPermitted = Pi::registry('moduleperm')->read('admin');
+        $modulesPermitted = Pi::service('permission')->moduleList('admin');
         foreach (array_keys($modules) as $name) {
             if (null !== $modulesPermitted
                 && !in_array($name, $modulesPermitted)
@@ -125,15 +144,7 @@ class DashboardController extends ActionController
         // Get module summary callbacks
         // Get hidden modules
         $summaryList = array();
-        $list = array();
-        $row = Pi::model('user_repo')->select(array(
-            'user' => $user,
-            'module' => 'system',
-            'type' => 'module-summary'
-        ))->current();
-        if ($row) {
-            $list = (array) $row->content;
-        }
+        $list = (array) Pi::user()->data->get($user, 'module-summary');
 
         $summaryEnabled = array();
         $summaryHidden = array();
@@ -188,33 +199,20 @@ class DashboardController extends ActionController
         }
 
         // Get user quick links
-        $links = array();
-        $row = Pi::model('user_repo')->select(array(
-            'user'      => $user,
-            'module'    => 'system',
-            'type'      => 'admin-link'
-        ))->current();
-        if ($row) {
-            $links = (array) $row->content;
-        }
+        $links = (array) Pi::user()->data->get($user, 'admin-link');
 
         // Get system message, only admins have access
-        $message = array();
-        $row = Pi::model('user_repo')->select(array(
-            'module' => 'system',
-            'type' => 'admin-message'
-        ))->current();
-        if (!$row || !$row->content) {
-            $row = Pi::model('user_repo')->select(array(
-                'module'    => 'system',
-                'type'      => 'admin-welcome'
-            ))->current();
+        //$content = Pi::user()->data->get(0, 'admin-message', true);
+        $content = Pi::user()->data(0, 'admin-message', true);
+        if (!$content) {
+            //$content = Pi::user()->data->get(0, 'admin-welcome', true);
+            $content = Pi::user()->data(0, 'admin-welcome', true);
         }
-        $content = $row->content;
+
         $message = array(
             'time'      => _date($content['time']),
             'content'   => Pi::service('markup')->render(
-                $content['content'],
+                $content['value'],
                 'text'
             ),
         );
@@ -264,8 +262,7 @@ class DashboardController extends ActionController
         } else {
             $data['logo'] = Pi::service('asset')->getModuleAsset(
                 $meta['logo'],
-                $module,
-                false
+                $module
             );
         }
         if (empty($data['update'])) {
@@ -347,45 +344,26 @@ class DashboardController extends ActionController
      */
     public function messageAction()
     {
-        $type = 'admin-message';
+        $name = 'admin-message';
 
-        $data = array();
         $content = $this->params()->fromPost('content');
+        if (Pi::service('permission')->isAdmin()) {
+            Pi::user()->data->set(0, $name, $content);
+        }
+
         if ($content) {
             $data = array(
-                'content'   => $content,
-                'time'      => time(),
+                'value' => $content,
+                'time'  => time(),
             );
-        }
-        $row = Pi::model('user_repo')
-            ->select((array('module' => 'system', 'type' => $type)))
-            ->current();
-
-        if (Pi::service('user')->getUser()->isAdmin()) {
-            if ($row) {
-                $row->content = $data;
-            } else {
-                $row = Pi::model('user_repo')->createRow(array(
-                    'module'    => 'system',
-                    'type'      => $type,
-                    'content'   => $data,
-                ));
-            }
-            $row->save();
-        }
-
-        if (!$data) {
-            $row = Pi::model('user_repo')
-                ->select((array('module' => 'system',
-                                'type' => 'admin-welcome')))
-                ->current();
-            $data = $row->content;
+        } else {
+            $data = Pi::user()->data->get(0, 'admin-welcome', true);
         }
 
         $message = array(
             'time'      => _date($data['time']),
             'content'   => Pi::service('markup')->render(
-                $data['content'],
+                $data['value'],
                 'text'
             ),
         );
@@ -406,28 +384,14 @@ class DashboardController extends ActionController
 
         $content = $this->params()->fromPost('content');
         $data = array(
-            'content'   => $content,
-            'time'      => time(),
+            'value' => $content,
+            'time'   => time(),
         );
-        $row = Pi::model('user_repo')
-            ->select((array('user' => $user, 'module' => $module,
-                            'type' => $type)))
-            ->current();
-        if ($row) {
-            $row->content = $data;
-        } else {
-            $row = Pi::model('user_repo')->createRow(array(
-                'user'      => $user,
-                'module'    => $module,
-                'type'      => $type,
-                'content'   => $data,
-            ));
-        }
-        $row->save();
+        Pi::user()->data->set($user, $type, $content);
 
         $memo = array(
             'time'      => _date($data['time']),
-            'content'   => $data['content'],
+            'content'   => $data['value'],
         );
 
         return $memo;
@@ -441,25 +405,9 @@ class DashboardController extends ActionController
      */
     protected function saveAjax($type)
     {
-        $module = $this->params('module');
         $user   = Pi::service('user')->getUser()->id;
-
         $content = $this->params()->fromPost('content');
-        $row = Pi::model('user_repo')
-            ->select((array('user' => $user, 'module' => $module,
-                            'type' => $type)))
-            ->current();
-        if ($row) {
-            $row->content = $content;
-        } else {
-            $row = Pi::model('user_repo')->createRow(array(
-                'user'      => $user,
-                'module'    => $module,
-                'type'      => $type,
-                'content'   => $content,
-            ));
-        }
-        $row->save();
+        Pi::user()->data->set($user, $type, $content);
 
         return true;
     }

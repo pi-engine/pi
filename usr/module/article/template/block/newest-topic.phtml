@@ -1,0 +1,24 @@
+<?php 
+    $config = $block['config'];
+    $target = $block['target'];
+?>
+
+<div class="article-block-newest-topic">
+    <?php foreach ($block['items'] as $item) { ?>
+    <div class="media">
+        <img class="pull-left" src="<?php echo $this->escape($item['image']); ?>">
+        <div class="media-body">
+            <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($item['url']); ?>" class="article-front-title">
+                <?php echo $this->escape($item['title']); ?>
+            </a>
+            <div class="muted article-size12" style="margin-top: 5px;">
+                <?php echo $this->escape($item['description']); ?>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+</div>
+
+<script>
+    $('.article-block-newest-topic').parent().addClass('block-nopadding');
+</script>

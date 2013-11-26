@@ -1,8 +1,11 @@
 
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
-
-<ul>
-    <?php foreach ($user as $label => $value) { ?>
-        <li><span class="label"><?php echo $this->escape($label); ?></span><span class="text"><?php echo $this->escape($value); ?></span></li>
-   <?php } ?>
-</ul>
+<div class="span9">
+    <h2 class="page-header"><?php echo _escape($title); ?></h2>
+    <?php echo $avatar; ?>
+    <dl class="dl-horizontal">
+        <?php foreach ($user as $label => $value) { ?>
+            <dt><?php echo $label; ?></dt>
+            <dd><?php echo $value; ?></dd>
+        <?php } ?>
+    </dl>
+</div>

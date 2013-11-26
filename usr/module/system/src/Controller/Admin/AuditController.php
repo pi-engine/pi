@@ -37,9 +37,12 @@ class AuditController extends ActionController
             ->offset($offset)->limit($limit);
         $rowset = $model->selectWith($select);
 
+        /*
         $select = $model->select()
             ->columns(array('count' => new Expression('count(*)')));
         $count = (int) $model->selectWith($select)->current()->count;
+        */
+        $count = $model->count();
 
         $paginator = Paginator::factory($count);
         $paginator->setItemCountPerPage($limit);

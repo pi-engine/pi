@@ -17,7 +17,7 @@ return array(
     'front' => array(
         // homepage
         array(
-            'title'         => __('Homepage'),
+            'title'         => _a('Homepage'),
             'module'        => 'system',
             'controller'    => 'index',
             'action'        => 'index',
@@ -25,14 +25,14 @@ return array(
         ),
         // utility page, not used yet
         array(
-            'title'         => __('Utility'),
+            'title'         => _a('Utility'),
             'module'        => 'system',
             'controller'    => 'utility',
             'block'         => 1,
         ),
         // error message page
         array(
-            'title'         => __('Error reporting'),
+            'title'         => _a('Error reporting'),
             'module'        => 'system',
             'controller'    => 'error',
             'block'         => 0,
@@ -42,151 +42,107 @@ return array(
     'admin' => array(
         // System dashboard access
         array(
+            'title'         => _a('Dashboard'),
             'controller'    => 'dashboard',
-            'permission'    => array(
-                // Defined in acl.php
-                'parent'        => 'admin',
-            ),
+            //'permission'    => 'generic',
         ),
         // System readme
         array(
+            'title'         => _a('Readme'),
             'controller'    => 'readme',
-            'permission'    => array(
-                // Defined in acl.php
-                'parent'        => 'admin',
-            ),
+            //'permission'    => 'generic',
         ),
 
         // System managed components
         // config
         array(
+            'title'         => _a('Config'),
             'controller'    => 'config',
-            'permission'    => array(
-                // Defined in acl.php
-                'parent'        => 'config',
-            ),
+            'permission'    => 'config',
         ),
         // block
         array(
+            'title'         => _a('Blocks'),
             'controller'    => 'block',
-            'permission'    => array(
-                'parent'        => 'block',
-            ),
+            'permission'    => 'block',
         ),
         // page
         array(
+            'title'         => _a('Pages'),
             'controller'    => 'page',
-            'permission'    => array(
-                'parent'        => 'page',
-            ),
+            'permission'    => 'page',
         ),
         // event
         array(
+            'title'         => _a('Event/listener'),
             'controller'    => 'event',
-            'permission'    => array(
-                'parent'        => 'event',
-            ),
+            'permission'    => 'event',
         ),
-        // resource permissions
+        // Permissions
         array(
-            'controller'    => 'resource',
-            'permission'    => array(
-                'parent'        => 'resource',
-            ),
+            'title'         => _a('Permissions'),
+            'controller'    => 'perm',
+            'permission'    => 'permission',
         ),
 
         // Operations
         // module
         array(
+            'title'         => _a('Modules'),
             'controller'    => 'module',
-            'permission'    => array(
-                'parent'        => 'module',
-            ),
+            'permission'    => 'module',
         ),
         // theme
         array(
+            'title'         => _a('Themes'),
             'controller'    => 'theme',
-            'permission'    => array(
-                'parent'        => 'theme',
-            ),
+            'permission'    => 'theme',
         ),
         // navigation
         array(
+            'title'         => _a('Navigation'),
             'controller'    => 'nav',
-            'permission'    => array(
-                'parent'        => 'navigation',
-            ),
-        ),
-        // System permissions
-        array(
-            'controller'    => 'perm',
-            //'action'        => 'index',
-            'permission'    => array(
-                'parent'        => 'perm',
-            ),
+            'permission'    => 'navigation',
         ),
 
-        // role
+        // Role
         array(
-            //'parent'        => 'member',
+            'title'         => _a('Roles'),
             'controller'    => 'role',
-            'permission'    => array(
-                'parent'        => 'role',
-            ),
+            'permission'    => 'role',
         ),
-        // membership
+        // User
         array(
-            //'parent'        => 'member',
-            'controller'    => 'member',
-            'permission'    => array(
-                'parent'        => 'member',
-            ),
+            'title'         => _a('User'),
+            'controller'    => 'user',
+            'permission'    => 'user',
         ),
-        // Maintenance operaions
+        // Maintenance operations
         // asset
         array(
+            'title'         => _a('Asset'),
             'controller'    => 'asset',
-            'permission'    => array(
-                'parent'        => 'maintenance',
-            ),
+            'permission'    => 'maintenance',
         ),
         // audit
         array(
+            'title'         => _a('Auditing'),
             'controller'    => 'audit',
-            'permission'    => array(
-                'parent'        => 'maintenance',
-            ),
+            'permission'    => 'maintenance',
         ),
         // cache
         array(
+            'title'         => _a('Cache'),
             'controller'    => 'cache',
-            'permission'    => array(
-                'parent'        => 'maintenance',
-            ),
+            'permission'    => 'maintenance',
         ),
     ),
     // Feed section
     'feed' => array(
         array(
-            'cache_expire'  => 0,
+            'cache_ttl'     => 0,
             'cache_level'   => '',
-            'title'         => __('What\'s new'),
-        ),
-    ),
-
-    // Exception of admin pages to skip ACL check
-    'exception' => array(
-        array(
-            'controller'    => 'resource',
-            'action'        => 'assign',
-        ),
-        array(
-            'controller'    => 'perm',
-            'action'        => 'assign',
-        ),
-        array(
-            'controller'    => 'block',
-            'action'        => 'page',
+            'title'         => _a('What\'s new'),
         ),
     ),
 );

@@ -1,0 +1,18 @@
+<?php include '_user-side-nav.phtml' ?>
+
+<div class="span9">
+    <h2 class="page-header"><?php echo _escape($title); ?></h2>
+    <div class="span6">
+        <p >Check your new email to complete the change<br \>
+            The link will expired in 12 hours
+        </p>
+    </div>
+    <div class="span3">
+        <p>Get no email?</p>
+        <ul>
+            <li>1.wait a few minutes</li>
+            <li>2.Check your email rubbish</li>
+            <li>3.<a href="<?php echo $change_email_link; ?>">Try another reset</a></li>
+        </ul>
+    </div>
+</div>

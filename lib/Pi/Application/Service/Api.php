@@ -51,7 +51,7 @@ class Api extends AbstractService
      *
      * @param string $module
      * @param string $name
-     * @return AbstractApi|false
+     * @return AbstractApi|bool
      */
     public function handler($module, $name = 'api')
     {
@@ -74,12 +74,12 @@ class Api extends AbstractService
      *
      * Call a module API as
      *
-     * <code>
+     * ```
      *  Pi::service('api')-><module-name>-><api-method>($args);
-     * </code>
+     * ```
      *
      * @param string    $moduleName
-     * @return AbstractApi|false
+     * @return AbstractApi|bool
      */
     public function __get($moduleName)
     {
@@ -97,10 +97,11 @@ class Api extends AbstractService
      *  Pi::service('api')-><module-name>(array(<class>, <method>), <args>);
      * </code>
      *
-     * @param string    $moduleName
-     * @param string    $class
-     * @param string    $method
-     * @param array     $args
+     * @param string $moduleName
+     * @param array  $args
+     *
+     * @internal param string $class
+     * @internal param string $method
      * @return mixed
      */
     public function __call($moduleName, $args)

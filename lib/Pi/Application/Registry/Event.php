@@ -26,16 +26,20 @@ class Event extends AbstractRegistry
      */
     protected function loadDynamic($options)
     {
-        $listeners = array();
+        $result = array(
+            'event'     => '',
+            'listener'  => array(),
+        );
         $modelEvent = Pi::model('event');
-        $rowset = $modelEvent->select(array(
+        $count = $modelEvent->count(array(
             'module'    => $options['module'],
             'name'      => $options['event'],
             'active'    => 1
         ));
-        if ($rowset->count()) {
-            return $listeners;
+        if (!$count) {
+            return $result;
         }
+        $result['event'] = $options['module'] . '-' . $options['event'];
 
         $modelListener = Pi::model('event_listener');
         $select = $modelListener->select()->where(array(
@@ -44,17 +48,33 @@ class Event extends AbstractRegistry
             'active'        => 1
         ));
         $listenerList = $modelListener->selectWith($select);
-        $directory = Pi::service('module')->directory($options['module']);
+        //$directory = Pi::service('module')->directory($options['module']);
+        $listeners = array();
         foreach ($listenerList as $row) {
-            $class = sprintf(
-                'Module\\%s\\%s',
-                ucfirst($directory),
-                ucfirst($class)
-            );
-            $listeners[] = array($class, $row->method, $row->module);
+            $module = $row['module'];
+            if (false === strpos($row['class'], '\\')) {
+                $class = sprintf(
+                    'Custom\\%s\\%s',
+                    ucfirst($module),
+                    ucfirst($row['class'])
+                );
+                if (!class_exists($class)) {
+                    $directory = Pi::service('module')->directory($module);
+                    $class = sprintf(
+                        'Module\\%s\\%s',
+                        ucfirst($directory),
+                        ucfirst($row['class'])
+                    );
+                }
+            } else {
+                $class = $row['class'];
+            }
+            $listeners[] = array($class, $row['method'], $module);
         }
 
-        return $listeners;
+        $result['listener'] = $listeners;
+
+        return $result;
     }
 
     /**
@@ -68,7 +88,14 @@ class Event extends AbstractRegistry
         if (empty($event)) return false;
         $options = compact('module', 'event');
 
-        return $this->loadData($options);
+        $data = $this->loadData($options);
+        if (empty($data['event'])) {
+            $result = false;
+        } else {
+            $result = (array) $data['listener'];
+        }
+
+        return $result;
     }
 
     /**

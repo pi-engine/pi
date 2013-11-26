@@ -1,6 +1,6 @@
 <?php
 // Load translation data
-$this->i18nTheme('main');
+$this->i18nTheme('default', 'default');
 
 $this->jQuery();
 $this->bootstrap(array(
@@ -20,9 +20,10 @@ $module = Pi::service('module')->current();
 </head>
 
 <body id="pi-<?php echo $module; ?>" class="<?php echo $locale; ?>">
+
     <!-- pi header bar: fixed-->
     <div id="pi-header-bar" class="clearfix">
-        <a href="<?php echo $this->url(); ?>" title="<?php echo $this->escape($sitename); ?>" class="pi-admin-logo">Pi</a>
+        <a href="<?php echo $this->url(''); ?>" title="<?php echo _escape($sitename); ?>" class="pi-admin-logo">Pi</a>
         <div class="pi-operation-switch">
             <?php
                 $modes = $this->adminNav($module)->modes();
@@ -42,21 +43,23 @@ $module = Pi::service('module')->current();
             ?>
                 <a href="<?php echo $mode['link']? : 'javascript:void(0)'; ?>" class="<?php if (!empty($mode['active'])) { echo 'active'; } elseif (!$mode['link']) { echo 'disabled'; } ?>">
                     <i class="<?php echo $icon; ?>"></i>
-                    <?php echo $this->escape($mode['label']); ?>
+                    <?php echo _escape($mode['label']); ?>
                 </a>
             <?php } ?>
         </div>
 
         <div class="pi-user-bar">
-           <?php echo $this->widget('system-user-bar', array('type' => 'dropdown')); ?>
-           <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>" target="_blank">
-               <i class="icon-external-link"></i>
-               <?php _e('Go to front'); ?>
-           </a>
+            <?php echo $this->widget('system-user-bar', array('params' => array('route' => 'sysuser'), 'type' => 'flat')); ?>
+            <span class="pi-divider">|</span>
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
+                <i class="icon-external-link"></i>
+                <?php _e('Go to front'); ?>
+            </a>
         </div>
     </div>
 
     <div id="pi-wrapper">
+
         <div id="pi-modules-menu">
         <!-- modules list link : sidemenu,fixed-->
         <?php $navigation = $this->adminNav($module)->side(); ?>
@@ -67,7 +70,8 @@ $module = Pi::service('module')->current();
 
         <!-- modules content -->
         <div id="pi-content">
-                <!-- each module or system  link : operation or manage -->
+
+            <!-- each module or system  link : operation or manage -->
             <?php $navigation = $this->adminNav($module)->top(); ?>
             <?php if ($navigation) {  ?>
             <div class="clearfix pi-module-menu">
@@ -77,11 +81,15 @@ $module = Pi::service('module')->current();
             <?php } ?>
 
             <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
+
+                <!-- Flash messenger -->
+                <?php include 'flash-messenger.phtml'; ?>
+
                 <div class="clearfix pi-main-content">
                     <?php echo $content; ?>
                 </div>
                 <div id="pi-footer" class="pi-footer">
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo $this->escape($sitename); ?>">&copy; <?php echo $this->escape($sitename); ?></a>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy; <?php echo _escape($sitename); ?></a>
                     <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
                     <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
                     <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></div>

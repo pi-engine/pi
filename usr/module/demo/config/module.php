@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'DEMO Sandbox',
+        'title'         => _a('DEMO Sandbox'),
         // Description, for admin, optional
-        'description'   => 'Examples and tests for developers.',
+        'description'   => _a('Examples and tests for developers.'),
         // Version number, required
         'version'       => '1.0.0-beta.1',
         // Distribution license, required
@@ -31,64 +31,58 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Taiwen Jiang',
+        'Name'      => 'Taiwen Jiang',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://pialog.org',
+        'Website'   => 'http://pialog.org',
         // Credits and aknowledgement, optional
-        'credits'   => 'Pi Engine Team'
+        'Credits'   => 'Pi Engine Team'
     ),
     // Module dependency: list of module directory names, optional
     'dependency'    => array(
     ),
-    // Maintenance actions
-    'maintenance'   => array(
-        // Class for module maintenace
-        // Methods for action event:
-        //  preInstall, install, postInstall;
-        //  preUninstall, uninstall, postUninstall;
-        //  preUpdate, update, postUpdate
-        //'class' => 'Module\\Demo\\Maintenance',
 
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall
-                'schema'    => array(
-                    'test'          => 'table',
-                    'page'          => 'table',
-                    //'test_view'     => 'view',
-                    //'test_trigger'  => 'trigger',
-                ),
-            ),
-            // Module configs
-            'config'    => 'config.php',
-            // ACL specs
-            'acl'       => 'acl.php',
-            // Block definition
-            'block'     => 'block.php',
-            // Bootstrap, priority
-            'bootstrap' => 1,
-            // Event specs
-            'event'     => 'event.php',
-            // Search registry, 'class:method'
-            'search'    => array('callback' => array('search', 'index')),
-            // View pages
-            'page'      => 'page.php',
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // Routes, first in last out; bigger priority earlier out
-            'route'     => 'route.php',
-            // Callback for stats and monitoring
-            'monitor'   => array('callback' => array('monitor', 'index')),
-            // Additional custom extension
-            'test'      => array(
-                'config'    => 'For test',
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall
+            'schema'    => array(
+                'test'          => 'table',
+                'page'          => 'table',
+                //'test_view'     => 'view',
+                //'test_trigger'  => 'trigger',
             ),
         ),
+        // Module configs
+        'config'    => 'config.php',
+        // Permission specs
+        'permission'    => 'permission.php',
+        // Block definition
+        'block'     => 'block.php',
+        // Bootstrap, priority
+        'bootstrap' => 1,
+        // Event specs
+        'event'     => 'event.php',
+        // Search registry, 'class:method'
+        'search'    => array('callback' => array('search', 'index')),
+        // View pages
+        'page'      => 'page.php',
+        // Navigation definition
+        'navigation'    => 'nav.php',
+        // Routes, first in last out; bigger priority earlier out
+        'route'     => 'route.php',
+        // Callback for stats and monitoring
+        'monitor'   => array('callback' => array('monitor', 'index')),
+        // Additional custom extension
+        'test'      => array(
+            'config'    => 'For test',
+        ),
+
+        'user'      => 'user.php',
+        'comment'   => 'comment.php',
     ),
 );

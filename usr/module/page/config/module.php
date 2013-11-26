@@ -11,9 +11,9 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => 'Page',
+        'title'         => _a('Page'),
         // Description, for admin, optional
-        'description'   => 'Page configurations for cache, blocks and ACL.',
+        'description'   => _a('Page configurations for cache, blocks and permissions.'),
         // Version number, required
         'version'       => '1.0.0-beta.4',
         // Distribution license, required
@@ -29,35 +29,32 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'name'      => 'Taiwen Jiang',
+        'Dev'       => 'Taiwen Jiang; Voltan; Liao Wei',
         // Email address, optional
-        'email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
-        'website'   => 'http://pialog.org',
+        'Website'   => 'http://pialog.org',
         // Credits and aknowledgement, optional
-        'credits'   => 'Pi Engine Team; @voltan'
+        'Credits'   => 'Pi Engine Team'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
 
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-                // Tables to be removed during uninstall
-                'schema'    => array(
-                    'page'          => 'table',
-                    'stats'         => 'table',
-                )
-            ),
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // Routes, first in last out; bigger priority earlier out
-            'route'         => 'route.php',
-            // View pages
-            'page'          => 'page.php',
-        )
-    )
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'  => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+            // Tables to be removed during uninstall
+            'schema'    => array(
+                'page'          => 'table',
+                'stats'         => 'table',
+            )
+        ),
+        // Navigation definition
+        'navigation'    => 'nav.php',
+        // Routes, first in last out; bigger priority earlier out
+        'route'         => 'route.php',
+        // View pages
+        'page'          => 'page.php',
+    ),
 );

@@ -53,18 +53,6 @@ abstract class AbstractService
             $options = Pi::config()->load($options) ?: array();
         }
         $this->options = $options;
-        /*
-        if ($options) {
-            if (!$this->options) {
-                $this->options = $options;
-            } else {
-                $config = new Config($this->options, true);
-                $config->merge(new Config($options, true));
-                $this->options = $config->toArray();
-            }
-            //$this->options = array_merge_recursive($this->options, $options);
-        }
-        */
     }
 
     /**
@@ -75,5 +63,45 @@ abstract class AbstractService
     public function getOptions()
     {
         return $this->options;
+    }
+
+    /**
+     * Set an option
+     *
+     * @param string $name
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function setOption($name, $value)
+    {
+        $this->options[$name] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get an option
+     *
+     * @return mixed|null
+     */
+    public function getOption()
+    {
+        $args = func_get_args();
+        $result = $this->options;
+        foreach ($args as $name) {
+            if (!is_array($result)) {
+                $result = null;
+                break;
+            }
+            if (isset($result[$name])) {
+                $result = $result[$name];
+            } else {
+                $result = null;
+                break;
+            }
+        }
+
+        return $result;
     }
 }

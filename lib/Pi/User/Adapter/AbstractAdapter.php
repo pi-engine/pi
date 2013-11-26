@@ -12,55 +12,71 @@ namespace Pi\User\Adapter;
 use Pi;
 use Pi\User\BindInterface;
 use Pi\User\Model\AbstractModel as UserModel;
-use Pi\User\Avatar\Factory as UserAvatar;
-use Zend\Db\Sql\Predicate\PredicateInterface;
+use Pi\User\Resource\AbstractResource;
 
 /**
  * User service abstract class
  *
  * User APIs
  *
- * + Meta operations
- *   - getMeta([$type])
+ * + Field meta operations
+ *   - getMeta($type, $action)
  *
- * + User operations
+ * + Single user account operations
  *   + Binding
- *   - bind($id[, $field])
+ *   - bind($uid, $field)
  *
  *   + Read
- *   - getUser([$id])
- *   - getUserList($ids)
- *   - getIds($condition[, $limit[, $offset[, $order]]])
- *   - getCount([$condition])
+ *   - getUser($uid, $field)
  *
  *   + Add
  *   - addUser($data)
  *
  *   + Update
- *   - updateUser($data[, $id])
+ *   - updateUser($uid, $data)
  *
  *   + Delete
- *   - deleteUser($id)
+ *   - deleteUser($uid)
  *
- *   + Activate
- *   - activateUser($id)
- *   - deactivateUser($id)
+ *   + Activate account
+ *   - activateUser($uid)
+ *
+ *   + Enable/Disable
+ *   - enableUser($uid)
+ *   - disableUser($uid)
  *
  * + User account/profile field operations
  *   + Read
- *   - get($key[, $id])
- *   - getList($key, $ids)
+ *   - getUids($condition, $limit, $offset, $order)
+ *   - getList($condition, $limit, $offset, $order, $field)
+ *   - getCount($condition)
+ *   - get($uid, $field, $filter)
+ *   - mget($uids, $field, $filter)
  *
  *   + Update
- *   - set($key, $value[, $id])
- *   - increment($key, $value[, $id])
- *   - setPassword($value[, $id])
+ *   - set($uid, $field, $value)
  *
  * + Utility
+ *   + Route for URL assembing
+ *   - getRoute()
  *   + Collective URL
- *   - getUrl($type[, $id])
+ *   - getUrl($type, $uid = null)
  *   + Authentication
  *   - authenticate($identity, $credential)
+ *   - killUser($uid)
+ *
+ *
+ * @method activity()
+ * @method avatar()
+ * @method data()
+ * @method message()
+ * @method timeline()
+ *
+ * @property-read AbstractResource $activity
+ * @property-read AbstractResource $avatar
+ * @property-read AbstractResource $data
+ * @property-read AbstractResource $message
+ * @property-read AbstractResource $timeline
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -70,15 +86,32 @@ abstract class AbstractAdapter implements BindInterface
     protected $options = array();
 
     /**
+     * Resource handlers
+     *
+     * @var array
+     */
+    protected $resource = array(
+        'avatar'    => null,
+        'message'   => null,
+        'timeline'  => null,
+        'relation'  => null,
+    );
+
+    /**
      * Bound user account
      * @var UserModel
      */
     protected $model;
 
+    /** @var int Root user id */
+    protected $rootUid = 1;
+
     /**
      * Constructor
      *
      * @param array $options
+     *
+     * @return \Pi\User\Adapter\AbstractAdapter
      */
     public function __construct($options = array())
     {
@@ -99,6 +132,77 @@ abstract class AbstractAdapter implements BindInterface
     }
 
     /**
+     * Get an option
+     *
+     * @return mixed|null
+     */
+    public function getOption()
+    {
+        $args = func_get_args();
+        $result = $this->options;
+        foreach ($args as $name) {
+            if (!is_array($result)) {
+                $result = null;
+                break;
+            }
+            if (isset($result[$name])) {
+                $result = $result[$name];
+            } else {
+                $result = null;
+                break;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get resource handler or result from handler if args specified
+     *
+     * @param string $name
+     * @param array  $args
+     *
+     * @return AbstractResource|mixed
+     */
+    public function getResource($name, $args = array())
+    {
+        if (!isset($this->resource[$name])) {
+            $options = array();
+            $class = '';
+            $resource = $this->getOption('resource', $name);
+            if ($resource) {
+                if (is_string($resource)) {
+                    $class = $resource;
+                } else {
+                    if (!empty($resource['class'])) {
+                        $class = $resource['class'];
+                    }
+                    if (isset($this->$resource['options'])) {
+                        $options = $resource['options'];
+                    }
+                }
+            }
+            if (!$class) {
+                $class = 'Pi\User\Resource\\' . ucfirst($name);
+            }
+            $this->resource[$name] = new $class;
+            if ($options) {
+                $this->resource[$name]->setOptions($options);
+            }
+        }
+        if ($args) {
+            $result = call_user_func_array(
+                array($this->resource[$name], 'get'),
+                $args
+            );
+        } else {
+            $result = $this->resource[$name];
+        }
+
+        return $result;
+    }
+
+    /**
      * Bind a user to service
      *
      * @param UserModel $user
@@ -107,6 +211,12 @@ abstract class AbstractAdapter implements BindInterface
     public function bind(UserModel $user = null)
     {
         $this->model = $user;
+        // Bind user model to handlers
+        foreach ($this->resource as $key => $handler) {
+            if ($handler instanceof BindInterface) {
+                $handler->bind($this->model);
+            }
+        }
 
         return $this;
     }
@@ -120,60 +230,144 @@ abstract class AbstractAdapter implements BindInterface
     public function __get($var)
     {
         $result = null;
-        if ($this->model) {
-            $result = $this->model->$var;
+        switch ($var) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($var);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                break;
+            // User profile field
+            default:
+                if ($this->model && isset($this->model[$var])) {
+                    $result = $this->model[$var];
+                }
+                break;
         }
 
         return $result;
+    }
+
+    /**
+     * Method adapter allows a shortcut
+     *
+     * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
+     *
+     * @param  string  $method
+     * @param  array  $args
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        $result = null;
+        switch ($method) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($method, $args);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                if ($args) {
+                    $result = call_user_func_array(array($result,'get'), $args);
+                }
+                break;
+            // User profile adapter methods
+            default:
+                break;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Verify 'uid' parameter
+     *
+     * @param $uid
+     * @return int
+     */
+    protected function verifyUid($uid)
+    {
+        $uid = $uid ? intval($uid) : (int) $this->__get('id');
+
+        return $uid;
     }
 
     /**#@+
      * Meta operations
      */
     /**
-     * Get meta with type: account, profile, extra
+     * Get fields specs of specific type and action
+     *
+     * - Available types: `account`, `profile`, `compound`
+     * - Available actions: `display`, `edit`, `search`
      *
      * @param string $type
+     * @param string $action
      * @return array
      * @api
      */
-    abstract public function getMeta($type = 'account');
+    abstract public function getMeta($type = '', $action = '');
     /**#@-*/
 
     /**#@+
      * User operations
      */
-    /**
-     * Get user data object
-     *
-     * @param int|string|null   $id         User id, identity
-     * @param string            $field      Field of the identity:
-     *      id, identity, email, etc.
-     * @return UserModel
-     * @api
-     */
-    abstract public function getUser($id = null, $field = 'id');
 
     /**
-     * Get user data objects
+     * Check if user is root user
      *
-     * @param int[] $ids User ids
-     * @return array
+     * @param null|int $uid
+     *
+     * @return bool
+     */
+    public function isRoot($uid = null)
+    {
+        if ($this->rootUid) {
+            $uid = $this->verifyUid($uid);
+            $result = $this->rootUid === $uid ? true : false;
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get user data model
+     *
+     * @param int|string|null   $uid    User id, identity
+     * @param string            $field  Field of the identity
+     * @return UserModel|null
      * @api
      */
-    abstract public function getUserList($ids);
+    abstract public function getUser($uid = null, $field = 'id');
 
     /**
      * Get user IDs subject to conditions
      *
-     * @param array|PredicateInterface  $condition
-     * @param int                       $limit
-     * @param int                       $offset
-     * @param string                    $order
+     * @param array         $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string        $order
      * @return int[]
      * @api
      */
-    abstract public function getIds(
+    abstract public function getUids(
         $condition  = array(),
         $limit      = 0,
         $offset     = 0,
@@ -181,9 +375,29 @@ abstract class AbstractAdapter implements BindInterface
     );
 
     /**
+     * Get users subject to conditions
+     *
+     * @param array         $condition
+     * @param int           $limit
+     * @param int           $offset
+     * @param string|array  $order
+     * @param array         $field
+     *
+     * @return array
+     * @api
+     */
+    abstract public function getList(
+        array $condition    = array(),
+        $limit              = 0,
+        $offset             = 0,
+        $order              = '',
+        array $field        = array()
+    );
+
+    /**
      * Get user count subject to conditions
      *
-     * @param array|PredicateInterface  $condition
+     * @param array  $condition
      * @return int
      * @api
      */
@@ -192,126 +406,260 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Add a user
      *
-     * @param   array       $data
-     * @return  int|false
+     * @param   array   $fields
+     * @param   bool    $setRole
+     *
+     * @return  int|bool
      * @api
      */
-    abstract public function addUser($data);
+    abstract public function addUser($fields, $setRole = true);
 
     /**
      * Update a user
      *
-     * @param   array       $data
-     * @param   int         $id
-     * @return  int|false
+     * @param   int         $uid
+     * @param   array       $fields
+     * @return  int|bool
      * @api
      */
-    abstract public function updateUser($data, $id = null);
+    abstract public function updateUser($uid, $fields);
 
     /**
      * Delete a user
      *
-     * @param   int         $id
-     * @return  bool
+     * @param   int         $uid
+     * @return  bool|null   Null for no-action
      * @api
      */
-    abstract public function deleteUser($id);
+    abstract public function deleteUser($uid);
 
     /**
      * Activate a user
      *
-     * @param   int         $id
-     * @return  bool
+     * @param   int         $uid
+     * @return  bool|null   Null for no-action
      * @api
      */
-    abstract public function activateUser($id);
+    abstract public function activateUser($uid);
 
     /**
-     * Deactivate a user
+     * Enable a user
      *
-     * @param   int         $id
-     * @return  bool
+     * @param   int         $uid
+     * @return  bool|null   Null for no-action
      * @api
      */
-    abstract public function deactivateUser($id);
+    abstract public function enableUser($uid);
+
+    /**
+     * Disable a user
+     *
+     * @param   int         $uid
+     * @return  bool|null   Null for no-action
+     * @api
+     */
+    abstract public function disableUser($uid);
     /**#@-*/
 
     /**#@+
      * User account/Profile fields operations
      */
     /**
-     * Get field value(s) of a user field(s)
+     * Get field value(s) of user(s) per operation actions
      *
-     * @param string|array      $key
-     * @param string|int|null   $id
-     * @return mixed
+     * Usage:
+     *
+     * - Get single-user-single-field
+     *
+     * ```
+     *  // Raw data
+     *  $fields = Pi::api('user', 'user')->get(12, 'gender');
+     *  // Output: 'male' (or 'female', 'unknown')
+     *
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(123, 'gender', true);
+     *  // Output: 'Male' (or 'Female', 'Unknown')
+     * ```
+     *
+     * - Get multi-user-multi-field for display
+     *
+     * ```
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(
+     *      array(12, 34, 56),
+     *      array('name', 'gender'),
+     *      true
+     *  );
+     *  // Output:
+     *  array(
+     *      12  => array(
+     *          'name'      => 'John',
+     *          'gender'    => 'Male',
+     *      ),
+     *      34  => array(
+     *          'name'      => 'Joe',
+     *          'gender'    => 'Unknown',
+     *      ),
+     *      56  => array(
+     *          'name'      => 'Rose',
+     *          'gender'    => 'Female',
+     *      ),
+     *  );
+     * ```
+     *
+     * @param int|int[]         $uid
+     * @param string|string[]   $field
+     * @param bool              $filter
+     * @param bool              $activeOnly
+     *
+     * @return mixed|mixed[]
      * @api
      */
-    abstract public function get($key, $id = null);
+    abstract public function get(
+        $uid,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    );
 
     /**
-     * Get field value(s) of a list of user
+     * Get field value(s) of users per operation actions
      *
-     * @param string|array      $key
-     * @param array             $ids
-     * @return array
+     * Usage:
+     *
+     * - Get single-field
+     *
+     * ```
+     *  // Raw data
+     *  $fields = Pi::api('user', 'user')->get(array(12, 34), 'gender');
+     *  // Output:
+     *  array(
+     *      12  => 'male',
+     *      34  => 'unknown',
+     *  );
+     *
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(array(12, 34), 'gender', true);
+     *  // Output:
+     *  array(
+     *      12  => 'Male',
+     *      34  => 'Unknown',
+     *  );
+     * ```
+     *
+     * - Get multi-field for display
+     *
+     * ```
+     *  // Filter for display
+     *  $fields = Pi::api('user', 'user')->get(
+     *      array(12, 34, 56),
+     *      array('name', 'gender'),
+     *      true
+     *  );
+     *  // Output:
+     *  array(
+     *      12  => array(
+     *          'name'      => 'John',
+     *          'gender'    => 'Male',
+     *      ),
+     *      34  => array(
+     *          'name'      => 'Joe',
+     *          'gender'    => 'Unknown',
+     *      ),
+     *      56  => array(
+     *          'name'      => 'Rose',
+     *          'gender'    => 'Female',
+     *      ),
+     *  );
+     * ```
+     *
+     * @param int[]         $uids
+     * @param string|string[]   $field
+     * @param bool              $filter
+     * @param bool              $activeOnly
+     *
+     * @return mixed[]
      * @api
      */
-    abstract public function getList($key, $ids);
+    abstract public function mget(
+        array $uids,
+        $field = array(),
+        $filter = false,
+        $activeOnly = false
+    );
 
     /**
      * Set value of a user field
      *
-     * @param string            $key
-     * @param midex             $value
-     * @param string|int|null   $id
+     * @param int       $uid
+     * @param string    $field
+     * @param mixed     $value
      * @return bool
      * @api
      */
-    abstract public function set($key, $value, $id = null);
-
-    /**
-     * Incremetn/decrement a user field
-     *
-     * @param string            $key
-     * @param int               $value
-     *      Positive to increment or negative to decrement
-     * @param string|int|null   $id
-     * @return bool
-     * @api
-     */
-    abstract public function increment($key, $value, $id = null);
-
-    /**
-     * Set a user password
-     *
-     * @param string            $value
-     * @param string|int|null   $id
-     * @return bool
-     * @api
-     */
-    abstract public function setPassword($value, $id = null);
+    abstract public function set($uid, $field, $value);
     /**#@-*/
+
+    /**
+     * Set user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    abstract public function setRole($uid, $role);
+
+    /**
+     * Revoke user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    abstract public function revokeRole($uid, $role);
+
+    /**
+     * Get user role
+     *
+     * Section: `admin`, `front`
+     * If section is specified, returns the role;
+     * if not, return associative array of roles.
+     *
+     * @param int       $uid
+     * @param string    $section   Section name: admin, front
+     *
+     * @return string|array
+     */
+    abstract public function getRole($uid, $section = '');
 
     /**#@+
      * Utility APIs
      */
     /**
+     * Get route for URL assembling
+     *
+     * @return string
+     */
+    abstract public function getRoute();
+
+    /**
      * Get user URL
      *
-     * - account: URI to user account page
+     * - home: URI to user home (timeline) page
      * - profile: URI to user profile page
-     * - login: URI to user login page
-     * - logout: URI to user logout page
-     * - register (signup): URI to user register/signup page
+     * - (login: URI to user login page)
+     * - (logout: URI to user logout page)
+     * - register: URI to user register page
      *
-     * @param string        $type
-     *      Type of URLs: profile, login, logout, register, auth
-     * @param int|null      $id
+     * @param string    $type URL type
+     * @param mixed     $options User id for profile or redirect for login
+     *
      * @return string
      * @api
      */
-    abstract public function getUrl($type, $id = null);
+    abstract public function getUrl($type, $options = null);
 
     /**
      * Authenticate user
@@ -334,22 +682,24 @@ abstract class AbstractAdapter implements BindInterface
      * @api
      */
     abstract public function authenticate($identity, $credential);
+
+    /**
+     * Kill a user's session
+     *
+     * @param int $uid
+     *
+     * @return bool|null true for success, false for fail, null for no action
+     */
+    abstract public function killUser($uid);
     /**#@-*/
 
     /**
-     * Method handler allows a shortcut
+     * Get a user model
      *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
+     * @param int|string|array  $uid
+     * @param string            $field
+     *
+     * @return UserModel
      */
-    public function __call($method, $args)
-    {
-        trigger_error(
-            sprintf(__CLASS__ . '::%s is not defined yet.', $method),
-            E_USER_NOTICE
-        );
-
-        return 'Not defined';
-    }
+    abstract public function getUserModel($uid, $field = 'id');
 }

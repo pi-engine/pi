@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Module\System\Form\ConfigForm;
 use Zend\Db\Sql\Expression;
 
@@ -26,7 +26,7 @@ use Zend\Db\Sql\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class ConfigController extends ActionController
+class ConfigController extends ComponentController
 {
     /**
      * Module configuration edit
@@ -43,10 +43,12 @@ class ConfigController extends ActionController
             $module = $this->params('name', 'system');
         }
 
-        if ($module) {
-            $category = $this->params('category', '');
-            Pi::service('i18n')->load('module/' . $module . ':config');
+        if (!$this->permission($module, 'config')) {
+            return;
+        }
 
+        $updateLanguage = false;
+        if ($module) {
             $model = Pi::model('config');
             $select = $model->select()
                 ->where(array('module' => $module, 'visible' => 1))
@@ -92,14 +94,32 @@ class ConfigController extends ActionController
                     $post = $this->request->getPost();
                     $form->setData($post);
                     if ($form->isValid()) {
+
+                        // Prepare for language check
+                        $currentLocale = null;
+                        if ('system' == $module) {
+                            $currentLocale = array(
+                                'locale' => Pi::config('locale'),
+                                'charset'   => Pi::config('charset'),
+                            );
+                        }
+
                         $values = $form->getData();
                         foreach ($configs as $row) {
                             $row->value = $values[$row->name];
                             $row->save();
+
+                            // Check for language update
+                            if ($currentLocale
+                                && isset($currentLocale[$row->name])
+                                && $row->value != $currentLocale[$row->name]
+                            ) {
+                                $updateLanguage = true;
+                            }
                         }
                         Pi::registry('config')->clear($module);
                         $messageSuccessful =
-                            __('Configuration data saved successfully.');
+                            _a('Configuration data saved successfully.');
                     }
                 }
 
@@ -118,9 +138,14 @@ class ConfigController extends ActionController
             $configCounts[$row->module] = $row->count;
         }
 
+        if ($updateLanguage) {
+            //Pi::registry('navigation')->flush();
+            Pi::service('cache')->flush();
+        }
+
         $this->view()->assign('name', $module);
 
-        $this->view()->assign('title', __('Module configurations'));
+        $this->view()->assign('title', _a('Module configurations'));
         //$this->view()->setTemplate('config-module');
     }
 

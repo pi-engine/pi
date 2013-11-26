@@ -70,8 +70,9 @@ class ModuleName extends AbstractValidator
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }
-        $rowset = Pi::model('module')->select($where);
-        if ($rowset->count()) {
+        //$rowset = Pi::model('module')->select($where);
+        $count = Pi::model('module')->count($where);
+        if ($count) {
             $this->error(static::TAKEN);
             return false;
         }

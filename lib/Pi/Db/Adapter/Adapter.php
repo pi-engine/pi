@@ -13,6 +13,7 @@ use Zend\Db\Adapter\Adapter as ZendAdapter;
 use Zend\Db\Adapter\ParameterContainer;
 use Zend\Db\Adapter\Driver;
 use Zend\Db\ResultSet;
+use Zend\Db\Exception;
 
 /**
  * {@inheritDoc}
@@ -68,8 +69,10 @@ class Adapter extends ZendAdapter
              * Modified by Taiwen Jiang
              */
             //$result = $this->driver->getConnection()->execute($sql);
-            $result = $this->driver->getConnection()->connect()
-                ->getResource()->prepare($sql)->execute();
+            $statement = $this->driver->getConnection()->connect()
+                ->getResource()->prepare($sql);
+            $statement->execute();
+            $result = $this->driver->createResult($statement);
             /**#@-*/
         }
 

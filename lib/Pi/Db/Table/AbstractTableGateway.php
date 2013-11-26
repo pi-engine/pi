@@ -11,9 +11,9 @@ namespace Pi\Db\Table;
 
 use ArrayObject;
 use Pi;
-use Pi\Application\Db;
 use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
+use Zend\Db\TableGateway\Feature;
 use Zend\Db\Sql\Sql;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\Metadata\Metadata;
@@ -41,7 +41,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     protected $rowClass;
 
     /**
-     * Non-scalar columns to be endcoded before saving to DB
+     * Non-scalar columns to be encoded before saving to DB
      * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
      *
@@ -81,6 +81,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      *
      * @param array $options
      * @return $this
+     * @throws \InvalidArgumentException
      */
     public function setup($options = array())
     {
@@ -277,6 +278,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * @param array|string|int  $key    The value(s) of the key
      * @param string|null       $column Column name of the key
      * @return ResultSet|Row Row(s) matching the criteria.
+     * @throws \Exception Throw exception if column is not specified
      */
     public function find($key, $column = null)
     {
@@ -335,5 +337,62 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         $this->featureSet->addFeature(new $featureClass);
 
         return $this;
+    }
+
+    /**
+     * Fetch count against condition
+     *
+     * @param array|Where  $where
+     * @param array|string $params
+     *
+     * @return bool|int|ResultSet
+     */
+    public function count($where = array(), $params = null)
+    {
+        $group = $having = $limit = null;
+        if ($params) {
+            if (is_string($params)) {
+                $group = $params;
+            } else {
+                $keys = array_keys($params);
+                if (is_int($keys[0])) {
+                    $group = $params;
+                } else {
+                    extract($params);
+                }
+            }
+        }
+
+        $columns = array('count' => Pi::db()->expression('COUNT(*)'));
+        if ($group) {
+            $columns += (array) $group;
+        }
+        $select = $this->select();
+        $select->columns($columns);
+        $select->where($where);
+
+        if ($group) {
+            $select->group($group);
+            if ($limit) {
+                $select->limit($limit);
+                $select->order('count DESC');
+            }
+        }
+        if ($having) {
+            $select->having($having);
+        }
+        try {
+            $rowset = $this->selectWith($select);
+            if ($group) {
+                $result = $rowset;
+            } else {
+                $row = $rowset->current();
+                $result = (int) $row['count'];
+            }
+        } catch (\Exception $e) {
+            $result = false;
+        }
+
+        return $result;
     }
 }

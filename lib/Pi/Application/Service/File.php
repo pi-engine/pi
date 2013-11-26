@@ -140,7 +140,7 @@ class File extends AbstractService
      */
     public function flush($dirs)
     {
-        $dirs = iterator_to_array($this->toIterator($files));
+        $dirs = iterator_to_array($this->toIterator($dirs));
         foreach ($dirs as $dir) {
             if (!is_dir($dir)) {
                 continue;
@@ -341,7 +341,7 @@ class File extends AbstractService
      * @param string    $targetDir     The symbolic link name
      * @param Bool      $copyOnWindows Whether to copy files if on Windows
      * @param Bool      $override
-     *      Whether to override existing files on copy if on Windows
+     *      Whether to override existing files
      * @return $this
      *
      * @throws Exception When symlink fails
@@ -367,7 +367,7 @@ class File extends AbstractService
 
         $ok = false;
         if (is_link($targetDir)) {
-            if (readlink($targetDir) != $originDir) {
+            if ($override || readlink($targetDir) != $originDir) {
                 $this->remove($targetDir);
             } else {
                 $ok = true;

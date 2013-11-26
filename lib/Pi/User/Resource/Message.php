@@ -16,21 +16,15 @@ use Pi;
  *
  * Message APIs:
  *
- *   - message([$id])->send($message, $from)
- *   - message([$id])->notify($message, $subject[, $tag])
- *   - message([$id])->getCount()
- *   - message([$id])->getAlert()
+ *   - send($uid, $message, $from)
+ *   - notify($uid, $message, $subject, $tag)
+ *   - getCount($uid)
+ *   - getAlert($uid)
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Message extends AbstractResource
 {
-    /**
-     * If message module available
-     * @var bool|null
-     */
-    protected $isAvailable = null;
-
     /**
      * Check if message function available
      *
@@ -48,17 +42,19 @@ class Message extends AbstractResource
     /**
      * Send a message
      *
-     * @param string $message
-     * @param int $from
-     * @return int|false
+     * @param int       $uid
+     * @param string    $message
+     * @param int       $from
+     *
+     * @return int|bool
      */
-    public function send($message, $from)
+    public function send($uid, $message, $from)
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::service('api')->message->send(
-            $this->model->id,
+        $id = Pi::api('message')->send(
+            $uid,
             $message,
             $from
         );
@@ -69,18 +65,20 @@ class Message extends AbstractResource
     /**
      * Send a notification
      *
-     * @param string $message
-     * @param string $subject
-     * @param string $tag
-     * @return int|false
+     * @param int       $uid
+     * @param string    $message
+     * @param string    $subject
+     * @param string    $tag
+     *
+     * @return int|bool
      */
-    public function notify($message, $subject, $tag = '')
+    public function notify($uid, $message, $subject, $tag = '')
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::service('api')->message->notify(
-            $this->model->id,
+        $id = Pi::api('message')->notify(
+            $uid,
             $message,
             $subject,
             $tag
@@ -90,32 +88,71 @@ class Message extends AbstractResource
     }
 
     /**
-     * Get total account
+     * Get total count
      *
-     * @return int|false
+     * @param int $uid
+     * @return int|bool
      */
-    public function getAccount()
+    public function getCount($uid)
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::service('api')->message->getAccount($this->model->id);
+        $result = Pi::api('message')->getCount($uid);
 
         return $result;
     }
 
     /**
-     * Get new message account to alert
+     * Get new message count to alert
      *
-     * @return int|false
+     * Alert user the new messages he receives since last visit.
+     *
+     * @param int $uid
+     * @return int|bool
      */
-    public function getAlert()
+    public function getAlert($uid)
     {
-        if (!$this->isAvailable) {
+        if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::service('api')->message->getAlert($this->model->id);
+        $result = Pi::api('message')->getAlert($uid);
 
         return $result;
+    }
+
+    /**
+     * Dismiss message alert by resetting alert count to 0
+     *
+     * @param $uid
+     *
+     * @return bool
+     */
+    public function dismissAlert($uid)
+    {
+        if (!$this->isAvailable()) {
+            return false;
+        }
+        $result = Pi::api('message')->dismissAlert($uid);
+
+        return $result;
+    }
+
+    /**
+     * Get link to message service
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        if (!$this->isAvailable()) {
+            return '';
+        }
+        $url = Pi::service('url')->assemble(
+            'default',
+            array('module' => 'message')
+        );
+
+        return $url;
     }
 }

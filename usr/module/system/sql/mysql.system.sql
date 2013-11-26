@@ -4,102 +4,6 @@
 # --------------------------------------------------------
 
 # ------------------------------------------------------
-# ACL
-# >>>>
-
-# extended edge table: edge ID, entry edge ID, direct edge, exit edge, start vertex, end vertex
-# DAG (Directed Acyclic Graph) algorithm
-# NOT USED yet
-# see: http://www.codeproject.com/KB/database/Modeling_DAGs_on_SQL_DBs.aspx#Table5
-CREATE TABLE `{core.acl_edge}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `start`           varchar(64)     NOT NULL    default '',
-  `end`             varchar(64)     NOT NULL    default '',
-  `entry`           int(10)         unsigned    NOT NULL default '0',
-  `direct`          int(10)         unsigned    NOT NULL default '0',
-  `exit`            int(10)         unsigned    NOT NULL default '0',
-  `hops`            int(10)         unsigned    NOT NULL default '0',
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `pair` (`start`, `end`)
-);
-
-# role inheritance or edge: edge ID, child ID, parent ID
-# TODO: could use vertext model with start vertex & end vertex
-CREATE TABLE `{core.acl_inherit}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `child`           varchar(64)     NOT NULL    default '',
-  `parent`          varchar(64)     NOT NULL    default '',
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `pair` (`child`, `parent`)
-);
-
-# ACL privileges
-CREATE TABLE `{core.acl_privilege}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `resource`        int(10)         unsigned    NOT NULL default '0', # resource ID
-  `name`            varchar(64)     NOT NULL    default '', # Privilege name
-  `title`           varchar(255)    NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `pair` (`resource`, `name`)
-);
-
-# ACL resources
-CREATE TABLE `{core.acl_resource}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `left`            int(10)         unsigned    NOT NULL default '0',
-  `right`           int(10)         unsigned    NOT NULL default '0',
-  `depth`           smallint(3)     unsigned    NOT NULL default '0',
-  `section`         varchar(64)     NOT NULL    default '', # page resource: admin, front; other resource: module, block
-  `name`            varchar(64)     NOT NULL    default '', # pattern: generated - module[:controller]; or custom - module-resource
-# `item`            varchar(64)     NOT NULL    default '',
-  `title`           varchar(255)    NOT NULL    default '',
-  `module`          varchar(64)     NOT NULL    default '',
-  `type`            varchar(64)     NOT NULL    default '', # potential values: system - created by module installation; page - created by page creation; custom - created manually
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `left` (`left`),
-  UNIQUE KEY `right` (`right`),
-  UNIQUE KEY `pair` (`section`, `module`, `name`)
-);
-
-# ACL roles
-# See http://en.wikipedia.org/wiki/Role-based_access_control
-CREATE TABLE `{core.acl_role}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `name`            varchar(64)     NOT NULL    default '',                 # Unique name
-  `title`           varchar(255)    NOT NULL    default '',                 # Title
-  `description`     text,
-  `active`          tinyint(1)      unsigned    NOT NULL default '1',       # Active for usage
-  `custom`          tinyint(1)      unsigned    NOT NULL default '0',       # Added manually?
-  `module`          varchar(64)     NOT NULL    default '',                 # Applicable wide
-
-  # Added in Pi
-  `section`         varchar(64)     NOT NULL    default 'front', # admin, front
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
-);
-
-# ACL rules
-CREATE TABLE `{core.acl_rule}` (
-  `id`              int(10)         unsigned    NOT NULL auto_increment,
-  `section`         varchar(64)     NOT NULL    default '',
-  `role`            varchar(64)     NOT NULL    default '',
-  `resource`        varchar(64)     NOT NULL    default '',
-  `privilege`       varchar(64)     NOT NULL    default '',
-  `deny`            tinyint(1)      unsigned    NOT NULL default '0',   # 0 for allowed; 1 for denied
-  `module`          varchar(64)     NOT NULL    default '',
-
-  PRIMARY KEY  (`id`),
-  KEY `pair` (`resource`, `privilege`),
-  KEY `section_module` (`section`, `module`)
-);
-
-# ------------------------------------------------------
 # Audit
 # >>>>
 
@@ -323,7 +227,8 @@ CREATE TABLE `{core.navigation_node}` (
   `module`          varchar(64)     NOT NULL    default '',
   `data`            text,
 
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `nav_name` (`navigation`)
 );
 
 # ------------------------------------------------------
@@ -338,6 +243,8 @@ CREATE TABLE `{core.page}` (
   `module`          varchar(64)     NOT NULL    default '',
   `controller`      varchar(64)     NOT NULL    default '',
   `action`          varchar(64)     NOT NULL    default '',
+  `permission`      varchar(64)     NOT NULL    default '',
+  `cache_type`      enum('page', 'action')      NOT NULL,
   `cache_ttl`       int(10)         NOT NULL    default '0',            # positive: for cache TTL; negative: for inheritance
   `cache_level`     varchar(64)     NOT NULL    default '',
   `block`           tinyint(1)      unsigned    NOT NULL default '0',   # block inheritance: 1 - for self-setting; 0 - for inheriting form parent
@@ -402,7 +309,9 @@ CREATE TABLE `{core.session}` (
   `id`          varchar(32) NOT NULL default '',
   `modified`    int(10) unsigned NOT NULL default '0',
   `lifetime`    int(10) unsigned NOT NULL default '0',
+  `uid`         int(10) unsigned    NOT NULL default '0',
   `data`        text,
+
   PRIMARY KEY  (`id`),
   KEY `modified` (`modified`)
 );
@@ -465,87 +374,129 @@ CREATE TABLE `{core.theme}` (
 );
 
 # ------------------------------------------------------
-# User
+# User and permission
 # >>>>
 
-# user ID: the unique identity in the system
-# user identity: the user's unique identity, generated by the system or sent from other systems like openID
+
+# user ID: unique in the system, referenced as `uid`
+# user identity: unique identity, generated by system or set by third-party
 # all local data of a user should be indexed by user ID
 
-# User accout and authentication data
+# User account and authentication data
 CREATE TABLE `{core.user_account}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  -- Account name
   `identity`        varchar(32)     NOT NULL,
-  `credential`      varchar(255)    NOT NULL default '',    # Credential hash
-  `salt`            varchar(255)    NOT NULL default '',    # Hash salt
-  `email`           varchar(64)     NOT NULL,
-  `name`            varchar(255)    NOT NULL default '',
-  `active`          tinyint(1)      NOT NULL default '0',
+  -- Credential/password hash
+  `credential`      varchar(255)    NOT NULL default '',
+  -- Salt for credential hash
+  `salt`            varchar(255)    NOT NULL default '',
+  `email`           varchar(64)     default NULL,
+
+  -- Display name
+  `name`            varchar(255)    default NULL,
+  -- Avatar image src
+  `avatar`          varchar(255)    NOT NULL default '',
+  -- Gender
+  `gender`          enum('male', 'female', 'unknown') NOT NULL,
+  -- Birth date with format 'YYYY-mm-dd'
+  `birthdate`       varchar(10)     NOT NULL default '',
+
+  -- Synchronized availability of account
+  -- 1: time_activated > 0 && time_disabled == 0 && time_deleted == 0
+  -- 0: time_activated == 0 || time_disabled > 0 || time_deleted > 0
+  `active`          tinyint(1)      unsigned NOT NULL default '0',
+
+  -- Time for account registration
+  `time_created`    int(10)         unsigned NOT NULL default '0',
+  -- Time for account activation
+  `time_activated`  int(10)         unsigned NOT NULL default '0',
+  -- Time for account disabling
+  `time_disabled`   int(10)         unsigned NOT NULL default '0',
+  -- Time for account deletion, can not be reset
+  `time_deleted`    int(10)         unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `identity` (`identity`),
-  UNIQUE KEY `email` (`email`)
-# KEY `authenticate` (`identity`, `credential`)
-);
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `name` (`name`),
 
-# Entity meta for custom profile
-CREATE TABLE `{core.user_meta}` (
-  `id`              smallint(5)     unsigned    NOT NULL    auto_increment,
-  `key`             varchar(64)     NOT NULL,
-  `category`        varchar(64)     NOT NULL default '',
-  `title`           varchar(255)    NOT NULL default '',
-  `attribute`       varchar(255)    default NULL,           # profile column attribute
-  `view`            varchar(255)    default NULL,           # callback function for view
-  `edit`            text,           # callback options for edit
-  `admin`           text,           # callback options for administration
-  `search`          text,           # callback options for search
-  `options`         text,           # value options
-  `module`          varchar(64)     NOT NULL default '',
-  `active`          tinyint(1)      NOT NULL default '0',
-  `required`        tinyint(1)      NOT NULL default '0',
-
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY  `key` (`key`)
-);
-
-# Aggregated entities for custom profile
-CREATE TABLE `{core.user_profile}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `user`            int(10)         unsigned    NOT NULL,
-
-  PRIMARY KEY  (`id`)
+  KEY `status` (`active`)
 );
 
 # user custom contents
-CREATE TABLE `{core.user_repo}` (
+CREATE TABLE `{core.user_data}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `user`            int(10)         unsigned    NOT NULL default '0',
+  `uid`             int(10)         unsigned    NOT NULL default '0',
   `module`          varchar(64)     NOT NULL    default '',
-  `type`            varchar(64)     NOT NULL    default '',
-  `content`         text,
+  `name`            varchar(64)     NOT NULL,
+  `time`            int(10)         unsigned    NOT NULL default '0',
+  `value`           text            default NULL,
+  `value_int`       int(10)         default NULL,
+  `value_multi`     text            default NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user_content` (`user`, `module`, `type`)
+  UNIQUE KEY `user_data_name` (`uid`, `module`, `name`)
 );
 
-# user-role links for regular
+# Role
+CREATE TABLE `{core.role}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `name`            varchar(64)     NOT NULL,
+  `title`           varchar(255)    NOT NULL,
+  `description`     text,
+  `module`          varchar(64)     NOT NULL    default '',
+  `custom`          tinyint(1)      unsigned    NOT NULL default '0',
+  `active`          tinyint(1)      unsigned    NOT NULL default '1',
+  `section`         enum('front', 'admin')      NOT NULL,
+  -- Display order
+  #`order`           int(10)         unsigned NOT NULL default '0',
+
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`)
+);
+
+# user-role links
 CREATE TABLE `{core.user_role}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `user`            int(10)         unsigned    NOT NULL,
-  `role`            varchar(64)     NOT NULL    default '',
+  `uid`             int(10)         unsigned    NOT NULL,
+  `role`            varchar(64)     NOT NULL,
+  `section`         enum('front', 'admin')      NOT NULL,
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user` (`user`)
+  UNIQUE KEY `section_user` (`section`, `uid`, `role`)
 );
 
-
-# user-role links for staff
-CREATE TABLE `{core.user_staff}` (
-  `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  `user`            int(10)         unsigned    NOT NULL,
-  `role`            varchar(64)     NOT NULL    default '',
+# Permission resources
+CREATE TABLE `{core.permission_resource}` (
+  `id`              int(10)         unsigned    NOT NULL auto_increment,
+  `section`         varchar(64)     NOT NULL    default '',
+  `module`          varchar(64)     NOT NULL    default '',
+  -- Resource name: page - <module-controller>; specific - <module-resource>
+  `name`            varchar(64)     NOT NULL    default '',
+  `title`           varchar(255)    NOT NULL    default '',
+  -- system - created on module installation; custom
+  `type`            varchar(64)     NOT NULL    default '',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `user` (`user`)
+  UNIQUE KEY `resource_name` (`section`, `module`, `name`, `type`)
 );
-# ------------------------------------------------------
+
+# Permission rules
+CREATE TABLE `{core.permission_rule}` (
+  `id`              int(10)         unsigned    NOT NULL auto_increment,
+  -- Resource name or id
+  `resource`        varchar(64)     NOT NULL    default '',
+  -- Resource item name or id, optional
+  #`item`            varchar(64)     default NULL,
+  `module`          varchar(64)     NOT NULL    default '',
+  `section`         enum('front', 'admin')      NOT NULL,
+  `role`            varchar(64)     NOT NULL,
+  -- Permission value: 0 - allowed; 1 - denied
+  #`deny`            tinyint(1)      unsigned NOT NULL default '0',
+
+  PRIMARY KEY  (`id`),
+  #KEY `item` (`item`),
+  #KEY `role` (`role`),
+  UNIQUE KEY `section_module_perm` (`section`, `module`, `resource`, `role`)
+);

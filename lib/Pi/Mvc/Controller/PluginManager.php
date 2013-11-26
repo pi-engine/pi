@@ -24,28 +24,24 @@ class PluginManager extends ZendPluginManager
      * @var array
      */
     protected $____invokableClasses = array(
-        'acceptableviewmodelselector' =>
-            'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
-        'filepostredirectget'         =>
-            'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
-        'flashmessenger'              =>
-            'Zend\Mvc\Controller\Plugin\FlashMessenger',
-        'forward'                     => 'Zend\Mvc\Controller\Plugin\Forward',
+        'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
+        'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
+        'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
         'layout'                      => 'Zend\Mvc\Controller\Plugin\Layout',
         'params'                      => 'Zend\Mvc\Controller\Plugin\Params',
-        'postredirectget'             =>
-            'Zend\Mvc\Controller\Plugin\PostRedirectGet',
+        'postredirectget'             => 'Zend\Mvc\Controller\Plugin\PostRedirectGet',
         'redirect'                    => 'Zend\Mvc\Controller\Plugin\Redirect',
         'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
 
         // Pi custom plugins
-        'acl'               => 'Pi\Mvc\Controller\Plugin\Acl',
-        'cache'             => 'Pi\Mvc\Controller\Plugin\Cache',
-        'config'            => 'Pi\Mvc\Controller\Plugin\Config',
-        'jump'              => 'Pi\Mvc\Controller\Plugin\Jump',
-        'redirect'          => 'Pi\Mvc\Controller\Plugin\Redirect',
-        'url'               => 'Pi\Mvc\Controller\Plugin\Url',
-        'view'              => 'Pi\Mvc\Controller\Plugin\View',
+        'cache'                     => 'Pi\Mvc\Controller\Plugin\Cache',
+        'config'                    => 'Pi\Mvc\Controller\Plugin\Config',
+        'jump'                      => 'Pi\Mvc\Controller\Plugin\Jump',
+        'redirect'                  => 'Pi\Mvc\Controller\Plugin\Redirect',
+        'url'                       => 'Pi\Mvc\Controller\Plugin\Url',
+        'view'                      => 'Pi\Mvc\Controller\Plugin\View',
+        'flashmessenger'            => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
+        'flash_messenger'           => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
     );
 
     /**

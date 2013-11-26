@@ -1,0 +1,25 @@
+<?php
+// Load register.css
+$this->css(array(
+    Pi::url('static/custom/user/register.css'),
+));
+?>
+
+<div class="page-header">
+    <h3><?php _e('Complete profile'); ?></h3>
+</div>
+<p class="register-desc">
+  <?php _e('Complete profile description'); ?>
+</p>
+<?php include $this->templateComponent('form-horizontal'); ?>
+
+<script>
+    jQuery(function($) {
+        var root = $('#profileComplete');
+        root.find('input, select').focus(function(){
+            var $controlGroupParent = $(this).closest('.control-group');
+            $controlGroupParent.removeClass('error').find('.help-inline').html('');
+        });
+        root.find('[name="subscription[]"]').attr('checked', 'checked');
+    });
+</script>

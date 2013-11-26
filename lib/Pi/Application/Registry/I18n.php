@@ -15,7 +15,9 @@ use Pi;
 /**
  * I18n language file list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @see Pi\I18n\Translator\Translator::loadResource() for generator callback
  */
 class I18n extends AbstractRegistry
 {
@@ -35,13 +37,44 @@ class I18n extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string|array  $rawDomain
-     * @param string        $locale
      */
-    public function read($rawDomain = '', $locale = '')
+    protected function loadDynamic($options)
     {
+        $translator = Pi::service('i18n')->getTranslator();
+        if (!isset($options['custom']) || !empty($options['custom'])) {
+            $optionsCustom = $options;
+            $optionsCustom['domain'] = 'custom/' . $options['domain'];
+            //d($optionsCustom);
+            $custom = $translator->loadResource($optionsCustom);
+            //d($custom);
+        } else {
+            $custom = array();
+        }
+        if (empty($options['custom'])) {
+            //d($options);
+            $result = $translator->loadResource($options);
+            //d($result);
+            $result = array_merge($result, $custom);
+        } else {
+            $result = $custom;
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @param string|string[]|array $rawDomain
+     * @param string                $locale
+     * @param bool|null             $custom
+     */
+    public function read($rawDomain = '', $locale = '', $custom = null)
+    {
+        //$this->cache = false;
+        // Canonize locale
         $locale = $locale ?: Pi::service('i18n')->getLocale();
 
+        // Canonize domain
         if (is_array($rawDomain)) {
             if (!array_key_exists(0, $rawDomain)) {
                 extract($rawDomain);
@@ -50,19 +83,33 @@ class I18n extends AbstractRegistry
             }
         } else {
             list($domain, $file) =
-                Pi::service('i18n')->normalizeDomain($rawDomain);
+                Pi::service('i18n')->canonizeDomain($rawDomain);
+            if ('custom/' == substr($domain, 0, 7)) {
+                $custom = true;
+                $domain = substr($domain, 7);
+            }
         }
         $moduleDomain = Pi::service('i18n')->moduleDomain;
         if ($moduleDomain == substr($domain, 0, strlen($moduleDomain))) {
             $namespace = substr($domain, strlen($moduleDomain) + 1) ?: '';
         } else {
+            //d($domain);
             $namespace = static::NAMESPACE_GLOBAL;
         }
 
         $this->namespaceCustom = $namespace;
-        $options = compact('domain', 'file', 'locale');
+        if (null === $custom) {
+            $options = compact('domain', 'file', 'locale');
+        } else {
+            $custom = (int) $custom;
+            $options = compact('domain', 'file', 'locale', 'custom');
+        }
 
-        return $this->loadData($options);
+        //d($options);
+        $data = $this->loadData($options);
+
+        //d($data);
+        return $data;
     }
 
     /**

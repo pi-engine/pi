@@ -14,14 +14,16 @@ use Pi;
 /**
  * Route setup
  *
- * For a non-system module route, route name is prefixed with module name:
- *  "<route-name>" transiliated to "<module-name>-<route-name>"
+ * If route name is not specified, route name is generated
+ * by module name and route key as: `<module>-<route-key>`
  *
  *
  * ```
  * array(
  *  // A specified route
- *  'name'   => array(
+ *  <route-eky>   => array(
+ *      // Optional route name
+ *      'name'  => <route-name>
  *      // section: front, admin, feed, etc.
  *      'section'   => 'front',
  *      // order to call
@@ -44,8 +46,16 @@ use Pi;
  * );
  * ```
  *
- * @see Pi\Mvc\Router\Http\TreeRouteStack::canonizeRoute()
- *      for route name utilization
+ * - To use a route with specified name:
+ * ```
+ *  Pi::serice('url')->assemble('<route-name>', array(<...>));
+ * ```
+ *
+ * - To use a route with no specified name:
+ * ```
+ *  Pi::serice('url')->assemble('<module>-<route-name>', array(<...>));
+ * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Route extends AbstractResource
@@ -53,8 +63,8 @@ class Route extends AbstractResource
     /**
      * Canonizes route config
      *
-     * For a non-system module route, route name is prefixed with module name:
-     *  "<route-name>" transiliated to "<module-name>-<route-name>"
+     * If route name is not specified, route name is generated
+     * by module name and route key as: `<module>-<route-key>`
      *
      * @param array $configs
      * @return array
@@ -64,10 +74,12 @@ class Route extends AbstractResource
         $module = $this->event->getParam('module');
 
         $routes = array();
-        foreach ($configs as $name => $data) {
-            if ('system' != $module) {
-                $name = $module . '-' . $name;
-                $data['module'] = $module;
+        foreach ($configs as $key => $data) {
+            if (isset($data['name'])) {
+                $name = $data['name'];
+                unset($data['name']);
+            } else {
+                $name = $module . '-' . $key;
             }
             $route = array(
                 'name'      => $name,

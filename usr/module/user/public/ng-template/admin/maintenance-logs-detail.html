@@ -1,0 +1,33 @@
+<style>
+.nav-tabs>.active>a:hover {
+  cursor: pointer;
+}
+.user-log-dl dt,
+.user-log-dl dd {
+  line-height: 24px;
+}
+</style>
+<dl class="dl-horizontal user-log-dl">
+  <dt>{{'ID' | translate}}
+  <dd>{{entity.id}}
+  <dt>{{'USERNAME' | translate}}
+  <dd>{{entity.identity}}
+  <dt>{{'DISPLAYNAME' | translate}}
+  <dd>{{entity.name}}
+  <dt>{{'ACTIVE' | translate}}
+  <dd>{{entity.active}}
+  <dt>{{'REGISTER_IP' | translate}}
+  <dd>{{entity.ip_register}}
+  <dt>{{'LAST_LOGIN_IP' | translate}}
+  <dd>{{entity.last_login_ip}}
+  <dt>{{'COUNT_LOGIN' | translate}}
+  <dd>{{entity.count_login}}
+  <dt>{{'TIME_CREATED' | translate}}
+  <dd>{{entity.time_created}}
+  <dt>{{'TIME_ACTIVATED' | translate}}
+  <dd>{{entity.time_activated}}
+  <dt>{{'TIME_DISABLED' | translate}}
+  <dd>{{entity.time_disabled}}
+  <dt>{{'LAST_LOGIN' | translate}}
+  <dd>{{entity.last_login}}
+</dl>

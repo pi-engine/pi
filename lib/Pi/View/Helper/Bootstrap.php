@@ -56,22 +56,42 @@ class Bootstrap extends AssetCanonize
      *
      * @param   null|string|array $files
      * @param   array $attributes
-     * @return  self
+     * @param   bool|null $appendVersion
+     *
+     * @return  $this
      */
-    public function __invoke($files = null, $attributes = array())
-    {
+    public function __invoke(
+        $files = null,
+        $attributes = array(),
+        $appendVersion = null
+    ) {
         $files = $this->canonize($files, $attributes);
-        if (empty(static::$rootLoaded)) {
-            if (!isset($files['css/bootstrap.min.css'])) {
-                $files = array('css/bootstrap.min.css' =>
-                        $this->canonizeFile('css/bootstrap.min.css'))
-                    + $files;
-            }
+
+        $bootstrap = 'css/bootstrap.min.css';
+        $responsive = 'css/bootstrap-responsive.min.css';
+        if (!static::$rootLoaded) {
+            $files = array(
+                $bootstrap  => $this->canonizeFile($bootstrap),
+                $responsive => $this->canonizeFile(
+                    $responsive,
+                    array(
+                        'media' => 'only screen and (max-width: 979px)'
+                    )
+                )
+            ) + $files;
             static::$rootLoaded = true;
+        } else {
+            if (isset($files[$bootstrap])) {
+                unset($files[$bootstrap]);
+            }
+            if (isset($files[$responsive])) {
+                unset($files[$responsive]);
+            }
         }
+
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $file);
+            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {
@@ -82,6 +102,7 @@ class Bootstrap extends AssetCanonize
                     $this->view->headLink()->appendStylesheet($attrs);
                 }
             } else {
+                $this->view->jQuery();
                 if ('prepend' == $position) {
                     $this->view->headScript()
                         ->prependFile($url, 'text/javascript', $attrs);

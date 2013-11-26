@@ -16,6 +16,7 @@ use Pi\User\Adapter\AbstractAdapter;
 use Pi\User\Adapter\System as DefaultAdapter;
 use Pi\User\Model\AbstractModel as UserModel;
 use Pi\User\Resource\AbstractResource;
+use Zend\Http\PhpEnvironment\RemoteAddress;
 
 /**
  * User service gateway
@@ -28,49 +29,7 @@ use Pi\User\Resource\AbstractResource;
  *
  * Basic APIs defined by `Pi\User\Adapter\AbstractAdapter`
  * called via magic method __call()
- * ----------------------------------------------------------------------------
  *
- * + Meta operations
- *   - getMeta([$type])
- *
- * + User operations
- *   + Binding
- *   - bind($id[, $field])
- *
- *   + Read
- *   - getUser([$id])
- *   - getUserList($ids)
- *   - getIds($condition[, $limit[, $offset[, $order]]])
- *   - getCount([$condition])
- *
- *   + Add
- *   - addUser($data)
- *
- *   + Update
- *   - updateUser($data[, $id])
- *
- *   + Delete
- *   - deleteUser($id)
- *
- *   + Activate
- *   - activateUser($id)
- *   - deactivateUser($id)
- *
- * + User account/profile field operations
- *   + Read
- *   - get($key[, $id])
- *   - getList($key, $ids)
- *
- *   + Update
- *   - set($key, $value[, $id])
- *   - increment($key, $value[, $id])
- *   - setPassword($value[, $id])
- *
- * + Utility
- *   + Collective URL
- *   - getUrl($type[, $id])
- *   + Authentication
- *   - authenticate($identity, $credential)
  * ----------------------------------------------------------------------------
  *
  * + User operations
@@ -79,39 +38,83 @@ use Pi\User\Resource\AbstractResource;
  *  - destroy()
  *  - hasIdentity()
  *  - getIdentity()
+ *  - getId()
  *
  * + Resource APIs
  *
+ * + Activity
+ *   - activity($uid, $name, $limit, $offset)
+ *   - activity->get($uid, $name, $limit, $offset)
+ *
  * + Avatar
- *   - avatar([$id])
- *   - avatar([$id])->setSource($source)
- *   - avatar([$id])->get([$size[, $attributes[, $source]]])
- *   - avatar([$id])->getList($ids[, $size[, $attributes[, $source]]])
- *   - avatar([$id])->set($value[, $source])
- *   - avatar([$id])->delete()
+ *   - avatar($uid, $size, $attributes, $source)
+ *   - avatar->get($uid, $size, $attributes, $source)
+ *   - avatar->getList($uids, $size, $attributes, $source)
+ *
+ * + Data
+ *   - data($uid, $name)
+ *   - data->get($uid, $name)
+ *   - data->set($uid, $name, $value, $module = '', $time = null)
+ *   - data->setInt($uid, $name, $value, $module = '', $time = null)
+ *   - data->increment($uid, $name, $value, $module = '', $time = null)
+ *   - data->delete($uid, $name)
  *
  * + Message
- *   - message([$id])
- *   - message([$id])->send($message, $from)
- *   - message([$id])->notify($message, $subject[, $tag])
- *   - message([$id])->getCount()
- *   - message([$id])->getAlert()
+ *   - message->send($ui, $message, $from)
+ *   - message->notify($uid, $message, $subject, $tag)
+ *   - message->getCount($uid)
+ *   - message->getAlert($uid)
+ *   - message->dismissAlert($uid)
  *
- * + Timeline/Activity
- *   - timeline([$id])
- *   - timeline([$id])->get($limit[, $offset[, $condition]])
- *   - timeline([$id])->getCount([$condition]])
- *   - timeline([$id])->add($message, $module[, $tag[, $time]])
- *   - timeline([$id])->getActivity($name, $limit[, $offset[, $condition]])
- *   - timeline([$id])->delete([$condition])
+ * + Timeline
+ *   - timeline($uid, $limit, $offset)
+ *   - timeline->get($uid, $limit, $offset)
+ *   - timeline->getCount($uid)
+ *   - timeline->add(array(
+ *          'uid'       => <uid>,
+ *          'message'   => <message>,
+ *          'module'    => <module-name>,
+ *          'timeline'  => <timeline-name>,
+ *          'link'      => <link-href>,
+ *          'time'      => <timestamp>,
+ *     ));
  *
- * + Relation
- *   - relation([$id])
- *   - relation([$id])->get($relation, $limit, $offset, $condition, $order)
- *   - relation([$id])->getCount($relation[, $condition]])
- *   - relation([$id])->hasRelation($uid, $relation)
- *   - relation([$id])->add($uid, $relation)
- *   - relation([$id])->delete([$uid[, $relation]])
+ * @method \Pi\User\Adapter\AbstractAdapter::getMeta($type, $action)
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::isRoot($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::addUser($fields, $setRole = true)
+ * @method \Pi\User\Adapter\AbstractAdapter::getUser($uid, $fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::updateUser($uid, $fields)
+ * @method \Pi\User\Adapter\AbstractAdapter::deleteUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::activateUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::enableUser($uid)
+ * @method \Pi\User\Adapter\AbstractAdapter::disableUser($uid)
+ *
+ * @method \Pi\User\Adapter\AbstractAdapter::getUids($condition = array(), $limit = 0, $offset = 0, $order = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getList($condition = array(), $limit = 0, $offset = 0, $order = '', $field = array()
+ * @method \Pi\User\Adapter\AbstractAdapter::getCount($condition = array())
+ * @method \Pi\User\Adapter\AbstractAdapter::get($uid, $field = array(), $filter = false)
+ * @method \Pi\User\Adapter\AbstractAdapter::mget(array $uids, $field = array(), $filter = false)
+ * @method \Pi\User\Adapter\AbstractAdapter::set($uid, $field, $value)
+ * @method \Pi\User\Adapter\AbstractAdapter::setRole($uid, $role)
+ * @method \Pi\User\Adapter\AbstractAdapter::revokeRole($uid, $role)
+ * @method \Pi\User\Adapter\AbstractAdapter::getRole($uid, $section = '')
+ * @method \Pi\User\Adapter\AbstractAdapter::getRoute()
+ * @method \Pi\User\Adapter\AbstractAdapter::getUrl($type, $uid = null)
+ * @method \Pi\User\Adapter\AbstractAdapter::authenticate($identity, $credential)
+ * @method \Pi\User\Adapter\AbstractAdapter::killUser($uid)
+ *
+ * @method activity()
+ * @method avatar()
+ * @method data()
+ * @method message()
+ * @method timeline()
+ *
+ * @property-read AbstractResource $activity
+ * @property-read AbstractResource $avatar
+ * @property-read AbstractResource $data
+ * @property-read AbstractResource $message
+ * @property-read AbstractResource $timeline
  *
  * @see Pi\User\Adapter\AbstractAdapter for detailed user specific APIs
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -131,7 +134,7 @@ class User extends AbstractService
     /**
      * User data object of current session
      *
-     * @var UserModel|null|false
+     * @var UserModel|null|bool
      */
     protected $modelSession;
 
@@ -178,10 +181,17 @@ class User extends AbstractService
     public function getAdapter()
     {
         if (!$this->adapter instanceof AbstractAdapter) {
-            $options = isset($this->options['options'])
-                ? $this->options['options'] : array();
-            if (!empty($this->options['adapter'])) {
-                $this->adapter = new $this->options['adapter']($options);
+            $adapter = $this->getOption('adapter');
+            $class = $this->getOption($adapter, 'class');
+            if ($class) {
+                $options    = (array) $this->getOption($adapter, 'options');
+            } else {
+                $class      = $this->getOption($adapter);
+                $options    = array();
+            }
+
+            if ($class) {
+                $this->adapter = new $class($options);
             } else {
                 $this->adapter = new DefaultAdapter($options);
             }
@@ -191,75 +201,64 @@ class User extends AbstractService
     }
 
     /**
-     * Get resource handler
-     *
-     * @param string $name
-     * @param int|null $id
-     * @return AbstractResource
-     */
-    public function getResource($name, $id = null)
-    {
-        if (!$this->resource[$name] instanceof AbstractResource) {
-            $options = array();
-            $class = '';
-            if (!empty($this->options['resource'][$name])) {
-                if (is_string($this->options['resource'][$name])) {
-                    $class = $this->options['resource'][$name];
-                } else {
-                    if (isset($this->options['resource'][$name]['class'])) {
-                        $class = $this->options['resource'][$name]['class'];
-                    }
-                    if (isset($this->options['resource'][$name]['options'])) {
-                        $options =
-                            $this->options['resource'][$name]['options'];
-                    }
-                }
-            }
-            if (!$class) {
-                $class = 'Pi\User\Resource\\' . ucfirst($name);
-            }
-            $this->resource[$name] = new $class;
-            $this->resource[$name]->bind($this->getUser($id));
-            if ($options) {
-                $this->resource[$name]->setOptions($options);
-            }
-        } elseif (null !== $id) {
-            $this->resource[$name]->bind($this->getUser($id));
-        }
-
-        return $this->resource[$name];
-    }
-
-    /**
      * Bind a user to service
      *
      * @param UserModel|int|string|null $identity
-     *      User id, identity or data object
-     * @param string                    $type
-     *      Type of the identity: id, identity, object
+     *      User id, identity or UserModel
+     * @param string                    $field
+     *      Field of the identity: id, identity
+     *
+     * @throws \Exception
      * @return self
      */
-    public function bind($identity = null, $type = '')
+    public function bind($identity = null, $field = 'id')
     {
-        if (null !== $identity || null === $this->model) {
-            if ($identity instanceof UserModel) {
-                $this->model = $identity;
+        // Set user model and persist
+        if ($identity instanceof UserModel) {
+            $model = $identity;
+            $this->setPersist($model);
+        // Use current user model
+        } elseif ($this->model
+            && (null === $identity
+                || $this->model->get($field) == $identity)
+        ) {
+            $model = $this->model;
+        // Create user model
+        } else {
+            $data = $this->getPersist() ?: array();
+            // Fetch user data and build user model
+            if (null !== $identity
+                && (!isset($data[$field])
+                    || $identity != $data[$field])
+            ) {
+                $model = $this->getAdapter()->getUser($identity, $field);
+                if (!$model) {
+                    throw new \Exception('User was not found.');
+                }
+                $this->setPersist($model);
+            // Build user model from persist data
             } else {
-                $this->model = $this->getUser($identity, $type);
-            }
-            // Store current session user model for first time
-            if (null === $this->modelSession) {
-                $this->modelSession = $this->model;
-            }
-
-            // Bind user model to service adapter
-            $this->getAdapter()->bind($this->model);
-            // Bind user model to handlers
-            foreach ($this->resource as $key => $handler) {
-                if ($handler instanceof BindInterface) {
-                    $handler->bind($this->model);
+                $model = $this->getAdapter()->getUser($data);
+                if (!$model) {
+                    throw new \Exception('User was not found.');
                 }
             }
+        }
+        $this->model = $model;
+        // Bind user model to service adapter
+        $this->getAdapter()->bind($this->model);
+        /*
+        // Bind user model to handlers
+        foreach ($this->resource as $key => $handler) {
+            if ($handler instanceof BindInterface) {
+                $handler->bind($this->model);
+            }
+        }
+        */
+
+        // Store current session user model for first time
+        if (null === $this->modelSession) {
+            $this->modelSession = $this->model;
         }
 
         return $this;
@@ -298,39 +297,220 @@ class User extends AbstractService
      */
     public function hasIdentity()
     {
-        return $this->modelSession && $this->modelSession->get('id')
+        return $this->modelSession && $this->modelSession['id']
             ? true : false;
     }
 
     /**
      * Get identity of current logged user
      *
-     * @param bool $asId Return use id as identity or user identity name
-     * @return null|int|string
+     * @param string $field Identity field name
+     *
+     * @return string
      * @api
      */
-    public function getIdentity($asId = true)
+    public function getIdentity($field = 'identity')
     {
         if (!$this->hasIdentity()) {
-            $identity = null;
+            $identity = '';
         } else {
-            $identity = $asId
-                ? $this->modelSession->getId()
-                : $this->modelSession->getIdentity();
+            $identity = isset($this->modelSession[$field])
+                ? $this->modelSession[$field]
+                : '';
         }
 
         return $identity;
     }
 
     /**
-     * Get user variables
+     * Get id of current logged user
+     *
+     * @return int
+     * @api
+     */
+    public function getId()
+    {
+        if (!$this->hasIdentity()) {
+            $id = 0;
+        } else {
+            $id = (int) $this->modelSession['id'];
+        }
+
+        return $id;
+    }
+
+    /**
+     * Get current request IP
+     *
+     * @param bool $proxy Check proxy
+     * @param bool $ipv6  Return IPV6
+     *
+     * @return string
+     */
+    public function getIp($proxy = false, $ipv6 = false)
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+//        $remoteAddress = new RemoteAddress;
+//        $ip = $remoteAddress->setUseProxy($proxy)->getIpAddress();
+
+        return $ip;
+    }
+
+    /**
+     * Update a user
+     *
+     * @param   int         $uid
+     * @param   array       $fields
+     * @return  int|bool
+     * @api
+     */
+    public function updateUser($uid, $fields)
+    {
+        $result = $this->getAdapter()->updateUser($uid, $fields);
+        if ($result && $uid == $this->getId()) {
+            $this->setPersist(false);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Set value of a user field
+     *
+     * @param int       $uid
+     * @param string    $field
+     * @param mixed     $value
+     * @return bool
+     * @api
+     */
+    public function set($uid, $field, $value)
+    {
+        $result = $this->getAdapter()->set($uid, $field, $value);
+        if ($result && $uid == $this->getId()) {
+            $this->setPersist($field, $value);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Set user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    public function setRole($uid, $role)
+    {
+        $result = $this->getAdapter()->setRole($uid, $role);
+        if ($result && $uid == $this->getId()) {
+            $role = $this->getRole($uid, '', true);
+            $this->setPersist('role', $role);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Revoke user role(s)
+     *
+     * @param int           $uid
+     * @param string|array  $role
+     *
+     * @return bool
+     */
+    public function revokeRole($uid, $role)
+    {
+        $result = $this->getAdapter()->revokeRole($uid, $role);
+        if ($result && $uid == $this->getId()) {
+            $role = $this->getRole($uid, '', true);
+            $this->setPersist('role', $role);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get user role
+     *
+     * @param int    $uid
+     * @param string $section    Section name: admin, front
+     * @param bool   $force      Force to fetch
+     *
+     * @return array
+     */
+    public function getRole($uid, $section = '', $force = false)
+    {
+        $result = null;
+        if (null === $uid) {
+            $uid = $this->getId();
+        } else {
+            $uid = (int) $uid;
+        }
+        $section = $section ?: Pi::engine()->application()->getSection();
+        $isCurrent  = false;
+        if (!$force
+            && $uid === $this->getId()
+            && Pi::engine()->application()->getSection() == $section
+        ) {
+            $isCurrent = true;
+            $result = $this->getUser()->role();
+        }
+        if (null === $result) {
+            $result = $this->getAdapter()->getRole($uid, $section);
+            if ($isCurrent && $uid) {
+                // Set role for current user
+                $this->getUser()->role($result);
+
+                // Save role to persist
+                $this->setPersist('role', $result);
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get get resource handler or user variables
      *
      * @param string $var
-     * @return mixed
+     * @return AbstractResource|mixed
      */
     public function __get($var)
     {
-        return $this->getAdapter()->{$var};
+        /*
+        switch ($var) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($var);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                break;
+            // User profile field
+            default:
+                $result = $this->getAdapter()->{$var};
+                break;
+        }
+        */
+
+        $result = $this->getAdapter()->{$var};
+
+        return $result;
     }
 
     /**
@@ -344,54 +524,40 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
-        return call_user_func_array(
+        /*
+        switch ($method) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($method, $args);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                if ($args) {
+                    $result = call_user_func_array(array($result,'get'), $args);
+                }
+                break;
+            // User profile adapter methods
+            default:
+                $result = call_user_func_array(
+                    array($this->getAdapter(), $method),
+                    $args
+                );
+                break;
+        }
+        */
+
+        $result = call_user_func_array(
             array($this->getAdapter(), $method),
             $args
         );
-    }
-
-    /**
-     * Get avatar handler
-     *
-     * @param int|null $id
-     * @return AbstractResource
-     */
-    public function avatar($id = null)
-    {
-        return $this->getResource('avatar', $id);
-    }
-
-    /**
-     * Get message handler
-     *
-     * @param int|null $id
-     * @return AbstractResource
-     */
-    public function message($id = null)
-    {
-        return $this->getResource('message', $id);
-    }
-
-    /**
-     * Get timeline handler
-     *
-     * @param int|null $id
-     * @return AbstractResource
-     */
-    public function timeline($id = null)
-    {
-        return $this->getResource('timeline', $id);
-    }
-
-    /**
-     * Get relation handler
-     *
-     * @param int|null $id
-     * @return AbstractResource
-     */
-    public function relation($id = null)
-    {
-        return $this->getResource('relation', $id);
+        return $result;
     }
 
     /**
@@ -405,12 +571,45 @@ class User extends AbstractService
      *  - email: email
      *  - <extra fields>: specified by each adapter
      *
-     * @param array|false $data
+     * @param string|array|bool|UserModel $name
+     * @param null|mixed $value
      * @return self
      */
-    public function setPersist($data = array())
+    public function setPersist($name, $value = null)
     {
-        $_SESSION['PI_USER'] = $data ? (array) $data : null;
+        if (!isset($_SESSION)) {
+            return $this;
+        }
+
+        $ttl    = $this->getOption('options', 'persist', 'ttl');
+        $fields = $this->getOption('options', 'persist', 'field');
+        if (!$fields || !$ttl) {
+            return $this;
+        }
+
+        // Fetch whole data set from user model
+        if ($name instanceof UserModel) {
+            $_SESSION['PI_USER']['field'] = array();
+            foreach ($fields as $field) {
+                if (isset($name[$field])) {
+                    $_SESSION['PI_USER']['field'][$field] = $name[$field];
+                }
+            }
+        // Set/Update one single parameter
+        } elseif (is_string($name)) {
+            if (!isset($_SESSION['PI_USER']['field'])) {
+                $_SESSION['PI_USER']['field'] = $this->getPersist();
+            }
+            $_SESSION['PI_USER']['field'][$name] = $value;
+        // Set whole set
+        } else {
+            $_SESSION['PI_USER']['field'] = $name ? (array) $name : null;
+        }
+        if ($ttl) {
+            $_SESSION['PI_USER']['time'] = time() + $ttl;
+        } elseif (isset($_SESSION['PI_USER']['time'])) {
+            unset($_SESSION['PI_USER']['time']);
+        }
 
         return $this;
     }
@@ -423,14 +622,31 @@ class User extends AbstractService
      */
     public function getPersist($name = null)
     {
-        if (!$this->hasIdentity()) {
-            return false;
+        if (!isset($_SESSION)) {
+            return null;
         }
-        $data = (array) $_SESSION['PI_USER'];
-        if ($name) {
-            $result = isset($data[$name]) ? $data[$name] : null;
+
+        $data = isset($_SESSION['PI_USER'])
+            ? (array) $_SESSION['PI_USER'] : array();
+        if (isset($data['time']) && $data['time'] < time()) {
+            $result = null;
         } else {
-            $result = $data;
+            $userData = array();
+            if (isset($data['field'])) {
+                $userData = $data['field'];
+            } else {
+                $fields = $this->getOption('options', 'persist', 'field');
+                if ($fields) {
+                    $uid = $this->getId();
+                    $userData = $this->get($uid, $fields);
+                    $this->setPersist($userData);
+                }
+            }
+            if ($name) {
+                $result = isset($userData[$name]) ? $userData[$name] : null;
+            } else {
+                $result = $userData;
+            }
         }
 
         return $result;

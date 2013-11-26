@@ -1,0 +1,70 @@
+<?php
+    $this->css(array(
+        $this->assetModule('script/article-front.css'),
+        $this->assetModule('script/block.css'),
+    ));
+    $this->jQuery();
+?>
+
+<div class="pi-block">
+    <div class="clearfix pi-block-header">
+        <h4 class="pi-block-title"><?php echo $this->escape($categoryInfo['title']); ?></h4>
+        <span class="muted span2" style="margin: 10px 0 0 10px">
+            (<?php echo isset($counts[$categoryId]) ? $this->escape($counts[$categoryId]) : 0 . __(' articles'); ?>)
+        </span>
+    </div>
+    <div class="article-list-content">
+        <div style="margin: 10px 0 20px 0">
+        <?php $index = 0;
+            foreach ($subCategoryId as $id) {
+                if (++$index > $config['max_sub_category']) {
+                    break;
+                }
+        ?>
+            <span style="margin-right: 10px">
+                <a href="<?php echo $this->url($route, array(
+                    'action'   => 'list',
+                    'category' => $categories[$id]['slug'] ?: $categories[$id]['id'],
+                )); ?>" style="font-size: 15px; font-weight: bold; color: #333333">
+                    <?php echo $this->escape($categories[$id]['title']); ?>
+                </a>
+                <span class="muted" style="margin-left: 3px">
+                    (<?php echo isset($counts[$id]) ? $this->escape($counts[$id]) : 0 ?>)
+                </span>
+            </span>
+        <?php
+            }
+        ?>
+        </div>
+        <ul class="list list14" id="jsList">
+            <?php $index = 0 ?>
+            <?php foreach ($articles as $article) { $index++ ?>
+                <li class="muted">
+                    <div class="list-hover">
+                        <span class="pull-right article-list-desc">
+                            <?php echo  date('Y/m/d H:i', $article['time_publish']); ?>
+                        </span>
+                        <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>" 
+                           title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
+                               <?php echo $this->escape($article['subject']); ?>
+                        </a>
+                    </div>
+                </li>
+                <?php if ($index % 5 == 0) { ?>
+                    <li class="dashed"></li>
+                <?php } ?>
+            <?php } ?>   
+        </ul>
+        <?php 
+            echo $this->paginationControl(
+                $paginator,
+                'Sliding',
+                'paginator.phtml',
+                array('class' => 'pagination-centered')
+            );
+        ?>
+    </div>
+</div>
+<script>
+    $(".article-list-content").find(".dashed:last").css("height", "0");
+</script>

@@ -16,12 +16,12 @@ return array(
     // Module meta
     'meta'  => array(
         // Module title, required
-        'title'         => __('System'),
+        'title'         => _a('System'),
         // Description, for admin, optional
         'description'   =>
-            __('For administration of core functions of the site.'),
+            _a('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.2.2',
+        'version'       => '3.2.4',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -39,40 +39,37 @@ return array(
     // Author information
     'author'    => array(
         // Author full name, required
-        'Dev'      => 'Taiwen Jiang',
+        'Dev'      => 'Taiwen Jiang; Liu Chuang; Liaowei; Zongshu Lin',
+        'Architect' => '@taiwen',
+        'UI/UE'     => '@zhangsimon, @loidco, @voltan, Zeng Long',
+        'QA'        => '@MarcoXoops, Zhang Hua, @lavenderli',
         // Email address, optional
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
         'Website'   => 'http://pialog.org',
-        'Architect' => '@taiwen',
-        'Front'     => '@sexnothing',
-        'Design'    => '@zhangsimon, @loidco',
         // Credits and aknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
-    // Maintenance actions
-    'maintenance'   => array(
-        // resource
-        'resource' => array(
-            // Database meta
-            'database'  => array(
-                // SQL schema/data file
-                'sqlfile'   => 'sql/mysql.sql',
-            ),
-            // System config
-            'config'    => 'config.php',
-            // ACL specs
-            'acl'       => 'acl.php',
-            // Block definition
-            'block'     => 'block.php',
-            // Event specs
-            'event'     => 'event.php',
-            // View pages
-            'page'      => 'page.php',
-            // Navigation definition
-            'navigation'    => 'navigation.php',
-            // Routes, first in last out; bigger priority earlier out
-            'route'     => 'route.php',
-        )
-    )
+    // Resource
+    'resource' => array(
+        // Database meta
+        'database'      => array(
+            // SQL schema/data file
+            'sqlfile'   => 'sql/mysql.sql',
+        ),
+        // System config
+        'config'        => 'config.php',
+        // Permission specs
+        'permission'    => 'permission.php',
+        // Block definition
+        'block'         => 'block.php',
+        // Event specs
+        'event'         => 'event.php',
+        // View pages
+        'page'          => 'page.php',
+        // Navigation definition
+        'navigation'    => 'nav.php',
+        // Routes, first in last out; bigger priority earlier out
+        'route'         => 'route.php',
+    ),
 );

@@ -60,7 +60,7 @@ class NavController extends ActionController
     public function indexAction()
     {
         $modules = Pi::registry('module')->read();
-        $modules[''] = array('title' => __('Custom'));
+        $modules[''] = array('title' => _a('Custom'));
 
         $navList = array();
         $navGlobal = Pi::model('config')->select(array(
@@ -76,7 +76,7 @@ class NavController extends ActionController
         }
 
         $this->view()->assign('navList', array_values($navList));
-        $this->view()->assign('title', __('Navigation list'));
+        $this->view()->assign('title', _a('Navigation list'));
         $this->view()->assign('navGlobal', $navGlobal);
         //$this->view()->setTemplate('nav-select');
     }
@@ -87,7 +87,7 @@ class NavController extends ActionController
     public function listAction()
     {
         $modules = Pi::registry('module')->read();
-        $modules[''] = array('title' => __('Custom'));
+        $modules[''] = array('title' => _a('Custom'));
 
         $navGlobal = array(
             'front' => Pi::config('nav_front', ''),
@@ -124,7 +124,7 @@ class NavController extends ActionController
         $this->view()->assign('navCustom', $navCustom);
         $this->view()->assign('navModule', $navModule);
         $this->view()->assign('modules', $modules);
-        $this->view()->assign('title', __('Navigation list'));
+        $this->view()->assign('title', _a('Navigation list'));
         //$this->view()->setTemplate('nav-list');
     }
 
@@ -156,7 +156,7 @@ class NavController extends ActionController
 
         $result = array(
             'status'    => 1,
-            'message'   => __('Navigation set up successfully.'),
+            'message'   => _a('Navigation set up successfully.'),
         );
 
         return $result;
@@ -187,11 +187,11 @@ class NavController extends ActionController
                 $row = Pi::model('navigation')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    $message = __('Navigation saved successfully.');
+                    $message = _a('Navigation saved successfully.');
                     $nav = $row->toArray();
                 } else {
                     $status = 0;
-                    $message = __('Navigation data not saved.');
+                    $message = _a('Navigation data not saved.');
                 }
             } else {
                 $status = -1;
@@ -218,7 +218,7 @@ class NavController extends ActionController
             );
         }
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Add a navigation'));
+        $this->view()->assign('title', _a('Add a navigation'));
         $this->view()->setTemplate('system:component/form-popup');
     }
 
@@ -251,13 +251,13 @@ class NavController extends ActionController
                 $row = Pi::model('navigation')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    $message = __('Navigation saved successfully.');
+                    $message = _a('Navigation saved successfully.');
                     $this->cloneNode($parent, $row->name);
 
                     $nav = $row->toArray();
                 } else {
                     $status = 0;
-                    $message = __('Navigation data not saved.');
+                    $message = _a('Navigation data not saved.');
                 }
             } else {
                 $status = -1;
@@ -295,7 +295,7 @@ class NavController extends ActionController
             ));
         }
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Clone navigation'));
+        $this->view()->assign('title', _a('Clone navigation'));
         $this->view()->setTemplate('system:component/form-popup');
     }
 
@@ -315,7 +315,7 @@ class NavController extends ActionController
             $result = array(
                 'status'    => 0,
                 'message'   =>
-                    __('The navigation is in use and not allowed to delete.'),
+                    _a('The navigation is in use and not allowed to delete.'),
             );
             return $result;
         }
@@ -327,7 +327,7 @@ class NavController extends ActionController
         $row->delete();
         $result = array(
             'status'    => 1,
-            'message'   => __('The navigation is deleted successfully.'),
+            'message'   => _a('The navigation is deleted successfully.'),
         );
 
         return $result;
@@ -394,9 +394,9 @@ class NavController extends ActionController
         );
 
         if ($readonly) {
-            $title = __('View of navigation details: %s');
+            $title = _a('View of navigation details: %s');
         } else {
-            $title = __('Navigation data edit: %s');
+            $title = _a('Navigation data edit: %s');
         }
         $navigation = Pi::model('navigation')->find($nav, 'name');
         $nav = $navigation->toArray();
@@ -482,18 +482,18 @@ class NavController extends ActionController
     public function updateAction()
     {
         $status = 1;
-        $message = __('Navigation data saved successfully.');
+        $message = _a('Navigation data saved successfully.');
 
         $model  = Pi::model('navigation');
         $nav    = $this->request->getPost('name');
         $row    = $model->find($nav, 'name');
         if (!$row) {
             $status = 0;
-            $message = __('Navigation not found.');
+            $message = _a('Navigation not found.');
         } elseif ($row->module) {
             $status = 0;
             $message =
-                __('Only custom navigations are allowed to manipulate.');
+                _a('Only custom navigations are allowed to manipulate.');
         }
         if (!$status) {
             return array(

@@ -22,7 +22,7 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  *      // Full path
  *      $model->setTemplate('/full/path/to/template.html');
  *      // Relative path with specified module
- *      $model->setTemplate('module:path/to/template');
+ *      $model->setTemplate('<module>:<path/to/template>');
  *      // Relative path w/o specified module
  *      $model->setTemplate('path/to/template');
  *  ```
@@ -34,6 +34,12 @@ use Zend\View\Renderer\RendererInterface as Renderer;
  *      `theme/default/module/demo/template/[front/template.html]`
  *   - for module "democlone":
  *      'theme/default/module/democlone/template/[front/template.html]`
+ *
+ * - Module custom templates:
+ *   - for module "demo":
+ *      `custom/demo/template/[front/template.html]`
+ *   - for module "democlone":
+ *      'custom/democlone/template/[front/template.html]`
  *
  * - Module native templates:
  *   - for both module "demo" and cloned "democlone":
@@ -104,9 +110,14 @@ class ModuleTemplate implements ResolverInterface
             // Remove suffix
             $name = substr($name, 0, -6);
         }
-        $segs = explode(':', $name, 2);
-        if (isset($segs[1])) {
-            list($module, $template) = $segs;
+        $segments = explode(':', $name, 2);
+        if (isset($segments[1])) {
+            list($module, $template) = $segments;
+            /*
+            if ('module/' == substr($module, 0, 7)) {
+                $module = substr($module, 7);
+            }
+            */
         } else {
             $module = Pi::service('module')->current();
             $template = $name;
@@ -117,6 +128,8 @@ class ModuleTemplate implements ResolverInterface
 
     /**
      * Retrieve the filesystem path to a view script
+     *
+     * @FIXME Is performance a problem?
      *
      * @param  string $name Relative or full path to template,
      *      it is highly recommended to remove suffix from relative template
@@ -135,6 +148,18 @@ class ModuleTemplate implements ResolverInterface
             '%s/%s/module/%s/%s/%s.%s',
             Pi::path('theme'),
             Pi::service('theme')->current(),
+            $module,
+            $this->templateDirectory,
+            $template,
+            $this->suffix
+        );
+        if (file_exists($path)) {
+            return $path;
+        }
+        // Check custom template in module custom path
+        $path = sprintf(
+            '%s/module/%s/%s/%s.%s',
+            Pi::path('custom'),
             $module,
             $this->templateDirectory,
             $template,

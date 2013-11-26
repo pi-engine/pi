@@ -10,8 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Pi\Application\Model\Navigation\Node as NodeRow;
-use Pi\Application\Model\Model as NavigationRow;
+use Pi\Db\RowGateway\RowGateway as NavigationRow;
 
 /**
  * Navigation setup with configuration specs
@@ -57,12 +56,10 @@ use Pi\Application\Model\Model as NavigationRow;
  *                  'label'         => 'A Static Page',
  *                  // URI relative to Pi Engine www root
  *                  'uri'           => 'contact',
- *                  'resource'      => array(
+ *                  'permission'    => array(
  *                      'section'   => 'front',
  *                      'module'    => 'mvc',
  *                      'resource'  => 'test',
- *                      'item'      => 3,
- *                      'privilege' => 'read',
  *                  ),
  *              ),
  *              'p4' => array(
@@ -76,7 +73,7 @@ use Pi\Application\Model\Model as NavigationRow;
  *              ),
  *              // callback with single func
  *              'p6' => array(
- *                  'callback'         => 'Module\\System\\Navigation\\admin',
+ *                  'callback'         => 'Module\System\Navigation\admin',
  *              ),
  *              // Divider with specified class
  *              'p7' => array(
@@ -123,6 +120,7 @@ class Navigation extends AbstractResource
                 $page['route'] = $this->route;
             }
             // Canonize module relative route
+            // @deprecated
             if ('.' == $page['route'][0]) {
                 $page['route'] = $page['module'] . '-'
                                . substr($page['route'], 1);
@@ -140,6 +138,10 @@ class Navigation extends AbstractResource
                 $page['uri'] = Pi::url('www') . '/' . ltrim($page['uri'], '/');
             }
             //$validColumns = $this->uriColumns;
+        }
+        if (!empty($page['permission'])) {
+            $page['resource'] = $page['permission'];
+            unset($page['permission']);
         }
 
         return $page;
@@ -197,15 +199,25 @@ class Navigation extends AbstractResource
             unset($item['front']);
         }
 
+        $navNames = array();
         foreach ($meta as $key => $nav) {
-            $name           = $module . '-' . $key;
             $nav['module']  = $module;
-            $nav['name']    = $name;
             $nav['title']   = __($nav['title']);
+            if (isset($nav['name'])) {
+                $name = $nav['name'];
+            } else {
+                $name           = $module . '-' . $key;
+                $nav['name']    = $name;
+            }
             $result['meta'][$name] = $nav;
+            $navNames[$key] = $name;
         }
         foreach ($item as $key => $data) {
-            $name = $module . '-' . $key;
+            if (isset($navNames[$key])) {
+                $name = $navNames[$key];
+            } else {
+                $name = $module . '-' . $key;
+            }
             $this->canonizePages($data);
             $node = array(
                 'module'        => $module,
@@ -279,7 +291,14 @@ class Navigation extends AbstractResource
         foreach ($rowset as $row) {
             // Updated existent navigation
             if (isset($navigations[$row->name])) {
-                $status = $row->assign($navigations[$row->name])->save();
+                $row->assign($navigations[$row->name]);
+                try {
+                    $row->save();
+                    $status = true;
+                } catch (\Exception $e) {
+                    $status = false;
+                }
+
                 unset($navigations[$row->name]);
                 continue;
             // Delete deprecated navigation
@@ -315,7 +334,13 @@ class Navigation extends AbstractResource
         foreach ($rowset as $row) {
             // Updated existent node
             if (isset($nodes[$row->navigation])) {
-                $status = $row->assign($nodes[$row->navigation])->save();
+                $row->assign($nodes[$row->navigation]);
+                try {
+                    $row->save();
+                    $status = true;
+                } catch (\Exception $e) {
+                    $status = false;
+                }
                 unset($nodes[$row->navigation]);
                 continue;
             // Delete deprecated node
@@ -424,20 +449,6 @@ class Navigation extends AbstractResource
     }
 
     /**
-     * Delete a page node
-     *
-     * @param NodeRow $node
-     * @param array $message
-     * @return bool
-     */
-    protected function deleteNavigationNode(NodeRow $node, &$message = null)
-    {
-        $node->delete();
-
-        return true;
-    }
-
-    /**
      * Load navigation specs from config
      *
      * @return array
@@ -448,7 +459,7 @@ class Navigation extends AbstractResource
             return array();
         }
         $module = $this->event->getParam('module');
-        Pi::service('i18n')->load(sprintf('module/%s:navigation', $module));
+        //Pi::service('i18n')->load(sprintf('module/%s:navigation', $module));
         $navigations = $this->canonizeConfig($navigations);
 
         return $navigations;

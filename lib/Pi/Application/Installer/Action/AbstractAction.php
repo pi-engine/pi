@@ -154,11 +154,10 @@ abstract class AbstractAction
      */
     public function checkDependent(Event $e)
     {
-        $model = Pi::model('module_dependency');
-        $rowset = $model->select(array(
+        $count = Pi::model('module_dependency')->count(array(
             'independent' => $e->getParam('module')
         ));
-        if ($rowset->count() > 0) {
+        if ($count > 0) {
             $this->setResult('dependent', array(
                 'status'    => false,
                 'message'   => 'The module has dependants on it.'
@@ -184,9 +183,9 @@ abstract class AbstractAction
         $independents = $config['dependency'];
         $modules = Pi::registry('modulelist')->read();
         $missing = array();
-        foreach ($independents as $indenpendent) {
-            if (!isset($modules[$indenpendent])) {
-                $missing[] = $indenpendent;
+        foreach ($independents as $independent) {
+            if (!isset($modules[$independent])) {
+                $missing[] = $independent;
             }
         }
         if ($missing) {

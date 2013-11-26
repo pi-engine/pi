@@ -16,34 +16,34 @@
  |=============================================================================|
  | Block Title                                                                 |
  |-----------------------------------------------------------------------------|
- | Block conet ...                                                             |
- | Block conet ...                                                             |
- | Block conet ...                                                             |
+ | Block content ...                                                             |
+ | Block content ...                                                             |
+ | Block content ...                                                             |
  |=============================================================================|
 
  Block w/o title
  |=============================================================================|
- | Block conet ...                                                             |
- | Block conet ...                                                             |
- | Block conet ...                                                             |
+ | Block content ...                                                             |
+ | Block content ...                                                             |
+ | Block content ...                                                             |
  |=============================================================================|
 
  Block with subline
  |=============================================================================|
  | Block Title                             (Subline: link | link | link | more)|
  |-----------------------------------------------------------------------------|
- | Block conet ...                                                             |
- | Block conet ...                                                             |
- | Block conet ...                                                             |
+ | Block content ...                                                             |
+ | Block content ...                                                             |
+ | Block content ...                                                             |
  |=============================================================================|
 
  Block with tabs
  |=============================================================================|
  | Block Title                                   | tab | tab | tab | tab | tab |
  |-----------------------------------------------|     |-----------------------|
- | Block conet of first tab ...                                                |
- | Block conet of first tab ...                                                |
- | Block conet of first tab ...                                                |
+ | Block content of first tab ...                                                |
+ | Block content of first tab ...                                                |
+ | Block content of first tab ...                                                |
  |=============================================================================|
 
  */
@@ -59,7 +59,7 @@ if (is_array($block['content'])) {
 
 <?php /* Assign global ID, add custom stylesheet class if available */ ?>
 <div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="pi-block<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
-    <?php /* Display block header section only if title, or subline or tab availabe */ ?>
+    <?php /* Display block header section only if title, or subline or tab available */ ?>
     <?php if (!empty($block['title']) || !empty($block['subline']) || is_array($block['content'])) { ?>
     <div class="clearfix pi-block-header">
         <?php /* Float position for subline and tab */ ?>
@@ -72,7 +72,7 @@ if (is_array($block['content'])) {
                 $i = 0;
                 foreach ($block['content'] as $tab) {
                 ?>
-                <li<?php echo $i ? '' : ' class="active"'; ?>><a href="<?php if (empty($tab['link'])) { ?>#<?php } else { echo $tab['link']; } ?>" data-toggle="tab" data-target="#block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo $this->escape($tab['caption']); ?></a>
+                <li<?php echo $i ? '' : ' class="active"'; ?>><a href="<?php if (empty($tab['link'])) { ?>#<?php } else { echo $tab['link']; } ?>" data-toggle="tab" data-target="#block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo _escape($tab['caption']); ?></a>
                 <?php } ?>
             </ul>
         <?php } ?>
@@ -83,7 +83,7 @@ if (is_array($block['content'])) {
         <?php } ?>
 
         <?php /* Display title if available */ ?>
-        <h4 class="pi-block-title"><?php echo empty($block['title']) ? '' : $this->escape($block['title']); ?></h4>
+        <h4 class="pi-block-title"><?php echo empty($block['title']) ? '' : _escape($block['title']); ?></h4>
     </div>
     <?php } ?>
 

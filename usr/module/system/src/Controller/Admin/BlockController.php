@@ -10,7 +10,7 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Module\System\Controller\ComponentController  as ActionController;
+use Module\System\Controller\ComponentController;
 use Module\System\Form\BlockModuleForm as ModuleForm;
 use Zend\Db\Sql\Predicate\Expression;
 
@@ -28,8 +28,18 @@ use Zend\Db\Sql\Predicate\Expression;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class BlockController extends ActionController
+class BlockController extends ComponentController
 {
+    /**
+     * Get exceptions for permission check
+     *
+     * @return string
+     */
+    public function permissionException()
+    {
+        return 'page';
+    }
+
     /**
      * Get module list
      *
@@ -72,6 +82,10 @@ class BlockController extends ActionController
         // Module name, default as 'system'
         $name = $this->params('name', 'system');
 
+        if (!$this->permission($name, 'block')) {
+            return;
+        }
+
         // BLocks of the module
         $model = Pi::model('block');
         $select = $model->select()->where(array('module' => $name))
@@ -96,7 +110,7 @@ class BlockController extends ActionController
         //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('blocks', array_values($blocks));
         $this->view()->assign('name', $name);
-        $this->view()->assign('title', __('Block list'));
+        $this->view()->assign('title', _a('Block list'));
         //$this->view()->assign('message', $message);
         $this->view()->setTemplate('block-list');
     }
@@ -112,10 +126,11 @@ class BlockController extends ActionController
             $data = $this->request->getPost();
             $rootRow = Pi::model('block_root')->find($data['root']);
             if (!$rootRow->render) {
-                $message = __('The block is not allowed to clone.');
+                $message = _a('The block is not allowed to clone.');
                 $this->jump(
                     array('action' => 'index', 'name' => $rootRow->module),
-                    $message
+                    $message,
+                    'error'
                 );
                 return;
             }
@@ -134,26 +149,27 @@ class BlockController extends ActionController
                 $result = Pi::api('system', 'block')->add($values);
                 extract($result);
                 if ($status) {
-                    $message = __('Block data saved successfully.');
+                    $message = _a('Block data saved successfully.');
                     $this->jump(
                         array('action' => 'index', 'name' => $rootRow->module),
                         $message
                     );
                     return;
                 } else {
-                    $message = __('Block data not saved.');
+                    $message = _a('Block data not saved.');
                 }
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $root = $this->params('root');
             $rootRow = Pi::model('block_root')->find($root);
             if (!$rootRow->render) {
-                $message = __('The block is not allowed to clone.');
+                $message = _a('The block is not allowed to clone.');
                 $this->jump(
                     array('action' => 'index', 'name' => $rootRow->module),
-                    $message
+                    $message,
+                    'error'
                 );
                 return;
             }
@@ -183,7 +199,7 @@ class BlockController extends ActionController
             $message = '';
         }
 
-        $title = sprintf(__('Block clone from: %s'), $rootRow->title);
+        $title = sprintf(_a('Block clone from: %s'), $rootRow->title);
 
         $this->view()->assign('title', $title);
         //$this->view()->assign('modules', $this->getModules());
@@ -220,21 +236,21 @@ class BlockController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
                 $result = Pi::api('system', 'block')->edit($blockRow, $values);
-                $message = __('Block data saved successfully.');
+                $message = _a('Block data saved successfully.');
                 $this->jump(
                     array('action' => 'index', 'name' => $blockRow->module),
                     $message
                 );
                 return;
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $id = $this->params('id');
             $blockRow = Pi::model('block')->find($id);
             if (!$blockRow) {
-                $message = __('Block is not found.');
-                $this->jump(array('action' => 'index'), $message);
+                $message = _a('Block is not found.');
+                $this->jump(array('action' => 'index'), $message, 'error');
                 return;
             }
             $rootRow = Pi::model('block_root')->find($blockRow->root);
@@ -248,7 +264,7 @@ class BlockController extends ActionController
             $message = '';
         }
 
-        $title = sprintf(__('Block edit: %s'), $blockRow->title);
+        $title = sprintf(_a('Block edit: %s'), $blockRow->title);
 
         $this->view()->assign('title', $title);
         //$this->view()->assign('modules', $this->getModules());
@@ -291,7 +307,7 @@ class BlockController extends ActionController
             $modules = Pi::registry('module')->read();
             /*
             $modules[''] = array(
-                'title' => __('Custom blocks'),
+                'title' => _a('Custom blocks'),
             );
             */
             $select = Pi::model('page')->select()

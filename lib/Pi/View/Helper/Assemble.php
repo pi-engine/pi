@@ -140,53 +140,56 @@ class Assemble extends AbstractHelper
         /**#@+
          * Generates and inserts head meta, stylesheets and scripts
          */
-        $head = '';
-
-        foreach (array(
-            'headTitle',
-            'headMeta',
-            'headLink',
-            'headStyle',
-            'headScript'
-        ) as $section) {
-            $sectionContent = $this->view->plugin($section)->toString();
-            $sectionContent .= $sectionContent ? PHP_EOL : '';
-            if (!empty($this->sectionLabel[$section])) {
-                $content = str_replace(
-                    $this->sectionLabel[$section],
-                    $sectionContent,
-                    $content
-                );
-            } else {
-                $head .= $sectionContent . PHP_EOL;
+        $pos = stripos($content, '</head>');
+        if ($pos) {
+            $head = '';
+            foreach (array(
+                'headTitle',
+                'headMeta',
+                'headLink',
+                'headStyle',
+                'headScript'
+            ) as $section) {
+                $sectionContent = $this->view->plugin($section)->toString();
+                $sectionContent .= $sectionContent ? PHP_EOL : '';
+                if (!empty($this->sectionLabel[$section])) {
+                    $content = str_replace(
+                        $this->sectionLabel[$section],
+                        $sectionContent,
+                        $content
+                    );
+                } else {
+                    $head .= $sectionContent . PHP_EOL;
+                }
             }
-        }
 
-        if ($head) {
-            $pos = stripos($content, '</head>');
-            $preHead = substr($content, 0, $pos);
-            $postHead = substr($content, $pos);
-            $content = $preHead . PHP_EOL . $head . PHP_EOL . $postHead;
+            if ($head) {
+                $preHead = substr($content, 0, $pos);
+                $postHead = substr($content, $pos);
+                $content = $preHead . PHP_EOL . $head . PHP_EOL . $postHead;
+            }
         }
         /**#@-*/
 
         /**@+
          * Generates and inserts foot scripts
          */
-        $section = 'footScript';
-        $sectionContent = $this->view->plugin($section)->toString();
-        if (!empty($this->sectionLabel[$section])) {
-            $content = str_replace(
-                $this->sectionLabel[$section],
-                $sectionContent,
-                $content
-            );
-        } elseif ($sectionContent) {
-            $pos = stripos($content, '</body>');
-            $preFoot = substr($content, 0, $pos);
-            $postFoot = substr($content, $pos);
-            $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
-                     . $postFoot;
+        $pos = stripos($content, '</body>');
+        if ($pos) {
+            $section = 'footScript';
+            $sectionContent = $this->view->plugin($section)->toString();
+            if (!empty($this->sectionLabel[$section])) {
+                $content = str_replace(
+                    $this->sectionLabel[$section],
+                    $sectionContent,
+                    $content
+                );
+            } elseif ($sectionContent) {
+                $preFoot = substr($content, 0, $pos);
+                $postFoot = substr($content, $pos);
+                $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
+                         . $postFoot;
+            }
         }
         /**#@-*/
 

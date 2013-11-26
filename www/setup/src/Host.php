@@ -455,8 +455,10 @@ class Host
             if (!curl_errno($ch)) {
                 if (!empty($mimeType)) {
                     $contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+                    // Content-Type might not be detected correctly by CURL
+                    // Thus return null instead of false if not matched
                     $ret = (strpos($contentType, $mimeType) !== false)
-                         ? true : false;
+                         ? true : null;
                 } else {
                     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     $ret = ($httpCode == 200) ? true : false;

@@ -9,7 +9,6 @@
 
 namespace Pi\Authentication\Adapter;
 
-use Pi;
 use Zend\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
 
 /**
@@ -17,9 +16,8 @@ use Zend\Authentication\Adapter\AbstractAdapter as ZendAbstractAdapter;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractAdapter
-    extends ZendAbstractAdapter
-    implements AdapterInterface
+abstract class AbstractAdapter extends ZendAbstractAdapter implements
+    AdapterInterface
 {
     /** @var array Options */
     protected $options = array();
@@ -64,16 +62,16 @@ abstract class AbstractAdapter
         if (null === $returnColumns
             && isset($this->options['return_columns'])
         ) {
-            $returnColumns = $this->options['return_columns'];
+            $returnColumns = (array) $this->options['return_columns'];
         }
         if (null === $omitColumns && isset($this->options['omit_columns'])) {
-            $omitColumns = $this->options['omit_columns'];
+            $omitColumns = (array) $this->options['omit_columns'];
         }
         $omitColumns = $omitColumns ?: array();
 
         $return = array();
         $data = $this->resultRow;
-        if (null !== $returnColumns) {
+        if ($returnColumns) {
             foreach ((array) $returnColumns as $returnColumn) {
                 if (isset($data[$returnColumn])) {
                     $return[$returnColumn] = $data[$returnColumn];

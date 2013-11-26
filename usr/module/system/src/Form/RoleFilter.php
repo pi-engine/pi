@@ -48,6 +48,18 @@ class RoleFilter extends InputFilter
             ),
         ));
 
+        /*
+        $this->add(array(
+            'name'          => 'order',
+            'required'      => false,
+            'filters'       => array(
+                array(
+                    'name'  => 'Int',
+                ),
+            ),
+        ));
+        */
+
         $this->add(array(
             'name'          => 'id',
             'required'      => false,
@@ -55,6 +67,10 @@ class RoleFilter extends InputFilter
 
         $this->add(array(
             'name'          => 'section',
+        ));
+
+        $this->add(array(
+            'name'          => 'active',
         ));
     }
 }

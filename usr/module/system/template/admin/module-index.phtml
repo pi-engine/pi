@@ -5,20 +5,20 @@
     $this->backbone();
 ?>
 <ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php _e('Installed'); ?>"><?php _e('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php _e('Availables'); ?>"><?php _e('Availables'); ?></a></li>
-    <li class="disabled"><a><?php _e('Repository'); ?></a></li>
+    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
+    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
+    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
 </ul>
 <div id="js-module">
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 10%;"><?php _e('Logo'); ?></th>
-                <th style="width: 15%;"><?php _e('Title'); ?></th>
-                <th style="width: 10%;"><?php _e('Version'); ?></th>
-                <th style="width: 15%;"><?php _e('Last Update'); ?></th>
-                <th style="width: 30%;"><?php _e('Description'); ?></th>
-                <th><?php _e('Action'); ?></th>
+                <th style="width: 10%;"><?php echo _a('Logo'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Title'); ?></th>
+                <th style="width: 10%;"><?php echo _a('Version'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
+                <th style="width: 30%;"><?php echo _a('Description'); ?></th>
+                <th><?php echo _a('Action'); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
                         <div class="hide module-title-input">
                             <input type="text" class="input-medium" data-id="<?php echo $module['id']; ?>">
                         </div>
-                        <a href="javascript:void(0)" class="invisible rename-action"><?php _e('Rename'); ?></a>
+                        <a href="javascript:void(0)" class="invisible rename-action"><?php echo _a('Rename'); ?></a>
                     </div>
                 </td>
                 <td>
@@ -43,18 +43,18 @@
                 </td>
                 <td>
                     <p><?php echo $module['update']; ?></p>
-                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php _e('update'); ?></a>
+                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php echo _a('Update'); ?></a>
                 </td>
                 <td>
                     <p><?php echo $module['description']; ?></p>
-                    <a href="javascript:void(0)" class="invisible detail-action"><?php _e('Detail'); ?></a>
+                    <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
                     <div class="hide well well-small">
                         <dl class="dl-horizontal">
-                            <dt><?php _e('Name:'); ?></dt>
+                            <dt><?php echo _a('Name:'); ?></dt>
                             <dd><?php echo $module['name']; ?></dd>
-                            <dt><?php _e('Directory:'); ?></dt>
+                            <dt><?php echo _a('Directory:'); ?></dt>
                             <dd><?php echo $module['directory']; ?></dd>
-                            <dt><?php _e('Author'); ?></dt>
+                            <dt><?php echo _a('Author'); ?></dt>
                             <dd>&nbsp;</dd>
                             <?php foreach ($module['author'] as $key => $value) {
                                 echo '<dt>' . _escape($key) . ':</dt>';
@@ -68,11 +68,11 @@
                         <?php
                         if($module['name'] != 'system') {
                             if ($module['active']) {
-                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), __('Disable'));
+                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), _a('Disable'));
                             } else {
-                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), __('Enable'));
+                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), _a('Enable'));
                             }
-                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), __('Are you sure uninstall this module?') ,__('Uninstall'));
+                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), _a('Are you sure to uninstall this module?') ,_a('Uninstall'));
                         } ?>
                     </div>
                 </td>

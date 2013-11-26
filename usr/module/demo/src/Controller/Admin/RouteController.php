@@ -49,7 +49,7 @@ class RouteController extends ActionController
         }
 
         $this->view()->assign('routes', $routes);
-        $this->view()->assign('title', __('Route list'));
+        $this->view()->assign('title', _a('Route list'));
         $this->view()->setTemplate('route-list');
     }
 
@@ -83,17 +83,17 @@ class RouteController extends ActionController
                 $row = Pi::model('route')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    $message = __('Route data saved successfully.');
+                    $message = _a('Route data saved successfully.');
                     Pi::registry('route')->flush();
 
                     //$this->view()->setTemplate(false);
                     $this->redirect()->toRoute('', array('action' => 'index'));
                     return;
                 } else {
-                    $message = __('Route data not saved.');
+                    $message = _a('Route data not saved.');
                 }
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $form = new RouteForm('route');
@@ -110,7 +110,7 @@ class RouteController extends ActionController
 
 
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Add a route'));
+        $this->view()->assign('title', _a('Add a route'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('route-edit');
     }
@@ -145,7 +145,7 @@ class RouteController extends ActionController
             $row = Pi::model('route')->createRow($values);
             $row->save();
             if ($row->id) {
-                $message = __('Route added successfully.');
+                $message = _a('Route added successfully.');
                 $route = array(
                     'id'            => $row->id,
                     'title'         => $row->title,
@@ -160,7 +160,7 @@ class RouteController extends ActionController
                 );
                 Pi::registry('route')->flush();
             } else {
-                $message = __('Route data not saved.');
+                $message = _a('Route data not saved.');
                 $status = 0;
             }
         } else {
@@ -205,11 +205,11 @@ class RouteController extends ActionController
                 unset($values['type']);
                 $row->assign($values);
                 $row->save();
-                $message = __('Route data saved successfully.');
+                $message = _a('Route data saved successfully.');
                 $this->redirect()->toRoute('', array('action' => 'index'));
                 return;
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $id = $this->params('id');
@@ -227,7 +227,7 @@ class RouteController extends ActionController
         }
 
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Route edit'));
+        $this->view()->assign('title', _a('Route edit'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('route-edit');
     }
@@ -262,7 +262,7 @@ class RouteController extends ActionController
             $row->assign($values);
             $row->save();
 
-            $message = __('Route data saved successfully.');
+            $message = _a('Route data saved successfully.');
             $route = array(
                 'id'            => $id,
                 'title'         => $row->title,

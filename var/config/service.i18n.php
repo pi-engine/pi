@@ -3,10 +3,13 @@
 
 return array(
     'translator'    => array(
-        'type'      => 'csv',
+        'type'      => 'gettext',
+        'extension' => 'mo',
+        /*
         'options'   => array(
             'delimiter' => ',',
             'enclosure' => '"',
         ),
+        */
     ),
 );

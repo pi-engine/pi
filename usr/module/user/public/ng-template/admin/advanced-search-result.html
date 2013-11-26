@@ -1,0 +1,106 @@
+<style>
+.nav-tabs>.active>a:hover {
+  cursor: pointer;
+}
+</style>
+<legend>{{'SEARCH_RESULT' | translate}}</legend>
+<div ng-show="users.length">
+  <div class="clearfix form-inline" style="margin: 0 20px 20px 8px;">
+    <strong class="pull-right">{{paginator.count}} members</strong>
+    <input type="checkbox" style="margin-right: 6px;"
+           ng-model="allChecked" ng-change="markAll()">
+    <div class="btn-group">
+      <button class="btn" ng-click="activeBatchAction()">
+        <i class="icon-ok-sign"></i>
+        {{'ACTIVATE' | translate}}
+      </button>
+      <button class="btn" ng-click="enableBatchAction()">
+        <i class="icon-ok text-success"></i>
+        {{'ENABLE' | translate}}
+      </button>
+      <button class="btn" ng-click="disableBatchAction()">
+        <i class="icon-power-off"></i>
+        {{'DISABLE' | translate}}
+      </button>
+      <button class="btn" ng-click="deleteBatchAction()">
+        <i class="icon-remove text-error"></i>
+        {{'DELETE' | translate}}
+      </button>
+    </div>
+    <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
+            ng-options="item.title group by item.type for item in roles">
+      <option value="">{{'ASSIGN_ROLE' | translate}}
+    </select>
+    <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
+            ng-options="item.title group by item.type for item in roles">
+      <option value="">{{'UNASSIGN_ROLE' | translate}}
+    </select>
+  </div>
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th style="width: 14px;">
+          <th style="width: 14px;">
+          <th width="5%">{{'ID' | translate}}
+          <th>{{'USERNAME' | translate}}
+          <th>{{'DISPLAYNAME' | translate}}
+          <th width="15%">{{'EMAIL' | translate}}
+          <th width="8%" class="text-center">{{'ENABLED' | translate}}
+          <th width="8%" class="text-center">{{'ACTIVATED' | translate}}
+          <th width="8%">{{'ROLE' | translate}}
+          <th width="10%" class="text-center">{{'REGISTER_IP' | translate}}
+          <th width="10%" class="text-center">{{'REGISTER_TIME' | translate}}
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td>
+            <input type="checkbox" ng-model="user.checked" style="margin-top: -2px;">
+          <td>
+            <i class="icon-circle text-success" ng-if="user.active"
+               tooltip="{{'ACTIVE' | translate}}">
+            </i>
+            <i class="icon-circle muted" ng-if="!user.active"
+               tooltip="{{'INACTIVE' | translate}}">
+            </i>
+          <td>
+            {{user.id}}
+          <td>
+            {{user.identity}}
+            <div class="pi-row-action">
+              <a href="{{user.editUrl}}">{{'EDIT' | translate}}</a>
+              <a href="javascript:void(0)" ng-click="deleteAction($index)">{{'DELETE' | translate}}</a>
+              <a href="maintenance/#!/logs/{{user.id}}">{{'VIEW_LOG' | translate}}</a>
+            </div>
+          <td>{{user.name}}
+          <td>{{user.email}}
+          <td class="text-center">
+            <div class="pi-status" ng-class="{'active': !user.time_disabled}"
+                 ng-click="enableAction(user)">
+              <div class="pi-status-director"></div>
+            </div>
+          <td class="text-center">
+            <div class="pi-status" ng-class="{'active': user.time_activated, 'disabled': user.time_activated}"
+                 ng-click="activeAction(user)">
+              <div class="pi-status-director"></div>
+            </div>
+          <td>
+            <span ng-if="user.front_roles" tooltip="{{'FRONT_ROLE'| translate}} : {{user.front_roles}}" 
+                  style="padding-right: 5px;">
+              <i class="icon-user icon-large"></i>
+            </span>
+            <span ng-if="user.admin_roles" tooltip="{{'ADMIN_ROLE'| translate}} : {{user.admin_roles}}"
+                  style="padding-left: 5px;">
+              <i class="icon-user-md icon-large"></i>
+            </span>
+          <td class="text-center">
+            {{user.ip_register}}
+          <td class="text-center">
+            {{user.time_created}}
+  </table>
+  <pagination ng-if="paginator.count > paginator.limit" 
+              total-items="paginator.count" page="paginator.page" max-size="10"
+              boundary-links="true" items-per-page="paginator.limit">
+  </pagination>
+</div>
+<div class="alert" ng-show="!users.length">
+  {{'NONE_USER' | translate}}
+</div>

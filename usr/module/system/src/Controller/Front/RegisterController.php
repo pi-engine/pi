@@ -33,7 +33,7 @@ class RegisterController extends ActionController
             $this->jump(
                 array('route' => 'home'),
                 __('Registration is disabled. Please come back later.'),
-                5
+                'error'
             );
 
             return;
@@ -42,7 +42,7 @@ class RegisterController extends ActionController
         // If already logged in
         if (Pi::service('authentication')->hasIdentity()) {
             $this->redirect()->toRoute(
-                'user',
+                'sysuser',
                 array('controller' => 'account')
             );
 
@@ -104,11 +104,11 @@ class RegisterController extends ActionController
             'name'          => $values['name'],
             'email'         => $values['email'],
             'credential'    => $values['credential'],
-            'active'        => 1,
-            'role'          => Acl::MEMBER,
+            //'active'        => 1,
+            //'role'          => Acl::MEMBER,
         );
-        $result = Pi::api('system', 'member')->add($data);
-        if (!$result['id']) {
+        $uid = Pi::api('system', 'user')->addUser($data);
+        if (!$uid) {
             $this->view()->assign(
                 'message',
                 __('The account is not created in database, please try again.')
@@ -117,6 +117,9 @@ class RegisterController extends ActionController
 
             return;
         }
+        Pi::api('system', 'user')->activateUser($uid);
+        Pi::api('system', 'user')->setRole($uid, 'member');
+
 
         $this->view()->setTemplate('register-success');
         $this->view()->assign('title', __('Register'));

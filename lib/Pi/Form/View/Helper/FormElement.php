@@ -36,7 +36,9 @@ class FormElement extends ZendFormElement
 
         $type = $element->getAttribute('type');
         if ($type) {
-            $type = sprintf('form_%s', str_replace('-', '_', $type));
+            if (false === strpos($type, '\\')) {
+                $type = sprintf('form_%s', str_replace('-', '_', $type));
+            }
             $helper = $renderer->plugin($type);
             if ($helper) {
                 return $helper($element);

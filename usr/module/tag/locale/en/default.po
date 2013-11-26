@@ -1,0 +1,82 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-tag\n"
+"POT-Creation-Date: 2013-11-10 14:05+0800\n"
+"PO-Revision-Date: 2013-11-10 14:05+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\tag\n"
+
+#: C:\wamp\www\master\usr\module\tag/src/Form/SearchForm.php:37
+#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:5
+msgid "Tags"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:17
+#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:13
+msgid "ALL"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:41
+msgid "not related an obj in "
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:46
+msgid "Title"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:47
+msgid "Module"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:48
+msgid "Time"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:58
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:15
+msgid "Tag Name"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:59
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:16
+msgid "Count"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:5
+msgid "Search"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:6
+msgid "Search result"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:10
+msgid "is not found Try some other words"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:17
+msgid "Operator"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:38
+msgid "Delete"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Link Time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "All"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Link time"
+#~ msgstr "Application Execution Time"

@@ -1,0 +1,47 @@
+<?php 
+    $this->bootstrap(array(
+        'js/bootstrap-carousel.js',
+        'js/bootstrap.js',
+    ));
+    
+    $style    = $block['style'];
+    $target   = $block['target'];
+    $articles = $block['articles'];
+?>
+
+<div class="article-block-recommended-slide row-fluid">
+    <div id="article-recommended-slide" class="carousel slide span4">
+        <ol class="carousel-indicators">
+            <?php $i = 0; ?>
+            <?php for ($i = 0; $i < count($block['images']); $i++) { ?>
+            <li data-target="#article-recommended-slide" data-slide-to="<?php echo $i ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
+            <?php } ?>
+        </ol>
+        <div class="carousel-inner">
+            <?php $j = 0 ?>
+            <?php foreach ($block['images'] as $image) { ?>
+            <div class="item <?php if ($j++ == 0) echo 'active'; ?>">
+                <a href="<?php echo $this->escape($image['link']); ?>">
+                    <img style="width: 320px; height: 240px" src="<?php echo $this->escape($image['url']); ?>">
+                </a>
+                <div class="carousel-caption">
+                    <p class="article-size12">
+                        <?php echo $this->escape(mb_substr($image['description'], 0, 60, 'UTF-8')); ?>
+                    </p>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+        <a class="carousel-control left" href="#article-recommended-slide" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#article-recommended-slide" data-slide="next">&rsaquo;</a>
+    </div>
+    <div class="span5" style="width: 280px; padding: 10px 15px 10px 10px">
+        <?php $template = 'list-single-' . $style . '.phtml';
+            include $template;
+        ?>
+    </div>
+</div>
+
+<script>
+    $('.article-block-recommended-slide').parent().addClass('block-nopadding');
+</script>

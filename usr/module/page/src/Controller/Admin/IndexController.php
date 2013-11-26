@@ -42,7 +42,7 @@ class IndexController extends ActionController
                 'title' => $row->title,
                 'slug'  => $row->slug,
             );
-            $page['url'] = $this->url('.page', $page);
+            $page['url'] = $this->url($this->getModule() . '-page', $page);
             if ($row->active) {
                 $pages['active'][] = $page;
             } else {
@@ -51,7 +51,7 @@ class IndexController extends ActionController
         }
 
         $this->view()->assign('pages', $pages);
-        $this->view()->assign('title', __('Page list'));
+        $this->view()->assign('title', _a('Page list'));
         $this->view()->setTemplate('page-list');
     }
 
@@ -60,7 +60,7 @@ class IndexController extends ActionController
      */
     public function addAction()
     {
-        $markup = 'text';
+        //$markup = 'text';
         //$module = $this->getModule();
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
@@ -93,14 +93,14 @@ class IndexController extends ActionController
                         $this->setPage($row->name, $row->title);
                     }
                     Pi::registry('page')->clear($this->getModule());
-                    $message = __('Page data saved successfully.');
+                    $message = _a('Page data saved successfully.');
                     $this->jump(array('action' => 'index'), $message);
                     return;
                 } else {
-                    $message = __('Page data not saved.');
+                    $message = _a('Page data not saved.');
                 }
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $markup = $this->params('type', 'text');
@@ -112,7 +112,7 @@ class IndexController extends ActionController
 
         $this->view()->assign('markup', $markup);
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Add a page'));
+        $this->view()->assign('title', _a('Add a page'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('page-add');
     }
@@ -154,7 +154,7 @@ class IndexController extends ActionController
                 if ($row->name) {
                     $this->setPage($row->name, $row->title);
                 }
-                $message = __('Page added successfully.');
+                $message = _a('Page added successfully.');
                 $page = array(
                     'id'            => $row->id,
                     'title'         => $row->title,
@@ -170,7 +170,7 @@ class IndexController extends ActionController
                 );
                 Pi::registry('page')->clear($this->getModule());
             } else {
-                $message = __('Page data not saved.');
+                $message = _a('Page data not saved.');
                 $status = 0;
             }
         } else {
@@ -228,18 +228,21 @@ class IndexController extends ActionController
                 $row->save();
                 if ($pageSet) {
                     if (!empty($pageSet['set'])) {
-                        $this->setPage($pageSet['set']);
+                        $this->setPage(
+                            $pageSet['set']['name'],
+                            $pageSet['set']['title']
+                        );
                     }
                     if (!empty($pageSet['remove'])) {
                         $this->removePage($pageSet['remove']);
                     }
                 }
                 Pi::registry('page')->clear($this->getModule());
-                $message = __('Page data saved successfully.');
+                $message = _a('Page data saved successfully.');
                 $this->jump(array('action' => 'index'), $message);
                 return;
             } else {
-                $message = __('Invalid data, please check and re-submit.');
+                $message = _a('Invalid data, please check and re-submit.');
             }
         } else {
             $id = $this->params('id');
@@ -247,13 +250,15 @@ class IndexController extends ActionController
             $data = $row->toArray();
             $form = new PageForm('page-form', $row->markup);
             $form->setData($data);
-            $form->setAttribute('action',
-                                $this->url('', array('action' => 'edit')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'edit'))
+            );
             $message = '';
         }
 
         $this->view()->assign('form', $form);
-        $this->view()->assign('title', __('Page edit'));
+        $this->view()->assign('title', _a('Page edit'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('page-edit');
     }
@@ -299,13 +304,16 @@ class IndexController extends ActionController
             $row->save();
             if ($pageSet) {
                 if (!empty($pageSet['set'])) {
-                    $this->setPage($pageSet['set']);
+                    $this->setPage(
+                        $pageSet['set']['name'],
+                        $pageSet['set']['title']
+                    );
                 }
                 if (!empty($pageSet['remove'])) {
                     $this->removePage($pageSet['remove']);
                 }
             }
-            $message = __('Page data saved successfully.');
+            $message = _a('Page data saved successfully.');
             $page = array(
                 'id'            => $id,
                 'title'         => $row->title,
@@ -334,7 +342,7 @@ class IndexController extends ActionController
     public function deleteAction()
     {
         $status     = 1;
-        $message    = __('Page deleleted successfaully.');
+        $message    = _a('Page deleleted successfaully.');
 
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
@@ -360,7 +368,7 @@ class IndexController extends ActionController
     public function activateAction()
     {
         $status     = 1;
-        $message    = __('Page updated successfully.');
+        $message    = _a('Page updated successfully.');
 
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);

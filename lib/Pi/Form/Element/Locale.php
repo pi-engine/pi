@@ -34,17 +34,24 @@ class Locale extends Select
             $iterator = new \DirectoryIterator(
                 Pi::service('i18n')->getPath('', '')
             );
+            Pi::service('i18n')->load('language');
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isDir() || $fileinfo->isDot()) {
                     continue;
                 }
                 $directory = $fileinfo->getFilename();
-                $label = $directory;
-                if (class_exists('\\Locale')) {
-                    $label = \Locale::getDisplayName($directory,
-                        Pi::service('i18n')->locale)
-                        ?: $label;
+                if (!preg_match('/^[a-z]{2}([\-\_][a-z]+)?$/', $directory)) {
+                    continue;
                 }
+                $label = __($directory) . ' (' . $directory . ')';
+                /*
+                if (class_exists('\\Locale')) {
+                    $label = \Locale::getDisplayName(
+                        $directory,
+                        Pi::service('i18n')->locale
+                    );
+                }
+                */
                 $this->valueOptions[$directory] = $label;
             }
         }

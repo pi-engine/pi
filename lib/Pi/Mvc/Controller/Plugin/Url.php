@@ -9,12 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
-use Zend\EventManager\EventInterface;
-use Zend\Mvc\Exception;
-use Zend\Mvc\InjectApplicationEventInterface;
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\Router\RouteStackInterface;
+use Pi;
 use Zend\Mvc\Controller\Plugin\Url as ZendUrl;
 
 /**
@@ -27,7 +22,7 @@ class Url extends ZendUrl
     /**
      * Generates a URL based on a route
      *
-     * @param string        $route                  RouteInterface name
+     * @param string        $route      Route name
      * @param array         $params
      *      Parameters to use in url generation, if any
      * @param array|bool    $options
@@ -47,19 +42,20 @@ class Url extends ZendUrl
             return $this;
         }
 
-        // Complete current module/controller
-        if (!isset($params['module']) && isset($params['action'])) {
-            $routeMatch = $this->getController()->getEvent()->getRouteMatch();
-            $params['module'] = $routeMatch->getParam('module');
-            if (!isset($params['controller'])) {
-                $params['controller'] = $routeMatch->getParam('controller');
-            }
-        }
+        return $this->fromRoute($route, $params, $options, $reuseMatchedParams);
+    }
 
-        $route = $route ?: null;
-        $url = $this->fromRoute($route, $params,
-                                $options, $reuseMatchedParams);
-
+    /**
+     * {@inheritDoc}
+     */
+    public function fromRoute($route = null, $params = array(), $options = array(), $reuseMatchedParams = false)
+    {
+        $url = Pi::service('url')->assemble(
+            $route,
+            $params,
+            $options,
+            $reuseMatchedParams
+        );
         return $url;
     }
 }

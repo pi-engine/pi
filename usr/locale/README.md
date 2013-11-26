@@ -3,40 +3,88 @@ Pi Locale
 
 SPECs
 -----
+
 * Top folder name as identifier for a language
 * Folder name must be in lowercase
 * Folder name, i.e. language tag must respect [RFC 4646](http://www.ietf.org/rfc/rfc4646.txt)
-* Loacle files are in CSV format except mail templates which are in plain text
-* Both keys and values in CSV must be quoted with double quote (```"```), delimited with comma (```,```)
-* All files must be encoded in the same charset as Pi system, default as ```UTF-8```
+* Locale files are in po/mo format except mail templates which are in plain text
+* All files must be encoded in the same charset as Pi system, default as `UTF-8`
+
+
+i18n APIs
+--------
+
+* `__()` => `Pi::service('i18n')->translate()`
+* `_a()` => `Pi::service('i18n')->translate()`
+* `_b()` => `Pi::service('i18n')->translate()`
+* `_e()` => `echo Pi::service('i18n')->translate()`
+* `_t()` => NULL
+
+API calls
+--------
+
+* To be collected in `admin.mo`
+  - `config/config.php`: `_t()`
+  - `config/event.php`: `_t()`
+  - `config/permission.php`: `_t()`
+  - `config/navigation.php` [admin], [meta]: `_t()`
+  - `config/*` [others]: `_a()`
+  - `src/Controller/Admin/*`: `_a()`
+  - `src/Installer/*`: `_a()`
+  - `template/admin/*`: `_a()`
+* To be collected in `block.mo`
+  - `src/Block/*`: `_b()`
+  - `template/block/*`: `_b()`
+* To be collected in `default.mo`
+  - All other files: `__()` or `_e()`
+
 
 Skeleton
 --------
 
-* ```usr/locale```: Global
-  * ```/en```
-    * ```main.csv```: Global, loaded on every request
-    * ```navigation.csv```: Navigation and menu
-    * ```timezone.csv```: Timezone
+* `usr/locale`: Global
+  * `/en`
+    * `default.mo`: Global, loaded on every request
+    * `timezone.mo`: Timezone
     * ...
-  * ```/zh-cn```
+  * `/zh-cn`
     * ...
-* ```usr/module/demo```: Module ```demo```
-  * ```/en```
-    * ```/mail```: Mail templates
-      * ```mail-template.text```
-    * ```main.csv```: module global, loaded on every request of current module
-    * ```navigation.csv```
-    * ```admin.csv```: Admin area
-    * ```config.csv```: Config edit
-    * ```feed.csv```: Feed
+  * `/_source`: placeholder for specified translations
+* `usr/custom/locale`: Global custom locale
+  * `/en`
+    * `default.mo`: Global, loaded on every request
+    * `timezone.mo`: Timezone
     * ...
-  * ```/zh-cn```
+  * `/zh-cn`
     * ...
-* ```usr/theme/default```: Theme ```default```
-  * ```/en```
-    * ```main.csv```: theme global
-    * ```admin.csv```: Admin area
+
+* `usr/module/system`: Module `system`
+  * `/en`
+    * `default.mo`: module global, loaded on every request of current module
+    * `admin.mo`: Admin area
+    * `block.mo`: Module block
     * ...
-  * ```/zh-cn```
+  * `/zh-cn`
     * ...
+* `usr/module/demo`: Module `demo`
+  * `/en`
+    * `/mail`: Mail templates
+      * `mail-template.text`
+    * `default.mo`: module global, loaded on every request of current module
+    * `admin.mo`: Admin area
+    * `block.mo`: Module block
+    * ...
+  * `/zh-cn`
+    * ...
+* `usr/theme/default`: Theme `default`
+  * `/en`
+    * `default.mo`: theme global
+    * ...
+  * `/zh-cn`
+    * ...
+
+Tools
+-----
+
+* `Poedit`
+  * Download: http://www.poedit.net/download.php

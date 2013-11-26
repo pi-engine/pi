@@ -5,23 +5,23 @@
 ?>
 <div id="page-nav">
     <div class="page-header">
-        <h2><?php echo $this->escape($title); ?></h2>
+        <h2><?php echo _escape($title); ?></h2>
     </div>
-    <span class="btn btn-primary js-add" style="margin-bottom: 10px;"><?php _e('Add a custom navigation'); ?></span>
+    <span class="btn btn-primary js-add" style="margin-bottom: 10px;"><?php echo _a('Add a custom navigation'); ?></span>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 250px;"><?php _e('Title'); ?></th>
-                <th style="width: 200px;"><?php _e('Setup'); ?></th>
-                <th style="width: 200px;"><?php _e('Related'); ?></th>
-                <th><?php _e('Action'); ?></th>
+                <th style="width: 250px;"><?php echo _a('Title'); ?></th>
+                <th style="width: 200px;"><?php echo _a('Setup'); ?></th>
+                <th style="width: 200px;"><?php echo _a('Related'); ?></th>
+                <th><?php echo _a('Action'); ?></th>
             </tr>    
         </thead>        
         <tbody>
             <tr class="none-set">
                 <td></td>
                 <td colspan="3">
-                    <span class="btn <?php if (!$navGlobal) { echo 'btn-primary active'; } else { echo 'js-apply'; } ?>"><?php _e('None to use'); ?></span>
+                    <span class="btn <?php if (!$navGlobal) { echo 'btn-primary active'; } else { echo 'js-apply'; } ?>"><?php echo _a('None to use'); ?></span>
                 </td>
             </tr>
         </tbody>
@@ -32,23 +32,23 @@
         <%- title %>
     </td>    
     <td>
-        <span class="btn <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php _e('Set global'); ?></span>
+        <span class="btn <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php echo _a('Set global'); ?></span>
     </td>
     <td>
         <% if(module) { %>
         <%= module %>
         <% } else { %>
-        <?php _e('Custom'); ?>
+        <?php echo _a('Custom'); ?>
         <% } %>
     </td>
     <td>
         <div class="btn-group btns-indent">
             <% if(module) { %>
-            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php _e('View'); ?></a>
-            <span class="btn btn-link js-clone"><?php _e('Clone'); ?></span>
+            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php echo _a('View'); ?></a>
+            <span class="btn btn-link js-clone"><?php echo _a('Clone'); ?></span>
             <% } else { %>
-            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php _e('Edit'); ?></a>
-            <span class="btn btn-link js-delete"><?php _e('Delete'); ?></span>
+            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php echo _a('Edit'); ?></a>
+            <span class="btn btn-link js-delete"><?php echo _a('Delete'); ?></span>
             <% } %>    
         </div>
     </td>    
@@ -77,7 +77,7 @@
             });
         },
         deleteAction: function() {
-            if (confirm('<?php _e('Are you sure to delete this navigation') ?>')) {
+            if (confirm('<?php echo _a('Are you sure to delete this navigation') ?>')) {
                 this.model.destroy({
                     url: '<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>' + this.model.get('name')
                 });    

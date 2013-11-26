@@ -110,6 +110,13 @@ class Block extends AbstractHelper
         }
         $block = $blockRow->toArray();
 
+        /*
+        // Load translations for non-tab block
+        if ('tab' != $block['type']) {
+            Pi::service('i18n')->loadModule('block', $block['module']);
+        }
+        */
+
         // Override with instant options
         foreach (array(
             'title',
@@ -134,7 +141,7 @@ class Block extends AbstractHelper
         if ('tab' != $block['type'] && $block['cache_ttl']) {
             $cacheKey = empty($options)
                 ? md5($block['id']) : md5($block['id'] . serialize($options));
-            $renderCache = Pi::service('render')->setType('block');
+            $renderCache = Pi::service('render_cache')->setType('block');
             $renderCache->meta('key', $cacheKey)
                         ->meta('namespace', $block['module'] ?: 'system')
                         ->meta('ttl', $block['cache_ttl']);
@@ -173,10 +180,10 @@ class Block extends AbstractHelper
             $viewModel = new ViewModel;
             // Assemble template
             if (!$block['template']) {
-                $template = 'module/system:block/dummy';
+                $template = 'system:block/dummy';
             } else {
                 $template = sprintf(
-                    'module/%s:block/%s',
+                    '%s:block/%s',
                     $block['module'],
                     $block['template']
                 );
@@ -214,11 +221,16 @@ class Block extends AbstractHelper
         $isCustom = $block['type'] ? true : false;
         // Module-generated block, return array
         if (!empty($block['render'])) {
+            // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
+
+            // Merge run-time configs with system settings
             $options = isset($block['config']) ? $block['config'] : array();
             if (!empty($configs)) {
                 $options = array_merge($options, $configs);
             }
+
+            // Render contents
             $result = call_user_func_array(
                 $block['render'],
                 array($options, $block['module'])

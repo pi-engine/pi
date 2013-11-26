@@ -1,0 +1,23 @@
+.page-title {
+    border-bottom: 3px solid #195d9f;
+    color: #195d9f;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.stress {
+    background: #f5f5f5;
+}
+
+.content th {
+    font-weight: bold;
+    text-align: left;
+    line-height: 40px;
+    padding-left: 30px;
+    border: 1px solid #e6e6e6;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F5F9FA), to(#E9EDF6));
+    background: -moz-linear-gradient(top,  #F5F9FA,  #E9EDF6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F5F9FA', endColorstr='#E9EDF6');
+}
+.fixed-width {
+    width: 120px;
+}

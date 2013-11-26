@@ -10,13 +10,13 @@
 namespace Module\Demo;
 
 use Pi;
-use Pi\Application\Search as AbstractSearch;
+use Pi\Application\AbstractModuleAwareness;
 
-class Search extends AbstractSearch
+class Search extends AbstractModuleAwareness
 {
-    protected static $module = 'demo';
+    protected $module = 'demo';
 
-    public static function index($queries, $type, $limit, $offset, $uid)
+    public function index($queries, $type, $limit, $offset, $uid)
     {
         $router = Pi::engine()->application()->getRouter();
         $results = array();

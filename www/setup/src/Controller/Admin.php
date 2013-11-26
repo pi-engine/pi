@@ -24,13 +24,27 @@ class Admin extends AbstractController
 
     public function init()
     {
+        /*
         $db = Pi::service('database')->db();
         Pi::entity('db', $db);
+        */
+        try {
+            Pi::service('database')->connect();
+        } catch (\Exception $e) {
+            $this->status = -1;
+            $this->content = '<div class="alert alert-error">'
+                . '<h1>' . _s('Database connection is failed.') . '</h1>'
+                . '<p>' . $e->getMessage() . '</p>'
+                . '</div>';
+
+            return;
+        }
+        Pi::entity('db', Pi::service('database')->db());
 
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
             $vars['adminusername'] = 'admin';
-            $vars['adminname'] = _s('Pi Admin');
+            $vars['adminname'] = _s('PiAdmin');
             /*
             $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             if (false === strpos($hostname, '.')) {
@@ -43,6 +57,8 @@ class Admin extends AbstractController
             $this->wizard->setPersist('siteconfig', $vars);
         }
         $this->vars = $vars;
+
+        return true;
     }
 
     public function clearAction()
@@ -183,47 +199,69 @@ class Admin extends AbstractController
             );
 
             // Create root admin user
-            $userData = array(
+            $adminData = array(
                 'identity'      => $vars['adminusername'],
                 'credential'    => $vars['adminpass'],
                 'email'         => $vars['adminmail'],
                 'name'          => $vars['adminname'],
-                'active'        => 1,
-                'role'          => Acl::MEMBER,
-                'role_staff'    => Acl::ADMIN,
             );
-            $result = Pi::api('system', 'member')->add($userData);
-            $this->status = $result['status'];
+            $uid = Pi::api('system', 'user')->addUser($adminData);
+            $this->status = $uid ? true : false;
+            Pi::api('system', 'user')->activateUser($uid);
+            Pi::api('system', 'user')->setRole($uid, array(
+                //'member',
+                'webmaster',
+                //'staff',
+                'admin'
+            ));
 
             // Create system accounts
-            $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
             $accounts = array(
                 'manager'   => array(
-                    'name'          => __('Manager'),
-                    'role_staff'    => 'manager',
+                    'name'  => __('Manager'),
+                    'role'  => array(
+                        //'manager'
+                        //'member'
+                    ),
                 ),
-                'moderator'   => array(
-                    'name'          => __('Moderator'),
-                    'role_staff'    => 'moderator',
+                'moderator' => array(
+                    'name'  => __('Moderator'),
+                    'role'  => array(
+                        //'moderator'
+                        //'member'
+                    ),
                 ),
-                'editor'   => array(
-                    'name'          => __('Editor'),
-                    'role_staff'    => 'editor',
+                'editor'    => array(
+                    'name'  => __('Editor'),
+                    'role'  => array(
+                        //'editor'
+                        //'member'
+                    ),
                 ),
-                'staff'   => array(
-                    'name'          => __('Staff'),
-                    'role_staff'    => 'staff',
+                'staff'     => array(
+                    'name'  => __('Staff'),
+                    'role'  => array(
+                        'staff'
+                        //'member'
+                    ),
                 ),
-                'member'   => array(
-                    'name'          => __('Member'),
-                    'role_staff'    => '',
+                'member'    => array(
+                    'name'  => __('Member'),
+                    //'role'  => 'member',
                 ),
             );
             foreach ($accounts as $identity => $data) {
-                $data['identity']   = $identity;
-                $data['email']      = $identity . '@' . $hostname;
-                $data = array_merge($userData, $data);
-                Pi::api('system', 'member')->add($data);
+                $userData = array(
+                    'identity'      => $identity,
+                    'email'         => $identity . '@pialog.org',
+                    'credential'    => $adminData['credential'],
+                    'name'          => $data['name'],
+                );
+                $uid = Pi::api('system', 'user')->addUser($userData);
+                Pi::api('system', 'user')->activateUser($uid);
+                if (!empty($data['role'])) {
+                    Pi::api('system', 'user')->setRole($uid, $data['role']);
+                }
             }
         }
 
@@ -234,6 +272,10 @@ class Admin extends AbstractController
 
     public function indexAction()
     {
+        if ($this->status == -1) {
+            return;
+        }
+
         $this->hasForm = true;
 
         $adapter = Pi::entity('db')->adapter();

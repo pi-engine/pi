@@ -11,24 +11,36 @@
  */
 
 $config = include __DIR__ . '/application.front.php';
-// Translations
-$config['resource']['i18n'] = array(
-    'translator'    => array(
-        'global'    => array('usr:api'),
-        'module'    => array('api'),
-    ),
+
+// Security resource, load configs from resource.security.php
+$config['resource']['security'] = array(
+    // IP check: deny 'bad' IPs, approve 'good' IPs
+    'ip'        => true,
+
+    // Super GLOBALS
+    'globals'   => true,
+
+    // XSS check
+    'xss'       => true,
+
+    // Enable DoS protection on HTTP_USER_AGENT
+    'dos'       => false,
+
+    // crawl bots protection on HTTP_USER_AGENT
+    'bot'       => false,
 );
+
 // Session resource, load configs from resource.session.php and instantiate session service
 $config['resource']['session'] = false;
 // Load authentication configs from resource.authentication.php and instantiate authentication service
 $config['resource']['authentication'] = false;
 // Instantiate use handler
 $config['resource']['user'] = false;
-// Instantiate ACL manager and register listeners
-$config['resource']['acl'] = false;
+// Instantiate permission manager and register listeners
+$config['resource']['permission'] = false;
 // Rendering cache
-$config['resource']['render'] = array(
-    'page'  => true,
+$config['resource']['render_cache'] = array(
+    //'page'  => true,
 );
 
 // Application service configuration

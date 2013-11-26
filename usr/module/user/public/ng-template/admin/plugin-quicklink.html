@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="span6">
+    <div class="pi-widget">
+      <div class="pi-widget-header">
+        {{'QUICKLINK' | translate}}
+      </div>
+      <div class="pi-widget-body" style="padding-bottom: 10px;">
+        <p>
+          {{'ACTIVITIES_DESC' | translate}}
+        <div id="js-plugin-sortable" ui-sortable ng-model="displayList">
+          <div class="pi-widget-item" ng-repeat="item in displayList">
+            <span class="pull-right">
+              <span class="muted">{{item.module}}</span>
+              <i class="icon-remove pi-icon-cursor"
+                 ng-click="removeDisplay($index)"></i>
+            </span>
+            {{item.title}} 
+            <span class="muted gutter">{{item.link}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="span6">
+    <legend>{{'QUICKLINK_REPOSITORY' | translate}}</legend>
+    <div class="user-quick-select" ng-repeat="item in selectList">
+      <div class="pi-widget-item">
+        <span class="pull-right">
+          <span class="gutter muted">{{item.module}}</span>
+          <i class="icon-plus pi-icon-cursor" ng-click="addDisplay($index)"></i>
+        </span>
+        {{item.title}}
+        <span class="muted gutter">{{item.link}}</span>
+      </div>
+    </div>
+  </div>
+</div>

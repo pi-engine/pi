@@ -50,19 +50,19 @@ class Standard implements RouteInterface
      * Delimiter between structured values of module, controller and action.
      * @var string
      */
-    protected $structureDelimiter;
+    protected $structureDelimiter = '/';
 
     /**
      * Delimiter between keys and values.
      * @var string
      */
-    protected $keyValueDelimiter;
+    protected $keyValueDelimiter = '/';
 
     /**
-     * Delimtier before parameters.
+     * Delimiter before parameters.
      * @var array
      */
-    protected $paramDelimiter;
+    protected $paramDelimiter = '/';
 
     /**
      * Default values.
@@ -86,10 +86,13 @@ class Standard implements RouteInterface
     /**
      * Create a new wildcard route.
      *
-     * @param  string $keyValueDelimiter
-     * @param  string $paramDelimiter
-     * @param  array  $defaults
-     * @return void
+     * @param string|null $prefix
+     * @param string $structureDelimiter
+     * @param string $keyValueDelimiter
+     * @param string $paramDelimiter
+     * @param array  $defaults
+     *
+     * @return \Pi\Mvc\Router\Http\Standard
      */
     public function __construct(
         $prefix = null,
@@ -112,7 +115,7 @@ class Standard implements RouteInterface
      * @param array $options
      * @return $this
      */
-    public function setOptions($options = array())
+    public function setOptions(array $options = array())
     {
         $this->options = array_merge($this->options, $options);
 
@@ -123,7 +126,10 @@ class Standard implements RouteInterface
      * factory(): defined by Route interface.
      *
      * @see    Route::factory()
+     *
      * @param  array|Traversable $options
+     *
+     * @throws \InvalidArgumentException
      * @return RouteInterface
      */
     public static function factory($options = array())
@@ -208,10 +214,44 @@ class Standard implements RouteInterface
     /**
      * Parse matched path into params
      *
-     * @param string $path
-     * @return array|false
+     * @param array $params
+     * @return array
      */
-    protected function parseParams($path)
+    protected function parseParams(array $params)
+    {
+        $matches = array();
+
+        if ($this->keyValueDelimiter === $this->paramDelimiter) {
+            $count = count($params);
+
+            for ($i = 0; $i < $count; $i += 2) {
+                if (isset($params[$i + 1])) {
+                    $matches[urldecode($params[$i])] = urldecode(
+                        $params[$i + 1]
+                    );
+                }
+            }
+        } else {
+            foreach ($params as $param) {
+                $param = explode($this->keyValueDelimiter, $param, 2);
+                if (isset($param[1])) {
+                    $matches[urldecode($param[0])] = urldecode($param[1]);
+                }
+            }
+        }
+
+        //$matches = array_merge($this->defaults, $matches);
+
+        return $matches;
+    }
+
+    /**
+     * Parse matched path into params
+     *
+     * @param string $path
+     * @return array
+     */
+    protected function parse($path)
     {
         $matches = array();
         $params  = $path
@@ -235,26 +275,11 @@ class Standard implements RouteInterface
             array_shift($params);
         }
 
-        if ($this->keyValueDelimiter === $this->paramDelimiter) {
-            $count = count($params);
-
-            for ($i = 0; $i < $count; $i += 2) {
-                if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] = urldecode(
-                        $params[$i + 1]
-                    );
-                }
-            }
-        } else {
-            foreach ($params as $param) {
-                $param = explode($this->keyValueDelimiter, $param, 2);
-                if (isset($param[1])) {
-                    $matches[urldecode($param[0])] = urldecode($param[1]);
-                }
-            }
-        }
-
+        //vd($matches);
+        $matches = array_merge($matches, $this->parseParams($params));
+        //vd($matches);
         $matches = array_merge($this->defaults, $matches);
+        //vd($matches);
 
         return $matches;
     }
@@ -274,12 +299,37 @@ class Standard implements RouteInterface
             return null;
         }
         list($path, $pathLength) = $result;
-        $matches = $this->parseParams($path);
+        $matches = $this->parse($path);
         if (!is_array($matches)) {
             return null;
         }
 
         return new RouteMatch($matches, $pathLength);
+    }
+
+    /**
+     * Assemble params
+     *
+     * @param array $params
+     *
+     * @return string
+     */
+    protected function assembleParams(array $params)
+    {
+        $url = '';
+        foreach ($params as $key => $value) {
+            if (in_array($key, array('module', 'controller', 'action'))) {
+                continue;
+            }
+            if (null === $value) {
+                continue;
+            }
+            $url .= $this->paramDelimiter . urlencode($key)
+                . $this->keyValueDelimiter . urlencode($value);
+        }
+        $url = ltrim($url, $this->paramDelimiter);
+
+        return $url;
     }
 
     /**
@@ -299,12 +349,13 @@ class Standard implements RouteInterface
 
         $mca = array();
         foreach (array('module', 'controller', 'action') as $key) {
-            if (isset($mergedParams[$key])) {
+            if (!empty($mergedParams[$key])) {
                 $mca[$key] = urlencode($mergedParams[$key]);
                 unset($mergedParams[$key]);
             }
         }
 
+        /*
         $url = '';
         foreach ($mergedParams as $key => $value) {
             if (null === $value) {
@@ -314,6 +365,8 @@ class Standard implements RouteInterface
                   . $this->keyValueDelimiter . urlencode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
+        */
+        $url = $this->assembleParams($mergedParams);
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('action', 'controller', 'module') as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {

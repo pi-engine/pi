@@ -1,0 +1,392 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-setup\n"
+"POT-Creation-Date: 2013-11-09 19:19+0800\n"
+"PO-Revision-Date: 2013-11-09 19:19+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: Pi Engine\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _s\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\www\\setup\n"
+
+#: C:\wamp\www\master\www\setup/include/config.php:15
+msgid "Web server"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:16
+msgid "PHP"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:17
+msgid "Persist options"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:18
+msgid "PDO drivers"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:24
+msgid "APC"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:25
+msgid ""
+"The Alternative PHP Cache (APC) is highly recommended for high-performance "
+"scenario. Refer to <a href=\"http://www.php.net/manual/en/intro.apc.php\" "
+"target=\"_blank\" title=\"APC introduction\">APC introduction</a> for "
+"details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:28
+msgid "Redis"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:29
+msgid ""
+"The extension is highly recommended for performance scenario and advanced "
+"data structure. Refer to <a href=\"http://redis.io\" target=\"_blank\" title="
+"\"Redis\">Redis page</a> for details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:32
+msgid "Memcached"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:33
+msgid ""
+"Memcached is highly recommended for high-performance yet robust distributed "
+"scenario. However it is not suitable for shared-hosting usage since tag is "
+"not supported. Refer to <a href=\"http://www.php.net/manual/en/intro."
+"memcached.php\" target=\"_blank\" title=\"Memcached introduction\">Memcached "
+"introduction</a> for details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:36
+msgid "Memcache"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:37
+msgid ""
+"Memcache a widely used cache engine. However it is not suitable for shared-"
+"hosting usage since tag is not supported. Refer to <a href=\"http://www.php."
+"net/manual/en/intro.memcache.php\" target=\"_blank\" title=\"Memcache "
+"introduction\">Memcache introduction</a> for details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:40
+msgid "cURL"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:41
+msgid ""
+"The extension allows to connect and communicate to different types of "
+"servers with different types of protocols, check <a href=\"http://www.php."
+"net/manual/en/book.curl.php\" title=\"cURL\" target=\"_blank\">cURL</a> for "
+"details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:44
+msgid "Intl"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:45
+msgid ""
+"Internationalization extension enables collation and date/time/number/"
+"currency formatting, check <a href=\"http://www.php.net/manual/en/book.intl."
+"php\" title=\"Internationalization extension\" target=\"_blank"
+"\">Internationalization extension</a> for details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:48
+msgid "Markdown"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:49
+msgid ""
+"The extension is suggested for text parser, check <a href=\"http://"
+"daringfireball.net/projects/markdown/\" title=\"Markdown project\" target="
+"\"_blank\">Markdown</a> for details and download from <a href=\"http://pecl."
+"php.net/package/markdown\" title=\"PECL project\" target=\"_blank\">PECL "
+"page</a>."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:52
+msgid "Mbstring"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/config.php:53
+msgid ""
+"The extension is required for multibyte string processing, check <a href="
+"\"http://www.php.net/manual/en/book.mbstring.php\" title=\"Multibyte String"
+"\" target=\"_blank\">Multibyte String</a> for details."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:13
+#, fuzzy
+msgid "Presettings"
+msgstr "Presettings data"
+
+#: C:\wamp\www\master\www\setup/include/page.php:14
+msgid "Presettings and server configuration detection"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:17
+msgid "Directives"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:18
+msgid "Directive settings for website"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:21
+msgid "Database"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:22
+msgid "Database settings"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:25
+msgid "Administrator"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:26
+msgid "Administrator account creation"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:29
+msgid "Finish"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/page.php:30
+msgid "Finishing installation process"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Wizard.php:225
+msgid "Pi Engine Setup Wizard"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:36
+msgid "Database connection is failed."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:47
+msgid "PiAdmin"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:88
+msgid "System module uninstallation is failed. Please continue to try again."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:119
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:124
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:134
+msgid "Information is required."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:126
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:184
+msgid "Invalid Email."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:136
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:187
+msgid "The two passwords do not match"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:152
+msgid "System module installation is failed. Please continue to try again."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:172
+msgid "Username is required."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:175
+msgid "Name is required."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:178
+msgid "Email is required."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:181
+msgid "Password is required."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:292
+msgid "Deprecated tables exist in the database. Please continue to re-install."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:309
+msgid "Admin email"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:310
+msgid "Admin username"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:311
+msgid "Admin name"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:312
+msgid "Admin password"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:313
+msgid "Confirm password"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:329
+msgid "Administrator account"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:150
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:251
+msgid "Configuration file write error"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:153
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:256
+#, php-format
+msgid "The configuration file \"%s\" is not written correctly."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:175
+msgid "Server hostname"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:176
+msgid ""
+"Hostname (and port, delimited by \":\") or Unix socket of the database "
+"server. If you are unsure, \"localhost\" works in most cases, or "
+"\"127.0.0.1\""
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:179
+msgid "User name"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:180
+msgid ""
+"Name of the user account that will be used to connect to the database server"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:183
+msgid "Password"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:184
+msgid "Password of your database user account"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:187
+msgid "Database name"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:188
+msgid ""
+"The name of database on the host. The database must be already available."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:191
+msgid "Table prefix"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:192
+msgid ""
+"This prefix will be added to all new tables created to avoid name conflicts "
+"in the database. If you are unsure, just keep the default."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:227
+msgid "Database setup"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Database.php:228
+msgid "Settings for database"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:132
+#, php-format
+msgid "%s is NOT writable."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:266
+msgid "Configuration file copy error"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:268
+msgid ""
+"The configuration files are not copied correctly or not readable, please "
+"create and/or set read permissions for the files manually."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:340
+msgid "File system"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:342
+msgid "Caching storage with files on disks specified in following steps."
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:346
+msgid "Persistent data container"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:350
+msgid "Choose the proper backend container for persistent data"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Finish.php:101
+#, php-format
+msgid ""
+"\n"
+"<div class=\"well\">\n"
+"<h3>Congratulations!</h3>\n"
+"<p>The system is set up successfully. <a href=\"../index.php?"
+"redirect=0\">Click to visit your website!</a></p>\n"
+"</div>\n"
+"<div class=\"well\">\n"
+"<h3>Security advisory</h3>\n"
+"<p>For security considerations please make sure the following operations are "
+"done:</p>\n"
+"<ol>\n"
+"    <li>Remove the installation folder <strong>{www}/setup/</strong> from "
+"your server manually.</li>\n"
+"    <li>Set configuration directories and files to readonly: %s</li>\n"
+"</ol>\n"
+"</div>\n"
+"<div class=\"well\">\n"
+"<h3>Support</h3>\n"
+"<p>Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine "
+"Development Site</a> in case you need any help.</p>\n"
+"</div>\n"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/src/Controller/Presetting.php:89
+#, fuzzy
+msgid "Language Selection"
+msgstr "语言选择"
+
+#: C:\wamp\www\master\www\setup/src/Controller/Presetting.php:91
+msgid "Choose the language for the installation and website"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/template.phtml:64
+msgid "Previous"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/template.phtml:69
+msgid "Reload"
+msgstr ""
+
+#: C:\wamp\www\master\www\setup/include/template.phtml:78
+#: C:\wamp\www\master\www\setup/include/template.phtml:83
+msgid "Next"
+msgstr ""

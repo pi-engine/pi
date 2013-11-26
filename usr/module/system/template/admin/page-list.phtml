@@ -6,30 +6,30 @@
 <div id="page-list-page" class="page-list-page">
     <?php foreach ($pagesBySection as $key => $section) { ?>
     <fieldset>
-        <legend><?php echo $key; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php _e('Setup a page'); ?></button><?php } ?></legend>
+        <legend><?php echo $key; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php echo _a('Setup a page'); ?></button><?php } ?></legend>
         <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 40%;"><?php _e('Title'); ?></th>
-                <th><?php _e('Action'); ?></th>
+                <th style="width: 40%;"><?php echo _a('Title'); ?></th>
+                <th><?php echo _a('Action'); ?></th>
             </tr>    
         </thead>
         <tbody>
             <?php foreach ($section['pages'] as $page) { ?>
             <tr data-id="<?php echo $page['id']; ?>">
                 <td>
-                    <?php echo $this->escape($page['title']); ?>
+                    <?php echo _escape($page['title']); ?>
                 </td>
                 <td>
                     <div class="btn-group btns-indent">
                         <?php if ($page['id']) { ?>
-                            <a class="btn btn-link js-edit"><?php _e('Edit'); ?></a>
+                            <a class="btn btn-link js-edit"><?php echo _a('Edit'); ?></a>
                         <?php } ?>
                         <?php if ($page['block']) { ?>
-                            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php _e('Dress up'); ?></a>
+                            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php echo _a('Dress up'); ?></a>
                         <?php } ?>
                         <?php if ($page['custom']) { ?>
-                            <a class="btn btn-link js-delete"><?php _e('Delete'); ?></a>
+                            <a class="btn btn-link js-delete"><?php echo _a('Delete'); ?></a>
                         <?php } ?>
                     </div>
                 </td>    
@@ -78,7 +78,7 @@
         deleteAction: function(e) {
             var tar = $(e.target),
                 p = tar.parents('tr');
-            if (confirm('<?php _e("Are you sure to delete the page?") ?>')) {
+            if (confirm('<?php echo _a("Are you sure to delete the page?") ?>')) {
                 $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
                     if (res == 1) {
                         p.fadeOut(150, function() {

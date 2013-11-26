@@ -1,0 +1,186 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-message\n"
+"POT-Creation-Date: 2013-11-21 11:25+0800\n"
+"PO-Revision-Date: 2013-11-21 11:26+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\message\n"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:183
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/NotifyController.php:41
+#, php-format
+msgid "Private message(%s unread)"
+msgstr "私信 (%s未读) "
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:187
+#, php-format
+msgid "Notification(%s  unread)"
+msgstr "通知 (%s未读)"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:208
+msgid "Need login"
+msgstr "需要登录"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:233
+msgid "Username is invalid, please try again."
+msgstr "用户名无效，请重试。"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:249
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:376
+msgid "Send failed, please try again."
+msgstr "发送失败，请重试。"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:283
+msgid "User"
+msgstr "用户"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:287
+msgid "not found"
+msgstr "未找到"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:293
+msgid "Sorry, you can't send message to yourself."
+msgstr "抱歉，您无法给自己发送私信。"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:305
+msgid "An error occurred, please try again."
+msgstr "出错，请重试。"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/IndexController.php:334
+msgid "Send message"
+msgstr "发私信"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Controller/Front/NotifyController.php:45
+#, php-format
+msgid "Notification(%s unread)"
+msgstr "通知 (%s未读)"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Form/ReplyForm.php:66
+#: D:\GitHub\custom-pi\usr\module\message/src/Form/SendForm.php:77
+msgid "Content"
+msgstr "内容"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Form/ReplyForm.php:86
+#: D:\GitHub\custom-pi\usr\module\message/src/Form/SendForm.php:91
+msgid "Send"
+msgstr "发送"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Form/SendForm.php:55
+msgid "Recipient"
+msgstr "收件人"
+
+#: D:\GitHub\custom-pi\usr\module\message/src/Form/SendForm.php:83
+msgid "Message content"
+msgstr "私信内容"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-archive.phtml:3
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-detail.phtml:11
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:9
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:10
+msgid "Private message"
+msgstr "私信"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-archive.phtml:7
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-detail.phtml:14
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:13
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-detail.phtml:10
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:13
+msgid "Archive"
+msgstr "归档私信"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-detail.phtml:62
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:50
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:99
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-detail.phtml:62
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:47
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:103
+msgid "Delete"
+msgstr "删除"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:63
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:98
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:63
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:102
+msgid "Mark as read"
+msgstr "标记为已读"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:71
+msgid "To"
+msgstr "发往"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:71
+msgid "From"
+msgstr "发自"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:85
+msgid "<div class=\"alert alert-info message-alert\">No message for you!</div>"
+msgstr "<div class=\"alert alert-info message-alert\">没有新消息</div>"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:95
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:99
+msgid "Checked all"
+msgstr "全部"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-index.phtml:97
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:101
+msgid "Massive operation"
+msgstr "批量操作"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-send.phtml:20
+msgid "Return message list page"
+msgstr "回到私信列表"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/index-send.phtml:22
+msgid "Write message"
+msgstr "写私信"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-detail.phtml:8
+msgid "Messages"
+msgstr "私信"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/notify-index.phtml:88
+msgid ""
+"<div class=\"alert alert-info message-alert\">No notification for you!</div>"
+msgstr "<div class=\"alert alert-info message-alert\">没有新通知</div>"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:4
+msgid "Delete this message?"
+msgstr "确认删除这条私信？"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:7
+msgid "Once you delete this message, it cannot be undone."
+msgstr "一旦确认删除，这条消息将无法找回。"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:11
+msgid "Delete message"
+msgstr "删除私信"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:13
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:29
+msgid "Cancel"
+msgstr "取消"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:20
+msgid "Delete these messages?"
+msgstr "确认删除这些私信？"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:23
+msgid "Once you delete these messages, they cannot be undone."
+msgstr "一旦确认删除，这些消息将无法找回。"
+
+#: D:\GitHub\custom-pi\usr\module\message/template/front/_confirm-modal.phtml:27
+msgid "Delete messages"
+msgstr "删除私信"
+
+#~ msgid "Notification"
+#~ msgstr "系统通知"
+
+#~ msgid "New message"
+#~ msgstr "发消息"

@@ -75,7 +75,7 @@ class Standard extends AbstractEngine
             return false;
         }
 
-        // Load application, which could be called during resouce setup
+        // Load application, which could be called during resource setup
         $application = $this->application();
 
         // Boot application
@@ -177,9 +177,14 @@ class Standard extends AbstractEngine
                         $options = array_merge($opt, $options);
                     }
                 }
+                $resourceName = str_replace(
+                    ' ',
+                    '',
+                    ucwords(str_replace('_', ' ', $resource))
+                );
                 $class = sprintf(
                     'Pi\Application\Bootstrap\Resource\\%s',
-                    ucfirst($resource)
+                    $resourceName
                 );
                 $resourceInstance = new $class($this, $options);
 

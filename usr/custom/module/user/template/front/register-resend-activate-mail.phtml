@@ -1,0 +1,22 @@
+<?php
+// Load register.css
+$this->css(array(
+    Pi::url('static/custom/user/register.css'),
+));
+?>
+
+<div class="pi-minheight">
+    <div class="page-header">
+        <h3><?php _e('Resend activate email');?></h3>
+    </div>
+    <?php
+    if (isset($result)) {
+        $this->bootstrap('js/bootstrap.min.js');
+        echo sprintf('<div class="alert %s">%s
+                <button data-dismiss="alert" class="close" type="button">&times;</button></div>',
+            $result['status'] ? 'alert-success' : 'alert-error',
+            $result['message']);
+    }
+    ?>
+    <?php include $this->templateComponent('form-horizontal'); ?>
+</div>

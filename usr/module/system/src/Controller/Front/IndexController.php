@@ -26,7 +26,9 @@ class IndexController extends ActionController
         //return $this->jumpToDenied('Demo for denied');
         //return $this->jumpToException('Demo for 503', 503);
 
-        $this->view()->setTemplate(false);
+        //$this->flashMessenger()->addMessage('Test for flash messenger.');
+        //$this->flashMessenger('Test for flash messenger.');
+        $this->view()->setTemplate('system-home');
     }
 
     /**
@@ -52,7 +54,7 @@ class IndexController extends ActionController
     /**
      * For page transition jump
      */
-    public function jumpAction()
+    public function ____jumpAction()
     {
         $this->view()->setTemplate('jump')->setLayout('layout-simple');
         //$params = Pi::service('session')->jump->params;
@@ -67,6 +69,55 @@ class IndexController extends ActionController
         if (empty($params['url'])) {
             $params['url'] = Pi::url('www');
         }
+        //vd($params);
         $this->view()->assign($params);
+    }
+
+    /**
+     * Generate sitemap
+     */
+    public function sitemapAction()
+    {
+        // Disable debugger message
+        Pi::service('log')->mute();
+
+        $this->view()->setTemplate(false)->setLayout('layout-content');
+        $sitemapConfig = Pi::registry('navigation')->read('sitemap')
+            ?: Pi::registry('navigation')->read('front');
+        $sitemap = $this->view()->navigation($sitemapConfig)->sitemap();
+        $content = $sitemap->setFormatOutput(true)->render();
+
+        return $content;
+    }
+
+    /**
+     * Get user data
+     */
+    public function userAction()
+    {
+        $params = $this->params()->fromRoute();
+        if (Pi::service('user')->hasIdentity()) {
+            $uid  = Pi::service('user')->getId();
+            $name = Pi::service('user')->getUser()->get('name');
+            $avatar = Pi::service('user')->getPersist('avatar-mini');
+            if (!$avatar) {
+                $avatar = Pi::service('user')->avatar($uid, 'mini');
+                Pi::service('user')->setPersist('avatar-mini', $avatar);
+            }
+            $user = array(
+                'uid'       => $uid,
+                'name'      => $name,
+                'avatar'    => $avatar,
+                'profile'   => Pi::service('user')->getUrl('profile', $params),
+                'logout'    => Pi::service('authentication')->getUrl('logout', $params),
+                'message'   => Pi::service('user')->message()->getUrl(),
+            );
+        } else {
+            $user = array(
+                'uid'       => 0,
+            );
+        }
+
+        return $user;
     }
 }
