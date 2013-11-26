@@ -29,11 +29,13 @@
       templateUrl: tpl('role-index'),
       controller: 'RoleCtrl',
       resolve: {
-        data: ['$q', 'server',
-          function($q, server) {
+        data: ['$q', '$rootScope', 'server',
+          function($q, $rootScope, server) {
             var deferred = $q.defer();
+            $rootScope.alert = 2;
             server.get().success(function(data) {
               deferred.resolve(data);
+              $rootScope.alert = '';
             });
             return deferred.promise;
           }
