@@ -881,7 +881,11 @@ class IndexController extends ActionController
             );
         }
         if ($condition['uid']) {
-            $where['id'] = (int) $condition['uid'];
+            if ($condition['front_role'] || $condition['admin_role']) {
+                $where['account.id'] = (int) $condition['uid'];
+            } else {
+                $where['id'] = (int) $condition['uid'];
+            }
         }
         if ($condition['email']) {
             $where['email like ?'] = '%' .$condition['email'] . '%';
