@@ -29,7 +29,7 @@ $uid = Pi::user()->getId();
         <?php echo _escape($target['title']); ?>
     </a>
 </h4>
-<div class="comments-panel">
+<div class="comments-panel" id="comments">
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $comment['count'] ?: 0; ?>)</h4>
     </div>
@@ -59,7 +59,7 @@ $uid = Pi::user()->getId();
                 <?php
                 if ($uid == $item['uid']) {
                     echo sprintf(
-                        '<a href="%s" onclick="return confirm(\'%s\')">%s</a>',
+                        '<a href="%s#comments" onclick="return confirm(\'%s\')">%s</a>',
                         $this->url('', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
                         __('Are sure want to delete this comment?'),
                         __('Delete')

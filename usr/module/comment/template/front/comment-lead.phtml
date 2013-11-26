@@ -1,5 +1,5 @@
 <link href="<?php echo $this->assetModule('css/front.css', 'comment'); ?>" rel="stylesheet" type="text/css">
-<div class="comments-panel">
+<div class="comments-panel" id="comments">
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $count ?: 0; ?>)</h4>
     </div>
@@ -31,7 +31,7 @@
                 <?php
                 if ($uid == $item['uid']) {
                     echo sprintf(
-                        '<a href="%s" onclick="return confirm(\'%s\')">%s</a>',
+                        '<a href="%s#comments" onclick="return confirm(\'%s\')">%s</a>',
                         $this->url('comment', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
                         __('Are you sure to delete this comment?'),
                         __('Delete')
