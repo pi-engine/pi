@@ -314,10 +314,9 @@ class RegisterController extends ActionController
             'register-activation'
         );
 
-
-        // Target join community
+        // Target activate user event
         Pi::service('event')->trigger(
-            'join_community',
+            'activate_user',
             $uid
         );
 
