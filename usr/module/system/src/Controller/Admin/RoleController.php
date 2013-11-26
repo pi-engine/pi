@@ -290,7 +290,7 @@ class RoleController extends ActionController
 
         Pi::registry('role')->flush();
 
-        return 1;
+        return array('status' => 1);
     }
 
     /**
