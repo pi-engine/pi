@@ -38,4 +38,30 @@ class FlashMessenger extends ZendFlashMessenger
 
         return $this;
     }
+
+    /**
+     * Load messages
+     *
+     * @param string $namespace
+     *
+     * @return array
+     */
+    public function load($namespace = '')
+    {
+        $this->getMessagesFromContainer();
+        if ($namespace) {
+            $result = $this->setNamespace($namespace)->getMessages();
+        } elseif ($this->messages) {
+            $namespace = array_pop(array_keys($this->messages));
+            $messages = $this->messages[$namespace]->toArray();
+            $result = array(
+                'namespace' => $namespace,
+                'messages'  => $messages,
+            );
+        } else {
+            $result = array();
+        }
+
+        return $result;
+    }
 }

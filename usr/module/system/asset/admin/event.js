@@ -42,7 +42,7 @@
 .controller('PermCtrl', ['$scope', 'server',
   function($scope, server) {
    angular.extend($scope, server.data);
-   d($scope);
+   
    $scope.toggleAction = function(item, type) {
     server.toggleAction(item.id, item.type || 'listener').success(function(res) {
       if (!res.status) return;
