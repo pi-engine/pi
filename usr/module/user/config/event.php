@@ -60,7 +60,7 @@ return array(
         // Update password event
         'password_change' => array(
             // title
-            'title' => __('Password_changed'),
+            'title' => __('Password changed'),
         ),
 
         // Assign role
