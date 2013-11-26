@@ -26,16 +26,13 @@ class Event
     public static function joincommunity($uid)
     {
         // Get community id
-        $commnuityId = Pi::api('user', 'user')->get($uid, 'registered_source');
-
-        if ($commnuityId) {
-            $uri    = 'http://www.eefocus.com/passport/api.php';
-            $params = array(
-                'act' => 'join',
-                'uid' => $uid,
-                'pid' => $commnuityId
-            );
-            Pi::service('remote')->get($uri, $params);
-        }
+        $commnuityId = Pi::api('user', 'user')->get($uid, 'registered_source') ? : 16;
+        $uri    = 'http://www.eefocus.com/passport/api.php';
+        $params = array(
+            'act' => 'join',
+            'uid' => $uid,
+            'pid' => $commnuityId
+        );
+        Pi::service('remote')->get($uri, $params);
     }
 }
