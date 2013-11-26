@@ -1,7 +1,7 @@
 <?php
 $typeMap = array(
-    'getMessages'           => 'alert alert-info',
     'getErrorMessages'      => 'alert alert-error',
+    'getMessages'           => 'alert alert-info',
     'getSuccessMessages'    => 'alert alert-success',
 );
 $flashMessenger = $this->flashMessenger();
@@ -23,6 +23,6 @@ $this->bootstrap('js/bootstrap.min.js');
 <div class="<?php echo $class; ?>">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <?php foreach ($messages as $msg): ?>
-        <?php echo $msg ?>
+        <div><?php echo $msg ?></div>
     <?php endforeach; ?>
 </div>

@@ -26,6 +26,31 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
+        // Security check for setup folder
+        if (is_dir(Pi::path('setup'))) {
+            $this->flashMessenger('Security: `setup` folder is not removed!', 'error');
+        }
+
+        // Security check for boot file
+        $fileList = array('boot.php', '.htaccess');
+        $pattern = 'Security: `%s` is writable!';
+        foreach ($fileList as $file) {
+            $path = Pi::path($file);
+            if (file_exists($path) && is_writable($path)) {
+                $this->flashMessenger(sprintf($pattern, $file), 'error');
+            }
+        }
+
+        // Write permission check
+        $folderList = array('var', 'upload', 'asset', 'config', 'cache');
+        $pattern = 'Permission: `%s` is not available for write!';
+        foreach ($folderList as $fodler) {
+            $path = Pi::path($fodler);
+            if (!is_dir($path) || !is_writable($path)) {
+                $this->flashMessenger(sprintf($pattern, $fodler), 'error');
+            }
+        }
+
         $this->redirect()->toRoute(
             '',
             array('controller' => 'dashboard', 'action' => 'system')
