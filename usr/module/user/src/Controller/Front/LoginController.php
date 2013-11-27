@@ -216,6 +216,7 @@ class LoginController extends ActionController
         Pi::service('event')->trigger('login', array($uid, $rememberTime));
 
         // Set login ip
+        /*
         $ipLogin = Pi::user()->getIp();
         Pi::user()->data()->set(
             $uid,
@@ -232,6 +233,8 @@ class LoginController extends ActionController
             time(),
             $this->getModule()
         );
+        */
+        Pi::service('event')->trigger('user_login', $uid);
         // Check user complete profile
         if ($configs['profile_complete_form']) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');

@@ -95,6 +95,9 @@ class Event
      */
     public static function passwordChange($uid)
     {
+        if ($uid) {
+            Pi::service('audit')->log('user-password-change', $uid);
+        }
     }
 
     /**
@@ -122,6 +125,25 @@ class Event
      */
     public static function userLogin($uid)
     {
+        // Set ip login
+        $ipLogin = Pi::user()->getIp();
+        Pi::user()->data()->set(
+            $uid,
+            'last_login_ip',
+            $ipLogin,
+            'user'
+        );
+
+        // Set login count
+        Pi::user()->data()->increment($uid, 'count_login', 1);
+
+        // Set login time
+        Pi::user()->data()->set(
+            $uid,
+            'last_login',
+            time(),
+            'user'
+        );
     }
 
     /**

@@ -10,20 +10,21 @@
 namespace Custom\User;
 
 use Pi;
+use Module\User\Event as BaseEvent;
 
 /**
  * User custom Event Handler
  *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
-class Event
+class Event extends BaseEvent
 {
     /**
      * User join community event
      *
      * @param int $uid
      */
-    public static function joinCommunity($uid)
+    public static function userActivate($uid)
     {
         // Get community id
         $commnuityId = Pi::api('user', 'user')->get($uid, 'registered_source') ?: 16;
