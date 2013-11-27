@@ -52,7 +52,8 @@ class FlashMessenger extends ZendFlashMessenger
         if ($namespace) {
             $result = $this->setNamespace($namespace)->getMessages();
         } elseif ($this->messages) {
-            $namespace = array_pop(array_keys($this->messages));
+            $namespaces = array_keys($this->messages);
+            $namespace = array_pop($namespaces);
             $messages = $this->messages[$namespace]->toArray();
             $result = array(
                 'namespace' => $namespace,

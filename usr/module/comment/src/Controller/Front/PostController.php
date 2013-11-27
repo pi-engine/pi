@@ -106,7 +106,7 @@ class PostController extends ActionController
             */
             $post['operations'] = $operations;
         } else {
-            $this->jump(array('route' => 'home'), __('Comment post not found.'), 'error');
+            $this->jumpTo404(__('Comment post not found.'));
         }
 
         $title = __('Comment post');

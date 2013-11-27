@@ -9,6 +9,13 @@ $this->css(array(
     $this->assetTheme('css/style.css'),
     $this->assetTheme('css/front.css'),
 ));
+
+// Explicitly load favicon
+// @see http://en.wikipedia.org/wiki/Favicon
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'href'  => Pi::url('www/favicon.ico')
+));
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -30,7 +37,7 @@ $this->css(array(
     <div class="container">
 
         <!-- Flash messenger -->
-        <?php include 'flash-messenger.phtml'; ?>
+        <?php include $this->template('flash-messenger'); ?>
 
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>

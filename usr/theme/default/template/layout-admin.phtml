@@ -11,6 +11,13 @@ $this->css(array(
     $this->assetTheme('css/style.css'),
     $this->assetTheme('css/admin.css')
 ));
+
+// Explicitly load favicon
+// @see http://en.wikipedia.org/wiki/Favicon
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'href'  => Pi::url('www/favicon.ico')
+));
 $module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
@@ -83,7 +90,7 @@ $module = Pi::service('module')->current();
             <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
 
                 <!-- Flash messenger -->
-                <?php include 'flash-messenger.phtml'; ?>
+                <?php include $this->template('flash-messenger'); ?>
 
                 <div class="clearfix pi-main-content">
                     <?php echo $content; ?>

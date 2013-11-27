@@ -1,6 +1,13 @@
 <?php
 $this->bootstrap();
 $this->css($this->assetTheme('css/style.css'));
+
+// Explicitly load favicon
+// @see http://en.wikipedia.org/wiki/Favicon
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'href'  => Pi::url('www/favicon.ico')
+));
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -9,9 +16,13 @@ $this->css($this->assetTheme('css/style.css'));
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
 
-        <div class="wrapper container">
+    <div class="wrapper container">
+
+        <!-- Flash messenger -->
+        <?php include $this->template('flash-messenger'); ?>
+
         <?php if (!empty($content)) { ?><div class="pi-zone-module"><?php echo $content; ?></div><?php } ?>
-        </div>
+    </div>
 
 </body>
 </html>
