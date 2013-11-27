@@ -138,7 +138,7 @@ class Event extends AbstractService
         }
         foreach ($config['listener'] as $item) {
             list($module, $event) = $item['event'];
-            $listener = $item['listener'];
+            $listener = $item['callback'];
             $this->attach($module, $event, $listener);
         }
     }

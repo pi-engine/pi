@@ -207,8 +207,8 @@ class AccountController extends ActionController
         $oldEmail = $userRow->email;
         $args = array(
             'uid'       => $userData['uid'],
-            'new_email' => $email,
             'old_email' => $oldEmail,
+            'new_email' => $email,
         );
         /*
         Pi::service('audit')->attach('reset-email', array(
