@@ -1,10 +1,8 @@
 {
   "name": "pi",
-  "version": "1.2.0-snapshot",
-  "codename": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular/angular.js.git"
+    "url": "https://github.com/pi-engine/pi.git"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
