@@ -390,13 +390,4 @@ class AccountController extends ActionController
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
     }
-
-    public function testAction()
-    {
-        $args = array(
-            '1','2','3'
-        );
-        Pi::service('event')->trigger('name_change', $args);
-        $this->view()->setTemplate(false);
-    }
 }
