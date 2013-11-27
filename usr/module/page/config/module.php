@@ -15,7 +15,7 @@ return array(
         // Description, for admin, optional
         'description'   => _a('Page configurations for cache, blocks and permissions.'),
         // Version number, required
-        'version'       => '1.0.0-beta.4',
+        'version'       => '1.0.0',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional

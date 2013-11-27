@@ -53,7 +53,7 @@ return array(
      * To be stored in DB
      */
     // Version
-    'version'       => '1.0.0-rc.1',
+    'version'       => '1.0.0',
     // Type of layouts available in the theme
     // Potential value: 'both', 'admin', 'front', default as 'both'
     'type'          => 'both',
