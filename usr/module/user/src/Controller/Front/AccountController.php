@@ -207,8 +207,8 @@ class AccountController extends ActionController
         $oldEmail = $userRow->email;
         $args = array(
             'uid'       => $userData['uid'],
-            'new_email' => $email,
             'old_email' => $oldEmail,
+            'new_email' => $email,
         );
         /*
         Pi::service('audit')->attach('reset-email', array(
@@ -389,5 +389,14 @@ class AccountController extends ActionController
         $message->addTo($oldEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
+    }
+
+    public function testAction()
+    {
+        $args = array(
+            '1','2','3'
+        );
+        Pi::service('event')->trigger('name_change', $args);
+        $this->view()->setTemplate(false);
     }
 }
