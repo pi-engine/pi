@@ -19,11 +19,21 @@ use Pi;
 class Event
 {
     /**
+     * User register event
+     *
+     * @param int $uid
+     */
+    public static function userRegister($uid)
+    {
+
+    }
+
+    /**
      * User join community event
      *
      * @param int $uid
      */
-    public static function joincommunity($uid)
+    public static function joinCommunity($uid)
     {
         // Get community id
         $commnuityId = Pi::api('user', 'user')->get($uid, 'registered_source') ? : 16;
@@ -34,5 +44,113 @@ class Event
             'pid' => $commnuityId
         );
         Pi::service('remote')->get($uri, $params);
+    }
+
+    /**
+     * User enable event
+     *
+     * @param int $uid
+     */
+    public static function userEnable($uid)
+    {
+
+    }
+
+    /**
+     * User disable event
+     *
+     * @param int $uid
+     */
+    public static function userDisable($uid)
+    {
+
+    }
+
+    /**
+     * User delete event
+     *
+     * @param int $uid
+     */
+    public static function userDelete($uid)
+    {
+
+    }
+
+    /**
+     * User name change event
+     *
+     * @param int $uid
+     */
+    public static function nameChange($option)
+    {
+        if (isset($option['log_args']) &&
+            $option['log_args']
+        ) {
+            Pi::service('audit')->log('reset-name', $option['log_args']);
+        }
+    }
+
+    /**
+     * User email change event
+     *
+     * @param int $uid
+     */
+    public static function emailChange($option)
+    {
+        if (isset($option['log_args']) &&
+            $option['log_args']
+        ) {
+            Pi::service('audit')->log('reset-email', $option['log_args']);
+        }
+    }
+
+    /**
+     * User password change change event
+     *
+     * @param int $uid
+     */
+    public static function passwordChange($uid)
+    {
+
+    }
+
+    /**
+     * User role assign change event
+     *
+     * @param int $uid
+     */
+    public static function roleAssign($uid)
+    {
+
+    }
+
+    /**
+     * User role remove change event
+     *
+     * @param int $uid
+     */
+    public static function roleRemove($uid)
+    {
+
+    }
+
+    /**
+     * User login event
+     *
+     * @param int $uid
+     */
+    public static function userLogin($uid)
+    {
+
+    }
+
+    /**
+     * User logout event
+     *
+     * @param int $uid
+     */
+    public static function userLogout($uid)
+    {
+
     }
 }

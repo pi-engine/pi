@@ -99,6 +99,12 @@ class AccountController extends ActionController
                         $result['name_error'] = 1;
                     }
                     $result['name_error'] = 0;
+
+                    $args = array($data['name'], $values['name']);
+                    Pi::service('event')->trigger(
+                        'name_change',
+                        array('log_args' => $args)
+                    );
                 }
 
                 return $result;
@@ -203,7 +209,13 @@ class AccountController extends ActionController
             'file'  => Pi::path('log') . '/reset.email.csv'
         ));
         */
+        /*
         Pi::service('audit')->log('reset-email', $args);
+        */
+        Pi::service('event')->trigger(
+            'email_change',
+            array('log_args' => $args)
+        );
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
 
