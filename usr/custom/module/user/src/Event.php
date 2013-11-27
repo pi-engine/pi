@@ -24,7 +24,7 @@ class Event extends BaseEvent
      *
      * @param int $uid
      */
-    public static function userActivate($uid)
+    public static function joinCommunity($uid)
     {
         // Get community id
         $commnuityId = Pi::api('user', 'user')->get($uid, 'registered_source') ?: 16;

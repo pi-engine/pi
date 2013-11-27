@@ -123,7 +123,24 @@ class Event extends AbstractService
      */
     public function loadListeners($module, $event)
     {
+        $this->loadCustom();
         return Pi::registry('event')->read($module, $event);
+    }
+
+    /**
+     * Load custom listeners
+     */
+    protected function loadCustom()
+    {
+        $config = Pi::service('config')->load('service.event.php');
+        if (empty($config['listener'])) {
+            return;
+        }
+        foreach ($config['listener'] as $item) {
+            list($module, $event) = $item['event'];
+            $listener = $item['listener'];
+            $this->attach($module, $event, $listener);
+        }
     }
 
     /**

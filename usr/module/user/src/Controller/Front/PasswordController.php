@@ -72,7 +72,7 @@ class PasswordController extends ActionController
                             'credential' => $values['credential-new']
                         )
                     );
-                    Pi::service('event')->trigger('password_change',$uid);
+                    Pi::service('event')->trigger('password_change', $uid);
 
                     $result['status'] = 1;
                     $result['message'] = __('Reset password successfully');
@@ -236,7 +236,7 @@ class PasswordController extends ActionController
                     array('credential' => $values['credential-new'])
                 );
 
-                Pi::service('event')->trigger('password_change',$uid);
+                Pi::service('event')->trigger('password_change', $uid);
                 // Delete find password verify token
                 Pi::user()->data()->delete($uid, 'find-password');
                 $result['message'] = __('Reset password successfully');
