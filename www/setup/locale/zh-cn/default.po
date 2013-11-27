@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
 "POT-Creation-Date: 2013-11-09 19:20+0800\n"
-"PO-Revision-Date: 2013-11-09 19:20+0800\n"
+"PO-Revision-Date: 2013-11-28 00:53+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -14,17 +14,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\www\\setup\n"
 
 #: C:\wamp\www\master\www\setup/include/config.php:15
-#, fuzzy
 msgid "Web server"
 msgstr "服务器"
 
 #: C:\wamp\www\master\www\setup/include/config.php:16
-#, fuzzy
 msgid "PHP"
 msgstr "PHP语言"
 
 #: C:\wamp\www\master\www\setup/include/config.php:17
-#, fuzzy
 msgid "Persist options"
 msgstr "持久数据参数"
 
@@ -129,49 +126,48 @@ msgid ""
 msgstr ""
 
 #: C:\wamp\www\master\www\setup/include/page.php:13
-#, fuzzy
 msgid "Presettings"
-msgstr "Presettings data"
+msgstr "系统配置"
 
 #: C:\wamp\www\master\www\setup/include/page.php:14
 msgid "Presettings and server configuration detection"
-msgstr ""
+msgstr "系统需求及服务器配置检测"
 
 #: C:\wamp\www\master\www\setup/include/page.php:17
 msgid "Directives"
-msgstr ""
+msgstr "路径设置"
 
 #: C:\wamp\www\master\www\setup/include/page.php:18
 msgid "Directive settings for website"
-msgstr ""
+msgstr "网站路径及URL设置"
 
 #: C:\wamp\www\master\www\setup/include/page.php:21
 msgid "Database"
-msgstr ""
+msgstr "数据库"
 
 #: C:\wamp\www\master\www\setup/include/page.php:22
 msgid "Database settings"
-msgstr ""
+msgstr "数据库设置及生成"
 
 #: C:\wamp\www\master\www\setup/include/page.php:25
 msgid "Administrator"
-msgstr ""
+msgstr "管理员"
 
 #: C:\wamp\www\master\www\setup/include/page.php:26
 msgid "Administrator account creation"
-msgstr ""
+msgstr "管理员账号建立"
 
 #: C:\wamp\www\master\www\setup/include/page.php:29
 msgid "Finish"
-msgstr ""
+msgstr "完成"
 
 #: C:\wamp\www\master\www\setup/include/page.php:30
 msgid "Finishing installation process"
-msgstr ""
+msgstr "安装完成及处理"
 
 #: C:\wamp\www\master\www\setup/src/Wizard.php:225
 msgid "Pi Engine Setup Wizard"
-msgstr ""
+msgstr "Pi Engine 安装助手"
 
 #: C:\wamp\www\master\www\setup/src/Controller/Admin.php:36
 msgid "Database connection is failed."
@@ -261,7 +257,6 @@ msgid "The configuration file \"%s\" is not written correctly."
 msgstr ""
 
 #: C:\wamp\www\master\www\setup/src/Controller/Database.php:175
-#, fuzzy
 msgid "Server hostname"
 msgstr "服务器"
 
@@ -374,23 +369,22 @@ msgid ""
 msgstr ""
 
 #: C:\wamp\www\master\www\setup/src/Controller/Presetting.php:89
-#, fuzzy
 msgid "Language Selection"
 msgstr "语言选择"
 
 #: C:\wamp\www\master\www\setup/src/Controller/Presetting.php:91
 msgid "Choose the language for the installation and website"
-msgstr ""
+msgstr "选择安装及网站所用语言"
 
 #: C:\wamp\www\master\www\setup/include/template.phtml:64
 msgid "Previous"
-msgstr ""
+msgstr "上一步"
 
 #: C:\wamp\www\master\www\setup/include/template.phtml:69
 msgid "Reload"
-msgstr ""
+msgstr "重新载入"
 
 #: C:\wamp\www\master\www\setup/include/template.phtml:78
 #: C:\wamp\www\master\www\setup/include/template.phtml:83
 msgid "Next"
-msgstr ""
+msgstr "下一步"

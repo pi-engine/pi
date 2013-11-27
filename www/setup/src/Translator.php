@@ -105,8 +105,8 @@ class Translator
      */
     protected static function loadFile($filename, array $options = array())
     {
-        $result = array();
-        $options = $options + static::$options;
+        //$result = array();
+        //$options = $options + static::$options;
         $file = @fopen($filename, 'rb');
         if (!$file) {
             throw new \InvalidArgumentException(
