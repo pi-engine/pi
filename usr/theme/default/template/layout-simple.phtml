@@ -37,7 +37,7 @@ $this->headLink(array(
     <div class="container">
 
         <!-- Flash messenger -->
-        <?php include 'flash-messenger.phtml'; ?>
+        <?php include $this->template('flash-messenger'); ?>
 
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>

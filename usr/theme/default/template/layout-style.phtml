@@ -16,9 +16,13 @@ $this->headLink(array(
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
 
-        <div class="wrapper container">
+    <div class="wrapper container">
+
+        <!-- Flash messenger -->
+        <?php include $this->template('flash-messenger'); ?>
+
         <?php if (!empty($content)) { ?><div class="pi-zone-module"><?php echo $content; ?></div><?php } ?>
-        </div>
+    </div>
 
 </body>
 </html>

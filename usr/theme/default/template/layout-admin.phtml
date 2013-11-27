@@ -90,7 +90,7 @@ $module = Pi::service('module')->current();
             <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
 
                 <!-- Flash messenger -->
-                <?php include 'flash-messenger.phtml'; ?>
+                <?php include $this->template('flash-messenger'); ?>
 
                 <div class="clearfix pi-main-content">
                     <?php echo $content; ?>
