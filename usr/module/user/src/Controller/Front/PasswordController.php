@@ -63,14 +63,7 @@ class PasswordController extends ActionController
                 $values = $form->getData();
                 // Verify password
                 $row = Pi::model('user_account')->find($uid, 'id');
-                $credential = md5(sprintf(
-                    '%s%s%s',
-                    $row->salt,
-                    $values['credential'],
-                    Pi::config('salt')
-                ));
-
-                if ($row['credential'] == $row->transformCredential($credential)) {
+                if ($row['credential'] == $row->transformCredential($values['credential'])) {
                     //if ($credential == $row->credential) {
                     // Update password
                     Pi::api('user', 'user')->updateAccount(
@@ -79,6 +72,8 @@ class PasswordController extends ActionController
                             'credential' => $values['credential-new']
                         )
                     );
+                    Pi::service('event')->trigger('password_change',$uid);
+
                     $result['status'] = 1;
                     $result['message'] = __('Reset password successfully');
                 } else {
@@ -241,6 +236,7 @@ class PasswordController extends ActionController
                     array('credential' => $values['credential-new'])
                 );
 
+                Pi::service('event')->trigger('password_change',$uid);
                 // Delete find password verify token
                 Pi::user()->data()->delete($uid, 'find-password');
                 $result['message'] = __('Reset password successfully');
