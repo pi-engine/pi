@@ -51,6 +51,12 @@ return array(
             'title' => __('User profile updated'),
         ),
 
+        // Update display name event
+        'name_change' => array(
+            // title
+            'title' => __('Display name changed'),
+        ),
+
         // Update email event
         'email_change' => array(
             // title
@@ -91,10 +97,56 @@ return array(
     // Listener list
     'listener' => array(
         array(
-            // event info: module, event name
+            'event'     => array('user', 'user_register'),
+            'callback'  => array('event', 'userRegister'),
+        ),
+        array(
             'event'     => array('user', 'user_activate'),
-            // listener callback: class, method
-            'callback'  => array('event', 'joincommunity'),
+            'callback'  => array('event', 'joinCommunity'),
+        ),
+        array(
+            'event'     => array('user', 'user_enable'),
+            'callback'  => array('event', 'userEnable'),
+        ),
+        array(
+            'event'     => array('user', 'user_disable'),
+            'callback'  => array('event', 'userDisable'),
+        ),
+        array(
+            'event'     => array('user', 'user_delete'),
+            'callback'  => array('event', 'userDelete'),
+        ),
+        array(
+            'event'     => array('user', 'user_update'),
+            'callback'  => array('event', 'userUpdate'),
+        ),
+        array(
+            'event'     => array('user', 'name_change'),
+            'callback'  => array('event', 'nameChange'),
+        ),
+        array(
+            'event'     => array('user', 'email_change'),
+            'callback'  => array('event', 'emailChange'),
+        ),
+        array(
+            'event'     => array('user', 'password_change'),
+            'callback'  => array('event', 'passwordChange'),
+        ),
+        array(
+            'event'     => array('user', 'role_assign'),
+            'callback'  => array('event', 'roleAssign'),
+        ),
+        array(
+            'event'     => array('user', 'role_remove'),
+            'callback'  => array('event', 'roleRemove'),
+        ),
+        array(
+            'event'     => array('user', 'user_login'),
+            'callback'  => array('event', 'userLogin'),
+        ),
+        array(
+            'event'     => array('user', 'user_logout'),
+            'callback'  => array('event', 'userLogout'),
         ),
     ),
 );
