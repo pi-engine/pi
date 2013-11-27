@@ -313,10 +313,7 @@ class RegisterController extends ActionController
         );
 
         // Target activate user event
-        Pi::service('event')->trigger(
-            'user_activate',
-            $uid
-        );
+        Pi::service('event')->trigger('user_activate', $uid);
 
         $result['status']  = 1;
         $result['message'] = __('Activate successfully');

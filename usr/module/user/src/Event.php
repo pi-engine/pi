@@ -25,25 +25,15 @@ class Event
      */
     public static function userRegister($uid)
     {
-
     }
 
     /**
-     * User join community event
+     * User activate event
      *
      * @param int $uid
      */
-    public static function joinCommunity($uid)
+    public static function userActivate($uid)
     {
-        // Get community id
-        $commnuityId = Pi::api('user', 'user')->get($uid, 'registered_source') ? : 16;
-        $uri    = 'http://www.eefocus.com/passport/api.php';
-        $params = array(
-            'act' => 'join',
-            'uid' => $uid,
-            'pid' => $commnuityId
-        );
-        Pi::service('remote')->get($uri, $params);
     }
 
     /**
@@ -63,7 +53,6 @@ class Event
      */
     public static function userDisable($uid)
     {
-
     }
 
     /**
@@ -73,34 +62,29 @@ class Event
      */
     public static function userDelete($uid)
     {
-
     }
 
     /**
      * User name change event
      *
-     * @param int $uid
+     * @param array $params
      */
-    public static function nameChange($option)
+    public static function nameChange($params)
     {
-        if (isset($option['log_args']) &&
-            $option['log_args']
-        ) {
-            Pi::service('audit')->log('reset-name', $option['log_args']);
+        if (!empty($params)) {
+            Pi::service('audit')->log('user-name-change', $params);
         }
     }
 
     /**
      * User email change event
      *
-     * @param int $uid
+     * @param array $params
      */
-    public static function emailChange($option)
+    public static function emailChange($params)
     {
-        if (isset($option['log_args']) &&
-            $option['log_args']
-        ) {
-            Pi::service('audit')->log('reset-email', $option['log_args']);
+        if (!empty($params)) {
+            Pi::service('audit')->log('user-email-change', $params);
         }
     }
 
@@ -111,7 +95,6 @@ class Event
      */
     public static function passwordChange($uid)
     {
-
     }
 
     /**
@@ -121,7 +104,6 @@ class Event
      */
     public static function roleAssign($uid)
     {
-
     }
 
     /**
@@ -131,7 +113,6 @@ class Event
      */
     public static function roleRemove($uid)
     {
-
     }
 
     /**
@@ -141,7 +122,6 @@ class Event
      */
     public static function userLogin($uid)
     {
-
     }
 
     /**
@@ -151,6 +131,5 @@ class Event
      */
     public static function userLogout($uid)
     {
-
     }
 }

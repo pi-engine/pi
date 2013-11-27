@@ -102,7 +102,7 @@ return array(
         ),
         array(
             'event'     => array('user', 'user_activate'),
-            'callback'  => array('event', 'joinCommunity'),
+            'callback'  => array('event', 'userActivate'),
         ),
         array(
             'event'     => array('user', 'user_enable'),

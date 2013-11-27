@@ -100,11 +100,13 @@ class AccountController extends ActionController
                     }
                     $result['name_error'] = 0;
 
-                    $args = array($data['name'], $values['name']);
-                    Pi::service('event')->trigger(
-                        'name_change',
-                        array('log_args' => $args)
+                    $args = array(
+                        'uid'       => $uid,
+                        'new_name'  => $values['name'],
+                        'old_name'  => $data['name'],
                     );
+
+                    Pi::service('event')->trigger('name_change', $args);
                 }
 
                 return $result;
@@ -203,7 +205,11 @@ class AccountController extends ActionController
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         // Set log
         $oldEmail = $userRow->email;
-        $args = array($oldEmail, $email);
+        $args = array(
+            'uid'       => $userData['uid'],
+            'new_email' => $email,
+            'old_email' => $oldEmail,
+        );
         /*
         Pi::service('audit')->attach('reset-email', array(
             'file'  => Pi::path('log') . '/reset.email.csv'
@@ -212,10 +218,7 @@ class AccountController extends ActionController
         /*
         Pi::service('audit')->log('reset-email', $args);
         */
-        Pi::service('event')->trigger(
-            'email_change',
-            array('log_args' => $args)
-        );
+        Pi::service('event')->trigger('email_change', $args);
         $result['status'] = 1;
         $result['message'] = __('Reset email successfully');
 
