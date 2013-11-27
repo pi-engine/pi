@@ -290,19 +290,17 @@ class RegisterController extends ActionController
         $expire  = $userData['time'] + 24 * 3600;
         $current = time();
         if ($current > $expire) {
-            $result['message'] = __('Activate link is invalid');
+            $result['message'] = __('Activation link is invalid');
             $this->view()->assign('result', $result);
             return;
         }
 
         // Activate user
-        $status = Pi::api('user', 'user')->activateUser(
-            $userData['uid']
-        );
+        $status = Pi::api('user', 'user')->activateUser($userData['uid']);
 
         // Check result
         if (!$status) {
-            $result['message'] = __('Activate link is invalid');
+            $result['message'] = __('Activation link is invalid');
             $this->view()->assign('result', $result);
             return;
         }
