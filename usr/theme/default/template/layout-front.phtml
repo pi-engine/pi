@@ -48,34 +48,18 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
-/**#@+
- * For demonstration
- */
-/*
-// Load jQuery
-$this->jQuery();
-// Load locale css/js, optional
-$this->css($this->assetLocale('rtl.css'));
-$this->js($this->assetLocale('rtl.js'));
-// Load custom mobile css
-$this->css(
-    $this->assetTheme('css/mobile.css'),
-    array('media' => "only screen and (max-width: 768px)")
-);
-*/
-/**#@-*/
-
+// Explicitly load favicon
+// @see http://en.wikipedia.org/wiki/Favicon
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'href'  => Pi::url('www/favicon.ico')
+));
 ?>
 
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <?php echo $this->assemble('headTitle', 4); ?>
-    <?php echo $this->assemble('headMeta', 4); ?>
-    <?php echo $this->assemble('headLink', 4); ?>
-    <?php echo $this->assemble('headStyle', 4); ?>
-    <?php echo $this->assemble('headScript', 4); ?>
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
     <!-- Header: logo, user bar -->
