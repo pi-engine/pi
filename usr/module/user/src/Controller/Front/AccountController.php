@@ -100,7 +100,7 @@ class AccountController extends ActionController
                     }
                     $result['name_error'] = 0;
 
-                    $args = array($data['name'], $values['name']);
+                    $args = array('UID:' . $uid, $data['name'], $values['name']);
                     Pi::service('event')->trigger(
                         'name_change',
                         array('log_args' => $args)
@@ -203,7 +203,7 @@ class AccountController extends ActionController
         Pi::user()->data()->delete($userData['uid'], 'change-email');
         // Set log
         $oldEmail = $userRow->email;
-        $args = array($oldEmail, $email);
+        $args = array('UID:' . $userRow['id'],  $oldEmail, $email);
         /*
         Pi::service('audit')->attach('reset-email', array(
             'file'  => Pi::path('log') . '/reset.email.csv'
