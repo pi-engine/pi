@@ -213,7 +213,11 @@ class LoginController extends ActionController
         $rememberTime = isset($configs['rememberme']) && $values['rememberme']
                       ? $values['rememberme'] * 86400
                       : 0;
-        Pi::service('event')->trigger('login', array($uid, $rememberTime));
+        $args = array(
+            'uid'           => $uid,
+            'remember_time' => $rememberTime,
+        );
+        Pi::service('event')->trigger('user_login', $args);
 
         // Set login ip
         /*
@@ -234,7 +238,6 @@ class LoginController extends ActionController
             $this->getModule()
         );
         */
-        Pi::service('event')->trigger('user_login', $uid);
         // Check user complete profile
         if ($configs['profile_complete_form']) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');

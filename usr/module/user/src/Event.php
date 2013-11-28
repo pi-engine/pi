@@ -37,13 +37,21 @@ class Event
     }
 
     /**
+     * User update event
+     *
+     * @param int $uid
+     */
+    public static function userUpdate($uid)
+    {
+    }
+
+    /**
      * User enable event
      *
      * @param int $uid
      */
     public static function userEnable($uid)
     {
-
     }
 
     /**
@@ -123,27 +131,29 @@ class Event
      *
      * @param int $uid
      */
-    public static function userLogin($uid)
+    public static function userLogin($params)
     {
-        // Set ip login
-        $ipLogin = Pi::user()->getIp();
-        Pi::user()->data()->set(
-            $uid,
-            'last_login_ip',
-            $ipLogin,
-            'user'
-        );
+        if (isset($params['uid']) && $params['uid']) {
+            // Set ip login
+            $ipLogin = Pi::user()->getIp();
+            Pi::user()->data()->set(
+                $params['uid'],
+                'last_login_ip',
+                $ipLogin,
+                'user'
+            );
 
-        // Set login count
-        Pi::user()->data()->increment($uid, 'count_login', 1);
+            // Set login count
+            Pi::user()->data()->increment($params['uid'], 'count_login', 1);
 
-        // Set login time
-        Pi::user()->data()->set(
-            $uid,
-            'last_login',
-            time(),
-            'user'
-        );
+            // Set login time
+            Pi::user()->data()->set(
+                $params['uid'],
+                'last_login',
+                time(),
+                'user'
+            );
+        }
     }
 
     /**

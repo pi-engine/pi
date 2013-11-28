@@ -205,6 +205,7 @@ class ProfileController extends ActionController
                 $data['last_modified'] = time();
                 // Update user
                 Pi::api('user', 'user')->updateUser($uid, $data);
+                Pi::service('event')->trigger('user_update', $uid);
                 $result['status']  = 1;
                 $result['message'] = __('Update successfully');
             } else {
@@ -373,6 +374,7 @@ class ProfileController extends ActionController
 
                 // Update compound
                 Pi::api('user', 'user')->set($uid, $compound, $newCompoundData);
+                Pi::service('event')->trigger('user_update', $uid);
                 $profileGroup = $this->getProfile($uid);
                 $compounds = array();
                 foreach ($profileGroup[$groupId]['fields'] as $key => $value) {
@@ -440,6 +442,7 @@ class ProfileController extends ActionController
 
         // Update compound
         Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+        Pi::service('event')->trigger('user_update', $uid);
         $result['status'] = 1;
 
         return $result;
@@ -485,6 +488,7 @@ class ProfileController extends ActionController
             $result['message'] = __('Cannot delete the last one.');
         } else {
             $status = Pi::api('user', 'user')->set($uid, $compound, $newCompound);
+            Pi::service('event')->trigger('user_update', $uid);
             $result['status']  = $status;
             $result['message'] = $status ? '' : __('Delete failed.');
         }
@@ -547,6 +551,7 @@ class ProfileController extends ActionController
                     $compound,
                     $compoundData
                 );
+                Pi::service('event')->trigger('user_update', $uid);
 
                 $profileGroup = $this->getProfile($uid);
                 $compounds = array();
