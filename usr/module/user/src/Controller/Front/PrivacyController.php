@@ -58,6 +58,8 @@ class PrivacyController extends ActionController
                     )
                 );
             }
+
+            Pi::service('event')->trigger('user_update', $uid);
             $result = array(
                 'status'  => 1,
                 'message' => __('Set privacy successfully'),

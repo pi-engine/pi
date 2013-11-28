@@ -56,6 +56,7 @@ class EditController extends ActionController
                     unset($values['credential']);
                 }
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
+                Pi::service('event')->trigger('user_update', $uid);
                 if ($status == 1) {
                     $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
@@ -110,6 +111,7 @@ class EditController extends ActionController
                     'status'  => 1,
                     'message' => _a('Replace user avater successfully')
                 );
+                Pi::service('event')->trigger('user_update', $uid);
             }
             $this->view()->assign('result', $result);
         }
@@ -207,6 +209,7 @@ class EditController extends ActionController
                     $userNewCompound
                 );
                 Pi::api('user', 'user')->updateUser($uid, array('last_modified' => time()));
+                Pi::service('event')->trigger('user_update', $uid);
 
                 if ($status) {
                     $result['message'] = _a('Edit user info successfully');
@@ -252,6 +255,7 @@ class EditController extends ActionController
             $uid,
             array('last_modified' => time())
         );
+        Pi::service('event')->trigger('user_update', $uid);
 
         return $this->jump(array(
             'controller'  => 'edit',
@@ -261,8 +265,6 @@ class EditController extends ActionController
         ), _a('Delete this group successfully'));
         
     }
-
-    
 
     /**
      * Get edit field and filter

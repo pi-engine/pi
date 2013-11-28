@@ -413,11 +413,16 @@ class IndexController extends ActionController
 
         $uids  = explode(',', $uids);
         $count = 0;
+        $enableUids = array();
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->enableUser($uid);
             if ($status) {
                 $count++;
+                $enableUids[] = $uid;
             }
+        }
+        if ($enableUids) {
+            Pi::service('event')->trigger('user_enable', $enableUids);
         }
 
         $usersStatus = $this->getUserStatus($uids);
@@ -449,11 +454,16 @@ class IndexController extends ActionController
 
         $uids  = explode(',', $uids);
         $count = 0;
+        $disableUids[] = array();
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->disableUser($uid);
             if ($status) {
                 $count++;
+                $disableUids[] = $uid;
             }
+        }
+        if ($disableUids) {
+            Pi::service('event')->trigger('user_disable', $disableUids);
         }
 
         $usersStatus = $this->getUserStatus($uids);
@@ -498,6 +508,14 @@ class IndexController extends ActionController
                 $this->deleteUser($uid, 'timeline_log', 'user');
             }
         }
+        if (isset($result['deleted_uids']) &&
+            $result['deleted_uids']
+        ) {
+            Pi::service('event')->trigger(
+                'user_delete',
+                $result['deleted_uids']
+            );
+        }
 
         $usersStatus = $this->getUserStatus($uids);
         $result['users_status'] = $usersStatus;
@@ -533,11 +551,16 @@ class IndexController extends ActionController
         }
 
         $count = 0;
+        $activateUids = array();
         foreach ($uids as $uid) {
             $status = Pi::api('user', 'user')->activateUser($uid);
             if ($status) {
                 $count++;
+                $activateUids[] = $uid;
             }
+        }
+        if ($activateUids) {
+            Pi::service('event')->trigger('user_activate', $activateUids);
         }
 
         $usersStatus = $this->getUserStatus($uids);
@@ -589,25 +612,39 @@ class IndexController extends ActionController
         }
 
         // Add user role
+        $roleAssignUids = array();
         if ($type == 'add') {
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->setRole($uid, $role);
                 if (!$status) {
                     $result['message'] = _a('Role assignment failed.');
                     return $result;
+                } else {
+                    $roleAssignUids[] = $uid;
                 }
             }
         }
 
+        if ($roleAssignUids) {
+            Pi::service('event')->trigger('role_assign', $roleAssignUids);
+        }
+
         // Remove user role
+        $roleRemoveUids = array();
         if ($type == 'remove') {
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->revokeRole($uid, $role);
                 if (!$status) {
                     $result['message'] = _a('Role assignment failed');
                     return $result;
+                } else {
+                    $roleRemoveUids[] = $uid;
                 }
             }
+        }
+
+        if ($roleRemoveUids) {
+            Pi::service('event')->trigger('role_remove', $roleRemoveUids);
         }
 
         $users = array();
