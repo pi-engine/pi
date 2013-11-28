@@ -46,11 +46,14 @@ use Pi;
 class Event extends AbstractService
 {
     /**
-     * Run-time attached listeners
+     * Custom and run-time attached listeners
      *
      * @var array
      */
     protected $container;
+
+    /** @var bool Custom listeners are loaded */
+    protected $customLoaded = false;
 
     /**
      * Trigger (or notify) callbacks registered to an event
@@ -119,6 +122,7 @@ class Event extends AbstractService
      *
      * @param string    $module
      * @param string    $event
+     *
      * @return array|bool
      */
     public function loadListeners($module, $event)
@@ -129,9 +133,15 @@ class Event extends AbstractService
 
     /**
      * Load custom listeners
+     *
+     * @return void
      */
     protected function loadCustom()
     {
+        if ($this->customLoaded) {
+            return;
+        }
+
         $config = Pi::service('config')->load('service.event.php');
         if (empty($config['listener'])) {
             return;
@@ -141,6 +151,8 @@ class Event extends AbstractService
             $listener = $item['callback'];
             $this->attach($module, $event, $listener);
         }
+
+        $this->customLoaded = true;
     }
 
     /**
@@ -150,6 +162,7 @@ class Event extends AbstractService
      * @param string        $event      Event name
      * @param array         $listener   Listener callback:
      *      <class>, <method>[, <module>]
+     *
      * @return $this
      */
     public function attach($module, $event, array $listener)
@@ -167,6 +180,7 @@ class Event extends AbstractService
      * @param string        $event      Event name
      * @param array|null    $listener   Listener callback:
      *      <class>, <method>, <module>
+     *
      * @return $this
      */
     public function detach($module, $event, $listener = null)
