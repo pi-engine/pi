@@ -56,7 +56,7 @@ class EditController extends ActionController
                     unset($values['credential']);
                 }
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
-                if ($status) {
+                if ($status == 1) {
                     $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
                 }
