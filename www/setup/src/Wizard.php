@@ -26,10 +26,11 @@ class Wizard
     protected $pageIndex = null;
 
     protected $persistentData = array();
-    protected $locale = 'en';
+    protected $locale = '';
     protected $charset = 'UTF-8';
     protected $pages = array();
     protected $configs = array();
+    protected $languages = array();
 
     public $support = array(
         'url'   => 'http://pialog.org',
@@ -117,8 +118,42 @@ class Wizard
     public function initLocale($locale = null)
     {
         if (empty($locale)) {
+            // Load from persist
             if (!empty($this->persistentData['locale'])) {
                 $this->locale = $this->persistentData['locale'];
+            // Detect via browser
+            } elseif (!$this->locale) {
+                $auto   = 'en';
+                $acceptedLanguage = isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])
+                    ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
+                $matched = preg_match_all(
+                    '/([a-z]{2,8}(-[a-z]{2,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',
+                    $acceptedLanguage,
+                    $matches
+                );
+                //var_dump($matches[1]);
+                if ($matched) {
+                    $languageList = $this->getLanguages();
+                    foreach ($matches[1] as $language) {
+                        $canonized = strtolower($language);
+                        if (isset($languageList[$canonized])) {
+                            $auto = $canonized;
+                            //var_dump($auto);
+                            break;
+                        } else {
+                            $pos = strpos($language, '-');
+                            if (false !== $pos) {
+                                $canonized = substr($language, 0, $pos);
+                                if (isset($languageList[$canonized])) {
+                                    $auto = $canonized;
+                                    //var_dump($auto);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                $this->setLocale($auto);
             }
         } else {
             $this->locale = $locale;
@@ -133,13 +168,53 @@ class Wizard
 
     public function setLocale($locale)
     {
-        $this->locale = $locale;
-        $this->persistentData['locale'] = $this->locale;
+        $languages = $this->getLanguages();
+        if (isset($languages[$locale])) {
+            $this->locale = $locale;
+            $this->persistentData['locale'] = $this->locale;
+
+            return true;
+        }
+
+        return false;
     }
 
     public function getLocale()
     {
         return $this->locale;
+    }
+
+    public function getLanguages()
+    {
+        if (!$this->languages) {
+            $languageList = array();
+
+            $iterator = new \DirectoryIterator(
+                $this->getRoot() . '/locale/'
+            );
+            foreach ($iterator as $fileinfo) {
+                if (!$fileinfo->isDir() || $fileinfo->isDot()) {
+                    continue;
+                }
+                $localeName = $fileinfo->getFilename();
+                if ($localeName[0] == '.') {
+                    continue;
+                }
+                $title = $localeName;
+                if (class_exists('\Locale')) {
+                    $title = Locale::getDisplayName($localeName) ?: $title;
+                }
+                $iconFile = $fileinfo->getPathname() . '/icon.gif';
+                $languageList[$localeName] = array(
+                    'title' => $title,
+                    'icon'  => $iconFile
+                );
+            }
+            asort($languageList);
+            $this->languages = $languageList;
+        }
+
+        return $this->languages;
     }
 
     public function setCharset($charset)

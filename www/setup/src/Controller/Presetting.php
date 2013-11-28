@@ -27,7 +27,7 @@ class Presetting extends AbstractController
     {
         $language = $this->request->getParam('language');
         if (!empty($language)) {
-            $languageList = $this->getLanguages();
+            $languageList = $this->wizard->getLanguages();
             if (isset($languageList[$language])) {
                 $this->wizard->setLocale($language);
                 $this->wizard->setCharset($this->getCharset($language));
@@ -38,36 +38,6 @@ class Presetting extends AbstractController
     public function indexAction()
     {
         $this->loadContent();
-    }
-
-    protected function getLanguages()
-    {
-        $languageList = array();
-
-        $iterator = new \DirectoryIterator(
-            $this->wizard->getRoot() . '/locale/'
-        );
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
-            }
-            $localeName = $fileinfo->getFilename();
-            if ($localeName[0] == '.') {
-                continue;
-            }
-            $title = $localeName;
-            if (class_exists('\Locale')) {
-                $title = Locale::getDisplayName($localeName) ?: $title;
-            }
-            $iconFile = $fileinfo->getPathname() . '/icon.gif';
-            $languageList[$localeName] = array(
-                'title' => $title,
-                'icon'  => $iconFile
-            );
-        }
-        asort($languageList);
-
-        return $languageList;
     }
 
     protected function getCharset($locale)
@@ -83,18 +53,20 @@ class Presetting extends AbstractController
 
     protected function loadLanguageForm()
     {
-        $languageList = $this->getLanguages();
+        $languageList = $this->wizard->getLanguages();
+        $locale = $this->wizard->getLocale();
 
+        $title = _s('Language Selection');
+        $caption = _s('Choose the language for the installation and website.');
         $content = '<div class="well"><h2>'
-                 . _s('Language Selection')
+                 . $title
                  . '</h2><p class="caption">'
-                 . _s('Choose the language for the installation and website')
+                 . $caption
                  . '</p>'
                  . '<div class="install-form"><p>'
                  . '<select id="language-selector" size="5" name="language">';
         foreach ($languageList as $name => $language) {
-            $selected = ($name == $this->wizard->getLocale())
-                ? ' selected="selected"' : '';
+            $selected = ($name == $locale) ? ' selected="selected"' : '';
             $content .= sprintf(
                 '<option value="%s"%s>%s</option>',
                 $name,
@@ -134,8 +106,9 @@ STYLE;
 <script type="text/javascript">
 $("#language-selector").change(function () {
     $.ajax({
-        url: "$_SERVER[PHP_SELF]",
-        data: {page: "presetting", language: this.value, action: "submit"},
+        url: "{$_SERVER['PHP_SELF']}",
+        data: { page: "presetting", language: this.value, action: "submit" },
+        success: function() { window.location.reload(true); }
     });
 });
 </script>
