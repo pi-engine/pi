@@ -92,21 +92,19 @@ class Home extends Standard
      */
     public function assemble(array $params = array(), array $options = array())
     {
-        //return '/';
-
         if (isset($params['section'])) {
             $section = $params['section'];
         } else {
             $section = Pi::engine()->application()->getSection();
         }
         if ('admin' == $section) {
-            $url = Pi::service('url')->assemble('admin', array(
+            $url = Pi::service('url')->getRouter()->getRoute('admin')->assemble(array(
                 'module'        => 'system',
                 'controller'    => 'index',
                 'action'        => 'index'
-            ));
+            ), $options);
         } else {
-            $url = Pi::url('www');
+            $url = '';
         }
 
         return $url;

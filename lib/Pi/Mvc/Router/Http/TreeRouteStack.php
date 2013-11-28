@@ -67,6 +67,19 @@ class TreeRouteStack extends RouteStack
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function getRoute($name)
+    {
+        $route = $this->routes->get($name);
+        if (!$route) {
+            $route = $this->extraRoute($name);
+        }
+
+        return $route;
+    }
+
+    /**
      * routeFromArray(): defined by SimpleRouteStack.
      *
      * @param array|\Traversable $specs
