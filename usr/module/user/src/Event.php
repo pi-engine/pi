@@ -102,6 +102,16 @@ class Event
     }
 
     /**
+     * User avatar change event
+     *
+     * @param int $uid
+     */
+    public static function avatarChange($uid)
+    {
+        static::updatePersist($uid);
+    }
+
+    /**
      * User password change change event
      *
      * @param int $uid

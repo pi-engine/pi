@@ -508,7 +508,10 @@ class AvatarController extends ActionController
             // Save avatar data into database
             Pi::user()->set($uid, 'avatar', $photo);
         }
-        
+
+        // Trigger event
+        Pi::service('event')->trigger('avatar_change', $uid);
+
         $result['status'] = true;
         $result['message'] = __('Avatar set successfully.');
 

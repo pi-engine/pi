@@ -63,6 +63,12 @@ return array(
             'title' => __('Email changed'),
         ),
 
+        // Update avatar event
+        'avatar_change' => array(
+            // title
+            'title' => __('Avatar changed'),
+        ),
+
         // Update password event
         'password_change' => array(
             // title
@@ -127,6 +133,10 @@ return array(
         array(
             'event'     => array('user', 'email_change'),
             'callback'  => array('event', 'emailChange'),
+        ),
+        array(
+            'event'     => array('user', 'avatar_change'),
+            'callback'  => array('event', 'avatarChange'),
         ),
         array(
             'event'     => array('user', 'password_change'),

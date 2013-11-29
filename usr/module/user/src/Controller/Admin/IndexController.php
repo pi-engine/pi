@@ -508,9 +508,7 @@ class IndexController extends ActionController
                 $this->deleteUser($uid, 'timeline_log', 'user');
             }
         }
-        if (isset($result['deleted_uids']) &&
-            $result['deleted_uids']
-        ) {
+        if (!empty($result['deleted_uids'])) {
             Pi::service('event')->trigger(
                 'user_delete',
                 $result['deleted_uids']

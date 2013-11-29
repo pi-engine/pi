@@ -56,8 +56,8 @@ class EditController extends ActionController
                     unset($values['credential']);
                 }
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
-                Pi::service('event')->trigger('user_update', $uid);
                 if ($status == 1) {
+                    Pi::service('event')->trigger('user_update', $uid);
                     $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
                 }
@@ -209,9 +209,8 @@ class EditController extends ActionController
                     $userNewCompound
                 );
                 Pi::api('user', 'user')->updateUser($uid, array('last_modified' => time()));
-                Pi::service('event')->trigger('user_update', $uid);
-
                 if ($status) {
+                    Pi::service('event')->trigger('user_update', $uid);
                     $result['message'] = _a('Edit user info successfully');
                     $result['status']  = 1;
                 }
