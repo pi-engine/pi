@@ -104,7 +104,7 @@ class Home extends Standard
                 'action'        => 'index'
             ), $options);
         } else {
-            $url = '';
+            $url = '/';
         }
 
         return $url;
