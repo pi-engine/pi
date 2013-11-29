@@ -43,6 +43,7 @@ class Event
      */
     public static function userUpdate($uid)
     {
+        static::updatePersist($uid);
     }
 
     /**
@@ -81,6 +82,8 @@ class Event
     {
         if (!empty($params)) {
             Pi::service('audit')->log('user-name-change', $params);
+
+            static::updatePersist($params['uid'], 'name', $params['new_name']);
         }
     }
 
@@ -93,6 +96,8 @@ class Event
     {
         if (!empty($params)) {
             Pi::service('audit')->log('user-email-change', $params);
+
+            static::updatePersist($params['uid'], 'email', $params['new_email']);
         }
     }
 
@@ -129,7 +134,7 @@ class Event
     /**
      * User login event
      *
-     * @param int $uid
+     * @param array $params
      */
     public static function userLogin($params)
     {
@@ -163,5 +168,25 @@ class Event
      */
     public static function userLogout($uid)
     {
+    }
+
+    /**
+     * Update user persistent data
+     *
+     * @param int           $uid
+     * @param string|null   $field
+     * @param mixed         $value
+     *
+     * @return void
+     */
+    protected static function updatePersist($uid, $field = null, $value = null)
+    {
+        if ($uid != Pi::service('user')->getId()) {
+            return;
+        }
+
+        Pi::service('user')->setPersist($field, $value);
+
+        return;
     }
 }
