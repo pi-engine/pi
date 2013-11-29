@@ -87,3 +87,8 @@ May 15th, Liao Wei
         border: 0;
         -ms-interpolation-mode: bicubic;
     }
+
+
+Nov 29th, Liao Wei
+
+1. Update bootstrap to version v3.0.2

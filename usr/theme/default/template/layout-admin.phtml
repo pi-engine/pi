@@ -2,94 +2,117 @@
 // Load translation data
 $this->i18nTheme('default', 'default');
 
-$this->jQuery();
 $this->bootstrap(array(
     'js/bootstrap.min.js',
-    'css/font-awesome.min.css'
+    'font-awesome/css/font-awesome.min.css'
 ));
-$this->css(array(
-    $this->assetTheme('css/style.css'),
-    $this->assetTheme('css/admin.css')
-));
+$this->css($this->assetTheme('css/admin.css'));
 $module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 </head>
-
 <body id="pi-<?php echo $module; ?>" class="<?php echo $locale; ?>">
-    <!-- pi header bar: fixed-->
-    <div id="pi-header-bar" class="clearfix">
-        <a href="<?php echo $this->url(''); ?>" title="<?php echo _escape($sitename); ?>" class="pi-admin-logo">Pi</a>
-        <div class="pi-operation-switch">
-            <?php
-                $modes = $this->adminNav($module)->modes();
-                foreach ($modes as $key => $mode) {
-                    switch ($key) {
-                        case 'admin':
-                            $icon = 'icon-wrench';
-                            break;
-                        case 'manage':
-                            $icon = 'icon-cog';
-                            break;
-                        case 'deployment':
-                        default:
-                            $icon = 'icon-th-large';
-                            break;
-                    }
-            ?>
-                <a href="<?php echo $mode['link']? : 'javascript:void(0)'; ?>" class="<?php if (!empty($mode['active'])) { echo 'active'; } elseif (!$mode['link']) { echo 'disabled'; } ?>">
-                    <i class="<?php echo $icon; ?>"></i>
-                    <?php echo _escape($mode['label']); ?>
-                </a>
-            <?php } ?>
-        </div>
-
-        <div class="pi-user-bar">
-            <?php echo $this->widget('system-user-bar', array('params' => array('route' => 'sysuser'), 'type' => 'flat')); ?>
-            <span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
-                <i class="icon-external-link"></i>
-                <?php _e('Go to front'); ?>
+    <!-- header: brand, navbar-nav, user link -->
+    <header class="navbar navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="">
+                <i class="fa fa-leaf"></i>
+                <strong>Pi</strong>
             </a>
         </div>
-    </div>
-
-    <div id="pi-wrapper">
-        <div id="pi-modules-menu">
-        <!-- modules list link : sidemenu,fixed-->
-        <?php $navigation = $this->adminNav($module)->side(); ?>
-        <?php if ($navigation) { ?>
-            <?php echo $navigation->menu()->setUlClass('unstyled pi-nav-modules')->render(); ?>
-        <?php } ?>
-        </div>
-
-        <!-- modules content -->
-        <div id="pi-content">
-                <!-- each module or system  link : operation or manage -->
-            <?php $navigation = $this->adminNav($module)->top(); ?>
-            <?php if ($navigation) {  ?>
-            <div class="clearfix pi-module-menu">
-                <?php echo $navigation->menu()->setUlClass('unstyled')->render();?>
-                <div class="pi-module-menu-shadow"></div>
+        <nav class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            <?php
+            $modes = $this->adminNav($module)->modes();
+            foreach ($modes as $mode) {
+                echo sprintf(
+                    '<li class="%s">
+                        <a href="%s">
+                            <i class="%s"></i>
+                            <span class="pi-mode-text">%s</span>
+                        </a>
+                    ',
+                    $mode['link'] ? '' : 'disabled',
+                    $mode['link'] ? : 'javascript:void(0)',
+                    $mode['icon'],
+                    $mode['label']
+                );
+            }
+            ?>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <?php echo $this->widget('system-user-bar', array('params' => array('route' => 'sysuser'), 'type' => 'flat')); ?>
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        <?php _e('Front'); ?>
+                    </a>
+            </ul>
+        </nav>
+    </header>
+    <div class="pi-sidebar-bg"></div>
+    <aside class="pi-sidebar">
+        <ul class="nav pi-modules-nav">
+        <?php 
+        $modules = Pi::registry('modulelist')->read();
+        foreach ($modules as $item) {
+            $active = $item['name'] == $module;
+            echo sprintf(
+                '<li class="%s">
+                    <a data-toggle="collapse" href="#pi-modules-nav-%s">
+                        <i class="%s"></i>
+                        <span class="pi-modules-nav-text">%s</span>
+                        <span class="fa fa-angle-down pi-modules-nav-director"></span>
+                    </a>
+                    <ul class="nav pi-modules-nav-sub %s" id="pi-modules-nav-%s">
+                    <li class="active">
+                        <a href="">
+                            Dashboard
+                        </a>
+                    </ul>
+                ',
+                $active ? 'active' : '',
+                $item['name'],
+                $item['icon'] ? : 'fa fa-th',
+                $item['title'],
+                $active ? 'in' : 'collapse',
+                $item['name']
+            );
+        }
+        ?>
+        </ul>
+    </aside>
+    <section class="pi-content">
+        <article class="pi-module-content">
+            <?php echo $content; ?>
+        </article>
+        <footer class="pi-footer">
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                &copy; <?php echo _escape($sitename); ?>
+            </a>
+            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                Powered by Pi Engine
+            </a>
+            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                Design of Pi Engine
+            </a>
+            <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>">
+                <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
             </div>
-            <?php } ?>
-
-            <div class="pi-content-inner" style=" <?php if (!$navigation) {  echo 'padding-top: 15px;'; } ?>">
-                <div class="clearfix pi-main-content">
-                    <?php echo $content; ?>
-                </div>
-                <div id="pi-footer" class="pi-footer">
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy; <?php echo _escape($sitename); ?></a>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a>
-                    <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
+        </footer>
+    </section>
 </body>
 </html>

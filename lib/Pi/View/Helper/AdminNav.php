@@ -58,14 +58,17 @@ class AdminNav extends AbstractHelper
             AdminMode::MODE_ACCESS      => array(
                 'label' => __('Operation', 'usr'),
                 //'link'  => '',
+                'icon' => 'fa fa-wrench',
             ),
             AdminMode::MODE_ADMIN    => array(
                 'label' => __('Setting', 'usr'),
                 //'link'  => '',
+                'icon' => 'fa fa-cogs',
             ),
             AdminMode::MODE_DEPLOYMENT => array(
                 'label' => __('Deployment', 'usr'),
                 'link'  => '',
+                'icon' => 'fa fa-cloud-upload',
             ),
         );
         foreach ($modes as $key => &$config) {
