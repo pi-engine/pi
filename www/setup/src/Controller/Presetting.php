@@ -9,7 +9,7 @@
 
 namespace Pi\Setup\Controller;
 
-use Locale;
+//use Locale;
 
 /**
  * Presetting controller
