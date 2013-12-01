@@ -51,8 +51,6 @@ return array(
         'session'   => array(),
         // Load authentication configs from resource.authentication.php and instantiate authentication service
         'authentication'    => array(),
-        // Instantiate use handler
-        //'user'      => array(),
 
         'permission'    => array(
             // Default access perm in case not defined: true for allowed, false for denied
@@ -62,18 +60,9 @@ return array(
         ),
 
         // Instantiate render cache manager
-        'render_cache'     => array(
-            // Enable page caching, default as false
-            //'page'      => false,
-            // Enable action caching, default as false
-            //'action'    => true,
-        ),
+        'render_cache'     => array(),
     ),
 
-    /**#@+
-     * Service Manager configuration, and Application service configurations managed by Configuration service {@Pi\Mvc\Service\ConfigurationFactory}
-     */
-    // Application service configuration
+    // Service Manager configuration, and Application service configurations managed by Configuration service {@Pi\Mvc\Service\ConfigurationFactory}
     'application'   => include __DIR__ . '/config.application.php',
-    /**#@-*/
 );

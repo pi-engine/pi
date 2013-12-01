@@ -10,7 +10,7 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-// Inherite from front
+// Inherit from `application.front.front`
 $config = include __DIR__ . '/application.front.php';
 
 // Translations
@@ -34,7 +34,7 @@ $config['resource']['permission'] = array(
 );
 
 
-// Render caching
+// Render caching, disabled
 $config['resource']['render_cache'] = false;
 
 // Audit

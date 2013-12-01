@@ -30,18 +30,14 @@ $config['resource']['security'] = array(
     'bot'       => false,
 );
 
-// Session resource, load configs from resource.session.php and instantiate session service
+// Session resource, disabled
 $config['resource']['session'] = false;
-// Load authentication configs from resource.authentication.php and instantiate authentication service
+// Authentication resource, disabled
 $config['resource']['authentication'] = false;
-// Instantiate use handler
-$config['resource']['user'] = false;
-// Instantiate permission manager and register listeners
+// Permission resource, disabled
 $config['resource']['permission'] = false;
-// Rendering cache
-$config['resource']['render_cache'] = array(
-    //'page'  => true,
-);
+// Rendering cache resource
+$config['resource']['render_cache'] = array();
 
 // Application service configuration
 $config['application']['listeners'] = array('ApiStrategyListener');
