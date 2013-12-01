@@ -242,14 +242,6 @@ class Local extends System
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential)
-    {
-        return parent::authenticate($identity, $credential);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function killUser($uid)
     {
         return parent::killUser($uid);

@@ -7,10 +7,7 @@ return array(
 
     'system'    => array(
         'class' => 'Pi\User\Adapter\System',
-        'options'   => array(
-            // Authentication config
-            'authentication'    => 'service.authentication.php',
-        ),
+        'options'   => array(),
     ),
 
     'options'   => array(
@@ -35,27 +32,13 @@ return array(
     // Local user
     'local'    => array(
         'class' => 'Pi\User\Adapter\Local',
-        'options'   => array(
-            // Authentication config
-            'authentication'    => 'service.authentication.php',
-        ),
+        'options'   => array(),
     ),
 
     // Client user
     'client'    => array(
         'class' => 'Pi\User\Adapter\Client',
-        'options'   => array(
-            // Authentication config
-            'authentication'    => 'service.authentication.php',
-            /*
-            // Resources
-            'resource'  => array(
-                'timeline'  => 'Module\Uclient\Api\Resource\Timeline',
-                'message'   => 'Module\Uclient\Api\Resource\Message',
-                'relation'  => 'Module\Uclient\Api\Resource\Relation',
-            ),
-            */
-        ),
+        'options'   => array(),
     ),
 
 );

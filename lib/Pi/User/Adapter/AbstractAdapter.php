@@ -664,24 +664,26 @@ abstract class AbstractAdapter implements BindInterface
     /**
      * Authenticate user
      *
-     * Authenticate a user and display corresponding message
-     *
-     * ```
-     *  $result = Pi::service('user')->authenticate(<identity>, <credential>);
-     *  if ($result->isValid()) {
-     *      echo 'User is logged on.';
-     *      Pi::service('user')->setPersist($result->getData();
-     *  } else {
-     *      echo implode('<br>', $result->getMessages());
-     *  }
-     * ```
+     * Alias to `Pi::service('authentication')->authenticate()`, discouraged.
      *
      * @param string        $identity
      * @param string        $credential
+     *
      * @return Pi\Authentication\Result
+     * @deprecated
      * @api
      */
-    abstract public function authenticate($identity, $credential);
+    public function authenticate($identity, $credential)
+    {
+        trigger_error(__METHOD__ . ' is deprecated.', E_USER_WARNING);
+
+        $result = Pi::service('authentication')->authenticate(
+            $identity,
+            $credential
+        );
+
+        return $result;
+    }
 
     /**
      * Kill a user's session
