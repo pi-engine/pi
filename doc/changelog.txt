@@ -1,36 +1,69 @@
 Pi Engine Changelog
 
-Pi 2.3
-August 4th, 2013
+Pi 2.3.0
+Dec 1st, 2013
 ============
-* Added support for custom configuration
+* Added support for custom configuration and module templates/extensions
 * Refactored user API service with support for persistent profile
 * Modified config files: `var/config/service.authentication.php`; `var/config/service.user.php`
 * Added config for PHP-CS-Fixer: .php_cs
 * Moved timezone initialization from `Pi` class to `boot.php` for PSR "side effect" compliance
-* Modified boot file: `boot.php`
+* Modified boot file conftent: `boot.php`
 * Changed `Pi::registry` API to `Pi::entity`
 * Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
 * Added API `Pi::api()` as alias for `Pi::service('api')->handler()`
-* Added support for module schema parse
+* Added support for module schema parsing
 * Added HTML5/CSS detection `modernizr` as a jQuery extension
-* Upgraded Zend Framework to 2.2.3
+* Upgraded Zend Framework to 2.2.6
 * Implemented bootstrap-responsive for mobile device
-* Added template access script for angular.js
+* Implemented `angular.js` with view helpers
 * Added filters: `YesNo`, `Gender`, `DateTimeFormatter`
 * Changed route spec to support route name definition
 * Added API to fetch module resource meta directly
-* Added Image service based on Imagine library
-* Added Permission service
-* Added Remote access service
-* Added Avatar service
+* Improved user service significantly to support for extensible profile, activity and master-slave user access
+* Added Image service based on `Imagine` library
+* Added Permission service with support for customizable page/action control and application logic control
+* Added Remote access service with cache and HTTP authentication support
+* Added Avatar service supporting extensible resources: upload, gravatar, local, etc.
+* Added comment service with built-in support for modules
+* Refactored authentication service to allow for third-party strategy including SSO
+* Added `simplesamlphp` as SSO solution for IdP and SP
 * Added support for public web resources that require same domain as main application
 * Added support for custom templates in usr/<module>/template/<template.file>
-* Changed i18n adapter from CSV to gettext
+* Changed i18n adapter from CSV to gettext, added i18n for validators, timezone and locales
 * Added support for asset compress, located in `asset/_build/`
-* Pi Engine GitHub repository welcomes its 2,000th commit on November 8th, 2013 from @sexnothing for asset compress build #9fa21de4fa5205faec97e643529a5b307dacd9c2
-* Added `simplesamlphp` as SSO solution
 * Changed block handler class to sub namespace of Block as `Module\<ModuleName>\Block`
+* Replaced jump page with FlashMessenger
+* Implemented event/hook in system, user, comment, etc.
+* Provided new primary modules: `article`, `comment`, `message`, `saml`, `tag`, `uclient`, `user`
+* Fixed bugs discovered by @LoneShooter, @MarcoXoops, @voltan, etc.
+* Pi Engine GitHub repository welcomes its 2,000th commit on November 8th, 2013 from @sexnothing for asset compress build #9fa21de4fa5205faec97e643529a5b307dacd9c2
+* New Pi powered applications from various teams
+
+* Adde config folders/files:
+  - var/config/custom/
+  - var/config/saml/
+  - var/config/authentication.local.php
+  - var/config/authentication.saml.php
+  - var/config/host.comprehensive.php
+  - var/config/host.lean.php
+  - var/config/module.uclient.php
+  - var/config/service.asset.php
+  - var/config/service.avatar.php
+  - var/config/service.comment.php
+  - var/config/service.image.php
+  - var/config/service.remote.php
+  - var/config/service.session-admin.php
+* Modified config files:
+  - var/config/application.admin.php
+  - var/config/application.api.php
+  - var/config/application.feed.php
+  - var/config/application.front.php
+  - var/config/host.php
+  - var/config/hosts.php
+  - var/config/service.authentication.php
+  - var/config/service.i18n.php
+  - var/config/service.user.php
 
 
 Pi 2.2.2: 660cf88a7ffd60e8937621819d11c08c67f1a0ad
