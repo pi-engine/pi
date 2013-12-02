@@ -1,10 +1,6 @@
 <?php
 // Uclient configurations
 
-// Source id for register
-// Specify accordingly
-//$sourceId       = '';
-
 // App key for remote user center
 // Specify accordingly
 $appKey         = Pi::config('identifier');

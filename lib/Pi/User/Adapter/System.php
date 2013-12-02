@@ -406,21 +406,6 @@ class System extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential)
-    {
-        $options = array();
-        if (isset($this->options['authentication'])) {
-            $options = $this->options['authentication'];
-        }
-        $service = Pi::service()->load('authentication', $options);
-        $result = $service->authenticate($identity, $credential);
-
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function killUser($uid)
     {
         $result = Pi::service('session')->killUser($uid);

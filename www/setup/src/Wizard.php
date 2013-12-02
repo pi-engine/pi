@@ -10,6 +10,7 @@
 namespace Pi\Setup;
 
 use Pi;
+use Locale;
 
 /**
  * Setup wizard
@@ -39,13 +40,6 @@ class Wizard
 
     public function __construct()
     {
-        /*
-        $docroot = $_SERVER['DOCUMENT_ROOT'];
-        $root = str_replace('\\', '/', realpath($docroot));
-        $pwd = str_replace('\\', '/', dirname($_SERVER["SCRIPT_FILENAME"]));
-        static::$root = str_replace($root, $docroot, $pwd);
-        */
-
         $pwd = dirname($_SERVER["SCRIPT_FILENAME"]);
         static::$root = str_replace('\\', '/', $pwd);
         spl_autoload_register('static::autoload');
@@ -131,14 +125,12 @@ class Wizard
                     $acceptedLanguage,
                     $matches
                 );
-                //var_dump($matches[1]);
                 if ($matched) {
                     $languageList = $this->getLanguages();
                     foreach ($matches[1] as $language) {
                         $canonized = strtolower($language);
                         if (isset($languageList[$canonized])) {
                             $auto = $canonized;
-                            //var_dump($auto);
                             break;
                         } else {
                             $pos = strpos($language, '-');
@@ -146,7 +138,6 @@ class Wizard
                                 $canonized = substr($language, 0, $pos);
                                 if (isset($languageList[$canonized])) {
                                     $auto = $canonized;
-                                    //var_dump($auto);
                                     break;
                                 }
                             }

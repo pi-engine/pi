@@ -102,7 +102,7 @@ module.exports = function(grunt) {
       userTheme: {
         options: {
           //snapshotPath: '',
-          url: 'http://pifork.liaowei.com/user/profile/1',
+          //url: '<url/for/snapshot>',
           extension: 'png',
           filename: 'screenshot.png',
           src: 'usr'
