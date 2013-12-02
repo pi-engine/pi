@@ -35,11 +35,13 @@
       var self = this;
       if (target.find('li').length) return;
 
+      var parent = target.parent();
       e.preventDefault();
-      $.getJSON(config.url).done(function(data) {
-        target.html(self.template(data))
-              .parent()
-              .find('> a').trigger('click');
+      $.getJSON(config.url, {
+        name: parent.attr('data-name')
+      }).done(function(data) {
+        target.html(self.template(data));
+        parent.find('> a').trigger('click');
       });
     }
   }
