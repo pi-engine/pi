@@ -10,7 +10,7 @@ What's New
 ==========
 
 Selected major features:
-+ Primary modules available: `article, `comment`, `message`, `tag`, `user`
++ Primary modules available: `article`, `comment`, `message`, `tag`, `user`
 + User system implemented with features:
   + Extensible user profile field definition
   + Configurable user profile page
