@@ -43,4 +43,4 @@ Checkout Pi development manual and tutorials at [Github wiki](https://github.com
 ---------------------
 [Pi Team](http://pi-engine.org)
 
-Dec 1st, 2013
+Dec 3rd, 2013
