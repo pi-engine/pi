@@ -45,12 +45,13 @@ $module = Pi::service('module')->current();
             $modes = $this->adminNav()->modes();
             foreach ($modes as $mode) {
                 echo sprintf(
-                    '<li class="%s">
+                    '<li class="%s%s">
                         <a href="%s">
                             <i class="%s"></i>
                             <span class="pi-mode-text">%s</span>
                         </a>
                     ',
+                    $mode['active'] ? 'active' : '',
                     $mode['link'] ? '' : 'disabled',
                     $mode['link'] ? : 'javascript:void(0)',
                     $mode['icon'],
@@ -110,7 +111,6 @@ $module = Pi::service('module')->current();
         <?php
         $top = $this->adminNav()->top();
         if ($top) {
-
         }
         ?>
     </div>
@@ -131,7 +131,7 @@ $module = Pi::service('module')->current();
             <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>">
                 <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
             </div>
-        </div>
+        </footer>
     </section>
     <script>
         $('#js-modules-nav').data('config', {
