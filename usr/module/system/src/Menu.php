@@ -85,9 +85,7 @@ class Menu
                     'module'        => 'system',
                     'controller'    => 'menu',
                     'action'        => 'sub',
-                    'params'        => array(
-                        'name'          => $name,
-                    ),
+                    'name'          => $name,
                 ));
 
                 $config = array(
