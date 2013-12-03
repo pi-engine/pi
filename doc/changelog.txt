@@ -1,7 +1,7 @@
 Pi Engine Changelog
 
 Pi 2.3.0
-Dec 1st, 2013
+Dec 3rd, 2013
 ============
 * Added support for custom configuration and module templates/extensions
 * Refactored user API service with support for persistent profile
