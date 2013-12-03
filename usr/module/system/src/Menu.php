@@ -95,6 +95,7 @@ class Menu
                     'label'     => $item['title'],
                     'href'      => $link,
                     'active'    => $name == $module ? 1 : 0,
+                    'icon'      => '',
                 );
             }
             $navConfig[] = $config;
@@ -132,6 +133,7 @@ class Menu
                     'label'     => $item['title'],
                     'href'      => $link,
                     'active'    => $name == $module ? 1 : 0,
+                    'icon'      => '',
                 );
             }
             $navConfig[] = $config;

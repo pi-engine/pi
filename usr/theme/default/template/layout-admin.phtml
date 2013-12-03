@@ -99,8 +99,8 @@ $module = Pi::service('module')->current();
                 $item['name'],
                 $item['name'],
                 $item['icon'] ? : 'fa fa-th',
-                $item['title'],
-                $active ? 'collapse in' : 'collapse',
+                $item['label'],
+                $item['active'] ? 'collapse in' : 'collapse',
                 $item['name']
             );
         }
