@@ -11,9 +11,9 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Pi\System\Menu;
 use Pi\Application\Bootstrap\Resource\AdminMode;
 use Zend\View\Helper\AbstractHelper;
+use Module\System\Menu;
 
 /**
  * Back-office navigation helper

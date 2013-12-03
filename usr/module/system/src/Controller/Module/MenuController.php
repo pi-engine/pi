@@ -12,7 +12,7 @@ namespace Module\System\Controller\Module;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 //use Pi\Application\Bootstrap\Resource\AdminMode;
-use Pi\System\Menu;
+use Module\System\Menu;
 
 /**
  * Module admin menu controller
