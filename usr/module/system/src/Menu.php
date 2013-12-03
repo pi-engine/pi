@@ -153,7 +153,8 @@ class Menu
         foreach ($navConfig as $key => &$nav) {
             $nav['params']['name'] = $module;
         }
-        $navigation = Pi::service('view')->navigation($navConfig);
+        $helper = Pi::service('view')->getHelper('navigation');
+        $navigation = $helper($navConfig);
         $content = $navigation->render();
 
         return $content;
@@ -164,7 +165,9 @@ class Menu
      */
     public static function subOperation($module)
     {
-        $navigation = Pi::service('view')->navigation(
+        $helper = Pi::service('view')->getHelper('navigation');
+        //$navigation = $helper($navConfig);
+        $navigation = $helper(
             $module . '-admin',
             array('section' => 'admin')
         );
