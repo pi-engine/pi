@@ -49,7 +49,7 @@ class Menu
             ),
         );
         foreach ($modes as $key => &$config) {
-            $config['active'] = ($mode == $key) ? 1 : 0;
+            $config['active'] = ($mode == $config['name']) ? 1 : 0;
             if (isset($config['link'])) {
                 continue;
             }
