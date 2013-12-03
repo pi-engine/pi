@@ -30,16 +30,19 @@ class Menu
     {
         $modes = array(
             array(
+                'name'  => AdminMode::MODE_ACCESS,
                 'label' => __('Operation', 'usr'),
                 'icon'  => '',
                 //'link'  => '',
             ),
             array(
+                'name'  => AdminMode::MODE_ADMIN,
                 'label' => __('Setting', 'usr'),
                 'icon'  => '',
                 //'link'  => '',
             ),
             array(
+                'name'  => AdminMode::MODE_DEPLOYMENT,
                 'label' => __('Deployment', 'usr'),
                 'icon'  => '',
                 'link'  => '',
@@ -54,7 +57,7 @@ class Menu
                 'module'        => 'system',
                 'controller'    => 'dashboard',
                 'action'        => 'mode',
-                'mode'          => $key,
+                'mode'          => $config['name'],
             ));
         }
 
