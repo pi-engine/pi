@@ -21,28 +21,6 @@ use Zend\Mvc\MvcEvent;
 class ComponentController extends ActionController
 {
     /**
-     * Execute the request
-     *
-     * @param  MvcEvent $e
-     * @return mixed
-     * @throws \DomainException
-     */
-    public function ____onDispatch(MvcEvent $e)
-    {
-        $routeMatch = $e->getRouteMatch();
-        $name = $routeMatch->getParam('name');
-        $component = $routeMatch->getParam('controller');
-        // Set module
-        if (!empty($name)) {
-            $_SESSION['PI_BACKOFFICE']['module'] = $name;
-        }
-        // Set component
-        $_SESSION['PI_BACKOFFICE']['component'] = $component;
-
-        return parent::onDispatch($e);
-    }
-
-    /**
      * {@inheritDoc}
      */
     protected function preAction(MvcEvent $e)

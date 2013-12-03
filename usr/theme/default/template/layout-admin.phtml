@@ -42,7 +42,7 @@ $module = Pi::service('module')->current();
         <nav class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
             <?php
-            $modes = $this->adminNav($module)->modes();
+            $modes = $this->adminNav()->modes();
             foreach ($modes as $mode) {
                 echo sprintf(
                     '<li class="%s">
@@ -77,10 +77,13 @@ $module = Pi::service('module')->current();
                     <i class="fa fa-dashboard"></i>
                     <?php _e('Dashboard'); ?>
                 </a>
-        <?php 
-        $modules = Pi::registry('modulelist')->read();
-        foreach ($modules as $item) {
-            $active = $item['name'] == $module;
+        <?php
+        $main = $this->adminNav()->main();
+        $sub = $this->adminNav()->sub();
+        foreach ($main as $item) {
+            if ($sub && $item['active']) {
+                $item['sub'] = $sub;
+            }
             echo sprintf(
                 '<li class="%s" data-name="%s">
                     <a data-toggle="collapse" href="#pi-modules-nav-%s">
@@ -91,7 +94,7 @@ $module = Pi::service('module')->current();
                     <ul class="nav pi-modules-nav-sub %s" id="pi-modules-nav-%s">
                     </ul>
                 ',
-                $active ? 'active' : '',
+                $item['active'] ? 'active' : '',
                 $item['name'],
                 $item['name'],
                 $item['icon'] ? : 'fa fa-th',
@@ -103,6 +106,14 @@ $module = Pi::service('module')->current();
         ?>
         </ul>
     </aside>
+    <div id="sub-top">
+        <?php
+        $top = $this->adminNav()->top();
+        if ($top) {
+
+        }
+        ?>
+    </div>
     <section class="pi-content">
         <article class="pi-module-content">
             <?php echo $content; ?>
