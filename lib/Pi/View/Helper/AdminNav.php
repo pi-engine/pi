@@ -47,6 +47,8 @@ class AdminNav extends AbstractHelper
     /**
      * Get back-office mode render
      *
+     * @param string $class
+     *
      * @return string
      */
     public function modes($class = 'nav')
@@ -81,6 +83,8 @@ EOT;
 
     /**
      * Get back-office side menu
+     *
+     * @param string $class
      *
      * @return string
      */

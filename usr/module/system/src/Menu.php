@@ -146,16 +146,18 @@ class Menu
      *
      * @return string
      */
-    public static function subComponent($module, $class = 'nav')
+    public static function subComponent($module, $class = '')
     {
         $navConfig = Pi::registry('navigation')->read('system-component');
         foreach ($navConfig as $key => &$nav) {
             $nav['params']['name'] = $module;
         }
-        $helper = Pi::service('view')->getHelper('navigation');
+        $helper     = Pi::service('view')->getHelper('navigation');
         $navigation = $helper($navConfig);
+        $class      = $class ?: 'nav';
+        $content    = $navigation->menu()->setUlClass($class)->render();
 
-        return $navigation->menu()->setUlClass($class)->render();
+        return $content;
     }
 
     /**
@@ -166,14 +168,16 @@ class Menu
      *
      * @return string
      */
-    public static function subOperation($module, $class = 'nav')
+    public static function subOperation($module, $class = '')
     {
         $helper = Pi::service('view')->getHelper('navigation');
         $navigation = $helper(
             $module . '-admin',
             array('section' => 'admin')
         );
-    
-        return $navigation->menu()->setUlClass($class)->render();
+        $class = $class ?: 'nav';
+        $content = $navigation->menu()->setUlClass($class)->render();
+
+        return $content;
     }
 }
