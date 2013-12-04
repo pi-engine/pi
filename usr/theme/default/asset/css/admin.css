@@ -1,9 +1,9 @@
 html {
 	height: 100%;
+	padding-top: 50px;
 }
 
 body {
-	padding-top: 50px;
 	min-height: 100%;
 	position: relative;
 }
@@ -70,9 +70,7 @@ body {
 .pi-sidebar {
 	float: left;
 	width: 190px;
-	position: relative;
 	border-right: 1px solid #ccc;
-	margin-right: 20px;
 }
 
 .pi-sidebar-bg {
@@ -150,6 +148,7 @@ body {
 
 /* Main content */
 .pi-content {
+	margin-left: 210px;
 	overflow: hidden;
 }
 
@@ -157,30 +156,31 @@ body {
 	margin: 20px 0;
 }
 
-.pi-module-content {
-	min-height: 500px;
-}
-
 .nav-tabs {
 	margin-bottom: 20px;
 }
 
+.pi-module-content {
+	padding-bottom: 70px;
+}
 
 /* Footer */
 .pi-footer {
   border-top: 1px solid #d7d7d7;
   padding: 15px 20px;
+  position: absolute;
+  bottom: 0;
+  left: 210px;
+  right: 20px;
 }
 
 .pi-footer a {
   margin-right: 20px;
 }
 
-/* For debug info */
 #pi-logger-output {
-	margin-left: 210px;
+	margin-top: 40px;
 }
-
 
 @media (max-width: 767px) {
 	.pi-sidebar,
