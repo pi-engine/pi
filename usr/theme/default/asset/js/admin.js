@@ -36,13 +36,15 @@
       if (target.find('li').length) return;
 
       var parent = target.parent();
+
       e.preventDefault();
       $.get(target.attr('data-url'), {
         name: parent.attr('data-name'),
         'class': 'nav pi-modules-nav-sub'
       }).done(function(data) {
+        data = $.trim(data);
         if (!data) {
-          data = '<ul class="nav"><li class="disabled"><a>' + config.emptyNav +'</a></ul>';
+          data = '<ul class="nav pi-modules-nav-sub"><li class="disabled"><a>' + config.emptyNav +'</a></ul>';
         }
         target.html(data);
         parent.find('> a').trigger('click');
