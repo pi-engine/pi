@@ -110,15 +110,8 @@ $module = Pi::service('module')->current();
         </ul>
         <div class="pi-sidebar-bg"></div>
     </aside>
-    <div id="sub-top">
-        <?php
-        $topUlClass = '';
-        $top = $this->adminNav()->top($topUlClass);
-        if ($top) {
-        }
-        ?>
-    </div>
     <section class="pi-content">
+        <?php echo $this->adminNav()->top('nav nav-tabs'); ?>
         <article class="pi-module-content">
             <?php echo $content; ?>
         </article>
