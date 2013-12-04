@@ -40,28 +40,7 @@ $module = Pi::service('module')->current();
             </a>
         </div>
         <nav class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-            <?php
-            echo $this->adminNav()->modes();
-            /*
-            foreach ($modes as $mode) {
-                echo sprintf(
-                    '<li class="%s%s">
-                        <a href="%s">
-                            <i class="%s"></i>
-                            <span class="pi-mode-text">%s</span>
-                        </a>
-                    ',
-                    $mode['active'] ? 'active' : '',
-                    $mode['link'] ? '' : 'disabled',
-                    $mode['link'] ? : 'javascript:void(0)',
-                    $mode['icon'],
-                    $mode['label']
-                );
-            }
-            */
-            ?>
-            </ul>
+            <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
             <ul class="nav navbar-nav navbar-right">
                 <?php echo $this->widget('system-user-bar', array('params' => array('route' => 'sysuser'), 'type' => 'flat')); ?>
                 <li>
@@ -72,47 +51,11 @@ $module = Pi::service('module')->current();
             </ul>
         </nav>
     </header>
-    
     <aside class="pi-sidebar">
-        <ul class="nav pi-modules-nav" id="js-modules-nav">
-        <?php
-        $main = $this->adminNav()->main() ?: '&nbsp';
-        echo $main;
-        /*
-        if ($main) {
-            foreach ($main as $item) {
-                if ($item['active']) {
-                    $sub = $this->adminNav()->sub('nav pi-modules-nav-sub');
-                } else {
-                    $sub = '';
-                }
-                echo sprintf(
-                    '<li class="%s">
-                        <a data-toggle="collapse" href="#pi-modules-nav-%s">
-                            <i class="%s"></i>
-                            <span class="pi-modules-nav-text">%s</span>
-                            <span class="fa fa-angle-down pi-modules-nav-director"></span>
-                        </a>
-                        <div class="%s" id="pi-modules-nav-%s" data-url="%s">
-                            %s
-                        </div>
-                    ',
-                    $item['active'] ? 'active' : '',
-                    $item['name'],
-                    $item['icon'] ? : 'fa fa-th',
-                    $item['label'],
-                    $item['active'] ? 'collapse in' : 'collapse',
-                    $item['name'],
-                    $item['href'],
-                    $item['active'] ? $sub : ''
-                );
-            }
-        } else {
-            echo '&nbsp';
-        }
-        */
-        ?>
-        </ul>
+        <div id="js-modules-nav">
+            <?php echo $this->adminNav()->main('nav pi-modules-nav'); ?>
+            &nbsp;
+        </div>
         <div class="pi-sidebar-bg"></div>
     </aside>
     <section class="pi-content">

@@ -49,7 +49,7 @@ class AdminNav extends AbstractHelper
      *
      * @return string
      */
-    public function modes()
+    public function modes($class = 'nav')
     {
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
         $modes = Menu::modes($mode);
@@ -62,7 +62,7 @@ class AdminNav extends AbstractHelper
     </a>
 </li>
 EOT;
-        $content = '';
+        $content = sprintf('<ul class="%s">', $class);
         foreach ($modes as $mode) {
             $content .= sprintf(
                 $pattern,
@@ -74,6 +74,8 @@ EOT;
             );
         }
 
+        $content .= '</ul>';
+
         return $content;
     }
 
@@ -82,12 +84,12 @@ EOT;
      *
      * @return string
      */
-    public function main()
+    public function main($class = 'nav')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
-        $content = '';
+        $content = sprintf('<ul class="%s">', $class);
         // Get manage mode navigation
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
             $routeMatch = Pi::engine()->application()->getRouteMatch();
@@ -102,10 +104,9 @@ EOT;
 
             $pattern =<<<'EOT'
 <li class="%s">
-    <a data-toggle="collapse" href="#pi-modules-nav-%s">
+    <a href="%s">
         <i class="%s"></i>
         <span class="pi-modules-nav-text">%s</span>
-        <span class="fa fa-angle-down pi-modules-nav-director"></span>
     </a>
 </li>
 EOT;
@@ -113,12 +114,9 @@ EOT;
                 $content .= sprintf(
                     $pattern,
                     $item['active'] ? 'active' : '',
-                    $item['name'],
+                    $item['href'],
                     $item['icon'] ? : 'fa fa-th',
-                    $item['label'],
-                    $item['active'] ? 'collapse in' : 'collapse',
-                    $item['name'],
-                    $item['href']
+                    $item['label']
                 );
             }
 
@@ -160,6 +158,8 @@ EOT;
 
         }
 
+        $content .= '</ul>';
+
         return $content;
     }
 
@@ -170,7 +170,7 @@ EOT;
      *
      * @return string
      */
-    public function sub($class = '')
+    public function sub($class = 'nav')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
@@ -195,7 +195,7 @@ EOT;
      *
      * @return string
      */
-    public function top($class = '')
+    public function top($class = 'nav')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
