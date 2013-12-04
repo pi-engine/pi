@@ -75,7 +75,8 @@ $module = Pi::service('module')->current();
         <ul class="nav pi-modules-nav" id="js-modules-nav">
         <?php
         $main = $this->adminNav()->main();
-        $sub = $this->adminNav()->sub();
+        $subUlClass = '';
+        $sub = $this->adminNav()->sub($subUlClass);
         foreach ($main as $item) {
             if ($sub && $item['active']) {
                 $item['sub'] = $sub;
@@ -107,7 +108,8 @@ $module = Pi::service('module')->current();
     </aside>
     <div id="sub-top">
         <?php
-        $top = $this->adminNav()->top();
+        $topUlClass = '';
+        $top = $this->adminNav()->top($topUlClass);
         if ($top) {
         }
         ?>

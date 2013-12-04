@@ -144,10 +144,11 @@ class Menu
      * Load module component sub menu
      *
      * @param string $module
+     * @param string $class UL element class
      *
      * @return string
      */
-    public static function subComponent($module)
+    public static function subComponent($module, $class = '')
     {
         $navConfig = Pi::registry('navigation')->read('system-component');
         foreach ($navConfig as $key => &$nav) {
@@ -162,15 +163,22 @@ class Menu
 
     /**
      * Load module admin sub menu
+     *
+     * @param string $module
+     * @param string $class UL element class
+     *
+     * @return string
      */
-    public static function subOperation($module)
+    public static function subOperation($module, $class = '')
     {
         $helper = Pi::service('view')->getHelper('navigation');
-        //$navigation = $helper($navConfig);
         $navigation = $helper(
             $module . '-admin',
             array('section' => 'admin')
         );
+        if ($class) {
+            $navigation->setUlClass($class);
+        }
         $content = $navigation->render();
 
         return $content;

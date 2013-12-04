@@ -59,7 +59,8 @@ class MenuController extends ActionController
     public function componentAction()
     {
         $module = $this->params('name');
-        $navigation = Menu::subComponent($module);
+        $class = $this->params('class');
+        $navigation = Menu::subComponent($module, $class);
 
         return $navigation;
     }
@@ -70,19 +71,9 @@ class MenuController extends ActionController
     public function subAction()
     {
         $module = $this->params('name');
-        $content = $this->loadSubMenu($module);
+        $class = $this->params('class');
+        $navigation = Menu::subOperation($module, $class);
 
-        return $content;
-    }
-
-    protected function loadSubMenu($module)
-    {
-        $navigation = $this->view()->navigation(
-            $module . '-admin',
-            array('section' => 'admin')
-        );
-        $content = $navigation->render();
-
-        return $content;
+        return $navigation;
     }
 }
