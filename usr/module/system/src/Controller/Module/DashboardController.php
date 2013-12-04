@@ -309,7 +309,7 @@ class DashboardController extends ActionController
     {
         $this->saveAjax('admin-link');
 
-        return 1;
+        return array();
     }
 
     /**
@@ -380,7 +380,8 @@ class DashboardController extends ActionController
     protected function saveAjax($type)
     {
         $uid  = Pi::service('user')->getId();
-        $content = $this->params()->fromPost('content');
+        $content = _post('content');
+
         Pi::user()->data->set($uid, $type, $content);
 
         return true;

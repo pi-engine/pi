@@ -37,14 +37,23 @@
 
       var parent = target.parent();
       e.preventDefault();
-      $.getJSON(config.url, {
-        name: parent.attr('data-name')
+      $.get(target.attr('data-url'), {
+        name: parent.attr('data-name'),
+        'class': 'nav pi-modules-nav-sub'
       }).done(function(data) {
-        target.html(self.template(data));
+        if (!data) {
+          data = '<ul class="nav"><li class="disabled"><a>' + config.emptyNav +'</a></ul>';
+        }
+        target.html(data);
         parent.find('> a').trigger('click');
       });
     }
   }
 
   new ModulesNav;
+  //For debug
+  $(function() {
+    var debug = $('#pi-logger-output');
+    debug.length &&  $('.pi-module-content').append(debug);
+  });
 })(jQuery)

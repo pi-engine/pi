@@ -8,6 +8,10 @@ body {
 	position: relative;
 }
 
+a {
+	cursor: pointer;
+}
+
 /* navbar custom */
 .navbar {
 	background: #0082bf;
@@ -71,6 +75,7 @@ body {
 	float: left;
 	width: 190px;
 	border-right: 1px solid #ccc;
+	margin-right: 20px;
 }
 
 .pi-sidebar-bg {
@@ -132,6 +137,7 @@ body {
 .pi-modules-nav-sub > .active > a {
 	font-weight: bold;
 	color: #428bca;
+	background: #fff !important;
 }
 
 .pi-modules-nav-sub > .active > a:before {
@@ -148,7 +154,6 @@ body {
 
 /* Main content */
 .pi-content {
-	margin-left: 210px;
 	overflow: hidden;
 }
 

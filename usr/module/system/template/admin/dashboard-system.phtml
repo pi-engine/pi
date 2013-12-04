@@ -1,147 +1,29 @@
 <?php
-    $this->jQuery('ui/jquery-ui.custom.min.js');
-    $this->backbone();
+$this->angular(array(
+    'angular-route.js',
+    'pi.js'
+));
 ?>
-<div class="page-header">
-    <h2><?php echo _escape($title); ?></h2>
+<div ng-app="systemDashboardModule">
+    <div pi-message="alert"></div>
+    <div ng-view></div>
 </div>
-<div class="row">
-    <div class="col-md-8">
-        <div class="pi-widget system-notice" id="system-js-notice">
-            <div class="media pi-widget-body">
-                <span class="pull-left">
-                    <i class="icon-bullhorn icon-large"></i>
-                </span>
-                <div class="media-body">
-                    <div class="system-notice-show">
-                        <p>
-                            <span class="system-js-notice-content"><?php echo $message['content']; ?></span>
-                            <em class="muted gutter-large system-js-notice-time"><?php echo $message['time']; ?></em>
-                        <?php if ($messagePerm) { ?>
-                        <div>
-                            <a href="javascript:void(0)" class="system-js-edit">
-                                <i class="icon-pencil"></i>
-                                <?php echo _a('Edit'); ?>
-                            </a>
-                        </div>
-                        <?php } ?>
-                    </div>
-                    <div class="hide system-notice-edit">
-                        <textarea class="span8" placeholder="<?php echo _a('notice'); ?>"></textarea>
-                        <p class="muted">
-                            <?php echo _a('Add/update site announcement.'); ?>
-                        <div>
-                            <span class="btn system-js-save"><?php echo _a('Save'); ?></span>
-                            <span class="btn btn-link system-js-cancel"><?php echo _a('Cancel'); ?></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pi-widget system-quick-link" id="system-js-quick-link">
-            <div class="clearfix pi-widget-header">
-                <div class="pull-right">
-                    <span class="btn system-quick-all-edit system-js-all-edit"><?php echo _a('Edit'); ?></span>
-                    <span class="hide btn system-quick-all-save system-js-all-save" data-placement="top" data-original-title="<?php echo _a('Click the button to switch to view mode.'); ?>"><?php echo _a('Save'); ?></span>
-                </div>
-                <strong><?php echo _a('Quick links')?></strong>
-            </div>
-            <div class="pi-widget-body">
-                <div class="hide well form-horizontal system-quick-link-form">
-
-                </div>
-                <div class="system-quick-link-box">
-                    <div class="inline-block system-quick-link-add system-js-add">
-                        <i class="icon-plus icon-large"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pi-widget system-module-summary" id="system-js-module-summary">
-            <div class="clearfix pi-widget-header">
-                <div class="pull-right">
-                    <span class="btn system-js-all"><?php echo _a('Toggle all'); ?></span>
-                </div>
-                <strong><?php echo _a('Module summary')?></strong>
-            </div>
-            <div class="pi-widget-body">
-                <div class="accordion" id="summary-accordion">
-                    <?php foreach($summaryList as $i => $item) { ?>
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                             <span class="accordion-toggle" data-toggle="collapse" data-parent="#summary-accordion" href="#collapse<?php echo $item['name']; ?>"><?php echo $item['title']; ?></span>
-                        </div>
-                        <div id="collapse<?php echo $item['name']; ?>" class="accordion-body collapse <?php if($i == 0) { echo 'in'; } ?>">
-                            <div class="accordion-inner">
-                                <?php echo $item['content']; ?>
-                            </div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="pi-widget">
-            <div class="pi-widget-header">
-                <strong><?php echo _a('Powered by Pi Engine'); ?></strong>
-            </div>
-            <div class="pi-widget-body">
-                <p><?php echo _a('
-                    Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops.
-                    Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.
-                    ');?>
-                </p>
-                <p><?php echo _a('
-                    Pi Project follows the philosophy of open standard, open design, open development and open structure.
-                    Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.
-                    ');?>
-                </p>
-                <p>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Find Pi</a> &raquo;
-                    <a href="http://code.pialog.org" title="Pi Code" target="_blank">code</a> &bull;
-                    <a href="http://doc.pialog.org" title="Pi Doc" target="_blank">doc</a> &bull;
-                    <a href="http://bug.pialog.org" title="Pi Bug" target="_blank">talk</a> &bull;
-                    <a href="http://ask.pialog.org" title="Ask Pi" target="_blank">ask</a> &bull;
-                    <a href="http://api.pialog.org" title="Pi API" target="_blank">API</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<script id="temp-link" type="text/template">
-    <div class="ellipsis inline-block system-quick-link-text">
-        <a href="<%= url %>" title="<%= title %>"><%= title %></a>
-    </div>
-    <div class="inline-block system-quick-link-icon">
-        <i class="icon-pencil system-js-edit" title="<?php echo _a('Edit'); ?>"></i>
-        <i class="icon-remove system-js-remove" title="<?php echo _a('Remove'); ?>"></i>
-    </div>
-</script>
-<script id="temp-form" type="text/template">
-    <div class="control-group">
-        <label class="control-label"><?php echo _a('Title'); ?></label>
-        <div class="controls">
-            <input type="text" name="title" value="<%= form.title %>">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label"><?php echo _a('URL'); ?></label>
-        <div class="controls">
-            <input type="text" name="url" value="<%= form.url %>">
-        </div>
-    </div>
-    <div class="controls">
-        <span class="btn system-js-save" data-action="<%= form.action %>"><?php echo _a('Save'); ?></span>
-        <span class="btn btn-link system-js-cancel"><?php echo _a('Cancel'); ?></span>
-    </div>
-</script>
-<script src="<?php echo $this->assetModule('/script/dashboard-system.js'); ?>"></script>
 <script>
-dashboardSystem({
-    quicLinkCollection: new Backbone.Collection(<?php echo json_encode($links); ?>),
-    messageUrl: '<?php echo $this->url('', array('action' => 'message')); ?>',
-    linkUrl: '<?php echo $this->url('', array('action' => 'link')); ?>'
-});
+angular
+    .module('systemDashboardModule', ['ngRoute', 'pi'])
+    .constant('config', {
+        urlRoot: '<?php echo $this->url('', array('controller' => 'dashboard')); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        data: {
+            messagePerm: <?php echo $messagePerm; ?>,
+            message: <?php echo json_encode($message) ?>,
+            links: <?php echo json_encode($links); ?>,
+            summaryList: <?php echo json_encode($summaryList); ?>
+        },
+        t: {
+            PoweredP1: '<?php echo _a('Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.');?>',
+            PoweredP2: '<?php echo _a(' Pi Project follows the philosophy of open standard, open design, open development and open structure. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.');?>'
+        }
+   });
 </script>
+<script src="<?php echo $this->assetModule('admin/dashboard.js'); ?>"></script>

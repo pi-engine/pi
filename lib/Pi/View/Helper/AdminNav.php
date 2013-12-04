@@ -92,7 +92,7 @@ class AdminNav extends AbstractHelper
      *
      * @return string
      */
-    public function sub()
+    public function sub($class)
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
@@ -104,7 +104,7 @@ class AdminNav extends AbstractHelper
             //$navigation = Menu::subComponent($currentModule);
         // Module operations
         } elseif (AdminMode::MODE_ACCESS == $mode) {
-            $navigation = Menu::subOperation($module);
+            $navigation = Menu::subOperation($module, $class);
         }
 
         return $navigation;

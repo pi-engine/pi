@@ -169,18 +169,14 @@ class Menu
      *
      * @return string
      */
-    public static function subOperation($module, $class = '')
+    public static function subOperation($module, $class = 'nav')
     {
         $helper = Pi::service('view')->getHelper('navigation');
         $navigation = $helper(
             $module . '-admin',
             array('section' => 'admin')
         );
-        if ($class) {
-            $navigation->setUlClass($class);
-        }
-        $content = $navigation->render();
-
-        return $content;
+    
+        return $navigation->menu()->setUlClass($class)->render();
     }
 }
