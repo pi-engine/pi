@@ -146,7 +146,7 @@ class Menu
      *
      * @return string
      */
-    public static function subComponent($module, $class = '')
+    public static function subComponent($module, $class = 'nav')
     {
         $navConfig = Pi::registry('navigation')->read('system-component');
         foreach ($navConfig as $key => &$nav) {
@@ -154,9 +154,8 @@ class Menu
         }
         $helper = Pi::service('view')->getHelper('navigation');
         $navigation = $helper($navConfig);
-        $content = $navigation->render();
 
-        return $content;
+        return $navigation->menu()->setUlClass($class)->render();
     }
 
     /**
