@@ -47,7 +47,7 @@ class AdminNav extends AbstractHelper
     /**
      * Get back-office mode list
      *
-     * @return string
+     * @return array
      */
     public function modes()
     {
@@ -60,7 +60,7 @@ class AdminNav extends AbstractHelper
     /**
      * Get back-office side menu
      *
-     * @return string
+     * @return array
      */
     public function main()
     {
@@ -90,9 +90,11 @@ class AdminNav extends AbstractHelper
     /**
      * Get back-office sub menu
      *
+     * @param string $class
+     *
      * @return string
      */
-    public function sub($class)
+    public function sub($class = '')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
@@ -113,9 +115,11 @@ class AdminNav extends AbstractHelper
     /**
      * Get back-office top menu
      *
+     * @param string $class
+     *
      * @return string
      */
-    public function top()
+    public function top($class = '')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
@@ -124,7 +128,7 @@ class AdminNav extends AbstractHelper
         // Managed components
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
             $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
-            $navigation = Menu::subComponent($currentModule);
+            $navigation = Menu::subComponent($currentModule, $class);
             // Module operations
         } elseif (AdminMode::MODE_ACCESS == $mode) {
             //$navigation = Menu::subOperation($module);
