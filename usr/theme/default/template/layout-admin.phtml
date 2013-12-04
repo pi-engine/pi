@@ -75,11 +75,12 @@ $module = Pi::service('module')->current();
         <ul class="nav pi-modules-nav" id="js-modules-nav">
         <?php
         $main = $this->adminNav()->main();
-        $sub = $this->adminNav()->sub('nav pi-modules-nav-sub');
         if ($main) {
             foreach ($main as $item) {
-                if ($sub && $item['active']) {
-                    $item['sub'] = $sub;
+                if ($item['active']) {
+                    $sub = $this->adminNav()->sub('nav pi-modules-nav-sub');
+                } else {
+                    $sub = '';
                 }
                 echo sprintf(
                     '<li class="%s">
