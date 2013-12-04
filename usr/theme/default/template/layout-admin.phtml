@@ -70,14 +70,9 @@ $module = Pi::service('module')->current();
             </ul>
         </nav>
     </header>
-    <div class="pi-sidebar-bg"></div>
+    
     <aside class="pi-sidebar">
         <ul class="nav pi-modules-nav" id="js-modules-nav">
-            <li>
-                <a href="">
-                    <i class="fa fa-dashboard"></i>
-                    <?php _e('Dashboard'); ?>
-                </a>
         <?php
         $main = $this->adminNav()->main();
         $sub = $this->adminNav()->sub();
@@ -86,26 +81,29 @@ $module = Pi::service('module')->current();
                 $item['sub'] = $sub;
             }
             echo sprintf(
-                '<li class="%s" data-name="%s">
+                '<li class="%s">
                     <a data-toggle="collapse" href="#pi-modules-nav-%s">
                         <i class="%s"></i>
                         <span class="pi-modules-nav-text">%s</span>
                         <span class="fa fa-angle-down pi-modules-nav-director"></span>
                     </a>
-                    <ul class="nav pi-modules-nav-sub %s" id="pi-modules-nav-%s">
-                    </ul>
+                    <div class="pi-modules-nav-sub %s" id="pi-modules-nav-%s" data-url="%s">
+                        %s
+                    </div>
                 ',
                 $item['active'] ? 'active' : '',
-                $item['name'],
                 $item['name'],
                 $item['icon'] ? : 'fa fa-th',
                 $item['label'],
                 $item['active'] ? 'collapse in' : 'collapse',
-                $item['name']
+                $item['name'],
+                $item['href'],
+                $item['active'] ? $sub : ''
             );
         }
         ?>
         </ul>
+        <div class="pi-sidebar-bg"></div>
     </aside>
     <div id="sub-top">
         <?php
@@ -135,7 +133,6 @@ $module = Pi::service('module')->current();
     </section>
     <script>
         $('#js-modules-nav').data('config', {
-            url: '',
             emptyNav: '<?php _e('Empty nav'); ?>'
         });
     </script>

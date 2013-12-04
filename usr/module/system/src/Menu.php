@@ -32,19 +32,19 @@ class Menu
             array(
                 'name'  => AdminMode::MODE_ACCESS,
                 'label' => __('Operation', 'usr'),
-                'icon'  => '',
+                'icon'  => 'fa fa-wrench',
                 //'link'  => '',
             ),
             array(
                 'name'  => AdminMode::MODE_ADMIN,
                 'label' => __('Setting', 'usr'),
-                'icon'  => '',
+                'icon'  => 'fa fa-cogs',
                 //'link'  => '',
             ),
             array(
                 'name'  => AdminMode::MODE_DEPLOYMENT,
                 'label' => __('Deployment', 'usr'),
-                'icon'  => '',
+                'icon'  => 'fa fa-cloud-upload',
                 'link'  => '',
             ),
         );
