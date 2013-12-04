@@ -121,9 +121,7 @@ class Menu
                 $link = Pi::service('url')->assemble('admin', array(
                     'module'        => 'system',
                     'controller'    => $component,
-                    'params'        => array(
-                        'name'          => $name,
-                    ),
+                    'name'          => $name,
                 ));
 
                 $config = array(
