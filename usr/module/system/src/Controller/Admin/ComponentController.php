@@ -28,7 +28,6 @@ class ComponentController extends BasicController
     {
         $module = $this->params('module');
         $module = $module ?: $this->params('name', 'system');
-        //d($_SESSION['PI_BACKOFFICE']['mode']); d($module); exit();
 
         $directory = Pi::service('module')->directory($module);
         $callback = sprintf(

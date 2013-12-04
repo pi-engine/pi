@@ -26,10 +26,10 @@ class AdminNav extends AbstractHelper
     protected $module;
 
     /** @var string Side menu content */
-    protected $side;
+    //protected $side;
 
     /** @var string Top menu content */
-    protected $top;
+    //protected $top;
 
     /**
      * Invoke for helper
@@ -45,29 +45,49 @@ class AdminNav extends AbstractHelper
     }
 
     /**
-     * Get back-office mode list
+     * Get back-office mode render
      *
-     * @return array
+     * @return string
      */
     public function modes()
     {
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
         $modes = Menu::modes($mode);
 
-        return $modes;
+        $pattern =<<<'EOT'
+<li class="%s%s">
+    <a href="%s">
+        <i class="%s"></i>
+        <span class="pi-mode-text">%s</span>
+    </a>
+</li>
+EOT;
+        $content = '';
+        foreach ($modes as $mode) {
+            $content .= sprintf(
+                $pattern,
+                $mode['active'] ? 'active' : '',
+                $mode['link'] ? '' : 'disabled',
+                $mode['link'] ? : 'javascript:void(0)',
+                $mode['icon'],
+                $mode['label']
+            );
+        }
+
+        return $content;
     }
 
     /**
      * Get back-office side menu
      *
-     * @return array
+     * @return string
      */
     public function main()
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
-        $navigation = '';
+        $content = '';
         // Get manage mode navigation
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
             $routeMatch = Pi::engine()->application()->getRouteMatch();
@@ -79,12 +99,68 @@ class AdminNav extends AbstractHelper
                 $params['name'],
                 $params['controller']
             );
+
+            $pattern =<<<'EOT'
+<li class="%s">
+    <a data-toggle="collapse" href="#pi-modules-nav-%s">
+        <i class="%s"></i>
+        <span class="pi-modules-nav-text">%s</span>
+        <span class="fa fa-angle-down pi-modules-nav-director"></span>
+    </a>
+</li>
+EOT;
+            foreach ($navigation as $item) {
+                $content .= sprintf(
+                    $pattern,
+                    $item['active'] ? 'active' : '',
+                    $item['name'],
+                    $item['icon'] ? : 'fa fa-th',
+                    $item['label'],
+                    $item['active'] ? 'collapse in' : 'collapse',
+                    $item['name'],
+                    $item['href']
+                );
+            }
+
         // Get operation mode navigation
         } elseif (AdminMode::MODE_ACCESS == $mode) {
             $navigation = Menu::mainOperation($module);
+
+            $pattern =<<<'EOT'
+<li class="%s">
+    <a data-toggle="collapse" href="#pi-modules-nav-%s">
+        <i class="%s"></i>
+        <span class="pi-modules-nav-text">%s</span>
+        <span class="fa fa-angle-down pi-modules-nav-director"></span>
+    </a>
+    <div class="%s" id="pi-modules-nav-%s" data-url="%s">
+        %s
+    </div>
+</li>
+EOT;
+
+            foreach ($navigation as $item) {
+                if ($item['active']) {
+                    $sub = $this->sub('nav pi-modules-nav-sub');
+                } else {
+                    $sub = '';
+                }
+                $content .= sprintf(
+                    $pattern,
+                    $item['active'] ? 'active' : '',
+                    $item['name'],
+                    $item['icon'] ? : 'fa fa-th',
+                    $item['label'],
+                    $item['active'] ? 'collapse in' : 'collapse',
+                    $item['name'],
+                    $item['href'],
+                    $item['active'] ? $sub : ''
+                );
+            }
+
         }
 
-        return $navigation;
+        return $content;
     }
 
     /**

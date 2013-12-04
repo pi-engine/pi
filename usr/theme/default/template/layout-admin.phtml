@@ -42,7 +42,8 @@ $module = Pi::service('module')->current();
         <nav class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
             <?php
-            $modes = $this->adminNav()->modes();
+            echo $this->adminNav()->modes();
+            /*
             foreach ($modes as $mode) {
                 echo sprintf(
                     '<li class="%s%s">
@@ -58,6 +59,7 @@ $module = Pi::service('module')->current();
                     $mode['label']
                 );
             }
+            */
             ?>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -74,7 +76,9 @@ $module = Pi::service('module')->current();
     <aside class="pi-sidebar">
         <ul class="nav pi-modules-nav" id="js-modules-nav">
         <?php
-        $main = $this->adminNav()->main();
+        $main = $this->adminNav()->main() ?: '&nbsp';
+        echo $main;
+        /*
         if ($main) {
             foreach ($main as $item) {
                 if ($item['active']) {
@@ -106,6 +110,7 @@ $module = Pi::service('module')->current();
         } else {
             echo '&nbsp';
         }
+        */
         ?>
         </ul>
         <div class="pi-sidebar-bg"></div>
