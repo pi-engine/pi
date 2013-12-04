@@ -32,6 +32,9 @@ class DashboardController extends ActionController
      */
     public function indexAction()
     {
+        $this->loadDashboard();
+        return;
+
         $module = $this->params('module');
         if (!$module) {
             $this->redirect('', array('action' => 'system'));
@@ -103,12 +106,12 @@ class DashboardController extends ActionController
             return;
         }
 
-        $name = array_shift($allowed);
+        $nameDefault = array_shift($allowed);
         $link = '';
         switch ($mode) {
             case AdminMode::MODE_ACCESS:
                 $link = $this->url('admin', array(
-                    'module'        => $name,
+                    'module'        => $nameDefault,
                     'controller'    => 'dashboard',
                 ));
                 break;
@@ -116,7 +119,7 @@ class DashboardController extends ActionController
                 $link = $this->url('admin', array(
                     'module'        => 'system',
                     'controller'    => 'component',
-                    'name'          => $name,
+                    'name'          => $nameDefault,
                 ));
                 break;
             case AdminMode::MODE_DEPLOYMENT:
@@ -145,8 +148,6 @@ class DashboardController extends ActionController
      */
     public function systemAction()
     {
-        $uid  = Pi::service('user')->getId();
-
         $_SESSION['PI_BACKOFFICE'] = array(
             'mode'      => '',
             'changed'   => 1,
@@ -154,102 +155,9 @@ class DashboardController extends ActionController
             'module'    => '',
         );
 
-        // Fetch all permitted modules
-        $modules = Pi::registry('modulelist')->read('active');
-        $modulesPermitted = Pi::service('permission')->moduleList('admin');
-        foreach (array_keys($modules) as $name) {
-            if (null !== $modulesPermitted
-                && !in_array($name, $modulesPermitted)
-            ) {
-                unset($modules[$name]);
-            }
-        }
+        $this->loadDashboard();
 
-        // Get module summary callbacks
-        // Get hidden modules
-        $summaryList = array();
-        $list = (array) Pi::user()->data->get($uid, 'module-summary');
-
-        $summaryEnabled = array();
-        $summaryHidden = array();
-        // Enabled explicitly
-        if (isset($list['active'])) {
-            $summaryEnabled = array_intersect(
-                (array) $list['active'],
-                array_keys($modules)
-            );
-            $summaryEnabled = array_unique($summaryEnabled);
-        }
-        // Disabled explicitly
-        if (isset($list['inactive'])) {
-            $summaryHidden = array_intersect(
-                (array) $list['inactive'],
-                array_keys($modules)
-            );
-            $summaryHidden = array_unique($summaryHidden);
-        }
-        $new = $list
-            ? array_diff(array_keys($modules), $summaryEnabled, $summaryHidden)
-            : array_keys($modules);
-        $keys = array_unique($summaryEnabled + $new);
-
-        foreach ($keys as $name) {
-            $callback = sprintf(
-                'Module\\%s\Dashboard::summary',
-                ucfirst($modules[$name]['directory'])
-            );
-            if (is_callable($callback)) {
-                $summaryList[] = array(
-                    'name'      => $name,
-                    'content'   => call_user_func($callback, $name),
-                    'title'     => $modules[$name]['title'],
-                    'logo'      => $modules[$name]['logo'],
-                    'active'    => 1
-                );
-            }
-        }
-        foreach ($summaryHidden as $name) {
-            $callback = sprintf(
-                'Module\\%s\Dashboard::summary',
-                ucfirst($modules[$name]['directory'])
-            );
-            if (is_callable($callback)) {
-                $summaryList['inactive'][] = array(
-                    'name'      => $name,
-                    'title'     => $modules[$name]['title'],
-                    'active'    => 0
-                );
-            }
-        }
-
-        // Get user quick links
-        $links = (array) Pi::user()->data->get($uid, 'admin-link');
-
-        // Get system message, only admins have access
-        $content = Pi::user()->data(0, 'admin-message', true);
-        if (!$content) {
-            $content = Pi::user()->data(0, 'admin-welcome', true);
-        }
-
-        $message = array(
-            'time'      => _date($content['time']),
-            'content'   => Pi::service('markup')->render(
-                $content['value'],
-                'text'
-            ),
-        );
-        $messagePerm = false;
-        if (Pi::service('user')->getUser()->isAdmin()) {
-            $messagePerm = true;
-        }
-
-        $this->view()->assign('summaryList', $summaryList);
-        $this->view()->assign('links', $links);
-        $this->view()->assign('message', $message);
-        $this->view()->assign('messagePerm', $messagePerm);
-
-        $this->view()->assign('title', __('Dashboard'));
-        $this->view()->setTemplate('dashboard-system', 'system');
+        return;
     }
 
     /**
@@ -385,5 +293,112 @@ class DashboardController extends ActionController
         Pi::user()->data->set($uid, $type, $content);
 
         return true;
+    }
+
+    /**
+     * Load dashboard content
+     *
+     * return void
+     */
+    protected function loadDashboard()
+    {
+        $uid  = Pi::service('user')->getId();
+
+        // Fetch all permitted modules
+        $modules = Pi::registry('modulelist')->read('active');
+        $modulesPermitted = Pi::service('permission')->moduleList('admin');
+        foreach (array_keys($modules) as $name) {
+            if (null !== $modulesPermitted
+                && !in_array($name, $modulesPermitted)
+            ) {
+                unset($modules[$name]);
+            }
+        }
+
+        // Get module summary callbacks
+        // Get hidden modules
+        $summaryList = array();
+        $list = (array) Pi::user()->data->get($uid, 'module-summary');
+
+        $summaryEnabled = array();
+        $summaryHidden = array();
+        // Enabled explicitly
+        if (isset($list['active'])) {
+            $summaryEnabled = array_intersect(
+                (array) $list['active'],
+                array_keys($modules)
+            );
+            $summaryEnabled = array_unique($summaryEnabled);
+        }
+        // Disabled explicitly
+        if (isset($list['inactive'])) {
+            $summaryHidden = array_intersect(
+                (array) $list['inactive'],
+                array_keys($modules)
+            );
+            $summaryHidden = array_unique($summaryHidden);
+        }
+        $new = $list
+            ? array_diff(array_keys($modules), $summaryEnabled, $summaryHidden)
+            : array_keys($modules);
+        $keys = array_unique($summaryEnabled + $new);
+
+        foreach ($keys as $name) {
+            $callback = sprintf(
+                'Module\\%s\Dashboard::summary',
+                ucfirst($modules[$name]['directory'])
+            );
+            if (is_callable($callback)) {
+                $summaryList[] = array(
+                    'name'      => $name,
+                    'content'   => call_user_func($callback, $name),
+                    'title'     => $modules[$name]['title'],
+                    'logo'      => $modules[$name]['logo'],
+                    'active'    => 1
+                );
+            }
+        }
+        foreach ($summaryHidden as $name) {
+            $callback = sprintf(
+                'Module\\%s\Dashboard::summary',
+                ucfirst($modules[$name]['directory'])
+            );
+            if (is_callable($callback)) {
+                $summaryList['inactive'][] = array(
+                    'name'      => $name,
+                    'title'     => $modules[$name]['title'],
+                    'active'    => 0
+                );
+            }
+        }
+
+        // Get user quick links
+        $links = (array) Pi::user()->data->get($uid, 'admin-link');
+
+        // Get system message, only admins have access
+        $content = Pi::user()->data(0, 'admin-message', true);
+        if (!$content) {
+            $content = Pi::user()->data(0, 'admin-welcome', true);
+        }
+
+        $message = array(
+            'time'      => _date($content['time']),
+            'content'   => Pi::service('markup')->render(
+                    $content['value'],
+                    'text'
+                ),
+        );
+        $messagePerm = false;
+        if (Pi::service('user')->getUser()->isAdmin()) {
+            $messagePerm = true;
+        }
+
+        $this->view()->assign('summaryList', $summaryList);
+        $this->view()->assign('links', $links);
+        $this->view()->assign('message', $message);
+        $this->view()->assign('messagePerm', $messagePerm);
+
+        $this->view()->assign('title', __('Dashboard'));
+        $this->view()->setTemplate('dashboard-system', 'system');
     }
 }
