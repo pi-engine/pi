@@ -9,7 +9,7 @@ return array(
         'skin'         => 'kama',
         'width'        => 'auto',
         'height'       => 500,
-        'language'     => 'zh-cn',
+        //'language'     => 'zh-cn',
         'uiColor'      => '#EFF4F8',
         'extraPlugins' =>"articlepagebreak",
         'contentsCss'  => $url,

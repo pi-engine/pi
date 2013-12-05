@@ -149,6 +149,11 @@ class Ckeditor extends CkBase
             $_config = array_merge($_config, $config);
         }
 
+        // Set language
+        if (!isset($_config['language'])) {
+            $_config['language'] = str_replace('_', '-', Pi::config('locale'));
+        }
+
         if (is_array($events) && !empty($events)) {
             foreach ($events as $eventName => $code) {
                 if (!isset($_events[$eventName])) {
