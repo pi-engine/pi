@@ -59,8 +59,7 @@ class MenuController extends ActionController
     public function componentAction()
     {
         $module = $this->params('name');
-        $class = $this->params('class');
-        $navigation = Menu::subComponent($module, $class);
+        $navigation = Menu::subComponent($module);
 
         return $navigation;
     }
@@ -71,8 +70,8 @@ class MenuController extends ActionController
     public function subAction()
     {
         $module = $this->params('name');
-        $class = $this->params('class');
-        $navigation = Menu::subOperation($module, $class);
+        $class  = $this->params('class', 'nav pi-modules-nav-sub');
+        $navigation = Menu::subOperation($module, array('ulClass' => $class));
 
         return $navigation;
     }

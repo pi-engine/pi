@@ -21,9 +21,23 @@ return array(
                 'label'         => _t('Page list'),
                 'route'         => 'admin',
                 'controller'    => 'index',
-                'action'        => 'index',
+                //'action'        => 'index',
 
                 'pages' => array(
+                    'list'     => array(
+                        'label'         => _t('Page list'),
+                        'route'         => 'admin',
+                        'controller'    => 'index',
+                        'action'        => 'index',
+                    ),
+
+                    'add'   => array(
+                        'label' => _t('Add a page'),
+                        'route'         => 'admin',
+                        'controller'    => 'index',
+                        'action'        => 'add',
+                    ),
+
                     'edit'   => array(
                         'label' => _t('Edit page'),
                         'route'         => 'admin',
@@ -39,12 +53,6 @@ return array(
                         'visible'       => 0,
                     ),
                 ),
-            ),
-            'add'   => array(
-                'label' => _t('Add a page'),
-                'route'         => 'admin',
-                'controller'    => 'index',
-                'action'        => 'add',
             ),
         ),
 

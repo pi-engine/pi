@@ -142,11 +142,11 @@ class Menu
      * Load module component sub menu
      *
      * @param string $module
-     * @param string $class UL element class
+     * @param array $options
      *
      * @return string
      */
-    public static function subComponent($module, $class = '')
+    public static function subComponent($module, array $options = array())
     {
         $navConfig = Pi::registry('navigation')->read('system-component');
         foreach ($navConfig as $key => &$nav) {
@@ -154,8 +154,10 @@ class Menu
         }
         $helper     = Pi::service('view')->getHelper('navigation');
         $navigation = $helper($navConfig);
-        $class      = $class ?: 'nav';
-        $content    = $navigation->menu()->setUlClass($class)->render();
+        if (!isset($options['ulClass'])) {
+            $options['ulClass'] = 'nav nav-tabs';
+        }
+        $content = $navigation->menu()->renderMenu(null, $options);
 
         return $content;
     }
@@ -164,19 +166,26 @@ class Menu
      * Load module admin sub menu
      *
      * @param string $module
-     * @param string $class UL element class
+     * @param array $options
      *
-     * @return string
+     * @return string[]
      */
-    public static function subOperation($module, $class = '')
+    public static function subOperation($module, array $options = array())
     {
         $helper = Pi::service('view')->getHelper('navigation');
         $navigation = $helper(
             $module . '-admin',
             array('section' => 'admin')
         );
-        $class = $class ?: 'nav';
-        $content = $navigation->menu()->setUlClass($class)->render();
+        $options['maxDepth'] = 0;
+        if (!isset($options['ulClass'])) {
+            $options['ulClass'] = 'nav';
+        }
+        if (!empty($options['sub'])) {
+            $content = $navigation->menu()->renderPair(null, $options);
+        } else {
+            $content = $navigation->menu()->renderMenu(null, $options);
+        }
 
         return $content;
     }

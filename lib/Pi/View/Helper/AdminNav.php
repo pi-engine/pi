@@ -25,6 +25,9 @@ class AdminNav extends AbstractHelper
     /** @var string Module name */
     protected $module;
 
+    /** @var string Leaf operation menu */
+    protected $leafOperation = '';
+
     /** @var string Side menu content */
     //protected $side;
 
@@ -51,7 +54,7 @@ class AdminNav extends AbstractHelper
      *
      * @return string
      */
-    public function modes($class = 'nav')
+    public function modes($class = '')
     {
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
         $modes = Menu::modes($mode);
@@ -64,6 +67,7 @@ class AdminNav extends AbstractHelper
     </a>
 </li>
 EOT;
+        $class = $class ?: 'nav';
         $content = sprintf('<ul class="%s">', $class);
         foreach ($modes as $mode) {
             $content .= sprintf(
@@ -88,11 +92,12 @@ EOT;
      *
      * @return string
      */
-    public function main($class = 'nav')
+    public function main($class = '')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
+        $class = $class ?: 'nav';
         $content = sprintf('<ul class="%s">', $class);
         // Get manage mode navigation
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
@@ -170,23 +175,35 @@ EOT;
     /**
      * Get back-office sub menu
      *
-     * @param string $class
+     * @param array|string $options
      *
      * @return string
      */
-    public function sub($class = 'nav')
+    public function sub($options = array())
     {
         $module = $this->module ?: Pi::service('module')->currrent();
-        $mode = $_SESSION['PI_BACKOFFICE']['mode'];
+        $mode   = $_SESSION['PI_BACKOFFICE']['mode'];
 
+        if (is_string($options)) {
+            $options = array('ulClass' => $options);
+        }
+        if (!isset($options['ulClass'])) {
+            $options['ulClass'] = 'nav pi-modules-nav-sub';
+        }
         $navigation = '';
         // Managed components
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
-            //$currentModule = $_SESSION['PI_BACKOFFICE']['module'];
-            //$navigation = Menu::subComponent($currentModule);
+
         // Module operations
         } elseif (AdminMode::MODE_ACCESS == $mode) {
-            $navigation = Menu::subOperation($module, $class);
+            if (!isset($options['sub'])) {
+                $options['sub'] = array(
+                    'ulClass'   => 'nav nav-tabs',
+                    'maxDepth'  => 0,
+                );
+            }
+            list($navigation, $leaf) = Menu::subOperation($module, $options);
+            $this->leafOperation = $leaf;
         }
 
         return $navigation;
@@ -195,23 +212,29 @@ EOT;
     /**
      * Get back-office top menu
      *
-     * @param string $class
+     * @param array|string $options
      *
      * @return string
      */
-    public function top($class = 'nav')
+    public function top($options = array())
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
+        if (is_string($options)) {
+            $options = array('ulClass' => $options);
+        }
+        if (!isset($options['ulClass'])) {
+            $options['ulClass'] = 'nav nav-tabs';
+        }
         $navigation = '';
         // Managed components
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
             $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
-            $navigation = Menu::subComponent($currentModule, $class);
+            $navigation = Menu::subComponent($currentModule, $options);
             // Module operations
         } elseif (AdminMode::MODE_ACCESS == $mode) {
-            //$navigation = Menu::subOperation($module);
+            $navigation = $this->leafOperation;
         }
 
         return $navigation;

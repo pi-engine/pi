@@ -519,6 +519,7 @@ class Navigation extends AbstractRegistry
                 unset($page[$key]);
             }
         }
+        /*
         // Only top level menu is shown in a non-system module back office
         if ('admin' == $this->section
             && 'system' != $this->module
@@ -526,6 +527,7 @@ class Navigation extends AbstractRegistry
         ) {
             $page['visible'] = 0;
         }
+        */
 
         return $page;
     }
