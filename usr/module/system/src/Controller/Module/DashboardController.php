@@ -66,14 +66,14 @@ class DashboardController extends ActionController
             );
         }
         if (empty($data['update'])) {
-            $data['update'] = __('Never updated.');
+            $data['update'] = _a('Never updated.', 'system:admin');
         } else {
             $data['update'] = _date($data['update']);
         }
 
         $this->view()->assign('summary', $summary);
         $this->view()->assign('data', $data);
-        $this->view()->assign('title', __('Dashboard'));
+        $this->view()->assign('title', _a('Dashboard', 'system:admin'));
         $this->view()->setTemplate('dashboard-module', 'system');
     }
 
@@ -129,7 +129,7 @@ class DashboardController extends ActionController
         if (!$link) {
             $this->jump(
                 array('action' => 'system'),
-                __('No permitted operation available.'),
+                _a('No permitted operation available.', 'system:admin'),
                 'error'
             );
 
@@ -398,7 +398,7 @@ class DashboardController extends ActionController
         $this->view()->assign('message', $message);
         $this->view()->assign('messagePerm', $messagePerm);
 
-        $this->view()->assign('title', __('Dashboard'));
+        $this->view()->assign('title', _a('Dashboard', 'system:admin'));
         $this->view()->setTemplate('dashboard-system', 'system');
     }
 }

@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2013-11-21 10:01+0800\n"
-"PO-Revision-Date: 2013-11-21 11:18+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2013-12-05 15:53+0800\n"
+"PO-Revision-Date: 2013-12-05 15:55+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,2100 +11,2219 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\system\n"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:18
+#: C:\wamp\www\master\usr\module\system/config/block.php:18
 msgid "Site Info"
-msgstr ""
+msgstr "基本信息"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:19
+#: C:\wamp\www\master\usr\module\system/config/block.php:19
 msgid "Website information"
-msgstr ""
+msgstr "网站信息"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:26
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:116
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:17
+#: C:\wamp\www\master\usr\module\system/config/block.php:26
+#: C:\wamp\www\master\usr\module\system/config/page.php:116
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:17
 msgid "User"
-msgstr ""
+msgstr "用户管理"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:27
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:33
+#: C:\wamp\www\master\usr\module\system/config/block.php:27
+#: C:\wamp\www\master\usr\module\system/config/config.php:33
 msgid "User account"
-msgstr ""
+msgstr "用户账号"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:34
+#: C:\wamp\www\master\usr\module\system/config/block.php:34
 msgid "User bar"
-msgstr ""
+msgstr "用户账号"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:35
+#: C:\wamp\www\master\usr\module\system/config/block.php:35
 msgid "User profile or login bar"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:40
+#: C:\wamp\www\master\usr\module\system/config/block.php:40
 msgid "Display type"
-msgstr ""
+msgstr "显示方式"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:41
+#: C:\wamp\www\master\usr\module\system/config/block.php:41
 msgid "Mode to render."
-msgstr ""
+msgstr "渲染模式"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:47
+#: C:\wamp\www\master\usr\module\system/config/block.php:47
 msgid "Flat"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:48
+#: C:\wamp\www\master\usr\module\system/config/block.php:48
 msgid "Dropdown menu"
 msgstr "下拉菜单"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:49
+#: C:\wamp\www\master\usr\module\system/config/block.php:49
 msgid "JavaScript"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:59
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:30
+#: C:\wamp\www\master\usr\module\system/config/block.php:59
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:30
 msgid "Login"
 msgstr "登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:60
+#: C:\wamp\www\master\usr\module\system/config/block.php:60
 msgid "User login block"
-msgstr ""
+msgstr "登录区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:67
+#: C:\wamp\www\master\usr\module\system/config/block.php:67
 msgid "Pi feature"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/block.php:68
+#: C:\wamp\www\master\usr\module\system/config/block.php:68
 msgid "Introduction to Pi Engine"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:21
+#: C:\wamp\www\master\usr\module\system/config/config.php:21
 msgid "General"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:25
+#: C:\wamp\www\master\usr\module\system/config/config.php:25
 msgid "Head meta"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:29
+#: C:\wamp\www\master\usr\module\system/config/config.php:29
 msgid "Internationalization"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:37
+#: C:\wamp\www\master\usr\module\system/config/config.php:37
 msgid "Text processing"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:41
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:264
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:9
+#: C:\wamp\www\master\usr\module\system/config/config.php:41
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:264
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:53
+#: C:\wamp\www\master\usr\module\system/config/config.php:53
 msgid "Site name"
-msgstr ""
+msgstr "网站名称"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:54
+#: C:\wamp\www\master\usr\module\system/config/config.php:54
 msgid "Website name."
-msgstr ""
+msgstr "网站名称"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:61
+#: C:\wamp\www\master\usr\module\system/config/config.php:61
 msgid "Slogan"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:62
+#: C:\wamp\www\master\usr\module\system/config/config.php:62
 msgid "Website slogan."
-msgstr ""
+msgstr "网站口号"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:68
+#: C:\wamp\www\master\usr\module\system/config/config.php:68
 msgid "Locale"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:69
+#: C:\wamp\www\master\usr\module\system/config/config.php:69
 msgid "Locale for application content."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:76
+#: C:\wamp\www\master\usr\module\system/config/config.php:76
 msgid "Charset"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:77
+#: C:\wamp\www\master\usr\module\system/config/config.php:77
 msgid "Charset for page display."
-msgstr ""
+msgstr "页面编码"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:83
+#: C:\wamp\www\master\usr\module\system/config/config.php:83
 msgid "Timezone"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:84
+#: C:\wamp\www\master\usr\module\system/config/config.php:84
 msgid "Timezone for application system."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:90
+#: C:\wamp\www\master\usr\module\system/config/config.php:90
 msgid "List count"
-msgstr ""
+msgstr "登录次数"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:91
+#: C:\wamp\www\master\usr\module\system/config/config.php:91
+#, fuzzy
 msgid "Number of items on a list."
-msgstr ""
+msgstr "页面展示数。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:98
+#: C:\wamp\www\master\usr\module\system/config/config.php:98
+#, fuzzy
 msgid "GA account"
-msgstr ""
+msgstr "用户账号"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:99
+#: C:\wamp\www\master\usr\module\system/config/config.php:99
 msgid "Google Analytics account. Or use following custom foot scripts."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:104
+#: C:\wamp\www\master\usr\module\system/config/config.php:104
 msgid "Foot scripts"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:105
+#: C:\wamp\www\master\usr\module\system/config/config.php:105
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:122
+#: C:\wamp\www\master\usr\module\system/config/config.php:122
 msgid "Theme"
 msgstr "主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:129
+#: C:\wamp\www\master\usr\module\system/config/config.php:129
 msgid "Admin theme"
 msgstr "后台主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:138
+#: C:\wamp\www\master\usr\module\system/config/config.php:138
 msgid "Meta copyright"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:139
+#: C:\wamp\www\master\usr\module\system/config/config.php:139
 msgid ""
 "The copyright meta tag defines any copyright statements you wish to disclose "
 "about your web page documents."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:146
+#: C:\wamp\www\master\usr\module\system/config/config.php:146
+#, fuzzy
 msgid "Meta author"
-msgstr ""
+msgstr "作者信息"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:147
+#: C:\wamp\www\master\usr\module\system/config/config.php:147
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
 "webmaster, company name or URL."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:154
+#: C:\wamp\www\master\usr\module\system/config/config.php:154
 msgid "Meta generator"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:155
+#: C:\wamp\www\master\usr\module\system/config/config.php:155
 msgid "Generator of the document being read."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:162
+#: C:\wamp\www\master\usr\module\system/config/config.php:162
 msgid "Meta keywords"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:163
+#: C:\wamp\www\master\usr\module\system/config/config.php:163
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:170
+#: C:\wamp\www\master\usr\module\system/config/config.php:170
 msgid "Meta description"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:171
+#: C:\wamp\www\master\usr\module\system/config/config.php:171
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:180
+#: C:\wamp\www\master\usr\module\system/config/config.php:180
+#, fuzzy
 msgid "Default number style"
-msgstr ""
+msgstr "页面展示数。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:181
+#: C:\wamp\www\master\usr\module\system/config/config.php:181
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:186
+#: C:\wamp\www\master\usr\module\system/config/config.php:186
+#, fuzzy
 msgid "Default format for the locale"
-msgstr ""
+msgstr "注册用户名规则。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:187
+#: C:\wamp\www\master\usr\module\system/config/config.php:187
 msgid "Decimal format defined by pattern"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:188
+#: C:\wamp\www\master\usr\module\system/config/config.php:188
+#, fuzzy
 msgid "Decimal format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:189
+#: C:\wamp\www\master\usr\module\system/config/config.php:189
+#, fuzzy
 msgid "Percent format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:190
+#: C:\wamp\www\master\usr\module\system/config/config.php:190
+#, fuzzy
 msgid "Scientific format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:191
+#: C:\wamp\www\master\usr\module\system/config/config.php:191
 msgid "Spellout rule-based format"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:192
+#: C:\wamp\www\master\usr\module\system/config/config.php:192
 msgid "Ordinal rule-based format"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:193
+#: C:\wamp\www\master\usr\module\system/config/config.php:193
 msgid "Duration rule-based format"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:194
+#: C:\wamp\www\master\usr\module\system/config/config.php:194
 msgid "Rule-based format defined by pattern"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:203
+#: C:\wamp\www\master\usr\module\system/config/config.php:203
 msgid "Default pattern for selected number style"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:204
+#: C:\wamp\www\master\usr\module\system/config/config.php:204
 msgid "Only if required by style"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:211
+#: C:\wamp\www\master\usr\module\system/config/config.php:211
+#, fuzzy
 msgid "Default currency type"
-msgstr ""
+msgstr "请输入字母。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:212
+#: C:\wamp\www\master\usr\module\system/config/config.php:212
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:219
+#: C:\wamp\www\master\usr\module\system/config/config.php:219
 msgid "Default calendar for the locale"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:220
+#: C:\wamp\www\master\usr\module\system/config/config.php:220
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:227
+#: C:\wamp\www\master\usr\module\system/config/config.php:227
+#, fuzzy
 msgid "Default date type"
-msgstr ""
+msgstr "请输入字母。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:228
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:247
+#: C:\wamp\www\master\usr\module\system/config/config.php:228
+#: C:\wamp\www\master\usr\module\system/config/config.php:247
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:233
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:252
+#: C:\wamp\www\master\usr\module\system/config/config.php:233
+#: C:\wamp\www\master\usr\module\system/config/config.php:252
 msgid "Do not include this element"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:234
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:253
+#: C:\wamp\www\master\usr\module\system/config/config.php:234
+#: C:\wamp\www\master\usr\module\system/config/config.php:253
 msgid ""
 "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:235
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:254
+#: C:\wamp\www\master\usr\module\system/config/config.php:235
+#: C:\wamp\www\master\usr\module\system/config/config.php:254
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:236
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:255
+#: C:\wamp\www\master\usr\module\system/config/config.php:236
+#: C:\wamp\www\master\usr\module\system/config/config.php:255
 msgid "Medium style (Jan 12, 1952)"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:237
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:256
+#: C:\wamp\www\master\usr\module\system/config/config.php:237
+#: C:\wamp\www\master\usr\module\system/config/config.php:256
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:246
+#: C:\wamp\www\master\usr\module\system/config/config.php:246
+#, fuzzy
 msgid "Default time type"
-msgstr ""
+msgstr "请输入字母。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:265
+#: C:\wamp\www\master\usr\module\system/config/config.php:265
 msgid "Default formatting pattern for date-time"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:266
+#: C:\wamp\www\master\usr\module\system/config/config.php:266
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:273
+#: C:\wamp\www\master\usr\module\system/config/config.php:273
 msgid "Default format for legacy date function"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:274
+#: C:\wamp\www\master\usr\module\system/config/config.php:274
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:283
+#: C:\wamp\www\master\usr\module\system/config/config.php:283
+#, fuzzy
 msgid "Admin email"
-msgstr ""
+msgstr "邮箱黑名单"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:284
+#: C:\wamp\www\master\usr\module\system/config/config.php:284
 msgid "Admin email address for contact."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:290
+#: C:\wamp\www\master\usr\module\system/config/config.php:290
+#, fuzzy
 msgid "Admin name"
-msgstr ""
+msgstr "昵称"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:291
+#: C:\wamp\www\master\usr\module\system/config/config.php:291
 msgid "User name used to send emails"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:296
+#: C:\wamp\www\master\usr\module\system/config/config.php:296
+#, fuzzy
 msgid "Email encoding"
-msgstr ""
+msgstr "邮箱黑名单"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:297
+#: C:\wamp\www\master\usr\module\system/config/config.php:297
 msgid "Encoding for email contents"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:305
+#: C:\wamp\www\master\usr\module\system/config/config.php:305
 msgid "Editor"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:306
+#: C:\wamp\www\master\usr\module\system/config/config.php:306
 msgid "Default editor for text processing"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:311
+#: C:\wamp\www\master\usr\module\system/config/config.php:311
+#, fuzzy
 msgid "Enable word censoring"
-msgstr ""
+msgstr "请输入字母。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:312
+#: C:\wamp\www\master\usr\module\system/config/config.php:312
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:320
+#: C:\wamp\www\master\usr\module\system/config/config.php:320
+#, fuzzy
 msgid "Words to censor"
-msgstr ""
+msgstr "渲染模式"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:321
+#: C:\wamp\www\master\usr\module\system/config/config.php:321
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:328
+#: C:\wamp\www\master\usr\module\system/config/config.php:328
 msgid "Word to replace censored words"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:329
+#: C:\wamp\www\master\usr\module\system/config/config.php:329
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:337
+#: C:\wamp\www\master\usr\module\system/config/config.php:337
+#, fuzzy
 msgid "Username format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:338
+#: C:\wamp\www\master\usr\module\system/config/config.php:338
+#, fuzzy
 msgid "Format of username for registration."
-msgstr ""
+msgstr "注册用户名规则。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:343
+#: C:\wamp\www\master\usr\module\system/config/config.php:343
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:344
+#: C:\wamp\www\master\usr\module\system/config/config.php:344
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:345
+#: C:\wamp\www\master\usr\module\system/config/config.php:345
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:355
+#: C:\wamp\www\master\usr\module\system/config/config.php:355
+#, fuzzy
 msgid "Minmum username"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:356
+#: C:\wamp\www\master\usr\module\system/config/config.php:356
+#, fuzzy
 msgid "Minmum length of username for user registration"
-msgstr ""
+msgstr "用户注册的用户名最小长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:363
+#: C:\wamp\www\master\usr\module\system/config/config.php:363
+#, fuzzy
 msgid "Maximum username"
-msgstr ""
+msgstr "用户名最大长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:364
+#: C:\wamp\www\master\usr\module\system/config/config.php:364
+#, fuzzy
 msgid "Maximum length of username for user registration"
-msgstr ""
+msgstr "用户注册时用户名最大长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:371
+#: C:\wamp\www\master\usr\module\system/config/config.php:371
+#, fuzzy
 msgid "Minmum password"
-msgstr ""
+msgstr "密码最小长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:372
+#: C:\wamp\www\master\usr\module\system/config/config.php:372
+#, fuzzy
 msgid "Minmum length of password for user registration"
-msgstr ""
+msgstr "用户注册密码最小长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:379
+#: C:\wamp\www\master\usr\module\system/config/config.php:379
+#, fuzzy
 msgid "Maximum password"
-msgstr ""
+msgstr "密码最大长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:380
+#: C:\wamp\www\master\usr\module\system/config/config.php:380
+#, fuzzy
 msgid "Maximum length of password for user registration"
-msgstr ""
+msgstr "用户注册密码最大长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:387
+#: C:\wamp\www\master\usr\module\system/config/config.php:387
+#, fuzzy
 msgid "Username backlist"
-msgstr ""
+msgstr "用户名黑名单"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:388
+#: C:\wamp\www\master\usr\module\system/config/config.php:388
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:395
+#: C:\wamp\www\master\usr\module\system/config/config.php:395
+#, fuzzy
 msgid "Email backlist"
-msgstr ""
+msgstr "邮箱黑名单"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:396
+#: C:\wamp\www\master\usr\module\system/config/config.php:396
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:403
+#: C:\wamp\www\master\usr\module\system/config/config.php:403
+#, fuzzy
 msgid "Remember me"
-msgstr ""
+msgstr "自动登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:404
+#: C:\wamp\www\master\usr\module\system/config/config.php:404
+#, fuzzy
 msgid "Days to remember login, 0 for disable."
-msgstr ""
+msgstr "账号保持时间，0是关闭。"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:411
+#: C:\wamp\www\master\usr\module\system/config/config.php:411
+#, fuzzy
 msgid "Maximum attempts"
-msgstr ""
+msgstr "用户名最大长度"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:412
+#: C:\wamp\www\master\usr\module\system/config/config.php:412
 msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:419
+#: C:\wamp\www\master\usr\module\system/config/config.php:419
+#, fuzzy
 msgid "Login disable"
-msgstr ""
+msgstr "登录关闭"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:420
+#: C:\wamp\www\master\usr\module\system/config/config.php:420
+#, fuzzy
 msgid "Disable user login"
-msgstr ""
+msgstr "禁止用户登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:428
+#: C:\wamp\www\master\usr\module\system/config/config.php:428
+#, fuzzy
 msgid "Register disable"
-msgstr ""
+msgstr "登录关闭"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:429
+#: C:\wamp\www\master\usr\module\system/config/config.php:429
+#, fuzzy
 msgid "Disable user registration"
-msgstr ""
+msgstr "禁止用户注册"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:437
+#: C:\wamp\www\master\usr\module\system/config/config.php:437
+#, fuzzy
 msgid "Login CAPTCHA"
-msgstr ""
+msgstr "登录验证码"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:438
+#: C:\wamp\www\master\usr\module\system/config/config.php:438
+#, fuzzy
 msgid "Enable CAPTCHA for user login"
-msgstr ""
+msgstr "打开用户登录验证码"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:446
+#: C:\wamp\www\master\usr\module\system/config/config.php:446
+#, fuzzy
 msgid "Register CAPTCHA"
-msgstr ""
+msgstr "注册验证码"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:447
+#: C:\wamp\www\master\usr\module\system/config/config.php:447
+#, fuzzy
 msgid "Enable CAPTCHA for user registration"
-msgstr ""
+msgstr "打开用户注册验证码"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:456
+#: C:\wamp\www\master\usr\module\system/config/config.php:456
 msgid "Module themes"
 msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:457
+#: C:\wamp\www\master\usr\module\system/config/config.php:457
+#, fuzzy
 msgid "Themes for modules."
-msgstr ""
+msgstr "可安装主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:465
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.php:21
+#: C:\wamp\www\master\usr\module\system/config/config.php:465
+#: C:\wamp\www\master\usr\module\system/config/nav.php:21
 msgid "Front navigation"
 msgstr "前台导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:466
+#: C:\wamp\www\master\usr\module\system/config/config.php:466
 msgid "Global navigation for front end."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:473
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.php:27
+#: C:\wamp\www\master\usr\module\system/config/config.php:473
+#: C:\wamp\www\master\usr\module\system/config/nav.php:27
 msgid "Admin navigation"
 msgstr "后台导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/config.php:474
+#: C:\wamp\www\master\usr\module\system/config/config.php:474
 msgid "Global navigation for admin."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/event.php:21
+#: C:\wamp\www\master\usr\module\system/config/event.php:21
 msgid "Module installed"
 msgstr "模块已安装"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/event.php:24
+#: C:\wamp\www\master\usr\module\system/config/event.php:24
 msgid "Module uninstalled"
 msgstr "模块已卸载"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/event.php:27
+#: C:\wamp\www\master\usr\module\system/config/event.php:27
 msgid "Module activated"
 msgstr "模块已启用"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/event.php:30
+#: C:\wamp\www\master\usr\module\system/config/event.php:30
 msgid "Module deactivated"
 msgstr "模块已禁用"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/event.php:33
+#: C:\wamp\www\master\usr\module\system/config/event.php:33
 msgid "Module updated"
 msgstr "模块已更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/module.php:19
+#: C:\wamp\www\master\usr\module\system/config/module.php:19
 msgid "System"
 msgstr "系统"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/module.php:22
+#: C:\wamp\www\master\usr\module\system/config/module.php:22
 msgid "For administration of core functions of the site."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:17
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:91
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:23
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:17
+#: C:\wamp\www\master\usr\module\system/config/page.php:91
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:23
 msgid "Modules"
 msgstr "模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:28
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:74
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-operation.phtml:7
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:9
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:9
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:10
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:28
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:74
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:7
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:10
 msgid "Installed"
 msgstr "已安装"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:36
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:82
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:9
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:9
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-operation.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:10
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:10
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:11
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:36
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:82
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:11
 msgid "Availables"
 msgstr "可用"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:44
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:90
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:10
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:10
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-operation.phtml:9
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:11
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:11
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:12
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:44
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:90
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:12
 msgid "Repository"
 msgstr "资源库"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:55
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:97
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:36
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:55
+#: C:\wamp\www\master\usr\module\system/config/page.php:97
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:36
 msgid "Themes"
 msgstr "主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:66
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:66
+#, fuzzy
 msgid "In action"
-msgstr ""
+msgstr "当前主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:102
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:103
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:102
+#: C:\wamp\www\master\usr\module\system/config/page.php:103
 msgid "Navigation"
 msgstr "导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:113
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:79
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:127
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:113
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:79
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:127
 msgid "Navigation list"
 msgstr "导航列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:122
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:122
 msgid "Data manipulation"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:133
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:133
+#, fuzzy
 msgid "Navigation setup"
-msgstr ""
+msgstr "前台导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:144
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:144
 msgid "Role"
 msgstr "角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:154
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:63
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event.phtml:25
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:21
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:29
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:39
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:19
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:154
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:63
+#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:25
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:39
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:19
 msgid "Front"
 msgstr "前台"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:164
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:52
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:67
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event.phtml:26
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:22
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:30
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:40
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:24
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:164
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:52
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:67
+#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:26
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:22
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:30
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:40
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:24
 msgid "Admin"
 msgstr "后台"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:224
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:135
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:224
+#: C:\wamp\www\master\usr\module\system/config/page.php:135
 msgid "Cache"
 msgstr "缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:234
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:123
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:234
+#: C:\wamp\www\master\usr\module\system/config/page.php:123
 msgid "Asset"
 msgstr "资源"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:245
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:245
 msgid "Toolkit"
 msgstr "工具"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.admin.php:256
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:8
+#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:256
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.component.php:17
+#: C:\wamp\www\master\usr\module\system/config/nav.component.php:17
 msgid "Configurations"
 msgstr "配置"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.component.php:28
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:65
+#: C:\wamp\www\master\usr\module\system/config/nav.component.php:28
+#: C:\wamp\www\master\usr\module\system/config/page.php:65
 msgid "Blocks"
 msgstr "区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.component.php:40
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:71
+#: C:\wamp\www\master\usr\module\system/config/nav.component.php:40
+#: C:\wamp\www\master\usr\module\system/config/page.php:71
 msgid "Pages"
 msgstr "Pages"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.component.php:52
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:72
+#: C:\wamp\www\master\usr\module\system/config/nav.component.php:52
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:72
 msgid "Permission"
 msgstr "权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.component.php:64
+#: C:\wamp\www\master\usr\module\system/config/nav.component.php:64
 msgid "Event/Hook"
 msgstr "Event/Hook"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:19
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:19
 msgid "Home"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:24
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:24
 msgid "Profile"
 msgstr "资料"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:37
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:37
 msgid "Register"
 msgstr "注册"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:44
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:37
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:44
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:37
 msgid "Password"
 msgstr "密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.front.php:57
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:71
+#: C:\wamp\www\master\usr\module\system/config/nav.front.php:57
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:71
 msgid "Feed"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/nav.php:33
+#: C:\wamp\www\master\usr\module\system/config/nav.php:33
 msgid "Managed components"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:20
+#: C:\wamp\www\master\usr\module\system/config/page.php:20
 msgid "Homepage"
 msgstr "主页"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:28
+#: C:\wamp\www\master\usr\module\system/config/page.php:28
 msgid "Utility"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:35
+#: C:\wamp\www\master\usr\module\system/config/page.php:35
 msgid "Error reporting"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:45
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ComponentController.php:67
+#: C:\wamp\www\master\usr\module\system/config/page.php:45
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ComponentController.php:66
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:76
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:401
 msgid "Dashboard"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:51
+#: C:\wamp\www\master\usr\module\system/config/page.php:51
 msgid "Readme"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:59
+#: C:\wamp\www\master\usr\module\system/config/page.php:59
 msgid "Config"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:77
+#: C:\wamp\www\master\usr\module\system/config/page.php:77
+#, fuzzy
 msgid "Event/listener"
-msgstr ""
+msgstr "Event/Hook"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:83
+#: C:\wamp\www\master\usr\module\system/config/page.php:83
 msgid "Permissions"
 msgstr "权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:110
+#: C:\wamp\www\master\usr\module\system/config/page.php:110
 msgid "Roles"
 msgstr "角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:129
+#: C:\wamp\www\master\usr\module\system/config/page.php:129
 msgid "Auditing"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/page.php:145
+#: C:\wamp\www\master\usr\module\system/config/page.php:145
+#, fuzzy
 msgid "What's new"
-msgstr ""
+msgstr "添加一个"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:20
+#: C:\wamp\www\master\usr\module\system/config/permission.php:20
 msgid "Global public resource"
 msgstr "全局公开资源"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:28
+#: C:\wamp\www\master\usr\module\system/config/permission.php:28
 msgid "Guest only"
 msgstr "仅游客可见"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:35
+#: C:\wamp\www\master\usr\module\system/config/permission.php:35
 msgid "Member only"
 msgstr "仅会员可见"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:45
+#: C:\wamp\www\master\usr\module\system/config/permission.php:45
 msgid "Generic permission"
 msgstr "总体权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:57
+#: C:\wamp\www\master\usr\module\system/config/permission.php:57
 msgid "Operation: modules"
 msgstr "操作：模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:64
+#: C:\wamp\www\master\usr\module\system/config/permission.php:64
 msgid "Operation: themes"
 msgstr "操作：主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:72
+#: C:\wamp\www\master\usr\module\system/config/permission.php:72
 msgid "Operation: navigation"
 msgstr "操作：导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:80
+#: C:\wamp\www\master\usr\module\system/config/permission.php:80
 msgid "Operation: roles"
 msgstr "操作：角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:96
+#: C:\wamp\www\master\usr\module\system/config/permission.php:96
 msgid "Operation: maintenance"
 msgstr "操作：维护"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:106
+#: C:\wamp\www\master\usr\module\system/config/permission.php:106
 msgid "Management: configs"
 msgstr "管理：配置"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:114
+#: C:\wamp\www\master\usr\module\system/config/permission.php:114
 msgid "Management: blocks"
 msgstr "管理：区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:122
+#: C:\wamp\www\master\usr\module\system/config/permission.php:122
 msgid "Management: pages"
 msgstr "管理：pages"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:130
+#: C:\wamp\www\master\usr\module\system/config/permission.php:130
 msgid "Management: permissions"
 msgstr "管理：权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/permission.php:137
+#: C:\wamp\www\master\usr\module\system/config/permission.php:137
 msgid "Management: events/hooks"
 msgstr "管理：events/hooks"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/role.php:19
+#: C:\wamp\www\master\usr\module\system/config/role.php:19
 msgid "Administrator"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/role.php:21
+#: C:\wamp\www\master\usr\module\system/config/role.php:21
 msgid "Staff"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/role.php:35
+#: C:\wamp\www\master\usr\module\system/config/role.php:35
 msgid "Webmaster"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/config/role.php:37
+#: C:\wamp\www\master\usr\module\system/config/role.php:37
+#, fuzzy
 msgid "Member"
-msgstr ""
+msgstr "仅会员可见"
 
-#: D:\GitHub\custom-pi\usr\module\system/config/role.php:39
+#: C:\wamp\www\master\usr\module\system/config/role.php:39
+#, fuzzy
 msgid "Guest"
+msgstr "仅游客可见"
+
+#: C:\wamp\www\master\usr\module\system/src/Menu.php:34
+#, fuzzy
+msgid "Operation"
+msgstr "操作：模块"
+
+#: C:\wamp\www\master\usr\module\system/src/Menu.php:40
+msgid "Setting"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:50
+#: C:\wamp\www\master\usr\module\system/src/Menu.php:46
+msgid "Deployment"
+msgstr "部署"
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:50
+#, fuzzy
 msgid "Asset component list"
-msgstr ""
+msgstr "返回用户列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:80
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:80
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:82
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:82
 msgid "Asset files are published correctly."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:109
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:109
 #, php-format
 msgid "module %s"
 msgstr "%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:115
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:115
 #, php-format
 msgid "theme %s"
 msgstr "%s主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:154
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:154
 #, php-format
 msgid "There are errors with: %s."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/AssetController.php:159
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:159
 msgid "Assets re-published successfully."
 msgstr "重新发布资源成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:113
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:113
+#, fuzzy
 msgid "Block list"
-msgstr ""
+msgstr "登录次数"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:129
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:167
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:129
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:168
 msgid "The block is not allowed to clone."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:151
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:237
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:152
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:239
 msgid "Block data saved successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:158
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:159
 msgid "Block data not saved."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:161
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:244
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:147
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:258
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:162
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:246
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:147
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:258
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:200
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:202
+#, fuzzy, php-format
 msgid "Block clone from: %s"
-msgstr ""
+msgstr "登录区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:250
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:252
+#, fuzzy
 msgid "Block is not found."
-msgstr ""
+msgstr "用户不存在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/BlockController.php:265
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:267
+#, fuzzy, php-format
 msgid "Block edit: %s"
-msgstr ""
+msgstr "编辑用户："
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:37
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:37
+#, fuzzy
 msgid "File status cache"
-msgstr ""
+msgstr "最大文件尺寸"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:38
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:38
+#, fuzzy
 msgid "APC file cache"
-msgstr ""
+msgstr "最大文件尺寸"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:39
-msgid "System cache file folder"
-msgstr ""
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:39
+#, fuzzy
+msgid "System cache files"
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:40
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:40
 msgid "System persistent data"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:41
-msgid "Application cache"
-msgstr ""
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:41
+#, fuzzy
+msgid "Module cache"
+msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:42
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:42
+#, fuzzy
 msgid "Comment cache"
-msgstr ""
+msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:63
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:63
+#, fuzzy, php-format
 msgid "Application cache [%s]"
-msgstr ""
+msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:81
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:81
+#, fuzzy, php-format
 msgid "Page cache [%s]"
-msgstr ""
+msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:93
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:93
 msgid "Cache list"
 msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/CacheController.php:150
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:110
 msgid "Cache is flushed successfully."
 msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ComponentController.php:58
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:88
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:113
+#, fuzzy, php-format
+msgid "Cache flush failed: %s"
+msgstr "正在清除缓存"
+
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ComponentController.php:57
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:88
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:69
 msgid "Never updated."
 msgstr "从未更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ConfigController.php:125
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ConfigController.php:122
 msgid "Configuration data saved successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ConfigController.php:150
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ConfigController.php:148
+#, fuzzy
 msgid "Module configurations"
-msgstr ""
+msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/EventController.php:143
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:143
 #, php-format
 msgid "Event listeners of module %s"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/EventController.php:168
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:168
+#, fuzzy
 msgid "The item not found."
-msgstr ""
+msgstr "用户不能在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/EventController.php:183
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:183
 msgid "The item is not allowed to activate since module is inactive."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/EventController.php:190
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:190
+#, fuzzy
 msgid "The item updated successfully."
-msgstr ""
+msgstr "添加用户成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/LoginController.php:37
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/LoginController.php:37
+#, fuzzy
 msgid "Admin login"
-msgstr ""
+msgstr "登录关闭"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/LoginController.php:67
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/LoginController.php:67
+#, fuzzy
 msgid "Invalid request."
-msgstr ""
+msgstr "邮箱错误"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/LoginController.php:88
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/LoginController.php:88
+#, fuzzy
 msgid "Not privileged."
-msgstr ""
+msgstr "锁定"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:95
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:95
+#, fuzzy
 msgid "Installed modules"
-msgstr ""
+msgstr "操作：模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:137
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:137
+#, fuzzy
 msgid "Modules ready for installation"
-msgstr ""
+msgstr "可安装主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:162
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:162
 msgid "Directory is not specified."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:168
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:168
 #, php-format
 msgid "Meta data are not loaded for \"%s\"."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:185
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:185
 msgid "The module has already been installed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:200
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:200
+#, fuzzy, php-format
 msgid "Module \"%s\" is installed successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:207
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:207
 #, php-format
 msgid "Module \"%s\" is not installed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:211
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:211
 msgid "Module is not installed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:215
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:269
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:215
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:269
+#, fuzzy
 msgid "Module installation"
-msgstr ""
+msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:289
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:350
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:410
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:289
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:350
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:410
 msgid "Module is not specified."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:298
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:359
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:419
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:500
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:298
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:359
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:419
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:500
+#, fuzzy
 msgid "Module is not found."
-msgstr ""
+msgstr "用户不存在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:300
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:300
 msgid "System module is protected."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:308
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:308
+#, fuzzy, php-format
 msgid "Module \"%s\" is uninstalled successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:313
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:316
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:313
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:316
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:319
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:319
 msgid "Module is not uninstalled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:323
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:323
+#, fuzzy
 msgid "Module uninstallation"
-msgstr ""
+msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:367
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:367
+#, fuzzy, php-format
 msgid "Module \"%s\" is updated successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:373
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:375
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:373
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:375
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:378
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:378
 msgid "Module is not updated."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:382
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:382
+#, fuzzy
 msgid "Module update"
-msgstr ""
+msgstr "最近更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:432
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:432
+#, fuzzy, php-format
 msgid "Module \"%s\" is enabled successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:437
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:440
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:437
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:440
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:443
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:443
 msgid "Module is not enabled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:447
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:447
+#, fuzzy, php-format
 msgid "Module \"%s\" is disabled successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:452
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:455
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:452
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:455
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:458
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:458
 msgid "Module is not disabled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:463
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:463
+#, fuzzy
 msgid "Module activation"
-msgstr ""
+msgstr "激活时间"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ModuleController.php:486
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:486
+#, fuzzy
 msgid "Title is required."
-msgstr ""
+msgstr "用户名已存在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:63
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:90
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:41
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:41
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:63
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:90
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:41
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:41
 msgid "Custom"
 msgstr "定制"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:159
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:159
 msgid "Navigation set up successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:190
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:254
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:190
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:254
+#, fuzzy
 msgid "Navigation saved successfully."
-msgstr ""
+msgstr "添加用户成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:194
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:260
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:194
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:260
 msgid "Navigation data not saved."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:221
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:221
+#, fuzzy
 msgid "Add a navigation"
-msgstr ""
+msgstr "添加自定义导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:298
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:298
+#, fuzzy
 msgid "Clone navigation"
-msgstr ""
+msgstr "前台导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:318
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:318
 msgid "The navigation is in use and not allowed to delete."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:330
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:330
+#, fuzzy
 msgid "The navigation is deleted successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:397
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:397
+#, fuzzy, php-format
 msgid "View of navigation details: %s"
-msgstr ""
+msgstr "添加自定义导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:399
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:399
+#, fuzzy, php-format
 msgid "Navigation data edit: %s"
-msgstr ""
+msgstr "添加自定义导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:485
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:485
 msgid "Navigation data saved successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:492
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:492
+#, fuzzy
 msgid "Navigation not found."
-msgstr ""
+msgstr "用户不能在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/NavController.php:496
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:496
 msgid "Only custom navigations are allowed to manipulate."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:87
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:87
+#, fuzzy, php-format
 msgid "%s module wide"
-msgstr ""
+msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:106
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:106
+#, fuzzy
 msgid "Pages list"
-msgstr ""
+msgstr "登录次数"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:132
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:192
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:256
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:304
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:132
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:192
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:256
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:304
 msgid "Page data saved successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:144
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:214
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:144
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:214
 msgid "Page data not saved."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:159
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:9
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:159
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:9
+#, fuzzy
 msgid "Setup a page"
-msgstr ""
+msgstr "页面编码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:272
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:272
+#, fuzzy
 msgid "Pages edit"
-msgstr ""
+msgstr "编辑用户："
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:348
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:524
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:348
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:524
+#, fuzzy
 msgid "Page is not found."
-msgstr ""
+msgstr "用户不存在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:353
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:353
+#, fuzzy
 msgid "Page is deleted."
-msgstr ""
+msgstr "清除已删除用户"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:466
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:466
+#, fuzzy, php-format
 msgid "%s blocks"
-msgstr ""
+msgstr "区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PageController.php:549
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:549
 msgid "Page block links are updated."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PermController.php:75
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PermController.php:75
 msgid "Module access"
 msgstr "使用模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PermController.php:82
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PermController.php:82
 msgid "Module admin"
 msgstr "管理模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/PermController.php:316
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PermController.php:316
 msgid "Permission assigned successfully."
 msgstr "成功分配权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RepoController.php:60
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RepoController.php:84
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:60
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:84
 #, php-format
 msgid "A new version %s is available"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RepoController.php:65
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RepoController.php:89
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:65
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:89
+#, fuzzy
 msgid "No update available"
-msgstr ""
+msgstr "未激活用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RepoController.php:69
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RepoController.php:93
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:69
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:93
 msgid "Error occurred, check later."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:156
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:210
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:156
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:210
 msgid "Role data saved successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:159
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:213
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:159
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:213
+#, fuzzy
 msgid "Role data not saved."
-msgstr ""
+msgstr "用户不在该用户组"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:181
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:181
+#, fuzzy
 msgid "Add a role"
-msgstr ""
+msgstr "添加角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:239
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:239
+#, fuzzy
 msgid "Edit a role"
-msgstr ""
+msgstr "用户角色 %s"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:259
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:259
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:269
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:269
+#, fuzzy
 msgid "Role updated successfully."
-msgstr ""
+msgstr "角色分配成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:308
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:308
 msgid "Only custom roles are allowed to delete."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/RoleController.php:314
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:314
+#, fuzzy
 msgid "Role deleted successfully."
-msgstr ""
+msgstr "角色分配成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:49
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:49
 msgid "admin"
 msgstr "后台"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:52
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:52
 msgid "front"
 msgstr "前台"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:66
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:66
 #, php-format
 msgid "Select theme for %s"
 msgstr "选择%s主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:109
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:109
 msgid "Theme set up successfully."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:124
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:124
 msgid "Installed themes"
 msgstr "已安装主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:163
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:163
 msgid "Themes available for installation"
 msgstr "可安装主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:182
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:182
 #, php-format
 msgid "The theme \"%s\" is not updated."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:185
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:185
+#, fuzzy, php-format
 msgid "The theme \"%s\" is updated."
-msgstr ""
+msgstr "选择%s主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:205
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:205
 #, php-format
 msgid "The theme \"%s\" is not installed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:209
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:209
+#, fuzzy, php-format
 msgid "The theme \"%s\" is installed."
-msgstr ""
+msgstr "选择%s主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:228
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:228
 msgid "Default theme is protected from uninstallation."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:237
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:237
 #, php-format
 msgid "The theme \"%s\" is not uninstalled."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Admin/ThemeController.php:243
-#, php-format
+#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:243
+#, fuzzy, php-format
 msgid "The theme \"%s\" is uninstalled."
-msgstr ""
+msgstr "选择%s主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Installer/Action/Install.php:87
+#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:132
+#, fuzzy
+msgid "No permitted operation available."
+msgstr "未激活用户。"
+
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:87
 msgid "Default taxonomy"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Installer/Action/Install.php:89
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:89
 msgid "Default global taxonomy domain. Not allowed to change."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Installer/Action/Install.php:94
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:94
 msgid "Welcome to Pi powered system."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Installer/Action/Update.php:46
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:46
+#, fuzzy
 msgid "System updated"
-msgstr ""
+msgstr "模块已更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Installer/Action/Update.php:47
+#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:47
+#, fuzzy
 msgid "The system is updated successfully."
-msgstr ""
+msgstr "成功清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:11
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:16
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:10
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:127
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:18
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:17
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:14
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:13
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:26
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:34
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:16
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:18
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:17
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:14
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:13
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:26
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:34
 msgid "Title"
 msgstr "标题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:12
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:22
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:19
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:11
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:21
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:21
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:112
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:17
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:14
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:32
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:12
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:22
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:19
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:112
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:17
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:14
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:32
 msgid "Action"
 msgstr "操作"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:19
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:19
 msgid "Re-publish all"
 msgstr "全部重新发布"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:31
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:44
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:31
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:44
 msgid "Publish"
 msgstr "发布"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/asset-index.phtml:54
+#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:54
 msgid "Asset publish in process"
 msgstr "重新发布资源中"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:12
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:12
+#, fuzzy
 msgid "Audit list"
-msgstr ""
+msgstr "登录次数"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:16
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:16
+#, fuzzy
 msgid "time"
-msgstr ""
+msgstr "注册时间"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:18
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:18
+#, fuzzy
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:19
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:19
 msgid "Section"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:20
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:106
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:20
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:106
+#, fuzzy
 msgid "Module"
-msgstr ""
+msgstr "%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:21
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:96
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:96
 msgid "Controller"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:23
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:23
 msgid "Method"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:24
 msgid "Message"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:25
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:25
 msgid "extra"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:47
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:47
 msgid "Count of items to display: "
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:48
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:48
 msgid "10"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:49
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:49
 msgid "20"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/audit-index.phtml:50
+#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:50
 msgid "50"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:9
+#, fuzzy
 msgid "No block available."
-msgstr ""
+msgstr "登录区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:12
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:12
 msgid "Search in block title"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:17
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:20
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:20
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:38
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:61
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:40
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:17
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:20
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:20
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:38
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:61
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:40
 msgid "Description"
 msgstr "简介"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:18
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:18
+#, fuzzy
 msgid "Related pages"
-msgstr ""
+msgstr "管理：pages"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:34
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:34
+#, fuzzy
 msgid "pages"
-msgstr ""
+msgstr "Pages"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:42
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:27
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:47
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:121
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:35
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:50
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:26
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:42
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:35
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:50
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:26
 msgid "Edit"
 msgstr "编辑"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:44
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:39
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:51
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:32
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:23
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:44
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:39
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:51
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:32
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:23
 msgid "Delete"
 msgstr "删除"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:46
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:70
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:48
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:46
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:70
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:48
 msgid "Clone"
 msgstr "克隆"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:67
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:67
 msgid "No page uses this block yet."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/block-list.phtml:84
+#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:84
+#, fuzzy
 msgid "Are you sure to delete this block? "
-msgstr ""
+msgstr "请确认是否删除该用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:17
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:17
 msgid "Flush all"
 msgstr "清除所有"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:24
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:33
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:41
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:50
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:33
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:41
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:50
 msgid "Flush"
 msgstr "清除"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:39
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:39
 msgid "Registry"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/cache-index.phtml:62
+#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:62
 msgid "Cache flush in process"
 msgstr "正在清除缓存"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/config-index.phtml:3
+#: C:\wamp\www\master\usr\module\system/template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/config-index.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/admin/config-index.phtml:5
+#, fuzzy
 msgid "No configuration available."
-msgstr ""
+msgstr "未激活用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:14
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:14
 msgid "About"
 msgstr "关于"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:21
 msgid "Module information"
 msgstr "模块信息"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:23
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:23
 msgid "Title:"
 msgstr "标题："
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:25
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:25
 msgid "Version:"
 msgstr "版本："
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:27
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:27
 msgid "Update:"
 msgstr "更新："
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:29
 msgid "Description:"
 msgstr "简介："
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:32
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:32
 msgid "Demo:"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:38
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:38
 msgid "Author information"
 msgstr "作者信息"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-module.phtml:53
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:53
 msgid "Summary"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:33
-msgid "notice"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:35
-msgid "Add/update site announcement."
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:37
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:48
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:139
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:121
-msgid "Save"
-msgstr "保存"
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:38
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:140
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:36
-msgid "Cancel"
-msgstr "取消"
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:48
-msgid "Click the button to switch to view mode."
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:50
-msgid "Quick links"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:66
-msgid "Toggle all"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:68
-msgid "Module summary"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:91
-msgid "Powered by Pi Engine"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:94
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-system.phtml:24
 msgid ""
-"\n"
-"                    Pi Engine is a role oriented application development "
-"engine for web and mobile, designed as the next generation and a successor "
-"to Xoops.\n"
-"                    Pi is developed upon PHP and MySQL with selected third-"
-"party frameworks including but not limited to Zend Framework library, "
-"jQuery, Bootstrap and Backbone.\n"
-"                    "
+"Pi Engine is a role oriented application development engine for web and "
+"mobile, designed as the next generation and a successor to Xoops. Pi is "
+"developed upon PHP and MySQL with selected third-party frameworks including "
+"but not limited to Zend Framework library, jQuery, Bootstrap and Backbone."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:99
+#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-system.phtml:25
 msgid ""
-"\n"
-"                    Pi Project follows the philosophy of open standard, open "
-"design, open development and open structure.\n"
-"                    Pi is born as a complete open source project and "
-"intended to build a sustainable ecosystem that benefits all contributors and "
-"users.\n"
-"                    "
+" Pi Project follows the philosophy of open standard, open design, open "
+"development and open structure. Pi is born as a complete open source project "
+"and intended to build a sustainable ecosystem that benefits all contributors "
+"and users."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:122
-msgid "Remove"
-msgstr "移除"
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/dashboard-system.phtml:133
-msgid "URL"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:21
+#, fuzzy
 msgid "Check events"
-msgstr ""
+msgstr "管理：events/hooks"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:21
+#, fuzzy
 msgid "Events"
-msgstr ""
+msgstr "管理：events/hooks"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:22
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:22
+#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:21
 msgid "Listeners"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:45
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:59
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:71
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:45
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:59
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:71
 msgid "Disable"
 msgstr "禁用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:45
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:62
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:73
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:45
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:62
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:73
 msgid "Enable"
 msgstr "启用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event-listener.phtml:55
+#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:55
+#, fuzzy
 msgid "Being updated."
-msgstr ""
+msgstr "模块已更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event.phtml:22
+#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:22
+#, fuzzy
 msgid "No listeners available"
-msgstr ""
+msgstr "未激活用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event.phtml:23
+#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:23
+#, fuzzy
 msgid "No events available"
-msgstr ""
+msgstr "管理：events/hooks"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/event.phtml:24
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:28
+#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:28
 msgid "Error, please try again later."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/index.phtml:3
+#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:3
 msgid "There is no entry page for this module management. Please:"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/index.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:5
+#, fuzzy
 msgid "Module config"
-msgstr ""
+msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/index.phtml:5
+#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:5
 msgid "Go to set up module configs;"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/index.phtml:6
+#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:6
+#, fuzzy
 msgid "System admin"
-msgstr ""
+msgstr "管理员组"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/index.phtml:6
+#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:6
 msgid "Go back to system dashboard."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:6
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:6
+#, fuzzy
 msgid "Add a member"
-msgstr ""
+msgstr "仅会员可见"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:11
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:11
+#, fuzzy
 msgid "Select a role: "
-msgstr ""
+msgstr "用户角色 %s"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:23
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:23
 msgid "Username"
 msgstr "用户名"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:24
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:25
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:25
 msgid "Name"
 msgstr "名称"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:25
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:25
+#, fuzzy
 msgid "Email"
-msgstr ""
+msgstr "邮箱"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:26
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:26
 msgid "Front role"
 msgstr "前台角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:27
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:27
 msgid "Admin role"
 msgstr "后台角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:28
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:28
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:29
 msgid "Active"
 msgstr "启用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:43
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:43
+#, fuzzy
 msgid "Not set"
-msgstr ""
+msgstr "设为全局"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:46
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:46
 msgid "Yes"
 msgstr "是"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/member-index.phtml:46
+#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:46
 msgid "No"
 msgstr "否"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:17
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:17
 msgid "Icon"
 msgstr "图标"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:19
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:18
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:34
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:59
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:36
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:19
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:18
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:34
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:59
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:36
 msgid "Version"
 msgstr "版本"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:44
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:50
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:30
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:56
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:31
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:44
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:50
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:30
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:56
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:31
 msgid "Detail"
 msgstr "详情"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:47
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:55
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:47
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:55
 msgid "Directory:"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-available.phtml:67
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:67
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:29
 msgid "Install"
 msgstr "安装"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:16
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:16
 msgid "Logo"
 msgstr "图标"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:19
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:19
 msgid "Last Update"
 msgstr "最近更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:38
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:38
 msgid "Rename"
 msgstr "重命名"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:46
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:33
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:46
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:33
 msgid "Update"
 msgstr "更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:53
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:53
+#, fuzzy
 msgid "Name:"
-msgstr ""
+msgstr "姓名"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:57
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:57
 msgid "Author"
 msgstr "作者"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:75
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:75
+#, fuzzy
 msgid "Are you sure to uninstall this module?"
-msgstr ""
+msgstr "请确认是否删除该用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-index.phtml:75
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:75
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:29
 msgid "Uninstall"
 msgstr "卸载"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-operation.phtml:14
+#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:14
+#, fuzzy
 msgid "Press to continue ..."
-msgstr ""
+msgstr "渲染模式"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-operation.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:24
 msgid "Failed"
 msgstr "失败"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/module-operation.phtml:26
+#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:26
 msgid "Succeeded"
 msgstr "成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:14
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:14
 msgid "Only click this button to save data"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:16
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:16
 msgid "Save menu"
 msgstr "保存菜单"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:22
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:22
 msgid "Add to menu"
 msgstr "添加到菜单"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:29
 msgid "This navgation is only for viewing"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:40
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:40
+#, fuzzy
 msgid "Click to toggle edit"
-msgstr ""
+msgstr "点击添加用户组"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:51
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:51
 msgid "Label"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:57
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:57
+#, fuzzy
 msgid "Url"
-msgstr ""
+msgstr "ID 或 URL"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:59
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:59
 msgid "Page link by url or by the after of route"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:63
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:63
 msgid "Target"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:66
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:66
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "误"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:67
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:67
 msgid "_blank"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:80
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:80
+#, fuzzy
 msgid "To display in menu."
-msgstr ""
+msgstr "点击选择已有用户组"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:85
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:85
 msgid "Page link by route"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:90
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:90
 msgid "Route"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-data.phtml:423
-msgid "You have made unsaved changes. Would you still like to leave this page?"
-msgstr ""
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:121
+msgid "Save"
+msgstr "保存"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:10
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:423
+#, fuzzy
+msgid "You have made unsaved changes. Would you still like to leave this page?"
+msgstr "修改未保存，请确认是否离开该页面？"
+
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:10
 msgid "Add a custom navigation"
 msgstr "添加自定义导航"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:15
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:15
 msgid "Setup"
 msgstr "启用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:16
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:16
 msgid "Related"
 msgstr "相关模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:24
 msgid "None to use"
 msgstr "均不使用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:35
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:35
 msgid "Set global"
 msgstr "设为全局"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:47
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:47
 msgid "View"
 msgstr "预览"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/nav-index.phtml:80
+#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:80
+#, fuzzy
 msgid "Are you sure to delete this navigation"
-msgstr ""
+msgstr "请确认是否删除该用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-block.phtml:163
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:35
+#: C:\wamp\www\master\usr\module\system/template/admin/page-block.phtml:163
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:35
 msgid "Submit"
 msgstr "提交"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-block.phtml:169
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-block.phtml:170
+#: C:\wamp\www\master\usr\module\system/template/admin/page-block.phtml:169
+#: C:\wamp\www\master\usr\module\system/template/admin/page-block.phtml:170
 msgid "Available Themes"
 msgstr "可用主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:29
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:29
 msgid "Dress up"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/page-list.phtml:81
+#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:81
+#, fuzzy
 msgid "Are you sure to delete the page?"
-msgstr ""
+msgstr "请确认是否删除该用户。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:25
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:25
+#, fuzzy
 msgid "Module Global permission"
-msgstr ""
+msgstr "成功分配权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:26
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:26
+#, fuzzy
 msgid "Module resource"
-msgstr ""
+msgstr "模块主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/perm.phtml:27
+#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:27
+#, fuzzy
 msgid "Block"
-msgstr ""
+msgstr "登录区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:18
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:18
 msgid "Admin roles"
 msgstr "前台角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:19
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:19
 msgid "Add admin role"
 msgstr "添加后台角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:20
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:20
 msgid "Front roles"
 msgstr "后台角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:21
 msgid "Add front role"
 msgstr "添加前台角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:22
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:22
 msgid "Add role"
 msgstr "添加角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:24
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:24
+#, fuzzy
 msgid "Edit permission"
-msgstr ""
+msgstr "总体权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:27
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:43
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:27
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:43
+#, fuzzy
 msgid "Users in role"
-msgstr ""
+msgstr "用户不在该用户组"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:28
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:28
 msgid "Status"
 msgstr "状态"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:30
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:30
 msgid "Activated"
 msgstr "启用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:31
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:31
 msgid "Inactive"
 msgstr "禁用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:33
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:33
 msgid "Unique name"
 msgstr "名称"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:37
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:36
+msgid "Cancel"
+msgstr "取消"
+
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:37
 msgid "Required"
 msgstr "必须"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:38
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:36
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:38
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:38
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:36
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:38
 msgid "Type"
 msgstr "类型"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:41
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:41
 msgid "Role name is already token"
 msgstr "角色名称已被占用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:42
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:42
 msgid "Are you sure to delete this role?"
 msgstr "确认删除该角色？"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:44
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:44
+#, fuzzy
 msgid "User id or name"
-msgstr ""
+msgstr "用户 id 或 名称"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:45
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:45
+#, fuzzy
 msgid "Users"
-msgstr ""
+msgstr "用户"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:46
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:46
 msgid "First"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/role.phtml:47
+#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:47
+#, fuzzy
 msgid "Add user"
-msgstr ""
+msgstr "添加用户"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:9
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:8
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:9
 msgid "Theme in action"
 msgstr "当前主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:21
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:50
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:20
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:21
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:50
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:20
 msgid "Click To preview"
 msgstr "点击预览"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-available.phtml:31
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:32
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:31
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:32
 msgid "Check"
 msgstr "检查"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:30
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:30
 msgid "Theme in use"
 msgstr "当前主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:43
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:43
 msgid "Themes available to use"
 msgstr "可用主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-index.phtml:55
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:55
 msgid "Apply"
 msgstr "应用"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:71
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:71
+#, fuzzy
 msgid "theme Update ok!"
-msgstr ""
+msgstr "选择%s主题"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/admin/theme-installed.phtml:79
+#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:79
+#, fuzzy
 msgid "Are you sure to uninstall this theme ? "
-msgstr ""
+msgstr "请确认是否删除该用户。"
+
+#, fuzzy
+#~ msgid "Application cache"
+#~ msgstr "缓存列表"
+
+#, fuzzy
+#~ msgid "Toggle all"
+#~ msgstr "清除所有"
+
+#, fuzzy
+#~ msgid "Module summary"
+#~ msgstr "模块主题"
+
+#~ msgid "Remove"
+#~ msgstr "移除"
+
+#, fuzzy
+#~ msgid "URL"
+#~ msgstr "ID 或 URL"

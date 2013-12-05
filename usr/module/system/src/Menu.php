@@ -31,19 +31,19 @@ class Menu
         $modes = array(
             array(
                 'name'  => AdminMode::MODE_ACCESS,
-                'label' => __('Operation', 'usr'),
+                'label' => _a('Operation', 'system:admin'),
                 'icon'  => 'fa fa-wrench',
                 //'link'  => '',
             ),
             array(
                 'name'  => AdminMode::MODE_ADMIN,
-                'label' => __('Setting', 'usr'),
+                'label' => _a('Setting', 'system:admin'),
                 'icon'  => 'fa fa-cogs',
                 //'link'  => '',
             ),
             array(
                 'name'  => AdminMode::MODE_DEPLOYMENT,
-                'label' => __('Deployment', 'usr'),
+                'label' => _a('Deployment', 'system:admin'),
                 'icon'  => 'fa fa-cloud-upload',
                 'link'  => '',
             ),
