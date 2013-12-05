@@ -59,6 +59,10 @@ $module = Pi::service('module')->current();
         <div class="pi-sidebar-bg"></div>
     </aside>
     <section class="pi-content">
+
+        <!-- Flash messenger -->
+        <?php include $this->template('flash-messenger'); ?>
+
         <?php echo $this->adminNav()->top('nav nav-tabs'); ?>
         <article class="pi-module-content">
             <?php echo $content; ?>
