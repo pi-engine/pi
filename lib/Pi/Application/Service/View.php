@@ -96,7 +96,7 @@ class View extends AbstractService
     public function __call($method, array $args = array())
     {
         if (!is_callable(array($this->getViewManager(), $method))) {
-            throw new \Exception(sprintf('Method %s is not defined.'), $method);
+            throw new \Exception(sprintf('Method %s is not defined.', $method));
         }
         $result = call_user_func_array(
             array($this->getViewManager(), $method),
