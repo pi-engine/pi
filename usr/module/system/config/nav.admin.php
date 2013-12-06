@@ -30,7 +30,7 @@ return array(
                 'module'        => 'system',
                 'controller'    => 'module',
                 'action'        => 'index',
-                'visible'       => 0,
+                //'visible'       => 0,
             ),
             'available' => array(
                 'label'         => _t('Availables'),
@@ -38,7 +38,7 @@ return array(
                 'module'        => 'system',
                 'controller'    => 'module',
                 'action'        => 'available',
-                'visible'       => 0,
+                //'visible'       => 0,
             ),
             'repo'  => array(
                 'label'         => _t('Repository'),
@@ -68,7 +68,7 @@ return array(
                 'module'        => 'system',
                 'controller'    => 'theme',
                 'action'        => 'index',
-                'visible'       => 0,
+                //'visible'       => 0,
             ),
             'list' => array(
                 'label'         => _t('Installed'),
@@ -76,7 +76,7 @@ return array(
                 'module'        => 'system',
                 'controller'    => 'theme',
                 'action'        => 'installed',
-                'visible'       => 0,
+                //'visible'       => 0,
             ),
             'install' => array(
                 'label'         => _t('Availables'),
@@ -84,7 +84,7 @@ return array(
                 'module'        => 'system',
                 'controller'    => 'theme',
                 'action'        => 'available',
-                'visible'       => 0,
+                //'visible'       => 0,
             ),
             'repo' => array(
                 'label'         => _t('Repository'),
@@ -114,8 +114,8 @@ return array(
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'nav',
-                'action'        => 'list',
-                'visible'       => 0,
+                'action'        => 'index',
+                //'visible'       => 0,
 
                 'pages' => array(
                     'data'      => array(
@@ -127,6 +127,15 @@ return array(
                         'visible'       => 0,
                     ),
                 ),
+            ),
+
+            'add'    => array(
+                'label'         => _t('Add new'),
+                'route'         => 'admin',
+                'module'        => 'system',
+                'controller'    => 'nav',
+                'action'        => 'add',
+                //'visible'       => 0,
             ),
 
             'select'    => array(
@@ -150,6 +159,21 @@ return array(
         'controller'    => 'role',
 
         'pages'     => array(
+            'list'      => array(
+                'label'         => _t('Role list'),
+                'route'         => 'admin',
+                'module'        => 'system',
+                'controller'    => 'role',
+                'action'        => 'index',
+            ),
+            'add'      => array(
+                'label'         => _t('Add new'),
+                'route'         => 'admin',
+                'module'        => 'system',
+                'controller'    => 'role',
+                'action'        => 'add',
+            ),
+            /*
             'front'      => array(
                 'label'         => _t('Front'),
                 'route'         => 'admin',
@@ -170,6 +194,7 @@ return array(
                 ),
                 'visible'       => 0,
             ),
+            */
         ),
     ),
 

@@ -58,6 +58,22 @@ class RoleForm extends BaseForm
             ),
         ));
 
+        $this->add(array(
+            'name'  => 'section',
+            'type'  => 'select',
+            'options'       => array(
+                'label' => __('Section'),
+                'value_options' => array(
+                    'front' => __('Front'),
+                    'admin' => __('Admin'),
+                ),
+            ),
+            'attributes'    => array(
+                //'type'  => 'select',
+                'value' => $this->section,
+            ),
+        ));
+
         /*
         $this->add(array(
             'name'          => 'order',
@@ -74,14 +90,6 @@ class RoleForm extends BaseForm
             'name'  => 'id',
             'attributes'    => array(
                 'type'  => 'hidden',
-            ),
-        ));
-
-        $this->add(array(
-            'name'  => 'section',
-            'attributes'    => array(
-                'type'  => 'hidden',
-                'value' => $this->section,
             ),
         ));
 

@@ -84,6 +84,7 @@ class Menu
                 $link = Pi::service('url')->assemble('admin', array(
                     'module'        => $name,
                     'controller'    => 'index',
+                    'action'        => 'index',
                 ));
                 $callback = Pi::service('url')->assemble('admin', array(
                     'module'        => 'system',
