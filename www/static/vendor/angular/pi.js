@@ -140,7 +140,7 @@ angular.module('pi', [])
   function($location) {
     return {
       template: 
-        '<ul class="nav nav-tabs">' +
+        '<ul class="{{navTabsCls}}">' +
           '<li ng-repeat="item in navTabs" ng-class="navClass(item.href)">' +
             '<a href="{{item.href}}">{{item.text}}</a>' +
         '</ul>',
@@ -170,6 +170,7 @@ angular.module('pi', [])
   function($scope, $location, pi) {
     var reg = /^.*\//;
     $scope.navTabs = pi.navTabs;
+    $scope.navTabsCls = pi.navTabsCls;
     $scope.navClass = function (item) {
       var path = item.replace(reg, '/');
       if (!path) return;
@@ -227,8 +228,9 @@ angular.module('pi', [])
       }
     ];
 
-    this.navTabs = function(navTabs) {
+    this.navTabs = function(navTabs, cls) {
       data.navTabs = navTabs;
+      data.navTabsCls = cls || 'nav nav-pills well well-sm';
     }
 
     this.translations = function(t) {

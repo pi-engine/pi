@@ -1,16 +1,10 @@
 <?php
     $this->bootstrap();
-    $this->css($this->assetModule('script/system-ui.css'));
+    $this->css($this->assetModule('admin/admin.css'));
     $this->jQuery();
     $this->Backbone();
     $this->js($this->assetModule('script/system-msg.js'));
 ?>
-<ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php echo _a('Theme in action'); ?>"><?php echo _a('Theme in action'); ?></a></li>
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
-    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
-</ul>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
 </div>
@@ -26,7 +20,7 @@
         </h5>
         <div class="clearfix theme-actions" style="margin-left: -5px;">
             <% if(name!="default") { %>
-            <span class="pull-right btn theme-uninstall"><?php echo _a('Uninstall'); ?></span>
+            <span class="pull-right btn btn-default theme-uninstall"><?php echo _a('Uninstall'); ?></span>
             <% } %>
             <span class="no-select btn btn-link theme-detail theme-btn"><?php echo _a('Detail'); ?></span><span class="muted">|</span>
             <span class="btn btn-link theme-Check theme-btn"><?php echo _a('Check'); ?></span><span class="muted">|</span>

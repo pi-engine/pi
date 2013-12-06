@@ -1,16 +1,7 @@
 <?php
-    $this->bootstrap();
-    $this->css($this->assetModule('script/system-ui.css'));
-    $this->jQuery();
-    $this->backbone();
+$this->css($this->assetModule('admin/admin.css'));
 ?>
-<ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
-    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
-</ul>
-
-<div class="avail-module-page" id="js-module">
+<div class="table-responsive" id="js-module">
     <table class="table">
         <thead>
             <tr>
@@ -23,9 +14,8 @@
         </thead>
         <tbody>
             <?php foreach ($modules as $directory => $module) { ?>
-            <tr class="module-item"
-                data-name="<?php echo $directory; ?>"
-                data-clone="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
+            <tr class="system-module-item"
+                data-name="<?php echo $directory; ?>">
                 <td>
                     <div class="module-item-logo">
                         <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo _escape($module['meta']['title']); ?>">
@@ -42,7 +32,7 @@
                 <td>
                     <div class="module-p"><?php echo _escape($module['meta']['description']); ?></div>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
-                    <div class="hide well well-small">
+                    <div class="pi-hide well well-small">
                         <dl class="dl-horizontal">
                             <dt><?php echo _a('Directory:'); ?></dt>
                             <dd><?php echo $directory; ?></dd>
@@ -58,7 +48,7 @@
                     <div class="btn-group">
                     <?php
                         if (empty($module['meta']['installed'])) {
-                            $buttonClass = '';
+                            $buttonClass = ' btn-default';
                             $installUrl = $this->url('', array('action' => 'install', 'directory' => $directory));
                         } else {
                             $buttonClass = ' disabled';
@@ -67,7 +57,10 @@
                         echo sprintf('<a class="btn%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
                     ?>
                     <?php if (!empty($module['meta']['clonable'])) { ?>
-                    <span class="btn module-clone"><?php echo _a('Clone'); ?></span>
+                    <span class="btn btn-default module-clone" data-toggle="modal" data-target="#js-module-form" 
+                          href="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
+                        <?php echo _a('Clone'); ?>
+                    </span>
                     <?php } ?>
                     </div>
                 </td>
@@ -76,36 +69,45 @@
         </tbody>
     </table>
 </div>
+<div class="modal fade" id="js-module-form">
+</div>
 <script>
 (function($) {
     var page = {
         el: $('#js-module'),
-        modal: $('<div class="modal hide fade">').appendTo(document.body),
         installUrl: '<?php echo $this->url('', array('action' => 'install')); ?>',
         $: function(selector) {
             return this.el.find(selector);
         },
         init: function() {
-            _.bindAll(this);
-            this.$('.module-clone').click(this.cloneAction);
-            this.$('.detail-action').click(this.toggleDetail);
-        },
-        cloneAction: function(e) {
-            var p = $(e.target).parents('tr'),
-                self =this;
-            $.get(p.attr('data-clone')).done(function(res) {
-                self.modal.html(res).modal('show');
-                formModule.success = function(res) {
-                    var d = res.data;
-                    location.href = self.installUrl + 'name/' + d.name + '/directory/' 
-                        + d.directory + '/title/' + d.title;
-                };
-            });
+            this.$('.detail-action').click($.proxy(this.toggleDetail, this));
         },
         toggleDetail: function(e) {
             $(e.target).siblings('.well').toggle();
         }
     }
     page.init();
+
+    var checked;
+
+    $('#js-module-form').on('show.bs.modal', function(e) {
+        var btn = $(e.relatedTarget);
+        var fn = function(res) {
+                var d = res.data;
+                location.href = page.installUrl + 'name/' + d.name + '/directory/' 
+                    + d.directory + '/title/' + d.title;
+        };
+
+        if (typeof formModule != 'undefined') {
+            formModule.success = fn;
+        } else {
+            checked = setInterval(function() {
+                if (typeof formModule != 'undefined') {
+                    formModule.success = fn;
+                    clearInterval(checked);
+                }
+            }, 10);
+        }
+    });
 })(jQuery)
 </script>

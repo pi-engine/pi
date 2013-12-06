@@ -59,11 +59,18 @@ $module = Pi::service('module')->current();
         <div class="pi-sidebar-bg"></div>
     </aside>
     <section class="pi-content">
-
+        <nav class="pi-nav-top">
+            <?php 
+            echo $this->adminNav()->top(array(
+                'ulClass'  => 'nav nav-tabs',
+                'sub'      => array(
+                    'ulClass' => 'nav nav-pills well well-sm'
+                )
+            ));
+            ?>
+        </nav>
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-
-        <?php echo $this->adminNav()->top('nav nav-tabs'); ?>
         <article class="pi-module-content">
             <?php echo $content; ?>
         </article>
