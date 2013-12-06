@@ -1,15 +1,9 @@
 <?php
     $this->bootstrap();
-    $this->css($this->assetModule('script/system-ui.css'));
+    $this->css($this->assetModule('admin/admin.css'));
     $this->jQuery();
     $this->backbone();
 ?>
-<ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('controller' => 'theme', 'action' => 'index')); ?>" title="<?php echo _a('Theme in action'); ?>"><?php echo _a('Theme in action'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'installed')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
-    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
-</ul>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
 </div>    
@@ -26,7 +20,7 @@
     </li>    
 </ul>   
 <div id="js-page">
-    <fieldset style="margin-bottom:20px;">
+    <fieldset>
         <legend><?php echo _a('Theme in use'); ?></legend>
         <div class="media" style="margin-top: 0;">
             <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo _escape($theme['title']); ?>" class="pull-left" style="width: 300px;" />
@@ -52,7 +46,7 @@
     <div class="caption">
         <h5><%- title %></h5>
         <div class="clearfix theme-actions">
-            <span class="pull-right btn theme-apply"><?php echo _a('Apply'); ?></span>
+            <span class="pull-right btn btn-default theme-apply"><?php echo _a('Apply'); ?></span>
             <span class="no-select btn btn-link theme-detail"><?php echo _a('Detail'); ?></span>
         </div>
         <dl class="hide">

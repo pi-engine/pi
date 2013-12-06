@@ -1,15 +1,7 @@
 <?php
-    $this->bootstrap();
-    $this->css($this->assetModule('script/system-ui.css'));
-    $this->jQuery();
-    $this->backbone();
+    $this->css($this->assetModule('admin/admin.css'));
 ?>
-<ul class="nav nav-tabs">
-    <li class="active"><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
-    <li class="disabled"><a><?php echo _a('Repository'); ?></a></li>
-</ul>
-<div id="js-module">
+<div id="js-module" class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -32,7 +24,7 @@
                 <td>
                     <div class="module-item-title">
                         <p><strong><?php echo $module['title']; ?></strong></p>
-                        <div class="hide module-title-input">
+                        <div class="pi-hide module-title-input">
                             <input type="text" class="input-medium" data-id="<?php echo $module['id']; ?>">
                         </div>
                         <a href="javascript:void(0)" class="invisible rename-action"><?php echo _a('Rename'); ?></a>
@@ -48,7 +40,7 @@
                 <td>
                     <p><?php echo $module['description']; ?></p>
                     <a href="javascript:void(0)" class="invisible detail-action"><?php echo _a('Detail'); ?></a>
-                    <div class="hide well well-small">
+                    <div class="pi-hide well well-small">
                         <dl class="dl-horizontal">
                             <dt><?php echo _a('Name:'); ?></dt>
                             <dd><?php echo $module['name']; ?></dd>
@@ -68,11 +60,11 @@
                         <?php
                         if($module['name'] != 'system') {
                             if ($module['active']) {
-                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), _a('Disable'));
+                                echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), _a('Disable'));
                             } else {
-                                echo sprintf('<a class="btn" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), _a('Enable'));
+                                echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), _a('Enable'));
                             }
-                            echo sprintf('<a class="btn" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), _a('Are you sure to uninstall this module?') ,_a('Uninstall'));
+                            echo sprintf('<a class="btn btn-default" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), _a('Are you sure to uninstall this module?') ,_a('Uninstall'));
                         } ?>
                     </div>
                 </td>
@@ -89,10 +81,8 @@
             return this.el.find(selector);
         },
         init: function() {
-            _.bindAll(this);
-            var self = this;
-            this.$('.detail-action').click(this.toggleDetail);
-            this.$('.rename-action').click(this.rename);
+            this.$('.detail-action').click($.proxy(this.toggleDetail, this));
+            this.$('.rename-action').click($.proxy(this.rename));
             this.$('input[type=text]').blur(this.renameAction).keyup(function(e) {
                 if (e.keyCode == 13) {
                     self.renameAction(e);

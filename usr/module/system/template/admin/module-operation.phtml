@@ -1,13 +1,8 @@
 <?php
     $this->bootstrap();
-    $this->css($this->assetModule('script/system-ui.css'));
+    $this->css($this->assetModule('admin/admin.css'));
     $this->jQuery();
 ?>
-<ul class="nav nav-tabs">
-    <li><a href="<?php echo $this->url('', array('action' => 'index')); ?>" title="<?php echo _a('Installed'); ?>"><?php echo _a('Installed'); ?></a></li>
-    <li><a href="<?php echo $this->url('', array('action' => 'available')); ?>" title="<?php echo _a('Availables'); ?>"><?php echo _a('Availables'); ?></a></li>
-    <li class="disabled"><a title="<?php echo _a('Repository'); ?>"><?php echo _a('Repository'); ?></a></li>
-</ul>
 <h2 class="page-header"><?php echo _escape($title); ?></h2>
 <?php
     // Display result message

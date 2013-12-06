@@ -1,13 +1,9 @@
 <?php
-    $this->css($this->assetModule('script/system-ui.css'));
+    $this->css($this->assetModule('admin/admin.css'));
     $this->jQuery();
     $this->backbone();
 ?>
 <div id="page-nav">
-    <div class="page-header">
-        <h2><?php echo _escape($title); ?></h2>
-    </div>
-    <span class="btn btn-primary js-add" style="margin-bottom: 10px;"><?php echo _a('Add a custom navigation'); ?></span>
     <table class="table table-striped">
         <thead>
             <tr>
