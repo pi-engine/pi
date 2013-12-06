@@ -135,33 +135,23 @@ EOT;
 
             $pattern =<<<'EOT'
 <li class="%s">
-    <a data-toggle="collapse" href="#pi-modules-nav-%s">
+    <a href="%s">
         <i class="%s"></i>
         <span class="pi-modules-nav-text">%s</span>
-        <span class="fa fa-angle-down pi-modules-nav-director"></span>
     </a>
-    <div class="%s" id="pi-modules-nav-%s" data-url="%s">
-        %s
-    </div>
 </li>
 EOT;
 
             foreach ($navigation as $item) {
-                if ($item['active']) {
-                    $sub = $this->sub('nav pi-modules-nav-sub');
-                } else {
-                    $sub = '';
-                }
+                // Callback for hover action
+                $callback = $item['callback'];
+
                 $content .= sprintf(
                     $pattern,
                     $item['active'] ? 'active' : '',
-                    $item['name'],
-                    $item['icon'] ? : 'fa fa-th',
-                    $item['label'],
-                    $item['active'] ? 'collapse in' : 'collapse',
-                    $item['name'],
                     $item['href'],
-                    $item['active'] ? $sub : ''
+                    $item['icon'] ? : 'fa fa-th',
+                    $item['label']
                 );
             }
 
@@ -179,7 +169,7 @@ EOT;
      *
      * @return string
      */
-    public function sub($options = array())
+    public function ____sub($options = array())
     {
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode   = $_SESSION['PI_BACKOFFICE']['mode'];
@@ -219,7 +209,7 @@ EOT;
     public function top($options = array())
     {
         $module = $this->module ?: Pi::service('module')->currrent();
-        $mode = $_SESSION['PI_BACKOFFICE']['mode'];
+        $mode   = $_SESSION['PI_BACKOFFICE']['mode'];
 
         if (is_string($options)) {
             $options = array('ulClass' => $options);
@@ -227,14 +217,22 @@ EOT;
         if (!isset($options['ulClass'])) {
             $options['ulClass'] = 'nav nav-tabs';
         }
+
         $navigation = '';
         // Managed components
         if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
             $currentModule = $_SESSION['PI_BACKOFFICE']['module'];
             $navigation = Menu::subComponent($currentModule, $options);
-            // Module operations
+        // Module operations
         } elseif (AdminMode::MODE_ACCESS == $mode) {
-            $navigation = $this->leafOperation;
+            if (!isset($options['sub'])) {
+                $options['sub'] = array(
+                    'ulClass'   => 'nav nav-pills',
+                    'maxDepth'  => 0,
+                );
+            }
+            list($parent, $leaf) = Menu::subOperation($module, $options);
+            $navigation = $parent . $leaf;
         }
 
         return $navigation;

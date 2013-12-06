@@ -82,6 +82,10 @@ class Menu
         foreach ($modules as $name => $item) {
             if (in_array($name, $modulesAllowed)) {
                 $link = Pi::service('url')->assemble('admin', array(
+                    'module'        => $name,
+                    'controller'    => 'index',
+                ));
+                $callback = Pi::service('url')->assemble('admin', array(
                     'module'        => 'system',
                     'controller'    => 'menu',
                     'action'        => 'sub',
@@ -94,6 +98,7 @@ class Menu
                     'href'      => $link,
                     'active'    => $name == $module ? 1 : 0,
                     'icon'      => '',
+                    'callback'  => $callback,
                 );
             }
             $navConfig[] = $config;

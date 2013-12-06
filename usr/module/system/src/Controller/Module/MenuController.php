@@ -70,7 +70,7 @@ class MenuController extends ActionController
     public function subAction()
     {
         $module = $this->params('name');
-        $class  = $this->params('class', 'nav pi-modules-nav-sub');
+        $class  = $this->params('class', 'dropdown-menu');
         $navigation = Menu::subOperation($module, array('ulClass' => $class));
 
         return $navigation;
