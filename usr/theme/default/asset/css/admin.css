@@ -12,6 +12,20 @@ a {
 	cursor: pointer;
 }
 
+legend {
+	padding-bottom: 10px;
+}
+
+
+
+/* Util */
+.pi-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+}
+
 /* navbar custom */
 .navbar {
 	background: #0082bf;
@@ -155,7 +169,7 @@ a {
 /* Main content */
 .pi-content {
 	overflow: hidden;
-	padding-top: 20px;
+	padding: 20px 20px 0 0;
 }
 
 .page-header {
@@ -189,7 +203,7 @@ a {
 }
 
 #pi-logger-output {
-	margin-top: 40px;
+	margin-top: 60px;
 }
 
 @media (max-width: 767px) {
@@ -218,6 +232,10 @@ a {
 	.pi-modules-nav li:hover .pi-modules-nav-sub {
 		display: block;
 		height: auto !important;
+	}
+
+	.pi-footer {
+		left: 65px;
 	}
 }
 

@@ -71,7 +71,7 @@ $module = Pi::service('module')->current();
         </nav>
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-        <article class="pi-module-content" ng-app="<?php echo $module . $controller . 'Module'; ?>">
+        <article class="pi-module-content">
             <?php echo $content; ?>
         </article>
         <footer class="pi-footer">
