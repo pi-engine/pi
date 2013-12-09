@@ -244,3 +244,75 @@ legend {
 		display: none;
 	}
 }
+
+/* Pi */
+.pi-status {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ccc;
+    background: #e6e6e6;
+    background: #ccc \9;
+    outline: 0;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), inset 0 -1px 3px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), inset 0 -1px 3px rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, .15), inset 0 -1px 3px rgba(0, 0, 0, .1);
+    padding: 1px 0;
+    width: 50px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.pi-status-director {
+    background: #fff;
+    height: 18px;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    border-radius: 4px;
+    border: 1px solid #cecece;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.pi-status.active {
+    background: #4db60e;
+    border-color: #399303;
+}
+
+.pi-status.active .pi-status-director {
+    left: 50%;
+}
+
+.pi-hover-input input {
+    display: none;
+    margin-bottom: 0;
+}
+
+.pi-hover-input {
+    margin-left: -7px;
+}
+
+.pi-hover-input span {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid transparent;
+    padding: 0 15px 0 7px;
+    cursor: pointer;
+}
+
+.pi-hover-input:hover span {
+   border: 1px solid #ccc;
+}
+
+.pi-hover-input-editing input {
+    display: inline-block;
+}
+
+.pi-hover-input-editing span {
+    display: none;
+}

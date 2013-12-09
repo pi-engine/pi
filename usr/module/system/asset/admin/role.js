@@ -71,17 +71,6 @@
       server.putTitle(data);
     });
 
-    $scope.cancelModal = function () {
-      $scope.entity = '';
-    }
-
-    $scope.modal = function (type) {
-      $scope.entity = {
-        section: type,
-        active: 1
-      };
-    }
-
     $scope.addRoleAction = function () {
       server.add($scope.entity).success(function (data) {
         if (!data.status) return; 
