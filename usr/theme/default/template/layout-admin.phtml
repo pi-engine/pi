@@ -13,7 +13,7 @@ $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => Pi::url('www/favicon.ico')
 ));
-$module = Pi::service('module')->current();
+$module = $this->routeMatch('module');
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
