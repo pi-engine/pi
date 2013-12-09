@@ -77,6 +77,7 @@ return array(
             'route'         => 'admin',
             'controller'    => 'index',
             'action'        => 'index',
+            'fragment'      => '!/test',
         ),
         'route'     => array(
             'label'         => _t('Routes'),

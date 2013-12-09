@@ -30,6 +30,8 @@ class TestController extends ActionController
         //$this->view()->setTemplate(false);
         $content = array();
 
+        $url = Pi::service('url')->assemble('', array('action' => 'index'), array('fragment' => '!/test'));
+        echo $url;
 
         $text = <<<EOT
         Test for user and tag:
