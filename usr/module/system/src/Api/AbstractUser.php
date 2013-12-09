@@ -621,6 +621,7 @@ abstract class AbstractUser extends AbstractApi
                 break;
 
             case 'login':
+                $options = array();
                 if (is_string($var)) {
                     $params = array(
                         'redirect' => $var,
@@ -629,10 +630,10 @@ abstract class AbstractUser extends AbstractApi
                     $params = (array) $var;
                 }
                 if (isset($params['redirect'])) {
-                    $redirect = $params['redirect'];
+                    $options['query']['redirect'] = $params['redirect'];
                     unset($params['redirect']);
                 } else {
-                    $redirect = Pi::service('url')->getRequestUri();
+                    $options['query']['redirect'] = Pi::service('url')->getRequestUri();
                 }
                 if (!isset($params['module'])) {
                     $params['module'] = 'system';
@@ -653,10 +654,12 @@ abstract class AbstractUser extends AbstractApi
                 if ('admin' == $section) {
                     $route = 'admin';
                 }
-                $url = Pi::service('url')->assemble($route, $params);
+
+                $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
             case 'logout':
+                $options = array();
                 if (is_string($var)) {
                     $params = array(
                         'redirect' => $var,
@@ -665,7 +668,7 @@ abstract class AbstractUser extends AbstractApi
                     $params = (array) $var;
                 }
                 if (isset($params['redirect'])) {
-                    $redirect = $params['redirect'];
+                    $options['query']['redirect'] = $params['redirect'];
                     unset($params['redirect']);
                 }
                 if (!isset($params['module'])) {
@@ -690,7 +693,7 @@ abstract class AbstractUser extends AbstractApi
                 if ('admin' == $section) {
                     $route = 'admin';
                 }
-                $url = Pi::service('url')->assemble($route, $params);
+                $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
             case 'register':
@@ -740,6 +743,7 @@ abstract class AbstractUser extends AbstractApi
 
         // Append redirect with query
         // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
+        /*
         if ($redirect) {
             if (false == strpos($url, '?')) {
                 $url .= '?redirect=' . rawurlencode($redirect);
@@ -747,6 +751,7 @@ abstract class AbstractUser extends AbstractApi
                 $url .= '&redirect=' . rawurlencode($redirect);
             }
         }
+        */
 
         return $url;
     }

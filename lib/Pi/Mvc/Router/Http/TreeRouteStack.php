@@ -14,10 +14,11 @@ use Pi\Mvc\Router\RoutePluginManager;
 use Zend\Mvc\Router\Http\TreeRouteStack as RouteStack;
 use Zend\Mvc\Router\PriorityList;
 use Zend\Stdlib\RequestInterface as Request;
-use Zend\Mvc\Router\SimpleRouteStack;
+//use Zend\Mvc\Router\SimpleRouteStack;
 use Zend\Mvc\Router\Http\RouteInterface;
 use Zend\Uri\Http as HttpUri;
 use Zend\Mvc\Router\Http\RouteMatch;
+use Zend\Mvc\Router\Exception;
 
 /**
  * Tree RouteStack
@@ -211,6 +212,86 @@ class TreeRouteStack extends RouteStack
      */
     public function assemble(array $params = array(), array $options = array())
     {
+        if (!isset($options['name'])) {
+            throw new Exception\InvalidArgumentException('Missing "name" option');
+        }
+
+        $names = explode('/', $options['name'], 2);
+        $route = $this->routes->get($names[0]);
+
+        /**#@+
+         *  Load extra routes if called route not found in current route list
+         */
+        if (!$route) {
+            $route = $this->extraRoute($names[0]);
+        }
+        /**#@-**/
+
+        if (!$route) {
+            throw new Exception\RuntimeException(sprintf('Route with name "%s" not found', $names[0]));
+        }
+
+        if (isset($names[1])) {
+            if (!$route instanceof TreeRouteStack) {
+                throw new Exception\RuntimeException(sprintf('Route with name "%s" does not have child routes', $names[0]));
+            }
+            $options['name'] = $names[1];
+        } else {
+            unset($options['name']);
+        }
+
+        if (isset($options['only_return_path']) && $options['only_return_path']) {
+            return $this->baseUrl . $route->assemble(array_merge($this->defaultParams, $params), $options);
+        }
+
+        if (!isset($options['uri'])) {
+            $uri = new HttpUri();
+
+            if (isset($options['force_canonical']) && $options['force_canonical']) {
+                if ($this->requestUri === null) {
+                    throw new Exception\RuntimeException('Request URI has not been set');
+                }
+
+                $uri->setScheme($this->requestUri->getScheme())
+                    ->setHost($this->requestUri->getHost())
+                    ->setPort($this->requestUri->getPort());
+            }
+
+            $options['uri'] = $uri;
+        } else {
+            $uri = $options['uri'];
+        }
+
+        $path = $this->baseUrl . $route->assemble(array_merge($this->defaultParams, $params), $options);
+
+        if (isset($options['query'])) {
+            $uri->setQuery($options['query']);
+        }
+
+        if (isset($options['fragment'])) {
+            $uri->setFragment($options['fragment']);
+        }
+
+        if ((isset($options['force_canonical']) && $options['force_canonical']) || $uri->getHost() !== null || $uri->getScheme() !== null) {
+            if (($uri->getHost() === null || $uri->getScheme() === null) && $this->requestUri === null) {
+                throw new Exception\RuntimeException('Request URI has not been set');
+            }
+
+            if ($uri->getHost() === null) {
+                $uri->setHost($this->requestUri->getHost());
+            }
+
+            if ($uri->getScheme() === null) {
+                $uri->setScheme($this->requestUri->getScheme());
+            }
+
+            return $uri->setPath($path)->normalize()->toString();
+        } elseif (!$uri->isAbsolute() && $uri->isValidRelative()) {
+            return $uri->setPath($path)->normalize()->toString();
+        }
+
+        return $path;
+
         if (!isset($options['name'])) {
             throw new \InvalidArgumentException('Missing "name" option');
         }
