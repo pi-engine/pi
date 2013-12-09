@@ -16,6 +16,10 @@ legend {
 	padding-bottom: 10px;
 }
 
+.radio, 
+.checkbox {
+	font-weight: normal;
+}
 
 
 /* Util */
@@ -315,4 +319,20 @@ legend {
 
 .pi-hover-input-editing span {
     display: none;
+}
+
+.pi-widget {
+    background-color: #F1F1F1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
+    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
+    background-image: -webkit-linear-gradient(top , #F9F9F9, #ECECEC);
+    background-image: -o-linear-gradient(top , #F9F9F9, #ECECEC);
+    background: linear-gradient(top , #F9F9F9, #ECECEC);
+    padding: 5px 8px;
+    box-shadow: 0 1px 0 #FFFFFF inset;
+    border: 1px solid #DFDFDF;
+}
+
+.ui-sortable .pi-widget {
+	cursor: move;
 }

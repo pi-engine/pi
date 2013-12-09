@@ -6,14 +6,11 @@ $this->angular(array(
     'pi-tabs.js',
 ));
 ?>
-<div ng-app="userMaintenanceModule">
-    <div pi-message="alert"></div>
-    <div pi-nav-tabs></div>
-    <div ng-view></div>
-</div>
+<div pi-nav-tabs></div>
+<div ng-view></div>
 <script>
 angular
-  .module('userMaintenanceModule', ['ngRoute', 'ui.bootstrap', 'pi', 'piTabs'])
+  .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'piTabs'])
   .constant('config', {
     urlRoot: '<?php echo $this->url('', array('controller' => 'maintenance')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',

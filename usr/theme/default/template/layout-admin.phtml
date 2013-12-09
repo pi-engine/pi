@@ -58,7 +58,8 @@ $module = Pi::service('module')->current();
         </div>
         <div class="pi-sidebar-bg"></div>
     </aside>
-    <section class="pi-content">
+    <section class="pi-content" ng-app="<?php echo $module; ?>">
+        <div pi-message="alert"></div>
         <nav class="pi-nav-top">
             <?php 
             echo $this->adminNav()->top(array(

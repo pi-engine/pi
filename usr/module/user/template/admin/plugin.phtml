@@ -7,14 +7,11 @@ $this->angular(array(
     'pi-sortable.js'
 ));
 ?>
-<div ng-app="userPluginModule">
-    <div pi-message="alert"></div>
-    <div pi-nav-tabs></div>
-    <div ng-view></div>
-</div>
+<div pi-nav-tabs></div>
+<div ng-view></div>
 <script>
 angular
-    .module('userPluginModule', ['ngRoute', 'ui.bootstrap', 'pi', 'ui.sortable'])
+    .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'ui.sortable'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
