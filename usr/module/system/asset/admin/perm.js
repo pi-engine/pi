@@ -1,4 +1,4 @@
-﻿angular.module('systemPermModule')
+﻿angular.module('system')
 .config(['$routeProvider', 'piProvider', 'config',
   function($routeProvider, piProvider, config) {
      function tpl(name) {
@@ -9,10 +9,11 @@
       templateUrl: tpl('perm'),
       controller: 'PermCtrl',
       resolve: {
-        data: ['$q', '$route', 'server',
-          function($q, $route, server) {
+        data: ['$q', '$route', '$rootScope', 'server',
+          function($q, $route, $rootScope, server) {
             var deferred = $q.defer();
             var params = $route.current.params;
+            $rootScope.alert = 2;
             params.name = config.name;
             server.get(params).success(function(data) {
               var roles = [];
@@ -23,6 +24,7 @@
               data.roles = roles;
               data.cols = roles.length + 2;
               deferred.resolve(data);
+              $rootScope.alert = '';
             });
             return deferred.promise;
           }
@@ -58,13 +60,9 @@
     }
   }
 ])
-.controller('PermCtrl', ['$scope', '$location', 'server', 'config', 'data',
-  function($scope, $location, server, config, data) {
+.controller('PermCtrl', ['$scope', '$timeout', 'server', 'data',
+  function($scope, $timeout, server, data) {
     angular.extend($scope, data);
-
-    function checkCol(role) {
-      
-    }
 
     $scope.assignAction = function(role, item) {
       var name = role.name;
@@ -107,5 +105,10 @@
         });
       });
     }
+
+    $timeout(function() {
+      //Tooltip
+      $('[data-toggle=tooltip]').tooltip();
+    }, 1, false);
   }
 ]);

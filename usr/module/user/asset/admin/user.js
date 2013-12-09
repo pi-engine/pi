@@ -1,4 +1,4 @@
-﻿angular.module('userListModule')
+﻿angular.module('user')
 .config(['$routeProvider', 'piProvider', 'config',
   function ($routeProvider, piProvider, config) {
     //Get template url

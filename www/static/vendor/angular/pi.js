@@ -64,9 +64,9 @@ angular.module('pi', [])
      */
     return {
       template: 
-        '<div ng-show="alert" style="position: fixed; z-index: 1013; width: 60%; left: 20%; text-align: center; top: 20px">' +
+        '<div ng-show="alert" style="position: fixed; z-index: 1043; width: 60%; left: 20%; text-align: center; top: 20px">' +
           '<div class="label label-{{alert.type}}" style="font-size: 16px; padding: 8px 15px; white-space: normal;">' + 
-            '<i class="icon-{{alert.cls}}"></i>' +
+            '<i class="fa fa-{{alert.cls}}"></i>' +
             '<span style="margin-left: 10px;">{{alert.message}}</span>' +
           '</div>' +
         '</div>',
@@ -91,17 +91,17 @@ angular.module('pi', [])
           }
           switch (data.status) {
             case 0:
-              tip.cls = 'minus-sign';
+              tip.cls = 'minus-circle';
               tip.message = data.message || error;
               tip.type = 'important';
               break;
             case 2:
-              tip.cls = 'spinner icon-spin';
+              tip.cls = 'spinner fa-spin';
               tip.type = 'info';
               tip.message = data.message || load;
               break;
             default:
-              tip.cls = 'ok';
+              tip.cls = 'check';
               tip.type = 'success';
               tip.message = data.message;
           }

@@ -27,7 +27,7 @@
         echo $this->formElement($element);
     }
     echo sprintf(
-        '<div class="control-group"><div class="controls">%s%s</div></div>', 
+        '<div class="form-group"><div class="col-sm-offset-2">%s%s</div></div>', 
         $this->formElement($elements['submit']),
         empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
     );

@@ -5,13 +5,10 @@ $this->angular(array(
     'pi.js'
 ));
 ?>
-<div ng-app="userRoleModule">
-    <div pi-message="alert"></div>
-    <div ng-view style="width: 900px;"></div>
-</div>
+<div ng-view></div>
 <script>
 angular
-    .module('userRoleModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',

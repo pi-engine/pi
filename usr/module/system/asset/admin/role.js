@@ -1,4 +1,4 @@
-﻿angular.module('systemRoleModule')
+﻿angular.module('system')
 .config(['$routeProvider', 'piProvider', 'config',
   function($routeProvider, piProvider, config) {
     //Get template url
@@ -70,17 +70,6 @@
     $scope.$on('piHoverInputSave', function(event, data) {
       server.putTitle(data);
     });
-
-    $scope.cancelModal = function () {
-      $scope.entity = '';
-    }
-
-    $scope.modal = function (type) {
-      $scope.entity = {
-        section: type,
-        active: 1
-      };
-    }
 
     $scope.addRoleAction = function () {
       server.add($scope.entity).success(function (data) {

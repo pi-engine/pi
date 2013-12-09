@@ -7,19 +7,11 @@ $this->angular(array(
     'i18n'
 ));
 ?>
-<style>
-.user-form-actions {
-    margin: 0 20px 20px 8px;
-}
-</style>
-<div ng-app="userListModule">
-    <div pi-message="alert"></div>
-    <div pi-nav-tabs></div>
-    <div ng-view></div>
-</div>
+<div pi-nav-tabs></div>
+<div ng-view></div>
 <script>
 angular
-    .module('userListModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
         editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>', 

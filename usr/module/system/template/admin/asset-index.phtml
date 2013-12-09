@@ -16,7 +16,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <span class="btn btn-small btn-primary" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>"><?php echo _a('Re-publish all'); ?></span>
+                    <span class="btn btn-sm btn-primary" data-link="<?php echo $this->url('', array('action' => 'refresh')); ?>"><?php echo _a('Re-publish all'); ?></span>
                 </td>    
             </tr>
             <tr>
@@ -28,7 +28,7 @@
                     <span class="gutter-large"><?php echo _escape($label); ?></span>
                 </td>    
                 <td>
-                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
+                    <span class="btn btn-sm btn-default" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'module', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
                 </td>
             </tr>
             <?php } ?>
@@ -41,7 +41,7 @@
                     <span class="gutter-large"><?php echo _escape($label); ?></span>
                 </td>    
                 <td>
-                    <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
+                    <span class="btn btn-sm btn-default" data-link="<?php echo $this->url('', array('action' => 'publish', 'type' => 'theme', 'name' => $name)); ?>"><?php echo _a('Publish'); ?></span>
                 </td>
             </tr>
             <?php } ?>  
@@ -60,5 +60,11 @@
           }
        });
     });
+    var btn = $('.btn-primary');
+
+    /*setInterval(function() {
+        btn.trigger('click');
+    }, 2500);*/
+
 })(jQuery)
 </script>

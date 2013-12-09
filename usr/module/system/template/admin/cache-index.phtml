@@ -14,14 +14,14 @@
         <tr>
             <td></td>
             <td>
-                <span class="btn btn-small btn-primary" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'all')); ?>"><?php echo _a('Flush all'); ?></span>
+                <span class="btn btn-sm btn-primary" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'all')); ?>"><?php echo _a('Flush all'); ?></span>
             </td>
         </tr>
         <?php foreach ($list as $name => $label) { ?>
         <tr>
             <td><?php echo _escape($label); ?></td>
             <td>
-                <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => $name)); ?>"><?php echo _a('Flush'); ?></span>
+                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => $name)); ?>"><?php echo _a('Flush'); ?></span>
             </td>
         </tr>
         <?php } ?>
@@ -30,7 +30,7 @@
         <tr>
             <td><?php echo $name; ?></td>
             <td>
-                <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'page', 'item' => $name)); ?>"><?php echo _a('Flush'); ?></span>
+                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'page', 'item' => $name)); ?>"><?php echo _a('Flush'); ?></span>
             </td>
         </tr>
         <?php } ?>
@@ -38,7 +38,7 @@
         <tr>
             <td><?php echo _a('Registry'); ?></td>
             <td>
-                <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry')); ?>"><?php echo _a('Flush'); ?></span>
+                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry')); ?>"><?php echo _a('Flush'); ?></span>
 		      </td>
         </tr>
         <?php foreach ($registry as $name) { ?>
@@ -47,7 +47,7 @@
                 <span class="gutter-large"><?php echo $name; ?></span>
             </td>
             <td>
-                <span class="btn btn-small" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"><?php echo _a('Flush'); ?></span>
+                <span class="btn btn-default btn-sm" data-link="<?php echo $this->url('', array('action' => 'flush', 'type' => 'registry', 'item' => $name)); ?>"><?php echo _a('Flush'); ?></span>
             </td>
         </tr>
         <?php } ?>

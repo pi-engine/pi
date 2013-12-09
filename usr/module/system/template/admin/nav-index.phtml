@@ -3,7 +3,7 @@
     $this->jQuery();
     $this->backbone();
 ?>
-<div id="page-nav">
+<div id="page-nav" class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -41,7 +41,9 @@
         <div class="btn-group btns-indent">
             <% if(module) { %>
             <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php echo _a('View'); ?></a>
-            <span class="btn btn-link js-clone"><?php echo _a('Clone'); ?></span>
+            <span class="btn btn-link js-clone">
+                <?php echo _a('Clone'); ?>
+            </span>
             <% } else { %>
             <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php echo _a('Edit'); ?></a>
             <span class="btn btn-link js-delete"><?php echo _a('Delete'); ?></span>
@@ -51,7 +53,7 @@
 </script>
 <script>
 (function($){
-    var modal = $('<div>',{'class':'modal hide fade'}).appendTo(document.body);
+    var modal = $('<div>',{'class':'modal fade'}).appendTo(document.body);
     var NavItemView = Backbone.View.extend({
         tagName: 'tr',
         template: $('#temp-nav').html(),

@@ -8,14 +8,11 @@ $this->angular(array(
     'pi-sortable.js'
 ));
 ?>
-<div ng-app="userProfileModule">
-    <div pi-message="alert"></div>
-    <div pi-nav-tabs></div>
-    <div ng-view></div>
-</div>
+<div pi-nav-tabs></div>
+<div ng-view></div>
 <script>
 angular
-    .module('userProfileModule', ['ngRoute', 'pi', 'ui.bootstrap', 'ui.sortable'])
+    .module('<?php echo $module; ?>', ['ngRoute', 'pi', 'ui.bootstrap', 'ui.sortable'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',

@@ -1,4 +1,4 @@
-﻿angular.module('systemDashboardModule')
+﻿angular.module('system')
 .config(['$routeProvider', 'piProvider', 'config',
   function($routeProvider, piProvider, config) {
      function tpl(name) {

@@ -4,13 +4,10 @@ $this->angular(array(
     'pi.js',
 ));
 ?>
-<div ng-app="userInquiryModule">
-  <div pi-message="alert"></div>
-  <div ng-view></div>
-</div>
+<div ng-view></div>
 <script>
 angular
-    .module('userInquiryModule', ['ngRoute', 'pi'])
+    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
