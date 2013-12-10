@@ -157,6 +157,7 @@ return array(
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'role',
+        'action'        => 'index',
 
         'pages'     => array(
             'list'      => array(
@@ -164,37 +165,15 @@ return array(
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
-                'action'        => 'index',
+                'fragment'      => '!/all',
             ),
             'add'      => array(
                 'label'         => _t('Add new'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
-                'action'        => 'add',
+                'fragment'      => '!/new',
             ),
-            /*
-            'front'      => array(
-                'label'         => _t('Front'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'role',
-                'params'        => array(
-                    'type'      => 'front',
-                ),
-                'visible'       => 0,
-            ),
-            'admin'  => array(
-                'label'         => _t('Admin'),
-                'route'         => 'admin',
-                'module'        => 'system',
-                'controller'    => 'role',
-                'params'        => array(
-                    'type'      => 'admin',
-                ),
-                'visible'       => 0,
-            ),
-            */
         ),
     ),
 

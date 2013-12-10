@@ -43,7 +43,8 @@ class BootstrapForm extends BaseForm
             'type'  => 'textarea',
             'attributes'    => array(
                 'rows'  => '3'
-            )
+            ),
+            'required' => true
         ));
 
         $this->add(array(

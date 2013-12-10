@@ -136,27 +136,12 @@ angular.module('pi', [])
     }
   }
 })
-.directive('piNavTabs', ['$location',
-  function($location) {
-    return {
-      template: 
-        '<ul class="{{navTabsCls}}">' +
-          '<li ng-repeat="item in navTabs" ng-class="navClass(item.href)">' +
-            '<a href="{{item.href}}">{{item.text}}</a>' +
-        '</ul>',
-      replace: true,
-      scope: true,
-      restrict: 'A',
-      controller: 'piNavTabsCtrl'
-    }
-  }
-])
 .directive('piHoverInput', function() {
   return {
     template:
       '<div class="pi-hover-input" ng-class="{\'pi-hover-input-editing\': editing}">' +
         '<span ng-click="inputShow()">{{text}}</span>' +
-        '<input type="text" class="input-medium" ng-model="text" ng-blur="editTextAction()" ng-keypress="enterSaveAction($event)">' +
+        '<input type="text" class="form-control input-sm" ng-model="text" ng-blur="editTextAction()" ng-keypress="enterSaveAction($event)">' +
       '</div>',
     replace: true,
     scope: {

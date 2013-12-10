@@ -59,12 +59,9 @@
   $('#pi-nav-top').find('.nav-pills li').each(function() {
     var $this = $(this);
     var match = $this.find('a').attr('href').match(fragReg);
+    console.log(match);
     if (!match) return false;
     $this.removeClass('active').attr('ng-class', 'navClass("' + match[1] + '")');
-  });
-
-  $(window).on('hashchange', function() {
-    console.log(location);
   });
 
   //For debug
