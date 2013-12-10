@@ -40,22 +40,35 @@ class CacheController extends ComponentController
         }
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $data = array();
-            foreach ($post['cache_type'] as $id => $value) {
-                $data[$id] = array('cache_type' => $value);
-            }
-            foreach ($post['cache_ttl'] as $id => $value) {
-                $data[$id]['cache_ttl'] = $value;
-            }
-            foreach ($post['cache_level'] as $id => $value) {
-                $data[$id]['cache_level'] = $value;
-            }
+            if (!empty($post['force'])) {
+                $id = $post['page'];
+                $data = array(
+                    'cache_type'    => $post['cache_type'][$id],
+                    'cache_ttl'     => $post['cache_ttl'][$id],
+                    'cache_level'   => $post['cache_level'][$id],
+                );
+                Pi::model('page')->update($data, array(
+                    'module'    => $name,
+                    'section'   => array('front', 'feed')
+                ));
+            } else {
+                $data = array();
+                foreach ($post['cache_type'] as $id => $value) {
+                    $data[$id] = array('cache_type' => $value);
+                }
+                foreach ($post['cache_ttl'] as $id => $value) {
+                    $data[$id]['cache_ttl'] = $value;
+                }
+                foreach ($post['cache_level'] as $id => $value) {
+                    $data[$id]['cache_level'] = $value;
+                }
 
-            foreach ($data as $id => $config) {
-                $row = Pi::model('page')->find($id);
-                if ($row) {
-                    $row->assign($config);
-                    $row->save();
+                foreach ($data as $id => $config) {
+                    $row = Pi::model('page')->find($id);
+                    if ($row) {
+                        $row->assign($config);
+                        $row->save();
+                    }
                 }
             }
 
@@ -129,11 +142,13 @@ class CacheController extends ComponentController
 
         // Organized pages by section
         foreach ($rowset as $row) {
-            $id = $row->id;
+            $id         = $row->id;
+            $isModule   = false;
             if (!$row->controller) {
-                $title = _a('Module wide');
+                $title      = _a('Module wide');
+                $isModule   = true;
             } else {
-                $title = $row->title;
+                $title      = $row->title;
             }
             $sections[$row->section]['pages'][] = array(
                 'id'        => $id,
@@ -141,6 +156,7 @@ class CacheController extends ComponentController
                 'type'      => $cacheType($id, $row['cache_type']),
                 'ttl'       => $cacheTtl($id, $row['cache_ttl']),
                 'level'     => $cacheLevel($id, $row['cache_level']),
+                'is_module' => $isModule,
             );
         }
 

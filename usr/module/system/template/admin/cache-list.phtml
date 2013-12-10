@@ -5,9 +5,9 @@
 ?> 
 <div id="page-list-page" class="page-list-page">
     <form method="POST">
-        <?php foreach ($pagesBySection as $key => $section) { ?>
+        <?php foreach ($pagesBySection as $section => $data) { ?>
         <fieldset>
-            <legend><?php echo $section['title']; ?></legend>
+            <legend><?php echo $data['title']; ?></legend>
             <table class="table table-striped">
             <thead>
                 <tr>
@@ -15,10 +15,11 @@
                     <th><?php echo _a('Expiration'); ?></th>
                     <th><?php echo _a('Cache level'); ?></th>
                     <th><?php echo _a('Cache scope'); ?></th>
+                    <th>&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($section['pages'] as $page) { ?>
+                <?php foreach ($data['pages'] as $page) { ?>
                 <tr data-id="<?php echo $page['id']; ?>">
                     <td>
                         <?php echo _escape($page['title']); ?>
@@ -31,6 +32,13 @@
                     </td>
                     <td>
                         <?php echo $page['type']; ?>
+                    </td>
+                    <td>
+                        <?php if ($page['is_module'] && 'front' == $section) { ?>
+                            <input type="submit" class="btn btn-default btn-primary" name="force" value="<?php _e('Force for all pages'); ?>">
+                            <input type="hidden" name="page" value="<?php echo $page['id']; ?>">
+                        <?php } ?>
+                        &nbsp;
                     </td>
                 </tr>
                 <?php } ?>
