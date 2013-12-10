@@ -86,5 +86,11 @@ return array(
             //'action'        => '!/action',
             'fragment'      => '!/action',
         ),
+        array(
+            'label'         => _t('Form'),
+            'route'         => 'admin',
+            'controller'    => 'form',
+            'action'        => 'index',
+        ) 
     ),
 );

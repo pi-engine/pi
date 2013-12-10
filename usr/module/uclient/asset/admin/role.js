@@ -1,4 +1,4 @@
-﻿angular.module('uclientRoleModule')
+﻿angular.module('uclient')
 .config(['$routeProvider', 'piProvider', 'config',
   function($routeProvider, piProvider, config) {
     //Get template url
