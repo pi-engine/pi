@@ -81,7 +81,7 @@
             <div class="avatar-preview-header">
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
-            <ul class="unstyled avatar-preview-inline">
+            <ul class="list-unstyled avatar-preview-inline">
                 <?php 
                 foreach ($allSize['upload'] as $key => $value) {
                     echo sprintf(
@@ -107,7 +107,7 @@
             <div class="avatar-preview-header">
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
-            <ul class="unstyled avatar-preview-inline">
+            <ul class="list-unstyled avatar-preview-inline">
             <?php 
             foreach ($gravatar as $key => $value) {
                 echo sprintf(
@@ -123,7 +123,7 @@
         <?php } ?>
         <?php if (in_array('select', $adapters)) { ?>
         <div class="tab-pane" id="formRepository">
-            <ul class="unstyled avatar-repository-inline">
+            <ul class="list-unstyled avatar-repository-inline">
                 <?php foreach($selects as $key => $item) { ?>
                 <li class="inline">
                     <label>
@@ -135,7 +135,7 @@
             <div class="avatar-preview-header">
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
-            <ul class="unstyled avatar-preview-inline">
+            <ul class="list-unstyled avatar-preview-inline">
                 <?php
                 foreach ($selected as $key => $value) {
                     echo sprintf(
@@ -161,7 +161,7 @@
             <div class="avatar-preview-header">
                 <strong><?php _e('Avatar previews'); ?></strong>
             </div>
-            <ul class="unstyled avatar-preview-inline">
+            <ul class="list-unstyled avatar-preview-inline">
                 <?php foreach ($local as $key => $value) { ?>
                 <li class="inline">
                     <img src="<?php echo $value; ?>">
