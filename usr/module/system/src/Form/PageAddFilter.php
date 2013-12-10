@@ -61,11 +61,6 @@ class PageAddFilter extends InputFilter
         ));
 
         $this->add(array(
-            'name'      => 'cache_type',
-            'required'  => false,
-        ));
-
-        $this->add(array(
             'name'      => 'section',
             'required'  => true,
         ));
@@ -73,6 +68,12 @@ class PageAddFilter extends InputFilter
         $this->add(array(
             'name'      => 'module',
             'required'  => true,
+        ));
+
+        /*
+        $this->add(array(
+            'name'      => 'cache_type',
+            'required'  => false,
         ));
 
         $this->add(array(
@@ -84,5 +85,6 @@ class PageAddFilter extends InputFilter
             'name'      => 'cache_level',
             'required'  => false,
         ));
+        */
     }
 }

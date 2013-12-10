@@ -200,10 +200,7 @@ class Module extends AbstractService
      */
     public function loadMeta($module, $type = null)
     {
-        Pi::service('i18n')->load(sprintf(
-            'module/%s:admin',
-            $module
-        ));
+        Pi::service('i18n')->load(array('module/' . $module, 'admin'));
 
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;

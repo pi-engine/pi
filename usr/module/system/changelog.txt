@@ -1,5 +1,9 @@
 System module changelog
 
+3.2.5
+===========
+1. Split page to cache management and page dress up
+
 July 2nd, 2013
 ==============
 1. Added "pi-feature" block

@@ -38,7 +38,8 @@ class PageController extends ComponentController
      */
     protected $pageColumns = array(
         'id', 'section', 'module', 'controller', 'action', 'block', 'custom',
-        'cache_type', 'cache_ttl', 'cache_level', 'title'
+        //'cache_type', 'cache_ttl', 'cache_level',
+        'title'
     );
 
     /**
@@ -55,7 +56,7 @@ class PageController extends ComponentController
 
         // Pages of the module
         $select = Pi::model('page')->select()
-            ->where(array('module' => $name))
+            ->where(array('module' => $name, 'section' => 'front'))
             ->order(array('custom', 'controller', 'action', 'id'));
         $rowset = Pi::model('page')->selectWith($select);
         $sections = array(
@@ -63,6 +64,7 @@ class PageController extends ComponentController
                 'title' => _a('Front'),
                 'pages' => array(),
             ),
+            /*
             'admin' => array(
                 'title' => _a('Admin'),
                 'pages' => array(),
@@ -71,6 +73,7 @@ class PageController extends ComponentController
                 'title' => _a('Feed'),
                 'pages' => array(),
             ),
+            */
         );
 
         // Organized pages by section
@@ -83,10 +86,7 @@ class PageController extends ComponentController
                 $title = $row->title ?: $key;
             } else {
                 $key = $row->module;
-                $title = sprintf(
-                    _a('%s module wide'),
-                    $row->title ?: $row->module
-                );
+                $title = _a('Module wide');
             }
 
             //$title = $row->title ?: ($key ?: _a('Module wide'));
@@ -170,7 +170,7 @@ class PageController extends ComponentController
     public function addsaveAction()
     {
         $status     = 1;
-        $message    = '';
+        //$message    = '';
         $page       = array();
 
         $data = $this->request->getPost();

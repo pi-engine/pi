@@ -189,7 +189,7 @@ class NavController extends ActionController
                 if ($row->id) {
                     $this->jump(
                         array('action' => 'index'),
-                        _a('Navigation add successfully.')
+                        _a('Navigation added successfully.')
                     );
                 }
             } 

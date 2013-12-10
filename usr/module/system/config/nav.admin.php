@@ -168,7 +168,7 @@ return array(
                 'fragment'      => '!/all',
             ),
             'add'      => array(
-                'label'         => _t('Add new'),
+                'label'         => _t('Add role'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
@@ -224,18 +224,18 @@ return array(
     ),
     */
 
-    'cache'     => array(
-        'label'         => _t('Cache'),
+    'flush'     => array(
+        'label'         => _t('Cache flush'),
         'route'         => 'admin',
         'module'        => 'system',
-        'controller'    => 'cache',
+        'controller'    => 'flush',
         'permission'    => array(
             'resource'  => 'maintenance',
         ),
     ),
 
     'asset'     => array(
-        'label'         => _t('Asset'),
+        'label'         => _t('Asset publish'),
         'route'         => 'admin',
         'module'        => 'system',
         'controller'    => 'asset',

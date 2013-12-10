@@ -10,235 +10,144 @@
 namespace Module\System\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Pi\Form\Factory as FormFactory;
+use Module\System\Controller\ComponentController;
+
+
 
 /**
- * Cache maintenance
+ * Cache controller
  *
  * Feature list:
  *
- *  1. List of cache types to maintain
- *  2. Flush a type of cache
+ *  1. List of caches of a section and module
+ *  2. Add a custom page to a section and module
+ *  3. Delete a custom page
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class CacheController extends ActionController
+class CacheController extends ComponentController
 {
     /**
-     * List of caches
-     *
-     * @return void
+     * List of pages sorted by module and section
      */
     public function indexAction()
     {
-        $type = $this->params('type');
-
-        $cacheList = array(
-            'stat'          => _a('File status cache'),
-            'apc'           => _a('APC file cache'),
-            'folder'        => _a('System cache files'),
-            'persist'       => _a('System persistent data'),
-            'module'        => _a('Module cache'),
-            'comment'       => _a('Comment cache'),
-        );
-        if (!function_exists('apc_clear_cache')) {
-            unset($cacheList['apc']);
-        } elseif (class_exists('\\APCIterator')) {
-            $apcIterator = new \APCIterator('file');
-            $size = $apcIterator->getTotalSize();
-            foreach (array('','K','M','G') as $i => $k) {
-                if ($size < 1024) break;
-                $size /= 1024;
-            }
-            $totalSize = sprintf("%5.1f %s", $size, $k);
-            $totalCount = $apcIterator->getTotalCount();
-            $cacheList['apc'] .= ' (' . $totalCount . '-' . $totalSize . ')';
-        }
-        $cacheStorageClass = get_class(Pi::service('cache')->storage());
-        $cacheStorageName = substr(
-            $cacheStorageClass,
-            strrpos($cacheStorageClass, '\\') + 1
-        );
-        $cacheList['application'] = sprintf(
-            _a('Application cache [%s]'),
-            $cacheStorageName
-        );
-
-        $frontConfig = Pi::config()->load('application.front.php');
-        if (!empty($frontConfig['resource']['cache'])) {
-            if (!empty($frontConfig['resource']['cache']['storage'])) {
-                $cacheStorage = Pi::service('cache')->loadStorage(
-                    $frontConfig['resource']['cache']['storage']
-                );
-            } else {
-                $cacheStorage = Pi::service('cache')->storage();
-            }
-            $cacheStorageClass = get_class($cacheStorage);
-            $cacheStorageName = substr(
-                $cacheStorageClass,
-                strrpos($cacheStorageClass, '\\') + 1
-            );
-            $page['title'] = sprintf(_a('Page cache [%s]'), $cacheStorageName);
-            $modules = Pi::service('module')->meta();
-            $page['modules'] = array_keys($modules);
-            $this->view()->assign('page', $page);
-        }
-
-        $registryList = Pi::service('registry')->getList();
-        sort($registryList);
-
-        $this->view()->assign('type', $type);
-        $this->view()->assign('list', $cacheList);
-        $this->view()->assign('registry', $registryList);
-        $this->view()->assign('title', _a('Cache list'));
-        //$this->view()->setTemplate('cache-list');
-    }
-
-    /**
-     * Flush a type of cache
-     *
-     * @return array Result pair of status and message
-     */
-    public function flushAction()
-    {
-        $type = $this->params('type');
-        $item = $this->params('item');
-
-        try {
-            Pi::service('cache')->flush($type, $item);
-            $status = 1;
-            $message = _a('Cache is flushed successfully.');
-        } catch (\Exception $e) {
-            $status = 0;
-            $message = sprintf(_a('Cache flush failed: %s'), $e->getMessage());
-        }
-
-        /*
-        switch (strtolower($type)) {
-            case 'stat':
-                clearstatcache(true);
-                break;
-            case 'folder':
-                $this->flushFolder();
-                break;
-            case 'apc':
-                $this->flushApc();
-                break;
-            case 'persist':
-                Pi::persist()->flush();
-                break;
-            case 'application':
-                $this->flushApplication();
-                break;
-            case 'page':
-                $this->flushPage($item);
-                break;
-            case 'comment':
-                $this->flushComment();
-                break;
-            case 'registry':
-                if (!empty($item)) {
-                    Pi::registry($item)->flush();
-                } else {
-                    Pi::service('registry')->flush();
-                }
-                break;
-            case 'all':
-                clearstatcache(true);
-                $this->flushApc();
-                $this->flushFolder();
-                Pi::persist()->flush();
-                Pi::service('registry')->flush();
-                $this->flushApplication();
-                $this->flushPage();
-            default:
-                break;
-        }
-        */
-
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
-    }
-
-    /**
-     * Flush APC caches
-     *
-     * @return void
-     */
-    protected function flushApc()
-    {
-        if (!function_exists('apc_clear_cache')) {
+        // Module name, default as 'system'
+        $name = $this->params('name', 'system');
+        if (!$this->permission($name, 'cache')) {
             return;
         }
-        apc_clear_cache();
-
-        return;
-    }
-
-    /**
-     * Flush filesystem folders
-     *
-     * @return void
-     */
-    protected function flushFolder()
-    {
-        $path = Pi::path('cache');
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($path),
-            \RecursiveIteratorIterator::CHILD_FIRST
-        );
-        foreach ($iterator as $object) {
-            $filename = $object->getFilename();
-            if ($object->isFile() && 'index.html' !== $filename) {
-                unlink($object->getPathname());
-            } elseif ($object->isDir() && '.' != $filename[0]) {
-                rmdir($object->getPathname());
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $data = array();
+            foreach ($post['cache_type'] as $id => $value) {
+                $data[$id] = array('cache_type' => $value);
             }
+            foreach ($post['cache_ttl'] as $id => $value) {
+                $data[$id]['cache_ttl'] = $value;
+            }
+            foreach ($post['cache_level'] as $id => $value) {
+                $data[$id]['cache_level'] = $value;
+            }
+
+            foreach ($data as $id => $config) {
+                $row = Pi::model('page')->find($id);
+                if ($row) {
+                    $row->assign($config);
+                    $row->save();
+                }
+            }
+
+            $this->jump(
+                array('action' => 'index', 'name' => $name),
+                _a('Page cache updated successfully.'),
+                'success'
+            );
+
+            return;
         }
 
-        return;
-    }
+        // Pages of the module
+        $select = Pi::model('page')->select()
+            ->where(array(
+                'module'    => $name,
+                'section'   => array('front', 'feed')
+            ))
+            ->order(array('custom', 'controller', 'action', 'id'));
+        $rowset = Pi::model('page')->selectWith($select);
+        $sections = array(
+            'front' => array(
+                'title' => _a('Front'),
+                'pages' => array(),
+            ),
+            'feed'  => array(
+                'title' => _a('Feed'),
+                'pages' => array(),
+            ),
+        );
 
-    /**
-     * Flush applications (modules)
-     *
-     * @return void
-     */
-    protected function flushApplication()
-    {
-        Pi::service('cache')->clearByNamespace();
-        $modules = Pi::service('module')->meta();
-        foreach (array_keys($modules) as $module) {
-            Pi::service('cache')->clearByNamespace($module);
+        $factory = new FormFactory;
+        $helper = $this->view()->helper('form_select');
+        $cacheType = function ($id, $value) use ($factory, $helper) {
+            $element = $factory->create(array(
+                'name'          => sprintf('cache_type[%s]', $id),
+                'type'          => 'select',
+                'attributes'    => array(
+                    'options'   => array(
+                        'page'      => __('Page wide'),
+                        'action'    => __('Action data'),
+                    ),
+                    'value'     => $value ?: 'page',
+                ),
+            ));
+            $content = $helper->render($element);
+            return $content;
+        };
+        $cacheTtl = function ($id, $value) use ($factory, $helper) {
+            $element = $factory->create(array(
+                'name'          => sprintf('cache_ttl[%s]', $id),
+                'type'          => 'cache_ttl',
+                'attributes'    => array(
+                    'value'     => $value,
+                ),
+            ));
+            $content = $helper->render($element);
+            return $content;
+        };
+        $cacheLevel = function ($id, $value) use ($factory, $helper) {
+            $element = $factory->create(array(
+                'name'          => sprintf('cache_level[%s]', $id),
+                'type'          => 'cache_level',
+                'attributes'    => array(
+                    'value'     => $value,
+                ),
+            ));
+            $content = $helper->render($element);
+            return $content;
+        };
+
+        // Organized pages by section
+        foreach ($rowset as $row) {
+            $id = $row->id;
+            if (!$row->controller) {
+                $title = _a('Module wide');
+            } else {
+                $title = $row->title;
+            }
+            $sections[$row->section]['pages'][] = array(
+                'id'        => $id,
+                'title'     => $title,
+                'type'      => $cacheType($id, $row['cache_type']),
+                'ttl'       => $cacheTtl($id, $row['cache_ttl']),
+                'level'     => $cacheLevel($id, $row['cache_level']),
+            );
         }
 
-        return;
-    }
+        $this->view()->assign('pagesBySection', $sections);
+        $this->view()->assign('name', $name);
+        $this->view()->assign('title', _a('Cache list'));
 
-    /**
-     * Flush page caches
-     *
-     * @param string|null $namespace
-     * @return void
-     */
-    protected function flushPage($namespace = null)
-    {
-        Pi::service('render_cache')->flushCache($namespace ?: null);
-
-        return;
-    }
-
-    /**
-     * Flush comment caches
-     *
-     * @return void
-     */
-    protected function flushComment()
-    {
-        Pi::service('cache')->clearByNamespace('comment');
-
-        return;
+        $this->view()->setTemplate('cache-list');
     }
 }

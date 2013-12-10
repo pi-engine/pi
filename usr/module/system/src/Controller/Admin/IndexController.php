@@ -53,7 +53,7 @@ class IndexController extends ActionController
 
         $this->redirect()->toRoute(
             '',
-            array('controller' => 'dashboard', 'action' => 'system')
+            array('controller' => 'dashboard'/*, 'action' => 'system'*/)
         );
 
         return;

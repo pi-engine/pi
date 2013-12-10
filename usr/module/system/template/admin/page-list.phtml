@@ -6,7 +6,7 @@
 <div id="page-list-page" class="page-list-page">
     <?php foreach ($pagesBySection as $key => $section) { ?>
     <fieldset>
-        <legend><?php echo $key; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php echo _a('Setup a page'); ?></button><?php } ?></legend>
+        <legend><?php echo $section['title']; ?><?php if ($key == 'front') { ?><button class="btn btn-primary js-add" style="margin-left: 20px;"><?php echo _a('Setup a page'); ?></button><?php } ?></legend>
         <table class="table table-striped">
         <thead>
             <tr>
@@ -22,9 +22,11 @@
                 </td>
                 <td>
                     <div class="btn-group btns-indent">
+                        <!--
                         <?php if ($page['id']) { ?>
                             <a class="btn btn-link js-edit"><?php echo _a('Edit'); ?></a>
                         <?php } ?>
+                        -->
                         <?php if ($page['block']) { ?>
                             <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'block', 'page' => $page['id'], 'name' => $name)); ?>"><?php echo _a('Dress up'); ?></a>
                         <?php } ?>

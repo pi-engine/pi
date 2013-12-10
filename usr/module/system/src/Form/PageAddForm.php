@@ -63,7 +63,7 @@ class PageAddForm extends BaseForm
                 'label'     => __('Controller'),
                 'module'    => $this->module,
             ),
-            'type'          => 'Module\\System\\Form\\Element\\Controller',
+            'type'          => 'Module\System\Form\Element\Controller',
         ));
 
         $this->add(array(
@@ -73,6 +73,7 @@ class PageAddForm extends BaseForm
             ),
         ));
 
+        /*
         $this->add(array(
             'name'          => 'cache_type',
             'type'          => 'select',
@@ -103,6 +104,7 @@ class PageAddForm extends BaseForm
                 'label' => __('Cache level'),
             ),
         ));
+        */
 
         $this->add(array(
             'name'  => 'security',

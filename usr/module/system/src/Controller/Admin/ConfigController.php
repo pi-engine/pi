@@ -118,8 +118,16 @@ class ConfigController extends ComponentController
                             }
                         }
                         Pi::registry('config')->clear($module);
-                        $messageSuccessful =
-                            _a('Configuration data saved successfully.');
+                        if ($updateLanguage) {
+                            Pi::service('cache')->flush();
+                        }
+                        $this->jump(
+                            array('action' => 'index', 'name' => $module),
+                            _a('Configuration data saved successfully.'),
+                            'success'
+                        );
+
+                        return;
                     }
                 }
 
@@ -127,7 +135,7 @@ class ConfigController extends ComponentController
             }
         }
 
-        $this->view()->assign('success', $messageSuccessful);
+        //$this->view()->assign('success', $messageSuccessful);
 
         $model = Pi::model('config');
         $select = $model->select()->group('module')
@@ -136,11 +144,6 @@ class ConfigController extends ComponentController
         $configCounts = array();
         foreach ($rowset as $row) {
             $configCounts[$row->module] = $row->count;
-        }
-
-        if ($updateLanguage) {
-            //Pi::registry('navigation')->flush();
-            Pi::service('cache')->flush();
         }
 
         $this->view()->assign('name', $module);

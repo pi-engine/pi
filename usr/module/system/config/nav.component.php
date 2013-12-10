@@ -33,7 +33,6 @@ return array(
         'permission'    => array(
             'resource'  => 'block',
         ),
-
     ),
 
     'page' => array(
@@ -45,7 +44,17 @@ return array(
         'permission'    => array(
             'resource'  => 'page',
         ),
+    ),
 
+    'cache' => array(
+        'label'         => _t('Cache'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'cache',
+
+        'permission'    => array(
+            'resource'  => 'cache',
+        ),
     ),
 
     'perm' => array(
@@ -57,7 +66,6 @@ return array(
         'permission'    => array(
             'resource'  => 'permission',
         ),
-
     ),
 
     'event' => array(
@@ -69,6 +77,5 @@ return array(
         'permission'    => array(
             'resource'  => 'event',
         ),
-
     ),
 );

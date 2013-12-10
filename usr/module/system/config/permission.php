@@ -125,6 +125,13 @@ return array(
                 //'admin',
             ),
         ),
+        // Caches
+        'cache'  => array(
+            'title'         => _t('Management: caches'),
+            'access'        => array(
+                //'admin',
+            ),
+        ),
         // Permissions
         'permission'  => array(
             'title'         => _t('Management: permissions'),
