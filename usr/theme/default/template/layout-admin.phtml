@@ -60,7 +60,7 @@ $module = $this->routeMatch('module');
     </aside>
     <section class="pi-content" ng-app="<?php echo $module; ?>">
         <div pi-message="alert"></div>
-        <nav class="pi-nav-top">
+        <nav class="pi-nav-top" id="pi-nav-top" ng-controller="piNavTopCtrl">
             <?php 
             echo $this->adminNav()->top(array(
                 'ulClass'  => 'nav nav-tabs',
@@ -73,6 +73,7 @@ $module = $this->routeMatch('module');
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
         <article class="pi-module-content">
+            <div ng-view></div>
             <?php echo $content; ?>
         </article>
         <footer class="pi-footer">

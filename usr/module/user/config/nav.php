@@ -33,7 +33,42 @@ return array(
                     'module'        => 'user',
                     'controller'    => 'edit',
                     'visible'       => 0,
-                )
+                ),
+                'all'      => array(
+                    'label'         => _t('All'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'index',
+                    'fragment'      => '!/all'
+                ),
+                'activated'      => array(
+                    'label'         => _t('Activated'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'index',
+                    'fragment'      => '!/activated'
+                ),
+                'pending'      => array(
+                    'label'         => _t('Pending'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'index',
+                    'fragment'      => '!/pending'
+                ),
+                'new'         => array(
+                    'label'         => _t('Add new'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'index',
+                    'fragment'      => '!/new'
+                ),
+                'search'      => array(
+                    'label'         => _t('Advanced search'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'index',
+                    'fragment'      => '!/search'
+                ),      
             ),
         ),
 
@@ -45,29 +80,6 @@ return array(
             'route'         => 'admin',
             'module'        => 'user',
             'controller'    => 'role',
-
-            /*'pages'     => array(
-                'front'      => array(
-                    'label'         => _t('Front role'),
-                    'route'         => 'admin',
-                    'module'        => 'user',
-                    'controller'    => 'role',
-                    'params'        => array(
-                        'type'      => 'front',
-                    ),
-                    'visible'       => 0,
-                ),
-                'admin'  => array(
-                    'label'         => _t('Admin role'),
-                    'route'         => 'admin',
-                    'module'        => 'user',
-                    'controller'    => 'role',
-                    'params'        => array(
-                        'type'      => 'admin',
-                    ),
-                    'visible'       => 0,
-                ),
-            ),*/
         ),
 
         'profile' => array(
@@ -79,6 +91,30 @@ return array(
             'module'        => 'user',
             'controller'    => 'profile',
             'action'        => 'index',
+
+            'pages'         => array(
+                'field'      => array(
+                    'label'         => _t('Profile field'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'profile',
+                    'fragment'      => '!/field'
+                ),
+                'dress'      => array(
+                    'label'         => _t('Profile dress up'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'profile',
+                    'fragment'      => '!/dress'
+                ),
+                'privacy'      => array(
+                    'label'         => _t('Field privacy'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'profile',
+                    'fragment'      => '!/privacy'
+                ),
+            ),
         ),
 
         'form' => array(
@@ -102,6 +138,30 @@ return array(
             'module'        => 'user',
             'controller'    => 'plugin',
             'action'        => 'index',
+
+            'pages'         => array(
+                'timeline'      => array(
+                    'label'         => _t('Timeline'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'plugin',
+                    'fragment'      => '!/timeline'
+                ),
+                'activity'      => array(
+                    'label'         => _t('Activity'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'plugin',
+                    'fragment'      => '!/activity'
+                ),
+                'quicklink'      => array(
+                    'label'         => _t('Quicklink'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'plugin',
+                    'fragment'      => '!/quicklink'
+                ),
+            ),
         ),
 
         'maintenance' => array(
@@ -113,6 +173,30 @@ return array(
             'module'        => 'user',
             'controller'    => 'maintenance',
             'action'        => 'index',
+
+            'pages'         => array(
+                'stats'      => array(
+                    'label'         => _t('Stats'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'maintenance',
+                    'fragment'      => '!/stats'
+                ),
+                'logs'      => array(
+                    'label'         => _t('User log'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'maintenance',
+                    'fragment'      => '!/logs'
+                ),
+                'deleted'      => array(
+                    'label'         => _t('Deleted users'),
+                    'route'         => 'admin',
+                    'module'        => 'user',
+                    'controller'    => 'maintenance',
+                    'fragment'      => '!/deleted'
+                ),
+            ),
         ),
 
         'inquiry'  => array(

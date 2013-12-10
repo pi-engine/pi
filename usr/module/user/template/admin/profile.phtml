@@ -8,19 +8,12 @@ $this->angular(array(
     'pi-sortable.js'
 ));
 ?>
-<div pi-nav-tabs></div>
-<div ng-view></div>
 <script>
 angular
     .module('<?php echo $module; ?>', ['ngRoute', 'pi', 'ui.bootstrap', 'ui.sortable'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
-        navTabs: [
-            { text: '<?php echo _a('Profile field'); ?>', href: '#!/field' },
-            { text: '<?php echo _a('Profile dress up'); ?>', href: '#!/dress' },
-            { text: '<?php echo _a('Field privacy'); ?>', href: '#!/privacy' }
-        ],
         t: {
            BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
            BASIC_FIELD_DESC: '<?php echo _a('Raw filed provied by the user module,you can change the display title'); ?>',

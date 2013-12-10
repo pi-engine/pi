@@ -166,16 +166,11 @@ angular.module('pi', [])
     controller: 'piHoverInputCtrl'
   }
 })
-.controller('piNavTabsCtrl', ['$scope', '$location', 'pi',
-  function($scope, $location, pi) {
-    var reg = /^.*\//;
-    $scope.navTabs = pi.navTabs;
-    $scope.navTabsCls = pi.navTabsCls;
+.controller('piNavTopCtrl', ['$scope', '$location',
+  function($scope, $location) {
     $scope.navClass = function (item) {
-      var path = item.replace(reg, '/');
-      if (!path) return;
-      if ($location.path().substr(0, path.length) == path) {
-        return "active";
+      if ($location.path().substr(0, item.length) == item) {
+        return 'active';
       }
     }
   }

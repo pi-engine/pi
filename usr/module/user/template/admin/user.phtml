@@ -7,8 +7,6 @@ $this->angular(array(
     'i18n'
 ));
 ?>
-<div pi-nav-tabs></div>
-<div ng-view></div>
 <script>
 angular
     .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
@@ -16,13 +14,6 @@ angular
         urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
         editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>', 
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
-        navTabs: [
-            { text: '<?php echo _a('All'); ?>', href: '#!/all' },
-            { text: '<?php echo _a('Activated'); ?>', href: '#!/activated' },
-            { text: '<?php echo _a('Pending'); ?>', href: '#!/pending' },
-            { text: '<?php echo _a('Add new'); ?>', href: '#!/new' },
-            { text: '<?php echo _a('Advanced search'); ?>', href: '#!/search' }
-        ],
         t: {
             ACTIVE_STATUS: '<?php echo _a('Active State'); ?>',
             ENABLE_STATUS: '<?php echo _a('Enable State'); ?>',
