@@ -155,8 +155,8 @@ table td {
     width: 180px;
 }
 </style>
-<div class="row-fluid dressup-page">
-    <div class="span2">
+<div class="row dressup-page">
+    <div class="col-md-2">
         <h4 class="ellipsis pi-legend" title="<?php echo $title; ?>">
              <?php echo $title; ?>
         </h4>
@@ -176,7 +176,7 @@ table td {
             </div>
         </div>
     </div>
-    <div class="span10 disable-selecteded" id="js-page">
+    <div class="col-md-10 disable-selecteded" id="js-page">
         <div id="drag-main" class="clearfix">
             <?php echo $pageZone; ?>
         </div>
@@ -187,7 +187,7 @@ table td {
         <b class="pull-right caret caret-big"></b>
         <div class="ellipsis"><%- title %></div>
     </div>
-    <ul class="unstyled module-blocks">
+    <ul class="list-unstyled module-blocks">
     </ul>
 </script>
 <script id="module-block-temp" type="text/template">
