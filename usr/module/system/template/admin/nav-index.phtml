@@ -17,7 +17,7 @@
             <tr class="none-set">
                 <td></td>
                 <td colspan="3">
-                    <span class="btn <?php if (!$navGlobal) { echo 'btn-primary active'; } else { echo 'js-apply'; } ?>"><?php echo _a('None to use'); ?></span>
+                    <span class="btn btn-default <?php if (!$navGlobal) { echo 'active'; } else { echo 'js-apply'; } ?>"><?php echo _a('None to use'); ?></span>
                 </td>
             </tr>
         </tbody>
@@ -28,7 +28,7 @@
         <%- title %>
     </td>    
     <td>
-        <span class="btn <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php echo _a('Set global'); ?></span>
+        <span class="btn btn-default <% if(name == '<?php echo $navGlobal; ?>') {  print('btn-primary active'); } else { print('js-apply'); } %> " data-name="<%= name %>"><?php echo _a('Set global'); ?></span>
     </td>
     <td>
         <% if(module) { %>

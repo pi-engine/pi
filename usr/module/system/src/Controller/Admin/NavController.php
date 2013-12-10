@@ -187,26 +187,12 @@ class NavController extends ActionController
                 $row = Pi::model('navigation')->createRow($values);
                 $row->save();
                 if ($row->id) {
-                    $message = _a('Navigation saved successfully.');
-                    $nav = $row->toArray();
-                } else {
-                    $status = 0;
-                    $message = _a('Navigation data not saved.');
+                    $this->jump(
+                        array('action' => 'index'),
+                        _a('Navigation add successfully.')
+                    );
                 }
-            } else {
-                $status = -1;
-                $messages = $form->getMessages();
-                $message = array();
-                foreach ($messages as $key => $msg) {
-                    $message[$key] = array_values($msg);
-                }
-            }
-
-            return array(
-                'status'        => $status,
-                'message'       => $message,
-                'navigation'    => $nav,
-            );
+            } 
         } else {
             $form = new NavForm('nav');
             $form->setData(
@@ -219,7 +205,7 @@ class NavController extends ActionController
         }
         $this->view()->assign('form', $form);
         $this->view()->assign('title', _a('Add a navigation'));
-        $this->view()->setTemplate('system:component/form-popup');
+        $this->view()->setTemplate('system:component/form');
     }
 
     /**
