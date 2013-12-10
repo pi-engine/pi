@@ -6,9 +6,12 @@
       return config.assetRoot + name + '.html';
     }
 
-    $routeProvider.otherwise({
-      templateUrl: tpl('role-index'),
-      controller: 'RoleCtrl',
+    $routeProvider.when('/new', {
+      templateUrl: tpl('role-new'),
+      controller: 'RoleNewCtrl',
+    }).when('/all', {
+      templateUrl: tpl('roles'),
+      controller: 'RolesCtrl',
       resolve: {
         data: ['$q', '$rootScope', 'server',
           function($q, $rootScope, server) {
@@ -22,8 +25,10 @@
           }
         ]
       }
+    }).otherwise({
+      redirectTo: '/all'
     });
-
+    piProvider.hashPrefix();
     piProvider.translations(config.t);
     piProvider.ajaxSetup();
   }
@@ -61,25 +66,14 @@
       });
     }
   }
-]).controller('RoleCtrl', ['$scope', 'data', 'server', 'config',
+]).controller('RolesCtrl', ['$scope', 'data', 'server', 'config',
   function ($scope, data, server, config) {
     angular.extend($scope, data);
-
-    $scope.uniqueUrl = server.root + 'checkExist';
 
     $scope.$on('piHoverInputSave', function(event, data) {
       server.putTitle(data);
     });
 
-    $scope.addRoleAction = function () {
-      server.add($scope.entity).success(function (data) {
-        if (!data.status) return; 
-        var role = data.data;
-        $scope.roles.push(role);
-        $scope.entity = '';
-      });
-    }
-  
     $scope.activeAction = function (role) {
       if (!role.custom) return;
       server.putActive(role).success(function (data) {
@@ -101,6 +95,27 @@
           }
         }
         roles.splice(idx, 1);
+      });
+    }
+  }
+]).controller('RoleNewCtrl', ['$scope', 'server',
+  function($scope, server) {
+    $scope.uniqueUrl = server.root + 'checkExist';
+
+    function init() {
+      $scope.entity = {
+        active: 1,
+        section: 'front'
+      };
+    }
+
+    init();
+
+    $scope.newAction = function() {
+      server.add($scope.entity).success(function (data) {
+        if (!data.status) return;
+        init();
+        $scope.roleForm.$setPristine(); 
       });
     }
   }

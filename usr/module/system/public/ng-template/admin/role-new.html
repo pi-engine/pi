@@ -1,0 +1,68 @@
+<form class="form-horizontal" name="roleForm" ng-submit="newAction()">
+  <div class="form-group"
+       ng-class="{'has-error': roleForm.name.$dirty && roleForm.name.$invalid}">
+    <label class="col-md-2 control-label">{{'ROLE_NAME' | translate}}</label>
+    <div class="col-md-4">
+      <input class="form-control" type="text" ng-model="entity.name" name="name" required 
+             pi-unique="{{uniqueUrl}}">
+    </div>
+    <div class="col-md-4 help-block">
+      <span class="help-inline" ng-show="roleForm.name.$valid">
+        <i class="icon-ok text-success"></i>
+      </span>
+      <span class="help-inline" 
+        ng-show="roleForm.name.$error.required">
+        {{'REQUIRED' | translate}}
+      </span>
+      <span class="help-inline" 
+        ng-show="roleForm.name.$error.unique">
+        {{'ROLE_NAME_TOKEN' | translate}}
+      </span>
+    </div>
+  </div>
+  <div class="form-group"
+       ng-class="{'has-error': roleForm.title.$dirty && roleForm.title.$invalid}">
+    <label class="col-md-2 control-label">{{'ROLE_TITLE' | translate}}</label>
+    <div class="col-md-4">
+      <input class="form-control" type="text" ng-model="entity.title" name="title" required>
+    </div>
+    <div class="col-md-4 help-block">
+      <span class="help-inline" ng-show="roleForm.title.$valid">
+        <i class="icon-ok text-success"></i>
+      </span>
+      <span class="help-inline" 
+        ng-show="roleForm.title.$error.required">
+        {{'REQUIRED' | translate}}
+      </span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{'TYPE' | translate}}</label>
+    <div class="col-md-2">
+      <select class="form-control" ng-model="entity.section">
+        <option value="front">{{'FRONT' | translate}}</option>
+        <option value="admin">{{'ADMIN' | translate}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-2 control-label">{{'STATUS' | translate}}</label>
+    <div class="col-md-4">
+        <label class="radio-inline">
+          <input type="radio" ng-model="entity.active" value="1">
+          {{'ACTIVE' | translate}}
+        </label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="entity.active" value="0">
+          {{'INACTIVE' | translate}}
+        </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <button type="submit" class="btn btn-primary" ng-disabled="roleForm.$invalid">
+        {{'SUBMIT' | translate}}
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,48 @@
+<legend>{{'FRONT_TITLE' | translate}}</legend>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 20%;">{{'TITLE' | translate}}
+        <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
+        <th>{{'ACTION' | translate}}
+    <tbody>
+      <tr ng-repeat="role in roles | filter: {section: 'front'}">
+        <td>{{role.name}}
+        <td>
+          <div pi-hover-input="role" text="role.title"></div>
+        <td class="text-center">
+          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
+               ng-click="activeAction(role)">
+            <div class="pi-status-director"></div>
+          </div>
+        <td>
+          <button class="btn btn-link" ng-if="role.custom"
+                  ng-click="deleteAction(role)">
+            {{'DELETE' | translate}}
+          </button>
+</table>
+<legend>{{'ADMIN_TITLE' | translate}}</legend>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 20%;">{{'TITLE' | translate}}
+        <th style="width: 15%;" class="text-center">{{'ACTIVATED' | translate}}
+        <th>{{'ACTION' | translate}}
+    <tbody>
+      <tr ng-repeat="role in roles | filter: {section: 'admin'}">
+        <td>{{role.name}}
+        <td>
+          <div pi-hover-input="role" text="role.title"></div>
+        <td class="text-center">
+          <div class="pi-status" ng-class="{'active': role.active, 'disabled': !role.custom}"
+               ng-click="activeAction(role)">
+            <div class="pi-status-director"></div>
+          </div>
+        <td>
+          <button class="btn btn-link" ng-if="role.custom"
+                  ng-click="deleteAction(role)">
+            {{'DELETE' | translate}}
+          </button>
+</table>
