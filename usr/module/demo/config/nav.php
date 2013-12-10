@@ -83,7 +83,8 @@ return array(
             'label'         => _t('Routes'),
             'route'         => 'admin',
             'controller'    => 'route',
-            'action'        => 'index',
+            //'action'        => '!/action',
+            'fragment'      => '!/action',
         ),
     ),
 );

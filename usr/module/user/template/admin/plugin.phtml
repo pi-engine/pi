@@ -7,19 +7,12 @@ $this->angular(array(
     'pi-sortable.js'
 ));
 ?>
-<div pi-nav-tabs></div>
-<div ng-view></div>
 <script>
 angular
     .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'ui.sortable'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'plugin')); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
-        navTabs: [
-            { text: '<?php echo _a('Timeline'); ?>', href: '#!/timeline' },
-            { text: '<?php echo _a('Activity'); ?>', href: '#!/activity' },
-            { text: '<?php echo _a('Quicklink'); ?>', href: '#!/quicklink' }
-        ],
         t: {
             ITEM_NAME: '<?php echo _a('Item name'); ?>',
             FROM: '<?php echo _a('From module'); ?>',

@@ -6,8 +6,6 @@ $this->angular(array(
     'pi-tabs.js',
 ));
 ?>
-<div pi-nav-tabs></div>
-<div ng-view></div>
 <script>
 angular
   .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'piTabs'])
@@ -15,11 +13,6 @@ angular
     urlRoot: '<?php echo $this->url('', array('controller' => 'maintenance')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
     editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>',
-    navTabs: [
-      { text: '<?php echo _a('Stats'); ?>', href: '#!/stats' },
-      { text: '<?php echo _a('User log'); ?>', href: '#!/logs' },
-      { text: '<?php echo _a('Deleted users'); ?>', href: '#!/deleted' }
-    ],
     t: {
       TODAY: '<?php echo _a('Today'); ?>',
       LAST_WEEK: '<?php echo _a('Last week'); ?>',
