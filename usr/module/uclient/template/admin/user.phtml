@@ -6,13 +6,9 @@ $this->angular(array(
     'pi.js'
 ));
 ?>
-<div ng-app="uclientUserModule">
-    <div pi-message="alert"></div>
-    <div ng-view></div>
-</div>
 <script>
 angular
-    .module('uclientUserModule', ['ngRoute', 'ui.bootstrap', 'pi'])
+    .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
