@@ -10,21 +10,25 @@
 </div>
 <div id="js-menu-edit" style="margin-bottom: 10px;">
     <?php if (!$navigation['module']) { ?>
-    <div class="form-actions form-inline" style="margin: 0 0 10px 0;">
-        <span class="btn btn-primary menu-submit" data-original-title="<?php echo _a('Only click this button to save data'); ?>">
-            <i class="icon-edit"></i>
-            <?php echo _a('Save menu'); ?>
-        </span>
-        <div class="input-append" style="margin-left: 30px;">
-            <input type="text" placeholder="Label" class="js-add-label">
-            <span class="btn js-add-to">
-                <i class="icon-plus"></i>
-                <?php echo _a('Add to menu'); ?>
+    <div class="form-actions form-inline">
+        <div class="form-group">
+            <span class="btn btn-primary menu-submit" data-original-title="<?php echo _a('Only click this button to save data'); ?>">
+                <?php echo _a('Save menu'); ?>
             </span>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control js-add-label" placeholder="Label">
+              <span class="input-group-btn">
+                <button class="btn btn-default js-add-to">
+                    <?php echo _a('Add to menu'); ?>
+                </button>
+              </span>
+            </div>
         </div>
     </div>
     <?php } else { ?>
-    <div class="alert alert-block">
+    <div class="alert alert-info">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <?php echo _a('This navgation is only for viewing'); ?>
     </div>
@@ -33,85 +37,83 @@
 </div>
 <script type="text/template" id="temp-menu">
     <div class="no-select row-fluid tree-item-header">
-        <div class="span8">
-            <div class="ellipsis tree-item-header-label"><%= label %></div>
-        </div>
-        <div class="span4 btn-group">
-            <span class="btn btn-small js-toggle" title="<?php echo _a('Click to toggle edit'); ?>">
+        <div class="pull-right btn-group">
+            <span class="btn btn-default btn-sm js-toggle" title="<?php echo _a('Click to toggle edit'); ?>">
                 <?php echo _a('Custom'); ?>
             </span>
             <?php if (!$navigation['module']) { ?>
-            <button class="btn btn-small js-delete">×</button>
+            <button class="btn btn-default btn-sm js-delete">×</button>
             <?php } ?>
         </div>
+        <div class="ellipsis tree-item-header-label"><%= label %></div>
     </div>
     <div class="tree-item-body">
         <div class="form-horizontal menu-edit-form">
-            <div class="control-group">
-                <label class="control-label"><?php echo _a('Label'); ?></label>
-                <div class="controls">
-                    <input type="text" value="<%= label %>" name="label">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo _a('Label'); ?></label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" value="<%= label %>" name="label">
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label"><?php echo _a('Url'); ?></label>
-                <div class="controls">
-                    <input type="text" name="url" value="<%= url %>" data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo _a('Url'); ?></label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="url" value="<%= url %>" data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label"><?php echo _a('Target'); ?></label>
-                <div class="controls">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo _a('Target'); ?></label>
+                <div class="col-md-6">
                     <select name="target">
                         <option value="" <% if (!target) { print('selected'); } %>><?php echo _a('None'); ?>
                         <option value="_blank" <% if (target == "_blank") { print('selected'); } %>><?php echo _a('_blank'); ?>
                     </select>
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label"><?php echo _a('Permission'); ?></label>
-                <div class="controls">
-                    <input type="text" name="url" value="<%= resource %>">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo _a('Permission'); ?></label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="url" value="<%= resource %>">
                 </div>
             </div>
-            <div class="control-group">
-                <div class="controls">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-6">
                     <label class="checkbox">
                         <input type="checkbox" name="visible" <% if (visible) { print('checked'); } %>><?php echo _a('To display in menu.'); ?>
                     </label>
                 </div>
             </div>
         </div>
-        <div class="pi-legend"><?php echo _a('Page link by route'); ?></div>
+        <legend><?php echo _a('Page link by route'); ?></legend>
         <div class="row-fluid">
             <div class="span6">
                 <div class="form-horizontal menu-edit-form">
-                    <div class="control-group">
-                        <label class="control-label"><?php echo _a('Route'); ?></label>
-                        <div class="controls">
-                            <input type="text" value="<%= route %>" name="route" class="input-small">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><?php echo _a('Route'); ?></label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" value="<%= route %>" name="route" class="input-small">
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label"><?php echo _a('Controller'); ?></label>
-                        <div class="controls">
-                            <input type="text" name="controller" value="<%= controller %>" class="input-small">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><?php echo _a('Controller'); ?></label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="controller" value="<%= controller %>" class="input-small">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="span6" style="margin-left: 0;">
                 <div class="form-horizontal menu-edit-form">
-                    <div class="control-group">
-                        <label class="control-label"><?php echo _a('Module'); ?></label>
-                        <div class="controls">
-                            <input type="text" value="<%= module %>" name="module" class="input-small">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><?php echo _a('Module'); ?></label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" value="<%= module %>" name="module" class="input-small">
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label"><?php echo _a('Action'); ?></label>
-                        <div class="controls">
-                            <input type="text" name="action" value="<%= action %>" class="input-small">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><?php echo _a('Action'); ?></label>
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="action" value="<%= action %>" class="input-small">
                         </div>
                     </div>
                 </div>
@@ -209,7 +211,7 @@
                     'target': val('target')
                 });
             } else {
-                this.$('[name=label]').parents('.control-group').addClass('error');
+                this.$('[name=label]').parents('.form-group').addClass('error');
             }
             isDone = true;
         },
