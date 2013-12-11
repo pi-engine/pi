@@ -24,10 +24,6 @@ class Admin extends AbstractController
 
     public function init()
     {
-        /*
-        $db = Pi::service('database')->db();
-        Pi::entity('db', $db);
-        */
         try {
             Pi::service('database')->connect();
         } catch (\Exception $e) {

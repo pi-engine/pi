@@ -32,7 +32,7 @@ class Database extends AbstractController
                     'DB_USER'       => '',
                     'DB_PASS'       => '',
                     'DB_DBNAME'     => 'pi',
-                    'DB_PREFIX'     => 'x' . substr(md5(time()), 0, 3),
+                    'DB_PREFIX'     => 'p' . substr(md5(time()), 0, 3),
             );
             $this->wizard->setPersist('db-settings', $vars);
         }
@@ -42,7 +42,8 @@ class Database extends AbstractController
 
     protected function normalizeParameters(array $vars)
     {
-        $dsn = 'mysql:dbname=' . $vars['DB_DBNAME'] . ';';
+        //$dsn = 'mysql:dbname=' . $vars['DB_DBNAME'] . ';';
+        $dsn = 'mysql:';
         if (strpos($vars['DB_HOST'], '/')) {
             $dsn .= 'unix_socket=' . $vars['DB_HOST'];
         } elseif (strpos($vars['DB_HOST'], ':')) {
@@ -81,6 +82,14 @@ class Database extends AbstractController
                 $vars['password'],
                 $options
             );
+            /*
+            // Create database if not exist
+            $sql = sprintf(
+                'CREATE DATABASE IF NOT EXISTS `%s`',
+                $vars['schema']
+            );
+            $this->dbLink->exec($sql);
+            */
             $sql = sprintf(
                 'ALTER DATABASE `%s` DEFAULT CHARACTER SET %s COLLATE %s',
                 $vars['schema'],
