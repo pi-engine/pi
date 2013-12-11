@@ -69,10 +69,11 @@ class Database extends AbstractController
         $dbConfig = $this->wizard->getConfig('database');
         $vars = $this->normalizeParameters($this->vars);
         $options = array(
-            //PDO::MYSQL_ATTR_INIT_COMMAND    => 'SET NAMES utf8',
-            PDO::MYSQL_ATTR_INIT_COMMAND    =>
-                sprintf('SET NAMES %s COLLATE %s', $dbConfig['charset'],
-                        $dbConfig['collate']),
+            PDO::MYSQL_ATTR_INIT_COMMAND    => sprintf(
+                'SET NAMES %s COLLATE %s',
+                $dbConfig['charset'],
+                $dbConfig['collate']
+            ),
             PDO::ATTR_PERSISTENT            => false,
         );
         try {
