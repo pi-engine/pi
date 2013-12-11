@@ -85,9 +85,11 @@ class CarouselController extends WidgetController
      */
     public function indexAction()
     {
-        $this->view()->assign('widgets', $this->widgetList());
-        $this->view()->assign('title', _a('Carousel widgets'));
-        $this->view()->setTemplate('list-carousel');
+        $data = array(
+            'widgets' => array_values($this->widgetList())
+        );
+        $this->view()->assign('data', $data);
+        $this->view()->setTemplate('ng');
     }
 
     /**

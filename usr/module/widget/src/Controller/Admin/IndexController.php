@@ -68,13 +68,12 @@ class IndexController extends WidgetController
             }
         }
         $list = array(
-            'active'    => $widgets,
-            'available' => $available,
+            'active'    => array_values($widgets),
+            'available' => array_values($available),
         );
 
-        $this->view()->assign('widgets', $list);
-        $this->view()->assign('title', _a('Widget list'));
-        $this->view()->setTemplate('list-script');
+        $this->view()->assign('data', $list);
+        $this->view()->setTemplate('ng');
     }
 
     /**

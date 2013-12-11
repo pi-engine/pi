@@ -55,10 +55,12 @@ class StaticController extends WidgetController
             }
         }
 
-        $this->view()->assign('types', $contentTypes);
-        $this->view()->assign('widgets', $widgets);
-        $this->view()->assign('title', _a('Static widgets'));
-        $this->view()->setTemplate('list-static');
+        $data = array(
+            'widgets'  => array_values($widgets)
+        );
+
+        $this->view()->assign('data', $data);
+        $this->view()->setTemplate('ng');
     }
 
     /**
@@ -72,9 +74,7 @@ class StaticController extends WidgetController
             $this->type = $this->params('type', 'html');
         }
         parent::addAction();
-        $this->view()->setTemplate('widget-static');
-        $this->view()->assign('type', $this->type);
-        $this->view()->assign('types', $this->contentTypes());
+        $this->view()->setTemplate('system:component/form');
     }
 
     /**
@@ -113,13 +113,9 @@ class StaticController extends WidgetController
             $message = '';
         }
 
-        $this->view()->assign('title', _a('Block edit'));
         $this->view()->assign('form', $form);
-        $this->view()->assign('message', $message);
 
-        $this->view()->setTemplate('widget-static');
-        $this->view()->assign('type', $this->type);
-        $this->view()->assign('types', $this->contentTypes());
+        $this->view()->setTemplate('system:component/form');
     }
 
     /**
