@@ -48,9 +48,11 @@ class TabController extends WidgetController
      */
     public function indexAction()
     {
-        $this->view()->assign('widgets', $this->widgetList());
-        $this->view()->assign('title', _a('Compound tab widgets'));
-        $this->view()->setTemplate('list-tab');
+        $data = array(
+            'widgets' => array_values($this->widgetList())
+        );
+        $this->view()->assign('data', $data);
+        $this->view()->setTemplate('ng');
     }
 
     /**

@@ -1,0 +1,22 @@
+<?php
+$this->angular(array(
+    'angular-route.js',
+    'pi.js',
+));
+$js = $controller == 'index' ? 'index' : 'widgets';
+d($data);
+?>
+<script>
+angular
+    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+    .constant('config', {
+    	urlRoot: '<?php echo $this->url('', array('module' => $module)) . $controller . '/'; ?>',
+    	assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        data: <?php echo json_encode($data); ?>,
+    	t: {
+
+    	}
+    });
+</script>
+<link rel="stylesheet" href="<?php echo $this->assetModule('admin/admin.css'); ?>">
+<script src="<?php echo $this->assetModule('admin/' . $js . '.js'); ?>"></script>

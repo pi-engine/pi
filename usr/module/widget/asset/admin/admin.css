@@ -1,0 +1,23 @@
+.widget-desc {
+	height: 40px;
+	overflow: hidden;
+}
+
+.widget-carousel-upload .close {
+	position: absolute;
+	right: 8px;
+	top: -15px;
+	font-size: 30px;
+}
+
+.widget-carousel-upload img {
+	display: block;
+	width: 100%;
+	height: 100px;
+}
+
+@media (max-width: 767px) {
+  .widget-desc {
+    height: auto;
+  }
+}

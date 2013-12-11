@@ -106,7 +106,7 @@
           <div ng-repeat="item in links" class="col-md-3">
             <div class="dashboard-link">
               <button type="button" class="invisible close" ng-click="removeLink($index)">&times;</button>
-              <a href="{{item.url}}">
+              <a href="{{item.url}}" class="pi-ellipsis">
                 {{item.title}}
               </a>
             </div>

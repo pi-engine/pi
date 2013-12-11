@@ -24,25 +24,53 @@ return array(
                 'label'         => _t('Static widgets'),
                 'route'         => 'admin',
                 'controller'    => 'static',
-                'action'        => 'index',
                 'permission'    => array(
                     'resource'  => 'static',
                 ),
 
                 'pages'         => array(
-                    'add'   => array(
-                        'label'         => _t('Add'),
+                    'list'   => array(
+                        'label'         => _t('Static list'),
+                        'route'         => 'admin',
+                        'controller'    => 'static',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'static',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
+                    'html'   => array(
+                        'label'         => _t('Add HTML'),
                         'route'         => 'admin',
                         'controller'    => 'static',
                         'action'        => 'add',
-                        'visible'       => 0,
+                        'params'        => array(
+                            'type'  => 'html'
+                        )
                     ),
-                    'edit'   => array(
-                        'label'         => _t('Edit'),
+                    'text'   => array(
+                        'label'         => _t('Add text'),
                         'route'         => 'admin',
                         'controller'    => 'static',
-                        'action'        => 'edit',
-                        'visible'       => 0,
+                        'action'        => 'add',
+                        'params'        => array(
+                            'type'  => 'text'
+                        )
+                    ),
+                    'markdown'   => array(
+                        'label'         => _t('Add markdown'),
+                        'route'         => 'admin',
+                        'controller'    => 'static',
+                        'action'        => 'add',
+                        'params'        => array(
+                            'type'  => 'markdown'
+                        )
                     ),
                 ),
             ),
@@ -50,51 +78,66 @@ return array(
                 'label'         => _t('Carousel widgets'),
                 'route'         => 'admin',
                 'controller'    => 'carousel',
-                'action'        => 'index',
                 'permission'    => array(
                     'resource'  => 'carousel',
                 ),
 
                 'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Carousel list'),
+                        'route'         => 'admin',
+                        'controller'    => 'carousel',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'carousel',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
                     'add'   => array(
-                        'label'         => _t('Add'),
+                        'label'         => _t('Add new'),
                         'route'         => 'admin',
                         'controller'    => 'carousel',
                         'action'        => 'add',
-                        'visible'       => 0,
                     ),
-                    'edit'   => array(
-                        'label'         => _t('Edit'),
-                        'route'         => 'admin',
-                        'controller'    => 'carousel',
-                        'action'        => 'edit',
-                        'visible'       => 0,
-                    ),
+                   
                 ),
             ),
             'tab'     => array(
                 'label'         => _t('Compound tabs'),
                 'route'         => 'admin',
                 'controller'    => 'tab',
-                'action'        => 'index',
                 'permission'    => array(
                     'resource'  => 'tab',
                 ),
 
                 'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Tab list'),
+                        'route'         => 'admin',
+                        'controller'    => 'tab',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'tab',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
                     'add'   => array(
                         'label'         => _t('Add'),
                         'route'         => 'admin',
                         'controller'    => 'tab',
                         'action'        => 'add',
-                        'visible'       => 0,
-                    ),
-                    'edit'   => array(
-                        'label'         => _t('Edit'),
-                        'route'         => 'admin',
-                        'controller'    => 'tab',
-                        'action'        => 'edit',
-                        'visible'       => 0,
                     ),
                 ),
             ),
