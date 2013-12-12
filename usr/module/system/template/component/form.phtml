@@ -1,12 +1,16 @@
 <?php
+    $formControl = array('text', 'textarea', 'select');
     $form->setAttribute('class', 'form-horizontal');
     $form->prepare();
     $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
     $elements = $form->elementList();
     echo $this->form()->openTag($form);
     foreach ($elements['active'] as $element) {
-        $isCheckbox = $element->getAttribute('type') == 'checkbox';
-        if (!$isCheckbox) {
+        $type = $element->getAttribute('type');
+        $isText = in_array($type, $formControl);
+        $isCheckbox = $type == 'checkbox';
+        
+        if ($isText && !$element->getAttribute('class')) {
             $element->setAttribute('class', 'form-control');
         }
         $rendered = sprintf(

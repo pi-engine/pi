@@ -30,9 +30,7 @@ class BootstrapForm extends BaseForm
             'options'       => array(
                 'label' => __('Input'),
             ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
+            'type'  => 'text',
         ));
 
         $this->add(array(
@@ -42,9 +40,52 @@ class BootstrapForm extends BaseForm
             ),
             'type'  => 'textarea',
             'attributes'    => array(
-                'rows'  => '3'
+                'rows'  => '3',
             ),
-            'required' => true
+            'required' => true,
+        ));
+
+        $this->add(array(
+            'name'          => 'select',
+            'options'       => array(
+                'label' => __('Select'),
+                'value_options' => array(
+                     '0' => 'Female',
+                     '1' => 'Male',
+                 ),
+            ),
+            'type'  => 'select',
+        ));
+
+        $this->add(array(
+            'name'          => 'file',
+            'options'       => array(
+                'label' => __('File'),
+            ),
+            'type'  => 'file',
+        ));
+
+        $this->add(array(
+            'name'          => 'disabled',
+            'options'       => array(
+                'label' => __('Disabled'),
+            ),
+            'type'  => 'text',
+            'attributes'    => array(
+                'disabled' => 'disabled'
+            )
+        ));
+
+        $this->add(array(
+            'name'          => 'customCls',
+            'options'       => array(
+                'label' => __('Custom class'),
+            ),
+            'type'  => 'textarea',
+            'attributes'    => array(
+                'rows'  => '3',
+                'class' => 'pi-test'
+            ),
         ));
 
         $this->add(array(
@@ -58,6 +99,28 @@ class BootstrapForm extends BaseForm
 
             ),
             'type'  => 'radio',
+            'attributes'    => array(
+                'class' => 'pi-test'
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'radios2',
+            'options'       => array(
+                'label' => __('Radios'),
+                'value_options' => array(
+                     '0' => 'Female',
+                     '1' => 'Male',
+                 ),
+                'label_attributes' => array(
+                    'class' => 'radio-inline'
+                )
+
+            ),
+            'type'  => 'radio',
+            'attributes'    => array(
+                'class' => 'pi-test'
+            ),
         ));
 
         $this->add(array(
@@ -69,16 +132,36 @@ class BootstrapForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'          => 'checkbox',
+            'name'          => 'checkboxs',
             'options'       => array(
-                'label' => __('Checkbox'),
+                'label' => __('Checkboxs'),
                 'value_options' => array(
                      '0' => 'Checkbox1',
                      '1' => 'Checkbox2',
-                ),  
+                     '2' => 'Checkbox3',
+                     '3' => 'Checkbox4',
+                     '4' => 'Checkbox5',
+                     '5' => 'Checkbox6',
+                ),
+                'label_attributes' => array(
+                    'class' => 'checkbox-inline'
+                )
             ),
             'type'          => 'multiCheckbox',
         ));
+
+        $this->add(array(
+            'name'          => 'checkboxs2',
+            'options'       => array(
+                'label' => __('Checkboxs'),
+                'value_options' => array(
+                     '0' => 'Checkbox1',
+                     '1' => 'Checkbox2',
+                ),
+            ),
+            'type'          => 'multiCheckbox',
+        ));
+
 
         $this->add(array(
             'name'          => 'id',
