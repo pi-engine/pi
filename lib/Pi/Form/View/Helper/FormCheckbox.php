@@ -60,8 +60,10 @@ class FormCheckbox extends FormInput
     /**
      * Set value for label position
      *
-     * @param  string labelPosition
-     * @return self
+     * @param string $labelPosition
+     *
+     * @throws \Zend\Form\Exception\InvalidArgumentException
+     * @return this
      */
     public function setLabelPosition($labelPosition)
     {

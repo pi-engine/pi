@@ -39,9 +39,11 @@ class BootstrapForm extends BaseForm
                 'label' => __('Textarea'),
             ),
             'type'  => 'textarea',
+            /*
             'attributes'    => array(
-                'rows'  => '3',
+                'rows'  => 3,   // default value
             ),
+            */
             'required' => true,
         ));
 
@@ -77,13 +79,13 @@ class BootstrapForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'          => 'customCls',
+            'name'          => 'custom_cls',
             'options'       => array(
                 'label' => __('Custom class'),
             ),
             'type'  => 'textarea',
             'attributes'    => array(
-                'rows'  => '3',
+                'rows'  => 5, // default as 3
                 'class' => 'pi-test'
             ),
         ));
@@ -147,7 +149,7 @@ class BootstrapForm extends BaseForm
                     'class' => 'checkbox-inline'
                 )
             ),
-            'type'          => 'multiCheckbox',
+            'type'          => 'multi_checkbox',
         ));
 
         $this->add(array(
@@ -159,7 +161,7 @@ class BootstrapForm extends BaseForm
                      '1' => 'Checkbox2',
                 ),
             ),
-            'type'          => 'multiCheckbox',
+            'type'          => 'multi_checkbox',
         ));
 
 
