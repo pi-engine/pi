@@ -205,6 +205,7 @@ class BootstrapForm extends BaseForm
             'type'          => 'submit',
             'attributes'    => array(
                 'value' => __('Submit'),
+                'class' => 'btn btn-primary'
             )
         ));
     }
