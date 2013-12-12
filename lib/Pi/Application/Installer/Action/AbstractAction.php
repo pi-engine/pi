@@ -122,7 +122,7 @@ abstract class AbstractAction
      * @param array     $data   Result or message of the operation
      * @return $this
      */
-    protected function setResult($name, $data)
+    public function setResult($name, $data)
     {
         if (!isset($data['message'])) {
             $data['message'] = array();
