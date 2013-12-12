@@ -1,46 +1,5 @@
 /* Base */
 
-/* Layout */
-.pi-zone-1 {
-    float: left;
-}
-
-.pi-zone-8 {
-    float: right;
-}
-
-.pi-zone-1 {
-    float: left;
-}
-
-.pi-zone-3,
-.pi-zone-5 {
-    width: 50%;
-    float: left;
-}
-
-.pi-zone-4,
-.pi-zone-6 {
-    float: right;
-    width: 50%;
-}
-
-.pi-zone-3 .pi-block,
-.pi-zone-5 .pi-block {
-    margin-right: 10px;
-}
-
-.pi-zone-4 .pi-block,
-.pi-zone-6 .pi-block {
-    margin-left: 10px;
-}
-
-.pi-module-content,
-.pi-zone-99 {
-    clear: both;
-}
-
-
 /* Header */
 .pi-header {
     margin: 20px auto;
@@ -172,6 +131,7 @@
     list-style: none;
     display: none;
     border-radius: 3px;
+    padding: 0;
 }
 
 .pi-menu ul ul {
