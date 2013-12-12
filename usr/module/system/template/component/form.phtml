@@ -13,6 +13,7 @@
         if ($isText && !$element->getAttribute('class')) {
             $element->setAttribute('class', 'form-control');
         }
+
         $rendered = sprintf(
             '<div class="form-group%s"><label class="col-md-2 control-label">%s</label>',
             $element->getMessages() ? ' has-error' : '',
@@ -20,7 +21,8 @@
         );
 
         $rendered .= sprintf(
-            '<div class="col-md-4">%s</div><div class="col-md-4 help-block">%s</div></div>',
+            '<div class="col-md-%s">%s</div><div class="col-md-4 help-block">%s</div></div>',
+            $element->getAttribute('data-width') ? : '4',
             $this->formElement($element),
             $this->formElementErrors($element)
         );
