@@ -89,6 +89,17 @@ class BootstrapForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'customWidth',
+            'options'       => array(
+                'label' => __('Custom width'),
+            ),
+            'type'  => 'text',
+            'attributes'    => array(
+                'data-width'  => '3',
+            ),
+        ));
+
+        $this->add(array(
             'name'          => 'radios',
             'options'       => array(
                 'label' => __('Radios'),
