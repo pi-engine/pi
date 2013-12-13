@@ -175,54 +175,6 @@
     this.uniqueUrl = urlRoot + 'checkExist';
   }
 ])
-.service('editServer', ['$http', 'config',
-  function($http, config) {
-    var urlRoot = config.editUrlRoot;
-    this.urlRoot = config.editUrlRoot;
-
-    this.get = function(params) {
-      var id = params.id;
-      return $http.get(urlRoot + 'index', {
-        cache: true,
-        params: {
-          uid: id
-        }
-      }).success(function(data) {
-          data.action = params.action;
-          angular.forEach(data.nav, function(item) {
-            item.href = '#!/edit/' + id + '/' + item.name;
-          });
-          switch (data.action) {
-            case 'info':
-              data.formHtmlUrl = urlRoot + 'info?uid=' + id;
-              break;
-            case 'avatar':
-              data.formHtmlUrl = 'avatar-template.html';
-              break;
-            default:
-              data.formHtmlUrl = urlRoot + 'compound?uid=' + id + '&compound=' + data.action
-            ;
-          }
-      });
-    }
-
-    this.defaultAvatar = function(id) {
-      return $http.get(urlRoot + 'avatar', {
-        params: {
-          uid: id
-        }
-      });
-    }
-
-    this.deleteCompound = function(id, compound, set) {
-      return $http.post(urlRoot + 'deleteCompound', {
-        uid: id,
-        compound: compound,
-        set: set
-      });
-    }
-  }
-])
 .controller('ListCtrl', ['$scope', '$location', 'data', 'config', 'server', 
   function ($scope, $location, data, config, server) {
     angular.extend($scope, data);
