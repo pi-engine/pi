@@ -63,9 +63,9 @@ $this->headLink(array(
             </h1>
             <h2 class="pi-logo-tagline" title="<?php echo _escape($slogan); ?>"><?php echo _escape($slogan); ?></h2>
         </div>
-        <div class="pull-right pi-user-bar">
+        <ul class="list-inline pi-user-bar">
            <?php echo $this->widget('system-user-bar'); ?>
-        </div>
+        </ul>
     </div>
 
     <!-- Navigation: menu, breadcrumbs  -->
@@ -75,7 +75,7 @@ $this->headLink(array(
             echo $navigation->menu()->setUlClass('list-unstyled pi-menu');
         ?>
         <!-- Breadcrumbs: check if it exists  -->
-        <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<col-md- class="pi-divider">/</col-md->')->render(); ?>
+        <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="pi-divider">/<span>')->render(); ?>
         <?php if ($breadcrumbs) { ?>
         <div class="breadcrumb">
            <?php echo $breadcrumbs; ?>

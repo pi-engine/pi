@@ -1,8 +1,8 @@
 angular.module('pi', [])
-.directive('piUnique', ['$http', '$timeout',
-  function($http, $timeout) {
+.directive('piUnique', ['$http', '$timeout', '$parse',
+  function($http, $timeout, $parse) {
     function link(scope, element, attr, ctrl) {
-      var url = attr.piUnique;
+      var url = $parse(attr.piUnique)(scope);
       var params = {};
       var request;
       if (!url) {
@@ -21,7 +21,7 @@ angular.module('pi', [])
           }).success(function(data) {
             ctrl.$setValidity('unique', !data.status);
           });
-        }, 400);
+        }, 300);
       });
     }
     return {
@@ -93,7 +93,7 @@ angular.module('pi', [])
             case 0:
               tip.cls = 'minus-circle';
               tip.message = data.message || error;
-              tip.type = 'important';
+              tip.type = 'danger';
               break;
             case 2:
               tip.cls = 'spinner fa-spin';
