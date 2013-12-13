@@ -60,7 +60,7 @@ class Updator322 extends AbstractUpdator
 
             // Add table of navigation data
             $sql =<<<'EOD'
-CREATE TABLE `{core.navigation_node}` (
+CREATE TABLE IF NOT EXISTS `{core.navigation_node}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
   `navigation`      varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
@@ -75,11 +75,9 @@ EOD;
             }
 
             // Drop not used table
-            $tables = array(
-                Pi::model('monitor')->getTable(),
-                Pi::model('navigation_page')->getTable(),
-            );
-            foreach ($tables as $table) {
+            $tables = array('monitor', 'navigation_page');
+            foreach ($tables as $name) {
+                $table = Pi::db()->prefix($name);
                 $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
                 $status = $this->queryTable($sql);
                 if (false === $status) {
@@ -104,7 +102,7 @@ EOD;
 
         if (version_compare($version, '3.0.1', '<')) {
             // Add table field `section` to table acl_role
-            $table = Pi::model('acl_role')->getTable();
+            $table = Pi::db()->prefix('acl_role');
             $sql = sprintf(
                 'ALTER TABLE %s ADD `section` varchar(64) NOT NULL'
                     . ' default \'front\' AFTER `module`',
@@ -116,7 +114,7 @@ EOD;
             }
 
             // Update table acl_resource
-            $table = Pi::model('acl_resource')->getTable();
+            $table = Pi::db()->prefix('acl_resource');
             $sql = sprintf('ALTER TABLE %s DROP `item`', $table);
             $status = $this->queryTable($sql);
             if (false === $status) {
@@ -128,8 +126,8 @@ EOD;
                 return $status;
             }
             $sql = sprintf(
-                'ALTER TABLE %s ADD KEY `pair`'
-                    . ' UNIQUE KEY (`section`, `module`, `name`)',
+                'ALTER TABLE %s '
+                . 'ADD KEY `pair` UNIQUE KEY (`section`, `module`, `name`)',
                 $table
             );
             $status = $this->queryTable($sql);
@@ -138,7 +136,7 @@ EOD;
             }
 
             // Update table for audit
-            $table = Pi::model('audit')->getTable();
+            $table = Pi::db()->prefix('audit');
             $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
             $status = $this->queryTable($sql);
             if (false === $status) {
@@ -146,7 +144,7 @@ EOD;
             }
 
             $sql =<<<'EOD'
-CREATE TABLE `{core.audit}` (
+CREATE TABLE IF NOT EXISTS `{core.audit}` (
   `id`              int(10)         unsigned NOT NULL auto_increment,
   `user`            int(10)         unsigned NOT NULL    default '0',
   `ip`              varchar(15)     NOT NULL    default '',
@@ -161,15 +159,7 @@ CREATE TABLE `{core.audit}` (
 
   PRIMARY KEY  (`id`)
 );
-EOD;
-            $status = $this->querySchema($sql);
-            if (false === $status) {
-                return $status;
-            }
-
-            // Add table of user staff role
-            $sql =<<<'EOD'
-CREATE TABLE `{core.user_staff}` (
+CREATE TABLE IF NOT EXISTS `{core.user_staff}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `user`            int(10)         unsigned    NOT NULL,
   `role`            varchar(64)     NOT NULL    default '',
@@ -244,7 +234,7 @@ EOD;
         if (version_compare($version, '3.1.1', '<')) {
             // Add table of navigation data
             $sql =<<<'EOD'
-CREATE TABLE `{core.module_dependency}` (
+CREATE TABLE IF NOT EXISTS `{core.module_dependency}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `dependent`       varchar(64)     NOT NULL,
   `independent`     varchar(64)     NOT NULL,
