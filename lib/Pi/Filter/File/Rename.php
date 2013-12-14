@@ -83,7 +83,7 @@ class Rename extends ZendRename
                     break;
 
                 case 'randomize' :
-                    $files['randomize'] = (boolean) $value;
+                    $files['randomize'] = (bool) $value;
                     break;
 
                 default:

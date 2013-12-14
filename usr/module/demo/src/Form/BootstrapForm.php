@@ -60,7 +60,7 @@ class BootstrapForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'          => 'file',
+            'name'          => 'upload_demo',
             'options'       => array(
                 'label' => __('File'),
             ),

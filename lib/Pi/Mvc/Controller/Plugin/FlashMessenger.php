@@ -21,7 +21,7 @@ class FlashMessenger extends ZendFlashMessenger
     /**
      * Add a message and return messenger
      *
-     * @param string $message
+     * @param string|string[] $message
      * @param string $namespace
      *
      * @return $this
@@ -34,7 +34,10 @@ class FlashMessenger extends ZendFlashMessenger
         if ($namespace) {
             $this->setNamespace($namespace);
         }
-        $this->addMessage($message);
+        $messages = (array) $message;
+        foreach ($messages as $msg) {
+            $this->addMessage($msg);
+        }
 
         return $this;
     }
