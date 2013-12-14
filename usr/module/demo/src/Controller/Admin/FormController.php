@@ -30,7 +30,7 @@ class FormController extends ActionController
             $message = array();
             $message[] = _a('Form submitted successfully.');
 
-            $rename = 'demo_for_upload_%time%';
+            $rename = 'demo_for_upload_%random%';
             $uploader = new Upload(array('rename' => $rename));
             $uploader->setExtension('jpg,png,gif,txt,zip,rar');
             //->setRename('tmp.%random%');
