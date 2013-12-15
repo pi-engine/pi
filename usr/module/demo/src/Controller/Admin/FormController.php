@@ -22,15 +22,20 @@ class FormController extends ActionController
 {
     public function indexAction()
     {
+        $messages = array();
         $form = new BootstrapForm('bootstrap');
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
 
-            $message = array();
-            $message[] = _a('Form submitted successfully.');
+            $messages[] = _a('Form submitted successfully.');
 
-            $rename = 'demo_for_upload_%random%';
+            //$rename = 'demo_for_upload_%random%';
+            $rename = function ($name) {
+                //$extension = pathinfo($name, PATHINFO_EXTENSION);
+                $name = 'test_for_upload_' . $name;
+                return $name;
+            };
             $uploader = new Upload(array('rename' => $rename));
             $uploader->setExtension('jpg,png,gif,txt,zip,rar');
             //->setRename('tmp.%random%');
@@ -38,14 +43,14 @@ class FormController extends ActionController
             if ($uploader->isValid()) {
                 $uploader->receive();
                 $file = $uploader->getUploaded('upload_demo');
-                $message[] = sprintf(_a('File uploaded and saved as %s'), $file);
+                $messages[] = sprintf(_a('File uploaded and saved as %s'), $file);
             }
-            $this->flashMessenger($message, 'success');
         }
 
 
         $this->view()->assign(array(
-            'form'    => $form
+            'form'      => $form,
+            'messages'  => $messages,
         ));
     }
 }

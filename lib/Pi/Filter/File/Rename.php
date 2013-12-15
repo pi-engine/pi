@@ -38,6 +38,12 @@ class Rename extends ZendRename
      */
     protected $source;
 
+    /** @var  Closure */
+    protected $closure;
+
+    /** @var string */
+    const CLOSURE_TOKEN = '__CLOSURE__';
+
     /**
      * Class constructor
      *
@@ -59,72 +65,13 @@ class Rename extends ZendRename
      */
     protected function _convertOptions($options)
     {
-        $files = array();
-        foreach ($options as $key => $value) {
-            if (is_array($value)) {
-                $this->_convertOptions($value);
-                continue;
-            }
-
-            switch ($key) {
-                case "source":
-                    $files['source'] = (string) $value;
-                    break;
-
-                case 'target' :
-                    /**#@+
-                     * Enable Closure callback by Taiwen Jiang
-                     */
-                    //$files['target'] = (string) $value;
-                    $files['target'] = $value;
-                    /**#@-*/
-                    break;
-
-                case 'overwrite' :
-                    $files['overwrite'] = (bool) $value;
-                    break;
-
-                case 'randomize' :
-                    $files['randomize'] = (bool) $value;
-                    break;
-
-                default:
-                    break;
-            }
+        if (isset($options['target']) && $options['target'] instanceof Closure) {
+            $this->closure = $options['target'];
+            $options['target'] = static::CLOSURE_TOKEN;
+        } else {
+            $this->closure = null;
         }
-
-        if (empty($files)) {
-            return $this;
-        }
-
-        if (empty($files['source'])) {
-            $files['source'] = '*';
-        }
-
-        if (empty($files['target'])) {
-            $files['target'] = '*';
-        }
-
-        if (empty($files['overwrite'])) {
-            $files['overwrite'] = false;
-        }
-
-        if (empty($files['randomize'])) {
-            $files['randomize'] = false;
-        }
-
-        $found = false;
-        foreach ($this->files as $key => $value) {
-            if ($value['source'] == $files['source']) {
-                $this->files[$key] = $files;
-                $found             = true;
-            }
-        }
-
-        if (!$found) {
-            $count               = count($this->files);
-            $this->files[$count] = $files;
-        }
+        parent::_convertOptions($options);
 
         return $this;
     }
@@ -146,44 +93,8 @@ class Rename extends ZendRename
      */
     protected function _getFileName($file)
     {
-        $rename = array();
-        foreach ($this->files as $value) {
-            if ($value['source'] == '*') {
-                if (!isset($rename['source'])) {
-                    $rename           = $value;
-                    $rename['source'] = $file;
-                }
-            }
-
-            if ($value['source'] == $file) {
-                $rename = $value;
-                break;
-            }
-        }
-
-        if (!isset($rename['source'])) {
-            return $file;
-        }
-
-        if (!isset($rename['target']) || ($rename['target'] == '*')) {
-            $rename['target'] = $rename['source'];
-        }
-
-        /**#@+
-         * Added by Taiwen Jiang
-         */
+        $rename = parent::_getFileName($file);
         $this->parseStrategy($rename);
-        /**#@-*/
-
-        if (is_dir($rename['target'])) {
-            $name = basename($rename['source']);
-            $last = $rename['target'][strlen($rename['target']) - 1];
-            if (($last != '/') && ($last != '\\')) {
-                $rename['target'] .= DIRECTORY_SEPARATOR;
-            }
-
-            $rename['target'] .= $name;
-        }
 
         return $rename;
     }
@@ -200,22 +111,17 @@ class Rename extends ZendRename
     protected function parseStrategy(&$file)
     {
         if (is_array($this->source)
-            && $this->source['tmp_name'] == $file['source']) {
+            && $this->source['tmp_name'] == $file['source']
+        ) {
             $name = $this->source['name'];
         } else {
             $name = $file['source'];
         }
-        if ($file['target'] instanceof Closure) {
-            $target = $file['target']($name);
+        if (static::CLOSURE_TOKEN == $file['target'] && $this->closure) {
+            $closure = $this->closure;
+            $file['target'] = $closure($name);
         } elseif (false !== strpos($file['target'], '%')) {
-            $pos = strrpos($name, '.');
-            if (false !== $pos) {
-                $extension = substr($name, $pos);
-                $name = substr($name, 0, $pos);
-            } else {
-                $extension = '';
-            }
-
+            $extension = pathinfo($name, PATHINFO_EXTENSION);
             $terms = array(
                 '%term%'        => $name,
                 '%random%'      => uniqid(),
@@ -225,13 +131,12 @@ class Rename extends ZendRename
                 '%time%'        => time(),
                 '%microtime%'   => microtime(),
             );
-            $target = str_replace(
-                    array_keys($terms), array_values($terms), $file['target']
-            ) . $extension;
-        } else {
-            return;
+            $file['target'] = str_replace(
+                    array_keys($terms),
+                    array_values($terms),
+                    $file['target']
+            ) . '.' . $extension;
         }
-        $file['target'] = $target;
     }
 
     /**

@@ -40,6 +40,9 @@ use Pi\Filter\File\Rename;
  *
  * ```
  *  ...
+ *  // Set via constructor
+ *  $uploader = new Uploader(array('destination' => <destination>));
+ *  // Or
  *  $uploader = new Uploader;
  *  // Relative path
  *  $upload->setDestination('folder/subfolder'); => upload/folder/subfolder
@@ -89,6 +92,7 @@ use Pi\Filter\File\Rename;
  *
  * ```
  *  ...
+ *  // Set via constructor
  *  $uploader = new Uploader(array('rename' => <rename-strategy>));
  *  // Or
  *  $upload = new Uploader;
@@ -140,7 +144,7 @@ class Upload extends Transfer
     public function __construct($options = array(), $adapter = 'Http')
     {
         $direction = false;
-        $rename = !empty($options['rename']) ? $options['rename'] : '';
+        $rename = !empty($options['rename']) ? $options['rename'] : '%random%';
         $destination = !empty($options['destination'])
             ? $options['destination'] : Pi::service('module')->current();
         $this->setAdapter($adapter, $direction, $options);
@@ -208,7 +212,6 @@ class Upload extends Transfer
      */
     public function setRename($value = '')
     {
-        $value = $value ?: '%random%';
         if (false === $value) {
             $this->getAdapter()->removeFilter('rename');
         } else {

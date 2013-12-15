@@ -8,9 +8,9 @@ $this->bootstrap('js/bootstrap.min.js');
         $class = ' alert-success';
     } elseif (!empty($error)) {
         $message = $success;
-        $class = ' alert-error';
+        $class = ' alert-danger';
     } elseif (!empty($message)) {
-        $class = ' alert-error';
+        $class = ' alert-danger';
     }
 ?>
 <?php if (!empty($message)) { ?>
