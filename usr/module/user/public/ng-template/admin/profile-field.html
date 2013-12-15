@@ -1,7 +1,9 @@
-<legend>
-  {{'BASIC_FIELD' | translate}}
-  <small>{{'BASIC_FIELD_DESC' | translate}}</small>
-</legend>
+<div class="page-header">
+  <h3>
+    {{'BASIC_FIELD' | translate}}
+    <small>{{'BASIC_FIELD_DESC' | translate}}</small>
+  </h3>
+</div>
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -17,17 +19,19 @@
       <td>
         <div pi-hover-input="item" text="item.title"></div>
       <td>
-        <i class="icon-ok icon-large text-success" ng-if="item.is_display"></i>
+        <i class="fa fa-check fa-lg text-success" ng-if="item.is_display"></i>
       <td>
-        <i class="icon-ok icon-large text-success" ng-if="item.is_search"></i>
+        <i class="fa fa-check fa-lg text-success" ng-if="item.is_search"></i>
       <td>
-        <i class="icon-ok icon-large text-success" ng-if="item.is_edit"></i>
+        <i class="fa fa-check fa-lg text-success" ng-if="item.is_edit"></i>
       <td>{{item.module}}
 </table>
-<legend>
-  {{'COMPOUND' | translate}}
-  <small>{{'COMPOUND_DESC' | translate}}</small>
-</legend>
+<div class="page-header">
+  <h3>
+    {{'COMPOUND' | translate}}
+    <small>{{'COMPOUND_DESC' | translate}}</small>
+  </h3>
+</div>
 <table class="table table-condensed" ng-repeat="compound in compounds">
   <thead>
     <th width="40%">{{compound.title}}

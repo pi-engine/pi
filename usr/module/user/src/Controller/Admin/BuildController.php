@@ -21,10 +21,12 @@ class BuildController extends ActionController
     public function indexAction()
     {
         $this->flush();
+        $_POST
         //$this->addPrivacy();
         $this->updateUser();
         $this->addUser();
         $this->addTimeline();
+
         //$this->addQuickLink();
         //$this->addGroup();
         //$this->addActivity();
