@@ -99,7 +99,7 @@
 
     $scope.$watch('displays', function(newValue, oldValue) {
       if (newValue !== oldValue) {
-        $scope.saveAlert = { message: config.t.SAVE_TIP };
+        $scope.saveAlert = { message: config.t.SAVE_TIP, type: 'warning' };
         isSaved = 0;
       }
       var customGroup = [];

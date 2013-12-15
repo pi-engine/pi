@@ -331,8 +331,14 @@ legend {
     padding: 5px 8px;
     box-shadow: 0 1px 0 #FFFFFF inset;
     border: 1px solid #DFDFDF;
+    margin-bottom: 10px;
 }
 
 .ui-sortable .pi-widget {
 	cursor: move;
+}
+
+/* Boostrap custom */
+.panel-body >:last-child {
+	margin-bottom: 0;
 }

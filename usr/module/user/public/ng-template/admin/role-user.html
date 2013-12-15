@@ -1,18 +1,23 @@
 <legend>{{title}}</legend>
 <form class="form-inline" ng-submit="submit()">
-  <input type="text" required ng-model="entity.data">
-  <select ng-model="entity.field" class="input-medium">
-    <option value="uid">{{'UID' | translate}}
-    <option value="identity">{{'USERNAME' | translate}}
-    <option value="name">{{'DISPLAYNAME' | translate}}
-    <option value="email">{{'EMAIL' | translate}}
-  </select>
-  <button class="btn">{{'ADD_USER' | translate}}</button>
+  <div class="form-group">
+    <input class="form-control" type="text" required ng-model="entity.data">
+  </div>
+  <div class="form-group">
+    <select ng-model="entity.field" class="form-control">
+      <option value="uid">{{'UID' | translate}}
+      <option value="identity">{{'USERNAME' | translate}}
+      <option value="name">{{'DISPLAYNAME' | translate}}
+      <option value="email">{{'EMAIL' | translate}}
+    </select>
+  </div>
+  <button class="btn btn-default">{{'ADD_USER' | translate}}</button>
 </form>
 <table class="table" ng-if="users.length">
   <thead>
     <tr>
-      <th>{{'USERS' | translate}}
+      <th>{{'Id' | translate}}
+      <th>{{'display_name' | translate}}
   <tbody>
     <tr ng-repeat="user in users">
         <td>
