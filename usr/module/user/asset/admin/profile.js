@@ -7,16 +7,36 @@
     }
     $routeProvider.when('/field', {
       templateUrl: tpl('profile-field'),
-      controller: 'fieldCtrl'
+      controller: 'fieldCtrl',
+      resolve: {
+        data: ['$q', '$rootScope', 'server',
+          function($q, $rootScope, server) {
+            var deferred = $q.defer();
+            $rootScope.alert = 2;
+            server.getField().success(function(data) {
+              angular.forEach(data.compounds, function(compound) {
+                angular.forEach(compound.fields, function(field) {
+                  field.compound = compound.name;
+                });
+              });
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).when('/dress', {
       templateUrl: tpl('profile-dress'),
       controller: 'dressCtrl',
       resolve: {
-        data: ['$q', 'server',
-          function($q, server) {
+        data: ['$q', '$rootScope', 'server',
+          function($q, $rootScope, server) {
             var deferred = $q.defer();
+            $rootScope.alert = 2;
             server.getDress().success(function(data) {
               deferred.resolve(data);
+              $rootScope.alert = '';
             });
             return deferred.promise;
           }
@@ -24,7 +44,20 @@
       }
     }).when('/privacy', {
       templateUrl: tpl('profile-privacy'),
-      controller: 'privacyCtrl'
+      controller: 'privacyCtrl',
+      resolve: {
+        data: ['$q', '$rootScope', 'server',
+          function($q, $rootScope, server) {
+            var deferred = $q.defer();
+            $rootScope.alert = 2;
+            server.getPrivacy().success(function(data) {
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ]
+      }
     }).otherwise({
       redirectTo: '/field'
     });
@@ -34,8 +67,8 @@
     piProvider.ajaxSetup();
   }
 ])
-.service('server', ['$http', '$cacheFactory', 'config',
-  function ($http, $cacheFactory, config) {
+.service('server', ['$http', 'config',
+  function ($http, config) {
     var urlRoot = config.urlRoot;
 
     this.getField = function() {
@@ -65,16 +98,18 @@
     }
   }
 ])
-.controller('fieldCtrl', ['$scope', 'server',
-  function ($scope, server) {
-    server.getField().success(function(data) {
+.controller('fieldCtrl', ['$scope', 'server', 'data',
+  function ($scope, server, data) {
+    angular.extend($scope, data);
+
+    /*server.getField().success(function(data) {
       angular.extend($scope, data);
       angular.forEach($scope.compounds, function(compound) {
         angular.forEach(compound.fields, function(field) {
           field.compound = compound.name;
         });
       });
-    });
+    });*/
 
     $scope.$on('piHoverInputSave', function(event, data) {
       server.updateTitle(data);
@@ -94,7 +129,7 @@
     var isSaved = 1;
 
     $scope.displaysOpts = {
-      handle: '.pi-widget-header'
+      handle: '.panel-heading'
     };
 
     $scope.$watch('displays', function(newValue, oldValue) {
@@ -199,8 +234,8 @@
 
   }
 ])
-.controller('privacyCtrl', ['$scope', 'server',
-  function($scope, server) {
+.controller('privacyCtrl', ['$scope', 'server', 'data',
+  function($scope, server, data) {
     $scope.limits = [
       { text: 'public', value: 0 },
 //      { text: 'member', value: 1 },
@@ -208,10 +243,7 @@
 //      { text: 'following', value: 4 },
       { text: 'owner', value: 255 }
     ]
-
-    server.getPrivacy().success(function(data) {
-      $scope.fields = data;
-    });
+    $scope.fields = data;
 
     $scope.setPrivacyAction = function(item) {
       server.setPrivacy(item);

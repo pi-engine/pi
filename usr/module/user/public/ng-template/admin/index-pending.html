@@ -47,32 +47,36 @@
   </button>
 </form>
 <div ng-show="users.length">
-  <div class="clearfix form-inline user-form-actions">
+  <div class="clearfix form-inline">
     <strong class="pull-right">{{paginator.count}} members</strong>
     <input type="checkbox" style="margin-right: 6px;"
            ng-model="allChecked" ng-change="markAll()">
     <div class="btn-group">
-      <button class="btn" ng-click="activeBatchAction()">
+      <button class="btn btn-default" ng-click="activeBatchAction()">
         {{'ACTIVATE' | translate}}
       </button>
-      <button class="btn" ng-click="enableBatchAction()">
+      <button class="btn btn-default" ng-click="enableBatchAction()">
         {{'ENABLE' | translate}}
       </button>
-      <button class="btn" ng-click="disableBatchAction()">
+      <button class="btn btn-default" ng-click="disableBatchAction()">
         {{'DISABLE' | translate}}
       </button>
-      <button class="btn" ng-click="deleteBatchAction()">
+      <button class="btn btn-default" ng-click="deleteBatchAction()">
         {{'DELETE' | translate}}
       </button>
     </div>
-    <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
-            ng-options="item.title group by item.type for item in assignRoles">
-      <option value="">{{'ASSIGN_ROLE' | translate}}
-    </select>
-    <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
-            ng-options="item.title group by item.type for item in assignRoles">
-      <option value="">{{'UNASSIGN_ROLE' | translate}}
-    </select>
+    <div class="form-group">
+      <select class="form-control" ng-change="assignRoleBacthAction()" ng-model="assignRole"
+              ng-options="item.title group by item.type for item in assignRoles">
+        <option value="">{{'ASSIGN_ROLE' | translate}}
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-control" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
+              ng-options="item.title group by item.type for item in assignRoles">
+        <option value="">{{'UNASSIGN_ROLE' | translate}}
+      </select>
+    </div>
   </div>
   <table class="table table-striped">
       <thead>
@@ -92,10 +96,10 @@
           <td>
             <input type="checkbox" ng-model="user.checked" style="margin-top: -2px;">
           <td>
-            <i class="icon-circle text-success" ng-if="user.active"
+            <i class="fa fa-circle text-success" ng-if="user.active"
                tooltip="{{'ACTIVE' | translate}}">
             </i>
-            <i class="icon-circle muted" ng-if="!user.active"
+            <i class="fa fa-circle text-muted" ng-if="!user.active"
                tooltip="{{'INACTIVE' | translate}}">
             </i>
           <td>
@@ -123,11 +127,11 @@
           <td>
             <span ng-if="user.front_roles" tooltip="{{user.front_roles}}"
                   style="padding-right: 5px;">
-              <i class="icon-user icon-large"></i>
+              <i class="fa fa-user fa-2x"></i>
             </span>
             <span ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
                   style="padding-left: 5px;">
-              <i class="icon-user-md icon-large"></i>
+              <i class="fa fa-user-md fa-2x"></i>
             </span>
           <td class="text-center">
             {{user.time_created}}

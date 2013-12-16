@@ -1,10 +1,12 @@
 <form class="form-inline">
   {{'SORT_BY' | translate}}
-  <select ng-change="sortAction()" ng-model="sort">
-    <option value="time_created">{{'REGISTER_TIME' | translate}}
-    <option value="last_login">{{'LAST_LOGIN_TIME' | translate}}
-    <option value="time_activated">{{'ACTIVATE_TIME' | translate}}
-  </select>
+  <div class="form-group">
+    <select class="form-control" ng-model="sort">
+      <option value="time_created">{{'REGISTER_TIME' | translate}}
+      <option value="last_login">{{'LAST_LOGIN_TIME' | translate}}
+      <option value="time_activated">{{'ACTIVATE_TIME' | translate}}
+    </select>
+  </div>
 </form>
 <table class="table table-striped">
   <thead>
