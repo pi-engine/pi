@@ -1,25 +1,23 @@
-<style>
-.user-field-dl dt {
-  color: #999;
-  font-weight: normal;
-  line-height: 24px;
-}
-.user-field-dl dd {
-  line-height: 24px;
-}
-</style>
-<form class="form-inline" ng-submit="submit()">
-  <input type="text" ng-model="entity.data" required>
-  <select ng-model="entity.field" class="input-medium">
-    <option value="id">{{'UID' | translate}}
-    <option value="identity">{{'USERNAME' | translate}}
-    <option value="name">{{'DISPLAYNAME' | translate}}
-    <option value="email">{{'EMAIL' | translate}}
-  </select>
-  <button class="btn">{{'SEARCH' | translate}}</button>
-</form>
-<div class="alert" ng-if="!user">
-  {{'SEARCH_TEXT' | translate}}
+<legend>{{'SEARCH_TEXT' | translate}}</legend>
+<div class="row">
+  <div class="col-md-6">
+    <form class="input-group" ng-submit="submit()" name="searchForm" style="margin-bottom: 20px;">
+      <span class="input-group-btn">
+        <select class="form-control" ng-model="entity.field" style="width: 100px;">
+          <option value="id">{{'UID' | translate}}
+          <option value="identity">{{'USERNAME' | translate}}
+          <option value="name">{{'DISPLAYNAME' | translate}}
+          <option value="email">{{'EMAIL' | translate}}
+        </select>
+      </span>
+      <input class="form-control" type="text" ng-model="entity.data" required>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" ng-disabled="searchForm.$invalid">
+          {{'SEARCH' | translate}}
+        </button>
+      </span>
+    </form>
+  </div>
 </div>
 <div ng-if="user">
   <div class="media" style="margin-bottom: 10px;">
@@ -67,4 +65,7 @@
         {{item.value}}
     </dl>
   </div>
+</div>
+<div class="alert alert-info" ng-if="userNone">
+  {{userNone}}
 </div>

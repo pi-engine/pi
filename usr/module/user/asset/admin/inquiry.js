@@ -6,9 +6,33 @@
       return config.assetRoot + name + '.html';
     }
 
-    $routeProvider.otherwise({
+    $routeProvider.when('/:field/:data', {
       templateUrl: tpl('user-profile'),
-      controller: 'ProfileCtrl'
+      controller: 'SearchCtrl',
+      resolve: {
+        data: ['$q', '$route', '$rootScope', 'server',
+          function($q, $route, $rootScope, server) {
+            var deferred = $q.defer();
+            var params = $route.current.params;
+            $rootScope.alert = 2;
+            server.get(params).success(function(data) {
+              data.entity = params;
+              deferred.resolve(data);
+              $rootScope.alert = '';
+            }).error(function(data) {
+              deferred.resolve({
+                entity: params,
+                userNone: data.message
+              });
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }
+        ]
+      }
+    }).otherwise({
+      templateUrl: tpl('user-profile'),
+      controller: 'IndexCtrl'
     });
 
     piProvider.hashPrefix();
@@ -16,26 +40,40 @@
     piProvider.ajaxSetup();
   }
 ])
-.service('server', ['$http', 'config',
+.factory('server', ['$http', 'config',
   function($http, config) {
     var urlRoot = config.urlRoot;
 
-    this.get = function(params) {
-      return $http.get(urlRoot + 'profile', {
-        params: params
-      });
+    return {
+      get: function(params) {
+        return $http.get(urlRoot + 'profile', {
+          params: params
+        });
+      }
     }
   }
 ])
-.controller('ProfileCtrl', ['$scope', 'server',
-  function($scope, server) {
+.controller('IndexCtrl', ['$scope', '$location',
+  function($scope, $location) {
     $scope.entity = { field: 'name' };
 
     $scope.submit = function() {
-      server.get($scope.entity).success(function(data) {
-        angular.extend($scope, data);
-        $scope.entity.data = '';
-      });
+      var entity = $scope.entity;
+      var path = '/' + entity.field + '/' + entity.data;
+
+      $location.path(path);
+    }
+  }
+])
+.controller('SearchCtrl', ['$scope', '$location', 'data',
+  function($scope, $location, data) {
+    angular.extend($scope, data);
+
+    $scope.submit = function() {
+      var entity = $scope.entity;
+      var path = '/' + entity.field + '/' + entity.data;
+
+      $location.path(path);
     }
   }
 ]);

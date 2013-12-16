@@ -11,6 +11,9 @@
 .user-profile-group-editing .panel-heading {
   border-bottom: 1px solid #ddd;
 }
+.user-profile-groups .panel {
+  cursor: move;
+}
 </style>
 <div class="row user-profile-page">
   <div class="col-md-7">
@@ -42,14 +45,14 @@
                 <i class="fa fa-lg pi-icon-cursor" style="padding-right: 4px;"
                    ng-class="{'fa-angle-up': display.$isEditing, 'fa-angle-down': !display.$isEditing}"
                    ng-click="toggleGroup(display)"></i>                
-                <button class="close" ng-click="removeDisplay($index)" style="float: none;">
+                <button class="close" ng-click="removeDisplay($index)">
                   &times;
                 </button>
               </div>
               <div pi-hover-input text="display.title">
               </div>
             </div>
-            <div class="panel-body js-group-widgets" ui-sortable ng-model="display.fields">
+            <div class="panel-body" ui-sortable ng-model="display.fields">
               <div ng-repeat="displayField in display.fields" class="pi-widget">
                 <button class="close" ng-if="!display.name" 
                         ng-click="removeGroupField(display.fields, $index)">&times;</button>

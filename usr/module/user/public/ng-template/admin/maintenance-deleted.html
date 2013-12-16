@@ -1,10 +1,10 @@
-<form class="form-inline" style="margin: 0 30px 20px 8px;">
+<form class="form-inline">
   <div class="pull-right">
     <button class="btn btn-link" ng-click="clearAllAction()">{{'CLEAR_ALL' | translate}}</button>
     <strong>{{paginator.count}}</strong>
   </div>
   <input type="checkbox" ng-model="allChecked">
-  <button class="btn" ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
+  <button class="btn btn-default" ng-click="clearBatchAction()">{{'CLEAR' | translate}}</button>
 </form>
 <table class="table" ng-if="users.length">
   <thead>
@@ -33,7 +33,7 @@
       <td>{{user.time_created}}
       <td>{{user.time_deleted}}
 </table>
-<div class="alert" ng-if="!users.length">
+<div class="alert alert-info" ng-if="!users.length">
   {{'NONE_USER' | translate}}
 </div>
 <pagination ng-if="paginator.count > paginator.limit" 
