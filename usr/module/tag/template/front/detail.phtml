@@ -1,10 +1,9 @@
 <?php
 $this->css(array($this->assetModule('script/tag-front.css')));
-$url = $this->url('', array('controller' => 'index', 'action' => 'list'));
 ?>
 <ul class="breadcrumb">
-      <li><a href="<?php echo $url ?>">Tags</a> <span class="divider">/</span></li>
-      <li class="active"><?php echo $tagTerm ?></li>
+      <li><a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'list')); ?>"><?php _e('Tags'); ?></a> <span class="divider">/</span></li>
+      <li class="active"><?php echo $tagTerm; ?></li>
 </ul>
 <h2 class="page-header"><?php echo $tagTerm; ?></h2>
 <div class="row-fluid">
@@ -13,19 +12,19 @@ $url = $this->url('', array('controller' => 'index', 'action' => 'list'));
             <?php
             $items = array();
             $item = array(
-                'href'  => $this->url('', array('controller' => 'index', 'action' => 'detail', 'id' => $tagid)),
+                'href'  => $this->url('', array('controller' => 'index', 'action' => 'detail', 'id' => $tagId)),
                 'label' => __('ALL'),
             );
             if (null == $curModule) {
                 $item['active'] = 1;
             }
             $items[] = $item;
-            foreach ($moduleArray as $row) {
+            foreach ($modules as $name => $title) {
                 $item = array(
-                    'href'    => $this->url('', array('controller' => 'index', 'action' => 'detail', 'm' => $row, 'id' => $tagid)),
-                    'label'   => ucfirst($row),
+                    'href'    => $this->url('', array('controller' => 'index', 'action' => 'detail', 'm' => $name, 'id' => $tagid)),
+                    'label'   => $title,
                 );
-                if ($curModule === $row) {
+                if ($curModule === $name) {
                     $item['active'] = 1;
                 }
                 $items[] = $item;
@@ -35,10 +34,14 @@ $url = $this->url('', array('controller' => 'index', 'action' => 'list'));
         </div>
     </div>
     <div class="span9">
-        <?php if ($datas == null) { ?>
+        <?php if (!$data) { ?>
             <div class="alert">
                 <button type="button" class="close" data-dismiss="alert">×</button>
-                <p><?php echo $tagTerm . ' ' . __('not related an obj in ') . $curModule; ?></p>
+                <p><?php
+                    $message = __('There is no related items for %s in module %s.');
+                    echo sprintf($message, $tagTerm, $curModule);
+                    ?>
+                </p>
             </div>
         <?php } else { ?>
             <table class="table table-hover table-bordered">
@@ -47,23 +50,34 @@ $url = $this->url('', array('controller' => 'index', 'action' => 'list'));
                     <th class="span2"><?php _e('Module'); ?></th>
                     <th class="span2"><?php _e('Time'); ?></th>
                 </tr>
-            <?php foreach ($datas as $row) { ?>
+            <?php foreach ($data as $row) { ?>
                 <tr>
-                    <?php $url = sprintf('<a href="%s">%s</a>', $row['url'], $row['title']); ?>
-                    <td><?php echo $url; ?></td>
-                    <td>
-                        <?php $moduleUrl = $this->url('', array('controller' => 'index', 'action' => 'detail', 'm' => $row['module'], 'id' => $tagid)); ?>
-                        <?php echo sprintf('<a href="%s" title="%s">%s</a>', $moduleUrl, $row['module'], ucfirst($row['module'])); ?>
+                    <td><?php
+                        $url = $row['url'];
+                        $title = _escape($row['title']);
+                        ?>
+                        <a href="<?php echo $url; ?>" title="<?php echo $title; ?>"><?php echo $title; ?></a>
                     </td>
-                    <td><?php echo date("Y-m-d", $row['time']);?></td>
+                    <td><?php
+                        $url = $this->url('', array('controller' => 'index', 'action' => 'detail', 'm' => $row['module'], 'id' => $tagid));
+                        $title = _escape($modules[$row['module']]);
+                        ?>
+                        <a href="<?php echo $url; ?>" title="<?php echo $title; ?>"><?php echo $title; ?></a>
+                    </td>
+                    <td><?php echo _date($row['time']);?></td>
                 </tr>
             <?php } ?>
             </table>
         <?php } ?>
-        <?php if ($find != 'n') { ?>
-        <div class="pagination-right">
-            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
-        </div>
-        <?php } ?>
+        <?php
+        if ($paginator) {
+            echo $this->pagination(
+                $paginator,
+                'Sliding',
+                'paginator.phtml',
+                array('class' => 'pagination-right')
+            );
+        }
+        ?>
     </div>
 </div>

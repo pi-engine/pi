@@ -1,5 +1,5 @@
 <?php 
-$this->I18nModule('main'); 
+//$this->I18nModule('main');
 $this->css(array($this->assetModule('script/tag-front.css')));
 ?>
 <h2 class="page-header"><?php _e('Tags'); ?></h2>
@@ -16,12 +16,12 @@ $this->css(array($this->assetModule('script/tag-front.css')));
                 $item['active'] = 1;
             }
             $items[] = $item;
-            foreach ($moduleArray as $row) {
+            foreach ($modules as $name => $title) {
                 $item = array(
-                    'href'    => $this->url('', array('controller' => 'index', 'action' => 'list', 'm' => $row)),
-                    'label'   => ucfirst($row),
+                    'href'    => $this->url('', array('controller' => 'index', 'action' => 'list', 'm' => $name)),
+                    'label'   => $title,
                 );
-                if ($curModule === $row) {
+                if ($curModule === $name) {
                     $item['active'] = 1;
                 }
                 $items[] = $item;
@@ -59,27 +59,29 @@ $this->css(array($this->assetModule('script/tag-front.css')));
                 <th class="span2"><?php _e('Count'); ?></th>
             </tr>
             <?php 
-            foreach ($datas as $tag) { 
-                $url = Pi::engine()->application()->getRouter()->assemble(
-                array(
+            foreach ($data as $tag) {
+                $url = $this->url('', array(
                     'module'        => Pi::service('module')->current(),
                     'controller'    => 'index',
                     'action'        => 'detail',
                     'id'            => $tag['id'],
-                ),
-                array(
-                    'name'          => 'default',
                 ));
-                $tagName = sprintf('<a href="%s">%s</a>', $url, $tag['term']);
-            ?>  
+            ?>
             <tr>
-                <td><?php echo $tagName; ?></td>
+                <td><a href="<?php echo $url; ?>"><?php echo _escape($tag['term']); ?></td>
                 <td><?php echo $tag['count']; ?></td>
             </tr>
             <?php } ?>
         </table>
-    <div class="pagination-right">
-        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
-    </div>
+        <?php
+        if ($paginator) {
+            echo $this->pagination(
+                $paginator,
+                'Sliding',
+                'paginator.phtml',
+                array('class' => 'pagination-right')
+            );
+        }
+        ?>
     </div>
 </div>

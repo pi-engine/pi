@@ -19,13 +19,14 @@
 
 namespace Module\Tag\Controller\Front;
 
+use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
 use Module\Tag\Form\SearchForm;
 use Module\Tag\Form\SearchFilter;
 use Module\Tag\Service;
 use Module\Tag\Form;
 use Zend\Db\Sql\Expression;
-use Pi;
 
 class IndexController extends ActionController
 {
@@ -46,11 +47,14 @@ class IndexController extends ActionController
     public function listAction()
     {
         // Get website module name
+        $moduleList = Pi::registry('module')->read();
+        $modules = array();
         $modelStats = $this->getModel('stats');
         $select = $modelStats->select()->columns(array('module' => new Expression('distinct module')));
         $data = $modelStats->selectWith($select)->toArray();
         foreach ($data as $row) {
-            $moduleArray[] = $row['module'];
+            //$moduleArray[] = $row['module'];
+            $modules[$row['module']] = $moduleList[$row['module']]['title'];
         }
 
         $page = intval($this->params('p', 1));
@@ -85,7 +89,8 @@ class IndexController extends ActionController
         }
 
         // Set paginator parameters
-        $paginator = \Pi\Paginator\Paginator::factory(intval($count));
+        /*
+        $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
         $paginator->setUrlOptions(array(
@@ -100,32 +105,44 @@ class IndexController extends ActionController
                 'm'            => $module,
             ),
         ));
+        */
+        $paginator = Paginator::factory($count, array(
+            'limit' => $limit,
+            'page'  => $page,
+            'url_options'   => array(
+                'params'    => array(
+                    'm' => $module,
+                ),
+            ),
+        ));
 
         $this->view()->assign(array(
             'paginator'     => $paginator,
-            'moduleArray'   => $moduleArray,
+            //'moduleArray'   => $moduleArray,
+            'modules'       => $modules,
             'form'          => $form,
-            'curModule'        => $module,
-            'datas'         => $items,
+            'curModule'     => $module,
+            'data'          => $items,
         ));
         $this->view()->setTemplate('list');
     }
 
     /**
-     * Show tag releated object.
+     * Show tag related object.
      */
     public function detailAction()
     {
         // Get website module
+        $moduleList = Pi::registry('module')->read();
+        $modules = array();
         $modelStats = $this->getModel('stats');
         $select = $modelStats->select()->columns(array('module' => new Expression('distinct module')));
         $data = $modelStats->selectWith($select)->toArray();
         foreach ($data as $row) {
-            $moduleArray[] = $row['module'];
+            $modules[$row['module']] = $moduleList[$row['module']]['title'];
         }
 
         $module = $this->params('m', null);
-        $module = $module != '' ? $module : null;
         $tagId = $this->params('id', null);
         if ('' == $tagId) {
             $tagId = null;
@@ -167,8 +184,9 @@ class IndexController extends ActionController
                 $result[] = $datas[$row['item']];
             }
         }
-        // Set paginator parameter.
-        $paginator = \Pi\Paginator\Paginator::factory(intval($amount));
+        // Set paginator parameter
+        /*
+        $paginator = Paginator::factory(intval($amount));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
         $paginator->setUrlOptions(array(
@@ -183,14 +201,25 @@ class IndexController extends ActionController
                 'id'            => $tagId,
             ),
         ));
+        */
+        $paginator = Paginator::factory($count, array(
+            'limit' => $limit,
+            'page'  => $page,
+            'url_options'   => array(
+                'params'    => array(
+                    'id'    => $tagId,
+                ),
+            ),
+        ));
 
         $this->view()->setTemplate('detail');
         $this->view()->assign(array(
-            'datas'         => $result,
+            'data'          => $result,
             'tagTerm'       => $tagTerm,
-            'curModule'        => $module,
-            'moduleArray'   => $moduleArray,
-            'tagid'         => $tagId,
+            'curModule'     => $module,
+            'modules'       => $modules,
+            //'moduleArray'   => $moduleArray,
+            'tagId'         => $tagId,
             'paginator'     => $paginator,
         ));
     }
@@ -253,7 +282,8 @@ class IndexController extends ActionController
         $select->where->like('term', "%{$name}%");
         $select->columns(array('count' => new Expression('count(*)')));
         $count = $modelTag->selectWith($select)->current()->count;
-        $paginator = \Pi\Paginator\Paginator::factory(intval($count));
+        /*
+        $paginator = Paginator::factory(intval($count));
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
         $paginator->setUrlOptions(array(
@@ -267,6 +297,17 @@ class IndexController extends ActionController
                 'action'       => 'search',
                 'm'            => $module,
                 'name'         => $tagName,
+            ),
+        ));
+        */
+        $paginator = Paginator::factory($count, array(
+            'limit' => $limit,
+            'page'  => $page,
+            'url_options'   => array(
+                'params'    => array(
+                    'm'     => $module,
+                    'name'  => $tagName,
+                ),
             ),
         ));
 
