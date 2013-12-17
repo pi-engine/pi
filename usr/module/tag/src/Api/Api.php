@@ -34,6 +34,8 @@ class Api extends AbstractApi
      * @param  string $module Module name
      * @param  string $type   Item type
      * @param  int    $limit  Return item id counts
+     * @param  null|string    $item
+     *
      * @return array  $result     Item id array
      */
     public function relate($tags, $module, $type, $limit = null, $item = null)
@@ -75,11 +77,13 @@ class Api extends AbstractApi
     }
 
     /**
-     * Fetch top tag and coount
+     * Fetch top tag and count
      *
-     * @param string $module Moudle name
-     * @param type   $type   Item type
-     * @param type   $limit  Return tag count
+     * @param string $module Module name
+     * @param string   $type   Item type
+     * @param int   $limit  Return tag count
+     *
+     * @return array
      */
     public static function top($module, $type, $limit = null)
     {
@@ -101,15 +105,17 @@ class Api extends AbstractApi
         }
         $select = $modelTag->select()->where(array('id' => $tagIds))->order('count DESC');
         $result = $modelTag->selectWith($select)->toArray();
+
         return $result;
     }
 
     /**
-     * Freth some item releate tag
+     * Fetch multiple item related tags
      *
      * @param  string $module  module name not null
      * @param  array  $items   items array
      * @param  string $type    items type  default null
+     *
      * @return array  result   items relate tags
      */
     public static function multiple($module, $items, $type = null)
@@ -125,7 +131,7 @@ class Api extends AbstractApi
             $where['type'] = $type;
         }
 
-        // Get item releate tag ids
+        // Get item related tag ids
         $select = $modeLink->select()->where($where)->order('order ASC')->columns(array('tag', 'item'));
         $rows = $modeLink->selectWith($select)->toArray();
         $tagIds = array();
@@ -148,6 +154,7 @@ class Api extends AbstractApi
                 $result[$index][$key] = $terms[$key];
             }
         }
+
         return $result;
     }
 }
