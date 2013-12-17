@@ -9,14 +9,14 @@
 
 $config = array(
     'leading_limit' => array(
-        'title'         => _t('Leading page comment limit.'),
+        'title'         => _t('Leading page comment limit'),
         'description'   => _t('Number of comments on leading page.'),
         'value'         => 5,
         'filter'        => 'int',
     ),
 
     'list_limit' => array(
-        'title'         => _t('List page comment limit.'),
+        'title'         => _t('List page comment limit'),
         'description'   => _t('Number of comments on list page.'),
         'value'         => 20,
         'filter'        => 'int',
@@ -40,7 +40,7 @@ $config = array(
     ),
 
     'auto_approve'  => array(
-        'title'         => _t('Auto approve submission.'),
+        'title'         => _t('Auto approve submission'),
         'edit'          => 'checkbox',
         'value'         => 1,
         'filter'        => 'int',

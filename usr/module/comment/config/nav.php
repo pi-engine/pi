@@ -60,13 +60,20 @@ return array(
             'route'         => 'admin',
             'label'         => _t('All comments'),
             'controller'    => 'list',
-            
+            'action'        => 'index',
+            'params'        => array(
+                'active'    => -1,
+            ),
+
             'pages'         => array(
-                'all'       => array(
+                'all'     => array(
                     'route'         => 'admin',
-                    'label'         => _t('All posts'),
+                    'label'         => _t('Active posts'),
                     'controller'    => 'list',
-                    'action'        => 'index'
+                    'action'        => 'index',
+                    'params'        => array(
+                        'active'    => -1,
+                    ),
                 ),
                 'active'     => array(
                     'route'         => 'admin',
@@ -110,24 +117,31 @@ return array(
             'route'         => 'admin',
             'label'         => _t('By article'),
             'controller'    => 'list',
+            'action'        => 'article',
+            'params'        => array(
+                'active'    => -1,
+            ),
 
             'pages'         => array(
-                'all'       => array(
+                'all'     => array(
                     'route'         => 'admin',
-                    'label'         => _t('All posts'),
+                    'label'         => _t('Article with comments'),
                     'controller'    => 'list',
-                    'action'        => 'article'
+                    'action'        => 'article',
+                    'params'        => array(
+                        'active'    => -1,
+                    ),
                 ),
                 'active'     => array(
                     'route'         => 'admin',
-                    'label'         => _t('Active posts'),
+                    'label'         => _t('Article with active comments'),
                     'controller'    => 'list',
                     'action'        => 'article',
                     'params'        => array(
                         'active'    => 1,
                     ),
                 ),
-            )
+            ),
         ),
     ),
 );

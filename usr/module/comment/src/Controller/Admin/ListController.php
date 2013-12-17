@@ -450,10 +450,8 @@ class ListController extends ActionController
      */
     public function articleAction()
     {
-        $active = _get('active');
-        if (null !== $active) {
-            $active = 1;
-        }
+        $active = _get('active', 1);
+        $active = $active ? 1 : null;
         $page   = _get('page', 'int') ?: 1;
         $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
@@ -534,6 +532,7 @@ class ListController extends ActionController
             'paginator' => $paginator,
         ));
 
+        /*
         $navTabs = array(
             array(
                 'active'    => null === $active,
@@ -554,6 +553,7 @@ class ListController extends ActionController
         $this->view()->assign(array(
             'tabs'      => $navTabs,
         ));
+        */
         $this->view()->setTemplate('comment-article', '', 'front');
     }
 
