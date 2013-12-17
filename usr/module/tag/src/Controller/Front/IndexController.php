@@ -24,7 +24,7 @@ use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Module\Tag\Form\SearchForm;
 use Module\Tag\Form\SearchFilter;
-use Module\Tag\Service;
+//use Module\Tag\Service;
 use Module\Tag\Form;
 use Zend\Db\Sql\Expression;
 
@@ -178,10 +178,10 @@ class IndexController extends ActionController
             $conditions['id'] = $row['item'];
             $conditions['module'] = $row['module'];
             $conditions['type'] = $row['type'];
-            $datas = Pi::service('module')->content($variables, $conditions);
-             if ($datas != null) {
-                $datas[$row['item']]['module'] = $row['module'];
-                $result[] = $datas[$row['item']];
+            $data = Pi::service('module')->content($variables, $conditions);
+             if ($data) {
+                $data[$row['item']]['module'] = $row['module'];
+                $result[] = $data[$row['item']];
             }
         }
         // Set paginator parameter

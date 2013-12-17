@@ -23,7 +23,7 @@ namespace Module\Tag\Controller\Admin;
 use Pi\Mvc\Controller\ActionController;
 use Module\Tag\Form\SearchForm;
 use Module\Tag\Form\SearchFilter;
-use Module\Tag\Service;
+//use Module\Tag\Service;
 use Module\Tag\Form;
 use Zend\Db\Sql\Expression;
 use Pi\Paginator\Paginator;
