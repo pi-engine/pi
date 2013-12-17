@@ -61,10 +61,14 @@
     <!-- Flat display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
     <?php
         if (!$block['user']['uid']) { ?>
-            <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
-            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><?php echo _b('Login'); ?></a>
-            <span class="pi-divider">|</span>
-            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>"><?php echo _b('Register'); ?></a>
+        <li>
+            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                <?php echo _b('Login'); ?>
+            </a>
+        <li>
+            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>">
+                <?php echo _b('Register'); ?>
+            </a>
     <?php
         } else {
     ?>

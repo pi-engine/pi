@@ -2,10 +2,12 @@
 //$this->I18nModule('admin', 'zh-CN');
 $this->css(array($this->assetModule('script/tag-admin.css')));
 ?>
+<div>
+</div>
 <h2 class="page-header"><?php echo _a('Search'); ?></h2>
 <h3><?php echo '"' . $this->escape($tagName) . '" ' . _a('Search result'); ?></h3>
 <?php if ($find == 'n') { ?>
-<div class="alert">
+<div class="alert alert-info">
     <button type="button" class="close" data-dismiss="alert">×</button>
     <strong><?php echo '"' . $this->escape($tagName) . '" ' . _a('is not found Try some other words') . '.'; ?></strong>
 </div>

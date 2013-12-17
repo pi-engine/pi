@@ -39,6 +39,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
+                    'action'        => '',
                     'fragment'      => '!/all'
                 ),
                 'activated'      => array(
@@ -46,6 +47,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
+                    'action'        => '',
                     'fragment'      => '!/activated'
                 ),
                 'pending'      => array(
@@ -53,6 +55,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
+                    'action'        => '',
                     'fragment'      => '!/pending'
                 ),
                 'new'         => array(
@@ -60,6 +63,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
+                    'action'        => '',
                     'fragment'      => '!/new'
                 ),
                 'search'      => array(
@@ -67,6 +71,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
+                    'action'        => '',
                     'fragment'      => '!/search'
                 ),      
             ),
@@ -98,6 +103,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'profile',
+                    'action'        => '',
                     'fragment'      => '!/field'
                 ),
                 'dress'      => array(
@@ -105,6 +111,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'profile',
+                    'action'        => '',
                     'fragment'      => '!/dress'
                 ),
                 'privacy'      => array(
@@ -112,6 +119,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'profile',
+                    'action'        => '',
                     'fragment'      => '!/privacy'
                 ),
             ),
@@ -145,6 +153,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'plugin',
+                    'action'        => '',
                     'fragment'      => '!/timeline'
                 ),
                 'activity'      => array(
@@ -152,6 +161,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'plugin',
+                    'action'        => '',
                     'fragment'      => '!/activity'
                 ),
                 'quicklink'      => array(
@@ -159,6 +169,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'plugin',
+                    'action'        => '',
                     'fragment'      => '!/quicklink'
                 ),
             ),
@@ -180,6 +191,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'maintenance',
+                    'action'        => '',
                     'fragment'      => '!/stats'
                 ),
                 'logs'      => array(
@@ -187,6 +199,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'maintenance',
+                    'action'        => '',
                     'fragment'      => '!/logs'
                 ),
                 'deleted'      => array(
@@ -194,6 +207,7 @@ return array(
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'maintenance',
+                    'action'        => '',
                     'fragment'      => '!/deleted'
                 ),
             ),

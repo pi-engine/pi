@@ -165,6 +165,7 @@ return array(
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
+                'action'        => '',
                 'fragment'      => '!/all',
             ),
             'add'      => array(
@@ -172,6 +173,7 @@ return array(
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'role',
+                'action'        => '',
                 'fragment'      => '!/new',
             ),
         ),
