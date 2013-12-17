@@ -1,28 +1,29 @@
-<?php $this->css($this->assetModule('css/admin.css', 'comment')); ?>
-
-<div class="row-fluid">
-    <div class="span5 pull-left">
-        <div class="pi-comment-portal">
-            <div class="portal-header"><?php echo _a('Comment stats'); ?></div>
-            <table class="table table-striped">
-                <tr>
-                    <th><?php echo _a('Title'); ?></th>
-                    <th><?php echo _a('Amounts'); ?></th>
-                </tr>
-                <?php foreach ($counts as $name => $data) { ?>
-                <tr>
-                    <td><?php echo _escape($data['title']); ?></td>
-                    <td>
-                        <a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>" target="_blank">
-                            <?php echo $data['count']; ?>
-                        </a>
-                    </td>
-                </tr>
-                <?php } ?>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <?php echo _a('Comment stats'); ?>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><?php echo _a('Title'); ?>
+                        <th><?php echo _a('Amounts'); ?>
+                <tbody>
+                    <?php foreach ($counts as $name => $data) { ?>
+                    <tr>
+                        <td>
+                            <?php echo _escape($data['title']); ?>
+                        <td>
+                            <a href="<?php echo $data['url']; ?>" 
+                               title="<?php echo _escape($data['title']); ?>" target="_blank">
+                                <?php echo $data['count']; ?>
+                            </a>
+                    <?php } ?>
             </table>
         </div>
-        <div class="pi-comment-portal">
-            <div class="portal-header"><?php echo _a('Top posters'); ?></div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><?php echo _a('Top posters'); ?></div>
             <table class="table table-striped">
                 <tr>
                     <th></th>
@@ -45,8 +46,8 @@
                 <?php } ?>
             </table>
         </div>
-        <div class="pi-comment-portal">
-            <div class="portal-header"><?php echo _a('Active comment posts by module'); ?></div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><?php echo _a('Active comment posts by module'); ?></div>
             <table class="table table-striped">
                 <tr>
                     <th><?php echo _a('Title'); ?></th>
@@ -71,10 +72,10 @@
             </table>
         </div>
     </div>
-    <div class="span5">
-        <div class="pi-comment-portal">
-            <div class="portal-header"><?php echo _a('Links'); ?></div>
-            <div style="border: 1px solid #dddddd">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading"><?php echo _a('Links'); ?></div>
+            <div class="panel-body">
                 <ul>
                     <?php foreach ($links as $name => $data) { ?>
                         <li><a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['title']); ?>" target="_blank">
@@ -85,8 +86,8 @@
                 </ul>
             </div>
         </div>
-        <div class="pi-comment-portal">
-            <div class="portal-header"><?php echo _a('Most commented'); ?></div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><?php echo _a('Most commented'); ?></div>
             <table class="table table-striped">
                 <tr>
                     <th></th>
