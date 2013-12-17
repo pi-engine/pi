@@ -95,19 +95,19 @@ return array(
                 ),
             ),
         ),
-        'category'     => array(
+        'category'  => array(
             'route'         => 'admin',
             'label'         => _t('Categories'),
             'controller'    => 'category',
             'action'        => 'index',
         ),
-        'module'     => array(
+        'module'    => array(
             'route'         => 'admin',
             'label'         => _t('By module'),
             'controller'    => 'list',
             'action'        => 'module',
         ),
-        'user'     => array(
+        'user'      => array(
             'route'         => 'admin',
             'label'         => _t('By user'),
             'controller'    => 'list',

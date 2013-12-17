@@ -24,7 +24,7 @@ class Modulelist extends AbstractRegistry
      * {@inheritDoc}
      * @param   array  $options potential values for type: active, inactive
      * @return  array
-     *  - keys: directory, name, title, id, logo, version, update
+     *  - keys: directory, name, title, id, logo, version, update, icon
      */
     protected function loadDynamic($options)
     {
@@ -39,19 +39,20 @@ class Modulelist extends AbstractRegistry
         $select = $model->select();
         $select->order('title')->where($where);
         $rowset = $model->selectWith($select);
-        //$rowset = $model->select($where);
         foreach ($rowset as $module) {
-            $info = Pi::service('module')->loadMeta($module->directory,
-                'meta');
+            $info = Pi::service('module')->loadMeta(
+                $module->directory,
+                'meta'
+            );
             $modules[$module->name] = array(
                 'id'            => $module->id,
                 'name'          => $module->name,
                 'title'         => $module->title,
-                //'active'        => $module->active,
                 'version'       => $module->version,
                 'directory'     => $module->directory,
                 'update'        => $module->update,
                 'logo'          => isset($info['logo']) ? $info['logo'] : '',
+                'icon'          => isset($info['icon']) ? $info['icon'] : '',
             );
         }
 
