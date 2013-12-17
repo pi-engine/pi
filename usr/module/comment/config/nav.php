@@ -60,10 +60,14 @@ return array(
             'route'         => 'admin',
             'label'         => _t('All comments'),
             'controller'    => 'list',
-            'action'        => 'index',
-
-            /*
+            
             'pages'         => array(
+                'all'       => array(
+                    'route'         => 'admin',
+                    'label'         => _t('All posts'),
+                    'controller'    => 'list',
+                    'action'        => 'index'
+                ),
                 'active'     => array(
                     'route'         => 'admin',
                     'label'         => _t('Active posts'),
@@ -83,7 +87,6 @@ return array(
                     ),
                 ),
             ),
-            */
         ),
         'category'     => array(
             'route'         => 'admin',
@@ -107,7 +110,24 @@ return array(
             'route'         => 'admin',
             'label'         => _t('By article'),
             'controller'    => 'list',
-            'action'        => 'article',
+
+            'pages'         => array(
+                'all'       => array(
+                    'route'         => 'admin',
+                    'label'         => _t('All posts'),
+                    'controller'    => 'list',
+                    'action'        => 'article'
+                ),
+                'active'     => array(
+                    'route'         => 'admin',
+                    'label'         => _t('Active posts'),
+                    'controller'    => 'list',
+                    'action'        => 'article',
+                    'params'        => array(
+                        'active'    => 1,
+                    ),
+                ),
+            )
         ),
     ),
 );
