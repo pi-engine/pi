@@ -108,6 +108,7 @@ usr/module/*
 !usr/module/page/
 !usr/module/saml/
 !usr/module/service/
+!usr/module/search/
 !usr/module/system/
 !usr/module/tag/
 !usr/module/test/
