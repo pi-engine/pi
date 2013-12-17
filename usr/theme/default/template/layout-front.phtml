@@ -56,17 +56,23 @@ $this->headLink(array(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
-    <!-- Header: logo, user bar -->
-    <div class="container pi-header">
-        <div class="pi-logo">
-            <h1>
-                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" class="pi-logo-headline"><?php echo _escape($sitename); ?></a>
+    <!-- Header: brand, slogan, user bar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <h1 class="hide">
+                <?php echo _escape($sitename) . _escape($slogan); ?>
             </h1>
-            <h2 class="pi-logo-tagline" title="<?php echo _escape($slogan); ?>"><?php echo _escape($slogan); ?></h2>
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
+               title="<?php echo _escape($slogan); ?>">
+               <?php echo _escape($sitename); ?>
+            </a>
+            <ul class="nav navbar-nav navbar-right">
+                <?php echo $this->widget('system-user-bar'); ?>
+            </ul>
         </div>
-        <ul class="list-inline pi-user-bar">
-           <?php echo $this->widget('system-user-bar'); ?>
-        </ul>
     </div>
 
     <!-- Navigation: menu, breadcrumbs  -->
@@ -152,7 +158,7 @@ $this->headLink(array(
                 <?php } ?>
                 <!-- Module zone -->
                 <?php if (!empty($content)) { ?>
-                <div class="row pi-module-content">
+                <div class="pi-module-content">
                     <?php echo $content; ?>
                 </div>
                 <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
