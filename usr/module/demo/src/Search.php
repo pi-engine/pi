@@ -10,15 +10,20 @@
 namespace Module\Demo;
 
 use Pi;
-use Pi\Application\AbstractModuleAwareness;
+use Pi\Search\AbstractSearch;
 
-class Search extends AbstractModuleAwareness
+class Search extends AbstractSearch
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $module = 'demo';
 
-    public function index($queries, $type, $limit, $offset, $uid)
+    /**
+     * {@inheritDoc}
+     */
+    public function query($queries, $limit = 0, $offset = 0, $uid = 0)
     {
-        $router = Pi::engine()->application()->getRouter();
         $results = array();
         $max = 1000;
         $count = 0;
@@ -27,7 +32,7 @@ class Search extends AbstractModuleAwareness
             $item = array(
                 'uid'       => 1,
                 'time'      => time(),
-                'link'      => $router->assemble(
+                'link'      => Pi::service('url')->assemble(
                     'default',
                     array(
                         'module'        => 'demo',
@@ -42,6 +47,8 @@ class Search extends AbstractModuleAwareness
             $results[] = $item;
         }
 
-        return $results;
+        $result = $this->buildResult($max, $results);
+
+        return $result;
     }
 }

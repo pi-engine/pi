@@ -68,7 +68,7 @@ return array(
         // Event specs
         'event'     => 'event.php',
         // Search registry, 'class:method'
-        'search'    => array('callback' => array('search', 'index')),
+        //'search'    => array('callback' => array('search', 'index')),
         // View pages
         'page'      => 'page.php',
         // Navigation definition

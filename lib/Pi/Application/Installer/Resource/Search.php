@@ -15,9 +15,19 @@ use Pi;
  * Module search setup configuration
  *
  * ```
- * array(
- *  'callback'  => array('class', 'method'),
- * );
+ *  // Comprehensive mode
+ *  return array(
+ *      'class'  => <searchClass>,
+ *  );
+ *
+ *  // Simple mode
+ *  return <searchClass>;
+ *
+ *  // Simplest mode
+ *  return;
+ *
+ *  // Disable search
+ *  return false;
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -25,26 +35,63 @@ use Pi;
 class Search extends AbstractResource
 {
     /**
+     * Canonize config data
+     *
+     * @param string|array $config
+     *
+     * @return string
+     */
+    protected function canonize($config)
+    {
+        $class = '';
+        if (false === $config) {
+            return $class;
+        }
+        if ($config) {
+            if (is_string($config)) {
+                $class = $config;
+            } elseif (!empty($config['class'])) {
+                $class = $config['class'];
+            }
+        }
+        $class = $class ?: 'search';
+        $directory = $this->event->getParam('directory');
+        $class = sprintf(
+            'Module\\%s\\%s',
+            ucfirst($directory),
+            ucfirst($class)
+        );
+        $abstract = 'Pi\Search\AbstractSearch';
+        if (class_exists($class) && is_subclass_of($class, $abstract)) {
+            $result = $class;
+        } else {
+            $result = '';
+        }
+
+        return $result;
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function installAction()
     {
+        /*
         if (empty($this->config)) {
             return;
         }
+        */
         $module = $this->event->getParam('module');
         Pi::registry('search')->clear($module);
-
-        $model = Pi::model('search');
-        $data = $this->config;
-        $directory = $this->event->getParam('directory');
-        $data['callback'][0] = sprintf(
-            'Module\\%s\\%s',
-            ucfirst($directory),
-            $data['callback'][0]
+        $class = $this->canonize($this->config);
+        if (!$class) {
+            return;
+        }
+        $data = array(
+            'module'    => $module,
+            'callback'  => $class,
         );
-        $data['module'] = $module;
-        $row = $model->createRow($data);
+        $row = Pi::model('search')->createRow($data);
         $row->save();
 
         return true;
@@ -61,23 +108,21 @@ class Search extends AbstractResource
             return;
         }
 
+        $class = $this->canonize($this->config);
+        if (!$class) {
+            return;
+        }
         $model = Pi::model('search');
         $rowset = $model->select(array('module' => $module));
         $row = $rowset->current();
-        if (empty($this->config)) {
-            if ($row) {
-                $row->delete();
-            }
-            return true;
+        if ($row && !$class) {
+            $row->delete();
+            return;
         }
-        $data = $this->config;
-        $directory = $this->event->getParam('directory');
-        $data['callback'][0] = sprintf(
-            'Module\\%s\\%s',
-            ucfirst($directory),
-            $data['callback'][0]
+        $data = array(
+            'module'    => $module,
+            'callback'  => $class,
         );
-        $data['module'] = $module;
         if ($row) {
             $row->assign($data);
         } else {
