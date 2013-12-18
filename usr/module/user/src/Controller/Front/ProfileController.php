@@ -403,7 +403,7 @@ class ProfileController extends ActionController
             'form'      => $form,
             'ResetShow' => 1
         ));
-        $this->view()->setTemplate('system:component/form-horizontal');
+        $this->view()->setTemplate('system:component/form');
     }
 
     /**

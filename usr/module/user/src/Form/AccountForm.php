@@ -22,6 +22,17 @@ class AccountForm extends BaseForm
     public function init()
     {
         $this->add(array(
+            'name'       => 'identity',
+            'options'    => array(
+                'label' => __('Username'),
+            ),
+            'type' => 'text',
+            'attributes' => array(
+                'disabled' => 'disabled'
+            ),
+        ));
+
+        $this->add(array(
             'name'       => 'email',
             'options'    => array(
                 'label' => __('Email'),

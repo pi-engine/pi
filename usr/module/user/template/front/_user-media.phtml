@@ -1,19 +1,17 @@
-<?php
-   $is_owner = _get('uid') ? false : true;
-?>
+<?php $is_owner = _get('uid') ? false : true; ?>
 <div class="clearfix user-avatar-header">
     <div class="user-info-right">
         <?php if ($is_owner) { ?>
-        <a style="margin-right: 15px;" class="btn btn-small pull-left" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
-            <i class="icon-eye-open"></i>
+        <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
+            <i class="fa fa-eye"></i>
             <?php _e('Switch to view of others'); ?>
         </a>
-        <div class="dropdown inline user-dropdown-quicklinks">
-            <a style="margin-bottom: 2px;" href="javascript:;" class="btn btn-small">
-                <i class="icon-sort-by-attributes"></i>
-                <?php _e('Quicklinks'); ?><span style="margin-left: 5px;" class="caret"></span>
-            </a>
-            <ul style="margin-top: 0;" class="dropdown-menu">
+        <div class="dropdown inline">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <?php _e('Quicklinks'); ?>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
                 <li>
                     <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
                         <?php _e('Setting'); ?>
@@ -39,17 +37,17 @@
         </div>
         <?php } else { ?>
         <?php if (Pi::user()->getId() == $uid) { ?>
-        <a style="margin-right: 15px;" class="btn btn-small" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
-            <i class="icon-eye-open"></i>
+        <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
+            <i class="fa fa-eye"></i>
             <?php _e('Back to view of own'); ?>
         </a>
-        <button class="btn btn-small">
-            <i class="icon-envelope"></i>
+        <button class="btn btn-default">
+            <i class="fa fa-envelope"></i>
             <?php _e('Send message'); ?>
         </button>
         <?php } else { ?>
-        <a class="btn btn-small" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
-            <i class="icon-envelope"></i>
+        <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+            <i class="fa fa-envelope"></i>
             <?php _e('Send message'); ?>
         </a>
         <?php } ?>
@@ -60,7 +58,7 @@
             <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
         </div>
         <?php if ($is_owner) { ?>
-        <a class="hide user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+        <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
             <?php _e('Change avatar'); ?>
         </a>
         <?php } ?>
@@ -77,17 +75,7 @@
         <?php } ?>
     </div>
 </div>
-<style>
-    .user-nav-icon {
-        margin-right: 3px;
-        vertical-align: middle;
-    }
-
-    .user-nav-dropdown:hover .dropdown-menu {
-        display: block;
-    }
-</style>
-<ul class="nav nav-tabs user-nav">
+<ul class="nav nav-tabs">
     <?php
         $items = $nav['items'];
         $length = count($items);
@@ -98,8 +86,12 @@
             foreach ($items  as $item) { ?>
                 <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
                     <a href="<?php echo $item['url']; ?>">
-                        <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
-                        <?php echo $item['title']; ?>
+                        <?php 
+                        if ($item['icon']) {
+                            echo '<i class="' . $item['icon'] . '"></i> ';
+                        }
+                        echo $item['title'];
+                        ?>
                     </a>
                 </li>
             <?php }
@@ -123,8 +115,12 @@
                     $item = $items[$i]; ?>
                     <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
                         <a href="<?php echo $item['url']; ?>">
-                            <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
-                            <?php echo $item['title']; ?>
+                            <?php 
+                            if ($item['icon']) {
+                                echo '<i class="' . $item['icon'] . '"></i> ';
+                            }
+                            echo $item['title'];
+                            ?>
                         </a>
                     </li>
                 <?php }
@@ -134,33 +130,44 @@
                     $item = $items[$i]; ?>
                     <li>
                         <a href="<?php echo $item['url']; ?>">
-                            <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
-                            <?php echo $item['title']; ?>
+                           <?php 
+                            if ($item['icon']) {
+                                echo '<i class="' . $item['icon'] . '"></i> ';
+                            }
+                            echo $item['title'];
+                            ?>
                         </a>
                     </li>
                 <?php } ?>
 
                 <li class="active">
                     <a href="<?php echo $items[$curNum]['url']; ?>">
-                        <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
-                        <?php echo $items[$curNum]['title']; ?>
+                        <?php 
+                        if ($item['icon']) {
+                            echo '<i class="' . $item['icon'] . '"></i> ';
+                        }
+                        echo $item['title'];
+                        ?>
                     </a>
                 </li>
             <?php } ?>
-
-            <li class="dropdown user-nav-dropdown">
-                <a style="margin-bottom: 2px;" class="dropdown-toggle" href="javascript:;">
-                    <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
-                    <?php _e('More'); ?><b style="margin-left: 5px;" class="caret"></b>
+            <li class="dropdown">
+                <a data-toggle="dropdown" href="#">
+                    <?php _e('More'); ?>
+                    <span class="caret"></span>
                 </a>
-                <ul style="margin-top: 0;" class="dropdown-menu">
+                <ul class="dropdown-menu">
                     <?php for (; $i < $length; $i++) {
                         if ($isNeedMoveCur && $curNum == $i) continue;
                         $item = $items[$i]; ?>
                         <li>
                             <a href="<?php echo $item['url']; ?>">
-                                <?php echo $item['icon'] ? '<img class="user-nav-icon" src="' . $item['icon'] . '">' : ''; ?>
-                                <?php echo $item['title']; ?>
+                                <?php 
+                                if ($item['icon']) {
+                                    echo '<i class="' . $item['icon'] . '"></i> ';
+                                }
+                                echo $item['title'];
+                                ?>
                             </a>
                         </li>
                     <?php } ?>

@@ -3,52 +3,51 @@ $this->css(array(
   $this->assetModule('front/front.css')
 ));
 ?>
-<?php include '_user-side-nav.phtml' ?>
-<div class="span9">
-    <div class="page-header">
-        <h3 style="margin: -5px 0 9px;"><?php _e('Privacy'); ?></h3>
-        <?php if (!empty($privacy)) {?>
-            <div class="muted" style="margin: 0 0 11px;"><?php _e('Change your privacy settings.'); ?></div>
-        <?php }  else { ?>
-            <div class="alert">
-                <strong><?php _e('Warning!'); ?></strong><?php _e('No available privacy setting'); ?>
+<div class="row">
+    <?php include '_user-side-nav.phtml' ?>
+    <div class="col-md-9">
+        <div class="user-page-header">
+            <h3><?php _e('Privacy'); ?></h3>
+            <div class="text-muted"><?php _e('Change your privacy settings.'); ?></div>
+        </div>
+        <?php
+        if (isset($result)) {
+            echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
+                 $result['status'] ? 'alert-success' : 'alert-error',
+                 $result['message']);
+        }
+        ?>
+        <?php if (empty($privacy)) {?>
+        <div class="alert alert-info">
+            <strong><?php _e('Warning!'); ?></strong>
+            <?php _e('No available privacy setting'); ?>
+        </div>
+        <?php } else { ?>
+        <form class="form-horizontal" method="post">
+            <?php foreach ($privacy as $item) { ?>
+            <div class="control-group">
+                <label class="control-label"><?php echo $item['title']; ?></label>
+                <div class="controls">
+                    <select name="<?php echo $item['field']; ?>">
+                        <?php
+                        foreach ($limits as $key => $limit) {
+                            echo sprintf('<option value="%s"%s>%s',
+                                $key,
+                                $key == $item['value'] ? ' selected = selected ' : '',
+                                $limit
+                             );
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
-        <?php }?>
+            <?php } ?>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
+                </div>
+            </div>
+        </form>
+        <?php } ?>
     </div>
-    <?php
-    if (isset($result)) {
-        $this->bootstrap('js/bootstrap.min.js');
-        echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
-             $result['status'] ? 'alert-success' : 'alert-error',
-             $result['message']);
-    }
-    ?>
-
-    <form class="form-horizontal" method="post">
-        <?php foreach ($privacy as $item) { ?>
-        <div class="control-group">
-            <label class="control-label"><?php echo $item['title']; ?></label>
-            <div class="controls">
-                <select name="<?php echo $item['field']; ?>">
-                    <?php
-                    foreach ($limits as $key => $limit) {
-                        echo sprintf('<option value="%s"%s>%s',
-                            $key,
-                            $key == $item['value'] ? ' selected = selected ' : '',
-                            $limit
-                         );
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
-        <?php } ?>
-        <?php if (!empty($privacy)) {?>
-        <div class="control-group">
-            <div class="controls">
-                <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
-            </div>
-        </div>
-        <?php } ?>
-    </form>
 </div>

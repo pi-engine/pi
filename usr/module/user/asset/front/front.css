@@ -147,24 +147,18 @@
 }
 
 /* Edit */
-.user-profile-back {
-  padding: 8px 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  display: block;
-}
-
-.user-profile-back:hover {
+.user-thumbnail:hover {
   text-decoration: none;
 }
 
-.user-profile-back .media-heading {
-  color: #333;
+.user-page-header {
+  padding-bottom: 9px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
-.user-profile-back:hover .media-heading {
-  color: #005580;
+.user-page-header h3 {
+  margin-top: 4px;
 }
 
 .user-info-item {

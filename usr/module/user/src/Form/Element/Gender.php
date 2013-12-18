@@ -32,6 +32,8 @@ class Gender extends Radio
         );
 
         $this->valueOptions = $options;
+        $this->labelAttributes = 'radio-inline';
+        
         return $this->valueOptions;
     }
 }
