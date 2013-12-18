@@ -128,7 +128,6 @@ class BootstrapForm extends BaseForm
                 'label_attributes' => array(
                     'class' => 'radio-inline'
                 )
-
             ),
             'type'  => 'radio',
             'attributes'    => array(

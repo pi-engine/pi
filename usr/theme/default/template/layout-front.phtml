@@ -59,19 +59,23 @@ $this->headLink(array(
     <!-- Header: brand, slogan, user bar -->
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
-            <h1 class="hide">
-                <?php echo _escape($sitename) . _escape($slogan); ?>
-            </h1>
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
-               title="<?php echo _escape($slogan); ?>">
-               <?php echo _escape($sitename); ?>
-            </a>
-            <ul class="nav navbar-nav navbar-right">
-                <?php echo $this->widget('system-user-bar'); ?>
-            </ul>
+            <div class="navbar-header">
+                <h1 class="hide">
+                    <?php echo _escape($sitename) . _escape($slogan); ?>
+                </h1>
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
+                   title="<?php echo _escape($slogan); ?>">
+                   <?php echo _escape($sitename); ?>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <?php echo $this->widget('system-user-bar'); ?>
+                </ul>
+            </div>
         </div>
     </div>
 

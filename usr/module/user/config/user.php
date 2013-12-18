@@ -94,7 +94,18 @@ return array(
             'type'      => 'account',
             'name'      => 'gender',
             'title'     => _a('Gender'),
-            'edit'      => 'Module\User\Form\Element\Gender',
+            'edit'      => array(
+                'element'  =>  'radio',
+                'options'       => array(
+                    'value_options' => array(
+                         'male' => __('Male'),
+                         'female' => __('Female'),
+                     ),
+                    'label_attributes' => array(
+                        'class' => 'radio-inline'
+                    ),
+                ),
+            ),
             'filter'    => 'Gender',
         ),
         // Account: birth date
@@ -218,7 +229,6 @@ return array(
                 'element' => 'textarea',
                 'attributes' => array(
                     'rows'    => 4,
-                    'class'   => 'input-block-level',
                 ),
             )
         ),
@@ -230,7 +240,6 @@ return array(
                 'element' => 'textarea',
                 'attributes' => array(
                     'rows'    => 4,
-                    'class'   => 'input-block-level',
                 ),
             )
         ),
