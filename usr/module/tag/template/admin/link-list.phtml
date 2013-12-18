@@ -3,30 +3,30 @@
 ?>
 <div class="row">
     <div class="col-md-3">
-        <div class="sub-nav">
-            <?php
-            $items = array();
+        <?php
+        $items = array();
+        $item = array(
+            'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'list')),
+            'label' => _a('All'),
+        );
+        if (null == $curModule) {
+            $item['active'] = 1;
+        }
+        $items[] = $item;
+        foreach ($moduleArray as $row) {
             $item = array(
-                'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'linklist')),
-                'label' => _a('ALL'),
+                'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'list', 'm' => $row)),
+                'label'   => $this->escape(ucfirst($row)),
             );
-            if (null == $curModule) {
+            if ($curModule === $row) {
                 $item['active'] = 1;
             }
             $items[] = $item;
-            foreach ($moduleArray as $row) {
-                $item = array(
-                    'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'linklist', 'm' => $row)),
-                    'label'   => $this->escape(ucfirst($row)),
-                );
-                if ($curModule === $row) {
-                    $item['active'] = 1;
-                }
-                $items[] = $item;
-            }
-            echo $this->navMenu($items);
-            ?>
-        </div>
+        }
+        echo $this->navMenu($items, array(
+            'class' => 'nav nav-pills nav-stacked'
+        ));
+        ?>
     </div>
     <div class="col-md-9">
         <h3><?php echo ucfirst($curModule) . ' ' . _a('tags relationships'); ?></h3>
