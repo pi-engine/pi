@@ -130,6 +130,12 @@ class IndexController extends ActionController
             $this->redirectTo(array('action' => 'index'));
             return;
         }
+        if ('google' == $service && $gcsCode = $this->config('google')) {
+            $this->view()->assign('gcs', $gcsCode);
+            $this->view()->setTemplate('search-google');
+            return;
+        }
+
         $data = $this->getService($service);
         if (!$data) {
             $this->redirectTo(array('action' => 'index'));

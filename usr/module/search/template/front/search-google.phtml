@@ -1,0 +1,47 @@
+<!--
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo sprintf(__('Google search for %s'), _escape(Pi::config('sitename'))); ?></h3>
+    </div>
+    <div class="panel-body">
+        <script>
+            (function() {
+                var cx = '<?php echo $gcs; ?>';
+                var gcse = document.createElement('script');
+                gcse.type = 'text/javascript';
+                gcse.async = true;
+                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                    '//www.google.com/cse/cse.js?cx=' + cx;
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(gcse, s);
+            })();
+        </script>
+        <gcse:search></gcse:search>
+    </div>
+</div>
+-->
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo sprintf(__('Google search for %s'), _escape(Pi::config('sitename'))); ?></h3>
+    </div>
+    <div class="panel-body" id="cse">
+
+<script src="http://www.google.com.hk/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+    google.load('search', '1', {language : '<?php echo Pi::config('locale'); ?>'});
+    google.setOnLoadCallback(function(){
+        var customSearchControl = new google.search.CustomSearchControl('<?php echo $gcs; ?>');
+        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+        customSearchControl.draw('cse');
+        var match = location.search.match(/q=([^&]*)(&|$)/);
+        if(match && match[1]){
+            var search = decodeURIComponent(match[1]);
+            customSearchControl.execute(search);
+        }
+    });
+</script>
+<link rel="stylesheet" href="http://www.google.com.hk/cse/style/look/shiny.css" type="text/css" />
+
+    </div>
+</div>

@@ -48,6 +48,11 @@ $config = array(
         'edit'          => 'textarea',
         'value'         => 'pi engine, zend framework, php, search',
     ),
+
+    'google'       => array(
+        'title'         => _t('Google Search Code'),
+        'description'   => _t('GSC custom search provided by Google at https://www.google.com/cse/'),
+    ),
 );
 
 return $config;
