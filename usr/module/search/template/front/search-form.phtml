@@ -31,8 +31,8 @@
             <div class="form-group">
                 <label><?php _e('Try:'); ?></label>
                 <div class="btn-group btn-group-xs">
-                    <?php foreach ($service as $data) { ?>
-                        <button type="button" class="btn btn-default" onclick="window.open('<?php echo $data['url']; ?>')">
+                    <?php foreach ($service as $name => $data) { ?>
+                        <button type="submit" class="btn btn-default" onclick="this.form.action='<?php echo $this->url('', array('action' => 'external', 'service' => $name)); ?>'; this.form.target='_blank';">
                             <?php echo _escape($data['title']); ?>
                         </button>
                     <?php } ?>

@@ -53,7 +53,7 @@ class IndexController extends ActionController
         }
         $this->view()->assign(array(
             'modules'   => $modules,
-            'service'   => $this->serviceList($query),
+            'service'   => $this->getService(),
         ));
     }
 
@@ -117,6 +117,28 @@ class IndexController extends ActionController
             'modules'   => $modules,
             'label'     => $label,
         ));
+    }
+
+    /**
+     * Search by external service
+     */
+    public function externalAction()
+    {
+        $query      = $this->params('q');
+        $service    = $this->params('service');
+        if (!$service) {
+            $this->redirectTo(array('action' => 'index'));
+            return;
+        }
+        $data = $this->getService($service);
+        if (!$data) {
+            $this->redirectTo(array('action' => 'index'));
+            return;
+        }
+        $url = call_user_func($data['url'], $query);
+        header('location: ' . $url);
+
+        exit();
     }
 
     /**
@@ -231,13 +253,14 @@ class IndexController extends ActionController
     /**
      * Get third-party search service list
      *
-     * @param string $query
+     * @param string $service
      *
      * @return array
      */
-    protected function serviceList($query = '')
+    protected function getService($service = '')
     {
         $home = Pi::url('www');
+        //$home = 'pialog.org'; // For localhost test
 
         $googleQuery = function ($query) use ($home) {
             $home = preg_replace('/^(http[s]?:\/\/)/i', '', $home);
@@ -246,26 +269,54 @@ class IndexController extends ActionController
 
             return $link;
         };
+        $bingQuery = function ($query) use ($home) {
+            $home = preg_replace('/^(http[s]?:\/\/)/i', '', $home);
+            $pattern = 'http://bing.com?q=site:%s+%s';
+            $link = sprintf($pattern, urlencode($home), urlencode($query));
+
+            return $link;
+        };
         $baiduQuery = function ($query) use ($home) {
             preg_match('/^(http[s]?:\/\/)?([^\/]*)/i', $home, $match);
             $home = $match[2];
-            //$home = parse_url($home, PHP_URL_HOST);
             $pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
             $link = sprintf($pattern, urlencode($home), urlencode($query));
 
             return $link;
         };
+        $sogouQuery = function ($query) use ($home) {
+            $home = preg_replace('/^(http[s]?:\/\/)/i', '', $home);
+            $pattern = 'http://sogou.com/web?query=site:%s+%s';
+            $link = sprintf($pattern, urlencode($home), urlencode($query));
+
+            return $link;
+        };
+
         $list = array(
-            array(
+            'google' => array(
                 'title' => __('Google'),
-                'url'   => $googleQuery($query),
+                'url'   => $googleQuery,
             ),
-            array(
+            'bing' => array(
+                'title' => __('Bing'),
+                'url'   => $bingQuery,
+            ),
+            'baidu' => array(
                 'title' => __('Baidu'),
-                'url'   => $baiduQuery($query),
+                'url'   => $baiduQuery,
+            ),
+            'sogou' => array(
+                'title' => __('Sogou'),
+                'url'   => $sogouQuery,
             ),
         );
 
-        return $list;
+        if ($service) {
+            $result = isset($list[$service]) ? $list[$service] : null;
+        } else {
+            $result = $list;
+        }
+
+        return $result;
     }
 }
