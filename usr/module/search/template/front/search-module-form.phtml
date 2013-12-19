@@ -1,4 +1,4 @@
-<form role="form">
+<form id="pi-search-form" role="form">
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group input-group-lg">
@@ -19,14 +19,14 @@
                 </div>
 
                 <div class="btn-group btn-group-xs">
-                    <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo $this->url('', array('action' => 'index')); ?>'">
+                    <button type="submit" class="btn btn-default" onclick="this.form.action='<?php echo $this->url('', array('action' => 'index')); ?>';">
                         <?php _e('Global'); ?>
                     </button>
                 </div>
 
                 <div class="btn-group btn-group-xs">
                     <?php foreach ($modules as $name => $data) { ?>
-                        <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo $data['url']; ?>'">
+                        <button type="submit" class="btn btn-default" onclick="this.form.action='<?php echo $this->url('', array('action' => 'module', 'm' => $name)); ?>';">
                             <?php echo _escape($data['title']); ?>
                         </button>
                     <?php } ?>
