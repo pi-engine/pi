@@ -1,0 +1,81 @@
+
+<form role="form">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" name="q" value="<?php echo _escape($query); ?>" class="form-control" placeholder="Pi Engine Search">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span> <?php _e('Search'); ?>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><?php _e('Search in:'); ?></label>
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-primary">
+                        <?php _e('Global'); ?>
+                    </button>
+                </div>
+
+                <div class="btn-group btn-group-xs">
+                    <?php foreach ($modules as $name => $data) { ?>
+                        <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo $data['url']; ?>'">
+                            <?php echo _escape($data['title']); ?>
+                        </button>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php _e('Search result'); ?></h3>
+    </div>
+    <div class="panel-body">
+        <?php
+            if (1 < $total) {
+                echo sprintf(__('There are %d results.'), $total);
+            } elseif (1 == $total) {
+                echo sprintf(__('There is %d found.'), $total);
+            } else {
+                _e('No result found.');
+            }
+        ?>
+    </div>
+</div>
+
+
+<?php foreach ($result as $name => $data) { ?>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo _escape($modules[$name]['title']); ?></h3>
+    </div>
+    <div class="panel-body">
+        <?php
+        $total = $data->getTotal();
+        if (1 < $total) {
+            $message = sprintf(__('There are %d results.'), $total);
+        } elseif (1 == $total) {
+            $message = sprintf(__('There is %d found.'), $total);
+        } else {
+            $message = __('No result found.');
+        }
+        ?>
+        <a href="<?php echo $modules[$name]['url']; ?>"><?php echo $message; ?></a>
+    </div>
+
+    <div class="list-group">
+        <?php foreach ($data as $item) { ?>
+        <a href="<?php echo $item['link']; ?>" class="list-group-item">
+            <h4 class="list-group-item-heading"><?php echo _escape($item['title']); ?></h4>
+            <p class="list-group-item-text"><?php echo _escape($item['content']); ?></p>
+        </a>
+        <?php } ?>
+    </div>
+</div>
+<?php } ?>

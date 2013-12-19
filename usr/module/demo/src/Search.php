@@ -38,8 +38,7 @@ class Search extends AbstractSearch
                         'module'        => 'demo',
                         'controller'    => 'search',
                         'q'             => 'test-' . $i,
-                    ),
-                    'search'
+                    )
                 ),
                 'title'     => sprintf(__('Test term %d'), $i),
                 'content'   => sprintf(__('Some content for term %d'), $i),

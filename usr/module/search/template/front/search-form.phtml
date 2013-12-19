@@ -1,0 +1,33 @@
+
+<form role="form">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group input-group-lg">
+                <input type="text" name="q" class="form-control" placeholder="Pi Engine Search">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span> <?php _e('Search'); ?>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><?php _e('Search in:'); ?></label>
+                <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-primary">
+                        <?php _e('Global'); ?>
+                    </button>
+                </div>
+
+                <div class="btn-group btn-group-xs">
+                    <?php foreach ($modules as $name => $data) { ?>
+                    <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo $this->url('', array('action' => 'module', 'm' => $name)); ?>'">
+                        <?php echo _escape($data['title']); ?>
+                    </button>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

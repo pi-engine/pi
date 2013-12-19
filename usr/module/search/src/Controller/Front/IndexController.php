@@ -11,6 +11,7 @@ namespace Module\Search\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
 
 /**
  * Search controller
@@ -20,46 +21,20 @@ use Pi\Mvc\Controller\ActionController;
 class IndexController extends ActionController
 {
     /**
-     * Search in avaliable modules
+     * Search in available modules
      *
      * @return void
      */
     public function indexAction()
     {
         $query  = $this->params('q');
-        $module = (array) $this->params('m');
-
-        $moduleSearch   = Pi::registry('search')->read();
-        $moduleList     = Pi::registry('modulelist')->read();
-        $modules        = array();
-        $selected       = array();
-        array_wark($moduleSearch, function ($callback, $name) use (
-            &$modules,
-            &$selected,
-            $moduleList,
-            $m
-        ) {
-            if (!isset($moduleList[$name])) {
-                return;
-            }
-            $node = $moduleList[$name];
-            $modules[$name] = array(
-                'id'        => $node['id'],
-                'title'     => $node['title'],
-                'icon'      => $node['icon'],
-                //'callback'  => $callback,
-            );
-            if (in_array($node['id'], $m)) {
-                $selected[] = $name;
-                $modules[$name]['selected'] = 1;
-            }
-        });
+        $modules = $this->getModules();
 
         if ($query) {
             $terms  = $query ? $this->parseQuery($query) : array();
             if ($terms) {
                 $limit  = $this->config('leading_limit');
-                $result = $this->query($terms, $selected, $limit);
+                $result = $this->query($terms, $limit);
             } else {
                 $result = array();
             }
@@ -67,6 +42,20 @@ class IndexController extends ActionController
             foreach ($result as $name => $data) {
                 $total += $data->getTotal();
             }
+            array_walk($modules, function (&$data, $name) use ($query) {
+                $data['url'] = $this->url(
+                    '',
+                    array(
+                        'action' => 'module',
+                        'm' => $name
+                    ),
+                    array(
+                        'query' => array (
+                            'q' => $query,
+                        ),
+                    )
+                );
+            });
             $this->view()->assign(array(
                 'query'     => $query,
                 'result'    => $result,
@@ -78,7 +67,6 @@ class IndexController extends ActionController
         }
         $this->view()->assign(array(
             'modules'   => $modules,
-            'selected'  => $selected,
         ));
     }
 
@@ -88,37 +76,73 @@ class IndexController extends ActionController
     public function moduleAction()
     {
         $query  = $this->params('q');
-        $page   = $this->params('p');
+        $page   = $this->params('page') ?: 1;
         $module = $this->params('m');
 
-        $moduleSearch   = Pi::registry('search')->read();
-        $moduleList     = Pi::registry('modulelist')->read();
-        if (!isset($moduleSearch[$module]) || !isset($moduleList[$module])) {
+        $modules = $this->getModules();
+        if (!isset($modules[$module])) {
             $this->redirectTo(array('action' => 'index'));
             return;
         }
+        $label = $modules[$module]['title'];
+        unset($modules[$module]);
 
         if ($query) {
             $terms  = $query ? $this->parseQuery($query) : array();
-            $total  = 0;
             if ($terms) {
                 $limit  = $this->config('list_limit');
-                $result = $this->query($terms, $module, $limit);
+                $offset = $limit * ($page -1);
+                $result = $this->query($terms, $limit, $offset, $module);
                 $total  = $result ? $result->getTotal() : 0;
             } else {
                 $result = array();
+                $total  = 0;
             }
+            if ($total > $limit) {
+                $paginator = Paginator::factory($total, array(
+                    'limit' => $limit,
+                    'page'  => $page,
+                    'url_options'   => array(
+                        'params'    => array(
+                            'm' => $module,
+                        ),
+                        'options'   => array(
+                            'query' => array(
+                                'q' => $query,
+                            ),
+                        ),
+                    ),
+                ));
+            } else {
+                $paginator = null;
+            }
+            array_walk($modules, function (&$data, $name) use ($query) {
+                $data['url'] = $this->url(
+                    '',
+                    array(
+                        'action' => 'module',
+                        'm' => $name
+                    ),
+                    array(
+                        'query' => array (
+                            'q' => $query,
+                        ),
+                    )
+                );
+            });
             $this->view()->assign(array(
                 'query'     => $query,
                 'result'    => $result,
                 'total'     => $total,
+                'paginator' => $paginator,
             ));
             $this->view()->setTemplate('search-module-result');
         } else {
             $this->view()->setTemplate('search-module-form');
         }
         $this->view()->assign(array(
-            'selected'  => $module,
+            'modules'   => $modules,
+            'label'     => $label,
         ));
     }
 
@@ -131,6 +155,8 @@ class IndexController extends ActionController
      */
     protected function parseQuery($query = '')
     {
+        return array('test', 'query terms');
+
         $terms = array();
         $pattern = '/(["\'])(?>[^"\']|["\'](?<!\1)|(?<=\\)\1)*+\1/';
         $callback = function ($m) use (&$terms) {
@@ -153,18 +179,19 @@ class IndexController extends ActionController
      * Do search query
      *
      * @param array        $terms
-     * @param string|array $in
      * @param int          $limit
      * @param int          $offset
+     * @param string|array $in
      *
      * @return array
      */
-    protected function query(array $terms, $in = '', $limit = 0, $offset = 0)
+    protected function query(array $terms, $limit = 0, $offset = 0, $in = array())
     {
         $moduleSearch   = Pi::registry('search')->read();
         $moduleList     = Pi::registry('modulelist')->read();
         $modules        = (array) $in;
         $result         = array();
+
         foreach ($moduleSearch as $name => $callback) {
             if ($modules && !in_array($name, $modules)) {
                 continue;
@@ -181,5 +208,30 @@ class IndexController extends ActionController
         }
 
         return $result;
+    }
+
+    /**
+     * Get modules available for search
+     *
+     * @return array
+     */
+    protected function getModules()
+    {
+        $moduleSearch   = Pi::registry('search')->read();
+        $moduleList     = Pi::registry('modulelist')->read();
+        $modules        = array();
+        foreach (array_keys($moduleSearch) as $name) {
+            if (!isset($moduleList[$name])) {
+                continue;
+            }
+            $node = $moduleList[$name];
+            $modules[$name] = array(
+                'id'        => $node['id'],
+                'title'     => $node['title'],
+                'icon'      => $node['icon'],
+            );
+        };
+
+        return $modules;
     }
 }

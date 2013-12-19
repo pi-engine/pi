@@ -82,7 +82,7 @@ class Search extends AbstractResource
         }
         */
         $module = $this->event->getParam('module');
-        Pi::registry('search')->clear($module);
+        Pi::registry('search')->flush();
         $class = $this->canonize($this->config);
         if (!$class) {
             return;
@@ -103,7 +103,7 @@ class Search extends AbstractResource
     public function updateAction()
     {
         $module = $this->event->getParam('module');
-        Pi::registry('search')->clear($module);
+        Pi::registry('search')->flush();
         if ($this->skipUpgrade()) {
             return;
         }
@@ -139,7 +139,7 @@ class Search extends AbstractResource
     public function uninstallAction()
     {
         $module = $this->event->getParam('module');
-        Pi::registry('search')->clear($module);
+        Pi::registry('search')->flush();
 
         $model = Pi::model('search');
         $model->delete(array('module' => $module));

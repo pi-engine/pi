@@ -9,6 +9,8 @@
 
 namespace Pi\Search;
 
+use Pi\Application\AbstractModuleAwareness;
+
 /**
  * Abstract class for module search
  *
