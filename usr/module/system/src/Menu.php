@@ -78,7 +78,6 @@ class Menu
         $modules = Pi::registry('modulelist')->read();
         $modulesAllowed = Pi::service('permission')->moduleList($mode);
         $navConfig = array();
-
         foreach ($modules as $name => $item) {
             if (in_array($name, $modulesAllowed)) {
                 $link = Pi::service('url')->assemble('admin', array(
@@ -98,7 +97,7 @@ class Menu
                     'label'     => $item['title'],
                     'href'      => $link,
                     'active'    => $name == $module ? 1 : 0,
-                    'icon'      => '',
+                    'icon'      => $item['icon'],
                     'callback'  => $callback,
                 );
             }
@@ -135,7 +134,7 @@ class Menu
                     'label'     => $item['title'],
                     'href'      => $link,
                     'active'    => $name == $module ? 1 : 0,
-                    'icon'      => '',
+                    'icon'      => $item['icon'],
                 );
             }
             $navConfig[] = $config;

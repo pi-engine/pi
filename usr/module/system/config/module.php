@@ -35,6 +35,8 @@ return array(
 
         // Module is ready for clone? Default as false
         'clonable'      => false,
+        //font-awesome: http://fontawesome.io/icons/
+        'icon'          => 'fa fa-tachometer'
     ),
     // Author information
     'author'    => array(

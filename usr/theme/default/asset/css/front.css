@@ -1,6 +1,15 @@
 /* Base */
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
   padding-top: 60px;
+}
+
+.pi-main-container {
+  padding-bottom: 140px;
 }
 
 /* Bootstrap custom */
@@ -256,16 +265,15 @@ body {
 
 /* Footer */
 .pi-footer {
-  margin-top: 40px;
-  line-height: 24px;
-  font-size: 12px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.pi-footer-line {
-  height: 0;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #fff;
-  margin-bottom: 20px;
+.pi-footer-container {
+  padding: 20px 0 10px 0;
+  border-top: 1px solid #ddd;
 }
 
 .pi-footer-copyright {
