@@ -18,7 +18,8 @@ return array(
         'description'   => _a('Comment management and services.'),
         'version'       => '1.0.0',
         'license'       => 'New BSD',
-        'demo'          => 'http://demo.pialog.org'
+        'demo'          => 'http://demo.pialog.org',
+        'icon'          => 'fa fa-comments-o'
     ),
     // Author information
     'author'    => array(

@@ -22,6 +22,7 @@ return array(
         'logo'          => 'image/logo.png',
         // Demo site link, optional
         'demo'          => 'http://pi-demo.org',
+        'icon'          => 'fa fa-list-alt'
     ),
     // Author information
     'author'    => array(

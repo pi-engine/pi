@@ -24,6 +24,7 @@ return array(
         'license'       => 'New BSD',
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
+        'icon'          => 'fa fa-tags',
     ),
     // Author information
     'author'    => array(
