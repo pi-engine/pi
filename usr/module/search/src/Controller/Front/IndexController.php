@@ -241,13 +241,17 @@ class IndexController extends ActionController
 
         $googleQuery = function ($query) use ($home) {
             $home = preg_replace('/^(http[s]?:\/\/)/i', '', $home);
-            $link = 'http://google.com?#newwindow=1&q=' . urlencode($query . ' site:' . $home);
+            $pattern = 'http://google.com?#newwindow=1&q=site:%s+%s';
+            $link = sprintf($pattern, urlencode($home), urlencode($query));
 
             return $link;
         };
         $baiduQuery = function ($query) use ($home) {
-            $home = parse_url($home, PHP_URL_HOST);
-            $link = 'http://www.baidu.com/s?wd=' . urlencode($query . ' site:' . $home);
+            preg_match('/^(http[s]?:\/\/)?([^\/]*)/i', $home, $match);
+            $home = $match[2];
+            //$home = parse_url($home, PHP_URL_HOST);
+            $pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
+            $link = sprintf($pattern, urlencode($home), urlencode($query));
 
             return $link;
         };
