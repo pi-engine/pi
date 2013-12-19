@@ -28,7 +28,7 @@ class IndexController extends ActionController
     public function indexAction()
     {
         $query  = $this->params('q');
-        $modules = $this->getModules();
+        $modules = $this->getModules($query);
 
         if ($query) {
             $terms  = $query ? $this->parseQuery($query) : array();
@@ -42,20 +42,6 @@ class IndexController extends ActionController
             foreach ($result as $name => $data) {
                 $total += $data->getTotal();
             }
-            array_walk($modules, function (&$data, $name) use ($query) {
-                $data['url'] = $this->url(
-                    '',
-                    array(
-                        'action' => 'module',
-                        'm' => $name
-                    ),
-                    array(
-                        'query' => array (
-                            'q' => $query,
-                        ),
-                    )
-                );
-            });
             $this->view()->assign(array(
                 'query'     => $query,
                 'result'    => $result,
@@ -67,6 +53,7 @@ class IndexController extends ActionController
         }
         $this->view()->assign(array(
             'modules'   => $modules,
+            'service'   => $this->serviceList($query),
         ));
     }
 
@@ -79,7 +66,7 @@ class IndexController extends ActionController
         $page   = $this->params('page') ?: 1;
         $module = $this->params('m');
 
-        $modules = $this->getModules();
+        $modules = $this->getModules($query);
         if (!isset($modules[$module])) {
             $this->redirectTo(array('action' => 'index'));
             return;
@@ -116,20 +103,6 @@ class IndexController extends ActionController
             } else {
                 $paginator = null;
             }
-            array_walk($modules, function (&$data, $name) use ($query) {
-                $data['url'] = $this->url(
-                    '',
-                    array(
-                        'action' => 'module',
-                        'm' => $name
-                    ),
-                    array(
-                        'query' => array (
-                            'q' => $query,
-                        ),
-                    )
-                );
-            });
             $this->view()->assign(array(
                 'query'     => $query,
                 'result'    => $result,
@@ -213,9 +186,11 @@ class IndexController extends ActionController
     /**
      * Get modules available for search
      *
+     * @param string $query
+     *
      * @return array
      */
-    protected function getModules()
+    protected function getModules($query = '')
     {
         $moduleSearch   = Pi::registry('search')->read();
         $moduleList     = Pi::registry('modulelist')->read();
@@ -225,13 +200,63 @@ class IndexController extends ActionController
                 continue;
             }
             $node = $moduleList[$name];
+            $url = $this->url(
+                '',
+                array(
+                    'action'    => 'module',
+                    'm'         => $name
+                ),
+                array(
+                    'query' => array (
+                        'q' => $query,
+                    ),
+                )
+            );
             $modules[$name] = array(
                 'id'        => $node['id'],
                 'title'     => $node['title'],
                 'icon'      => $node['icon'],
+                'url'       => $url,
             );
         };
 
         return $modules;
+    }
+
+    /**
+     * Get third-party search service list
+     *
+     * @param string $query
+     *
+     * @return array
+     */
+    protected function serviceList($query = '')
+    {
+        $home = Pi::url('www');
+
+        $googleQuery = function ($query) use ($home) {
+            $home = preg_replace('/^(http[s]?:\/\/)/i', '', $home);
+            $link = 'http://google.com?#newwindow=1&q=' . urlencode($query . ' site:' . $home);
+
+            return $link;
+        };
+        $baiduQuery = function ($query) use ($home) {
+            $home = parse_url($home, PHP_URL_HOST);
+            $link = 'http://www.baidu.com/s?wd=' . urlencode($query . ' site:' . $home);
+
+            return $link;
+        };
+        $list = array(
+            array(
+                'title' => __('Google'),
+                'url'   => $googleQuery($query),
+            ),
+            array(
+                'title' => __('Baidu'),
+                'url'   => $baiduQuery($query),
+            ),
+        );
+
+        return $list;
     }
 }

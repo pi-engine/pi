@@ -27,6 +27,18 @@
                     <?php } ?>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label><?php _e('Try:'); ?></label>
+                <div class="btn-group btn-group-xs">
+                    <?php foreach ($service as $data) { ?>
+                        <button type="button" class="btn btn-default" onclick="window.open('<?php echo $data['url']; ?>')">
+                            <?php echo _escape($data['title']); ?>
+                        </button>
+                    <?php } ?>
+                </div>
+            </div>
+
         </div>
     </div>
 

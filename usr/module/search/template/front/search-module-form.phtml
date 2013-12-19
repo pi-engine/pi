@@ -26,7 +26,7 @@
 
                 <div class="btn-group btn-group-xs">
                     <?php foreach ($modules as $name => $data) { ?>
-                        <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo $this->url('', array('action' => 'module', 'm' => $name)); ?>'">
+                        <button type="button" class="btn btn-default" onclick="window.location.href='<?php echo $data['url']; ?>'">
                             <?php echo _escape($data['title']); ?>
                         </button>
                     <?php } ?>
