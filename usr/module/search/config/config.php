@@ -41,6 +41,13 @@ $config = array(
         'edit'          => 'cache_ttl',
         'value'         => 0,
     ),
+
+    'hot'       => array(
+        'title'         => _t('Hot search'),
+        'description'   => _t('Hot words for global auto-complete, separated by comma `,`.'),
+        'edit'          => 'textarea',
+        'value'         => 'pi engine, zend framework, php, search',
+    ),
 );
 
 return $config;

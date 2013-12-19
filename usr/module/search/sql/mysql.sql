@@ -16,3 +16,13 @@ CREATE TABLE `{log}` (
 
   PRIMARY KEY  (`id`)
 );
+
+# Search auto complete
+CREATE TABLE `{dictionary}` (
+  `id`              int(10)         unsigned    NOT NULL    auto_increment,
+  `term`            varchar(255)    NOT NULL    default '',
+  `weight`          int(10)         unsigned    NOT NULL default '0',
+
+  PRIMARY KEY  (`id`),
+  KEY `weight` (`weight`)
+);
