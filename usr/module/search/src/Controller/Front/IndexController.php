@@ -128,24 +128,29 @@ class IndexController extends ActionController
      */
     protected function parseQuery($query = '')
     {
-        return array('test', 'query terms');
+        $result = array();
+
+        // Text quoted by `"` or `'` should be matched exactly
+        $pattern = '`(?:(?:"(?:\\"|[^"])+")|(?:\'(?:\\\'|[^\'])+\'))`is';
+        $length = $this->config('min_length');
 
         $terms = array();
-        $pattern = '/(["\'])(?>[^"\']|["\'](?<!\1)|(?<=\\)\1)*+\1/';
-        $callback = function ($m) use (&$terms) {
-            $terms[] = $m[1];
-            return '';
+        $callback = function ($match) use (&$terms) {
+            $terms[] = substr($match[0], 1, -1);
+            return ' ';
         };
         $string = preg_replace_callback($pattern, $callback, $query);
-        $list = explode(' ', $string);
-        $length = $this->config('min_length');
-        array_walk($list, function ($term) use (&$terms, $length) {
+        $terms = array_merge($terms, explode(' ', $string));
+
+        array_walk($terms, function ($term) use (&$result, $length) {
+            $term = trim($term);
             if (!$length || strlen($term) >= $length) {
-                $terms[] = $term;
+                $result[] = $term;
             }
         });
+        $result = array_filter(array_unique($result));
 
-        return $terms;
+        return $result;
     }
 
     /**
