@@ -1,0 +1,17 @@
+<h2 class="page-header"><?php echo _a('Edit Media'); ?></h2>
+<?php
+    if (empty($id)) {
+        $error = _a('No media select, please try again!');
+        include 'message-box.phtml';
+    } else {
+?>
+
+<?php include 'message-box.phtml'; ?>
+
+<div>
+    <?php include $this->templateComponent('form'); ?>
+</div>
+
+<?php
+    }
+?>
