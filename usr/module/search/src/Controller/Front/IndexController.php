@@ -208,7 +208,7 @@ class IndexController extends ActionController
                 ),
                 array(
                     'query' => array (
-                        'q' => $query,
+                        'q' => urlencode($query),
                     ),
                 )
             );
