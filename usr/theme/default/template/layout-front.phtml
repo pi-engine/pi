@@ -99,7 +99,7 @@ $this->headLink(array(
         $blocks = $this->blocks();
         $blockTemplate = $this->template('block');
     ?>
-    <div class="container">
+    <div class="container pi-main-container">
 
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
@@ -221,9 +221,8 @@ $this->headLink(array(
 
     <!-- Footer: sitelink -->
     <div class="pi-footer">
-        <div class="container">
+        <div class="container pi-footer-container">
             <div class="row">
-            <div class="pi-footer-line"></div>
             <div class="col-md-2">
                 <ul>
                     <li><a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a></li>
@@ -244,14 +243,29 @@ $this->headLink(array(
                 <p>Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.</p>
             </div>
             <div class="col-md-12 pi-footer-copyright">
-                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy;<?php echo _escape($sitename); ?></a><col-md- class="pi-divider">|</col-md->
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><col-md- class="pi-divider">|</col-md->
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a><col-md- class="pi-divider">|</col-md->
-                <col-md- title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></col-md->
+                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                    &copy;<?php echo _escape($sitename); ?>
+                </a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Powered by Pi Engine
+                </a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Design of Pi Engine
+                </a>
+                <span title="<?php _e('Execution time'); ?>">
+                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
+                </span>
             </div>
         </div>    
-        </div>
     </div>
     <?php echo $this->assemble('footScript', 4); ?>
+    <?php if ('production' != Pi::environment()) { ?>
+    <script>
+    $(function() {
+        $('#pi-logger-output').appendTo($('.pi-main-container'));
+    });
+    </script>
+    <?php } ?>
 </body>
 </html>
+
