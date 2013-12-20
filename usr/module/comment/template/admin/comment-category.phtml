@@ -1,3 +1,6 @@
+<?php
+    d($modules); 
+?>
 <table class="table table-striped" style="margin-top: 20px">
     <tr>
         <th><?php echo _a('Title'); ?></th>
@@ -16,11 +19,11 @@
         <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title']; ?></td>
         <td>
             <div class="btn-group">
-                <a class="btn<?php echo $category['active'] ? ' btn-success' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
-                    <?php echo _a('Yes'); ?>
-                </a>
-                <a class="btn<?php echo !$category['active'] ? ' btn-danger' : ''; ?>" href="<?php echo $category['enable']['url']; ?>">
+                <a class="btn<?php echo !$category['active'] ? ' btn-danger active' : ' btn-default'; ?>" href="<?php echo $category['enable']['url']; ?>">
                     <?php echo _a('No'); ?>
+                </a>
+                <a class="btn<?php echo $category['active'] ? ' btn-success active' : ' btn-default'; ?>" href="<?php echo $category['enable']['url']; ?>">
+                    <?php echo _a('Yes'); ?>
                 </a>
             </div>
         </td>
