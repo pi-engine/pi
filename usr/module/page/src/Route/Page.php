@@ -1,5 +1,11 @@
 <?php
-use Zend\EventManager\Event;
+/**
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ */
 
 namespace Module\Page\Route;
 
@@ -70,7 +76,7 @@ class Page extends Standard
                 $action = $view;
             }
             if (is_numeric($param)) {
-                $id = $slug;
+                $id = $param;
             } else {
                 $slug = $param;
             }
@@ -85,8 +91,10 @@ class Page extends Standard
             $matches['action'] = $action;
         }
 
-        return new RouteMatch(array_merge($this->defaults, $matches),
-                              $pathLength);
+        return new RouteMatch(
+            array_merge($this->defaults, $matches),
+            $pathLength
+        );
     }
 
     /**
@@ -120,10 +128,10 @@ class Page extends Standard
         }
         if (empty($url)) {
             $url = $action;
-        } elseif (!empty($action)) {
-            if ($action != 'index') {
+        } elseif ($action && $action != 'index') {
+            //if ($action != 'index') {
                 $url = $action . $this->paramDelimiter . $url;
-            }
+            //}
         } else {
             $url = 'view' . $this->paramDelimiter . $url;
         }
