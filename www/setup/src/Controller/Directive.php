@@ -264,7 +264,7 @@ class Directive extends AbstractController
                       . '<p class="caption">'
                       . _s('The configuration files are not copied correctly or not readable, please create and/or set read permissions for the files manually.')
                       . '</p>'
-                      . '<div class="message alert">'
+                      . '<div class="message alert alert-danger">'
                       . '<ul>';
             foreach ($errorsConfig as $file) {
                 $content .= '<li>' . $file . '</li>';
@@ -441,7 +441,7 @@ SCRIPT;
     <input type='text' name='$item' id='$item'
         value='{$controller->getPath($item)}' />
     <em id='{$item}-status' class='loading'>&nbsp;</em>
-    <p id='{$item}-message' class='alert'>&nbsp;</p>
+    <p id='{$item}-message' class='alert alert-danger'>&nbsp;</p>
     </div>
 HTML;
 
