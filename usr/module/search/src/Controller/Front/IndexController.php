@@ -84,8 +84,9 @@ class IndexController extends ActionController
             } else {
                 $result = array();
                 $total  = 0;
+                $limit  = 0;
             }
-            if ($total > $limit) {
+            if ($total && $total > $limit) {
                 $paginator = Paginator::factory($total, array(
                     'limit' => $limit,
                     'page'  => $page,

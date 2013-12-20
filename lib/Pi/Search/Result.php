@@ -29,6 +29,7 @@ class Result implements  ArrayAccess
     public function __construct(array $data = array())
     {
         $this->data = array(
+            'id'        => 0,
             'title'     => '',
             'link'      => '',
             'time'      => 0,

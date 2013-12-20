@@ -9,6 +9,7 @@
 
 namespace Pi\Search;
 
+use Pi;
 use Pi\Application\AbstractModuleAwareness;
 use Pi\Db\Sql\Where;
 use Pi\Application\Model\Model;
@@ -31,6 +32,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
 
     /** @var array Columns to fetch: column => meta field */
     protected $meta = array(
+        'id'        => 'id',
         'title'     => 'title',
         'content'   => 'content',
         'time'      => 'time',
@@ -94,10 +96,10 @@ abstract class AbstractSearch extends AbstractModuleAwareness
      */
     protected function buildCondition(array $terms, array $condition = array())
     {
-        $where = Pi::db()->where(null, 'OR');
+        $where = Pi::db()->where()->or;
         foreach ($terms as $term) {
             foreach ($this->searchIn as $column) {
-                $where->like($column, $term);
+                $where->like($column, '%' . $term . '%')->or;
             }
         }
         if ($condition) {
@@ -107,7 +109,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
         }
         if ($condition) {
             $where = Pi::db()->where($where);
-            $where->create($condition);
+            $where->add($condition);
         }
 
         return $where;
@@ -153,11 +155,41 @@ abstract class AbstractSearch extends AbstractModuleAwareness
             $item = array();
             foreach ($this->meta as $column => $field) {
                 $item[$field] = $row[$column];
+                if ('content' == $field) {
+                    $item[$field] = $this->formulateContent($item[$field]);
+                }
             }
+            $item['link'] = $this->buildLink($item);
             $data[] = $item;
         }
 
         return $data;
+    }
+
+    /**
+     * Formulate content for render
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    protected function formulateContent($content = '')
+    {
+        $content = substr(strip_tags($content), 0, 255);
+
+        return $content;
+    }
+
+    /**
+     * Build item link
+     *
+     * @param array $item
+     *
+     * @return string
+     */
+    protected function buildLink(array $item)
+    {
+        return Pi::url('www');
     }
 
     /**
