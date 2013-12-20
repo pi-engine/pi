@@ -10,6 +10,8 @@
 namespace Pi\Search;
 
 use Pi\Application\AbstractModuleAwareness;
+use Pi\Db\Sql\Where;
+use Pi\Application\Model\Model;
 
 /**
  * Abstract class for module search
@@ -18,19 +20,148 @@ use Pi\Application\AbstractModuleAwareness;
  */
 abstract class AbstractSearch extends AbstractModuleAwareness
 {
+    /** @var string Table name */
+    protected $table;
+
+    /** @var array columns to search */
+    protected $searchIn = array(
+        'title',
+        'content'
+    );
+
+    /** @var array Columns to fetch: column => meta field */
+    protected $meta = array(
+        'title'     => 'title',
+        'content'   => 'content',
+        'time'      => 'time',
+        'uid'       => 'uid',
+    );
+
+    /** @var array Extra conditions */
+    protected $condition = array(
+        'active'    => 1,
+    );
+
+    /** @var array Search order */
+    protected $order = array(
+        'id DESC'
+    );
+
     /**
      * Search query
      *
-     * @param array|string $terms
-     * @param int $limit
-     * @param int $offset
+     * @param array|string  $terms
+     * @param int           $limit
+     * @param int           $offset
+     * @param array         $condition
      *
      * @return ResultSet
      */
-    abstract public function query($terms, $limit= 0, $offset = 0);
+    public function query($terms, $limit= 0, $offset = 0, array $condition = array())
+    {
+        $terms = (array) $terms;
+        $model = $this->getModel();
+        $where = $this->buildCondition($terms, $condition);
+        $count = $model->count($where);
+        $data = array();
+        if ($count) {
+            $data = $this->fetchResult($model, $where, $limit, $offset);
+        }
+        $result = $this->buildResult($count, $data);
+
+        return $result;
+    }
 
     /**
-     * Build search resultset
+     * Get table model
+     *
+     * @return Model
+     */
+    protected function getModel()
+    {
+        $model = Pi::model($this->table, $this->module);
+
+        return $model;
+    }
+
+    /**
+     * Build query condition
+     *
+     * @param array $terms
+     * @param array $condition
+     *
+     * @return Where
+     */
+    protected function buildCondition(array $terms, array $condition = array())
+    {
+        $where = Pi::db()->where(null, 'OR');
+        foreach ($terms as $term) {
+            foreach ($this->searchIn as $column) {
+                $where->like($column, $term);
+            }
+        }
+        if ($condition) {
+            $condition = array_merge($this->condition, $condition);
+        } else {
+            $condition = $this->condition;
+        }
+        if ($condition) {
+            $where = Pi::db()->where($where);
+            $where->create($condition);
+        }
+
+        return $where;
+    }
+
+    /**
+     * Fetch search result count
+     *
+     * @param Model $model
+     * @param Where $where
+     *
+     * @return int
+     */
+    protected function fetchCount($model, Where $where)
+    {
+        $count = $model->count($where);
+
+        return $count;
+    }
+
+    /**
+     * Fetch search result
+     *
+     * @param Model $model
+     * @param Where $where
+     * @param int   $limit
+     * @param int   $offset
+     *
+     * @return array
+     */
+    protected function fetchResult($model, Where $where, $limit = 0, $offset = 0)
+    {
+        $data = array();
+        $select = $model->select();
+        $select->where($where);
+        $select->columns(array_keys($this->meta));
+        $select->limit($limit)->offset($offset);
+        if ($this->order) {
+            $select->order($this->order);
+        }
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $item = array();
+            foreach ($this->meta as $column => $field) {
+                $item[$field] = $row[$column];
+            }
+            $data[] = $item;
+        }
+
+        return $data;
+    }
+
+    /**
+     * Build search result set
      *
      * @param int   $total
      * @param array $data

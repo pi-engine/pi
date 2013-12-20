@@ -22,7 +22,7 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    public function query($queries, $limit = 0, $offset = 0, $uid = 0)
+    public function query($queries, $limit = 0, $offset = 0, array $condition = array())
     {
         $results = array();
         $max = 1000;
