@@ -28,7 +28,7 @@ class Admin extends AbstractController
             Pi::service('database')->connect();
         } catch (\Exception $e) {
             $this->status = -1;
-            $this->content = '<div class="alert alert-error">'
+            $this->content = '<div class="alert alert-danger">'
                 . '<h1>' . _s('Database connection is failed.') . '</h1>'
                 . '<p>' . $e->getMessage() . '</p>'
                 . '</div>';
@@ -80,7 +80,7 @@ class Admin extends AbstractController
                 // Drop all triggers
                 // ...
             } catch (\Exception $e) {
-                $this->content = '<p class="alert">'
+                $this->content = '<p class="alert alert-danger">'
                                . _s('System module uninstallation is failed. Please continue to try again.')
                                . '</p>'
                                . $e->getMessage()
@@ -144,7 +144,7 @@ class Admin extends AbstractController
         $ret = $installer->install('system');
         if (!$ret) {
             $this->hasForm = true;
-            $this->content = '<p class="alert">'
+            $this->content = '<p class="alert alert-danger">'
                            . _s('System module installation is failed. Please continue to try again.')
                            . '</p>'
                            . $installer->renderMessage()
@@ -284,7 +284,7 @@ class Admin extends AbstractController
         $resource->execute();
         $count = $resource->rowCount();
         if ($count) {
-            $this->content = '<p class="alert">'
+            $this->content = '<p class="alert alert-danger">'
                            . _s('Deprecated tables exist in the database. Please continue to re-install.')
                            . '</p>'
                            . '<input type="hidden" name="page" value="admin" />'
@@ -315,7 +315,7 @@ class Admin extends AbstractController
                      . '<input type="text" name="' . $item . '" id="'
                      . $item . '" value="' . $vars[$item] . '" />'
                      . '<em id="' . $item . '-status" class="">&nbsp;</em>'
-                     . '<p id="' . $item . '-message" class="alert">&nbsp;'
+                     . '<p id="' . $item . '-message" class="alert alert-danger">&nbsp;'
                      . '</p></div>';
 
             return $content;
@@ -342,7 +342,7 @@ class Admin extends AbstractController
                   . '<input type="password" name="' . $item . '" id="'
                   . $item . '" value="' . $vars[$item] . '" />'
                   . '<em id="adminpass-status" class="">&nbsp;</em>'
-                  . '<p id="adminpass-message" class="alert">&nbsp;</p>'
+                  . '<p id="adminpass-message" class="alert alert-danger">&nbsp;</p>'
                   . '</div>';
         $content .= '</div>';
 
