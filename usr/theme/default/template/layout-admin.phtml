@@ -54,9 +54,7 @@ $module = $this->routeMatch('module');
     <aside class="pi-sidebar">
         <div id="js-modules-nav">
             <?php echo $this->adminNav()->main('nav pi-modules-nav'); ?>
-            &nbsp;
         </div>
-        <div class="pi-sidebar-bg"></div>
     </aside>
     <section class="pi-content" ng-app="<?php echo $module; ?>">
         <div pi-message="alert"></div>
@@ -91,11 +89,6 @@ $module = $this->routeMatch('module');
             </div>
         </footer>
     </section>
-    <script>
-        $('#js-modules-nav').data('config', {
-            emptyNav: '<?php _e('Empty nav'); ?>'
-        });
-    </script>
     <script src="<?php echo $this->assetTheme('js/admin.js'); ?>"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@ $this->css($this->assetModule('admin/admin.css'));
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 10%;"><?php echo _a('Icon'); ?></th>
+                <th><?php echo _a('Icon'); ?></th>
                 <th style="width: 15%;"><?php echo _a('Title'); ?></th>
                 <th style="width: 15%;"><?php echo _a('Version'); ?></th>
                 <th style="width: 30%;"><?php echo _a('Description'); ?></th>
@@ -17,9 +17,10 @@ $this->css($this->assetModule('admin/admin.css'));
             <tr class="system-module-item"
                 data-name="<?php echo $directory; ?>">
                 <td>
-                    <div class="module-item-logo">
-                        <img src="<?php echo $module['meta']['logo']; ?>" alt="<?php echo _escape($module['meta']['title']); ?>">
-                    </div>
+                    <?php
+                    echo sprintf('<i class="%s fa-3x"></i>',
+                            $module['meta']['icon'] ? : 'fa fa-th');
+                    ?>
                 </td>
                 <td>
                     <div class="module-item-title">

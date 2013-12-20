@@ -13,8 +13,6 @@ $this->css(
     $this->assetTheme('css/print.css'),
     array('media' => "print")
 );
-// jQuery
-$this->jQuery();
 
 // Apple icon for iphone
 $this->headLink(array(
@@ -223,7 +221,7 @@ $this->headLink(array(
     <div class="pi-footer">
         <div class="container pi-footer-container">
             <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 hidden-sm hidden-xs">
                 <ul>
                     <li><a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a></li>
                     <li><a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a></li>
@@ -231,7 +229,7 @@ $this->headLink(array(
                     <li><a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a></li>
                 </ul>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 hidden-sm hidden-xs">
                 <ul>
                     <li><a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a></li>
                     <li><a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a></li>
@@ -241,20 +239,20 @@ $this->headLink(array(
             </div>
             <div class="col-md-8">
                 <p>Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.</p>
-            </div>
-            <div class="col-md-12 pi-footer-copyright">
-                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                    &copy;<?php echo _escape($sitename); ?>
-                </a>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Powered by Pi Engine
-                </a>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Design of Pi Engine
-                </a>
-                <span title="<?php _e('Execution time'); ?>">
-                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
-                </span>
+                <div class="pi-footer-copyright">
+                    <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy;<?php echo _escape($sitename); ?>
+                    </a>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Design of Pi Engine
+                    </a>
+                    <span title="<?php _e('Execution time'); ?>">
+                        <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
+                    </span>
+                </div>
             </div>
         </div>    
     </div>

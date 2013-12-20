@@ -1,11 +1,11 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
+$this->css($this->assetModule('admin/admin.css'));
 ?>
 <div id="js-module" class="table-responsive">
     <table class="table">
         <thead>
             <tr>
-                <th style="width: 10%;"><?php echo _a('Logo'); ?></th>
+                <th><?php echo _a('Icon'); ?></th>
                 <th style="width: 15%;"><?php echo _a('Title'); ?></th>
                 <th style="width: 10%;"><?php echo _a('Version'); ?></th>
                 <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
@@ -17,9 +17,10 @@
             <?php foreach ($modules as $module) { ?>
             <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
                 <td>
-                    <div class="module-item-logo">
-                        <img src="<?php echo $module['logo']; ?>" alt="<?php echo $module['title']; ?>">
-                    </div>
+                   <?php
+                   echo sprintf('<i class="%s fa-3x"></i>',
+                            $module['icon'] ? : 'fa fa-th');
+                   ?>    
                 </td>
                 <td>
                     <div class="module-item-title">

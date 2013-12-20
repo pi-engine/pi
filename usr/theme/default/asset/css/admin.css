@@ -89,20 +89,13 @@ legend {
 
 /* Sidebar */
 .pi-sidebar {
-  float: left;
-  width: 190px;
-  border-right: 1px solid #ccc;
-  margin-right: 20px;
-}
-
-.pi-sidebar-bg {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 52px;
   bottom: 0;
-  background: #f2f2f2;
+  overflow-y: auto;
   width: 190px;
-  z-index: -1;
   border-right: 1px solid #ccc;
+  background: #f2f2f2;
 }
 
 .pi-modules-nav a:focus {
@@ -173,6 +166,7 @@ legend {
 .pi-content {
   overflow: hidden;
   padding: 20px 20px 0 0;
+  margin-left: 210px;
 }
 
 .page-header {
