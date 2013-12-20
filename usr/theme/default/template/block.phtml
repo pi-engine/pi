@@ -48,15 +48,6 @@
 
  */
 ?>
-
-<?php
-// For tabbed block
-if (is_array($block['content'])) {
-    $this->jQuery();
-    $this->bootstrap('js/bootstrap.min.js');
-}
-?>
-
 <?php /* Assign global ID, add custom stylesheet class if available */ ?>
 <div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="pi-block<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
     <?php /* Display block header section only if title, or subline or tab available */ ?>

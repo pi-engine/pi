@@ -4,11 +4,8 @@ $this->i18nTheme('default', 'default');
 
 // Load Bootstrap css by Twitter Team
 $this->bootstrap();
-// Load style.css, front.css
-$this->css(array(
-    $this->assetTheme('css/style.css'),
-    $this->assetTheme('css/front.css'),
-));
+// Load front.css
+$this->css($this->assetTheme('css/front.css'));
 
 // Explicitly load favicon
 // @see http://en.wikipedia.org/wiki/Favicon
@@ -23,14 +20,26 @@ $this->headLink(array(
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
-    <!-- Header: logo, user bar -->
-    <div class="container pi-header">
-        <div class="pi-logo">
-            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" class="pi-logo-headline"><span class="pi-logo-symbol">&pi;</span> Engine</a>
-            <em class="pi-logo-tagline" title="<?php echo _escape($slogan); ?>"><?php echo _escape($slogan); ?></em>
-        </div>
-        <div class="pull-right pi-user-bar">
-           <?php echo $this->widget('system-user-bar'); ?>
+    <!-- Header: brand, slogan, user bar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <h1 class="hide">
+                    <?php echo _escape($sitename) . _escape($slogan); ?>
+                </h1>
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
+                   title="<?php echo _escape($slogan); ?>">
+                   <?php echo _escape($sitename); ?>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <?php echo $this->widget('system-user-bar'); ?>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -48,8 +57,7 @@ $this->headLink(array(
 
     <!-- Footer: sitelink -->
     <div class="pi-footer">
-        <div class="container">
-            <div class="pi-footer-line"></div>
+        <div class="container pi-footer-container">
             <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a><span class="pi-divider">|</span>
             <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a><span class="pi-divider">|</span>
             <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a><span class="pi-divider">|</span>

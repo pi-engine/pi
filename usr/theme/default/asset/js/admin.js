@@ -1,7 +1,7 @@
 (function($) {
-  var config = $('#js-modules-nav').data('config');
+  //var config = $('#js-modules-nav').data('config');
   
-  var ModulesNav = function() {
+/*  var ModulesNav = function() {
     this.el = $('#js-modules-nav');
     this.$('.collapse').on('show.bs.collapse', $.proxy(this.load, this));
   };
@@ -52,7 +52,11 @@
     }
   }
 
-  new ModulesNav;
+  new ModulesNav;*/
+
+  //For fixed module nav
+    
+  //$('#js-modules-nav').affix();
 
   //For angularjs nav
   var fragReg = /#!?(.*)$/;
@@ -62,7 +66,7 @@
     if (!match) return false;
     $this.removeClass('active').attr('ng-class', 'navClass("' + match[1] + '")');
   });
-
+  
   //For debug
   $(function() {
     var debug = $('#pi-logger-output');

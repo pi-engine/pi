@@ -1,5 +1,5 @@
 <?php
-    $formControl = array('text', 'textarea', 'select', 'password');
+    $emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
     $form->setAttribute('class', 'form-horizontal');
     $form->prepare();
     $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
@@ -7,11 +7,11 @@
     echo $this->form()->openTag($form);
     foreach ($elements['active'] as $element) {
         $type = $element->getAttribute('type') ? : 'text';
-        $isText = in_array($type, $formControl);
+        $isEmptyControl = in_array($type, $emptyControl);
         $isCheckbox = $type == 'checkbox';
         $desc = $element->getAttribute('description');
         
-        if ($isText && !$element->getAttribute('class')) {
+        if (!$isEmptyControl && !$element->getAttribute('class')) {
             $element->setAttribute('class', 'form-control');
         }
 
