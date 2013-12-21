@@ -91,7 +91,7 @@ class Media extends AbstractApi
      * @param array $data
      * @return bool
      */
-    public function update($id, $data)
+    public function update($id, array $data)
     {
         if (empty($id)) {
             return false;
@@ -111,7 +111,7 @@ class Media extends AbstractApi
      * @param int $id
      * @return bool
      */
-    public function activeFile($id)
+    public function activate($id)
     {
         $model = Pi::model('detail', $this->getModule());
         $result = $model->active($id);
@@ -125,7 +125,7 @@ class Media extends AbstractApi
      * @param int $id
      * @return bool
      */
-    public function deactivateFile($id)
+    public function deactivate($id)
     {
         $model = Pi::model('detail', $this->getModule());
         $result = $model->active($id, 0);
@@ -162,9 +162,8 @@ class Media extends AbstractApi
      * @param array $attribute
      * @return array
      */
-    public function mgetAttributes($ids, $attribute)
+    public function getAttributesList(array $ids, $attribute)
     {
-        $ids = (array) $ids;
         $where = array('id' => $ids);
         $model = Pi::model('detail', $this->getModule());
         $result = $model->getList($where, null, null, (array) $attribute);
@@ -179,7 +178,7 @@ class Media extends AbstractApi
      * @param array $statistics
      * @return array
      */
-    public function getStatistics($id, $statistics)
+    public function getStats($id, $statistics)
     {
         $id = (array) $id;
         if (count($id) > 1) {
@@ -197,11 +196,11 @@ class Media extends AbstractApi
     /**
      * Get statistics of medias
      * 
-     * @param array $ids
+     * @param int[] $ids
      * @param array $statistics
      * @return array
      */
-    public function mgetStatistics($ids, $statistics)
+    public function getStatsList(array $ids, $statistics)
     {
         $ids = (array) $ids;
         $where = array('media' => $ids);
@@ -222,7 +221,7 @@ class Media extends AbstractApi
      * @return array
      */
     public function getFileIds(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -249,7 +248,7 @@ class Media extends AbstractApi
      * @return array
      */
     public function getList(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -271,7 +270,7 @@ class Media extends AbstractApi
      * @param array $condition
      * @return int
      */
-    public function getCount($condition = array())
+    public function getCount(array $condition = array())
     {
         if (empty($condition)) {
             $condition = array();
@@ -306,10 +305,10 @@ class Media extends AbstractApi
     /**
      * Get url of medias
      * 
-     * @param array $ids
+     * @param int[] $ids
      * @return array
      */
-    public function mgetUrl($ids)
+    public function getUrlList(array $ids)
     {
         $model = Pi::model('detail', $this->getModule());
         $ids = (array) $ids;
@@ -329,14 +328,13 @@ class Media extends AbstractApi
     /**
      * Download medias
      * 
-     * @param array $ids
+     * @param int[] $ids
      * @throws \Exception
      */
-    public function download($ids)
+    public function download(array $ids)
     {
         $module = $this->getModule();
         
-        $ids = (array) $ids;
         if (empty($ids)) {
             throw new \Exception(_a('Invalid media ID!'));
         }
@@ -355,10 +353,10 @@ class Media extends AbstractApi
     /**
      * Delete medias
      * 
-     * @param array $ids
+     * @param int[] $ids
      * @return bool
      */
-    public function delete($ids)
+    public function delete(array $ids)
     {
         $model = Pi::model('detail', $this->getModule());
         $ids = (array) $ids;

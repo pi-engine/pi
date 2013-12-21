@@ -30,12 +30,7 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Upload a file
-     * 
-     * @param array $meta     data written into database
-     * @param array $options  optional data, use to set storage, path rule
-     * @return array
-     * @throws \InvalidArgumentException 
+     * {@inheritDoc}
      */
     public function upload($meta, $options = array())
     {
@@ -57,12 +52,7 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Update file details
-     * 
-     * @param int   $id
-     * @param array $data
-     * @return boolean
-     * @throws \InvalidArgumentException 
+     * {@inheritDoc}
      */
     public function update($id, $data)
     {
@@ -71,35 +61,25 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Active a file
-     * 
-     * @param int  $id
-     * @return boolean 
+     * {@inheritDoc}
      */
-    public function activeFile($id)
+    public function activate($id)
     {
         $server = $this->getServer();
-        return Pi::api($server, 'media')->activeFile($id);
+        return Pi::api($server, 'media')->activate($id);
     }
     
     /**
-     * Deactivate a file
-     * 
-     * @param int  $id
-     * @return boolean 
+     * {@inheritDoc}
      */
-    public function deactivateFile($id)
+    public function deactivate($id)
     {
         $server = $this->getServer();
-        return Pi::api($server, 'media')->deactivateFile($id);
+        return Pi::api($server, 'media')->deactivate($id);
     }
     
     /**
-     * Get attributes of a file
-     * 
-     * @param int     $id
-     * @param string  $attribute
-     * @return array|boolean 
+     * {@inheritDoc}
      */
     public function getAttributes($id, $attribute)
     {
@@ -108,55 +88,37 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Get attributes of files
-     * 
-     * @param array  $ids   file IDs
-     * @param string $attribute  attribute key 
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetAttributes($ids, $attribute)
+    public function getAttributesList(array $ids, $attribute)
     {
         $server = $this->getServer();
-        return Pi::api($server, 'media')->mgetAttributes($ids, $attribute);
+        return Pi::api($server, 'media')->getAttributesList($ids, $attribute);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStats($id, $statistics)
+    {
+        $server = $this->getServer();
+        return Pi::api($server, 'media')->getStats($id, $statistics);
     }
     
     /**
-     * Get statistics data of a file
-     * 
-     * @param int    $id    file ID
-     * @param string $statistics  key
-     * @return array
+     * {@inheritDoc}
      */
-    public function getStatistics($id, $statistics)
+    public function getStatsList(array $ids, $statistics)
     {
         $server = $this->getServer();
-        return Pi::api($server, 'media')->getStatistics($id, $statistics);
+        return Pi::api($server, 'media')->getStatsList($ids, $statistics);
     }
     
     /**
-     * Get statistics data of files
-     * 
-     * @param array  $ids   file IDs
-     * @param string $statistics  key
-     * @return array
-     */
-    public function mgetStatistics($ids, $statistics)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->mgetStatistics($ids, $statistics);
-    }
-    
-    /**
-     * Get file IDs by given condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
-     * @param string $order
-     * @return array
+     * {@inheritDoc}
      */
     public function getFileIds(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -173,16 +135,10 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Get list by condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
-     * @param string $order 
-     * @return array
+     * {@inheritDoc}
      */
     public function getList(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -199,12 +155,9 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Get list count by condition
-     * 
-     * @param array $condition 
-     * @return int
+     * {@inheritDoc}
      */
-    public function getCount($condition = array())
+    public function getCount(array $condition = array())
     {
         $server = $this->getServer();
         return Pi::api($server, 'media')->getCount($condition);
@@ -223,45 +176,34 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Get url of files
-     * 
-     * @param array $ids 
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetUrl($ids)
+    public function getUrlList(array $ids)
     {
         $server = $this->getServer();
-        return Pi::api($server, 'media')->mgetUrl($ids);
+        return Pi::api($server, 'media')->getUrlList($ids);
     }
     
     /**
-     * Download files
-     * 
-     * @param array $ids 
+     * {@inheritDoc}
      */
-    public function download($ids)
+    public function download(array $ids)
     {
         $server = $this->getServer();
         Pi::api($server, 'media')->download($ids);
     }
     
     /**
-     * Delete files
-     * 
-     * @param array $ids 
-     * @return boolean
+     * {@inheritDoc}
      */
-    public function delete($ids)
+    public function delete(array $ids)
     {
         $server = $this->getServer();
         return Pi::api($server, 'media')->delete($ids);
     }
     
     /**
-     * Get file validator data
-     * 
-     * @param string $adapter 
-     * @return array
+     * {@inheritDoc}
      */
     public function getValidator($adapter = null)
     {
@@ -270,9 +212,7 @@ class Local extends AbstractAdapter
     }
     
     /**
-     * Get server configuration
-     * 
-     * @return array 
+     * {@inheritDoc}
      */
     public function getServerConfig()
     {

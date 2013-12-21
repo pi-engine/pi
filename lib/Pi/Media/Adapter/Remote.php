@@ -19,12 +19,7 @@ use Pi;
 class Remote extends AbstractAdapter
 {
     /**
-     * Upload a file
-     * 
-     * @param array $meta     data written into database
-     * @param array $options  optional data, use to set storage, path rule
-     * @return array
-     * @throws \InvalidArgumentException 
+     * {@inheritDoc}
      */
     public function upload($meta, $options = array())
     {
@@ -53,14 +48,9 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Update file details
-     * 
-     * @param int   $id
-     * @param array $data
-     * @return boolean
-     * @throws \InvalidArgumentException 
+     * {@inheritDoc}
      */
     public function update($id, $data)
     {
@@ -82,35 +72,25 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Active a file
-     * 
-     * @param int  $id
-     * @return boolean 
+     * {@inheritDoc}
      */
-    public function activeFile($id)
+    public function activate($id)
     {
         return false;
     }
-    
+
     /**
-     * Deactivate a file
-     * 
-     * @param int  $id
-     * @return boolean 
+     * {@inheritDoc}
      */
-    public function deactivateFile($id)
+    public function deactivate($id)
     {
         return false;
     }
-    
+
     /**
-     * Get attributes of a file
-     * 
-     * @param int     $id
-     * @param string  $attribute
-     * @return array|boolean 
+     * {@inheritDoc}
      */
     public function getAttributes($id, $attribute)
     {
@@ -133,29 +113,21 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get attributes of files
-     * 
-     * @param array  $ids   file IDs
-     * @param string $attribute  attribute key 
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetAttributes($ids, $attribute)
+    public function getAttributesList(array $ids, $attribute)
     {
         $result = $this->getAttributes($ids, $attribute);
         
         return $result;
     }
-    
+
     /**
-     * Get statistics data of a file
-     * 
-     * @param int    $id    file ID
-     * @param string $statistics  key
-     * @return array
+     * {@inheritDoc}
      */
-    public function getStatistics($id, $statistics)
+    public function getStats($id, $statistics)
     {
         if (!$id) {
             return false;
@@ -163,7 +135,7 @@ class Remote extends AbstractAdapter
         if (is_scalar($id)) {
             $uri = $this->getConfig('url', 'get_statistics');
         } else {
-            $uri = $this->getConfig('url', 'mget_statistics');
+            $uri = $this->getConfig('url', 'get_statistics_list');
             $id = implode(',', $id);
         }
         $params = array(
@@ -176,32 +148,22 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get statistics data of files
-     * 
-     * @param array  $ids   file IDs
-     * @param string $statistics  key
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetStatistics($ids, $statistics)
+    public function getStatsList(array $ids, $statistics)
     {
         $result = $this->getStatistics($ids, $statistics);
         
         return $result;
     }
-    
+
     /**
-     * Get file IDs by given condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
-     * @param string $order
-     * @return array
+     * {@inheritDoc}
      */
     public function getFileIds(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -230,18 +192,12 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get list by condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
-     * @param string $order 
-     * @return array
+     * {@inheritDoc}
      */
     public function getList(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -270,14 +226,11 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get list count by condition
-     * 
-     * @param array $condition 
-     * @return int
+     * {@inheritDoc}
      */
-    public function getCount($condition = array())
+    public function getCount(array $condition = array())
     {
         if (!is_array($condition)) {
             throw new \InvalidArgumentException('Array type required.');
@@ -294,12 +247,9 @@ class Remote extends AbstractAdapter
         
         return array_shift($result);
     }
-    
+
     /**
-     * Get file url
-     * 
-     * @param int $id 
-     * @return string
+     * {@inheritDoc}
      */
     public function getUrl($id)
     {
@@ -321,14 +271,11 @@ class Remote extends AbstractAdapter
         
         return array_shift($result);
     }
-    
+
     /**
-     * Get url of files
-     * 
-     * @param array $ids 
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetUrl($ids)
+    public function getUrlList(array $ids)
     {
         $rowset = $this->getUrl($ids);
         $result = array();
@@ -338,13 +285,11 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Download files
-     * 
-     * @param array $ids 
+     * {@inheritDoc}
      */
-    public function download($ids)
+    public function download(array $ids)
     {
         if (!$ids) {
             return false;
@@ -356,23 +301,17 @@ class Remote extends AbstractAdapter
         $location = sprintf('location: %s/id-%s', $uri, $id);
         header($location);
     }
-    
+
     /**
-     * Delete files
-     * 
-     * @param array $ids 
-     * @return boolean
+     * {@inheritDoc}
      */
-    public function delete($ids)
+    public function delete(array $ids)
     {
         return false;
     }
-    
+
     /**
-     * Get file validator data
-     * 
-     * @param string $adapter 
-     * @return array
+     * {@inheritDoc}
      */
     public function getValidator($adapter = null)
     {
@@ -387,11 +326,9 @@ class Remote extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get server configuration
-     * 
-     * @return array 
+     * {@inheritDoc}
      */
     public function getServerConfig()
     {

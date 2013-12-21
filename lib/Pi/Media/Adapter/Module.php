@@ -38,12 +38,7 @@ class Module extends AbstractAdapter
     }
     
     /**
-     * Upload a file
-     * 
-     * @param array $meta     data written into database
-     * @param array $options  optional data, use to set storage, path rule
-     * @return array
-     * @throws \InvalidArgumentException 
+     * {@inheritDoc}
      */
     public function upload($meta, $options = array())
     {
@@ -65,12 +60,7 @@ class Module extends AbstractAdapter
     }
     
     /**
-     * Update file details
-     * 
-     * @param int   $id
-     * @param array $data
-     * @return boolean
-     * @throws \InvalidArgumentException 
+     * {@inheritDoc}
      */
     public function update($id, $data)
     {
@@ -79,92 +69,64 @@ class Module extends AbstractAdapter
     }
     
     /**
-     * Active a file
-     * 
-     * @param int  $id
-     * @return boolean 
+     * {@inheritDoc}
      */
-    public function activeFile($id)
+    public function activate($id)
     {
         $module = $this->getModule();
-        return Pi::api($module, 'media')->activeFile($id);
+        return Pi::api($module, 'media')->activate($id);
     }
-    
+
     /**
-     * Deactivate a file
-     * 
-     * @param int  $id
-     * @return boolean 
+     * {@inheritDoc}
      */
-    public function deactivateFile($id)
+    public function deactivate($id)
     {
         $module = $this->getModule();
-        return Pi::api($module, 'media')->deactivateFile($id);
+        return Pi::api($module, 'media')->deactivate($id);
     }
-    
+
     /**
-     * Get attributes of a file
-     * 
-     * @param int     $id
-     * @param string  $attribute
-     * @return array|boolean 
+     * {@inheritDoc}
      */
     public function getAttributes($id, $attribute)
     {
         $module = $this->getModule();
         return Pi::api($module, 'media')->getAttributes($id, $attribute);
     }
-    
+
     /**
-     * Get attributes of files
-     * 
-     * @param array  $ids   file IDs
-     * @param string $attribute  attribute key 
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetAttributes($ids, $attribute)
+    public function getAttributesList(array $ids, $attribute)
     {
         $module = $this->getModule();
-        return Pi::api($module, 'media')->mgetAttributes($ids, $attribute);
+        return Pi::api($module, 'media')->getAttributesList($ids, $attribute);
     }
-    
+
     /**
-     * Get statistics data of a file
-     * 
-     * @param int    $id    file ID
-     * @param string $statistics  key
-     * @return array
+     * {@inheritDoc}
      */
-    public function getStatistics($id, $statistics)
+    public function getStats($id, $statistics)
     {
         $module = $this->getModule();
-        return Pi::api($module, 'media')->getStatistics($id, $statistics);
+        return Pi::api($module, 'media')->getStats($id, $statistics);
     }
-    
+
     /**
-     * Get statistics data of files
-     * 
-     * @param array  $ids   file IDs
-     * @param string $statistics  key
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetStatistics($ids, $statistics)
+    public function getStatsList(array $ids, $statistics)
     {
         $module = $this->getModule();
-        return Pi::api($module, 'media')->mgetStatistics($ids, $statistics);
+        return Pi::api($module, 'media')->getStatsList($ids, $statistics);
     }
-    
+
     /**
-     * Get file IDs by given condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
-     * @param string $order
-     * @return array
+     * {@inheritDoc}
      */
     public function getFileIds(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -179,18 +141,12 @@ class Module extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get list by condition
-     * 
-     * @param array  $condition
-     * @param int    $limit
-     * @param int    $offset
-     * @param string $order 
-     * @return array
+     * {@inheritDoc}
      */
     public function getList(
-        $condition,
+        array $condition,
         $limit = null,
         $offset = null,
         $order = null
@@ -205,82 +161,63 @@ class Module extends AbstractAdapter
         
         return $result;
     }
-    
+
     /**
-     * Get list count by condition
-     * 
-     * @param array $condition 
-     * @return int
+     * {@inheritDoc}
      */
-    public function getCount($condition = array())
+    public function getCount(array $condition = array())
     {
         $module = $this->getModule();
         return Pi::api($module, 'media')->getCount($condition);
     }
-    
+
     /**
-     * Get file url
-     * 
-     * @param int $id 
-     * @return string
+     * {@inheritDoc}
      */
     public function getUrl($id)
     {
         $module = $this->getModule();
         return Pi::api($module, 'media')->getUrl($id);
     }
-    
+
     /**
-     * Get url of files
-     * 
-     * @param array $ids 
-     * @return array
+     * {@inheritDoc}
      */
-    public function mgetUrl($ids)
+    public function getUrlList(array $ids)
     {
         $module = $this->getModule();
-        return Pi::api($module, 'media')->mgetUrl($ids);
+        return Pi::api($module, 'media')->getUrlList($ids);
     }
-    
+
     /**
-     * Download files
-     * 
-     * @param array $ids 
+     * {@inheritDoc}
      */
-    public function download($ids)
+    public function download(array $ids)
     {
         $module = $this->getModule();
         Pi::api($module, 'media')->download($ids);
     }
-    
+
     /**
-     * Delete files
-     * 
-     * @param array $ids 
-     * @return boolean
+     * {@inheritDoc}
      */
-    public function delete($ids)
+    public function delete(array $ids)
     {
         $module = $this->getModule();
         return Pi::api($module, 'media')->delete($ids);
     }
-    
+
     /**
-     * Get file validator data
-     * 
-     * @param string $adapter 
-     * @return array
+     * {@inheritDoc}
      */
     public function getValidator($adapter = null)
     {
         $module = $this->getModule();
         return Pi::api($module, 'media')->getValidator($adapter);
     }
-    
+
     /**
-     * Get server configuration
-     * 
-     * @return array
+     * {@inheritDoc}
      */
     public function getServerConfig()
     {
