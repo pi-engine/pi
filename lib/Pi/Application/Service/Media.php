@@ -15,7 +15,7 @@ use Pi\Media\Adapter\AbstractAdapter;
 /**
  * Media service
  * 
- * Meida APIs
+ * Media APIs
  * 
  * @method \Pi\Media\Adapter\AbstractAdapter::upload($meta, $options = array())
  * @method \Pi\Media\Adapter\AbstractAdapter::update($id, $data)
@@ -74,7 +74,7 @@ class Media extends AbstractService
             if ($class) {
                 $options = (array) $this->getOption($adapter, 'options');
             } else {
-                $class   = sprintf('Pi\\Media\\Adapter\\%s', $adapter);
+                $class   = sprintf('Pi\Media\Adapter\\%s', $adapter);
                 $options = array();
             }
             

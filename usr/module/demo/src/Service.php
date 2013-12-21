@@ -9,6 +9,8 @@
 
 namespace Module\Demo;
 
+trigger_error(sprintf('The class is discouraged, move corresponding methods to relevant APIs - %s', __FILE__), E_USER_WARNING);
+
 class Service
 {
     protected static $module = 'demo';

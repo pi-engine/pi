@@ -20,6 +20,8 @@ use Module\Article\Compiled;
 use Module\Article\Media;
 use Module\Article\Installer\Resource\Route;
 
+trigger_error(sprintf('The class is discouraged, move corresponding methods to relevant APIs - %s', __FILE__), E_USER_WARNING);
+
 /**
  * Common service API
  * 

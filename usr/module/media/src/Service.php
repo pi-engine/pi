@@ -13,6 +13,8 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\Media\Installer\Action\Install;
 
+trigger_error(sprintf('The class is discouraged, move corresponding methods to relevant APIs - %s', __FILE__), E_USER_WARNING);
+
 /**
  * Common service API
  * 
@@ -118,6 +120,12 @@ class Service
      */
     public static function mkdir($dir)
     {
+        trigger_error(sprintf(
+            'Method %s is deprecated, use %s.',
+            __METHOD__,
+            'Pi\Service\File::mkdir'
+        ));
+
         $result = true;
 
         if (!file_exists($dir)) {

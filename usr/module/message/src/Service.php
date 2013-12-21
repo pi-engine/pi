@@ -12,6 +12,8 @@ namespace Module\Message;
 use Pi;
 use Zend\Db\Sql\Predicate\Expression;
 
+trigger_error(sprintf('The class is discouraged, move corresponding methods to relevant APIs - %s', __FILE__), E_USER_WARNING);
+
 /**
  * Public function for message module
  *

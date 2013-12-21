@@ -26,7 +26,7 @@ class Media extends AbstractApi
      * 
      * @param array $meta
      * @param array $options
-     * @return boolean
+     * @return bool
      */
     public function upload($meta, $options = array())
     {
@@ -89,7 +89,7 @@ class Media extends AbstractApi
      * 
      * @param array $id
      * @param array $data
-     * @return boolean
+     * @return bool
      */
     public function update($id, $data)
     {
@@ -109,7 +109,7 @@ class Media extends AbstractApi
      * Active media
      * 
      * @param int $id
-     * @return boolean
+     * @return bool
      */
     public function activeFile($id)
     {
@@ -123,7 +123,7 @@ class Media extends AbstractApi
      * Deactivate file
      * 
      * @param int $id
-     * @return boolean
+     * @return bool
      */
     public function deactivateFile($id)
     {
@@ -341,14 +341,12 @@ class Media extends AbstractApi
             throw new \Exception(_a('Invalid media ID!'));
         }
         
-        $url = Pi::engine()->application()
-            ->getRouter()
-            ->assemble(array(
-                'module'     => $module,
-                'controller' => 'download',
-                'action'     => 'index',
-                'id'         => implode(',', $ids),
-            ), array('name' => 'default'));
+        $url = Pi::service('url')->assemble('default', array(
+            'module'     => $module,
+            'controller' => 'download',
+            'action'     => 'index',
+            'id'         => implode(',', $ids),
+        ));
         
         $location = sprintf('location: %s', $url);
         header($location);
@@ -358,7 +356,7 @@ class Media extends AbstractApi
      * Delete medias
      * 
      * @param array $ids
-     * @return boolean
+     * @return bool
      */
     public function delete($ids)
     {

@@ -46,6 +46,8 @@ class Statistics extends Model
         $columns = null,
         $order = null
     ) {
+        trigger_error(__METHOD__ . ': use `offset` instead of `page`; moreover, do not encapsulate business logic into database model, move to APIs if possible.');
+
         $order = $order ?: 'media DESC';
         
         $select = $this->select();

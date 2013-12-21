@@ -11,8 +11,6 @@ namespace Module\Article;
 
 use Pi;
 use Pi\Search\AbstractSearch;
-use Pi\Db\Sql\Where;
-use Pi\Application\Model\Model;
 
 /**
  * Class for module search
@@ -41,6 +39,7 @@ class Search extends AbstractSearch
      */
     protected $meta = array(
         'id'            => 'id',
+        'subject'       => 'title',
         'summary'       => 'content',
         'time_publish'  => 'time',
         'uid'           => 'uid',

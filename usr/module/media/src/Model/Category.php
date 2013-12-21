@@ -27,7 +27,7 @@ class Category extends Model
      */
     protected function canonize($data)
     {
-        $fields = self::getAvailableFields();
+        $fields = static::getAvailableFields();
         foreach (array_keys($data) as $key) {
             if (!in_array($key, $fields)) {
                 unset($data[$key]);
@@ -46,15 +46,18 @@ class Category extends Model
     {
         return array('id', 'module', 'name', 'title', 'active');
     }
-    
+
     /**
      * Get category title
-     * 
-     * @return array 
+     *
+     * @param int[] $ids
+     *
+     * @return array
      */
-    public function getTitle($ids)
+    public function getTitle(array $ids)
     {
-        $ids = (array) $ids;
+        trigger_error(__METHOD__ . ': set the value when it is created; do not add this method.');
+
         $rowset = $this->select(array('id' => $ids));
         $result = array();
         foreach ($rowset as $row) {
@@ -80,6 +83,7 @@ class Category extends Model
         
         if (count($rowset)) {
             $row = $rowset->current();
+            // No update?
         } else {
             $data['title'] = $data['title'] ?: ucfirst($data['name']);
             $data = $this->canonize($data);

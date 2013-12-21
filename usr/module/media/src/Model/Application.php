@@ -27,7 +27,7 @@ class Application extends Model
      */
     protected function canonize($data)
     {
-        $fields = self::getAvailableFields();
+        $fields = static::getAvailableFields();
         foreach (array_keys($data) as $key) {
             if (!in_array($key, $fields)) {
                 unset($data[$key]);
@@ -49,12 +49,15 @@ class Application extends Model
 
     /**
      * Get application title
-     * 
-     * @return array 
+     *
+     * @param int[] $ids
+     *
+     * @return array
      */
-    public function getTitle($ids)
+    public function getTitle(array $ids)
     {
-        $ids = (array) $ids;
+        trigger_error(__METHOD__ . ': set the value when it is created; do not add this method.');
+
         $rowset = $this->select(array('id' => $ids));
         $result = array();
         foreach ($rowset as $row) {
@@ -63,20 +66,22 @@ class Application extends Model
 
         return $result;
     }
-    
+
     /**
      * Save data into database
      * 
      * @param array $data
      * @return array 
      */
-    public function saveData($data)
+    public function saveData(array $data)
     {
         $row = $this->find($data['appkey'], 'appkey');
         if (!$row) {
             $data = $this->canonize($data);
             $row = $this->createRow($data);
             $row->save();
+        } else {
+            // No update?
         }
         
         return $row;

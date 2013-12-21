@@ -11,7 +11,7 @@ namespace Module\Media\Model;
 
 use Pi;
 use Pi\Application\Model\Model;
-use Zend\Db\Sql\Expression;
+//use Zend\Db\Sql\Expression;
 
 /**
  * Model class for operating application table
@@ -28,7 +28,7 @@ class Detail extends Model
      */
     protected function canonize($data)
     {
-        $fields = self::getAvailableColumns();
+        $fields = static::getAvailableColumns();
         foreach (array_keys($data) as $key) {
             if (!in_array($key, $fields)
                 || null === $data[$key]
@@ -83,11 +83,17 @@ class Detail extends Model
         
         return $fields;
     }
-    
+
     /**
      * Get media list
-     * 
-     * @return array 
+     *
+     * @param array $condition
+     * @param null  $page
+     * @param null  $limit
+     * @param null  $columns
+     * @param null  $order
+     *
+     * @return array
      */
     public function getList(
         $condition = array(),
@@ -96,6 +102,8 @@ class Detail extends Model
         $columns = null,
         $order = null
     ) {
+        trigger_error(__METHOD__ . ': use `offset` instead of `page`; moreover, do not encapsulate business logic into database model, move to APIs if possible.');
+
         $order = $order ?: 'time_upload DESC';
         
         $select = $this->select();
@@ -123,13 +131,17 @@ class Detail extends Model
      * @param array  $condition
      * @return int
      */
-    public function getCount($condition = array())
+    public function getCount(array $condition = array())
     {
+        trigger_error(__METHOD__ . ': No need to add this method.');
+        /*
         $select = $this->select()->where((array) $condition);
         $select->columns(array('count' => new Expression('count(*)')));
         $rowset = $this->selectWith($select);
         
         $count = intval($rowset->current()->count);
+        */
+        $count = $this->count($condition);
         
         return $count;
     }
@@ -139,14 +151,14 @@ class Detail extends Model
      * 
      * @param array $data
      * @param array $options
-     * @return Pi\Application\Model\Model 
+     * @return Model
      */
     public function saveData($data, $options = array())
     {
         $values = $this->canonize($data);
         
         // Canonize meta data
-        $metaFields = self::getMetaColumns();
+        $metaFields = static::getMetaColumns();
         $meta = array();
         foreach ($data as $key => $val) {
             if (in_array($key, $metaFields)) {
@@ -172,15 +184,16 @@ class Detail extends Model
         
         return $row;
     }
-    
+
     /**
      * Update media title, description and url
-     * 
+     *
      * @param array $data
      * @param array $where
-     * $return boolean
+     *
+     * @return bool
      */
-    public function updateData($data, $where)
+    public function updateData(array $data, array $where)
     {
         $columns = array('title', 'name', 'description', 'url');
         foreach (array_keys($data) as $key) {
