@@ -70,7 +70,7 @@ class Api extends AbstractService
     }
 
     /**
-     * Magic method to call a module API via varible
+     * Magic method to call a module API via variable
      *
      * Call a module API as
      *

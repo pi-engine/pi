@@ -7,14 +7,14 @@
  * @license      http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Demo\Api;
+namespace Module\Article\Api;
 
 use Pi;
 use Pi\Application\AbstractContent;
 
 /**
  * Public API for content fetch
- *
+ * 
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Content extends AbstractContent
@@ -22,7 +22,18 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
-    protected $module = 'demo';
+    protected $module = 'article';
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $meta = array(
+        'id'            => 'id',
+        'subject'       => 'title',
+        'summary'       => 'content',
+        'time_publish'  => 'time',
+        'uid'           => 'uid',
+    );
 
     /**
      * {@inheritDoc}
@@ -36,14 +47,18 @@ class Content extends AbstractContent
     ) {
         $result = array();
 
-        for ($i = 1; $i <= $limit; $i++) {
-            $item = array(
-                'title'     => sprintf('Demo title %d', $i),
-                'content'   => sprintf('Demo content %d', $i),
-                'link'      => Pi::url('www/demo/content/' . $i),
-                'uid'       => rand(1, 5),
-                'time'      => time() - rand(0, 1000),
-            );
+        $model = Pi::model('article', $this->module);
+        $select = $model->select();
+        $select->limit($limit)->order($order);
+        if ($order) {
+            $select->order($order);
+        }
+        $select->columns($this->canonizeVariables($variables));
+        $select->where($this->canonizeConditions($conditions));
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $item = $row->toArray();
+            $item['link'] = $this->buildLink($item);
             $result[] = $item;
         }
 

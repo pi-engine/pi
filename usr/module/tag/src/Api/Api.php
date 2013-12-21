@@ -25,7 +25,7 @@ use Pi;
 
 class Api extends AbstractApi
 {
-    protected static $moduleName = 'tag';
+    //protected static $moduleName = 'tag';
 
     /**
      * Search relate article according to tag array.
@@ -44,8 +44,8 @@ class Api extends AbstractApi
         $tags = is_scalar($tags) ? array($tags) : $tags;
         $tags = array_unique($tags);
 
-        $modelTag = Pi::model('tag', static::$moduleName);
-        $modelLink = Pi::model('link', static::$moduleName);
+        $modelTag = Pi::model('tag', $this->module);
+        $modelLink = Pi::model('link', $this->module);
 
         // Switch tagName to tagId
         $select = $modelTag->select()->where(array('term' => $tags));
@@ -59,9 +59,10 @@ class Api extends AbstractApi
         } else {
             $where = array('tag' => $tagIds);
         }
-        $select = $modelLink->select()->where($where)
-                                      ->columns(array('item' => new Expression('distinct item')))
-                                      ->order('time DESC');
+        $select = $modelLink->select();
+        $select->where($where)
+            ->columns(array('item' => new Expression('distinct item')))
+            ->order('time DESC');
         if (null !== $limit) {
             $limit = intval($limit);
             $select->offset($offset)->limit($limit);
@@ -85,17 +86,17 @@ class Api extends AbstractApi
      *
      * @return array
      */
-    public static function top($module, $type, $limit = null)
+    public function top($module, $type, $limit = null)
     {
         $offset = 0;
-        $modelTag = Pi::model('tag', static::$moduleName);
-        $modelStats = Pi::model('stats', static::$moduleName);
+        $modelTag = Pi::model('tag', $this->module);
+        $modelStats = Pi::model('stats', $this->module);
         $where = array('module' => $module);
         if (!empty($type)) {
             $where['type'] = $type;
         }
         $select = $modelStats->select()->where($where)->order('count DESC');
-        if (null !== $limit) {
+        if ($limit) {
             $limit = intval($limit);
             $select->offset($offset)->limit($limit);
         }
@@ -118,13 +119,13 @@ class Api extends AbstractApi
      *
      * @return array  result   items relate tags
      */
-    public static function multiple($module, $items, $type = null)
+    public function multiple($module, $items, $type = null)
     {
         $items      = is_scalar($items) ? (array) $items : $items;
         $result     = array();
 
-        $modeTag    = Pi::model('tag', static::$moduleName);
-        $modeLink   = Pi::model('link', static::$moduleName);
+        $modeTag    = Pi::model('tag', $this->module);
+        $modeLink   = Pi::model('link', $this->module);
 
         $where      = array('item' => $items, 'module' => $module);
         if ($type) {
@@ -132,7 +133,10 @@ class Api extends AbstractApi
         }
 
         // Get item related tag ids
-        $select = $modeLink->select()->where($where)->order('order ASC')->columns(array('tag', 'item'));
+        $select = $modeLink->select()
+            ->where($where)
+            ->order('order ASC')
+            ->columns(array('tag', 'item'));
         $rows = $modeLink->selectWith($select)->toArray();
         $tagIds = array();
         foreach ($rows as $row) {
@@ -143,7 +147,9 @@ class Api extends AbstractApi
             return array();
         }
         $tagIds = array_unique($tagIds);
-        $select = $modeTag->select()->where(array('id' => $tagIds))->columns(array('id', 'term'));
+        $select = $modeTag->select()
+            ->where(array('id' => $tagIds))
+            ->columns(array('id', 'term'));
         $rowset = $modeTag->selectWith($select)->toArray();
         foreach ($rowset as $row) {
             $terms[$row['id']] = $row['term'];

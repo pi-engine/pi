@@ -268,11 +268,11 @@ class Module extends AbstractService
     }
 
     /**
-     * Fetch content of an item from a type of moldule content by calling
-     * `Module\<ModuleName>\Service::content()`
+     * Fetch content of an item from a type of module content by calling
+     * `Module\<ModuleName>\Api\Content::getList()`
      *
      * @param array $variables  array of variables to be returned:
-     *                          title, summary, uid, user, etc.
+     *                          title, summary, uid, time, etc.
      * @param array $conditions associative array of conditions:
      *                          item - item ID or ID list, module, type - optional, user, Where
      *
@@ -285,12 +285,9 @@ class Module extends AbstractService
         if (!isset($conditions['module'])) {
             throw new \Exception('module is required.');
         }
-        $directory = $this->directory($conditions['module']);
-        $class = sprintf('Module\\%s\Service', ucfirst($directory));
-        if (!class_exists($class)) {
-            return false;
-        }
+        $api = Pi::api($conditions['module'], 'content');
+        $result = $api ? $api->getList($variables, $conditions) : array();
 
-        return $class::content($variables, $conditions);
+        return $result;
     }
 }

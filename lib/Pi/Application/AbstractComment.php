@@ -9,7 +9,6 @@
 
 namespace Pi\Application;
 
-//use Zend\Mvc\Router\RouteMatch;
 /**
  * Abstract class for module comment callback
  *
