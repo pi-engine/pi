@@ -64,7 +64,7 @@ class Article extends AbstractComment
                     )
                 ),
                 'uid'   => $articles[$id]['uid'],
-                'time'  => time(),
+                'time'  => $articles[$id]['time_publish'],
             );
         }
 
