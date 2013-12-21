@@ -50,7 +50,9 @@ class IndexController extends ActionController
         $moduleList = Pi::registry('module')->read();
         $modules = array();
         $modelStats = $this->getModel('stats');
-        $select = $modelStats->select()->columns(array('module' => new Expression('distinct module')));
+        $select = $modelStats->select()->columns(array(
+            'module' => new Expression('distinct module')
+        ));
         $data = $modelStats->selectWith($select)->toArray();
         foreach ($data as $row) {
             //$moduleArray[] = $row['module'];
@@ -66,11 +68,19 @@ class IndexController extends ActionController
         $offset = (int) ($page - 1) * $limit;
         if ($module === null) {
             // Get datas from tag table
-            $select = $modelTag->select()->where(array())->order(array('count DESC'))->offset($offset)->limit($limit);
+            $select = $modelTag->select()
+                ->where(array())
+                ->order(array('count DESC'))
+                ->offset($offset)
+                ->limit($limit);
         } else {
             // Get datas from stats table
             $modelStats = $this->getModel('stats');
-            $select = $modelStats->select()->where(array('module' => $module))->order(array('count DESC'))->offset($offset)->limit($limit);
+            $select = $modelStats->select()
+                ->where(array('module' => $module))
+                ->order(array('count DESC'))
+                ->offset($offset)
+                ->limit($limit);
             $rowset = $modelStats->selectWith($select)->toArray();
             foreach ($rowset as $row) {
                 $tagIds[] = $row['tag'];
@@ -81,31 +91,18 @@ class IndexController extends ActionController
 
         // Get amount tag
         if (null !== $module) {
-            $select = $modelStats->select()->where(array('module' => $module))->columns(array('count' => new Expression('count(*)')));
+            $select = $modelStats->select()
+                ->where(array('module' => $module))
+                ->columns(array('count' => new Expression('count(*)')));
             $count = $modelStats->selectWith($select)->current()->count;
         } else {
-            $select = $modelTag->select()->where(array())->columns(array('count' => new Expression('count(*)')));
+            $select = $modelTag->select()
+                ->where(array())
+                ->columns(array('count' => new Expression('count(*)')));
             $count = $modelTag->selectWith($select)->current()->count;
         }
 
         // Set paginator parameters
-        /*
-        $paginator = Paginator::factory(intval($count));
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'       => $this->getModule(),
-                'controller'   => 'index',
-                'action'       => 'list',
-                'm'            => $module,
-            ),
-        ));
-        */
         $paginator = Paginator::factory($count, array(
             'limit' => $limit,
             'page'  => $page,
@@ -136,7 +133,8 @@ class IndexController extends ActionController
         $moduleList = Pi::registry('module')->read();
         $modules = array();
         $modelStats = $this->getModel('stats');
-        $select = $modelStats->select()->columns(array('module' => new Expression('distinct module')));
+        $select = $modelStats->select()
+            ->columns(array('module' => new Expression('distinct module')));
         $data = $modelStats->selectWith($select)->toArray();
         foreach ($data as $row) {
             $modules[$row['module']] = $moduleList[$row['module']]['title'];
@@ -185,23 +183,6 @@ class IndexController extends ActionController
             }
         }
         // Set paginator parameter
-        /*
-        $paginator = Paginator::factory(intval($amount));
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'        => $this->getModule(),
-                'controller'    => 'index',
-                'action'        => 'detail',
-                'id'            => $tagId,
-            ),
-        ));
-        */
         $paginator = Paginator::factory($count, array(
             'limit' => $limit,
             'page'  => $page,
@@ -228,7 +209,10 @@ class IndexController extends ActionController
     {
         $form = new SearchForm('searchform');
         $form->setAttributes(array(
-            'action'    => $this->url('', array('controller' => 'index', 'action' => 'search')),
+            'action'    => $this->url('', array(
+                    'controller'    => 'index',
+                    'action'        => 'search'
+                )),
             'method'    => 'post',
             'class'     => 'well form-inline',
             ));
@@ -249,14 +233,20 @@ class IndexController extends ActionController
         // Get data from form
         if (! isset($tagName)) {
             if (!$this->request->isPost()) {
-                return $this->redirect()->toRoute('', array('action' => 'list', 'm' => $module));
+                return $this->redirect()->toRoute('', array(
+                    'action'    => 'list',
+                    'm'         => $module
+                ));
             }
             $post = $this->request->getPost();
             $form = $this->getForm($module);
             $form->setData($post);
             $form->setInputFilter(new SearchFilter);
             if (!$form->isValid()) {
-                return $this->redirect()->toRoute('', array('action' => 'list', 'm' => $module));
+                return $this->redirect()->toRoute('', array(
+                    'action'    => 'list',
+                    'm'         => $module
+                ));
             }
             $term = $form->getData();
             $tagName =  $term['tagname'];
@@ -282,24 +272,6 @@ class IndexController extends ActionController
         $select->where->like('term', "%{$name}%");
         $select->columns(array('count' => new Expression('count(*)')));
         $count = $modelTag->selectWith($select)->current()->count;
-        /*
-        $paginator = Paginator::factory(intval($count));
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'       => $this->getModule(),
-                'controller'   => 'index',
-                'action'       => 'search',
-                'm'            => $module,
-                'name'         => $tagName,
-            ),
-        ));
-        */
         $paginator = Paginator::factory($count, array(
             'limit' => $limit,
             'page'  => $page,
