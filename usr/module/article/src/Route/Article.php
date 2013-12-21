@@ -49,7 +49,7 @@ class Article extends Standard
     const COMBINE_DELIMITER   = '&';
     
     protected $paramDelimiter = '-';
-    protected $prefix = '/a';
+    protected $prefix = '/article';
     
     protected $defaults = array(
         'module'     => 'article',
