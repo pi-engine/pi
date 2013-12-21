@@ -18,6 +18,30 @@ use Zend\Uri\Uri;
 /**
  * Remote request handler service
  *
+ * Remote access
+ * ```
+ *  $result = Pi::service('remote')->get(<uri>, <params[]>, <headers[]>, <options[]>);
+ * ```
+ *
+ * Remote post
+ * ```
+ *  $result = Pi::service('remote')->post(<uri>, <params[]>, <headers[]>, <options[]>);
+ * ```
+ *
+ * Remote upload
+ * ```
+ *  $file = '/path/to/file';
+ *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
+ *
+ *  $file = fopen('/path/to/file');
+ *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
+ * ```
+ *
+ * Authorization
+ * ```
+ *  Pi::service('remote')->setAuthorization(array('httpauth' => <>, 'username' => <>, 'password' => <>>))->write(...);
+ * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Remote extends AbstractService
@@ -78,7 +102,7 @@ class Remote extends AbstractService
     /**
      * Connect to the remote server
      *
-     * @param string $host
+     * @param string|Uri $host
      * @param int    $port
      * @param bool   $secure
      *
@@ -86,6 +110,12 @@ class Remote extends AbstractService
      */
     public function connect($host, $port = 80, $secure = false)
     {
+        if ($host instanceof Uri) {
+            $port = $host->getPort();
+            $secure = ('https' == $host->getScheme()) ? true : false;
+            $host = $host->getHost();
+        }
+
         return $this->adapter()->connect($host, $port, $secure);
     }
 
@@ -97,6 +127,7 @@ class Remote extends AbstractService
      * @param string        $httpVer
      * @param array         $headers
      * @param string        $body
+     * @param array         $options
      *
      * @return string|bool Request as text
      */
@@ -104,8 +135,9 @@ class Remote extends AbstractService
         $method,
         $url,
         $httpVer    = '1.1',
-        $headers    = array(),
-        $body       = ''
+        array $headers    = array(),
+        $body       = '',
+        array $options = array()
     ) {
         $method = strtoupper($method);
         if (!$url instanceof Uri) {
@@ -113,7 +145,9 @@ class Remote extends AbstractService
         }
 
         $headers = $this->canonizeHeaders($headers);
-
+        if ($options) {
+            $this->adapter()->setOptions($options);
+        }
         try {
             $result = $this->adapter()->write(
                 $method,
@@ -256,7 +290,7 @@ class Remote extends AbstractService
     }
 
     /**
-     * Canonize URL with params
+     * Canonize URL with params, set `appkey` if not specified yet
      *
      * @param string $url
      * @param array $params
@@ -272,6 +306,9 @@ class Remote extends AbstractService
             parse_str($query, $list);
             $params = array_merge($list, $params);
         }
+        if (!isset($params['appkey'])) {
+            $params['appkey'] = Pi::config('identifier');
+        }
 
         return true;
     }
@@ -282,7 +319,7 @@ class Remote extends AbstractService
      * @param string            $url
      * @param array             $params
      * @param array             $headers
-     * @param array|int|bool    $options
+     * @param array             $options
      *
      * @return mixed
      */
@@ -290,33 +327,32 @@ class Remote extends AbstractService
         $url,
         array $params = array(),
         array $headers = array(),
-        $options = array()
+        array $options = array()
     ) {
         /**@+
          * Check against cache
          */
         $cache = array();
-        if (false !== $options) {
+        if (isset($options['cache'])) {
+            $cache = $options['cache'];
+            unset($options['cache']);
+        }
+        if (false !== $cache) {
             $cacheOption = $this->getOption('cache');
             if (false !== $cacheOption && 'production' == Pi::environment()) {
-                if (is_string($cacheOption)) {
+                if (is_string($cacheOption) && !isset($cache['storage'])) {
                     $cache['storage'] = $cacheOption;
-                } elseif (is_int($cacheOption)) {
+                } elseif (is_int($cacheOption) && !isset($cache['ttl'])) {
                     $cache['ttl'] = $cacheOption;
                 } elseif (is_array($cacheOption)) {
                     if (isset($cacheOption['cache'])) {
-                        $cache = $cacheOption['cache'];
+                        $cache = array_merge($cacheOption['cache'], $cache);
                     } else {
-                        $cache = $cacheOption;
+                        $cache = array_merge($cacheOption, $cache);
                     }
                 }
-                if (is_string($options)) {
-                    $cache['storage'] = $options;
-                } elseif (is_int($options)) {
-                    $cache['ttl'] = $options;
-                } elseif (is_array($options)) {
-                    $cache = array_merge($cache, $options);
-                }
+            } else {
+                $cache = false;
             }
         }
 
@@ -354,9 +390,12 @@ class Remote extends AbstractService
 
         $this->canonizeUrl($url, $params);
         $uri = new Uri($url);
+        /*
         $host = $uri->getHost();
         $port = $uri->getPort();
-        $this->adapter()->connect($host, $port);
+        $secure = ('https' == $uri->getScheme()) ? true : false;
+        */
+        $this->connect($uri);
 
         if ($params) {
             // FIXME: Convert sub arrays to string
@@ -370,7 +409,7 @@ class Remote extends AbstractService
         }
 
         $headers = $this->canonizeHeaders($headers);
-        $this->write('GET', $uri, '1.1', $headers);
+        $this->write('GET', $uri, '1.1', $headers, '', $options);
         $response = $this->read();
         if (false !== $response) {
             $result = $this->parseResponse($response);
@@ -414,9 +453,11 @@ class Remote extends AbstractService
     ) {
         $this->canonizeUrl($url, $params);
         $uri = new Uri($url);
+        /*
         $host = $uri->getHost();
         $port = $uri->getPort();
-        $this->adapter()->connect($host, $port);
+        */
+        $this->connect($uri);
 
         if (!$params) {
             $body = '';
@@ -426,8 +467,78 @@ class Remote extends AbstractService
             $body = $params;
         }
         $headers = $this->canonizeHeaders($headers);
-        $this->write('POST', $url, '1.1', $headers, $body);
+        $this->write('POST', $url, '1.1', $headers, $body, $options);
         $response = $this->read();
+        if (false !== $response) {
+            $result = $this->parseResponse($response);
+        } else {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Perform a upload request
+     *
+     * @param string $url
+     * @param string|Resource $file
+     * @param array $params
+     * @param array $headers
+     * @param array $options
+     *
+     * @return mixed
+     */
+    public function upload(
+        $url,
+        $file,
+        array $params = array(),
+        array $headers = array(),
+        array $options = array()
+    ) {
+        // Upload a file from absolute path via `POST`
+        if (!is_resource($file)) {
+            $params['file'] = '@' . $file;
+            $result = $this->post($url, $params, $headers, $options);
+
+            return $result;
+        }
+
+        // Upload a file resource via cURL `PUT`
+        if (!isset($headers['Content-Length'])) {
+            if (!isset($options['size'])) {
+                $stat = fstat($file);
+                $size = $stat['size'];
+            } else {
+                $size = $options['size'];
+                unset($options['size']);
+            }
+        } else {
+            $size = $headers['Content-Length'];
+            unset($headers['Content-Length']);
+        }
+        $this->adapter()->setCurlOption(CURL_INFILE, $file)
+            ->setCurlOption(CURL_INFILESIZE, $size);
+
+        $this->canonizeUrl($url, $params);
+        $uri = new Uri($url);
+        /*
+        $host = $uri->getHost();
+        $port = $uri->getPort();
+        */
+        $this->connect($uri);
+
+        if (!$params) {
+            $body = '';
+        } elseif (is_array($params)) {
+            $body = http_build_query($params);
+        } else {
+            $body = $params;
+        }
+        $headers = $this->canonizeHeaders($headers);
+        $this->write('PUT', $url, '1.1', $headers, $body, $options);
+        $response = $this->read();
+        $this->close();
         if (false !== $response) {
             $result = $this->parseResponse($response);
         } else {

@@ -100,7 +100,7 @@ class Remote extends AbstractAdapter
         if (is_scalar($id)) {
             $uri = $this->getConfig('url', 'get_attributes');
         } else {
-            $uri = $this->getConfig('url', 'mget_attributes');
+            $uri = $this->getConfig('url', 'get_attributes_list');
             $id = implode(',', $id);
         }
         $params = array(
@@ -202,9 +202,6 @@ class Remote extends AbstractAdapter
         $offset = null,
         $order = null
     ) {
-        if (!is_array($condition)) {
-            throw new \InvalidArgumentException('Array type required.');
-        }
         $uri = $this->getConfig('url', 'get_list');
         $params = array();
         if ($condition) {
@@ -232,9 +229,6 @@ class Remote extends AbstractAdapter
      */
     public function getCount(array $condition = array())
     {
-        if (!is_array($condition)) {
-            throw new \InvalidArgumentException('Array type required.');
-        }
         $uri = $this->getConfig('url', 'get_count');
         $params = array();
         if ($condition) {
@@ -259,7 +253,7 @@ class Remote extends AbstractAdapter
         if (is_scalar($id)) {
             $uri = $this->getConfig('url', 'get_url');
         } else {
-            $uri = $this->getConfig('url', 'mget_url');
+            $uri = $this->getConfig('url', 'get_url_list');
             $id = implode(',', $id);
         }
         $params = array(
@@ -268,8 +262,15 @@ class Remote extends AbstractAdapter
         $result = Pi::service('remote')
             ->setAuthorization($this->getConfig('authorization'))
             ->get($uri, $params);
-        
-        return array_shift($result);
+        if (is_scalar($id)) {
+            $result = $result[$id]['url'];
+        } else {
+            array_walk($result, function (&$data) {
+                $data = $data['url'];
+            });
+        }
+
+        return $result;
     }
 
     /**
@@ -277,12 +278,8 @@ class Remote extends AbstractAdapter
      */
     public function getUrlList(array $ids)
     {
-        $rowset = $this->getUrl($ids);
-        $result = array();
-        foreach ($rowset as $row) {
-            $result[$row['id']] = $row['url'];
-        }
-        
+        $result = $this->getUrl($ids);
+
         return $result;
     }
 
