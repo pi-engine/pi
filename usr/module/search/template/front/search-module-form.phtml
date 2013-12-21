@@ -4,7 +4,7 @@
             <div class="input-group input-group-lg">
                 <input type="text" name="q" class="form-control" placeholder="<?php echo sprintf(__('Search in %s'), _escape($label)); ?>">
                 <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default">
+                    <button type="submit" class="btn btn-default" onclick="this.form.action='';">
                         <span class="glyphicon glyphicon-search"></span> <?php _e('Search'); ?>
                     </button>
                 </div>

@@ -19,10 +19,14 @@ use Pi\Search\AbstractSearch;
  */
 class Search extends AbstractSearch
 {
-    /** @var string Table name */
+    /**
+     * {@inheritDoc}
+     */
     protected $table = 'page';
 
-    /** @var array Columns to fetch: column => meta field */
+    /**
+     * {@inheritDoc}
+     */
     protected $meta = array(
         'id'            => 'id',
         'title'         => 'title',
@@ -34,7 +38,7 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    public function buildLink(array $item)
+    protected function buildLink(array $item)
     {
         $link = Pi::service('url')->assemble(
             'page-page',

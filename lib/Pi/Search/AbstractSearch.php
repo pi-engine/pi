@@ -30,7 +30,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
         'content'
     );
 
-    /** @var array Columns to fetch: column => meta field */
+    /** @var array Columns to fetch: table column => meta key */
     protected $meta = array(
         'id'        => 'id',
         'title'     => 'title',
@@ -59,8 +59,12 @@ abstract class AbstractSearch extends AbstractModuleAwareness
      *
      * @return ResultSet
      */
-    public function query($terms, $limit= 0, $offset = 0, array $condition = array())
-    {
+    public function query(
+        $terms,
+        $limit  = 0,
+        $offset = 0,
+        array $condition = array()
+    ) {
         $terms = (array) $terms;
         $model = $this->getModel();
         $where = $this->buildCondition($terms, $condition);
@@ -97,16 +101,26 @@ abstract class AbstractSearch extends AbstractModuleAwareness
     protected function buildCondition(array $terms, array $condition = array())
     {
         $where = Pi::db()->where()->or;
+        // Create search term clause
         foreach ($terms as $term) {
             foreach ($this->searchIn as $column) {
                 $where->like($column, '%' . $term . '%')->or;
             }
         }
+        // Canonize conditions
         if ($condition) {
+            $meta = array_flip($this->meta);
+            foreach (array_keys($condition) as $key) {
+                if (isset($meta[$key])) {
+                    $condition[$meta[$key]] = $condition[$key];
+                    unset($condition[$key]);
+                }
+            }
             $condition = array_merge($this->condition, $condition);
         } else {
             $condition = $this->condition;
         }
+        // Create condition clauses
         if ($condition) {
             $where = Pi::db()->where($where);
             $where->add($condition);
@@ -123,7 +137,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
      *
      * @return int
      */
-    protected function fetchCount($model, Where $where)
+    protected function fetchCount(Model $model, Where $where)
     {
         $count = $model->count($where);
 
@@ -140,8 +154,12 @@ abstract class AbstractSearch extends AbstractModuleAwareness
      *
      * @return array
      */
-    protected function fetchResult($model, Where $where, $limit = 0, $offset = 0)
-    {
+    protected function fetchResult(
+        Model $model,
+        Where $where,
+        $limit = 0,
+        $offset = 0
+    ) {
         $data = array();
         $select = $model->select();
         $select->where($where);
@@ -156,7 +174,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
             foreach ($this->meta as $column => $field) {
                 $item[$field] = $row[$column];
                 if ('content' == $field) {
-                    $item[$field] = $this->formulateContent($item[$field]);
+                    $item[$field] = $this->buildContent($item[$field]);
                 }
             }
             $item['link'] = $this->buildLink($item);
@@ -173,7 +191,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
      *
      * @return string
      */
-    protected function formulateContent($content = '')
+    protected function buildContent($content = '')
     {
         $content = substr(strip_tags($content), 0, 255);
 
