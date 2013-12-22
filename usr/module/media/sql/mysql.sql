@@ -1,29 +1,45 @@
-CREATE TABLE `{detail}` (
+CREATE TABLE `{doc}` (
   `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
+  # filename
   `name`            varchar(255)                    NOT NULL DEFAULT '',
-  `title`           varchar(255)                    NOT NULL DEFAULT '',
-  `raw_name`        varchar(255)                    NOT NULL DEFAULT '',
-  `mimetype`        varchar(64)                     NOT NULL DEFAULT '',
-  `description`     varchar(255)                    NOT NULL DEFAULT '',
-  `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  # URL to access
   `url`             varchar(255)                    NOT NULL DEFAULT '',
+  # Absolute path to access, optional
+  `path`            varchar(255)                    NOT NULL DEFAULT '',
+
+  # file attributes
+  `mimetype`        varchar(64)                     NOT NULL DEFAULT '',
   `filesize`        int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `size_width`      int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `size_height`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `ip`              varchar(64)                     NOT NULL DEFAULT '',
-  `module`          varchar(64)                     NOT NULL DEFAULT '',
-  `application`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `category`        int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `delete`          tinyint(1) UNSIGNED             NOT NULL DEFAULT 0,
-  `active`          tinyint(1) UNSIGNED             NOT NULL DEFAULT 0,
-  `time_upload`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `time_update`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `meta`            text                            NOT NULL DEFAULT '',
 
-  PRIMARY KEY                     (`id`),
-  KEY `uid`                       (`uid`),
-  KEY `module`                    (`module`),
-  KEY `application`               (`application`)
+  # Doc attributes
+  `title`           varchar(255)                    NOT NULL DEFAULT '',
+  `description`     varchar(255)                    NOT NULL DEFAULT '',
+
+  `active`          tinyint(1) UNSIGNED             NOT NULL DEFAULT 0,
+  `is_uploaded`     tinyint(1) UNSIGNED             NOT NULL DEFAULT 0,
+  `time_created`    int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `time_updated`    int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `time_deleted`    int(10) UNSIGNED                NOT NULL DEFAULT 0,
+
+  # Application attributes
+  `appkey`          varchar(255)                    NOT NULL DEFAULT '',
+  `module`          varchar(64)                     NOT NULL DEFAULT '',
+  `category`        varchar(64)                     NOT NULL DEFAULT '',
+
+  # User attributes
+  `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `ip`              varchar(64)                     NOT NULL DEFAULT '',
+
+  # Extra data
+  `meta`            text,
+
+  PRIMARY KEY   (`id`),
+  KEY `active`  (`active`),
+  KEY `uid`     (`uid`),
+  KEY `module`  (`module`),
+  KEY `appkey`  (`appkey`)
 );
 
 CREATE TABLE `{extended}` (
@@ -36,30 +52,32 @@ CREATE TABLE `{extended}` (
 
 CREATE TABLE `{application}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `appkey`          varchar(255)          NOT NULL DEFAULT '',
-  `name`            varchar(255)          NOT NULL DEFAULT '',
+  `appkey`          varchar(255)          DEFAULT NULL,
+  `name`            varchar(255)          DEFAULT NULL,
   `title`           varchar(255)          NOT NULL DEFAULT '',
 
   PRIMARY KEY           (`id`),
-  KEY `name`            (`name`)
+  UNIQUE KEY `name`     (`name`),
+  UNIQUE KEY `appkey`   (`appkey`)
 );
 
 CREATE TABLE `{category}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
+  `appkey`          varchar(64)           NOT NULL DEFAULT '',
   `module`          varchar(64)           NOT NULL DEFAULT '',
   `name`            varchar(64)           NOT NULL DEFAULT '',
   `title`           varchar(255)          NOT NULL DEFAULT '',
-  `active`          tinyint(1)            NOT NULL DEFAULT 1,
+  #`active`          tinyint(1)            NOT NULL DEFAULT 1,
 
-  PRIMARY KEY                   (`id`),
-  UNIQUE KEY `module_category`  (`module`, `name`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `category`  (`appkey`, `module`, `name`)
 );
 
-CREATE TABLE `{statistics}` (
+CREATE TABLE `{stats}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `media`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `fetch_count`     int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `doc`             int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `count`     int(10) UNSIGNED      NOT NULL DEFAULT 0,
 
   PRIMARY KEY           (`id`),
-  KEY `media`           (`media`)
+  UNIQUE KEY `doc`      (`doc`)
 );

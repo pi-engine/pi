@@ -81,7 +81,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getAttributes($id, $attribute)
+    public function getAttributes($id, $attribute = '')
     {
         $server = $this->getServer();
         return Pi::api($server, 'media')->getAttributes($id, $attribute);
@@ -90,7 +90,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getAttributesList(array $ids, $attribute)
+    public function getAttributesList(array $ids, $attribute = '')
     {
         $server = $this->getServer();
         return Pi::api($server, 'media')->getAttributesList($ids, $attribute);
@@ -117,7 +117,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getFileIds(
+    public function getIds(
         array $condition,
         $limit = null,
         $offset = null,

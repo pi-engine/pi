@@ -92,7 +92,7 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getAttributes($id, $attribute)
+    public function getAttributes($id, $attribute = '')
     {
         if (!$id) {
             return false;
@@ -117,7 +117,7 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getAttributesList(array $ids, $attribute)
+    public function getAttributesList(array $ids, $attribute = '')
     {
         $result = $this->getAttributes($ids, $attribute);
         
@@ -162,7 +162,7 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getFileIds(
+    public function getIds(
         array $condition,
         $limit = null,
         $offset = null,

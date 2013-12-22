@@ -20,7 +20,40 @@ class Media extends AbstractApi
      * @var string
      */
     protected $module = 'media';
-    
+
+    /**
+     * Get model
+     *
+     * @param string $name
+     *
+     * @return Pi\Application\Model\Model
+     */
+    protected function model($name = 'doc')
+    {
+        $model = Pi::Model($name, $this->module);
+
+        return $model;
+    }
+
+    /**
+     * Add an application
+     *
+     * @param $data
+     *
+     * @return mixed
+     */
+    public function addApplication($data)
+    {
+        $model  =$this->model('application');
+        $row = $model->find($data['appkey'], 'appkey');
+        if (!$row) {
+            $row = $model->createRow($data);
+            $row->save();
+        }
+
+        return $row->id;
+    }
+
     /**
      * Insert media details
      * 
@@ -137,10 +170,10 @@ class Media extends AbstractApi
      * Get media attributes
      * 
      * @param int   $id
-     * @param array $attribute
+     * @param string|string[] $attribute
      * @return array
      */
-    public function getAttributes($id, $attribute)
+    public function getAttributes($id, $attribute = array())
     {
         $id = (array) $id;
         if (count($id) > 1) {
