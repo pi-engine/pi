@@ -617,13 +617,6 @@ class Remote extends AbstractService
         $file,
         array $options = array()
     ) {
-        if (!extension_loaded('curl')) {
-            throw new \InitializationException('cURL extension is not installed.');
-        }
-
-        $uri = $this->canonizeUrl($url);
-        $uri->setScheme('ftp');
-
         if (is_resource($file)) {
             $resource = $file;
         } else {
@@ -635,21 +628,15 @@ class Remote extends AbstractService
         $stat = fstat($resource);
         $size = $stat['size'];
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $uri->__toString());
-        if (!empty($options['username']) && !empty($options['password'])) {
-            $userpwd = $options['username'] . ':' . $options['password'];
-            curl_setopt($ch, CURLOPT_USERPWD, $userpwd);
-        }
-        if (isset($options['timeout'])) {
-            curl_setopt($ch, CURLOPT_TIMEOUT, (int) $options['timeout']);
-        }
-        curl_setopt($ch, CURLOPT_UPLOAD, 1);
-        curl_setopt($ch, CURLOPT_INFILE, $resource);
-        curl_setopt($ch, CURLOPT_INFILESIZE, $size);
-        curl_exec ($ch);
-        $error = curl_errno($ch);
-        curl_close ($ch);
+        $uri = $this->canonizeUrl($url);
+        $curl = $this->ftpCurl($uri, $options);
+
+        curl_setopt($curl, CURLOPT_UPLOAD, 1);
+        curl_setopt($curl, CURLOPT_INFILE, $resource);
+        curl_setopt($curl, CURLOPT_INFILESIZE, $size);
+        curl_exec($curl);
+        $error = curl_errno($curl);
+        curl_close($curl);
 
         if (!is_resource($file)) {
             fclose($resource);
@@ -679,13 +666,6 @@ class Remote extends AbstractService
         $file,
         array $options = array()
     ) {
-        if (!extension_loaded('curl')) {
-            throw new \InitializationException('cURL extension is not installed.');
-        }
-
-        $uri = $this->canonizeUrl($url);
-        $uri->setScheme('ftp');
-
         if (is_resource($file)) {
             $resource = $file;
         } else {
@@ -695,20 +675,14 @@ class Remote extends AbstractService
             return false;
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $uri->__toString());
-        if (!empty($options['username']) && !empty($options['password'])) {
-            $userpwd = $options['username'] . ':' . $options['password'];
-            curl_setopt($ch, CURLOPT_USERPWD, $userpwd);
-        }
-        if (isset($options['timeout'])) {
-            curl_setopt($ch, CURLOPT_TIMEOUT, (int) $options['timeout']);
-        }
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FILE, $resource);
-        curl_exec ($ch);
-        $error = curl_errno($ch);
-        curl_close ($ch);
+        $uri = $this->canonizeUrl($url);
+        $curl = $this->ftpCurl($uri, $options);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_FILE, $resource);
+        curl_exec($curl);
+        $error = curl_errno($curl);
+        curl_close($curl);
 
         if (!is_resource($file)) {
             fclose($resource);
@@ -716,5 +690,34 @@ class Remote extends AbstractService
         $result = $error ? false : true;
 
         return $result;
+    }
+
+    /**
+     * Build cURL for FTP
+     *
+     * @param Uri   $uri
+     * @param array $options
+     *
+     * @return resource
+     * @throws \InitializationException
+     */
+    protected function ftpCurl(Uri $uri, array $options)
+    {
+        if (!extension_loaded('curl')) {
+            throw new \InitializationException('cURL extension is not installed.');
+        }
+
+        $uri->setScheme('ftp');
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $uri->__toString());
+        if (!empty($options['username']) && !empty($options['password'])) {
+            $userpwd = $options['username'] . ':' . $options['password'];
+            curl_setopt($curl, CURLOPT_USERPWD, $userpwd);
+        }
+        if (isset($options['timeout'])) {
+            curl_setopt($curl, CURLOPT_TIMEOUT, (int) $options['timeout']);
+        }
+
+        return $curl;
     }
 }
