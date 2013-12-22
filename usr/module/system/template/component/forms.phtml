@@ -1,0 +1,90 @@
+<?php
+$form->prepare();
+$form->setAttribute('class', 'form-horizontal');
+echo $this->form()->openTag($form);
+
+/**#@+
+ * Preparation
+ */
+$elements = $form->elementList();
+$validate = $form->getMessages();
+$groups = $form->getGroups();
+$this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
+/**#@-**/
+
+/**#@++
+ * Temporary function for element display
+ */
+$_this = $this;
+$renderElement = function ($element) use ($_this)
+{
+    $emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
+    $type = $element->getAttribute('type') ? : 'text';
+    $isEmptyControl = in_array($type, $emptyControl);
+    $isCheckbox = $type == 'checkbox';
+    $desc = $element->getAttribute('description');
+
+    if (!$isEmptyControl) {
+        $element->setAttribute('class', 'form-control');
+    }
+
+    $rendered = sprintf(
+        '<div class="form-group%s"><label class="col-md-2 control-label">%s</label>',
+        $element->getMessages() ? ' has-error' : '',
+        $isCheckbox ?  '' : $element->getOption('label')
+    );
+
+    $rendered .= sprintf(
+        '<div class="col-md-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
+        $this->formElement($element),
+        $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
+        $this->formElementErrors($element)
+    );
+    echo $rendered;
+};
+
+$renderRow = function ($element) use ($_this, $validate, $renderElement)
+{
+    if (method_exists($element, 'getElements')) {
+        echo '<legend>' .  $_this->formLabel($element) . '</legend>';
+
+        $eles = $element->elementList();
+        foreach ($eles['active'] as $ele) {
+            $renderElement($ele);
+        }
+    } else {
+        $renderElement($element);
+    }
+};
+/**#@-**/
+
+if (!$groups) {
+    foreach ($elements['active'] as $element) {
+        $renderRow($element);
+    }
+} else {
+    foreach ($groups as $group) {
+    ?>
+        <legend><?php echo _escape($group['label']); ?></legend>
+        <?php
+        foreach ($group['elements'] as $name) {
+            $element = $form->get($name);
+            $renderRow($element);
+        }
+    }
+}
+
+/**#@+
+ * Add hidden elements
+ */
+foreach ($elements['hidden'] as $element) {
+    echo $this->formElement($element);
+}
+/**#@-**/
+
+echo sprintf(
+        '<div class="form-group"><div class="col-md-offset-2 col-md-10">%s</div></div>', 
+        $this->formElement($elements['submit'])
+    );
+echo $this->form()->closeTag();
+?>
