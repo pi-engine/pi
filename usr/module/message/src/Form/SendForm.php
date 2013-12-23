@@ -80,15 +80,17 @@ class SendForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'editor',
-                'placeholder'     => __('Message content'),
+                'placeholder'   => __('Message content'),
+                'rows'          => 5      
             ),
         ));
 
         $this->add(array(
             'name'          => 'submit',
+            'type'   => 'submit',
             'attributes'    => array(
-                'type'  => 'submit',
-                'value' => __('Send'),
+                'class'  => 'btn btn-primary',
+                'value'  => __('Send'),
             )
         ));
     }
