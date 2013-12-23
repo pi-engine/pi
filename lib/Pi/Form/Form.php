@@ -170,7 +170,7 @@ class Form extends ZendForm
                     || empty($messageSet)) {
                     continue;
                 }
-                $messages = array_merge($messages, (array) $messageSet);
+                $messages[$name] = (array) $messageSet;
             }
             return $messages;
         }
