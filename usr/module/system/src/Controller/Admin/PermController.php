@@ -34,7 +34,7 @@ class PermController extends ComponentController
      */
     public function indexAction()
     {
-        $module = $this->params('name', 'system');
+        $module = $this->params('name', $this->moduleName('system'));
 
         if (!$this->permission($module, 'permission')) {
             return;
@@ -47,7 +47,7 @@ class PermController extends ComponentController
     public function resourcesAction() 
     {
         $section = _get('section') ? : 'front';
-        $module = _get('name') ? : 'system';
+        $module = _get('name') ?: $this->moduleName('system');
         $roles = Pi::registry('role')->read($section);
 
         if (!$this->permission($module, 'permission')) {
@@ -179,7 +179,7 @@ class PermController extends ComponentController
         $role       = $this->params('role');
         $resource   = $this->params('resource');
         $section    = $this->params('section');
-        $module     = $this->params('name');
+        $module     = $this->params('name', $this->moduleName('system'));
         $op         = $this->params('op', 'grant');
         //$all        = $this->params('all', ''); // role, resource
 

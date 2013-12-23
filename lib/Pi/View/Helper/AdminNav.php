@@ -104,7 +104,7 @@ EOT;
             $routeMatch = Pi::engine()->application()->getRouteMatch();
             $params = $routeMatch->getParams();
             if (empty($params['name'])) {
-                $params['name'] = 'system';
+                $params['name'] = $_SESSION['PI_BACKOFFICE']['module'] ?: 'system';
             }
             $navigation = Menu::mainComponent(
                 $params['name'],

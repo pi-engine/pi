@@ -21,19 +21,38 @@ use Zend\Mvc\MvcEvent;
 class ComponentController extends ActionController
 {
     /**
+     * Get current module name
+     *
+     * @param string|null $default
+     *
+     * @return null|string
+     */
+    protected function moduleName($default = null)
+    {
+        if (isset($_SESSION['PI_BACKOFFICE']['module'])) {
+            $module = $_SESSION['PI_BACKOFFICE']['module'];
+        } else {
+            $module = $default;
+        }
+
+        return $module;
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function preAction(MvcEvent $e)
     {
         $routeMatch = $e->getRouteMatch();
-        $name = $routeMatch->getParam('name');
-        $component = $routeMatch->getParam('controller');
+        $name       = $routeMatch->getParam('name');
+        $component  = $routeMatch->getParam('controller');
 
         // Settings for admin navigation
         // Set module
         if (!empty($name)) {
             $_SESSION['PI_BACKOFFICE']['module'] = $name;
         }
+
         // Set component
         $_SESSION['PI_BACKOFFICE']['component'] = $component;
 
