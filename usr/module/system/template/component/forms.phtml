@@ -1,4 +1,13 @@
 <?php
+/*
+ * Message at form top
+ */
+if (isset($result)) {
+    echo sprintf('<div class="alert %s">%s</div>',
+         $result['status'] ? 'alert-success' : 'alert-error',
+         $result['message']
+    );
+}
 $form->prepare();
 $form->setAttribute('class', 'form-horizontal');
 echo $this->form()->openTag($form);
