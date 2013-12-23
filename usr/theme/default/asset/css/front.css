@@ -9,7 +9,7 @@ body {
 }
 
 .pi-main-container {
-  padding-bottom: 140px;
+  padding-bottom: 20px;
 }
 
 /* Bootstrap custom */
@@ -265,7 +265,6 @@ body {
 
 /* Footer */
 .pi-footer {
-  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
