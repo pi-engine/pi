@@ -48,7 +48,7 @@ class PageController extends ComponentController
     public function indexAction()
     {
         // Module name, default as 'system'
-        $name = $this->params('name', 'system');
+        $name = $this->params('name', $this->moduleName('system'));
 
         if (!$this->permission($name, 'page')) {
             return;
@@ -363,7 +363,7 @@ class PageController extends ComponentController
     public function blockAction()
     {
         // Module name
-        $name = $this->params('name', '');
+        $name = $this->params('name', $this->moduleName('system'));
         // Page ID
         $page = $this->params('page', 0);
 
@@ -475,7 +475,7 @@ class PageController extends ComponentController
     public function blocklistAction()
     {
         // Module name
-        $name = $this->params('name', '');
+        $name = $this->params('name', $this->moduleName('system'));
 
         $rowset = Pi::model('block')->select(array('module' => $name));
         $blocks = array();
@@ -580,7 +580,7 @@ class PageController extends ComponentController
      */
     public function actionlistAction()
     {
-        $module = $this->params('name');
+        $name = $this->params('name', $this->moduleName('system'));
         $controller = $this->params('ctrl');
         $class = sprintf(
             'Module\\%s\Controller\Front\\%sController',

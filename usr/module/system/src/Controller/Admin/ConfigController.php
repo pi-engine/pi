@@ -40,7 +40,7 @@ class ConfigController extends ComponentController
         if ($this->request->isPost()) {
             $module = $this->params()->fromPost('name');
         } else {
-            $module = $this->params('name', 'system');
+            $module = $this->params('name', $this->moduleName('system'));
         }
 
         if (!$this->permission($module, 'config')) {
