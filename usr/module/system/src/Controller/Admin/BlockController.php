@@ -205,7 +205,7 @@ class BlockController extends ComponentController
         //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('name', $rootRow->module);
         $this->view()->assign('form', $form);
-        $this->view()->assign('message', $message);
+        $this->view()->assign('formResult', $message);
         $this->view()->setTemplate('system:component/forms');
     }
 
@@ -270,7 +270,7 @@ class BlockController extends ComponentController
         //$this->view()->assign('modules', $this->getModules());
         $this->view()->assign('name', $blockRow->module);
         $this->view()->assign('form', $form);
-        $this->view()->assign('message', $message);
+        $this->view()->assign('formResult', $message);
         $this->view()->setTemplate('system:component/forms');
     }
 

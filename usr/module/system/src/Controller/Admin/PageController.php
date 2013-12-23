@@ -157,7 +157,7 @@ class PageController extends ComponentController
 
         $this->view()->assign('form', $form);
         $this->view()->assign('title', _a('Setup a page'));
-        $this->view()->assign('message', $message);
+        $this->view()->assign('formResult', $message);
         $this->view()->setTemplate('system:component/form-popup');
     }
 
@@ -270,7 +270,7 @@ class PageController extends ComponentController
 
         $this->view()->assign('form', $form);
         $this->view()->assign('title', _a('Pages edit'));
-        $this->view()->assign('message', $message);
+        $this->view()->assign('formResult', $message);
         $this->view()->setTemplate('system:component/form-popup');
     }
 

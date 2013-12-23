@@ -1,6 +1,22 @@
 <?php
 $this->jQuery();
 $this->bootstrap('js/bootstrap.min.js');
+
+if (!empty($formResult)) {
+    if (is_string($formResult)) {
+        $type = 'error';
+        $message = $formResult;
+    } else {
+        $type = $formResult['status'] ? 'success' : 'error';
+        $message = $formResult['message'];
+    }
+    if ('success' == $type) {
+        $class = 'alert-success';
+    } else {
+        $class = 'alert-danger';
+    }
+    echo sprintf('<div class="alert %s">%s</div>', $class, $message);
+}
 ?>
 <?php
     $form->setAttributes(array(

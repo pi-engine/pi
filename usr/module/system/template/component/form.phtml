@@ -2,12 +2,22 @@
 /*
  * Message at form top
  */
-if (isset($result)) {
-    echo sprintf('<div class="alert %s">%s</div>',
-         $result['status'] ? 'alert-success' : 'alert-error',
-         $result['message']
-    );
+if (!empty($formResult)) {
+    if (is_string($formResult)) {
+        $type = 'error';
+        $message = $formResult;
+    } else {
+        $type = $formResult['status'] ? 'success' : 'error';
+        $message = $formResult['message'];
+    }
+    if ('success' == $type) {
+        $class = 'alert-success';
+    } else {
+        $class = 'alert-danger';
+    }
+    echo sprintf('<div class="alert %s">%s</div>', $class, $message);
 }
+
 $emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
 $form->setAttribute('class', 'form-horizontal');
 $form->prepare();

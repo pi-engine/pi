@@ -295,7 +295,7 @@ class BlockModuleForm extends BaseForm
 
         $inputFilter->add(array(
             'name'          => 'id',
-            'required'      => true,
+            //'required'      => true,
             'allow_empty'   => true,
         ));
 

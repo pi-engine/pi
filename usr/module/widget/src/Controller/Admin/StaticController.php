@@ -114,7 +114,7 @@ class StaticController extends WidgetController
         }
 
         $this->view()->assign('form', $form);
-
+        $this->view()->assign('formResult', $message);
         $this->view()->setTemplate('system:component/form');
     }
 
