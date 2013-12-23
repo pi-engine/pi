@@ -2,20 +2,15 @@
 /*
  * Message at form top
  */
-if (!empty($formResult)) {
-    if (is_string($formResult)) {
-        $type = 'error';
-        $message = $formResult;
-    } else {
-        $type = $formResult['status'] ? 'success' : 'error';
-        $message = $formResult['message'];
-    }
-    if ('success' == $type) {
-        $class = 'alert-success';
-    } else {
-        $class = 'alert-danger';
-    }
-    echo sprintf('<div class="alert %s">%s</div>', $class, $message);
+$hiddenMessages = $form->getHiddenMessages();
+if ($hiddenMessages) {
+    ?>
+    <div class="alert alert-danger">
+        <?php foreach ($hiddenMessages as $message) { ?>
+            <div><?php echo $message; ?></div>
+        <?php } ?>
+    </div>
+<?php
 }
 
 $form->prepare();
