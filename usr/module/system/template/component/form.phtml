@@ -2,12 +2,17 @@
 /*
  * Message at form top
  */
-if (isset($result)) {
-    echo sprintf('<div class="alert %s">%s</div>',
-         $result['status'] ? 'alert-success' : 'alert-error',
-         $result['message']
-    );
+$hiddenMessages = $form->getHiddenMessages();
+if ($hiddenMessages) {
+?>
+<div class="alert alert-danger">
+    <?php foreach ($hiddenMessages as $message) { ?>
+        <div><?php echo $message; ?></div>
+    <?php } ?>
+</div>
+<?php
 }
+
 $emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
 $form->setAttribute('class', 'form-horizontal');
 $form->prepare();

@@ -1,14 +1,24 @@
 <?php
 $this->jQuery();
 $this->bootstrap('js/bootstrap.min.js');
-?>
+
+$hiddenMessages = $form->getHiddenMessages();
+if ($hiddenMessages) {
+    ?>
+    <div class="alert alert-danger">
+        <?php foreach ($hiddenMessages as $message) { ?>
+            <div><?php echo $message; ?></div>
+        <?php } ?>
+    </div>
 <?php
-    $form->setAttributes(array(
-        'class' => 'form-horizontal',
-        'id'    => 'popup-form'
-    ));
-    $form->prepare();
-    echo $this->form()->openTag($form);
+}
+
+$form->setAttributes(array(
+    'class' => 'form-horizontal',
+    'id'    => 'popup-form'
+));
+$form->prepare();
+echo $this->form()->openTag($form);
 ?>
 <div class="modal-dialog">
     <div class="modal-content">

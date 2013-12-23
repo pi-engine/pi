@@ -31,7 +31,9 @@ class TemplateComponent extends TemplateModule
     /**
      * Get full path to a system view component template
      *
-     * @param   string  $template
+     * @param string $template
+     * @param string $module
+     *
      * @return  string
      */
     public function __invoke($template, $module = 'system')

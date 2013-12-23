@@ -11,7 +11,9 @@
 namespace Pi\Form;
 
 use Pi;
+use Traversable;
 use Zend\Form\Form as ZendForm;
+use Zend\Form\Exception;
 
 /**
  * Form class
@@ -144,6 +146,45 @@ class Form extends ZendForm
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * Get messages for hidden elements
+     *
+     * @param  null|string $elementName
+     *
+     * @throws Exception\InvalidArgumentException
+     * @return array
+     */
+    public function getHiddenMessages($elementName = null)
+    {
+        if (null === $elementName) {
+            $messages = array();
+            foreach ($this->byName as $name => $element) {
+                if ('hidden' != $element->getAttribute('type')) {
+                    continue;
+                }
+                $messageSet = $element->getMessages();
+                if (!is_array($messageSet)
+                    && !$messageSet instanceof Traversable
+                    || empty($messageSet)) {
+                    continue;
+                }
+                $messages = array_merge($messages, (array) $messageSet);
+            }
+            return $messages;
+        }
+
+        if (!$this->has($elementName)) {
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Invalid element name "%s" provided to %s',
+                $elementName,
+                __METHOD__
+            ));
+        }
+
+        $element = $this->get($elementName);
+        return $element->getMessages();
     }
 
     /**
