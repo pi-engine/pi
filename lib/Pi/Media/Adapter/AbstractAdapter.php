@@ -13,7 +13,7 @@ use Pi;
 use Pi\Media\Dispatch\AbstractDispatch as MediaDispatch;
 
 /**
- * Media service abstract class
+ * Media service abstract adapter
  *
  * @author Zongshu Lin <lin40553024@163.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -78,80 +78,105 @@ abstract class AbstractAdapter
      *  - url
      *  - title
      *  - description
+     *  - attributes
+     *  - uid
+     *  - id
+     *  - ...
      *
-     *  - mimetype
-     *  - filesize
-     *  - size_width
-     *  - size_height
      *
+     * @param array $data Doc attribute data
      *
-     * @param array $data  data to update
+     * @return int Doc id
      */
-    abstract public function add($data);
+    abstract public function add(array $data);
 
     /**
-     * Upload a media doc
+     * Upload a local media doc
      * 
-     * @param array $meta     data written into database
-     * @param array $options  optional data, use to set storage, path rule
+     * @param string|Resource $file
+     * @param array $data Doc attribute data
+     *
+     * @return int Doc id
      */
-    abstract public function upload($meta, $options = array());
+    abstract public function upload($file, array $data);
+
+    /**
+     * Download a media file to local file
+     *
+     * @param int $id   Doc id
+     * @param strig $file Absolute path to save
+     *
+     * @return bool
+     */
+    abstract public function download($id, $file);
     
     /**
      * Update doc details
      * 
      * @param int   $id    doc ID
-     * @param array $data  data to update 
+     * @param array $data  data to update
+     *
+     * @return bool
      */
-    abstract public function update($id, $data);
+    abstract public function update($id, array $data);
     
     /**
-     * Active a doc
+     * Activate/deactivate a doc
      * 
-     * @param int   $id     file ID 
+     * @param int $id     Doc ID
+     * @param bool $flag
+     *
+     * @return bool
      */
     //abstract public function activeFile($id);
-    abstract public function activate($id);
-
-    /**
-     * Deactivate a doc
-     * 
-     * @param int   $id     file ID 
-     */
-    //abstract public function deactivateFile($id);
-    abstract public function deactivate($id);
+    abstract public function activate($id, $flag = true);
 
     /**
      * Get attributes of a doc
      * 
-     * @param int               $id     file ID
+     * @param int               $id    Doc ID
      * @param string|string[]   $attr  attribute key
+     *
+     * @return mixed
      */
     abstract public function get($id, $attr = array());
     
     /**
      * Get attributes of files
      * 
-     * @param int[]             $ids   file IDs
+     * @param int[]             $ids   Doc IDs
      * @param string|string[]   $attr  attribute key
+     *
+     * @return array
      */
     //abstract public function mgetAttributes($ids, $attribute);
     abstract public function mget(array $ids, $attr = array());
 
     /**
+     * Get doc file url
+     *
+     * @param int|int[] $id
+     *
+     * @return string|array
+     */
+    abstract public function getUrl($id);
+
+    /**
      * Get statistics data of a file
      * 
-     * @param int    $id    file ID
+     * @param int    $id    Doc ID
+     *
+     * @return array
      */
-    //abstract public function getStatistics($id, $statistics);
     abstract public function getStats($id);
 
     /**
      * Get statistics data of files
      * 
-     * @param int[]  $ids   file IDs
+     * @param int[]  $ids   Doc IDs
+     *
+     * @return array
      */
-    //abstract public function mgetStatistics($ids, $statistics);
     abstract public function getStatsList(array $ids);
 
     /**
@@ -160,14 +185,16 @@ abstract class AbstractAdapter
      * @param array  $condition
      * @param int    $limit
      * @param int    $offset
-     * @param string $order 
+     * @param string|array $order
+     *
+     * @return int[]
      */
     //abstract public function getFileIds(
     abstract public function getIds(
         array $condition,
-        $limit = null,
+        $limit  = null,
         $offset = null,
-        $order = null
+        $order  = null
     );
     
     /**
@@ -176,60 +203,42 @@ abstract class AbstractAdapter
      * @param array  $condition
      * @param int    $limit
      * @param int    $offset
-     * @param string $order 
+     * @param string|array $order
+     *
+     * @return array
      */
     abstract public function getList(
         array $condition,
-        $limit = null,
+        $limit  = null,
         $offset = null,
-        $order = null
+        $order  = null
     );
     
     /**
-     * Get list count by condition
+     * Get doc count by condition
      * 
-     * @param array $condition 
+     * @param array $condition
+     *
+     * @return int
      */
     abstract public function getCount(array $condition = array());
-    
+
     /**
-     * Get file url
+     * Delete file(s)
      * 
      * @param int|int[] $id
      */
-    abstract public function getUrl($id);
-    
-    /**
-     * Get url of files
-     * 
-     * @param int[] $ids
-     */
-    //abstract public function mgetUrl($ids);
-    abstract public function getUrlList(array $ids);
-
-    /**
-     * Download files
-     * 
-     * @param int[] $ids
-     */
-    abstract public function download(array $ids);
-    
-    /**
-     * Delete files
-     * 
-     * @param array $ids 
-     */
-    abstract public function delete(array $ids);
+    abstract public function delete($id);
     
     /**
      * Get file validator data
      * 
      * @param string $adapter 
      */
-    abstract public function getValidator($adapter = null);
+    //abstract public function getValidator($adapter = null);
     
     /**
      * Get configuration of server 
      */
-    abstract public function getServerConfig();
+    //abstract public function getServerConfig();
 }
