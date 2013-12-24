@@ -236,13 +236,15 @@ $this->headLink(array(
         </div>    
     </div>
     <?php echo $this->assemble('footScript', 4); ?>
+    <!--
     <?php if ('production' != Pi::environment()) { ?>
     <script>
-    //Awlays keep footer at page bottom, if put logger message after footer, it will have style bug
+    // Logger message is not part of page content
     $(function() {
-        $('#pi-logger-output').appendTo($('.pi-main-container'));
+        $('#pi-logger-output').appendTo($('.pi-foot-container'));
     });
     </script>
     <?php } ?>
+    -->
 </body>
 </html>
