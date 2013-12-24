@@ -23,7 +23,7 @@ class Local extends AbstractAdapter
      * 
      * @return string 
      */
-    protected function api()
+    protected function handler()
     {
         return Pi::api('media', 'media');
     }
@@ -34,7 +34,7 @@ class Local extends AbstractAdapter
     public function setOptions(array $options)
     {
         parent::setOptions($options);
-        $this->api()->setOptions($options);
+        $this->handler()->setOptions($options);
 
         return $this;
     }
@@ -44,7 +44,7 @@ class Local extends AbstractAdapter
      */
     public function add(array $data)
     {
-        $result = $this->api()->add($data);
+        $result = $this->handler()->add($data);
 
         return $result;
     }
@@ -52,9 +52,9 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function upload($file, array $data)
+    public function upload($file, array $data = array())
     {
-        $result = $this->api()->upload($file, $data);
+        $result = $this->handler()->upload($file, $data);
 
         return $result;
     }
@@ -64,7 +64,7 @@ class Local extends AbstractAdapter
      */
     public function download($id, $file)
     {
-        $result = $this->api()->download($id, $file);
+        $result = $this->handler()->download($id, $file);
 
         return $result;
     }
@@ -74,7 +74,7 @@ class Local extends AbstractAdapter
      */
     public function update($id, array $data)
     {
-        $result = $this->api()->update($id, $data);
+        $result = $this->handler()->update($id, $data);
 
         return $result;
     }
@@ -84,7 +84,7 @@ class Local extends AbstractAdapter
      */
     public function activate($id, $flag = true)
     {
-        $result = $this->api()->activate($id, $flag);
+        $result = $this->handler()->activate($id, $flag);
 
         return $result;
     }
@@ -94,7 +94,7 @@ class Local extends AbstractAdapter
      */
     public function get($id, $attr = array())
     {
-        $result = $this->api()->get($id, $attr);
+        $result = $this->handler()->get($id, $attr);
 
         return $result;
     }
@@ -104,7 +104,7 @@ class Local extends AbstractAdapter
      */
     public function mget(array $ids, $attr = array())
     {
-        $result = $this->api()->mget($ids, $attr);
+        $result = $this->handler()->mget($ids, $attr);
 
         return $result;
     }
@@ -114,7 +114,7 @@ class Local extends AbstractAdapter
      */
     public function getUrl($id)
     {
-        $result = $this->api()->getUrl($id);
+        $result = $this->handler()->getUrl($id);
 
         return $result;
     }
@@ -124,7 +124,7 @@ class Local extends AbstractAdapter
      */
     public function getStats($id)
     {
-        $result = $this->api()->getStats($id);
+        $result = $this->handler()->getStats($id);
 
         return $result;
     }
@@ -134,7 +134,7 @@ class Local extends AbstractAdapter
      */
     public function getStatsList(array $ids)
     {
-        $result = $this->api()->getStatsList($ids);
+        $result = $this->handler()->getStatsList($ids);
 
         return $result;
     }
@@ -148,7 +148,7 @@ class Local extends AbstractAdapter
         $offset = null,
         $order = null
     ) {
-        $result = $this->api()->getIds(
+        $result = $this->handler()->getIds(
             $condition,
             $limit,
             $offset,
@@ -163,15 +163,17 @@ class Local extends AbstractAdapter
      */
     public function getList(
         array $condition,
-        $limit = null,
+        $limit  = null,
         $offset = null,
-        $order = null
+        $order  = null,
+        array $attr = array()
     ) {
-        $result = $this->api()->getList(
+        $result = $this->handler()->getList(
             $condition,
             $limit,
             $offset,
-            $order
+            $order,
+            $attr
         );
         
         return $result;
@@ -182,7 +184,7 @@ class Local extends AbstractAdapter
      */
     public function getCount(array $condition = array())
     {
-        $result = $this->api()->getCount($condition);
+        $result = $this->handler()->getCount($condition);
 
         return $result;
     }
@@ -192,7 +194,7 @@ class Local extends AbstractAdapter
      */
     public function delete($id)
     {
-        $result = $this->api()->delete($id);
+        $result = $this->handler()->delete($id);
 
         return $result;
     }

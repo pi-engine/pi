@@ -42,7 +42,7 @@ abstract class AbstractAdapter
     public function setOptions(array $options = array())
     {
         $this->options = $options;
-        
+
         return $this;
     }
     
@@ -98,7 +98,7 @@ abstract class AbstractAdapter
      *
      * @return int Doc id
      */
-    abstract public function upload($file, array $data);
+    abstract public function upload($file, array $data = array());
 
     /**
      * Download a media file to local file
@@ -204,6 +204,7 @@ abstract class AbstractAdapter
      * @param int    $limit
      * @param int    $offset
      * @param string|array $order
+     * @param array $attr
      *
      * @return array
      */
@@ -211,7 +212,8 @@ abstract class AbstractAdapter
         array $condition,
         $limit  = null,
         $offset = null,
-        $order  = null
+        $order  = null,
+        array $attr = array()
     );
     
     /**
