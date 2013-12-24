@@ -1,42 +1,53 @@
-<style>
-.uc-form-inline {
-  margin: 0 20px 20px 8px;
-}
-</style>
-<form class="form-inline uc-form-inline" ng-submit="filterRemoteAction()">
-    <input type="text" placeholder="{{'USERNAME' | translate}}" class="input-small" ng-model="filterRemote.identity">
-    <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="input-small" ng-model="filterRemote.name">
-  <input type="text" placeholder="{{'EMAIL' | translate}}" class="input-small" ng-model="filterRemote.email">
+<form class="form-inline" ng-submit="filterRemoteAction()">
+  <div class="form-group">
+    <input type="text" placeholder="{{'USERNAME' | translate}}" class="form-control" ng-model="filterRemote.identity">
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="{{'DISPLAY_NAME' | translate}}" class="form-control" ng-model="filterRemote.name">
+  </div>
+  <div class="form-group">
+    <input type="text" placeholder="{{'EMAIL' | translate}}" class="form-control" ng-model="filterRemote.email">
+  </div>
   <button class="btn btn-info" style="padding: 4px 20px;">
-    <i class="icon-search"></i>
+    <i class="fa fa-search"></i>
   </button>
 </form>
-<form class="form-inline uc-form-inline" ng-submit="filterLocalAction()">
-    <select class="input-medium" ng-model="filterLocal.front_role"
+<form class="form-inline" ng-submit="filterLocalAction()">
+  <div class="form-group">
+    <select class="form-control" ng-model="filterLocal.front_role"
             ng-options="item.name as item.title for item in frontRoles">
-        <option value="">{{'FRONT_ROLE' | translate}}
+      <option value="">{{'FRONT_ROLE' | translate}}
     </select>
-    <select class="input-medium" ng-model="filterLocal.admin_role"
+  </div>
+  <div class="form-group">
+    <select class="form-control" ng-model="filterLocal.admin_role"
             ng-options="item.name as item.title for item in adminRoles">
         <option value="">{{'ADMIN_ROLE' | translate}}
     </select>
-    <button class="btn btn-info" style="padding: 4px 20px;">
-        <i class="icon-check"></i>
-    </button>
+  </div>
+  <button class="btn btn-info" style="padding: 4px 20px;">
+    <i class="fa fa-search"></i>
+  </button>
 </form>
 <div ng-show="users.length">
-  <div class="clearfix form-inline uc-form-inline">
+  <div class="clearfix form-inline">
     <strong class="pull-right">{{paginator.count}} members</strong>
-    <input type="checkbox" style="margin-right: 6px;"
-           ng-model="allChecked" ng-change="markAll()">
-    <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
-            ng-options="item.title group by item._section for item in roles">
-      <option value="">{{'ASSIGN_ROLE' | translate}}
-    </select>
-    <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
-            ng-options="item.title group by item._section for item in roles">
-      <option value="">{{'UNASSIGN_ROLE' | translate}}
-    </select>
+    <label class="checkbox">
+      <input type="checkbox" style="margin-right: 6px;"
+             ng-model="allChecked" ng-change="markAll()">
+    </label>
+    <div class="form-group">
+      <select class="form-control" ng-change="assignRoleBacthAction()" ng-model="assignRole"
+              ng-options="item.title group by item._section for item in roles">
+        <option value="">{{'ASSIGN_ROLE' | translate}}
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-control" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
+              ng-options="item.title group by item._section for item in roles">
+        <option value="">{{'UNASSIGN_ROLE' | translate}}
+      </select>
+    </div>
   </div>
   <table class="table table-striped">
       <thead>
@@ -61,11 +72,11 @@
           <td>
             <span ng-if="user.front_roles" tooltip="{{user.front_roles}}"
                   style="padding-right: 5px;">
-              <i class="icon-user icon-large"></i>
+              <i class="fa fa-user fa-2x"></i>
             </span>
             <span ng-if="user.admin_roles" tooltip="{{user.admin_roles}}"
                   style="padding-left: 5px;">
-              <i class="icon-user-md icon-large"></i>
+              <i class="fa fa-user-md fa-2x"></i>
             </span>
           <td class="text-center">
             {{user.time_created}}
@@ -75,6 +86,6 @@
               class="pagination" boundary-links="true" items-per-page="paginator.limit">
   </pagination>
 </div>
-<div class="alert" ng-show="!users.length">
+<div class="alert alert-info" ng-show="!users.length">
   {{'NONE_USER' | translate}}
 </div>

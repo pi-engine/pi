@@ -12,7 +12,6 @@
     padding: 12px 20px 18px 15px;
     padding-left: 12px\9;
     margin-top: 0;
-    height: 46px;    
     cursor: pointer;
 }
 
@@ -178,6 +177,7 @@
 
 .message-detail-text {
     padding: 5px 0 0 80px;
+    margin-bottom: 20px;
 }
 
 /* new  Message */

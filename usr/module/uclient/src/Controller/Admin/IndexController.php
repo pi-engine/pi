@@ -29,7 +29,7 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $this->view()->setTemplate('user');
+        $this->view()->setTemplate('ng');
         $this->view()->assign(array(
             'roles'  => $this->getRoles()
         ));

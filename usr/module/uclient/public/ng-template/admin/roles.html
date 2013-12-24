@@ -1,0 +1,42 @@
+<legend>{{'FRONT_TITLE' | translate}}</legend>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 15%;">{{'TITLE' | translate}}
+        <th class="text-center">{{'USER_COUNT' | translate}}
+        <th>
+    <tbody>
+      <tr ng-repeat="role in roles | filter: {section: 'front'}">
+        <td>{{role.name}}
+        <td>{{role.title}}
+        <td class="text-center">
+          <a href="#!/{{role.name}}/users">{{role.count}}</a>
+        <td>
+          <a class="btn btn-default" href="#!/{{role.name}}/users">
+            {{'ADD_USER' | translate}}
+          </a>
+  </table>
+</div>
+<legend>{{'ADMIN_TITLE' | translate}}</legend>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th style="width: 15%;">{{'NAME' | translate}}
+        <th style="width: 15%;">{{'TITLE' | translate}}
+        <th class="text-center">{{'USER_COUNT' | translate}}
+        <th>
+    <tbody>
+      <tr ng-repeat="role in roles | filter: {section: 'admin'}">
+        <td>{{role.name}}
+        <td>{{role.title}}
+        <td class="text-center">
+          <a href="#!/{{role.name}}/users">{{role.count}}</a>
+        <td>
+          <a class="btn btn-default" href="#!/{{role.name}}/users">
+            {{'ADD_USER' | translate}}
+          </a>
+  </table>
+</div>

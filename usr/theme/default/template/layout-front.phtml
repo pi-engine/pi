@@ -219,31 +219,28 @@ $this->headLink(array(
     <!-- Footer: sitelink -->
     <div class="pi-footer">
         <div class="container pi-footer-container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pi-footer-copyright">
-                        <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                            &copy;<?php echo _escape($sitename); ?>
-                        </a>
-                        <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                            Powered by Pi Engine
-                        </a>
-                        <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                            Design of Pi Engine
-                        </a>
-                        <span title="<?php _e('Execution time'); ?>">
-                            <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
-                        </span>
-                    </div>    
-                </div>
-            </div>
+            <div class="text-center">
+                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                    &copy;<?php echo _escape($sitename); ?>
+                </a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Powered by Pi Engine
+                </a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Design of Pi Engine
+                </a>
+                <span title="<?php _e('Execution time'); ?>">
+                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
+                </span>
+            </div>    
         </div>    
     </div>
     <?php echo $this->assemble('footScript', 4); ?>
     <?php if ('production' != Pi::environment()) { ?>
     <script>
+    // Logger message is not part of page content
     $(function() {
-        $('#pi-logger-output').appendTo($('.pi-footer-container'));
+        $('#pi-logger-output').appendTo($('.pi-foot-container'));
     });
     </script>
     <?php } ?>
