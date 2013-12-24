@@ -238,9 +238,9 @@ $this->headLink(array(
     <?php echo $this->assemble('footScript', 4); ?>
     <?php if ('production' != Pi::environment()) { ?>
     <script>
-    //Aways keep footer at screen bottom, log will append to content container
+    // Logger message is not part of page content
     $(function() {
-        $('#pi-logger-output').appendTo($('.pi-main-container'));
+        $('#pi-logger-output').appendTo($('.pi-foot-container'));
     });
     </script>
     <?php } ?>
