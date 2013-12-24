@@ -47,10 +47,9 @@ class FindPasswordForm extends BaseForm
 
         $this->add(array(
             'name'       => 'submit',
+            'type'  => 'submit',
             'attributes' => array(
-                'type'  => 'submit',
                 'value' => __('Find password'),
-                'class' => 'btn',
             ),
         ));
     }

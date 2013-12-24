@@ -1,40 +1,35 @@
-<style>
-.nav-tabs>.active>a:hover {
-  cursor: pointer;
-}
-</style>
 <legend>{{'SEARCH_RESULT' | translate}}</legend>
 <div ng-show="users.length">
-  <div class="clearfix form-inline" style="margin: 0 20px 20px 8px;">
+  <div class="clearfix form-inline">
     <strong class="pull-right">{{paginator.count}} members</strong>
     <input type="checkbox" style="margin-right: 6px;"
            ng-model="allChecked" ng-change="markAll()">
     <div class="btn-group">
-      <button class="btn" ng-click="activeBatchAction()">
-        <i class="icon-ok-sign"></i>
+      <button class="btn btn-default" ng-click="activeBatchAction()">
         {{'ACTIVATE' | translate}}
       </button>
-      <button class="btn" ng-click="enableBatchAction()">
-        <i class="icon-ok text-success"></i>
+      <button class="btn btn-default" ng-click="enableBatchAction()">
         {{'ENABLE' | translate}}
       </button>
-      <button class="btn" ng-click="disableBatchAction()">
-        <i class="icon-power-off"></i>
+      <button class="btn btn-default" ng-click="disableBatchAction()">
         {{'DISABLE' | translate}}
       </button>
-      <button class="btn" ng-click="deleteBatchAction()">
-        <i class="icon-remove text-error"></i>
+      <button class="btn btn-default" ng-click="deleteBatchAction()">
         {{'DELETE' | translate}}
       </button>
     </div>
-    <select class="input-medium" ng-change="assignRoleBacthAction()" ng-model="assignRole"
-            ng-options="item.title group by item.type for item in roles">
-      <option value="">{{'ASSIGN_ROLE' | translate}}
-    </select>
-    <select class="input-medium" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
-            ng-options="item.title group by item.type for item in roles">
-      <option value="">{{'UNASSIGN_ROLE' | translate}}
-    </select>
+    <div class="form-group">
+      <select class="form-control" ng-change="assignRoleBacthAction()" ng-model="assignRole"
+              ng-options="item.title group by item.type for item in assignRoles">
+        <option value="">{{'ASSIGN_ROLE' | translate}}
+      </select>
+    </div>
+    <div class="form-group">
+      <select class="form-control" ng-change="unassignRoleBacthAction()" ng-model="unassignRole"
+              ng-options="item.title group by item.type for item in assignRoles">
+        <option value="">{{'UNASSIGN_ROLE' | translate}}
+      </select>
+    </div>
   </div>
   <table class="table table-striped">
       <thead>
@@ -85,11 +80,11 @@
           <td>
             <span ng-if="user.front_roles" tooltip="{{'FRONT_ROLE'| translate}} : {{user.front_roles}}" 
                   style="padding-right: 5px;">
-              <i class="icon-user icon-large"></i>
+              <i class="fa fa-user fa-2x"></i>
             </span>
             <span ng-if="user.admin_roles" tooltip="{{'ADMIN_ROLE'| translate}} : {{user.admin_roles}}"
                   style="padding-left: 5px;">
-              <i class="icon-user-md icon-large"></i>
+              <i class="fa fa-user-md fa-2x"></i>
             </span>
           <td class="text-center">
             {{user.ip_register}}
