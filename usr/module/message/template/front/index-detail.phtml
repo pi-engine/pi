@@ -36,7 +36,7 @@
 
 <?php }
 if (!empty($message)) { ?>
-<div class="messages messages-min-body" id="message-js">
+<div class="messages" id="message-js">
     <div class="media message-detail">
         <div class="message-detail-head">
             <h5 class="media-heading pull-left message-head">                
@@ -73,7 +73,7 @@ if (!empty($message)) { ?>
     <?php 
         $element = $form->get('content');
         $element->setAttributes(array(
-            'class' => 'span12 message-textarea',
+            'class' => 'form-control message-textarea',
             'rows' => '6'
         ));
         echo '<div class="message-send-text message-detail-text">' . $this->formElement($element);

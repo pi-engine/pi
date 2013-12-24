@@ -9,7 +9,7 @@ body {
 }
 
 .pi-main-container {
-  padding-bottom: 20px;
+  padding-bottom: 80px;
 }
 
 /* Bootstrap custom */
@@ -265,23 +265,20 @@ body {
 
 /* Footer */
 .pi-footer {
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
 }
 
 .pi-footer-container {
-  padding: 20px 0 10px 0;
+  padding: 15px 0;
   border-top: 1px solid #ddd;
 }
 
-.pi-footer-copyright {
-  text-align: center;
-}
-
-.pi-footer a,
-.pi-footer .pi-divider {
+.pi-footer a {
   color: #333;
+  margin-right: 10px;
 }
 
 .pi-footer a:hover {
