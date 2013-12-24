@@ -26,7 +26,7 @@
         ]
       }
     }).otherwise({
-      templateUrl: tpl('role-index'),
+      templateUrl: tpl('roles'),
       controller: 'RoleCtrl',
       resolve: {
         data: ['$q', 'server',
@@ -105,6 +105,7 @@
       server.addUser($scope.role, $scope.entity).success(function(data) {
         var user = data.data;
         if (data.status) {
+          $scope.entity.data = '';
           $scope.users.push(user);
         }
       });

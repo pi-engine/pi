@@ -1,5 +1,4 @@
 <?php
-$this->css($this->assetModule('script/admin.css'));
 $this->angular(array(
     'angular-route.js',
     'ui-bootstrap-custom-tpls-0.7.0.js',
@@ -10,7 +9,7 @@ $this->angular(array(
 angular
     .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
-        urlRoot: '<?php echo $this->url('', array('controller' => 'index', 'action' => 'var')); ?>'.replace(/var\/?$/, ''),
+        urlRoot: '<?php echo $this->url('', array('module' => $module)) . $controller . '/'; ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         t: {
             SELECT_ROLES: '<?php echo _a('Select roles'); ?>',
@@ -18,7 +17,7 @@ angular
             NONE_ROLE: '<?php echo _a('None'); ?>',
             APPLY: '<?php echo _a('Apply'); ?>',
             USERNAME: '<?php echo _a('Username'); ?>',
-            DISPLAY_NAME: '<?php echo _a('Display name'); ?>',
+            DISPLAYNAME: '<?php echo _a('Display name'); ?>',
             ROLE: '<?php echo _a('Role'); ?>',
             REGISTER_TIME: '<?php echo _a('Register time'); ?>',
             RETURN: '<?php echo _a('Back to users list'); ?>',
@@ -30,7 +29,6 @@ angular
             ASSIGN_FRONT_ROLE: '<?php echo _a('Front role'); ?>',
             ASSIGN_ADMIN_ROLE: '<?php echo _a('Admin role'); ?>',
             SUBMIT: '<?php echo _a('Submit'); ?>',
-            REQUIRED: '<?php echo _a('required'); ?>',
             REGISTER_IP: '<?php echo _a('Register IP'); ?>',
             USER_ID: '<?php echo _a('User ID'); ?>',
             NONE_USER: '<?php echo _a('No user matched your request.'); ?>',
@@ -38,9 +36,24 @@ angular
             TO: '<?php echo _a('To'); ?>',
             FRONT: '<?php echo _a('Front'); ?>',
             ADMIN: '<?php echo _a('Admin'); ?>',
-            BATCH_CHECKED: '<?php echo _a('Choose at least one item before submission.'); ?>'
+            BATCH_CHECKED: '<?php echo _a('Choose at least one item before submission.'); ?>',
+            ADMIN_TITLE: '<?php echo _a('Admin roles'); ?>',
+            FRONT_TITLE: '<?php echo _a('Front roles'); ?>',
+            NAME: '<?php echo _a('Name'); ?>',
+            TITLE: '<?php echo _a('Title'); ?>',
+            USER_COUNT: '<?php echo _a('Users in role'); ?>',
+            ACTION: '<?php echo _a('Action'); ?>',
+            ROLE_TITLE: '<?php echo _a('Title'); ?>',
+            REQUIRED: '<?php echo _a('Required'); ?>',
+            TYPE: '<?php echo _a('Type'); ?>',
+            EDIT_TITLE: '<?php echo _a('Users in role'); ?>',
+            UID_OR_IDENTITY: '<?php echo _a('User id or name'); ?>',
+            UID: '<?php echo _a('User id'); ?>',
+            USERNAME: '<?php echo _a('Username'); ?>',
+            DISPLAY_NAME: '<?php echo _a('Display name'); ?>',
+            ADD_USER: '<?php echo _a('Add user'); ?>'
         },
         roles: <?php echo json_encode($roles); ?>
     });
 </script>
-<script src="<?php echo $this->assetModule('admin/user.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/' . $controller . '.js'); ?>"></script>
