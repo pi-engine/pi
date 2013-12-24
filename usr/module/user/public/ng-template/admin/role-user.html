@@ -1,41 +1,55 @@
 <legend>{{title}}</legend>
-<form class="form-inline" ng-submit="submit()">
-  <div class="form-group">
-    <input class="form-control" type="text" required ng-model="entity.data">
+<div class="row">
+  <div class="col-md-5">
+    <form class="input-group" ng-submit="submit()" name="addForm" style="margin-bottom: 20px;">
+      <span class="input-group-btn">
+        <select class="form-control" ng-model="entity.field" style="width: 100px;">
+          <option value="uid">{{'UID' | translate}}
+          <option value="identity">{{'USERNAME' | translate}}
+          <option value="name">{{'DISPLAYNAME' | translate}}
+          <option value="email">{{'EMAIL' | translate}}
+        </select>
+      </span>
+      <input class="form-control" type="text" ng-model="entity.data" required>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" ng-disabled="addForm.$invalid">
+          {{'ADD_USER' | translate}}
+        </button>
+      </span>
+    </form>
   </div>
-  <div class="form-group">
-    <select ng-model="entity.field" class="form-control">
-      <option value="uid">{{'UID' | translate}}
-      <option value="identity">{{'USERNAME' | translate}}
-      <option value="name">{{'DISPLAYNAME' | translate}}
-      <option value="email">{{'EMAIL' | translate}}
-    </select>
-  </div>
-  <button class="btn btn-default">{{'ADD_USER' | translate}}</button>
-</form>
-<table class="table" ng-if="users.length">
-  <thead>
-    <tr>
-      <th>{{'Id' | translate}}
-      <th>{{'display_name' | translate}}
-  <tbody>
-    <tr ng-repeat="user in users">
-        <td>
-            {{user.id}}
-        <td>
-            <span ng-show="user.url">
+</div>
+<div class="row" ng-show="users.length">
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>{{'UID' | translate}}
+          <th>{{'DISPLAYNAME' | translate}}
+          <th>
+      <tbody>
+        <tr ng-repeat="user in users">
+            <td>
+              {{user.id}}
+            <td>
+              <span ng-show="user.url">
                 <a href="{{user.url}}" target="_blank">{{user.name}}</a>
-            </span>
-            <span ng-show="!user.url">
+              </span>
+              <span ng-show="!user.url">
                 {{user.name}}
-            </span>
-        <td>
-            <i class="icon-remove pi-icon-cursor" ng-click="removeAction($index)"></i>
-</table>
-<pagination ng-if="paginator.count > paginator.limit" 
-            total-items="paginator.count" page="paginator.page" max-size="10"
-            boundary-links="true" items-per-page="paginator.limit">
-</pagination>
-<div ng-if="!users.length" class="alert">
+              </span>
+            <td>
+              <button type="button" class="close" style="float: none;"
+                      ng-click="removeAction($index)">
+                &times;
+              </button>
+    </table>
+    <pagination total-items="paginator.count" page="paginator.page" max-size="10"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                boundary-links="true" items-per-page="paginator.limit">
+    </pagination>
+  </div>
+</div>
+<div ng-show="!users.length" class="alert alert-info">
   {{'NONE_USER' | translate}}
 </div>

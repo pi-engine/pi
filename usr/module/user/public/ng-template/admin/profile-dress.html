@@ -14,6 +14,9 @@
 .user-profile-groups .panel {
   cursor: move;
 }
+.pi-hover-input {
+  width: 80%;
+}
 </style>
 <div class="row user-profile-page">
   <div class="col-md-7">
@@ -69,8 +72,7 @@
     <div ng-repeat="field in profile" class="pi-widget">
       <div class="pull-right">
         <div class="dropdown pi-user-select-disabled">
-          <i dropdown-toggle class="fa fa-plus fa-lg pi-icon-cursor" tooltip="{{'ADD_FIELD_TIP' | translate}}"
-             tooltip-append-to-body="1"></i>
+          <i dropdown-toggle class="fa fa-plus fa-lg pi-icon-cursor"></i>
           <ul class="pull-right dropdown-menu">
             <li ng-repeat="item in customGroup">
               <a href="javascript:void(0)" ng-click="AddGroupField(item, $parent.$index)">{{item}}</a>
@@ -83,8 +85,7 @@
     <div ng-repeat="compound in compounds" class="panel panel-default">
       <div class="panel-heading">
         <span class="pull-right" ng-click="addDisplayGroup($index)">
-          <i class="fa fa-plus fa-lg pi-icon-cursor" tooltip="{{'ADD_GROUP_TIP' | translate}}"
-             tooltip-append-to-body="1"></i>
+          <i class="fa fa-plus fa-lg pi-icon-cursor"></i>
         </span>
         {{compound.title}}
       </div>
