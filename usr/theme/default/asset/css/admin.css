@@ -227,6 +227,10 @@ legend {
     background: #fff;
   }
 
+  .pi-content {
+    margin-left: 65px;
+  }
+
   .pi-modules-nav li:hover .pi-modules-nav-sub {
     display: block;
     height: auto !important;
@@ -354,4 +358,10 @@ legend {
 
 .help-block {
 	margin-bottom: 9px;
+}
+
+.nav-tabs > li.active > a, 
+.nav-tabs > li.active > a:hover, 
+.nav-tabs > li.active > a:focus {
+  cursor: pointer;
 }

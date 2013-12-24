@@ -1,32 +1,45 @@
 <legend>{{title}}</legend>
-<form class="form-inline" ng-submit="submit()">
-  <input type="text" required ng-model="entity.data">
-  <select ng-model="entity.field" class="input-medium">
-    <option value="uid">{{'UID' | translate}}
-    <option value="identity">{{'USERNAME' | translate}}
-    <option value="name">{{'DISPLAY_NAME' | translate}}
-    <option value="email">{{'EMAIL' | translate}}
-  </select>
-  <button class="btn">{{'ADD_USER' | translate}}</button>
-</form>
-<table class="table" ng-if="users.length">
-  <thead>
-    <tr>
-      <th>{{'USERS' | translate}}
-  <tbody>
-    <tr ng-repeat="user in users">
-        <td>
+<div class="row">
+  <div class="col-md-5">
+    <form class="input-group" ng-submit="submit()" name="addForm" style="margin-bottom: 20px;">
+      <span class="input-group-btn">
+        <select class="form-control" ng-model="entity.field" style="width: 100px;">
+          <option value="uid">{{'UID' | translate}}
+          <option value="identity">{{'USERNAME' | translate}}
+          <option value="name">{{'DISPLAYNAME' | translate}}
+          <option value="email">{{'EMAIL' | translate}}
+        </select>
+      </span>
+      <input class="form-control" type="text" ng-model="entity.data" required>
+      <span class="input-group-btn">
+        <button class="btn btn-primary" ng-disabled="addForm.$invalid">
+          {{'ADD_USER' | translate}}
+        </button>
+      </span>
+    </form>
+  </div>
+</div>
+<div class="row" ng-show="users.length">
+  <div class="col-md-8">
+    <table class="table">
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td>
             <a href="{{user.url}}" target="_blank">{{user.id}}</a>
-        <td>
-        <td>
+          <td>
             <a href="{{user.url}}" target="_blank">{{user.name}}</a>
-        <td>
-        <i class="icon-remove pi-icon-cursor" ng-click="removeAction($index)"></i>
-</table>
-<pagination ng-show="paginator.count > paginator.limit" 
-            total-items="paginator.count" page="paginator.page" max-size="10"
-            boundary-links="true" items-per-page="paginator.limit">
-</pagination>
-<div ng-if="!users.length" class="alert">
+          <td>
+            <button type="button" class="close" style="float: none;"
+                    ng-click="removeAction($index)">
+              &times;
+            </button>
+    </table>
+    <pagination total-items="paginator.count" page="paginator.page" max-size="10"
+                previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+                boundary-links="true" items-per-page="paginator.limit">
+    </pagination>
+  </div>
+</div>
+<div ng-show="!users.length" class="alert alert-info">
   {{'NONE_USER' | translate}}
 </div>
