@@ -13,8 +13,6 @@ use Pi;
 use Pi\Form\Factory as FormFactory;
 use Module\System\Controller\ComponentController;
 
-
-
 /**
  * Cache controller
  *
@@ -34,7 +32,7 @@ class CacheController extends ComponentController
     public function indexAction()
     {
         // Module name, default as 'system'
-        $name = $this->params('name', 'system');
+        $name = $this->params('name', $this->moduleName('system'));
         if (!$this->permission($name, 'cache')) {
             return;
         }

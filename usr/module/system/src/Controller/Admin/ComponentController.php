@@ -27,7 +27,7 @@ class ComponentController extends BasicController
     public function indexAction()
     {
         //$module = $this->params('module');
-        $module = $this->params('name', 'system');
+        $module = $name = $this->params('name', $this->moduleName('system'));
 
         $directory = Pi::service('module')->directory($module);
         $callback = sprintf(

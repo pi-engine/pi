@@ -154,9 +154,12 @@ class Menu
     public static function subComponent($module, array $options = array())
     {
         $navConfig = Pi::registry('navigation')->read('system-component');
+        /*
+        //@FIXME The following assignment will break navigation highlight, thus remove it.
         foreach ($navConfig as $key => &$nav) {
             $nav['params']['name'] = $module;
         }
+        */
         $helper     = Pi::service('view')->getHelper('navigation');
         $navigation = $helper($navConfig);
         if (!isset($options['ulClass'])) {
