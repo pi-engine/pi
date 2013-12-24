@@ -38,8 +38,13 @@ class Remote extends AbstractAdapter
      */
     public function add(array $data)
     {
+        $query = array();
+        array_walk($data, function ($value, $key) use (&$query) {
+            $query[] = $key . ':' . $value;
+        });
+        $params['query'] = implode(',', $query);
         $uri = $this->getOption('uri', 'add');
-        $result = $this->handler()->post($uri, $data);
+        $result = $this->handler()->post($uri, $query);
 
         return $result;
     }
@@ -71,8 +76,12 @@ class Remote extends AbstractAdapter
      */
     public function update($id, array $data)
     {
+        $query = array('id' => $id);
+        array_walk($data, function ($value, $key) use (&$query) {
+            $query[] = $key . ':' . $value;
+        });
+        $params['query'] = implode(',', $query);
         $uri = $this->getOption('uri', 'update');
-        $data['id'] = $id;
         $result = $this->handler()->post($uri, $data);
 
         return $result;
