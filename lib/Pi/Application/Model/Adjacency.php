@@ -19,16 +19,12 @@ use Pi\Db\Table\AbstractAdjacency;
 class Adjacency extends AbstractAdjacency
 {
     /**
-     * Primary key, required for model
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $primaryKeyColumn = 'id';
 
     /**
-     * Predefined columns
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $column = array(
         'parent'    => 'parent'

@@ -9,8 +9,6 @@
 
 namespace Pi\Application\Model;
 
-use Pi;
-
 /**
  * User model
  *
@@ -18,13 +16,13 @@ use Pi;
  */
 class User extends Model
 {
-    /** @var string Table name */
+    /**
+     * {@inheritDoc}
+     */
     protected $table = 'user_account';
 
     /**
-     * Classname for row
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $rowClass = 'Pi\Application\Model\User\RowGateway\Account';
 }

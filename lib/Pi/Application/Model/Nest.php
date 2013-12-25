@@ -19,16 +19,12 @@ use Pi\Db\Table\AbstractNest;
 class Nest extends AbstractNest
 {
     /**
-     * Primary key, required for model
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $primaryKeyColumn = 'id';
 
     /**
-     * Predefined columns
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $column = array(
         'left'  => 'left',

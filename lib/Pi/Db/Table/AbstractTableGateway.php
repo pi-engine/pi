@@ -41,6 +41,13 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     protected $rowClass;
 
     /**
+     * Table fields/columns. Will be fetched from metadata if not specified
+     *
+     * @var string[]
+     */
+    protected $columns = array();
+
+    /**
      * Non-scalar columns to be encoded before saving to DB
      * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
@@ -190,6 +197,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Creates Row object
      *
      * @param array|null $data
+     *
      * @return RowGateway|Row
      */
     public function createRow($data = null)
@@ -202,7 +210,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         )) {
             $row = new $this->rowClass(
                 $this->primaryKeyColumn,
-                $this->table,
+                $this,
                 $this->sql
             );
             if ($this->encodeColumns) {
@@ -216,6 +224,24 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
         }
 
         return $row;
+    }
+
+    /**
+     * Get column names
+     *
+     * @param bool Fetch from metadata if not specified
+     *
+     * @return string[]
+     */
+    public function getColumns($fetch = false)
+    {
+        if (!$this->columns && $fetch) {
+            $columns = $this->metadata()->getColumnNames($this->table);
+        } else {
+            $columns = $this->columns;
+        }
+
+        return $columns;
     }
 
     /**

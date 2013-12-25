@@ -19,9 +19,7 @@ use Pi\Application\Model\Model;
 class Data extends Model
 {
     /**
-     * Columns to be encoded
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $encodeColumns = array(
         'value_multi'   => true,
