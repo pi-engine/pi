@@ -43,7 +43,7 @@ class Remote extends AbstractAdapter
             $query[] = $key . ':' . $value;
         });
         $params['query'] = implode(',', $query);
-        $uri = $this->getOption('uri', 'add');
+        $uri    = $this->getOption('api', 'add');
         $result = $this->handler()->post($uri, $query);
 
         return $result;
@@ -54,7 +54,7 @@ class Remote extends AbstractAdapter
      */
     public function upload($file, array $data = array())
     {
-        $uri = $this->getOption('uri', 'upload');
+        $uri    = $this->getOption('api', 'upload');
         $result = $this->handler()->upload($uri, $file, $data);
 
         return $result;
@@ -65,7 +65,7 @@ class Remote extends AbstractAdapter
      */
     public function download($id, $file)
     {
-        $uri = $this->getUrl($id);
+        $uri    = $this->getUrl($id);
         $result = $this->handler()->download($uri, $file);
 
         return $result;
@@ -81,7 +81,7 @@ class Remote extends AbstractAdapter
             $query[] = $key . ':' . $value;
         });
         $params['query'] = implode(',', $query);
-        $uri = $this->getOption('uri', 'update');
+        $uri    = $this->getOption('api', 'update');
         $result = $this->handler()->post($uri, $data);
 
         return $result;
@@ -102,11 +102,11 @@ class Remote extends AbstractAdapter
      */
     public function get($id, $attr = array())
     {
-        $uri = $this->getOption('uri', 'get');
         $params = array(
             'id'    => $id,
             'field' => implode(',', (array) $attr),
         );
+        $uri    = $this->getOption('api', 'get');
         $result = $this->handler()->get($uri, $params);
         if ($attr && is_scalar($attr)) {
             $result = $result[$attr];
@@ -120,11 +120,11 @@ class Remote extends AbstractAdapter
      */
     public function mget(array $ids, $attr = array())
     {
-        $uri = $this->getOption('uri', 'mget');
         $params = array(
             'id'    => implode(',', $ids),
             'field' => implode(',', (array) $attr),
         );
+        $uri    = $this->getOption('api', 'mget');
         $result = $this->handler()->get($uri, $params);
         if ($attr && is_scalar($attr)) {
             array_walk($result, function (&$data) use ($attr) {
@@ -154,8 +154,8 @@ class Remote extends AbstractAdapter
      */
     public function getStats($id)
     {
-        $uri = $this->getOption('uri', 'get_stats');
         $params = array('id' => $id);
+        $uri    = $this->getOption('api', 'stats');
         $result = $this->handler()->get($uri, $params);
 
         return $result;
@@ -166,8 +166,8 @@ class Remote extends AbstractAdapter
      */
     public function getStatsList(array $ids)
     {
-        $uri = $this->getOption('uri', 'get_stats_list');
-        $params = array('id' => $ids);
+        $params = array('id' => implode(',', $ids));
+        $uri    = $this->getOption('api', 'mstats');
         $result = $this->handler()->get($uri, $params);
 
         return $result;
@@ -206,7 +206,6 @@ class Remote extends AbstractAdapter
         $order  = null,
         array $attr = array()
     ) {
-        $uri = $this->getOption('uri', 'list');
         $params = array();
         if ($condition) {
             $query = array();
@@ -227,6 +226,7 @@ class Remote extends AbstractAdapter
         if ($attr) {
             $params['field'] = implode(',', (array) $attr);
         }
+        $uri    = $this->getOption('api', 'list');
         $result = $this->handler()->get($uri, $params);
 
         return $result;
@@ -237,7 +237,6 @@ class Remote extends AbstractAdapter
      */
     public function getCount(array $condition = array())
     {
-        $uri = $this->getOption('uri', 'count');
         $params = array();
         if ($condition) {
             $query = array();
@@ -246,6 +245,7 @@ class Remote extends AbstractAdapter
             });
             $params['query'] = implode(',', $query);
         }
+        $uri    = $this->getOption('api', 'count');
         $result = $this->handler()->get($uri, $params);
         $result = (int) $result['data'];
 
@@ -257,9 +257,9 @@ class Remote extends AbstractAdapter
      */
     public function delete($id)
     {
-        $uri = $this->getOption('uri', 'delete');
-        $data['id'] = $id;
-        $result = $this->handler()->post($uri, $data);
+        $params = array('id' => $id);
+        $uri    = $this->getOption('api', 'delete');
+        $result = $this->handler()->post($uri, $params);
 
         return $result;
     }

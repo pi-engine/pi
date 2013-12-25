@@ -104,7 +104,7 @@ abstract class AbstractAdapter
      * Download a media file to local file
      *
      * @param int $id   Doc id
-     * @param strig $file Absolute path to save
+     * @param string $file Absolute path to save
      *
      * @return bool
      */
@@ -128,7 +128,6 @@ abstract class AbstractAdapter
      *
      * @return bool
      */
-    //abstract public function activeFile($id);
     abstract public function activate($id, $flag = true);
 
     /**
@@ -149,7 +148,6 @@ abstract class AbstractAdapter
      *
      * @return array
      */
-    //abstract public function mgetAttributes($ids, $attribute);
     abstract public function mget(array $ids, $attr = array());
 
     /**
@@ -189,7 +187,6 @@ abstract class AbstractAdapter
      *
      * @return int[]
      */
-    //abstract public function getFileIds(
     abstract public function getIds(
         array $condition,
         $limit  = null,
@@ -231,16 +228,4 @@ abstract class AbstractAdapter
      * @param int|int[] $id
      */
     abstract public function delete($id);
-    
-    /**
-     * Get file validator data
-     * 
-     * @param string $adapter 
-     */
-    //abstract public function getValidator($adapter = null);
-    
-    /**
-     * Get configuration of server 
-     */
-    //abstract public function getServerConfig();
 }

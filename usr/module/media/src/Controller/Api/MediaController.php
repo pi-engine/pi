@@ -10,8 +10,8 @@
 namespace Module\Media\Controller\Api;
 
 use Pi;
+use Pi\Db\Sql\Where;
 use Pi\Mvc\Controller\ActionController;
-use Module\Media\Service;
 
 /**
  * User webservice controller
@@ -39,7 +39,7 @@ class MediaController extends ActionController
     {
         $query  = $this->params('query');
         $query  = $this->canonizeQuery($query);
-        $row = $this->model('doc')->createRow($query);
+        $row    = $this->model('doc')->createRow($query);
         $row->save();
         $response = array(
             'status'    => 1,
@@ -67,7 +67,7 @@ class MediaController extends ActionController
         $id     = $this->params('id');
         $query  = $this->params('query');
         $query  = $this->canonizeQuery($query);
-        $row = $this->model('doc')->find($id);
+        $row    = $this->model('doc')->find($id);
         if (!$row) {
             $response = array(
                 'status'    => 0,
@@ -118,8 +118,7 @@ class MediaController extends ActionController
         $field      = $this->params('field');
         $fields     = $this->splitString($field);
 
-        $select = $this->model('doc')->select();
-        $select->where(array('id' => $id));
+        $select = $this->model('doc')->select()->where(array('id' => $id));
         if ($fields) {
             $select->columns($fields);
         }
@@ -180,18 +179,9 @@ class MediaController extends ActionController
         $fields = $this->splitString($field);
         $query  = $this->canonizeQuery($query);
 
-        $condition = array();
-        if ($query) {
-            $condition = Pi::db()->where();
-            foreach ($query as $qKey => $qValue) {
-                $condition->like($qKey, $qValue);
-            }
-            if (!isset($query['active'])) {
-                $condition->equalTo('active', 1);
-            }
-        }
+        $where  = $this->canonizeCondition($query);
         $select = $this->model('doc')->select();
-        $select->where($condition);
+        $select->where($where);
         $select->limit($limit);
         if ($offset) {
             $select->offset($offset);
@@ -217,17 +207,8 @@ class MediaController extends ActionController
     {
         $query = $this->params('query');
         $query = $this->canonizeQuery($query);
-        $condition = array();
-        if ($query) {
-            $condition = Pi::db()->where();
-            foreach ($query as $qKey => $qValue) {
-                $condition->like($qKey, $qValue);
-            }
-            if (!isset($query['active'])) {
-                $condition->equalTo('active', 1);
-            }
-        }
-        $count  = $this->model('doc')->count($condition);
+        $where  = $this->canonizeCondition($query);
+        $count  = $this->model('doc')->count($where);
         $response = array(
             'status'    => 1,
             'data'      => $count,
@@ -288,5 +269,29 @@ class MediaController extends ActionController
         });
 
         return $result;
+    }
+
+    /**
+     * Build query condition
+     *
+     * @param array $query
+     *
+     * @return Where
+     */
+    protected function canonizeCondition(array $query)
+    {
+        $where = array('active' => 1);
+        if (isset($query['active'])) {
+            $where['active'] = $query['active'];
+            unset($query['active']);
+        }
+        $where = Pi::db()->where($where);
+        if ($query) {
+            foreach ($query as $qKey => $qValue) {
+                $where->like($qKey, $qValue);
+            }
+        }
+
+        return $where;
     }
 }

@@ -1,7 +1,10 @@
 <?php
 // Media service configuration
 
-return array(
+// Root of remote media center
+$apiRoot = 'http://master.pi/api/media/media';
+
+$config = array(
     // Media access adapter
     'adapter'   => 'local',
 
@@ -30,9 +33,20 @@ return array(
 
             ),
             // API URIs
-            'uri'   => array(
-
+            'api'   => array(
+                'add'           => $apiRoot . '/add',
+                'update'        => $apiRoot . '/update',
+                'upload'        => $apiRoot . '/upload',
+                'get'           => $apiRoot . '/get',
+                'mget'          => $apiRoot . '/mget',
+                'list'          => $apiRoot . '/list',
+                'count'         => $apiRoot . '/count',
+                'delete'        => $apiRoot . '/delete',
+                'stats'         => $apiRoot . '/stats',
+                'stats_list'    => $apiRoot . '/mstats',
             ),
         ),
     ),
 );
+
+return $config;
