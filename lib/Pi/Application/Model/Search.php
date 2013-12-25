@@ -17,9 +17,7 @@ namespace Pi\Application\Model;
 class Search extends Model
 {
     /**
-     * Columns to be encoded
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $encodeColumns = array(
         'callback'  => true,

@@ -19,16 +19,12 @@ use Pi\Db\Table\AbstractTableGateway;
 class Model extends AbstractTableGateway
 {
     /**
-     * Primary key, required for model
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $primaryKeyColumn = 'id';
 
     /**
-     * Classname for row
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $rowClass = 'Pi\Db\RowGateway\RowGateway';
 }

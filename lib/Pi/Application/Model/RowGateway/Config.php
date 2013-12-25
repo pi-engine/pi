@@ -24,7 +24,7 @@ class Config extends RowGateway
      * @var array
      */
     protected $encodeColumns = array(
-        'edit'  => true,
+        //'edit'  => true,
     );
 
     /**

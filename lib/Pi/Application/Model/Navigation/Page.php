@@ -22,9 +22,7 @@ class Page extends Nest
     protected $navigation = '';
 
     /**
-     * Columns to be encoded
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $encodeColumns = array(
         'params'    => true,

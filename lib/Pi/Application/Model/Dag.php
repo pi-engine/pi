@@ -19,16 +19,12 @@ use Pi\Db\Table\AbstractDag;
 class Dag extends AbstractDag
 {
     /**
-     * Primary key, required for model
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $primaryKeyColumn = 'id';
 
     /**
-     * Predefined columns
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $column = array(
         // Start vertex column name

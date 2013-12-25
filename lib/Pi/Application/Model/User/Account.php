@@ -18,13 +18,13 @@ use Pi\Application\Model\Model;
  */
 class Account extends Model
 {
-    /** @var string Table name */
+    /**
+     * {@inheritDoc}
+     */
     protected $table = 'user_account';
 
     /**
-     * Row gateway class
-     *
-     * @var string
+     * {@inheritDoc}
      */
     protected $rowClass = 'Pi\Application\Model\User\RowGateway\Account';
 

@@ -17,9 +17,14 @@ namespace Pi\Application\Model;
 class Config extends Model
 {
     /**
-     * Classname for row
-     *
-     * @var string
+     * {@inheritDoc}
+     */
+    protected $encodeColumns = array(
+        'edit'  => true,
+    );
+
+    /**
+     * {@inheritDoc}
      */
     protected $rowClass = 'Pi\Application\Model\RowGateway\Config';
 }

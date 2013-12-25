@@ -19,9 +19,7 @@ use Pi\Application\Model\Model;
 class Root extends Model
 {
     /**
-     * Columns to be encoded
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $encodeColumns = array(
         'config'    => true,

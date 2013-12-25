@@ -9,6 +9,7 @@
 
 namespace Pi\Db\RowGateway;
 
+use Pi\Db\Table\AbstractTableGateway;
 use Zend\Db\RowGateway\RowGateway as AbstractRowGateway;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
@@ -32,6 +33,20 @@ class RowGateway extends AbstractRowGateway
     protected $pkColumn = null;
 
     /**
+     * Model
+     *
+     * @var AbstractTableGateway
+     */
+    protected $model;
+
+    /**
+     * Table fields/columns.
+     *
+     * @var string[]
+     */
+    protected $columns = array();
+
+    /**
      * Non-scalar columns to be encoded before saving to DB
      * and decoded after fetching from DB,
      * specified as pairs of column name and bool value:
@@ -45,7 +60,7 @@ class RowGateway extends AbstractRowGateway
      * Constructor
      *
      * @param string                              $primaryKeyColumn
-     * @param string|\Zend\Db\Sql\TableIdentifier $table
+     * @param string|AbstractTableGateway|\Zend\Db\Sql\TableIdentifier $table
      * @param Adapter|Sql                         $adapterOrSql
      *
      * @return \Pi\Db\RowGateway\RowGateway
@@ -58,9 +73,41 @@ class RowGateway extends AbstractRowGateway
         // setup primary key
         $this->primaryKeyColumn = $primaryKeyColumn ?: $this->primaryKeyColumn;
         $this->pkColumn = $this->primaryKeyColumn;
+        if ($table instanceof AbstractTableGateway) {
+            $this->setModel($table);
+            $table = $table->getTable();
+        }
 
         parent::__construct($this->primaryKeyColumn, $table, $adapterOrSql);
     }
+
+    /**
+     * Set model
+     *
+     * @param AbstractTableGateway $model
+     *
+     * @return $this
+     */
+    public function setModel(AbstractTableGateway $model)
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    /**
+     * Set columns
+     *
+     * @param array $columns
+     * @return $this
+     */
+    public function setColumns(array $columns)
+    {
+        $this->columns = $columns;
+
+        return $this;
+    }
+
 
     /**#@+
      * Pi Engine methods for column encode/decode
@@ -209,9 +256,11 @@ class RowGateway extends AbstractRowGateway
      * Save a row
      *
      * @param bool $rePopulate  To re-populate data
+     * @param bool $filter Filter invalid columns
+     *
      * @return int
      */
-    public function save($rePopulate = true)
+    public function save($rePopulate = true, $filter = true)
     {
         $this->initialize();
 
@@ -219,6 +268,14 @@ class RowGateway extends AbstractRowGateway
             * Encode data to make it db-ready
             */
         $this->data = $this->encode($this->data);
+        if ($filter) {
+            $columns = $this->columns ?: $this->model->getColumns(true);
+            foreach (array_keys($this->data) as $column) {
+                if (!in_array($column, $columns)) {
+                    unset($this->data[$column]);
+                }
+            }
+        }
         /**#@-*/
 
         if ($this->rowExistsInDatabase()) {
@@ -296,6 +353,7 @@ class RowGateway extends AbstractRowGateway
      * Assign data
      *
      * @param array $data
+     *
      * @return $this
      */
     public function assign($data)

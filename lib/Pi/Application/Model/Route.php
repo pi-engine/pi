@@ -17,9 +17,7 @@ namespace Pi\Application\Model;
 class Route extends Model
 {
     /**
-     * Columns to be encoded
-     *
-     * @var array
+     * {@inheritDoc}
      */
     protected $encodeColumns = array(
         'data'  => true,
