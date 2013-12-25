@@ -93,7 +93,7 @@ abstract class AbstractAdapter
     /**
      * Upload a local media doc
      * 
-     * @param string|Resource $file
+     * @param string|array|Resource $file
      * @param array $data Doc attribute data
      *
      * @return int Doc id

@@ -10,6 +10,7 @@
 namespace Module\Media\Controller\Api;
 
 use Pi\Mvc\Controller\ApiController;
+use Pi\File\Transfer\Upload;
 
 /**
  * User webservice controller
@@ -28,7 +29,53 @@ class MediaController extends ApiController
      */
     public function uploadAction()
     {
+        $uriRoot = $this->getUriRoot();
+        $pathRoot = $this->getPathRoot();
+        $target = $this->generateName();
+        $success = false;
+        switch ($this->request->getMethod()) {
+            case 'POST':
+                $uploader = new Upload(array(
+                    'destination'   => $pathRoot,
+                    'rename'        => $target,
+                ));
+                if ($uploader->isValid()) {
+                    $uploader->receive();
+                    $success = true;
+                }
+                break;
+            case 'PUT':
+                $putdata = fopen('php://input', 'r');
+                $fp = fopen($pathRoot . '/' . $target, 'w');
+                while ($data = fread($putdata, 1024)) {
+                    fwrite($fp, $data);
+                }
+                fclose($fp);
+                fclose($putdata);
 
+                $success = true;
+                break;
+            default:
+                break;
+        }
+        if ($success) {
+            $params = (array) $this->params();
+            $params['url'] = $uriRoot . '/' . $target;
+            $params['path'] = $pathRoot . '/' . $target;
+
+            $row = $this->model($this->modelName)->createRow($params);
+            $row->save();
+            $result = array(
+                'status'    => 1,
+                'data'      => $row['id'],
+            );
+        } else {
+            $result = array(
+                'status'    => 0,
+            );
+        }
+
+        return $result;
     }
 
     /**

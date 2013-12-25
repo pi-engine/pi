@@ -38,11 +38,11 @@ class Media extends AbstractApi
     /**
      * Add an application
      *
-     * @param $data
+     * @param array $data
      *
-     * @return mixed
+     * @return int
      */
-    public function addApplication($data)
+    public function addApplication(array $data)
     {
         $model  =$this->model('application');
         $row = $model->find($data['appkey'], 'appkey');
@@ -51,7 +51,22 @@ class Media extends AbstractApi
             $row->save();
         }
 
-        return $row->id;
+        return (int) $row->id;
+    }
+
+    /**
+     * Add a doc
+     *
+     * @param array $data
+     *
+     * @return int
+     */
+    public function add(array $data)
+    {
+        $row = $this->model()->createRow($data);
+        $row->save();
+
+        return (int) $row->id;
     }
 
     /**
