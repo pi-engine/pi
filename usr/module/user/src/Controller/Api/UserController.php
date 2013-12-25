@@ -10,7 +10,7 @@
 namespace Module\User\Controller\Api;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Pi\Mvc\Controller\ApiController;
 
 /**
  * User webservice controller
@@ -40,12 +40,12 @@ use Pi\Mvc\Controller\ActionController;
  * - menable: array(<id>)
  * - mdisable: array(<id>)
  *
- * - checkExist: array($key => value)
+ * - check: array(<queryKey:queryValue>)
  *
  * @see https://developers.google.com/admin-sdk/directory/v1/reference/users
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class UserController extends ActionController
+class UserController extends ApiController
 {
     protected $protectedFields = array(
         'credential', 'salt'
@@ -269,83 +269,5 @@ class UserController extends ActionController
         );
 
         return $response;
-    }
-
-    /**
-     * Split string delimited by comma `,`
-     *
-     * @param string $string
-     *
-     * @return array
-     */
-    protected function splitString($string = '')
-    {
-        $result = array();
-        if (!$string) {
-            return $result;
-        }
-
-        $result = explode(',', $string);
-        array_walk($result, 'trim');
-        $result = array_unique(array_filter($result));
-
-        return $result;
-    }
-
-    /**
-     * Canonize query strings by convert `*` to `%` for LIKE query
-     *
-     * @param string $query
-     *
-     * @return array
-     */
-    protected function canonizeQuery($query = '')
-    {
-        $result = array();
-        if (!$query) {
-            return $result;
-        }
-        if (is_string($query)) {
-            $query = $this->splitString($query);
-        }
-        array_walk($query, function ($qString) use (&$result) {
-            list($identifier, $like) = explode(':', $qString);
-            $identifier = trim($identifier);
-            $like = trim($like);
-            if ($identifier && $like) {
-                $like = str_replace(
-                    array('%', '*', '_'),
-                    array('\\%', '%', '\\_'),
-                    $like
-                );
-                $result[$identifier] = $like;
-            }
-        });
-
-        return $result;
-    }
-
-    /**
-     * Build query condition
-     *
-     * @param array $query
-     *
-     * @return Where
-     */
-    protected function canonizeCondition(array $query)
-    {
-        $where = array('active' => 1);
-        if (isset($query['active'])) {
-            $where['active'] = $query['active'];
-            unset($query['active']);
-        }
-        $where = Pi::db()->where($where);
-        if ($query) {
-            foreach ($query as $qKey => $qValue) {
-                $where->like($qKey, $qValue);
-            }
-        }
-
-        return $where;
     }
 }
