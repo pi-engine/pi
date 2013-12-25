@@ -19,11 +19,11 @@ use Pi\Db\Sql\Where;
  *
  * - delete: <id>
  * - get: <id>, array(<field>)
- * - insert: array(<field> => <value>)
- * - list: <limit>, <offset>, <order>, array(<queryKey:queryValue>), array(<field>)
- * - patch: <id>, array(<field> => <value>)
+ * - insert: <query(queryKey:queryValue)>
+ * - list: <limit>, <offset>, <order>, <query(queryKey:queryValue)>, array(<field>)
+ * - patch: <id>, <query(queryKey:queryValue)>
  * - undelete: <id>
- * - update: <id>, array(<field> => <value>)
+ * - update: <id>, <query<queryKey:queryValue)>
  *
  *
  * - mdelete: array(<id>)
@@ -31,7 +31,7 @@ use Pi\Db\Sql\Where;
  * - mundelete: array(<id>)
  *
  * - meta
- * - count: array(<queryKey:queryValue>)
+ * - count: <query<queryKey:queryValue)>
  * - activate: <id>
  * - enable: <id>
  * - disable: <id>
@@ -40,7 +40,7 @@ use Pi\Db\Sql\Where;
  * - menable: array(<id>)
  * - mdisable: array(<id>)
  *
- * - exist: array(<queryKey:queryValue>)
+ * - exist: <query<queryKey:queryValue)>
  *
  * @see https://developers.google.com/admin-sdk/directory/v1/reference/users
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -61,11 +61,11 @@ abstract class ApiController extends ActionController
     }
 
     /**
-     * Add an item
+     * Add/Insert an item
      *
      * @return array
      */
-    public function addAction()
+    public function insertAction()
     {
         $query  = $this->params('query');
         $query  = $this->canonizeQuery($query);
