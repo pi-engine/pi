@@ -180,7 +180,7 @@ class UserController extends ActionController
         $query  = $this->params('query');
         $count = Pi::model('user_account')->count($where);
         $result = array(
-            'status'    => $count ? 1 : 0,
+            'status'    => $count ? 1 : 0, // @FIXME: for backward compat
             'data'      => $count ? 1 : 0,
         );
 
