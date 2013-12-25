@@ -69,9 +69,7 @@ class UserController extends ActionController
     public function deleteAction()
     {
         $response   = array();
-
         $uid        = $this->params('id');
-
         $result     = Pi::service('user')->delete($uid);
         if (!$result) {
             $response = array(
@@ -136,18 +134,9 @@ class UserController extends ActionController
         $fields = array_diff($fields, $this->protectedFields);
         $query  = $this->canonizeQuery($query);
 
-        $condition = array();
-        if ($query) {
-            $condition = Pi::db()->where();
-            foreach ($query as $qKey => $qValue) {
-                $condition->like($qKey, $qValue);
-            }
-            if (!isset($query['active'])) {
-                $condition->equalTo('active', 1);
-            }
-        }
-        $users = Pi::service('user')->getList(
-            $condition,
+        $where  = $this->canonizeCondition($query);
+        $users  = Pi::service('user')->getList(
+            $where,
             $limit,
             $offset,
             $order,
@@ -160,6 +149,10 @@ class UserController extends ActionController
     /**
      * Check username, email, display name exist
      *
+     * @FIXME The return data structure should be
+     *          `array('status' => 1|0, 'data' => 1|0)`,
+     *          `status` for query status, `data` 1 for exist and 0 for not;
+     *
      * @return array
      */
     public function checkExistAction()
@@ -167,6 +160,33 @@ class UserController extends ActionController
         $result = array(
             'status' => 1,
         );
+
+        $query  = $this->params('query');
+        $query  = $this->canonizeQuery($query);
+        foreach (array('identity', 'email', 'name') as $param) {
+            $val = $this->params($param);
+            if ($val) {
+                $query[$param] = $val;
+            }
+        }
+        if (!$query) {
+            return $result;
+        }
+        $where = Pi::db()->where();
+        foreach ($query as $key => $val) {
+            $where->qualTo($key, $val)->or;
+        }
+
+        $query  = $this->params('query');
+        $count = Pi::model('user_account')->count($where);
+        $result = array(
+            'status'    => $count ? 1 : 0,
+            'data'      => $count ? 1 : 0,
+        );
+
+        return $result;
+
+        /*
 
         $identity = _get('identity');
         $email    = _get('email');
@@ -197,6 +217,7 @@ class UserController extends ActionController
 
             return $result;
         }
+        */
     }
 
     /**
@@ -239,17 +260,9 @@ class UserController extends ActionController
     {
         $query = $this->params('query');
         $query = $this->canonizeQuery($query);
-        $condition = array();
-        if ($query) {
-            $condition = Pi::db()->where();
-            foreach ($query as $qKey => $qValue) {
-                $condition->like($qKey, $qValue);
-            }
-            if (!isset($query['active'])) {
-                $condition->equalTo('active', 1);
-            }
-        }
-        $count  = Pi::service('user')->getCount($condition);
+
+        $where  = $this->canonizeCondition($query);
+        $count  = Pi::service('user')->getCount($where);
         $response = array(
             'status'    => 1,
             'data'      => $count,
@@ -310,5 +323,29 @@ class UserController extends ActionController
         });
 
         return $result;
+    }
+
+    /**
+     * Build query condition
+     *
+     * @param array $query
+     *
+     * @return Where
+     */
+    protected function canonizeCondition(array $query)
+    {
+        $where = array('active' => 1);
+        if (isset($query['active'])) {
+            $where['active'] = $query['active'];
+            unset($query['active']);
+        }
+        $where = Pi::db()->where($where);
+        if ($query) {
+            foreach ($query as $qKey => $qValue) {
+                $where->like($qKey, $qValue);
+            }
+        }
+
+        return $where;
     }
 }
