@@ -56,7 +56,8 @@ class Js extends AssetCanonize
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
-     * @return  self
+     *
+     * @return  $this
      */
     public function __invoke($files = null, $attributes = 'append')
     {
@@ -77,7 +78,8 @@ class Js extends AssetCanonize
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
-     * @return  self
+     *
+     * @return  $this
      */
     public function load($files = null, $attributes = 'append')
     {

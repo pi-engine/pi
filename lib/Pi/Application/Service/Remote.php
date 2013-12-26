@@ -10,6 +10,7 @@
 
 namespace Pi\Application\Service;
 
+use CurlFile;
 use Pi;
 use Zend\Http\Response;
 use Zend\Http\Client\Adapter\AdapterInterface;
@@ -466,7 +467,7 @@ class Remote extends AbstractService
      *      - timeout
      *
      * @param string|Uri $url
-     * @param string|Resource $file
+     * @param string|array|Resource $file
      * @param array $params
      * @param array $headers
      * @param array $options
@@ -504,7 +505,27 @@ class Remote extends AbstractService
 
         // Upload a file from absolute path via `POST`
         if (!is_resource($file)) {
-            $params['file'] = '@' . $file;
+            if (is_array($file)) {
+                $filename = $file['temp_name'];
+                $mimetype = $file['type'];
+                $postname = $file['name'];
+            } else {
+                $filename = $file;
+                $mimetype = '';
+                $postname = '';
+            }
+            if (class_exists('CurlFile')) {
+                $curlFile = new CurlFile($filename, $mimetype, $postname);
+            } else {
+                $curlFile = '@' . $filename;
+                if ($mimetype) {
+                    $curlFile .= ';type=' . $mimetype;
+                }
+                if ($postname) {
+                    $curlFile .= ';name=' . $postname;
+                }
+            }
+            $params['file'] = $curlFile;
             $result = $this->post($uri, $params, $headers, $options);
 
             return $result;
