@@ -1509,9 +1509,9 @@ angular.module("template/datepicker/datepicker.html", []).run(["$templateCache",
     "<table>\n" +
     "  <thead>\n" +
     "    <tr class=\"text-center\">\n" +
-    "      <th><button type=\"button\" class=\"btn pull-left\" ng-click=\"move(-1)\"><i class=\"icon-chevron-left\"></i></button></th>\n" +
-    "      <th colspan=\"{{rows[0].length - 2 + showWeekNumbers}}\"><button type=\"button\" class=\"btn btn-block\" ng-click=\"toggleMode()\"><strong>{{title}}</strong></button></th>\n" +
-    "      <th><button type=\"button\" class=\"btn pull-right\" ng-click=\"move(1)\"><i class=\"icon-chevron-right\"></i></button></th>\n" +
+    "      <th><button type=\"button\" class=\"btn btn-default pull-left\" ng-click=\"move(-1)\"><i class=\"fa fa-chevron-left\"></i></button></th>\n" +
+    "      <th colspan=\"{{rows[0].length - 2 + showWeekNumbers}}\"><button type=\"button\" class=\"btn btn-default btn-block\" ng-click=\"toggleMode()\"><strong>{{title}}</strong></button></th>\n" +
+    "      <th><button type=\"button\" class=\"btn btn-default pull-right\" ng-click=\"move(1)\"><i class=\"fa fa-chevron-right\"></i></button></th>\n" +
     "    </tr>\n" +
     "    <tr class=\"text-center\" ng-show=\"labels.length > 0\">\n" +
     "      <th ng-show=\"showWeekNumbers\">#</th>\n" +
@@ -1522,7 +1522,7 @@ angular.module("template/datepicker/datepicker.html", []).run(["$templateCache",
     "    <tr ng-repeat=\"row in rows\">\n" +
     "      <td ng-show=\"showWeekNumbers\" class=\"text-center\"><em>{{ getWeekNumber(row) }}</em></td>\n" +
     "      <td ng-repeat=\"dt in row\" class=\"text-center\">\n" +
-    "        <button type=\"button\" style=\"width:100%;\" class=\"btn\" ng-class=\"{'btn-info': dt.selected}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\"><span ng-class=\"{muted: dt.secondary}\">{{dt.label}}</span></button>\n" +
+    "        <button type=\"button\" style=\"width:100%;\" class=\"btn btn-default\" ng-class=\"{'btn-info': dt.selected}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\"><span ng-class=\"{muted: dt.secondary}\">{{dt.label}}</span></button>\n" +
     "      </td>\n" +
     "    </tr>\n" +
     "  </tbody>\n" +

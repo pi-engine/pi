@@ -103,7 +103,6 @@ class LoginForm extends BaseForm
              'type'         => 'submit',
             'attributes'    => array(
                 'value' => __('Login'),
-                'class' => 'btn',
             )
         ));
     }
