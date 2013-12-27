@@ -426,12 +426,12 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
      * Perform an increment operation upon certain integer fields
      *
      * @param string|string[] $columns Column(s) to be incremented
-     * @param int $increment
      * @param array|Where  $where
+     * @param int $increment
      *
      * @return int
      */
-    public function increment($columns, $increment = 1, $where = null)
+    public function increment($columns, $where = null, $increment = 1)
     {
         $operator   = ($increment > 0) ? '+' : '-';
         $segment    = $operator . ' ' . abs($increment);
