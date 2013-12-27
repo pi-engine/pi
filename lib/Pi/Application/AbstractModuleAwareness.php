@@ -22,13 +22,16 @@ abstract class AbstractModuleAwareness
     /**
      * Constructor
      *
-     * @param string|null $module
+     * @param string $module
+     *
+     * @throws \Exception
      */
-    public function __construct($module = null)
+    public function __construct($module)
     {
-        if ($module) {
-            $this->module = $module;
+        if (!$module) {
+            throw new \Exception('$module parameter is required.');
         }
+        $this->setModule($module);
     }
 
     /**
@@ -45,7 +48,7 @@ abstract class AbstractModuleAwareness
     }
 
     /**
-     * Get moduel name of the class
+     * Get module name of the class
      *
      * @return string
      */

@@ -27,12 +27,12 @@ abstract class AbstractComment extends AbstractModuleAwareness
      *
      * @param int|string|int[]|string[] $item
      *
-     * @throws \exception
+     * @throws \Exception
      * @return array|bool
      */
     public function get($item)
     {
-        throw new \exception('Method is not defined.');
+        throw new \Exception('Method is not defined.');
     }
 
     /**
@@ -40,11 +40,11 @@ abstract class AbstractComment extends AbstractModuleAwareness
      *
      * @param array $params
      *
-     * @throws \exception
+     * @throws \Exception
      * @return mixed|bool
      */
     public function locate(array $params)
     {
-        throw new \exception('Method is not defined.');
+        throw new \Exception('Method is not defined.');
     }
 }
