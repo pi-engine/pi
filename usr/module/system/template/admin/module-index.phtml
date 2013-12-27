@@ -36,7 +36,7 @@ $this->css($this->assetModule('admin/admin.css'));
                 </td>
                 <td>
                     <p><?php echo $module['update']; ?></p>
-                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'] )); ?>" class="invisible"><?php echo _a('Update'); ?></a>
+                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'], 'from' => 'installed')); ?>" class="invisible"><?php echo _a('Update'); ?></a>
                 </td>
                 <td>
                     <p><?php echo $module['description']; ?></p>
@@ -59,11 +59,11 @@ $this->css($this->assetModule('admin/admin.css'));
                         <?php
                         if($module['name'] != 'system') {
                             if ($module['active']) {
-                                echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 0 )), _a('Disable'));
+                                echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed')), _a('Disable'));
                             } else {
-                                echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array( 'action' => 'enable', 'id' => $module['id'], 'active' => 1 )), _a('Enable'));
+                                echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 1, 'from' => 'installed')), _a('Enable'));
                             }
-                            echo sprintf('<a class="btn btn-default" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'] )), _a('Are you sure to uninstall this module?') ,_a('Uninstall'));
+                            echo sprintf('<a class="btn btn-default" href="%s" onclick="return confirm(\'%s\')">%s</a>', $this->url('', array( 'action' => 'uninstall', 'id' => $module['id'], 'from' => 'installed')), _a('Are you sure to uninstall this module?'), _a('Uninstall'));
                         } ?>
                     </div>
                 </td>
