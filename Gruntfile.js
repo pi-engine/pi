@@ -1,18 +1,37 @@
 module.exports = function(grunt) {
+  var fs = require('fs');
+  var path = require('path');
 
-  function assetCwd(name) {
-    return 'usr/module/' + name + '/asset/';
+  function assetModuleCwd(name) {
+    return path.join('usr/module', name, 'asset');
   }
 
-  function assetCwdBuild(name) {
-    return 'usr/module/' + name + '/asset/_build';
+  function assetThemeCwd(name) {
+    return path.join('usr/theme', name, 'asset');
   }
 
-  var vendor = 'www/static/vendor/';
-  var angularSrc = vendor + 'angular/';
+  function assetModuleCwdBuild(name) {
+    return path.join('usr/module', name, 'asset/_build');
+  }
+
+  function assetThemeCwdBuild(name) {
+    return path.join('usr/theme', name, 'asset/_build');
+  }
+
+  function wwwAssetModuleCwd(name) {
+    return path.join('www/asset', 'module-' + name);
+  }
+
+  function wwwAssetThemeCwd(name) {
+    return path.join('www/asset', 'theme-' + name);
+  }
+
+  function vender(name) {
+    return path.join('www/static/vendor', name);
+  }
+ 
   //Auto load modules list, or you can change for your need
   var modules = (function() {
-    var fs = require('fs');
     var modules = [];
     fs.readdirSync('usr/module')
       .forEach(function(path) {
@@ -22,38 +41,86 @@ module.exports = function(grunt) {
     return modules; //or return ['system', 'user']
   })();
 
-  function handlerMouldes(type) {
-    var ret = {};
-    type = type || '**';
-    modules.forEach(function(item) {
-      ret[item] = {
-        cwd: assetCwdBuild(item),
-        src: type,
-        dest: assetCwdBuild(item),
-        expand: true
+  //Auto load theme list, or you can change for your need
+  var themes = (function() {
+    var themes = [];
+    fs.readdirSync('usr/theme')
+      .forEach(function(path) {
+        if (~path.indexOf('.')) return;
+        themes.push(path);
+      });
+    return themes;
+  })();
+
+  /**
+   * 1. Copy for build
+   * 2. publish www/asset to module asset, it will be useful when you develop in windows.After
+   *    you done module asset, you can use 'grunt back'.
+   */
+  var copyOpts = (function() {
+    var ret = {
+      build: {
+        files: []
+      },
+      publishBack: {
+        files: []
       }
+    };
+    modules.forEach(function(item) {
+      ret.build.files.push({
+        cwd: assetModuleCwd(item),
+        src: ['**'],
+        dest: assetModuleCwdBuild(item),
+        expand: true
+      });
+      ret.publishBack.files.push({
+        cwd: wwwAssetModuleCwd(item),
+        src: ['**'],
+        dest: assetModuleCwd(item),
+        expand: true
+      });
+      ret.publishBack.files.push({
+        cwd: path.join('www/public/', 'module-' + item),
+        src: ['**'],
+        dest: path.join('usr/module/', item, 'public'),
+        expand: true
+      });
+    });
+    themes.forEach(function(item) {
+      ret.build.files.push({
+        cwd: assetThemeCwd(item),
+        src: ['**'],
+        dest: assetThemeCwdBuild(item),
+        expand: true
+      });
+      ret.publishBack.files.push({
+        cwd: wwwAssetThemeCwd(item),
+        src: ['**'],
+        dest: assetThemeCwd(item),
+        expand: true
+      });
     });
     return ret;
-  }
+  })();
 
-  function extend(target, src) {
-    for (var i in src) {
-      if (src.hasOwnProperty(i)) {
-        target[i] = src[i];
-      }
-    }
-  }
-
-  var copyOpts = (function() {
-    var ret = {};
+  /**
+   * Clear modules or themes asset build files
+   */
+  var cleanOpts = (function() {
+    var ret = {
+      pi: {
+        src: [vender('angular') + 'pi*.min.js', vender('angular') + 'i18n/*.min.js']
+      },
+      build: {}
+    };
+    var builds = [];
     modules.forEach(function(item) {
-      ret[item] = {
-        cwd: assetCwd(item),
-        src: '**',
-        dest: assetCwdBuild(item),
-        expand: true
-      }
+      builds.push(assetModuleCwdBuild(item));
     });
+    themes.forEach(function(item) {
+      builds.push(assetThemeCwdBuild(item));
+    });
+    ret.build.src = builds;
     return ret;
   })();
 
@@ -63,32 +130,57 @@ module.exports = function(grunt) {
         //banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       pi: {
-        cwd: angularSrc,
+        cwd: vender('angular'),
         src: ['pi*.js', 'i18n/*.js'],
         expand: true,
-        dest: angularSrc,
+        dest: vender('angular'),
         ext: '.min.js'
       },
+      modules: {
+        files: []
+      },
+      themes: {
+        files: []
+      }
     };
-    extend(ret, handlerMouldes('**/*.js'));
+    modules.forEach(function(item) {
+      ret.modules.files.push({
+        cwd: assetModuleCwdBuild(item),
+        src: '**/*.js',
+        dest: assetModuleCwdBuild(item),
+        expand: true
+      });
+    });
+    themes.forEach(function(item) {
+      ret.themes.files.push({
+        cwd: assetThemeCwdBuild(item),
+        src: '**/*.js',
+        dest: assetThemeCwdBuild(item),
+        expand: true
+      });
+    });
     return ret;
   })();
 
-  var cleanOpts = (function() {
-    var ret = {
-      pi: {
-        src: [angularSrc + 'pi*.min.js', angularSrc + 'i18n/*.min.js']
-      },
-      build: {
-        src: ''
-      }
-    };
-    var builds = [];
+  var cssminOpts = (function() {
+    var list = [];
     modules.forEach(function(item) {
-      builds.push(assetCwdBuild(item));
+      list.push({
+        cwd: assetModuleCwdBuild(item),
+        src: '**/*.css',
+        dest: assetModuleCwdBuild(item),
+        expand: true
+      });
     });
-    ret.build.src = builds;
-    return ret;
+    themes.forEach(function(item) {
+      list.push({
+        cwd: assetThemeCwdBuild(item),
+        src: '**/*.css',
+        dest: assetThemeCwdBuild(item),
+        expand: true
+      });
+    });
+    return list;
   })();
 
   // Project configuration.
@@ -97,18 +189,7 @@ module.exports = function(grunt) {
     copy: copyOpts,
     uglify: uglifyOpts,
     clean: cleanOpts,
-    cssmin: handlerMouldes('**/*.css'),
-    snapshot: {
-      userTheme: {
-        options: {
-          //snapshotPath: '',
-          //url: '<url/for/snapshot>',
-          extension: 'png',
-          filename: 'screenshot.png',
-          src: 'usr'
-        }
-      }
-    }
+    cssmin: cssminOpts
   });
 
   // Load the plugin.
@@ -116,11 +197,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-snapshot');
- 
 
-  // Default task(s).
-  grunt.registerTask('default', ['clean', 'copy', 'uglify', 'cssmin']);
+  //Handler asset files for optimize loading
+  grunt.registerTask('default', ['clean', 'copy:build', 'uglify', 'cssmin']);
+
+  //Clear modules and themes asset build
   grunt.registerTask('clear', ['clean:build']);
-  grunt.registerTask('screenshot', ['snapshot']);
+
+  //For www/asset and www/public files to usr
+  grunt.registerTask('back', ['copy:publishBack']);
 };

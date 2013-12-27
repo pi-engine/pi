@@ -22,47 +22,6 @@ body {
   margin: 20px auto;
 }
 
-/* Logo: image, headline, tagline */
-.pi-logo {
-  float: left;
-  font-family: sans-serif, Arial;
-}
-
-.pi-logo img {
-}
-
-.pi-logo a {
-  text-decoration: none;
-}
-
-.pi-logo a:hover {
-  color: #0088CC;
-}
-
-.pi-logo-symbol {
-  font-size: 64px;
-  line-height: 0;
-  text-transform: lowercase;
-  display: none;
-}
-
-.pi-logo-headline {
-  font: bold 40px Georgia, monospace, Arial;
-}
-
-.pi-logo-tagline {
-  color: #0088CC;
-  font-style: normal;
-  font-size: .9em;
-  display: block;
-}
-
-.pi-logo h2 {
-  font-size: 1em;
-  font-weight: normal;
-  padding: 0;
-  margin: 0;
-}
 
 /* User bar */
 .pi-user-bar {
@@ -283,4 +242,8 @@ body {
 
 .pi-footer a:hover {
   color: #0088CC;
+}
+
+#pi-logger-output {
+  position: relative;
 }
