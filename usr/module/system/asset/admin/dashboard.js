@@ -9,8 +9,8 @@
       templateUrl: tpl('dashboard'),
       controller: 'DashboardCtrl'
     });
-    piProvider.translations(config.t);
-    piProvider.ajaxSetup();
+    piProvider.addTranslations(config.t);
+    piProvider.addAjaxInterceptors();
   }
 ])
 .directive('noticeFocus', ['$timeout',
