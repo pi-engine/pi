@@ -91,7 +91,7 @@ legend {
 /* Sidebar */
 .pi-sidebar {
   position: fixed;
-  top: 52px;
+  top: 51px;
   bottom: 0;
   overflow-y: auto;
   width: 190px;
@@ -283,6 +283,12 @@ legend {
 .pi-status.active {
   background: #4db60e;
   border-color: #399303;
+}
+
+.pi-status.disabled {
+  cursor: default;
+  filter: alpha(opacity=60);
+  opacity: .6;
 }
 
 .pi-status.active .pi-status-director {

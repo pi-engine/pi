@@ -9,8 +9,8 @@
       templateUrl: tpl('event'),
       controller: 'PermCtrl'
     });
-    piProvider.translations(config.t);
-    piProvider.ajaxSetup();
+    piProvider.addTranslations(config.t);
+    piProvider.addAjaxInterceptors();
   }
 ])
 .service('server', ['$http', 'config',

@@ -35,9 +35,9 @@
       controller: 'IndexCtrl'
     });
 
-    piProvider.hashPrefix();
-    piProvider.translations(config.t);
-    piProvider.ajaxSetup();
+    piProvider.setHashPrefix();
+    piProvider.addTranslations(config.t);
+    piProvider.addAjaxInterceptors();
   }
 ])
 .factory('server', ['$http', 'config',

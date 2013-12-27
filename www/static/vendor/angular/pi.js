@@ -76,8 +76,8 @@ angular.module('pi', [])
       link: function(scope, element, attr) {
         var show;
         var time = attr.time || 3000;
-        var error = pi.translations['ERROR'] || 'Connect error, Please try again later';
-        var load = pi.translations['LOAD'] || 'Loading...';
+        var error = pi.translate['ERROR'] || 'Connect error, Please try again later';
+        var load = pi.translate['LOAD'] || 'Loading...';
        
         scope.$parent.$watch(attr.piMessage, function(data) {
           var tip = {};
@@ -198,26 +198,23 @@ angular.module('pi', [])
 ])
 .provider('pi', ['$httpProvider', '$locationProvider',
   function($httpProvider, $locationProvider) {
-    var data = {
-      navTabs: {},
-      translations: {}
-    };
-    this.$get = [
-      function() {
-        return data;
-      }
-    ];
+    var translations = {};
 
-    this.navTabs = function(navTabs, cls) {
-      data.navTabs = navTabs;
-      data.navTabsCls = cls || 'nav nav-pills well well-sm';
+    this.$get = function() {
+      return {
+        translate: function(key) {
+          var value = translations[key];
+          return value ? value : key;
+        }
+      };
+    }
+    //A provider method for add translations
+    this.addTranslations = function(t) {
+      angular.extend(translations, t);
     }
 
-    this.translations = function(t) {
-      data.translations = t;
-    }
-
-    this.ajaxSetup = function() {
+    //A provider method for $http interceptors
+    this.addAjaxInterceptors = function() {
       $httpProvider.interceptors.push(['$q', '$rootScope',
         function($q, $rootScope) {
           return {
@@ -246,22 +243,19 @@ angular.module('pi', [])
         }
       ]);
     }
-
+    //A provider method for get dynamic html
     this.setGetHeader = function(httpRequest) {
       var httpRequest = httpRequest || { 'X-Requested-With': 'XMLHttpRequest', 'Accept': '*/*' };
       $httpProvider.defaults.headers.get = httpRequest;
     }
 
-    this.hashPrefix = function(str) {
+    this.setHashPrefix = function(str) {
       $locationProvider.hashPrefix(str || '!');
     }
   }
 ])
 .filter('translate', ['pi',
   function(pi) {
-    return function(input) {
-      var value = pi.translations[input];
-      return value ? value : input;
-    }
+    return pi.translate;
   }
 ]);

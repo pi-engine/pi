@@ -11,7 +11,7 @@ angular.module('widget')
 			controller: 'listCtrl'
 		});
 
-		piProvider.translations(config.t);
+		piProvider.addTranslations(config.t);
 	}
 ])
 .controller('listCtrl', ['$scope', 'config',
@@ -20,9 +20,6 @@ angular.module('widget')
 			item.editUrl = config.urlRoot + 'edit/id/' + item.id;
 			item.deleteUrl = config.urlRoot + 'delete/id/' + item.id;
 		});
-
-		console.log(config.data);
-		
 		angular.extend($scope, config.data);
 	}
 ]);
