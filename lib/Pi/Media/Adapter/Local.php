@@ -62,7 +62,7 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function download($id, $file)
+    public function download($id, $file = '')
     {
         $result = $this->handler()->download($id, $file);
 
@@ -144,9 +144,9 @@ class Local extends AbstractAdapter
      */
     public function getIds(
         array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = ''
     ) {
         $result = $this->handler()->getIds(
             $condition,
@@ -163,9 +163,9 @@ class Local extends AbstractAdapter
      */
     public function getList(
         array $condition,
-        $limit  = null,
-        $offset = null,
-        $order  = null,
+        $limit  = 0,
+        $offset = 0,
+        $order  = '',
         array $attr = array()
     ) {
         $result = $this->handler()->getList(

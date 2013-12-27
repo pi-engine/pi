@@ -63,7 +63,7 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function download($id, $file)
+    public function download($id, $file = '')
     {
         $uri    = $this->getUrl($id);
         $result = $this->handler()->download($uri, $file);
@@ -178,9 +178,9 @@ class Remote extends AbstractAdapter
      */
     public function getIds(
         array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = ''
     ) {
         $result = $this->getList(
             $condition,

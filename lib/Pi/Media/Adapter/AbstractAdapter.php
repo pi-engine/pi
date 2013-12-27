@@ -103,12 +103,12 @@ abstract class AbstractAdapter
     /**
      * Download a media file to local file
      *
-     * @param int $id   Doc id
-     * @param string $file Absolute path to save
+     * @param int|int[] $id   Doc id
+     * @param string $file Absolute path to save; or output to browser directly
      *
      * @return bool
      */
-    abstract public function download($id, $file);
+    abstract public function download($id, $file = '');
     
     /**
      * Update doc details
@@ -189,9 +189,9 @@ abstract class AbstractAdapter
      */
     abstract public function getIds(
         array $condition,
-        $limit  = null,
-        $offset = null,
-        $order  = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = ''
     );
     
     /**
@@ -207,9 +207,9 @@ abstract class AbstractAdapter
      */
     abstract public function getList(
         array $condition,
-        $limit  = null,
-        $offset = null,
-        $order  = null,
+        $limit  = 0,
+        $offset = 0,
+        $order  = '',
         array $attr = array()
     );
     
