@@ -31,6 +31,18 @@ return array(
                 'controller'    => 'module',
                 'action'        => 'index',
                 //'visible'       => 0,
+
+                'pages'         => array(
+                    'operation' => array(
+                        'route'         => 'admin',
+                        'module'        => 'system',
+                        'controller'    => 'module',
+                        'params'        => array(
+                            'from'      => 'installed',
+                        ),
+                        'visible'       => 0,
+                    ),
+                ),
             ),
             'available' => array(
                 'label'         => _t('Availables'),
@@ -38,7 +50,18 @@ return array(
                 'module'        => 'system',
                 'controller'    => 'module',
                 'action'        => 'available',
-                //'visible'       => 0,
+
+                'pages'         => array(
+                    'operation' => array(
+                        'route'         => 'admin',
+                        'module'        => 'system',
+                        'controller'    => 'module',
+                        'params'        => array(
+                            'from'      => 'available',
+                        ),
+                        'visible'       => 0,
+                    ),
+                ),
             ),
             'repo'  => array(
                 'label'         => _t('Repository'),

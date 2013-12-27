@@ -18,8 +18,7 @@ $this->css($this->assetModule('admin/admin.css'));
                 data-name="<?php echo $directory; ?>">
                 <td>
                     <?php
-                    echo sprintf('<i class="%s fa-3x"></i>',
-                            $module['meta']['icon'] ? : 'fa fa-th');
+                    echo sprintf('<i class="%s fa-3x"></i>', $module['meta']['icon'] ? : 'fa fa-th');
                     ?>
                 </td>
                 <td>
@@ -50,7 +49,7 @@ $this->css($this->assetModule('admin/admin.css'));
                     <?php
                         if (empty($module['meta']['installed'])) {
                             $buttonClass = ' btn-default';
-                            $installUrl = $this->url('', array('action' => 'install', 'directory' => $directory));
+                            $installUrl = $this->url('', array('action' => 'install', 'directory' => $directory, 'from' => 'available'));
                         } else {
                             $buttonClass = ' disabled';
                             $installUrl = 'javascript:void(0)';
@@ -59,7 +58,7 @@ $this->css($this->assetModule('admin/admin.css'));
                     ?>
                     <?php if (!empty($module['meta']['clonable'])) { ?>
                     <span class="btn btn-default module-clone" data-toggle="modal" data-target="#js-module-form" 
-                          href="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory)); ?>">
+                          href="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory, 'from' => 'available')); ?>">
                         <?php echo _a('Clone'); ?>
                     </span>
                     <?php } ?>
@@ -76,7 +75,7 @@ $this->css($this->assetModule('admin/admin.css'));
 (function($) {
     var page = {
         el: $('#js-module'),
-        installUrl: '<?php echo $this->url('', array('action' => 'install')); ?>',
+        installUrl: '<?php echo $this->url('', array('action' => 'install', 'from' => 'available')); ?>',
         $: function(selector) {
             return this.el.find(selector);
         },

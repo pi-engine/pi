@@ -1,10 +1,15 @@
-
-<h2 class="page-header"><?php echo _escape($title); ?></h2>
-
+<div class="page-header">
+    <h2><?php echo _escape($title); ?></h2>
+</div>
 <?php include $this->templateComponent('form'); ?>
-
-<div class="empty">
-    <strong><?php _e('Choose: ') ?></strong>
-    <span><a href="<?php echo Pi::service('user')->getUrl('password'); ?>" title="<?php _e('Find password'); ?>"><?php _e('Find password'); ?></a></span>
-    <span><a href="<?php echo Pi::service('user')->getUrl('register'); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a></span>
+<div class="row" style="margin: 40px -15px;">
+    <div class="col-md-offset-2 col-md-10">
+        <a href="<?php echo Pi::service('user')->getUrl('password'); ?>"
+           style="margin-right: 10px;">
+            <?php _e('Find password'); ?>
+        </a>
+        <a href="<?php echo Pi::service('user')->getUrl('register'); ?>">
+            <?php _e('Register'); ?>
+        </a>
+    </div>
 </div>

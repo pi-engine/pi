@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Comment;
+namespace Module\Comment\Api;
 
 use Pi;
 use Pi\Search\AbstractSearch;

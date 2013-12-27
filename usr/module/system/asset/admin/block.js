@@ -11,7 +11,7 @@
       controller: 'BlocksCtrl'
     });
 
-    piProvider.translations(config.t);
+    piProvider.addTranslations(config.t);
   }
 ])
 .service('server', ['$http', 'config', 

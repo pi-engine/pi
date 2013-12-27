@@ -44,10 +44,9 @@
       redirectTo: '/remote'
     });
 
-    piProvider.hashPrefix();
-    piProvider.navTabs(config.navTabs);
-    piProvider.translations(config.t);
-    piProvider.ajaxSetup();
+    piProvider.setHashPrefix();
+    piProvider.addTranslations(config.t);
+    piProvider.addAjaxInterceptors();
   }
 ])
 .service('server', ['$http', '$cacheFactory', 'config',

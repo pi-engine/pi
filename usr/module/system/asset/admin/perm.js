@@ -33,10 +33,9 @@
     }).otherwise({
       redirectTo: '/front'
     });
-    piProvider.hashPrefix();
-    piProvider.translations(config.t);
-    piProvider.navTabs(config.navTabs);
-    piProvider.ajaxSetup();
+    piProvider.setHashPrefix();
+    piProvider.addTranslations(config.t);
+    piProvider.addAjaxInterceptors();
   }
 ])
 .service('server', ['$http', 'config',

@@ -23,7 +23,7 @@ use Pi;
  *  // Simple mode
  *  return <searchClass>;
  *
- *  // Simplest mode
+ *  // Simplest mode, Search class should be located in module Api folder
  *  return;
  *
  *  // Disable search
@@ -57,7 +57,7 @@ class Search extends AbstractResource
         $class = $class ?: 'search';
         $directory = $this->event->getParam('directory');
         $class = sprintf(
-            'Module\\%s\\%s',
+            'Module\\%s\Api\\%s',
             ucfirst($directory),
             ucfirst($class)
         );
@@ -76,11 +76,6 @@ class Search extends AbstractResource
      */
     public function installAction()
     {
-        /*
-        if (empty($this->config)) {
-            return;
-        }
-        */
         $module = $this->event->getParam('module');
         Pi::registry('search')->flush();
         $class = $this->canonize($this->config);

@@ -11,8 +11,8 @@ angular.module('widget')
 			controller: 'indexCtrl'
 		});
 
-		piProvider.translations(config.t);
-		piProvider.ajaxSetup();
+		piProvider.addTranslations(config.t);
+		piProvider.addAjaxInterceptors();
 	}
 ])
 .service('server', ['$http', 'config',

@@ -28,9 +28,9 @@
     }).otherwise({
       redirectTo: '/all'
     });
-    piProvider.hashPrefix();
-    piProvider.translations(config.t);
-    piProvider.ajaxSetup();
+    piProvider.setHashPrefix();
+    piProvider.addTranslations(config.t);
+    piProvider.addAjaxInterceptors();
   }
 ])
 .service('server', ['$http', 'config', 
