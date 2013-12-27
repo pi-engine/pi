@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Article;
+namespace Module\Page\Api;
 
 use Pi;
 use Pi\Search\AbstractSearch;
@@ -22,27 +22,17 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected $table = 'article';
-
-    /**
-     * {@inheritDoc}
-     */
-    protected $searchIn = array(
-        'subject',
-        'subtitle',
-        'summary',
-        'content'
-    );
+    protected $table = 'page';
 
     /**
      * {@inheritDoc}
      */
     protected $meta = array(
         'id'            => 'id',
-        'subject'       => 'title',
-        'summary'       => 'content',
-        'time_publish'  => 'time',
-        'uid'           => 'uid',
+        'title'         => 'title',
+        'content'       => 'content',
+        'time_created'  => 'time',
+        'user'          => 'uid',
     );
 
     /**
@@ -51,7 +41,7 @@ class Search extends AbstractSearch
     protected function buildLink(array $item)
     {
         $link = Pi::service('url')->assemble(
-            'article-article',
+            'page-page',
             array('id' => $item['id'])
         );
 
