@@ -421,4 +421,29 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
 
         return $result;
     }
+
+    /**
+     * Perform an increment operation upon certain integer fields
+     *
+     * @param string|string[] $columns Column(s) to be incremented
+     * @param int $increment
+     * @param array|Where  $where
+     *
+     * @return int
+     */
+    public function increment($columns, $increment = 1, $where = null)
+    {
+        $operator   = ($increment > 0) ? '+' : '-';
+        $segment    = $operator . ' ' . abs($increment);
+        $set = array();
+        foreach ((array) $columns as $column) {
+            $set[$column] = Pi::db()->expression($column . $segment);
+        }
+        if (null !== $where && !$where instanceof Where) {
+            $where = Pi::db()->where($where);
+        }
+        $result = $this->update($set, $where);
+
+        return $result;
+    }
 }

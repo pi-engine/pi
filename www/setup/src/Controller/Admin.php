@@ -11,7 +11,7 @@ namespace Pi\Setup\Controller;
 
 use Pi;
 use Pi\Application\Installer\Module as ModuleInstaller;
-use Pi\Acl\Acl;
+//use Pi\Acl\Acl;
 
 /**
  * Admin controller
