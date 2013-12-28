@@ -1,0 +1,62 @@
+
+How to implement Comment in a module
+====================================
+
+1. Set up comment specification in module meta configuration
+- Define categories/types of items to be commented
+- Provide parameters or methods to identify an item to comment on
+  - Use variables: `module`, `controller`, `action`, `identifier`, `params`
+  - Use custom locator
+- Provide callback to fetch commented item information
+
+In `config/module.php`
+```
+    'resource'  => array(
+        ...
+        'comment'   => 'comment.php',
+    ),
+```
+
+In `config/comment.php`
+```
+return array(
+    '<comment-category-a>' => array(
+        'title'     => _a('Comments for A'),
+        'icon'      => 'icon-post',
+        'callback'  => '<Class\To\Fetch\Object\Information>',
+        'controller'    => '<controller-to-match-this-comment-category>',
+        'action'        => '<action-to-match-this-comment-category>',
+        'identifier'    => '<param-to-identify-object>',
+        'params'        => array(
+            <extra-param-pairs-to-identify-the-comment>,
+        ),
+    ),
+    'example' => array(
+        'title'         => _a('Article comments'),
+        'icon'          => 'icon-post',
+        'callback'      => 'Module\<ModuleName>\Api\Article',
+        'controller'    => 'demo',
+        'action'        => 'index',
+        'identifier'    => 'id',
+        'params'        => array(
+            'enable'    => 'yes',
+        ),
+    ),
+    'custom' => array(
+        'title'     => _a('Custom comments'),
+        'icon'      => 'icon-post',
+        'callback'  => 'Module\<ModuleName>\Api\Custom',
+        'locator'   => 'Module\<ModuleName>\Api\Custom',
+    ),
+);
+```
+
+2. Build callback for item information fetch
+- The callback is required to extend `Pi\Application\AbstractComment`
+- The callback is recommended to locate in module api folder
+- Check `Module\Comment\Api\Article` and `Module\Comment\Api\Custom` for example
+
+3. Build custom locator to identify target item, JIC
+- Build the locator only if 'locator' is specified in comment specifications
+- The locator is recommended to extend `Pi\Application\AbstractComment` with method `locate`
+- Check `Module\Comment\Api\Custom::locate` for example
