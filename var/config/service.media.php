@@ -2,7 +2,7 @@
 // Media service configuration
 
 // Root of remote media center
-$apiRoot = 'http://master.pi/api/media/media';
+$apiRoot = 'http://master.pi/api/media/doc';
 
 $config = array(
     // Media access adapter
@@ -14,6 +14,17 @@ $config = array(
         'options'   => array(
             'root_path' => Pi::path('upload/media'),
             'root_uri'  => Pi::url('upload/media'),
+            'locator'   => array(
+                // Path generator
+                'path'  => function ($time) {
+                        return date('Y/m/d', $time ?: time());
+                    },
+                // Filename generator
+                'file'  => function ($source) {
+                        $extension = pathinfo($source, PATHINFO_EXTENSION);
+                        return uniqid() . '.' . $extension;
+                    },
+            ),
         ),
     ),
 
@@ -34,7 +45,7 @@ $config = array(
             ),
             // API URIs
             'api'   => array(
-                'add'           => $apiRoot . '/add',
+                'add'           => $apiRoot . '/insert',
                 'update'        => $apiRoot . '/update',
                 'upload'        => $apiRoot . '/upload',
                 'get'           => $apiRoot . '/get',

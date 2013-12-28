@@ -82,25 +82,32 @@ class Doc extends AbstractApi
      */
     public function upload(array $params, $method = 'POST')
     {
-        $uriRoot = $this->getUriRoot($params);
-        $pathRoot = $this->getPathRoot($params);
-        $target = $this->generateName($params);
+        $options = Pi::service('media')->getOption('local');
+        $rootUri = $options['root_uri'];
+        $rootPath = $options['root_path'];
+        $pathGenerator = $options['locator']['path'];
+        $relativePath = $pathGenerator();
+        $destination = $rootPath . '/' . $relativePath;
+        $rename = $options['locator']['file'];
 
         $success = false;
         switch ($method) {
             case 'POST':
                 $uploader = new Upload(array(
-                    'destination'   => $pathRoot,
-                    'rename'        => $target,
+                    'destination'   => $destination,
+                    'rename'        => $rename,
                 ));
                 if ($uploader->isValid()) {
                     $uploader->receive();
+                    $filename = $uploader->getUploaded();
                     $success = true;
                 }
                 break;
             case 'PUT':
                 $putdata = fopen('php://input', 'r');
-                $fp = fopen($pathRoot . '/' . $target, 'w');
+                $filename = $rename($params['name']);
+                $target = $destination  . '/' . $filename;
+                $fp = fopen($target, 'w');
                 while ($data = fread($putdata, 1024)) {
                     fwrite($fp, $data);
                 }
@@ -113,8 +120,8 @@ class Doc extends AbstractApi
                 break;
         }
         if ($success) {
-            $params['url'] = $uriRoot . '/' . $target;
-            $params['path'] = $pathRoot . '/' . $target;
+            $params['url'] = $rootUri . '/' . $relativePath . '/' . $filename;
+            $params['path'] = $rootPath . '/' . $relativePath . '/' . $filename;
 
             $row = $this->model()->createRow($params);
             $row->save();

@@ -36,22 +36,15 @@ CREATE TABLE `{doc}` (
   # Extra data
   `meta`            text,
 
+  # Usage stats
+  `count`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+
   PRIMARY KEY   (`id`),
   KEY `active`  (`active`),
   KEY `uid`     (`uid`),
   KEY `module`  (`module`),
   KEY `appkey`  (`appkey`),
   KEY `application` (`appkey`, `module`, `category`)
-);
-
-# Doc stats
-CREATE TABLE `{stats}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `doc`             int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `count`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
-
-  PRIMARY KEY           (`id`),
-  UNIQUE KEY `doc`      (`doc`)
 );
 
 # Extended meta for docs

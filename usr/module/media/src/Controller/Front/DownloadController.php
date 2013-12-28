@@ -34,7 +34,8 @@ class DownloadController extends ActionController
         }
         
         // Export files
-        $rowset     = $this->getModel('doc')->select(array('id' => $ids));
+        $model = $this->getModel('doc');
+        $rowset     = $model->select(array('id' => $ids));
         $affectRows = array();
         $files      = array();
         foreach ($rowset as $row) {
@@ -45,6 +46,8 @@ class DownloadController extends ActionController
             $files[]      = $path;
             $affectRows[] = $row->id;
         }
+        $model->increment('count', array('id' => $ids));
+        /*
         if (empty($affectRows)) {
             throw new \Exception('No valid file.');
         }
@@ -59,12 +62,9 @@ class DownloadController extends ActionController
         
         if (!empty($exists)) {
             foreach ($exists as $item) {
-                $model->increment('count', 1, array('id' => $affectRows));
-                /*
                 $row = $model->find($item, 'media');
                 $row->fetch_count = $row->fetch_count + 1;
                 $row->save();
-                */
             }
         }
         
@@ -77,9 +77,9 @@ class DownloadController extends ActionController
             $row = $model->createRow($data);
             $row->save();
         }
-        
+        */
         $filePath = 'upload/temp';
-        Service::mkdir($filePath);
+        Pi::service('file')->mkdir(Pi::path($filePath));
         $filename = sprintf('%s/media-%s.zip', $filePath, time());
         $filename = Pi::path($filename);
         $zip      = new ZipArchive();

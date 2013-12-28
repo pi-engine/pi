@@ -61,8 +61,8 @@ class DocController extends ApiController
             'status'    => 1,
         );
 
-        $id         = $this->params('id');
-        $result     = Pi::api('doc', $this->module)->delete($id);
+        $id     = $this->params('id');
+        $result = Pi::api('doc', $this->module)->delete($id);
         if (!$result) {
             $response = array(
                 'status'    => 0,
