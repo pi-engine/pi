@@ -52,3 +52,26 @@ Demo sites with shared deployment:
 * Pi Dialogue ([pialog.org](http://pialog.org) | [pialogue.org](http://pialogue.org))
 * Pi Demo ([pi-demo.org](http://pi-demo.org))
 * Xoops/Pi ([xoopsengine.org](http://demo.xoopsengine.org))
+
+Front-end building asset
+----------------
+Tools: [gruntjs](http://gruntjs.com/)
+
+To execute asset build, use:
+
+```
+grunt 
+```
+
+To execute clear asset build files, use
+
+```
+grunt clear
+```
+
+To execute 'www/asset' and 'www/public' files to usr, use
+
+```
+grunt back
+```
+
