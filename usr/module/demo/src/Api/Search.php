@@ -36,7 +36,7 @@ class Search extends AbstractSearch
             $item = array(
                 'uid'       => 1,
                 'time'      => time(),
-                'link'      => Pi::service('url')->assemble(
+                'url'       => Pi::service('url')->assemble(
                     'default',
                     array(
                         'module'        => 'demo',
