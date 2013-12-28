@@ -62,7 +62,7 @@ class Api extends AbstractApi
     protected $rootColumn = array(
         'id',
         'module',
-        'category',
+        'type',
         'item',
         'author',
         'active'
@@ -212,9 +212,9 @@ class Api extends AbstractApi
                         'action'        => 'module',
                         'name'          => $options['name'],
                     );
-                    if (!empty($options['category'])) {
-                        $params['category'] = $options['category'];
-                        unset($options['category']);
+                    if (!empty($options['type'])) {
+                        $params['type'] = $options['type'];
+                        unset($options['type']);
                     }
                     unset($options['name']);
                 }
@@ -240,7 +240,7 @@ class Api extends AbstractApi
      * Load comment data for rendering against matched route
      *
      * Data array:
-     * - root: [id, ]module, category, item, active
+     * - root: [id, ]module, type, item, active
      * - count
      * - posts: id, uid, ip, content, time, active
      * - users: uid, name, avatar, url
@@ -267,11 +267,11 @@ class Api extends AbstractApi
         $module         = $params['module'];
         $controller     = $params['controller'];
         $action         = $params['action'];
-        $categoryList   = Pi::registry('category', 'comment')->read($module, '', null);
-        if (isset($categoryList['route'][$controller][$action])) {
-            $lookupList = $categoryList['route'][$controller][$action];
-        } elseif (isset($categoryList['locator'])) {
-            $lookupList = $categoryList['locator'];
+        $typeList       = Pi::registry('type', 'comment')->read($module, '', null);
+        if (isset($typeList['route'][$controller][$action])) {
+            $lookupList = $typeList['route'][$controller][$action];
+        } elseif (isset($typeList['locator'])) {
+            $lookupList = $typeList['locator'];
         } else {
             return false;
         }
@@ -310,7 +310,7 @@ class Api extends AbstractApi
             if ($item) {
                 $root = array(
                     'module'    => $module,
-                    'category'  => $key,
+                    'type'      => $key,
                     'item'      => $item,
                 );
                 break;
@@ -746,7 +746,7 @@ class Api extends AbstractApi
     /**
      * Add comment of an item
      *
-     * @param array $data root, uid, content, module, item, category, time
+     * @param array $data root, uid, content, module, item, type, time
      *
      * @return int|bool
      */
@@ -773,12 +773,12 @@ class Api extends AbstractApi
                 if (!$root) {
                     return false;
                 }
-                $category = Pi::registry('category', 'comment')->read(
+                $type = Pi::registry('type', 'comment')->read(
                     $root['module'],
-                    $root['category']
+                    $root['type']
                 );
-                // Exit if category is disabled or not exist
-                if (!$category) {
+                // Exit if type is disabled or not exist
+                if (!$type) {
                     return false;
                 }
                 if (empty($postData['module'])) {
@@ -819,7 +819,7 @@ class Api extends AbstractApi
     /**
      * Add comment root of an item
      *
-     * @param array $data module, item, author, category, time
+     * @param array $data module, item, author, type, time
      *
      * @return int|bool
      */
@@ -829,17 +829,17 @@ class Api extends AbstractApi
         if (isset($data['id'])) {
             unset($data['id']);
         }
-        $category = Pi::registry('category', 'comment')->read(
+        $type = Pi::registry('type', 'comment')->read(
             $data['module'],
-            $data['category']
+            $data['type']
         );
-        // Exit if category is disabled or not exist
-        if (!$category) {
+        // Exit if type is disabled or not exist
+        if (!$type) {
             return false;
         }
 
         if (!isset($data['author'])) {
-            $callback = $category['callback'];
+            $callback = $type['callback'];
             $handler = new $callback($data['module']);
             $source = $handler->get($data['item']);
             $data['author'] = $source['uid'];
@@ -882,7 +882,7 @@ class Api extends AbstractApi
      *
      * @param int|array $condition
      *
-     * @return array    Module, category, item, callback, active
+     * @return array    Module, type, item, callback, active
      */
     public function getRoot($condition)
     {
@@ -918,9 +918,9 @@ class Api extends AbstractApi
         if (!$rootData) {
             return false;
         }
-        $target = Pi::model('category', 'comment')->select(array(
+        $target = Pi::model('type', 'comment')->select(array(
             'module'    => $rootData['module'],
-            'name'      => $rootData['category'],
+            'name'      => $rootData['type'],
         ))->current();
         if (!$target) {
             return false;
@@ -952,17 +952,17 @@ class Api extends AbstractApi
         foreach ($rowset as $row) {
             $id = (int) $row['id'];
             //$roots[$id] = $row->toArray();
-            $items[$row['module']][$row['category']][$row['item']] = $id;
+            $items[$row['module']][$row['type']][$row['item']] = $id;
         }
         //d($items);
-        $targets = Pi::registry('category', 'comment')->read();
+        $targets = Pi::registry('type', 'comment')->read();
         $list = array();
         foreach ($items as $module => $mList) {
-            foreach ($mList as $category => $cList) {
-                if (!isset($targets[$module][$category])) {
+            foreach ($mList as $type => $cList) {
+                if (!isset($targets[$module][$type])) {
                     continue;
                 }
-                $callback = $targets[$module][$category]['callback'];
+                $callback = $targets[$module][$type]['callback'];
                 $handler = new $callback($module);
                 $targets = $handler->get(array_keys($cList));
                 foreach ($targets as $item => $target) {
@@ -1006,8 +1006,8 @@ class Api extends AbstractApi
                 $whereRoot['active'] = $wherePost['active'];
             }
             /**/
-            if (isset($condition['category'])) {
-                $whereRoot['category'] = $condition['category'];
+            if (isset($condition['type'])) {
+                $whereRoot['type'] = $condition['type'];
             }
 
             $where = array();
@@ -1022,7 +1022,7 @@ class Api extends AbstractApi
         $select = Pi::db()->select();
         $select->from(
             array('root' => Pi::model('root', 'comment')->getTable()),
-            array('id', 'module', 'category', 'item', 'author')
+            array('id', 'module', 'type', 'item', 'author')
         );
 
         $select->join(
@@ -1047,7 +1047,7 @@ class Api extends AbstractApi
             $select->order($order);
         }
 
-        $targets = Pi::registry('category', 'comment')->read();
+        $targets = Pi::registry('type', 'comment')->read();
 
         $items = array();
         $keyList = array();
@@ -1056,7 +1056,7 @@ class Api extends AbstractApi
             //vd((array) $row);
             $root = (int) $row['id'];
             $keyList[] = $root;
-            $items[$row['module']][$row['category']][$row['item']] = array(
+            $items[$row['module']][$row['type']][$row['item']] = array(
                 'root'          => $root,
                 'comment_time'  => (int) $row['time'],
                 'comment_uid'   => (int) $row['uid'],
@@ -1065,11 +1065,11 @@ class Api extends AbstractApi
         //d($items);
         $targetList = array();
         foreach ($items as $module => $mList) {
-            foreach ($mList as $category => $cList) {
-                if (!isset($targets[$module][$category])) {
+            foreach ($mList as $type => $cList) {
+                if (!isset($targets[$module][$type])) {
                     continue;
                 }
-                $callback = $targets[$module][$category]['callback'];
+                $callback = $targets[$module][$type]['callback'];
                 $handler = new $callback($module);
                 $targets = $handler->get(array_keys($cList));
                 foreach ($targets as $item => $target) {
@@ -1109,8 +1109,8 @@ class Api extends AbstractApi
             $whereRoot = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                if (isset($condition['category'])) {
-                    $whereRoot['category'] = $condition['category'];
+                if (isset($condition['type'])) {
+                    $whereRoot['type'] = $condition['type'];
                 }
                 if (isset($condition['author'])) {
                     $whereRoot['author'] = $condition['author'];
@@ -1201,8 +1201,8 @@ class Api extends AbstractApi
             //$wherePost = array();
             if (is_array($condition)) {
                 $wherePost = $this->canonizePost($condition);
-                if (isset($condition['category'])) {
-                    $whereRoot['category'] = $condition['category'];
+                if (isset($condition['type'])) {
+                    $whereRoot['type'] = $condition['type'];
                 }
                 if (isset($condition['author'])) {
                     $whereRoot['author'] = $condition['author'];
@@ -1267,8 +1267,8 @@ class Api extends AbstractApi
             if (isset($wherePost['active'])) {
                 $whereRoot['active'] = $wherePost['active'];
             }
-            if (isset($condition['category'])) {
-                $whereRoot['category'] = $condition['category'];
+            if (isset($condition['type'])) {
+                $whereRoot['type'] = $condition['type'];
             }
 
             $where = array();

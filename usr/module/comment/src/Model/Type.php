@@ -12,11 +12,11 @@ namespace Module\Comment\Model;
 use Pi\Application\Model\Model;
 
 /**
- * Comment category model
+ * Comment type model
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Category extends Model
+class Type extends Model
 {
     /**
      * Columns to be encoded

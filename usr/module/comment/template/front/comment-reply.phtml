@@ -80,7 +80,7 @@ if ($uid) {
             <input class="btn form-submit pull-right" type="submit" value="<?php _e('Reply'); ?>" name="submit">
             <?php 
                 foreach (array(
-                    'id', 'root', 'reply', 'module', 'category',
+                    'id', 'root', 'reply', 'module', 'type',
                     'item', 'redirect', 'markup') as $hiddenElement) {
                     echo $this->formElement($form->get($hiddenElement));
                 }

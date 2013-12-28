@@ -14,11 +14,11 @@ use Pi;
 use Pi\Application\Registry\AbstractRegistry;
 
 /**
- * Pi comment category registry
+ * Pi comment type registry
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Category extends AbstractRegistry
+class Type extends AbstractRegistry
 {
     /** @var string Module name */
     protected $module = 'comment';
@@ -30,7 +30,7 @@ class Category extends AbstractRegistry
     {
         $list = array();
 
-        $model = Pi::model('category', $this->module);
+        $model = Pi::model('type', $this->module);
         if (-1 != $options['active']) {
             $where = array('active' => $options['active']);
         } else {
@@ -48,12 +48,8 @@ class Category extends AbstractRegistry
                 'title'         => $row['title'],
                 'icon'          => $row['icon'],
                 'active'        => $row['active'],
-                //'category'      => $row['name'],
                 'callback'      => $row['callback'],
                 'locator'       => $row['locator'],
-                //'module'        => $row['module'],
-                //'controller'    => $row['controller'],
-                //'action'        => $row['action'],
                 'identifier'    => $row['identifier'],
                 'params'        => $row['params'],
             );
@@ -62,7 +58,7 @@ class Category extends AbstractRegistry
             $action     = $row['action'];
 
             if ($options['module']) {
-                if ($options['category']) {
+                if ($options['type']) {
                     if (empty($row['locator'])) {
                         $data = array_merge($data, array(
                             'controller'    => $controller,
@@ -94,15 +90,15 @@ class Category extends AbstractRegistry
     /**
      * {@inheritDoc}
      * @param string    $module
-     * @param string    $category
+     * @param string    $type
      * @param bool|null $active
      */
-    public function read($module = '', $category = '', $active = true)
+    public function read($module = '', $type = '', $active = true)
     {
-        $catName    = $category;
-        $category   = $catName ? 1 : 0;
+        $catName    = $type;
+        $type       = $catName ? 1 : 0;
         $active     = (null === $active) ? -1 : (int) $active;
-        $options    = compact('module', 'category', 'active');
+        $options    = compact('module', 'type', 'active');
         $data       = $this->loadData($options);
         if ($module && $catName) {
             $data = isset($data[$catName]) ? $data[$catName] : array();

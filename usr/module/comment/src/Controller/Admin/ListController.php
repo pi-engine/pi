@@ -267,34 +267,34 @@ class ListController extends ActionController
     }
 
     /**
-     * Active comment posts of a module, or with its category
+     * Active comment posts of a module, or with its type
      */
     public function moduleAction()
     {
         $module = _get('name');
         if (!$module) {
-            $title = _a('Comment categories');
+            $title = _a('Comment types');
 
             $modulelist = Pi::registry('modulelist')->read('active');
-            $rowset = Pi::model('category', 'comment')->select(array(
+            $rowset = Pi::model('type', 'comment')->select(array(
                 'module'    => array_keys($modulelist),
             ));
-            $categories = array();
+            $types = array();
             foreach ($rowset as $row) {
-                $category = $row['name'];
-                $categories[$row['module']][$category] = array(
+                $type = $row['name'];
+                $types[$row['module']][$type] = array(
                     'title'     => $row['title'],
                     'url'       => $this->url('', array(
                         'controller'    => 'list',
                         'action'        => 'module',
                         'name'          => $row['module'],
-                        'category'      => $category,
+                        'type'      => $type,
                     )),
                 );
             }
             $modules = array();
             foreach ($modulelist as $name => $data) {
-                if (!isset($categories[$name])) {
+                if (!isset($types[$name])) {
                     continue;
                 }
                 $modules[$name] = array(
@@ -304,7 +304,7 @@ class ListController extends ActionController
                         'action'        => 'module',
                         'name'          => $name,
                     )),
-                    'categories'    => $categories[$name],
+                    'types'    => $types[$name],
                 );
             }
 
@@ -323,7 +323,7 @@ class ListController extends ActionController
             $active = (int) $active;
         }
 
-        $category = _get('category') ?: '';
+        $type = _get('type') ?: '';
         $page   = _get('page', 'int') ?: 1;
         $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
@@ -334,13 +334,13 @@ class ListController extends ActionController
             'name'  => $module,
             'title' => $moduleData['title'],
         );
-        $categoryData = array();
-        if ($category) {
-            $categoryData = Pi::registry('category', 'comment')->read(
+        $typeData = array();
+        if ($type) {
+            $typeData = Pi::registry('type', 'comment')->read(
                 $module,
-                $category
+                $type
             );
-            $where['category'] = $category;
+            $where['type'] = $type;
         }
         $posts = Pi::api('comment')->getList(
             $where,
@@ -356,8 +356,8 @@ class ListController extends ActionController
         $count = Pi::service('comment')->getCount($where);
 
         $params = array('name' => $module, 'active' => $active);
-        if ($category) {
-            $params['category'] = $category;
+        if ($type) {
+            $params['type'] = $type;
         }
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
@@ -366,11 +366,11 @@ class ListController extends ActionController
                 'params'        => $params,
             ),
         ));
-        if ($categoryData) {
+        if ($typeData) {
             $title = sprintf(
-                _a('Comment posts of Module %s with Category %s'),
+                _a('Comment posts of Module %s with type %s'),
                 $moduleData['title'],
-                $categoryData['title']
+                $typeData['title']
             );
         } else {
             $title = sprintf(
@@ -384,7 +384,7 @@ class ListController extends ActionController
             'posts'     => $posts,
             'paginator' => $paginator,
             'module'    => $moduleData,
-            'category'  => $categoryData,
+            'type'  => $typeData,
             'active'    => $active,
         ));
         
@@ -415,7 +415,7 @@ class ListController extends ActionController
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
-                    'category'  => $category,
+                    'type'  => $type,
                 ))
             ),
             array(
@@ -424,7 +424,7 @@ class ListController extends ActionController
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
-                    'category'  => $category,
+                    'type'  => $type,
                     'active'    => 1,
                 ))
             ),
@@ -434,7 +434,7 @@ class ListController extends ActionController
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
-                    'category'  => $category,
+                    'type'  => $type,
                     'active'    => 0,
                 ))
             ),
@@ -599,7 +599,7 @@ class ListController extends ActionController
         );
         $message = $result['message'];
 
-        // List, module/category, user
+        // List, module/type, user
         if (!$from) {
             $from = array('action' => 'index');
         } elseif (is_string($from)) {

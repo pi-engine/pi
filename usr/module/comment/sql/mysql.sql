@@ -7,8 +7,8 @@
 # Comment
 # >>>>
 
-# Comment category
-CREATE TABLE `{category}` (
+# Comment type
+CREATE TABLE `{type}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `module`          varchar(64)     NOT NULL    default '',
   `controller`      varchar(64)     NOT NULL    default '',
@@ -25,21 +25,21 @@ CREATE TABLE `{category}` (
   `icon`            varchar(255)    NOT NULL    default '',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `module_category` (`module`, `name`)
+  UNIQUE KEY  `module_type` (`module`, `name`)
 );
 
 # Comment root
 CREATE TABLE `{root}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
   `module`          varchar(64)     NOT NULL,
-  `category`        varchar(64)     NOT NULL    default '',
+  `type`            varchar(64)     NOT NULL    default '',
   `item`            int(10)         unsigned    NOT NULL,
   `active`          tinyint(1)      unsigned    NOT NULL default '1',
   -- User id of root item author
   `author`          int(10)         unsigned    NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY  `module_item` (`module`, `category`, `item`),
+  UNIQUE KEY  `module_item` (`module`, `type`, `item`),
   KEY `author` (`author`)
 );
 

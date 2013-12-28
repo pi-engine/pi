@@ -51,7 +51,7 @@ if ($uid) {
             </div>
             <?php 
                 foreach (array(
-                    'id', 'root', 'reply', 'module', 'category',
+                    'id', 'root', 'reply', 'module', 'type',
                     'item', 'redirect', 'markup') as $hiddenElement) {
                     echo $this->formElement($form->get($hiddenElement));
                 }

@@ -13,7 +13,7 @@ if (!empty($root['id'])) {
 } else {
     $formData = array(
         'module'    => $root['module'],
-        'category'  => $root['category'],
+        'type'  => $root['type'],
         'item'      => $root['item'],
     );
 }
@@ -28,7 +28,7 @@ $form = Pi::service('comment')->getForm($formData);
             <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="form-control" rows="3"></textarea>
         </div>
         <?php
-        foreach (array( 'id', 'root', 'reply', 'module', 'category', 'item', 'redirect', 'markup') as $hiddenElement) {
+        foreach (array( 'id', 'root', 'reply', 'module', 'type', 'item', 'redirect', 'markup') as $hiddenElement) {
             echo $this->formElement($form->get($hiddenElement));
         }
         ?>

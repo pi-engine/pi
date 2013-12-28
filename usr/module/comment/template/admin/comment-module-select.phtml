@@ -12,11 +12,11 @@
             </a>
         </td>
     </tr>
-        <?php foreach ($data['categories'] as $category) { ?>
+        <?php foreach ($data['types'] as $type) { ?>
     <tr>
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $category['title']; ?></td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $type['title']; ?></td>
         <td>
-            <a href="<?php echo $category['url']; ?>" title="<?php echo _escape($category['title']); ?>">
+            <a href="<?php echo $type['url']; ?>" title="<?php echo _escape($type['title']); ?>">
                 <?php echo _a('View comments'); ?>
             </a>
         </td>

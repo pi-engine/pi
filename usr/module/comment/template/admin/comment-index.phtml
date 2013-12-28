@@ -60,7 +60,7 @@
                         <?php echo $data['count']; ?>
                     </a></td>
                 </tr>
-                    <?php foreach ($data['categories'] as $category => $cData) { ?>
+                    <?php foreach ($data['types'] as $type => $cData) { ?>
                 <tr>
                     <td>&nbsp;&nbsp;<?php echo _escape($cData['title']); ?></td>
                     <td><a href="<?php echo $cData['url']; ?>" title="<?php echo _escape($cData['title']); ?>" target="_blank">

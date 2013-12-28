@@ -12,23 +12,23 @@ namespace Module\Comment\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 
-class CategoryController extends ActionController
+class TypeController extends ActionController
 {
     /**
-     * Comment categories
+     * Comment types
      */
     public function indexAction()
     {
-        $title = _a('Comment categories');
+        $title = _a('Comment types');
 
         $modulelist = Pi::registry('modulelist')->read('active');
-        $rowset = Pi::model('category', 'comment')->select(array(
+        $rowset = Pi::model('type', 'comment')->select(array(
             'module'    => array_keys($modulelist),
         ));
-        $categories = array();
+        $types = array();
         foreach ($rowset as $row) {
-            $category = $row['name'];
-            $categories[$row['module']][$category] = array(
+            $type = $row['name'];
+            $types[$row['module']][$type] = array(
                 'title'     => $row['title'],
                 'active'    => $row['active'],
                 'status'    => $row['active'] ? _a('Active') : _a('Disabled'),
@@ -36,12 +36,12 @@ class CategoryController extends ActionController
                     'controller'    => 'list',
                     'action'        => 'module',
                     'name'          => $row['module'],
-                    'category'      => $category,
+                    'type'          => $type,
                 )),
                 'enable'    => array(
                     'title' => $row['active'] ? _a('Disable') : _a('Enable'),
                     'url'   => $this->url('', array(
-                        'controller'    => 'category',
+                        'controller'    => 'type',
                         'action'        => 'enable',
                         'id'            => $row['id'],
                         'flag'          => $row['active'] ? 0 : 1,
@@ -51,7 +51,7 @@ class CategoryController extends ActionController
         }
         $modules = array();
         foreach ($modulelist as $name => $data) {
-            if (!isset($categories[$name])) {
+            if (!isset($types[$name])) {
                 continue;
             }
             $modules[$name] = array(
@@ -61,7 +61,7 @@ class CategoryController extends ActionController
                     'action'        => 'module',
                     'name'          => $name,
                 )),
-                'categories'    => $categories[$name],
+                'types'         => $types[$name],
             );
         }
 
@@ -71,12 +71,12 @@ class CategoryController extends ActionController
             'modules'   => $modules,
         ));
 
-        $this->view()->setTemplate('comment-category');
+        $this->view()->setTemplate('comment-type');
     }
 
 
     /**
-     * Enable/disable a category
+     * Enable/disable a type
      *
      * @return bool
      */
@@ -86,10 +86,10 @@ class CategoryController extends ActionController
         $flag = _get('flag', 'int');
         $return = _get('return');
 
-        $row = Pi::model('category', 'comment')->find($id);
+        $row = Pi::model('type', 'comment')->find($id);
         if (!$row) {
             $status = -1;
-            $message = _a('Category was not found.');
+            $message = _a('Type was not found.');
         } else {
             if ($flag == (int) $row['active']) {
                 $status = 0;
@@ -109,7 +109,7 @@ class CategoryController extends ActionController
 
         // Clear cache
         if ($status > 0) {
-            Pi::registry('category', 'comment')->flush();
+            Pi::registry('type', 'comment')->flush();
         }
 
         if (!$return) {

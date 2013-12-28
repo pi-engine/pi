@@ -44,7 +44,7 @@ class PostFilter extends InputFilter
 
         foreach (array(
                      'module',
-                     'category',
+                     'type',
                      'item',
                      'markup',
                      'redirect'

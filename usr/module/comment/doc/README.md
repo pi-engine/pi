@@ -3,7 +3,7 @@ How to implement Comment in a module
 
 Step 1. Set up comment specification in module meta configuration
 
-- Define categories/types of items to be commented
+- Define types of items to be commented
 - Provide parameters or methods to identify an item to comment on
   - Use variables: `module`, `controller`, `action`, `identifier`, `params`
   - Use custom locator
@@ -21,12 +21,12 @@ Step 1. Set up comment specification in module meta configuration
     In `config/comment.php`
     ```
     return array(
-        '<comment-category-a>' => array(
+        '<comment-type-a>' => array(
             'title'     => _a('Comments for A'),
             'icon'      => 'icon-post',
             'callback'  => '<Class\To\Fetch\Object\Information>',
-            'controller'    => '<controller-to-match-this-comment-category>',
-            'action'        => '<action-to-match-this-comment-category>',
+            'controller'    => '<controller-to-match-this-comment-type>',
+            'action'        => '<action-to-match-this-comment-type>',
             'identifier'    => '<param-to-identify-object>',
             'params'        => array(
                 <extra-param-pairs-to-identify-the-comment>,
