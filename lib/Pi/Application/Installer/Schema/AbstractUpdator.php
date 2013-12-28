@@ -7,14 +7,14 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace   Module\System\Installer\Schema;
+namespace   Pi\Application\Installer\Schema;
 
 use Pi;
 use Pi\Application\Installer\Action\Update as UpdateAction;
 use Pi\Application\Installer\SqlSchema;
 
 /**
- * System schema update handler
+ * Module schema update handler
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -28,7 +28,7 @@ class AbstractUpdator
      *
      * @param UpdateAction $handler
      */
-    public function __constructor(UpdateAction $handler)
+    public function __construct(UpdateAction $handler)
     {
         $this->handler = $handler;
     }
@@ -84,7 +84,7 @@ class AbstractUpdator
     }
 
     /**
-     * Update system table schema
+     * Update module table schema
      *
      * @param string       $version
      *

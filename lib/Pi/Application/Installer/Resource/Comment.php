@@ -17,8 +17,8 @@ use Pi;
  * Comment data registered to comment module
  *
  * <code>
- *  <category-name>  => array(
- *      'title'         => __('Comment category title'),
+ *  <type-name>  => array(
+ *      'title'         => __('Comment type title'),
  *      'icon'          => <img-src>,
  *      // Callback to fetch source meta data
  *      'callback'      => <source-callback>
@@ -121,9 +121,9 @@ class Comment extends AbstractResource
         if (empty($this->config)) {
             return;
         }
-        Pi::registry('category', 'comment')->clear();
+        Pi::registry('type', 'comment')->clear();
 
-        $model = Pi::model('category', 'comment');
+        $model = Pi::model('type', 'comment');
         $config = $this->canonize($this->config);
         foreach ($config as $key => $spec) {
             $row = $model->createRow($spec);
@@ -151,7 +151,7 @@ class Comment extends AbstractResource
             return;
         }
         $module = $this->getModule();
-        Pi::registry('category', 'comment')->clear();
+        Pi::registry('type', 'comment')->clear();
 
         if ($this->skipUpgrade()) {
             return;
@@ -159,7 +159,7 @@ class Comment extends AbstractResource
 
         $itemsDeleted = array();
         $items = $this->canonize($this->config);
-        $model = Pi::model('category', 'comment');
+        $model = Pi::model('type', 'comment');
         $rowset = $model->select(array('module' => $module));
         foreach ($rowset as $row) {
             $key = $row->name;
@@ -229,9 +229,9 @@ class Comment extends AbstractResource
         if (!$this->isActive() || 'comment' == $module) {
             return;
         }
-        Pi::registry('category', 'comment')->clear();
+        Pi::registry('type', 'comment')->clear();
 
-        Pi::model('category', 'comment')->delete(array('module' => $module));
+        Pi::model('type', 'comment')->delete(array('module' => $module));
         Pi::model('root', 'comment')->delete(array('module' => $module));
         Pi::model('post', 'comment')->delete(array('module' => $module));
 
@@ -246,7 +246,7 @@ class Comment extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        Pi::registry('category', 'comment')->clear();
+        Pi::registry('type', 'comment')->clear();
 
         return true;
     }
@@ -259,7 +259,7 @@ class Comment extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
-        Pi::registry('category', 'comment')->clear();
+        Pi::registry('type', 'comment')->clear();
 
         return true;
     }
