@@ -48,7 +48,7 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected function buildLink(array $item)
+    protected function buildUrl(array $item)
     {
         $link = Pi::service('url')->assemble(
             'article-article',

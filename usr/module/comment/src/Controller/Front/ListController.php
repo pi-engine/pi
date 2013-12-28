@@ -245,14 +245,14 @@ class ListController extends ActionController
     }
 
     /**
-     * Active comment posts of a module, or with its category
+     * Active comment posts of a module, or with its type
      */
     public function moduleAction()
     {
         //$active = _get('active', 'int') ?: 1;
         $active = 1;
         $module = _get('name') ?: 'comment';
-        $category = _get('category') ?: '';
+        $type = _get('type') ?: '';
         $page   = _get('page', 'int') ?: 1;
         $limit = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
@@ -263,13 +263,13 @@ class ListController extends ActionController
             'name'  => $module,
             'title' => $moduleData['title'],
         );
-        $categoryData = array();
-        if ($category) {
-            $categoryData = Pi::registry('category', 'comment')->read(
+        $typeData = array();
+        if ($type) {
+            $typeData = Pi::registry('type', 'comment')->read(
                 $module,
-                $category
+                $type
             );
-            $where['category'] = $category;
+            $where['type'] = $type;
         }
         $posts = Pi::api('comment')->getList(
             $where,
@@ -287,8 +287,8 @@ class ListController extends ActionController
 
         //$params = array('name' => $module, 'active' => $active);
         $params = array('name' => $module);
-        if ($category) {
-            $params['category'] = $category;
+        if ($type) {
+            $params['type'] = $type;
         }
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
@@ -300,7 +300,7 @@ class ListController extends ActionController
         
         $navTabs = array(
             array(
-                'active'    => empty($category),
+                'active'    => empty($type),
                 'label'     => __('All'),
                 'href'      => $this->url('', array(
                     'name'      => $module,
@@ -309,14 +309,14 @@ class ListController extends ActionController
                 ))
             ),
         );
-        $allCategory = Pi::registry('category', 'comment')->read();
-        foreach ($allCategory[$module] as $name => $row) {
+        $allType = Pi::registry('type', 'comment')->read();
+        foreach ($allType[$module] as $name => $row) {
             $navTabs[] = array(
-                'active'    => $category == $name,
+                'active'    => $type == $name,
                 'label'     => $row['title'],
                 'href'      => $this->url('', array(
                     'name'      => $module,
-                    'category'  => $name,
+                    'type'      => $name,
                     'module'    => 'list',
                     'action'    => 'module',
                 )),
@@ -333,7 +333,7 @@ class ListController extends ActionController
             'posts'     => $posts,
             'paginator' => $paginator,
             'module'    => $moduleData,
-            'category'  => $categoryData,
+            'type'  => $typeData,
         ));
 
         $this->view()->setTemplate('comment-module');

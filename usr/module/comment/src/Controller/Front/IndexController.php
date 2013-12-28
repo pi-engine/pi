@@ -72,11 +72,11 @@ class IndexController extends ActionController
                     'name'  => 'comment',
                 )),
             ),
-            'category'   => array(
-                'title' => __('Comment posts for module "Comment" with category "Article"'),
+            'type'   => array(
+                'title' => __('Comment posts for module "Comment" with type "Article"'),
                 'url'   => Pi::api('comment')->getUrl('module', array(
                     'name'      => 'comment',
-                    'category'  => 'article',
+                    'type'  => 'article',
                 )),
             ),
             'user'   => array(

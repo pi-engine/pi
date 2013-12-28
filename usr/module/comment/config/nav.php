@@ -95,10 +95,10 @@ return array(
                 ),
             ),
         ),
-        'category'  => array(
+        'type'  => array(
             'route'         => 'admin',
-            'label'         => _t('Categories'),
-            'controller'    => 'category',
+            'label'         => _t('Types'),
+            'controller'    => 'type',
             'action'        => 'index',
         ),
         'module'    => array(

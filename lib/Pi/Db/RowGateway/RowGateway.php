@@ -269,10 +269,12 @@ class RowGateway extends AbstractRowGateway
             */
         $this->data = $this->encode($this->data);
         if ($filter) {
-            $columns = $this->columns ?: $this->model->getColumns(true);
-            foreach (array_keys($this->data) as $column) {
-                if (!in_array($column, $columns)) {
-                    unset($this->data[$column]);
+            $columns = $this->columns ?: $this->model->getColumns();
+            if ($columns) {
+                foreach (array_keys($this->data) as $column) {
+                    if (!in_array($column, $columns)) {
+                        unset($this->data[$column]);
+                    }
                 }
             }
         }

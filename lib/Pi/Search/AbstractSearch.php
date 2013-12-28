@@ -177,7 +177,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
                     $item[$field] = $this->buildContent($item[$field]);
                 }
             }
-            $item['link'] = $this->buildLink($item);
+            $item['url'] = $this->buildUrl($item);
             $data[] = $item;
         }
 
@@ -199,13 +199,13 @@ abstract class AbstractSearch extends AbstractModuleAwareness
     }
 
     /**
-     * Build item link
+     * Build item link URL
      *
      * @param array $item
      *
      * @return string
      */
-    protected function buildLink(array $item)
+    protected function buildUrl(array $item)
     {
         return Pi::url('www');
     }

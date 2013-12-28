@@ -10,6 +10,7 @@
 namespace   Module\System\Installer\Schema;
 
 use Pi;
+use Pi\Application\Installer\Schema\AbstractUpdator;
 
 /**
  * System schema update handler

@@ -167,16 +167,16 @@ class IndexController extends ActionController
         $select->join(
             array('root' => Pi::model('root', 'comment')->getTable()),
             'root.id=post.root',
-            array('module', 'category')
+            array('module', 'type')
         );
         $select->where($where);
-        $select->group(array('root.module', 'root.category'));
+        $select->group(array('root.module', 'root.type'));
         $resultSet = Pi::db()->query($select);
         $list = array();
         foreach ($resultSet as $set) {
-            $list[$set['module']][$set['category']] = (int) $set['count'];
+            $list[$set['module']][$set['type']] = (int) $set['count'];
         }
-        $categories = Pi::registry('category', 'comment')->read();
+        $types = Pi::registry('type', 'comment')->read();
         $modules = array();
         foreach ($modulelist as $name => $mData) {
             if (!isset($list[$name])) {
@@ -192,22 +192,22 @@ class IndexController extends ActionController
                 )),
             );
             $mCount = 0;
-            foreach ($categories[$name] as $category => $cData) {
-                $categoryData = array(
+            foreach ($types[$name] as $type => $cData) {
+                $typeData = array(
                     'title' => $cData['title'],
                     'count' => 0,
                     'url'   => $this->url('', array(
                         'controller'    => 'list',
                         'action'        => 'module',
                         'name'          => $name,
-                        'category'      => $category,
+                        'type'      => $type,
                     )),
                 );
-                if (isset($list[$name][$category])) {
-                    $mCount += $list[$name][$category];
-                    $categoryData['count'] = $list[$name][$category];
+                if (isset($list[$name][$type])) {
+                    $mCount += $list[$name][$type];
+                    $typeData['count'] = $list[$name][$type];
                 }
-                $data['categories'][$category] = $categoryData;
+                $data['types'][$type] = $typeData;
             }
             $data['count'] = $mCount;
             $modules[$name] = $data;
@@ -252,7 +252,7 @@ class IndexController extends ActionController
             $root = array(
                 'module'    => 'comment',
                 'item'      => $i,
-                'category'  => 'article',
+                'type'  => 'article',
                 'active'    => rand(0, 1),
             );
             $rootIds[] = Pi::api('comment')->addRoot($root);
@@ -262,7 +262,7 @@ class IndexController extends ActionController
             $root = array(
                 'module'    => 'comment',
                 'item'      => $i,
-                'category'  => 'custom',
+                'type'  => 'custom',
                 'active'    => rand(0, 1),
             );
             $rootIds[] = Pi::api('comment')->addRoot($root);

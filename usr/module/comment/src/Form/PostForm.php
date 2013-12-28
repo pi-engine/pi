@@ -112,7 +112,7 @@ class PostForm extends BaseForm
                      'root',
                      'reply',
                      'module',
-                     'category',
+                     'type',
                      'item',
                      'redirect'
                  ) as $hiddenElement

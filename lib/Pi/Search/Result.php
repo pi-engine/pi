@@ -31,7 +31,7 @@ class Result implements  ArrayAccess
         $this->data = array(
             'id'        => 0,
             'title'     => '',
-            'link'      => '',
+            'url'       => '',
             'time'      => 0,
             'content'   => '',
             'uid'       => '',
