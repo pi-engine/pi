@@ -1,0 +1,35 @@
+<?php
+    d($modules); 
+?>
+<table class="table table-striped" style="margin-top: 20px">
+    <tr>
+        <th><?php echo _a('Title'); ?></th>
+        <th><?php echo _a('Enable type'); ?></th>
+        <th><?php echo _a('Action'); ?></th>
+    </tr>
+    <?php foreach ($modules as $name => $data) { ?>
+    <tr>
+        <td><?php echo _escape($name); ?></td>
+        <td></td>
+        <td><a href="<?php echo $data['url']; ?>" target="_blank"><?php echo _a('View comments'); ?></a>
+        </td>
+    </tr>
+        <?php foreach ($data['types'] as $type) { ?>
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $type['title']; ?></td>
+        <td>
+            <div class="btn-group">
+                <a class="btn<?php echo !$type['active'] ? ' btn-danger active' : ' btn-default'; ?>" href="<?php echo $type['enable']['url']; ?>">
+                    <?php echo _a('No'); ?>
+                </a>
+                <a class="btn<?php echo $type['active'] ? ' btn-success active' : ' btn-default'; ?>" href="<?php echo $type['enable']['url']; ?>">
+                    <?php echo _a('Yes'); ?>
+                </a>
+            </div>
+        </td>
+        <td><a href="<?php echo $type['url']; ?>" target="_blank"><?php echo _a('View comments'); ?></a>
+        </td>
+    </tr>
+        <?php } ?>
+    <?php } ?>
+</table>
