@@ -9,9 +9,9 @@
 
 namespace Module\Article\Api;
 
+use Pi;
 use Pi\Application\AbstractApi;
 use Module\Article\Model\Article;
-use Pi;
 
 /**
  * Public API for other module
@@ -21,7 +21,7 @@ use Pi;
 class Api extends AbstractApi
 {
     protected $module = 'article';
-    
+
     /**
      * Get compose url
      * 
@@ -29,13 +29,11 @@ class Api extends AbstractApi
      */
     public function getComposeUrl()
     {
-        return Pi::engine()->application()
-            ->getRouter()
-            ->assemble(array(
-                'module'     => $this->getModule(),
-                'controller' => 'draft',
-                'action'     => 'add',
-            ), array('name' => 'default'));
+        return Pi::service('url')->assemble('default', array(
+            'module'     => $this->getModule(),
+            'controller' => 'draft',
+            'action'     => 'add',
+        ));
     }
     
     /**

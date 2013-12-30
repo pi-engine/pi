@@ -131,13 +131,22 @@ class IndexController extends ActionController
             $this->redirectTo(array('action' => 'index'));
             return;
         }
-
-        if ('google' == $service && $gcsCode = $this->config('google')) {
-            $this->view()->assign('gcs', $gcsCode);
+        if ('google' == $service && $code = $this->config('google_code')) {
+            $host = $this->config('google_host');
+            if (!$host) {
+                $host = 'www.google.com';
+            } else {
+                $host = preg_replace('|^(http[s]?:\/\/)|i', '', $host);
+                $host = trim($host, '/');
+            }
+            $this->view()->assign('google', array(
+                'code'  => $code,
+                'host'  => $host,
+            ));
             $this->view()->setTemplate('search-google');
             return;
         }
-        
+
         $data = $this->getService($service);
         if (!$data) {
             $this->redirectTo(array('action' => 'index'));
@@ -285,12 +294,11 @@ class IndexController extends ActionController
             return $link;
         };
         $baiduQuery = function ($query) {
-        	$bcsCode = $this->config('baidu');
-            //preg_match('/^(http[s]?:\/\/)?([^\/]*)/i', $home, $match);
-            //$home = $match[2];
+            $code = $this->config('baidu_code');
             $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
             //$pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
-            $link = sprintf($pattern, urlencode($bcsCode), urlencode($query));
+            $link = sprintf($pattern, urlencode($code), urlencode($query));
+
             return $link;
         };
         $sogouQuery = function ($query) use ($home) {

@@ -49,13 +49,20 @@ $config = array(
         'value'         => 'pi engine, zend framework, php, search',
     ),
 
-    'google'       => array(
-        'title'         => _t('Google Search Code'),
-        'description'   => _t('GSC custom search provided by Google at https://www.google.com/cse/'),
+    'google_host'       => array(
+        'title'         => _t('Google local host'),
+        'description'   => _t('Specify a google local host if it is not https://www.google.com'),
+        'value'         => 'https://www.google.com',
+    ),
+
+    'google_code'       => array(
+        'title'         => _t('Google custom search code'),
+        'description'   => _t('Google CSE provided at https://www.google.com/cse/'),
+        'value'         => '012766098119240378914:a6l0fuirq4a',
     ),
     
-    'baidu'       => array(
-        'title'         => _t('Baidu Search Code'),
+    'baidu_code'        => array(
+        'title'         => _t('Baidu custom search code'),
         'description'   => _t('Custom search provided by Baidu at http://zhanzhang.baidu.com/search/'),
     ),
 );
