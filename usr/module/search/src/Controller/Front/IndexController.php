@@ -106,7 +106,7 @@ class IndexController extends ActionController
 
         $modules = $this->getModules($query);
         if (!isset($modules[$module])) {
-            $this->redirectTo(array('action' => 'index'));
+            $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
         $label = $modules[$module]['title'];
@@ -170,7 +170,7 @@ class IndexController extends ActionController
         $query      = $this->params('q');
         $service    = $service ?: $this->params('service');
         if (!$service) {
-            $this->redirectTo(array('action' => 'index'));
+            $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
 
@@ -193,7 +193,7 @@ class IndexController extends ActionController
 
         $data = $this->getService($service);
         if (!$data) {
-            $this->redirectTo(array('action' => 'index'));
+            $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
         $url = call_user_func($data['url'], $query);

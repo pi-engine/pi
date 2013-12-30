@@ -27,5 +27,6 @@ return array(
         ),
         'config'        => 'config.php',
         'block'         => 'block.php',
+        'route'         => 'route.php',
     ),
 );
