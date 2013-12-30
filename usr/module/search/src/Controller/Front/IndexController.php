@@ -119,6 +119,34 @@ class IndexController extends ActionController
             'label'     => $label,
         ));
     }
+    
+    /**
+     * Dispatch search request from block
+     */
+    public function dispatchAction()
+    {
+    	$query  = $this->params('q');
+    	$module = $this->params('m');
+    	$modules = $this->getModules($query);
+    	
+    	if (!isset($modules[$module])) {
+    		$module = '';
+    	}
+    	
+    	if ($module == '') {
+    		return $this->redirect()->toRoute('', array(
+    			'action'	=> 'index',
+    			'q'			=> $query,
+    		));
+    	} else {
+    		return $this->redirect()->toRoute('', array(
+    			'controller'=> 'index',
+    			'action'	=> 'module',
+    			'm'			=> $module,
+    			'q'			=> $query,
+    		));
+    	}
+    }
 
     /**
      * Search by external service
