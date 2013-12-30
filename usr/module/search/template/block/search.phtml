@@ -1,0 +1,14 @@
+<form method="get" action="<?php echo $block['link']; ?>" class="form-inline">
+	<?php if($block['module'] != 'system') {?>
+		<div class="form-group">
+			<select class="form-control" name="m">
+				<option value="" 'selected'><?php echo _b('All'); ?></option>
+				<option value="<?php echo $block['module'] ?>"><?php echo _b('Current module'); ?></option>
+			</select>
+		</div>
+	<?php } ?>
+	<div class="form-group">
+		<input class="form-control" type="text" placeholder="<?php echo _b('Keywords'); ?>" name="q">
+	</div>
+	<button type="submit" class="btn btn-default"><?php echo _b('Search'); ?></button>
+</form>
