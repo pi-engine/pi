@@ -18,7 +18,8 @@ class Block
 
         $options = array();
         $module = Pi::service('module')->current();
-        if ($module && 'system' != $module) {
+        $modules = Pi::registry('search')->read();
+        if ($module && isset($modules[$module])) {
             $options = array(
                ''       => _b('Global'),
                $module  => _b('Current module'),

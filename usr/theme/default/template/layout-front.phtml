@@ -78,6 +78,9 @@ $this->headLink(array(
 
     <!-- Navigation: menu, breadcrumbs  -->
     <div class="container pi-nav-container">
+        <div class="pull-right">
+        <?php echo $this->widget('search-search'); ?>
+        </div>
         <?php
             $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
             echo $navigation->menu()->setUlClass('list-unstyled pi-menu');
