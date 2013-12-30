@@ -8,6 +8,7 @@
  */
 return array(
     'search'    => array(
+        'name'          => 'search',
         'title'         => _b('Search'),
         'description'   => _b('Search box.'),
         'render'        => array('block', 'search'),
