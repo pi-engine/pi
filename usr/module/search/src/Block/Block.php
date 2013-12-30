@@ -12,15 +12,25 @@ use Pi;
 
 class Block
 {
-	public static function search()
-	{
-		$module = Pi::service('module')->current();
-		$link = Pi::url(
-            'search/index/dispatch'
+    public static function search()
+    {
+        $formAction = Pi::service('url')->assemble(
+            'default',
+            array('module' => 'search')
         );
-		return array(
-			'module'	=> $module,
-			'link'		=> $link,
-		);
-	}
+
+        $options = array();
+        $module = Pi::service('module')->current();
+        if ($module && 'system' != $module) {
+            $options = array(
+               ''       => _b('Global'),
+               $module  => _b('Current module'),
+            );
+        }
+
+        return array(
+            'options'   => $options,
+            'action'    => $formAction,
+        );
+    }
 }

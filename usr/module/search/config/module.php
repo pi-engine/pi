@@ -18,6 +18,8 @@ return array(
     'author'    => array(
         'Name'      => 'Taiwen Jiang',
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Dev'       => '@lavenderli',
+        'UI/UE'     => '@zhangsimon, @loidco',
     ),
     'resource' => array(
         'database'      => array(

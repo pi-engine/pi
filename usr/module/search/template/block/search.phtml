@@ -1,14 +1,19 @@
-<form method="get" action="<?php echo $block['link']; ?>" class="form-inline">
-	<?php if($block['module'] != 'system') {?>
-		<div class="form-group">
-			<select class="form-control" name="m">
-				<option value="" 'selected'><?php echo _b('All'); ?></option>
-				<option value="<?php echo $block['module'] ?>"><?php echo _b('Current module'); ?></option>
-			</select>
-		</div>
-	<?php } ?>
-	<div class="form-group">
-		<input class="form-control" type="text" placeholder="<?php echo _b('Keywords'); ?>" name="q">
-	</div>
-	<button type="submit" class="btn btn-default"><?php echo _b('Search'); ?></button>
+<form method="GET" action="<?php echo $block['action']; ?>" class="form-inline">
+
+    <div class="form-group">
+        <input class="form-control" type="text" placeholder="<?php echo _b('Keywords'); ?>" name="q">
+    </div>
+
+    <?php if (!empty($block['options'])) { ?>
+        <div class="form-group">
+            <select class="form-control" name="m" onchange="this.form.submit()">
+                <option value=""><?php echo _b('Search in'); ?></option>
+                <?php foreach ($block['options'] as $name => $label) { ?>
+                    <option value="<?php echo _escape($name); ?>"><?php echo _escape($label); ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    <?php } else { ?>
+        <button type="submit" class="btn btn-default"><?php echo _b('Search'); ?></button>
+    <?php } ?>
 </form>

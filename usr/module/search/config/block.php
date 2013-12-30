@@ -7,10 +7,10 @@
  * @license      http://pialog.org/license.txt New BSD License
  */
 return array(
-	'search'	=> array(
-		'title'			=> _b('Search'),
-		'description'	=> _b('Search block.'),
-		'render'		=> array('block', 'search'),
-		'template'		=> 'search',
-	),
+    'search'    => array(
+        'title'         => _b('Search'),
+        'description'   => _b('Search box.'),
+        'render'        => array('block', 'search'),
+        'template'      => 'search',
+    ),
 );

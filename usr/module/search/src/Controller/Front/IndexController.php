@@ -27,7 +27,41 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $query  = $this->params('q');
+        $module     = $this->params('m');
+        $service    = $this->params('s');
+        if ($module) {
+            $this->searchModule($module);
+        } elseif ($service) {
+            $this->searchService($service);
+        } else {
+            $this->searchGlobal();
+        }
+    }
+
+    /**
+     * Search in a specific module
+     */
+    public function moduleAction()
+    {
+        $this->searchModule();
+    }
+
+    /**
+     * Search by external service
+     */
+    public function serviceAction()
+    {
+        $this->searchService();
+    }
+
+    /**
+     * Perform global search
+     *
+     * @return void
+     */
+    protected function searchGlobal()
+    {
+        $query      = $this->params('q');
         $modules = $this->getModules($query);
 
         if ($query) {
@@ -58,13 +92,17 @@ class IndexController extends ActionController
     }
 
     /**
-     * Search in a specific module
+     * Perform module search
+     *
+     * @param string $module
+     *
+     * @return void
      */
-    public function moduleAction()
+    protected function searchModule($module = '')
     {
         $query  = $this->params('q');
         $page   = $this->params('page') ?: 1;
-        $module = $this->params('m');
+        $module = $module ?: $this->params('m');
 
         $modules = $this->getModules($query);
         if (!isset($modules[$module])) {
@@ -119,46 +157,23 @@ class IndexController extends ActionController
             'label'     => $label,
         ));
     }
-    
-    /**
-     * Dispatch search request from block
-     */
-    public function dispatchAction()
-    {
-    	$query  = $this->params('q');
-    	$module = $this->params('m');
-    	$modules = $this->getModules($query);
-    	
-    	if (!isset($modules[$module])) {
-    		$module = '';
-    	}
-    	
-    	if ($module == '') {
-    		return $this->redirect()->toRoute('', array(
-    			'action'	=> 'index',
-    			'q'			=> $query,
-    		));
-    	} else {
-    		return $this->redirect()->toRoute('', array(
-    			'controller'=> 'index',
-    			'action'	=> 'module',
-    			'm'			=> $module,
-    			'q'			=> $query,
-    		));
-    	}
-    }
 
     /**
-     * Search by external service
+     * Perform external search
+     *
+     * @param string $service
+     *
+     * @return void
      */
-    public function externalAction()
+    protected function searchService($service = '')
     {
         $query      = $this->params('q');
-        $service    = $this->params('service');
+        $service    = $service ?: $this->params('service');
         if (!$service) {
             $this->redirectTo(array('action' => 'index'));
             return;
         }
+
         if ('google' == $service && $code = $this->config('google_code')) {
             $host = $this->config('google_host');
             if (!$host) {
@@ -172,6 +187,7 @@ class IndexController extends ActionController
                 'host'  => $host,
             ));
             $this->view()->setTemplate('search-google');
+
             return;
         }
 
