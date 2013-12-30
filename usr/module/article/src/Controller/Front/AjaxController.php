@@ -9,9 +9,9 @@
 
 namespace Module\Article\Controller\Front;
 
+use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Service;
-use Pi;
 
 /**
  * Ajax controller
@@ -44,7 +44,7 @@ class AjaxController extends ActionController
 
         $where = array();
         if ($name) {
-            $where = new \Pi\Db\Sql\Where;
+            $where = Pi::db()->where();
             $where->like('identity', "{$name}%");
         }
         $uids  = Pi::user()->getUids($where, $limit, 0, 'identity ASC');

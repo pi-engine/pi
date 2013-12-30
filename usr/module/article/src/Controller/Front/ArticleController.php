@@ -130,10 +130,15 @@ class ArticleController extends ActionController
             'category'  => $module,
             'item'      => $id,
         );
+
+
+        trigger_error('Do not interact with comment service, leave it to comment module', E_USER_WARNING);
         if ($details['comments']->comment) {
             $details['comments'] = Pi::service('api')
                 ->comment->getCount($condition);
         }
+
+
 
         $config = Pi::service('module')->config('', $this->getModule());
         $this->view()->assign(array(
