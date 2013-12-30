@@ -14,10 +14,7 @@ class Block
 {
     public static function search()
     {
-        $formAction = Pi::service('url')->assemble(
-            'default',
-            array('module' => 'search')
-        );
+        $formAction = Pi::service('url')->assemble('search');
 
         $options = array();
         $module = Pi::service('module')->current();
