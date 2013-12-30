@@ -321,13 +321,57 @@ class Standard implements RouteInterface
             if (in_array($key, array('module', 'controller', 'action'))) {
                 continue;
             }
-            if (null === $value) {
+            if (null === $value || '' === $value) {
                 continue;
             }
             $url .= $this->paramDelimiter . urlencode($key)
                 . $this->keyValueDelimiter . urlencode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
+
+        return $url;
+    }
+
+    /**
+     * Assemble structure
+     *
+     * @param array $params
+     * @param string $url   URL to append
+     *
+     * @return string
+     */
+    protected function assembleStructure(array $params, $url = '')
+    {
+        $mca = array();
+        foreach (array('module', 'controller', 'action') as $key) {
+            if (!empty($params[$key])) {
+                $mca[$key] = urlencode($params[$key]);
+            }
+        }
+        if ($this->paramDelimiter === $this->structureDelimiter) {
+            foreach(array('action', 'controller', 'module') as $key) {
+                if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
+                    $url = urlencode($mca[$key]) . $this->paramDelimiter
+                        . $url;
+                }
+            }
+        } else {
+            $structure = urlencode($mca['module']);
+            if ($mca['controller'] !== $this->defaults['controller']) {
+                $structure .= $this->structureDelimiter
+                    . urlencode($mca['controller']);
+                if ($mca['action'] !== $this->defaults['action']) {
+                    $structure .= $this->structureDelimiter
+                        . urlencode($mca['action']);
+                }
+            } elseif ($mca['action'] !== $this->defaults['action']) {
+                $structure .= $this->structureDelimiter
+                    . urlencode($mca['controller']);
+                $structure .= $this->structureDelimiter
+                    . urlencode($mca['action']);
+            }
+            $url = $structure . ($url ? $this->paramDelimiter . $url : '');
+        }
 
         return $url;
     }
@@ -347,50 +391,8 @@ class Standard implements RouteInterface
             return $this->prefix;
         }
 
-        $mca = array();
-        foreach (array('module', 'controller', 'action') as $key) {
-            if (!empty($mergedParams[$key])) {
-                $mca[$key] = urlencode($mergedParams[$key]);
-                unset($mergedParams[$key]);
-            }
-        }
-
-        /*
-        $url = '';
-        foreach ($mergedParams as $key => $value) {
-            if (null === $value) {
-                continue;
-            }
-            $url .= $this->paramDelimiter . urlencode($key)
-                  . $this->keyValueDelimiter . urlencode($value);
-        }
-        $url = ltrim($url, $this->paramDelimiter);
-        */
         $url = $this->assembleParams($mergedParams);
-        if ($this->paramDelimiter === $this->structureDelimiter) {
-            foreach(array('action', 'controller', 'module') as $key) {
-                if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
-                    $url = urlencode($mca[$key]) . $this->paramDelimiter
-                         . $url;
-                }
-            }
-        } else {
-            $structure = urlencode($mca['module']);
-            if ($mca['controller'] !== $this->defaults['controller']) {
-                $structure .= $this->structureDelimiter
-                            . urlencode($mca['controller']);
-                if ($mca['action'] !== $this->defaults['action']) {
-                    $structure .= $this->structureDelimiter
-                                . urlencode($mca['action']);
-                }
-            } elseif ($mca['action'] !== $this->defaults['action']) {
-                $structure .= $this->structureDelimiter
-                            . urlencode($mca['controller']);
-                $structure .= $this->structureDelimiter
-                            . urlencode($mca['action']);
-            }
-            $url = $structure . ($url ? $this->paramDelimiter . $url : '');
-        }
+        $url = $this->assembleStructure($mergedParams, $url);
 
         $prefix = $this->prefix
             ? $this->paramDelimiter

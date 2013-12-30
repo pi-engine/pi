@@ -180,7 +180,8 @@ class User extends Standard
         if (null !== $matches) {
             $matches = array_merge($this->defaults, $matches);
         } else {
-            $path = $this->defaults['module'] . $this->structureDelimiter . $path;
+            //$path = $this->defaults['module'] . $this->structureDelimiter . $path;
+            $path = $this->prefix . $this->structureDelimiter . $path;
             $matches = parent::parse($path);
         }
         // Transform id to uid
@@ -193,17 +194,10 @@ class User extends Standard
     }
 
     /**
-     * assemble(): Defined by Route interface.
-     *
-     * @see    Route::assemble()
-     * @param  array $params
-     * @param  array $options
-     * @return string
+     * {@inheritDoc}
      */
-    public function assemble(
-        array $params = array(),
-        array $options = array()
-    ) {
+    public function assemble(array $params = array(), array $options = array())
+    {
         if (!$params) {
             return $this->prefix;
         }
