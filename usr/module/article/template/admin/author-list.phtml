@@ -4,18 +4,13 @@
 
 <div id="jsList">
     <div class="clearfix form-inline">
-        <a class="btn" href="<?php echo $this->url('', array('action' => 'add')); ?>"><?php echo _a('Add'); ?></a>
-        <form class="pull-right" 
-              method="get" 
-              action="<?php echo $this->url('', array('action' => 'list')); ?>" style="margin: 0">
-            <div class="input-append">
-                <input type="text" 
-                       value="" 
-                       placeholder="<?php echo _a('Name'); ?>"
-                       class="input-medium" 
-                       name="name"> 
-                <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
+        <form class="navbar-form navbar-left" method="get" style="margin: 0; padding-left: 0"
+              action="<?php echo $this->url('', array('action' => 'list')); ?>">
+            <div class="form-group">
+                <input type="text" value="" placeholder="<?php echo _a('Name'); ?>"
+                       class="form-control" name="name"> 
             </div>
+            <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
         </form>
     </div>
     <table class="table table-striped">
@@ -34,7 +29,7 @@
                              style="height: 40px;">
                     <?php } else { ?>
                         <div class="default-author-img">
-                            <i class="icon-user"></i>
+                            <span class="glyphicon glyphicon-user"><i></i></span>
                         </div>
                     <?php } ?>    
                 </td>
@@ -48,7 +43,7 @@
                         <a href="<?php echo $this->url('', array(
                             'action' => 'delete',
                             'id'     => $author->id
-                        )); ?>" onclick="return window.confirm('Really delete?');"><?php echo _a('Delete'); ?></a>
+                        )); ?>" onclick="return window.confirm('Are you sure want to delete it?');"><?php echo _a('Delete'); ?></a>
                     </div>
                 </td>
                 <td><?php echo $this->escape($author->description); ?></td>

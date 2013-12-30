@@ -130,8 +130,10 @@ class ArticleController extends ActionController
             'category'  => $module,
             'item'      => $id,
         );
-        $details['comments'] = Pi::service('api')
-            ->comment->getCount($condition);
+        if ($details['comments']->comment) {
+            $details['comments'] = Pi::service('api')
+                ->comment->getCount($condition);
+        }
 
         $config = Pi::service('module')->config('', $this->getModule());
         $this->view()->assign(array(
@@ -327,11 +329,12 @@ class ArticleController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-            'router'    => $this->getEvent()->getRouter(),
-            'route'     => $this->getEvent()
+            'page_param' => 'p',
+            'router'     => $this->getEvent()->getRouter(),
+            'route'      => $this->getEvent()
                 ->getRouteMatch()
                 ->getMatchedRouteName(),
-            'params'    => array_filter(array(
+            'params'     => array_filter(array(
                 'module'        => $module,
                 'controller'    => 'article',
                 'action'        => 'published',
@@ -586,10 +589,11 @@ class ArticleController extends ActionController
             $result = $articleModel->checkSubjectExists($subject, $id);
         }
 
-        return array(
+        echo json_encode(array(
             'status'  => $result ? false : true,
             'message' => $result ? __('Subject is used by another article.') 
                 : __('ok'),
-        );
+        ));
+        exit;
     }
 }

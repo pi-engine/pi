@@ -7,10 +7,12 @@
     $style    = $block['style'];
     $target   = $block['target'];
     $articles = $block['articles'];
+    $width    = $block['width'];
+    $height   = $block['height'];
 ?>
 
-<div class="article-block-recommended-slide row-fluid">
-    <div id="article-recommended-slide" class="carousel slide span4">
+<div class="article-block-recommended-slide row">
+    <div id="article-recommended-slide" class="carousel slide col-md-4" data-ride="carousel">
         <ol class="carousel-indicators">
             <?php $i = 0; ?>
             <?php for ($i = 0; $i < count($block['images']); $i++) { ?>
@@ -22,7 +24,7 @@
             <?php foreach ($block['images'] as $image) { ?>
             <div class="item <?php if ($j++ == 0) echo 'active'; ?>">
                 <a href="<?php echo $this->escape($image['link']); ?>">
-                    <img style="width: 320px; height: 240px" src="<?php echo $this->escape($image['url']); ?>">
+                    <img style="width: <?php echo $width ?>px; height: <?php echo $height; ?>px" src="<?php echo $this->escape($image['url']); ?>">
                 </a>
                 <div class="carousel-caption">
                     <p class="article-size12">
@@ -32,10 +34,14 @@
             </div>
             <?php } ?>
         </div>
-        <a class="carousel-control left" href="#article-recommended-slide" data-slide="prev">&lsaquo;</a>
-        <a class="carousel-control right" href="#article-recommended-slide" data-slide="next">&rsaquo;</a>
+        <a class="carousel-control left" href="#article-recommended-slide" data-slide="prev" style="margin: 0 15px">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#article-recommended-slide" data-slide="next" style="margin: 0 15px">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
     </div>
-    <div class="span5" style="width: 280px; padding: 10px 15px 10px 10px">
+    <div class="col-md-5" style="padding: 10px 15px 10px 10px">
         <?php $template = 'list-single-' . $style . '.phtml';
             include $template;
         ?>

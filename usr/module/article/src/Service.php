@@ -20,8 +20,6 @@ use Module\Article\Compiled;
 use Module\Article\Media;
 use Module\Article\Installer\Resource\Route;
 
-trigger_error(sprintf('The class is discouraged, move corresponding methods to relevant APIs - %s', __FILE__), E_USER_WARNING);
-
 /**
  * Common service API
  * 
@@ -818,9 +816,10 @@ class Service
      * @param string|null       $message 
      */
     public static function jumpToErrorOperation(
-        ActionController $handler,
-        $message = null
-    ) {
+            ActionController $handler,
+            $message = null
+    )
+    {
         $message = $message ?: __('Operating error!');
         $handler->view()->assign('message', $message);
         $handler->view()->setTemplate('operation-error');

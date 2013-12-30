@@ -46,7 +46,7 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'article',
                 'action'        => 'published',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'article',
                 ),
             ),
@@ -55,8 +55,44 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'topic',
                 'action'        => 'list-topic',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'topic',
+                ),
+                
+                'pages'         => array(
+                    'list-topic'    => array(
+                        'label'         => _t('All topics'),
+                        'route'         => 'admin',
+                        'controller'    => 'topic',
+                        'action'        => 'list-topic',
+                    ),
+                    'add'           => array(
+                        'label'         => _t('Add topic'),
+                        'route'         => 'admin',
+                        'controller'    => 'topic',
+                        'action'        => 'add',
+                    ),
+                    'list-article'  => array(
+                        'label'         => _t('List topic articles'),
+                        'route'         => 'admin',
+                        'controller'    => 'topic',
+                        'action'        => 'list-article',
+                        'visible'       => 0,
+                    ),
+                    'pull'          => array(
+                        'label'         => _t('Pull topic articles'),
+                        'route'         => 'admin',
+                        'controller'    => 'topic',
+                        'action'        => 'pull',
+                        'visible'       => 0,
+                    ),
+                    'edit'          => array(
+                        'label'         => _t('Edit topic'),
+                        'route'         => 'admin',
+                        'controller'    => 'topic',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
                 ),
             ),
             'media'             => array(
@@ -64,8 +100,30 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'media',
                 'action'        => 'list',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'media',
+                ),
+                
+                'pages'         => array(
+                    'list'          => array(
+                        'label'         => _t('Media list'),
+                        'route'         => 'admin',
+                        'controller'    => 'media',
+                        'action'        => 'list',
+                    ),
+                    'add'           => array(
+                        'label'         => _t('Upload Media'),
+                        'route'         => 'admin',
+                        'controller'    => 'media',
+                        'action'        => 'add',
+                    ),
+                    'edit'          => array(
+                        'label'         => _t('Edit Media'),
+                        'route'         => 'admin',
+                        'controller'    => 'media',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
                 ),
             ),
             'category'          => array(
@@ -73,8 +131,44 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'category',
                 'action'        => 'list',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'category',
+                ),
+                
+                'pages'         => array(
+                    'list'          => array(
+                        'label'         => _t('Category list'),
+                        'route'         => 'admin',
+                        'controller'    => 'category',
+                        'action'        => 'list',
+                    ),
+                    'add'           => array(
+                        'label'         => _t('Add Category'),
+                        'route'         => 'admin',
+                        'controller'    => 'category',
+                        'action'        => 'add',
+                    ),
+                    'edit'          => array(
+                        'label'         => _t('Edit Category'),
+                        'route'         => 'admin',
+                        'controller'    => 'category',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
+                    'merge'         => array(
+                        'label'         => _t('Merge Category'),
+                        'route'         => 'admin',
+                        'controller'    => 'category',
+                        'action'        => 'merge',
+                        'visible'       => 1,
+                    ),
+                    'move'          => array(
+                        'label'         => _t('Move Category'),
+                        'route'         => 'admin',
+                        'controller'    => 'category',
+                        'action'        => 'move',
+                        'visible'       => 1,
+                    ),
                 ),
             ),
             'author'            => array(
@@ -82,8 +176,30 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'author',
                 'action'        => 'list',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'author',
+                ),
+                
+                'pages'         => array(
+                    'list'          => array(
+                        'label'         => _t('Author list'),
+                        'route'         => 'admin',
+                        'controller'    => 'author',
+                        'action'        => 'list',
+                    ),
+                    'add'           => array(
+                        'label'         => _t('Add author'),
+                        'route'         => 'admin',
+                        'controller'    => 'author',
+                        'action'        => 'add',
+                    ),
+                    'edit'          => array(
+                        'label'         => _t('Edit author'),
+                        'route'         => 'admin',
+                        'controller'    => 'author',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
                 ),
             ),
             'setup'             => array(
@@ -91,15 +207,37 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'setup',
                 'action'        => 'form',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'setup',
+                ),
+                
+                'pages'         => array(
+                    'custom-form'   => array(
+                        'label'         => _t('Custom form'),
+                        'route'         => 'admin',
+                        'controller'    => 'setup',
+                        'action'        => 'form',
+                    ),
+                    'custom-route'  => array(
+                        'label'         => _t('Custom route'),
+                        'route'         => 'admin',
+                        'controller'    => 'setup',
+                        'action'        => 'route',
+                    ),
+                    'form-preview'  => array(
+                        'label'         => _t('Preview form'),
+                        'route'         => 'admin',
+                        'controller'    => 'setup',
+                        'action'        => 'preview',
+                        'visible'       => 0,
+                    ),
                 ),
             ),
             'analysis'          => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',
                 'controller'    => 'statistics',
-                'permission'     => array(
+                'permission'    => array(
                     'resource'  => 'statistics',
                 ),
             ),

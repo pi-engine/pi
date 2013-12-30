@@ -53,6 +53,11 @@ $config = array(
         'title'         => _t('Google Search Code'),
         'description'   => _t('GSC custom search provided by Google at https://www.google.com/cse/'),
     ),
+    
+    'baidu'       => array(
+        'title'         => _t('Baidu Search Code'),
+        'description'   => _t('Custom search provided by Baidu at http://zhanzhang.baidu.com/search/'),
+    ),
 );
 
 return $config;

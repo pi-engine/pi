@@ -24,10 +24,10 @@
     <div>
         <div class="article-topic-title"><?php echo $this->escape($title); ?></div>
         <div style="margin-top: 5px; font-size: 12px">
-            <span class="muted">
+            <span class="text-muted">
                 <?php echo __('Created at ') . date('Y/m/d', $topic['time_create']); ?>
             </span>
-            <span class="muted" style="margin-left: 10px">
+            <span class="text-muted" style="margin-left: 10px">
                 <?php echo current($pullTime) ? __('Last added at ') . date('Y/m/d', current($pullTime)) : ''; ?>
             </span>
             <span class="pull-right">
@@ -48,7 +48,7 @@
                     title="<?php echo $this->escape($row['subject']); ?>" style="color: #333333">
                         <?php echo $this->escape($row['subject']); ?>
                 </a>
-                <div class="muted" style="font-size: 12px">
+                <div class="text-muted" style="font-size: 12px">
                     <span><?php echo __('Created at ') . date('Y/m/d', $row['time_published']); ?></span>
                     <span style="margin-left: 10px">
                         <?php echo __('Last added at ') . date('Y/m/d', $pullTime[$row['id']]); ?>
@@ -64,4 +64,4 @@
     </div>
 </div>
 
-<a class="btn span12" style="margin-left: 0" href="<?php echo $this->escape($url); ?>"><?php _e('View All'); ?></a>
+<a class="btn btn-default col-md-12" style="margin-left: 0" href="<?php echo $this->escape($url); ?>"><?php _e('View All'); ?></a>

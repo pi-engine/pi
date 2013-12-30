@@ -17,12 +17,12 @@ return array(
         'section'  => 'front',
         'priority' => 100,
 
-        'type'     => 'Module\Article\Route\Article',
+        'type'     => 'Module\\Article\\Route\\Article',
         'options'  => array(
             'structure_delimiter'   => '/',
             'param_delimiter'       => '/',
             'key_value_delimiter'   => '-',
-            'route'                 => '/article',
+            'route'                 => '/a',
             'defaults'        => array(
                 'module'     => 'article',
                 'controller' => 'index',

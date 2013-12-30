@@ -40,11 +40,20 @@ td {
     border-radius: 4px;
     width: 102px;
     text-align: center;
-    font-size: 80px;
     color: #A7A7A7;
     margin-bottom: 10px;
     height: 102px;
     position: relative;
+}
+.upload-image-bg img {
+    height: 100px;
+    width: 100px;
+}
+.upload-image-bg .glyphicon-book,
+.upload-image-bg .glyphicon-th-list,
+.upload-image-bg .glyphicon-user {
+    font-size: 80px;
+    top: 10px;
 }
 .form-horizontal .upload-image-bg {
     float: left;
@@ -58,9 +67,9 @@ td {
     margin-top: 10px;
 }
 .default-author-img {
-    font-size: 40px;
+    font-size: 35px;
 }
-.default-author-img i {
+.default-author-img span {
     width: 40px;
     height: 40px;
     display: block;
@@ -68,7 +77,9 @@ td {
     border: 1px solid #ccc;
     text-align: center;
     border-radius: 3px;
+    padding-top: 2px;
 }
+
 /* draft edit page */
 div.widget {
     border: none;
@@ -236,16 +247,17 @@ div.modal-footer {
     position: absolute;
     top: 0;
     color: #fff;
-    background: rgba(0,0,0,.8);
+    background: rgba(0,0,0,.5);
     width: 100%;
     line-height: 20px;
 }
-.black-bg .icon-remove {
+.black-bg .glyphicon-remove {
     vertical-align: middle;
     cursor: pointer;
-    margin: 0 5px 0 0;
+    margin: 3px 5px 0 0;
     float: right;
     font-size: 14px;
+    height: 20px;
 }
 .black-bg span {
     margin-left: 6px;
@@ -321,7 +333,7 @@ div.modal-footer {
     font-size: 20px;
 }
 div.a-related-modal {
-    width: 650px;
+    /*width: 650px;*/
 }
 .a-related-modal input[type='text'],
 .a-related-modal select {
@@ -436,7 +448,7 @@ div.a-related-modal {
 }
 .modal.a-related-modal {
     font-size: 12px;
-    width: 750px;
+    /*width: 750px;*/
 }
 .article-related-list .ellipsis {
     width: 85%;
@@ -450,9 +462,16 @@ div.a-related-modal {
     color: #a8a8a8;
     display: block;
     height: 40px;
-    line-height: 40px;
+    line-height: 32px;
     vertical-align: middle;
     text-align: center;
     width: 40px;
     font-size: 30px;
+}
+.list-image img {
+    width: 38px;
+    height: 38px;
+}
+.list-image span {
+    margin: 3px 0 0 2px;
 }

@@ -72,9 +72,10 @@ class ListController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $route,
-                'params'    => array(
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $route,
+                'params'     => array(
                     'module'        => $this->getModule(),
                     'controller'    => 'list',
                     'action'        => 'all',

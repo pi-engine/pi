@@ -3,9 +3,6 @@
     $this->jQuery();
 ?>
 <div id="jsList">
-    <div class="form-inline">
-        <a class="btn" href="<?php echo $this->url('', array('action' => 'add')); ?>"><?php echo _a('Add'); ?></a>
-    </div>
     <table class="table table-striped">
         <tbody>
             <tr>
@@ -44,11 +41,13 @@
                     if ($category['image']) {
                         $image = Pi::url($category['image']);
                 ?>
+                    <div class="list-image">
                         <img src="<?php echo $this->escape($image); ?>" alt="<?php echo $this->escape($category['title']); ?>">
+                    </div>
                 <?php
                     } else {
                 ?>
-                        <div class="list-image"><i class="icon-th-list"></i></div>
+                        <div class="list-image"><span class="glyphicon glyphicon-list"><i></i></span></div>
                 <?php
                     }
                 ?>

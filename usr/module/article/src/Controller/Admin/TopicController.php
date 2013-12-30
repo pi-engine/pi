@@ -247,11 +247,12 @@ class TopicController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array(
+                'params'     => array_filter(array(
                     'module'        => $module,
                     'controller'    => 'topic',
                     'action'        => 'list-article',
@@ -293,7 +294,7 @@ class TopicController extends ActionController
         }
         
         $where  = array();
-        $page   = Service::getParam($this, 'page', 1);
+        $page   = Service::getParam($this, 'p', 1);
         $limit  = Service::getParam($this, 'limit', 20);
 
         $data   = $ids = array();
@@ -363,11 +364,12 @@ class TopicController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-            'router'    => $this->getEvent()->getRouter(),
-            'route'     => $this->getEvent()
+            'page_param' => 'p',
+            'router'     => $this->getEvent()->getRouter(),
+            'route'      => $this->getEvent()
                 ->getRouteMatch()
                 ->getMatchedRouteName(),
-            'params'    => array_filter(array(
+            'params'     => array_filter(array(
                 'module'        => $module,
                 'controller'    => 'topic',
                 'action'        => 'pull',
@@ -665,6 +667,7 @@ class TopicController extends ActionController
         $paginator->setItemCountPerPage($limit);
         $paginator->setCurrentPageNumber($page);
         $paginator->setUrlOptions(array(
+            'page_param'    => 'p',
             'router'        => $this->getEvent()->getRouter(),
             'route'         => $this->getEvent()
                 ->getRouteMatch()
@@ -873,10 +876,11 @@ class TopicController extends ActionController
             }
         }
 
-        return array(
+        echo json_encode(array(
             'status'    => $affectedRows ? true : false,
             'message'   => 'ok',
-        );
+        ));
+        exit;
     }
     
     /**
@@ -950,6 +954,7 @@ class TopicController extends ActionController
             'data'      => $data,
             'previous'  => $page - 1,
             'next'      => $nextPage,
+            'count'     => count($data),
         );
         echo json_encode($return);
         exit;

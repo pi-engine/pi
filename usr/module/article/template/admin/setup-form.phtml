@@ -7,11 +7,7 @@
 ?>
 
 <div>
-    <div class="span12">
-        <?php include 'setup-nav.phtml'; ?>
-    </div>
-    
-    <div class="span12">
+    <div class="">
 
         <?php include 'message-box.phtml'; ?>
 
@@ -22,12 +18,12 @@
                 $value   = $element->getValue();
                 foreach ($options as $name => $label) {
             ?>
-            <div class="span12">
-                <label class="radio span3">
+            <div class="row" style="margin-left: 30px">
+                <label class="radio col-md-3">
                     <input type="radio" value="<?php echo $this->escape($name); ?>" name="mode"<?php echo ($value == $name) ? ' checked' : ''; ?>>
                         <?php echo $this->escape($label); ?>
                 </label>
-                <a class="article-form-mode" data-mode="<?php echo $this->escape($name); ?>" href="javascript:void(0)">
+                <a class="article-form-mode col-md-3" data-mode="<?php echo $this->escape($name); ?>" href="javascript:void(0)">
                     <?php echo _a('Preview'); ?>
                 </a>
             </div>
@@ -41,8 +37,8 @@
                 if ($custom != $form->get('mode')->getValue()) {
                     echo 'style="display: none"';
                 }
-            ?>>
-            <h5 class="span12 page-header">
+            ?> class="row">
+            <h5 class="col-md-12 page-header">
                 <?php echo _a('Form Elements'); ?>
                 <a class="btn btn-small btn-primary custom-form-update" style="margin-left: 10px">
                     <?php echo _a('Save'); ?>
@@ -50,13 +46,13 @@
             </h5>
             <?php foreach ($items as $name => $item) { ?>
                 <?php $element = $form->get($name); ?>
-                <div class="span3 control-group<?php if ($this->formElementErrors($element)) echo ' error'; ?>">
+                <div class="col-md-3 control-group<?php if ($this->formElementErrors($element)) echo ' error'; ?>">
                     <div><?php echo $this->formElement($element); ?></div>
                 </div>
             <?php } ?>
         </div>
 
-        <div class="span12">
+        <div class="row">
         <?php $element = $form->get('submit'); ?>
             <div><?php echo $this->formElement($element); ?></div>
         </div>
@@ -67,7 +63,7 @@
 <script>
     var page = {
         init        : function() {
-            $('input[name="submit"]').css('margin-top', '20px');
+            $('input[name="submit"]').css('margin', '20px 0 0 50px');
             $('.article-form-mode').click(this.preview.bind(this));
             $('input[name="mode"]').change(this.changeMode.bind(this));
             $('.custom-form-update').click(this.update.bind(this));

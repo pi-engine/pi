@@ -9,30 +9,30 @@
 <div class="pi-block">
     <div class="clearfix pi-block-header">
         <h4 class="pi-block-title"><?php echo $this->escape($title) . '"' . $keyword . '"'; ?></h4>
-        <span class="muted span2" style="margin: 10px 0 0 10px">
+        <span class="text-muted col-md-2" style="margin: 10px 0 0 10px">
             (<?php echo $this->escape($count) . __(' articles'); ?>)
         </span>
-        <div style="margin-right: -30px">
+        <div class="row" style="margin-right: -30px">
             <?php
                 $form->setAttributes(array(
                     'action' => $this->url('', array('action' => 'simple')),
                     'method' => 'get',
-                    'class'  => 'pull-right',
-                    'style'  => 'margin-bottom: 0',
+                    'class'  => 'navbar-form navbar-right',
+                    'style'  => 'margin: 1px 10px 0 0',
                 ));
                 echo $this->form()->openTag($form);
             ?>
-            <div class="input-append" style="margin: 5px 0 0 0">
+            <div class="form-group">
                 <?php
                 $element = $form->get('keyword');
                 $element->setAttributes(array(
-                    'class'       => 'input-append span7',
+                    'class'       => 'form-control col-md-7',
                     'placeholder' => __('title'),
                 ));
                 echo $this->formElement($element);
                 ?>
-                <button type="submit" class="btn"><?php _e('Search'); ?></button>
             </div>
+            <button type="submit" class="btn"><?php _e('Search'); ?></button>
             <?php echo $this->form()->closeTag(); ?>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <ul class="list list14" id="jsList">
             <?php $index = 0 ?>
             <?php foreach ($articles as $article) { $index++ ?>
-                <li class="muted">
+                <li class="text-muted">
                     <div class="list-hover">
                         <span class="pull-right article-list-desc">
                             <?php echo date('Y/m/d H:i', $article['time_publish']); ?>
@@ -55,7 +55,9 @@
                 <?php } ?>
             <?php } ?>   
         </ul>
-        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array('class' => 'pagination-centered')); ?>
+        <div style="text-align: center">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+        </div>
     </div>
 </div>
 <script>

@@ -1,7 +1,7 @@
 <?php include 'draft-nav.phtml'; ?>
 <div id="jsList">
     <div class="form-inline">
-        <span class="btn btn-delete"><?php _e('Delete'); ?></span>
+        <span class="btn btn-primary btn-delete"><?php _e('Delete'); ?></span>
     </div>
     <table class="table table-striped">
         <tbody id="jsDraft">
@@ -36,7 +36,7 @@
                         }
                     } else {
                     ?>
-                    <strong class="muted"><?php _e('No Title'); ?></strong>
+                    <strong class="text-muted"><?php _e('No Title'); ?></strong>
                     <?php } ?>    
                     <div class="row-actions">
                         <?php if ($status == $flags['published']) {
@@ -71,7 +71,7 @@
                 <td><?php 
                     echo (isset($draft['tag']) and !empty($draft['tag']))
                         ? $this->escape(implode(',', $draft['tag'])) 
-                        : '<span class="muted">' . __('No tags') . '</span>' 
+                        : '<span class="text-muted">' . __('No tags') . '</span>' 
                 ?>
                 </td>
                 <td><?php 

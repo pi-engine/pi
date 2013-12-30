@@ -7,13 +7,13 @@
 
 <div class="">
     <div class="clearfix" style="padding-bottom: 20px; border-bottom: 2px inset #000">
-        <div class="span12">
+        <div class="col-md-12 row">
             <h4 class="pi-block-title" style="margin-left: 0"><?php echo $this->escape($title); ?></h4>
-            <span class="muted span2" style="margin: 10px 0 0 10px">
+            <span class="text-muted col-md-2" style="margin: 10px 0 0 10px">
                 (<?php echo $this->escape($count) . __(' articles'); ?>)
             </span>
         </div>
-        <div class="muted" style="font-size: 12px">
+        <div class="text-muted row col-md-12" style="font-size: 12px">
             <span><?php echo __('Created at ') . date('Y/m/d', $topic['time_create']); ?></span>
             <span style="margin-left: 10px">
                 <?php echo $lastAdded ? __('Last added at ') . date('Y/m/d', $lastAdded) : ''; ?>
@@ -24,7 +24,7 @@
         <ul class="list list14" style="margin-left: 5px;">
             <?php $index = 0 ?>
             <?php foreach ($articles as $row) { ?>
-                <li class="muted">
+                <li class="text-muted">
                     <div class="list-hover">
                         <span class="pull-right article-size12">
                             <?php echo date('Y/m/d H:i', $row['time_publish']); ?>

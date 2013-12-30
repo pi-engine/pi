@@ -1,5 +1,3 @@
-<h2 class="article-admin-title"><?php echo $this->escape($title); ?></h2>
-
 <?php include 'message-box.phtml'; ?>
 
 <?php
@@ -11,14 +9,14 @@
     echo $this->form()->openTag($form);
 ?>
 
-<div class="row-fluid">
-    <div class="span12 alert alert-info">
+<div class="">
+    <div class="col-md-12 alert alert-info">
         <?php echo _a('Move all articles from source category to target category'); ?>
     </div>
 
-    <div class="span12">
-        <div class="row-fluid">
-            <div class="span5">
+    <div class="col-md-12">
+        <div class="">
+            <div class="col-md-5">
                 <h3><?php echo _a('Source Category'); ?></h3>
                 <br/>
                 <?php
@@ -28,14 +26,14 @@
                 <p class="help-block">
                 </p>
             </div>
-            <div class="span2">
+            <div class="col-md-2">
                 <h3>&nbsp;</h3>
                 <br/>
                 <p class="help-block">
                     <?php echo _a('move into'); ?>
                 </p>
             </div>
-            <div class="span5">
+            <div class="col-md-5">
                 <h3><?php echo _a('Target Category'); ?></h3>
                 <br/>
                 <?php
@@ -48,7 +46,7 @@
         </div>
     </div>
 
-    <div class="span12">
+    <div class="col-md-12">
         <?php 
             $elements = $form->elementList();
             foreach ($elements['hidden'] as $element) {
@@ -57,7 +55,7 @@
         ?>
     </div>
 </div>
-<div class="form-actions">
+<div class="form-actions" style="margin: 30px">
     <button type="submit" class="btn btn-primary"><?php echo $elements['submit']->getValue(); ?></button>
 </div>
 <?php echo $this->form()->closeTag(); ?>

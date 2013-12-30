@@ -383,11 +383,12 @@ class ArticleController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-            'router'    => $this->getEvent()->getRouter(),
-            'route'     => $this->getEvent()
+            'page_param' => 'p',
+            'router'     => $this->getEvent()->getRouter(),
+            'route'      => $this->getEvent()
                 ->getRouteMatch()
                 ->getMatchedRouteName(),
-            'params'    => array_filter(array(
+            'params'     => array_filter(array(
                 'module'        => $module,
                 'controller'    => 'article',
                 'action'        => 'published',

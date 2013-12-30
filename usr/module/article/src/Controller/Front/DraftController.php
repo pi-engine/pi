@@ -668,11 +668,12 @@ class DraftController extends ActionController
         $paginator->setItemCountPerPage($limit)
                   ->setCurrentPageNumber($page)
                   ->setUrlOptions(array(
-                    'router'    => $this->getEvent()->getRouter(),
-                    'route'     => $this->getEvent()
+                    'page_param' => 'p',
+                    'router'     => $this->getEvent()->getRouter(),
+                    'route'      => $this->getEvent()
                         ->getRouteMatch()
                         ->getMatchedRouteName(),
-                    'params'    => array(
+                    'params'     => array(
                         'module'        => $module,
                         'controller'    => 'draft',
                         'action'        => $action,
@@ -1647,10 +1648,11 @@ class DraftController extends ActionController
             }
         }
 
-        return array(
+        echo json_encode(array(
             'status'    => $affectedRows ? true : false,
             'message'   => 'ok',
-        );
+        ));
+        exit;
     }
     
     /**

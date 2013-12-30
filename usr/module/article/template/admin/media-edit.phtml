@@ -4,7 +4,6 @@
     $this->Backbone();
     $this->bootstrap('js/bootstrap.min.js');
 ?>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 
 <?php 
     $error = $this->formElementErrors(
@@ -12,7 +11,7 @@
     ) ? _a('Media must be uploaded!') : null;
 ?>
 <?php if (!empty($error)) { ?>
-<div class="alert alert-error">
+<div class="alert alert-danger">
     <button class="close" data-dismiss="alert" type="button">×</button>
     <?php echo $this->escape($error); ?>
 </div>
@@ -24,7 +23,7 @@
 <?php } ?>
 
 <script id="template-message" type="text/template">
-    <div class="alert alert-success span4">
+    <div class="alert alert-success col-md-8">
         <button class="close" data-dismiss="alert" type="button">×</button>
         <%= basename %>
     </div>
@@ -45,20 +44,20 @@
                 ) {
         ?>
                 <div class="upload-image-bg">
-                    <div class="black-bg"><i class="icon-remove"></i></div>    
+                    <div class="black-bg"><span class="glyphicon glyphicon-remove"></span></div>    
                     <img src="<?php echo Pi::url($src); ?>">
                 </div>
             <?php } else { ?>
-                <div class="alert alert-success span4">
+                <div class="alert alert-success col-md-8">
                     <button class="close" data-dismiss="alert" type="button">×</button>
                     <?php echo basename($src); ?>
                 </div>
             <?php } ?>
         <?php } else { ?>
-            <div class="alert alert-warning span2"><?php echo _a('No item!'); ?></div>
+            <div class="alert alert-warning col-md-4"><?php echo _a('No item!'); ?></div>
         <?php } ?>
         </div>
-        <span class="btn upload fileinput-button">
+        <span class="btn btn-default upload fileinput-button">
             <?php echo _a('Upload'); ?> <input type="file" name="upload">
         </span>
     </div>
@@ -79,18 +78,18 @@
 
     var UploadView = Backbone.View.extend({
         template: _.template('<div class="upload-image-bg"><div class="black-bg">'
-            + '<i class="icon-remove"></i></div>'
+            + '<span class="glyphicon glyphicon-remove"></span></div>'
             + '<img style="<% if (w/h > 1) { %>width: 100px; <% } else { %>height: 100px <% } %>"'
             + 'src="<%= preview_url %>"></div>'
         ),
         events: {
-            "click .icon-remove"    : "remove",
+            "click .glyphicon-remove"    : "remove",
             "click button.close"    : "remove"
         },
         initialize: function() {
             page.$("[name=placeholder]")
-                .parents(".control-group:first")
-                .find(".controls")
+                .parents(".form-group:first")
+                .find(".col-md-4:first")
                 .html($("#temp-upload").html());
             this.$el   = $("#jsUpload");
             this.input = this.$("[name=upload]");
@@ -152,7 +151,7 @@
             ); ?>' + page.id()).done(function() {
                 page.$("[name=url]").val('');
                 page.$("[name=type]").val('');
-                content = '<div class="alert alert-warning span2">'
+                content = '<div class="alert alert-warning col-md-4">'
                         + '<?php echo _a('No item!'); ?>'
                         + '</div>';
                 self.$(".upload-media").html(content);

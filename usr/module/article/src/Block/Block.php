@@ -545,6 +545,8 @@ class Block
             'articles'  => $articles,
             'target'    => $options['target'],
             'style'     => $options['block-style'],
+            'width'     => $options['image-width'],
+            'height'    => $options['image-height'],
             'images'    => $images,
             'config'    => Pi::service('module')->config('', $module),
         );
