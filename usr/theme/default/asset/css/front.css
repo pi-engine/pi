@@ -5,22 +5,21 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 70px;
 }
 
 .pi-main-container {
   padding-bottom: 80px;
 }
 
-/* Bootstrap custom */
-.nav-tabs {
-  margin-bottom: 20px;
+/* Navbar */
+.pi-navbar ul {
+  display: none;
 }
 
-/* Header */
-.pi-header {
-  margin: 20px auto;
-}
+
+
+
 
 
 /* User bar */
@@ -246,4 +245,9 @@ body {
 
 #pi-logger-output {
   position: relative;
+}
+
+/* Bootstrap custom */
+.nav-tabs {
+  margin-bottom: 20px;
 }

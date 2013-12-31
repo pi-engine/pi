@@ -1,19 +1,41 @@
-<form method="GET" action="<?php echo $block['action']; ?>" class="form-inline">
-
-    <div class="form-group">
-        <input class="form-control" type="text" placeholder="<?php echo _b('Keywords'); ?>" name="q">
-    </div>
-
-    <?php if (!empty($block['options'])) { ?>
-        <div class="form-group">
-            <select class="form-control" name="m" onchange="this.form.submit()">
-                <option value=""><?php echo _b('Search in'); ?></option>
+<form method="get" class="navbar-form navbar-left" action="<?php echo $block['action']; ?>">
+    <div class="input-group">
+        <input type="text" class="form-control" name="q"
+               placeholder="<?php echo _b('Keywords'); ?>">
+        <div class="input-group-btn">
+            <?php if (!empty($block['options'])) { ?>
+            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-search"></i>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu pull-right" id="js-search-menu">
                 <?php foreach ($block['options'] as $name => $label) { ?>
-                    <option value="<?php echo _escape($name); ?>"><?php echo _escape($label); ?></option>
+                <li>
+                    <a href="#" data-value="<?php echo _escape($name); ?>">
+                        <?php echo _escape($label); ?>
+                    </a>
                 <?php } ?>
-            </select>
+            </ul>
+            <input type="hidden" name="m">
+            <?php } else { ?>
+            <button class="btn btn-default">
+                <i class="fa fa-search"></i>
+            </button>
+            <?php } ?>
         </div>
-    <?php } else { ?>
-        <button type="submit" class="btn btn-default"><?php echo _b('Search'); ?></button>
-    <?php } ?>
+    </div>
 </form>
+<?php if (!empty($block['options'])) { ?>
+<script>
+$('#js-search-menu').on('click', 'a', function(e) {
+    var $this = $(this);
+    var val = $this.data('value');
+    var form = $this.parents('form');
+    var m = form.find('[name=m]');
+
+    e.preventDefault();
+    m.val(val);
+    form[0].submit();
+});
+</script>
+<?php } ?>

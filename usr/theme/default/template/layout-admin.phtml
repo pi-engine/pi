@@ -40,15 +40,20 @@ $module = $this->routeMatch('module');
             </a>
         </div>
         <nav class="navbar-collapse collapse">
-            <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
-            <ul class="nav navbar-nav navbar-right">
-                <?php echo $this->widget('system-user-bar', array('params' => array('route' => 'sysuser'), 'type' => 'flat')); ?>
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" target="_blank">
-                        <i class="fa fa-external-link"></i>
-                        <?php _e('Front'); ?>
-                    </a>
-            </ul>
+            <?php 
+            echo $this->adminNav()->modes('nav navbar-nav');
+            echo $this->widget('system-user-bar', 
+                    array(
+                        'params' => array('route' => 'sysuser'), 
+                        'type' => 'flat'
+                    )
+                 ); 
+            ?>
+            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" 
+               target="_blank" id="pi-go-front" style="display: none;">
+                <i class="fa fa-external-link"></i>
+                <?php _e('Front'); ?>
+            </a>
         </nav>
     </header>
     <aside class="pi-sidebar">

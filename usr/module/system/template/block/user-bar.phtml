@@ -1,91 +1,112 @@
+<?php
+//For ajax request login
+if ('js' == $block['type']) { 
+?>
+<ul class="nav navbar-nav navbar-right" id="user-bar-anonymous" style="display: none;">
+    <li>
+        <a href="<?php echo $block['user']['login']; ?>">
+            <?php echo _b('Login'); ?>
+        </a>
+    <li>
+         <a href="<?php echo $block['user']['register']; ?>">
+            <?php echo _b('Register'); ?>
+         </a>
+</ul>
+<ul class="nav navbar-nav navbar-right" id="user-bar-member" style="display: none;">
+    <li>
+        <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">
+
+        </a>
+    <li>
+         <a id="member-message" href="#" title="<?php echo _b('Message'); ?>">
+            <?php echo _b('Message'); ?>
+        </a>
+    <li>
+        <a id="member-logout" href="<?php echo $block['user']['logout']; ?>">
+            <?php echo _b('Logout'); ?>
+        </a>
+</ul>
+<script>
+    $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
+        var ela = $('#user-bar-anonymous');
+        var elm = $('#user-bar-member');
+
+        if (user.uid > 0) {
+            ela.hide();
+            elm.show();
+            $('#member-avatar').html(user.avatar);
+            $('#member-message').attr('href', user.message);
+            $('#member-profile').attr('href', user.profile).html(user.name);
+        } else {
+            ela.show();
+            elm.hide();
+        }
+    });
+</script>
+<?php
+return;
+}
+?>
+<ul class="nav navbar-nav navbar-right">
 <?php if ('dropdown' == $block['type']) { ?>
     <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
-    <?php $this->bootstrap('js/bootstrap.min.js'); ?>
-    <div class="dropdown">
-
-        <?php
-        if (!$block['user']['uid']) { ?>
-            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><i class="icon-user"></i><?php echo _b('Login'); ?></a>
-        <?php
-        } else {
-            ?>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="icon-user"></i>
-                <?php echo _escape($block['user']['name']); ?>
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
-                <li><a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
-                <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
-            </ul>
-        <?php
-        }
+    <?php
+    if (!$block['user']['uid']) { ?>
+    <li>
+        <a href="<?php echo $block['user']['login']; ?>">
+            <?php echo _b('Login'); ?>
+        </a>
+    <li>
+        <a href="<?php echo $block['user']['register']; ?>">
+            <?php echo _b('Register'); ?>
+        </a>
+    <?php
+    } else {
         ?>
-    </div>
-    <script>$('.dropdown-toggle').dropdown();</script>
-<?php } elseif ('js' == $block['type']) { ?>
-    <!-- JavaScript display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
-    <div id="user-bar-anonymous" style="display: none;">
-        <?php echo Pi::service('user')->avatar()->get(0, 'mini'); ?>
-        <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>"><?php echo _b('Login'); ?></a>
-        <span class="pi-divider">|</span>
-        <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>"><?php echo _b('Register'); ?></a>
-    </div>
-    <div id="user-bar-member" style="display: none;" >
-        <span id="member-avatar"></span>
-        <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">#</a>
-        <span class="pi-divider">|</span>
-        <a id="member-message" href="#" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
-        <span class="pi-divider">|</span>
-        <a id="member-logout" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
-    </div>
-    <script>
-        $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
-            var ela = $('#user-bar-anonymous');
-            var elm = $('#user-bar-member');
-
-            if (user.uid > 0) {
-                ela.hide();
-                elm.show();
-                $('#member-avatar').html(user.avatar);
-                $('#member-message').attr('href', user.message);
-                $('#member-profile').attr('href', user.profile).html(user.name);
-            } else {
-                ela.show();
-                elm.hide();
-            }
-        });
-    </script>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i>
+            <?php echo _escape($block['user']['name']); ?>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
+            <li><a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
+            <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
+        </ul>
+    <?php
+    }
+    ?>
 <?php } else { ?>
     <!-- Flat display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
     <?php
         if (!$block['user']['uid']) { ?>
         <li>
-            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+            <a href="<?php echo $block['user']['login']; ?>">
                 <?php echo _b('Login'); ?>
             </a>
         <li>
-            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>">
+            <a href="<?php echo $block['user']['register']; ?>">
                 <?php echo _b('Register'); ?>
             </a>
     <?php
         } else {
     ?>
         <li>
-            <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>">
+            <a href="<?php echo $block['user']['profile']; ?>">
                 <?php echo $block['user']['avatar']; ?>
                 <?php echo _escape($block['user']['name']); ?>
             </a>
         <li>
-            <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
+            <a href="<?php echo $block['user']['message']; ?>">
                 <?php echo _b('Message'); ?>
             </a>
         <li>
-            <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
+            <a href="<?php echo $block['user']['logout']; ?>">
                 <?php echo _b('Logout'); ?>
             </a>
     <?php
         }
     ?>
 <?php } ?>
+</ul>
