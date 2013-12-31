@@ -4,7 +4,7 @@ How to implement Comment in a module
 Step 1. Set up comment specification in module meta configuration
 
 - Define types of items to be commented
-- Provide parameters or methods to identify an item to comment on
+- Provide parameters or methods to identify/locate an item to comment on
   - Use variables: `module`, `controller`, `action`, `identifier`, `params`
   - Use custom locator
 - Provide callback to fetch commented item information
@@ -22,25 +22,29 @@ Step 1. Set up comment specification in module meta configuration
     ```
     return array(
         '<comment-type-a>' => array(
-            'title'     => _a('Comments for A'),
-            'icon'      => 'icon-post',
-            'callback'  => '<Class\To\Fetch\Object\Information>',
-            'controller'    => '<controller-to-match-this-comment-type>',
-            'action'        => '<action-to-match-this-comment-type>',
-            'identifier'    => '<param-to-identify-object>',
-            'params'        => array(
-                <extra-param-pairs-to-identify-the-comment>,
+            'title'         => _a('Comments for A'),
+            'icon'          => 'icon-post',
+            'callback'      => '<Class\To\Fetch\Object\Information>',
+            'locator'       => array(
+                'controller'    => '<controller-to-match-this-comment-type>',
+                'action'        => '<action-to-match-this-comment-type>',
+                'identifier'    => '<param-to-identify-object>',
+                'params'        => array(
+                    <extra-param-pairs-to-identify-the-comment>,
+                ),
             ),
         ),
         'example' => array(
             'title'         => _a('Article comments'),
             'icon'          => 'icon-post',
             'callback'      => 'Module\<ModuleName>\Api\Article',
-            'controller'    => 'demo',
-            'action'        => 'index',
-            'identifier'    => 'id',
-            'params'        => array(
-                'enable'    => 'yes',
+            'locator'       => array(
+                'controller'    => 'demo',
+                'action'        => 'index',
+                'identifier'    => 'id',
+                'params'        => array(
+                    'enable'    => 'yes',
+                ),
             ),
         ),
         'custom' => array(
