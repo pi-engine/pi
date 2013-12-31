@@ -13,7 +13,7 @@ $config = array(
         'class' => 'Pi\Media\Adapter\Local',
         'options'   => array(
             'root_path' => Pi::path('upload/media'),
-            'root_uri'  => Pi::url('upload/media'),
+            'root_uri'  => Pi::url('upload/media', true),
             'locator'   => array(
                 // Path generator
                 'path'  => function ($time) {

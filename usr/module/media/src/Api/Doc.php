@@ -9,6 +9,7 @@
 
 namespace Module\Media\Api;
 
+use Closure;
 use Pi;
 use Pi\Application\AbstractApi;
 
@@ -85,8 +86,12 @@ class Doc extends AbstractApi
         $options = Pi::service('media')->getOption('local');
         $rootUri = $options['root_uri'];
         $rootPath = $options['root_path'];
-        $pathGenerator = $options['locator']['path'];
-        $relativePath = $pathGenerator();
+        $path = $options['locator']['path'];
+        if ($path instanceof Closure) {
+            $relativePath = $path();
+        } else {
+            $relativePath = $path;
+        }
         $destination = $rootPath . '/' . $relativePath;
         $rename = $options['locator']['file'];
 
@@ -352,12 +357,14 @@ class Doc extends AbstractApi
     }
 
     /**
-     * Download files
-     * 
-     * @param int|int[] $id
-     * @throws \Exception
+     * Download a media file to local file
+     *
+     * @param int|int[] $id Doc id
+     * @param string $file Absolute path to save; or output to browser directly
+     *
+     * @return bool
      */
-    public function download($id)
+    public function download($id, $file = '')
     {
         $url = Pi::service('url')->assemble('default', array(
             'module'     => $this->module,

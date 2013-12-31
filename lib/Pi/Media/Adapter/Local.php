@@ -25,7 +25,7 @@ class Local extends AbstractAdapter
      */
     protected function handler()
     {
-        return Pi::api('media', 'media');
+        return Pi::api('media', 'doc');
     }
 
     /**
