@@ -1,9 +1,40 @@
+<?php
+$mode = 'resultonly'; // 'resultonly', 'custom'
+?>
+<?php if ('default' == $mode) { ?>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php echo sprintf(__('Google search for %s'), _escape(Pi::config('sitename'))); ?></h3>
+        </div>
+        <div class="panel-body">
+            <script>
+                (function() {
+                    var cx = '<?php echo $google['code']; ?>';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//<?php echo $google['host']; ?>/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                })();
+            </script>
+            <gcse:search></gcse:search>
+        </div>
+    </div>
+
+<?php } elseif ('resultonly' == $mode) { ?>
 
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title"><?php echo sprintf(__('Google search for %s'), _escape(Pi::config('sitename'))); ?></h3>
     </div>
     <div class="panel-body">
+        <form id="pi-gcse-search-box">
+            <input type="text" name="q" value="<?php echo _escape($google['q']); ?>">
+            <input type="submit" value="<?php _e('Search'); ?>">
+        </form>
+
         <script>
             (function() {
                 var cx = '<?php echo $google['code']; ?>';
@@ -16,11 +47,11 @@
                 s.parentNode.insertBefore(gcse, s);
             })();
         </script>
-        <gcse:search></gcse:search>
+        <gcse:searchresults-only></gcse:searchresults-only>
     </div>
 </div>
 
-<?php return; ?>
+<?php } else { ?>
 
 
 <div class="panel panel-primary">
@@ -34,15 +65,19 @@
         google.load('search', '1', {language: '<?php echo Pi::config('locale'); ?>'});
         google.setOnLoadCallback(function(){
             var customSearchControl = new google.search.CustomSearchControl('<?php echo $google['code']; ?>');
-            customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+            //customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
             customSearchControl.draw('cse');
+
+            // Preload query
             var match = location.search.match(/q=([^&]*)(&|$)/);
             if(match && match[1]){
                 var search = decodeURIComponent(match[1]);
                 customSearchControl.execute(search);
             }
+
         });
     </script>
 
 </div>
 
+<?php } ?>

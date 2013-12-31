@@ -185,6 +185,7 @@ class IndexController extends ActionController
             $this->view()->assign('google', array(
                 'code'  => $code,
                 'host'  => $host,
+                'q'     => $query,
             ));
             $this->view()->setTemplate('search-google');
 
