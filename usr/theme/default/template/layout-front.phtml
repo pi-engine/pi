@@ -1,12 +1,15 @@
 <?php
 // Load translation data
 $this->i18nTheme('default', 'default');
-// jQuery
-$this->jQuery();
-// Load Bootstrap css by Twitter Team
+
+/*
+ * Load Bootstrap css by Twitter Team, auto load jquery
+ * This code should written in every theme, As much of module code
+ * need bootstrap.js, bootstrap.css, fontawesome.css
+ */
 $this->bootstrap(array(
-    'js/bootstrap.js',
-    'font-awesome/css/font-awesome.css'
+    'js/bootstrap.min.js',
+    'font-awesome/css/font-awesome.min.css'
 ));
 // Load front.css
 $this->css($this->assetTheme('css/front.css'));
@@ -54,7 +57,7 @@ $this->headLink(array(
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
     <!-- Header: brand, slogan, user bar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <h1 class="hide">
@@ -69,38 +72,31 @@ $this->headLink(array(
                 </a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <?php echo $this->widget('system-user-bar'); ?>
-                </ul>
+                <?php
+                $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
+                echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar');
+                echo $this->widget('search-search');
+                echo $this->widget('system-user-bar');
+                ?>
             </div>
         </div>
     </div>
 
-    <!-- Navigation: menu, breadcrumbs  -->
-    <div class="container pi-nav-container">
-        <div class="pull-right">
-        <?php echo $this->widget('search-search'); ?>
-        </div>
-        <?php
-            $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
-            echo $navigation->menu()->setUlClass('list-unstyled pi-menu');
-        ?>
-        <!-- Breadcrumbs: check if it exists  -->
-        <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="pi-divider">/<span>')->render(); ?>
-        <?php if ($breadcrumbs) { ?>
-        <div class="breadcrumb">
-           <?php echo $breadcrumbs; ?>
-        </div>
-        <?php } ?>
-    </div>
-
-    <!-- Page main content: blocks and module content -->
+    <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
     <?php
         $blocks = $this->blocks();
         $blockTemplate = $this->template('block');
     ?>
     <div class="container pi-main-container">
-
+        <?php
+        $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="pi-divider">/<span>')->render();
+        if ($breadcrumbs) {
+            echo sprintf(
+                '<div class="breadcrumb">%s</div>',
+                $breadcrumbs
+            );
+        }
+        ?>
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
 
@@ -239,5 +235,6 @@ $this->headLink(array(
         </div>    
     </div>
     <?php echo $this->assemble('footScript', 4); ?>
+    <script src="<?php echo $this->assetTheme('js/front.js'); ?>"></script>
 </body>
 </html>
