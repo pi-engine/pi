@@ -247,7 +247,7 @@ body {
   margin-bottom: 20px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .navbar-form {
     width: 250px;
   }
