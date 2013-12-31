@@ -31,8 +31,12 @@ $mode = 'resultonly'; // 'resultonly', 'custom'
     </div>
     <div class="panel-body">
         <form id="pi-gcse-search-box">
-            <input type="text" name="q" value="<?php echo _escape($google['q']); ?>">
-            <input type="submit" value="<?php _e('Search'); ?>">
+            <div class="input-group">
+                <input type="text" name="q" value="<?php echo _escape($google['q']); ?>" class="form-control">
+                <span class="input-group-addon">
+                <input type="submit" value="<?php _e('Search'); ?>">
+                </span>
+            </div>
         </form>
 
         <script>
