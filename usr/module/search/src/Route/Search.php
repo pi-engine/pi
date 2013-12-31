@@ -101,8 +101,8 @@ class Search extends Standard
                 if (null === $value || '' === $value) {
                     continue;
                 }
-                $url .= $this->paramDelimiter . urlencode($key)
-                    . $this->keyValueDelimiter . urlencode($value);
+                $url .= $this->paramDelimiter . $this->encode($key)
+                    . $this->keyValueDelimiter . $this->encode($value);
             }
             $url = ltrim($url, $this->paramDelimiter);
         }
@@ -118,7 +118,7 @@ class Search extends Standard
         $mca    = array();
         foreach (array('controller', 'action') as $key) {
             if (!empty($params[$key])) {
-                $mca[$key] = urlencode($params[$key]);
+                $mca[$key] = $this->encode($params[$key]);
             }
         }
         $query  = array();
@@ -141,7 +141,7 @@ class Search extends Standard
         if ($this->paramDelimiter === $this->structureDelimiter) {
             foreach(array('action', 'controller') as $key) {
                 if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
-                    $url = urlencode($mca[$key]) . $this->paramDelimiter
+                    $url = $this->encode($mca[$key]) . $this->paramDelimiter
                         . $url;
                 }
             }
@@ -149,16 +149,16 @@ class Search extends Standard
             $structure = '';
             if ($mca['controller'] !== $this->defaults['controller']) {
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['controller']);
+                    . $this->encode($mca['controller']);
                 if ($mca['action'] !== $this->defaults['action']) {
                     $structure .= $this->structureDelimiter
-                        . urlencode($mca['action']);
+                        . $this->encode($mca['action']);
                 }
             } elseif ($mca['action'] !== $this->defaults['action']) {
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['controller']);
+                    . $this->encode($mca['controller']);
                 $structure .= $this->structureDelimiter
-                    . urlencode($mca['action']);
+                    . $this->encode($mca['action']);
             }
             $url = $structure . ($url ? $this->paramDelimiter . $url : '');
         }

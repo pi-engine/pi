@@ -94,13 +94,13 @@ class Article extends Standard
                 );
                 $controller = 'category';
                 $action     = 'list';
-                $category   = urldecode($category);
+                $category   = $this->decode($category);
             } elseif (preg_match('/^tag-/', $urlParams[0])) {
                 list($ignored, $tag) = explode(
                     $this->keyValueDelimiter, 
                     $urlParams[0]
                 );
-                $tag        = urldecode($tag);
+                $tag        = $this->decode($tag);
                 $controller = 'tag';
                 $action     = 'list';
             } elseif (preg_match('/\d{6}/', $urlParams[0])) {
@@ -109,7 +109,7 @@ class Article extends Standard
                 if (is_numeric($urlParams[1])) {
                     $id     = $urlParams[1];
                 } elseif (is_string($urlParams[1])) {
-                    $slug   = urldecode($urlParams[1]);
+                    $slug   = $this->decode($urlParams[1]);
                 } else {
                     return null;
                 }
@@ -137,7 +137,7 @@ class Article extends Standard
         foreach ($params as $param) {
             list($key, $value) = explode(self::KEY_VALUE_DELIMITER, $param);
             if (!isset($matches[$key])) {
-                $matches[$key] = urldecode($value);
+                $matches[$key] = $this->decode($value);
             }
         }
         if (isset($matches['preview']) and $matches['preview'] == 1) {
@@ -200,7 +200,7 @@ class Article extends Standard
             ) {
                 $url .= $mergedParams['time'] 
                      . $this->structureDelimiter 
-                     . urlencode($mergedParams['slug']);
+                     . $this->encode($mergedParams['slug']);
                 unset($mergedParams['slug']);
                 unset($mergedParams['id']);
             } elseif (isset($mergedParams['id']) 
@@ -228,12 +228,12 @@ class Article extends Standard
         } elseif (isset($mergedParams['category'])) {
             $url .= 'list' 
                  . $this->keyValueDelimiter 
-                 . urlencode($mergedParams['category']);
+                 . $this->encode($mergedParams['category']);
             unset($mergedParams['category']);
         } elseif (isset($mergedParams['tag'])) {
             $url .= 'tag' 
                  . $this->keyValueDelimiter 
-                 . urlencode($mergedParams['tag']);
+                 . $this->encode($mergedParams['tag']);
             unset($mergedParams['tag']);
         } elseif (isset($mergedParams['topic'])) {
             $url .= 'topic';
@@ -251,7 +251,7 @@ class Article extends Standard
             foreach ($mergedParams as $key => $value) {
                 $parameter .= $key 
                            . self::KEY_VALUE_DELIMITER 
-                           . urlencode($value) 
+                           . $this->encode($value)
                            . self::COMBINE_DELIMITER;
             }
             $parameter = rtrim($parameter, self::COMBINE_DELIMITER);

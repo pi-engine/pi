@@ -82,9 +82,9 @@ class Category extends Standard
 
         $matches = array(
             'action'        => 'category',
-            'category'      => urldecode($category),
+            'category'      => $this->decode($category),
             'id'            => $id,
-            'slug'          => urldecode($slug),
+            'slug'          => $this->decode($slug),
         );
 
         return new RouteMatch(array_merge($this->defaults, $matches),
@@ -110,9 +110,9 @@ class Category extends Standard
             $url .= intval($mergedParams['id']);
         }
         if (isset($mergedParams['slug'])) {
-            $url .= ($url ? '-' : '') . urlencode($mergedParams['slug']);
+            $url .= ($url ? '-' : '') . $this->encode($mergedParams['slug']);
         }
-        $url = urlencode($mergedParams['category'])
+        $url = $this->encode($mergedParams['category'])
              . $this->paramDelimiter . $url;
 
         return $this->paramDelimiter
