@@ -180,8 +180,7 @@ class User extends Standard
         if (null !== $matches) {
             $matches = array_merge($this->defaults, $matches);
         } else {
-            //$path = $this->defaults['module'] . $this->structureDelimiter . $path;
-            $path = $this->prefix . $this->structureDelimiter . $path;
+            $path = $this->defaults['module'] . $this->structureDelimiter . $path;
             $matches = parent::parse($path);
         }
         // Transform id to uid
