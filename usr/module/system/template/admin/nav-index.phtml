@@ -40,12 +40,12 @@
     <td>
         <div class="btn-group btns-indent">
             <% if(module) { %>
-            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php echo _a('View'); ?></a>
+            <a class="btn btn-link" href="<%= editUrl%>"><?php echo _a('View'); ?></a>
             <span class="btn btn-link js-clone">
                 <?php echo _a('Clone'); ?>
             </span>
             <% } else { %>
-            <a class="btn btn-link" href="<?php echo $this->url('', array('action' => 'data', 'name' => '')); ?><%= name%>"><?php echo _a('Edit'); ?></a>
+            <a class="btn btn-link" href="<%= editUrl%>"><?php echo _a('Edit'); ?></a>
             <span class="btn btn-link js-delete"><?php echo _a('Delete'); ?></span>
             <% } %>    
         </div>
@@ -53,6 +53,7 @@
 </script>
 <script>
 (function($){
+    var urlRoot = '<?php echo $this->url('', array('controller' => $controller)); ?>';
     var modal = $('<div>',{'class':'modal fade'}).appendTo(document.body);
     var NavItemView = Backbone.View.extend({
         tagName: 'tr',
@@ -62,11 +63,14 @@
             'click .js-delete': 'deleteAction'
         },
         initialize: function() {
+            this.model.set('editUrl', urlRoot + 'data?name=' + this.model.get('name'));
             this.model.on('destroy', this.remove, this);    
         },
         cloneAction: function() {
             var self = this;
-            $.get('<?php echo $this->url('', array('action' => 'clone', 'name' => '')); ?>' + this.model.get('name')).done(function(res) {
+            $.get(urlRoot + 'clone', {
+                name: this.model.get('name')
+            }).done(function(res) {
                 modal.html(res).modal('show');
                 formModule.success = function(res) {
                     modal.modal('hide');
@@ -77,7 +81,7 @@
         deleteAction: function() {
             if (confirm('<?php echo _a('Are you sure to delete this navigation') ?>')) {
                 this.model.destroy({
-                    url: '<?php echo $this->url('', array('action' => 'delete', 'name' => '')); ?>' + this.model.get('name')
+                    url: urlRoot + 'delete?name=' + this.model.get('name')
                 });    
             }    
         },
@@ -103,7 +107,7 @@
         applyAction: function(e) {
             var el = $(e.currentTarget),
                 name = el.attr('data-name');
-            $.post('<?php echo $this->url('', array('action' => 'apply')); ?>', {
+            $.post(urlRoot + 'apply', {
                 nav_front: name || ''    
             }).done(_.bind(function() {
                 this.$('.btn.active').removeClass('btn-primary active').addClass('js-apply');
