@@ -27,8 +27,8 @@ class ListController extends ActionController
     public function indexAction()
     {
         $active = _get('active');
-        if (null !== $active) {
-            $active = (int) $active;
+        if (-1 == $active) {
+            $active = null;
         }
         $page   = _get('page', 'int') ?: 1;
         $limit  = $this->config('list_limit') ?: 10;
@@ -72,12 +72,13 @@ class ListController extends ActionController
         ));
         $count = Pi::service('comment')->getCount(array('active' => $active));
 
-        $params = (null === $active) ? array() : array('active' => $active);
         $paginator = Paginator::factory($count, array(
             'page'          => $page,
             'limit'         => $limit,
             'url_options'   => array(
-                'params'    => $params,
+                'params'    => array(
+                    'active' => (null === $active) ? -1 : $active
+                ),
             ),
         ));
         if (null === $active) {
@@ -94,45 +95,7 @@ class ListController extends ActionController
             'paginator' => $paginator,
             'active'    => $active,
         ));
-        
-        $allCount = null === $active
-            ? $count 
-            : Pi::service('comment')->getCount(array('active' => null));
-        $activeCount = 1 === $active
-            ? $count
-            : Pi::service('comment')->getCount(array('active' => 1));
-        $inactiveCount = 0 === $active
-            ? $count
-            : Pi::service('comment')->getCount(array('active' => 0));
 
-        $navTabs = array(
-            array(
-                'active'    => null === $active,
-                'label'     => _a('All Posts') . " ({$allCount})",
-                'href'      => $this->url('', array(
-                    'action'    => 'index',
-                ))
-            ),
-            array(
-                'active'    => 1 == $active,
-                'label'     => _a('Active Posts') . " ({$activeCount})",
-                'href'      => $this->url('', array(
-                    'action'    => 'index',
-                    'active'    => 1,
-                ))
-            ),
-            array(
-                'active'    => 0 === $active,
-                'label'     => _a('Inactive Posts') . " ({$inactiveCount})",
-                'href'      => $this->url('', array(
-                    'action'    => 'index',
-                    'active'    => 0,
-                ))
-            ),
-        );
-        $this->view()->assign(array(
-            'tabs'      => $navTabs,
-        ));
         $this->view()->setTemplate('comment-list');
     }
 
