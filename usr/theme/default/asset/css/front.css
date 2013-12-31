@@ -17,11 +17,6 @@ body {
   display: none;
 }
 
-
-
-
-
-
 /* User bar */
 .pi-user-bar {
   margin: 5px 10px 0 5px;
@@ -250,4 +245,10 @@ body {
 /* Bootstrap custom */
 .nav-tabs {
   margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+  .navbar-form {
+    width: 250px;
+  }
 }
