@@ -71,7 +71,8 @@ var ThemeItemView = Backbone.View.extend({
         return this.el;
     },
     apply: function() {
-        $.getJSON('<?php echo $this->url('', array('action' => 'apply', 'section' => $section, 'theme' => '')); ?>' + this.model.get('name')).done(function(result) {
+        var url = '<?php echo $this->url('', array('action' => 'apply', 'section' => $section, 'theme' => '__NAME__')); ?>';
+        $.getJSON(url.replace('__NAME__', this.model.get('name'))).done(function(result) {
             if (result.status == 1) {
                 location.href = location.href;
             }

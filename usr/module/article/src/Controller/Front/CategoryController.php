@@ -73,7 +73,11 @@ class CategoryController extends ActionController
         // Get subcategories article count
         $modelArticle = $this->getModel('article');
         $select       = $modelArticle->select()
-            ->where(array('category' => $categoryIds))
+            ->where(array(
+                'category' => $categoryIds,
+                'active'   => 1,
+                'time_publish < ?' => time(),
+            ))
             ->columns(array('category', 'count' => new Expression('count(*)')))
             ->group(array('category'));
         $resultCount  = $modelArticle->selectWith($select);
@@ -107,9 +111,10 @@ class CategoryController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $route,
-                'params'    => array(
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $route,
+                'params'     => array(
                     'category'      => $category,
                 ),
             ));

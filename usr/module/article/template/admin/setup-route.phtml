@@ -6,15 +6,11 @@
 ?>
 
 <div>
-    <div class="span12">
-        <?php include 'setup-nav.phtml'; ?>
-    </div>
-
-    <div class="span8">
+    <div class="">
         <?php include 'message-box.phtml'; ?>
         <div id="article-js-route">
             
-            <div class="article-route-content row-fluid">
+            <div class="article-route-content">
                 <div class="article-route-header">
                     <span class="pull-left"><?php echo _a('Custom Parameters'); ?></span>&nbsp;
                     <span class="install-status">[<?php echo $installed ? _a('Install') : _a('Un-install'); ?>]</span>
@@ -43,7 +39,7 @@
                 </div>
             </div>
 
-            <div class="article-route-content row-fluid">
+            <div class="article-route-content">
                 <div class="article-route-header">
                     <span class="pull-left"><?php echo _a('Required File'); ?></span>
                 </div>
@@ -213,7 +209,7 @@ EOD;
             var url = '<?php echo $this->url('', array('action' => 'setup-route', 'custom' => 1)); ?>';
             $.get(url, function(result) {
                 result = $.parseJSON(result);
-                self.renderMessage(result.status ? 'success' : 'error', result.message);
+                self.renderMessage(result.status ? 'success' : 'danger', result.message);
                 if (result.status) {
                     window.location.reload();
                 }
@@ -224,7 +220,7 @@ EOD;
             var url = '<?php echo $this->url('', array('action' => 'setup-route')); ?>';
             $.get(url, function(result) {
                 result = $.parseJSON(result);
-                self.renderMessage(result.status ? 'success' : 'error', result.message);
+                self.renderMessage(result.status ? 'success' : 'danger', result.message);
                 if (result.status) {
                     window.location.reload();
                 }

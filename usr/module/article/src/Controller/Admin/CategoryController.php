@@ -359,6 +359,7 @@ class CategoryController extends ActionController
     public function listAction()
     {
         $model = $this->getModel('category');
+        $module = $this->getModule();
         $rowset = $model->enumerate(null, null, true);
 
         $this->view()->assign('categories', $rowset);
@@ -685,9 +686,10 @@ class CategoryController extends ActionController
             }
         }
 
-        return array(
+        echo json_encode(array(
             'status'    => $affectedRows ? true : false,
             'message'   => 'ok',
-        );
+        ));
+        exit;
     }
 }

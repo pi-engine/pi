@@ -66,7 +66,7 @@ class Slug extends Standard
         $matches = array(
             'action'        => (null === $slug) ? 'id' : 'slug',
             'id'            => $id,
-            'slug'          => urldecode($slug),
+            'slug'          => $this->decode($slug),
         );
 
         return new RouteMatch(array_merge($this->defaults, $matches),
@@ -89,7 +89,7 @@ class Slug extends Standard
         }
         $url = isset($mergedParams['id']) ? intval($mergedParams['id']) : '';
         if (isset($mergedParams['slug'])) {
-            $url .= ($url ? '-' : '') . urlencode($mergedParams['slug']);
+            $url .= ($url ? '-' : '') . $this->encode($mergedParams['slug']);
         }
 
         return $this->paramDelimiter

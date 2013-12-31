@@ -310,11 +310,12 @@ class AuthorController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array(
+                'params'     => array_filter(array(
                     'module'        => $module,
                     'controller'    => 'author',
                     'action'        => 'list',
@@ -475,10 +476,11 @@ class AuthorController extends ActionController
             }
         }
 
-        return array(
+        echo json_encode(array(
             'status'    => $affectedRows ? true : false,
             'message'   => 'ok',
-        );
+        ));
+        exit;
     }
     
     /**

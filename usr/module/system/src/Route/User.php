@@ -193,17 +193,10 @@ class User extends Standard
     }
 
     /**
-     * assemble(): Defined by Route interface.
-     *
-     * @see    Route::assemble()
-     * @param  array $params
-     * @param  array $options
-     * @return string
+     * {@inheritDoc}
      */
-    public function assemble(
-        array $params = array(),
-        array $options = array()
-    ) {
+    public function assemble(array $params = array(), array $options = array())
+    {
         if (!$params) {
             return $this->prefix;
         }

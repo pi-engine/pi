@@ -183,11 +183,11 @@ EOD;
                 $routeConfig = array_merge($routeConfig, $config['options']);
             }
             
-            if (isset($routeConfig['default'])) {
-                unset($routeConfig['default']);
+            if (isset($routeConfig['defaults'])) {
+                unset($routeConfig['defaults']);
                 $routeConfig = array_merge(
                     $routeConfig,
-                    $config['options']['default']
+                    $config['options']['defaults']
                 );
             }
             break;
@@ -388,6 +388,9 @@ EOD;
         }
     }
     
+    /**
+     * Update custom form file
+     */
     public function updateAction()
     {
         Pi::service('log')->active(false);
@@ -543,7 +546,6 @@ EOD;
         // Check whether custom route is installed
         $installedConfig = $this->canonizeConfig($installedConfig);
         $diff = array_diff($configs, $installedConfig);
-        $diff = array_filter($diff);
         $installed = false;
         if (empty($diff)) {
             $installed = true;

@@ -89,6 +89,10 @@ div .well {
 .article-route-param {
     margin: 10px;
 }
+.article-route-param li,
+#article-route-param li {
+    margin: 2px 0;
+}
 
 .route-form input {
     margin: 3px 0;
@@ -148,11 +152,12 @@ div .well {
     overflow: hidden;
 }
 
-.article-preview-photo i {
+.article-preview-photo span {
     color: #A7A7A7;
     font-size: 80px;
     margin-top: 15px;
     display: block;
+    margin-left: 12px;
 }
 
 .article-preview {
@@ -185,9 +190,7 @@ div .well {
 }
 .article-media-normal .normal-header {
     background-color: #eeeeee;
-    height: 40px;
-    line-height: 40px;
-    vertical-align: middle;
+    height: 60px;
     padding: 10px;
     border-bottom: 1px solid #dddddd;
 }
@@ -256,9 +259,7 @@ div .well {
 
 .default-header {
     background-color: #eeeeee;
-    height: 40px;
-    line-height: 40px;
-    vertical-align: middle;
+    height: 60px;
     padding: 10px;
     border: 1px solid #dddddd;
     border-radius: 4px;
@@ -322,10 +323,19 @@ div .well {
     background-color: #eeeeee;
     margin: 20px 0 0 0;
     border-radius: 5px;
-    padding: 20px 20px 20px 0;
+    padding: 20px 0 20px 0;
+}
+#topic-templates .view-previous,
+#topic-templates .view-next {
+    width: 30px;
+    margin-top: 60px;
+    float: left;
 }
 .template {
     position: relative;
+    width: 160px;
+    float: left;
+    padding: 0 15px;
 }
 .template-screenshot {
     border: solid 1px #333333;
@@ -333,8 +343,8 @@ div .well {
 .template-bar {
     position: absolute;
     bottom: 25px;
-    left: 0;
-    right: -1px;
+    left: 15px;
+    right: 16px;
     height: 30px;
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     z-index: 10;

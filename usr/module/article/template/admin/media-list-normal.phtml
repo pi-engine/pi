@@ -1,11 +1,11 @@
 <div class="article-media-normal<?php echo 'normal' == $style ? '' : ' hide'; ?>">
     <div class="normal-header">
         <input type="checkbox" class="check-all">
-        <button class="btn remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
+        <button class="btn btn-default remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
         <div class="pull-right btn-toolbar" style="margin-top: 0">
             <div class="btn-group">
-                <a class="btn" disabled="disabled"><i class="icon-th-large"></i></a>
-                <a class="btn" href="#"><i class="icon-th-list"></i></a>
+                <a class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span></a>
+                <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-th-list"></span></a>
             </div>
         </div>
     </div>
@@ -20,11 +20,11 @@
         <?php
                 }
         ?>
-            <div class="span2 one-item">
+            <div class="col-md-2 one-item">
                 <div class="list-item" data-id="<?php echo $this->escape($media['id']); ?>">
                     <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one hide">
-                    <i class="item-delete icon-remove hide"></i>
-                    <img src="<?php echo Pi::url($media['url']); ?>" style="vertical-align: bottom; max-height: 100%">
+                    <i class="item-delete glyphicon glyphicon-remove hide"></i>
+                    <img src="<?php echo Pi::url($media['url']); ?>" style="vertical-align: bottom; width: 100%; max-height: 100%; margin-bottom: 2px">
                     <div class="list-operation hide"></div>
                     <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></button>
                     <a class="item-detail hide" target="_blank" href="<?php echo $this->url('', array('action' => 'detail', 'id' => $media['id'])); ?>">
@@ -58,7 +58,7 @@
             this.$(".remove-checked").click(this.removeChecked);
             this.$(".item-delete").click(this.removeOne);
             this.$(".list-item button.btn-small").click(this.edit);
-            this.$(".icon-th-list").click(this.toggleList);
+            this.$(".glyphicon-th-list").click(this.toggleList);
             this.$(".list-item").click(this.selectOne);
         },
         displayElement  : function(el) {

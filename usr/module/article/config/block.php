@@ -250,6 +250,20 @@ return array(
                 'filter'       => 'string',
                 'value'        => '',
             ),
+            'image-width'      => array(
+                'title'        => _a('Slide image width'),
+                'description'  => _a('Maximum width of slide image'),
+                'edit'         => 'text',
+                'filter'       => 'number_int',
+                'value'        => 320,
+            ),
+            'image-height'     => array(
+                'title'        => _a('Slide image height'),
+                'description'  => _a('Maximum height of slide image'),
+                'edit'         => 'text',
+                'filter'       => 'number_int',
+                'value'        => 240,
+            ),
             'target'           => array(
                 'title'        => _a('Target'),
                 'description'  => _a('Open url in which window'),

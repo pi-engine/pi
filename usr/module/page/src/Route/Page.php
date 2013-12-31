@@ -85,7 +85,7 @@ class Page extends Standard
         $matches = array(
             'name'          => $name,
             'id'            => $id ? intval($id) : null,
-            'slug'          => $slug ? urldecode($slug) : null,
+            'slug'          => $slug ? $this->decode($slug) : null,
         );
         if ($action) {
             $matches['action'] = $action;
@@ -113,7 +113,7 @@ class Page extends Standard
         }
         $url = '';
         if (!empty($mergedParams['slug'])) {
-            $url = urlencode($mergedParams['slug']);
+            $url = $this->encode($mergedParams['slug']);
         } elseif (!empty($mergedParams['id'])) {
             $url = intval($mergedParams['id']);
         }

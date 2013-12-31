@@ -19,7 +19,7 @@ if ($details['seo']['description']) {
             <?php echo $this->escape($details['subtitle']); ?>
         </div>
         <?php } ?>
-        <div class="muted subline">
+        <div class="text-muted subline">
             <div>
                 <?php if (isset($details['source']) and $details['source']) { ?>
                 <div class="article-subline-desc">
@@ -95,7 +95,7 @@ if ($details['seo']['description']) {
                 }
                 ?>  
             </div>
-            <div class="article-subline-desc muted" style="margin-bottom: 10px"><?php _e('Tags: '); ?>
+            <div class="article-subline-desc text-muted" style="margin-bottom: 10px"><?php _e('Tags: '); ?>
             <?php if (empty($details['tag'])) {
                 echo '<span>' . __('None') . '</span>';
             } ?>
@@ -117,7 +117,7 @@ if ($details['seo']['description']) {
         </div>
         <div class="clearfix">
             <?php if (!isset($remain) and (int) $page < $details['pages']) { ?>
-                <div class="pull-right muted">
+                <div class="pull-right text-muted">
                     <a class="link mr10" href="<?php echo $this->escape($details['content'][$page]['url']); ?>">
                         <?php _e('Next Page'); ?>
                     </a>
@@ -145,14 +145,14 @@ if ($details['seo']['description']) {
             </ul>
         </div>
         <?php } ?>
-        <div class="article-statistics row-fluid">
-            <div class="span4 article-statistics-comment pull-left">
+        <div class="article-statistics">
+            <div class="col-md-4 article-statistics-comment pull-left">
                 <span>
                     <?php echo isset($details['comments']) ? $this->escape($details['comments']) : '0'; ?>
                 </span>&nbsp;
                 <a href="#"><?php _e('Comments'); ?>&nbsp;&gt;&gt;</a>
             </div>
-            <div class="span4">
+            <div class="col-md-4">
                 <div class="pull-left article-statistics-up">
                     <a href="#"><i class="icon-thumbs-up"></i></a>&nbsp;&nbsp;
                     <span class="text-warning">
@@ -161,12 +161,12 @@ if ($details['seo']['description']) {
                 </div>
                 <div class="pull-right article-statistics-down">
                     <a href="#"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;
-                    <span class="muted">
+                    <span class="text-muted">
                         <?php echo isset($details['down']) ? $this->escape($details['down']) : '0'; ?>
                     </span>
                 </div>
             </div>
-            <div class="span4 pull-right">
+            <div class="col-md-4 pull-right" style="height: 54px">
                 <div class="article-share">
                     <!-- JiaThis Button BEGIN -->
                     <div class="jiathis_style">
@@ -189,7 +189,7 @@ if ($details['seo']['description']) {
                 $leftright = 0; 
                 foreach($details['related'] as $related) { 
             ?>
-                <li class="muted">
+                <li class="text-muted">
                     <a target="_blank" href="<?php echo $this->escape($related['url']); ?>"
                        title="<?php echo $this->escape($related['subject']); ?>">
                     <?php echo $this->escape($related['subject']); ?>

@@ -4,7 +4,6 @@
     $this->Backbone();
     $this->bootstrap('js/bootstrap.min.js');
 ?>
-<h2 class="page-header"><?php echo $this->escape($title); ?></h2>
 
 <?php include 'message-box.phtml'; ?>
 
@@ -16,10 +15,10 @@
             <div id="category-image" class="upload-image-bg">
                 <?php $src = $form->get('image')->getValue(); ?>
                 <?php if ($src) { ?>
-                    <div class="black-bg"><i class="category icon-remove"></i></div>    
+                    <div class="black-bg"><span class="category glyphicon glyphicon-remove"></span></div>    
                     <img src="<?php echo Pi::url($src); ?>">
                     <?php } else { ?>    
-                    <i class="icon-columns"></i>
+                    <span class="glyphicon glyphicon-th-list"></span>
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -48,12 +47,12 @@ var page = {
 
 var UploadView = Backbone.View.extend({
     template        : _.template('<div class="black-bg">'
-                    + '<i class="category icon-remove"></i></div>'
+                    + '<span class="category glyphicon glyphicon-remove"></span></div>'
                     + '<img src="<%=preview_url %>">'
     ),
     events          : {
-        "click .category.icon-remove"   :"remove",
-        "click .media.icon-remove"      : "removeUpload",
+        "click .category.glyphicon-remove" :"remove",
+        "click .media.glyphicon-remove" : "removeUpload",
         "click #media-search"           : "searchMedia",
         "click .media-insert a"         : "insertMedia",
         "click .media-remove.close"     : "removeMedia",
@@ -65,8 +64,8 @@ var UploadView = Backbone.View.extend({
     },
     initialize      : function() {
         page.$("[name=placeholder]")
-            .parents(".control-group:first")
-            .find(".controls")
+            .parents(".form-group:first")
+            .find(".col-md-4:first")
             .html($("#temp-upload").html());
         this.$el   = $("#jsUpload");
         this.$("#media-button").html($("#media-upload-button").html());
@@ -200,7 +199,7 @@ var UploadView = Backbone.View.extend({
             )
         ); ?>' + page.id()).done(function() {
             page.$('[name=image]').val('');
-            self.$("#category-image").html('<i class="icon-columns"></i>');
+            self.$("#category-image").html('<span class="glyphicon glyphicon-th-list"></span>');
         });  
     },
     render          : function(obj) {
@@ -228,7 +227,13 @@ var UploadView = Backbone.View.extend({
         }
         if (url.length) {
             $.get(url, function(result) {
-                $('#media-lists').find('tbody').html('');
+                var tableHeader = '<tr>'
+                                + '<th><?php echo _a('Image'); ?></th>'
+                                + '<th><?php echo _a('Title'); ?></th>'
+                                + '<th><?php echo _a('Size'); ?></th>'
+                                + '<th><?php echo _a('Select'); ?></th>'
+                                + '</tr>';
+                $('#media-lists').find('tbody').html(tableHeader);
                 var result = $.parseJSON(result);
                 var lists  = result.data;
                 for (i in lists) {

@@ -18,6 +18,8 @@ return array(
     'author'    => array(
         'Name'      => 'Taiwen Jiang',
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
+        'Dev'       => '@lavenderli',
+        'UI/UE'     => '@zhangsimon, @loidco',
     ),
     'resource' => array(
         'database'      => array(
@@ -25,5 +27,6 @@ return array(
         ),
         'config'        => 'config.php',
         'block'         => 'block.php',
+        'route'         => 'route.php',
     ),
 );

@@ -59,8 +59,9 @@ var ThemeItemView = Backbone.View.extend({
 
     },
     update:function() {
+        var url = '<?php echo $this->url('', array('action' => 'update', 'name' => '__NAME__')); ?>';
         this.model.fetch({
-            url:'<?php echo $this->url('', array('action' => 'update', 'name' => '')); ?>' + this.model.get('name'),
+            url: url.replace('__NAME__', this.model.get('name')),
             success: function() {
                 systemMessage.succ('<?php echo _a('theme Update ok!')?>');
             },
@@ -71,8 +72,9 @@ var ThemeItemView = Backbone.View.extend({
     },
     uninstall: function() {
         if (confirm('<?php echo _a('Are you sure to uninstall this theme ? ') ?>')) {
+            var url = '<?php echo $this->url('', array('action' => 'uninstall', 'name' => '__NAME__')); ?>';
             this.model.destroy({
-               url:'<?php echo $this->url('', array('action' => 'uninstall', 'name' => '')); ?>' + this.model.get('name')
+               url: url.replace('__NAME__', this.model.get('name'))
             });
         }
     },

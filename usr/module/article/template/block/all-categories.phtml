@@ -13,7 +13,7 @@
     }
 </style>
 
-<div class="article-all-category row-fluid">
+<div class="article-all-category">
     <?php 
         $index = 0;
         foreach ($block['items'] as $top) {
@@ -26,13 +26,13 @@
         if (isset($top['child'])) {
             foreach ($top['child'] as $sub) { 
         ?>
-        <div class="muted article-size12">
+        <div class="text-muted article-size12">
             <?php
                 for ($i = 1; $i < $sub['depth']; $i++) {
                     echo '-';
                 }
             ?>
-            <a class="muted" target="<?php echo $this->escape($block['target']); ?>" href="<?php echo $this->escape($sub['url']); ?>">
+            <a class="text-muted" target="<?php echo $this->escape($block['target']); ?>" href="<?php echo $this->escape($sub['url']); ?>">
                 <?php echo $this->escape($sub['title']); ?>
             </a>
         </div>

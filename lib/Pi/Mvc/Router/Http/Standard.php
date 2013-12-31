@@ -226,7 +226,7 @@ class Standard implements RouteInterface
 
             for ($i = 0; $i < $count; $i += 2) {
                 if (isset($params[$i + 1])) {
-                    $matches[urldecode($params[$i])] = urldecode(
+                    $matches[$this->decode($params[$i])] = $this->decode(
                         $params[$i + 1]
                     );
                 }
@@ -235,7 +235,7 @@ class Standard implements RouteInterface
             foreach ($params as $param) {
                 $param = explode($this->keyValueDelimiter, $param, 2);
                 if (isset($param[1])) {
-                    $matches[urldecode($param[0])] = urldecode($param[1]);
+                    $matches[$this->decode($param[0])] = $this->decode($param[1]);
                 }
             }
         }
@@ -321,13 +321,57 @@ class Standard implements RouteInterface
             if (in_array($key, array('module', 'controller', 'action'))) {
                 continue;
             }
-            if (null === $value) {
+            if (null === $value || '' === $value) {
                 continue;
             }
-            $url .= $this->paramDelimiter . urlencode($key)
-                . $this->keyValueDelimiter . urlencode($value);
+            $url .= $this->paramDelimiter . $this->encode($key)
+                . $this->keyValueDelimiter . $this->encode($value);
         }
         $url = ltrim($url, $this->paramDelimiter);
+
+        return $url;
+    }
+
+    /**
+     * Assemble structure
+     *
+     * @param array $params
+     * @param string $url   URL to append
+     *
+     * @return string
+     */
+    protected function assembleStructure(array $params, $url = '')
+    {
+        $mca = array();
+        foreach (array('module', 'controller', 'action') as $key) {
+            if (!empty($params[$key])) {
+                $mca[$key] = $this->encode($params[$key]);
+            }
+        }
+        if ($this->paramDelimiter === $this->structureDelimiter) {
+            foreach(array('action', 'controller', 'module') as $key) {
+                if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
+                    $url = $this->encode($mca[$key]) . $this->paramDelimiter
+                        . $url;
+                }
+            }
+        } else {
+            $structure = urlencode($mca['module']);
+            if ($mca['controller'] !== $this->defaults['controller']) {
+                $structure .= $this->structureDelimiter
+                    . $this->encode($mca['controller']);
+                if ($mca['action'] !== $this->defaults['action']) {
+                    $structure .= $this->structureDelimiter
+                        . $this->encode($mca['action']);
+                }
+            } elseif ($mca['action'] !== $this->defaults['action']) {
+                $structure .= $this->structureDelimiter
+                    . $this->encode($mca['controller']);
+                $structure .= $this->structureDelimiter
+                    . $this->encode($mca['action']);
+            }
+            $url = $structure . ($url ? $this->paramDelimiter . $url : '');
+        }
 
         return $url;
     }
@@ -347,50 +391,8 @@ class Standard implements RouteInterface
             return $this->prefix;
         }
 
-        $mca = array();
-        foreach (array('module', 'controller', 'action') as $key) {
-            if (!empty($mergedParams[$key])) {
-                $mca[$key] = urlencode($mergedParams[$key]);
-                unset($mergedParams[$key]);
-            }
-        }
-
-        /*
-        $url = '';
-        foreach ($mergedParams as $key => $value) {
-            if (null === $value) {
-                continue;
-            }
-            $url .= $this->paramDelimiter . urlencode($key)
-                  . $this->keyValueDelimiter . urlencode($value);
-        }
-        $url = ltrim($url, $this->paramDelimiter);
-        */
         $url = $this->assembleParams($mergedParams);
-        if ($this->paramDelimiter === $this->structureDelimiter) {
-            foreach(array('action', 'controller', 'module') as $key) {
-                if (!empty($url) || $mca[$key] !== $this->defaults[$key]) {
-                    $url = urlencode($mca[$key]) . $this->paramDelimiter
-                         . $url;
-                }
-            }
-        } else {
-            $structure = urlencode($mca['module']);
-            if ($mca['controller'] !== $this->defaults['controller']) {
-                $structure .= $this->structureDelimiter
-                            . urlencode($mca['controller']);
-                if ($mca['action'] !== $this->defaults['action']) {
-                    $structure .= $this->structureDelimiter
-                                . urlencode($mca['action']);
-                }
-            } elseif ($mca['action'] !== $this->defaults['action']) {
-                $structure .= $this->structureDelimiter
-                            . urlencode($mca['controller']);
-                $structure .= $this->structureDelimiter
-                            . urlencode($mca['action']);
-            }
-            $url = $structure . ($url ? $this->paramDelimiter . $url : '');
-        }
+        $url = $this->assembleStructure($mergedParams, $url);
 
         $prefix = $this->prefix
             ? $this->paramDelimiter
@@ -410,4 +412,29 @@ class Standard implements RouteInterface
     {
         return array();
     }
+
+    /**
+     * Encode a path segment.
+     *
+     * @param  string $value
+     *
+     * @return string
+     */
+    protected function encode($value)
+    {
+        return $value ? rawurlencode($value) : $value;
+    }
+
+    /**
+     * Decode a path segment.
+     *
+     * @param  string $value
+     *
+     * @return string
+     */
+    protected function decode($value)
+    {
+        return rawurldecode($value);
+    }
+
 }

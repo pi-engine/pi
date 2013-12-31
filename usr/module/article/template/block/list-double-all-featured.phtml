@@ -1,5 +1,5 @@
-<div class="row-fluid">
-    <div class="span6">
+<div class="row">
+    <div class="col-md-6">
         <div>
             <?php $i = 0; ?>
             <?php foreach ($articles as $article) { ?>
@@ -10,7 +10,7 @@
                     <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($article['url']); ?>" class="article-front-title">
                         <?php echo $this->escape($article['subject']); ?>
                     </a>
-                    <div class="muted article-size12" style="margin-top: 5px">
+                    <div class="text-muted article-size12" style="margin-top: 5px">
                         <?php echo $article['summary'] ?>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
             <?php } ?>
         </div>
     </div>
-    <div class="pull-right span6">
+    <div class="pull-right col-md-6">
         <div>
             <?php $j = 0; ?>
             <?php foreach ($articles as $article) { ?>
@@ -30,7 +30,7 @@
                     <a target="<?php echo $this->escape($target); ?>" href="<?php echo $this->escape($article['url']); ?>" class="article-front-title">
                         <?php echo $this->escape($article['subject']); ?>
                     </a>
-                    <div class="muted article-size12" style="margin-top: 5px">
+                    <div class="text-muted article-size12" style="margin-top: 5px">
                         <?php echo $article['summary'] ?>
                     </div>
                 </div>

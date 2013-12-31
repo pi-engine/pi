@@ -61,7 +61,8 @@
         },
         install:function() {
             var self = this;
-            $.getJSON('<?php echo $this->url('', array('action' => 'install', 'name' => '')); ?>' + this.model.get('name')).done(function(res) {
+            var url = '<?php echo $this->url('', array('action' => 'install', 'name' => '__NAME__')); ?>';
+            $.getJSON(url.replace('__NAME__', this.model.get('name'))).done(function(res) {
                 if (res.status) {
                     self.remove();
                 } else {

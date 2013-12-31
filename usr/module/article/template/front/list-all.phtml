@@ -13,7 +13,7 @@
         <ul class="list list14">
             <?php $index = 0; ?>
             <?php foreach ($articles as $row) { ?>
-                <li class="muted">
+                <li class="text-muted">
                     <div class="list-hover">
                         <span class="pull-right article-list-desc">
                             <?php echo date('Y-m-d', $row['time_publish']); ?>
@@ -28,7 +28,9 @@
                 <?php } ?>    
             <?php } ?>
         </ul>
-        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array('class' => 'pagination-centered')); ?>
+        <div style="text-align: center">
+            <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
+        </div>
     </div>
 </div>
 <script>

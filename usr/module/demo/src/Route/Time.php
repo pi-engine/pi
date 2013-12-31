@@ -107,7 +107,7 @@ class Time extends Standard
             'action'        => 'time',
             'time'          => $time,
             'id'            => $id,
-            'slug'          => urldecode($slug),
+            'slug'          => $this->decode($slug),
         );
 
         return new RouteMatch(array_merge($this->defaults, $matches),
@@ -133,7 +133,7 @@ class Time extends Standard
             $url .= intval($mergedParams['id']);
         }
         if (isset($mergedParams['slug'])) {
-            $url .= ($url ? '-' : '') . urlencode($mergedParams['slug']);
+            $url .= ($url ? '-' : '') . $this->encode($mergedParams['slug']);
         }
         $timeString = date(
             'Y' . $this->dateDelimiter . 'm' . $this->dateDelimiter . 'd',

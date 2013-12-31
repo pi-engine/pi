@@ -31,6 +31,7 @@ class CategoryMergeForm extends BaseForm
             ),
             'attributes' => array(
                 'id'        => 'from',
+                'class'     => 'form-control',
             ),
             'type'       => 'Module\Article\Form\Element\Category',
         ));
@@ -42,6 +43,7 @@ class CategoryMergeForm extends BaseForm
             ),
             'attributes' => array(
                 'id'        => 'to',
+                'class'     => 'form-control',
             ),
             'type'       => 'Module\Article\Form\Element\Category',
         ));

@@ -27,7 +27,41 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $query  = $this->params('q');
+        $module     = $this->params('m');
+        $service    = $this->params('s');
+        if ($module) {
+            $this->searchModule($module);
+        } elseif ($service) {
+            $this->searchService($service);
+        } else {
+            $this->searchGlobal();
+        }
+    }
+
+    /**
+     * Search in a specific module
+     */
+    public function moduleAction()
+    {
+        $this->searchModule();
+    }
+
+    /**
+     * Search by external service
+     */
+    public function serviceAction()
+    {
+        $this->searchService();
+    }
+
+    /**
+     * Perform global search
+     *
+     * @return void
+     */
+    protected function searchGlobal()
+    {
+        $query      = $this->params('q');
         $modules = $this->getModules($query);
 
         if ($query) {
@@ -58,17 +92,21 @@ class IndexController extends ActionController
     }
 
     /**
-     * Search in a specific module
+     * Perform module search
+     *
+     * @param string $module
+     *
+     * @return void
      */
-    public function moduleAction()
+    protected function searchModule($module = '')
     {
         $query  = $this->params('q');
         $page   = $this->params('page') ?: 1;
-        $module = $this->params('m');
+        $module = $module ?: $this->params('m');
 
         $modules = $this->getModules($query);
         if (!isset($modules[$module])) {
-            $this->redirectTo(array('action' => 'index'));
+            $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
         $label = $modules[$module]['title'];
@@ -121,25 +159,42 @@ class IndexController extends ActionController
     }
 
     /**
-     * Search by external service
+     * Perform external search
+     *
+     * @param string $service
+     *
+     * @return void
      */
-    public function externalAction()
+    protected function searchService($service = '')
     {
         $query      = $this->params('q');
-        $service    = $this->params('service');
+        $service    = $service ?: $this->params('service');
         if (!$service) {
-            $this->redirectTo(array('action' => 'index'));
+            $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
-        if ('google' == $service && $gcsCode = $this->config('google')) {
-            $this->view()->assign('gcs', $gcsCode);
+
+        if ('google' == $service && $code = $this->config('google_code')) {
+            $host = $this->config('google_host');
+            if (!$host) {
+                $host = 'www.google.com';
+            } else {
+                $host = preg_replace('|^(http[s]?:\/\/)|i', '', $host);
+                $host = trim($host, '/');
+            }
+            $this->view()->assign('google', array(
+                'code'  => $code,
+                'host'  => $host,
+                'q'     => $query,
+            ));
             $this->view()->setTemplate('search-google');
+
             return;
         }
 
         $data = $this->getService($service);
         if (!$data) {
-            $this->redirectTo(array('action' => 'index'));
+            $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
         $url = call_user_func($data['url'], $query);
@@ -283,11 +338,11 @@ class IndexController extends ActionController
 
             return $link;
         };
-        $baiduQuery = function ($query) use ($home) {
-            preg_match('/^(http[s]?:\/\/)?([^\/]*)/i', $home, $match);
-            $home = $match[2];
-            $pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
-            $link = sprintf($pattern, urlencode($home), urlencode($query));
+        $baiduQuery = function ($query) {
+            $code = $this->config('baidu_code');
+            $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
+            //$pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
+            $link = sprintf($pattern, urlencode($code), urlencode($query));
 
             return $link;
         };

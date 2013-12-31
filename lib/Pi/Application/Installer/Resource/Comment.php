@@ -23,16 +23,26 @@ use Pi;
  *      // Callback to fetch source meta data
  *      'callback'      => <source-callback>
  *
- *      // Callback to identify root data
- *      'locator'       => <locator-callback>
- *      // Alternative to `locator`
- *      'controller'    => <controller-name>,
- *      'action'        => <action-name>,
- *      'identifier'    => <item-identifier-name>,
- *      'params'        => array(
- *          <extra-param>   => <param-value>,
- *          <...>,
+ *      // Parameters to identify/locate root data
+ *      'locator'       => array(
+ *          'controller'    => <controller-name>,
+ *          'action'        => <action-name>,
+ *          'identifier'    => <item-identifier-name>,
+ *          'params'        => array(
+ *              <extra-param>   => <param-value>,
+ *              <...>,
+ *          ),
  *      ),
+ *  ),
+ *
+ *  <type-name>  => array(
+ *      'title'         => __('Comment type title'),
+ *      'icon'          => <img-src>,
+ *      // Callback to fetch source meta data
+ *      'callback'      => <source-callback>
+ *
+ *      // Callback to identify/locate root data
+ *      'locator'       => <locator-callback>
  *  ),
  *  <...>
  * </code>
@@ -41,18 +51,20 @@ use Pi;
  */
 class Comment extends AbstractResource
 {
-    protected $categoryColumn = array(
+    /** @var array Columns of type */
+    protected $typeColumn = array(
         'id',
         'title',
         'callback',
         'locator',
+        'active',
+        'icon',
+
         'module',
         'controller',
         'action',
         'identifier',
-        'params',
-        'active',
-        'icon'
+        'params'
     );
 
     /**
@@ -74,14 +86,27 @@ class Comment extends AbstractResource
     protected function canonize($config)
     {
         $result = array();
-        foreach ($config as $category => $data) {
+        foreach ($config as $type => $data) {
             foreach ($data as $key => $val) {
-                if (!in_array($key, $this->categoryColumn)) {
+                if (!in_array($key, $this->typeColumn)) {
                     unset($data[$key]);
                 }
             }
-            if (!isset($data['module'])) {
-                $data['module'] = $this->getModule();
+            if (!empty($data['locator'])) {
+                if (is_array($data['locator'])) {
+                    foreach (array(
+                        'module',
+                        'controller',
+                        'action',
+                        'identifier',
+                        'params'
+                     ) as $key) {
+                        if (isset($data['locator'][$key])) {
+                            $data[$key] = $data['locator'][$key];
+                        }
+                    }
+                    $data['locator'] = '';
+                }
             }
             if (empty($data['locator'])) {
                 if (!isset($data['controller'])) {
@@ -94,17 +119,20 @@ class Comment extends AbstractResource
                     $data['identifier'] = 'id';
                 }
             }
+            if (!isset($data['module'])) {
+                $data['module'] = $this->getModule();
+            }
             if (!isset($data['name'])) {
-                $data['name'] = $category;
+                $data['name'] = $type;
             }
             if (!isset($data['callback'])) {
                 $data['callback'] = sprintf(
                     'Module\\%s\Api\Comment%s',
                     ucfirst($this->event->getParam('directory')),
-                    ucfirst($category)
+                    ucfirst($type)
                 );
             }
-            $result[$category] = $data;
+            $result[$type] = $data;
         }
 
         return $result;

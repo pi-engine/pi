@@ -9,8 +9,8 @@
     $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
 ?>
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-md-12">
         <div id="jsList">
             <div>
                 <ul class="nav nav-tabs">
@@ -34,58 +34,61 @@
                             <?php echo _a('Zips'); ?>
                         </a>
                     </li>
-                    <a class="btn pull-right" href="<?php echo $this->url('', array('action' => 'add')); ?>">
-                        <?php echo _a('Upload'); ?>
-                    </a>
                 </ul>
             </div>
             <div class="clearfix">
                 <div class="pull-left form-inline">
-                    <select class="bulk-operation hide">
-                        <option value=""><?php echo _a('Bulk operation'); ?></option>
-                        <option value="download"><?php echo _a('Download'); ?></option>
-                        <option value="delete"><?php echo _a('Delete'); ?></option>
-                    </select>
-                    <select class="search-type" data-url="<?php echo $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)); ?>" style="margin-right: 20px">
-                        <option value=""><?php echo _a('All'); ?></option>
-                        <?php foreach ($types as $key => $val) { ?>
-                        <option value="<?php echo $this->escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo $this->escape($val); ?></option>
-                        <?php } ?>
-                    </select>
-                    <div class="muted pull-right" style="padding-top: 5px">
-                        <?php echo $this->escape($count) . ' results'; ?>
+                    <div class="form-group">
+                        <select class="bulk-operation form-control hide">
+                            <option value=""><?php echo _a('Bulk operation'); ?></option>
+                            <option value="download"><?php echo _a('Download'); ?></option>
+                            <option value="delete"><?php echo _a('Delete'); ?></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="search-type form-control form-group" data-url="<?php echo $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)); ?>" style="margin-right: 20px">
+                            <option value=""><?php echo _a('All'); ?></option>
+                            <?php foreach ($types as $key => $val) { ?>
+                            <option value="<?php echo $this->escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo $this->escape($val); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <div class="text-muted pull-right" style="padding-top: 5px">
+                            <?php echo $this->escape($count) . ' results'; ?>
+                        </div>
                     </div>
                 </div>
                 <?php
                 $form->setAttributes(array(
                     'action' => $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)),
                     'method' => 'get',
-                    'class'  => 'pull-right',
-                    'style'  => 'margin: 0',
+                    'class'  => 'navbar-form navbar-right',
+                    'style'  => 'margin: 0; padding-right: 0',
                 ));
                 echo $this->form()->openTag($form);
                 ?>
-                    <div class="input-append">
+                    <div class="form-group">
                         <?php
                         $element = $form->get('keyword');
                         $element->setAttributes(array(
-                            'class'       => 'input-append',
+                            'class'       => 'form-control',
                             'placeholder' => $element->getOption('label') ?: _a('Title'),
                         ));
                         echo $this->formElement($element);
                         ?>
-                        <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
                     </div>
+                    <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
                 <?php echo $this->form()->closeTag(); ?>
             </div>
             <?php if ('image' == $type) { ?>
             <div class="default-header<?php echo 'default' == $style ? '' : ' hide'; ?>" style="margin-bottom: 10px">
                 <input type="checkbox" class="check-all">
-                <button class="btn remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
+                <button class="btn btn-default remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
                 <div class="pull-right btn-toolbar" style="margin-top: 0">
                     <div class="btn-group">
-                        <a class="btn" href="#"><i class="icon-th-large"></i></a>
-                        <a class="btn" disabled="disabled"><i class="icon-th-list"></i></a>
+                        <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-th-large"></i></a>
+                        <a class="btn btn-default" disabled="disabled"><i class="glyphicon glyphicon-th-list"></i></a>
                     </div>
                 </div>
             </div>
@@ -123,7 +126,7 @@
                     <?php
                         } else {
                     ?>
-                        <div class="list-image"><i class="icon-file"></i></div>
+                        <div class="list-image"><span class="glyphicon glyphicon-file"></span></div>
                     <?php
                         }
                     ?>
@@ -143,13 +146,13 @@
                     <td><?php if ('image' == $type) { ?>
                         <?php echo $this->escape($media['w']) . ' * ' . $this->escape($media['h']); ?>
                     <?php } else {
-                        echo '<span class="muted">' . _a('None') . '</span>';
+                        echo '<span class="text-muted">' . _a('None') . '</span>';
                     } ?>
                     </td>
                     <td><?php 
                         echo $media['description'] 
                             ? mb_substr($media['description'], 0, 20, 'UTF-8')
-                            : '<span class="muted">' . _a('No description') . '</span>'
+                            : '<span class="text-muted">' . _a('No description') . '</span>'
                         ?>
                     </td>
                     <td><?php echo isset($media['download']) ? $this->escape($media['download']) : 0 ?></td>
@@ -187,7 +190,7 @@
             this.$(".bulk-operation").change(this.bulk);
             this.$(".check-one").click(this.clickOne);
             this.$(".one-action").click(this.oneAction);
-            this.$(".icon-th-large").click(this.toggleList);
+            this.$(".glyphicon-th-large").click(this.toggleList);
             this.$(".remove-checked").click(this.removeChecked);
         },
         toggleList      : function() {

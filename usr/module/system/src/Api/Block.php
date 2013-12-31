@@ -61,12 +61,6 @@ class Block extends AbstractApi
         if (isset($block['name']) && empty($block['name'])) {
             $block['name'] = null;
         }
-        /*
-        if (isset($block['access'])) {
-            $access = $block['access'];
-            unset($block['access']);
-        }
-        */
         foreach (array_keys($block) as $key) {
             if (in_array($key, $this->rootColumns)) {
                 $root[$key] = $block[$key];
@@ -127,7 +121,6 @@ class Block extends AbstractApi
                 ? $data : (isset($data['value']) ? $data['value'] : '');
         }
         $block['config'] = $config;
-
 
         $rowBlock = $modelBlock->createRow($block);
         $rowBlock->save();
