@@ -108,6 +108,23 @@ class RowGateway extends AbstractRowGateway
         return $this;
     }
 
+    /**
+     * Get column names
+     *
+     * @param bool $fetch Fetch from metadata if not specified
+     *
+     * @return string[]
+     */
+    public function getColumns($fetch = false)
+    {
+        if (!$this->columns && $this->model) {
+            $columns = $this->model->getColumns($fetch);
+        } else {
+            $columns = $this->columns;
+        }
+
+        return $columns;
+    }
 
     /**#@+
      * Pi Engine methods for column encode/decode
