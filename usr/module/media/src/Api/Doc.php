@@ -12,6 +12,7 @@ namespace Module\Media\Api;
 use Closure;
 use Pi;
 use Pi\Application\AbstractApi;
+use Pi\File\Transfer\Upload;
 
 class Doc extends AbstractApi
 {
@@ -30,9 +31,31 @@ class Doc extends AbstractApi
      */
     protected function model($name = 'doc')
     {
-        $model = Pi::Model($name, $this->module);
+        $model = Pi::model($name, $this->module);
 
         return $model;
+    }
+
+    /**
+     * Canonize doc meta data
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function canonize(array $data)
+    {
+        if (!isset($data['attributes'])) {
+            $data['attributes'] = array();
+            foreach (array('mimetype', 'size', 'width', 'height') as $key) {
+                if (isset($data[$key])) {
+                    $data['attributes'][$key] = $data[$key];
+                    unset($data[$key]);
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -65,6 +88,7 @@ class Doc extends AbstractApi
      */
     public function add(array $data)
     {
+        $data = $this->canonize($data);
         $row = $this->model()->createRow($data);
         $row->save();
 
@@ -105,6 +129,9 @@ class Doc extends AbstractApi
                 if ($uploader->isValid()) {
                     $uploader->receive();
                     $filename = $uploader->getUploaded();
+                    if (is_array($filename)) {
+                        $filename = current($filename);
+                    }
                     $success = true;
                 }
                 break;
@@ -125,12 +152,10 @@ class Doc extends AbstractApi
                 break;
         }
         if ($success) {
-            $params['url'] = $rootUri . '/' . $relativePath . '/' . $filename;
+            $params['url']  = $rootUri . '/' . $relativePath . '/' . $filename;
             $params['path'] = $rootPath . '/' . $relativePath . '/' . $filename;
 
-            $row = $this->model()->createRow($params);
-            $row->save();
-            $result = $row['id'];
+            $result = $this->add($params);
         } else {
             $result = 0;
         }
@@ -149,6 +174,7 @@ class Doc extends AbstractApi
     {
         $row = $this->model()->find($id);
         if ($row) {
+            $data = $this->canonize($data);
             $row->assign($data);
             $row->save();
 

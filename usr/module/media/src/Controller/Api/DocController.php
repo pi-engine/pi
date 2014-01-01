@@ -10,7 +10,6 @@
 namespace Module\Media\Controller\Api;
 
 use Pi\Mvc\Controller\ApiController;
-use Pi\File\Transfer\Upload;
 
 /**
  * User webservice controller
@@ -30,7 +29,7 @@ class DocController extends ApiController
     public function uploadAction()
     {
         $params = (array) $this->params();
-        $id = Pi::api('doc', $this->module)->upload(
+        $id = Pi::api($this->module, 'doc')->upload(
             $params,
             $this->request->getMethod()
         );
@@ -62,7 +61,7 @@ class DocController extends ApiController
         );
 
         $id     = $this->params('id');
-        $result = Pi::api('doc', $this->module)->delete($id);
+        $result = Pi::api($this->module, 'doc')->delete($id);
         if (!$result) {
             $response = array(
                 'status'    => 0,

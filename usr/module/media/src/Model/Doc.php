@@ -19,6 +19,20 @@ use Pi\Application\Model\Model;
  */
 class Doc extends Model
 {
+    /**
+     * {@inheritDoc}
+     */
+    protected $columns = array(
+        'id', 'url', 'path', 'filename', 'attributes',
+        'title', 'description',
+        'active', 'time_created', 'time_updated', 'time_deleted',
+        'appkey', 'module', 'type', 'token',
+        'uid', 'ip', 'count'
+    );
+
+    /**
+     * {@inheritDoc}
+     */
     protected $encodeColumns = array(
         'attributes'     => true,
     );
