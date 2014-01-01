@@ -5,10 +5,10 @@ CREATE TABLE `{doc}` (
   `url`             varchar(255)                    NOT NULL DEFAULT '',
   # Absolute path to access, optional; for uploaded doc only
   `path`            varchar(255)                    NOT NULL DEFAULT '',
-  # filename, optional?
+  # filename, for download
   `filename`        varchar(255)                    NOT NULL DEFAULT '',
 
-  # file attributes: mimetype, filesize, width, height, etc.
+  # Encoded file attributes: mimetype, filesize, width, height, etc.
   `attributes`      text,
   #`mimetype`        varchar(64)                     NOT NULL DEFAULT '',
   #`filesize`        int(10) UNSIGNED                NOT NULL DEFAULT 0,
@@ -27,7 +27,10 @@ CREATE TABLE `{doc}` (
   # Application attributes
   `appkey`          varchar(255)                    NOT NULL DEFAULT '',
   `module`          varchar(64)                     NOT NULL DEFAULT '',
-  `category`        varchar(64)                     NOT NULL DEFAULT '',
+  # Application type for doc
+  `type`            varchar(64)                     NOT NULL DEFAULT '',
+  # Token to identify a group of docs just in case
+  `token`           varchar(64)                     NOT NULL DEFAULT '',
 
   # User attributes
   `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
@@ -68,15 +71,4 @@ CREATE TABLE `{application}` (
   PRIMARY KEY           (`id`),
   UNIQUE KEY `name`     (`name`),
   UNIQUE KEY `appkey`   (`appkey`)
-);
-
-CREATE TABLE `{category}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `appkey`          varchar(64)           NOT NULL DEFAULT '',
-  `module`          varchar(64)           NOT NULL DEFAULT '',
-  `name`            varchar(64)           NOT NULL DEFAULT '',
-  `title`           varchar(255)          NOT NULL DEFAULT '',
-
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `category`  (`appkey`, `module`, `name`)
 );
