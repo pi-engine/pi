@@ -2,20 +2,18 @@
     $this->css($this->assetModule('script/admin.css'));
 ?>
 
-<div class="pi-media-header"><?php echo _escape($title); ?></div>
-
 <div id="pi-js-media">
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="width: 120px"><?php echo _a('Application'); ?></th>
+                <th style="width: 250px"><?php echo _a('Application'); ?></th>
                 <th style="width: 60px"><?php echo _a('Module'); ?></th>
                 <th style="width: 80px"><?php echo _a('Category'); ?></th>
                 <th><?php echo _a('Action'); ?></th>
             </tr>
-            <?php foreach ($items as $appId => $item) { ?>
+            <?php foreach ($items as $appkey => $item) { ?>
             <tr>
-                <td><?php echo _escape($apps[$appId]); ?></td>
+                <td><?php echo _escape($apps[$appkey]); ?></td>
                 <td></td>
                 <td></td>
                 <td>
