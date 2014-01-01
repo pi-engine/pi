@@ -71,7 +71,7 @@ class Doc extends AbstractApi
      */
     public function addApplication(array $data)
     {
-        $model  =$this->model('application');
+        $model  = $this->model('application');
         $row    = $model->find($data['appkey'], 'appkey');
         if (!$row) {
             $row = $model->createRow($data);
@@ -92,11 +92,65 @@ class Doc extends AbstractApi
      */
     public function add(array $data)
     {
-        $data = $this->canonize($data);
+        // Get media attributes
+        /*if (!isset($data['attributes'])) {
+            $attributes = array();
+            foreach ($data as $key => $value) {
+                if (in_array($key, $this->attributes)) {
+                    $attributes[$key] = $value;
+                    unset($data[$key]);
+                }
+            }
+            $data['attributes'] = $attributes;
+        }
+        
+        // Create application data
+        if (!isset($data['appkey'])) {
+            return false;
+        }
+        $app = array(
+            'appkey'   => $data['appkey'],
+            'app_name' => $data['app_name'],
+        );
+        $appId = $this->addApplication($app);
+        if (empty($appId)) {
+            return false;
+        }
+        unset($data['app_name']);
+        
+        // Canonize media data
+        $extends = isset($data['extend']) ? $data['extend'] : array();
+        foreach ($data as $key => $val) {
+            if (!in_array($key, $this->columns)) {
+                unset($data[$key]);
+            }
+        }
+        
+        // Create data
+        if (!isset($data['active'])) {
+            $data['active'] = 1;
+        }
+        $data['time_created'] = time();
         $row = $this->model()->createRow($data);
         $row->save();
+        if (empty($row->id)) {
+            return false;
+        }
+        
+        // Create extended data
+        $docId = $row->id;
+        $model = Pi::model('meta', $this->module);
+        foreach ($extends as $key => $val) {
+            $data = array(
+                'doc'    => $docId,
+                'name'   => $key,
+                'value'  => $val,
+            );
+            $row = $model->createRow($data);
+            $row->save();
+        }
 
-        return (int) $row->id;
+        return (int) $docId;*/
     }
 
     /**
@@ -185,16 +239,44 @@ class Doc extends AbstractApi
      */
     public function update($id, array $data)
     {
-        $row = $this->model()->find($id);
+        /*$row = $this->model()->find($id);
         if ($row) {
-            $data = $this->canonize($data);
+            // Update extend value
+            $extends = isset($data['extend']) ? $data['extend'] : array();
+            unset($data['extend']);
+            $model = Pi::model('meta', $this->module);
+            // TODO: get allowed custom extended fields
+            // TODO: insert extend data if the field is not exists
+            // Update value of existing extend field
+            foreach ($extends as $key => $val) {
+                $model->update(
+                    array('value' => $val),
+                    array(
+                        'doc'   => $row->id,
+                        'name'  => $key,
+                    )
+                 );
+            }
+            
+            // Remove columns that cannot be updated
+            $columns = array(
+                'id', 'time_created', 'time_updated', 'time_delete', 'ip', 'uid'
+            );
+            foreach ($data as $key => $val) {
+                if (in_array($key, $columns)) {
+                    unset($data[$key]);
+                }
+            }
+            
+            // Update data
+            $data['time_updated'] = time();
             $row->assign($data);
             $row->save();
 
             return true;
         }
 
-        return false;
+        return false;*/
     }
     
     /**
@@ -207,7 +289,7 @@ class Doc extends AbstractApi
      */
     public function activate($id, $flag = true)
     {
-        $result = $this->upate($id, array('active' => $flag ? 1 : 0));
+        $result = $this->update($id, array('active' => $flag ? 1 : 0));
 
         return $result;
     }
