@@ -185,6 +185,9 @@ abstract class ApiController extends ActionController
         $select = $model->select();
         $select->where($where);
         $select->limit($limit);
+        if ($fields) {
+            $select->columns($fields);
+        }
         if ($offset) {
             $select->offset($offset);
         }
@@ -313,10 +316,14 @@ abstract class ApiController extends ActionController
      */
     protected function canonizeCondition(array $query)
     {
-        $where = array('active' => 1);
-        if (isset($query['active'])) {
-            $where['active'] = $query['active'];
+        $where = array();
+        if (array_key_exists('active', $query)) {
+            if (isset($query['active'])) {
+                $where['active'] = $query['active'] ? 1 : 0;
+            }
             unset($query['active']);
+        } else {
+            $where['active'] = 1;            
         }
         $where = Pi::db()->where($where);
         if ($query) {
