@@ -4,17 +4,17 @@
 
 <div id="jsList">
     <div class="clearfix form-inline">
-        <form class="navbar-form navbar-left" style="padding-left: 0; margin: 0"
+        <form class="pull-right" 
               method="get" 
               action="<?php echo $this->url('', array('action' => 'list')); ?>" style="margin: 0">
-            <div class="form-group">
+            <div class="input-append">
                 <input type="text" 
                        value="" 
                        placeholder="<?php echo _a('Name'); ?>"
-                       class="form-control" 
+                       class="input-medium" 
                        name="name"> 
+                <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
             </div>
-            <button type="submit" class="btn"><?php echo _a('Search'); ?></button>
         </form>
     </div>
     <table class="table table-striped">
@@ -26,21 +26,21 @@
             </tr>
             <?php foreach ($apps as $app) { ?>
             <tr>
-                <td><?php echo $this->escape($app['id']) ?></td>
+                <td><?php echo $this->escape($app->id) ?></td>
                 <td>
-                    <?php echo $this->escape($app['name']); ?>
+                    <?php echo $this->escape($app->name); ?>
                     <div class="row-actions">
                         <a href="<?php echo $this->url('', array(
                             'action' => 'edit',
-                            'id'     => $app['id']
+                            'id'     => $app->id
                         )); ?>"><?php echo _a('Edit'); ?></a> |
                         <a href="<?php echo $this->url('', array(
                             'action' => 'delete',
-                            'appkey' => $app['appkey']
-                        )); ?>" onclick="return window.confirm('Are you really want to delete it?');"><?php echo _a('Delete'); ?></a>
+                            'id'     => $app->id
+                        )); ?>" onclick="return window.confirm('Really delete?');"><?php echo _a('Delete'); ?></a>
                     </div>
                 </td>
-                <td><?php echo $this->escape($app['title']); ?></td>
+                <td><?php echo $this->escape($app->title); ?></td>
             </tr>   
             <?php } ?>
         </tbody>

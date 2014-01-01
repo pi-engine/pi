@@ -17,47 +17,40 @@ return array(
         
         // Default admin navigation
         'admin'   => array(
-            'list'              => array(
-                'label'         => _t('List Media'),
+            'list-all'          => array(
+                'label'         => _t('List All'),
                 'route'         => 'admin',
                 'controller'    => 'list',
                 'action'        => 'index',
-                'permission'    => array(
+                'permission'     => array(
                     'resource'  => 'list',
                 ),
-                
-                'pages'         => array(
-                    'all'               => array(
-                        'label'         => _t('All'),
-                        'route'         => 'admin',
-                        'controller'    => 'list',
-                        'action'        => 'index',
-                    ),
-                    'list-application'  => array(
-                        'label'         => _t('By Application'),
-                        'route'         => 'admin',
-                        'controller'    => 'list',
-                        'action'        => 'application',
-                    ),
-                    'type'              => array(
-                        'label'         => _t('By Type'),
-                        'route'         => 'admin',
-                        'controller'    => 'list',
-                        'action'        => 'type',
-                    ),
-                    'user'              => array(
-                        'label'         => _t('By User'),
-                        'route'         => 'admin',
-                        'controller'    => 'list',
-                        'action'        => 'user',
-                    ),
-                    'edit'              => array(
-                        'label'         => _t('Edit'),
-                        'route'         => 'admin',
-                        'controller'    => 'media',
-                        'action'        => 'edit',
-                        'visible'       => 0,
-                    ),
+            ),
+            'list-application'  => array(
+                'label'         => _t('By Application'),
+                'route'         => 'admin',
+                'controller'    => 'list',
+                'action'        => 'application',
+                'permission'     => array(
+                    'resource'  => 'list',
+                ),
+            ),
+            'list-type'         => array(
+                'label'         => _t('By Type'),
+                'route'         => 'admin',
+                'controller'    => 'list',
+                'action'        => 'type',
+                'permission'     => array(
+                    'resource'  => 'list',
+                ),
+            ),
+            'list-user'         => array(
+                'label'         => _t('By User'),
+                'route'         => 'admin',
+                'controller'    => 'list',
+                'action'        => 'user',
+                'permission'     => array(
+                    'resource'  => 'list',
                 ),
             ),
             'application'       => array(
@@ -68,29 +61,13 @@ return array(
                 'permission'    => array(
                     'resource'  => 'application',
                 ),
-                
-                'pages'         => array(
-                    'list'              => array(
-                        'label'         => _t('List'),
-                        'route'         => 'admin',
-                        'controller'    => 'application',
-                        'action'        => 'list',
-                    ),
-                    'edit'              => array(
-                        'label'         => _t('Edit'),
-                        'route'         => 'admin',
-                        'controller'    => 'application',
-                        'action'        => 'edit',
-                        'visible'       => 0,
-                    ),
-                ),
             ),
             'analysis'          => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',
                 'controller'    => 'analysis',
                 'action'        => 'index',
-                'permission'    => array(
+                'permission'     => array(
                     'resource'  => 'analysis',
                 ),
             ),

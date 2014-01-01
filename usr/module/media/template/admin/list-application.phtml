@@ -83,11 +83,11 @@
                             </a>
                         </div>
                     </td>
-                    <td><?php echo $this->escape($media['attributes']['mimetype']); ?></td>
-                    <td><?php echo $this->escape($apps[$media['appkey']]); ?></td>
+                    <td><?php echo $this->escape($media['mimetype']); ?></td>
+                    <td><?php echo $this->escape($apps[$media['application']]); ?></td>
                     <td><?php echo $this->escape($media['module']); ?></td>
                     <td><?php echo $this->escape($categories[$media['category']]); ?></td>
-                    <td><?php echo _date($media['time_created']); ?></td>
+                    <td><?php echo _date($media['time_upload']); ?></td>
                 </tr>   
                 <?php } ?>
             </tbody>
