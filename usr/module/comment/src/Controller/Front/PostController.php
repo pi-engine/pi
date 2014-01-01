@@ -32,12 +32,12 @@ class PostController extends ActionController
         $currentUid     = $currentUser->get('id');
 
         $id             = _get('id', 'int') ?: 1;
-        $post           = Pi::api('comment')->getPost($id);
+        $post           = Pi::api('api', 'comment')->getPost($id);
         $target         = array();
 
         if ($post && $post['active']) {
-            $post['content'] = Pi::api('comment')->renderPost($post);
-            $target = Pi::api('comment')->getTarget($post['root']);
+            $post['content'] = Pi::api('api', 'comment')->renderPost($post);
+            $target = Pi::api('api', 'comment')->getTarget($post['root']);
             $user = Pi::service('user')->get($post['uid'], array('name'));
             $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
             $user['avatar'] = Pi::service('avatar')->get($post['uid']);
@@ -48,7 +48,7 @@ class PostController extends ActionController
             $operations = array(
                 'permanent' => array(
                     'title' => __('Permanent link'),
-                    'url'   => Pi::api('comment')->getUrl('post', array(
+                    'url'   => Pi::api('api', 'comment')->getUrl('post', array(
                         'post'  => $id,
                     )),
                 ),
@@ -57,7 +57,7 @@ class PostController extends ActionController
             if ($currentUid) {
                 $operations['reply'] = array(
                     'title' => __('Reply'),
-                    'url'   => Pi::api('comment')->getUrl('reply', array(
+                    'url'   => Pi::api('api', 'comment')->getUrl('reply', array(
                         'post'  => $id,
                     )),
                 );
@@ -67,13 +67,13 @@ class PostController extends ActionController
                 $operations = array_merge($operations, array(
                     'edit'  => array(
                         'title' => __('Edit'),
-                        'url'   => Pi::api('comment')->getUrl('edit', array(
+                        'url'   => Pi::api('api', 'comment')->getUrl('edit', array(
                             'post'  => $id,
                         )),
                     ),
                     'delete'  => array(
                         'title' => __('Delete'),
-                        'url'   => Pi::api('comment')->getUrl('delete', array(
+                        'url'   => Pi::api('api', 'comment')->getUrl('delete', array(
                             'post'  => $id,
                         )),
                     ),
@@ -84,19 +84,19 @@ class PostController extends ActionController
                 $operations = array_merge($operations, array(
                     'edit'  => array(
                         'title' => __('Edit'),
-                        'url'   => Pi::api('comment')->getUrl('edit', array(
+                        'url'   => Pi::api('api', 'comment')->getUrl('edit', array(
                             'post'  => $id,
                         )),
                     ),
                     'delete'  => array(
                         'title' => __('Delete'),
-                        'url'   => Pi::api('comment')->getUrl('delete', array(
+                        'url'   => Pi::api('api', 'comment')->getUrl('delete', array(
                             'post'  => $id,
                         )),
                     ),
                     'approve'  => array(
                         'title' => $active ? __('Disable') : __('Enable'),
-                        'url'   => Pi::api('comment')->getUrl('approve', array(
+                        'url'   => Pi::api('api', 'comment')->getUrl('approve', array(
                             'post'  => $id,
                             'flag'  => $active ? 0 : 1,
                         )),
@@ -132,7 +132,7 @@ class PostController extends ActionController
         //$status     = 1;
         $message    = '';
         $target     = array();
-        $post = Pi::api('comment')->getPost($id);
+        $post = Pi::api('api', 'comment')->getPost($id);
         // Verify post
         if (!$post) {
             //$status = -1;
@@ -145,7 +145,7 @@ class PostController extends ActionController
             $message = __('Operation denied.');
             $post = array();
         } else {
-            $target = Pi::api('comment')->getTarget($post['root']);
+            $target = Pi::api('api', 'comment')->getTarget($post['root']);
             $user = array(
                 'uid'       => $currentUid,
                 'name'      => $currentUser->get('name'),
@@ -165,7 +165,7 @@ class PostController extends ActionController
         $data = array_merge($post, array(
             'redirect' => $redirect,
         ));
-        $form = Pi::api('comment')->getForm($data);
+        $form = Pi::api('api', 'comment')->getForm($data);
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('comment-edit');
@@ -185,7 +185,7 @@ class PostController extends ActionController
         //$status     = 1;
         $message    = '';
         $target     = array();
-        $post = Pi::api('comment')->getPost($id);
+        $post = Pi::api('api', 'comment')->getPost($id);
         // Verify post
         if (!$post) {
             //$status = -1;
@@ -196,8 +196,8 @@ class PostController extends ActionController
             $message = __('Operation denied.');
             $post = array();
         } else {
-            $target = Pi::api('comment')->getTarget($post['root']);
-            $post['content'] = Pi::api('comment')->renderPost($post);
+            $target = Pi::api('api', 'comment')->getTarget($post['root']);
+            $post['content'] = Pi::api('api', 'comment')->renderPost($post);
             $user = array(
                 'uid'       => $currentUid,
                 'name'      => $currentUser->get('name'),
@@ -221,7 +221,7 @@ class PostController extends ActionController
             'id'        => '',
             'content'   => '',
         ));
-        $form = Pi::api('comment')->getForm($data);
+        $form = Pi::api('api', 'comment')->getForm($data);
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('comment-reply');
@@ -252,7 +252,7 @@ class PostController extends ActionController
                 : $this->getRequest()->getServer('HTTP_REFERER');
             if (!$redirect) {
                 if (!empty($result['data'])) {
-                    $redirect = Pi::api('comment')->getUrl('post', array(
+                    $redirect = Pi::api('api', 'comment')->getUrl('post', array(
                         'post' => $result['data']
                     ));
                 } else {
@@ -325,7 +325,7 @@ class PostController extends ActionController
                         $values['ip'] = Pi::service('user')->getIp();
                         $isNew = true;
                     } else {
-                        $post = Pi::api('comment')->getPost($values['id']);
+                        $post = Pi::api('api', 'comment')->getPost($values['id']);
                         if (!$post) {
                             $status = -2;
                             $message = __('Invalid post parameter.');
@@ -338,7 +338,7 @@ class PostController extends ActionController
                     }
                 }
                 if (0 < $status) {
-                    $id = Pi::api('comment')->addPost($values);
+                    $id = Pi::api('api', 'comment')->addPost($values);
                     $isEnabled = empty($values['active']) ? false : true;
                     if ($id) {
                         $status = 1;
@@ -395,9 +395,9 @@ class PostController extends ActionController
             $message    = __('Operation denied.');
         } else {
             if (null === $flag) {
-                $status = Pi::api('comment')->approve($id);
+                $status = Pi::api('api', 'comment')->approve($id);
             } else {
-                $status = Pi::api('comment')->approve($id, $flag);
+                $status = Pi::api('api', 'comment')->approve($id, $flag);
             }
             $message = $status
                 ? __('Operation succeeded.') : __('Operation failed');
@@ -417,7 +417,7 @@ class PostController extends ActionController
                 ? urldecode($redirect)
                 : $this->getRequest()->getServer('HTTP_REFERER');
             if (!$redirect) {
-                $redirect = Pi::api('comment')->getUrl('post', array(
+                $redirect = Pi::api('api', 'comment')->getUrl('post', array(
                     'post' => $id
                 ));
             }
@@ -447,7 +447,7 @@ class PostController extends ActionController
         $return         = _get('return');
         $redirect       = _get('redirect');
 
-        $post           = Pi::api('comment')->getPost($id);
+        $post           = Pi::api('api', 'comment')->getPost($id);
         if (!$post) {
             $status = 422;
             $message = __('Invalid parameters.');
@@ -457,7 +457,7 @@ class PostController extends ActionController
             $status = 403;
             $message = __('Forbidden.');
         } else {
-            $status         = Pi::api('comment')->deletePost($id);
+            $status         = Pi::api('api', 'comment')->deletePost($id);
             $message        = $status
                 ? __('Operation succeeded.') : __('Operation failed');
         }
@@ -516,28 +516,28 @@ class PostController extends ActionController
                 ),
                 'edit' => array(
                     'title' => __('Edit'),
-                    'url'   => Pi::api('comment')->getUrl(
+                    'url'   => Pi::api('api', 'comment')->getUrl(
                         'edit',
                         array('post' => $id)
                     ),
                 ),
                 'delete' => array(
                     'title' => __('Delete'),
-                    'url'   => Pi::api('comment')->getUrl(
+                    'url'   => Pi::api('api', 'comment')->getUrl(
                         'delete',
                         array('post' => $id)
                     ),
                 ),
                 'reply' => array(
                     'title' => __('Reply'),
-                    'url'   => Pi::api('comment')->getUrl(
+                    'url'   => Pi::api('api', 'comment')->getUrl(
                         'reply',
                         array('post' => $id)
                     ),
                 ),
                 'approve' => array(
                     'title' => __('Enable/Disable'),
-                    'url'   => Pi::api('comment')->getUrl(
+                    'url'   => Pi::api('api', 'comment')->getUrl(
                         'approve',
                         array(
                             'post'  => $id,

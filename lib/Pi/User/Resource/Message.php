@@ -53,7 +53,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::api('message')->send(
+        $id = Pi::api('api', 'message')->send(
             $uid,
             $message,
             $from
@@ -77,7 +77,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $id = Pi::api('message')->notify(
+        $id = Pi::api('api', 'message')->notify(
             $uid,
             $message,
             $subject,
@@ -98,7 +98,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message')->getCount($uid);
+        $result = Pi::api('api', 'message')->getCount($uid);
 
         return $result;
     }
@@ -116,7 +116,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message')->getAlert($uid);
+        $result = Pi::api('api', 'message')->getAlert($uid);
 
         return $result;
     }
@@ -133,7 +133,7 @@ class Message extends AbstractResource
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message')->dismissAlert($uid);
+        $result = Pi::api('api', 'message')->dismissAlert($uid);
 
         return $result;
     }

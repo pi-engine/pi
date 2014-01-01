@@ -40,21 +40,21 @@ class IndexController extends ActionController
             /*
             'all'   => array(
                 'title' => __('All comment posts'),
-                'url'   => Pi::api('comment')->getUrl('list', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('list', array(
                     'active'  => null,
                 )),
             ),
             */
             'all-active'   => array(
                 'title' => __('All active comment posts'),
-                'url'   => Pi::api('comment')->getUrl('list', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('list', array(
                     'active'  => 1,
                 )),
             ),
             /*
             'all-inactive'   => array(
                 'title' => __('All inactive comment posts'),
-                'url'   => Pi::api('comment')->getUrl('list', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('list', array(
                     'active'  => 0,
                 )),
             ),
@@ -68,13 +68,13 @@ class IndexController extends ActionController
             ),
             'module'   => array(
                 'title' => __('Comment posts for module "Comment"'),
-                'url'   => Pi::api('comment')->getUrl('module', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('module', array(
                     'name'  => 'comment',
                 )),
             ),
             'type'   => array(
                 'title' => __('Comment posts for module "Comment" with type "Article"'),
-                'url'   => Pi::api('comment')->getUrl('module', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('module', array(
                     'name'      => 'comment',
                     'type'  => 'article',
                 )),
@@ -84,7 +84,7 @@ class IndexController extends ActionController
                     __('Comment posts by %s'),
                     Pi::service('user')->get(1, 'name')
                 ),
-                'url'   => Pi::api('comment')->getUrl('user', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('user', array(
                     'uid'   => 1,
                 )),
             ),
@@ -92,7 +92,7 @@ class IndexController extends ActionController
         if ($uid = Pi::service('user')->getId()) {
             $links['my-post'] = array(
                 'title' => __('Comment posts by me'),
-                'url'   => Pi::api('comment')->getUrl('user', array(
+                'url'   => Pi::api('api', 'comment')->getUrl('user', array(
                     'uid'   => $uid,
                 )),
             );

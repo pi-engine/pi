@@ -19,112 +19,136 @@ use Pi;
 class Local extends AbstractAdapter
 {
     /**
-     * Get server module name
+     * Get api handler
      * 
      * @return string 
      */
-    protected function getServer()
+    protected function handler()
     {
-        return isset($this->options['server']) 
-            ? $this->options['server'] : 'media';
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function upload($meta, $options = array())
-    {
-        $server = $this->getServer();
-        $result = Pi::api($server, 'media')->upload($meta, $options);
-        if ($result['absolute_path']) {
-            $dispatch = $this->getDispatch();
-            if ($dispatch->copy($meta['source'], $result['absolute_path'])) {
-                $result['url'] = $result['relative_path'];
-                if (!$this->update($result['id'], $result)) {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        
-        return true;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function update($id, $data)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->update($id, $data);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function activate($id)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->activate($id);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function deactivate($id)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->deactivate($id);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function getAttributes($id, $attribute)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getAttributes($id, $attribute);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function getAttributesList(array $ids, $attribute)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getAttributesList($ids, $attribute);
+        return Pi::api('doc', 'media');
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getStats($id, $statistics)
+    public function setOptions(array $options)
     {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getStats($id, $statistics);
+        parent::setOptions($options);
+        $this->handler()->setOptions($options);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function add(array $data)
+    {
+        $result = $this->handler()->add($data);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function upload($file, array $data = array())
+    {
+        $result = $this->handler()->upload($file, $data);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function download($id, $file = '')
+    {
+        $result = $this->handler()->download($id, $file);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function update($id, array $data)
+    {
+        $result = $this->handler()->update($id, $data);
+
+        return $result;
     }
     
     /**
      * {@inheritDoc}
      */
-    public function getStatsList(array $ids, $statistics)
+    public function activate($id, $flag = true)
     {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getStatsList($ids, $statistics);
+        $result = $this->handler()->activate($id, $flag);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function get($id, $attr = array())
+    {
+        $result = $this->handler()->get($id, $attr);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function mget(array $ids, $attr = array())
+    {
+        $result = $this->handler()->mget($ids, $attr);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUrl($id)
+    {
+        $result = $this->handler()->getUrl($id);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStats($id)
+    {
+        $result = $this->handler()->getStats($id);
+
+        return $result;
     }
     
     /**
      * {@inheritDoc}
      */
-    public function getFileIds(
+    public function getStatsList(array $ids)
+    {
+        $result = $this->handler()->getStatsList($ids);
+
+        return $result;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getIds(
         array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = ''
     ) {
-        $server = $this->getServer();
-        $result = Pi::api($server, 'media')->getFileIds(
+        $result = $this->handler()->getIds(
             $condition,
             $limit,
             $offset,
@@ -139,16 +163,17 @@ class Local extends AbstractAdapter
      */
     public function getList(
         array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = '',
+        array $attr = array()
     ) {
-        $server = $this->getServer();
-        $result = Pi::api($server, 'media')->getList(
+        $result = $this->handler()->getList(
             $condition,
             $limit,
             $offset,
-            $order
+            $order,
+            $attr
         );
         
         return $result;
@@ -159,64 +184,18 @@ class Local extends AbstractAdapter
      */
     public function getCount(array $condition = array())
     {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getCount($condition);
+        $result = $this->handler()->getCount($condition);
+
+        return $result;
     }
-    
-    /**
-     * Get file url
-     * 
-     * @param int $id 
-     * @return string
-     */
-    public function getUrl($id)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getUrl($id);
-    }
-    
+
     /**
      * {@inheritDoc}
      */
-    public function getUrlList(array $ids)
+    public function delete($id)
     {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getUrlList($ids);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function download(array $ids)
-    {
-        $server = $this->getServer();
-        Pi::api($server, 'media')->download($ids);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function delete(array $ids)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->delete($ids);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function getValidator($adapter = null)
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getValidator($adapter);
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function getServerConfig()
-    {
-        $server = $this->getServer();
-        return Pi::api($server, 'media')->getServerConfig();
+        $result = $this->handler()->delete($id);
+
+        return $result;
     }
 }

@@ -210,7 +210,7 @@ class AvatarController extends ActionController
         $email  = 'gravatar' == $source ? $filename : Pi::user()->get($uid, 'email');
 
         // Get side nav items
-        $groups = Pi::api('user', 'group')->getList();
+        $groups = Pi::api('group', 'user')->getList();
         $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         
         $this->view()->assign(array(

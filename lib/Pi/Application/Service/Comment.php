@@ -133,7 +133,7 @@ EOT;
             }
         }
         $params = array_replace($params, $routeMatch->getParams());
-        $data = Pi::api('comment')->load($params, $options);
+        $data = Pi::api('api', 'comment')->load($params, $options);
         if (!$data) {
             return;
         }
@@ -163,7 +163,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getUrl($type, $options);
+        return Pi::api('api', 'comment')->getUrl($type, $options);
     }
 
     /**
@@ -179,7 +179,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getForm($data);
+        return Pi::api('api', 'comment')->getForm($data);
     }
 
     /**
@@ -195,7 +195,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->renderPost($post);
+        return Pi::api('api', 'comment')->renderPost($post);
     }
 
     /**
@@ -212,7 +212,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->renderList($posts, $isAdmin);
+        return Pi::api('api', 'comment')->renderList($posts, $isAdmin);
     }
 
     /**
@@ -228,7 +228,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->add($data);
+        return Pi::api('api', 'comment')->add($data);
     }
 
     /**
@@ -244,7 +244,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getPost($id);
+        return Pi::api('api', 'comment')->getPost($id);
     }
 
     /**
@@ -260,7 +260,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getRoot($condition);
+        return Pi::api('api', 'comment')->getRoot($condition);
     }
 
     /**
@@ -276,7 +276,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getTarget($root);
+        return Pi::api('api', 'comment')->getTarget($root);
     }
 
     /**
@@ -295,7 +295,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getList($condition, $limit, $offset, $order);
+        return Pi::api('api', 'comment')->getList($condition, $limit, $offset, $order);
     }
 
     /**
@@ -311,7 +311,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->getCount($condition);
+        return Pi::api('api', 'comment')->getCount($condition);
     }
 
     /**
@@ -328,7 +328,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->update($id, $data);
+        return Pi::api('api', 'comment')->update($id, $data);
     }
 
     /**
@@ -344,7 +344,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->delete($id);
+        return Pi::api('api', 'comment')->delete($id);
     }
 
     /**
@@ -361,7 +361,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->approve($id, $flag);
+        return Pi::api('api', 'comment')->approve($id, $flag);
     }
 
     /**
@@ -378,7 +378,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->enable($root, $flag);
+        return Pi::api('api', 'comment')->enable($root, $flag);
     }
 
     /**
@@ -394,7 +394,7 @@ EOT;
             return false;
         }
 
-        return Pi::api('comment')->deleteRoot($root);
+        return Pi::api('api', 'comment')->deleteRoot($root);
     }
 
     /**
@@ -547,7 +547,7 @@ EOT;
         $uid = $uid ?: Pi::service('user')->getId();
 
         $message = __('Posted a new comment.');
-        $link = Pi::url(Pi::api('comment')->getUrl('post', array(
+        $link = Pi::url(Pi::api('api', 'comment')->getUrl('post', array(
             'post'      => $id,
         )), true);
         $params = array(

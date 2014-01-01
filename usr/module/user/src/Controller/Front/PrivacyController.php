@@ -67,7 +67,7 @@ class PrivacyController extends ActionController
             $this->view()->assign('result', $result);
         }
 
-        $privacy = Pi::api('user', 'privacy')->getUserPrivacyList($uid);
+        $privacy = Pi::api('privacy', 'user')->getUserPrivacyList($uid);
         foreach ($privacy as $key => &$value) {
             if (!$value['is_forced']) {
                 unset($privacy[$key]);
@@ -84,7 +84,7 @@ class PrivacyController extends ActionController
 
         $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         // Get side nav items
-        $groups = Pi::api('user', 'group')->getList();
+        $groups = Pi::api('group', 'user')->getList();
         $this->view()->assign(array(
             'privacy' => $privacy,
             'groups'  => $groups,

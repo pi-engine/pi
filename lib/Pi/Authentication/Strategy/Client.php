@@ -32,7 +32,7 @@ class Client extends Local
                         'redirect' => $params,
                     );
                 }
-                $url = Pi::api('system', 'user')->getUrl($type, $params);
+                $url = Pi::api('user', 'system')->getUrl($type, $params);
                 //$url = Pi::service('user')->getUrl($type, $params);
                 break;
             default:

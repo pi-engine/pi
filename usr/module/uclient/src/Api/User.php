@@ -723,7 +723,7 @@ class User extends AbstractUseApi
             $class = 'Pi\User\Resource\\' . ucfirst($name);
         }
         $resource = new $class;
-        $clientConfig = Pi::api('uclient', 'user')->config();
+        $clientConfig = Pi::api('user', 'uclient')->config();
         $config = array(
             'app_key'       => $this->config('app_key'),
             'authorization' => $this->config('authorization'),

@@ -14,25 +14,19 @@ use Pi;
 use Pi\Application\AbstractApi;
 
 /**
- * Module API calls
+ * API calls
  *
  * Samples:
  *
- * - Call a module's specified API defined in its API class in
- *  `Module\<ModuleName>\Api\Api`
+ * - Call a module's specified API defined in its API classes in
+ *  `Module\<ModuleName>\Api\<ApiName>`
  *
  * ```
- *  Pi::service('api')->demo('method', $args);
- *  Pi::service('api')->demo->method($args);
- *  Pi::api('demo')->method($args);
- * ```
+ *  $handler = Pi::service('api')->apiName(<module>, $args);
+ *  $handler = Pi::service('api')->handler(<api>, <module>, $args);
+ *  $handler->method($args);
  *
- * - Call a module's API defined in custom class in
- *  `Module\<ModuleName>\Api\Callback`
- *
- * ```
- *  Pi::service('api')->demo(array('callback', 'method'), $args);
- *  Pi::api('demo', 'callback')->method($args);
+ *  Pi::api(<api_name>, <module>)->method($args);
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -47,19 +41,32 @@ class Api extends AbstractService
     protected $container = array();
 
     /**
-     * Instantiate module API handler
+     * Instantiate API handler
      *
-     * @param string $module
-     * @param string $name
+     * @param string $api
+     * @param string|array $module
+     * @param array $options
+     *
      * @return AbstractApi|bool
      */
-    public function handler($module, $name = 'api')
+    public function handler($api, $module = '', array $options = array())
     {
+        if (is_array($module)) {
+            $options= $module;
+            $module = '';
+        }
+        // Load system service
+        if (!$module) {
+            $handler = Pi::service($api, $options);
+
+            return $handler;
+        }
+        // Load module API
         $directory = Pi::service('module')->directory($module);
         $class = sprintf(
             'Module\\%s\Api\\%s',
             ucfirst($directory),
-            ucfirst($name)
+            ucfirst($api)
         );
         if (!isset($this->container[$class])) {
             $this->container[$class] = class_exists($class)
@@ -70,20 +77,18 @@ class Api extends AbstractService
     }
 
     /**
-     * Magic method to call a module API via variable
-     *
-     * Call a module API as
+     * Magic method to call a system service API via variable
      *
      * ```
-     *  Pi::service('api')-><module-name>-><api-method>($args);
+     *  Pi::service('api')-><service-name>-><api-method>($args);
      * ```
      *
-     * @param string    $moduleName
+     * @param string    $name
      * @return AbstractApi|bool
      */
-    public function __get($moduleName)
+    public function __get($name)
     {
-        $handler = $this->handler($moduleName, 'api');
+        $handler = $this->handler($name);
 
         return $handler;
     }
@@ -94,31 +99,22 @@ class Api extends AbstractService
      * Call a module API as
      *
      * <code>
-     *  Pi::service('api')-><module-name>(array(<class>, <method>), <args>);
+     *  Pi::service('api')-><api-name>(<module>, <options>);
      * </code>
      *
-     * @param string $moduleName
+     * @param string $api
      * @param array  $args
      *
-     * @internal param string $class
-     * @internal param string $method
-     * @return mixed
+     * @return AbstractApi|bool
      */
-    public function __call($moduleName, $args)
+    public function __call($api, array $args = array())
     {
-        $callback = array_shift($args);
-        if (is_string($callback)) {
-            list($class, $method) = array('api', $callback);
-        } else {
-            list($class, $method) = $callback;
+        $module = '';
+        if ($args && is_string($args[0])) {
+            $module = array_shift($args);
         }
-        $handler = $this->handler($moduleName, $class);
-        if ($handler instanceof AbstractApi
-            && is_callable(array($handler, $method))
-        ) {
-            return call_user_func_array(array($handler, $method), $args);
-        }
+        $handler = $this->handler($api, $module, $args);
 
-        return null;
+        return $handler;
     }
 }

@@ -51,11 +51,11 @@ class HomeController extends ActionController
         $user = $this->getUser($uid);
 
         // Get timeline
-        $count    = Pi::api('user', 'timeline')->getCount($uid);
-        $timeline = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
+        $count    = Pi::api('timeline', 'user')->getCount($uid);
+        $timeline = Pi::api('timeline', 'user')->get($uid, $limit, $offset);
 
         // Get timeline meta list
-        $timelineMetaList = Pi::api('user', 'timeline')->getList();
+        $timelineMetaList = Pi::api('timeline', 'user')->getList();
 
         // Set timeline meta
         foreach ($timeline as &$item) {
@@ -64,10 +64,10 @@ class HomeController extends ActionController
         }
 
         // Get activity meta for nav display
-        $nav = Pi::api('user', 'nav')->getList('homepage');
+        $nav = Pi::api('nav', 'user')->getList('homepage');
 
         // Get quick link
-        $quicklink = Pi::api('user','quicklink')->getList();
+        $quicklink = Pi::api('quicklink', 'user')->getList();
 
 
         // Set paginator
@@ -117,7 +117,7 @@ class HomeController extends ActionController
 
         // Get viewer role: public member follower following owner
         $role = Pi::user()->hasIdentity() ? 'member' : 'public';
-        $user = Pi::api('user', 'privacy')->filterProfile(
+        $user = Pi::api('privacy', 'user')->filterProfile(
             $uid,
             $role,
             $user,
@@ -125,11 +125,11 @@ class HomeController extends ActionController
         );
 
         // Get timeline
-        $count    = Pi::api('user', 'timeline')->getCount($uid);
-        $timeline = Pi::api('user', 'timeline')->get($uid, $limit, $offset);
+        $count    = Pi::api('timeline', 'user')->getCount($uid);
+        $timeline = Pi::api('timeline', 'user')->get($uid, $limit, $offset);
 
         // Get timeline meta list
-        $timelineMetaList = Pi::api('user', 'timeline')->getList();
+        $timelineMetaList = Pi::api('timeline', 'user')->getList();
 
         // Set timeline meta
         foreach ($timeline as &$item) {
@@ -138,10 +138,10 @@ class HomeController extends ActionController
         }
 
         // Get activity meta for nav display
-        $nav = Pi::api('user', 'nav')->getList('homepage', $uid);
+        $nav = Pi::api('nav', 'user')->getList('homepage', $uid);
 
         // Get quick link
-        $quicklink = Pi::api('user','quicklink')->getList();
+        $quicklink = Pi::api('quicklink', 'user')->getList();
 
         // Set paginator
         $paginatorOption = array(

@@ -455,7 +455,7 @@ class BuildController extends ActionController
                 'time'     => time() - rand(3600, 3600 * 24 * 30),
                 'link'     => 'www.' . $timelineMap[$i % 4] . 'com',
             );
-            Pi::api('user', 'timeline')->add($log);
+            Pi::api('timeline', 'user')->add($log);
         }
     }
 

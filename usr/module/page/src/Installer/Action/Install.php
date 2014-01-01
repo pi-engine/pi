@@ -44,7 +44,7 @@ class Install extends BasicInstall
         $meta = array_map('trim', file($metaFile));
         $meta = array_filter($meta);
 
-        $apiHandler = Pi::api('page')->setModule($module);
+        $apiHandler = Pi::api('api', 'page')->setModule($module);
         $pages = array_chunk($meta, 3);
         foreach ($pages as $page) {
             if (count($page) < 3) {

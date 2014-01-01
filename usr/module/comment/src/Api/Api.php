@@ -183,7 +183,7 @@ class Api extends AbstractApi
                 if (!empty($options['root'])) {
                     $rootId = $options['root'];
                     unset($options['root']);
-                } elseif ($root = Pi::api('comment')->getRoot($options)) {
+                } elseif ($root = Pi::api('api', 'comment')->getRoot($options)) {
                     $rootId = $root['id'];
                 } else {
                     $rootId = 0;
@@ -442,7 +442,7 @@ class Api extends AbstractApi
      *
      * - Comprehensive mode
      * ```
-     *  $posts = Pi::api('comment')->renderList($posts, array(
+     *  $posts = Pi::api('api', 'comment')->renderList($posts, array(
      *      'user'      => array(
      *          'field'     => 'name',
      *          'url'       => 'comment',
@@ -459,7 +459,7 @@ class Api extends AbstractApi
      *
      * - Lean mode
      * ```
-     *  $posts = Pi::api('comment')->renderList($posts, array(
+     *  $posts = Pi::api('api', 'comment')->renderList($posts, array(
      *      'user'      => true,
      *      'target'    => true,
      *      'operation' => true,
@@ -468,7 +468,7 @@ class Api extends AbstractApi
      *
      * - Default mode
      * ```
-     *  $posts = Pi::api('comment')->renderList($posts);
+     *  $posts = Pi::api('api', 'comment')->renderList($posts);
      * ```
      *
      * @param array $posts

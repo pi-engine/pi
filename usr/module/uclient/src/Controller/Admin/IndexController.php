@@ -413,8 +413,8 @@ class IndexController extends ActionController
         if (!isset($roles[$role])) {
             return;
         }
-        $where = Pi::db()->where(array('id' => $uids));
-        $ids    = Pi::api('system', 'user')->getUids($where);
+        $where  = Pi::db()->where(array('id' => $uids));
+        $ids    = Pi::api('user', 'system')->getUids($where);
         $newIds = array_diff($uids, $ids);
         if ($newIds) {
             $users  = Pi::service('user')->mget(

@@ -29,11 +29,11 @@ class PostController extends ActionController
     public function indexAction()
     {
         $id = _get('id', 'int') ?: 1;
-        $post = Pi::api('comment')->getPost($id);
+        $post = Pi::api('api', 'comment')->getPost($id);
         $target = array();
         if ($post) {
-            $post['content'] = Pi::api('comment')->renderPost($post);
-            $target = Pi::api('comment')->getTarget($post['root']);
+            $post['content'] = Pi::api('api', 'comment')->renderPost($post);
+            $target = Pi::api('api', 'comment')->getTarget($post['root']);
             $user = Pi::service('user')->get($post['uid'], array('name'));
             $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
             $user['avatar'] = Pi::service('avatar')->get($post['uid']);
@@ -78,10 +78,10 @@ class PostController extends ActionController
         $id = _get('id', 'int') ?: 1;
         $redirect = _get('redirect');
 
-        $post = Pi::api('comment')->getPost($id);
+        $post = Pi::api('api', 'comment')->getPost($id);
         $target = array();
         if ($post) {
-            $target = Pi::api('comment')->getTarget($post['root']);
+            $target = Pi::api('api', 'comment')->getTarget($post['root']);
             $user = Pi::service('user')->get($post['uid'], array('name'));
             $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
             $user['avatar'] = Pi::service('avatar')->get($post['uid']);
@@ -98,7 +98,7 @@ class PostController extends ActionController
         $data = array_merge($post, array(
             'redirect' => $redirect,
         ));
-        $form = Pi::api('comment')->getForm($data);
+        $form = Pi::api('api', 'comment')->getForm($data);
         $form->setAttribute('action', $this->url('', array(
             'action'    => 'submit',
         )));
@@ -169,7 +169,7 @@ class PostController extends ActionController
                     $isNew = true;
                 }
                 //vd($values);
-                $id = Pi::api('comment')->addPost($values);
+                $id = Pi::api('api', 'comment')->addPost($values);
                 if ($id) {
                     $status = 1;
                     $message = _a('Comment post saved successfully.');
@@ -216,9 +216,9 @@ class PostController extends ActionController
         $redirect   = _get('redirect');
 
         if (null === $flag) {
-            $status = Pi::api('comment')->approve($id);
+            $status = Pi::api('api', 'comment')->approve($id);
         } else {
-            $status = Pi::api('comment')->approve($id, $flag);
+            $status = Pi::api('api', 'comment')->approve($id, $flag);
         }
         $message = $status
             ? _a('Operation succeeded.') : _a('Operation failed');
@@ -295,12 +295,12 @@ class PostController extends ActionController
         $return = _get('return');
         $redirect = _get('redirect');
 
-        $post = Pi::api('comment')->getPost($id);
+        $post = Pi::api('api', 'comment')->getPost($id);
         if (!$post) {
             $status = -2;
             $message = __('Invalid post parameter.');
         } else {
-            $status         = Pi::api('comment')->deletePost($id);
+            $status         = Pi::api('api', 'comment')->deletePost($id);
             $message        = $status
                 ? __('Operation succeeded.') : __('Operation failed');
         }

@@ -55,10 +55,10 @@ class ProfileController extends ActionController
         $profileGroup = $this->getProfile($uid);
 
         // Get activity meta for nav display
-        $nav = Pi::api('user', 'nav')->getList('profile');
+        $nav = Pi::api('nav', 'user')->getList('profile');
 
         // Get quicklink
-        $quicklink = Pi::api('user', 'quicklink')->getList();
+        $quicklink = Pi::api('quicklink', 'user')->getList();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -99,13 +99,13 @@ class ProfileController extends ActionController
         $role = Pi::user()->hasIdentity() ? 'member' : 'public';
 
         // Filter field according to privacy setting
-        $profileGroup = Pi::api('user', 'privacy')->filterProfile(
+        $profileGroup = Pi::api('privacy', 'user')->filterProfile(
             $uid,
             $role,
             $profileGroup,
             'group'
         );
-        $user         = Pi::api('user', 'privacy')->filterProfile(
+        $user         = Pi::api('privacy', 'user')->filterProfile(
             $uid,
             $role,
             $user,
@@ -113,10 +113,10 @@ class ProfileController extends ActionController
         );
 
         // Get activity meta for nav display
-        $nav = Pi::api('user', 'nav')->getList('profile', $uid);
+        $nav = Pi::api('nav', 'user')->getList('profile', $uid);
 
         // Get quicklink
-        $quicklink = Pi::api('user', 'quicklink')->getList();
+        $quicklink = Pi::api('quicklink', 'user')->getList();
 
         $this->view()->assign(array(
             'profile_group' => $profileGroup,
@@ -229,7 +229,7 @@ class ProfileController extends ActionController
         }
 
         // Get side nav items
-        $groups = Pi::api('user', 'group')->getList();
+        $groups = Pi::api('group', 'user')->getList();
 
         $this->view()->assign(array(
             'form'      => $form,
@@ -281,13 +281,13 @@ class ProfileController extends ActionController
         }
 
         // Get compound element for edit
-        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
-        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $compoundElements = Pi::api('form', 'user')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('form', 'user')->getCompoundFilter($compound);
         $form = new CompoundForm('new-compound', $compoundElements);
         $form->setData(array('group' => $groupId));
 
         // Get side nav items
-        $groups       = Pi::api('user', 'group')->getList();
+        $groups       = Pi::api('group', 'user')->getList();
         $profileGroup = $this->getProfile($uid);
         $compounds = array();
         foreach ($profileGroup[$groupId]['fields'] as $key => $value) {
@@ -334,8 +334,8 @@ class ProfileController extends ActionController
             );
         }
 
-        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
-        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $compoundElements = Pi::api('form', 'user')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('form', 'user')->getCompoundFilter($compound);
         $form     = new CompoundForm('new-compound', $compoundElements);
         $compoundData = Pi::api('user', 'user')->get($uid, $compound);
 
@@ -520,8 +520,8 @@ class ProfileController extends ActionController
 
         // Get compound element for edit
         $compoundMeta     = Pi::registry('compound_field', 'user')->read($compound);
-        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
-        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $compoundElements = Pi::api('form', 'user')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('form', 'user')->getCompoundFilter($compound);
         $compoundData     = Pi::api('user', 'user')->get($uid, $compound);
 
         $form = new CompoundForm('new-compound', $compoundElements);
@@ -661,8 +661,8 @@ class ProfileController extends ActionController
             if (!isset($meta[$row->field])) {
                 continue;
             }
-            $element    = Pi::api('user', 'form')->getElement($row->field);
-            $filter     = Pi::api('user', 'form')->getFilter($row->field);
+            $element    = Pi::api('form', 'user')->getElement($row->field);
+            $filter     = Pi::api('form', 'user')->getFilter($row->field);
             if ($element) {
                 $elements[] = $element;
             }

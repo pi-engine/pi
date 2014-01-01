@@ -29,7 +29,7 @@ class Client extends System
      */
     public function getMeta($type = '', $action = '')
     {
-        return Pi::api('uclient', 'user')->getMeta($type, $action);
+        return Pi::api('user', 'uclient')->getMeta($type, $action);
     }
     /**#@-*/
 
@@ -53,7 +53,7 @@ class Client extends System
         $offset     = 0,
         $order      = ''
     ) {
-        $result = Pi::api('uclient', 'user')->getUids(
+        $result = Pi::api('user', 'uclient')->getUids(
             $condition,
             $limit,
             $offset,
@@ -73,7 +73,7 @@ class Client extends System
         $order      = '',
         array $field  = array()
     ) {
-        $result = Pi::api('uclient', 'user')->getList(
+        $result = Pi::api('user', 'uclient')->getList(
             $condition,
             $limit,
             $offset,
@@ -89,7 +89,7 @@ class Client extends System
      */
     public function getCount($condition = array())
     {
-        $result = Pi::api('uclient', 'user')->getCount($condition);
+        $result = Pi::api('user', 'uclient')->getCount($condition);
 
         return $result;
     }
@@ -99,7 +99,7 @@ class Client extends System
      */
     public function addUser($data, $setRole = true)
     {
-        return Pi::api('uclient', 'user')->addUser($data, $setRole);
+        return Pi::api('user', 'uclient')->addUser($data, $setRole);
     }
 
     /**
@@ -107,7 +107,7 @@ class Client extends System
      */
     public function updateUser($uid, $data)
     {
-        return Pi::api('uclient', 'user')->updateUser($uid, $data);
+        return Pi::api('user', 'uclient')->updateUser($uid, $data);
     }
 
     /**
@@ -118,7 +118,7 @@ class Client extends System
         if ($this->isRoot($uid)) {
             return false;
         }
-        return Pi::api('uclient', 'user')->deleteUser($uid);
+        return Pi::api('user', 'uclient')->deleteUser($uid);
     }
 
     /**
@@ -126,7 +126,7 @@ class Client extends System
      */
     public function activateUser($uid)
     {
-        return Pi::api('uclient', 'user')->activateUser($uid);
+        return Pi::api('user', 'uclient')->activateUser($uid);
     }
 
     /**
@@ -134,7 +134,7 @@ class Client extends System
      */
     public function enableUser($uid)
     {
-        return Pi::api('uclient', 'user')->enableUser($uid);
+        return Pi::api('user', 'uclient')->enableUser($uid);
     }
 
     /**
@@ -161,7 +161,7 @@ class Client extends System
         $filter = false,
         $activeOnly = false
     ) {
-        return Pi::api('uclient', 'user')->get(
+        return Pi::api('user', 'uclient')->get(
             $uid,
             $field,
             $filter,
@@ -178,7 +178,7 @@ class Client extends System
         $filter = false,
         $activeOnly = false
     ) {
-        return Pi::api('uclient', 'user')->mget(
+        return Pi::api('user', 'uclient')->mget(
             $uids,
             $field,
             $filter,
@@ -191,7 +191,7 @@ class Client extends System
      */
     public function set($uid, $field, $value)
     {
-        return Pi::api('uclient', 'user')->set($uid, $field, $value);
+        return Pi::api('user', 'uclient')->set($uid, $field, $value);
     }
     /**#@-*/
 
@@ -200,7 +200,7 @@ class Client extends System
      */
     public function setRole($uid, $role)
     {
-        return Pi::api('uclient', 'user')->setRole($uid, $role);
+        return Pi::api('user', 'uclient')->setRole($uid, $role);
     }
 
     /**
@@ -208,7 +208,7 @@ class Client extends System
      */
     public function revokeRole($uid, $role)
     {
-        return Pi::api('uclient', 'user')->revokeRole($uid, $role);
+        return Pi::api('user', 'uclient')->revokeRole($uid, $role);
     }
 
     /**
@@ -216,7 +216,7 @@ class Client extends System
      */
     public function getRole($uid, $section = '')
     {
-        return Pi::api('uclient', 'user')->getRole($uid, $section);
+        return Pi::api('user', 'uclient')->getRole($uid, $section);
     }
 
     /**#@+
@@ -237,7 +237,7 @@ class Client extends System
     {
         //return parent::getUrl($type, $var);
 
-        $url = Pi::api('uclient', 'user')->getUrl($type, $var);
+        $url = Pi::api('user', 'uclient')->getUrl($type, $var);
 
         return $url;
     }
@@ -256,7 +256,7 @@ class Client extends System
      */
     public function getUserModel($uid, $field = 'id')
     {
-        $model = Pi::api('uclient', 'user')->getUser($uid, $field);
+        $model = Pi::api('user', 'uclient')->getUser($uid, $field);
 
         return $model;
     }
@@ -267,7 +267,7 @@ class Client extends System
     public function getResource($name, $args = array())
     {
         if (!isset($this->resource[$name])) {
-            $resource = Pi::api('uclient', 'user')->getResource($name);
+            $resource = Pi::api('user', 'uclient')->getResource($name);
             $this->resource[$name] = $resource;
         }
         $result = parent::getResource($name, $args);

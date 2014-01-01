@@ -197,6 +197,7 @@ class ThemeController extends ActionController
     {
         $themeName = $this->params('name');
         $installer = new ThemeInstaller;
+
         $ret = $installer->install($themeName);
         $status = 1;
         $message = '';

@@ -13,38 +13,16 @@ use Pi;
 use Pi\Media\Dispatch\AbstractDispatch as MediaDispatch;
 
 /**
- * Media service abstract class
- * 
- * @author Zongshu Lin <lin40553024@163.com> 
+ * Media service abstract adapter
+ *
+ * @author Zongshu Lin <lin40553024@163.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class AbstractAdapter
 {
-    /**
-     * Options
-     * @var array 
-     */
+    /** @var array Options */
     protected $options = array();
-    
-    /**
-     * Adapter configs
-     * 
-     * @var array 
-     */
-    protected $configs;
-    
-    /**
-     * Dispatch handler
-     * 
-     * @var MediaDispatch
-     */
-    protected $dispatch;
-    
-    /**
-     * Adapter configuration file
-     * @var string 
-     */
-    protected $configFile = 'service.media.php';
-    
+
     /**
      * Constructor
      * 
@@ -53,57 +31,30 @@ abstract class AbstractAdapter
     public function __construct($options = array())
     {
         $this->setOptions($options);
-        $this->setConfigs();
-        $this->setDispatch();
     }
     
     /**
      * Set options
      * 
      * @param array $options
-     * @return \Pi\Media\Adapter\AbstractAdapter 
+     * @return  AbstractAdapter
      */
-    public function setOptions($options = array())
+    public function setOptions(array $options = array())
     {
         $this->options = $options;
-        
+
         return $this;
     }
     
     /**
      * Get options
      * 
-     * @return array 
+     * @return mixed
      */
-    public function getOptions()
+    public function getOption()
     {
-        return $this->options;
-    }
-    
-    /**
-     * Set adapter configs
-     * 
-     * @return \Pi\Media\Adapter\AbstractAdapter 
-     */
-    public function setConfigs()
-    {
-        $this->configs = Pi::service('config')->load($this->configFile);
-        
-        return $this;
-    }
-    
-    /**
-     * Get adapter configs
-     * 
-     * @return array|mixed 
-     */
-    public function getConfig()
-    {
-        if (null == $this->configs) {
-            $this->setConfigs();
-        }
         $args = func_get_args();
-        $result = $this->configs;
+        $result = $this->options;
         foreach ($args as $name) {
             if (is_array($result) && isset($result[$name])) {
                 $result = $result[$name];
@@ -112,119 +63,119 @@ abstract class AbstractAdapter
                 break;
             }
         }
-        
+
         return $result;
     }
 
     /**
-     * Initialize dispatch handler
+     * Add a media doc
      *
-     * @param array $configs
+     * $data attributes
+     *  - appkey
+     *  - module
+     *  - category
+     *  - path
+     *  - url
+     *  - title
+     *  - description
+     *  - attributes
+     *  - uid
+     *  - id
+     *  - ...
      *
-     * @throws \Exception
-     * @return $this
+     *
+     * @param array $data Doc attribute data
+     *
+     * @return int Doc id
      */
-    public function setDispatch(array $configs = array())
-    {
-        $configs = !empty($configs) ? $configs : $this->getConfig('dispatch');
-        $dispatch = $configs['name'];
-        $configs = isset($configs['configs']) ? $configs['configs'] : array();
-        $options = isset($configs['options']) ? $configs['options'] : array();
-        if (empty($dispatch)) {
-            $dispatch = 'local';
-            $configs = array();
-            $options = array();
-        }
-        $class = sprintf('Pi\Media\Dispatch\\%s', ucfirst($dispatch));
-        if (!class_exists($class)) {
-            $message = sprintf('Class %s not exists', $class);
-            throw new \Exception($message);
-        }
-        $this->dispatch = new $class($configs, $options);
-        
-        return $this;
-    }
-    
-    /**
-     * Get dispatch handler
-     * 
-     * @return Pi\Media\Dispatch\AbstractDispatch
-     */
-    public function getDispatch()
-    {
-        if (empty($this->dispatch)) {
-            $this->dispatch = $this->setDispatch();
-        }
-        
-        return $this->dispatch;
-    }
-    
-    /**
-     * Upload a file
-     * 
-     * @param array $meta     data written into database
-     * @param array $options  optional data, use to set storage, path rule
-     */
-    abstract public function upload($meta, $options = array());
-    
-    /**
-     * Update file details
-     * 
-     * @param int   $id    file ID
-     * @param array $data  data to update 
-     */
-    abstract public function update($id, $data);
-    
-    /**
-     * Active a file
-     * 
-     * @param int   $id     file ID 
-     */
-    //abstract public function activeFile($id);
-    abstract public function activate($id);
+    abstract public function add(array $data);
 
     /**
-     * Deactivate a file
+     * Upload a local media doc
      * 
-     * @param int   $id     file ID 
+     * @param string|array|Resource $file
+     * @param array $data Doc attribute data
+     *
+     * @return int Doc id
      */
-    //abstract public function deactivateFile($id);
-    abstract public function deactivate($id);
+    abstract public function upload($file, array $data = array());
 
     /**
-     * Get attributes of a file
-     * 
-     * @param int   $id     file ID
-     * @param string $attribute  attribute key 
+     * Download a media file to local file
+     *
+     * @param int|int[] $id   Doc id
+     * @param string $file Absolute path to save; or output to browser directly
+     *
+     * @return bool
      */
-    abstract public function getAttributes($id, $attribute);
+    abstract public function download($id, $file = '');
+    
+    /**
+     * Update doc details
+     * 
+     * @param int   $id    doc ID
+     * @param array $data  data to update
+     *
+     * @return bool
+     */
+    abstract public function update($id, array $data);
+    
+    /**
+     * Activate/deactivate a doc
+     * 
+     * @param int $id     Doc ID
+     * @param bool $flag
+     *
+     * @return bool
+     */
+    abstract public function activate($id, $flag = true);
+
+    /**
+     * Get attributes of a doc
+     * 
+     * @param int               $id    Doc ID
+     * @param string|string[]   $attr  attribute key
+     *
+     * @return mixed
+     */
+    abstract public function get($id, $attr = array());
     
     /**
      * Get attributes of files
      * 
-     * @param int[]  $ids   file IDs
-     * @param string $attribute  attribute key 
+     * @param int[]             $ids   Doc IDs
+     * @param string|string[]   $attr  attribute key
+     *
+     * @return array
      */
-    //abstract public function mgetAttributes($ids, $attribute);
-    abstract public function getAttributesList(array $ids, $attribute);
+    abstract public function mget(array $ids, $attr = array());
+
+    /**
+     * Get doc file url
+     *
+     * @param int|int[] $id
+     *
+     * @return string|array
+     */
+    abstract public function getUrl($id);
 
     /**
      * Get statistics data of a file
      * 
-     * @param int    $id    file ID
-     * @param string $statistics  key  
+     * @param int    $id    Doc ID
+     *
+     * @return array
      */
-    //abstract public function getStatistics($id, $statistics);
-    abstract public function getStats($id, $statistics);
+    abstract public function getStats($id);
 
     /**
      * Get statistics data of files
      * 
-     * @param int[]  $ids   file IDs
-     * @param string $statistics  key  
+     * @param int[]  $ids   Doc IDs
+     *
+     * @return array
      */
-    //abstract public function mgetStatistics($ids, $statistics);
-    abstract public function getStatsList(array $ids, $statistics);
+    abstract public function getStatsList(array $ids);
 
     /**
      * Get file IDs by given condition
@@ -232,13 +183,15 @@ abstract class AbstractAdapter
      * @param array  $condition
      * @param int    $limit
      * @param int    $offset
-     * @param string $order 
+     * @param string|array $order
+     *
+     * @return int[]
      */
-    abstract public function getFileIds(
+    abstract public function getIds(
         array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = ''
     );
     
     /**
@@ -247,60 +200,32 @@ abstract class AbstractAdapter
      * @param array  $condition
      * @param int    $limit
      * @param int    $offset
-     * @param string $order 
+     * @param string|array $order
+     * @param array $attr
+     *
+     * @return array
      */
     abstract public function getList(
         array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
+        $limit  = 0,
+        $offset = 0,
+        $order  = '',
+        array $attr = array()
     );
     
     /**
-     * Get list count by condition
+     * Get doc count by condition
      * 
-     * @param array $condition 
+     * @param array $condition
+     *
+     * @return int
      */
     abstract public function getCount(array $condition = array());
-    
+
     /**
-     * Get file url
+     * Delete file(s)
      * 
      * @param int|int[] $id
      */
-    abstract public function getUrl($id);
-    
-    /**
-     * Get url of files
-     * 
-     * @param int[] $ids
-     */
-    //abstract public function mgetUrl($ids);
-    abstract public function getUrlList(array $ids);
-
-    /**
-     * Download files
-     * 
-     * @param int[] $ids
-     */
-    abstract public function download(array $ids);
-    
-    /**
-     * Delete files
-     * 
-     * @param array $ids 
-     */
-    abstract public function delete(array $ids);
-    
-    /**
-     * Get file validator data
-     * 
-     * @param string $adapter 
-     */
-    abstract public function getValidator($adapter = null);
-    
-    /**
-     * Get configuration of server 
-     */
-    abstract public function getServerConfig();
+    abstract public function delete($id);
 }

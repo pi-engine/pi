@@ -85,7 +85,7 @@ class IndexController extends ActionController
         $counts = array(
             'total'     => array(
                 'title' => _a('Total posts'),
-                'count' => Pi::api('comment')->getCount(),
+                'count' => Pi::api('api', 'comment')->getCount(),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'index',
@@ -93,7 +93,7 @@ class IndexController extends ActionController
             ),
             'active'     => array(
                 'title' => _a('Active posts'),
-                'count' => Pi::api('comment')->getCount(array('active' => 1)),
+                'count' => Pi::api('api', 'comment')->getCount(array('active' => 1)),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'index',
@@ -102,7 +102,7 @@ class IndexController extends ActionController
             ),
             'inactive'     => array(
                 'title' => _a('Inactive posts'),
-                'count' => Pi::api('comment')->getCount(array('active' => 0)),
+                'count' => Pi::api('api', 'comment')->getCount(array('active' => 0)),
                 'url'   => $this->url('', array(
                     'controller'    => 'list',
                     'action'        => 'index',
@@ -128,7 +128,7 @@ class IndexController extends ActionController
             array_walk($users, function (&$user, $uid) use ($userNames) {
                 $user['name'] = $userNames[$uid];
                 $user['profile'] = Pi::service('user')->getUrl('profile', $uid);
-                $user['url'] = Pi::api('comment')->getUrl(
+                $user['url'] = Pi::api('api', 'comment')->getUrl(
                     'user',
                     array('uid' => $uid)
                 );
@@ -146,8 +146,8 @@ class IndexController extends ActionController
             $roots[$row['root']] = (int) $row['count'];
         }
         $rootIds = array_keys($roots);
-        $targets = Pi::api('comment')->getTargetsByRoot($rootIds);
-        //$targets = Pi::api('comment')->getTargetList(array('root' => $rootIds));
+        $targets = Pi::api('api', 'comment')->getTargetsByRoot($rootIds);
+        //$targets = Pi::api('api', 'comment')->getTargetList(array('root' => $rootIds));
         array_walk($targets, function (&$target, $rootId) use ($roots) {
             $target['count'] = $roots[$rootId];
         });
@@ -236,7 +236,7 @@ class IndexController extends ActionController
             'module'    => 'comment',
         ));
         foreach ($roots as $root) {
-            Pi::api('comment')->delete($root->id);
+            Pi::api('api', 'comment')->delete($root->id);
         }
         */
         Pi::model('root', 'comment')->delete(array(
@@ -255,7 +255,7 @@ class IndexController extends ActionController
                 'type'  => 'article',
                 'active'    => rand(0, 1),
             );
-            $rootIds[] = Pi::api('comment')->addRoot($root);
+            $rootIds[] = Pi::api('api', 'comment')->addRoot($root);
         }
 
         for ($i = 1; $i <= 5; $i++) {
@@ -265,7 +265,7 @@ class IndexController extends ActionController
                 'type'  => 'custom',
                 'active'    => rand(0, 1),
             );
-            $rootIds[] = Pi::api('comment')->addRoot($root);
+            $rootIds[] = Pi::api('api', 'comment')->addRoot($root);
         }
 
         for ($i = 0; $i < 1000; $i++) {
@@ -277,7 +277,7 @@ class IndexController extends ActionController
                 'content'   => sprintf(_a('Demo comment %d.'), $i + 1),
                 'time'      => time() - rand(100, 100000),
             );
-            Pi::api('comment')->addPost($post);
+            Pi::api('api', 'comment')->addPost($post);
         }
 
         //exit();

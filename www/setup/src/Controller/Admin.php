@@ -201,10 +201,10 @@ class Admin extends AbstractController
                 'email'         => $vars['adminmail'],
                 'name'          => $vars['adminname'],
             );
-            $uid = Pi::api('system', 'user')->addUser($adminData);
+            $uid = Pi::api('user', 'system')->addUser($adminData);
             $this->status = $uid ? true : false;
-            Pi::api('system', 'user')->activateUser($uid);
-            Pi::api('system', 'user')->setRole($uid, array(
+            Pi::api('user', 'system')->activateUser($uid);
+            Pi::api('user', 'system')->setRole($uid, array(
                 //'member',
                 'webmaster',
                 //'staff',
@@ -253,10 +253,10 @@ class Admin extends AbstractController
                     'credential'    => $adminData['credential'],
                     'name'          => $data['name'],
                 );
-                $uid = Pi::api('system', 'user')->addUser($userData);
-                Pi::api('system', 'user')->activateUser($uid);
+                $uid = Pi::api('user', 'system')->addUser($userData);
+                Pi::api('user', 'system')->activateUser($uid);
                 if (!empty($data['role'])) {
-                    Pi::api('system', 'user')->setRole($uid, $data['role']);
+                    Pi::api('user', 'system')->setRole($uid, $data['role']);
                 }
             }
         }

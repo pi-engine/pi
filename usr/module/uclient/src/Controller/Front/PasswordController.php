@@ -123,8 +123,8 @@ class PasswordController extends ActionController
             return;
         }
 
-        $userRow = Pi::api('uclient', 'user')->get($userData['uid']);
-        //$userRow = Pi::api('uclient', 'user')->get($userData['uid'], array('uid'));
+        $userRow = Pi::api('user', 'uclient')->get($userData['uid']);
+        //$userRow = Pi::api('user', 'uclient')->get($userData['uid'], array('uid'));
         $uid  = $userRow['uid'];
         if (!$uid || md5($uid) != $hashUid) {
             $result['message'] = __('Invalid information provided.');
@@ -151,7 +151,7 @@ class PasswordController extends ActionController
                 $values = $form->getData();
 
                 // Update user account data
-                Pi::api('system', 'user')->updateAccount(
+                Pi::api('user', 'system')->updateAccount(
                     $uid,
                     array('credential' => $values['credential-new'])
                 );

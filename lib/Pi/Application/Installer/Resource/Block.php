@@ -165,7 +165,7 @@ class Block extends AbstractResource
             if (empty($block['render'])) {
                 continue;
             }
-            $block['name'] = $key;
+            $block['name'] = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
             $data = $this->canonizeAdd($block);
             $message = array();
@@ -204,10 +204,10 @@ class Block extends AbstractResource
             if (empty($block['render'])) {
                 continue;
             }
-            $block['name'] = $key;
+            $block['name'] = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
             $rowset = $model->select(array(
-                'name'      => $key,
+                'name'      => $block['name'],
                 'module'    => $module,
             ));
             // Add new block
@@ -315,7 +315,7 @@ class Block extends AbstractResource
      */
     protected function addBlock($block, &$message)
     {
-        $result = Pi::api('system', 'block')->add($block);
+        $result = Pi::api('block', 'system')->add($block);
 
         return $result['status'];
     }
@@ -330,7 +330,7 @@ class Block extends AbstractResource
      */
     protected function updateBlock(RowGateway $rootRow, $block, &$message)
     {
-        $result = Pi::api('system', 'block')->update($rootRow, $block);
+        $result = Pi::api('block', 'system')->update($rootRow, $block);
 
         return $result['status'];
     }
@@ -344,7 +344,7 @@ class Block extends AbstractResource
      */
     protected function deleteBlock(RowGateway $rootRow, &$message)
     {
-        $result = Pi::api('system', 'block')->delete($rootRow, true);
+        $result = Pi::api('block', 'system')->delete($rootRow, true);
 
         return $result['status'];
     }

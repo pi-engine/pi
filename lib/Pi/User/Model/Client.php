@@ -52,7 +52,7 @@ class Client extends System
         if (null === $result && 'id' != $name) {
             $uid = $this->get('id');
             if ($uid) {
-                $result = Pi::api('uclient', 'user')->get($uid, $name);
+                $result = Pi::api('user', 'uclient')->get($uid, $name);
                 $this->data[$name] = $result;
             }
         }

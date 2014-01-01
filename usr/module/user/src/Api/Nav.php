@@ -63,7 +63,7 @@ class Nav extends AbstractApi
         );
 
         // Set activity
-        $activityList = Pi::api('user', 'activity')->getList();
+        $activityList = Pi::api('activity', 'user')->getList();
         foreach ($activityList as $key => $value) {
             $params = array(
                 'controller' => 'activity',

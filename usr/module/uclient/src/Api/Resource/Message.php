@@ -130,7 +130,7 @@ class Message extends UserMessage
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message')->getAlert($uid);
+        $result = Pi::api('api', 'message')->getAlert($uid);
 
         return $result;
     }
@@ -147,7 +147,7 @@ class Message extends UserMessage
         if (!$this->isAvailable()) {
             return false;
         }
-        $result = Pi::api('message')->dismissAlert($uid);
+        $result = Pi::api('api', 'message')->dismissAlert($uid);
 
         return $result;
     }

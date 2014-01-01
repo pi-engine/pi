@@ -34,14 +34,14 @@ class ListController extends ActionController
         $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
 
-        $posts = Pi::api('comment')->getList(
+        $posts = Pi::api('api', 'comment')->getList(
             array('active' => $active),
             $limit,
             $offset
         );
         /*
         // Comprehensive mode
-        $posts = Pi::api('comment')->renderList($posts, array(
+        $posts = Pi::api('api', 'comment')->renderList($posts, array(
             'user'      => array(
                 'field'     => 'name',
                 'url'       => 'comment',
@@ -57,14 +57,14 @@ class ListController extends ActionController
         */
         /*
         // Lean mode
-        $posts = Pi::api('comment')->renderList($posts, array(
+        $posts = Pi::api('api', 'comment')->renderList($posts, array(
             'user'      => true,
             'target'    => true,
             'operation' => true,
         ));
         */
         // Default mode
-        $posts = Pi::api('comment')->renderList($posts, array(
+        $posts = Pi::api('api', 'comment')->renderList($posts, array(
             'operation'     => 'admin',
             'user'          => array(
                 'avatar'    => 'medium',
@@ -142,12 +142,12 @@ class ListController extends ActionController
         $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
         $where = array('uid' => $uid, 'active' => $active);
-        $posts = Pi::api('comment')->getList(
+        $posts = Pi::api('api', 'comment')->getList(
             $where,
             $limit,
             $offset
         );
-        $posts = Pi::api('comment')->renderList($posts, array(
+        $posts = Pi::api('api', 'comment')->renderList($posts, array(
             'user'      => false,
             'target'    => true,
             'operation' => 'admin',
@@ -305,12 +305,12 @@ class ListController extends ActionController
             );
             $where['type'] = $type;
         }
-        $posts = Pi::api('comment')->getList(
+        $posts = Pi::api('api', 'comment')->getList(
             $where,
             $limit,
             $offset
         );
-        $posts = Pi::api('comment')->renderList($posts, array(
+        $posts = Pi::api('api', 'comment')->renderList($posts, array(
             'operation' => 'admin',
             'user'      => array(
                 'avatar'    => 'medium',
@@ -419,7 +419,7 @@ class ListController extends ActionController
         $limit  = $this->config('list_limit') ?: 10;
         $offset = ($page - 1) * $limit;
 
-        $targets = Pi::api('comment')->getTargetList(
+        $targets = Pi::api('api', 'comment')->getTargetList(
             array('active' => $active),
             $limit,
             $offset
@@ -452,13 +452,13 @@ class ListController extends ActionController
                 ? $users[$data['uid']] : $users[0];
             $data['comment_user'] = isset($users[$data['comment_uid']])
                 ? $users[$data['comment_uid']] : $users[0];
-            $data['comment_url'] = Pi::api('comment')->getUrl('root', array(
+            $data['comment_url'] = Pi::api('api', 'comment')->getUrl('root', array(
                 'root'  => $root,
             ));
         });
         //d($targets);
 
-        $count = Pi::api('comment')->getTargetCount(array(
+        $count = Pi::api('api', 'comment')->getTargetCount(array(
             'active'    => $active,
         ));
 

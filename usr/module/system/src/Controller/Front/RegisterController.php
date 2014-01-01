@@ -107,7 +107,7 @@ class RegisterController extends ActionController
             //'active'        => 1,
             //'role'          => Acl::MEMBER,
         );
-        $uid = Pi::api('system', 'user')->addUser($data);
+        $uid = Pi::api('user', 'system')->addUser($data);
         if (!$uid) {
             $this->view()->assign(
                 'message',
@@ -117,8 +117,8 @@ class RegisterController extends ActionController
 
             return;
         }
-        Pi::api('system', 'user')->activateUser($uid);
-        Pi::api('system', 'user')->setRole($uid, 'member');
+        Pi::api('user', 'system')->activateUser($uid);
+        Pi::api('user', 'system')->setRole($uid, 'member');
 
 
         $this->view()->setTemplate('register-success');

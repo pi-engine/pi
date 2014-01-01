@@ -286,7 +286,7 @@ class ProfileController extends ActionController
     public function privacyAction()
     {
 
-        $privacy = Pi::api('user', 'privacy')->getPrivacy();
+        $privacy = Pi::api('privacy', 'user')->getPrivacy();
 
         return array_values($privacy);
     }

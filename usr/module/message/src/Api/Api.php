@@ -22,12 +22,12 @@ use Zend\Db\Sql\Predicate\Expression;
  *  // Send message to a user
  *  Pi::user()->message()->send(1, 'message 2=>1', 2);
  *  or
- *  Pi::api('message')->send(1, 'message 2=>1', 2);
+ *  Pi::api('api', 'message')->send(1, 'message 2=>1', 2);
  *  // Send notification to a user
  *  Pi::user()->message()
  *            ->notify(1, 'notification to 1', 'subject', 'announcement');
  *  or
- *  Pi::api('message')->notify(
+ *  Pi::api('api', 'message')->notify(
  *      1,
  *      'notification to 1',
  *      'subject',
@@ -36,11 +36,11 @@ use Zend\Db\Sql\Predicate\Expression;
  *  // Get message total count of current user
  *  Pi::user()->message()->getCount(1);
  *  or
- *  Pi::api('message')->getCount(1);
+ *  Pi::api('api', 'message')->getCount(1);
  *  // Get message alert (new) count of current user
  *  Pi::user()->message()->getAlert(1);
  *  or
- *  Pi::api('message')->getAlert(1);
+ *  Pi::api('api', 'message')->getAlert(1);
  * ```
  *
  * @author Xingyu Ji <xingyu@eefocus.com>

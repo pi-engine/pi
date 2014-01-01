@@ -49,7 +49,7 @@ class CarouselController extends WidgetController
             unset($block['type']);
         }
 
-        $result = Pi::api('system', 'block')->update(
+        $result = Pi::api('block', 'system')->update(
             $widgetRow->block,
             $block
         );

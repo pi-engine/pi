@@ -83,7 +83,7 @@ class ActivityController extends ActionController
         } else {
             $role = Pi::user()->hasIdentity() ? 'member' : 'public';
         }
-        $user = Pi::api('user', 'privacy')->filterProfile(
+        $user = Pi::api('privacy', 'user')->filterProfile(
             $uid,
             $role,
             $user,
@@ -91,20 +91,20 @@ class ActivityController extends ActionController
         );
 
         // Get activity list for nav display
-        $activityList = Pi::api('user', 'activity')->getList();
+        $activityList = Pi::api('activity', 'user')->getList();
 
         // Get current activity data
-        $data = Pi::api('user', 'activity')->get($uid, $name, $limit);
+        $data = Pi::api('activity', 'user')->get($uid, $name, $limit);
 
         // Get nav
         if ($isOwner) {
-            $nav = Pi::api('user', 'nav')->getList($name);
+            $nav = Pi::api('nav', 'user')->getList($name);
         } else {
-            $nav = Pi::api('user', 'nav')->getList($name, $uid);
+            $nav = Pi::api('nav', 'user')->getList($name, $uid);
         }
 
         // Get quick link
-        $quicklink = Pi::api('user','quicklink')->getList();
+        $quicklink = Pi::api('quicklink', 'user')->getList();
 
         $this->view()->assign(array(
             'list'      => $activityList,

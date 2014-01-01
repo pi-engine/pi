@@ -620,21 +620,21 @@ class RegisterController extends ActionController
                 if (isset($meta[$value]) &&
                     $meta[$value]['type'] == 'compound'
                 ) {
-                    $compoundElements = Pi::api('user', 'form')->getCompoundElement($value);
+                    $compoundElements = Pi::api('form', 'user')->getCompoundElement($value);
                     foreach ($compoundElements as $element) {
                         if ($element) {
                             $elements[] = $element;
                         }
                     }
-                    $compoundFilters = Pi::api('user', 'form')->getCompoundFilter($value);
+                    $compoundFilters = Pi::api('form', 'user')->getCompoundFilter($value);
                     foreach ($compoundFilters as $filter) {
                         if ($filter) {
                             $filters[] = $filter;
                         }
                     }
                 } else {
-                    $element    = Pi::api('user', 'form')->getElement($value);
-                    $filter     = Pi::api('user', 'form')->getFilter($value);
+                    $element    = Pi::api('form', 'user')->getElement($value);
+                    $filter     = Pi::api('form', 'user')->getFilter($value);
                     if ($element) {
                         $elements[] = $element;
                     }

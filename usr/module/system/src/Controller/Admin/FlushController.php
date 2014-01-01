@@ -38,6 +38,7 @@ class FlushController extends ActionController
             'apc'           => _a('APC file cache'),
             'folder'        => _a('System cache files'),
             'persist'       => _a('System persistent data'),
+            'meta'          => _a('DB metadata'),
             'module'        => _a('Module cache'),
             'comment'       => _a('Comment cache'),
         );

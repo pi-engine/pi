@@ -1,5 +1,11 @@
 Pi Engine Changelog
 
+Pi 2.4.0
+Jan 1st, 2014
+============
+1. Refactored API calls to be compatible with registry and model calls: changed `Pi::api(<module>, <api>)` to `Pi::api(<api>, <module>)`
+
+
 Pi 2.3.0
 Dec 3rd, 2013
 ============

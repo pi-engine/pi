@@ -457,26 +457,22 @@ class Pi
      * Usage
      *
      * ```
-     *  // Module default API
-     *  Pi::api(<module-name>)->{<method>}(<args>);
-     *  // Alias of
-     *  Pi::service('api')->handler(<module-name>, 'api')->{<method>}(<args>);
+     *  // Module API
+     *  Pi::api(<api_name>, <module-name>)->{<method>}(<args>);
      *
-     *  // Module specific API
-     *  Pi::api(<module-name>, <api-name>)->{<method>}(<args>);
-     *  // Alias of
-     *  Pi::service('api')->handler(<module-name>, <api-name>)->{<method>}(<args>);
+     *  // System service API
+     *  Pi::api(<service_name>, <options>);
      * ```
      *
-     * @param string $module
-     * @param string $api
+     * @param string        $api    API name
+     * @param string|array  $module Module name or options for system service
      *
      * @return AbstractApi
      * @api
      */
-    public static function api($module, $api = 'api')
+    public static function api($api, $module = '')
     {
-        return static::service('api')->handler($module, $api);
+        return static::service('api')->handler($api, $module);
     }
 
     /**

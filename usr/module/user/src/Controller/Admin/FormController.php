@@ -115,8 +115,8 @@ class FormController extends ActionController
 
         foreach ($config as $value) {
             if (is_string($value)) {
-                $elements[] = Pi::api('user', 'form')->getElement($value);
-                $filters[]  = Pi::api('user', 'form')->getFilter($value);
+                $elements[] = Pi::api('form', 'user')->getElement($value);
+                $filters[]  = Pi::api('form', 'user')->getFilter($value);
             } else {
                 if ($value['element']) {
                     $elements[] = $value['element'];

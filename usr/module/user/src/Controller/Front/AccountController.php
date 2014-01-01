@@ -53,7 +53,7 @@ class AccountController extends ActionController
         );
 
         // Get side nav items
-        $groups = Pi::api('user', 'group')->getList();
+        $groups = Pi::api('group', 'user')->getList();
 
         // Generate form
         $form = new AccountForm('account');

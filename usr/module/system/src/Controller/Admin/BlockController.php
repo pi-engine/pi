@@ -146,7 +146,7 @@ class BlockController extends ComponentController
                 $values['render']   = $rootRow->render;
                 unset($values['id']);
 
-                $result = Pi::api('system', 'block')->add($values);
+                $result = Pi::api('block', 'system')->add($values);
                 extract($result);
                 if ($status) {
                     $message = _a('Block data saved successfully.');
@@ -235,7 +235,7 @@ class BlockController extends ComponentController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::api('system', 'block')->edit($blockRow, $values);
+                $result = Pi::api('block', 'system')->edit($blockRow, $values);
                 $message = _a('Block data saved successfully.');
                 $this->jump(
                     array('action' => 'index', 'name' => $blockRow->module),
@@ -283,7 +283,7 @@ class BlockController extends ComponentController
     public function deleteAction()
     {
         $id = $this->params('id');
-        $result = Pi::api('system', 'block')->delete($id, false);
+        $result = Pi::api('block', 'system')->delete($id, false);
         extract($result);
         return $status;
     }

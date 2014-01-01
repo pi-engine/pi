@@ -142,8 +142,8 @@ class EditController extends ActionController
 
 
         // Get compound elements and filters
-        $compoundElements = Pi::api('user', 'form')->getCompoundElement($compound);
-        $compoundFilters  = Pi::api('user', 'form')->getCompoundFilter($compound);
+        $compoundElements = Pi::api('form', 'user')->getCompoundElement($compound);
+        $compoundFilters  = Pi::api('form', 'user')->getCompoundFilter($compound);
 
         // Get user compound
         $userCompound = Pi::api('user', 'user')->get($uid, $compound);
@@ -286,9 +286,9 @@ class EditController extends ActionController
 
         foreach ($editFields as $row) {
             $fields[]   = $row['name'];
-            $element    = Pi::api('user', 'form')->getElement($row['name']);
+            $element    = Pi::api('form', 'user')->getElement($row['name']);
             /*
-            $filter     = Pi::api('user', 'form')->getFilter($row['name']);
+            $filter     = Pi::api('form', 'user')->getFilter($row['name']);
             */
             if ($row['name'] !== 'birthdate') {
                 $filters[] = array(

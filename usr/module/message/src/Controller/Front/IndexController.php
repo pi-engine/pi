@@ -231,7 +231,7 @@ class IndexController extends ActionController
             }
 
             //current user id
-            $result = Pi::api('message')->send(
+            $result = Pi::api('api', 'message')->send(
                 $toUserId,
                 $data['content'],
                 $uid
@@ -359,7 +359,7 @@ class IndexController extends ActionController
             }
             $data = $form->getData();
 
-            $result = Pi::api('message')->send(
+            $result = Pi::api('api', 'message')->send(
                 $data['uid_to'],
                 $data['content'],
                 $userId
