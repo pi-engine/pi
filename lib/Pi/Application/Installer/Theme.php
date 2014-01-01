@@ -287,6 +287,7 @@ class Theme
     {
         $name = $this->event->getParam('name');
         $config = $this->event->getParam('config');
+
         $type = isset($config['type']) ? $config['type'] : 'both';
         $result = array(
             'status'    => true,
@@ -297,7 +298,7 @@ class Theme
         ) {
             $result = array(
                 'status'    => false,
-                'message'   => 'Files missing: ' . implode(' ', $files)
+                'message'   => 'Files missing: ' . implode('; ', $files)
             );
         } else {
             $data = $this->canonizeData($config);

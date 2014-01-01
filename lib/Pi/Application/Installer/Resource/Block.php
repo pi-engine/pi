@@ -165,7 +165,7 @@ class Block extends AbstractResource
             if (empty($block['render'])) {
                 continue;
             }
-            $block['name'] = $key;
+            $block['name'] = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
             $data = $this->canonizeAdd($block);
             $message = array();
@@ -204,10 +204,10 @@ class Block extends AbstractResource
             if (empty($block['render'])) {
                 continue;
             }
-            $block['name'] = $key;
+            $block['name'] = !empty($block['name']) ? $block['name'] : $key;
             $block['module'] = $module;
             $rowset = $model->select(array(
-                'name'      => $key,
+                'name'      => $block['name'],
                 'module'    => $module,
             ));
             // Add new block

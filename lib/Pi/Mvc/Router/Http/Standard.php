@@ -434,7 +434,7 @@ class Standard implements RouteInterface
      */
     protected function decode($value)
     {
-        return rawurldecode($value);
+        return $value ? rawurldecode($value) : $value;
     }
 
 }
