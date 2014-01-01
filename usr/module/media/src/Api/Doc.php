@@ -46,12 +46,16 @@ class Doc extends AbstractApi
     protected function canonize(array $data)
     {
         if (!isset($data['attributes'])) {
-            $data['attributes'] = array();
-            foreach (array('mimetype', 'size', 'width', 'height') as $key) {
-                if (isset($data[$key])) {
-                    $data['attributes'][$key] = $data[$key];
-                    unset($data[$key]);
+            $attributes = array();
+            $columns = $this->model()->getColumns();
+            //foreach (array('mimetype', 'size', 'width', 'height') as $key) {
+            foreach (array_keys($data) as $key) {
+                if (!in_array($key, $columns)) {
+                    $attributes[$key] = $data[$key];
                 }
+            }
+            if ($attributes) {
+                $data['attributes'] = $attributes;
             }
         }
 
@@ -68,7 +72,7 @@ class Doc extends AbstractApi
     public function addApplication(array $data)
     {
         $model  =$this->model('application');
-        $row = $model->find($data['appkey'], 'appkey');
+        $row    = $model->find($data['appkey'], 'appkey');
         if (!$row) {
             $row = $model->createRow($data);
         } else {
@@ -131,6 +135,15 @@ class Doc extends AbstractApi
                     $filename = $uploader->getUploaded();
                     if (is_array($filename)) {
                         $filename = current($filename);
+                    }
+                    // Fetch file attributes
+                    $fileinfoList = $uploader->getFileInfo();
+                    $fileinfo = current($fileinfoList);
+                    if (!isset($params['mimetype'])) {
+                        $params['mimetype'] = $fileinfo['type'];
+                    }
+                    if (!isset($params['size'])) {
+                        $params['size'] = $fileinfo['size'];
                     }
                     $success = true;
                 }

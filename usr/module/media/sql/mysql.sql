@@ -10,6 +10,8 @@ CREATE TABLE `{doc}` (
 
   # Encoded file attributes: mimetype, size, width, height, etc.
   `attributes`      text,
+  `size`            int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `mimetype`        varchar(255)                    NOT NULL DEFAULT '',
 
   # Doc attributes
   `title`           varchar(255)                    NOT NULL DEFAULT '',

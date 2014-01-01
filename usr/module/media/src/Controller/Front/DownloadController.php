@@ -10,8 +10,7 @@
 namespace Module\Media\Controller\Front;
 
 use Pi\Mvc\Controller\ActionController;
-use ZipArchive;
-use Pi;
+use Pi\File\Transfer\Download;
 
 /**
  * Download controller
@@ -33,50 +32,42 @@ class DownloadController extends ActionController
         }
         
         // Export files
-        $model = $this->getModel('doc');
-        $rowset     = $model->select(array('id' => $ids));
-        $affectRows = array();
-        $files      = array();
+        $model  = $this->getModel('doc');
+        $rowset = $model->select(array('id' => $ids));
+        $files  = array();
         foreach ($rowset as $row) {
             $path = $row['path'];
             if (!$path || !file_exists($path)) {
                 continue;
             }
-            $files[]      = $path;
-            $affectRows[] = $row->id;
+            $files[] = array(
+                'source'            => $path,
+                'filename'          => $row['filename'],
+                'content_type'      => $row['mimetype'],
+                'content_length'    => $row['size'],
+            );
         }
         $model->increment('count', array('id' => $ids));
-        /*
-        if (empty($affectRows)) {
-            throw new \Exception('No valid file.');
+        if (1 == count($files)) {
+            $files      = current($files);
+            $source     = $files['source'];
+            $options    = $files;
+        } else {
+            $source     = $files;
+            $options    = array();
         }
-        
-        // Statistics
-        $model  = $this->getModel('stats');
-        $rowset = $model->select(array('media' => $affectRows));
-        $exists = array();
-        foreach ($rowset as $row) {
-            $exists[] = $row->media;
-        }
-        
-        if (!empty($exists)) {
-            foreach ($exists as $item) {
-                $row = $model->find($item, 'media');
-                $row->fetch_count = $row->fetch_count + 1;
-                $row->save();
+
+        $downloader = new Download();
+        $result = $downloader->send($source, $options);
+        if (false === $result) {
+            if (substr(PHP_SAPI, 0, 3) == 'cgi') {
+                header('Status: 404 Not Found');
+            } else {
+                header('HTTP/1.1 404 Not Found');
             }
         }
-        
-        $newRows = array_diff($affectRows, $exists);
-        foreach ($newRows as $item) {
-            $data = array(
-                'media'       => $item,
-                'fetch_count' => 1,
-            );
-            $row = $model->createRow($data);
-            $row->save();
-        }
-        */
+
+        /*
         $filePath = 'upload/tmp';
         Pi::service('file')->mkdir(Pi::path($filePath));
         $filename = sprintf('%s/media-%s.zip', $filePath, time());
@@ -87,9 +78,9 @@ class DownloadController extends ActionController
         }
         $compress = count($files) > 1 ? true : false;
         if ($compress) {
-            foreach( $files as $file) {
+            foreach ($files as $file) {
                 if (file_exists($file)) {  
-                    $zip->addFile( $file , basename($file));
+                    $zip->addFile($file, basename($file));
                 }
             }  
             $zip->close();
@@ -105,6 +96,7 @@ class DownloadController extends ActionController
             $options['deleteFile'] = true;
         }
         $this->httpOutputFile($options);
+        */
     }
     
     /**
@@ -112,7 +104,7 @@ class DownloadController extends ActionController
      * 
      * @param array $options
      */
-    protected function httpOutputFile(array $options)
+    protected function ____httpOutputFile(array $options)
     {
         if ((!isset($options['file']) && !isset($options['raw']))) {
             if (!$options['silent']) {

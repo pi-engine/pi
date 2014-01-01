@@ -23,7 +23,7 @@ class Doc extends Model
      * {@inheritDoc}
      */
     protected $columns = array(
-        'id', 'url', 'path', 'filename', 'attributes',
+        'id', 'url', 'path', 'filename', 'attributes', 'size', 'mimetype',
         'title', 'description',
         'active', 'time_created', 'time_updated', 'time_deleted',
         'appkey', 'module', 'type', 'token',
