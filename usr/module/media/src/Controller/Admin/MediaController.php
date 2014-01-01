@@ -12,11 +12,6 @@ namespace Module\Media\Controller\Admin;
 use Pi\Mvc\Controller\ActionController;
 use Module\Media\Form\MediaEditForm;
 use Module\Media\Form\MediaEditFilter;
-use Module\Media\Model\Detail;
-use Pi\Paginator\Paginator;
-use Module\Media\Service;
-use Zend\Db\Sql\Expression;
-use Pi;
 
 /**
  * Media controller
@@ -44,6 +39,47 @@ class MediaController extends ActionController
     }
     
     /**
+     * Render form
+     * 
+     * @param Zend\Form\Form $form     Form instance
+     * @param string         $message  Message assign to template
+     * @param bool           $isError  Whether is error message
+     */
+    public function renderForm($form, $message = null, $isError = true) {
+        $params = array('form' => $form);
+        if ($isError) {
+            $params['error'] = $message;
+        } else {
+            $params['message'] = $message;
+        }
+        $this->view()->assign($params);
+    }
+    
+    /**
+     * Save media data
+     * 
+     * @param array $data
+     * @return int
+     */
+    protected function saveMedia($data)
+    {
+        $id   = $data['id'];
+        unset($data['id']);
+        
+        $modelDoc = $this->getModel('doc');
+        $rowMedia = $modelDoc->find($id);
+        if ($rowMedia) {
+            $rowMedia->assign($data);
+            $rowMedia->save();
+        } else {
+            $rowMedia = $modelDoc->createRow($data);
+            $rowMedia->save();
+        }
+        
+        return $rowMedia->id;
+    }
+    
+    /**
      * Edit media
      * 
      * @return ViewModel 
@@ -51,7 +87,7 @@ class MediaController extends ActionController
     public function editAction()
     {
         $id   = $this->params('id', 0);
-        $row  = $this->getModel('detail')->find($id);
+        $row  = $this->getModel('doc')->find($id);
         if (!$row) {
             $this->view()->assign('id', $row->id);
             return;
@@ -72,20 +108,20 @@ class MediaController extends ActionController
             $columns = array('id', 'title', 'description');
             $form->setValidationGroup($columns);
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occur')
                 );
             }
             
             $data = $form->getData();
-            $id   = $data['id'];
-            unset($data['id']);
-            $this->getModel('detail')->update(
-                $data,
-                array('id' => $id)
-            );
+            $id   = $this->saveMedia($data);
+            if (empty($id)) {
+                return $this->renderForm(
+                    $form,
+                    _a('Cannot save media data')
+                );
+            }
 
             return $this->redirect()->toRoute(
                 '',
@@ -115,8 +151,8 @@ class MediaController extends ActionController
         }
         
         // Mark media as deleted
-        $this->getModel('detail')->update(
-            array('delete' => 1),
+        $this->getModel('doc')->update(
+            array('time_deleted' => time()),
             array('id' => $ids)
         );
         
@@ -153,9 +189,10 @@ class MediaController extends ActionController
         }
         
         $status = $this->params('status', 1);
+        $status = $status ? 1 : 0;
         
         // Mark media as deleted
-        $this->getModel('detail')->update(
+        $this->getModel('doc')->update(
             array('active' => $status),
             array('id' => $ids)
         );
