@@ -10,54 +10,54 @@
 namespace Pi\File\Transfer;
 
 use Pi;
-use Pi\Filter\File\Rename;
 use ZipArchive;
 
 /**
  * Download content and files
  *
- * Download conent generated on-fly
+ * Download content generated on-fly
  *
  * <code>
- *  $file = array(
- *      'source'        => 'Generated content',
+ *  $source = 'Generated content';
+ *  $options = array(
  *      // Required
- *      'type'          => 'string',
+ *      'type'          => 'raw',
  *      // Optional
  *      'filename'      => 'pi-download',
  *      // Optional
  *      'content_type   => 'application/octet-stream',
  *  );
  *  $downloader = new Download;
- *  $downloader->send($file)
+ *  $downloader->send($source, $options);
  * </code>
  *
  * Download a file
  *
  * <code>
- *  $file = 'path/to/file';
- *  // Or
- *  $file = array(
- *      'source'        => 'path/to/file'
+ *  $source = 'path/to/file';
+ *  $options = array(
  *      // Optional
  *      'filename'      => 'pi-download',
  *      // Optional
  *      'content_type   => 'application/octet-stream',
+ *      // Optional
+ *      'content_length => 1234,
  *  );
  *  $downloader = new Download;
- *  $downloader->send($file)
+ *  $downloader->send($source, options);
+ *
  * </code>
  *
  * Download multiple files, compressed and sent as a zip file
  *
  * <code>
- *  $file = array(
+ *  $source = array(
  *      'path/to/file1',
  *      'path/to/file2',
  *      'path/to/file3',
  *  );
  *  // Or
- *  $file = array(
+ *  $source = array(
  *      array(
  *          'filename'  => 'path/to/file1',
  *          'localname' => 'filea',
@@ -71,45 +71,13 @@ use ZipArchive;
  *          'localname' => 'fileb',
  *      ),
  *  );
- *  // Or
- *  $file = array(
- *      'source'        => array(
- *          'path/to/file1',
- *          'path/to/file2',
- *          'path/to/file3',
- *      ),
+ *
+ *  $options = array(
  *      // Optional
  *      'filename'      => 'pi-download',
- *      // Optional
- *      'type'  => 'zip',
- *      // Optional
- *      'content_type   => 'application/octet-stream',
- *  );
- *  // Or
- *  $file = array(
- *      'source'        => array(
- *          array(
- *              'filename'  => 'path/to/file1',
- *              'localname' => 'filea',
- *          ),
- *          array(
- *              'filename'  => 'path/to/file2',
- *              'localname' => 'fileb',
- *          ),
- *          array(
- *              'filename'  => 'path/to/file3',
- *              'localname' => 'fileb',
- *          ),
- *      ),
- *      // Optional
- *      'filename'      => 'pi-download',
- *      // Optional
- *      'type'  => 'zip',
- *      // Optional
- *      'content_type   => 'application/octet-stream',
  *  );
  *  $downloader = new Download;
- *  $downloader->send($file)
+ *  $downloader->send($source, $options);
  * </code>
  *
  * Download with specified exit
@@ -167,29 +135,35 @@ class Download
     /**
      * Send the file to the client (Download)
      *
-     * @param  string|array $options Options for the file(s) to send
-     * @return bool
+     * @param string|array $source File or file meta to download
+     * @param array $options Options for the file(s) to send
+     *
+     * @return bool|void
      */
-    public function send($options = null)
+    public function send($source, array $options = array())
     {
         // Disable logging service
         Pi::service('log')->mute();
 
         // Canonize download options
-        $options = $this->canonizeDownload($options);
-        if (!$options) {
+        $source = $this->canonizeDownload($source, $options);
+        if (!$source) {
             return false;
         }
-        list($resource, $filename, $type, $contentType, $contentLength) =
-            $options;
-        if ('string' == $type) {
-            $source = $resource;
+
+        if ('raw' == $options['type']) {
+            $source = $options['source'];
         } else {
-            $source = fopen($resource, 'rb');
+            $source = fopen($options['source'], 'rb');
         }
 
         // Send the content to client
-        $this->download($source, $filename, $contentType, $contentLength);
+        $this->download(
+            $source,
+            $options['filename'],
+            $options['content_type'],
+            $options['content_length']
+        );
 
         // Close resource handler
         if (is_resource($source)) {
@@ -197,8 +171,8 @@ class Download
         }
 
         // Remove tmp zip file
-        if ('zip' == $type) {
-            @unlink($resource);
+        if ('zip' == $options['type']) {
+            @unlink($options['source']);
         }
 
         if ($this->exit) {
@@ -212,49 +186,25 @@ class Download
     /**
      * Canonize download options
      *
-     * @param array|string $options
-     * @return array
+     * @param string|array $source File or file meta to download
+     * @param array $options Options for the file(s) to send
+     *
+     * @return string
      */
-    protected function canonizeDownload($options)
+    protected function canonizeDownload($source, array &$options = array())
     {
-        $resource       = null;
-        $filename       = '';
-        $contentType    = 'application/octet-stream';
-        $contentLength  = 0;
-
-        $source         = array();
-        if (is_array($options) && isset($options['source'])) {
-            $source         = (array) $options['source'];
-            $type           = isset($options['type'])
-                ? $options['type'] : 'file';
-            $filename       = isset($options['filename'])
-                ? $options['filename'] : '';
-            $contentType    = isset($options['content_type'])
-                ? $options['content_type'] : '';
-        } else {
-            $source = (array) $options;
+        if (!isset($options['type'])) {
+            $options['type'] = 'file';
         }
-        if (count($source) > 1) {
-            $type = 'zip';
-        }
-
-        if ('string' == $type) {
-            $resource = array_shift($source);
-            $contentLength = strlen($resource);
-            $source = array();
-        } elseif ('zip' != $type) {
-            $resource = array_shift($source);
-            $filename = $filename ?: basename($resource);
-            $contentLength = filesize($resource);
-        } else {
-            if ($filename) {
-                if (strtolower(substr($filename, -4)) != '.zip') {
-                    $filename .= '.zip';
+        if (is_array($source)) {
+            array_walk($source, function (&$item) {
+                if (is_array($item)) {
+                    $item = array('filename' => $item);
+                    if (empty($item['localname'])) {
+                        $item['localname'] = basename($item['filename']);
+                    }
                 }
-            } else {
-                $filename = 'archive.zip';
-            }
-            $contentType = 'application/zip';
+            });
             $zipFile = tempnam($this->tmp, 'zip');
             $zip = new ZipArchive;
             if ($zip->open($zipFile, ZipArchive::CREATE) !== true) {
@@ -262,27 +212,43 @@ class Download
             }
 
             foreach ($source as $item) {
-                $localname  = null;
-                $file       = null;
-                if (is_array($item)) {
-                    $file       = $item['filename'];
-                    $localname  = isset($item['localname'])
-                        ? $item['localname'] : basename($file);
-                } elseif (is_file($item)) {
-                    $file       = $item;
-                    $localname = basename($file);
-                } else {
-                    continue;
-                }
-                $zip->addFile($file, $localname);
+                $zip->addFile($item['filename'], $item['localname']);
             }
             $zip->close();
-            $resource = $zipFile;
-            $contentLength = filesize($resource);
+            $source = $zipFile;
+
+            $options['type'] = 'zip';
+            if (!empty($options['filename'])) {
+                if (strtolower(substr($options['filename'], -4)) != '.zip') {
+                    $options['filename'] .= '.zip';
+                }
+            } else {
+                $options['filename'] = 'archive.zip';
+            }
+            $options['content_type'] = 'application/zip';
+            $this->canonizeDownload($source, $options);
+
+        } elseif ('raw' == $options['type']) {
+            if (!isset($options['content_length'])) {
+                $options['content_length'] = strlen($source);
+            }
+        } else {
+            if (!isset($options['filename'])) {
+                $options['filename'] = basename($source);
+            }
+            if (!isset($options['content_length'])) {
+                $options['content_length'] = filesize($source);
+            }
+        }
+        if (!isset($options['filename'])) {
+            $options['filename'] = 'pi-download';
+        }
+        $options['filename'] = rawurlencode($options['filename']);
+        if (!isset($options['content_type'])) {
+            $options['content_type'] = 'application/octet-stream';
         }
 
-        return array($resource, $filename, $type,
-                     $contentType, $contentLength);
+        return $source;
     }
 
     /**
@@ -292,6 +258,7 @@ class Download
      * @param string $filename
      * @param string $contentType
      * @param int $contentLength
+     *
      * @return bool
      */
     protected function download(
@@ -302,8 +269,7 @@ class Download
     ) {
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $contentType);
-        header('Content-Disposition: attachment; filename="'
-               . $filename . '"');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
         header('Content-Transfer-Encoding: chunked');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
