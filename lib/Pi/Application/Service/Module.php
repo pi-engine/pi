@@ -265,20 +265,19 @@ class Module extends AbstractService
                         $file = Pi::path('custom') . '/module/' . $directory . '/config/'
                               . $resourceCustom[$name];
                         if (file_exists($file)) {
-                            $resourceCustom[$name] = include $file;
-                        } else {
-                            $resourceCustom[$name] = array();
+                            $result = (array) include $file;
                         }
+                    } else {
+                        $result = $resourceCustom[$name];
                     }
-                    $result = $resourceCustom[$name];
-                } elseif (isset($resource[$name])) {
+                }
+                if (null === $result && isset($resource[$name])) {
                     if (is_string($resource[$name]) && $fetch) {
                         $file = Pi::path('module') . '/' . $directory . '/config/'
                             . $resource[$name];
+                        d($file);
                         if (file_exists($file)) {
-                            $result = include $file;
-                        } else {
-                            $result = array();
+                            $result = (array) include $file;
                         }
                     } else {
                         $result = $resource[$name];
