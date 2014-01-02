@@ -275,7 +275,6 @@ class Module extends AbstractService
                     if (is_string($resource[$name]) && $fetch) {
                         $file = Pi::path('module') . '/' . $directory . '/config/'
                             . $resource[$name];
-                        d($file);
                         if (file_exists($file)) {
                             $result = (array) include $file;
                         }
