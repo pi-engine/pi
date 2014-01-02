@@ -193,6 +193,7 @@ class Resource implements ListenerAggregateInterface
         }
         $options = isset($config['resource'][$resource])
             ? $config['resource'][$resource] : array();
+        /*
         if (is_string($options)) {
             $optionsFile = sprintf(
                 '%s/%s/config/%s',
@@ -205,6 +206,7 @@ class Resource implements ListenerAggregateInterface
                 $options = array();
             }
         }
+        */
         $resourceHandler = new $resourceClass($options);
         $resourceHandler->setEvent($this->event);
         $ret = $resourceHandler->$methodAction();

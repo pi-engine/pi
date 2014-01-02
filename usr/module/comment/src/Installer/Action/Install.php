@@ -45,10 +45,11 @@ class Install extends BasicInstall
         }
         $moduleList = array_keys($modules);
         foreach ($moduleList as $mod) {
-            $options = Pi::service('module')->loadMeta($mod, 'comment');
+            $options = Pi::service('module')->loadMeta($mod, 'comment', true);
             if (empty($options)) {
                 continue;
             }
+            /*
             if (is_string($options)) {
                 $optionsFile = sprintf(
                     '%s/%s/config/%s',
@@ -61,6 +62,7 @@ class Install extends BasicInstall
                     continue;
                 }
             }
+            */
 
             $resourceHandler = new CommentResource($options);
             $e->setParam('module', $mod);

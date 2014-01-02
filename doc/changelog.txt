@@ -1,5 +1,11 @@
 Pi Engine Changelog
 
+Pi 2.4.0
+Jan 2nd, 2014
+=============
+* Added built-in support for module custom with build metadata versioning
+
+
 Pi 2.3.0
 Dec 3rd, 2013
 ============

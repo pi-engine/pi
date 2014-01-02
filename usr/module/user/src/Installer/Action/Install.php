@@ -74,10 +74,11 @@ class Install extends BasicAction
         }
         $moduleList = array_keys($modules);
         foreach ($moduleList as $mod) {
-            $options = Pi::service('module')->loadMeta($mod, 'user');
+            $options = Pi::service('module')->loadMeta($mod, 'user', true);
             if (empty($options)) {
                 continue;
             }
+            /*
             if (is_string($options)) {
                 $optionsFile = sprintf(
                     '%s/%s/config/%s',
@@ -90,6 +91,7 @@ class Install extends BasicAction
                     continue;
                 }
             }
+            */
 
             $resourceHandler = new UserResource($options);
             $e->setParam('module', $mod);
