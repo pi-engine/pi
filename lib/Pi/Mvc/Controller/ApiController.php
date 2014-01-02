@@ -210,8 +210,8 @@ abstract class ApiController extends ActionController
      */
     public function countAction()
     {
-        $query = $this->params('query');
-        $query = $this->canonizeQuery($query);
+        $query  = $this->params('query');
+        $query  = $this->canonizeQuery($query);
         $where  = $this->canonizeCondition($query);
         $count  = $this->model($this->modelName)->count($where);
         $response = array(
@@ -323,7 +323,7 @@ abstract class ApiController extends ActionController
             }
             unset($query['active']);
         } else {
-            $where['active'] = 1;            
+            $where['active'] = 1;
         }
         $where = Pi::db()->where($where);
         if ($query) {

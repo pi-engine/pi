@@ -30,9 +30,9 @@ class DocController extends ApiController
      */
     public function addAction()
     {
-        $query = (array) $this->params('query');
-        $data  = $this->canonizeQuery($query);
-        $id = Pi::api($this->module, 'doc')->add($data);
+        $query  = (array) $this->params('query');
+        $data   = $this->canonizeQuery($query);
+        $id     = Pi::api($this->module, 'doc')->add($data);
         
         if (!$id) {
             $response = array(
@@ -57,7 +57,7 @@ class DocController extends ApiController
     public function uploadAction()
     {
         $params = (array) $this->params();
-        $id = Pi::api($this->module, 'doc')->upload(
+        $id     = Pi::api($this->module, 'doc')->upload(
             $params,
             $this->request->getMethod()
         );
@@ -111,11 +111,11 @@ class DocController extends ApiController
      */
     public function getAction()
     {
-        $id   = $this->params('id');
-        $attr = $this->params('field');
-        $attr = explode(',', $attr);
-        
-        $result = Pi::api($this->module, 'doc')->get($id, $attr);
+        $id     = $this->params('id');
+        $field  = $this->params('field');
+        $fields = $this->splitString($field);
+
+        $result = Pi::api($this->module, 'doc')->get($id, $fields);
         
         if (empty($result)) {
             $response = array(
@@ -139,12 +139,12 @@ class DocController extends ApiController
      */
     public function mgetAction()
     {
-        $ids  = $this->params('id');
-        $ids  = explode(',', $ids);
-        $attr = $this->params('field');
-        $attr = explode(',', $attr);
+        $id         = $this->params('id');
+        $field      = $this->params('field');
+        $ids        = $this->splitString($id);
+        $fields     = $this->splitString($field);
         
-        $result = Pi::api($this->module, 'doc')->mget($ids, $attr);
+        $result = Pi::api($this->module, 'doc')->mget($ids, $fields);
         
         if (empty($result)) {
             $response = array(
@@ -192,8 +192,8 @@ class DocController extends ApiController
      */
     public function mstatsAction()
     {
-        $ids = $this->params('id');
-        $ids = explode(',', $ids);
+        $id         = $this->params('id');
+        $ids        = $this->splitString($id);
         
         $result = Pi::api($this->module, 'doc')->getStatsList($ids);
         
@@ -221,14 +221,15 @@ class DocController extends ApiController
     {
         $limit  = $this->params('limit', 0);
         $offset = $this->params('offset', 0);
-        $order  = $this->params('order', '');
-        $order  = explode(',', $order);
-        $attr   = $this->params('field');
-        $attr   = explode(',', $attr);
+        $order  = $this->params('order');
         $query  = $this->params('query');
+        $field  = $this->params('field');
+
+        $order  = $this->splitString($order);
+        $fields = $this->splitString($field);
         $query  = $this->canonizeQuery($query);
-        $where  = $this->canonizeCondition($query);
         
+        $where  = $this->canonizeCondition($query);
         $result = Pi::api($this->module, 'doc')->getList(
             $where,
             $limit,
