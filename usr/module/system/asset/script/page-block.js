@@ -18,7 +18,7 @@
       var self = this;
       h.toggleClass("active");
       if (!h.attr("data-loaded")) {
-        $.getJSON(options.blockListUrl + this.model.get("name")).done(function(res) {
+        $.getJSON(options.blockListUrl.replace('__NAME__', this.model.get("name"))).done(function(res) {
           var data = res.data;
           if (data.length) {
             for (var i = 0, l = data.length; i < l; i++) {
@@ -133,7 +133,7 @@
       this.$(".set-theme-item").removeClass("active");
       var tar = $(e.currentTarget);
       tar.addClass("active");
-      $.get(options.getZoneUrl + tar.attr("data-name")).done(function(res) {
+      $.get(options.getZoneUrl.replace('__NAME__', tar.attr("data-name"))).done(function(res) {
         var org = [];
         var i;
         for (i = 0; i < 100; i++) {
