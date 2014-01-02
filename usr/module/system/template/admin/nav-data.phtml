@@ -58,7 +58,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label"><?php echo _a('Url'); ?></label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" name="url" value="<%= url %>" data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
+                    <input class="form-control" type="text" name="uri" value="<%= uri %>" data-original-title="<?php echo _a('Page link by url or by the after of route'); ?>">
                 </div>
             </div>
             <div class="form-group">
@@ -73,7 +73,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label"><?php echo _a('Permission'); ?></label>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" name="url" value="<%= resource %>">
+                    <input class="form-control" type="text" name="uri" value="<%= resource %>">
                 </div>
             </div>
             <div class="form-group">
@@ -135,7 +135,7 @@
             pid: 0,
             label: "",
             resource: "",
-            url: "",
+            uri: "",
             target: "",
             route: "",
             module: "",
@@ -200,7 +200,7 @@
                 label = val('label');
             if (label) {
                 this.model.set({
-                    'url': val('url'),
+                    'uri': val('uri'),
                     'route': val('route'),
                     'module': val('module'),
                     'controller': val('controller'),
@@ -217,7 +217,7 @@
         },
         render: function() {
             this.$el.html(_.template(this.template,this.model.toJSON()))[0].className = 'tree-item menu-item-depth' + this.model.get('depth');
-            this.$('[name=url]').tooltip();
+            this.$('[name=uri]').tooltip();
             return this;
         }
     });
