@@ -135,21 +135,21 @@ class NavController extends ActionController
      */
     public function applyAction()
     {
-        $nav_front = $this->params()->fromPost('nav_front');
-        $nav_admin = $this->params()->fromPost('nav_admin');
+        $navFront = $this->params()->fromPost('nav_front');
+        $navAdmin = $this->params()->fromPost('nav_admin');
 
         $row = Pi::model('config')->select(array(
             'module'    => 'system',
             'name'      => 'nav_front',
         ))->current();
-        $row->value = $nav_front;
+        $row->value = $navFront;
         $row->save();
 
         $row = Pi::model('config')->select(array(
             'module'    => 'system',
             'name'      => 'nav_admin',
         ))->current();
-        $row->value = $nav_admin;
+        $row->value = $navAdmin;
         $row->save();
 
         Pi::registry('config')->clear('system');
