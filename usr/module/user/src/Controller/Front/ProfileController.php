@@ -24,7 +24,6 @@ use Pi\Paginator\Paginator;
  */
 class ProfileController extends ActionController
 {
-
     /**
      * User profile for owner
      *
