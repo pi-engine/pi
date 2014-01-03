@@ -89,7 +89,7 @@ $this->headLink(array(
     ?>
     <div class="container pi-main-container">
         <?php
-        $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="pi-divider">/<span>')->render();
+        $breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
         if ($breadcrumbs) {
             echo sprintf(
                 '<div class="breadcrumb">%s</div>',
