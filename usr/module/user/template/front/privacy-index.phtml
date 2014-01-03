@@ -25,10 +25,10 @@ $this->css(array(
         <?php } else { ?>
         <form class="form-horizontal" method="post">
             <?php foreach ($privacy as $item) { ?>
-            <div class="control-group">
-                <label class="control-label"><?php echo $item['title']; ?></label>
-                <div class="controls">
-                    <select name="<?php echo $item['field']; ?>">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
+                <div class="col-md-4">
+                    <select name="<?php echo $item['field']; ?>" class="form-control">
                         <?php
                         foreach ($limits as $key => $limit) {
                             echo sprintf('<option value="%s"%s>%s',
@@ -42,8 +42,8 @@ $this->css(array(
                 </div>
             </div>
             <?php } ?>
-            <div class="control-group">
-                <div class="controls">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
                     <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
                 </div>
             </div>
