@@ -19,254 +19,116 @@ use Pi;
 class Remote extends AbstractAdapter
 {
     /**
+     * Get api handler
+     *
+     * @return string
+     */
+    protected function handler()
+    {
+        $authorization = $this->getOption('authorization');
+        if ($authorization) {
+            Pi::service('remote')->setAuthorization($authorization);
+        }
+
+        return Pi::service('remote');
+    }
+
+    /**
      * {@inheritDoc}
      */
-    public function upload($meta, $options = array())
+    public function add(array $data)
     {
-        if (!is_array($meta)) {
-            throw new \InvalidArgumentException('Array type required.');
-        }
-        
-        $uri = $this->getConfig('url', 'upload');
-        $params = array();
-        $params['meta'] = json_encode($meta);
-        if (!empty($options)) {
-            $params['options'] = json_encode($options);
-        }
-        
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
-        if ($result['absolute_path']) {
-            $dispatch = $this->getDispatch();
-            if ($dispatch->copy($meta['source'], $result['absolute_path'])) {
-                $result['url'] = $result['relative_path'];
-                $this->update($result['id'], $result);
-            }
-        }
-        
+        $query = array();
+        array_walk($data, function ($value, $key) use (&$query) {
+            $query[] = $key . ':' . $value;
+        });
+        $params['query'] = implode(',', $query);
+        $uri    = $this->getOption('api', 'add');
+        $result = $this->handler()->post($uri, $query);
+
         return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function update($id, $data)
+    public function upload($file, array $data = array())
     {
-        if (!$id || is_array($id)) {
-            return false;
-        }
-        
-        if (!is_array($data)) {
-            throw new \InvalidArgumentException('Array type required.');
-        }
+        $uri    = $this->getOption('api', 'upload');
+        $result = $this->handler()->upload($uri, $file, $data);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function download($id, $file = '')
+    {
+        $uri    = $this->getUrl($id);
+        $result = $this->handler()->download($uri, $file);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function update($id, array $data)
+    {
+        $query = array('id' => $id);
+        array_walk($data, function ($value, $key) use (&$query) {
+            $query[] = $key . ':' . $value;
+        });
+        $params['query'] = implode(',', $query);
+        $uri    = $this->getOption('api', 'update');
+        $result = $this->handler()->post($uri, $data);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function activate($id, $flag = true)
+    {
+        $result = $this->update($id, array('active' => (int) $flag));
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function get($id, $attr = array())
+    {
         $params = array(
             'id'    => $id,
+            'field' => implode(',', (array) $attr),
         );
-        $params['data'] = json_encode($data);
-        $uri = $this->getConfig('url', 'update');
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
+        $uri    = $this->getOption('api', 'get');
+        $result = $this->handler()->get($uri, $params);
+        if ($attr && is_scalar($attr)) {
+            $result = $result[$attr];
+        }
+
         return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function activate($id)
+    public function mget(array $ids, $attr = array())
     {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function deactivate($id)
-    {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAttributes($id, $attribute)
-    {
-        if (!$id) {
-            return false;
-        }
-        if (is_scalar($id)) {
-            $uri = $this->getConfig('url', 'get_attributes');
-        } else {
-            $uri = $this->getConfig('url', 'get_attributes_list');
-            $id = implode(',', $id);
-        }
         $params = array(
-            'id'    => $id,
+            'id'    => implode(',', $ids),
+            'field' => implode(',', (array) $attr),
         );
-        $params['attribute'] = implode(',', (array) $attribute);
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getAttributesList(array $ids, $attribute)
-    {
-        $result = $this->getAttributes($ids, $attribute);
-        
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getStats($id, $statistics)
-    {
-        if (!$id) {
-            return false;
-        }
-        if (is_scalar($id)) {
-            $uri = $this->getConfig('url', 'get_statistics');
-        } else {
-            $uri = $this->getConfig('url', 'get_statistics_list');
-            $id = implode(',', $id);
-        }
-        $params = array(
-            'id'    => $id,
-        );
-        $params['statistics'] = implode(',', (array) $statistics);
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getStatsList(array $ids, $statistics)
-    {
-        $result = $this->getStatistics($ids, $statistics);
-        
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getFileIds(
-        array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
-    ) {
-        if (!is_array($condition)) {
-            throw new \InvalidArgumentException('Array type required.');
-        }
-        $uri = $this->getConfig('url', 'get_file_ids');
-        $params = array();
-        if ($condition) {
-            $params['query'] = json_encode($condition);
-        }
-        if ($limit) {
-            $params['limit'] = $limit;
-        }
-        if ($offset) {
-            $params['offset'] = $offset;
-        }
-        if ($order) {
-            $params['order'] = $order;
-        }
-        
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getList(
-        array $condition,
-        $limit = null,
-        $offset = null,
-        $order = null
-    ) {
-        $uri = $this->getConfig('url', 'get_list');
-        $params = array();
-        if ($condition) {
-            $params['query'] = json_encode($condition);
-        }
-        if ($limit) {
-            $params['limit'] = $limit;
-        }
-        if ($offset) {
-            $params['offset'] = $offset;
-        }
-        if ($order) {
-            $params['order'] = $order;
-        }
-        
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
-        return $result;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCount(array $condition = array())
-    {
-        $uri = $this->getConfig('url', 'get_count');
-        $params = array();
-        if ($condition) {
-            $params['query'] = json_encode($condition);
-        }
-        
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
-        return array_shift($result);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUrl($id)
-    {
-        if (!$id) {
-            return false;
-        }
-        if (is_scalar($id)) {
-            $uri = $this->getConfig('url', 'get_url');
-        } else {
-            $uri = $this->getConfig('url', 'get_url_list');
-            $id = implode(',', $id);
-        }
-        $params = array(
-            'id'    => $id,
-        );
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        if (is_scalar($id)) {
-            $result = $result[$id]['url'];
-        } else {
-            array_walk($result, function (&$data) {
-                $data = $data['url'];
+        $uri    = $this->getOption('api', 'mget');
+        $result = $this->handler()->get($uri, $params);
+        if ($attr && is_scalar($attr)) {
+            array_walk($result, function (&$data) use ($attr) {
+                $data = $data[$attr];
             });
         }
 
@@ -276,9 +138,13 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function getUrlList(array $ids)
+    public function getUrl($id)
     {
-        $result = $this->getUrl($ids);
+        if (is_array($id)) {
+            $result = $this->mget($id, 'url');
+        } else {
+            $result = $this->get($id, 'url');
+        }
 
         return $result;
     }
@@ -286,54 +152,115 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function download(array $ids)
+    public function getStats($id)
     {
-        if (!$ids) {
-            return false;
-        }
-        if (!is_scalar($ids)) {
-            $id = implode(',', $ids);
-        }
-        $uri = $this->getConfig('url', 'download');
-        $location = sprintf('location: %s/id-%s', $uri, $id);
-        header($location);
+        $params = array('id' => $id);
+        $uri    = $this->getOption('api', 'stats');
+        $result = $this->handler()->get($uri, $params);
+
+        return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function delete(array $ids)
+    public function getStatsList(array $ids)
     {
-        return false;
+        $params = array('id' => implode(',', $ids));
+        $uri    = $this->getOption('api', 'mstats');
+        $result = $this->handler()->get($uri, $params);
+
+        return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getValidator($adapter = null)
-    {
-        $uri = $this->getConfig('url', 'get_validator');
+    public function getIds(
+        array $condition,
+        $limit  = 0,
+        $offset = 0,
+        $order  = ''
+    ) {
+        $result = $this->getList(
+            $condition,
+            $limit,
+            $offset,
+            $order,
+            array('id')
+        );
+        array_walk($result, function (&$data) {
+            return (int) $data['id'];
+        });
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getList(
+        array $condition,
+        $limit  = null,
+        $offset = null,
+        $order  = null,
+        array $attr = array()
+    ) {
         $params = array();
-        if (!empty($adapter)) {
-            $params['adapter'] = $adapter;
+        if ($condition) {
+            $query = array();
+            array_walk($condition, function ($value, $key) use (&$query) {
+                $query[] = $key . ':' . $value;
+            });
+            $params['query'] = implode(',', $query);
         }
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri, $params);
-        
+        if ($limit) {
+            $params['limit'] = (int) $limit;
+        }
+        if ($offset) {
+            $params['offset'] = (int) $offset;
+        }
+        if ($order) {
+            $params['order'] = implode(',', (array) $order);
+        }
+        if ($attr) {
+            $params['field'] = implode(',', (array) $attr);
+        }
+        $uri    = $this->getOption('api', 'list');
+        $result = $this->handler()->get($uri, $params);
+
         return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getServerConfig()
+    public function getCount(array $condition = array())
     {
-        $uri = $this->getConfig('url', 'get_config');
-        $result = Pi::service('remote')
-            ->setAuthorization($this->getConfig('authorization'))
-            ->get($uri);
-        
+        $params = array();
+        if ($condition) {
+            $query = array();
+            array_walk($condition, function ($value, $key) use (&$query) {
+                $query[] = $key . ':' . $value;
+            });
+            $params['query'] = implode(',', $query);
+        }
+        $uri    = $this->getOption('api', 'count');
+        $result = $this->handler()->get($uri, $params);
+        $result = (int) $result['data'];
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete($id)
+    {
+        $params = array('id' => $id);
+        $uri    = $this->getOption('api', 'delete');
+        $result = $this->handler()->post($uri, $params);
+
         return $result;
     }
 }

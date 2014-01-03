@@ -34,6 +34,7 @@ use Pi\Media\Adapter\AbstractAdapter;
  * @method \Pi\Media\Adapter\AbstractAdapter::delete($ids)
  * 
  * @author Zongshu Lin <lin40553024@163.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Media extends AbstractService
 {
@@ -62,31 +63,37 @@ class Media extends AbstractService
     
     /**
      * Get service adapter
-     * 
+     *
+     * @param string $name
+     *
      * @return AbstractAdapter
      * @throws \Exception 
      */
-    public function getAdapter()
+    public function getAdapter($name = '')
     {
-        if (!$this->adapter instanceof AbstractAdapter) {
-            $adapter = $this->getOption('adapter');
-            $class = $this->getOption($adapter, 'class');
-            if ($class) {
-                $options = (array) $this->getOption($adapter, 'options');
-            } else {
-                $class   = sprintf('Pi\Media\Adapter\\%s', $adapter);
-                $options = array();
+        $_this = $this;
+        $loadAdapter = function ($name) use ($_this) {
+            $options = $this->getOption($name);
+            $class = 'Pi\Media\Adapter\\' . ucfirst($name);
+            if (!class_exists($class)) {
+                throw new \Exception(sprintf('Class %s not found.', $class));
             }
-            
-            if (class_exists($class)) {
-                $this->adapter = new $class($options);
-            } else {
-                $message = sprintf('Class %s is not exists!', $class);
-                throw new \Exception($message);
+            $adapter = new $class($options);
+
+            return $adapter;
+        };
+
+        if (!$name) {
+            if (!$this->adapter instanceof AbstractAdapter) {
+                $name = $this->getOption('adapter');
+                $this->adapter = $loadAdapter($name);
             }
+            $result = $this->adapter;
+        } else {
+            $result = $loadAdapter($name);
         }
-        
-        return $this->adapter;
+
+        return $result;
     }
     
     /**

@@ -10,9 +10,7 @@
 namespace Module\Media\Controller\Admin;
 
 use Pi\Mvc\Controller\ActionController;
-use Module\Media\Model\Detail;
 use Pi\Paginator\Paginator;
-use Module\Media\Service;
 use Zend\Db\Sql\Expression;
 use Pi;
 
@@ -24,6 +22,47 @@ use Pi;
 class ListController extends ActionController
 {
     /**
+     * Get application title by appkey
+     * 
+     * @param array $appkeys
+     * @return array
+     */
+    protected function getAppTitle($appkeys)
+    {
+        $result = array();
+        $modelApp = $this->getModel('application');
+        $rowApp = $modelApp->select(array('appkey' => $appkeys));
+        foreach ($rowApp as $row) {
+            $result[$row->appkey] = $row->title ?: $row->name;
+        }
+        unset($rowApp);
+        unset($modelApp);
+        
+        return $result;
+    }
+    
+    /**
+     * Get category title by category ids
+     * 
+     * @param array $category
+     * @return array
+     */
+    protected function getCategoryTitle($category)
+    {
+        $result = array();
+        $modelCategory = $this->getModel('category');
+        $rowCategory = $modelCategory->select(array('id' => $category));
+        foreach ($rowCategory as $row) {
+            $result[$row->id] = $row->title ?: $row->name;
+        }
+        unset($rowCategory);
+        unset($modelCategory);
+        
+        return $result;
+    }
+
+
+    /**
      * List all media
      * 
      * @return ViewModel
@@ -34,9 +73,10 @@ class ListController extends ActionController
         if ($active !== null) {
             $active = (int) $active;
         }
-        $page   = $this->params('page', 1);
-        $limit  = $this->config('page_limit') > 0
+        $page   = (int) $this->params('p', 1);
+        $limit  = (int) $this->config('page_limit') > 0
             ? $this->config('page_limit') : 20;
+        $offset = ($page - 1) * $limit;
         
         $where = array();
         $params = array();
@@ -48,48 +88,53 @@ class ListController extends ActionController
             $params['status'] = 1;
         }
         $delete = $this->params('delete', 0);
-        $where['delete'] = $delete;
+        if ($delete) {
+            $where['time_deleted > ?'] = 0;
+        } else {
+            $where['time_deleted'] = 0;
+        }
         $params['delete'] = $delete;
 
         // Get media list
-        $resultset = $this->getModel('detail')->getList(
+        $module = $this->getModule();
+        $resultset = Pi::api($module, 'doc')->getList(
             $where,
-            $page,
             $limit,
-            null,
-            'time_upload DESC'
+            $offset,
+            'time_created DESC'
         );
         
-        $categoryIds = $appIds = array(0);
+        $categoryIds = $appkeys = array(0);
         $uids   = array();
         foreach ($resultset as $row) {
-            $appIds[$row['application']] = $row['application'];
-            $categoryIds[$row['category']] = $row['category'];
-            $uids[$row['uid']] = $row['uid'];
+            $appkeys[] = $row['appkey'];
+            $categoryIds[] = $row['category'];
+            $uids[] = $row['uid'];
         }
         // Get application title
-        $apps = $this->getModel('application')->getTitle($appIds);
+        $apps = $this->getAppTitle($appkeys);
         
         // Get category title
-        $categories = $this->getModel('category')->getTitle($categoryIds);
+        $categories = $this->getCategoryTitle($categoryIds);
         
         // Get users
         $users = Pi::user()->get($uids);
         $avatars = Pi::avatar()->get($uids);
         
         // Total count
-        $totalCount = $this->getModel('detail')->getCount($where);
+        $totalCount = $this->getModel('doc')->count($where);
 
         // PaginatorPaginator
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array_merge(array(
+                'params'     => array_filter(array_merge(array(
                     'module'        => $this->getModule(),
                     'controller'    => 'list',
                     'action'        => 'index',
@@ -129,7 +174,7 @@ class ListController extends ActionController
                 )),
             ),
         );
-
+        
         $this->view()->assign(array(
             'title'      => _a('Media List'),
             'apps'       => $apps,
@@ -151,67 +196,67 @@ class ListController extends ActionController
      */
     public function applicationAction()
     {
-        $application = $this->params('application', null);
+        $application = $this->params('appkey', null);
         
         if (empty($application)) {
             // Fetch data count
-            $model = $this->getModel('detail');
+            $model = $this->getModel('doc');
             $select = $model->select()
                 ->columns(array(
-                    'application',
+                    'appkey',
                     'module',
                     'category',
                     'count' => new Expression('count(id)')
-                ))->group(array('application', 'category'));
+                ))->group(array('appkey', 'category'));
             $rowset = $model->selectWith($select)->toArray();
             
             // Canonize data
-            $appIds = $categoryIds = array(0);
+            $appkeys = $categoryIds = array(0);
             $result = array();
             foreach ($rowset as $row) {
                 $categoryIds[] = $row['category'];
-                $appIds[] = $row['application'];
-                $appId = $row['application'];
+                $appkeys[] = $row['appkey'];
+                $appkey = $row['appkey'];
                 $module = $row['module'];
                 $category = $row['category'];
-                if (isset($result[$appId])) {
-                    $result[$appId]['count'] += $row['count'];
+                if (isset($result[$appkey])) {
+                    $result[$appkey]['count'] += $row['count'];
                 } else {
-                    $result[$appId]['count'] = $row['count'];
-                    $result[$appId]['url'] = $this->url('', array(
-                        'action'      => 'application',
-                        'application' => $appId,
+                    $result[$appkey]['count'] = $row['count'];
+                    $result[$appkey]['url'] = $this->url('', array(
+                        'action' => 'application',
+                        'appkey' => $appkey,
                     ));
                 }
-                if (isset($result[$appId][$module])) {
-                    $result[$appId][$module]['count'] += $row['count'];
+                if (isset($result[$appkey][$module])) {
+                    $result[$appkey][$module]['count'] += $row['count'];
                 } else {
-                    $result[$appId][$module]['count'] = $row['count'];
-                    $result[$appId][$module]['url'] = $this->url('', array(
-                        'action'      => 'application',
-                        'application' => $appId,
-                        'name'        => $module,
+                    $result[$appkey][$module]['count'] = $row['count'];
+                    $result[$appkey][$module]['url'] = $this->url('', array(
+                        'action' => 'application',
+                        'appkey' => $appkey,
+                        'name'   => $module,
                     ));
                 }
-                if (isset($result[$appId][$module][$category]['count'])) {
-                    $result[$appId][$module][$category]['count'] 
+                if (isset($result[$appkey][$module][$category]['count'])) {
+                    $result[$appkey][$module][$category]['count'] 
                         += $row['count'];
                 } else {
-                    $result[$appId][$module][$category]['count'] 
+                    $result[$appkey][$module][$category]['count'] 
                         = $row['count'];
-                    $result[$appId][$module][$category]['url'] 
+                    $result[$appkey][$module][$category]['url'] 
                         = $this->url('', array(
-                            'action'      => 'application',
-                            'application' => $appId,
-                            'name'        => $module,
-                            'category'    => $category,
+                            'action'   => 'application',
+                            'appkey'   => $appkey,
+                            'name'     => $module,
+                            'category' => $category,
                         ));
                 }
             }
             
             // Get application and category title
-            $apps = $this->getModel('application')->getTitle($appIds);
-            $categories = $this->getModel('category')->getTitle($categoryIds);
+            $apps = $this->getAppTitle($appkeys);
+            $categories = $this->getCategoryTitle($categoryIds);
             
             $this->view()->assign(array(
                 'title'      => _a('Media List by Application'),
@@ -227,21 +272,22 @@ class ListController extends ActionController
         $category = $this->params('category', 0);
         $active   = $this->params('status', null);
         $delete   = $this->params('delete', 0);
-        $page     = $this->params('page', 1);
-        $limit    = $this->config('page_limit') > 0
+        $page     = (int) $this->params('p', 1);
+        $limit    = (int) $this->config('page_limit') > 0
             ? $this->config('page_limit') : 20;
+        $offset   = ($page - 1) * $limit;
         $active = $active === null ? $active : (int) $active;
         
         $where = array(
-            'application' => $application,
-            'module'      => $module,
-            'category'    => $category,
+            'appkey'   => $application,
+            'module'   => $module,
+            'category' => $category,
         );
         $where = array_filter($where);
         $params = array(
-            'application' => $application,
-            'name'        => $module,
-            'category'    => $category,
+            'appkey'   => $application,
+            'name'     => $module,
+            'category' => $category,
         );
         $params = array_filter($params);
         $navParams = $params;
@@ -254,48 +300,54 @@ class ListController extends ActionController
             $params['status'] = 1;
         }
         
-        $where['delete'] = $delete;
+        $delete = $this->params('delete', 0);
+        if ($delete) {
+            $where['time_deleted > ?'] = 0;
+        } else {
+            $where['time_deleted'] = 0;
+        }
         $params['delete'] = $delete;
 
         // Get media list
-        $resultset = $this->getModel('detail')->getList(
+        $module = $this->getModule();
+        $resultset = Pi::api($module, 'doc')->getList(
             $where,
-            $page,
             $limit,
-            null,
-            'time_upload DESC'
+            $offset,
+            'time_created'
         );
         
-        $categoryIds = $appIds = array(0);
+        $categoryIds = $appkeys = array(0);
         $uids   = array();
         foreach ($resultset as $row) {
-            $appIds[$row['application']] = $row['application'];
-            $categoryIds[$row['category']] = $row['category'];
-            $uids[$row['uid']] = $row['uid'];
+            $appkeys[]      = $row['appkey'];
+            $categoryIds[] = $row['category'];
+            $uids[]        = $row['uid'];
         }
         // Get application title
-        $apps = $this->getModel('application')->getTitle($appIds);
+        $apps = $this->getAppTitle($appkeys);
         
         // Get application title
-        $categories = $this->getModel('category')->getTitle($categoryIds);
+        $categories = $this->getCategoryTitle($categoryIds);
         
         // Get users
         $users = Pi::user()->get($uids);
         $avatars = Pi::avatar()->get($uids);
         
         // Total count
-        $totalCount = $this->getModel('detail')->getCount($where);
+        $totalCount = $this->getModel('doc')->count($where);
 
         // PaginatorPaginator
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array_merge(array(
+                'params'     => array_filter(array_merge(array(
                     'controller'    => 'list',
                     'action'        => 'application',
                 ), $params)),
@@ -365,16 +417,18 @@ class ListController extends ActionController
         $type = $this->params('type', null);
         
         if (empty($type)) {
-            $model = $this->getModel('detail');
-            $select = $model->select()
+            $model = $this->getModel('doc');
+            // Get count group by mimetype
+            /*$select = $model->select()
                 ->columns(array(
                     'mimetype',
                     'count' => new Expression('count(id)')
-                ))->group(array('mimetype'));
+                ))->group(array('mimetype'));*/
             $rowset = $model->selectWith($select);
             $result = array();
             foreach ($rowset as $row) {
-                list($mType, $ext) = explode('/', $row->mimetype);
+                $attributes = json_decode($row->attributes, true);
+                $mType = $attributes['mimetype'];
                 if (isset($result[$mType])) {
                     $result[$mType]['count'] += $row->count;
                 } else {
@@ -399,13 +453,16 @@ class ListController extends ActionController
         if ($active !== null) {
             $active = (int) $active;
         }
-        $page   = $this->params('page', 1);
-        $limit  = $this->config('page_limit') > 0
+        $page   = (int) $this->params('p', 1);
+        $limit  = (int) $this->config('page_limit') > 0
             ? $this->config('page_limit') : 20;
+        $offset = ($page - 1) * $limit;
         
-        $where = array(
+        // Create mimetype condition
+        $where = array();
+        /*$where = array(
             'mimetype like ?'  => $type . '%',
-        );
+        );*/
         $params = array(
             'type'  => $type,
         );
@@ -418,48 +475,53 @@ class ListController extends ActionController
         }
         
         $delete = $this->params('delete', 0);
-        $where['delete'] = $delete;
+        if ($delete) {
+            $where['time_deleted > ?'] = 0;
+        } else {
+            $where['time_deleted'] = 0;
+        }
         $params['delete'] = $delete;
 
         // Get media list
-        $resultset = $this->getModel('detail')->getList(
+        $module = $this->getModule();
+        $resultset = Pi::api($module, 'doc')->getList(
             $where,
-            $page,
             $limit,
-            null,
-            'time_upload DESC'
+            $offset,
+            'time_created'
         );
         
-        $categoryIds = $appIds = array(0);
+        $categoryIds = $appkeys = array(0);
         $uids   = array();
         foreach ($resultset as $row) {
-            $appIds[$row['application']] = $row['application'];
-            $categoryIds[$row['category']] = $row['category'];
-            $uids[$row['uid']] = $row['uid'];
+            $appkeys[]     = $row['appkey'];
+            $categoryIds[] = $row['category'];
+            $uids[]        = $row['uid'];
         }
         // Get application title
-        $apps = $this->getModel('application')->getTitle($appIds);
+        $apps = $this->getAppTitle($appkeys);
         
         // Get category title
-        $categories = $this->getModel('category')->getTitle($categoryIds);
+        $categories = $this->getCategoryTitle($categoryIds);
         
         // Get users
         $users = Pi::user()->get($uids);
         $avatars = Pi::avatar()->get($uids);
         
         // Total count
-        $totalCount = $this->getModel('detail')->getCount($where);
+        $totalCount = $this->getModel('doc')->count($where);
 
         // PaginatorPaginator
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array_merge(array(
+                'params'     => array_filter(array_merge(array(
                     'controller'    => 'list',
                     'action'        => 'type',
                 ), $params)),
@@ -541,9 +603,10 @@ class ListController extends ActionController
         if ($active !== null) {
             $active = (int) $active;
         }
-        $page   = $this->params('page', 1);
-        $limit  = $this->config('page_limit') > 0
+        $page   = (int) $this->params('p', 1);
+        $limit  = (int) $this->config('page_limit') > 0
             ? $this->config('page_limit') : 20;
+        $offset = ($page - 1) * $limit;
         
         $where = array(
             'uid'  => $uid,
@@ -560,46 +623,51 @@ class ListController extends ActionController
         }
         
         $delete = $this->params('delete', 0);
-        $where['delete'] = $delete;
+        if ($delete) {
+            $where['time_deleted > ?'] = 0;
+        } else {
+            $where['time_deleted'] = 0;
+        }
         $params['delete'] = $delete;
 
         // Get media list
-        $resultset = $this->getModel('detail')->getList(
+        $module = $this->getModule();
+        $resultset = Pi::api($module, 'doc')->getList(
             $where,
-            $page,
             $limit,
-            null,
-            'time_upload DESC'
+            $offset,
+            'time_created'
         );
         
-        $categoryIds = $appIds = array(0);
+        $categoryIds = $appkeys = array(0);
         foreach ($resultset as $row) {
-            $appIds[$row['application']] = $row['application'];
-            $categoryIds[$row['category']] = $row['category'];
+            $appkeys[] = $row['appkey'];
+            $categoryIds[] = $row['category'];
         }
         // Get application title
-        $apps = $this->getModel('application')->getTitle($appIds);
+        $apps = $this->getAppTitle($appkeys);
         
         // Get category title
-        $categories = $this->getModel('category')->getTitle($categoryIds);
+        $categories = $this->getCategoryTitle($categoryIds);
         
         // Get users
         $users = Pi::user()->get($uid);
         $avatars = Pi::avatar()->get($uid);
         
         // Total count
-        $totalCount = $this->getModel('detail')->getCount($where);
+        $totalCount = $this->getModel('doc')->count($where);
 
         // PaginatorPaginator
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array_merge(array(
+                'params'     => array_filter(array_merge(array(
                     'controller'    => 'list',
                     'action'        => 'user',
                 ), $params)),
