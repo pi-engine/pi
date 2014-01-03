@@ -177,7 +177,6 @@ return array(
             'type'      => 'account',
             'name'      => 'time_disabled',
             'title'     => _a('Disabled time'),
-//            'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
@@ -189,7 +188,6 @@ return array(
             'type'      => 'account',
             'name'      => 'time_deleted',
             'title'     => _a('Deleted time'),
-//            'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
@@ -219,7 +217,7 @@ return array(
         // Profile: homepage
         'homepage'  => array(
             'name'  => 'homepage',
-            'title' => _a('Homepage'),
+            'title' => _a('Personal website'),
         ),
         // Profile: bio
         'bio'  => array(
@@ -237,11 +235,8 @@ return array(
             'name'  => 'signature',
             'title' => _a('Signature'),
             'edit'  => array(
-                'element' => 'textarea',
-                'attributes' => array(
-                    'rows'    => 4,
-                ),
-            )
+                'element'       => 'textarea',
+            ),
         ),
 
         // Profile: Register IP

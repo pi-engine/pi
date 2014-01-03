@@ -29,8 +29,9 @@ class Install extends BasicAction
     {
         $events = $this->events;
         $events->attach('install.pre', array($this, 'checkConflicts'), 10);
-        $events->attach('install.post', array($this, 'checkModules'), 10);
-        $events->attach('install.post', array($this, 'checkUsers'), 5);
+        $events->attach('install.post', array($this, 'checkModules'), 20);
+        $events->attach('install.post', array($this, 'checkUsers'), 10);
+        $events->attach('install.post', array($this, 'setupDisplay'), 5);
         $events->attach('install.post', array($this, 'updateConfig'), 1);
         parent::attachDefaultListeners();
 
@@ -78,20 +79,6 @@ class Install extends BasicAction
             if (empty($options)) {
                 continue;
             }
-            /*
-            if (is_string($options)) {
-                $optionsFile = sprintf(
-                    '%s/%s/config/%s',
-                    Pi::path('module'),
-                    Pi::service('module')->directory($mod),
-                    $options
-                );
-                $options = include $optionsFile;
-                if (empty($options) || !is_array($options)) {
-                    continue;
-                }
-            }
-            */
 
             $resourceHandler = new UserResource($options);
             $e->setParam('module', $mod);
@@ -126,6 +113,72 @@ class Install extends BasicAction
             ));
 
             $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Set up user profile display settings
+     *
+     * @param Event $e
+     *
+     * @return bool
+     */
+    public function setupDisplay(Event $e)
+    {
+        $result = null;
+        $modelGroup = Pi::model('display_group', 'user');
+        $modelField = Pi::model('display_field', 'user');
+
+        // Get fields and groups
+        $order = 1;
+        $groups = array(
+            '__BASIC__' => array(
+                'title'     => _a('Basic profile'),
+                'order'     => $order++,
+                'compound'  => null,
+            ),
+        );
+        $fieldList  = array();
+        $compounds  = array();
+        $fields     = Pi::registry('field', 'user')->read('', 'display');
+        foreach ($fields as $field) {
+            if ($field['type'] == 'compound') {
+                $groups[$field['name']] = array(
+                    'title'     => $field['title'],
+                    'compound'  => $field['name'],
+                    'order'     => $order++,
+                );
+
+                // Get compound fields
+                $compoundMeta = Pi::registry('compound_field', 'user')->read($field['name']);
+                foreach ($compoundMeta as $meta) {
+                    $fieldList[$field['name']][$meta['name']] = 1;
+                }
+
+            } else {
+                $fieldList['__BASIC__'][$field['name']] = 1;
+            }
+        }
+
+        foreach ($groups as $groupName => $data) {
+            $row = $modelGroup->createRow($data);
+            $row->save();
+            if (empty($fieldList[$groupName])) {
+                continue;
+            }
+            $groupId = $row['id'];
+            $fieldOrder = 1;
+            foreach (array_keys($fieldList[$groupName]) as $fName) {
+                $fData = array(
+                    'field' => $fName,
+                    'group' => $groupId,
+                    'order' => $fieldOrder++,
+                );
+                $row = $modelField->createRow($fData);
+                $row->save();
+            }
         }
 
         return $result;
