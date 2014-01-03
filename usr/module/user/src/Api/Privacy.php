@@ -19,38 +19,146 @@ use Pi\Application\AbstractApi;
  */
 class Privacy extends AbstractApi
 {
+    /** @var array Privacy level map */
+    protected $map = array(
+        'everyone'  => 0,
+        'member'    => 1,
+        'follower'  => 2,
+        'following' => 4,
+        'owner'     => 255,
+    );
+
+    /**
+     * Transform a privacy value from value to name, or from name to value
+     *
+     * @param string|int $privacy
+     * @param bool $toName
+     *
+     * @return int|string
+     */
+    public function transform($privacy, $toName = false)
+    {
+        $result = null;
+        if ($toName) {
+            if (is_string($privacy)) {
+                if (isset($this->map[$privacy])) {
+                    $result = $privacy;
+                }
+            } else {
+                $map = array_flip($this->map);
+                if (isset($map[$privacy])) {
+                    $result = $map[$privacy];
+                }
+            }
+        } else {
+            if (is_string($privacy)) {
+                if (isset($this->map[$privacy])) {
+                    $result = $this->map[$privacy];
+                }
+            } else {
+                $map = array_flip($this->map);
+                if (isset($map[$privacy])) {
+                    $result = $privacy;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get level map
+     *
+     * @return array
+     */
+    public function getMap()
+    {
+        return $this->map;
+    }
+
+    /**
+     * Get level list of specified levels
+     *
+     * @param string[] $levels
+     * @param bool $indexByValue
+     *
+     * @return array
+     */
+    public function getList(array $levels = array(), $indexByValue = false)
+    {
+        $list = array(
+            'everyone'  => __('Everyone'),
+            'member'    => __('Logged-in user'),
+            'follower'  => __('Follower'),
+            'following' => __('Followed'),
+            'owner'     => __('Owner'),
+        );
+
+        $result = array();
+        if (!$levels) {
+            $result = $list;
+        } else {
+            foreach ($levels as $level) {
+                if (isset($list[$level])) {
+                    $result[$level] = $list[$level];
+                }
+            }
+        }
+        if ($indexByValue) {
+            $map = $this->getMap();
+            array_walk($result, function ($value, &$key) use ($map) {
+                $key = $map[$key];
+            });
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get privacy level
+     *
+     * @TODO Following/Follower/Friend relationships
+     *
+     * @param int $targetUid
+     * @param int|null $requesterUid
+     *
+     * @return string
+     */
+    public function getLevel($targetUid, $requesterUid = null)
+    {
+        $result = 'everyone';
+
+        if (null === $requesterUid) {
+            $requesterUid = Pi::service('user')->getId();
+        }
+
+        if (!$requesterUid) {
+            $result = 'everyone';
+        } elseif ($requesterUid == $targetUid) {
+            $result = 'owner';
+        } elseif ($requesterUid) {
+            $result = 'member';
+        }
+
+        return $result;
+    }
+
     /**
      * Filter display information according to privacy setting
      *
      * @param int $uid
-     * @param string $role
+     * @param string $level
      * @param array $rawData
      * @param string $type
      *
      * @return array
      */
-    public function filterProfile($uid, $role, $rawData, $type)
+    public function filterProfile($uid, $level, $rawData, $type)
     {
-        $privacy = 0;
         $result  = array();
-
-        switch ($role) {
-            case 'public':
-                $privacy = 0;
-                break;
-            case 'member':
-                $privacy = 1;
-                break;
-            case 'follower':
-                $privacy = 2;
-                break;
-            case 'following':
-                $privacy = 4;
-                break;
-            case 'owner':
-                $privacy = 255;
-                break;
-
+        $privacy = $this->transform($level, true);
+        if (null === $privacy) {
+            $privacy = 0;
         }
 
         // Get user setting
@@ -90,7 +198,6 @@ class Privacy extends AbstractApi
         }
 
         return $result;
-
     }
 
     /**
@@ -102,7 +209,6 @@ class Privacy extends AbstractApi
      */
     public function getUserPrivacy($uid)
     {
-
         $result = array();
         if (!$uid) {
             return $result;
@@ -110,7 +216,7 @@ class Privacy extends AbstractApi
 
         // User privacy setting
         $userPrivacyFields =  array();
-        $rowset     = Pi::model('privacy_user', 'user')
+        $rowset = Pi::model('privacy_user', $this->module)
             ->select(array('uid' => $uid));
         foreach ($rowset as $row) {
             $result[$row['field']] = $row['value'];
@@ -118,7 +224,7 @@ class Privacy extends AbstractApi
         }
 
         // Default privacy setting
-        $rowset = Pi::model('privacy', 'user')->select(array());
+        $rowset = Pi::model('privacy', $this->module)->select(array());
         foreach ($rowset as $row) {
             if (!in_array($row['field'], $userPrivacyFields)) {
                 $result[$row['field']] = $row['value'];
@@ -126,7 +232,6 @@ class Privacy extends AbstractApi
         }
 
         return $result;
-
     }
 
     public function getUserPrivacyList($uid)
@@ -138,7 +243,7 @@ class Privacy extends AbstractApi
 
         $this->updateUserPrivacyFields($uid);
         $fieldsMeta = $this->getFieldsMeta();
-        $rowset     = Pi::model('privacy_user', 'user')
+        $rowset     = Pi::model('privacy_user', $this->module)
             ->select(array('uid' => $uid));
         foreach ($rowset as $row) {
             $result[] = array(
@@ -153,11 +258,10 @@ class Privacy extends AbstractApi
         return $result;
     }
 
-
     /**
      * Get system privacy setting
      *
-     * @return mixed
+     * @return array
      */
     public function getPrivacy()
     {
@@ -186,11 +290,10 @@ class Privacy extends AbstractApi
     {
         $fieldsMeta = array();
 
-        $rowset = Pi::model('field', $this->getModule())
-            ->select(array(
-                'is_display' => 1,
-                'active'     => 1,
-            ));
+        $rowset = Pi::model('field', $this->module)->select(array(
+            'is_display' => 1,
+            'active'     => 1,
+        ));
         foreach ($rowset as $row) {
             $fieldsMeta[$row['name']]['title'] = $row['title'];
         }

@@ -31,7 +31,7 @@ class Install extends BasicAction
         $events->attach('install.pre', array($this, 'checkConflicts'), 10);
         $events->attach('install.post', array($this, 'checkModules'), 20);
         $events->attach('install.post', array($this, 'checkUsers'), 10);
-        $events->attach('install.post', array($this, 'setupDisplay'), 5);
+        $events->attach('install.post', array($this, 'setupProfile'), 5);
         $events->attach('install.post', array($this, 'updateConfig'), 1);
         parent::attachDefaultListeners();
 
@@ -119,13 +119,13 @@ class Install extends BasicAction
     }
 
     /**
-     * Set up user profile display settings
+     * Set up user profile display/privacy settings
      *
      * @param Event $e
      *
      * @return bool
      */
-    public function setupDisplay(Event $e)
+    public function setupProfile(Event $e)
     {
         $result = null;
         $modelGroup = Pi::model('display_group', 'user');

@@ -95,19 +95,20 @@ class ProfileController extends ActionController
         // Get display group
         $profileGroup = $this->getProfile($uid);
 
-        // Get viewer role: public member follower following owner
-        $role = Pi::user()->hasIdentity() ? 'member' : 'public';
+        // Get viewer level: everyone, member, follower, following, owner
+        //$role = Pi::user()->hasIdentity() ? 'member' : 'public';
+        $level = Pi::api('user', 'privacy')->getLevel($uid);
 
         // Filter field according to privacy setting
         $profileGroup = Pi::api('user', 'privacy')->filterProfile(
             $uid,
-            $role,
+            $level,
             $profileGroup,
             'group'
         );
-        $user         = Pi::api('user', 'privacy')->filterProfile(
+        $user = Pi::api('user', 'privacy')->filterProfile(
             $uid,
-            $role,
+            $level,
             $user,
             'user'
         );

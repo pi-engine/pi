@@ -8,12 +8,12 @@ $this->css(array(
     <div class="col-md-9">
         <div class="user-page-header">
             <h3><?php _e('Privacy'); ?></h3>
-            <div class="text-muted"><?php _e('Change your privacy settings.'); ?></div>
+            <div class="text-muted"><?php _e('Change privacy settings.'); ?></div>
         </div>
         <?php
         if (isset($result)) {
             echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
-                 $result['status'] ? 'alert-success' : 'alert-error',
+                 $result['status'] ? 'alert-success' : 'alert-danger',
                  $result['message']);
         }
         ?>
@@ -30,11 +30,11 @@ $this->css(array(
                 <div class="col-md-4">
                     <select name="<?php echo $item['field']; ?>" class="form-control">
                         <?php
-                        foreach ($limits as $key => $limit) {
+                        foreach ($levels as $key => $label) {
                             echo sprintf('<option value="%s"%s>%s',
                                 $key,
                                 $key == $item['value'] ? ' selected = selected ' : '',
-                                $limit
+                                $label
                              );
                         }
                         ?>
