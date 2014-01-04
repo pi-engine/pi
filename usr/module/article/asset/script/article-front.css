@@ -175,6 +175,8 @@
     font-size: 12px;
     font-weight: bold;
 }
+.list-desc,
+.list-summary,
 .article-list-desc {
     font-size: 12px;
 }
