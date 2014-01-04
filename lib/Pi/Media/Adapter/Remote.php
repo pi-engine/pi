@@ -44,9 +44,9 @@ class Remote extends AbstractAdapter
         });
         $params['query'] = implode(',', $query);
         $uri    = $this->getOption('api', 'add');
-        $result = $this->handler()->post($uri, $query);
+        $result = $this->handler()->get($uri, $params);
 
-        return $result;
+        return $result['status'] ? $result['data'] : false;
     }
 
     /**
@@ -56,8 +56,8 @@ class Remote extends AbstractAdapter
     {
         $uri    = $this->getOption('api', 'upload');
         $result = $this->handler()->upload($uri, $file, $data);
-
-        return $result;
+        
+        return $result['status'] ? $result['data'] : false;
     }
 
     /**
@@ -68,7 +68,7 @@ class Remote extends AbstractAdapter
         $uri    = $this->getUrl($id);
         $result = $this->handler()->download($uri, $file);
 
-        return $result;
+        return $result['status'] ? $result['data'] : false;
     }
 
     /**
@@ -76,15 +76,15 @@ class Remote extends AbstractAdapter
      */
     public function update($id, array $data)
     {
-        $query = array('id' => $id);
+        $params = array('id' => $id);
         array_walk($data, function ($value, $key) use (&$query) {
             $query[] = $key . ':' . $value;
         });
         $params['query'] = implode(',', $query);
         $uri    = $this->getOption('api', 'update');
-        $result = $this->handler()->post($uri, $data);
+        $result = $this->handler()->post($uri, $params);
 
-        return $result;
+        return $result['status'] ? true : false;
     }
 
     /**
@@ -108,6 +108,11 @@ class Remote extends AbstractAdapter
         );
         $uri    = $this->getOption('api', 'get');
         $result = $this->handler()->get($uri, $params);
+        if (!$result['status']) {
+            return false;
+        } else {
+            $result = $result['data'];
+        }
         if ($attr && is_scalar($attr)) {
             $result = $result[$attr];
         }
@@ -126,6 +131,11 @@ class Remote extends AbstractAdapter
         );
         $uri    = $this->getOption('api', 'mget');
         $result = $this->handler()->get($uri, $params);
+        if (!$result['status']) {
+            return false;
+        } else {
+            $result = $result['data'];
+        }
         if ($attr && is_scalar($attr)) {
             array_walk($result, function (&$data) use ($attr) {
                 $data = $data[$attr];
@@ -158,7 +168,7 @@ class Remote extends AbstractAdapter
         $uri    = $this->getOption('api', 'stats');
         $result = $this->handler()->get($uri, $params);
 
-        return $result;
+        return $result['status'] ? $result['data'] : false;
     }
 
     /**
@@ -167,10 +177,10 @@ class Remote extends AbstractAdapter
     public function getStatsList(array $ids)
     {
         $params = array('id' => implode(',', $ids));
-        $uri    = $this->getOption('api', 'mstats');
+        $uri    = $this->getOption('api', 'stats_list');
         $result = $this->handler()->get($uri, $params);
 
-        return $result;
+        return $result['status'] ? $result['data'] : false;
     }
 
     /**
@@ -229,7 +239,7 @@ class Remote extends AbstractAdapter
         $uri    = $this->getOption('api', 'list');
         $result = $this->handler()->get($uri, $params);
 
-        return $result;
+        return $result['status'] ? $result['data'] : false;
     }
 
     /**
@@ -261,6 +271,6 @@ class Remote extends AbstractAdapter
         $uri    = $this->getOption('api', 'delete');
         $result = $this->handler()->post($uri, $params);
 
-        return $result;
+        return $result['status'] ? true : false;
     }
 }

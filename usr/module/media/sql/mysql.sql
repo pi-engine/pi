@@ -60,10 +60,18 @@ CREATE TABLE `{meta}` (
 CREATE TABLE `{application}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `appkey`          varchar(255)          DEFAULT NULL,
-  `name`            varchar(255)          DEFAULT NULL,
   `title`           varchar(255)          NOT NULL DEFAULT '',
 
   PRIMARY KEY           (`id`),
-  UNIQUE KEY `name`     (`name`),
   UNIQUE KEY `appkey`   (`appkey`)
+);
+
+# Doc statistics table, the field is not defined yet
+CREATE TABLE `{stats}` (
+  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
+  `doc`             int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `count`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+
+  PRIMARY KEY           (`id`),
+  UNIQUE KEY `doc`      (`doc`)
 );
