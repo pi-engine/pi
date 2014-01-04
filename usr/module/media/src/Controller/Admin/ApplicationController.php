@@ -26,7 +26,7 @@ class ApplicationController extends ActionController
      * Available columns of application
      * @var array
      */
-    protected $columns = array('id', 'appkey', 'name', 'title');
+    protected $columns = array('id', 'appkey', 'title');
     
     /**
      * Getting form instance

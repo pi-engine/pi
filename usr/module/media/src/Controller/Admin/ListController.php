@@ -104,22 +104,22 @@ class ListController extends ActionController
             'time_created DESC'
         );
         
-        $categoryIds = $appkeys = array(0);
-        $uids   = array();
+        $uids = $appkeys = array();
+        $apps = $users = $avatars = array();
         foreach ($resultset as $row) {
             $appkeys[] = $row['appkey'];
-            $categoryIds[] = $row['category'];
-            $uids[] = $row['uid'];
+            $uids[]    = $row['uid'];
         }
         // Get application title
-        $apps = $this->getAppTitle($appkeys);
-        
-        // Get category title
-        $categories = $this->getCategoryTitle($categoryIds);
+        if (!empty($appkeys)) {
+            $apps = $this->getAppTitle($appkeys);
+        }
         
         // Get users
-        $users = Pi::user()->get($uids);
-        $avatars = Pi::avatar()->get($uids);
+        if (!empty($uids)) {
+            $users = Pi::user()->get($uids);
+            $avatars = Pi::avatar()->get($uids);
+        }
         
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
@@ -178,7 +178,6 @@ class ListController extends ActionController
         $this->view()->assign(array(
             'title'      => _a('Media List'),
             'apps'       => $apps,
-            'categories' => $categories,
             'medias'     => $resultset,
             'paginator'  => $paginator,
             'tabs'       => $navTabs,
@@ -205,20 +204,19 @@ class ListController extends ActionController
                 ->columns(array(
                     'appkey',
                     'module',
-                    'category',
+                    'token',
                     'count' => new Expression('count(id)')
-                ))->group(array('appkey', 'category'));
+                ))->group(array('appkey', 'module', 'token'));
             $rowset = $model->selectWith($select)->toArray();
             
             // Canonize data
-            $appkeys = $categoryIds = array(0);
+            $appkeys = array(0);
             $result = array();
             foreach ($rowset as $row) {
-                $categoryIds[] = $row['category'];
                 $appkeys[] = $row['appkey'];
                 $appkey = $row['appkey'];
                 $module = $row['module'];
-                $category = $row['category'];
+                $token = $row['token'];
                 if (isset($result[$appkey])) {
                     $result[$appkey]['count'] += $row['count'];
                 } else {
@@ -238,38 +236,36 @@ class ListController extends ActionController
                         'name'   => $module,
                     ));
                 }
-                if (isset($result[$appkey][$module][$category]['count'])) {
-                    $result[$appkey][$module][$category]['count'] 
+                if (isset($result[$appkey][$module][$token]['count'])) {
+                    $result[$appkey][$module][$token]['count'] 
                         += $row['count'];
                 } else {
-                    $result[$appkey][$module][$category]['count'] 
+                    $result[$appkey][$module][$token]['count'] 
                         = $row['count'];
-                    $result[$appkey][$module][$category]['url'] 
+                    $result[$appkey][$module][$token]['url'] 
                         = $this->url('', array(
                             'action'   => 'application',
                             'appkey'   => $appkey,
                             'name'     => $module,
-                            'category' => $category,
+                            'token'    => $token,
                         ));
                 }
             }
             
             // Get application and category title
             $apps = $this->getAppTitle($appkeys);
-            $categories = $this->getCategoryTitle($categoryIds);
             
             $this->view()->assign(array(
                 'title'      => _a('Media List by Application'),
                 'items'      => $result,
                 'apps'       => $apps,
-                'categories' => $categories,
             ));
             $this->view()->setTemplate('list-application-select');
             return;
         }
         
         $module   = $this->params('name', null);
-        $category = $this->params('category', 0);
+        $token    = $this->params('token', 0);
         $active   = $this->params('status', null);
         $delete   = $this->params('delete', 0);
         $page     = (int) $this->params('p', 1);
@@ -281,13 +277,13 @@ class ListController extends ActionController
         $where = array(
             'appkey'   => $application,
             'module'   => $module,
-            'category' => $category,
+            'token'    => $token,
         );
         $where = array_filter($where);
         $params = array(
             'appkey'   => $application,
             'name'     => $module,
-            'category' => $category,
+            'token'    => $token,
         );
         $params = array_filter($params);
         $navParams = $params;
@@ -309,30 +305,29 @@ class ListController extends ActionController
         $params['delete'] = $delete;
 
         // Get media list
-        $module = $this->getModule();
-        $resultset = Pi::api($module, 'doc')->getList(
+        $resultset = Pi::api($this->getModule(), 'doc')->getList(
             $where,
             $limit,
             $offset,
             'time_created'
         );
         
-        $categoryIds = $appkeys = array(0);
-        $uids   = array();
+        $uids = $appkeys = array();
+        $apps = $users = $avatars = array();
         foreach ($resultset as $row) {
-            $appkeys[]      = $row['appkey'];
-            $categoryIds[] = $row['category'];
-            $uids[]        = $row['uid'];
+            $appkeys[] = $row['appkey'];
+            $uids[]    = $row['uid'];
         }
         // Get application title
-        $apps = $this->getAppTitle($appkeys);
-        
-        // Get application title
-        $categories = $this->getCategoryTitle($categoryIds);
+        if (!empty($appkeys)) {
+            $apps = $this->getAppTitle($appkeys);
+        }
         
         // Get users
-        $users = Pi::user()->get($uids);
-        $avatars = Pi::avatar()->get($uids);
+        if (!empty($uids)) {
+            $users = Pi::user()->get($uids);
+            $avatars = Pi::avatar()->get($uids);
+        }
         
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
@@ -386,14 +381,10 @@ class ListController extends ActionController
                 ), $navParams)),
             ),
         );
-        
-        $app      = $apps[$application];
-        $category = $categories[$category];
 
         $this->view()->assign(array(
             'title'      => _a('Media List By module'),
             'apps'       => $apps,
-            'categories' => $categories,
             'medias'     => $resultset,
             'paginator'  => $paginator,
             'tabs'       => $navTabs,
@@ -401,9 +392,9 @@ class ListController extends ActionController
             'avatars'    => $avatars,
             'active'     => $active,
             'delete'     => $delete,
-            'app'        => $app,
+            'app'        => $apps[$application],
             'name'       => $module,
-            'category'   => $category,
+            'token'      => $token,
         ));
     }
     
@@ -419,16 +410,15 @@ class ListController extends ActionController
         if (empty($type)) {
             $model = $this->getModel('doc');
             // Get count group by mimetype
-            /*$select = $model->select()
+            $select = $model->select()
                 ->columns(array(
                     'mimetype',
                     'count' => new Expression('count(id)')
-                ))->group(array('mimetype'));*/
+                ))->group(array('mimetype'));
             $rowset = $model->selectWith($select);
             $result = array();
             foreach ($rowset as $row) {
-                $attributes = json_decode($row->attributes, true);
-                $mType = $attributes['mimetype'];
+                list($mType, $ext) = explode('/', $row->mimetype);
                 if (isset($result[$mType])) {
                     $result[$mType]['count'] += $row->count;
                 } else {
@@ -460,9 +450,9 @@ class ListController extends ActionController
         
         // Create mimetype condition
         $where = array();
-        /*$where = array(
+        $where = array(
             'mimetype like ?'  => $type . '%',
-        );*/
+        );
         $params = array(
             'type'  => $type,
         );
@@ -491,22 +481,22 @@ class ListController extends ActionController
             'time_created'
         );
         
-        $categoryIds = $appkeys = array(0);
-        $uids   = array();
+        $uids = $appkeys = array();
+        $apps = $users = $avatars = array();
         foreach ($resultset as $row) {
-            $appkeys[]     = $row['appkey'];
-            $categoryIds[] = $row['category'];
-            $uids[]        = $row['uid'];
+            $appkeys[] = $row['appkey'];
+            $uids[]    = $row['uid'];
         }
         // Get application title
-        $apps = $this->getAppTitle($appkeys);
-        
-        // Get category title
-        $categories = $this->getCategoryTitle($categoryIds);
+        if (!empty($appkeys)) {
+            $apps = $this->getAppTitle($appkeys);
+        }
         
         // Get users
-        $users = Pi::user()->get($uids);
-        $avatars = Pi::avatar()->get($uids);
+        if (!empty($uids)) {
+            $users = Pi::user()->get($uids);
+            $avatars = Pi::avatar()->get($uids);
+        }
         
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
@@ -572,7 +562,6 @@ class ListController extends ActionController
         $this->view()->assign(array(
             'title'      => _a('Media List By Type'),
             'apps'       => $apps,
-            'categories' => $categories,
             'medias'     => $resultset,
             'paginator'  => $paginator,
             'tabs'       => $navTabs,
@@ -639,16 +628,14 @@ class ListController extends ActionController
             'time_created'
         );
         
-        $categoryIds = $appkeys = array(0);
+        $apps = $appkeys = array();
         foreach ($resultset as $row) {
             $appkeys[] = $row['appkey'];
-            $categoryIds[] = $row['category'];
         }
         // Get application title
-        $apps = $this->getAppTitle($appkeys);
-        
-        // Get category title
-        $categories = $this->getCategoryTitle($categoryIds);
+        if (!empty($appkeys)) {
+            $apps = $this->getAppTitle($appkeys);
+        }
         
         // Get users
         $users = Pi::user()->get($uid);
@@ -715,7 +702,6 @@ class ListController extends ActionController
         $this->view()->assign(array(
             'title'      => _a('Media List By User'),
             'apps'       => $apps,
-            'categories' => $categories,
             'medias'     => $resultset,
             'paginator'  => $paginator,
             'tabs'       => $navTabs,
