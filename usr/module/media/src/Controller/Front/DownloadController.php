@@ -25,12 +25,12 @@ class DownloadController extends ActionController
     public function indexAction()
     {
         $id = $this->params('id');
-        $ids = explode(',', $id);
+        $ids = array_filter(explode(',', $id));
 
         if (empty($ids)) {
             throw new \Exception('Invalid media ID');
         }
-        
+
         // Export files
         $model  = $this->getModel('doc');
         $rowset = $model->select(array('id' => $ids));
