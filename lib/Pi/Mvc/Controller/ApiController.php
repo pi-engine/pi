@@ -269,7 +269,7 @@ abstract class ApiController extends ActionController
 
         $result = explode(',', $string);
         array_walk($result, 'trim');
-        $result = array_unique(array_filter($result));
+        $result = array_unique($result);
 
         return $result;
     }
@@ -294,7 +294,7 @@ abstract class ApiController extends ActionController
             list($identifier, $like) = explode(':', $qString);
             $identifier = trim($identifier);
             $like = trim($like);
-            if ($identifier && $like) {
+            if ($identifier) {
                 $like = str_replace(
                     array('%', '*', '_'),
                     array('\\%', '%', '\\_'),
