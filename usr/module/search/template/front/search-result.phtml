@@ -54,6 +54,8 @@
                 echo sprintf(__('There are %d results.'), $total);
             } elseif (1 == $total) {
                 echo sprintf(__('There is %d found.'), $total);
+            } elseif (!empty($flood)) {
+                echo __('Submission flood detected, please wait for a while.');
             } else {
                 _e('No result found.');
             }
