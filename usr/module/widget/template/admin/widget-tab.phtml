@@ -112,10 +112,11 @@ echo $this->form()->closeTag();
            BlocksCollection.on("add", this.addOne, this);
        },
        loadBlock: function(e) {
-           var tar = $(e.currentTarget).parent(".widget-module-item"),
-               ul = tar.find("ul");
+           var tar = $(e.currentTarget).parent(".widget-module-item");
+           var ul = tar.find("ul");
+           var url = '<?php echo $this->url('', array('action' => 'blocklist', 'name' => '__NAME__')); ?>';
            if (!tar.attr("load")) {
-               $.getJSON("<?php echo $this->url('', array('action' => 'blocklist', 'name' => '')); ?>" + tar.attr("data-name")).done(function(result) {
+               $.getJSON(url.replace('__NAME__', tar.attr("data-name"))).done(function(result) {
                     tar.attr("load",1);
                     if (result.status == 1) {
                         var t = '<% _.each(data,function(item) { %><li data-id="<%= item.id %>"><%= item.caption %></li><% }); %>';
