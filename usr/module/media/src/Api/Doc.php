@@ -126,6 +126,8 @@ class Doc extends AbstractApi
             $row = $model->createRow($data);
             $row->save();
         }*/
+        
+        $this->addApplication(array('appkey' => $row->appkey));
 
         return (int) $docId;
     }

@@ -25,16 +25,6 @@ class AppEditFilter extends InputFilter
     public function __construct()
     {
         $this->add(array(
-            'name'     => 'name',
-            'required' => false,
-            'filters'  => array(
-                array(
-                    'name' => 'StringTrim',
-                ),
-            ),
-        ));
-
-        $this->add(array(
             'name'     => 'title',
             'required' => true,
             'filters'  => array(

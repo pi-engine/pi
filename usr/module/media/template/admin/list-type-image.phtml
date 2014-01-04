@@ -8,27 +8,27 @@
 
 <div class="media-list-image">
     <div class="normal-header">
-        <input type="checkbox" class="check-all">
+        <input type="checkbox" class="check-all" style="margin-right: 10px">
         <?php
         if (0 === $active || null === $active) {
     ?>
-        <input type="button" name="enable" class="btn disabled" value="<?php echo _a('Enable'); ?>">
+        <input type="button" name="enable" class="btn btn-default disabled" value="<?php echo _a('Enable'); ?>">
     <?php
         }
         if (1 === $active || null === $active) {
     ?>
-        <input type="button" name="disable" class="btn disabled" value="<?php echo _a('Disable'); ?>">
+        <input type="button" name="disable" class="btn btn-default disabled" value="<?php echo _a('Disable'); ?>">
     <?php
         }
         if (!$delete) {
     ?>
-        <input type="button" name="delete" class="btn disabled" value="<?php echo _a('Delete'); ?>">
+        <input type="button" name="delete" class="btn btn-default disabled" value="<?php echo _a('Delete'); ?>">
     <?php
         }
     ?>
-        <input type="button" name="download" class="btn disabled" value="<?php echo _a('Download'); ?>">
+        <input type="button" name="download" class="btn btn-default disabled" value="<?php echo _a('Download'); ?>">
     </div>
-    <div class="normal-list" style="max-width: 100%">
+    <div class="normal-list col-md-12" style="max-width: 100%">
         <?php 
             $i = 0;
             $j = 0;
@@ -39,11 +39,11 @@
         <?php
                 }
         ?>
-            <div class="span2 one-item">
+            <div class="col-md-2 one-item">
                 <div class="list-item" data-id="<?php echo $this->escape($media['id']); ?>">
                     <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one hide">
-                    <i class="item-delete icon-remove hide"></i>
-                    <img class="<?php echo $media['active'] ? '' : 'gray-image' ?>" src="<?php echo $media['url'] ? Pi::url($media['url']) : $defaultImage; ?>" style="vertical-align: bottom; max-height: 100%">
+                    <i class="item-delete glyphicon glyphicon-remove hide"></i>
+                    <img class="<?php echo $media['active'] ? '' : 'gray-image' ?>" src="<?php echo $media['url'] ? Pi::url($media['url']) : $defaultImage; ?>" style="vertical-align: bottom; max-height: 100%; width: 100%; margin-bottom: 2px">
                     <div class="list-operation hide"></div>
                     <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('controller' => 'media', 'action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></button>
                     <a class="item-detail hide" target="_blank" href="<?php echo $this->url('', array('controller' => 'media', 'action' => 'detail', 'id' => $media['id'])); ?>">

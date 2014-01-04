@@ -8,9 +8,9 @@
     <?php if ($name) { ?>
     <span><?php echo _a(' && Module: ') . $name; ?></span>
     <?php } 
-        if ($category) {
+        if ($token) {
     ?>
-    <span><?php echo _a(' && Category: ') . $category; ?></span>
+    <span><?php echo _a(' && Token: ') . $token; ?></span>
     <?php } ?>
 </div>
 
@@ -52,7 +52,7 @@
                     <th style="width: 40px;"><?php echo _a('Mimetype'); ?></th>
                     <th style="width: 60px;"><?php echo _a('Application'); ?></th>
                     <th style="width: 20px;"><?php echo _a('Module'); ?></th>
-                    <th style="width: 40px;"><?php echo _a('Category'); ?></th>
+                    <th style="width: 40px;"><?php echo _a('Token'); ?></th>
                     <th style="width: 60px;"><?php echo _a('Time') ?></th>
                 </tr>
                 <?php 
@@ -83,10 +83,10 @@
                             </a>
                         </div>
                     </td>
-                    <td><?php echo $this->escape($media['attributes']['mimetype']); ?></td>
+                    <td><?php echo $this->escape($media['mimetype']); ?></td>
                     <td><?php echo $this->escape($apps[$media['appkey']]); ?></td>
                     <td><?php echo $this->escape($media['module']); ?></td>
-                    <td><?php echo $this->escape($categories[$media['category']]); ?></td>
+                    <td><?php echo $this->escape($media['token']); ?></td>
                     <td><?php echo _date($media['time_created']); ?></td>
                 </tr>   
                 <?php } ?>
