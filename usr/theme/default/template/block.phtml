@@ -79,7 +79,15 @@ if ($isTab) {
     $heading .= '</ul>';
     $body .= '</div>';
 } else {
-    $heading = $block['title'];
+    if ($block['subline']) {
+        $heading = sprintf(
+            '<div class="pi-panel-subline">%s</div>%s',
+            $block['subline'],
+            $block['title']
+        );
+    } else {
+        $heading = $block['title'];
+    }
     $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
 }
 ?>
