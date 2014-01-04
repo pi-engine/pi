@@ -9,6 +9,7 @@
 
 namespace Module\Media\Controller\Front;
 
+use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\File\Transfer\Download;
 
@@ -24,11 +25,20 @@ class DownloadController extends ActionController
      */
     public function indexAction()
     {
+        // Disable debugger message
+        Pi::service('log')->mute();
+
         $id = $this->params('id');
         $ids = array_filter(explode(',', $id));
 
         if (empty($ids)) {
-            throw new \Exception('Invalid media ID');
+            if (substr(PHP_SAPI, 0, 3) == 'cgi') {
+                header('Status: 404 Not Found');
+            } else {
+                header('HTTP/1.1 404 Not Found');
+            }
+
+            exit;
         }
 
         // Export files
@@ -67,6 +77,8 @@ class DownloadController extends ActionController
                 header('HTTP/1.1 404 Not Found');
             }
         }
+
+        exit;
 
         /*
         $filePath = 'upload/tmp';
