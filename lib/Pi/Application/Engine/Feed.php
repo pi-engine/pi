@@ -22,12 +22,13 @@ namespace Pi\Application\Engine;
  */
 class Feed extends Standard
 {
-    /** @var string Section name */
+    /**
+     * {@inheritDoc}
+     */
     const SECTION = 'feed';
 
     /**
-     * Identifier for file name of option data
-     * @var string
+     * {@inheritDoc}
      */
     protected $fileIdentifier = 'feed';
 }

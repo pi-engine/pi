@@ -22,12 +22,13 @@ namespace Pi\Application\Engine;
  */
 class Admin extends Standard
 {
-    /** @var string Section name */
+    /**
+     * {@inheritDoc}
+     */
     const SECTION = 'admin';
 
     /**
-     * Identifier for file name of option data
-     * @var string
+     * {@inheritDoc}
      */
     protected $fileIdentifier = 'admin';
 }
