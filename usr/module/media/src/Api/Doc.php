@@ -92,55 +92,33 @@ class Doc extends AbstractApi
      */
     public function add(array $data)
     {
-        // Get media attributes
-        /*if (!isset($data['attributes'])) {
-            $attributes = array();
-            foreach ($data as $key => $value) {
-                if (in_array($key, $this->attributes)) {
-                    $attributes[$key] = $value;
-                    unset($data[$key]);
-                }
-            }
-            $data['attributes'] = $attributes;
-        }
-        
-        // Create application data
-        if (!isset($data['appkey'])) {
-            return false;
-        }
-        $app = array(
-            'appkey'   => $data['appkey'],
-            'app_name' => $data['app_name'],
-        );
-        $appId = $this->addApplication($app);
-        if (empty($appId)) {
-            return false;
-        }
-        unset($data['app_name']);
-        
-        // Canonize media data
-        $extends = isset($data['extend']) ? $data['extend'] : array();
-        foreach ($data as $key => $val) {
-            if (!in_array($key, $this->columns)) {
-                unset($data[$key]);
+        // It's strange that when I send $data directly to createRow method
+        // when request upload by remote, an empty record will be insert since
+        // the $data is not empty, I assign its value to $params variable,
+        // thing goes well
+        $params = array();
+        $columns = $this->model()->getColumns();
+        foreach ($columns as $key) {
+            if (isset($data[$key])) {
+                $params[$key] = $data[$key];
             }
         }
         
         // Create data
-        if (!isset($data['active'])) {
-            $data['active'] = 1;
+        if (!isset($params['active'])) {
+            $params['active'] = 1;
         }
-        $data['time_created'] = time();
-        $row = $this->model()->createRow($data);
+        $params['time_created'] = time();
+        $row = $this->model()->createRow($params);
         $row->save();
         if (empty($row->id)) {
             return false;
         }
         
-        // Create extended data
+        // TODO: Create extended data
         $docId = $row->id;
-        $model = Pi::model('meta', $this->module);
-        foreach ($extends as $key => $val) {
+        /*$model = Pi::model('meta', $this->module);
+        foreach ($data['meta'] as $key => $val) {
             $data = array(
                 'doc'    => $docId,
                 'name'   => $key,
@@ -148,9 +126,9 @@ class Doc extends AbstractApi
             );
             $row = $model->createRow($data);
             $row->save();
-        }
+        }*/
 
-        return (int) $docId;*/
+        return (int) $docId;
     }
 
     /**
@@ -165,12 +143,15 @@ class Doc extends AbstractApi
      */
     public function upload(array $params, $method = 'POST')
     {
-        $options = Pi::service('media')->getOption('local');
+        $module = $this->getModule();
+        $config = Pi::service('module')->config('', $module);
+        
+        $options = Pi::service('media')->getOption('local', 'options');
         $rootUri = $options['root_uri'];
         $rootPath = $options['root_path'];
         $path = $options['locator']['path'];
         if ($path instanceof Closure) {
-            $relativePath = $path();
+            $relativePath = $path(time());
         } else {
             $relativePath = $path;
         }
@@ -182,8 +163,9 @@ class Doc extends AbstractApi
             case 'POST':
                 $uploader = new Upload(array(
                     'destination'   => $destination,
-                    'rename'        => $rename,
+                    'rename'        => $rename($params['filename']),
                 ));
+                $uploader->setSize($this->transferSize($config['max_size'], false));
                 if ($uploader->isValid()) {
                     $uploader->receive();
                     $filename = $uploader->getUploaded();
@@ -215,6 +197,21 @@ class Doc extends AbstractApi
 
                 $success = true;
                 break;
+            case 'MOVE':
+                $filename = $rename($params['filename']);
+                $target = $destination . '/' . $filename;
+                $targetPath = dirname($target);
+                if (!is_dir($targetPath)) {
+                    if (!mkdir($targetPath, 0777, true)) {
+                        throw new \Exception('Cannot create target path');
+                    }
+                }
+
+                $result = copy($params['file'], $target);
+                unset($params['file']);
+                
+                $success = true;
+                break;
             default:
                 break;
         }
@@ -239,11 +236,11 @@ class Doc extends AbstractApi
      */
     public function update($id, array $data)
     {
-        /*$row = $this->model()->find($id);
+        $row = $this->model()->find($id);
         if ($row) {
             // Update extend value
-            $extends = isset($data['extend']) ? $data['extend'] : array();
-            unset($data['extend']);
+            /*$extends = isset($data['meta']) ? $data['meta'] : array();
+            unset($data['meta']);
             $model = Pi::model('meta', $this->module);
             // TODO: get allowed custom extended fields
             // TODO: insert extend data if the field is not exists
@@ -256,13 +253,13 @@ class Doc extends AbstractApi
                         'name'  => $key,
                     )
                  );
-            }
+            }*/
             
             // Remove columns that cannot be updated
             $columns = array(
                 'id', 'time_created', 'time_updated', 'time_delete', 'ip', 'uid'
             );
-            foreach ($data as $key => $val) {
+            foreach (array_keys($data) as $key) {
                 if (in_array($key, $columns)) {
                     unset($data[$key]);
                 }
@@ -276,7 +273,7 @@ class Doc extends AbstractApi
             return true;
         }
 
-        return false;*/
+        return false;
     }
     
     /**
@@ -311,7 +308,7 @@ class Doc extends AbstractApi
         $rowset = $model->selectWith($select);
         $result = array();
         foreach ($rowset as $row) {
-            if ($attribute && is_salar($attribute)) {
+            if ($attribute && is_scalar($attribute)) {
                 $result[$row['id']] = $row[$attribute];
             } else {
                 $result[$row['id']] = $row->toArray();
@@ -351,10 +348,10 @@ class Doc extends AbstractApi
     public function getStats($id)
     {
         $model  = $this->model('stats');
-        $rowset = $model->select(array('id' => $id));
+        $rowset = $model->select(array('doc' => $id));
         $result = array();
         foreach ($rowset as $row) {
-            $result[$row['id']] = $row->toArray();
+            $result[$row['doc']] = $row->toArray();
         }
         if (is_scalar($id)) {
             if (isset($result[$id])) {
@@ -510,6 +507,76 @@ class Doc extends AbstractApi
             array('id' => $ids)
         );
 
+        return $result;
+    }
+    
+    /**
+     * Transfer filesize
+     * 
+     * @param string  $value
+     * @param bool    $direction
+     * @return string|int 
+     */
+    protected function transferSize($value, $direction = true)
+    {
+        if (!is_string($value) and !is_numeric($value)) {
+            return false;
+        }
+        
+        $result = $value;
+        if ($direction) {
+            if (!is_numeric($value)) {
+                return $value;
+            }
+            $value = intval($value);
+            if ($value / (1024 * 1024 * 1024 * 1024) > 1) {
+                $result = sprintf('%.2f', $value / (1024 * 1024 * 1024 * 1024)) . 'T';
+            } elseif ($value / (1024 * 1024 * 1024) > 1) {
+                $result = sprintf('%.2f', $value / (1024 * 1024 * 1024)) . 'G';
+            } elseif ($value / (1024 * 1024) > 1) {
+                $result = sprintf('%.2f', $value / (1024 * 1024)) . 'M';
+            } elseif ($value / 1024 > 1) {
+                $result = sprintf('%.2f', $value / 1024) . 'K';
+            } else {
+                $result = $value . 'B';
+            }
+        } else {
+            $value  = trim($value);
+            if (is_numeric($value)) {
+                return $value;
+            }
+            if (preg_match('/^\d\d*[a-zA-Z]$/', $value)) {
+                $unit   = substr($value, strlen($value) - 1);
+                $number = substr($value, 0, strlen($value) - 1);
+            } elseif (preg_match('/^\d\d*[a-zA-Z]{2}$/', $value)) {
+                $unit   = substr($value, strlen($value) - 2);
+                $number = substr($value, 0, strlen($value) - 2);
+            } else {
+                return false;
+            }
+            switch (strtolower($unit)) {
+                case 't':
+                case 'tb':
+                    $result = $number * 1024 * 1024 * 1024 * 1024;
+                    break;
+                case 'g':
+                case 'gb':
+                    $result = $number * 1024 * 1024 * 1024;
+                    break;
+                case 'm':
+                case 'mb':
+                    $result = $number * 1024 * 1024;
+                    break;
+                case 'k':
+                case 'kb':
+                    $result = $number * 1024;
+                    break;
+                default:
+                    $result = false;
+                    break;
+            }
+        }
+        
         return $result;
     }
 }

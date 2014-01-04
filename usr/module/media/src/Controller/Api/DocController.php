@@ -9,6 +9,7 @@
 
 namespace Module\Media\Controller\Api;
 
+use Pi;
 use Pi\Mvc\Controller\ApiController;
 
 /**
@@ -22,17 +23,34 @@ class DocController extends ApiController
      * {@inheritDoc}
      */
     protected $modelName = 'doc';
+    
+    /**
+     * Get handler
+     */
+    protected function handler()
+    {
+        return Pi::api($this->getModule(), 'doc');
+    }
 
+    public function indexAction()
+    {
+        $response = array(
+            'status'    => 0,
+            'message'   => 'Operation failed.'
+        );
+        return $response;
+    }
+    
     /**
      * Add media data
      * 
      * @return array
      */
-    public function addAction()
+    public function insertAction()
     {
-        $query = (array) $this->params('query');
+        $query = $this->params('query');
         $data  = $this->canonizeQuery($query);
-        $id = Pi::api($this->module, 'doc')->add($data);
+        $id = $this->handler()->add($data);
         
         if (!$id) {
             $response = array(
@@ -56,12 +74,16 @@ class DocController extends ApiController
      */
     public function uploadAction()
     {
-        $params = (array) $this->params();
-        $id = Pi::api($this->module, 'doc')->upload(
+        if ($this->request->isPost()) {
+            $params = $this->request->getPost();
+        } else {
+            $params = (array) $this->params();
+        }
+        $id = $this->handler()->upload(
             $params,
             $this->request->getMethod()
         );
-
+        
         if (!$id) {
             $response = array(
                 'status'    => 0,
@@ -88,7 +110,7 @@ class DocController extends ApiController
         $query = $this->params('query');
         $data  = $this->canonizeQuery($query);
         
-        $result = Pi::api($this->module, 'doc')->update($id, $data);
+        $result = $this->handler()->update($id, $data);
         
         if (!$result) {
             $response = array(
@@ -113,9 +135,9 @@ class DocController extends ApiController
     {
         $id   = $this->params('id');
         $attr = $this->params('field');
-        $attr = explode(',', $attr);
+        $attr = empty($attr) ? array() : explode(',', $attr);
         
-        $result = Pi::api($this->module, 'doc')->get($id, $attr);
+        $result = $this->handler()->get($id, $attr);
         
         if (empty($result)) {
             $response = array(
@@ -142,9 +164,9 @@ class DocController extends ApiController
         $ids  = $this->params('id');
         $ids  = explode(',', $ids);
         $attr = $this->params('field');
-        $attr = explode(',', $attr);
+        $attr = empty($attr) ? array() : explode(',', $attr);
         
-        $result = Pi::api($this->module, 'doc')->mget($ids, $attr);
+        $result = $this->handler()->mget($ids, $attr);
         
         if (empty($result)) {
             $response = array(
@@ -170,7 +192,7 @@ class DocController extends ApiController
     {
         $id = $this->params('id');
         
-        $result = Pi::api($this->module, 'doc')->getStats($id);
+        $result = $this->handler()->getStats($id);
         
         if (empty($result)) {
             $response = array(
@@ -195,7 +217,7 @@ class DocController extends ApiController
         $ids = $this->params('id');
         $ids = explode(',', $ids);
         
-        $result = Pi::api($this->module, 'doc')->getStatsList($ids);
+        $result = $this->handler()->getStatsList($ids);
         
         if (empty($result)) {
             $response = array(
@@ -222,14 +244,13 @@ class DocController extends ApiController
         $limit  = $this->params('limit', 0);
         $offset = $this->params('offset', 0);
         $order  = $this->params('order', '');
-        $order  = explode(',', $order);
-        $attr   = $this->params('field');
-        $attr   = explode(',', $attr);
+        $order  = empty($order) ? '' : explode(',', $order);
+        $attr   = $this->params('field', '');
+        $attr   = empty($attr) ? '' : explode(',', $attr);
         $query  = $this->params('query');
-        $query  = $this->canonizeQuery($query);
-        $where  = $this->canonizeCondition($query);
+        $where  = $this->canonizeQuery($query);
         
-        $result = Pi::api($this->module, 'doc')->getList(
+        $result = $this->handler()->getList(
             $where,
             $limit,
             $offset,
@@ -260,10 +281,9 @@ class DocController extends ApiController
     public function countAction()
     {
         $query = $this->params('query');
-        $query = $this->canonizeQuery($query);
-        $where = $this->canonizeCondition($query);
+        $where = $this->canonizeQuery($query);
         
-        $result = Pi::api($this->module, 'doc')->getCount($where);
+        $result = $this->handler()->getCount($where);
         
         if (empty($result)) {
             $response = array(
@@ -292,7 +312,7 @@ class DocController extends ApiController
         );
 
         $id     = $this->params('id');
-        $result = Pi::api($this->module, 'doc')->delete($id);
+        $result = $this->handler()->delete($id);
         if (!$result) {
             $response = array(
                 'status'    => 0,

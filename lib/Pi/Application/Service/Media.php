@@ -73,7 +73,8 @@ class Media extends AbstractService
     {
         $_this = $this;
         $loadAdapter = function ($name) use ($_this) {
-            $options = $this->getOption($name);
+            $configs = $_this->getOption($name);
+            $options = $configs['options'];
             $class = 'Pi\Media\Adapter\\' . ucfirst($name);
             if (!class_exists($class)) {
                 throw new \Exception(sprintf('Class %s not found.', $class));

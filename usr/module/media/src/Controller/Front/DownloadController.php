@@ -57,6 +57,7 @@ class DownloadController extends ActionController
             $options    = array();
         }
 
+        // This code cannot output file
         $downloader = new Download();
         $result = $downloader->send($source, $options);
         if (false === $result) {
