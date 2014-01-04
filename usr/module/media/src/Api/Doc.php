@@ -465,64 +465,6 @@ class Doc extends AbstractApi
      */
     protected function transferSize($value, $direction = true)
     {
-        if (!is_string($value) and !is_numeric($value)) {
-            return false;
-        }
-        
-        $result = $value;
-        if ($direction) {
-            if (!is_numeric($value)) {
-                return $value;
-            }
-            $value = intval($value);
-            if ($value / (1024 * 1024 * 1024 * 1024) > 1) {
-                $result = sprintf('%.2f', $value / (1024 * 1024 * 1024 * 1024)) . 'T';
-            } elseif ($value / (1024 * 1024 * 1024) > 1) {
-                $result = sprintf('%.2f', $value / (1024 * 1024 * 1024)) . 'G';
-            } elseif ($value / (1024 * 1024) > 1) {
-                $result = sprintf('%.2f', $value / (1024 * 1024)) . 'M';
-            } elseif ($value / 1024 > 1) {
-                $result = sprintf('%.2f', $value / 1024) . 'K';
-            } else {
-                $result = $value . 'B';
-            }
-        } else {
-            $value  = trim($value);
-            if (is_numeric($value)) {
-                return $value;
-            }
-            if (preg_match('/^\d\d*[a-zA-Z]$/', $value)) {
-                $unit   = substr($value, strlen($value) - 1);
-                $number = substr($value, 0, strlen($value) - 1);
-            } elseif (preg_match('/^\d\d*[a-zA-Z]{2}$/', $value)) {
-                $unit   = substr($value, strlen($value) - 2);
-                $number = substr($value, 0, strlen($value) - 2);
-            } else {
-                return false;
-            }
-            switch (strtolower($unit)) {
-                case 't':
-                case 'tb':
-                    $result = $number * 1024 * 1024 * 1024 * 1024;
-                    break;
-                case 'g':
-                case 'gb':
-                    $result = $number * 1024 * 1024 * 1024;
-                    break;
-                case 'm':
-                case 'mb':
-                    $result = $number * 1024 * 1024;
-                    break;
-                case 'k':
-                case 'kb':
-                    $result = $number * 1024;
-                    break;
-                default:
-                    $result = false;
-                    break;
-            }
-        }
-        
-        return $result;
+        return Pi::service('file')->transformSize($value);
     }
 }
