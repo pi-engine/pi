@@ -31,15 +31,6 @@ class DocController extends ApiController
     {
         return Pi::api($this->getModule(), 'doc');
     }
-
-    public function indexAction()
-    {
-        $response = array(
-            'status'    => 0,
-            'message'   => 'Operation failed.'
-        );
-        return $response;
-    }
     
     /**
      * Add media data
@@ -133,11 +124,11 @@ class DocController extends ApiController
      */
     public function getAction()
     {
-        $id   = $this->params('id');
-        $attr = $this->params('field');
-        $attr = empty($attr) ? array() : explode(',', $attr);
-        
-        $result = $this->handler()->get($id, $attr);
+        $id     = $this->params('id');
+        $field  = $this->params('field');
+        $fields = $this->splitString($field);
+
+        $result = $this->handler()->get($id, $fields);
         
         if (empty($result)) {
             $response = array(
@@ -161,12 +152,12 @@ class DocController extends ApiController
      */
     public function mgetAction()
     {
-        $ids  = $this->params('id');
-        $ids  = explode(',', $ids);
-        $attr = $this->params('field');
-        $attr = empty($attr) ? array() : explode(',', $attr);
+        $id         = $this->params('id');
+        $field      = $this->params('field');
+        $ids        = $this->splitString($id);
+        $fields     = $this->splitString($field);
         
-        $result = $this->handler()->mget($ids, $attr);
+        $result = $this->handler()->mget($ids, $fields);
         
         if (empty($result)) {
             $response = array(
@@ -214,8 +205,8 @@ class DocController extends ApiController
      */
     public function mstatsAction()
     {
-        $ids = $this->params('id');
-        $ids = explode(',', $ids);
+        $id         = $this->params('id');
+        $ids        = $this->splitString($id);
         
         $result = $this->handler()->getStatsList($ids);
         
@@ -243,19 +234,21 @@ class DocController extends ApiController
     {
         $limit  = $this->params('limit', 0);
         $offset = $this->params('offset', 0);
-        $order  = $this->params('order', '');
-        $order  = empty($order) ? '' : explode(',', $order);
-        $attr   = $this->params('field', '');
-        $attr   = empty($attr) ? '' : explode(',', $attr);
+        $order  = $this->params('order');
         $query  = $this->params('query');
-        $where  = $this->canonizeQuery($query);
+        $field  = $this->params('field');
+
+        $order  = $this->splitString($order);
+        $fields = $this->splitString($field);
+        $query  = $this->canonizeQuery($query);
         
+        $where  = $this->canonizeCondition($query);
         $result = $this->handler()->getList(
             $where,
             $limit,
             $offset,
             $order,
-            $attr
+            $fields
         );
         
         if (empty($result)) {
@@ -281,7 +274,8 @@ class DocController extends ApiController
     public function countAction()
     {
         $query = $this->params('query');
-        $where = $this->canonizeQuery($query);
+        $query = $this->canonizeQuery($query);
+        $where = $this->canonizeCondition($query);
         
         $result = $this->handler()->getCount($where);
         

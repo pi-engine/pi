@@ -91,82 +91,53 @@ class Doc extends AbstractApi
      */
     public function add(array $data)
     {
-        // It's strange that when I send $data directly to createRow method
-        // when request upload by remote, an empty record will be insert since
-        // the $data is not empty, I assign its value to $params variable,
-        // thing goes well
-        $params = array();
-        $columns = $this->model()->getColumns();
-        foreach ($columns as $key) {
-            if (isset($data[$key])) {
-                $params[$key] = $data[$key];
-            }
-        }
-        
-        // Create data
-        if (!isset($params['active'])) {
-            $params['active'] = 1;
-        }
-        $params['time_created'] = time();
-        $row = $this->model()->createRow($params);
+        $data = $this->canonize($data);
+        $row = $this->model()->createRow($data);
         $row->save();
-        if (empty($row->id)) {
-            return false;
-        }
-        
-        // TODO: Create extended data
-        $docId = $row->id;
-        /*$model = Pi::model('meta', $this->module);
-        foreach ($data['meta'] as $key => $val) {
-            $data = array(
-                'doc'    => $docId,
-                'name'   => $key,
-                'value'  => $val,
-            );
-            $row = $model->createRow($data);
-            $row->save();
-        }*/
-        
-        $this->addApplication(array('appkey' => $row->appkey));
 
-        return (int) $docId;
+        return (int) $row->id;
     }
 
     /**
      * Upload a doc and save meta
      *
      * @TODO not completed
-     * 
-     * @param array $params
+     *
+     * @param array  $params
      * @param string $method
      *
      * @return int doc id
      */
     public function upload(array $params, $method = 'POST')
     {
-        $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
-        
-        $options = Pi::service('media')->getOption('local', 'options');
-        $rootUri = $options['root_uri'];
-        $rootPath = $options['root_path'];
-        $path = $options['locator']['path'];
+        $options    = Pi::service('media')->getOption('local', 'options');
+        $rootUri    = $options['root_uri'];
+        $rootPath   = $options['root_path'];
+        $path       = $options['locator']['path'];
         if ($path instanceof Closure) {
-            $relativePath = $path(time());
+            $relativePath = $path();
         } else {
             $relativePath = $path;
         }
         $destination = $rootPath . '/' . $relativePath;
+        Pi::service('file')->mkdir($destination);
         $rename = $options['locator']['file'];
 
         $success = false;
-        switch ($method) {
+        switch (strtoupper($method)) {
+            // For remote post
             case 'POST':
                 $uploader = new Upload(array(
                     'destination'   => $destination,
-                    'rename'        => $rename($params['filename']),
+                    'rename'        => $rename,
                 ));
-                $uploader->setSize($this->transferSize($config['max_size'], false));
+                $maxSize = Pi::service('module')->config(
+                    'max_size',
+                    $this->module
+                );
+                if ($maxSize) {
+                    $uploader->setSize($maxSize);
+                }
                 if ($uploader->isValid()) {
                     $uploader->receive();
                     $filename = $uploader->getUploaded();
@@ -185,9 +156,10 @@ class Doc extends AbstractApi
                     $success = true;
                 }
                 break;
+            // For remote put
             case 'PUT':
                 $putdata = fopen('php://input', 'r');
-                $filename = $rename($params['name']);
+                $filename = $rename($params['filename']);
                 $target = $destination  . '/' . $filename;
                 $fp = fopen($target, 'w');
                 while ($data = fread($putdata, 1024)) {
@@ -198,21 +170,16 @@ class Doc extends AbstractApi
 
                 $success = true;
                 break;
+
+            // For local
             case 'MOVE':
                 $filename = $rename($params['filename']);
                 $target = $destination . '/' . $filename;
-                $targetPath = dirname($target);
-                if (!is_dir($targetPath)) {
-                    if (!mkdir($targetPath, 0777, true)) {
-                        throw new \Exception('Cannot create target path');
-                    }
-                }
-
-                $result = copy($params['file'], $target);
+                Pi::service('file')->copy($params['file'], $target);
                 unset($params['file']);
-                
                 $success = true;
                 break;
+
             default:
                 break;
         }
@@ -239,35 +206,13 @@ class Doc extends AbstractApi
     {
         $row = $this->model()->find($id);
         if ($row) {
-            // Update extend value
-            /*$extends = isset($data['meta']) ? $data['meta'] : array();
-            unset($data['meta']);
-            $model = Pi::model('meta', $this->module);
-            // TODO: get allowed custom extended fields
-            // TODO: insert extend data if the field is not exists
-            // Update value of existing extend field
-            foreach ($extends as $key => $val) {
-                $model->update(
-                    array('value' => $val),
-                    array(
-                        'doc'   => $row->id,
-                        'name'  => $key,
-                    )
-                 );
-            }*/
-            
-            // Remove columns that cannot be updated
-            $columns = array(
-                'id', 'time_created', 'time_updated', 'time_delete', 'ip', 'uid'
-            );
-            foreach (array_keys($data) as $key) {
-                if (in_array($key, $columns)) {
-                    unset($data[$key]);
-                }
+            $data = $this->canonize($data);
+            if (array_key_exists('id', $data)) {
+                unset($data['id']);
             }
-            
-            // Update data
-            $data['time_updated'] = time();
+            if (empty($data['time_updated'])) {
+                $data['time_updated'] = time();
+            }
             $row->assign($data);
             $row->save();
 
@@ -343,16 +288,16 @@ class Doc extends AbstractApi
     /**
      * Get doc statistics
      * 
-     * @param int $id
-     * @return array
+     * @param int|int[] $id
+     * @return int|array
      */
     public function getStats($id)
     {
         $model  = $this->model('stats');
-        $rowset = $model->select(array('doc' => $id));
+        $rowset = $model->select(array('id' => $id));
         $result = array();
         foreach ($rowset as $row) {
-            $result[$row['doc']] = $row->toArray();
+            $result[$row['id']] = $row['count'];
         }
         if (is_scalar($id)) {
             if (isset($result[$id])) {
