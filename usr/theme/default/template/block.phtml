@@ -1,5 +1,4 @@
 <?php
-
 /*
 
  Block parameters;
@@ -39,8 +38,8 @@
 
  Block with tabs
  |=============================================================================|
- | Block Title                                   | tab | tab | tab | tab | tab |
- |-----------------------------------------------|     |-----------------------|
+ | | tab | tab | tab | tab | tab |
+ |------------------------------------------------------------------------------|
  | Block content of first tab ...                                                |
  | Block content of first tab ...                                                |
  | Block content of first tab ...                                                |
@@ -48,49 +47,47 @@
 
  */
 ?>
-<?php /* Assign global ID, add custom stylesheet class if available */ ?>
-<div id="pi-block-<?php echo $block['name'] ?: $block['id']; ?>" class="pi-block<?php if (!empty($block['class'])) { echo ' ' . $block['class']; } ?>">
-    <?php /* Display block header section only if title, or subline or tab available */ ?>
-    <?php if (!empty($block['title']) || !empty($block['subline']) || is_array($block['content'])) { ?>
-    <div class="clearfix pi-block-header">
-        <?php /* Float position for subline and tab */ ?>
-        <?php $float = empty($block['title']) ? '' : 'pull-right'; ?>
-
-        <?php /* Display tab if available, i.e. content is an array */ ?>
-        <?php if(is_array($block['content'])) { ?>
-            <ul class="<?php echo $float; ?> pi-block-tab">
-                <?php
-                $i = 0;
-                foreach ($block['content'] as $tab) {
-                ?>
-                <li<?php echo $i ? '' : ' class="active"'; ?>><a href="<?php if (empty($tab['link'])) { ?>#<?php } else { echo $tab['link']; } ?>" data-toggle="tab" data-target="#block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo _escape($tab['caption']); ?></a>
-                <?php } ?>
-            </ul>
-        <?php } ?>
-
-        <?php /* Display subline if available */ ?>
-        <?php if(!empty($block['subline'])) { ?>
-            <div class="<?php echo $float; ?> pi-block-subline"><?php echo $block['subline']; ?></div>
-        <?php } ?>
-
-        <?php /* Display title if available */ ?>
-        <h4 class="pi-block-title"><?php echo empty($block['title']) ? '' : _escape($block['title']); ?></h4>
-    </div>
-    <?php } ?>
-
-    <?php /* Display tab contents if available, i.e. content is an array */ ?>
-    <?php if(!empty($block['content']) && is_array($block['content'])) { ?>
-    <div class="pi-block-body tab-content">
-        <?php $i = 0;
-        foreach ($block['content'] as $tab) {
-        ?>
-        <div class="tab-pane<?php echo $i ? '' : ' active'; ?>" id="block-tab-<?php echo $block['id'] . '-' . (++$i); ?>"><?php echo $tab['content']; ?></a></div>
-        <?php } ?>
-    </div>
-    <?php /* Display regular content */ ?>
-    <?php } else { ?>
-    <div class="pi-block-body">
-        <?php echo $block['content']; ?>
-    </div>
-    <?php } ?>
+<?php
+$isTab = is_array($block['content']);
+$class = '';
+if ($block['class']) {
+    $class .= ' ' . $block['class'];
+}
+if ($isTab) {
+    $class .= ' pi-panel-tab';
+}
+$isHiddenTitle = $block['title_hidden'] && !$isTab;
+//Render header
+if ($isTab) {
+    $heading = '<ul class="pi-panel-tab-indicators">';
+    $body = '<div class="panel-body tab-content">';
+    foreach ($block['content'] as $key => $item) {
+        $heading .= sprintf(
+            '<li class="%s"><a href="%s" data-toggle="tab" data-target="#panel-%s">%s</a>',
+            $key == 0 ? 'active' : '',
+            $item['link'] ? $item['link'] : '#',
+            $block['id'] . $key,
+            $item['caption']
+        );
+        $body .= sprintf(
+            '<div class="tab-pane%s" id="panel-%s">%s</div>',
+             $key == 0 ? ' active' : '',
+             $block['id'] . $key,
+             $item['content']
+        );
+    }
+    $heading .= '</ul>';
+    $body .= '</div>';
+} else {
+    $heading = $block['title'];
+    $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
+}
+?>
+<div class="panel panel-default<?php echo $class; ?>">
+    <?php 
+    if (!$isHiddenTitle) {
+        echo sprintf('<div class="panel-heading">%s</div>', $heading);
+    }
+    echo $body;
+    ?>
 </div>
