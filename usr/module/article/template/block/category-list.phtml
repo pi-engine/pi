@@ -1,0 +1,26 @@
+<?php 
+    $items    = $block['items'];
+    $options  = $block['options'];
+    $category = $block['category'] ?: 0;
+?>
+
+<div class="article-category-list">
+    <ul class="nav nav-pills nav-stacked">
+    <?php
+        $index = 0;
+        foreach ($items as $key => $val) {
+            if (++$index > $options['list-count']) {
+                break;
+            }
+            $indent = $val['depth'] ? $val['depth'] * 10 : 10;
+    ?>
+        <li class="<?php echo $category == $key ? 'active' : ''; ?>">
+            <a href="<?php echo _escape($val['url']); ?>" target="<?php echo $this->escape($options['target']); ?>" style="padding-left: <?php echo $indent; ?>px">
+                <?php echo _escape($val['title']); ?>
+            </a>
+        </li>
+    <?php
+        }
+    ?>
+    </ul>
+</div>

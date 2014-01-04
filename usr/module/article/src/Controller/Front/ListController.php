@@ -48,6 +48,7 @@ class ListController extends ActionController
         $route  = Service::getRouteName();
         $resultset = $model->selectWith($select);
         $items     = array();
+        $categoryIds = $authorIds = array();
         foreach ($resultset as $row) {
             $items[$row->id] = $row->toArray();
             $publishTime     = date('Ymd', $row->time_publish);
@@ -58,6 +59,28 @@ class ListController extends ActionController
                     'time' => $publishTime
                 )
             );
+            $authorIds[]   = $row->author;
+            $categoryIds[] = $row->category;
+        }
+        
+        // Get author
+        $authors = array();
+        if (!empty($authorIds)) {
+            $rowAuthor = $this->getModel('author')
+                ->select(array('id' => $authorIds));
+            foreach ($rowAuthor as $row) {
+                $authors[$row->id] = $row->toArray();
+            }
+        }
+        
+        // Get category
+        $categories = array();
+        if (!empty($categoryIds)) {
+            $rowCategory = $this->getModel('category')
+                ->select(array('id' => $categoryIds));
+            foreach ($rowCategory as $row) {
+                $categories[$row->id] = $row->toArray();
+            }
         }
 
         // Total count
@@ -82,11 +105,18 @@ class ListController extends ActionController
                     'list'          => 'all',
                 ),
             ));
+        
+        $module = $this->getModule();
+        $config = Pi::service('module')->config('', $module);
 
         $this->view()->assign(array(
             'title'     => __('All Articles'),
             'articles'  => $items,
             'paginator' => $paginator,
+            'elements'  => $config['list_item'],
+            'authors'   => $authors,
+            'categories' => $categories,
+            'length'    => $config['list_summary_length'],
         ));
     }
 }
