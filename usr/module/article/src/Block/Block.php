@@ -83,10 +83,11 @@ class Block
                 'depth' => 0,
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    'default',
+                    Service::getRouteName($module),
                     array(
                         'controller' => 'list',
                         'action'     => 'all',
+                        'list'       => 'all',
                     )
                 ),
             ),
