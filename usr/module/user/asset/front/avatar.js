@@ -124,7 +124,7 @@
       location.href = location.href;
     });
 
-    root.$('.avatar-source-nav').on('shown', function(e) {
+    root.$('.avatar-source-nav').on('shown.bs.tab', function(e) {
       var source = $(this).data('source');
       saveBtn.attr('data-source', source);
       if (source == 'upload') {

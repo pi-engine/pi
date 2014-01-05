@@ -1,49 +1,4 @@
-
-<form id="pi-search-form" role="form">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="input-group">
-                <input type="text" name="q" value="<?php echo _escape($query); ?>" class="form-control" placeholder="Pi Engine Search">
-                <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default" onclick="this.form.action=''; this.form.target='';">
-                        <span class="glyphicon glyphicon-search"></span> <?php _e('Search'); ?>
-                    </button>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label><?php _e('Search in:'); ?></label>
-                <div class="btn-group btn-group-xs">
-                    <button type="button" class="btn btn-primary">
-                        <?php _e('Global'); ?>
-                    </button>
-                </div>
-
-                <div class="btn-group btn-group-xs">
-                    <?php foreach ($modules as $name => $data) { ?>
-                        <button type="submit" class="btn btn-default" onclick="this.form.action='<?php echo $this->url('search', array('m' => $name)); ?>'; this.form.target='';">
-                            <?php echo _escape($data['title']); ?>
-                        </button>
-                    <?php } ?>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label><?php _e('Try:'); ?></label>
-                <div class="btn-group btn-group-xs">
-                    <?php foreach ($service as $name => $data) { ?>
-                        <button type="submit" class="btn btn-default" onclick="this.form.action='<?php echo $this->url('search', array('service' => $name)); ?>'; this.form.target='_blank';">
-                            <?php echo _escape($data['title']); ?>
-                        </button>
-                    <?php } ?>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</form>
-
+<?php include 'search-form.phtml'; ?>
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title"><?php _e('Search result'); ?></h3>
@@ -62,7 +17,6 @@
         ?>
     </div>
 </div>
-
 
 <?php foreach ($result as $name => $data) { ?>
 <div class="panel panel-default">

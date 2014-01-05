@@ -262,6 +262,7 @@
 .avatar-repository-inline li {
   margin: 0 20px 10px 0;
   text-align: center;
+  cursor: pointer;
 }
 
 .avatar-repository-inline img {
