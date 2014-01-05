@@ -108,16 +108,15 @@ $this->headLink(array(
         ?>
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-
+        <!-- Top head zone -->
+        <?php if (!empty($blocks['0'])) { ?>
+        <div class="pi-zone-0">
+            <?php foreach ($blocks['0'] as $block) {
+                include $blockTemplate;
+            } ?>
+        </div>
+        <?php } ?>
         <div class="row">
-            <!-- Top head zone -->
-            <?php if (!empty($blocks['0'])) { ?>
-            <div class="pi-zone-0 col-md-12">
-                <?php foreach ($blocks['0'] as $block) {
-                    include $blockTemplate;
-                } ?>
-            </div>
-            <?php } ?>
             <!-- Left zone -->
             <?php if (!empty($blocks['1'])) { ?>
             <div class="pi-zone-1 col-md-4">
@@ -212,16 +211,15 @@ $this->headLink(array(
                 } ?>
             </div>
             <?php } ?>
-
-            <!-- Bottom foot zone -->
-            <?php if (isset($blocks['99'])) { ?>
-            <div class="col-md-12 pi-zone-99">
-                <?php foreach ($blocks['99'] as $block) {
-                    include $blockTemplate;
-                } ?>
-            </div>
-            <?php } ?>
         </div>
+        <!-- Bottom foot zone -->
+        <?php if (isset($blocks['99'])) { ?>
+        <div class="pi-zone-99">
+            <?php foreach ($blocks['99'] as $block) {
+                include $blockTemplate;
+            } ?>
+        </div>
+        <?php } ?>
     </div>
 
     <!-- Footer: sitelink -->

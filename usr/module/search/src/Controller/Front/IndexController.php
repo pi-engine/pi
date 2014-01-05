@@ -90,11 +90,16 @@ class IndexController extends ActionController
             ));
             $this->view()->setTemplate('search-result');
         } else {
+            $this->view()->assign(array(
+                'query'     => ''
+            ));
             $this->view()->setTemplate('search-form');
         }
+
         $this->view()->assign(array(
-            'modules'   => $modules,
-            'service'   => $this->getService(),
+            'modules'       => $modules,
+            'service'       => $this->getService(),
+            'searchModule'  => ''
         ));
     }
 
@@ -116,9 +121,7 @@ class IndexController extends ActionController
             $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
-        $label = $modules[$module]['title'];
-        unset($modules[$module]);
-
+        
         if ($query) {
             $result = array();
             $terms  = array();
@@ -163,11 +166,12 @@ class IndexController extends ActionController
             ));
             $this->view()->setTemplate('search-module-result');
         } else {
-            $this->view()->setTemplate('search-module-form');
+            $this->view()->setTemplate('search-form');
         }
         $this->view()->assign(array(
-            'modules'   => $modules,
-            'label'     => $label,
+            'modules'       => $modules,
+            'searchModule'  => $module,
+            'service'       => $this->getService(),
         ));
     }
 
