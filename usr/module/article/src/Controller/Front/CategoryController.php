@@ -100,10 +100,10 @@ class CategoryController extends ActionController
             $module
         );
         
-        $categoryIds = $authorIds = array();
+        $articleCategoryIds = $authorIds = array();
         foreach ($resultsetArticle as $row) {
             $authorIds[]   = $row['author'];
-            $categoryIds[] = $row['category'];
+            $articleCategoryIds[] = $row['category'];
         }
         
         // Get author
@@ -118,9 +118,9 @@ class CategoryController extends ActionController
         
         // Get category
         $categories = array();
-        if (!empty($categoryIds)) {
+        if (!empty($articleCategoryIds)) {
             $rowCategory = $this->getModel('category')
-                ->select(array('id' => $categoryIds));
+                ->select(array('id' => $articleCategoryIds));
             foreach ($rowCategory as $row) {
                 $categories[$row->id] = $row->toArray();
             }
