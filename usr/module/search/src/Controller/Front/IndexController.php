@@ -93,7 +93,7 @@ class IndexController extends ActionController
             $this->view()->assign(array(
                 'query'     => ''
             ));
-            $this->view()->setTemplate('search-form');
+            $this->view()->setTemplate('search-home');
         }
 
         $this->view()->assign(array(
@@ -166,7 +166,7 @@ class IndexController extends ActionController
             ));
             $this->view()->setTemplate('search-module-result');
         } else {
-            $this->view()->setTemplate('search-form');
+            $this->view()->setTemplate('search-home');
         }
         $this->view()->assign(array(
             'modules'       => $modules,
