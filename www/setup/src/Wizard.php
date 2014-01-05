@@ -26,7 +26,8 @@ class Wizard
     protected $controller;
     protected $pageIndex = null;
 
-    protected $persistentData = array();
+    protected $persist;
+    //protected $persistentData = array();
     protected $locale = '';
     protected $charset = 'UTF-8';
     protected $pages = array();
@@ -113,8 +114,8 @@ class Wizard
     {
         if (empty($locale)) {
             // Load from persist
-            if (!empty($this->persistentData['locale'])) {
-                $this->locale = $this->persistentData['locale'];
+            if ($locale = $this->persist()->get('locale')) {
+                $this->locale = $locale;
             // Detect via browser
             } elseif (!$this->locale) {
                 $auto   = 'en';
@@ -148,10 +149,9 @@ class Wizard
             }
         } else {
             $this->locale = $locale;
-            $this->persistentData['locale'] = $this->locale;
+            $this->persist()->set('locale', $this->locale);
         }
-        $this->charset = !empty($this->persistentData['charset'])
-            ? $this->persistentData['charset'] : $this->charset;
+        $this->charset = $this->persist()->get('charset') ?: $this->charset;
         Translator::setPath(static::$root . '/locale');
         Translator::setLocale($this->locale);
         Translator::loadDomain('default');
@@ -162,7 +162,7 @@ class Wizard
         $languages = $this->getLanguages();
         if (isset($languages[$locale])) {
             $this->locale = $locale;
-            $this->persistentData['locale'] = $this->locale;
+            $this->persist()->set('locale', $this->locale);
 
             return true;
         }
@@ -211,7 +211,7 @@ class Wizard
     public function setCharset($charset)
     {
         $this->charset = $charset;
-        $this->persistentData['charset'] = $this->charset;
+        $this->persist()->set('charset', $this->charset);
     }
 
     public function getCharset()
@@ -343,8 +343,21 @@ class Wizard
         exit();
     }
 
+    public function persist()
+    {
+        if (!$this->persist instanceof Persist) {
+            $this->persist = new Persist;
+        }
+
+        return $this->persist;
+    }
+
     public function loadPersist()
     {
+        $this->persist()->load();
+
+        return;
+
         session_start();
 
         $_SESSION[__CLASS__] = isset($_SESSION[__CLASS__])
@@ -357,6 +370,10 @@ class Wizard
 
     public function savePersist()
     {
+        $this->persist()->save();
+
+        return;
+
         $_SESSION[__CLASS__] = $this->persistentData;
         session_write_close();
         //print_r($_SESSION);
@@ -366,20 +383,24 @@ class Wizard
 
     public function destroyPersist()
     {
-        $this->persistentData = array();
+        //$this->persistentData = array();
+        $this->persist()->destroy();
 
         return true;
     }
 
     public function setPersist($key, $value)
     {
-        $this->persistentData[$key] = $value;
+        //$this->persistentData[$key] = $value;
+        $this->persist()->set($key, $value);
 
         return $this;
     }
 
     public function getPersist($key)
     {
+        return $this->persist()->get($key);
+
         return isset($this->persistentData[$key])
             ? $this->persistentData[$key] : null;
     }
