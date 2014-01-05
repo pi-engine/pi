@@ -1,4 +1,12 @@
 <?php
+//Config grid system columns
+if (!isset($formConfig)) {
+    $formConfig = array(
+        'label' => 2,
+        'input' => 4
+    );
+}
+$formConfig['desc'] = 12 - $formConfig['label'] - $formConfig['input'];
 /*
  * Message at form top
  */
@@ -34,15 +42,18 @@ foreach ($elements['active'] as $element) {
     }
 
     $rendered = sprintf(
-        '<div class="form-group%s"><label class="col-md-2 control-label">%s</label>',
+        '<div class="form-group%s"><label class="col-md-%s control-label">%s</label>',
         $element->getMessages() ? ' has-error' : '',
+        $formConfig['label'],
         $isCheckbox ?  '' : $element->getOption('label')
     );
 
     $rendered .= sprintf(
-        '<div class="col-md-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
+        '<div class="col-md-%s">%s%s</div><div class="col-md-%s help-block">%s</div></div>',
+        $formConfig['input'],
         $this->formElement($element),
         $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
+        $formConfig['desc'],
         $this->formElementErrors($element)
     );
     echo $rendered;
@@ -51,7 +62,8 @@ foreach ($elements['hidden'] as $element) {
     echo $this->formElement($element);
 }
 echo sprintf(
-    '<div class="form-group"><div class="col-md-offset-2 col-md-10">%s%s</div></div>', 
+    '<div class="form-group"><div class="col-md-offset-%s col-md-4">%s%s</div></div>',
+    $formConfig['label'], 
     $this->formElement($elements['submit']),
     empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
 );

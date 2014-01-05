@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
   var fs = require('fs');
   var path = require('path');
+  var util = require('util');
+  var config = require('./Gruntfile-config.js');
 
   function assetModuleCwd(name) {
     return path.join('usr/module', name, 'asset');
@@ -30,26 +32,36 @@ module.exports = function(grunt) {
     return path.join('www/static/vendor', name);
   }
  
-  //Auto load modules list, or you can change for your need
   var modules = (function() {
     var modules = [];
-    fs.readdirSync('usr/module')
-      .forEach(function(path) {
-        if (~path.indexOf('.') || path == 'widget') return;
-        modules.push(path);
-      });
-    return modules; //or return ['system', 'user']
+    if (config.modules == 'all') {
+      //Auto read usr/module file name
+      fs.readdirSync('usr/module')
+        .forEach(function(path) {
+          if (~path.indexOf('.')) return;
+          modules.push(path);
+        });
+    } else if (util.isArray(config.modules)) {
+      modules = config.modules;
+    }
+    
+    return modules; 
   })();
 
-  //Auto load theme list, or you can change for your need
   var themes = (function() {
     var themes = [];
-    fs.readdirSync('usr/theme')
-      .forEach(function(path) {
-        if (~path.indexOf('.')) return;
-        themes.push(path);
-      });
-    return themes;
+    if (config.themes == 'all') {
+      //Auto read usr/module file name
+      fs.readdirSync('usr/theme')
+        .forEach(function(path) {
+          if (~path.indexOf('.')) return;
+          themes.push(path);
+        });
+    } else if (util.isArray(config.themes)) {
+      themes = config.themes;
+    }
+    
+    return themes;   
   })();
 
   /**
