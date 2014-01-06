@@ -1,0 +1,23 @@
+.search-tabs {
+  text-align: center;
+  margin: 0 auto 20px;
+}
+
+.search-tabs a {
+	padding: 0 8px;
+  color: #333;
+}
+
+.search-tabs .active {
+	color: #A94442;
+  font-weight: bold;
+}
+
+.search-service {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.search-service a {
+  padding: 0 15px;
+}
