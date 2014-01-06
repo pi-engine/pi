@@ -172,7 +172,7 @@ class Download
 
         // Remove tmp zip file
         if ('zip' == $options['type']) {
-            @unlink($source);
+            @unlink($options['source']);
         }
 
         if ($this->exit) {
@@ -216,6 +216,7 @@ class Download
             }
             $zip->close();
             $source = $zipFile;
+            $options['source'] = $zipFile;
 
             $options['type'] = 'zip';
             if (!empty($options['filename'])) {
