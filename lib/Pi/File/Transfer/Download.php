@@ -154,7 +154,7 @@ class Download
         if ('raw' == $options['type']) {
             $source = $options['source'];
         } else {
-            $source = fopen($options['source'], 'rb');
+            $source = fopen($source, 'rb');
         }
 
         // Send the content to client
@@ -172,7 +172,7 @@ class Download
 
         // Remove tmp zip file
         if ('zip' == $options['type']) {
-            @unlink($options['source']);
+            @unlink($source);
         }
 
         if ($this->exit) {
@@ -198,7 +198,7 @@ class Download
         }
         if (is_array($source)) {
             array_walk($source, function (&$item) {
-                if (is_array($item)) {
+                if (!is_array($item)) {
                     $item = array('filename' => $item);
                     if (empty($item['localname'])) {
                         $item['localname'] = basename($item['filename']);
@@ -281,8 +281,12 @@ class Download
         ob_clean();
         flush();
         if (is_resource($source)) {
-            //Send the content in chunks
-            while (false !== ($chunk = fread($source, 4096))) {
+            // Send the content in chunks
+            $buffer     = 1024;
+            $readLength = 0;
+            while (false !== ($chunk = fread($source, $buffer)) &&
+                $readLength < $contentLength) {
+                $readLength += $buffer;
                 echo $chunk;
             }
         } elseif (is_string($source)) {
