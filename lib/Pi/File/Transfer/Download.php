@@ -285,8 +285,9 @@ class Download
             // Send the content in chunks
             $buffer     = 1024;
             $readLength = 0;
-            while (false !== ($chunk = fread($source, $buffer)) &&
-                $readLength < $contentLength) {
+            while (false !== ($chunk = fread($source, $buffer))
+                && $readLength < $contentLength
+            ) {
                 $readLength += $buffer;
                 echo $chunk;
             }
