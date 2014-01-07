@@ -97,7 +97,7 @@ class ListController extends ActionController
 
         // Get media list
         $module = $this->getModule();
-        $resultset = Pi::api($module, 'doc')->getList(
+        $resultset = Pi::api('doc', $module)->getList(
             $where,
             $limit,
             $offset,
@@ -305,7 +305,7 @@ class ListController extends ActionController
         $params['delete'] = $delete;
 
         // Get media list
-        $resultset = Pi::api($this->getModule(), 'doc')->getList(
+        $resultset = Pi::api('doc', $this->getModule())->getList(
             $where,
             $limit,
             $offset,
@@ -474,7 +474,7 @@ class ListController extends ActionController
 
         // Get media list
         $module = $this->getModule();
-        $resultset = Pi::api($module, 'doc')->getList(
+        $resultset = Pi::api('doc', $module)->getList(
             $where,
             $limit,
             $offset,
@@ -621,7 +621,7 @@ class ListController extends ActionController
 
         // Get media list
         $module = $this->getModule();
-        $resultset = Pi::api($module, 'doc')->getList(
+        $resultset = Pi::api('doc', $module)->getList(
             $where,
             $limit,
             $offset,

@@ -291,7 +291,7 @@ class ProfileController extends ActionController
         }
 
         //if (!in_array($value, array(0, 1, 2, 4, 255))) {
-        if (null === Pi::api($this->getModule(), 'privacy')->transform($value)) {
+        if (null === Pi::api('privacy', $this->getModule())->transform($value)) {
             $result['message'] = _a('Privacy set up failed: invalid value.');
             return $result;
         }

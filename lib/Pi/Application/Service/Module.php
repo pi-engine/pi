@@ -368,7 +368,7 @@ class Module extends AbstractService
         if (!isset($conditions['module'])) {
             throw new \Exception('module is required.');
         }
-        $api = Pi::api($conditions['module'], 'content');
+        $api = Pi::api('content', $conditions['module']);
         $result = $api ? $api->getList($variables, $conditions) : array();
 
         return $result;

@@ -29,7 +29,7 @@ class DocController extends ApiController
      */
     protected function handler()
     {
-        return Pi::api($this->getModule(), 'doc');
+        return Pi::api('doc', $this->getModule());
     }
     
     /**
