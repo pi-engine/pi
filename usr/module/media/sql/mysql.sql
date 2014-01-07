@@ -8,12 +8,10 @@ CREATE TABLE `{doc}` (
   # filename, for download
   `filename`        varchar(255)                    NOT NULL DEFAULT '',
 
-  # Encoded file attributes: mimetype, filesize, width, height, etc.
+  # Encoded file attributes: mimetype, size, width, height, etc.
   `attributes`      text,
-  #`mimetype`        varchar(64)                     NOT NULL DEFAULT '',
-  #`filesize`        int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  #`size_width`      int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  #`size_height`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `size`            int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `mimetype`        varchar(255)                    NOT NULL DEFAULT '',
 
   # Doc attributes
   `title`           varchar(255)                    NOT NULL DEFAULT '',
@@ -36,9 +34,6 @@ CREATE TABLE `{doc}` (
   `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `ip`              varchar(64)                     NOT NULL DEFAULT '',
 
-  # Extra data
-  `meta`            text,
-
   # Usage stats
   `count`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
 
@@ -47,7 +42,7 @@ CREATE TABLE `{doc}` (
   KEY `uid`     (`uid`),
   KEY `module`  (`module`),
   KEY `appkey`  (`appkey`),
-  KEY `application` (`appkey`, `module`, `category`)
+  KEY `application` (`appkey`, `module`, `type`)
 );
 
 # Extended meta for docs
@@ -65,10 +60,8 @@ CREATE TABLE `{meta}` (
 CREATE TABLE `{application}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `appkey`          varchar(255)          DEFAULT NULL,
-  `name`            varchar(255)          DEFAULT NULL,
   `title`           varchar(255)          NOT NULL DEFAULT '',
 
   PRIMARY KEY           (`id`),
-  UNIQUE KEY `name`     (`name`),
   UNIQUE KEY `appkey`   (`appkey`)
 );

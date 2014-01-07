@@ -69,7 +69,7 @@ $viewPreview = '<li class="inline">
             <div class="tab-pane" id="fromUpload">
                 <div class="avatar-upload-box">
                     <div class="avatar-upload-hit">
-                        <button class="btn avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
+                        <button class="btn btn-success avatar-upload-btn"><?php _e('Upload avatar'); ?></button>
                         <div class="text-muted">
                             <?php foreach ($limits as $limit) { ?>
                             <div><?php echo $limit['label']; ?> <?php echo $limit['text']; ?></div>
@@ -99,10 +99,15 @@ $viewPreview = '<li class="inline">
             <div class="tab-pane" id="fromGravatar">
                 <p>
                     <a href="https://gravatar.com" target="_blank"><?php _e('Change from Gravatar') ?></a>
-                <div>
-                    <span><?php _e('Gravatar email') ?></span>
-                    <input name="email" value="<?php echo $email; ?>" type="text"
-                           style="margin-left: 10px; vertical-align: baseline;">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">
+                            <?php _e('Gravatar email') ?>
+                        </label>
+                        <div class="col-sm-4">
+                            <input name="email" value="<?php echo $email; ?>" type="email" class="form-control">
+                        </div>
+                    </div>
                 </div>
                 <div class="avatar-preview-header">
                     <strong><?php _e('Avatar previews'); ?></strong>
@@ -126,10 +131,8 @@ $viewPreview = '<li class="inline">
                 <ul class="list-unstyled avatar-repository-inline">
                     <?php foreach($selects as $key => $item) { ?>
                     <li class="inline">
-                        <label>
-                            <img src="<?php echo $item; ?>">
-                            <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
-                        </label>
+                        <img src="<?php echo $item; ?>">
+                        <input type="radio" name="repository-avatar" value="<?php echo $key; ?>">
                     <?php } ?>
                 </ul>
                 <div class="avatar-preview-header">

@@ -16,26 +16,29 @@ angular
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         t: {
            BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
-           BASIC_FIELD_DESC: '<?php echo _a('Raw filed provied by the user module,you can change the display title'); ?>',
+           BASIC_FIELD_DESC: '<?php echo _a('Field title can be edited for display.'); ?>',
+           FIELD: '<?php echo _a('Field'); ?>',
+           SETTING_DEFAULT: '<?php echo _a('Default setting'); ?>',
+           SETTING_FORCED: '<?php echo _a('Forced setting'); ?>',
            FIELD_TITLE: '<?php echo _a('Field title'); ?>',
            DISPLAY: '<?php echo _a('Display'); ?>',
            SEARCH: '<?php echo _a('Search'); ?>',
            EDITABLE: '<?php echo _a('Editable'); ?>',
            FORM_MODULE: '<?php echo _a('From module'); ?>',
            COMPOUND: '<?php echo _a('Compound'); ?>',
-           COMPOUND_DESC: '<?php echo _a('Compound filed :Some fileds organized initially. Sub elements in the compound is directly displayed on the page,while the compound title is for programming'); ?>',
-           PRIVACY_DESC: '<?php echo _a('Determine the default visible objects of the profile filed and which filed can be changed by the user self'); ?>',
+           COMPOUND_DESC: '<?php echo _a('Compound to organize a group of fields.'); ?>',
+           PRIVACY_DESC: '<?php echo _a('Privacy policy: set default value for profile field privacy setting. If `Forced` is set, user can not change privacy for corresponding field.'); ?>',
            ADD_GROUP: '<?php echo _a('Add group'); ?>',
            FIELD_DISPLAY: '<?php echo _a('Field display on profile page'); ?>',
            BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
            TITLE: '<?php echo _a('Title'); ?>',
-           SAVE_TIP: '<?php echo _a('Data will not be saved before you click save button'); ?>',
-           ADD_FIELD_TIP: '<?php echo _a('Click to select a group added in'); ?>',
-           ADD_GROUP_TIP: '<?php echo _a('Click to added a group'); ?>',
+           SAVE_TIP: '<?php echo _a('Data will not be saved until `Save` button is hit.'); ?>',
+           ADD_FIELD_TIP: '<?php echo _a('Click to choose a group for the field to add.'); ?>',
+           ADD_GROUP_TIP: '<?php echo _a('Click to add a group.'); ?>',
            CANCEL: '<?php echo _a('Cancel'); ?>',
            SAVE: '<?php echo _a('Save'); ?>',
-           LEAVE_CONFIRM: '<?php echo _a('You have made unsaved changes. Would you still like to leave this page?'); ?>',
-           CHECK_GROUP: '<?php echo _a('Create a group before adding'); ?>'
+           LEAVE_CONFIRM: '<?php echo _a('Changes are not saved yet. Would you still like to leave this page?'); ?>',
+           CHECK_GROUP: '<?php echo _a('Create a group before adding.'); ?>'
         }
     });
 </script>

@@ -170,7 +170,7 @@ table td {
                     <?php echo _a('Available Themes'); ?>
                 </div>
             </div>
-            <div class="hide theme-wrap">
+            <div class="theme-wrap" style="display: none;">
                 <ul class="nav nav-pills nav-stacked">
                 </ul>
             </div>
@@ -221,7 +221,7 @@ pageBlcokAction({
     page: <?php echo $page['id']; ?>,
     pageSaveUrl: '<?php echo $this->url('admin', array('module' => 'system', 'controller' => 'page', 'action' => 'save')); ?>',
     getThemeUrl: '<?php echo $this->url('', array('action' => 'themelist')); ?>',
-    getZoneUrl: '<?php echo $this->url('', array('action' => 'zonetemplate', 'theme' => ''))?>',
-    blockListUrl: '<?php echo $this->url('', array('module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '')); ?>'
+    getZoneUrl: '<?php echo $this->url('', array('action' => 'zonetemplate', 'theme' => '__NAME__'))?>',
+    blockListUrl: '<?php echo $this->url('', array('module' => 'system', 'controller' => 'page', 'action' => 'blocklist', 'name' => '__NAME__')); ?>'
 });
 </script>

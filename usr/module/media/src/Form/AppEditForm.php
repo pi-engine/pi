@@ -25,17 +25,6 @@ class AppEditForm extends BaseForm
     public function init()
     {
         $this->add(array(
-            'name'       => 'name',
-            'options'    => array(
-                'label'     => __('Application Name'),
-            ),
-            'attributes' => array(
-                'type'      => 'text',
-                'disabled'  => 'disabled',
-            ),
-        ));
-
-        $this->add(array(
             'name'       => 'title',
             'options'    => array(
                 'label'     => __('Application Title'),

@@ -25,12 +25,13 @@ use Pi\Mvc\Application;
  */
 class Standard extends AbstractEngine
 {
-    /** @var string Section name */
+    /**
+     * {@inheritDoc}
+     */
     const SECTION = self::FRONT;
 
     /**
-     * Identifier for file name of option data
-     * @var string
+     * {@inheritDoc}
      */
     protected $fileIdentifier = 'front';
 

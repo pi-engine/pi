@@ -194,14 +194,17 @@ class Module extends AbstractService
     /**
      * Load meta data of a module and category
      *
-     * @param string $module
-     * @param string $type
+     * @param string    $module
+     * @param string    $type
+     * @param bool      $fetch  Fetch resource meta from config file
+     *
      * @return array
      */
-    public function loadMeta($module, $type = null)
+    public function loadMeta($module, $type = null, $fetch = false)
     {
         Pi::service('i18n')->load(array('module/' . $module, 'admin'));
 
+        // Load module meta data
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;
 
@@ -213,16 +216,96 @@ class Module extends AbstractService
             unset($config['maintenance']);
         }
 
+        // Get resource
+        if (isset($config['resource'])) {
+            $resource = $config['resource'];
+            unset($config['resource']);
+        } else {
+            $resource = array();
+        }
+
+        // Load module custom meta if available
+        $resourceCustom     = array();
+        $directory          = $this->directory($module);
+        $configFileCustom   = sprintf('%s/module/%s/config/module.php', Pi::path('custom'), $directory);
+        if (file_exists($configFileCustom)) {
+            $configCustom = include $configFileCustom;
+            if (!empty($configCustom['meta']['build'])) {
+                $config['meta']['version'] .= '+' . $configCustom['meta']['build'];
+                unset($configCustom['meta']['build']);
+                if (isset($configCustom['resource'])) {
+                    $resourceCustom = $configCustom['resource'];
+                }
+                $config['meta'] = array_replace(
+                    $config['meta'],
+                    $configCustom['meta']
+                );
+            }
+        }
+
+        // Fetch resource meta
+        $getResource = function ($name = null) use (
+            $resource,
+            $resourceCustom,
+            $directory,
+            $fetch,
+            &$getResource
+        ) {
+            $result = null;
+            if (!$name) {
+                $list = array_unique(
+                    array_keys($resourceCustom) + array_keys($resource)
+                );
+                foreach ($list as $key) {
+                    $result[$key] = $getResource($key);
+                }
+            } else {
+                if (isset($resourceCustom[$name])) {
+                    if (is_string($resourceCustom[$name]) && $fetch) {
+                        $file = Pi::path('custom') . '/module/' . $directory . '/config/'
+                              . $resourceCustom[$name];
+                        if (file_exists($file)) {
+                            $result = include $file;
+                            if (!is_array($result)) {
+                                $result = array();
+                            }
+                        }
+                    } else {
+                        $result = $resourceCustom[$name];
+                    }
+                }
+                if (null === $result && isset($resource[$name])) {
+                    if (is_string($resource[$name]) && $fetch) {
+                        $file = Pi::path('module') . '/' . $directory . '/config/'
+                            . $resource[$name];
+                        if (file_exists($file)) {
+                            $result = include $file;
+                            if (!is_array($result)) {
+                                $result = array();
+                            }
+                        }
+                    } else {
+                        $result = $resource[$name];
+                    }
+                }
+            }
+
+            return $result;
+        };
+
         if ($type) {
             if (isset($config[$type])) {
-                $result = $config[$type];
-            } elseif (isset($config['resource'][$type])) {
-                $result = $config['resource'][$type];
+                if ('resource' == $type) {
+                    $result = $getResource();
+                } else {
+                    $result = $config[$type];
+                }
             } else {
-                $result = array();
+                $result = $getResource($type);
             }
         } else {
             $result = $config;
+            $result['resource'] = $getResource();
         }
 
         return $result;

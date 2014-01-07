@@ -125,21 +125,15 @@ class ArticleController extends ActionController
             'action'      => 'detail',
         ), $params));
         
-        // Get comment count
-        $condition = array(
-            'category'  => $module,
-            'item'      => $id,
+        // Count the viewing number temporarily
+        $events = Pi::engine()->application()->getEventManager();
+        $obj    = new \Module\Article\Statistics;
+        $events->attach(
+            \Zend\Mvc\MvcEvent::EVENT_DISPATCH, 
+            array($obj, 'runBeforePageCache'), 
+            1100
         );
-
-
-        trigger_error('Do not interact with comment service, leave it to comment module', E_USER_WARNING);
-        if ($details['comments']->comment) {
-            $details['comments'] = Pi::service('api')
-                ->comment->getCount($condition);
-        }
-
-
-
+            
         $config = Pi::service('module')->config('', $this->getModule());
         $this->view()->assign(array(
             'details'     => $details,

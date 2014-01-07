@@ -64,8 +64,7 @@ abstract class AbstractEngine
     /**
      * Constructor
      *
-     * @param  array $options
-     * @return void
+     * @param array $options
      */
     public function __construct($options = array())
     {
@@ -115,8 +114,8 @@ abstract class AbstractEngine
             unset($options['config']);
         }
         $this->options = $this->options
-                         ? array_merge_recursive($this->options, $options)
-                         : $options;
+            ? array_merge_recursive($this->options, $options)
+            : $options;
 
         return $this;
     }

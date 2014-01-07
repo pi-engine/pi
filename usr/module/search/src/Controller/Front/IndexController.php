@@ -62,17 +62,23 @@ class IndexController extends ActionController
     protected function searchGlobal()
     {
         $query      = $this->params('q');
-        $modules = $this->getModules($query);
+        $modules    = $this->getModules($query);
 
         if ($query) {
-            $terms  = $query ? $this->parseQuery($query) : array();
+            $total  = 0;
+            $terms  = array();
+            $flood  = false;
+            if (!$this->checkFlood()) {
+                $flood  = true;
+            } else {
+                $terms  = $this->parseQuery($query);
+            }
             if ($terms) {
                 $limit  = $this->config('leading_limit');
                 $result = $this->query($terms, $limit);
             } else {
                 $result = array();
             }
-            $total = 0;
             foreach ($result as $name => $data) {
                 $total += $data->getTotal();
             }
@@ -80,14 +86,20 @@ class IndexController extends ActionController
                 'query'     => $query,
                 'result'    => $result,
                 'total'     => $total,
+                'flood'     => $flood,
             ));
             $this->view()->setTemplate('search-result');
         } else {
-            $this->view()->setTemplate('search-form');
+            $this->view()->assign(array(
+                'query'     => ''
+            ));
+            $this->view()->setTemplate('search-home');
         }
+
         $this->view()->assign(array(
-            'modules'   => $modules,
-            'service'   => $this->getService(),
+            'modules'       => $modules,
+            'service'       => $this->getService(),
+            'searchModule'  => ''
         ));
     }
 
@@ -109,20 +121,23 @@ class IndexController extends ActionController
             $this->redirect()->toRoute('search', array('q' => $query));
             return;
         }
-        $label = $modules[$module]['title'];
-        unset($modules[$module]);
-
+        
         if ($query) {
-            $terms  = $query ? $this->parseQuery($query) : array();
+            $result = array();
+            $terms  = array();
+            $total  = 0;
+            $limit  = 0;
+            $flood  = false;
+            if (!$this->checkFlood()) {
+                $flood  = true;
+            } else {
+                $terms  = $this->parseQuery($query);
+            }
             if ($terms) {
                 $limit  = $this->config('list_limit');
                 $offset = $limit * ($page -1);
                 $result = $this->query($terms, $limit, $offset, $module);
                 $total  = $result ? $result->getTotal() : 0;
-            } else {
-                $result = array();
-                $total  = 0;
-                $limit  = 0;
             }
             if ($total && $total > $limit) {
                 $paginator = Paginator::factory($total, array(
@@ -146,15 +161,17 @@ class IndexController extends ActionController
                 'query'     => $query,
                 'result'    => $result,
                 'total'     => $total,
+                'flood'     => $flood,
                 'paginator' => $paginator,
             ));
             $this->view()->setTemplate('search-module-result');
         } else {
-            $this->view()->setTemplate('search-module-form');
+            $this->view()->setTemplate('search-home');
         }
         $this->view()->assign(array(
-            'modules'   => $modules,
-            'label'     => $label,
+            'modules'       => $modules,
+            'searchModule'  => $module,
+            'service'       => $this->getService(),
         ));
     }
 
@@ -377,6 +394,31 @@ class IndexController extends ActionController
             $result = isset($list[$service]) ? $list[$service] : null;
         } else {
             $result = $list;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check against submission flood
+     *
+     * @return bool
+     */
+    protected function checkFlood()
+    {
+        $result = true;
+        $interval = $this->config('search_interval');
+        $uid = Pi::service('user')->getId();
+        if (!$uid) {
+            $interval = $interval ?: $this->config('search_interval_anonymous');
+        }
+
+        if ($interval) {
+            $lastSearch = $_SESSION['SEARCH_LAST_QUERY'];
+            $_SESSION['SEARCH_LAST_QUERY'] = time();
+            if ($lastSearch + $interval > time()) {
+                $result = false;
+            }
         }
 
         return $result;

@@ -22,11 +22,13 @@ class Wizard
     const BASE_NAMESPACE = 'Pi\Setup';
     const DIR_CLASS = 'src';
     protected static $root;
+
     protected $request;
     protected $controller;
     protected $pageIndex = null;
 
-    protected $persistentData = array();
+    protected $persist;
+    //protected $persistentData = array();
     protected $locale = '';
     protected $charset = 'UTF-8';
     protected $pages = array();
@@ -43,7 +45,7 @@ class Wizard
         $pwd = dirname($_SERVER["SCRIPT_FILENAME"]);
         static::$root = str_replace('\\', '/', $pwd);
         spl_autoload_register('static::autoload');
-        $this->request = new Request();
+        //$this->request = new Request();
     }
 
     public static function autoload($class)
@@ -96,7 +98,7 @@ class Wizard
 
     public function getRequest()
     {
-        return $this->request;
+        return $this->request ?: new Request;
     }
 
     protected function checkAccess()
@@ -113,8 +115,8 @@ class Wizard
     {
         if (empty($locale)) {
             // Load from persist
-            if (!empty($this->persistentData['locale'])) {
-                $this->locale = $this->persistentData['locale'];
+            if ($locale = $this->persist()->get('locale')) {
+                $this->locale = $locale;
             // Detect via browser
             } elseif (!$this->locale) {
                 $auto   = 'en';
@@ -148,10 +150,9 @@ class Wizard
             }
         } else {
             $this->locale = $locale;
-            $this->persistentData['locale'] = $this->locale;
+            $this->persist()->set('locale', $this->locale);
         }
-        $this->charset = !empty($this->persistentData['charset'])
-            ? $this->persistentData['charset'] : $this->charset;
+        $this->charset = $this->persist()->get('charset') ?: $this->charset;
         Translator::setPath(static::$root . '/locale');
         Translator::setLocale($this->locale);
         Translator::loadDomain('default');
@@ -162,7 +163,7 @@ class Wizard
         $languages = $this->getLanguages();
         if (isset($languages[$locale])) {
             $this->locale = $locale;
-            $this->persistentData['locale'] = $this->locale;
+            $this->persist()->set('locale', $this->locale);
 
             return true;
         }
@@ -211,7 +212,7 @@ class Wizard
     public function setCharset($charset)
     {
         $this->charset = $charset;
-        $this->persistentData['charset'] = $this->charset;
+        $this->persist()->set('charset', $this->charset);
     }
 
     public function getCharset()
@@ -243,13 +244,13 @@ class Wizard
 
     public function dispatch()
     {
-        $page = $this->request->getParam('page', '');
+        $page = $this->getRequest()->getParam('page', '');
         $page = $this->getPage($page);
         $this->pageIndex = array_search($page, array_keys($this->pages));
 
         $controllerClass = __NAMESPACE__ . '\\Controller\\' . ucfirst($page);
-        $action = $this->request->getParam('action', '')
-            ?: ($this->request->isPost() ? 'submit' : 'index');
+        $action = $this->getRequest()->getParam('action', '')
+            ?: ($this->getRequest()->isPost() ? 'submit' : 'index');
         $action .= 'Action';
         $this->controller = new $controllerClass($this);
         $this->controller->$action();
@@ -259,11 +260,11 @@ class Wizard
     {
         $this->savePersist();
         $status = $this->controller->getStatus();
-        if ($status > 0 /*&& !$this->request->getParam('r')*/) {
+        if ($status > 0 /*&& !$this->getRequest()->getParam('r')*/) {
             $this->gotoPage('+1');
         }
         $content = $this->controller->getContent();
-        if ($this->request->isXmlHttpRequest()) {
+        if ($this->getRequest()->isXmlHttpRequest()) {
             if ($this->controller->hasBootstrap()
                 && Pi::service()->hasService('log')
             ) {
@@ -304,7 +305,7 @@ class Wizard
         $pageHasForm = $this->controller->hasForm();
         $headContent = $this->controller->headContent();
         $footContent = $this->controller->footContent();
-        $baseUrl = $this->request->getBaseUrl();
+        $baseUrl = $this->getRequest()->getBaseUrl();
 
         $data = compact(
             'status', 'locale', 'charset', 'title', 'desc',
@@ -329,7 +330,7 @@ class Wizard
             $params['page'] = $page;
         }
         $query = http_build_query($params);
-        $url = $this->request->getBaseUrl() . ($query ? '?' . $query : '');
+        $url = $this->getRequest()->getBaseUrl() . ($query ? '?' . $query : '');
 
         return $url;
     }
@@ -337,14 +338,27 @@ class Wizard
     public function gotoPage($page = '', $params = array())
     {
         $url = $this->url($page, $params);
-        header('Location: ' . $this->request->getScheme() . '://'
-               . $this->request->getHttpHost() . $url);
+        header('Location: ' . $this->getRequest()->getScheme() . '://'
+               . $this->getRequest()->getHttpHost() . $url);
 
         exit();
     }
 
+    public function persist()
+    {
+        if (!$this->persist instanceof Persist) {
+            $this->persist = new Persist;
+        }
+
+        return $this->persist;
+    }
+
     public function loadPersist()
     {
+        $this->persist()->load();
+
+        return;
+
         session_start();
 
         $_SESSION[__CLASS__] = isset($_SESSION[__CLASS__])
@@ -357,6 +371,10 @@ class Wizard
 
     public function savePersist()
     {
+        $this->persist()->save();
+
+        return;
+
         $_SESSION[__CLASS__] = $this->persistentData;
         session_write_close();
         //print_r($_SESSION);
@@ -366,20 +384,24 @@ class Wizard
 
     public function destroyPersist()
     {
-        $this->persistentData = array();
+        //$this->persistentData = array();
+        $this->persist()->destroy();
 
         return true;
     }
 
     public function setPersist($key, $value)
     {
-        $this->persistentData[$key] = $value;
+        //$this->persistentData[$key] = $value;
+        $this->persist()->set($key, $value);
 
         return $this;
     }
 
     public function getPersist($key)
     {
+        return $this->persist()->get($key);
+
         return isset($this->persistentData[$key])
             ? $this->persistentData[$key] : null;
     }

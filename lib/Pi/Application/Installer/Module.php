@@ -181,7 +181,7 @@ class Module
     }
 
     /**
-     * Attach default listeners to event mananger
+     * Attach default listeners to event manager
      *
      * @return void
      */
@@ -276,7 +276,8 @@ class Module
      */
     public function loadConfig(Event $e)
     {
-        $config = Pi::service('module')->loadMeta($e->getParam('directory'));
+        $directory = $e->getParam('directory');
+        $config = Pi::service('module')->loadMeta($directory, null, true);
         $e->setParam('config', $config);
         if (!$e->getParam('title')) {
             $e->setParam('title', $config['meta']['title']);
@@ -284,7 +285,7 @@ class Module
     }
 
     /**
-     * Attach install resoures
+     * Attach install resources
      *
      * @return void
      */

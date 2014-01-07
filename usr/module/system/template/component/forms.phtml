@@ -25,9 +25,9 @@ echo $this->form()->openTag($form);
 /**#@+
  * Preparation
  */
-$elements = $form->elementList();
-$validate = $form->getMessages();
-$groups = $form->getGroups();
+$elements   = $form->elementList();
+$validate   = $form->getMessages();
+$groups     = $form->getGroups();
 $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
 /**#@-**/
 
@@ -55,7 +55,7 @@ $renderElement = function ($element) use ($_this)
 
     $rendered .= sprintf(
         '<div class="col-md-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
-        $this->formElement($element),
+        $_this->formElement($element),
         $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
         $_this->formElementErrors($element)
     );

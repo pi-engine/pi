@@ -24,6 +24,41 @@ use Exception;
 class File extends AbstractService
 {
     /**
+     * Transform file size
+     *
+     * @param int|string $value
+     *
+     * @return string|int|bool
+     */
+    public function transformSize($value)
+    {
+        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+        if (is_numeric($value)) {
+            $value = (int) $value;
+            for ($i = 0; $value >= 1024 && $i < 9; $i++) {
+                $value /= 1024;
+            }
+
+            $result = round($value, 2) . $sizes[$i];
+        } else {
+            $value = trim($value);
+            $pattern = '/^([0-9]+)[\s]?(' . implode('|', $sizes). ')$/i';
+            if (preg_match($pattern, $value, $matches)) {
+                $value = (int) $matches[1];
+                $unit = strtoupper($matches[2]);
+                $idx = array_search($unit, $sizes);
+                if (false !== $idx) {
+                    $result = $value * pow(1024, $idx);
+                }
+            } else {
+                $result = false;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Copies a file.
      *
      * This method only copies the file if the origin file is newer

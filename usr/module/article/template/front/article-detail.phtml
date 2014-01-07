@@ -128,8 +128,8 @@ if ($details['seo']['description']) {
             <?php } ?>
         </div>
         <?php if ($details['pages'] > 1) { ?> 
-        <div class="pagination pagination-centered">
-            <ul>
+        <div style="text-align: center">
+            <ul class="pagination">
             <?php for ($i = 1; $i <= $details['pages']; $i++) { ?>
                 <li <?php if ($i == $page && !isset($remain)) echo 'class="active"'; ?>>
                     <a href="<?php echo $this->escape($details['content'][$i-1]['url']); ?>">

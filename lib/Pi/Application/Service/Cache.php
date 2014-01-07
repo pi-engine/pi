@@ -331,9 +331,6 @@ class Cache extends AbstractService
         if ('comment' == $type || 'all' == $type) {
             Pi::service('cache')->clearByNamespace('comment');
         }
-        if ('meta' == $type || 'all' == $type) {
-            Pi::service('cache')->clearByNamespace('meta');
-        }
         if ('file' == $type || 'all' == $type) {
             $path = Pi::path('cache');
             $iterator = new \RecursiveIteratorIterator(

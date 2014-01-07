@@ -18,12 +18,13 @@ use Pi;
  */
 class Api extends Standard
 {
-    /** @var string Section name */
+    /**
+     * {@inheritDoc}
+     */
     const SECTION = 'api';
 
     /**
-     * Identifier for file name of option data
-     * @var string
+     * {@inheritDoc}
      */
     protected $fileIdentifier = 'api';
 }

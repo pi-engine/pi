@@ -1,0 +1,75 @@
+<?php
+$length = count($block['items']);
+$carouselId = uniqid('carousel');
+?>
+<style>
+.pi-carousel-indicators {
+	text-align: right;
+	margin: 0;
+	left: auto;
+	top: auto;
+	right: 15px;
+	bottom: 5px;
+}
+.pi-carousel-indicators .active {
+	background: #428bca;
+}
+.pi-carousel-indicators li {
+	background: #ccc;
+	border-radius: 0;
+	margin: 0 2px 0 0;
+}
+</style>
+<div id="<?php echo $carouselId; ?>" class="carousel slide">
+	<ol class="carousel-indicators pi-carousel-indicators">
+	<?php
+	for ($i = 0; $i < $length; $i++) {
+		echo sprintf(
+			'<li data-target="#%s" data-slide-to="%s" class="%s">',
+			$carouselId,
+			$i,
+			$i == 0 ? 'active' : ''
+		);
+	}
+	?>
+	</ol>
+	<div class="carousel-inner">
+	<?php
+	foreach ($block['items'] as $key => $item) {
+		if ($item['link']) {
+			$title = sprintf('<a href="%s">%s</a>', $item['link'], $item['caption']);
+			$image = sprintf('<a href="%s"><img class="img-responsive center-block" src="%s"></a>', 
+				             $item['link'], $item['image']);
+		} else {
+			$title = $item['caption'];
+			$image = sprintf('<img class="img-responsive center-block" src="%s">', $item['image']);
+		}
+		echo sprintf('
+			<div class="item%s">
+				<div class="row">
+					<div class="col-sm-7">%s</div>
+					<div class="col-sm-5">
+						<h4>%s</h4>
+						<p>%s
+					</div>
+				</div>
+			</div>',
+			$key == 0 ? ' active' : '',
+			$image,
+			$title,
+			$item['desc']
+		);
+	}
+	?>
+	</div>
+</div>
+<?php
+echo sprintf('
+	<script>
+		$("#%s").carousel(%s);
+	</script>',
+	$carouselId,
+	json_encode($block['options'])
+);
+?>
+

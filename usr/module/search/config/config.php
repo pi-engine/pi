@@ -29,6 +29,20 @@ $config = array(
         'filter'        => 'int',
     ),
 
+    'search_interval' => array(
+        'title'         => _t('Search interval limit'),
+        'description'   => _t('Limit for search time interval.'),
+        'value'         => 0,
+        'filter'        => 'int',
+    ),
+
+    'search_interval_anonymous' => array(
+        'title'         => _t('Anonymous interval limit'),
+        'description'   => _t('Limit for anonymous search time interval.'),
+        'value'         => 3,
+        'filter'        => 'int',
+    ),
+
     'logging'   => array(
         'title'         => _t('Log search terms'),
         'edit'          => 'checkbox',

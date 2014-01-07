@@ -185,6 +185,9 @@ abstract class ApiController extends ActionController
         $select = $model->select();
         $select->where($where);
         $select->limit($limit);
+        if ($fields) {
+            $select->columns($fields);
+        }
         if ($offset) {
             $select->offset($offset);
         }
@@ -207,8 +210,8 @@ abstract class ApiController extends ActionController
      */
     public function countAction()
     {
-        $query = $this->params('query');
-        $query = $this->canonizeQuery($query);
+        $query  = $this->params('query');
+        $query  = $this->canonizeQuery($query);
         $where  = $this->canonizeCondition($query);
         $count  = $this->model($this->modelName)->count($where);
         $response = array(
@@ -266,7 +269,7 @@ abstract class ApiController extends ActionController
 
         $result = explode(',', $string);
         array_walk($result, 'trim');
-        $result = array_unique(array_filter($result));
+        $result = array_unique($result);
 
         return $result;
     }
@@ -291,7 +294,7 @@ abstract class ApiController extends ActionController
             list($identifier, $like) = explode(':', $qString);
             $identifier = trim($identifier);
             $like = trim($like);
-            if ($identifier && $like) {
+            if ($identifier) {
                 $like = str_replace(
                     array('%', '*', '_'),
                     array('\\%', '%', '\\_'),
@@ -313,10 +316,14 @@ abstract class ApiController extends ActionController
      */
     protected function canonizeCondition(array $query)
     {
-        $where = array('active' => 1);
-        if (isset($query['active'])) {
-            $where['active'] = $query['active'];
+        $where = array();
+        if (array_key_exists('active', $query)) {
+            if (isset($query['active'])) {
+                $where['active'] = $query['active'] ? 1 : 0;
+            }
             unset($query['active']);
+        } else {
+            $where['active'] = 1;
         }
         $where = Pi::db()->where($where);
         if ($query) {

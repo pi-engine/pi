@@ -59,6 +59,37 @@ return array(
             ),
         ),
     ),
+    'category-list'            => array(
+        'title'       => _t('Category List'),
+        'description' => _t('Listing all category'),
+        'render'      => 'block::categoryList',
+        'template'    => 'category-list',
+        'config'      => array(
+            'list-count'       => array(
+                'title'        => _a('List Count'),
+                'description'  => _a('The max categories to display'),
+                'filter'       => 'number_int',
+                'value'        => 18,
+            ),
+            'target'           => array(
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
+                'edit'         => array(
+                    'type'        => 'select',
+                    'attributes'  => array(
+                        'options'    => array(
+                            '_blank'    => 'Blank',
+                            '_parent'   => 'Parent',
+                            '_self'     => 'Self',
+                            '_top'      => 'Top',
+                        ),
+                    ),
+                ),
+                'filter'        => 'string',
+                'value'         => '_blank',
+            ),
+        ),
+    ),
     'hot-categories'           => array(
         'title'       => _t('Hot Categories'),
         'description' => _t('Listing hot categories according to their articles'),

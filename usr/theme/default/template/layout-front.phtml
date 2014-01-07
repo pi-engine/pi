@@ -1,7 +1,15 @@
 <?php
 // Load translation data
 $this->i18nTheme('default', 'default');
-
+//HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+$this->js(array(
+    pi::url('static/js/html5shiv.js') => array(
+        'conditional' => 'lt IE 9'
+    ),
+    pi::url('static/js/respond.min.js') => array(
+        'conditional' => 'lt IE 9'
+    ),
+));
 /*
  * Load Bootstrap css by Twitter Team, auto load jquery
  * This code should written in every theme, As much of module code
@@ -89,7 +97,7 @@ $this->headLink(array(
     ?>
     <div class="container pi-main-container">
         <?php
-        $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="pi-divider">/<span>')->render();
+        $breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
         if ($breadcrumbs) {
             echo sprintf(
                 '<div class="breadcrumb">%s</div>',
@@ -99,16 +107,15 @@ $this->headLink(array(
         ?>
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-
+        <!-- Top head zone -->
+        <?php if (!empty($blocks['0'])) { ?>
+        <div class="pi-zone-0">
+            <?php foreach ($blocks['0'] as $block) {
+                include $blockTemplate;
+            } ?>
+        </div>
+        <?php } ?>
         <div class="row">
-            <!-- Top head zone -->
-            <?php if (!empty($blocks['0'])) { ?>
-            <div class="pi-zone-0 col-md-12">
-                <?php foreach ($blocks['0'] as $block) {
-                    include $blockTemplate;
-                } ?>
-            </div>
-            <?php } ?>
             <!-- Left zone -->
             <?php if (!empty($blocks['1'])) { ?>
             <div class="pi-zone-1 col-md-4">
@@ -203,16 +210,15 @@ $this->headLink(array(
                 } ?>
             </div>
             <?php } ?>
-
-            <!-- Bottom foot zone -->
-            <?php if (isset($blocks['99'])) { ?>
-            <div class="col-md-12 pi-zone-99">
-                <?php foreach ($blocks['99'] as $block) {
-                    include $blockTemplate;
-                } ?>
-            </div>
-            <?php } ?>
         </div>
+        <!-- Bottom foot zone -->
+        <?php if (isset($blocks['99'])) { ?>
+        <div class="pi-zone-99">
+            <?php foreach ($blocks['99'] as $block) {
+                include $blockTemplate;
+            } ?>
+        </div>
+        <?php } ?>
     </div>
 
     <!-- Footer: sitelink -->

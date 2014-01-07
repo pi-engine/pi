@@ -136,85 +136,73 @@ body {
   padding: 0;
 }
 
-
-
 /* Block */
-.pi-block {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+.pi-panel-subline {
+  float: right;
 }
 
-.pi-block-header {
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #ddd;
+.pi-panel-tab  .panel-heading {
+  padding: 0;
   height: 40px;
-  padding-right: 10px;
-  background-color: #f6f6f6;
-  background-image: -moz-linear-gradient(top, #fafafa, #f2f2f2);
-  background-image: -webkit-linear-gradient(top, #fafafa, #f2f2f2);
-  background-image: -o-linear-gradient(top, #fafafa, #f2f2f2);
-  background-image: linear-gradient(to bottom, #fafafa, #f2f2f2);
 }
 
-.pi-block-title {
-  float: left;
-  margin-left: 20px;
-}
-
-.pi-block-subline {
-  margin: 10px 0 0 0;
-}
-
-.pi-block-body {
-  padding: 20px;
-}
-
-.pi-block-tab {
-  margin: 0;
-}
-
-.pi-block-tab li {
-  float: left;
-  list-style: none;
-}
-
-.pi-block-tab a {
-  padding: 0 15px;
-  display: block;
-  height: 41px;
+.pi-panel-tab-indicators {
+  margin: 0 0 -1px 0;
+  padding: 0;
+  height: 40px;
   line-height: 40px;
+}
+
+.pi-panel-tab-indicators li {
+  display: inline-block;
+}
+
+.pi-panel-tab-indicators a {
+  padding: 0 15px;
+  cursor: pointer;
+  display: block;
+  color: #333;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
-  text-decoration: none;
-  color: #999;
 }
 
-.pi-block-tab a:focus {
-  outline: none;
-}
-
-.pi-block-tab li:first-child a {
+.pi-panel-tab-indicators li:first-child a {
   border-left: none;
 }
 
-.pull-right.pi-block-tab li:first-child a {
-  border-left: 1px solid transparent;
-}
-
-.pi-block-tab .active a {
-  background: #fff;
-  border-left-color: #ddd !important;
-  border-right-color: #ddd !important;
-  color: #333;
+.pi-panel-tab-indicators .active a {
   font-weight: bold;
+  border-color: #ddd;
+  background: #fff;
 }
 
-.pi-block-body >:last-child {
+.panel-body >:last-child {
   margin-bottom: 0;
 }
 
+/* ellipsis */
+.pi-ellipsis {
+  overflow: hidden;
+  display: block;
+  line-height: 1.4;
+}
+
+.pi-ellipsis-1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pi-ellipsis-2 {
+  max-height: 2.8em;
+}
+
+.pi-ellipsis-3 {
+  max-height: 4.2em;
+}
+
+.pi-ellipsis-4 {
+  max-height: 5.6em;
+}
 
 /* Footer */
 .pi-footer {

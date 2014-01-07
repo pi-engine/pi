@@ -172,7 +172,7 @@ CREATE TABLE `{core.module}` (
   `directory`   varchar(64)         NOT NULL default '',
   # Module title
   `title`       varchar(64)         NOT NULL default '',
-  # Installed version
+  # Installed version, support for semantic version and build metadata, for instance: 1.2.3, 1.2.3+20140101
   `version`     varchar(64)         NOT NULL default '',
   # Last update time
   `update`      int(10)             unsigned NOT NULL default '0',

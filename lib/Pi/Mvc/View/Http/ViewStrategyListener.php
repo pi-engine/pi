@@ -334,6 +334,9 @@ class ViewStrategyListener extends AbstractListenerAggregate
                                 (array) $result
                             );
                         }
+                        $model = new FeedDataModel($variables);
+                        $variables = (array) $model;
+                        $options = array('feed_type' => $model->getType());
                     }
                     $model = new FeedModel($variables, $options);
                 }
@@ -434,11 +437,12 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     $variables = array();
                     $options = array();
                     if ($result instanceof ViewModel) {
-                        $variables = $result->getVariables();
-                        $options = $result->getOptions();
+                        $variables  = $result->getVariables();
+                        $options    = $result->getOptions();
+                        $variables  = (array) new FeedDataModel($variables);
                     } elseif ($result instanceof FeedDataModel) {
-                        $variables = (array) $result;
-                        $options = array('feed_type' => $result->getType());
+                        $variables  = (array) $result;
+                        $options    = array('feed_type' => $result->getType());
                     }
                     $model = new FeedModel($variables, $options);
                 }

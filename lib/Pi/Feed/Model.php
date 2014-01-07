@@ -53,7 +53,8 @@ class Model
     public function getType()
     {
         $type = isset($this->feed_link['type'])
-            ? $this->feed_link['type'] : null;
+            ? $this->feed_link['type']
+            : 'rss';
 
         return $type;
     }

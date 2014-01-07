@@ -12,11 +12,8 @@ namespace Module\Media\Controller\Admin;
 use Pi\Mvc\Controller\ActionController;
 use Module\Media\Form\AppEditForm;
 use Module\Media\Form\AppEditFilter;
-use Module\Media\Model\Application;
 use Zend\Db\Sql\Expression;
 use Pi\Paginator\Paginator;
-use Module\Media\Service;
-use Pi;
 
 /**
  * Application controller
@@ -25,6 +22,12 @@ use Pi;
  */
 class ApplicationController extends ActionController
 {
+    /**
+     * Available columns of application
+     * @var array
+     */
+    protected $columns = array('id', 'appkey', 'title');
+    
     /**
      * Getting form instance
      * 
@@ -44,6 +47,23 @@ class ApplicationController extends ActionController
     }
     
     /**
+     * Render form
+     * 
+     * @param Zend\Form\Form $form     Form instance
+     * @param string         $message  Message assign to template
+     * @param bool           $isError  Whether is error message
+     */
+    public function renderForm($form, $message = null, $isError = true) {
+        $params = array('form' => $form);
+        if ($isError) {
+            $params['error'] = $message;
+        } else {
+            $params['message'] = $message;
+        }
+        $this->view()->assign($params);
+    }
+    
+    /**
      * Application list page
      * 
      * @return ViewModel
@@ -60,18 +80,18 @@ class ApplicationController extends ActionController
         $model  = $this->getModel('application');
         $select = $model->select();
         if ($name) {
-            $select->where->like('name', "%{$name}%");
+            $select->where->like('title', "%{$name}%");
         }
         $select->order('id ASC')->offset($offset)->limit($limit);
 
-        $resultset = $model->selectWith($select);
+        $resultset = $model->selectWith($select)->toArray();
 
         // Total count
         $select = $model->select()->columns(
             array('total' => new Expression('count(id)'))
         );
         if ($name) {
-            $select->where->like('name', "%{$name}%");
+            $select->where->like('title', "%{$name}%");
         }
         $countResultset = $model->selectWith($select);
         $totalCount = intval($countResultset->current()->total);
@@ -81,11 +101,12 @@ class ApplicationController extends ActionController
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
             ->setUrlOptions(array(
-                'router'    => $this->getEvent()->getRouter(),
-                'route'     => $this->getEvent()
+                'page_param' => 'p',
+                'router'     => $this->getEvent()->getRouter(),
+                'route'      => $this->getEvent()
                     ->getRouteMatch()
                     ->getMatchedRouteName(),
-                'params'    => array_filter(array(
+                'params'     => array_filter(array(
                     'module'        => $module,
                     'controller'    => 'application',
                     'action'        => 'list',
@@ -126,10 +147,9 @@ class ApplicationController extends ActionController
             $post = $this->request->getPost();
             $form->setData($post);
             $form->setInputFilter(new AppEditFilter);
-            $form->setValidationGroup(Application::getAvailableFields());
+            $form->setValidationGroup($this->columns);
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occur')
                 );
@@ -143,8 +163,7 @@ class ApplicationController extends ActionController
             if ($row->title != $data['title'] 
                 && !$result
             ) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Cannot save data')
                 );
@@ -164,22 +183,22 @@ class ApplicationController extends ActionController
     {
         $from   = $this->params('from', '');
         
-        $id     = $this->params('id', 0);
-        $ids    = array_filter(explode(',', $id));
+        $appkey  = $this->params('appkey', 0);
+        $appkeys = array_filter(explode(',', $appkey));
 
-        if (empty($ids)) {
-            throw new \Exception(_a('Invalid media IDs'));
+        if (empty($appkeys)) {
+            throw new \Exception(_a('Invalid application'));
         }
         
         // Checking if application is in used
-        $rowMedia = $this->getModel('detail')
-            ->select(array('application' => $ids));
-        if (count($rowMedia) > 0) {
+        $rowDoc = $this->getModel('doc')
+            ->select(array('appkey' => $appkeys));
+        if (count($rowDoc) > 0) {
             throw new \Exception(_a('Application already in used'));
         }
         
         // Removing application
-        $this->getModel('application')->delete(array('id' => $ids));
+        $this->getModel('application')->delete(array('appkey' => $appkeys));
         
         // Go to list page or original page
         if ($from) {

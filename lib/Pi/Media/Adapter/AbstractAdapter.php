@@ -73,7 +73,7 @@ abstract class AbstractAdapter
      * $data attributes
      *  - appkey
      *  - module
-     *  - category
+     *  - type
      *  - path
      *  - url
      *  - title

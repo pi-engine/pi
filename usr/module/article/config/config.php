@@ -132,6 +132,31 @@ return array(
             'description' => _t('Max sub-category number in category article list page'),
             'value'       => 2,
         ),
+        'list_item'       => array(
+            'category'    => 'general',
+            'title'       => _t('Items of List Page'),
+            'description' => _t('Items to display in list page'),
+            'value'       => '',
+            'edit'        => array(
+                'type'    => 'multiCheckbox',
+                'options' => array(
+                    'options' => array(
+                        'feature'  => _t('Feature image'),
+                        'summary'  => _t('Summary'),
+                        'time'     => _t('Created time'),
+                        'author'   => _t('Author'),
+                        'category' => _t('Category'),
+                    ),
+                ),
+            ),
+            'filter'      => 'array',
+        ),
+        'list_summary_length' => array(
+            'category'    => 'general',
+            'title'       => _t('Max Summary Length'),
+            'description' => _t('Max summary length to display in list page'),
+            'value'       => 120,
+        ),
 
         // Autosave
         'autosave_interval' => array(

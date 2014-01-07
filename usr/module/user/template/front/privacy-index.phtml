@@ -8,12 +8,12 @@ $this->css(array(
     <div class="col-md-9">
         <div class="user-page-header">
             <h3><?php _e('Privacy'); ?></h3>
-            <div class="text-muted"><?php _e('Change your privacy settings.'); ?></div>
+            <div class="text-muted"><?php _e('Change privacy settings.'); ?></div>
         </div>
         <?php
         if (isset($result)) {
             echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
-                 $result['status'] ? 'alert-success' : 'alert-error',
+                 $result['status'] ? 'alert-success' : 'alert-danger',
                  $result['message']);
         }
         ?>
@@ -25,16 +25,16 @@ $this->css(array(
         <?php } else { ?>
         <form class="form-horizontal" method="post">
             <?php foreach ($privacy as $item) { ?>
-            <div class="control-group">
-                <label class="control-label"><?php echo $item['title']; ?></label>
-                <div class="controls">
-                    <select name="<?php echo $item['field']; ?>">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
+                <div class="col-md-4">
+                    <select name="<?php echo $item['field']; ?>" class="form-control">
                         <?php
-                        foreach ($limits as $key => $limit) {
+                        foreach ($levels as $key => $label) {
                             echo sprintf('<option value="%s"%s>%s',
                                 $key,
                                 $key == $item['value'] ? ' selected = selected ' : '',
-                                $limit
+                                $label
                              );
                         }
                         ?>
@@ -42,8 +42,8 @@ $this->css(array(
                 </div>
             </div>
             <?php } ?>
-            <div class="control-group">
-                <div class="controls">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
                     <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
                 </div>
             </div>

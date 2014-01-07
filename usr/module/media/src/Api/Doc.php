@@ -12,6 +12,7 @@ namespace Module\Media\Api;
 use Closure;
 use Pi;
 use Pi\Application\AbstractApi;
+use Pi\File\Transfer\Upload;
 
 class Doc extends AbstractApi
 {
@@ -30,9 +31,34 @@ class Doc extends AbstractApi
      */
     protected function model($name = 'doc')
     {
-        $model = Pi::Model($name, $this->module);
+        $model = Pi::model($name, $this->module);
 
         return $model;
+    }
+
+    /**
+     * Canonize doc meta data
+     *
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function canonize(array $data)
+    {
+        if (!isset($data['attributes'])) {
+            $attributes = array();
+            $columns = $this->model()->getColumns();
+            foreach (array_keys($data) as $key) {
+                if (!in_array($key, $columns)) {
+                    $attributes[$key] = $data[$key];
+                }
+            }
+            if ($attributes) {
+                $data['attributes'] = $attributes;
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -44,8 +70,8 @@ class Doc extends AbstractApi
      */
     public function addApplication(array $data)
     {
-        $model  =$this->model('application');
-        $row = $model->find($data['appkey'], 'appkey');
+        $model  = $this->model('application');
+        $row    = $model->find($data['appkey'], 'appkey');
         if (!$row) {
             $row = $model->createRow($data);
         } else {
@@ -65,6 +91,7 @@ class Doc extends AbstractApi
      */
     public function add(array $data)
     {
+        $data = $this->canonize($data);
         $row = $this->model()->createRow($data);
         $row->save();
 
@@ -75,42 +102,64 @@ class Doc extends AbstractApi
      * Upload a doc and save meta
      *
      * @TODO not completed
-     * 
-     * @param array $params
+     *
+     * @param array  $params
      * @param string $method
      *
      * @return int doc id
      */
     public function upload(array $params, $method = 'POST')
     {
-        $options = Pi::service('media')->getOption('local');
-        $rootUri = $options['root_uri'];
-        $rootPath = $options['root_path'];
-        $path = $options['locator']['path'];
+        $options    = Pi::service('media')->getOption('local', 'options');
+        $rootUri    = $options['root_uri'];
+        $rootPath   = $options['root_path'];
+        $path       = $options['locator']['path'];
         if ($path instanceof Closure) {
             $relativePath = $path();
         } else {
             $relativePath = $path;
         }
         $destination = $rootPath . '/' . $relativePath;
+        Pi::service('file')->mkdir($destination);
         $rename = $options['locator']['file'];
 
         $success = false;
-        switch ($method) {
+        switch (strtoupper($method)) {
+            // For remote post
             case 'POST':
                 $uploader = new Upload(array(
                     'destination'   => $destination,
                     'rename'        => $rename,
                 ));
+                $maxSize = Pi::service('module')->config(
+                    'max_size',
+                    $this->module
+                );
+                if ($maxSize) {
+                    $uploader->setSize($maxSize);
+                }
                 if ($uploader->isValid()) {
                     $uploader->receive();
                     $filename = $uploader->getUploaded();
+                    if (is_array($filename)) {
+                        $filename = current($filename);
+                    }
+                    // Fetch file attributes
+                    $fileinfoList = $uploader->getFileInfo();
+                    $fileinfo = current($fileinfoList);
+                    if (!isset($params['mimetype'])) {
+                        $params['mimetype'] = $fileinfo['type'];
+                    }
+                    if (!isset($params['size'])) {
+                        $params['size'] = $fileinfo['size'];
+                    }
                     $success = true;
                 }
                 break;
+            // For remote put
             case 'PUT':
                 $putdata = fopen('php://input', 'r');
-                $filename = $rename($params['name']);
+                $filename = $rename($params['filename']);
                 $target = $destination  . '/' . $filename;
                 $fp = fopen($target, 'w');
                 while ($data = fread($putdata, 1024)) {
@@ -121,16 +170,24 @@ class Doc extends AbstractApi
 
                 $success = true;
                 break;
+
+            // For local
+            case 'MOVE':
+                $filename = $rename($params['filename']);
+                $target = $destination . '/' . $filename;
+                Pi::service('file')->copy($params['file'], $target);
+                unset($params['file']);
+                $success = true;
+                break;
+
             default:
                 break;
         }
         if ($success) {
-            $params['url'] = $rootUri . '/' . $relativePath . '/' . $filename;
+            $params['url']  = $rootUri . '/' . $relativePath . '/' . $filename;
             $params['path'] = $rootPath . '/' . $relativePath . '/' . $filename;
 
-            $row = $this->model()->createRow($params);
-            $row->save();
-            $result = $row['id'];
+            $result = $this->add($params);
         } else {
             $result = 0;
         }
@@ -149,6 +206,13 @@ class Doc extends AbstractApi
     {
         $row = $this->model()->find($id);
         if ($row) {
+            $data = $this->canonize($data);
+            if (array_key_exists('id', $data)) {
+                unset($data['id']);
+            }
+            if (empty($data['time_updated'])) {
+                $data['time_updated'] = time();
+            }
             $row->assign($data);
             $row->save();
 
@@ -168,7 +232,7 @@ class Doc extends AbstractApi
      */
     public function activate($id, $flag = true)
     {
-        $result = $this->upate($id, array('active' => $flag ? 1 : 0));
+        $result = $this->update($id, array('active' => $flag ? 1 : 0));
 
         return $result;
     }
@@ -190,7 +254,7 @@ class Doc extends AbstractApi
         $rowset = $model->selectWith($select);
         $result = array();
         foreach ($rowset as $row) {
-            if ($attribute && is_salar($attribute)) {
+            if ($attribute && is_scalar($attribute)) {
                 $result[$row['id']] = $row[$attribute];
             } else {
                 $result[$row['id']] = $row->toArray();
@@ -224,8 +288,8 @@ class Doc extends AbstractApi
     /**
      * Get doc statistics
      * 
-     * @param int $id
-     * @return array
+     * @param int|int[] $id
+     * @return int|array
      */
     public function getStats($id)
     {
@@ -233,7 +297,7 @@ class Doc extends AbstractApi
         $rowset = $model->select(array('id' => $id));
         $result = array();
         foreach ($rowset as $row) {
-            $result[$row['id']] = $row->toArray();
+            $result[$row['id']] = $row['count'];
         }
         if (is_scalar($id)) {
             if (isset($result[$id])) {
@@ -390,5 +454,17 @@ class Doc extends AbstractApi
         );
 
         return $result;
+    }
+    
+    /**
+     * Transfer filesize
+     * 
+     * @param string  $value
+     * @param bool    $direction
+     * @return string|int 
+     */
+    protected function transferSize($value, $direction = true)
+    {
+        return Pi::service('file')->transformSize($value);
     }
 }

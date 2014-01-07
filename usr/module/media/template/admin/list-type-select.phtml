@@ -2,13 +2,11 @@
     $this->css($this->assetModule('script/admin.css'));
 ?>
 
-<div class="pi-media-header"><?php echo _escape($title); ?></div>
-
 <div id="pi-js-media">
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="width: 40px"><?php echo _a('Type'); ?></th>
+                <th style="width: 120px"><?php echo _a('Type'); ?></th>
                 <th><?php echo _a('Action'); ?></th>
             </tr>
             <?php foreach ($items as $item) { ?>

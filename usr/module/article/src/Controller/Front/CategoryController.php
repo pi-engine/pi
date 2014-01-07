@@ -87,7 +87,10 @@ class CategoryController extends ActionController
         }
 
         // Get articles
-        $columns           = array('id', 'subject', 'time_publish', 'category');
+        $columns = array(
+            'id', 'subject', 'time_publish', 'category', 'summary', 'author',
+            'image', 
+        );
         $resultsetArticle  = Entity::getAvailableArticlePage(
             $where,
             $page,
@@ -96,6 +99,32 @@ class CategoryController extends ActionController
             null,
             $module
         );
+        
+        $articleCategoryIds = $authorIds = array();
+        foreach ($resultsetArticle as $row) {
+            $authorIds[]   = $row['author'];
+            $articleCategoryIds[] = $row['category'];
+        }
+        
+        // Get author
+        $authors = array();
+        if (!empty($authorIds)) {
+            $rowAuthor = $this->getModel('author')
+                ->select(array('id' => $authorIds));
+            foreach ($rowAuthor as $row) {
+                $authors[$row->id] = $row->toArray();
+            }
+        }
+        
+        // Get category
+        $categories = array();
+        if (!empty($articleCategoryIds)) {
+            $rowCategory = $this->getModel('category')
+                ->select(array('id' => $articleCategoryIds));
+            foreach ($rowCategory as $row) {
+                $categories[$row->id] = $row->toArray();
+            }
+        }
 
         // Total count
         $where = array_merge($where, array(
@@ -118,6 +147,9 @@ class CategoryController extends ActionController
                     'category'      => $category,
                 ),
             ));
+        
+        $module = $this->getModule();
+        $config = Pi::service('module')->config('', $module);
 
         $this->view()->assign(array(
             'title'         => __('Article List in Category'),
@@ -132,6 +164,10 @@ class CategoryController extends ActionController
             'categoryId'    => array_shift($categoryIds),
             'subCategoryId' => $categoryIds,
             'route'         => $route,
+            'elements'      => $config['list_item'],
+            'authors'       => $authors,
+            'categories'    => $categories,
+            'length'        => $config['list_summary_length'],
             //'seo'           => $this->setupSeo($categoryId),
         ));
 

@@ -29,14 +29,6 @@ class Permission extends AbstractResource
         $this->engine->bootResource('authentication');
 
         $events = $this->application->getEventManager();
-        /*
-        // Check access permission before any other action is performed
-        $events->attach(
-            MvcEvent::EVENT_DISPATCH,
-            array($this, 'checkModule'),
-            9999
-        );
-        */
 
         // Setup action cache strategy
         $sharedEvents = $events->getSharedManager();
@@ -75,6 +67,14 @@ class Permission extends AbstractResource
             'controller'    => $routeMatch->getParam('controller'),
             'action'        => $routeMatch->getparam('action')
         );
+
+        /*
+        // Deny all access to front for close/maintenance
+        if ('close' ==  Pi::config('environment') && 'front' == $section) {
+            $this->denyAccess($e);
+            return;
+        }
+        */
 
         // Skip module access check for system front section and admin login
         if ('system' == $route['module']

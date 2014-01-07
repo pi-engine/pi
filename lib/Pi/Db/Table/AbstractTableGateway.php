@@ -229,7 +229,7 @@ abstract class AbstractTableGateway extends ZendAbstractTableGateway
     /**
      * Get column names
      *
-     * @param bool Fetch from metadata if not specified
+     * @param bool $fetch Fetch from metadata if not specified
      *
      * @return string[]
      */

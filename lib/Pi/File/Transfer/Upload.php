@@ -290,14 +290,22 @@ class Upload extends Transfer
     }
 
     /**
-     * Get uploaded file(s)
+     * Get uploaded file name(s)
      *
      * @param string    $name  Variable name in upload form
      * @param bool      $path  To include full path
-     * @return array
+     *
+     * @return string|string[]
      */
     public function getUploaded($name = null, $path = false)
     {
+        $result = $this->getFileName($name, $path);
+        // Multiple files
+        if (is_array($result)) {
+            $result = array_values($result);
+        }
+
+        /*
         $files = $this->getAdapter()->getFileList();
         if ($name) {
             $result = $this->getFileName($name, $path);
@@ -322,6 +330,7 @@ class Upload extends Transfer
                 $value = $this->getUploaded($key, $path);
             }
         }
+        */
 
         return $result;
     }

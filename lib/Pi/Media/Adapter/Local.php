@@ -31,10 +31,10 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options = array())
     {
         parent::setOptions($options);
-        $this->handler()->setOptions($options);
+        //$this->handler()->setOptions($options);
 
         return $this;
     }
@@ -54,7 +54,8 @@ class Local extends AbstractAdapter
      */
     public function upload($file, array $data = array())
     {
-        $result = $this->handler()->upload($file, $data);
+        $data['file'] = $file;
+        $result = $this->handler()->upload($data, 'MOVE');
 
         return $result;
     }

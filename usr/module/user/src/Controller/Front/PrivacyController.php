@@ -62,7 +62,7 @@ class PrivacyController extends ActionController
             Pi::service('event')->trigger('user_update', $uid);
             $result = array(
                 'status'  => 1,
-                'message' => __('Set privacy successfully'),
+                'message' => __('Privacy settings saved successfully.'),
             );
             $this->view()->assign('result', $result);
         }
@@ -74,21 +74,17 @@ class PrivacyController extends ActionController
             }
         }
 
-        $limits = array(
-            0   => __('Public'),
-//            1   => __('Member'),
-//            2   => __('Follower'),
-//            4   => __('Following'),
-            255 => __('Owner'),
+        $levels = Pi::api('user', 'privacy')->getList(
+            array('everyone', 'member', 'owner'),
+            true
         );
-
         $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         // Get side nav items
         $groups = Pi::api('group', 'user')->getList();
         $this->view()->assign(array(
             'privacy' => $privacy,
             'groups'  => $groups,
-            'limits'  => $limits,
+            'levels'  => $levels,
             'user'    => $user,
         ));
     }

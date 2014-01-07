@@ -27,15 +27,6 @@ class ProfileController extends ActionController
     public function fieldAction()
     {
         $fields = Pi::registry('field', 'user')->read();
-        /*
-        $fields = $this->getModel('field')->select(
-            array(
-                'is_display' => 1,
-                'is_edit'    => 1,
-                'active'     => 1,
-            )
-        );
-        */
         foreach ($fields as $field) {
             if ($field['type'] == 'compound'/* || $field['type'] == 'custom'*/) {
                 $compounds[$field['name']] = array(
@@ -86,37 +77,24 @@ class ProfileController extends ActionController
     {
         $fields = Pi::registry('field', 'user')->read('', 'display');
 
-        /*
-        $fields = $this->getModel('field')->select(
-            array(
-                'is_display' => 1,
-                'active'     => 1,
-            )
-        );
-        */
-
-
         $compounds = array();
         $profile = array();
         foreach ($fields as $field) {
-            //if ($field['is_display']) {
-                if (/*$field['type'] == 'custom' || */$field['type'] == 'compound') {
-                    $compounds[$field['name']] = array(
-                        'name'   => $field['name'],
-                        'title'  => $field['title'],
-                        'module' => $field['module'],
-                    );
-                } else/*if ($field['is_display'])*/ {
-                    $profile[$field['name']] = array(
-                        'name'   => $field['name'],
-                        'module' => $field['module'],
-                        'title'  => $field['title'],
+            if ($field['type'] == 'compound') {
+                $compounds[$field['name']] = array(
+                    'name'   => $field['name'],
+                    'title'  => $field['title'],
+                    'module' => $field['module'],
+                );
+            } else {
+                $profile[$field['name']] = array(
+                    'name'   => $field['name'],
+                    'module' => $field['module'],
+                    'title'  => $field['title'],
 
-                    );
-                }
-            //}
+                );
+            }
         }
-        //var_dump($fields);
 
         // Get compound
         foreach ($compounds as $name => &$compound) {
@@ -214,7 +192,7 @@ class ProfileController extends ActionController
         }
 
         $result['status'] = 1;
-        $result['message'] = _a('Profile dressup data save successfully');
+        $result['message'] = _a('Profile dress-up data saved successfully.');
 
         return $result;
 
@@ -261,11 +239,11 @@ class ProfileController extends ActionController
                 'name'     => $name,
             ));
 
-            $rowset = $compoundModel->selectWith($select)->current();
-            if ($rowset) {
+            $row = $compoundModel->selectWith($select)->current();
+            if ($row) {
                 $compoundModel->update(
                     array('title' => $title),
-                    array('id'    => $rowset['id'])
+                    array('id'    => $row['id'])
                 );
                 $result['status'] = 1;
             }
@@ -285,7 +263,6 @@ class ProfileController extends ActionController
      */
     public function privacyAction()
     {
-
         $privacy = Pi::api('privacy', 'user')->getPrivacy();
 
         return array_values($privacy);
@@ -309,17 +286,18 @@ class ProfileController extends ActionController
 
         // Check post data
         if (!$id) {
-            $result['message'] = _a('Set privacy failed: invalid id.');
+            $result['message'] = _a('Privacy set up failed: invalid id.');
             return $result;
         }
 
-        if (!in_array($value, array(0, 1, 2, 4, 255))) {
-            $result['message'] = _a('Set privacy failed: invalid value.');
+        //if (!in_array($value, array(0, 1, 2, 4, 255))) {
+        if (null === Pi::api($this->getModule(), 'privacy')->transform($value)) {
+            $result['message'] = _a('Privacy set up failed: invalid value.');
             return $result;
         }
 
         if ($isForced != 0 && $isForced != 1) {
-            $result['message'] = _a('Set privacy failed: invalid force flag.');
+            $result['message'] = _a('Privacy set up failed: invalid flag.');
             return $result;
         }
 
@@ -338,7 +316,7 @@ class ProfileController extends ActionController
         try {
             $row->save();
         } catch (\Exception $e) {
-            $result['message'] = _a('Set privacy failed: update error.');
+            $result['message'] = _a('Privacy set up failed: update error.');
             return $result;
         }
 
@@ -349,7 +327,7 @@ class ProfileController extends ActionController
         }
 
         $result['status']  = 1;
-        $result['message'] = _a('Set privacy successfully');
+        $result['message'] = _a('Privacy set up successfully.');
 
         return $result;
 

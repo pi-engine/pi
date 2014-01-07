@@ -4,7 +4,9 @@
 ?>
 
 <form name="user" method="GET" action="<?php echo $url; ?>" style="margin-top: 10px" class="form-inline">
-    <input type="text" name="user" value="<?php echo $user; ?>" placeholder="<?php echo _a('Type user id or identity'); ?>">
+    <div class="form-group">
+        <input type="text" class="form-control" name="user" value="<?php echo $user; ?>" placeholder="<?php echo _a('Type user id or identity'); ?>">
+    </div>
     <button type="submit" class="btn"><?php echo _a('Submit'); ?></button>
 </form>
 
@@ -78,10 +80,10 @@
                         </div>
                     </td>
                     <td><?php echo $this->escape($media['mimetype']); ?></td>
-                    <td><?php echo $this->escape($apps[$media['application']]); ?></td>
+                    <td><?php echo $this->escape($apps[$media['appkey']]); ?></td>
                     <td><?php echo $this->escape($media['module']); ?></td>
-                    <td><?php echo $this->escape($categories[$media['category']]); ?></td>
-                    <td><?php echo _date($media['time_upload']); ?></td>
+                    <td><?php echo $this->escape($media['token']); ?></td>
+                    <td><?php echo _date($media['time_created']); ?></td>
                 </tr>   
                 <?php } ?>
             </tbody>

@@ -69,6 +69,57 @@ class Block
         );
     }
     
+    public static function categoryList($options = array(), $module = null)
+    {
+        if (empty($module)) {
+            return false;
+        }
+        
+        // Get all categories
+        $categories = array(
+            'all' => array(
+                'id'    => 0,
+                'title' => __('All articles'),
+                'depth' => 0,
+                'image' => '',
+                'url'   => Pi::service('url')->assemble(
+                    Service::getRouteName($module),
+                    array(
+                        'controller' => 'list',
+                        'action'     => 'all',
+                        'list'       => 'all',
+                    )
+                ),
+            ),
+        );
+        $rowset = Pi::model('category', $module)->enumerate(null, null, true);
+        foreach ($rowset as $row) {
+            if ('root' == $row['name']) {
+                continue;
+            }
+            $url = Pi::service('url')->assemble('', array(
+                'controller' => 'category',
+                'action'     => 'list',
+                'category'   => $row['id'],
+            ));
+            $categories[$row['id']] = array(
+                'id'    => $row['id'],
+                'title' => $row['title'],
+                'depth' => $row['depth'],
+                'image' => $row['image'],
+                'url'   => $url,
+            );
+        }
+        
+        $params = Pi::engine()->application()->getRouteMatch()->getParams();
+        
+        return array(
+            'items'    => $categories,
+            'options'  => $options,
+            'category' => $params['category'],
+        );
+    }
+    
     /**
      * List hot categories
      * 
