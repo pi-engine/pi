@@ -46,10 +46,14 @@ class Content extends AbstractContent
         $order  = array()
     ) {
         $result = array();
-
         $model = Pi::model('article', $this->module);
         $select = $model->select();
-        $select->limit($limit)->order($order);
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
         if ($order) {
             $select->order($order);
         }
