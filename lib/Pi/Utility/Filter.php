@@ -162,12 +162,12 @@ namespace Pi\Utility
                 }
             }
 
-            // Canonize fitler
+            // Canonize filter
             if (is_string($filter)) {
                 $filter = filter_id($filter);
             }
 
-            // Performe filtering
+            // Perform filtering
             if ($filter) {
                 $value = filter_var($value, $filter, $options);
             } else {
@@ -308,16 +308,10 @@ namespace Pi\Utility
          * @return mixed
          */
         public static function fromPost(
-            $param = null,
-            $filter = null,
-            $options = null
+            $param      = null,
+            $filter     = null,
+            $options    = null
         ) {
-            /*
-            $request = static::getRequest();
-            $value = $request ? $request->getPost($variable) : null;
-
-            return static::filter($value, $filter, $options);
-            */
             if (null === static::$postParams) {
                 $request = static::getRequest();
                 if (static::isRequestJson()) {
@@ -358,12 +352,6 @@ namespace Pi\Utility
             $filter = null,
             $options = null
         ) {
-            /*
-            $request = static::getRequest();
-            $value = $request ? $request->getPost($variable) : null;
-
-            return static::filter($value, $filter, $options);
-            */
             if (null === static::$putParams) {
                 $request = static::getRequest();
                 $content = $request->getContent();
