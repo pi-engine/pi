@@ -5,10 +5,8 @@ $this->css($this->assetModule('front/front.css'));
 <p class="text-right">
     <strong class="text-muted">
     <?php
-    if (1 < $total) {
-        echo sprintf(__('There are %d results.'), $total);
-    } elseif (1 == $total) {
-        echo sprintf(__('There is %d found.'), $total);
+    if (0 < $total) {
+        echo sprintf(__('%d found.'), $total);
     } elseif (!empty($flood)) {
         echo __('Submission flood detected, please wait for a while.');
     } else {
@@ -38,15 +36,15 @@ foreach ($result as $name => $data) {
             <p>
                 <?php echo _escape($item['content']); ?>
             <p class="text-muted">
-                <?php echo date('Y-m-d', $item['time']); ?>
+                <?php echo _date($item['time']); ?>
         </div>
         <?php } ?>
         <div class="clearfix">
             <span class="pull-right text-muted">
-                <?php echo __('') . $data->getTotal() . (' results'); ?>
+                <?php  echo sprintf(__('%d found.'), $total); ?>
             </span>
             <a href="<?php echo $modules[$name]['url']; ?>">
-                <?php echo __('More ') . _escape($modules[$name]['title']) . ' &raquo;'; ?>
+                <?php echo __('All result &raquo;'); ?>
             </a>
         </div>
         <?php } else { ?>

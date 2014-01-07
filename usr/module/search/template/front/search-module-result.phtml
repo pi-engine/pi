@@ -9,7 +9,10 @@ $this->css($this->assetModule('front/front.css'));
         </h4>
     </div>
     <div class="col-md-10">
-        <?php if ($total >= 1) { foreach ($result as $item) { ?>
+        <?php
+        if ($total >= 1) {
+            foreach ($result as $item) {
+        ?>
         <div class="search-result-item">
             <h4>
                 <a href="<?php echo $item['url']; ?>">
@@ -19,12 +22,12 @@ $this->css($this->assetModule('front/front.css'));
             <p>
                 <?php echo _escape($item['content']); ?>
             <p class="text-muted">
-                <?php echo date('Y-m-d', $item['time']); ?>
+                <?php echo _date($item['time']); ?>
         </div>
         <?php } ?>
         <div class="clearfix">
             <span class="pull-right text-muted">
-                <?php echo __('') . $total . (' results'); ?>
+                <?php echo sprintf(__('%d found.'), $total); ?>
             </span>
         </div>
         <?php } else { ?>
