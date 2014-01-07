@@ -178,28 +178,34 @@ class Markup
     /**
      * Render content
      *
-     * @param string           $content   Raw content
-     * @param string           $renderer  Renderer type
-     * @param bool|null|string $parser
-     * @param array            $renderOptions
+     * @param string $content   Raw content
+     * @param string $renderer  Renderer type
+     * @param string|array $parser String for parser or source type: `markdown`, `html`, `text`; array for options
+     * @param array  $options
      *
      * @return string
      */
     public static function render(
         $content,
         $renderer,
-        $parser = false,
-        $renderOptions = array()
+        $parser = null,
+        $options = array()
     ) {
+        if (is_array($parser)) {
+            $options = $parser;
+            $parser = null;
+        }
         if (!$renderer) {
             $renderer = static::getRenderer();
         } elseif (!$renderer instanceof AbstractRenderer) {
-            $renderer = static::loadRenderer($renderer, $renderOptions);
+            $renderer = static::loadRenderer($renderer, $options);
         }
         if (null !== $parser) {
             $renderer->setParser($parser ? static::loadParser($parser) : '');
         }
 
-        return $renderer->render($content);
+        $content = $renderer->render($content);
+
+        return $content;
     }
 }

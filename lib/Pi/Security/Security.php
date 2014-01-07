@@ -96,6 +96,21 @@ class Security
     }
 
     /**
+     * Filter content against XSS
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    public static function filter($content)
+    {
+        $class = __NAMESPACE__ . '\\Xss';
+        $content = $class::checkXss($content, true);
+
+        return $content;
+    }
+
+    /**
      * Magic method to access against custom security adapters
      *
      * @param string $method Security adapter to be checked

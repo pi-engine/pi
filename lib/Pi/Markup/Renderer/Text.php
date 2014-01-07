@@ -24,17 +24,15 @@ class Text extends AbstractRenderer
      */
     protected function parse($content)
     {
-        if ($this->parser instanceof AbstractParser) {
-            $content = $this->parser->parse($content);
+        if (!$this->parser || 'text' == $this->parser) {
             $content = Pi::service('security')->escape($content);
-        } elseif ('html' == $this->parser) {
-            $content = strip_tags($content);
         } else {
-            $content = Pi::service('security')->escape($content);
+            if ($this->parser instanceof AbstractParser) {
+                $content = $this->parser->parse($content);
+            }
+            $content = strip_tags($content);
         }
-        if (!isset($this->options['newline'])
-            || !empty($this->options['newline'])
-        ) {
+        if (!empty($this->options['newline'])) {
             $content = nl2br($content);
         }
 

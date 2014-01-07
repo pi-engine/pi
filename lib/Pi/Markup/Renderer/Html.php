@@ -9,6 +9,7 @@
 
 namespace Pi\Markup\Renderer;
 
+use Pi;
 use Pi\Markup\Parser\AbstractParser;
 
 /**
@@ -25,9 +26,30 @@ class Html extends AbstractRenderer
     {
         if ($this->parser instanceof AbstractParser) {
             $content = $this->parser->parse($content);
+        } elseif ('text' == $this->parser) {
+            if (!isset($this->options['newline'])
+                || !empty($this->options['newline'])
+            ) {
+                $content = nl2br($content);
+            }
         }
         if (!empty($this->options['tags'])) {
             $content = strip_tags($content, $this->options['tags']);
+        }
+
+        return $content;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function render($content)
+    {
+        $content = parent::render($content);
+        if (!isset($this->options['xss_filter'])
+            || !empty($this->options['xss_filter'])
+        ) {
+            $content = Pi::service('security')->filter($content);
         }
 
         return $content;

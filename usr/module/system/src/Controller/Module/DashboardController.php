@@ -34,47 +34,6 @@ class DashboardController extends ActionController
     {
         $this->loadDashboard();
         return;
-
-        $module = $this->params('module');
-        if (!$module) {
-            $this->redirect('', array('action' => 'system'));
-            return;
-        }
-
-        $directory = Pi::service('module')->directory($module);
-        $callback = sprintf(
-            'Module\\%s\Dashboard::summary',
-            ucfirst($directory)
-        );
-        $summary = '';
-        if (is_callable($callback)) {
-            $summary = call_user_func($callback, $module);
-        }
-
-        $modules = Pi::registry('modulelist')->read();
-        $data = $modules[$module];
-        $meta = Pi::service('module')->loadMeta($directory, 'meta');
-        $author = Pi::service('module')->loadMeta($directory, 'author');
-        $data['description'] = $meta['description'];
-        $data['author'] = $author;
-        if (empty($meta['logo'])) {
-            $data['logo'] = Pi::url('static/image/module.png');
-        } else {
-            $data['logo'] = Pi::service('asset')->getModuleAsset(
-                $meta['logo'],
-                $module
-            );
-        }
-        if (empty($data['update'])) {
-            $data['update'] = _a('Never updated.', 'system:admin');
-        } else {
-            $data['update'] = _date($data['update']);
-        }
-
-        $this->view()->assign('summary', $summary);
-        $this->view()->assign('data', $data);
-        $this->view()->assign('title', _a('Dashboard', 'system:admin'));
-        $this->view()->setTemplate('dashboard-module', 'system');
     }
 
     /**
