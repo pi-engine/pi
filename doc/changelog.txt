@@ -3,7 +3,7 @@ Pi Engine Changelog
 Pi 2.4.0
 Jan 1st, 2014
 ============
-* Refactored API calls to be compatible with registry and model calls: changed `Pi::api(<module>, <api>)` to `Pi::api(<api>, <module>)`
+* Refactored API calls to be compatible with registry and model calls: changed `Pi::api(<module>)` and `Pi::api(<module>, <api>)` to `Pi::api(<api>, <module>)`
 * Added built-in support for module custom with build metadata versioning
 
 
