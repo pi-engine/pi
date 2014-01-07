@@ -74,7 +74,7 @@ class PrivacyController extends ActionController
             }
         }
 
-        $levels = Pi::api('user', 'privacy')->getList(
+        $levels = Pi::api('privacy', 'user')->getList(
             array('everyone', 'member', 'owner'),
             true
         );

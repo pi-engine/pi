@@ -1257,7 +1257,7 @@ class User extends AbstractUseApi
         } else {
             $sorted = array();
             foreach ($uid as $id) {
-                $sorted[$id] = $result[$id];
+                $sorted[$id] = isset($result[$id]) ? $result[$id] : null;
             }
             $result = $sorted;
         }
