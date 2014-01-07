@@ -1,6 +1,15 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
 ?>
+<style>
+.search-tabs,
+.search-service {
+    text-align: center;
+}
+.search-logo {
+    padding-top: 80px;
+}
+</style>
 <div class="row">
     <form method="get" class="col-md-6 col-md-offset-3" id="js-search-form"
           data-module-url="<?php echo $this->url('search', array('m' => '_NAME')); ?>"
@@ -22,12 +31,12 @@ $this->css($this->assetModule('front/front.css'));
             }
             ?>
         </div>
-        <div class="input-group input-group-lg">
+        <div class="input-group">
             <input type="text" name="q" class="form-control" 
                    value="<?php echo _escape($query); ?>"
                    placeholder="<?php _e('Keywords'); ?>">
             <div class="input-group-btn">
-                <button type="submit" class="btn btn-default" onclick="this.form.action=''; this.form.target='';">
+                <button type="submit" class="btn btn-primary js-search-global">
                     <span class="fa fa-search"></span> <?php _e('Search'); ?>
                 </button>
             </div>

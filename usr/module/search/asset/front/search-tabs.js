@@ -1,4 +1,3 @@
-
 (function($) {
   var form = $('#js-search-form');
   var moduleUrl = form.data('module-url');

@@ -180,29 +180,6 @@ body {
   margin-bottom: 0;
 }
 
-/* ellipsis */
-.pi-ellipsis {
-  overflow: hidden;
-  display: block;
-  line-height: 1.4;
-}
-
-.pi-ellipsis-1 {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.pi-ellipsis-2 {
-  max-height: 2.8em;
-}
-
-.pi-ellipsis-3 {
-  max-height: 4.2em;
-}
-
-.pi-ellipsis-4 {
-  max-height: 5.6em;
-}
 
 /* Footer */
 .pi-footer {

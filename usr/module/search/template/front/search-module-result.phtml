@@ -2,37 +2,41 @@
 $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include 'search-form.phtml'; ?>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php _e('Search result'); ?></h3>
+<div class="row">
+    <div class="col-md-2">
+        <h4 class="text-muted text-right" style="margin-top: 10px;">
+            <?php echo _escape($modules[$searchModule]['title']); ?>
+        </h4>
     </div>
-    <div class="panel-body">
+    <div class="col-md-10">
+        <?php if ($total >= 1) { foreach ($result as $item) { ?>
+        <div class="search-result-item">
+            <h4>
+                <a href="<?php echo $item['url']; ?>">
+                    <?php echo _escape($item['title']); ?>
+                </a>
+            </h4>
+            <p>
+                <?php echo _escape($item['content']); ?>
+            <p class="text-muted">
+                <?php echo date('Y-m-d', $item['time']); ?>
+        </div>
+        <?php } ?>
+        <div class="clearfix">
+            <span class="pull-right text-muted">
+                <?php echo __('') . $total . (' results'); ?>
+            </span>
+        </div>
+        <?php } else { ?>
+        <div class="text-muted">
+            <?php _e('No result found.'); ?>
+        </div>
+        <?php } ?>
+        <hr>
         <?php
-            if (1 < $total) {
-                echo sprintf(__('There are %d results.'), $total);
-            } elseif (1 == $total) {
-                echo sprintf(__('There are %d results.'), $total);
-            } elseif (!empty($flood)) {
-                echo __('Submission flood detected, please wait for a while.');
-            } else {
-                _e('No result found.');
-            }
+        if ($paginator) {
+            echo $this->pagination($paginator);
+        }
         ?>
     </div>
-
-    <div class="list-group">
-        <?php foreach ($result as $item) { ?>
-        <a href="<?php echo $item['url']; ?>" class="list-group-item">
-            <h4 class="list-group-item-heading"><?php echo _escape($item['title']); ?></h4>
-            <p class="list-group-item-text"><?php echo _escape($item['content']); ?></p>
-        </a>
-        <?php } ?>
-    </div>
-
-    <?php
-    if ($paginator) {
-        echo $this->pagination($paginator);
-    }
-    ?>
-
 </div>
