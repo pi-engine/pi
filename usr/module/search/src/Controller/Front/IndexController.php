@@ -340,6 +340,7 @@ class IndexController extends ActionController
     {
         $home = Pi::url('www');
         //$home = 'pialog.org'; // For localhost test
+        $code = $this->config('baidu_code');
 
         $googleQuery = function ($query) use ($home) {
             $home = preg_replace('/^(http[s]?:\/\/)/i', '', $home);
@@ -355,8 +356,7 @@ class IndexController extends ActionController
 
             return $link;
         };
-        $baiduQuery = function ($query) {
-            $code = $this->config('baidu_code');
+        $baiduQuery = function ($query) use ($code) {
             $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
             //$pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
             $link = sprintf($pattern, urlencode($code), urlencode($query));
