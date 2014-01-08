@@ -13,7 +13,7 @@
 }
 
 .search-service {
-  margin: 10px 0 20px 0;
+  margin: 10px 0;
 }
 
 .search-service a {
@@ -22,4 +22,11 @@
 
 .search-result-item {
 	margin-bottom: 20px;
+}
+
+.search-logo {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 30px;
+	text-align: center;
 }

@@ -8,6 +8,7 @@ $this->css($this->assetModule('front/front.css'));
 }
 .search-logo {
     padding-top: 80px;
+    margin: 0 0 30px;
 }
 </style>
 <div class="row">
@@ -15,7 +16,9 @@ $this->css($this->assetModule('front/front.css'));
           data-module-url="<?php echo $this->url('search', array('m' => '_NAME')); ?>"
           data-service-url="<?php echo $this->url('search', array('service' => '_NAME')); ?>">
         <!-- You can define logo in theme -->
-        <div class="center-block search-logo"></div>
+        <div class="center-block search-logo">
+            <?php echo _escape(Pi::config('sitename')); ?>
+        </div>
         <div class="search-tabs">
             <a href="#" class="js-search-module<?php if (!$searchModule) { echo ' active'; } ?>">
                 <?php _e('Global'); ?>
