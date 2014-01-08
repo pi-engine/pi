@@ -1,17 +1,18 @@
 (function($) {
   //Fix navbar multiple level
-  $('.pi-navbar').find('>li').each(function() {
+  var navbar = $('.pi-navbar-nav');
+  var hasBrand = navbar.parents('.navbar').find('.navbar-brand').length;
+  navbar.find('>li').each(function() {
     var $this = $(this);
-
-    if ($this.find('ul').length) {
-       var link = $this.find('>a');
-       var ul = $this.find('>ul');
-
-       $this.addClass('dropdown');
-       link.addClass('dropdown-toggle')
-           .attr('data-toggle', 'dropdown')
-           .append('<span class="caret"></span>');
-       ul.addClass('dropdown-menu');
+    var caretStr = '<span class="pi-navbar-caret"></span>';
+    caretStr += '<span class="pi-navbar-caret pi-navbar-caret-outer"></span>';
+    if ($this.find('li').length) {
+      $this.append(caretStr);
     }
   });
+  navbar.find('ul').addClass('dropdown-menu');
+
+  if (!hasBrand) {
+    navbar.css('marginLeft', '-15px');
+  }
 })(jQuery)

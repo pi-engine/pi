@@ -9,19 +9,71 @@ html {
 }
 
 /* Navbar custom */
-.navbar {
+.navbar-inverse {
+  margin-bottom: 0;
   min-height: 30px;
   border-radius: 0;
 }
 
-.navbar-nav > li > a {
-  padding-top: 5px;
-  padding-bottom: 5px;
+.navbar-inverse .navbar-nav > li > a {
+  padding: 5px 10px;
 }
 
-.navbar-brand {
+.navbar-inverse .navbar-brand {
   padding: 5px 15px;
 }
+
+.navbar-inverse .navbar-right {
+  float: right;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.navbar-inverse .navbar-nav > li {
+  float: left;
+}
+
+.pi-navbar-nav ul {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .pi-navbar-nav li {
+    position: relative;
+  }
+
+  .pi-navbar-caret {
+    display: none;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    margin-left: -8px;
+    border-bottom: 8px solid #fff;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    z-index: 1002;
+  }
+
+  .pi-navbar-caret-outer {
+    border-bottom: 8px solid #c2c2c2;
+    bottom: 0;
+    z-index: 1001;
+  }
+
+  .pi-navbar-nav li:hover >ul,
+  .pi-navbar-nav li:hover .pi-navbar-caret {
+    display: block;
+  }
+
+  .pi-navbar-nav ul .dropdown-menu {
+    left: 100%;
+    top: -5px;
+  }
+}
+
+
 
 /* User bar */
 .pi-user-bar {
@@ -225,7 +277,8 @@ html {
   position: relative;
 }
 
-/* Bootstrap custom */
-.nav-tabs {
-  margin-bottom: 20px;
+@media (min-width: 768px) {
+  .navbar-default .navbar-form {
+    width: 250px;
+  }
 }
