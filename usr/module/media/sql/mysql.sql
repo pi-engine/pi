@@ -59,7 +59,7 @@ CREATE TABLE `{meta}` (
 # Application table, for module management only
 CREATE TABLE `{application}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `appkey`          varchar(255)          DEFAULT NULL,
+  `appkey`          varchar(64)           DEFAULT NULL,
   `title`           varchar(255)          NOT NULL DEFAULT '',
 
   PRIMARY KEY           (`id`),
