@@ -5,14 +5,14 @@
     ));
     $this->jQuery();
 ?>
-<div class="pi-block">
+<div class="pi-article-module">
     <div class="clearfix pi-block-header">
-        <h4 class="pi-block-title"><?php echo $this->escape($title) . '"'; ?>
+        <span class="pi-block-title pull-left"><?php echo $this->escape($title) . '"'; ?>
             <span class="text-important divider">
                 <?php echo $this->escape($tag); ?>
             </span><?php echo '"'; ?>
-        </h4>
-        <span class="text-muted col-md-2" style="margin: 10px 0 0 10px">
+        </span>
+        <span class="text-muted col-md-2" style="margin-top: 5px">
             (<?php echo $this->escape($count) . ' articles'; ?>)
         </span>
     </div>

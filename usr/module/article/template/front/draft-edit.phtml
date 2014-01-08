@@ -222,8 +222,8 @@
                     <div class="form-group pi-article-label">
                         <label class="control-label"><?php _e('Submitter:'); ?></label>
                     </div>
-                    <div class="form-group col-md-3">
-                        <input type="text" class="submitter" 
+                    <div class="form-group col-md-2">
+                        <input type="text" class="submitter form-control" 
                             value="<?php echo $this->escape($user['name']); ?>">
                     </div>
                     <?php } ?>
@@ -477,7 +477,7 @@
                 <i class="icon-caret-down glyphicon glyphicon-chevron-down"></i>
                 <strong><?php _e('SEO'); ?></strong>
             </div>
-            <div class="widget-body">
+            <div class="widget-body" style="overflow: hidden">
                 <?php if (in_array('slug', $elements)) { ?>
                 <label><?php _e('SEO url name'); ?></label>
                 <?php

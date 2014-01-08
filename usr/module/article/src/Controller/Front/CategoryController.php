@@ -56,12 +56,52 @@ class CategoryController extends ActionController
         
         $route  = Service::getRouteName($module);
 
-        // Get category info
-        $categories = Service::getCategoryList();
-        foreach ($categories as &$row) {
-            $row['url'] = $this->url($route, array(
-                'category' => $row['slug'] ?: $row['id'],
+        // Get category nav
+        $rowset = Pi::model('category', $module)->enumerate(null, null);
+        $rowset = array_shift($rowset);
+        $navs   = $this->canonizeCategory($rowset['child'], $route);
+        $allNav['all'] = array(
+            'label'      => __('All'),
+            'route'      => $route,
+            'controller' => 'list',
+            'params'     => array(
+                'category'   => 'all',
+            ),
+        );
+        $navs = $allNav + $navs;
+        
+        // Get all categories
+        $categories = array(
+            'all' => array(
+                'id'    => 0,
+                'title' => __('All articles'),
+                'image' => '',
+                'url'   => Pi::service('url')->assemble(
+                    Service::getRouteName($module),
+                    array(
+                        'controller' => 'list',
+                        'action'     => 'all',
+                        'list'       => 'all',
+                    )
+                ),
+            ),
+        );
+        $rowset = Pi::model('category', $module)->enumerate(null, null, true);
+        foreach ($rowset as $row) {
+            if ('root' == $row['name']) {
+                continue;
+            }
+            $url = Pi::service('url')->assemble('', array(
+                'controller' => 'category',
+                'action'     => 'list',
+                'category'   => $row['id'],
             ));
+            $categories[$row['id']] = array(
+                'id'    => $row['id'],
+                'title' => $row['title'],
+                'image' => $row['image'],
+                'url'   => $url,
+            );
         }
         $categoryIds = $modelCategory->getDescendantIds($categoryId);
         if (empty($categoryIds)) {
@@ -116,16 +156,6 @@ class CategoryController extends ActionController
             }
         }
         
-        // Get category
-        $categories = array();
-        if (!empty($articleCategoryIds)) {
-            $rowCategory = $this->getModel('category')
-                ->select(array('id' => $articleCategoryIds));
-            foreach ($rowCategory as $row) {
-                $categories[$row->id] = $row->toArray();
-            }
-        }
-
         // Total count
         $where = array_merge($where, array(
             'time_publish <= ?' => time(),
@@ -166,8 +196,8 @@ class CategoryController extends ActionController
             'route'         => $route,
             'elements'      => $config['list_item'],
             'authors'       => $authors,
-            'categories'    => $categories,
             'length'        => $config['list_summary_length'],
+            'navs'          => $this->config('enable_list_nav') ? $navs : '',
             //'seo'           => $this->setupSeo($categoryId),
         ));
 
@@ -175,5 +205,29 @@ class CategoryController extends ActionController
             'breadCrumbs' => true,
             'Tag'         => $categoryInfo['title'],
         ));
+    }
+    
+    /**
+     * Canonize category structure
+     * 
+     * @params array  $categories
+     * @params string $route
+     */
+    protected function canonizeCategory(&$categories, $route)
+    {
+        foreach ($categories as &$row) {
+            $row['label']      = $row['title'];
+            $row['controller'] = 'category';
+            $row['action']     = 'list';
+            $row['params']     = array('category' => $row['id']);
+            $row['route']      = $route;
+            if (isset($row['child'])) {
+                $row['pages'] = $row['child'];
+                unset($row['child']);
+                $this->canonizeCategory($row['pages'], $route);
+            }
+        }
+        
+        return $categories;
     }
 }

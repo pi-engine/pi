@@ -6,10 +6,10 @@
     $this->jQuery();
 ?>
 
-<div class="pi-block">
+<div class="pi-article-module">
     <div class="clearfix pi-block-header">
-        <h4 class="pi-block-title"><?php echo $this->escape($title) . '"' . $keyword . '"'; ?></h4>
-        <span class="text-muted col-md-2" style="margin: 10px 0 0 10px">
+        <span class="pi-block-title pull-left"><?php echo $this->escape($title) . '"' . $keyword . '"'; ?></span>
+        <span class="text-muted col-md-2" style="margin-top: 5px">
             (<?php echo $this->escape($count) . __(' articles'); ?>)
         </span>
         <div class="row" style="margin-right: -30px">
@@ -18,7 +18,7 @@
                     'action' => $this->url('', array('action' => 'simple')),
                     'method' => 'get',
                     'class'  => 'navbar-form navbar-right',
-                    'style'  => 'margin: 1px 10px 0 0',
+                    'style'  => 'margin: 1px 10px 0 0; width: auto',
                 ));
                 echo $this->form()->openTag($form);
             ?>

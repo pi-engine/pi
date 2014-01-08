@@ -69,6 +69,13 @@ class Block
         );
     }
     
+    /**
+     * List all categories
+     * 
+     * @param array   $options  Block parameters
+     * @param string  $module   Module name
+     * @return boolean 
+     */
     public static function categoryList($options = array(), $module = null)
     {
         if (empty($module)) {

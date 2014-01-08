@@ -187,3 +187,13 @@
 ul.pagination {
     margin: 0;
 }
+.pi-article-module {
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dddddd;
+}
+.pi-block-title {
+    font-size: 20px;
+    font-weight: bold;
+}
