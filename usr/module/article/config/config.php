@@ -157,6 +157,14 @@ return array(
             'description' => _t('Max summary length to display in list page'),
             'value'       => 120,
         ),
+        'enable_list_nav' => array(
+            'category'    => 'general',
+            'title'       => _t('Enable List Nav'),
+            'description' => _t('Whether to enable category nav in list page'),
+            'edit'        => 'checkbox',
+            'value'       => 1,
+            'filter'      => 'number_int',
+        ),
 
         // Autosave
         'autosave_interval' => array(
