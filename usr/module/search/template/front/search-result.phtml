@@ -2,51 +2,58 @@
 $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include 'search-form.phtml'; ?>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php _e('Search result'); ?></h3>
+<p class="text-right">
+    <strong class="text-muted">
+    <?php
+    if (1 < $total) {
+        echo sprintf(__('There are %d results.'), $total);
+    } elseif (1 == $total) {
+        echo sprintf(__('There is %d found.'), $total);
+    } elseif (!empty($flood)) {
+        echo __('Submission flood detected, please wait for a while.');
+    } else {
+        _e('No result found.');
+    }
+    ?>
+    </strong>
+</p>
+<?php 
+foreach ($result as $name => $data) {
+    $total = $data->getTotal();
+?>
+<div class="row">
+    <div class="col-md-2">
+        <h4 class="text-muted text-right" style="margin-top: 10px;">
+            <?php echo _escape($modules[$name]['title']); ?>
+        </h4>
     </div>
-    <div class="panel-body">
-        <?php
-            if (1 < $total) {
-                echo sprintf(__('There are %d results.'), $total);
-            } elseif (1 == $total) {
-                echo sprintf(__('There is %d found.'), $total);
-            } elseif (!empty($flood)) {
-                echo __('Submission flood detected, please wait for a while.');
-            } else {
-                _e('No result found.');
-            }
-        ?>
-    </div>
-</div>
-
-<?php foreach ($result as $name => $data) { ?>
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo _escape($modules[$name]['title']); ?></h3>
-    </div>
-    <div class="panel-body">
-        <?php
-        $total = $data->getTotal();
-        if (1 < $total) {
-            $message = sprintf(__('There are %d results.'), $total);
-        } elseif (1 == $total) {
-            $message = sprintf(__('There is %d found.'), $total);
-        } else {
-            $message = __('No result found.');
-        }
-        ?>
-        <a href="<?php echo $modules[$name]['url']; ?>"><?php echo $message; ?></a>
-    </div>
-
-    <div class="list-group">
-        <?php foreach ($data as $item) { ?>
-        <a href="<?php echo $item['url']; ?>" class="list-group-item">
-            <h4 class="list-group-item-heading"><?php echo _escape($item['title']); ?></h4>
-            <p class="list-group-item-text"><?php echo _escape($item['content']); ?></p>
-        </a>
+    <div class="col-md-10">
+        <?php if ($total >= 1) { foreach ($data as $item) { ?>
+        <div class="search-result-item">
+            <h4>
+                <a href="<?php echo $item['url']; ?>">
+                    <?php echo _escape($item['title']); ?>
+                </a>
+            </h4>
+            <p>
+                <?php echo _escape($item['content']); ?>
+            <p class="text-muted">
+                <?php echo date('Y-m-d', $item['time']); ?>
+        </div>
         <?php } ?>
+        <div class="clearfix">
+            <span class="pull-right text-muted">
+                <?php echo __('') . $data->getTotal() . (' results'); ?>
+            </span>
+            <a href="<?php echo $modules[$name]['url']; ?>">
+                <?php echo __('More ') . _escape($modules[$name]['title']) . ' &raquo;'; ?>
+            </a>
+        </div>
+        <?php } else { ?>
+        <p class="text-muted">
+            <?php _e('No result found.'); ?>
+         <?php } ?>
+        <hr>
     </div>
 </div>
 <?php } ?>
