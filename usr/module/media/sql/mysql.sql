@@ -23,7 +23,7 @@ CREATE TABLE `{doc}` (
   `time_deleted`    int(10) UNSIGNED                NOT NULL DEFAULT 0,
 
   # Application attributes
-  `appkey`          varchar(255)                    NOT NULL DEFAULT '',
+  `appkey`          varchar(64)                     NOT NULL DEFAULT '',
   `module`          varchar(64)                     NOT NULL DEFAULT '',
   # Application type for doc
   `type`            varchar(64)                     NOT NULL DEFAULT '',
