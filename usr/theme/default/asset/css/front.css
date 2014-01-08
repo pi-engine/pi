@@ -61,6 +61,8 @@ body {
   height: 40px;
   border-radius: 4px;
   margin-bottom: 20px;
+  list-style: none;
+  padding-left: 0;
 }
 
 .pi-menu li {
@@ -70,7 +72,7 @@ body {
 
 .pi-menu a {
   display: block;
-  padding: 10px 20px;
+  padding: 9px 20px;
   text-decoration: none;
 }
 

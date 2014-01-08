@@ -81,15 +81,12 @@ $this->headLink(array(
             </div>
             <div class="navbar-collapse collapse">
                 <?php
-                $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
-                echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar');
                 echo $this->widget('search-search');
                 echo $this->widget('system-user-bar');
                 ?>
             </div>
         </div>
     </div>
-
     <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
     <?php
         $blocks = $this->blocks();
@@ -97,6 +94,8 @@ $this->headLink(array(
     ?>
     <div class="container pi-main-container">
         <?php
+        $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
+        echo $navigation->menu()->setUlClass('pi-menu');
         $breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
         if ($breadcrumbs) {
             echo sprintf(
