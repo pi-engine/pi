@@ -65,23 +65,36 @@ $this->headLink(array(
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="<?php echo $locale; ?>">
     <!-- Header: brand, slogan, user bar -->
-    <div class="navbar navbar-inverse hidden-xs" role="navigation">
+    <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <h1 class="hide">
-                    <?php echo _escape($sitename) . _escape($slogan); ?>
-                </h1>
-               <!--  <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                   <i class="fa fa-bars"></i>
-               </button> -->
-                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
-                   title="<?php echo _escape($slogan); ?>">
-                   <?php echo _escape($sitename); ?>
-                </a>
-            </div>
+            <h1 class="hide">
+                <?php echo _escape($sitename) . _escape($slogan); ?>
+            </h1>
+            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
+               title="<?php echo _escape($slogan); ?>">
+               <?php echo _escape($sitename); ?>
+            </a>
             <?php
             echo $this->widget('system-user-bar');
             ?>
+        </div>
+    </div>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <?php
+                $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
+                echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav');
+                ?>
+                <div class="navbar-form navbar-left">
+                    <?php echo $this->widget('search-search'); ?>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
@@ -90,17 +103,7 @@ $this->headLink(array(
         $blockTemplate = $this->template('block');
     ?>
     <div class="container pi-main-container">
-        <div class="pi-menu-container">
-            <?php
-            $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
-            echo $navigation->menu()->setUlClass('pi-menu');
-            ?>
-            <div class="pi-menu-search">
-                <?php echo $this->widget('search-search'); ?>
-            </div>
-        </div>
         <?php
-        
         $breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
         if ($breadcrumbs) {
             echo sprintf(
