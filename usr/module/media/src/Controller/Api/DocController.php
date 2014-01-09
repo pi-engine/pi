@@ -89,7 +89,18 @@ class DocController extends ApiController
 
         return $response;
     }
-    
+
+    /**
+     * Download a file
+     *
+     * @return void
+     */
+    public function downloadAction()
+    {
+        $id = $this->params('id');
+        $this->handler()->download($id);
+    }
+
     /**
      * Update media
      * 

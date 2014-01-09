@@ -63,9 +63,9 @@ class Local extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function download($id, $file = '')
+    public function download($id)
     {
-        $result = $this->handler()->download($id, $file);
+        $result = $this->handler()->download($id);
 
         return $result;
     }

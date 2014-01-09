@@ -101,14 +101,13 @@ abstract class AbstractAdapter
     abstract public function upload($file, array $data = array());
 
     /**
-     * Download a media file to local file
+     * Download a doc file
      *
      * @param int|int[] $id   Doc id
-     * @param string $file Absolute path to save; or output to browser directly
      *
      * @return bool
      */
-    abstract public function download($id, $file = '');
+    abstract public function download($id);
     
     /**
      * Update doc details

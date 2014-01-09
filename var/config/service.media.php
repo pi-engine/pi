@@ -48,6 +48,7 @@ $config = array(
                 'add'           => $apiRoot . '/insert',
                 'update'        => $apiRoot . '/update',
                 'upload'        => $apiRoot . '/upload',
+                'download'      => $apiRoot . '/download/id/%d',
                 'get'           => $apiRoot . '/get',
                 'mget'          => $apiRoot . '/mget',
                 'list'          => $apiRoot . '/list',

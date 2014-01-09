@@ -44,7 +44,7 @@ class Remote extends AbstractAdapter
         });
         $params['query'] = implode(',', $query);
         $uri    = $this->getOption('api', 'add');
-        $result = $this->handler()->get($uri, $params);
+        $result = $this->handler()->post($uri, $params);
 
         return $result['status'] ? $result['data'] : false;
     }
@@ -63,12 +63,11 @@ class Remote extends AbstractAdapter
     /**
      * {@inheritDoc}
      */
-    public function download($id, $file = '')
+    public function download($id)
     {
-        $uri    = $this->getUrl($id);
-        $result = $this->handler()->download($uri, $file);
+        $uri = sprintf($this->getOption('api', 'download'), $id);
 
-        return $result['status'] ? $result['data'] : false;
+        header(sprintf('location: %s', $uri));
     }
 
     /**

@@ -421,14 +421,13 @@ class Doc extends AbstractApi
     }
 
     /**
-     * Download a media file to local file
+     * Download a doc file
      *
      * @param int|int[] $id Doc id
-     * @param string $file Absolute path to save; or output to browser directly
      *
-     * @return bool
+     * @return void
      */
-    public function download($id, $file = '')
+    public function download($id)
     {
         $url = Pi::service('url')->assemble('default', array(
             'module'     => $this->module,
