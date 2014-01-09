@@ -16,8 +16,7 @@ html {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 10px;
 }
 
 .navbar-inverse .navbar-brand {
@@ -58,7 +57,7 @@ html {
   }
 
   .pi-navbar-caret-outer {
-    border-bottom: 8px solid #c5c5c5;
+    border-bottom: 8px solid #c2c2c2;
     bottom: 0;
     z-index: 1001;
   }
