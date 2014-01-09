@@ -16,7 +16,7 @@ $this->css($this->assetModule('front/front.css'));
             <?php echo _escape(Pi::config('sitename')); ?>
         </div>
         <div class="search-tabs">
-            <a href="#" class="js-search-module<?php if (!$searchModule) { echo ' active'; } ?>">
+            <a href="#" class="js-search-global<?php if (!$searchModule) { echo ' active'; } ?>">
                 <?php _e('Global'); ?>
             </a>
             <?php 
