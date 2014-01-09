@@ -29,6 +29,7 @@
 	font-weight: bold;
 	margin-top: 30px;
 	text-align: right;
+  display: block;
 }
 
 .search-index-logo {

@@ -6,7 +6,7 @@
   form.on('click', '.js-search-global', function(e) {
     e.preventDefault();
     form.attr({
-      'action': '',
+      'action': moduleUrl.replace(/_NAME\/?/, ''),
       'target': ''
     });
     form[0].submit();
