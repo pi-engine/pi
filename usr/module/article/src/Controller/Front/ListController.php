@@ -28,13 +28,24 @@ class ListController extends ActionController
      */
     public function allAction()
     {
-        $page   = Service::getParam($this, 'p', 1);
-        
+        $page     = Service::getParam($this, 'p', 1);
+        $sort     = $this->params('sort', 'new');
+
         $where  = array(
             'status'           => Article::FIELD_STATUS_PUBLISHED,
             'active'           => 1,
             'time_publish < ?' => time(),
         );
+        
+        $category = $this->params('category', 0);
+        if (!empty($category) && 'all' != $category) {
+            $modelCategory = $this->getModel('category');
+            if (!is_numeric($category)) {
+                $category = $modelCategory->slugToId($category);
+            }
+            $children = $modelCategory->getDescendantIds($category);
+            $where['category'] = $children;
+        }
         
         //@todo Get limit from module config
         $limit  = (int) $this->config('page_limit_all');
@@ -42,9 +53,20 @@ class ListController extends ActionController
         $offset = $limit * ($page - 1);
 
         $model  = $this->getModel('article');
-        $select = $model->select()->where($where);
-        $select->order('time_publish DESC')->offset($offset)->limit($limit);
-
+        $select = $model->select()->where($where);d($sort);
+        if ('hot' == $sort) {
+            $modelStats = $this->getModel('statistics');
+            $select->join(
+                array('st' => $modelStats->getTable()),
+                sprintf('%s.id = st.article', $model->getTable()),
+                array()
+            );
+            $order = 'st.visits DESC';
+        } else {
+            $order = 'time_publish DESC';
+        }
+        $select->order($order)->offset($offset)->limit($limit);
+        
         $route  = Service::getRouteName();
         $resultset = $model->selectWith($select);
         $items     = array();
@@ -100,7 +122,7 @@ class ListController extends ActionController
         $config = Pi::service('module')->config('', $module);
         
         // Get category nav
-        $rowset = Pi::model('category', $module)->enumerate(null, null);
+        $rowset = $this->getModel('category')->enumerate(null, null);
         $rowset = array_shift($rowset);
         $navs   = $this->canonizeCategory($rowset['child'], $route);
         $allNav['all'] = array(
@@ -129,7 +151,7 @@ class ListController extends ActionController
                 ),
             ),
         );
-        $rowset = Pi::model('category', $module)->enumerate(null, null, true);
+        $rowset = $this->getModel('category')->enumerate(null, null, true);
         foreach ($rowset as $row) {
             if ('root' == $row['name']) {
                 continue;
@@ -146,6 +168,9 @@ class ListController extends ActionController
                 'url'   => $url,
             );
         }
+        
+        $urlHot = $this->url($route, array('category' => $category, 'sort' => 'hot'));
+        $urlNew = $this->url($route, array('category' => $category));
 
         $this->view()->assign(array(
             'title'      => __('All Articles'),
@@ -156,6 +181,11 @@ class ListController extends ActionController
             'categories' => $categories,
             'length'     => $config['list_summary_length'],
             'navs'       => $this->config('enable_list_nav') ? $navs : '',
+            'category'   => $category,
+            'url'        => array(
+                'hot'       => $urlHot,
+                'new'       => $urlNew,
+            ),
         ));
     }
     

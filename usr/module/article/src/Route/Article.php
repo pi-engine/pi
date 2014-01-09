@@ -96,8 +96,8 @@ class Article extends Standard
                     $controller = 'list';
                     $action     = 'all';
                 } else {
-                    $controller = 'category';
-                    $action     = 'list';
+                    $controller = 'list';
+                    $action     = 'all';
                     $category   = $this->decode($category);
                 }
             } elseif (preg_match(

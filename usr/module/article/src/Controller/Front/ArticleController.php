@@ -18,6 +18,7 @@ use Module\Article\Form\SimpleSearchForm;
 use Zend\Db\Sql\Expression;
 use Module\Article\Service;
 use Module\Article\Entity;
+use Module\Article\Statistics;
 
 /**
  * Article controller
@@ -38,7 +39,7 @@ class ArticleController extends ActionController
      */
     public function indexAction()
     {
-
+        
     }
     
     /**
@@ -62,6 +63,7 @@ class ArticleController extends ActionController
         }
 
         $details = Entity::getEntity($id);
+        $details['id'] = $id;
         $params  = array();
         
         if (!$id or ($details['time_publish'] > time())) {
@@ -125,15 +127,6 @@ class ArticleController extends ActionController
             'action'      => 'detail',
         ), $params));
         
-        // Count the viewing number temporarily
-        $events = Pi::engine()->application()->getEventManager();
-        $obj    = new \Module\Article\Statistics;
-        $events->attach(
-            \Zend\Mvc\MvcEvent::EVENT_DISPATCH, 
-            array($obj, 'runBeforePageCache'), 
-            1100
-        );
-            
         $config = Pi::service('module')->config('', $this->getModule());
         $this->view()->assign(array(
             'details'     => $details,
@@ -592,6 +585,25 @@ class ArticleController extends ActionController
             'status'  => $result ? false : true,
             'message' => $result ? __('Subject is used by another article.') 
                 : __('ok'),
+        ));
+        exit;
+    }
+    
+    /**
+     * Count view number by AJAX
+     */
+    public function countAction()
+    {
+        Pi::service('log')->mute();
+        
+        $id = $this->params('id', 0);
+        if (!empty($id)) {
+            Statistics::addVisit($id, $this->getModule());
+        }
+        
+        echo json_encode(array(
+            'status'  => true,
+            'message' => __('success'),
         ));
         exit;
     }

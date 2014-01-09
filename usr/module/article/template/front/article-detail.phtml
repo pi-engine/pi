@@ -224,4 +224,14 @@ if ($details['seo']['description']) {
         <?php } ?>
     </div>
 </div>
+
+<script>
+    var id = '<?php echo $details['id']; ?>';
+    var url = '<?php echo $this->url('default', array(
+        'controller' => 'article',
+        'action'     => 'count',
+        'id'         => $details['id'],
+    )); ?>';
+    $.get(url, function(result) {});
+</script>
     
