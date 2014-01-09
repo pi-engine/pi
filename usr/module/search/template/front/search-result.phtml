@@ -2,8 +2,7 @@
 $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include 'search-form.phtml'; ?>
-<p class="text-right">
-    <strong class="text-muted">
+<p class="text-right text-muted">
     <?php
     if (0 < $total) {
         echo sprintf(__('%d found.'), $total);
@@ -13,7 +12,6 @@ $this->css($this->assetModule('front/front.css'));
         _e('No result found.');
     }
     ?>
-    </strong>
 </p>
 <?php 
 foreach ($result as $name => $data) {
@@ -48,7 +46,7 @@ foreach ($result as $name => $data) {
             </a>
         </div>
         <?php } else { ?>
-        <p class="text-muted">
+        <p class="text-muted" style="margin-top: 10px;">
             <?php _e('No result found.'); ?>
          <?php } ?>
         <hr>
