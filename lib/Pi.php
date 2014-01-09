@@ -478,17 +478,30 @@ class Pi
     /**
      * Load database gateway
      *
+     * @param array|DbGateway $db
+     *
      * @return DbGateway
      * @api
      */
-    public static function db()
+    public static function db($db = array())
     {
-        // Instantiate Db handler
-        if (!isset(static::$db)) {
-            static::$db = static::service('database')->db();
+        $result = null;
+        // Set DbGateway for Pi
+        if ($db instanceof DbGateway) {
+            static::$db = $db;
+            $result = $db;
+        // Create a DbGateway
+        } elseif ($db && is_array($db)) {
+            $result = static::service('database')->db($db);
+        // Load Pi DbGateway, create if not instantiated yet
+        } elseif (!$db) {
+            if (!isset(static::$db)) {
+                static::$db = static::service('database')->db();
+            }
+            $result = static::$db;
         }
 
-        return static::$db;
+        return $result;
     }
 
     /**

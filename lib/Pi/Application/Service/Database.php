@@ -33,21 +33,30 @@ class Database extends AbstractService
     /**
      * Get database gateway handler
      *
-     * @param array $options
+     * @param array|DbGateway $options
+     *
      * @return DbGateway
      */
     public function db($options = array())
     {
-        // Specified DbGateway
-        if ($options) {
+        $result = null;
+        // Set DbGateway for Pi
+        if ($options instanceof DbGateway) {
+            $this->db = $options;
+            $result = $this->db;
+        // Load DbGateway
+        } elseif ($options && is_array($options)) {
             $db = $this->loadDb($options);
-            return $db;
-        // Default DbGateway, equal to Pi::db()
-        } elseif (!$this->db) {
-            $this->db = $this->loadDb();
+            $result = $db;
+        // Default DbGateway
+        } elseif (!$options) {
+            if (!$this->db) {
+                $this->db = $this->loadDb();
+            }
+            $result = $this->db;
         }
 
-        return $this->db;
+        return $result;
     }
 
     /**
