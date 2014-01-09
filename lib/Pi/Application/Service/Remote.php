@@ -34,8 +34,17 @@ use Zend\Uri\Uri;
  *  $file = '/path/to/file';
  *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
  *
- *  $file = fopen('/path/to/file');
+ *  $file = fopen('/path/to/file', 'r');
  *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
+ * ```
+ *
+ * Remote download
+ * ```
+ *  $file = '/path/to/file';
+ *  $result = Pi::service('remote')->download(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
+ *
+ *  $file = fopen('/path/to/file', 'w');
+ *  $result = Pi::service('remote')->download(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
  * ```
  *
  * Authorization
@@ -572,7 +581,7 @@ class Remote extends AbstractService
      *      - timeout
      *
      * @param string|Uri $url
-     * @param string $file
+     * @param string|Resource $file
      * @param array $params
      * @param array $headers
      * @param array $options
@@ -609,10 +618,15 @@ class Remote extends AbstractService
         }
 
         // Upload a file from absolute path via `POST`
+        if ($file && !is_resource($file)) {
+            $file = @fopen($file, 'w');
+        }
         if (!$file) {
             return false;
         }
         $this->adapter()->setOutputStream($file);
+        // Disable cache for download
+        $options['cache'] = false;
         $result = $this->get($uri, $params, $headers, $options);
 
         return $result;
@@ -630,7 +644,6 @@ class Remote extends AbstractService
      * @param string|Resource $file
      * @param array           $options
      *
-     * @throws \InitializationException
      * @return bool
      */
     public function ftpUpload(
@@ -679,7 +692,6 @@ class Remote extends AbstractService
      * @param string|Resource $file
      * @param array           $options
      *
-     * @throws \InitializationException
      * @return bool
      */
     public function ftpDownload(
