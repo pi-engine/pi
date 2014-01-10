@@ -62,6 +62,8 @@ class Content extends AbstractContent
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
             $item = $row->toArray();
+            $item['title'] = $item['subject'];
+            unset($item['subject']);
             $item['link'] = $this->buildLink($item);
             $result[] = $item;
         }
