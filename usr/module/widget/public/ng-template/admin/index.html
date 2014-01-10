@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h4>{{'Installed_widgets' | translate}}</h4>
+	<h4>{{'INSTALLED_WIDGETS' | translate}}</h4>
 </div>
 <div class="row">
 	<div ng-repeat="item in active" class="col-sm-6 col-md-3">
@@ -8,14 +8,14 @@
 		  <div class="panel-body">
 		    <p class="widget-desc">{{item.block.description}}</p>
 		    <button class="btn btn-primary btn-sm" ng-click="uninstallAction($index)">
-		    	{{'Uninstall' | translate}}
+		    	{{'UNINSTALL' | translate}}
 		    </button>
 		  </div>
 		</div>
 	</div>
 </div>
 <div class="page-header">
-	<h4>{{'Available_widgets' | translate}}</h4>
+	<h4>{{'AVAILABLE_WIDGETS' | translate}}</h4>
 </div>
 <div class="row">
 	<div ng-repeat="item in available" class="col-sm-6 col-md-3">
@@ -24,7 +24,7 @@
 		  <div class="panel-body">
 		    <p class="widget-desc">{{item.description}}</p>
 		    <button class="btn btn-primary btn-sm" ng-click="installAction($index)">
-		    	{{'Install' | translate}}
+		    	{{'INSTALL' | translate}}
 		    </button>
 		  </div>
 		</div>
