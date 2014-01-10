@@ -17,7 +17,7 @@ class Api extends AbstractApi
     protected $module = 'page';
     protected $pageColumns = array(
         'name', 'title', 'slug', 'content', 'markup', 'active',
-        'user', 'time_created'
+        'user', 'time_created', 'seo_title', 'seo_keywords', 'seo_description'
     );
 
     /**

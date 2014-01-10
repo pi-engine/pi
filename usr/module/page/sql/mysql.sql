@@ -12,6 +12,9 @@ CREATE TABLE `{page}` (
   `markup`          varchar(64)             NOT NULL default 'text',
   `slug`            varchar(64)             default NULL,
   `clicks`          int(10)                 unsigned    NOT NULL default '0',
+  `seo_title`       varchar(255)            NOT NULL,
+  `seo_keywords`    varchar(255)            NOT NULL,
+  `seo_description` varchar(255)            NOT NULL,
  
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`),

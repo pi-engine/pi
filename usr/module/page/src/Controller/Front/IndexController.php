@@ -33,10 +33,13 @@ class IndexController extends ActionController
             }
             $title = $row->title;
             // Specify page head title
-            $this->view()->headTitle($row->title);
             $model = $this->getModel('page');
             $model->update(array('clicks' => new Expression('`clicks` + 1')),
                            array('id' => $row->id));
+            // Set head
+            $this->view()->headTitle($row->seo_title);
+            $this->view()->headdescription($row->seo_description, 'set');
+            $this->view()->headkeywords($row->seo_keywords, 'set');
         }
 
         $this->view()->assign(array(

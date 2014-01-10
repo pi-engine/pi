@@ -139,6 +139,51 @@ class PageForm extends BaseForm
             )
         ));
 
+        // extra_seo
+        $this->add(array(
+            'name' => 'extra_seo',
+            'type' => 'fieldset',
+            'options' => array(
+                'label' => __('SEO options'),
+            ),
+        ));
+
+        // seo_title
+        $this->add(array(
+            'name' => 'seo_title',
+            'options' => array(
+                'label' => __('SEO Title'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
+
+        // seo_keywords
+        $this->add(array(
+            'name' => 'seo_keywords',
+            'options' => array(
+                'label' => __('SEO Keywords'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
+
+        // seo_description
+        $this->add(array(
+            'name' => 'seo_description',
+            'options' => array(
+                'label' => __('SEO Description'),
+            ),
+            'attributes' => array(
+                'type' => 'text',
+                'description' => '',
+            )
+        ));
+
         $this->add(array(
             'name'          => 'submit',
             'type'          => 'submit',
