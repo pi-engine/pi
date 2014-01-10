@@ -1,9 +1,4 @@
 (function($) {
-
-  //For front link
-  var frontLi = $('<li>').append($('#pi-go-front').show());
-  $(".navbar-right").append(frontLi);
-
   //For angularjs nav
   var fragReg = /#!?(.*)$/;
   $('#pi-nav-top').find('.nav-pills li').each(function() {
