@@ -7,6 +7,7 @@ January 10th, 2014
 2. Add seo_title, seo_keywords, seo_description
 3. Fix install/meta.txt
 4. Add module config 
+5. Improce page API
 
 September 28th, 2012
 =============================
