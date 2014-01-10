@@ -8,6 +8,7 @@ January 10th, 2014
 3. Fix install/meta.txt
 4. Add module config 
 5. Improce page API
+6. Improve templates
 
 September 28th, 2012
 =============================

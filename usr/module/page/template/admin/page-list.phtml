@@ -12,17 +12,16 @@
 	    content:" (disabled)";
     }
 </style>
-<h2 class="page-header"><?php echo _escape($title); ?></h2>
 <div id="page-list" class="submain">
-<div class="pi-legend"><?php echo _a('Active pages'); ?></div>
-<ul class="active-pages">
+<h2 class="page-header"><?php echo _a('Active pages'); ?></h2>
+<ul class="active-pages list-unstyled">
     <?php foreach ($pages['active'] as $page) { ?>
-    <li id="page-<?php echo $page['id']; ?>" class="box-hover page" data-id="<?php echo $page['id']; ?>" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
+    <li id="page-<?php echo $page['id']; ?>" class="well well-sm box-hover page" data-id="<?php echo $page['id']; ?>" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
         <div class="pull-right btn-group">
-           <a class="btn" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
-           <a class="btn" href="<?php echo $this->url($module . '-page', $page); ?>"  target="_blank"><?php echo _a('View'); ?></a>
-           <span class="btn page-active"><?php echo _a('Deactivate'); ?></span>
-           <span class="btn page-delete"><?php echo _a('Delete'); ?></span>
+           <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
+           <a class="btn btn-primary" href="<?php echo $this->url($module . '-page', $page); ?>"  target="_blank"><?php echo _a('View'); ?></a>
+           <span class="btn btn-warning page-active"><?php echo _a('Deactivate'); ?></span>
+           <span class="btn btn-danger page-delete"><?php echo _a('Delete'); ?></span>
         </div>
         <h4 class="box-title"><?php echo _escape($page['title']); ?></h4>
         <dl class="dl-horizontal mb10">
@@ -35,15 +34,15 @@
     <?php } ?>
 </ul>
 <?php if (!empty($pages['inactive'])) { ?>
-<div class="pi-legend" style="color: #888;"><?php echo _a('Inactive pages'); ?></div>
-<ul class="inactive-pages">
+<h2 class="page-header"><?php echo _a('Inactive pages'); ?></h2>
+<ul class="inactive-pages list-unstyled">
     <?php foreach ($pages['inactive'] as $page) { ?>
-    <li id="page-<?php echo $page['id']; ?>" class="box-hover box-disable page" data-id="<?php echo $page['id']; ?>" data-action="disable" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
+    <li id="page-<?php echo $page['id']; ?>" class="well well-sm box-hover box-disable page" data-id="<?php echo $page['id']; ?>" data-action="disable" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
         <div class="pull-right btn-group">
-           <a class="btn" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
-           <a class="btn" href="<?php echo $this->url($module . '-page', $page); ?>"  target="_View"><?php echo _a('View'); ?></a>
-           <span class="btn page-active"><?php echo _a('Activate'); ?></span>
-           <span class="btn page-delete"><?php echo _a('Delete'); ?></span>
+           <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
+           <a class="btn btn-primary" href="<?php echo $this->url($module . '-page', $page); ?>"  target="_View"><?php echo _a('View'); ?></a>
+           <span class="btn btn-success page-active"><?php echo _a('Activate'); ?></span>
+           <span class="btn btn-danger page-delete"><?php echo _a('Delete'); ?></span>
         </div>
         <h4 class="box-title"><?php echo _escape($page['title']); ?></h4>
         <dl class="dl-horizontal mb10">
