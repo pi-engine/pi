@@ -27,27 +27,6 @@ class Block extends AbstractApi
     protected $module = 'system';
 
     /**
-     * Columns for block
-     * @var string[]
-     */
-    protected $blockColumns = array(
-        'id',
-        'module', 'name', 'title', 'description', 'render', 'template',
-        'config', 'cache_level', 'type',
-        'root', 'cache_ttl', 'content', 'subline', 'class', 'title_hidden',
-        'active', 'cloned'
-    );
-
-    /**
-     * Columns for root blocks
-     * @var string[]
-     */
-    protected $rootColumns = array(
-        'module', 'name', 'title', 'description', 'render', 'template',
-        'config', 'cache_level', 'type',
-    );
-
-    /**
      * Canonize block specs
      *
      * @param array $block
@@ -55,12 +34,14 @@ class Block extends AbstractApi
      */
     protected function canonize($block)
     {
-        $root = array();
-        $access = array();
-
         if (isset($block['name']) && empty($block['name'])) {
             $block['name'] = null;
         }
+        $root = $block;
+        if (isset($root['id'])) {
+            unset($root['id']);
+        }
+        /*
         foreach (array_keys($block) as $key) {
             if (in_array($key, $this->rootColumns)) {
                 $root[$key] = $block[$key];
@@ -69,8 +50,9 @@ class Block extends AbstractApi
                 unset($block[$key]);
             }
         }
+        */
 
-        return array($block, $root, $access);
+        return array($block, $root);
     }
 
     /**
@@ -110,7 +92,6 @@ class Block extends AbstractApi
             $block['name'] = $block['name']
                 ? $module . $this->moduleSeperator . $block['name'] : null;
         }
-
 
         $config = array();
         if (!isset($block['config'])) {
@@ -166,7 +147,7 @@ class Block extends AbstractApi
             $rootRow = $modelRoot->find($entity);
         }
 
-        list($block, $root, $access) = $this->canonize($block);
+        list($block, $root) = $this->canonize($block);
 
         $configRemove = array();
         $configAdd = array();
@@ -197,8 +178,10 @@ class Block extends AbstractApi
 
         $update = array(
             'render'        => isset($block['render']) ? $block['render'] : '',
+            /*
             'template'      => isset($block['template'])
                 ? $block['template'] : '',
+            */
             'cache_level'   => isset($block['cache_level'])
                 ? $block['cache_level'] : '',
             'content'       => isset($block['content'])
@@ -333,13 +316,13 @@ class Block extends AbstractApi
     }
 
     /**
-     * Edit a block
+     * Update a block instance
      *
      * @param int|RowGateway $entity
      * @param array $block
      * @return array Result pair of status and message
      */
-    public function edit($entity, $block)
+    public function updateBlock($entity, $block)
     {
         $model = Pi::model('block');
         if ($entity instanceof RowGateway) {
@@ -348,7 +331,7 @@ class Block extends AbstractApi
             $blockRow = $model->find($entity);
         }
 
-        list($block, $root, $access) = $this->canonize($block);
+        list($block, $root) = $this->canonize($block);
 
         // Update block
         $blockRow->assign($block);

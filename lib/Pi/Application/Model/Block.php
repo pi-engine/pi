@@ -19,6 +19,18 @@ class Block extends Model
     /**
      * {@inheritDoc}
      */
+    protected $columns = array(
+        'id',
+        'root', 'name', 'title', 'description',
+        'module', 'template', 'render',
+        'config', 'type', 'content',
+        'cache_ttl', 'cache_level', 'title_hidden',
+        'active', 'cloned', 'class', 'subline'
+    );
+
+    /**
+     * {@inheritDoc}
+     */
     protected $encodeColumns = array(
         'config'    => true,
     );

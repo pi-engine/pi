@@ -142,7 +142,7 @@ class BlockController extends ComponentController
                 $values['cloned']   = 1;
                 $values['root']     = $rootRow->id;
                 $values['module']   = $rootRow->module;
-                $values['template'] = $rootRow->template;
+                //$values['template'] = $rootRow->template;
                 $values['render']   = $rootRow->render;
                 unset($values['id']);
 
@@ -235,7 +235,7 @@ class BlockController extends ComponentController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                $result = Pi::api('block', 'system')->edit($blockRow, $values);
+                $result = Pi::api('block', 'system')->updateBlock($blockRow, $values);
                 $message = _a('Block data saved successfully.');
                 $this->jump(
                     array('action' => 'index', 'name' => $blockRow->module),

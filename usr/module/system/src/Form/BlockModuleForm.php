@@ -88,6 +88,18 @@ class BlockModuleForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'template',
+            'options'       => array(
+                'label' => __('Template'),
+            ),
+            'attributes'    => array(
+                'type'          => 'text',
+                'value'         => $this->root->template,
+                'description'   => __('Set a different template on demand.'),
+            )
+        ));
+
+        $this->add(array(
             'name'          => 'description',
             'options'       => array(
                 'label' => __('Description'),
