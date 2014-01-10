@@ -64,3 +64,8 @@
 .pi-sidenav .active-last a {
   color: #428BCA;
 }
+
+.pi-sidenav .disabled {
+  cursor: not-allowed;
+  color: #999 !important; 
+}
