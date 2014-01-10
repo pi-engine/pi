@@ -12,6 +12,8 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Exception;
+use Pi\File\Upload;
+use Pi\File\Download;
 
 /**
  * Filesystem manipulation service
@@ -23,6 +25,42 @@ use Exception;
  */
 class File extends AbstractService
 {
+    /**
+     * Upload files
+     *
+     * @param array $options
+     * @param bool $doUpload
+     *
+     * @return Upload
+     * @see Pi\File\Upload
+     */
+    public function upload(array $options = array(), $doUpload = false)
+    {
+        $uploader = new Upload($options);
+        if ($doUpload && $uploader->isValid()) {
+            $uploader->receive();
+        }
+
+        return $uploader;
+    }
+
+    /**
+     * Send the file to the client (Download)
+     *
+     * @param string|array $source File or file meta to download
+     * @param array $options Options for the file(s) to send
+     *
+     * @return Download
+     * @see Pi\File\Download
+     */
+    public function download($source, array $options = array())
+    {
+        $downloader = new Download;
+        $downloader->send($source, $options);
+
+        return $downloader;
+    }
+
     /**
      * Transform file size
      *
