@@ -37,6 +37,8 @@ class Api extends AbstractApi
         if (!isset($page['time_created'])) {
             $page['time_created'] = time();
         }
+        // Set name
+        $page['name'] = Pi::api('text', 'page')->name($page['name']);
         // Set slug
         $page['slug'] = Pi::api('text', 'page')->slug($page['title']);
         // Set seo_title

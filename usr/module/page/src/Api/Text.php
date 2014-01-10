@@ -20,6 +20,7 @@ use Pi\Application\AbstractApi;
  * Pi::api('text', 'page')->description($description);
  * Pi::api('text', 'page')->title($title);
  * Pi::api('text', 'page')->slug($slug);
+ * Pi::api('text', 'page')->name($name);
  */
 
 class Text extends AbstractApi
@@ -81,12 +82,26 @@ class Text extends AbstractApi
      *
      * @return boolean
      */
-	public function slug($slug)
-	{
-		$slug = _strip($slug);
+    public function slug($slug)
+    {
+        $slug = _strip($slug);
         $slug = strtolower(trim($slug));
         $slug = array_filter(explode(' ', $slug));
         $slug = implode('-', $slug);
-		return $slug;
-	}              
+        return $slug;
+    }
+
+    /**
+     * Returns the name
+     *
+     * @return boolean
+     */
+    public function name($name)
+    {
+        $name = _strip($name);
+        $name = strtolower(trim($name));
+        $name = array_filter(explode(' ', $name));
+        $name = implode('-', $name);
+        return $name;
+    }              
 }

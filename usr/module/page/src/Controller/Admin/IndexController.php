@@ -69,6 +69,10 @@ class IndexController extends ActionController
             if (!empty($data['slug'])) {
                 $data['slug'] = Pi::api('text', 'page')->slug($data['slug']);
             }
+            // Set name
+            if (!empty($data['name'])) {
+                $data['name'] = Pi::api('text', 'page')->name($data['name']);
+            }
             // Set form
             $form = new PageForm('page-form', $markup);
             $form->setInputFilter(new PageFilter);
@@ -216,6 +220,10 @@ class IndexController extends ActionController
             // Set slug
             if (!empty($data['slug'])) {
                 $data['slug'] = Pi::api('text', 'page')->slug($data['slug']);
+            }
+            // Set name
+            if (!empty($data['name'])) {
+                $data['name'] = Pi::api('text', 'page')->name($data['name']);
             }
             // Set form
             $form = new PageForm('page-form', $row->markup);
