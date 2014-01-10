@@ -52,6 +52,8 @@ return array(
                 'stats'         => 'table',
             )
         ),
+        // Module Config
+        'config'        => 'config.php',
         // Navigation definition
         'navigation'    => 'nav.php',
         // Routes, first in last out; bigger priority earlier out

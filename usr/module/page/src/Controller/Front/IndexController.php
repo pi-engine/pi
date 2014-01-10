@@ -32,14 +32,17 @@ class IndexController extends ActionController
                 );
             }
             $title = $row->title;
-            // Specify page head title
+            // update clicks
             $model = $this->getModel('page');
             $model->update(array('clicks' => new Expression('`clicks` + 1')),
                            array('id' => $row->id));
-            // Set head
+            // Module config 
+            $config = Pi::service('registry')->config->read($this->getModule()); 
+            // Set view
             $this->view()->headTitle($row->seo_title);
             $this->view()->headdescription($row->seo_description, 'set');
             $this->view()->headkeywords($row->seo_keywords, 'set');
+            $this->view()->assign('config', $config);
         }
 
         $this->view()->assign(array(

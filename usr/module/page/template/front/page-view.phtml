@@ -1,5 +1,11 @@
-<h1 class="article-header headline"><?php echo _escape($title); ?></h1>
-
-<div class="article-body">
-    <?php echo $content; ?>
+<div class="page">
+	<h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
+	<div class="article-body">
+		<?php echo $content; ?>
+	</div>
+	<div class="article-footer">
+		<?php if($config['social_facebook']) { echo $this->facebook(); } ?>
+		<?php if($config['social_twitter']) { echo $this->twitter(); } ?>
+		<?php if($config['social_gplus']) { echo $this->plusone(); } ?>
+	</div>
 </div>
