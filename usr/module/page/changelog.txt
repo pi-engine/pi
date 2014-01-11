@@ -1,6 +1,16 @@
 Page module changelog
 
 
+January 10th, 2014
+=============================
+1. Add Text API
+2. Add seo_title, seo_keywords, seo_description
+3. Fix install/meta.txt
+4. Add module config 
+5. Improce page API
+6. Improve templates
+7. Improve generate name / slug
+
 September 28th, 2012
 =============================
 1. Versioned at 1.0.0-beta.4

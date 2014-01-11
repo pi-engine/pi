@@ -17,7 +17,7 @@ class Api extends AbstractApi
     protected $module = 'page';
     protected $pageColumns = array(
         'name', 'title', 'slug', 'content', 'markup', 'active',
-        'user', 'time_created'
+        'user', 'time_created', 'seo_title', 'seo_keywords', 'seo_description'
     );
 
     /**
@@ -33,9 +33,21 @@ class Api extends AbstractApi
                 unset($page[$key]);
             }
         }
+        // Set time_created
         if (!isset($page['time_created'])) {
             $page['time_created'] = time();
         }
+        // Set name
+        $page['name'] = Pi::api('text', 'page')->name($page['name']);
+        // Set slug
+        $page['slug'] = Pi::api('text', 'page')->slug($page['title']);
+        // Set seo_title
+        $page['seo_title'] = Pi::api('text', 'page')->title($page['title']);
+        // Set seo_keywords
+        $page['seo_keywords'] = Pi::api('text', 'page')->keywords($page['title']);
+        // Set seo_description
+        $page['seo_description'] = Pi::api('text', 'page')->description($page['title']);
+        // Save
         $row = Pi::model('page', $this->getModule())->createRow($page);
         $row->save();
         if (!$row->id) {
