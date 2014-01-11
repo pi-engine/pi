@@ -1,6 +1,6 @@
 /**
- * <link href="<?php echo Pi::url('static/js/pi-sidenav.css'); ?>" rel="stylesheet">
- * <script src="<?php echo Pi::url('static/js/pi-sidenav.js'); ?>"></script>
+ * <link href="<?php echo Pi::url('static/component/sidenav/pi-sidenav.css'); ?>" rel="stylesheet">
+ * <script src="<?php echo Pi::url('static/component/sidenav/pi-sidenav.js'); ?>"></script>
  * Example
  * <ul class="pi-sidenav">
     <li class="active">
