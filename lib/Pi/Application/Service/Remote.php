@@ -31,7 +31,17 @@ use Zend\Uri\Uri;
  *
  * Remote upload
  * ```
- *  $file = '/path/to/file';
+ *  $file = </path/to/file>;
+ *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
+ *
+ *  $file = array(
+ *      'tmp_name'  => </path/to/file>,
+ *      'type'      => <mimetype>,
+ *  );
+ *  $params = array(
+ *      'filename'  => <desired-filename>,
+ *      'param'     => <extra-params>,
+ *  );
  *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
  *
  *  $file = fopen('/path/to/file', 'r');
@@ -450,11 +460,20 @@ class Remote extends AbstractService
         array $headers = array(),
         array $options = array()
     ) {
-        $uri = $this->canonizeUrl($url, $params);
+        $headers = $this->canonizeHeaders($headers);
+        // Pass `CURLOPT_POSTFIELDS` as array with `Content-Type` header set to `multipart/form-data`
+        if (isset($headers['Content-Type'])
+            && 'multipart/form-data' == $headers['Content-Type']
+        ) {
+            $uri = $url;
+            $body = $params;
+        // Pass `CURLOPT_POSTFIELDS` as string
+        } else {
+            $uri = $this->canonizeUrl($url, $params);
+            $body = $uri->getQuery();
+        }
         $this->connect($uri);
 
-        $body = $uri->getQuery();
-        $headers = $this->canonizeHeaders($headers);
         $this->write('POST', $uri, '1.1', $headers, $body, $options);
         $response = $this->read();
         if (false !== $response) {
@@ -514,15 +533,21 @@ class Remote extends AbstractService
 
         // Upload a file from absolute path via `POST`
         if (!is_resource($file)) {
+            // @see http://www.php.net/curl_setopt
+            // If value is an array, the `Content-Type` header will be set to `multipart/form-data`.
+            // As of PHP 5.2.0, value must be an array if files are passed to this option with the @ prefix.
+            $headers['Content-Type'] = 'multipart/form-data';
+
             if (is_array($file)) {
-                $filename = $file['temp_name'];
-                $mimetype = $file['type'];
-                $postname = $file['name'];
+                $filename = $file['tmp_name'];
+                $mimetype = isset($file['type']) ? $file['type'] : '';
+                $postname = isset($file['name']) ? $file['name'] : '';
             } else {
                 $filename = $file;
                 $mimetype = '';
                 $postname = '';
             }
+            // As of PHP 5.5.0, the @ prefix is deprecated and files can be sent using `CURLFile`.
             if (class_exists('CurlFile')) {
                 $curlFile = new CurlFile($filename, $mimetype, $postname);
             } else {
@@ -530,11 +555,11 @@ class Remote extends AbstractService
                 if ($mimetype) {
                     $curlFile .= ';type=' . $mimetype;
                 }
-                if ($postname) {
-                    $curlFile .= ';name=' . $postname;
+                if ($postname && !isset($params['filename'])) {
+                    $params['filename'] = $postname;
                 }
             }
-            $params['file'] = $curlFile;
+            $params[] = $curlFile;
             $result = $this->post($uri, $params, $headers, $options);
 
             return $result;
