@@ -11,6 +11,7 @@ January 10th, 2014
 6. Improve templates
 7. Improve generate name / slug
 8. Improve update script
+9. Fix bug on render markdown pages
 
 September 28th, 2012
 =============================
