@@ -10,6 +10,7 @@ January 10th, 2014
 5. Improce page API
 6. Improve templates
 7. Improve generate name / slug
+8. Improve update script
 
 September 28th, 2012
 =============================
