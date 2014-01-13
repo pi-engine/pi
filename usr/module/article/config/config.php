@@ -246,8 +246,9 @@ return array(
         'max_media_size'  => array(
             'category'    => 'media',
             'title'       => _t('Max Media Size'),
-            'description' => _t('Max media size'),
-            'value'       => '2MB',
+            'description' => _t('Max media size, unit is Byte'),
+            'value'       => 2097152,
+            'filter'      => 'number_int',
         ),
         'default_media_image' => array(
             'category'    => 'media',
@@ -282,8 +283,9 @@ return array(
         'max_image_size' => array(
             'category'    => 'media',
             'title'       => _t('Max Image Size'),
-            'description' => _t('Max image size allowed'),
-            'value'       => '2MB',
+            'description' => _t('Max image size allowed, unit is Byte'),
+            'value'       => 2097152,
+            'filter'      => 'number_int',
         ),
         'path_author'  => array(
             'category'    => 'media',
