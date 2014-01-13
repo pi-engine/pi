@@ -118,6 +118,6 @@
         <input type="file" name="upload">
     </div>
     <div class="text-muted" style="line-height: 0; margin: -140px 0 0 50px; font-size: 12px">
-        <?php echo _a('Format supported: ') . implode(', ', $imageExtension); ?> (<?php echo $this->escape($maxMediaSize); ?>)
+        <?php echo sprintf(_a('Format supported: %s'), $configs['image_extension']); ?> (<?php echo $this->escape($configs['max_media_size']); ?>)
     </div>
 </script>

@@ -9,13 +9,11 @@
 
 namespace Module\Article\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
-use Pi\Paginator\Paginator;
+use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\MediaEditForm;
 use Module\Article\Form\MediaEditFilter;
 use Module\Article\Form\SimpleSearchForm;
-use Module\Article\Service;
 use Zend\Db\Sql\Expression;
 use Module\Article\Media;
 use Module\Article\File;
@@ -40,160 +38,6 @@ class MediaController extends ActionController
     const AJAX_RESULT_TRUE  = true;
     const AJAX_RESULT_FALSE = false;
 
-    /**
-     * Saving media information
-     * 
-     * @param  array    $data  Media information
-     * @return boolean
-     * @throws \Exception 
-     */
-    protected function saveMedia($data)
-    {
-        $module        = $this->getModule();
-        $modelMedia    = $this->getModel('media');
-        $fakeId        = $image = null;
-
-        if (isset($data['id'])) {
-            $id = $data['id'];
-            unset($data['id']);
-        }
-
-        $fakeId = Service::getParam($this, 'fake_id', 0);
-
-        unset($data['media']);
-        
-        // Getting media info
-        $session    = Service::getUploadSession($module, 'media');
-        if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))) {
-            $uploadInfo = isset($session->$id)
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $data['type'] = strtolower($pathInfo['extension']);
-                }
-                $data['size'] = filesize($uploadInfo['tmp_name']);
-                
-                // Meta
-                $metaColumns = array('w', 'h');
-                $meta        = array();
-                foreach ($uploadInfo as $key => $info) {
-                    if (in_array($key, $metaColumns)) {
-                        $meta[$key] = $info;
-                    }
-                }
-                $data['meta'] = json_encode($meta);
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-        
-        // Getting user ID
-        $user   = Pi::service('user')->getUser();
-        $uid    = Pi::user()->getId() ?: 0;
-        $data['uid'] = $uid;
-        
-        if (empty($id)) {
-            $data['time_upload'] = time();
-            $row = $modelMedia->createRow($data);
-            $row->save();
-            $id = $row->id;
-            $rowMedia = $modelMedia->find($id);
-        } else {
-            $data['time_update'] = time();
-            $rowMedia = $modelMedia->find($id);
-
-            if (empty($rowMedia)) {
-                return false;
-            }
-
-            $rowMedia->assign($data);
-            $rowMedia->save();
-        }
-
-        // Save image
-        if (!empty($uploadInfo)) {
-            $fileName = $rowMedia->id;
-
-            if ($pathInfo['extension']) {
-                $fileName .= '.' . $pathInfo['extension'];
-            }
-            $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-            $rowMedia->url = rename(
-                Pi::path($uploadInfo['tmp_name']),
-                Pi::path($fileName)
-            ) ? $fileName : $uploadInfo['tmp_name'];
-            $rowMedia->save();
-        }
-
-        return $id;
-    }
-    
-    /**
-     * Output file
-     * 
-     * @param array $options 
-     */
-    protected function httpOutputFile(array $options)
-    {
-        if ((!isset($options['file']) && !isset($options['raw']))) {
-            if (!$options['silent']) {
-                header('HTTP/1.0 404 Not Found');
-            }
-            exit();
-        }
-        if (isset($options['file']) && !is_file($options['file'])) {
-            if (!$options['silent']) {
-                header('HTTP/1.0 403 Forbidden');
-            }
-            exit();
-        }
-        if (strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
-            $options['fileName'] = urlencode($options['fileName']);
-        }
-        $options['fileSize'] = isset($options['file']) 
-            ? filesize($options['file']) : strlen($options['raw']);
-
-        if (ini_get('zlib.output_compression')) {
-            ini_set('zlib.output_compression', 'Off');
-        }
-
-        header("Pragma: public");
-        header('Content-Description: File Transfer');
-        if (strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
-            header('Content-Type: application/force-download; charset=UTF-8');
-        } else {
-            header('Content-Type: application/octet-stream; charset=UTF-8');
-        }
-        header('Content-Disposition: attachment; filename="' . $options['fileName'] . '"');
-        header('Content-Transfer-Encoding: binary');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Cache-Control: private', false);
-        header('Pragma: public');
-        header('Content-Length: ' . $options['fileSize']);
-        ob_clean();
-        flush();
-
-        if (!empty($options['file'])) {
-            readfile($options['file']);
-            if (!empty($options['deleteFile'])) {
-                @unlink($options['file']);
-            }
-        } else {
-            echo $options['raw'];
-            ob_flush();
-            flush();
-        }
-        if (empty($options['notExit'])) {
-            exit();
-        }
-    }
-    
     /**
      * Calculate the image size by allowed image size.
      * 
@@ -247,18 +91,18 @@ class MediaController extends ActionController
      */
     public function uploadAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $module   = $this->getModule();
         $config   = Pi::service('module')->config('', $module);
 
         $return   = array('status' => false);
-        $id       = Service::getParam($this, 'id', 0);
+        $id       = $this->params('id', 0);
         if (empty($id)) {
-            $id = Service::getParam($this, 'fake_id', 0) ?: uniqid();
+            $id = $this->params('fake_id', 0) ?: uniqid();
         }
-        $type     = Service::getParam($this, 'type', 'attachment');
-        $formName = Service::getParam($this, 'form_name', 'upload');
+        $type     = $this->params('type', 'attachment');
+        $formName = $this->params('form_name', 'upload');
 
         // Checking whether ID is empty
         if (empty($id)) {
@@ -267,11 +111,11 @@ class MediaController extends ActionController
             exit ;
         }
         
-        $width   = Service::getParam($this, 'width', 0);
-        $height  = Service::getParam($this, 'height', 0);
+        $width   = $this->params('width', 0);
+        $height  = $this->params('height', 0);
         
-        $rawInfo     = $this->request->getFiles($formName);
-        $ext         = strtolower(
+        $rawInfo = $this->request->getFiles($formName);
+        $ext     = strtolower(
             pathinfo($rawInfo['name'], PATHINFO_EXTENSION)
         );
         $rename  = $id . '.' . $ext;
@@ -280,12 +124,12 @@ class MediaController extends ActionController
             ? $config['image_extension'] : $config['media_extension'];
         $mediaSize        = ($type == 'image')
             ? $config['max_image_size'] : $config['max_media_size'];
-        $destination = Service::getTargetDir('media', $module, true, true);
-        $upload      = new UploadHandler;
-        $upload->setDestination(Pi::path($destination))
-                ->setRename($rename)
-                ->setExtension($allowedExtension)
-                ->setSize($mediaSize);
+        $destination = Media::getTargetDir('media', $module, true, true);
+        $uploader    = new UploadHandler;
+        $uploader->setDestination(Pi::path($destination))
+                 ->setRename($rename)
+                 ->setExtension($allowedExtension)
+                 ->setSize($mediaSize);
         
         // Get raw file name
         if (empty($rawInfo)) {
@@ -297,13 +141,13 @@ class MediaController extends ActionController
         }
         
         // Checking whether uploaded file is valid
-        if (!$upload->isValid($rawName)) {
-            $return['message'] = implode(', ', $upload->getMessages());
+        if (!$uploader->isValid($rawName)) {
+            $return['message'] = implode(', ', $uploader->getMessages());
             echo json_encode($return);
             exit ;
         }
 
-        $upload->receive();
+        $uploader->receive();
         $fileName = $destination . '/' . $rename;
         
         // Resolve allowed image extension
@@ -322,7 +166,7 @@ class MediaController extends ActionController
             );
             $uploadInfo['w'] = $width ?: $scaleImageSize['w'];
             $uploadInfo['h'] = $height ?: $scaleImageSize['h'];
-            Service::saveImage($uploadInfo);
+            Media::saveImage($uploadInfo);
             
             $imageSizeRaw = getimagesize(Pi::path($fileName));
             $imageSize['w'] = $imageSizeRaw[0];
@@ -330,20 +174,20 @@ class MediaController extends ActionController
         }
 
         // Save uploaded media
-        $rowMedia = $this->getModel('media')->find($id);
-        if ($rowMedia) {
-            if ($rowMedia->url && $rowMedia->url != $fileName) {
-                unlink(Pi::path($rowMedia->url));
+        $row = $this->getModel('media')->find($id);
+        if ($row) {
+            if ($row->url && $row->url != $fileName) {
+                unlink(Pi::path($row->url));
             }
             
-            $rowMedia->url  = $fileName;
-            $rowMedia->type = $ext;
-            $rowMedia->size = filesize(Pi::path($fileName));
-            $rowMedia->meta = json_encode($imageSize);
-            $rowMedia->save();
+            $row->url  = $fileName;
+            $row->type = $ext;
+            $row->size = filesize(Pi::path($fileName));
+            $row->meta = json_encode($imageSize);
+            $row->save();
         } else {
             // Or save info to session
-            $session = Service::getUploadSession($module, 'media');
+            $session = Media::getUploadSession($module, 'media');
             $session->$id = $uploadInfo;
         }
         
@@ -372,9 +216,9 @@ class MediaController extends ActionController
      */
     public function removeAction()
     {
-        Pi::service('log')->active(false);
-        $id           = Service::getParam($this, 'id', 0);
-        $fakeId       = Service::getParam($this, 'fake_id', 0);
+        Pi::service('log')->mute();
+        $id           = $this->params('id', 0);
+        $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
 
@@ -393,7 +237,7 @@ class MediaController extends ActionController
                 $affectedRows = $row->save();
             }
         } else if ($fakeId) {
-            $session = Service::getUploadSession($module, 'media');
+            $session = Media::getUploadSession($module, 'media');
 
             if (isset($session->$fakeId)) {
                 $uploadInfo = isset($session->$id) ? $session->$id : $session->$fakeId;
@@ -407,8 +251,8 @@ class MediaController extends ActionController
         }
 
         echo json_encode(array(
-            'status'    => $affectedRows ? self::AJAX_RESULT_TRUE : self::AJAX_RESULT_FALSE,
-            'message'   => 'ok',
+            'status'  => $affectedRows ? self::AJAX_RESULT_TRUE : self::AJAX_RESULT_FALSE,
+            'message' => 'ok',
         ));
         exit;
     }
@@ -504,9 +348,9 @@ class MediaController extends ActionController
      */
     public function searchAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
-        $type = Service::getParam($this, 'type', '');
+        $type = $this->params('type', '');
         
         $where = array();
         // Resolving type
@@ -525,29 +369,25 @@ class MediaController extends ActionController
         }
         
         // Resolving ID
-        $id  = Service::getParam($this, 'id', 0);
+        $id  = $this->params('id', 0);
         $ids = array_filter(explode(',', $id));
         if (!empty($ids)) {
             $where['id'] = $ids;
         }
         
         // Getting title condition
-        $title = Service::getParam($this, 'title', '');
+        $title = $this->params('title', '');
         if (!empty($title)) {
             $where['title like ?'] = '%' . $title . '%';
         }
         
-        $page   = (int) Service::getParam($this, 'page', 1);
-        $limit  = (int) Service::getParam($this, 'limit', 5);
+        $page   = (int) $this->params('page', 1);
+        $limit  = (int) $this->params('limit', 5);
         
         $rowset = Media::getList($where, $page, $limit);
         
         // Get count
-        $model  = $this->getModel('media');
-        $select = $model->select()
-            ->where($where)
-            ->columns(array('count' => new Expression('count(*)')));
-        $count  = $model->selectWith($select)->current()->count;
+        $count  = $this->getModel('media')->count($where);
         
         // Get previous and next button URL
         $prevUrl = '';
@@ -582,7 +422,7 @@ class MediaController extends ActionController
      */
     public function saveAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->muted();
         
         $id     = $this->params('id', 0);
         $fakeId = $this->params('fake_id', 0);
@@ -628,5 +468,155 @@ class MediaController extends ActionController
         
         echo json_encode($result);
         exit;
+    }
+    
+    /**
+     * Saving media information
+     * 
+     * @param  array    $data  Media information
+     * @return boolean
+     * @throws \Exception 
+     */
+    protected function saveMedia($data)
+    {
+        $module = $this->getModule();
+        $model  = $this->getModel('media');
+        $fakeId = $image = null;
+
+        if (isset($data['id'])) {
+            $id = $data['id'];
+            unset($data['id']);
+        }
+
+        $fakeId = $this->params('fake_id', 0);
+
+        unset($data['media']);
+        
+        // Getting media info
+        $session    = Media::getUploadSession($module, 'media');
+        if (isset($session->$id)
+            || ($fakeId && isset($session->$fakeId))) {
+            $uploadInfo = isset($session->$id)
+                ? $session->$id : $session->$fakeId;
+
+            if ($uploadInfo) {
+                $pathInfo = pathinfo($uploadInfo['tmp_name']);
+                if ($pathInfo['extension']) {
+                    $data['type'] = strtolower($pathInfo['extension']);
+                }
+                $data['size'] = filesize($uploadInfo['tmp_name']);
+                
+                // Meta
+                $metaColumns = array('w', 'h');
+                $meta        = array();
+                foreach ($uploadInfo as $key => $info) {
+                    if (in_array($key, $metaColumns)) {
+                        $meta[$key] = $info;
+                    }
+                }
+                $data['meta'] = json_encode($meta);
+            }
+
+            unset($session->$id);
+            unset($session->$fakeId);
+        }
+        
+        // Getting user ID
+        $data['uid'] = Pi::user()->getId() ?: 0;
+        
+        if (empty($id)) {
+            $data['time_upload'] = time();
+            $row = $model->createRow($data);
+            $row->save();
+        } else {
+            $data['time_update'] = time();
+            $row = $model->find($id);
+
+            if (empty($row)) {
+                return false;
+            }
+
+            $row->assign($data);
+            $row->save();
+        }
+
+        // Save image
+        if (!empty($uploadInfo)) {
+            $fileName = $row->id;
+
+            if ($pathInfo['extension']) {
+                $fileName .= '.' . $pathInfo['extension'];
+            }
+            $fileName = $pathInfo['dirname'] . '/' . $fileName;
+
+            $row->url = rename(
+                Pi::path($uploadInfo['tmp_name']),
+                Pi::path($fileName)
+            ) ? $fileName : $uploadInfo['tmp_name'];
+            $row->save();
+        }
+
+        return $row->id;
+    }
+    
+    /**
+     * Output file
+     * 
+     * @param array $options 
+     */
+    protected function httpOutputFile(array $options)
+    {
+        if ((!isset($options['file']) && !isset($options['raw']))) {
+            if (!$options['silent']) {
+                header('HTTP/1.0 404 Not Found');
+            }
+            exit();
+        }
+        if (isset($options['file']) && !is_file($options['file'])) {
+            if (!$options['silent']) {
+                header('HTTP/1.0 403 Forbidden');
+            }
+            exit();
+        }
+        if (strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false) {
+            $options['fileName'] = urlencode($options['fileName']);
+        }
+        $options['fileSize'] = isset($options['file']) 
+            ? filesize($options['file']) : strlen($options['raw']);
+
+        if (ini_get('zlib.output_compression')) {
+            ini_set('zlib.output_compression', 'Off');
+        }
+
+        header("Pragma: public");
+        header('Content-Description: File Transfer');
+        if (strstr($_SERVER['HTTP_USER_AGENT'], 'MSIE') === false) {
+            header('Content-Type: application/force-download; charset=UTF-8');
+        } else {
+            header('Content-Type: application/octet-stream; charset=UTF-8');
+        }
+        header('Content-Disposition: attachment; filename="' . $options['fileName'] . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Cache-Control: private', false);
+        header('Pragma: public');
+        header('Content-Length: ' . $options['fileSize']);
+        ob_clean();
+        flush();
+
+        if (!empty($options['file'])) {
+            readfile($options['file']);
+            if (!empty($options['deleteFile'])) {
+                @unlink($options['file']);
+            }
+        } else {
+            echo $options['raw'];
+            ob_flush();
+            flush();
+        }
+        if (empty($options['notExit'])) {
+            exit();
+        }
     }
 }

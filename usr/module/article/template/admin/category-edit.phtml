@@ -1,5 +1,5 @@
 <?php
-    $this->css($this->assetModule('script/article-front-admin.css'));
+    $this->css($this->assetModule('script/admin.css'));
     $this->jQuery('extension/fileupload-min.js');
     $this->Backbone();
     $this->bootstrap('js/bootstrap.min.js');
@@ -7,7 +7,7 @@
 
 <?php include 'message-box.phtml'; ?>
 
-<div id="jsUpload">
+<div id="pi-js-upload">
     <?php include $this->templateComponent('form'); ?>
     
     <script id="temp-upload" type="text/template">
@@ -67,7 +67,7 @@ var UploadView = Backbone.View.extend({
             .parents(".form-group:first")
             .find(".col-md-4:first")
             .html($("#temp-upload").html());
-        this.$el   = $("#jsUpload");
+        this.$el   = $("#pi-js-upload");
         this.$("#media-button").html($("#media-upload-button").html());
         this.input = $('input[name="upload"]');
         this.fileupload();

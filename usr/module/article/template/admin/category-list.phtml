@@ -1,8 +1,8 @@
 <?php
-    $this->css($this->assetModule('script/article-front-admin.css'));
+    $this->css($this->assetModule('script/admin.css'));
     $this->jQuery();
 ?>
-<div id="jsList">
+<div id="pi-js-list">
     <table class="table table-striped">
         <tbody>
             <tr>
@@ -57,7 +57,7 @@
                         <a href="<?php echo $this->escape($addUrl); ?>"><?php echo _a('Add'); ?></a> |
                         <a href="<?php echo $this->escape($editUrl); ?>"><?php echo _a('Edit'); ?></a> |
                         <a href="<?php echo $this->escape($deleteUrl); ?>"
-                           onclick="return window.confirm('Really delete?');"><?php echo _a('Delete'); ?></a> |
+                           onclick="return window.confirm('Really delete it?');"><?php echo _a('Delete'); ?></a> |
                         <a href="<?php echo $this->escape($mergeUrl); ?>"><?php echo _a('Merge'); ?></a> |
                         <a href="<?php echo $this->escape($moveUrl); ?>"><?php echo _a('Move'); ?></a>
                     </div>
