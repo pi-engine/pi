@@ -88,7 +88,11 @@ if ($isTab) {
     } else {
         $heading = $block['title'];
     }
-    $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
+    if (empty($block['body_fullsize'])) {
+        $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
+    } else {
+        $body = $block['content'];
+    }
 }
 ?>
 <div class="panel panel-default<?php echo $class; ?>">
