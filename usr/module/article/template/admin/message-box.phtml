@@ -1,16 +1,11 @@
 <div id="message-box">
-    <?php if (isset($error)) { ?>
-    <div class="alert alert-danger">
-        <button class="close" data-dismiss="alert" type="button">×</button>
-        <?php echo $this->escape($error); ?>
-    </div>
-    <?php } elseif (isset($message)) { ?>
-    <div class="alert alert-success">
+<?php if (isset($message)) { ?>
+    <div class="alert alert-<?php echo $error ? 'danger' : 'success'; ?>">
         <button class="close" data-dismiss="alert" type="button">×</button>
         <?php echo $this->escape($message); ?>
     </div>
-    <?php } ?>
 </div>
+<?php } ?>
 
 <script id="template-message" type="text/template">
     <div class="alert alert-<%= status %>">

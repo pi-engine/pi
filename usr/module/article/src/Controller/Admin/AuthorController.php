@@ -9,14 +9,12 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\AuthorEditForm;
 use Module\Article\Form\AuthorEditFilter;
 use Module\Article\Model\Author;
-use Zend\Db\Sql\Expression;
-use Module\Article\Service;
 use Module\Article\Media;
 use Pi\File\Transfer\Upload as UploadHandler;
 
@@ -27,102 +25,11 @@ use Pi\File\Transfer\Upload as UploadHandler;
  * 
  * 1. List/add/edit/delete author
  * 2. AJAX action for saving/removing author photo
- * 3. AJAX action for fuzzy searching author by name
  *
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class AuthorController extends ActionController
 {
-    /**
-     * Getting form instance
-     * 
-     * @param string  $action  Action to request when submit
-     * @return \Module\Article\Form\AuthorEditForm 
-     */
-    protected function getAuthorForm($action = 'add')
-    {
-        $form = new AuthorEditForm();
-        $form->setAttributes(array(
-            'action'  => $this->url('', array('action' => $action)),
-            'method'  => 'post',
-            'enctype' => 'multipart/form-data',
-            'class'   => 'form-horizontal',
-        ));
-
-        return $form;
-    }
-
-    /**
-     * Save author information
-     * 
-     * @param array  $data  Author information
-     * @return boolean 
-     */
-    protected function saveAuthor($data)
-    {
-        $module      = $this->getModule();
-        $modelAuthor = $this->getModel('author');
-        $fakeId      = $photo = null;
-
-        if (isset($data['id'])) {
-            $id = $data['id'];
-            unset($data['id']);
-        }
-
-        $fakeId = Service::getParam($this, 'fake_id', 0);
-
-        unset($data['photo']);
-
-        if (empty($id)) {
-            $rowAuthor = $modelAuthor->createRow($data);
-            $rowAuthor->save();
-
-            if (empty($rowAuthor->id)) {
-                return false;
-            }
-
-            $id = $rowAuthor->id;
-        } else {
-            $rowAuthor = $modelAuthor->find($id);
-
-            if (empty($rowAuthor)) {
-                return false;
-            }
-
-            $rowAuthor->assign($data);
-            $rowAuthor->save();
-        }
-
-        // Save photo
-        $session    = Service::getUploadSession($module, 'author');
-        if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))) {
-            $uploadInfo = isset($session->$id) 
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $fileName = $rowAuthor->id;
-
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $fileName .= '.' . $pathInfo['extension'];
-                }
-                $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-                $rowAuthor->photo = rename(
-                    Pi::path($uploadInfo['tmp_name']),
-                    Pi::path($fileName)
-                ) ? $fileName : $uploadInfo['tmp_name'];
-                $rowAuthor->save();
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-
-        return $id;
-    }
-
     /**
      * Default page, redirect to author list page
      * 
@@ -130,7 +37,7 @@ class AuthorController extends ActionController
      */
     public function indexAction()
     {
-        return $this->redirect()->toRoute('', array('action'    => 'list'));
+        return $this->redirect()->toRoute('', array('action' => 'list'));
     }
 
     /**
@@ -140,9 +47,16 @@ class AuthorController extends ActionController
      */
     public function addAction()
     {
+        $module  = $this->getModule();
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
         $form = $this->getAuthorForm('add');
-        Service::setModuleConfig($this);
-        $this->view()->assign('title', _a('Add author info'));
+        $this->view()->assign(array(
+            'title'     => _a('Add author info'),
+            'configs'   => $configs,
+        ));
         $this->view()->setTemplate('author-edit');
         
         if ($this->request->isPost()) {
@@ -152,8 +66,7 @@ class AuthorController extends ActionController
             $form->setValidationGroup(Author::getAvailableFields());
 
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occured!')
                 );
@@ -170,7 +83,6 @@ class AuthorController extends ActionController
             }
             
             // Clear cache
-            $module = $this->getModule();
             Pi::service('registry')
                 ->handler('author', $module)
                 ->clear($module);
@@ -178,7 +90,7 @@ class AuthorController extends ActionController
             $this->redirect()->toRoute('', array('action' => 'list'));
         }
 
-        $form->setData(array('fake_id'  => uniqid()));
+        $form->setData(array('fake_id' => uniqid()));
         $this->view()->assign('form', $form);
     }
     
@@ -189,9 +101,16 @@ class AuthorController extends ActionController
      */
     public function editAction()
     {
+        $module  = $this->getModule();
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
         $form = $this->getAuthorForm('edit');
-        Service::setModuleConfig($this);
-        $this->view()->assign('title', _a('Edit Author Info'));
+        $this->view()->assign(array(
+            'title'     => _a('Edit author info'),
+            'configs'   => $configs,
+        ));
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -200,8 +119,7 @@ class AuthorController extends ActionController
             $form->setValidationGroup(Author::getAvailableFields());
 
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occured!')
                 );
@@ -211,7 +129,6 @@ class AuthorController extends ActionController
             $id   = $this->saveAuthor($data);
             
             // Clear cache
-            $module = $this->getModule();
             Pi::service('registry')
                 ->handler('author', $module)
                 ->clear($module);
@@ -240,8 +157,8 @@ class AuthorController extends ActionController
      */
     public function deleteAction()
     {
-        $id     = $this->params('id');
-        $ids    = array_filter(explode(',', $id));
+        $id  = $this->params('id');
+        $ids = array_filter(explode(',', $id));
         if (empty($ids)) {
             return $this->jumpTo404(_a('Invalid author id!'));
         }
@@ -279,31 +196,26 @@ class AuthorController extends ActionController
      */
     public function listAction()
     {
-        $page   = Service::getParam($this, 'p', 1);
-        $name   = Service::getParam($this, 'name', '');
+        $page   = $this->params('p', 1);
         $limit  = $this->config('author_limit') > 0
             ? $this->config('author_limit') : 20;
         $offset = $limit * ($page - 1);
-
-        $module = $this->getModule();
-        $model  = $this->getModel('author');
-        $select = $model->select();
+        $name   = $this->params('name', '');
+        
+        $where = array();
         if ($name) {
-            $select->where->like('name', "%{$name}%");
+            $where['name like ?'] = "%%{$name}%%";
         }
-        $select->order('name ASC')->offset($offset)->limit($limit);
-
+        
+        $model  = $this->getModel('author');
+        $select = $model->select()
+            ->where($where)
+            ->order('name ASC')
+            ->offset($offset)
+            ->limit($limit);
         $resultset = $model->selectWith($select);
 
-        // Total count
-        $select = $model->select()->columns(
-            array('total' => new Expression('count(id)'))
-        );
-        if ($name) {
-            $select->where->like('name', "%{$name}%");
-        }
-        $authorCountResultset = $model->selectWith($select);
-        $totalCount = intval($authorCountResultset->current()->total);
+        $totalCount = $model->count($where);
 
         // PaginatorPaginator
         $paginator = Paginator::factory($totalCount);
@@ -312,11 +224,8 @@ class AuthorController extends ActionController
             ->setUrlOptions(array(
                 'page_param' => 'p',
                 'router'     => $this->getEvent()->getRouter(),
-                'route'      => $this->getEvent()
-                    ->getRouteMatch()
-                    ->getMatchedRouteName(),
+                'route'      => 'admin',
                 'params'     => array_filter(array(
-                    'module'        => $module,
                     'controller'    => 'author',
                     'action'        => 'list',
                     'name'          => $name,
@@ -339,7 +248,7 @@ class AuthorController extends ActionController
      */
     public function saveImageAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $return = array('status' => false);
         
@@ -361,7 +270,7 @@ class AuthorController extends ActionController
         }
 
         $module  = $this->getModule();
-        $session = Service::getUploadSession($module, 'author');
+        $session = Media::getUploadSession($module, 'author');
         $image   = $session->$uploadFakeId;
         if (empty($image['tmp_name']) 
             or !file_exists(Pi::path($image['tmp_name']))
@@ -403,7 +312,7 @@ class AuthorController extends ActionController
         $uploadInfo['w']        = $this->config('author_size');
         $uploadInfo['h']        = $this->config('author_size');
         
-        Service::saveImage($uploadInfo);
+        Media::saveImage($uploadInfo);
 
         $rowAuthor = $this->getModel('author')->find($id);
         if ($rowAuthor) {
@@ -415,7 +324,7 @@ class AuthorController extends ActionController
             $rowAuthor->save();
         } else {
             // Or save info to session
-            $session = Service::getUploadSession($module, 'author');
+            $session = Media::getUploadSession($module, 'author');
             $session->$id = $uploadInfo;
         }
 
@@ -445,9 +354,10 @@ class AuthorController extends ActionController
      */
     public function removeImageAction()
     {
-        Pi::service('log')->active(false);
-        $id           = Service::getParam($this, 'id', 0);
-        $fakeId       = Service::getParam($this, 'fake_id', 0);
+        Pi::service('log')->mute();
+        
+        $id           = $this->params('id', 0);
+        $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
 
@@ -463,7 +373,7 @@ class AuthorController extends ActionController
                 $affectedRows     = $rowAuthor->save();
             }
         } else if ($fakeId) {
-            $session = Service::getUploadSession($module, 'author');
+            $session = Media::getUploadSession($module, 'author');
 
             if (isset($session->$fakeId)) {
                 $uploadInfo = isset($session->$id)
@@ -488,7 +398,7 @@ class AuthorController extends ActionController
      */
     public function uploadAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $module   = $this->getModule();
         $config   = Pi::service('module')->config('', $module);
@@ -510,31 +420,22 @@ class AuthorController extends ActionController
         $rename   = $fakeId . '.' . $ext;
 
         // Get path to store
-        $destination = Service::getTargetDir('author', $module, true, false);
+        $destination = Media::getTargetDir('author', $module, true, false);
 
-        $upload    = new UploadHandler;
-        $upload->setDestination(Pi::path($destination))
-            ->setRename($rename)
-            ->setExtension($config['image_extension'])
-            ->setSize(Media::transferSize($config['max_media_size'], false));
-        
-        // Get raw file name
-        if (empty($rawInfo)) {
-            $content = $this->request->getContent();
-            preg_match('/filename="(.+)"/', $content, $matches);
-            $rawName = $matches[1];
-        } else {
-            $rawName = null;
-        }
+        $uploader = new UploadHandler;
+        $uploader->setDestination(Pi::path($destination))
+                 ->setRename($rename)
+                 ->setExtension($config['image_extension'])
+                 ->setSize($config['max_media_size']);
         
         // Checking whether uploaded file is valid
-        if (!$upload->isValid($rawName)) {
-            $return['message'] = implode(', ', $upload->getMessages());
+        if (!$uploader->isValid()) {
+            $return['message'] = implode(', ', $uploader->getMessages());
             echo json_encode($return);
             exit ;
         }
 
-        $upload->receive();
+        $uploader->receive();
         $fileName = $destination . '/' . $rename;
         
         // Resolve allowed image extension
@@ -550,7 +451,7 @@ class AuthorController extends ActionController
         );
 
         // Save info to session
-        $session = Service::getUploadSession($module, 'author');
+        $session = Media::getUploadSession($module, 'author');
         $session->$fakeId = $uploadInfo;
         
         // Prepare return data
@@ -576,7 +477,7 @@ class AuthorController extends ActionController
      */
     public function removeUploadAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $module   = $this->getModule();
         $return   = array('status' => false);
@@ -591,7 +492,7 @@ class AuthorController extends ActionController
         }
         
         // Save info to session
-        $session = Service::getUploadSession($module, 'author');
+        $session = Media::getUploadSession($module, 'author');
         $image   = $session->$fakeId;
         
         if ($image and file_exists(Pi::path($image['tmp_name']))) {
@@ -602,5 +503,106 @@ class AuthorController extends ActionController
         $return['status'] = true;
         echo json_encode($return);
         exit;
+    }
+    
+    /**
+     * Getting form instance
+     * 
+     * @param string  $action  Action to request when submit
+     * @return \Module\Article\Form\AuthorEditForm 
+     */
+    protected function getAuthorForm($action = 'add')
+    {
+        $form = new AuthorEditForm();
+        $form->setAttributes(array(
+            'action'  => $this->url('', array('action' => $action)),
+            'enctype' => 'multipart/form-data',
+        ));
+
+        return $form;
+    }
+    
+    /**
+     * Render form
+     * 
+     * @param Zend\Form\Form $form     Form instance
+     * @param string         $message  Message assign to template
+     * @param bool           $error    Whether is error message
+     */
+    public function renderForm($form, $message = null, $error = true)
+    {
+        $params = compact('form', 'message', 'error');
+        $this->view()->assign($params);
+    }
+
+    /**
+     * Save author information
+     * 
+     * @param array  $data  Author information
+     * @return boolean 
+     */
+    protected function saveAuthor($data)
+    {
+        $module      = $this->getModule();
+        $modelAuthor = $this->getModel('author');
+        $fakeId      = $photo = null;
+
+        if (isset($data['id'])) {
+            $id = $data['id'];
+            unset($data['id']);
+        }
+
+        $fakeId = $this->params('fake_id', 0);
+
+        unset($data['photo']);
+
+        if (empty($id)) {
+            $rowAuthor = $modelAuthor->createRow($data);
+            $rowAuthor->save();
+
+            if (empty($rowAuthor->id)) {
+                return false;
+            }
+
+            $id = $rowAuthor->id;
+        } else {
+            $rowAuthor = $modelAuthor->find($id);
+
+            if (empty($rowAuthor)) {
+                return false;
+            }
+
+            $rowAuthor->assign($data);
+            $rowAuthor->save();
+        }
+
+        // Save photo
+        $session    = Media::getUploadSession($module, 'author');
+        if (isset($session->$id)
+            || ($fakeId && isset($session->$fakeId))) {
+            $uploadInfo = isset($session->$id) 
+                ? $session->$id : $session->$fakeId;
+
+            if ($uploadInfo) {
+                $fileName = $rowAuthor->id;
+
+                $pathInfo = pathinfo($uploadInfo['tmp_name']);
+                if ($pathInfo['extension']) {
+                    $fileName .= '.' . $pathInfo['extension'];
+                }
+                $fileName = $pathInfo['dirname'] . '/' . $fileName;
+
+                $rowAuthor->photo = rename(
+                    Pi::path($uploadInfo['tmp_name']),
+                    Pi::path($fileName)
+                ) ? $fileName : $uploadInfo['tmp_name'];
+                $rowAuthor->save();
+            }
+
+            unset($session->$id);
+            unset($session->$fakeId);
+        }
+
+        return $id;
     }
 }

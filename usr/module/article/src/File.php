@@ -51,25 +51,4 @@ class File
         
         return $result;
     }
-    
-    /**
-     * Create directory if it is not exists
-     * 
-     * @param string  $dir  Absolute directory
-     * @return bool 
-     */
-    public static function mkdir($dir)
-    {
-        $result = true;
-
-        if (!file_exists($dir)) {
-            $oldumask = umask(0);
-
-            $result   = mkdir($dir, 0777, TRUE);
-
-            umask($oldumask);
-        }
-
-        return $result;
-    }
 }

@@ -110,72 +110,93 @@ class Media
     }
     
     /**
-     * Transfer size
+     * Get session instance
      * 
-     * @param string|int   $value
-     * @param bool         $direction  
-     * @return boolean 
+     * @param string  $module
+     * @param string  $type
+     * @return Pi\Application\Service\Session 
      */
-    public static function transferSize($value, $direction = true)
+    public static function getUploadSession($module = null, $type = 'default')
     {
-        if (!is_string($value) and !is_numeric($value)) {
-            return false;
+        $module = $module ?: Pi::service('module')->current();
+        $ns     = sprintf('%s_%s_upload', $module, $type);
+
+        return Pi::service('session')->$ns;
+    }
+    
+    /**
+     * Get target directory
+     * 
+     * @param string  $section
+     * @param string  $module
+     * @param bool    $autoCreate
+     * @param bool    $autoSplit
+     * @return string 
+     */
+    public static function getTargetDir(
+        $section, 
+        $module = null, 
+        $autoCreate = false, 
+        $autoSplit = true
+    ) {
+        $module  = $module ?: Pi::service('module')->current();
+        $config  = Pi::service('module')->config('', $module);
+        $pathKey = sprintf('path_%s', strtolower($section));
+        $path    = isset($config[$pathKey]) ? $config[$pathKey] : '';
+
+        if ($autoSplit && !empty($config['sub_dir_pattern'])) {
+            $path .= '/' . date($config['sub_dir_pattern']);
         }
-        
-        $result = $value;
-        if ($direction) {
-            if (!is_numeric($value)) {
-                return $value;
-            }
-            $value = intval($value);
-            if ($value / (1024 * 1024 * 1024 * 1024) > 1) {
-                $result = sprintf('%.2f', $value / (1024 * 1024 * 1024 * 1024)) . 'T';
-            } elseif ($value / (1024 * 1024 * 1024) > 1) {
-                $result = sprintf('%.2f', $value / (1024 * 1024 * 1024)) . 'G';
-            } elseif ($value / (1024 * 1024) > 1) {
-                $result = sprintf('%.2f', $value / (1024 * 1024)) . 'M';
-            } elseif ($value / 1024 > 1) {
-                $result = sprintf('%.2f', $value / 1024) . 'K';
-            } else {
-                $result = $value . 'B';
-            }
-        } else {
-            $value  = trim($value);
-            if (is_numeric($value)) {
-                return $value;
-            }
-            if (preg_match('/^\d\d*[a-zA-Z]$/', $value)) {
-                $unit   = substr($value, strlen($value) - 1);
-                $number = substr($value, 0, strlen($value) - 1);
-            } elseif (preg_match('/^\d\d*[a-zA-Z]{2}$/', $value)) {
-                $unit   = substr($value, strlen($value) - 2);
-                $number = substr($value, 0, strlen($value) - 2);
-            } else {
-                return false;
-            }
-            switch (strtolower($unit)) {
-                case 't':
-                case 'tb':
-                    $result = $number * 1024 * 1024 * 1024 * 1024;
-                    break;
-                case 'g':
-                case 'gb':
-                    $result = $number * 1024 * 1024 * 1024;
-                    break;
-                case 'm':
-                case 'mb':
-                    $result = $number * 1024 * 1024;
-                    break;
-                case 'k':
-                case 'kb':
-                    $result = $number * 1024;
-                    break;
-                default:
-                    $result = false;
-                    break;
-            }
+
+        if ($autoCreate) {
+            Pi::service('file')->mkdir(Pi::path($path));
         }
+
+        return $path;
+    }
+    
+    /**
+     * Get thumb image name
+     * 
+     * @param string  $fileName
+     * @return string 
+     */
+    public static function getThumbFromOriginal($fileName)
+    {
+        $parts = pathinfo($fileName);
+        return $parts['dirname'] 
+            . '/' . $parts['filename'] . '-thumb.' . $parts['extension'];
+    }
+    
+    /**
+     * Save image
+     * 
+     * @param array  $uploadInfo
+     * @return string|bool 
+     */
+    public static function saveImage($uploadInfo)
+    {
+        $result = false;
+        $size   = array();
+
+        $fileName       = $uploadInfo['tmp_name'];
+        $absoluteName   = Pi::path($fileName);
         
-        return $result;
+        $size = array($uploadInfo['w'], $uploadInfo['h']);
+
+        Pi::service('image')->resize($absoluteName, $size);
+        
+        // Create thumb
+        if (!empty($uploadInfo['thumb_w']) 
+            or !empty($uploadInfo['thumb_h'])
+        ) {
+            Pi::service('image')->resize(
+                $absoluteName,
+                array($uploadInfo['thumb_w'], $uploadInfo['thumb_h']),
+                Pi::path(self::getThumbFromOriginal($fileName))
+            );
+        }
+
+        return $result ? $fileName : false;
     }
 }
