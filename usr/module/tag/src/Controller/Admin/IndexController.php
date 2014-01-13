@@ -86,7 +86,7 @@ class IndexController extends ActionController
         foreach ($data as $row) {
             $moduleArray[] = $row['module'];
         }
-        $page = intval($this->params('p', 1));
+        $page = intval($this->params('page', 1));
         //var_dump($page);
         $module = $this->params('m', null);
         $module = $module != '' ? $module : null;
@@ -142,7 +142,7 @@ class IndexController extends ActionController
             'paginator'     => $paginator,
             'moduleArray'   => $moduleArray,
             'form'          => $form,
-            'curModule'        => $module,
+            'curModule'     => $module,
             'datas'         => $items,
         ));
         $this->view()->setTemplate('list');
@@ -157,7 +157,7 @@ class IndexController extends ActionController
         $linkModel = $this->getModel('link');
         $statsModel = $this->getModel('stats');
 
-        $page = $this->params('p', 1);
+        $page = $this->params('page', 1);
         $currentModule = $this->params('m', null);
         $limit = (int) $this->config('link_per_page');
         $offset = ($page -1) * $limit;
@@ -423,7 +423,7 @@ class IndexController extends ActionController
         }
 
         // Get search result
-        $page = (int) $this->params('p', 1);
+        $page = (int) $this->params('page', 1);
         $limit = (int) $this->config('item_per_page');
         $offset = (int) ($page - 1) * ((int) $this->config('item_per_page'));
         $select = $modelTag->select();
@@ -520,7 +520,7 @@ class IndexController extends ActionController
         // Get website module
         $linkModel = $this->getModel('link');
         $tagModel = $this->getModel('tag');
-        $page = $this->params('p', 1);
+        $page = $this->params('page', 1);
         $currentModule = $this->params('m', null);
         $limit = (int) $this->config('detail_per_page');
         $offset = ($page -1) * $limit;
