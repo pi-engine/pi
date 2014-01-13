@@ -1,28 +1,19 @@
 <?php
-    $this->css($this->assetModule('script/article-front-admin.css'));
+    $this->css($this->assetModule('script/admin.css'));
     $this->jQuery('extension/fileupload-min.js');
     $this->Backbone();
     $this->bootstrap('js/bootstrap.min.js');
 ?>
+
+<?php include 'message-box.phtml' ?>
 
 <?php 
     $error = $this->formElementErrors(
         $form->get('url')
     ) ? _a('Media must be uploaded!') : null;
 ?>
-<?php if (!empty($error)) { ?>
-<div class="alert alert-danger">
-    <button class="close" data-dismiss="alert" type="button">×</button>
-    <?php echo $this->escape($error); ?>
-</div>
-<?php } elseif (isset($message)) { ?>
-<div class="alert alert-success">
-    <button class="close" data-dismiss="alert" type="button">×</button>
-    <?php echo $this->escape($message); ?>
-</div>
-<?php } ?>
 
-<script id="template-message" type="text/template">
+<script id="template-result" type="text/template">
     <div class="alert alert-success col-md-8">
         <button class="close" data-dismiss="alert" type="button">×</button>
         <%= basename %>
@@ -83,8 +74,8 @@
             + 'src="<%= preview_url %>"></div>'
         ),
         events: {
-            "click .glyphicon-remove"    : "remove",
-            "click button.close"    : "remove"
+            "click .glyphicon-remove" : "remove",
+            "click button.close"      : "remove"
         },
         initialize: function() {
             page.$("[name=placeholder]")
@@ -128,7 +119,7 @@
                             self.render(d.data);
                         } else {
                             $(".upload-media").html(_.template(
-                                $("#template-message").html(),
+                                $("#template-result").html(),
                                 {
                                     basename    : d.data.basename
                                 }
