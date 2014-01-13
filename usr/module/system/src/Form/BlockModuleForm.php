@@ -77,6 +77,17 @@ class BlockModuleForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'body_fullsize',
+            'type'          => 'checkbox',
+            'options'       => array(
+                'label' => __('Full-size body'),
+            ),
+            'attributes'    => array(
+                'description'   => __('Display block body in full-size w/o padding.'),
+            )
+        ));
+
+        $this->add(array(
             'name'          => 'name',
             'options'       => array(
                 'label' => __('Unique name'),
@@ -319,6 +330,12 @@ class BlockModuleForm extends BaseForm
 
         $inputFilter->add(array(
             'name'          => 'title_hidden',
+            'required'      => true,
+            'allow_empty'   => true,
+        ));
+
+        $inputFilter->add(array(
+            'name'          => 'body_fullsize',
             'required'      => true,
             'allow_empty'   => true,
         ));

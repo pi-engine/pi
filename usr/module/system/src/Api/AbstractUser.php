@@ -599,7 +599,7 @@ abstract class AbstractUser extends AbstractApi
     public function getUrl($type, $var = null)
     {
         $route      = $this->getRoute();
-        $redirect   = '';
+        //$redirect   = '';
         switch ($type) {
             case 'profile':
                 $params = array();

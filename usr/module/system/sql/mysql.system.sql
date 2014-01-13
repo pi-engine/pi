@@ -47,6 +47,7 @@ CREATE TABLE `{core.block}` (
   `cache_ttl`       int(10)         unsigned NOT NULL default '0',
   `cache_level`     varchar(64)     NOT NULL default '',            # for custom
   `title_hidden`    tinyint(1)      unsigned NOT NULL default '0',  # Hide the title
+  `body_fullsize`   tinyint(1)      unsigned NOT NULL default '0',  # Display body in full-size mode, no padding
 
   `active`          tinyint(1)      unsigned NOT NULL default '1',  # for generated, updated by system on module activation
   `cloned`          tinyint(1)      unsigned NOT NULL default '0',  # is cloned
