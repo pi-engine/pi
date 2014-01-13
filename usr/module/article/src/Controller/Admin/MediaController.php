@@ -9,16 +9,13 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Module\Article\Controller\Front\MediaController as FrontMedia;
 use Pi;
+use Module\Article\Controller\Front\MediaController as FrontMedia;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\MediaEditForm;
 use Module\Article\Form\MediaEditFilter;
 use Module\Article\Form\SimpleSearchForm;
-use Module\Article\Service;
-use Zend\Db\Sql\Expression;
 use Module\Article\Media;
-use Module\Article\File;
 use Pi\File\Transfer\Upload as UploadHandler;
 use ZipArchive;
 
@@ -40,68 +37,6 @@ class MediaController extends FrontMedia
 {
     const AJAX_RESULT_TRUE  = true;
     const AJAX_RESULT_FALSE = false;
-
-    /**
-     * Getting media form object
-     * 
-     * @param string $action  Form name
-     * @return \Module\Article\Form\MediaEditForm 
-     */
-    protected function getMediaForm($action = 'add')
-    {
-        $form = new MediaEditForm();
-        $form->setAttributes(array(
-            'action'  => $this->url('', array('action' => $action)),
-            'method'  => 'post',
-            'enctype' => 'multipart/form-data',
-            'class'   => 'form-horizontal',
-        ));
-
-        return $form;
-    }
-
-    /**
-     * Get extension of given type
-     * 
-     * @param string  $type
-     * @return array 
-     */
-    protected function getExtension($type = '')
-    {
-        if ($type and 
-            !in_array($type, array('image', 'doc', 'video', 'zip'))
-        ) {
-            return array();
-        }
-        
-        $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
-        
-        // Get image
-        $images = array_filter(explode(',', $config['image_format']));
-        $images = array_map('trim', $images);
-        
-        // Get doc
-        $doc    = array_filter(explode(',', $config['doc_format']));
-        $doc    = array_map('trim', $doc);
-        
-        // Get video
-        $video  = array_filter(explode(',', $config['video_format']));
-        $video  = array_map('trim', $video);
-        
-        // Get compression
-        $zip    = array_filter(explode(',', $config['zip_format']));
-        $zip    = array_map('trim', $zip);
-        
-        $result = array(
-            'image' => $images,
-            'doc'   => $doc,
-            'video' => $video,
-            'zip'   => $zip,
-        );
-        
-        return $type ? $result[$type] : $result;
-    }
     
     /**
      * Media index page, which will redirect to list page
@@ -156,9 +91,7 @@ class MediaController extends FrontMedia
         $resultSet = Media::getList($where, $page, $limit, null, null, $module);
 
         // Total count
-        $select = $model->select()->where($where);
-        $select->columns(array('count' => new Expression('count(*)')));
-        $count  = (int) $model->selectWith($select)->current()->count;
+        $count  = $model->count($where);
 
         // Pagination
         $paginator = Paginator::factory($count);
@@ -167,9 +100,7 @@ class MediaController extends FrontMedia
             ->setUrlOptions(array(
                 'page_param' => 'p',
                 'router'     => $this->getEvent()->getRouter(),
-                'route'      => $this->getEvent()
-                    ->getRouteMatch()
-                    ->getMatchedRouteName(),
+                'route'      => 'admin',
                 'params'     => array_merge(array(
                     'module'     => $this->getModule(),
                     'controller' => 'media',
@@ -203,7 +134,7 @@ class MediaController extends FrontMedia
     {
         $id = $this->params('id', 0);
         if (empty($id)) {
-            return Service::jumpToErrorOperation($this, _a('Invalid ID!'));
+            return $this->jumpTo404($this, _a('Invalid ID!'));
         }
         
         $module = $this->getModule();
@@ -241,14 +172,17 @@ class MediaController extends FrontMedia
      */
     public function addAction()
     {
-        $form   = $this->getMediaForm('add');
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
+        $form = $this->getMediaForm('add');
+        $form->setData(array('fake_id' => uniqid()));
 
-        $form->setData(array('fake_id'  => uniqid()));
-
-        Service::setModuleConfig($this);
         $this->view()->assign(array(
-            'title'                 => _a('Add Media'),
-            'form'                  => $form,
+            'title'    => _a('Add Media'),
+            'form'     => $form,
+            'configs'  => $configs,
         ));
         $this->view()->setTemplate('media-edit');
         
@@ -259,8 +193,7 @@ class MediaController extends FrontMedia
             $columns = array('id', 'name', 'title', 'description', 'url');
             $form->setValidationGroup($columns);
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occured!')
                 );
@@ -269,8 +202,7 @@ class MediaController extends FrontMedia
             $data = $form->getData();
             $id   = $this->saveMedia($data);
             if (!$id) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not save data!')
                 );
@@ -286,7 +218,10 @@ class MediaController extends FrontMedia
      */
     public function editAction()
     {
-        Service::setModuleConfig($this);
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
         $this->view()->assign('title', _a('Edit Media Info'));
         
         $form = $this->getMediaForm('edit');
@@ -295,14 +230,13 @@ class MediaController extends FrontMedia
             $post = $this->request->getPost();
             $form->setData($post);
             $options = array(
-                'id'   => $post['id'],
+                'id' => $post['id'],
             );
             $form->setInputFilter(new MediaEditFilter($options));
             $columns = array('id', 'name', 'title', 'description', 'url');
             $form->setValidationGroup($columns);
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not update data!')
                 );
@@ -339,16 +273,13 @@ class MediaController extends FrontMedia
      */
     public function deleteAction()
     {
-        $from   = Service::getParam($this, 'from', '');
+        $from   = $this->params('from', '');
         
         $id     = $this->params('id', 0);
         $ids    = array_filter(explode(',', $id));
 
         if (empty($ids)) {
-            return Service::jumpToErrorOperation(
-                $this,
-                _a('Invalid media ID')
-            );
+            return $this->jumpTo404(_a('Invalid media ID'));
         }
         
         // Checking if media is in used
@@ -358,8 +289,7 @@ class MediaController extends FrontMedia
             $medias[$row->media] = $row->media;
         }
         if (!empty($medias)) {
-            return Service::jumpToErrorOperation(
-                $this,
+            return $this->jumpTo404(
                 _a('The following medias is in used, and can not be delete: ')
                 . implode(', ', $medias)
             );
@@ -389,5 +319,77 @@ class MediaController extends FrontMedia
         } else {
             return $this->redirect()->toRoute('', array('action' => 'list'));
         }
+    }
+    
+    /**
+     * Getting media form object
+     * 
+     * @param string $action  Form name
+     * @return \Module\Article\Form\MediaEditForm 
+     */
+    protected function getMediaForm($action = 'add')
+    {
+        $form = new MediaEditForm();
+        $form->setAttributes(array(
+            'action'  => $this->url('', array('action' => $action)),
+        ));
+
+        return $form;
+    }
+    
+    /**
+     * Render form
+     * 
+     * @param Zend\Form\Form $form     Form instance
+     * @param string         $message  Message assign to template
+     * @param bool           $error    Whether is error message
+     */
+    public function renderForm($form, $message = null, $error = true)
+    {
+        $params = compact('form', 'message', 'error');
+        $this->view()->assign($params);
+    }
+
+    /**
+     * Get extension of given type
+     * 
+     * @param string  $type
+     * @return array 
+     */
+    protected function getExtension($type = '')
+    {
+        if ($type and 
+            !in_array($type, array('image', 'doc', 'video', 'zip'))
+        ) {
+            return array();
+        }
+        
+        $module = $this->getModule();
+        $config = Pi::service('module')->config('', $module);
+        
+        // Get image
+        $images = array_filter(explode(',', $config['image_format']));
+        $images = array_map('trim', $images);
+        
+        // Get doc
+        $doc    = array_filter(explode(',', $config['doc_format']));
+        $doc    = array_map('trim', $doc);
+        
+        // Get video
+        $video  = array_filter(explode(',', $config['video_format']));
+        $video  = array_map('trim', $video);
+        
+        // Get compression
+        $zip    = array_filter(explode(',', $config['zip_format']));
+        $zip    = array_map('trim', $zip);
+        
+        $result = array(
+            'image' => $images,
+            'doc'   => $doc,
+            'video' => $video,
+            'zip'   => $zip,
+        );
+        
+        return $type ? $result[$type] : $result;
     }
 }

@@ -60,22 +60,22 @@ class Media
         // Fetching data
         $rowset   = $model->selectWith($select);
         $mediaSet = array();
-        $mediaIds = array(0);
-        $submitterIds = array(0);
+        $submitterIds = $mediaIds = array();
         foreach ($rowset as $row) {
-            $item               = $row->toArray();
-            $item['size']       = self::transferSize($item['size']);
-            $item['type']       = strtolower($item['type']);
+            $item         = $row->toArray();
+            $item['size'] = Pi::service('file')->transformSize($item['size']);
+            $item['type'] = strtolower($item['type']);
             $meta = empty($row->meta) ? array() : json_decode($row->meta, true);
             unset($item['meta']);
-            $item['previewUrl'] = Pi::engine()->application()
-                                              ->getRouter()
-                                              ->assemble(array(
-                                                  'module'     => $module,
-                                                  'controller' => 'media',
-                                                  'action'     => 'detail',
-                                                  'id'         => $row->id,
-                                              ), array('name' => 'default'));
+            $item['previewUrl'] = Pi::service('url')->assemble(
+                'default',
+                array(
+                    'module'     => $module,
+                    'controller' => 'media',
+                    'action'     => 'detail',
+                    'id'         => $row->id,
+                )
+            );
             $item = array_merge($item, $meta);
             $mediaSet[$row->id] = $item;
             $mediaIds[]         = $row->id;
@@ -83,26 +83,31 @@ class Media
         }
         
         // Fetching statistics data
-        $model  = Pi::model('media_statistics', $module);
-        $rowset = $model->select(array('media' => $mediaIds));
-        foreach ($rowset as $row) {
-            $id = $row['media'];
-            $statistics = $row->toArray();
-            unset($statistics['id']);
-            unset($statistics['media']);
-            $mediaSet[$id] = array_merge($mediaSet[$id], $statistics);
+        if (!empty($mediaIds)) {
+            $model  = Pi::model('media_statistics', $module);
+            $rowset = $model->select(array('media' => $mediaIds));
+            foreach ($rowset as $row) {
+                $id = $row['media'];
+                $statistics = $row->toArray();
+                unset($statistics['id']);
+                unset($statistics['media']);
+                $mediaSet[$id] = array_merge($mediaSet[$id], $statistics);
+            }
         }
         
         // Fetching submitter
-        $model  = Pi::model('user_account');
-        $rowset = $model->select(array('id' => $submitterIds));
         $submitter = array();
-        foreach ($rowset as $row) {
-            $submitter[$row->id] = $row->name;
+        if (!empty($submitterIds)) {
+            $model  = Pi::model('user_account');
+            $rowset = $model->select(array('id' => $submitterIds));
+            foreach ($rowset as $row) {
+                $submitter[$row->id] = $row->name;
+            }
         }
         
         foreach ($mediaSet as &$set) {
-            $set['submitter'] = isset($submitter[$set['uid']]) ? $submitter[$set['uid']] : '';
+            $uid = $set['uid'];
+            $set['submitter'] = isset($submitter[$uid]) ? $submitter[$uid] : '';
             $set['url']       = Pi::url($set['url']);
         }
         

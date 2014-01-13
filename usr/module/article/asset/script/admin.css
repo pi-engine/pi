@@ -14,21 +14,40 @@ tr:hover .row-actions {
 td {
     word-break: break-all;
 }
-#jsList  .table-striped tbody tr:nth-child(2n+1) th {
+#pi-js-list  .table-striped tbody tr:nth-child(2n+1) th {
     background: #eee;
 }
-#jsList .table-striped {
+#pi-js-list .table-striped {
     border: 1px solid #ccc;
 }
-#jsList .form-inline {
+#pi-js-list .form-inline {
     margin-bottom: 15px;
 }
-#jsList .form-search {
+#pi-js-list .form-search {
     margin: 0 20px 0 0;
 }
 div .well {
     max-width: 340px;
     padding: 8px 0;
+}
+.list-image {
+    border: 1px solid #cccccc;
+    border-radius: 3px 3px 3px 3px;
+    color: #a8a8a8;
+    display: block;
+    height: 40px;
+    line-height: 32px;
+    vertical-align: middle;
+    text-align: center;
+    width: 40px;
+    font-size: 30px;
+}
+.list-image img {
+    width: 38px;
+    height: 38px;
+}
+.list-image span {
+    margin: 3px 0 0 2px;
 }
 
 /* Article custom route page */
@@ -161,6 +180,50 @@ div .well {
 .black-bg span {
     margin-left: 6px;
     width: 79%;
+}
+
+/* Media upload box */
+.media-upload-image {
+    width: 320px;
+    height: 240px;
+    position: relative;
+    vertical-align: middle;
+    line-height: 240px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.upload-image-wrap .progress {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    height: 15px;
+}
+.fileinput-button {
+    overflow: hidden;
+    margin-right: 6px;
+    cursor: pointer;
+    position: relative;
+}
+.fileinput-button input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    filter: alpha(opacity=0);
+}
+.upload-image-wrap {
+    display: inline-block;
+    width: 120px;
+    height: 90px;
+    position: relative;
+    margin: 10px 10px 0 0;
+    vertical-align: top;
+    background: url(../image/uploadImgBg.png);
+    border: 1px solid #ccc;
+    cursor: pointer;
 }
 
 /* Author photo upload */

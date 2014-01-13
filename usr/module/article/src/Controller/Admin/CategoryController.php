@@ -9,9 +9,8 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
-use Pi\Paginator\Paginator;
+use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\CategoryEditForm;
 use Module\Article\Form\CategoryEditFilter;
 use Module\Article\Form\CategoryMergeForm;
@@ -19,10 +18,7 @@ use Module\Article\Form\CategoryMergeFilter;
 use Module\Article\Form\CategoryMoveForm;
 use Module\Article\Form\CategoryMoveFilter;
 use Module\Article\Model\Category;
-use Zend\Db\Sql\Expression;
-use Module\Article\Service;
-use Module\Article\Model\Article;
-use Module\Article\Entity;
+use Module\Article\Media;
 use Pi\File\Transfer\Upload as UploadHandler;
 
 /**
@@ -40,120 +36,7 @@ use Pi\File\Transfer\Upload as UploadHandler;
 class CategoryController extends ActionController
 {
     /**
-     * Get category form object
-     * 
-     * @param string $action  Form name
-     * @return \Module\Article\Form\CategoryEditForm 
-     */
-    protected function getCategoryForm($action = 'add')
-    {
-        $form = new CategoryEditForm();
-        $form->setAttributes(array(
-            'action'  => $this->url('', array('action' => $action)),
-            'method'  => 'post',
-            'enctype' => 'multipart/form-data',
-            'class'   => 'form-horizontal',
-        ));
-
-        return $form;
-    }
-
-    /**
-     * Save category information
-     * 
-     * @param  array    $data  Category information
-     * @return boolean
-     * @throws \Exception 
-     */
-    protected function saveCategory($data)
-    {
-        $module        = $this->getModule();
-        $modelCategory = $this->getModel('category');
-        $fakeId        = $image = null;
-
-        if (isset($data['id'])) {
-            $id = $data['id'];
-            unset($data['id']);
-        }
-
-        $fakeId = Service::getParam($this, 'fake_id', 0);
-
-        unset($data['image']);
-
-        $parent = $data['parent'];
-        unset($data['parent']);
-
-        if (isset($data['slug']) && empty($data['slug'])) {
-            unset($data['slug']);
-        }
-
-        if (empty($id)) {
-            $id = $modelCategory->add($data, $parent);
-            $rowCategory = $modelCategory->find($id);
-        } else {
-            $rowCategory = $modelCategory->find($id);
-
-            if (empty($rowCategory)) {
-                Service::jumpToErrorOperation(
-                    $this,
-                    _a('Category is not exists.')
-                );
-                return false;
-            }
-
-            $rowCategory->assign($data);
-            $rowCategory->save();
-
-            // Move node position
-            $parentNode    = $modelCategory->getParentNode($id);
-            $currentParent = $parentNode['id'];
-            if ($currentParent != $parent) {
-                $children = $modelCategory->getDescendantIds($id);
-                if (array_search($parent, $children) !== false) {
-                    Service::jumpToErrorOperation(
-                        $this,
-                        _a('Category cannot be moved to self or a child.')
-                    );
-                    return false;
-                } else {
-                    $modelCategory->move($id, $parent);
-                }
-            }
-        }
-
-        // Save image
-        $session    = Service::getUploadSession($module, 'category');
-        if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))
-        ) {
-            $uploadInfo = isset($session->$id)
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $fileName = $rowCategory->id;
-
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $fileName .= '.' . $pathInfo['extension'];
-                }
-                $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-                $rowCategory->image = rename(
-                    Pi::path($uploadInfo['tmp_name']),
-                    Pi::path($fileName)
-                ) ? $fileName : $uploadInfo['tmp_name'];
-                $rowCategory->save();
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-
-        return $id;
-    }
-    
-    /**
-     * Category index page, which will redirect to category article list page
+     * Category index page, which will redirect to category list page
      */
     public function indexAction()
     {
@@ -173,17 +56,20 @@ class CategoryController extends ActionController
         $parent = $this->params('parent', 0);
 
         $form   = $this->getCategoryForm('add');
-
         if ($parent) {
             $form->get('parent')->setAttribute('value', $parent);
         }
+        $form->setData(array('fake_id' => uniqid()));
 
-        $form->setData(array('fake_id'  => uniqid()));
-
-        Service::setModuleConfig($this);
+        $module  = $this->getModule();
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
         $this->view()->assign(array(
-            'title'                 => _a('Add Category Info'),
-            'form'                  => $form,
+            'title'   => _a('Add Category Info'),
+            'configs' => $configs,
+            'form'    => $form,
         ));
         $this->view()->setTemplate('category-edit');
         
@@ -193,8 +79,7 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryEditFilter);
             $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occured!')
                 );
@@ -203,23 +88,20 @@ class CategoryController extends ActionController
             $data = $form->getData();
             $id   = $this->saveCategory($data);
             if (!$id) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not save data!')
                 );
             }
             
             // Clear cache
-            $module = $this->getModule();
             Pi::service('registry')
                 ->handler('category', $module)
                 ->clear($module);
             
-            return $this->redirect()->toRoute(
-                '',
-                array('action' => 'list')
-            );
+            return $this->redirect()->toRoute('',array(
+                'action' => 'list'
+            ));
         }
     }
 
@@ -230,10 +112,17 @@ class CategoryController extends ActionController
      */
     public function editAction()
     {
-        Service::setModuleConfig($this);
-        $this->view()->assign('title', _a('Edit Category Info'));
+        $module  = $this->getModule();
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
         
         $form = $this->getCategoryForm('edit');
+        
+        $this->view()->assign(array(
+            'title'   => _a('Edit Category Info'),
+            'configs' => $configs,
+        ));
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -244,8 +133,7 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryEditFilter($options));
             $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not update data!')
                 );
@@ -257,18 +145,16 @@ class CategoryController extends ActionController
             }
             
             // Clear cache
-            $module = $this->getModule();
             Pi::service('registry')
                 ->handler('category', $module)
                 ->clear($module);
 
-            return $this->redirect()->toRoute(
-                '',
-                array('action' => 'list')
-            );
+            return $this->redirect()->toRoute('', array(
+                'action' => 'list'
+            ));
         }
         
-        $id     = $this->params('id', 0);
+        $id = $this->params('id', 0);
         if (empty($id)) {
             $this->jumpto404(_a('Invalid category ID!'));
         }
@@ -297,25 +183,18 @@ class CategoryController extends ActionController
         $id     = $this->params('id');
 
         if ($id == 1) {
-            return Service::jumpToErrorOperation(
-                $this,
-                _a('Root node cannot be deleted.')
-            );
+            return $this->jumpTo404(_a('Root node cannot be deleted.'));
         } else if ($id) {
-            $categoryModel = $this->getModel('category');
+            $model = $this->getModel('category');
 
             // Check default category
             if ($this->config('default_category') == $id) {
-                return Service::jumpToErrorOperation(
-                    $this,
-                    _a('Cannot remove default category')
-                );
+                return $this->jumpTo404(_a('Cannot remove default category'));
             }
 
             // Check children
-            if ($categoryModel->hasChildren($id)) {
-                return Service::jumpToErrorOperation(
-                    $this,
+            if ($model->hasChildren($id)) {
+                return $this->jumpTo404(
                     _a('Cannot remove category with children')
                 );
             }
@@ -324,20 +203,17 @@ class CategoryController extends ActionController
             $linkedArticles = $this->getModel('article')
                 ->select(array('category' => $id));
             if ($linkedArticles->count()) {
-                return Service::jumpToErrorOperation(
-                    $this,
-                    _a('Cannot remove category in used')
-                );
+                return $this->jumpTo404(_a('Cannot remove category in used'));
             }
 
             // Delete image
-            $row = $categoryModel->find($id);
+            $row = $model->find($id);
             if ($row && $row->image) {
                 unlink(Pi::path($row->image));
             }
 
             // Remove node
-            $categoryModel->remove($id);
+            $model->remove($id);
             
             // Clear cache
             $module = $this->getModule();
@@ -346,8 +222,7 @@ class CategoryController extends ActionController
                 ->clear($module);
 
             // Go to list page
-            $this->redirect()->toRoute('', array('action' => 'list'));
-            $this->view()->setTemplate(false);
+            return $this->redirect()->toRoute('', array('action' => 'list'));
         } else {
             return $this->jumpTo404(_a('Invalid category ID!'));
         }
@@ -358,17 +233,12 @@ class CategoryController extends ActionController
      */
     public function listAction()
     {
-        $model = $this->getModel('category');
-        $module = $this->getModule();
-        $rowset = $model->enumerate(null, null, true);
+        $rowset = $this->getModel('category')->enumerate(null, null, true);
 
-        $this->view()->assign('categories', $rowset);
-        $this->view()->assign('title', _a('Category List'));
-        $this->view()->assign(
-            'defaultLogo',
-            Pi::service('asset')
-                ->getModuleAsset('image/default-category-thumb.png', $module)
-        );
+        $this->view()->assign(array(
+            'title'      => _a('Category List'),
+            'categories' => $rowset,
+        ));
     }
 
     /**
@@ -379,8 +249,10 @@ class CategoryController extends ActionController
     public function mergeAction()
     {
         $form = new CategoryMergeForm();
-        $this->view()->assign('form', $form);
-        $this->view()->assign('title', _a('Merge Category'));
+        $this->view()->assign(array(
+            'title' => _a('Merge Category'),
+            'form'  => $form,
+        ));
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -388,21 +260,19 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryMergeFilter);
         
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not merge category!')
                 );
             }
             $data = $form->getData();
 
-            $categoryModel = $this->getModel('category');
+            $model = $this->getModel('category');
 
             // Deny to be merged to self or a child
-            $descendant = $categoryModel->getDescendantIds($data['from']);
+            $descendant = $model->getDescendantIds($data['from']);
             if (array_search($data['to'], $descendant) !== false) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Category cannot be moved to self or a child!')
                 );
@@ -410,19 +280,17 @@ class CategoryController extends ActionController
 
             // From node cannot be default
             if ($this->config('default_category') == $data['from']) {
-               return Service::renderForm(
-                   $this,
+               return $this->renderForm(
                    $form,
                    _a('Cannot merge default category')
                );
             }
 
             // Move children node
-            $children = $categoryModel->getChildrenIds($data['from']);
+            $children = $model->getChildrenIds($data['from']);
             foreach ($children as $objective) {
-                if (!$categoryModel->move($objective, $data['to'])) {
-                    return Service::renderForm(
-                        $this,
+                if (!$model->move($objective, $data['to'])) {
+                    return $this->renderForm(
                         $form,
                         _a('Move children error.')
                     );
@@ -436,7 +304,7 @@ class CategoryController extends ActionController
             );
 
             // remove category
-            $categoryModel->remove($data['from']);
+            $model->remove($data['from']);
             
             // Clear cache
             $module = $this->getModule();
@@ -445,10 +313,9 @@ class CategoryController extends ActionController
                 ->clear($module);
 
             // Go to list page
-            return $this->redirect()->toRoute(
-                '',
-                array('action' => 'list')
-            );
+            return $this->redirect()->toRoute('', array(
+                'action' => 'list'
+            ));
         }
         
         $from = $this->params('from', 0);
@@ -470,8 +337,10 @@ class CategoryController extends ActionController
     public function moveAction()
     {
         $form = new CategoryMoveForm();
-        $this->view()->assign('form', $form);
-        $this->view()->assign('title', _a('Move Category'));
+        $this->view()->assign(array(
+            'title' => _a('Move Category'),
+            'form'  => $form,
+        ));
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -479,28 +348,26 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryMoveFilter);
 
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not move category!')
                 );
             }
                 
             $data = $form->getData();
-            $categoryModel = $this->getModel('category');
+            $model = $this->getModel('category');
 
             // Deny to be moved to self or a child
-            $children = $categoryModel->getDescendantIds($data['from']);
+            $children = $model->getDescendantIds($data['from']);
             if (array_search($data['to'], $children) !== false) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Category cannot be moved to self or a child!')
                 );
             }
 
             // Move category
-            $categoryModel->move($data['from'], $data['to']);
+            $model->move($data['from'], $data['to']);
             
             // Clear cache
             $module = $this->getModule();
@@ -509,10 +376,9 @@ class CategoryController extends ActionController
                 ->clear($module);
 
             // Go to list page
-            return $this->redirect()->toRoute(
-                '',
-                array('action' => 'list')
-            );
+            return $this->redirect()->toRoute('', array(
+                'action' => 'list'
+            ));
         }
         
         $from = $this->params('from', 0);
@@ -535,14 +401,14 @@ class CategoryController extends ActionController
      */
     public function saveImageAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->muted();
         $module  = $this->getModule();
 
         $return  = array('status' => false);
-        $mediaId = Service::getParam($this, 'media_id', 0);
-        $id      = Service::getParam($this, 'id', 0);
+        $mediaId = $this->params('media_id', 0);
+        $id      = $this->params('id', 0);
         if (empty($id)) {
-            $id = Service::getParam($this, 'fake_id', 0);
+            $id = $this->params('fake_id', 0);
         }
         // Check is id valid
         if (empty($id)) {
@@ -559,52 +425,29 @@ class CategoryController extends ActionController
         }
         
         // Get destination path
-        $destination = Service::getTargetDir('category', $module, true, false);
+        $destination = Media::getTargetDir('category', $module, true, false);
+        
+        $rowMedia = $this->getModel('media')->find($mediaId);
+        // Check is media exists
+        if (!$rowMedia->id or !$rowMedia->url) {
+            $return['message'] = _a('Media is not exists!');
+            echo json_encode($return);
+            exit;
+        }
+        // Check is media an image
+        if (!in_array(strtolower($rowMedia->type), $extensions)) {
+            $return['message'] = _a('Invalid file extension!');
+            echo json_encode($return);
+            exit;
+        }
 
-        if ($mediaId) {
-            $rowMedia = $this->getModel('media')->find($mediaId);
-            // Check is media exists
-            if (!$rowMedia->id or !$rowMedia->url) {
-                $return['message'] = _a('Media is not exists!');
-                echo json_encode($return);
-                exit;
-            }
-            // Check is media an image
-            if (!in_array(strtolower($rowMedia->type), $extensions)) {
-                $return['message'] = _a('Invalid file extension!');
-                echo json_encode($return);
-                exit;
-            }
-            
-            $ext    = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-            $rename = $id . '.' . $ext;
-            $fileName = rtrim($destination, '/') . '/' . $rename;
-            if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-                $return['message'] = _a('Can not create image file!');
-                echo json_encode($return);
-                exit;
-            }
-        } else {
-            $rawInfo = $this->request->getFiles('upload');
-
-            $ext = strtolower(pathinfo($rawInfo['name'], PATHINFO_EXTENSION));
-            $rename = $id . '.' . $ext;
-
-            $upload = new UploadHandler;
-            $upload->setDestination(Pi::path($destination))
-                   ->setRename($rename)
-                   ->setExtension($this->config('image_extension'))
-                   ->setSize($this->config('max_image_size'));
-
-            // Checking is uploaded file valid
-            if (!$upload->isValid()) {
-                $return['message'] = $upload->getMessages();
-                echo json_encode($return);
-                exit;
-            }
-            
-            $upload->receive();
-            $fileName = $destination . '/' . $rename;
+        $ext    = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
+        $rename = $id . '.' . $ext;
+        $fileName = rtrim($destination, '/') . '/' . $rename;
+        if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
+            $return['message'] = _a('Can not create image file!');
+            echo json_encode($return);
+            exit;
         }
 
         // Scale image
@@ -612,20 +455,20 @@ class CategoryController extends ActionController
         $uploadInfo['w']        = $this->config('category_width');
         $uploadInfo['h']        = $this->config('category_height');
 
-        Service::saveImage($uploadInfo);
+        Media::saveImage($uploadInfo);
 
         // Save image to category
-        $rowCategory = $this->getModel('category')->find($id);
-        if ($rowCategory) {
-            if ($rowCategory->image && $rowCategory->image != $fileName) {
-                @unlink(Pi::path($rowCategory->image));
+        $row = $this->getModel('category')->find($id);
+        if ($row) {
+            if ($row->image && $row->image != $fileName) {
+                @unlink(Pi::path($row->image));
             }
 
-            $rowCategory->image = $fileName;
-            $rowCategory->save();
+            $row->image = $fileName;
+            $row->save();
         } else {
             // Or save info to session
-            $session = Service::getUploadSession($module, 'category');
+            $session = Media::getUploadSession($module, 'category');
             $session->$id = $uploadInfo;
         }
 
@@ -655,25 +498,25 @@ class CategoryController extends ActionController
      */
     public function removeImageAction()
     {
-        Pi::service('log')->active(false);
-        $id           = Service::getParam($this, 'id', 0);
-        $fakeId       = Service::getParam($this, 'fake_id', 0);
+        Pi::service('log')->muted();
+        $id           = $this->params('id', 0);
+        $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
 
         if ($id) {
-            $rowCategory = $this->getModel('category')->find($id);
+            $row = $this->getModel('category')->find($id);
 
-            if ($rowCategory && $rowCategory->image) {
+            if ($row && $row->image) {
                 // Delete image
-                @unlink(Pi::path($rowCategory->image));
+                @unlink(Pi::path($row->image));
 
                 // Update db
-                $rowCategory->image = '';
-                $affectedRows       = $rowCategory->save();
+                $row->image = '';
+                $affectedRows = $row->save();
             }
         } else if ($fakeId) {
-            $session = Service::getUploadSession($module, 'category');
+            $session = Media::getUploadSession($module, 'category');
 
             if (isset($session->$fakeId)) {
                 $uploadInfo = isset($session->$id)
@@ -691,5 +534,119 @@ class CategoryController extends ActionController
             'message'   => 'ok',
         ));
         exit;
+    }
+    
+    /**
+     * Get category form object
+     * 
+     * @param string $action  Form name
+     * @return \Module\Article\Form\CategoryEditForm 
+     */
+    protected function getCategoryForm($action = 'add')
+    {
+        $form = new CategoryEditForm();
+        $form->setAttribute('action', $this->url('', array('action' => $action)));
+
+        return $form;
+    }
+    
+    /**
+     * Render form
+     * 
+     * @param Zend\Form\Form $form     Form instance
+     * @param string         $message  Message assign to template
+     * @param bool           $error    Whether is error message
+     */
+    public function renderForm($form, $message = null, $error = true)
+    {
+        $params = compact('form', 'message', 'error');
+        $this->view()->assign($params);
+    }
+
+    /**
+     * Save category information
+     * 
+     * @param  array    $data  Category information
+     * @return boolean
+     * @throws \Exception 
+     */
+    protected function saveCategory($data)
+    {
+        $module = $this->getModule();
+        $model  = $this->getModel('category');
+        $fakeId = $image = null;
+
+        if (isset($data['id'])) {
+            $id = $data['id'];
+            unset($data['id']);
+        }
+
+        $fakeId = $this->params('fake_id', 0);
+        
+        $parent = $data['parent'];
+        unset($data['parent']);
+        unset($data['image']);
+
+        if (isset($data['slug']) && empty($data['slug'])) {
+            unset($data['slug']);
+        }
+
+        if (empty($id)) {
+            $id = $model->add($data, $parent);
+            $row = $model->find($id);
+        } else {
+            $row = $model->find($id);
+
+            if (empty($row)) {
+                return $this->jumpTo404(_a('Category is not exists.'));
+            }
+
+            $row->assign($data);
+            $row->save();
+
+            // Move node position
+            $parentNode    = $model->getParentNode($id);
+            $currentParent = $parentNode['id'];
+            if ($currentParent != $parent) {
+                $children = $model->getDescendantIds($id);
+                if (array_search($parent, $children) !== false) {
+                    return $this->jumpTo404(
+                        _a('Category cannot be moved to self or a child.')
+                    );
+                } else {
+                    $model->move($id, $parent);
+                }
+            }
+        }
+
+        // Save image
+        $session    = Media::getUploadSession($module, 'category');
+        if (isset($session->$id)
+            || ($fakeId && isset($session->$fakeId))
+        ) {
+            $uploadInfo = isset($session->$id)
+                ? $session->$id : $session->$fakeId;
+
+            if ($uploadInfo) {
+                $fileName = $row->id;
+
+                $pathInfo = pathinfo($uploadInfo['tmp_name']);
+                if ($pathInfo['extension']) {
+                    $fileName .= '.' . $pathInfo['extension'];
+                }
+                $fileName = $pathInfo['dirname'] . '/' . $fileName;
+
+                $row->image = rename(
+                    Pi::path($uploadInfo['tmp_name']),
+                    Pi::path($fileName)
+                ) ? $fileName : $uploadInfo['tmp_name'];
+                $row->save();
+            }
+
+            unset($session->$id);
+            unset($session->$fakeId);
+        }
+
+        return $id;
     }
 }

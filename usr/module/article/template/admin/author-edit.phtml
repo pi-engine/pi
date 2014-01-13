@@ -15,7 +15,7 @@
 
 <?php include 'message-box.phtml'; ?>
 
-<div id="jsUpload">
+<div id="pi-js-upload">
     <?php include $this->templateComponent('form'); ?>
 
     <script id="template-upload" type="text/template">
@@ -84,7 +84,7 @@
                 : 'fake_id/' . $form->get('fake_id')->getValue(); ?>";
         },
         resizeFakeId : '<?php echo uniqid(); ?>',
-        el      : $('#jsUpload'),
+        el      : $('#pi-js-upload'),
         $       : function(selector) {
             return  this.el.find(selector);      
         },

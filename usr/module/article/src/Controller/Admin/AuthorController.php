@@ -514,10 +514,7 @@ class AuthorController extends ActionController
     protected function getAuthorForm($action = 'add')
     {
         $form = new AuthorEditForm();
-        $form->setAttributes(array(
-            'action'  => $this->url('', array('action' => $action)),
-            'enctype' => 'multipart/form-data',
-        ));
+        $form->setAttribute('action', $this->url('', array('action' => $action)));
 
         return $form;
     }
