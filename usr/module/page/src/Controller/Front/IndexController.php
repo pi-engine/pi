@@ -27,7 +27,8 @@ class IndexController extends ActionController
             $content = $row->content;
             if ($content) {
                 $content = Pi::service('markup')->render(
-                    $content,
+                    $content, 
+                    'html',
                     $row->markup ?: 'text'
                 );
             }

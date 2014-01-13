@@ -28,6 +28,63 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
+        
+        // Check for version 1.0.1
+        if (version_compare($moduleVersion, '1.0.1', '>=')) {
+            return true;
+        }
+
+        // Table modify
+        $model = Pi::model('page', $this->module);
+        $table = $model->getTable();
+        $adapter = $model->getAdapter();
+
+        // Alter table add field `seo_title`
+        $sql = sprintf('ALTER TABLE %s ADD `seo_title` varchar(255) NOT NULL', 
+                       $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: '
+                               . $exception->getMessage(),
+            ));
+
+            return false;
+        }
+
+        // Alter table add field `seo_keywords`
+        $sql = sprintf('ALTER TABLE %s ADD `seo_keywords` varchar(255) NOT NULL', 
+                       $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: '
+                               . $exception->getMessage(),
+            ));
+
+            return false;
+        }
+
+        // Alter table add field `seo_description`
+        $sql = sprintf('ALTER TABLE %s ADD `seo_description` varchar(255) NOT NULL', 
+                       $table);
+        try {
+            $adapter->query($sql, 'execute');
+        } catch (\Exception $exception) {
+            $this->setResult('db', array(
+                'status'    => false,
+                'message'   => 'Table alter query failed: '
+                               . $exception->getMessage(),
+            ));
+
+            return false;
+        }
+
+        // Check for version 1.0.0-beta.2
         if (version_compare($moduleVersion, '1.0.0-beta.2', '>=')) {
             return true;
         }
@@ -57,11 +114,6 @@ EOD;
 
             return false;
         }
-
-        // Table modify
-        $model = Pi::model('page', $this->module);
-        $table = $model->getTable();
-        $adapter = $model->getAdapter();
 
         // Alter table field `time` to `time_created`
         $sql = sprintf('ALTER TABLE %s CHANGE `time` `time_created` int(10)'
@@ -94,6 +146,7 @@ EOD;
 
             return false;
         }
+
         // Add table field `clicks`
         try {
             $sql = sprintf('ALTER TABLE %s ADD `clicks` int(10)'
@@ -124,6 +177,6 @@ EOD;
 
             return false;
         }
-
+        
     }
 }
