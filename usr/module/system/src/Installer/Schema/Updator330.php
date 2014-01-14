@@ -55,7 +55,7 @@ class Updator330 extends AbstractUpdator
             $table = Pi::db()->prefix('block');
             $sql =<<<'EOT'
 ALTER TABLE %s
-ADD `body_fullsize` tinyint(1) unsigned NOT NULL default \'0\' AFTER `title_hidden`;
+ADD `body_fullsize` tinyint(1) unsigned NOT NULL default '0' AFTER `title_hidden`;
 EOT;
             $sql = sprintf($sql, $table);
             $status = $this->queryTable($sql);
