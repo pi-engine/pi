@@ -175,10 +175,10 @@ CREATE TABLE `{timeline_log}` (
 CREATE TABLE `{privacy}` (
   `id`        int(10)              unsigned NOT NULL auto_increment,
   `field`     varchar(64)          NOT NULL default '',
-  -- Access level: 0 - public; 1 - member; 2 - follower; 4 - following; 255 - owner
-  `value`     smallint(5)         unsigned NOT NULL default '0',
+  -- Default access level: 0 - everyone/public; 1 - member; 2 - follower; 4 - following; 255 - owner
+  `value`     smallint(5)           unsigned NOT NULL default '0',
   -- Is forced by admin
-  `is_forced` tinyint(1)            NOT NULL default '0',
+  `is_forced` tinyint(1)            unsigned NOT NULL default '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `field` (`field`)
@@ -189,9 +189,9 @@ CREATE TABLE `{privacy_user}` (
   `id`        int(10)             unsigned NOT NULL auto_increment,
   `uid`       int(10)             unsigned NOT NULL,
   `field`     varchar(64)         NOT NULL default '',
-  -- Access level: 0 - public; 1 - member; 2 - follower; 4 - following; 255 - owner
+  -- Access level: 0 - everyone/public; 1 - member; 2 - follower; 4 - following; 255 - owner
   `value`     smallint(5)         unsigned NOT NULL default '0',
-  `is_forced` tinyint(1)          NOT NULL default '0',
+  #`is_forced` tinyint(1)          NOT NULL default '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_field` (`uid`, `field`)
