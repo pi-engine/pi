@@ -218,12 +218,6 @@ return array(
                         'controller'    => 'setup',
                         'action'        => 'form',
                     ),
-                    'custom-route'  => array(
-                        'label'         => _t('Custom route'),
-                        'route'         => 'admin',
-                        'controller'    => 'setup',
-                        'action'        => 'route',
-                    ),
                     'form-preview'  => array(
                         'label'         => _t('Preview form'),
                         'route'         => 'admin',

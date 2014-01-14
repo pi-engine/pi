@@ -105,4 +105,47 @@ class Api extends AbstractApi
         
         return $resultSet;
     }
+    
+    /**
+     * Read category data from cache
+     * 
+     * @param array $where
+     * @return array 
+     */
+    public function getCategoryList($where = array())
+    {
+        $isTree = false;
+        if (isset($where['is-tree'])) {
+            $isTree = $where['is-tree'];
+            unset($where['is-tree']);
+        }
+        $module = $this->getModule();
+        $rows   = Pi::service('registry')
+            ->handler('category', $module)
+            ->read($where, $isTree);
+        
+        return $rows;
+    }
+    
+    /**
+     * Read author data from cache by ID
+     * 
+     * @param array  $ids
+     * @return array 
+     */
+    public function getAuthorList($ids = array())
+    {
+        $module = $this->getModule();
+        $rows   = Pi::service('registry')->handler('author', $module)->read();
+        
+        if (!empty($ids)) {
+            foreach ($rows as $key => $row) {
+                if (!in_array($row['id'], $ids)) {
+                    unset($rows[$key]);
+                }
+            }
+        }
+        
+        return $rows;
+    }
 }
