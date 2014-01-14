@@ -62,7 +62,7 @@
                             href="javascript:void(0)" 
                             data-content="<?php echo $this->url('', array(
                                 'action' => 'remove-pull',
-                                'id'     => ''
+                                'id'     => 'placeholder',
                             )); ?>"><?php echo _a('Remove Pull'); ?></a>
                         </div>
                     </td>
@@ -135,7 +135,8 @@
                 val = el.attr("data-value");
             var url = el.attr('data-content');
             if (val == "remove-pull") {
-                location.href = url + id + "?from=" + this.encodeUrl();
+                url = url.replace(/placeholder$/, id);
+                location.href = url + "?from=" + this.encodeUrl();
             }
         },
         encodeUrl : function() {
@@ -150,7 +151,7 @@
                 id.push($(this).val()); 
             });
             var ids = id.join(',');
-            url += ids;
+            url = url.replace(/placeholder$/, ids);
 
             location.href = url + "?from" + this.encodeUrl();
         }

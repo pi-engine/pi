@@ -12,7 +12,7 @@ namespace Module\Article\Block;
 use Pi;
 use Module\Article\Service;
 use Module\Article\Topic;
-use Module\Article\Statistics;
+use Module\Article\Stats;
 use Module\Article\Entity;
 use Zend\Db\Sql\Expression;
 
@@ -38,9 +38,9 @@ class Block
         
         $maxTopCount = $options['top-category'];
         $maxSubCount = $options['sub-category'];
-        $route       = Service::getRouteName($module);
+        $route       = Pi::api('api', $module)->getRouteName($module);
         
-        $categories  = Service::getCategoryList(array('is-tree' => true));
+        $categories  = Pi::api('api', $module)->getCategoryList(array('is-tree' => true));
         
         $allItems = self::canonizeCategories(
             $categories['child'],
@@ -90,7 +90,7 @@ class Block
                 'depth' => 0,
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    Service::getRouteName($module),
+                    Pi::api('api', $module)->getRouteName($module),
                     array(
                         'controller' => 'list',
                         'action'     => 'all',
@@ -167,7 +167,7 @@ class Block
         }
         
         // Get category Info
-        $route = Service::getRouteName($module);
+        $route = Pi::api('api', $module)->getRouteName($module);
         $where = array('id' => $categoryIds);
         $rowCategory = Pi::model('category', $module)->select($where);
         $categories = array();
@@ -384,10 +384,10 @@ class Block
         $tomorrow  = $today + 24 * 3600;
         $week      = $tomorrow - 24 * 3600 * 7;
         $month     = $tomorrow - 24 * 3600 * 30;
-        $daySets   = Statistics::getSubmittersInPeriod($today, $tomorrow, $limit, $module);
-        $weekSets  = Statistics::getSubmittersInPeriod($week, $tomorrow, $limit, $module);
-        $monthSets = Statistics::getSubmittersInPeriod($month, $tomorrow, $limit, $module);
-        $historySets = Statistics::getSubmittersInPeriod(0, $tomorrow, $limit, $module);
+        $daySets   = Stats::getSubmittersInPeriod($today, $tomorrow, $limit, $module);
+        $weekSets  = Stats::getSubmittersInPeriod($week, $tomorrow, $limit, $module);
+        $monthSets = Stats::getSubmittersInPeriod($month, $tomorrow, $limit, $module);
+        $historySets = Stats::getSubmittersInPeriod(0, $tomorrow, $limit, $module);
         
         return array(
             'day'     => $daySets,

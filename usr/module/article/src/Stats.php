@@ -16,11 +16,11 @@ use Module\Article\Model\Article;
 use Module\Article\Service;
 
 /**
- * Statistics service API
+ * Stats service API
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class Statistics
+class Stats
 {
     protected static $module = 'article';
     
@@ -57,7 +57,7 @@ class Statistics
             $name  = $model->slugToId($name);
         }
         
-        Pi::model('statistics', $module)->increaseVisits($name);
+        Pi::model('stats', $module)->increaseVisits($name);
         Pi::model('visit', $module)->addRow($name);
     }
     
@@ -71,7 +71,7 @@ class Statistics
     public static function getTopVisits($limit, $module = null)
     {
         $module = $module ?: Pi::service('module')->current();
-        $model  = Pi::model('statistics', $module);
+        $model  = Pi::model('stats', $module);
         $select = $model->select()
                         ->limit($limit)
                         ->order('visits DESC');
@@ -157,7 +157,7 @@ class Statistics
             $where['time_submit <= ?'] = $dateTo;
         }
 
-        $result = Service::getCategoryList();
+        $result = Pi::api('api', $module)->getCategoryList();
 
         foreach ($result as &$val) {
             $val['total'] = 0;

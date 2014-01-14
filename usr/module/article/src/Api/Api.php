@@ -12,6 +12,7 @@ namespace Module\Article\Api;
 use Pi;
 use Pi\Application\AbstractApi;
 use Module\Article\Model\Article;
+use Module\Article\Installer\Resource\Route;
 
 /**
  * Public API for other module
@@ -90,19 +91,104 @@ class Api extends AbstractApi
             $articleIds[] = $set['id'];
         }
         
-        // Get statistics data
-        $staticSet = Pi::model('statistics', $module)->getList(array(
+        // Get stats data
+        $staticSet = Pi::model('stats', $module)->getList(array(
             'article' => $articleIds,
         ));
         
         foreach ($resultSet as &$row) {
-            $statistics = isset($staticSet[$row['id']]) 
+            $stats = isset($staticSet[$row['id']]) 
                 ? $staticSet[$row['id']] : array();
-            unset($statistics['article']);
-            unset($statistics['id']);
-            $row = array_merge($row, $statistics);
+            unset($stats['article']);
+            unset($stats['id']);
+            $row = array_merge($row, $stats);
         }
         
         return $resultSet;
+    }
+    
+    /**
+     * Read category data from cache
+     * 
+     * @param array $where
+     * @return array 
+     */
+    public function getCategoryList($where = array())
+    {
+        $isTree = false;
+        if (isset($where['is-tree'])) {
+            $isTree = $where['is-tree'];
+            unset($where['is-tree']);
+        }
+        $module = $this->getModule();
+        $rows   = Pi::service('registry')
+            ->handler('category', $module)
+            ->read($where, $isTree);
+        
+        return $rows;
+    }
+    
+    /**
+     * Read author data from cache by ID
+     * 
+     * @param array  $ids
+     * @return array 
+     */
+    public function getAuthorList($ids = array())
+    {
+        $module = $this->getModule();
+        $rows   = Pi::service('registry')->handler('author', $module)->read();
+        
+        if (!empty($ids)) {
+            foreach ($rows as $key => $row) {
+                if (!in_array($row['id'], $ids)) {
+                    unset($rows[$key]);
+                }
+            }
+        }
+        
+        return $rows;
+    }
+    
+    /**
+     * Get route name
+     * 
+     * @return string 
+     */
+    public function getRouteName($module = null)
+    {
+        $module = $module ?: $this->getModule();
+        $defaultRoute = $module . '-article';
+        $resFilename = sprintf(
+            '%s/module/%s/config/route.php',
+            Pi::path('custom'),
+            $module
+        );
+        $resPath     = Pi::path($resFilename);
+        if (!file_exists($resPath)) {
+            return $defaultRoute;
+        }
+        
+        $configs = include $resPath;
+        $class   = '';
+        $name    = '';
+        foreach ($configs as $key => $config) {
+            $class = $config['type'];
+            $name  = $key;
+            break;
+        }
+        
+        if (!class_exists($class)) {
+            return $defaultRoute;
+        }
+        
+        // Check if the route is already in database
+        $routeName = $module . '-' . $name;
+        $cacheName = Pi::service('registry')->handler('route', $module)->read();
+        if ($routeName != $cacheName) {
+            return $defaultRoute;
+        }
+        
+        return $cacheName;
     }
 }

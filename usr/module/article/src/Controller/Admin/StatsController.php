@@ -11,15 +11,15 @@ namespace Module\Article\Controller\Admin;
 
 use Pi\Mvc\Controller\ActionController;
 use Pi;
-use Module\Article\Statistics;
+use Module\Article\Stats;
 use Module\Article\Entity;
 
 /**
- * Statistics controller
+ * Stats controller
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class StatisticsController extends ActionController
+class StatsController extends ActionController
 {
     /**
      * Default page 
@@ -30,17 +30,17 @@ class StatisticsController extends ActionController
         $topVisits7    = Entity::getVisitsRecently(7, 10);
         $topVisits30   = Entity::getVisitsRecently(30, 10);
 
-        $totalEver = Statistics::getTotalRecently();
-        $total7    = Statistics::getTotalRecently(7);
-        $total30   = Statistics::getTotalRecently(30);
+        $totalEver = Stats::getTotalRecently();
+        $total7    = Stats::getTotalRecently(7);
+        $total30   = Stats::getTotalRecently(30);
 
-        $totalEverByCategory = Statistics::getTotalRecentlyByCategory();
-        $total7ByCategory    = Statistics::getTotalRecentlyByCategory(7);
-        $total30ByCategory   = Statistics::getTotalRecentlyByCategory(30);
+        $totalEverByCategory = Stats::getTotalRecentlyByCategory();
+        $total7ByCategory    = Stats::getTotalRecentlyByCategory(7);
+        $total30ByCategory   = Stats::getTotalRecentlyByCategory(30);
 
-        $topSubmittersEver = Statistics::getSubmittersRecently(null, 10);
-        $topSubmitters7    = Statistics::getSubmittersRecently(7, 10);
-        $topSubmitters30   = Statistics::getSubmittersRecently(30, 10);
+        $topSubmittersEver = Stats::getSubmittersRecently(null, 10);
+        $topSubmitters7    = Stats::getSubmittersRecently(7, 10);
+        $topSubmitters30   = Stats::getSubmittersRecently(30, 10);
 
         if ($this->config('enable_tag')) {
             $topTags = Pi::service('api')->tag->top($this->getModule(), null, 10);

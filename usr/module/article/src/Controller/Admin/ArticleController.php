@@ -16,7 +16,7 @@ use Module\Article\Model\Article;
 use Module\Article\Model\Draft;
 use Module\Article\Form\SimpleSearchForm;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
+use Module\Article\Rule;
 use Module\Article\Entity;
 
 /**
@@ -65,7 +65,7 @@ class ArticleController extends ActionController
         $modelAsset     = $this->getModel('asset');
         
         // Delete articles that user has permission to do
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         if (1 == count($ids)) {
             $row      = $modelArticle->find($ids[0]);
             $slug     = Service::getStatusSlug($row->status);
@@ -104,8 +104,8 @@ class ArticleController extends ActionController
         // Deleting extended fields
         $this->getModel('extended')->delete(array('article' => $ids));
         
-        // Deleting statistics
-        $this->getModel('statistics')->delete(array('article' => $ids));
+        // Deleting stats
+        $this->getModel('stats')->delete(array('article' => $ids));
         
         // Deleting compiled article
         $this->getModel('compiled')->delete(array('article' => $ids));
@@ -159,7 +159,7 @@ class ArticleController extends ActionController
             $modelArticle   = $this->getModel('article');
             
             // Activing articles that user has permission to do
-            $rules = Service::getPermission();
+            $rules = Rule::getPermission();
             if (1 == count($ids)) {
                 $row      = $modelArticle->find($ids[0]);
                 if (!(isset($rules[$row->category]['active']) 
@@ -216,7 +216,7 @@ class ArticleController extends ActionController
         $row   = $model->find($id);
 
         // Check user has permission to edit
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         $slug  = Service::getStatusSlug($row->status);
         $resource = $slug . '-edit';
         if (!(isset($rules[$row->category][$resource]) 
@@ -320,7 +320,7 @@ class ArticleController extends ActionController
         $order  = 'time_publish DESC';
 
         // Get permission
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         if (empty($rules)) {
             return $this->jumpToDenied();
         }
@@ -409,7 +409,7 @@ class ArticleController extends ActionController
             'published' => Article::FIELD_STATUS_PUBLISHED,
         );
 
-        $cacheCategories = Service::getCategoryList();
+        $cacheCategories = Pi::api('api', $module)->getCategoryList();
         $this->view()->assign(array(
             'title'      => _a('Published'),
             'data'       => $data,

@@ -11,9 +11,8 @@ namespace Module\Article\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Install as BasicInstall;
+use Module\Article\Controller\Admin\SetupController as Setup;
 use Zend\EventManager\Event;
-use Module\Article\Service;
-use Module\Article\File;
 use ZipArchive;
 
 /**
@@ -124,14 +123,12 @@ class Install extends BasicInstall
     public function initDraftEditPageForm(Event $e)
     {
         $module = $this->event->getParam('module');
-        $content  =<<<EOD
-<?php
-return array(
-    'mode'     => 'extension',
-);
-EOD;
-        $filename = Service::getModuleConfigPath('draft-edit-form', $module);
-        $result   = File::addContent($filename, $content);
+        $elements = array(
+            'mode'  => 'extension',
+        );
+        
+        $filename = Setup::getFilename(false, $module);
+        $result   = Pi::config()->write($filename, $elements, true);
         
         return $result;
     }
@@ -155,7 +152,7 @@ EOD;
         
         $result = true;
         if (!file_exists($destFilename)) {
-            $result = File::mkdir($destFilename);
+            $result = Pi::service('file')->mkdir($destFilename);
         }
         
         // Copy screenshot into target folder
@@ -232,7 +229,7 @@ EOD;
                 // Create folder
                 $targetPath = dirname($targetFilename);
                 if (!is_dir($targetPath)) {
-                    if (File::mkdir($targetPath)) {
+                    if (Pi::service('file')->mkdir($targetPath)) {
                         chmod($targetPath, 0777);
                     }
                 }

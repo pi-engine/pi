@@ -323,7 +323,7 @@
 ## Permission Service APIs
 * getPermission($isMine = false, $operation = null, $category = null, $uid = null)
   * Path: src/Service.php
-  * Call: Service::getPermission();
+  * Call: Rule::getPermission();
   * Description: return permission by passed condition
   * Parameter:
       * $isMine: whether a user is operating is own article
@@ -333,7 +333,7 @@
   * Return value: array('{Category ID}' => array('{Operation name}' => true));
 * getModuleResourcePermission($resource, $uid = null)
   * Path: src/Service.php
-  * Call: Service::getModuleResourcePermission();
+  * Call: Rule::getModuleResourcePermission();
   * Description: return permission of resource defines in acl configuration
   * Parameter:
       * $resource: resource name

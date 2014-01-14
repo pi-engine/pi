@@ -129,7 +129,7 @@ CREATE TABLE `{author}` (
   KEY `name`            (`name`)
 );
 
-CREATE TABLE `{statistics}` (
+CREATE TABLE `{stats}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
   `visits`          int(10) UNSIGNED      NOT NULL DEFAULT 0,
@@ -187,7 +187,7 @@ CREATE TABLE `{media}` (
   KEY `uid`             (`uid`)
 );
 
-CREATE TABLE `{media_statistics}` (
+CREATE TABLE `{media_stats}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `media`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
   `download`        int(10) UNSIGNED      NOT NULL DEFAULT 0,

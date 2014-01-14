@@ -54,7 +54,7 @@ class CategoryController extends ActionController
         $limit  = (int) $config['page_limit_all'] ?: 40;
         $where  = array();
         
-        $route  = Service::getRouteName($module);
+        $route  = Pi::api('api', $module)->getRouteName($module);
 
         // Get category nav
         $rowset = Pi::model('category', $module)->enumerate(null, null);
@@ -77,7 +77,7 @@ class CategoryController extends ActionController
                 'title' => __('All articles'),
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    Service::getRouteName($module),
+                    Pi::api('api', $module)->getRouteName($module),
                     array(
                         'controller' => 'list',
                         'action'     => 'all',

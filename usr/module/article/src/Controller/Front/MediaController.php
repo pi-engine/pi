@@ -288,7 +288,7 @@ class MediaController extends ActionController
         }
         
         // Statistics
-        $model  = $this->getModel('media_statistics');
+        $model  = $this->getModel('media_stats');
         $rowset = $model->select(array('media' => $affectRows));
         $exists = array();
         foreach ($rowset as $row) {

@@ -9,19 +9,18 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\TopicEditForm;
 use Module\Article\Form\TopicEditFilter;
 use Module\Article\Form\SimpleSearchForm;
 use Module\Article\Model\Topic;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
+use Module\Article\Media;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
 use Module\Article\Topic as TopicService;
-use Pi\File\Transfer\Upload as UploadHandler;
 
 /**
  * Topic controller
@@ -48,141 +47,14 @@ class TopicController extends ActionController
     const TEMPLATE_FORMAT = '/^topic-custom-(.+)/';
     
     /**
-     * Get topic form object
-     * 
-     * @param string $action  Form name
-     * @return \Module\Article\Form\TopicEditForm 
-     */
-    protected function getTopicForm($action = 'add')
-    {
-        $form = new TopicEditForm();
-        $form->setAttributes(array(
-            'action'  => $this->url('', array('action' => $action)),
-            'method'  => 'post',
-            'enctype' => 'multipart/form-data',
-            'class'   => 'form-horizontal',
-        ));
-
-        return $form;
-    }
-
-    /**
-     * Save topic information
-     * 
-     * @param  array    $data  Topic information
-     * @return boolean
-     * @throws \Exception 
-     */
-    protected function saveTopic($data)
-    {
-        $module     = $this->getModule();
-        $modelTopic = $this->getModel('topic');
-        $fakeId     = $image = null;
-
-        if (isset($data['id'])) {
-            $id = $data['id'];
-            unset($data['id']);
-        }
-        //$data['active'] = 1;
-
-        $fakeId = Service::getParam($this, 'fake_id', 0);
-
-        unset($data['image']);
-        
-        if (isset($data['slug']) && empty($data['slug'])) {
-            unset($data['slug']);
-        }
-
-        if (empty($id)) {
-            $rowTopic = $modelTopic->createRow($data);
-            $rowTopic->save();
-            $id       = $rowTopic->id;
-        } else {
-            $rowTopic = $modelTopic->find($id);
-
-            if (empty($rowTopic->id)) {
-                return false;
-            }
-
-            $rowTopic->assign($data);
-            $rowTopic->save();
-        }
-
-        // Save image
-        $session    = Service::getUploadSession($module, 'topic');
-        if (isset($session->$id) 
-            || ($fakeId && isset($session->$fakeId))
-        ) {
-            $uploadInfo = isset($session->$id)
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $fileName = $rowTopic->id;
-
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $fileName .= '.' . $pathInfo['extension'];
-                }
-                $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-                $rowTopic->image = rename(
-                    Pi::path($uploadInfo['tmp_name']),
-                    Pi::path($fileName)
-                ) ? $fileName : $uploadInfo['tmp_name'];
-                $rowTopic->save();
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-
-        return $id;
-    }
-    
-    /**
-     * Get screenshot image of a template, if the image is not added by user
-     * a default image will be used according to configuration
-     * 
-     * @param string  $name
-     * @return string 
-     */
-    protected function getScreenshot($name)
-    {
-        $module = $this->getModule();
-        $path = sprintf(
-            '%s/%s/topic-template/%s.png',
-            Pi::path('upload'),
-            $module,
-            $name
-        );
-        if (file_exists($path)) {
-            $url = sprintf(
-                '%s/%s/topic-template/%s.png',
-                Pi::url('upload'),
-                $module,
-                $name
-            );
-        } else {
-            $url = sprintf(
-                '%s/module-%s/%s',
-                Pi::url('asset'),
-                $module,
-                $this->config('default_topic_template_image')
-            );
-        }
-        
-        return $url;
-    }
-    
-    /**
      * List articles of a topic for management
      */
     public function listArticleAction()
     {
-        $modelTopic = $this->getModel('topic');
+        $model = $this->getModel('topic');
 
-        $topic      = Service::getParam($this, 'topic', '');
-        $page       = Service::getParam($this, 'p', 1);
+        $topic      = $this->params('topic', '');
+        $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
@@ -229,7 +101,7 @@ class TopicController extends ActionController
         $users = Pi::user()->get($userIds, array('id', 'identity'));
         
         // Get topic details
-        $rowTopicSet   = $modelTopic->select(array());
+        $rowTopicSet   = $model->select(array());
         $topics        = array();
         foreach ($rowTopicSet as $row) {
             $topics[$row['id']] = $row['title'];
@@ -249,9 +121,7 @@ class TopicController extends ActionController
             ->setUrlOptions(array(
                 'page_param' => 'p',
                 'router'     => $this->getEvent()->getRouter(),
-                'route'      => $this->getEvent()
-                    ->getRouteMatch()
-                    ->getMatchedRouteName(),
+                'route'      => 'admin',
                 'params'     => array_filter(array(
                     'module'        => $module,
                     'controller'    => 'topic',
@@ -281,7 +151,7 @@ class TopicController extends ActionController
     public function pullAction()
     {
         // Fetch topic details
-        $topic      = Service::getParam($this, 'topic', '');
+        $topic      = $this->params('topic', '');
         
         if (empty($topic)) {
             return $this->jumpTo404(_a('Invalid topic ID!'));
@@ -294,8 +164,8 @@ class TopicController extends ActionController
         }
         
         $where  = array();
-        $page   = Service::getParam($this, 'p', 1);
-        $limit  = Service::getParam($this, 'limit', 20);
+        $page   = $this->params('p', 1);
+        $limit  = $this->params('limit', 20);
 
         $data   = $ids = array();
 
@@ -312,7 +182,7 @@ class TopicController extends ActionController
         }
 
         // Get category
-        $category = Service::getParam($this, 'category', 0);
+        $category = $this->params('category', 0);
         if ($category > 1) {
             $categoryIds = $categoryModel->getDescendantIds($category);
             if ($categoryIds) {
@@ -321,14 +191,14 @@ class TopicController extends ActionController
         }
         
         // Get topic
-        $modelTopic = $this->getModel('topic');
-        $topics     = $modelTopic->getList();
+        $model  = $this->getModel('topic');
+        $topics = $model->getList();
 
         // Build where
         $where['status'] = Article::FIELD_STATUS_PUBLISHED;
         $where['active'] = 1;
         
-        $keyword = Service::getParam($this, 'keyword', '');
+        $keyword = $this->params('keyword', '');
         if (!empty($keyword)) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
@@ -366,9 +236,7 @@ class TopicController extends ActionController
             ->setUrlOptions(array(
             'page_param' => 'p',
             'router'     => $this->getEvent()->getRouter(),
-            'route'      => $this->getEvent()
-                ->getRouteMatch()
-                ->getMatchedRouteName(),
+            'route'      => 'admin',
             'params'     => array_filter(array(
                 'module'        => $module,
                 'controller'    => 'topic',
@@ -389,7 +257,7 @@ class TopicController extends ActionController
             'form'       => $form,
             'paginator'  => $paginator,
             'category'   => $category,
-            'categories' => Service::getCategoryList(),
+            'categories' => Pi::api('api', $module)->getCategoryList(),
             'action'     => 'pull',
             'topics'     => $topics,
             'relation'   => $relation,
@@ -405,19 +273,15 @@ class TopicController extends ActionController
      */
     public function pullArticleAction()
     {
-        $topic = Service::getParam($this, 'topic', '');
-        $id    = Service::getParam($this, 'id', 0);
+        $topic = $this->params('topic', '');
+        $id    = $this->params('id', 0);
         $ids   = array_filter(explode(',', $id));
-        $from  = Service::getParam($this, 'from', '');
+        $from  = $this->params('from', '');
         if (empty($topic)) {
-            return Service::jumpToErrorOperation(
-                $this, 
-                _a('Target topic is needed!')
-            );
+            return $this->jumpTo404(_a('Target topic is needed!'));
         }
         if (empty($ids)) {
-            return Service::jumpToErrorOperation(
-                $this, 
+            return $this->jumpTo404( 
                 _a('No articles are selected, please try again!')
             );
         }
@@ -464,9 +328,9 @@ class TopicController extends ActionController
      */
     public function removePullAction()
     {
-        $id    = Service::getParam($this, 'id', 0);
+        $id    = $this->params('id', 0);
         $ids   = array_filter(explode(',', $id));
-        $from  = Service::getParam($this, 'from', '');
+        $from  = $this->params('from', '');
         if (empty($ids)) {
             return $this->jumpTo404('Invalid ID!');
         }
@@ -491,15 +355,20 @@ class TopicController extends ActionController
      */
     public function addAction()
     {
-        $form   = $this->getTopicForm('add');
-        $form->setData(array('fake_id'  => uniqid()));
-
-        Service::setModuleConfig($this);
+        $module  = $this->getModule();
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
+        $form = $this->getTopicForm('add');
+        $form->setData(array('fake_id' => uniqid()));
+        
         $this->view()->assign(array(
             'title'   => _a('Add Topic Info'),
             'form'    => $form,
-            'module'  => $this->getModule(),
+            'module'  => $module,
             'url'     => $this->getScreenshot('default'),
+            'configs' => $configs,
         ));
         $this->view()->setTemplate('topic-edit');
         
@@ -510,8 +379,7 @@ class TopicController extends ActionController
             $form->setInputFilter(new TopicEditFilter);
             $form->setValidationGroup(Topic::getAvailableFields());
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('There are some error occured!')
                 );
@@ -521,16 +389,14 @@ class TopicController extends ActionController
             $data['time_create'] = time();
             $id   = $this->saveTopic($data);
             if (!$id) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not save data!')
                 );
             }
-            return $this->redirect()->toRoute(
-                '',
-                array('action' => 'list-topic')
-            );
+            return $this->redirect()->toRoute('', array(
+                'action' => 'list-topic'
+            ));
         }
     }
 
@@ -541,9 +407,16 @@ class TopicController extends ActionController
      */
     public function editAction()
     {
-        Service::setModuleConfig($this);
-        $this->view()->assign('title', _a('Edit Topic Info'));
-        $this->view()->assign('module', $this->getModule());
+        $module  = $this->getModule();
+        $configs = Pi::service('module')->config('', $module);
+        $configs['max_media_size'] = Pi::service('file')
+            ->transformSize($configs['max_media_size']);
+        
+        $this->view()->assign(array(
+            'title'   => _a('Edit Topic Info'),
+            'module'  => $module,
+            'configs' => $configs,
+        ));
         
         $form = $this->getTopicForm('edit');
         
@@ -557,8 +430,7 @@ class TopicController extends ActionController
             $form->setInputFilter(new TopicEditFilter($options));
             $form->setValidationGroup(Topic::getAvailableFields());
             if (!$form->isValid()) {
-                return Service::renderForm(
-                    $this,
+                return $this->renderForm(
                     $form,
                     _a('Can not update data!')
                 );
@@ -630,7 +502,7 @@ class TopicController extends ActionController
         $module = $this->getModule();
         $config = Pi::service('module')->config('', $module);
         $limit  = (int) $config['page_limit_management'] ?: 20;
-        $page   = Service::getParam($this, 'p', 1);
+        $page   = $this->params('p', 1);
         $page   = $page > 0 ? $page : 1;
         $offset = ($page - 1) * $limit;
         
@@ -669,11 +541,9 @@ class TopicController extends ActionController
         $paginator->setUrlOptions(array(
             'page_param'    => 'p',
             'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()
-                ->getRouteMatch()
-                ->getMatchedRouteName(),
+            'route'         => 'admin',
             'params'        => array(
-                'module'        => $this->getModule(),
+                'module'        => $module,
                 'controller'    => 'topic',
                 'action'        => 'list-topic',
             ),
@@ -683,7 +553,7 @@ class TopicController extends ActionController
             'title'   => _a('Topic List'),
             'topics'  => $rowset,
             'action'  => 'list-topic',
-            'route'   => Service::getRouteName($module),
+            'route'   => Pi::api('api', $module)->getRouteName($module),
             'count'   => $count,
         ));
     }
@@ -695,9 +565,9 @@ class TopicController extends ActionController
      */
     public function activeAction()
     {
-        $status = Service::getParam($this, 'status', 0);
-        $id     = Service::getParam($this, 'id', 0);
-        $from   = Service::getParam($this, 'from', 0);
+        $status = $this->params('status', 0);
+        $id     = $this->params('id', 0);
+        $from   = $this->params('from', 0);
         if (empty($id)) {
             return $this->jumpTo404(_a('Invalid topic ID!'));
         }
@@ -724,14 +594,14 @@ class TopicController extends ActionController
      */
     public function saveImageAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $module  = $this->getModule();
 
         $return  = array('status' => false);
-        $mediaId = Service::getParam($this, 'media_id', 0);
-        $id      = Service::getParam($this, 'id', 0);
+        $mediaId = $this->params('media_id', 0);
+        $id      = $this->params('id', 0);
         if (empty($id)) {
-            $id = Service::getParam($this, 'fake_id', 0);
+            $id = $this->params('fake_id', 0);
         }
         // Checking is ID exists
         if (empty($id)) {
@@ -747,52 +617,29 @@ class TopicController extends ActionController
         }
         
         // Get distination path
-        $destination = Service::getTargetDir('topic', $module, true, false);
+        $destination = Media::getTargetDir('topic', $module, true, false);
 
-        if ($mediaId) {
-            $rowMedia = $this->getModel('media')->find($mediaId);
-            // Checking is media exists
-            if (!$rowMedia->id or !$rowMedia->url) {
-                $return['message'] = _a('Media is not exists!');
-                echo json_encode($return);
-                exit;
-            }
-            // Checking is media an image
-            if (!in_array(strtolower($rowMedia->type), $extensions)) {
-                $return['message'] = _a('Invalid file extension!');
-                echo json_encode($return);
-                exit;
-            }
-            
-            $ext = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-            $rename      = $id . '.' . $ext;
-            $fileName    = rtrim($destination, '/') . '/' . $rename;
-            if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-                $return['message'] = _a('Can not create image file!');
-                echo json_encode($return);
-                exit;
-            }
-        } else {
-            $rawInfo = $this->request->getFiles('upload');
+        $rowMedia = $this->getModel('media')->find($mediaId);
+        // Checking is media exists
+        if (!$rowMedia->id or !$rowMedia->url) {
+            $return['message'] = _a('Media is not exists!');
+            echo json_encode($return);
+            exit;
+        }
+        // Checking is media an image
+        if (!in_array(strtolower($rowMedia->type), $extensions)) {
+            $return['message'] = _a('Invalid file extension!');
+            echo json_encode($return);
+            exit;
+        }
 
-            $ext     = pathinfo($rawInfo['name'], PATHINFO_EXTENSION);
-            $rename  = $id . '.' . $ext;
-
-            $upload = new UploadHandler;
-            $upload->setDestination(Pi::path($destination))
-                   ->setRename($rename)
-                   ->setExtension($this->config('image_extension'))
-                   ->setSize($this->config('max_image_size'));
-
-            // Checking is uploaded file valid
-            if (!$upload->isValid()) {
-                $return['message'] = $upload->getMessages();
-                echo json_encode($return);
-                exit;
-            }
-            
-            $upload->receive();
-            $fileName = $destination . '/' . $rename;
+        $ext = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
+        $rename      = $id . '.' . $ext;
+        $fileName    = rtrim($destination, '/') . '/' . $rename;
+        if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
+            $return['message'] = _a('Can not create image file!');
+            echo json_encode($return);
+            exit;
         }
 
         // Scale image
@@ -802,20 +649,20 @@ class TopicController extends ActionController
         $uploadInfo['thumb_w']  = $this->config('topic_thumb_width');
         $uploadInfo['thumb_h']  = $this->config('topic_thumb_height');
 
-        Service::saveImage($uploadInfo);
+        Media::saveImage($uploadInfo);
 
         // Save image to topic
-        $rowTopic = $this->getModel('topic')->find($id);
-        if ($rowTopic) {
-            if ($rowTopic->image && $rowTopic->image != $fileName) {
-                @unlink(Pi::path($rowTopic->image));
+        $row = $this->getModel('topic')->find($id);
+        if ($row) {
+            if ($row->image && $row->image != $fileName) {
+                @unlink(Pi::path($row->image));
             }
 
-            $rowTopic->image = $fileName;
-            $rowTopic->save();
+            $row->image = $fileName;
+            $row->save();
         } else {
             // Or save info to session
-            $session = Service::getUploadSession($module, 'topic');
+            $session = Media::getUploadSession($module, 'topic');
             $session->$id = $uploadInfo;
         }
 
@@ -845,25 +692,25 @@ class TopicController extends ActionController
      */
     public function removeImageAction()
     {
-        Pi::service('log')->active(false);
-        $id           = Service::getParam($this, 'id', 0);
-        $fakeId       = Service::getParam($this, 'fake_id', 0);
+        Pi::service('log')->mute();
+        $id           = $this->params('id', 0);
+        $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
 
         if ($id) {
-            $rowTopic = $this->getModel('topic')->find($id);
+            $row = $this->getModel('topic')->find($id);
 
-            if ($rowTopic && $rowTopic->image) {
+            if ($row && $row->image) {
                 // Delete image
-                @unlink(Pi::path($rowTopic->image));
+                @unlink(Pi::path($row->image));
 
                 // Update db
-                $rowTopic->image = '';
-                $affectedRows    = $rowTopic->save();
+                $row->image = '';
+                $affectedRows = $row->save();
             }
         } else if ($fakeId) {
-            $session = Service::getUploadSession($module, 'topic');
+            $session = Media::getUploadSession($module, 'topic');
 
             if (isset($session->$fakeId)) {
                 $uploadInfo = isset($session->$id) 
@@ -888,7 +735,7 @@ class TopicController extends ActionController
      */
     public function getTemplateAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $return = array('status' => false);
         
         $limit  = (int) $this->params('limit', 1);
@@ -969,10 +816,7 @@ class TopicController extends ActionController
     {
         $name = $this->params('name', 0);
         if (empty($name)) {
-            return Service::jumpToErrorOperation(
-                $this,
-                _a('Invalid template name!')
-            );
+            return $this->jumpTo404(_a('Invalid template name!'));
         }
         
         $url = $this->getScreenshot($name);
@@ -980,5 +824,140 @@ class TopicController extends ActionController
         header('Content-type: image/png');
         readfile($url);
         exit();
+    }
+    
+    /**
+     * Get topic form object
+     * 
+     * @param string $action  Form name
+     * @return \Module\Article\Form\TopicEditForm 
+     */
+    protected function getTopicForm($action = 'add')
+    {
+        $form = new TopicEditForm();
+        $form->setAttribute('action', $this->url('', array('action' => $action)));
+
+        return $form;
+    }
+    
+    /**
+     * Render form
+     * 
+     * @param Zend\Form\Form $form     Form instance
+     * @param string         $message  Message assign to template
+     * @param bool           $error    Whether is error message
+     */
+    public function renderForm($form, $message = null, $error = true)
+    {
+        $params = compact('form', 'message', 'error');
+        $this->view()->assign($params);
+    }
+
+    /**
+     * Save topic information
+     * 
+     * @param  array    $data  Topic information
+     * @return boolean
+     * @throws \Exception 
+     */
+    protected function saveTopic($data)
+    {
+        $module = $this->getModule();
+        $model  = $this->getModel('topic');
+        $fakeId = $image = null;
+
+        if (isset($data['id'])) {
+            $id = $data['id'];
+            unset($data['id']);
+        }
+        //$data['active'] = 1;
+
+        $fakeId = $this->params('fake_id', 0);
+
+        unset($data['image']);
+        
+        if (isset($data['slug']) && empty($data['slug'])) {
+            unset($data['slug']);
+        }
+
+        if (empty($id)) {
+            $row = $model->createRow($data);
+            $row->save();
+            $id  = $row->id;
+        } else {
+            $row = $model->find($id);
+
+            if (empty($row->id)) {
+                return false;
+            }
+
+            $row->assign($data);
+            $row->save();
+        }
+
+        // Save image
+        $session    = Media::getUploadSession($module, 'topic');
+        if (isset($session->$id) 
+            || ($fakeId && isset($session->$fakeId))
+        ) {
+            $uploadInfo = isset($session->$id)
+                ? $session->$id : $session->$fakeId;
+
+            if ($uploadInfo) {
+                $fileName = $row->id;
+
+                $pathInfo = pathinfo($uploadInfo['tmp_name']);
+                if ($pathInfo['extension']) {
+                    $fileName .= '.' . $pathInfo['extension'];
+                }
+                $fileName = $pathInfo['dirname'] . '/' . $fileName;
+
+                $row->image = rename(
+                    Pi::path($uploadInfo['tmp_name']),
+                    Pi::path($fileName)
+                ) ? $fileName : $uploadInfo['tmp_name'];
+                $row->save();
+            }
+
+            unset($session->$id);
+            unset($session->$fakeId);
+        }
+
+        return $id;
+    }
+    
+    /**
+     * Get screenshot image of a template, if the image is not added by user
+     * a default image will be used according to configuration
+     * 
+     * @param string  $name
+     * @return string 
+     */
+    protected function getScreenshot($name)
+    {
+        $module = $this->getModule();
+        $path = sprintf(
+            '%s/%s/topic-template/%s.png',
+            Pi::path('upload'),
+            $module,
+            $name
+        );
+        if (file_exists($path)) {
+            $url = sprintf(
+                '%s/%s/topic-template/%s.png',
+                Pi::url('upload'),
+                $module,
+                $name
+            );
+        } else {
+            $url = sprintf(
+                '%s/module-%s/%s',
+                Pi::url('asset'),
+                $module,
+                $this->config('default_topic_template_image')
+            );
+        }
+        
+        return $url;
     }
 }

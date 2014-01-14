@@ -22,7 +22,7 @@ class Route extends BasicRoute
     /**
      * Route resource file 
      */
-    const RESOURCE_CONFIG_NAME = 'resource.route.php';
+    const RESOURCE_CONFIG_NAME = 'route.php';
     
     /**
      * Installing route resource

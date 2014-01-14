@@ -16,7 +16,7 @@ use Module\Article\Form\DraftEditForm;
 use Module\Article\Form\DraftEditFilter;
 use Module\Article\Model\Draft;
 use Module\Article\Model\Article;
-use Module\Article\Service;
+use Module\Article\Rule;
 use Module\Article\Compiled;
 use Module\Article\Entity;
 use Pi\File\Transfer\Upload as UploadHandler;
@@ -122,7 +122,7 @@ class DraftController extends FrontDraft
         }
         
         // Getting permission
-        $rules      = Service::getPermission('my' == $from ? true : false);
+        $rules      = Rule::getPermission('my' == $from ? true : false);
         $categories = array_keys($rules);
         $where['category'] = empty($categories) ? 0 : $categories;
         

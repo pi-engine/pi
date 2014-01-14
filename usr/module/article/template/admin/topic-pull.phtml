@@ -31,7 +31,7 @@
                 <div class="pull-left form-inline">
                     <div class="form-group">
                         <a class="btn btn-primary" id="article-pull"
-                        data-content="<?php echo $this->url('', array('action' => 'pull-article', 'topic' => $topic['id'], 'id' => '')); ?>">
+                        data-content="<?php echo $this->url('', array('action' => 'pull-article', 'topic' => $topic['id'], 'id' => 'placeholder')); ?>">
                             <?php echo _a('Pull'); ?>
                         </a>
                     </div>
@@ -112,7 +112,7 @@
                             data-content="<?php echo $this->url('', array(
                                 'action' => 'pull-article',
                                 'topic'  => $topic['id'],
-                                'id'     => ''
+                                'id'     => 'placeholder',
                             )); ?>"><?php echo _a('Pull'); ?></a>
                             <?php } ?>
                         </div>
@@ -203,7 +203,7 @@
             var self = this;
             if ('pull' == val) {
                 var url = el.attr('data-content');
-                url += id;
+                url = url.replace(/placeholder$/, id);
                 
                 location.href = url + "?from=" + this.encodeUrl();
             } else {
@@ -225,7 +225,7 @@
                 count++;
             });
             var ids = id.join(',');
-            url += ids;
+            url = url.replace(/placeholder$/, ids);
 
             location.href = url + "?from=" + this.encodeUrl();
         },

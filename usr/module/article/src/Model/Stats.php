@@ -13,11 +13,11 @@ use Pi;
 use Pi\Application\Model\Model;
 
 /**
- * Statistics model class
+ * Stats model class
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class Statistics extends Model
+class Stats extends Model
 {
     /**
      * Get avaliable columns

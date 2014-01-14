@@ -55,7 +55,7 @@ class ListController extends ActionController
         $model  = $this->getModel('article');
         $select = $model->select()->where($where);d($sort);
         if ('hot' == $sort) {
-            $modelStats = $this->getModel('statistics');
+            $modelStats = $this->getModel('stats');
             $select->join(
                 array('st' => $modelStats->getTable()),
                 sprintf('%s.id = st.article', $model->getTable()),
@@ -67,7 +67,8 @@ class ListController extends ActionController
         }
         $select->order($order)->offset($offset)->limit($limit);
         
-        $route  = Service::getRouteName();
+        $module = $this->getModule();
+        $route  = Pi::api('api', $module)->getRouteName();
         $resultset = $model->selectWith($select);
         $items     = array();
         $categoryIds = $authorIds = array();
@@ -142,7 +143,7 @@ class ListController extends ActionController
                 'title' => __('All articles'),
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    Service::getRouteName($module),
+                    Pi::api('api', $module)->getRouteName($module),
                     array(
                         'controller' => 'list',
                         'action'     => 'all',

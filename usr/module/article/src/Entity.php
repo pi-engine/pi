@@ -14,9 +14,9 @@ use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Module\Article\Cache;
 use Module\Article\Compiled;
-use Module\Article\Statistics;
+use Module\Article\Stats;
 use Module\Article\Service;
-use Module\Article\Model\Statistics as ModelStatistics;
+use Module\Article\Model\Stats as ModelStats;
 
 /**
  * Article service APIs
@@ -167,7 +167,7 @@ class Entity
             }
         }
         
-        $articles    = Statistics::getTopVisits($limit, $module);
+        $articles    = Stats::getTopVisits($limit, $module);
         if (!empty($articles)) {
             $where['id'] = array_keys($articles);
         }
@@ -278,7 +278,7 @@ class Entity
         $extendedColumns = Pi::service('registry')
             ->handler('extended', $module)
             ->read();
-        $statisColumns = ModelStatistics::getAvailableColumns();
+        $statisColumns = ModelStats::getAvailableColumns();
         if (!empty($columns)) {
             // Get needed columns of extended table
             foreach ($extendedColumns as $key => $col) {
@@ -325,7 +325,7 @@ class Entity
             if (!empty($statisColumns)) {
                 $statisColumns[] = 'id';
                 $statisColumns[] = 'article';
-                $modelStatis = Pi::model('statistics', $module);
+                $modelStatis = Pi::model('stats', $module);
                 $select      = $modelStatis
                     ->select()
                     ->where(array('article' => $articleIds))
@@ -372,12 +372,12 @@ class Entity
                 }
             }
 
-            $categories = Service::getCategoryList();
+            $categories = Pi::api('api', $module)->getCategoryList();
 
             if (!empty($authorIds) 
                 && (empty($columns) || in_array('author', $columns))
             ) {
-                $resultsetAuthor = Service::getAuthorList($authorIds);
+                $resultsetAuthor = Pi::api('api', $module)->getAuthorList($authorIds);
                 foreach ($resultsetAuthor as $row) {
                     $authors[$row['id']] = array(
                         'name' => $row['name'],
@@ -430,7 +430,7 @@ class Entity
 
                 if (empty($columns) || in_array('image', $columns)) {
                     if ($row['image']) {
-                        $row['thumb'] = Service::getThumbFromOriginal($row['image']);
+                        $row['thumb'] = Media::getThumbFromOriginal($row['image']);
                     }
                 }
 
@@ -442,13 +442,11 @@ class Entity
                 }
 
                 if (empty($columns) || in_array('subject', $columns)) {
-                    $route      = Service::getRouteName($module);
-                    $row['url'] = Pi::engine()->application()
-                        ->getRouter()
-                        ->assemble(array(
-                            'time'   => date('Ymd', $row['time_publish']),
-                            'id'     => $row['id'],
-                        ), array('name' => $route));
+                    $route      = Pi::api('api', $module)->getRouteName($module);
+                    $row['url'] = Pi::service('url')->assemble($route, array(
+                        'time'   => date('Ymd', $row['time_publish']),
+                        'id'     => $row['id'],
+                    ));
                 }
                 
                 if (!isset($statis[$row['id']])) {
@@ -538,7 +536,7 @@ class Entity
 
         // Get author
         if ($row->author) {
-            $author = Service::getAuthorList((array) $row->author);
+            $author = Pi::api('api', $module)->getAuthorList((array) $row->author);
 
             if ($author) {
                 $result['author'] = array_shift($author);
@@ -632,8 +630,8 @@ class Entity
             'description'  => $rowExtended->seo_description,
         );
         
-        // Getting statistics data
-        $modelStatis    = Pi::model('statistics', $module);
+        // Getting stats data
+        $modelStatis    = Pi::model('stats', $module);
         $rowStatis      = $modelStatis->find($row->id, 'article');
         $result['visits'] = $rowStatis->visits;
 

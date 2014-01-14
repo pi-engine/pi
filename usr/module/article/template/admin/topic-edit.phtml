@@ -1,7 +1,6 @@
 <?php
     $this->css(array(
-        $this->assetModule('script/article-front-admin.css'),
-        $this->assetModule('script/article-admin.css'),
+        $this->assetModule('script/admin.css'),
     ));
     $this->jQuery('extension/fileupload-min.js');
     $this->Backbone();
@@ -10,7 +9,7 @@
 
 <?php include 'message-box.phtml'; ?>
 
-<div id="jsUpload">
+<div id="pi-js-upload">
     <?php include $this->templateComponent('form'); ?>
     
     <script id="temp-upload" type="text/template">
@@ -29,7 +28,7 @@
             </button>
             <div class="topic-image-desc muted">
                 <p><?php echo _a('Feature image for topic'); ?></p>
-                <p><?php echo _a('Required size: ') . $this->escape($topicWidth) . '×' . $this->escape($topicHeight) . 'px'; ?></p>
+                <p><?php echo _a('Required size: ') . $this->escape($configs['topic_width']) . '×' . $this->escape($configs['topic_height']) . 'px'; ?></p>
             </div>
         </div>
     </script>
@@ -96,16 +95,16 @@ var UploadView = Backbone.View.extend({
     template        : _.template('<div class="black-bg"><span class="topic glyphicon glyphicon-remove"></span></div>'
                     + '<img src="<%=preview_url %>">'),
     events          : {
-        "click .topic.glyphicon-remove"  :"remove",
-        "click .media.glyphicon-remove"  : "removeUpload",
-        "click #media-search"       : "searchMedia",
-        "click .media-insert a"     : "insertMedia",
-        "click .media-remove.close" : "removeMedia",
-        "click #media-close"        : "cancel",
-        "click #media-cancel"       : "cancel",
-        "click #media-process"      : "processImage",
-        "click .prev-page"          : "searchMedia",
-        "click .next-page"          : "searchMedia",
+        "click .topic.glyphicon-remove" :"remove",
+        "click .media.glyphicon-remove" : "removeUpload",
+        "click #media-search"           : "searchMedia",
+        "click .media-insert a"         : "insertMedia",
+        "click .media-remove.close"     : "removeMedia",
+        "click #media-close"            : "cancel",
+        "click #media-cancel"           : "cancel",
+        "click #media-process"          : "processImage",
+        "click .prev-page"              : "searchMedia",
+        "click .next-page"              : "searchMedia",
         
         // Change template
         "click .topic-template-change"  : "displayTemplates",
@@ -121,7 +120,7 @@ var UploadView = Backbone.View.extend({
         page.$("[name=template-placeholder]")
             .parents(".col-md-4")
             .html($("#template-template").html());
-        this.$el   = $("#jsUpload");
+        this.$el   = $("#pi-js-upload");
         this.$("#media-button").html($("#media-upload-button").html());
         this.input = $('input[name="upload"]');
         this.fileupload();
