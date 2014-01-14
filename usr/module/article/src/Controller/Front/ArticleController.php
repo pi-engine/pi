@@ -20,6 +20,7 @@ use Module\Article\Rule;
 use Module\Article\Entity;
 use Module\Article\Stats;
 use Module\Article\Draft;
+use Module\Article\Media;
 
 /**
  * Article controller
@@ -422,7 +423,7 @@ class ArticleController extends ActionController
             // Delete feature image
             if ($article->image) {
                 @unlink(Pi::path($article->image));
-                @unlink(Pi::path(Service::getThumbFromOriginal($article->image)));
+                @unlink(Pi::path(Media::getThumbFromOriginal($article->image)));
             }
         }
         

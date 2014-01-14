@@ -98,14 +98,12 @@ class MediaController extends ActionController
 
         $return   = array('status' => false);
         $id       = $this->params('id', 0);
-        if (empty($id)) {
-            $id = $this->params('fake_id', 0) ?: uniqid();
-        }
+        $fakeId   = $this->params('fake_id', 0) ?: uniqid();
         $type     = $this->params('type', 'attachment');
         $formName = $this->params('form_name', 'upload');
 
         // Checking whether ID is empty
-        if (empty($id)) {
+        if (empty($id) && empty($fakeId)) {
             $return['message'] = _a('Invalid ID!');
             return json_encode($return);
             exit ;
@@ -118,7 +116,7 @@ class MediaController extends ActionController
         $ext     = strtolower(
             pathinfo($rawInfo['name'], PATHINFO_EXTENSION)
         );
-        $rename  = $id . '.' . $ext;
+        $rename  = $id ?: $fakeId . '.' . $ext;
 
         $allowedExtension = ($type == 'image')
             ? $config['image_extension'] : $config['media_extension'];
@@ -174,8 +172,8 @@ class MediaController extends ActionController
         }
 
         // Save uploaded media
-        $row = $this->getModel('media')->find($id);
-        if ($row) {
+        if ($id) {
+            $row = $this->getModel('media')->find($id);
             if ($row->url && $row->url != $fileName) {
                 unlink(Pi::path($row->url));
             }
@@ -188,7 +186,7 @@ class MediaController extends ActionController
         } else {
             // Or save info to session
             $session = Media::getUploadSession($module, 'media');
-            $session->$id = $uploadInfo;
+            $session->$fakeId = $uploadInfo;
         }
         
         // Prepare return data
@@ -199,7 +197,7 @@ class MediaController extends ActionController
                 'preview_url'  => Pi::url($fileName),
                 'basename'     => basename($fileName),
                 'type'         => $ext,
-                'id'           => $id,
+                'id'           => $id ?: $fakeId,
                 'filename'     => $fileName,
             ),
             $imageSize
@@ -221,7 +219,7 @@ class MediaController extends ActionController
         $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
-
+        
         if ($id) {
             $row = $this->getModel('media')->find($id);
 
@@ -238,7 +236,7 @@ class MediaController extends ActionController
             }
         } else if ($fakeId) {
             $session = Media::getUploadSession($module, 'media');
-
+            
             if (isset($session->$fakeId)) {
                 $uploadInfo = isset($session->$id) ? $session->$id : $session->$fakeId;
 

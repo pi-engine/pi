@@ -16,7 +16,7 @@
     $controller = 'draft';
 } ?>
 
-<ul class="nav nav-pills">
+<ul class="nav nav-pills" style="margin-bottom: 10px">
     <li class="<?php if ($status == $flags['published']) echo 'active'; ?>">
         <a href="<?php echo $this->url('', array('action' => 'published', 'controller' => 'article', 'from' => $from)); ?>">
             <?php _e('Published'); ?>(<?php echo $summary['published'] ?>)

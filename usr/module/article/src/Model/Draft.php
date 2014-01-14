@@ -12,8 +12,8 @@ namespace Module\Article\Model;
 use Pi;
 use Pi\Application\Model\Model;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
 use Zend\Stdlib\ArrayObject;
+use Module\Article\Controller\Admin\SetupController as Setup;
 
 /**
  * Draft model
@@ -99,7 +99,7 @@ class Draft extends Model
      */
     public static function getValidFields($module = null)
     {
-        $options         = Service::getFormConfig();
+        $options         = Setup::getFormConfig();
         $availableFields = self::getAvailableFields($module);
         $remainFields    = array(
             'id', 'article', 'uid', 'time_publish', 'time_update', 'time_submit'

@@ -595,7 +595,6 @@ class DraftController extends ActionController
             if (empty($rowDraft->id)) {
                 return false;
             }
-            $id = $rowDraft->id;
         } else {
             if (isset($data['status'])) {
                 unset($data['status']);
@@ -606,18 +605,23 @@ class DraftController extends ActionController
                 return false;
             }
 
-            $modelDraft->updateRow($data, array('id' => $id));
+            $modelDraft->updateRow($data, array('id' => $rowDraft->id));
         }
         
         // Save image
-        $session    = Media::getUploadSession($module, 'feature');
-        if (isset($session->$id) || ($fakeId && isset($session->$fakeId))) {
+        $session = Media::getUploadSession($module, 'feature');
+        if (isset($session->$id)
+            || ($fakeId && isset($session->$fakeId))
+        ) {
             $uploadInfo = isset($session->$id) 
                 ? $session->$id : $session->$fakeId;
 
             if ($uploadInfo) {
                 $data['image'] = $uploadInfo['tmp_name'];
-                $this->getModel('draft')->updateRow($data, array('id' => $id));
+                $this->getModel('draft')->updateRow(
+                    $data,
+                    array('id' => $rowDraft->id)
+                );
             }
 
             unset($session->$id);
@@ -627,12 +631,12 @@ class DraftController extends ActionController
         // Update assets linked to fake id
         if ($fakeId) {
             $this->getModel('asset_draft')->update(
-                array('draft' => $id),
+                array('draft' => $rowDraft->id),
                 array('draft' => $fakeId)
             );
         }
 
-        return $id;
+        return $rowDraft->id;
     }
     
     /**
@@ -1504,13 +1508,14 @@ class DraftController extends ActionController
         $mediaId = $this->params('media_id', 0);
         $id      = $this->params('id', 0);
         $fakeId  = $this->params('fake_id', 0);
+        
         // Checking is id valid
-        if (empty($fakeId)) {
+        if (empty($id) && empty($fakeId)) {
             $return['message'] = __('Invalid ID!');
             echo json_encode($return);
             exit;
         }
-        $rename  = $fakeId;
+        $rename  = $id ?: $fakeId;
         
         $extensions = array_filter(explode(',', $this->config('image_extension')));
         foreach ($extensions as &$ext) {
@@ -1520,50 +1525,27 @@ class DraftController extends ActionController
         // Get distination path
         $destination = Media::getTargetDir('feature', $module, true);
         
-        if ($mediaId) {
-            $rowMedia = $this->getModel('media')->find($mediaId);
-            // Checking is media exists
-            if (!$rowMedia->id or !$rowMedia->url) {
-                $return['message'] = __('Media is not exists!');
-                echo json_encode($return);
-                exit;
-            }
-            // Checking is media an image
-            if (!in_array(strtolower($rowMedia->type), $extensions)) {
-                $return['message'] = __('Invalid file extension!');
-                echo json_encode($return);
-                exit;
-            }
-            
-            $ext = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-            $rename     .= '.' . $ext;
-            $fileName    = rtrim($destination, '/') . '/' . $rename;
-            if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-                $return['message'] = __('Can not create image file!');
-                echo json_encode($return);
-                exit;
-            }
-        } else {
-            $rawInfo = $this->request->getFiles('upload');
-            
-            $ext     = pathinfo($rawInfo['name'], PATHINFO_EXTENSION);
-            $rename .= '.' . $ext;
-            
-            $upload      = new UploadHandler;
-            $upload->setDestination(Pi::path($destination))
-                   ->setRename($rename)
-                   ->setExtension($this->config('image_extension'))
-                   ->setSize($this->config('max_image_size'));
+        $rowMedia = $this->getModel('media')->find($mediaId);
+        // Checking is media exists
+        if (!$rowMedia->id or !$rowMedia->url) {
+            $return['message'] = __('Media is not exists!');
+            echo json_encode($return);
+            exit;
+        }
+        // Checking is media an image
+        if (!in_array(strtolower($rowMedia->type), $extensions)) {
+            $return['message'] = __('Invalid file extension!');
+            echo json_encode($return);
+            exit;
+        }
 
-            // Checking is uploaded file valid
-            if (!$upload->isValid()) {
-                $return['message'] = $upload->getMessages();
-                echo json_encode($return);
-                exit;
-            }
-            
-            $upload->receive();
-            $fileName = $destination . '/' . $rename;
+        $ext = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
+        $rename     .= '.' . $ext;
+        $fileName    = rtrim($destination, '/') . '/' . $rename;
+        if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
+            $return['message'] = __('Can not create image file!');
+            echo json_encode($return);
+            exit;
         }
 
         // Scale image
@@ -1582,8 +1564,8 @@ class DraftController extends ActionController
             $rowDraft->save();
         } else {
             // Or save info to session
-            $session = Media::getUploadSession($module);
-            $session->$id = $uploadInfo;
+            $session = Media::getUploadSession($module, 'feature');
+            $session->$fakeId = $uploadInfo;
         }
 
         $imageSize    = getimagesize(Pi::path($fileName));
@@ -1610,7 +1592,7 @@ class DraftController extends ActionController
      */
     public function removeImageAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $id           = $this->params('id', 0);
         $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;

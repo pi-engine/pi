@@ -9,19 +9,19 @@
 
 namespace Module\Article\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\TopicEditForm;
 use Module\Article\Form\TopicEditFilter;
 use Module\Article\Form\SimpleSearchForm;
 use Module\Article\Model\Topic;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
 use Module\Article\Topic as TopicService;
 use Pi\File\Transfer\Upload as UploadHandler;
+use Module\Article\Media;
 
 /**
  * Topic controller
@@ -143,7 +143,7 @@ class TopicController extends ActionController
         $resultsetTopic = TopicService::getTopics($where, $page, $limit);
         foreach ($resultsetTopic as &$topic) {
             $topic['image'] = $topic['image']
-                ? Service::getThumbFromOriginal($topic['image'])
+                ? Media::getThumbFromOriginal($topic['image'])
                 : Pi::service('asset')
                     ->getModuleAsset($config['default_topic_image']);
         }

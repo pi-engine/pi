@@ -7,7 +7,7 @@
         'js/bootstrap.min.js',
         'js/bootstrap-typeahead.js',
     ));
-    $this->css($this->assetModule('script/article-front-admin.css'));
+    $this->css($this->assetModule('script/front.css'));
     $this->Backbone();
 ?>
 
@@ -399,16 +399,20 @@
                     <?php } ?>
                 </div>
                 <div id="rejectModel" class="modal fade">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <?php _e('Reject reason'); ?>
-                    </div>
-                    <div class="modal-body">
-                        <textarea class="col-md-12 memo"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary reject"><?php _e('Reject'); ?></button>
-                    </div>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title"><?php _e('Reject reason'); ?></h4>
+                            </div>
+                            <div class="modal-body" style="height: 100px">
+                                <textarea class="col-md-12 form-control memo"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary reject" data-dismiss="modal"><?php _e('Reject'); ?></button>
+                            </div>
+                        </div>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -488,7 +492,7 @@
                 ?>
                 <div class="seo-other hide">
                     <?php if (in_array('seo_title', $elements)) { ?>
-                    <label><?php _e('SEO title'); ?></label>
+                    <label class="col-md-12"><?php _e('SEO title'); ?></label>
                     <?php
                         $element = $form->get('seo_title');
                         $element->setAttribute("class", "col-md-12 form-control");
@@ -496,7 +500,7 @@
                     }
                     ?>
                     <?php if (in_array('seo_keywords', $elements)) { ?>
-                    <label><?php _e('SEO keywords'); ?></label>
+                    <label class="col-md-12"><?php _e('SEO keywords'); ?></label>
                     <?php
                         $element = $form->get('seo_keywords');
                         $element->setAttribute("class", "col-md-12 form-control");
@@ -504,7 +508,7 @@
                     }
                     ?>
                     <?php if (in_array('seo_description', $elements)) { ?>
-                    <label><?php _e('SEO description'); ?></label>
+                    <label class="col-md-12"><?php _e('SEO description'); ?></label>
                     <?php
                         $element = $form->get('seo_description');
                         $element->setAttribute("class", "col-md-12 form-control");
@@ -691,12 +695,12 @@ var currentStatus;
 var response;
 (function($) {
 var page = {
-    base    :"<?php echo Pi::url(''); ?>",
-    id      :"<?php echo $form->get('id')->getValue() ?: $form->get('fake_id')->getValue(); ?>",
+    base    : "<?php echo Pi::url(''); ?>",
+    id      : "<?php echo $form->get('id')->getValue() ?: $form->get('fake_id')->getValue(); ?>",
     ajaxId  : function() {
-        return "<?php echo $form->get('id')->getValue()
-            ? 'id-' . $form->get('id')->getValue() 
-            : 'fake_id-' . $form->get('fake_id')->getValue(); ?>";
+        var id      = $("[name=id]").val();
+        var fake_id = $("[name=fake_id]").val();
+        return id.length ? 'id-' + id : 'fake_id-' + fake_id;
     },
     status  : "<?php echo $this->escape($draft['status']); ?>",
     form    : $("form.row"),
@@ -761,7 +765,7 @@ var page = {
                         },200)
                     } else {
                         page.$("[name=id]").val(resp.data.id);
-                        page.id=resp.data.id;
+                        page.id = resp.data.id;
                     }
                 }
                 option.fn(resp.data);
@@ -1200,7 +1204,7 @@ function fileupload(name,url,formate,size,collection) {
                                    + ' data-title="' + resp.data.originalName + '">'
                                    + '<?php _e('Remove'); ?>' + '</a></td>'
                                    + '<input class="select-media-id" type="hidden" value="' + resp.data.id + '" />'
-                                   + '<input class="select-media-source" type="hidden" value="upload" />'
+                                   + '<input class="select-media-source" type="hidden" value="upload">'
                                + '</tr>';
                     // Removing uploaded info
                     collection.get(el.attr("data-cid")).set(resp.data);
@@ -1344,9 +1348,9 @@ var AttachmentListView = Backbone.View.extend({
                     'controller' => 'media',
                     'action'     => 'search',
                     'type'       => $attachmentExtension,
-                    'title'      => '',
+                    'title'      => 'placeholder',
                 )
-            ); ?>' + title;
+            ); ?>'.replace(/placeholder$/, title);
         } else {
             url = el.attr('data-url');
         }
@@ -1418,8 +1422,8 @@ var AttachmentListView = Backbone.View.extend({
                 var url = '<?php echo $this->url('default', array(
                     'controller' => 'media',
                     'action'     => 'remove',
-                    'fake_id'    => '',
-                    )); ?>' + id;
+                    'fake_id'    => 'placeholder',
+                    )); ?>'.replace(/placeholder$/, id);
                 $.get(url, function(result) {
                     result = $.parseJSON(result);
                     if (result.status) {
@@ -1443,8 +1447,8 @@ var AttachmentListView = Backbone.View.extend({
                         'controller' => 'media',
                         'action'     => 'save',
                         'source'     => 'attachment',
-                        'fake_id'    => '',
-                    )); ?>' + id;
+                        'fake_id'    => 'placeholder',
+                    )); ?>'.replace(/placeholder$/, id);
                     $.get(url, function(result) {
                         result = $.parseJSON(result);
                         if (result.status) {
@@ -1472,8 +1476,8 @@ var AttachmentListView = Backbone.View.extend({
                 'controller' => 'draft',
                 'action'     => 'save-asset',
                 'type'       => 'attachment',
-                'media'      => '',
-            )); ?>' + id + '/' + page.ajaxId();
+                'media'      => 'placeholder',
+            )); ?>'.replace(/placeholder$/, id) + '/' + page.ajaxId();
             $.get(url, function(result) {
                 result = $.parseJSON(result);
                 if (result.status) {
@@ -1500,16 +1504,16 @@ var FeatureView = Backbone.View.extend({
     template        : _.template('<div class="black-bg"><i class="feature glyphicon glyphicon-remove"></i></div>'
                       + '<img src="<%=preview_url %>">'),
     events          : {
-        "click .feature.glyphicon-remove"    : "remove",
-        "click .media.glyphicon-remove"      : "removeUpload",
-        "click #media-search"           : "searchMedia",
-        "click .media-insert a"         : "insertMedia",
-        "click .media-remove.close"     : "removeMedia",
-        "click #media-close"            : "cancel",
-        "click #media-cancel"           : "cancel",
-        "click #media-process"          : "processImage",
-        "click .prev-page"              : "searchMedia",
-        "click .next-page"              : "searchMedia"
+        "click .feature.glyphicon-remove"   : "remove",
+        "click .media.glyphicon-remove"     : "removeUpload",
+        "click #media-search"               : "searchMedia",
+        "click .media-insert a"             : "insertMedia",
+        "click .media-remove.close"         : "removeMedia",
+        "click #media-close"                : "cancel",
+        "click #media-cancel"               : "cancel",
+        "click #media-process"              : "processImage",
+        "click .prev-page"                  : "searchMedia",
+        "click .next-page"                  : "searchMedia"
     },
     initialize      : function() {
         if (page.featureImg) {
@@ -1529,8 +1533,9 @@ var FeatureView = Backbone.View.extend({
             'controller' => 'media',
             'action'     => 'upload',
             'type'       => 'image',
-            'fake_id'    => '',
-        )); ?>' + page.mediaFakeId;
+            'fake_id'    => 'placeholder',
+        )); ?>';
+        url = url.replace(/placeholder$/, page.mediaFakeId);
         this.input.fileupload({
             formData    : function() {
                 return [];
@@ -1552,8 +1557,9 @@ var FeatureView = Backbone.View.extend({
                 'controller' => 'media',
                 'action'     => 'upload',
                 'type'       => 'image',
-                'fake_id'    => '',
-            )); ?>' + page.mediaFakeId;
+                'fake_id'    => 'placeholder',
+            )); ?>'.replace(/placeholder$/, page.mediaFakeId);
+            
         });  
     },
     removeUpload    : function(clearData) {
@@ -1568,9 +1574,9 @@ var FeatureView = Backbone.View.extend({
             array(
                 'controller' => 'media',
                 'action'     => 'remove',
-                'fake_id'    => '',
+                'fake_id'    => 'placeholder',
             )
-        ); ?>'+ page.mediaFakeId).done(function() {
+        ); ?>'.replace(/placeholder$/, page.mediaFakeId)).done(function() {
             $("#media-image").html('');
             if (clearData == true) {
                 self.clearMediaData();
@@ -1624,7 +1630,7 @@ var FeatureView = Backbone.View.extend({
                 'controller' => 'draft',
                 'action'     => 'save-image',
             )
-        ); ?>' + 'id-' + page.id + '/fake_id-' + page.featureFakeId + '/' + mediaId.replace(/\//, '-'), function(result) {
+        ); ?>' + page.ajaxId() + '/' + mediaId.replace(/\//, '-'), function(result) {
             result = $.parseJSON(result);
             if (result.status) {
                 self.render({preview_url: result.data.preview_url});
@@ -1638,19 +1644,13 @@ var FeatureView = Backbone.View.extend({
         });
     },
     remove          : function() {
-        var parameter = '<?php echo $form->get('id')->getValue()  
-                         ? 'id-' . $form->get('id')->getValue()
-                         : null ?>';
-        if (!parameter) {
-            parameter = 'fake_id-' + page.featureFakeId;
-        }
         $.getJSON('<?php echo $this->url(
             '',
             array(
                 'controller' => 'draft',
                 'action'     => 'remove-image'
             )
-        ); ?>' + parameter).done(function() {
+        ); ?>' + page.ajaxId()).done(function() {
             $('#jsUpload').find(".upload-image-wrap").html('');
         });
     },
@@ -1672,9 +1672,9 @@ var FeatureView = Backbone.View.extend({
                     'controller' => 'media',
                     'action'     => 'search',
                     'type'       => 'image',
-                    'title'      => '',
+                    'title'      => 'placeholder',
                 )
-            ); ?>' + title;
+            ); ?>'.replace(/placeholder$/, title);
         } else {
             url = el.attr('data-url');
         }
@@ -1798,7 +1798,7 @@ var GalleryItemView      = Backbone.View.extend({
 var GalleryListView = Backbone.View.extend({
     el      : $("#jsGallery"),
     events  :{
-        "click .widget-header"      :"toggleShow",
+        "click .widget-header"      : "toggleShow",
         "click .media-search"       : "searchMedia",
         "click .media-insert"       : "insertMedia",
         "click .gallery-remove"     : "removeMedia",
@@ -1887,9 +1887,9 @@ var GalleryListView = Backbone.View.extend({
                     'controller' => 'media',
                     'action'     => 'search',
                     'type'       => 'image',
-                    'title'      => '',
+                    'title'      => 'placeholder',
                 )
-            ); ?>' + title;
+            ); ?>'.replace(/placeholder$/, title);
         } else {
             url = el.attr('data-url');
         }
@@ -1965,8 +1965,8 @@ var GalleryListView = Backbone.View.extend({
                 var url = '<?php echo $this->url('default', array(
                     'controller' => 'media',
                     'action'     => 'remove',
-                    'fake_id'    => '',
-                    )); ?>' + id;
+                    'fake_id'    => 'placeholder',
+                    )); ?>'.replace(/placeholder$/, id);
                 $.get(url, function(result) {
                     result = $.parseJSON(result);
                     if (result.status) {
@@ -1991,8 +1991,8 @@ var GalleryListView = Backbone.View.extend({
                         'controller' => 'media',
                         'action'     => 'save',
                         'source'     => 'gallery',
-                        'fake_id'    => '',
-                    )); ?>' + id;
+                        'fake_id'    => 'placeholder',
+                    )); ?>'.replace(/placeholder$/, id);
                     $.get(url, function(result) {
                         result = $.parseJSON(result);
                         if (result.status) {
@@ -2020,8 +2020,8 @@ var GalleryListView = Backbone.View.extend({
                 'controller' => 'draft',
                 'action'     => 'save-asset',
                 'type'       => 'image',
-                'media'      => '',
-            )); ?>' + id + '/' + page.ajaxId();
+                'media'      => 'placeholder',
+            )); ?>'.replace(/placeholder$/, id) + '/' + page.ajaxId();
             $.get(url, function(result) {
                 result = $.parseJSON(result);
                 if (result.status) {

@@ -17,6 +17,7 @@ use Module\Article\Compiled;
 use Module\Article\Stats;
 use Module\Article\Draft;
 use Module\Article\Model\Stats as ModelStats;
+use Module\Article\Model\Draft as DraftModel;
 
 /**
  * Article service APIs
@@ -673,9 +674,9 @@ class Entity
             ->group(array('status', 'category'));
         $resultset  = $modelDraft->selectWith($select);
         foreach ($resultset as $row) {
-            if (Draft::FIELD_STATUS_DRAFT == $row->status) {
+            if (DraftModel::FIELD_STATUS_DRAFT == $row->status) {
                 $result['draft'] += $row->total;
-            } else if (Draft::FIELD_STATUS_PENDING == $row->status) {
+            } else if (DraftModel::FIELD_STATUS_PENDING == $row->status) {
                 if ('all' == $from 
                     and in_array($row->category, $categories)
                 ) {
@@ -683,7 +684,7 @@ class Entity
                 } elseif ('my' == $from) {
                     $result['pending'] += $row->total;
                 }
-            } else if (Draft::FIELD_STATUS_REJECTED == $row->status) {
+            } else if (DraftModel::FIELD_STATUS_REJECTED == $row->status) {
                 $result['rejected'] += $row->total;
             }
         }

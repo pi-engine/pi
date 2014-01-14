@@ -14,6 +14,7 @@ use Module\Article\Model\Article;
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Compiled;
+use Module\Article\Media;
 
 /**
  * Common draft API
@@ -52,7 +53,13 @@ class Draft
         $modelDraft     = Pi::model('draft', $module);
         $modelAuthor    = Pi::model('author', $module);
 
-        $resultset = $modelDraft->getSearchRows($where, $limit, $offset, $columns, $order);
+        $resultset = $modelDraft->getSearchRows(
+            $where,
+            $limit,
+            $offset,
+            $columns,
+            $order
+        );
 
         if ($resultset) {
             foreach ($resultset as $row) {
@@ -69,7 +76,7 @@ class Draft
             $authorIds = array_unique($authorIds);
             $userIds   = array_unique($userIds);
 
-            $categories = self::getCategoryList();
+            $categories = Pi::api('api', $module)->getCategoryList();
 
             if (!empty($authorIds)) {
                 $resultsetAuthor = $modelAuthor->find($authorIds);
@@ -111,7 +118,7 @@ class Draft
 
                 if (empty($columns) || isset($columns['image'])) {
                     if ($row['image']) {
-                        $row['thumb'] = self::getThumbFromOriginal($row['image']);
+                        $row['thumb'] = Media::getThumbFromOriginal($row['image']);
                     }
                 }
             }
@@ -143,11 +150,11 @@ class Draft
                     && strcmp($featureImage->image, $rowArticle->image) != 0
                 ) {
                     @unlink(Pi::path($featureImage->image));
-                    @unlink(Pi::path(self::getThumbFromOriginal($featureImage->image)));
+                    @unlink(Pi::path(Media::getThumbFromOriginal($featureImage->image)));
                 }
             } else if ($featureImage->image) {
                 @unlink(Pi::path($featureImage->image));
-                @unlink(Pi::path(self::getThumbFromOriginal($featureImage->image)));
+                @unlink(Pi::path(Media::getThumbFromOriginal($featureImage->image)));
             }
         }
 
@@ -273,7 +280,7 @@ class Draft
 
         $result = array(
             'title'         => $subject,
-            'content'       => Service::breakPage($content),
+            'content'       => self::breakPage($content),
             'slug'          => $row->slug,
             'seo'           => array(
                 'title'         => $row->seo_title,
