@@ -94,8 +94,8 @@ return array(
             'permission'   => 'permission',
         ),
         array(
-            'controller'   => 'statistics',
-            'permission'   => 'statistics',
+            'controller'   => 'stats',
+            'permission'   => 'stats',
         ),
     ),
 );

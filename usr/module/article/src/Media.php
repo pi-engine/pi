@@ -82,16 +82,16 @@ class Media
             $submitterIds[]     = $row->uid;
         }
         
-        // Fetching statistics data
+        // Fetching stats data
         if (!empty($mediaIds)) {
-            $model  = Pi::model('media_statistics', $module);
+            $model  = Pi::model('media_stats', $module);
             $rowset = $model->select(array('media' => $mediaIds));
             foreach ($rowset as $row) {
                 $id = $row['media'];
-                $statistics = $row->toArray();
-                unset($statistics['id']);
-                unset($statistics['media']);
-                $mediaSet[$id] = array_merge($mediaSet[$id], $statistics);
+                $stats = $row->toArray();
+                unset($stats['id']);
+                unset($stats['media']);
+                $mediaSet[$id] = array_merge($mediaSet[$id], $stats);
             }
         }
         

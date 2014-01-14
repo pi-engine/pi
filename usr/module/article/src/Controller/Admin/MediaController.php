@@ -298,8 +298,8 @@ class MediaController extends FrontMedia
         // Removing media in asset_draft
         $this->getModel('asset_draft')->delete(array('media' => $ids));
         
-        // Removing media statistics
-        $model = $this->getModel('media_statistics');
+        // Removing media stats
+        $model = $this->getModel('media_stats');
         $model->delete(array('media' => $ids));
         
         // Removing media

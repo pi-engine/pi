@@ -16,9 +16,9 @@ use Module\Article\Model\Article;
 use Module\Article\Model\Draft;
 use Module\Article\Form\SimpleSearchForm;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
+use Module\Article\Rule;
 use Module\Article\Entity;
-use Module\Article\Statistics;
+use Module\Article\Stats;
 
 /**
  * Article controller
@@ -75,7 +75,8 @@ class ArticleController extends ActionController
                 503
             );
         }
-        $route = Service::getRouteName();
+        $module = $this->getModule();
+        $route = Pi::api('api', $module)->getRouteName();
         if (strval($slug) != $details['slug']) {
             $routeParams = array(
                 'time'       => date('Ymd', $details['time_publish']),
@@ -155,7 +156,7 @@ class ArticleController extends ActionController
         $row   = $model->find($id);
 
         // Check user has permission to edit
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         $slug  = Service::getStatusSlug($row->status);
         $resource = $slug . '-edit';
         if (!(isset($rules[$row->category][$resource]) 
@@ -259,7 +260,7 @@ class ArticleController extends ActionController
         $order  = 'time_publish DESC';
 
         // Get permission
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         if (empty($rules)) {
             return $this->jumpToDenied();
         }
@@ -347,7 +348,7 @@ class ArticleController extends ActionController
             'published' => Article::FIELD_STATUS_PUBLISHED,
         );
 
-        $cacheCategories = Service::getCategoryList();
+        $cacheCategories = Pi::api('api', $module)->getCategoryList();
         $this->view()->assign(array(
             'title'      => __('Published'),
             'data'       => $data,
@@ -389,7 +390,7 @@ class ArticleController extends ActionController
         $modelAsset     = $this->getModel('asset');
         
         // Delete articles that user has permission to do
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         if (1 == count($ids)) {
             $row      = $modelArticle->find($ids[0]);
             $slug     = Service::getStatusSlug($row->status);
@@ -598,7 +599,7 @@ class ArticleController extends ActionController
         
         $id = $this->params('id', 0);
         if (!empty($id)) {
-            Statistics::addVisit($id, $this->getModule());
+            Stats::addVisit($id, $this->getModule());
         }
         
         echo json_encode(array(

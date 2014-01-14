@@ -101,7 +101,7 @@ class TopicController extends ActionController
 
         // Get list page url
         $url = $this->url(
-            Service::getRouteName($module),
+            Pi::api('api', $module)->getRouteName($module),
             array(
                 'topic' => $row->slug ?: $row->id,
                 'list'  => 'all'
@@ -183,7 +183,8 @@ class TopicController extends ActionController
         $totalCount = $modelTopic->getSearchRowsCount($where);
 
         // Pagination
-        $route     = Service::getRouteName();
+        $module    = $this->getModule();
+        $route     = Pi::api('api', $module)->getRouteName();
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
                   ->setCurrentPageNumber($page)
@@ -273,7 +274,7 @@ class TopicController extends ActionController
         $totalCount     = $modelArticle->getSearchRowsCount($where);
 
         // Pagination
-        $route     = Service::getRouteName();
+        $route     = Pi::api('api', $module)->getRouteName();
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)

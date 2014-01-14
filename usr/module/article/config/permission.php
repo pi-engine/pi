@@ -34,7 +34,7 @@ return array(
             'title'       => _t('Media management'),
         ),
         // Article statistics resource
-        'statistics' => array(
+        'stats' => array(
             'title'       => _t('Statistics page view'),
         ),
         // Module permission controller

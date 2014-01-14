@@ -230,9 +230,9 @@ return array(
             'analysis'          => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',
-                'controller'    => 'statistics',
+                'controller'    => 'stats',
                 'permission'    => array(
-                    'resource'  => 'statistics',
+                    'resource'  => 'stats',
                 ),
             ),
         ),

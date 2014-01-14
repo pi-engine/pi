@@ -25,8 +25,9 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
+        $module = $this->getModule();
         return $this->redirect()->toRoute(
-            Service::getRouteName(), 
+            Pi::api('api', $module)->getRouteName(), 
             array(
                 'controller' => 'article', 
                 'action'     => 'index'

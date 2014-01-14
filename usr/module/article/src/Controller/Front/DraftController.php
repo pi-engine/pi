@@ -16,7 +16,7 @@ use Module\Article\Form\DraftEditForm;
 use Module\Article\Form\DraftEditFilter;
 use Module\Article\Model\Draft;
 use Module\Article\Model\Article;
-use Module\Article\Service;
+use Module\Article\Rule;
 use Module\Article\Compiled;
 use Module\Article\Entity;
 use Pi\File\Transfer\Upload as UploadHandler;
@@ -753,7 +753,8 @@ class DraftController extends ActionController
         $result['status']   = self::RESULT_TRUE;
         $result['data']     = array('id' => $id);
 
-        $route = Service::getRouteName();
+        $module = $this->getModule();
+        $route = Pi::api('api', $module)->getRouteName();
         $result['data']['preview_url'] = $this->url(
             $route,
             array(
@@ -790,7 +791,7 @@ class DraftController extends ActionController
         }
         
         // Getting permission
-        $rules      = Service::getPermission('my' == $from ? true : false);
+        $rules      = Rule::getPermission('my' == $from ? true : false);
         $categories = array_keys($rules);
         $where['category'] = empty($categories) ? 0 : $categories;
         
@@ -838,7 +839,7 @@ class DraftController extends ActionController
      */
     public function addAction()
     {
-        $rules        = Service::getPermission();
+        $rules        = Rule::getPermission();
         $denied       = true;
         $listCategory = array();
         $approve      = array();
@@ -924,7 +925,8 @@ class DraftController extends ActionController
         if ($row->article) {
             $status = 'publish';
         }
-        $rules    = Service::getPermission(Service::isMine($row->uid));
+        $isMine = $row->uid == Pi::user()->getId();
+        $rules  = Rule::getPermission($isMine);
         if (!(isset($rules[$row->category][$status . '-edit']) 
             and $rules[$row->category][$status . '-edit'])
         ) {
@@ -1140,7 +1142,7 @@ class DraftController extends ActionController
             $isMine = true;
         }
         $model = $this->getModel('draft');
-        $rules = Service::getPermission($isMine);
+        $rules = Rule::getPermission($isMine);
         if (1 == count($ids)) {
             $row      = $model->find($ids[0]);
             $slug     = Service::getStatusSlug($row->status);
@@ -1248,7 +1250,7 @@ class DraftController extends ActionController
         }
         
         // Getting permission and checking it
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         if (!(isset($rules[$row->category]['approve']) 
             and $rules[$row->category]['approve'])
         ) {
@@ -1301,7 +1303,7 @@ class DraftController extends ActionController
         $row = $this->getModel('draft')->findRow($id);
         
         // Getting permission and checking it
-        $rules = Service::getPermission();
+        $rules = Rule::getPermission();
         if (!(isset($rules[$row['category']]['approve']) 
             and $rules[$row['category']]['approve'])
         ) {
@@ -1327,7 +1329,7 @@ class DraftController extends ActionController
         if ($ids) {
             // To approve articles that user has permission to approve
             $model = $this->getModel('draft');
-            $rules = Service::getPermission();
+            $rules = Rule::getPermission();
             if (1 == count($ids)) {
                 $row = $model->find($ids[0]);
                 if (!(isset($rules[$row->category]['approve']) 
@@ -1404,7 +1406,8 @@ class DraftController extends ActionController
             );
         }
         
-        $route = Service::getRouteName();
+        $module = $this->getModule();
+        $route = Pi::api('api', $module)->getRouteName();
         foreach ($details['content'] as &$value) {
             $value['url'] = $this->url($route, array_merge(array(
                 'time'       => date('Ymd', $time),

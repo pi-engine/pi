@@ -36,7 +36,7 @@ class Comment extends AbstractComment
         $result = array();
         $items = (array) $item;
 
-        $route = Service::getRouteName($this->module);
+        $route = Pi::api('api', $this->module)->getRouteName($this->module);
         
         // Get articles
         $where   = array('id' => $items);

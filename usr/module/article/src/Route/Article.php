@@ -19,7 +19,7 @@ use Pi;
  * 
  * Example:
  * <CODE>
- * $routeName = Service::getRouteName();
+ * $routeName = Pi::api('api', $module)->getRouteName();
  * // Article homepage
  * $this->url($routeName, array('controller' => 'article', 'action' => 'index'));
  * // Article all list page, t and p are extra parameters
