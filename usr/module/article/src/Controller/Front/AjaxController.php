@@ -39,8 +39,8 @@ class AjaxController extends ActionController
         Pi::service('log')->active(false);
         $resultset = $result = array();
 
-        $name  = Service::getParam($this, 'name', '');
-        $limit = Service::getParam($this, 'limit', 10);
+        $name  = $this->params('name', '');
+        $limit = $this->params('limit', 10);
 
         $where = array();
         if ($name) {
@@ -74,8 +74,8 @@ class AjaxController extends ActionController
         Pi::service('log')->active(false);
         $resultset = array();
 
-        $name  = Service::getParam($this, 'name', '');
-        $limit = Service::getParam($this, 'limit', 10);
+        $name  = $this->params('name', '');
+        $limit = $this->params('limit', 10);
         $limit = $limit > 100 ? 100 : $limit;
         $module = $this->getModule();
 
@@ -99,8 +99,8 @@ class AjaxController extends ActionController
         Pi::service('log')->active(false);
         $resultset = $result = array();
 
-        $name   = Service::getParam($this, 'name', '');
-        $limit  = Service::getParam($this, 'limit', 10);
+        $name   = $this->params('name', '');
+        $limit  = $this->params('limit', 10);
 
         $model  = $this->getModel('author');
         $select = $model->select()

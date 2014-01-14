@@ -29,8 +29,8 @@ class TagController extends ActionController
      */
     public function listAction()
     {
-        $tag    = Service::getParam($this, 'tag', '');
-        $page   = Service::getParam($this, 'p', 1);
+        $tag    = $this->params('tag', '');
+        $page   = $this->params('p', 1);
         $page   = $page > 0 ? $page : 1;
         $where  = $articleIds = $articles = array();
 

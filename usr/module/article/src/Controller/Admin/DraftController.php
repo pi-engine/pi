@@ -14,7 +14,7 @@ use Pi;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\DraftEditForm;
 use Module\Article\Form\DraftEditFilter;
-use Module\Article\Model\Draft;
+use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Model\Article;
 use Module\Article\Rule;
 use Module\Article\Compiled;
@@ -22,6 +22,7 @@ use Module\Article\Entity;
 use Pi\File\Transfer\Upload as UploadHandler;
 use Module\Article\Media;
 use Module\Article\Controller\Front\DraftController as FrontDraft;
+use Module\Article\Draft;
 
 /**
  * Draft controller
@@ -44,8 +45,8 @@ class DraftController extends FrontDraft
     public function showDraftPage($status, $from = 'my', $options = array())
     {
         $where  = $options;
-        $page   = Service::getParam($this, 'p', 1);
-        $limit  = Service::getParam($this, 'limit', 20);
+        $page   = $this->params('p', 1);
+        $limit  = $this->params('limit', 20);
 
         $where['status']        = $status;
         $where['article < ?']   = 1;
@@ -59,7 +60,7 @@ class DraftController extends FrontDraft
         $module         = $this->getModule();
         $modelDraft     = $this->getModel('draft');
 
-        $resultsetDraft = Service::getDraftPage($where, $page, $limit);
+        $resultsetDraft = Draft::getDraftPage($where, $page, $limit);
 
         // Total count
         $totalCount = (int) $modelDraft->getSearchRowsCount($where);
@@ -101,16 +102,16 @@ class DraftController extends FrontDraft
      */
     public function listAction()
     {
-        $status = Service::getParam($this, 'status', Draft::FIELD_STATUS_DRAFT);
-        $from   = Service::getParam($this, 'from', 'my');
-        $where  = Service::getParam($this, 'where', '');
+        $status = $this->params('status', DraftModel::FIELD_STATUS_DRAFT);
+        $from   = $this->params('from', 'my');
+        $where  = $this->params('where', '');
         $where  = json_decode(urldecode($where), true);
         $where  = array_filter($where);
         if (!in_array($from, array('my', 'all'))) {
             throw new \Exception(_a('Invalid source'));
         }
         
-        if (Draft::FIELD_STATUS_DRAFT == $status) {
+        if (DraftModel::FIELD_STATUS_DRAFT == $status) {
             return $this->redirect()->toRoute(
                 'default',
                 array(
@@ -130,29 +131,29 @@ class DraftController extends FrontDraft
         
         $title  = '';
         switch ($status) {
-            case Draft::FIELD_STATUS_DRAFT:
+            case DraftModel::FIELD_STATUS_DRAFT:
                 $title = _a('Draft');
                 $name  = 'draft';
                 break;
-            case Draft::FIELD_STATUS_PENDING:
+            case DraftModel::FIELD_STATUS_PENDING:
                 $title = _a('Pending');
                 $name  = 'pending';
                 break;
-            case Draft::FIELD_STATUS_REJECTED:
+            case DraftModel::FIELD_STATUS_REJECTED:
                 $title = _a('Rejected');
                 $name  = 'rejected';
                 break;
         }
         $flags = array(
-            'draft'     => Draft::FIELD_STATUS_DRAFT,
-            'pending'   => Draft::FIELD_STATUS_PENDING,
-            'rejected'  => Draft::FIELD_STATUS_REJECTED,
+            'draft'     => DraftModel::FIELD_STATUS_DRAFT,
+            'pending'   => DraftModel::FIELD_STATUS_PENDING,
+            'rejected'  => DraftModel::FIELD_STATUS_REJECTED,
             'published' => \Module\Article\Model\Article::FIELD_STATUS_PUBLISHED,
         );
 
         $this->view()->assign(array(
             'title'   => $title,
-            'summary' => Service::getSummary($from, $rules),
+            'summary' => Entity::getSummary($from, $rules),
             'flags'   => $flags,
             'rules'   => $rules,
         ));

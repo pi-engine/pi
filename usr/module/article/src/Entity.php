@@ -15,8 +15,9 @@ use Module\Article\Model\Article;
 use Module\Article\Cache;
 use Module\Article\Compiled;
 use Module\Article\Stats;
-use Module\Article\Service;
+use Module\Article\Draft;
 use Module\Article\Model\Stats as ModelStats;
+use Module\Article\Model\Draft as DraftModel;
 
 /**
  * Article service APIs
@@ -519,7 +520,7 @@ class Entity
 
         $result  = array(
             'title'         => $subject,
-            'content'       => Service::breakPage($content),
+            'content'       => Draft::breakPage($content),
             'subtitle'      => $subtitle,
             'source'        => $row->source,
             'pages'         => $row->pages,
@@ -634,6 +635,72 @@ class Entity
         $modelStatis    = Pi::model('stats', $module);
         $rowStatis      = $modelStatis->find($row->id, 'article');
         $result['visits'] = $rowStatis->visits;
+
+        return $result;
+    }
+    
+    /**
+     * Get count statistics of draft with different status and published article
+     * 
+     * @param string  $from
+     * @return array 
+     */
+    public static function getSummary($from = 'my', $rules = array())
+    {
+        // Processing user managment category
+        $categories = array_keys($rules);
+                    
+        $module = Pi::service('module')->current();
+        
+        $result = array(
+            'published' => 0,
+            'draft'     => 0,
+            'pending'   => 0,
+            'rejected'  => 0,
+        );
+
+        $where['article < ?'] = 1;
+        if ('my' == $from) {
+            $where['uid'] = Pi::user()->getId() ?: 0;
+        }
+        $modelDraft = Pi::model('draft', $module);
+        $select     = $modelDraft->select()
+            ->columns(array(
+                'status', 
+                'total' => new Expression('count(status)'), 
+                'category'
+            ))
+            ->where($where)
+            ->group(array('status', 'category'));
+        $resultset  = $modelDraft->selectWith($select);
+        foreach ($resultset as $row) {
+            if (DraftModel::FIELD_STATUS_DRAFT == $row->status) {
+                $result['draft'] += $row->total;
+            } else if (DraftModel::FIELD_STATUS_PENDING == $row->status) {
+                if ('all' == $from 
+                    and in_array($row->category, $categories)
+                ) {
+                    $result['pending'] += $row->total;
+                } elseif ('my' == $from) {
+                    $result['pending'] += $row->total;
+                }
+            } else if (DraftModel::FIELD_STATUS_REJECTED == $row->status) {
+                $result['rejected'] += $row->total;
+            }
+        }
+
+        $modelArticle = Pi::model('article', $module);
+        $where        = array(
+            'status'   => Article::FIELD_STATUS_PUBLISHED,
+            'category' => !empty($categories) ? $categories : 0,
+        );
+        if ('my' == $from) {
+            $where['uid'] = Pi::user()->getId() ?: 0;
+        }
+        $count = $modelArticle->count($where);
+        if ($count) {
+            $result['published'] = $count;
+        }
 
         return $result;
     }

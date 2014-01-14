@@ -9,19 +9,19 @@
 
 namespace Module\Article\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\TopicEditForm;
 use Module\Article\Form\TopicEditFilter;
 use Module\Article\Form\SimpleSearchForm;
 use Module\Article\Model\Topic;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
 use Module\Article\Topic as TopicService;
 use Pi\File\Transfer\Upload as UploadHandler;
+use Module\Article\Media;
 
 /**
  * Topic controller
@@ -43,7 +43,7 @@ class TopicController extends ActionController
      */
     public function indexAction()
     {
-        $topic   = Service::getParam($this, 'topic', '');
+        $topic   = $this->params('topic', '');
         if (empty($topic)) {
             return $this->jumpTo404(__('Invalid topic ID!'));
         }
@@ -129,7 +129,7 @@ class TopicController extends ActionController
      */
     public function allTopicAction()
     {
-        $page       = Service::getParam($this, 'p', 1);
+        $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
         $config = Pi::service('module')->config('', $module);
@@ -143,7 +143,7 @@ class TopicController extends ActionController
         $resultsetTopic = TopicService::getTopics($where, $page, $limit);
         foreach ($resultsetTopic as &$topic) {
             $topic['image'] = $topic['image']
-                ? Service::getThumbFromOriginal($topic['image'])
+                ? Media::getThumbFromOriginal($topic['image'])
                 : Pi::service('asset')
                     ->getModuleAsset($config['default_topic_image']);
         }
@@ -213,7 +213,7 @@ class TopicController extends ActionController
      */
     public function listAction()
     {
-        $topic   = Service::getParam($this, 'topic', '');
+        $topic   = $this->params('topic', '');
         if (empty($topic)) {
             return $this->jumpTo404(__('Invalid topic ID!'));
         }
@@ -234,7 +234,7 @@ class TopicController extends ActionController
         $this->view()->assign('topic', $row->toArray());
         
         $topicId    = $row->id;
-        $page       = Service::getParam($this, 'p', 1);
+        $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
