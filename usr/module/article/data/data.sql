@@ -189,10 +189,10 @@ INSERT INTO `{prefix}{module}_related` (`id`, `article`, `related`, `order`) VAL
 (1, 3, 1, 0);
 
 --
--- Dumping data for table `{prefix}{module}_statistics`
+-- Dumping data for table `{prefix}{module}_stats`
 --
 
-INSERT INTO `{prefix}{module}_statistics` (`id`, `article`, `visits`) VALUES
+INSERT INTO `{prefix}{module}_stats` (`id`, `article`, `visits`) VALUES
 (1, 1, 1),
 (2, 5, 4),
 (3, 3, 1),
