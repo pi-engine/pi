@@ -44,8 +44,8 @@ class DraftController extends FrontDraft
     public function showDraftPage($status, $from = 'my', $options = array())
     {
         $where  = $options;
-        $page   = Service::getParam($this, 'p', 1);
-        $limit  = Service::getParam($this, 'limit', 20);
+        $page   = $this->params('p', 1);
+        $limit  = $this->params('limit', 20);
 
         $where['status']        = $status;
         $where['article < ?']   = 1;
@@ -101,9 +101,9 @@ class DraftController extends FrontDraft
      */
     public function listAction()
     {
-        $status = Service::getParam($this, 'status', Draft::FIELD_STATUS_DRAFT);
-        $from   = Service::getParam($this, 'from', 'my');
-        $where  = Service::getParam($this, 'where', '');
+        $status = $this->params('status', Draft::FIELD_STATUS_DRAFT);
+        $from   = $this->params('from', 'my');
+        $where  = $this->params('where', '');
         $where  = json_decode(urldecode($where), true);
         $where  = array_filter($where);
         if (!in_array($from, array('my', 'all'))) {
@@ -152,7 +152,7 @@ class DraftController extends FrontDraft
 
         $this->view()->assign(array(
             'title'   => $title,
-            'summary' => Service::getSummary($from, $rules),
+            'summary' => Entity::getSummary($from, $rules),
             'flags'   => $flags,
             'rules'   => $rules,
         ));

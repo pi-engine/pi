@@ -28,7 +28,7 @@ class ListController extends ActionController
      */
     public function allAction()
     {
-        $page     = Service::getParam($this, 'p', 1);
+        $page     = $this->params('p', 1);
         $sort     = $this->params('sort', 'new');
 
         $where  = array(

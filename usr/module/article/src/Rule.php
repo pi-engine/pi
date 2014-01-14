@@ -92,6 +92,9 @@ class Rule
         // Get role of current section
         $uid     = $uid ?: Pi::user()->getId();
         $roles   = array_values(Pi::user()->getRole($uid, 'admin'));
+        if (empty($roles)) {
+            return array();
+        }
         
         // Get all categories
         if (is_string($category)) {

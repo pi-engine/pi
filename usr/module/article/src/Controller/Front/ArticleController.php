@@ -13,12 +13,13 @@ use Pi\Mvc\Controller\ActionController;
 use Pi;
 use Pi\Paginator\Paginator;
 use Module\Article\Model\Article;
-use Module\Article\Model\Draft;
+use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Form\SimpleSearchForm;
 use Zend\Db\Sql\Expression;
 use Module\Article\Rule;
 use Module\Article\Entity;
 use Module\Article\Stats;
+use Module\Article\Draft;
 
 /**
  * Article controller
@@ -145,7 +146,7 @@ class ArticleController extends ActionController
      */
     public function editAction()
     {
-        $id     = Service::getParam($this, 'id', 0);
+        $id     = $this->params('id', 0);
         $module = $this->getModule();
 
         if (!$id) {
@@ -157,7 +158,7 @@ class ArticleController extends ActionController
 
         // Check user has permission to edit
         $rules = Rule::getPermission();
-        $slug  = Service::getStatusSlug($row->status);
+        $slug  = Draft::getStatusSlug($row->status);
         $resource = $slug . '-edit';
         if (!(isset($rules[$row->category][$resource]) 
             and $rules[$row->category][$resource])
@@ -188,7 +189,7 @@ class ArticleController extends ActionController
             'source'          => $row->source,
             'pages'           => $row->pages,
             'category'        => $row->category,
-            'status'          => Draft::FIELD_STATUS_DRAFT,
+            'status'          => DraftModel::FIELD_STATUS_DRAFT,
             'time_save'       => time(),
             'time_submit'     => $row->time_submit,
             'time_publish'    => $row->time_publish,
@@ -254,9 +255,9 @@ class ArticleController extends ActionController
     public function publishedAction()
     {
         $where  = array();
-        $page   = Service::getParam($this, 'p', 1);
-        $limit  = Service::getParam($this, 'limit', 20);
-        $from   = Service::getParam($this, 'from', 'my');
+        $page   = $this->params('p', 1);
+        $limit  = $this->params('limit', 20);
+        $from   = $this->params('from', 'my');
         $order  = 'time_publish DESC';
 
         // Get permission
@@ -279,7 +280,7 @@ class ArticleController extends ActionController
         $modelArticle   = $this->getModel('article');
         $categoryModel  = $this->getModel('category');
 
-        $category = Service::getParam($this, 'category', 0);
+        $category = $this->params('category', 0);
         if (!empty($category) and !in_array($category, $where['category'])) {
             return $this->jumpToDenied();
         }
@@ -293,14 +294,14 @@ class ArticleController extends ActionController
         // Build where
         $where['status'] = Article::FIELD_STATUS_PUBLISHED;
         
-        $keyword = Service::getParam($this, 'keyword', '');
+        $keyword = $this->params('keyword', '');
         if (!empty($keyword)) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
         $where = array_filter($where);
         
         // The where must be added after array_filter function
-        $filter = Service::getParam($this, 'filter', '');
+        $filter = $this->params('filter', '');
         if ($filter == 'active') {
             $where['active'] = 1;
         } else if ($filter == 'deactive') {
@@ -342,9 +343,9 @@ class ArticleController extends ActionController
         $form->setData($this->params()->fromQuery());
         
         $flags = array(
-            'draft'     => Draft::FIELD_STATUS_DRAFT,
-            'pending'   => Draft::FIELD_STATUS_PENDING,
-            'rejected'  => Draft::FIELD_STATUS_REJECTED,
+            'draft'     => DraftModel::FIELD_STATUS_DRAFT,
+            'pending'   => DraftModel::FIELD_STATUS_PENDING,
+            'rejected'  => DraftModel::FIELD_STATUS_REJECTED,
             'published' => Article::FIELD_STATUS_PUBLISHED,
         );
 
@@ -354,7 +355,7 @@ class ArticleController extends ActionController
             'data'       => $data,
             'form'       => $form,
             'paginator'  => $paginator,
-            'summary'    => Service::getSummary($from, $rules),
+            'summary'    => Entity::getSummary($from, $rules),
             'category'   => $category,
             'filter'     => $filter,
             'categories' => array_intersect_key($cacheCategories, $categories),
@@ -377,9 +378,9 @@ class ArticleController extends ActionController
      */
     public function deleteAction()
     {
-        $id     = Service::getParam($this, 'id', '');
+        $id     = $this->params('id', '');
         $ids    = array_filter(explode(',', $id));
-        $from   = Service::getParam($this, 'from', '');
+        $from   = $this->params('from', '');
 
         if (empty($ids)) {
             return $this->jumpTo404(__('Invalid article ID'));
@@ -393,7 +394,7 @@ class ArticleController extends ActionController
         $rules = Rule::getPermission();
         if (1 == count($ids)) {
             $row      = $modelArticle->find($ids[0]);
-            $slug     = Service::getStatusSlug($row->status);
+            $slug     = Draft::getStatusSlug($row->status);
             $resource = $slug . '-delete';
             if (!(isset($rules[$row->category][$resource]) 
                 and $rules[$row->category][$resource])
@@ -404,7 +405,7 @@ class ArticleController extends ActionController
             $rows     = $modelArticle->select(array('id' => $ids));
             $ids      = array();
             foreach ($rows as $row) {
-                $slug     = Service::getStatusSlug($row->status);
+                $slug     = Draft::getStatusSlug($row->status);
                 $resource = $slug . '-delete';
                 if (isset($rules[$row->category][$resource]) 
                     and $rules[$row->category][$resource]
@@ -430,7 +431,7 @@ class ArticleController extends ActionController
         $this->getModel('extended')->delete(array('article' => $ids));
         
         // Deleting statistics
-        $this->getModel('statistics')->delete(array('article' => $ids));
+        $this->getModel('stats')->delete(array('article' => $ids));
         
         // Deleting compiled article
         $this->getModel('compiled')->delete(array('article' => $ids));
@@ -480,12 +481,12 @@ class ArticleController extends ActionController
         $module     = $this->getModule();
         $where      = array('status' => Article::FIELD_STATUS_PUBLISHED);
 
-        $keyword = Service::getParam($this, 'keyword', '');
-        $type    = Service::getParam($this, 'type', 'title');
-        $limit   = Service::getParam($this, 'limit', 10);
+        $keyword = $this->params('keyword', '');
+        $type    = $this->params('type', 'title');
+        $limit   = $this->params('limit', 10);
         $limit   = $limit > 100 ? 100 : $limit;
-        $page    = Service::getParam($this, 'page', 1);
-        $exclude = Service::getParam($this, 'exclude', 0);
+        $page    = $this->params('page', 1);
+        $exclude = $this->params('exclude', 0);
         $offset  = $limit * ($page - 1);
 
         $articleModel   = $this->getModel('article');
@@ -573,8 +574,8 @@ class ArticleController extends ActionController
     public function checkArticleExistsAction()
     {
         Pi::service('log')->active(false);
-        $subject = trim(Service::getParam($this, 'subject', ''));
-        $id      = Service::getParam($this, 'id', null);
+        $subject = trim($this->params('subject', ''));
+        $id      = $this->params('id', null);
         $result  = false;
 
         if ($subject) {

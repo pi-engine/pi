@@ -10,91 +10,20 @@
 namespace Module\Article;
 
 use Pi;
-use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Controller\Admin\SetupController as Config;
-use Module\Article\Form\DraftEditForm;
-use Module\Article\Model\Draft;
+use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Compiled;
-use Module\Article\Media;
-use Module\Article\Installer\Resource\Route;
-
-trigger_error(sprintf('The class is discouraged, move corresponding methods to relevant APIs - %s', __FILE__), E_USER_WARNING);
 
 /**
- * Common service API
+ * Common draft API
  * 
  * @author Zongshu Lin <lin40553024@163.com> 
  */
-class Service
+class Draft
 {
     protected static $module = 'article';
-
-    /**
-     * Assign configuration data to template
-     * 
-     * @param ActionController  $handler  ActionController instance
-     */
-    public static function setModuleConfig(ActionController $handler)
-    {
-        $module = Pi::service('module')->current();
-        $handler->view()->assign(array(
-            'authorSize'       => $handler->config('author_size'),
-            'categoryWidth'    => $handler->config('category_width'),
-            'categoryHeight'   => $handler->config('category_height'),
-            'topicWidth'       => $handler->config('topic_width'),
-            'topicHeight'      => $handler->config('topic_height'),
-            'featureWidth'     => $handler->config('feature_width'),
-            'featureHeight'    => $handler->config('feature_height'),
-            'imageExtension'   => array_map('trim', explode(',', $handler->config('image_extension'))),
-            'defaultMediaImage' => Pi::service('asset')
-                ->getModuleAsset(
-                    $handler->config('default_media_image'),
-                    $module
-                ),
-            'defaultMediaThumb' => Pi::service('asset')
-                ->getModuleAsset(
-                    $handler->config('default_media_thumb'),
-                    $module
-                ),
-            'maxMediaSize'      => Media::transferSize($handler->config('max_media_size')),
-        ));
-    }
     
-    /**
-     * Get param post by post, get or query.
-     * 
-     * @param ActionController $handler
-     * @param string  $param    Parameter key
-     * @param mixed   $default  Default value if parameter is no exists
-     * @return mixed 
-     */
-    public static function getParam(
-        ActionController $handler = null, 
-        $param = null, 
-        $default = null
-    ) {      
-        // Route parameter first
-        $result = $handler->params()->fromRoute($param);
-
-        // Then query string
-        if (is_null($result) || '' === $result) {
-            $result = $handler->params()->fromQuery($param);
-
-            // Then post data
-            if (is_null($result) || '' === $result) {
-                $result = $handler->params()->fromPost($param);
-
-                if (is_null($result) || '' === $result) {
-                    $result = $default;
-                }
-            }
-        }
-
-        return $result;
-    }
-
     /**
      * Get draft page
      * 
@@ -316,75 +245,6 @@ class Service
     }
     
     /**
-     * Get count statistics of draft with different status and published article
-     * 
-     * @param string  $from
-     * @return array 
-     */
-    public static function getSummary($from = 'my', $rules = array())
-    {
-        // Processing user managment category
-        $categories = array_keys($rules);
-                    
-        $module = Pi::service('module')->current();
-        
-        $result = array(
-            'published' => 0,
-            'draft'     => 0,
-            'pending'   => 0,
-            'rejected'  => 0,
-        );
-
-        $where['article < ?'] = 1;
-        if ('my' == $from) {
-            $where['uid'] = Pi::user()->getId() ?: 0;
-        }
-        $modelDraft = Pi::model('draft', $module);
-        $select     = $modelDraft->select()
-            ->columns(array(
-                'status', 
-                'total' => new Expression('count(status)'), 
-                'category'
-            ))
-            ->where($where)
-            ->group(array('status', 'category'));
-        $resultset  = $modelDraft->selectWith($select);
-        foreach ($resultset as $row) {
-            if (Draft::FIELD_STATUS_DRAFT == $row->status) {
-                $result['draft'] += $row->total;
-            } else if (Draft::FIELD_STATUS_PENDING == $row->status) {
-                if ('all' == $from 
-                    and in_array($row->category, $categories)
-                ) {
-                    $result['pending'] += $row->total;
-                } elseif ('my' == $from) {
-                    $result['pending'] += $row->total;
-                }
-            } else if (Draft::FIELD_STATUS_REJECTED == $row->status) {
-                $result['rejected'] += $row->total;
-            }
-        }
-
-        $modelArticle = Pi::model('article', $module);
-        $where        = array(
-            'status'   => Article::FIELD_STATUS_PUBLISHED,
-            'category' => !empty($categories) ? $categories : 0,
-        );
-        if ('my' == $from) {
-            $where['uid'] = Pi::user()->getId() ?: 0;
-        }
-        $select = $modelArticle->select()
-            ->columns(array('total' => new Expression('count(id)')))
-            ->where($where);
-        $resultset = $modelArticle->selectWith($select);
-        if ($resultset->count()) {
-            $result['published'] = $resultset->current()->total;
-        }
-
-        return $result;
-    }
-    
-    /**
      * Get draft article details.
      * 
      * @param int  $id  Draft article ID
@@ -464,19 +324,12 @@ class Service
                 'original_name' => $media->title,
                 'extension'     => $media->type,
                 'size'          => $media->size,
-                'url'           => Pi::engine()->application()
-                    ->getRouter()
-                    ->assemble(
-                        array(
-                            'module'     => $module,
-                            'controller' => 'media',
-                            'action'     => 'download',
-                            'name'       => $media->id,
-                        ),
-                        array(
-                            'name'       => 'admin',
-                        )
-                    ),
+                'url'           => Pi::service('url')->assemble('admin', array(
+                    'module'     => $module,
+                    'controller' => 'media',
+                    'action'     => 'download',
+                    'name'       => $media->id,
+                )),
             );
         }
 
@@ -526,8 +379,6 @@ class Service
         return $result;
     }
     
-    
-    
     /**
      * Change status number to slug string
      * 
@@ -538,13 +389,13 @@ class Service
     {
         $slug = '';
         switch ($status) {
-            case Draft::FIELD_STATUS_DRAFT:
+            case DraftModel::FIELD_STATUS_DRAFT:
                 $slug = 'draft';
                 break;
-            case Draft::FIELD_STATUS_PENDING:
+            case DraftModel::FIELD_STATUS_PENDING:
                 $slug = 'pending';
                 break;
-            case Draft::FIELD_STATUS_REJECTED:
+            case DraftModel::FIELD_STATUS_REJECTED:
                 $slug = 'approve';
                 break;
             case Article::FIELD_STATUS_PUBLISHED:

@@ -10,7 +10,7 @@
 namespace Module\Article\Block;
 
 use Pi;
-use Module\Article\Service;
+use Module\Article\Media;
 use Module\Article\Topic;
 use Module\Article\Stats;
 use Module\Article\Entity;
@@ -266,7 +266,7 @@ class Block
                 'UTF-8'
             );
             $article['image'] = $article['image'] 
-                ? Service::getThumbFromOriginal(Pi::url($article['image']))
+                ? Media::getThumbFromOriginal(Pi::url($article['image']))
                 : $image;
         }
         
@@ -325,7 +325,7 @@ class Block
                 'UTF-8'
             );
             $article['image'] = $article['image'] 
-                ? Service::getThumbFromOriginal(Pi::url($article['image']))
+                ? Media::getThumbFromOriginal(Pi::url($article['image']))
                 : $image;
         }
         
@@ -431,7 +431,7 @@ class Block
                 'UTF-8'
             );
             $topic['image'] = $topic['image'] 
-                ? Service::getThumbFromOriginal(Pi::url($topic['image']))
+                ? Media::getThumbFromOriginal(Pi::url($topic['image']))
                 : $image;
         }
         
@@ -493,7 +493,7 @@ class Block
                 'UTF-8'
             );
             $article['image'] = $article['image'] 
-                ? Service::getThumbFromOriginal(Pi::url($article['image']))
+                ? Media::getThumbFromOriginal(Pi::url($article['image']))
                 : $image;
         }
 
@@ -554,7 +554,7 @@ class Block
                 'UTF-8'
             );
             $article['image'] = $article['image'] 
-                ? Service::getThumbFromOriginal(Pi::url($article['image']))
+                ? Media::getThumbFromOriginal(Pi::url($article['image']))
                 : $image;
         }
         

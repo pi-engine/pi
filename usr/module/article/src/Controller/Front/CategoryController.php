@@ -43,10 +43,10 @@ class CategoryController extends ActionController
     {
         $modelCategory = $this->getModel('category');
 
-        $category   = Service::getParam($this, 'category', '');
+        $category   = $this->params('category', '');
         $categoryId = is_numeric($category)
             ? (int) $category : $modelCategory->slugToId($category);
-        $page       = Service::getParam($this, 'p', 1);
+        $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
         $module = $this->getModule();

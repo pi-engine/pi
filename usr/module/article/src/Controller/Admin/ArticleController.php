@@ -9,15 +9,17 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Module\Article\Model\Article;
-use Module\Article\Model\Draft;
+use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Form\SimpleSearchForm;
 use Zend\Db\Sql\Expression;
 use Module\Article\Rule;
 use Module\Article\Entity;
+use Module\Article\Draft;
+use Module\Article\Media;
 
 /**
  * Article controller
@@ -52,9 +54,9 @@ class ArticleController extends ActionController
      */
     public function deleteAction()
     {
-        $id     = Service::getParam($this, 'id', '');
+        $id     = $this->params('id', '');
         $ids    = array_filter(explode(',', $id));
-        $from   = Service::getParam($this, 'from', '');
+        $from   = $this->params('from', '');
 
         if (empty($ids)) {
             return $this->jumpTo404(_a('Invalid article ID'));
@@ -68,7 +70,7 @@ class ArticleController extends ActionController
         $rules = Rule::getPermission();
         if (1 == count($ids)) {
             $row      = $modelArticle->find($ids[0]);
-            $slug     = Service::getStatusSlug($row->status);
+            $slug     = Draft::getStatusSlug($row->status);
             $resource = $slug . '-delete';
             if (!(isset($rules[$row->category][$resource]) 
                 and $rules[$row->category][$resource])
@@ -79,7 +81,7 @@ class ArticleController extends ActionController
             $rows     = $modelArticle->select(array('id' => $ids));
             $ids      = array();
             foreach ($rows as $row) {
-                $slug     = Service::getStatusSlug($row->status);
+                $slug     = Draft::getStatusSlug($row->status);
                 $resource = $slug . '-delete';
                 if (isset($rules[$row->category][$resource]) 
                     and $rules[$row->category][$resource]
@@ -96,10 +98,10 @@ class ArticleController extends ActionController
             // Delete feature image
             if ($article->image) {
                 @unlink(Pi::path($article->image));
-                @unlink(Pi::path(Service::getThumbFromOriginal($article->image)));
+                @unlink(Pi::path(Media::getThumbFromOriginal($article->image)));
             }
         }
-        
+        d(12);
         // Batch operation
         // Deleting extended fields
         $this->getModel('extended')->delete(array('article' => $ids));
@@ -149,10 +151,10 @@ class ArticleController extends ActionController
      */
     public function activateAction()
     {
-        $id     = Service::getParam($this, 'id', '');
+        $id     = $this->params('id', '');
         $ids    = array_filter(explode(',', $id));
-        $status = Service::getParam($this, 'status', 0);
-        $from   = Service::getParam($this, 'from', '');
+        $status = $this->params('status', 0);
+        $from   = $this->params('from', '');
 
         if ($ids) {
             $module         = $this->getModule();
@@ -205,7 +207,7 @@ class ArticleController extends ActionController
      */
     public function editAction()
     {
-        $id     = Service::getParam($this, 'id', 0);
+        $id     = $this->params('id', 0);
         $module = $this->getModule();
 
         if (!$id) {
@@ -217,7 +219,7 @@ class ArticleController extends ActionController
 
         // Check user has permission to edit
         $rules = Rule::getPermission();
-        $slug  = Service::getStatusSlug($row->status);
+        $slug  = Draft::getStatusSlug($row->status);
         $resource = $slug . '-edit';
         if (!(isset($rules[$row->category][$resource]) 
             and $rules[$row->category][$resource])
@@ -248,7 +250,7 @@ class ArticleController extends ActionController
             'source'          => $row->source,
             'pages'           => $row->pages,
             'category'        => $row->category,
-            'status'          => Draft::FIELD_STATUS_DRAFT,
+            'status'          => DraftModel::FIELD_STATUS_DRAFT,
             'time_save'       => time(),
             'time_submit'     => $row->time_submit,
             'time_publish'    => $row->time_publish,
@@ -314,9 +316,9 @@ class ArticleController extends ActionController
     public function publishedAction()
     {
         $where  = array();
-        $page   = Service::getParam($this, 'p', 1);
-        $limit  = Service::getParam($this, 'limit', 20);
-        $from   = Service::getParam($this, 'from', 'all');
+        $page   = $this->params('p', 1);
+        $limit  = $this->params('limit', 20);
+        $from   = $this->params('from', 'all');
         $order  = 'time_publish DESC';
 
         // Get permission
@@ -332,7 +334,6 @@ class ArticleController extends ActionController
         
         // Select article of mine
         if ('my' == $from) {
-            $user   = Pi::service('user')->getUser();
             $where['uid'] = Pi::user()->getId() ?: 0;
         }
 
@@ -340,7 +341,7 @@ class ArticleController extends ActionController
         $modelArticle   = $this->getModel('article');
         $categoryModel  = $this->getModel('category');
 
-        $category = Service::getParam($this, 'category', 0);
+        $category = $this->params('category', 0);
         if (!empty($category) and !in_array($category, $where['category'])) {
             return $this->jumpToDenied();
         }
@@ -354,14 +355,14 @@ class ArticleController extends ActionController
         // Build where
         $where['status'] = Article::FIELD_STATUS_PUBLISHED;
         
-        $keyword = Service::getParam($this, 'keyword', '');
+        $keyword = $this->params('keyword', '');
         if (!empty($keyword)) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
         $where = array_filter($where);
         
         // The where must be added after array_filter function
-        $filter = Service::getParam($this, 'filter', '');
+        $filter = $this->params('filter', '');
         if ($filter == 'active') {
             $where['active'] = 1;
         } else if ($filter == 'deactive') {
@@ -372,11 +373,7 @@ class ArticleController extends ActionController
         $data = Entity::getArticlePage($where, $page, $limit, null, $order);
 
         // Total count
-        $select = $modelArticle->select()
-            ->columns(array('total' => new Expression('count(id)')))
-            ->where($where);
-        $resulsetCount = $modelArticle->selectWith($select);
-        $totalCount    = (int) $resulsetCount->current()->total;
+        $totalCount = $modelArticle->count($where);
 
         // Paginator
         $paginator = Paginator::factory($totalCount);
@@ -385,9 +382,7 @@ class ArticleController extends ActionController
             ->setUrlOptions(array(
             'page_param' => 'p',
             'router'     => $this->getEvent()->getRouter(),
-            'route'      => $this->getEvent()
-                ->getRouteMatch()
-                ->getMatchedRouteName(),
+            'route'      => 'admin',
             'params'     => array_filter(array(
                 'module'        => $module,
                 'controller'    => 'article',
@@ -403,9 +398,9 @@ class ArticleController extends ActionController
         $form->setData($this->params()->fromQuery());
         
         $flags = array(
-            'draft'     => Draft::FIELD_STATUS_DRAFT,
-            'pending'   => Draft::FIELD_STATUS_PENDING,
-            'rejected'  => Draft::FIELD_STATUS_REJECTED,
+            'draft'     => DraftModel::FIELD_STATUS_DRAFT,
+            'pending'   => DraftModel::FIELD_STATUS_PENDING,
+            'rejected'  => DraftModel::FIELD_STATUS_REJECTED,
             'published' => Article::FIELD_STATUS_PUBLISHED,
         );
 
@@ -415,7 +410,7 @@ class ArticleController extends ActionController
             'data'       => $data,
             'form'       => $form,
             'paginator'  => $paginator,
-            'summary'    => Service::getSummary($from, $rules),
+            'summary'    => Entity::getSummary($from, $rules),
             'category'   => $category,
             'filter'     => $filter,
             'categories' => array_intersect_key($cacheCategories, $categories),

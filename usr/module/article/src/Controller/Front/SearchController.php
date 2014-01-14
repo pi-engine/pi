@@ -30,7 +30,7 @@ class SearchController extends ActionController
     public function simpleAction()
     {
         $order  = 'time_publish DESC';
-        $page   = Service::getParam($this, 'p', 1);
+        $page   = $this->params('p', 1);
         $module = $this->getModule();
 
         $config = Pi::service('module')->config('', $module);
@@ -39,7 +39,7 @@ class SearchController extends ActionController
 
         // Build where
         $where   = array();
-        $keyword = Service::getParam($this, 'keyword', '');
+        $keyword = $this->params('keyword', '');
         if ($keyword) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
