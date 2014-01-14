@@ -62,6 +62,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'text',
+                'description'   => __('Block label for display.'),
             )
         ));
 
@@ -94,7 +95,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => __('Set a unique name to be called as widget or leave as blank.'),
+                'description'   => __('A unique name to be called as widget.'),
             )
         ));
 
@@ -106,7 +107,7 @@ class BlockModuleForm extends BaseForm
             'attributes'    => array(
                 'type'          => 'text',
                 'value'         => $this->root->template,
-                'description'   => __('Set a different template on demand.'),
+                'description'   => __('PHTML rendering template, file extension is optional.'),
             )
         ));
 
@@ -128,8 +129,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'textarea',
-                'description'   =>
-                    __('For block header subline. HTML is allowed.'),
+                'description'   => __('Header subline. HTML is allowed.'),
             )
         ));
 
@@ -140,7 +140,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => __('Specified block container css class.'),
+                'description'   => __('Specified block container CSS class.'),
             )
         ));
 
