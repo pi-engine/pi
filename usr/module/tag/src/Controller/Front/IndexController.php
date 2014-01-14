@@ -172,7 +172,7 @@ class IndexController extends ActionController
                 'tag'       => $row['tag'],
                 'item'      => $content[$row['item']]['title'],
                 'time'      => $row['time'] ? _date($row['time']) : 0,
-                'item_link' => $content['link'],
+                'item_link' => $content[$row['item']]['link'],
                 'module'    => $moduleMeta['meta']['title']
             );
             $tagIds[]  = $row['tag'];
