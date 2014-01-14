@@ -96,7 +96,7 @@ class ProfileController extends ActionController
 
         // Get viewer level: everyone, member, follower, following, owner
         //$role = Pi::user()->hasIdentity() ? 'member' : 'public';
-        $level = Pi::api('user', 'privacy')->getLevel($uid);
+        $level = Pi::api('privacy', 'user')->getLevel($uid);
 
         // Filter field according to privacy setting
         $profileGroup = Pi::api('privacy', 'user')->filterProfile(
@@ -611,7 +611,7 @@ class ProfileController extends ActionController
      * Set paginator
      *
      * @param $option
-     * @return \Pi\Paginator\Paginator
+     * @return Paginator
      */
     protected function setPaginator($option)
     {
@@ -639,9 +639,9 @@ class ProfileController extends ActionController
 
     /**
      * Get display group elements for edit
-     * Include
      *
-     * @param $groupNname
+     * @param int $groupId
+     *
      * @return array
      */
     protected function getGroupElements($groupId)
@@ -737,7 +737,8 @@ class ProfileController extends ActionController
     /**
      * Get field display
      *
-     * @param $group
+     * @param int $groupId
+     *
      * @return array
      */
     protected function getFieldDisplay($groupId)
@@ -761,8 +762,8 @@ class ProfileController extends ActionController
      * Get user profile information
      * Group and group items title and value
      *
-     * @param $uid User id
-     * @param string $type Display or edit
+     * @param int $uid User id
+     *
      * @return array
      */
     protected function getProfile($uid)

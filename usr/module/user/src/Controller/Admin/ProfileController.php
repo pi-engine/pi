@@ -263,9 +263,37 @@ class ProfileController extends ActionController
      */
     public function privacyAction()
     {
-        $privacy = Pi::api('privacy', 'user')->getPrivacy();
+        $fieldList = Pi::registry('field', 'user')->read('', 'display');
+        $privacy = Pi::registry('privacy', 'user')->read();
+        $fields = array();
+        foreach ($fieldList as $field => $data) {
+            $pv = array(
+                'field'     => $field,
+                'title'     => $data['title'],
+                'value'     => '0',
+                'is_forced' => 0,
+            );
+            if (isset($privacy[$field])) {
+                $pv['value'] = (int) $privacy[$field]['value'];
+                $pv['is_forced'] = (int) $privacy[$field]['is_forced'];
+            }
+            $fields[] = $pv;
+        }
 
-        return array_values($privacy);
+        $levels = Pi::api('privacy', 'user')->getList(array(), true);
+        $limits = array();
+        foreach ($levels as $value => $label) {
+            $limits[] = array(
+                'text'  => $label,
+                'value' => $value,
+            );
+        }
+        $result = array(
+            'fields'    => $fields,
+            'limits'    => $limits,
+        );
+
+        return $result;
     }
 
     /**
@@ -275,44 +303,43 @@ class ProfileController extends ActionController
      */
     public function setPrivacyAction()
     {
-        $id       = (int) _post('id');
+        $field    = _post('field');
         $value    = (int) _post('value');
-        $isForced = (int) _post('is_forced');
+        $isForced = _post('is_forced') ? 1 : 0;
 
         $result = array(
             'status' => 0,
             'message' => ''
         );
+        $module = $this->getModule();
 
         // Check post data
-        if (!$id) {
-            $result['message'] = _a('Privacy set up failed: invalid id.');
+        $fields = Pi::registry('field', 'user')->read('', 'display');
+        if (!$field || !isset($fields[$field])) {
+            $result['message'] = _a('Privacy set up failed: invalid field.');
             return $result;
         }
 
-        //if (!in_array($value, array(0, 1, 2, 4, 255))) {
-        if (null === Pi::api('privacy', $this->getModule())->transform($value)) {
-            $result['message'] = _a('Privacy set up failed: invalid value.');
+        if (null === Pi::api('privacy', $module)->transform($value)) {
+            $result['message'] = _a('Privacy set up failed: invalid privacy.');
+
             return $result;
         }
 
-        if ($isForced != 0 && $isForced != 1) {
-            $result['message'] = _a('Privacy set up failed: invalid flag.');
-            return $result;
-        }
-
-        // Check post id
         $model = $this->getModel('privacy');
-        $row   = $model->find($id, 'id');
-        if (!$row) {
-            return $result;
+        $row   = $model->find($field, 'field');
+        if ($row) {
+            $row->assign(array(
+                'value'     => $value,
+                'is_forced' => $isForced,
+            ));
+        } else {
+            $row = $model->createRow(array(
+                'field'     => $field,
+                'value'     => $value,
+                'is_forced' => $isForced,
+            ));
         }
-
-        // Update privacy setting
-        $row->assign(array(
-            'value'     => $value,
-            'is_forced' => $isForced,
-        ));
         try {
             $row->save();
         } catch (\Exception $e) {
@@ -320,11 +347,15 @@ class ProfileController extends ActionController
             return $result;
         }
 
+        Pi::registry('privacy', $this->getModule())->flush();
+
+        /*
         // Set user privacy field
         $userPrivacyModel = $this->getModel('privacy_user');
         if (!$isForced) {
             $userPrivacyModel->delete(array('field' => $row->field));
         }
+        */
 
         $result['status']  = 1;
         $result['message'] = _a('Privacy set up successfully.');
