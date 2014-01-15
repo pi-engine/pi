@@ -92,13 +92,13 @@ return array(
                     ),
                 ),
             ),
-            'analysis'          => array(
+            'stats'             => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',
-                'controller'    => 'analysis',
+                'controller'    => 'stats',
                 'action'        => 'index',
                 'permission'    => array(
-                    'resource'  => 'analysis',
+                    'resource'  => 'stats',
                 ),
             ),
         ),

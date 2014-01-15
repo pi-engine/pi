@@ -1,0 +1,16 @@
+<tbody>
+    <?php 
+        $index = 0;
+        foreach ($items as $item) { 
+    ?>
+    <tr>
+        <td style="width: 20px"><?php echo ++$index; ?></td>
+        <td style="width: 100%">
+            <a href="<?php echo $this->escape($item['url']); ?>" target="_blank">
+                <?php echo $this->escape($item['title']); ?>
+            </a>
+        </td>
+        <td style="width: 40px"><?php echo $this->escape($item[$field]); ?></td>
+    </tr>
+    <?php } ?>
+</tbody>

@@ -29,11 +29,7 @@ class MediaController extends ActionController
     protected function getMediaForm($action = 'edit')
     {
         $form = new MediaEditForm();
-        $form->setAttributes(array(
-            'action'  => $this->url('', array('action' => $action)),
-            'method'  => 'post',
-            'class'   => 'form-horizontal',
-        ));
+        $form->setAttribute('action', $this->url('', array('action' => $action)));
 
         return $form;
     }
@@ -43,15 +39,11 @@ class MediaController extends ActionController
      * 
      * @param Zend\Form\Form $form     Form instance
      * @param string         $message  Message assign to template
-     * @param bool           $isError  Whether is error message
+     * @param bool           $error    Whether is error message
      */
-    public function renderForm($form, $message = null, $isError = true) {
-        $params = array('form' => $form);
-        if ($isError) {
-            $params['error'] = $message;
-        } else {
-            $params['message'] = $message;
-        }
+    public function renderForm($form, $message = null, $error = true)
+    {
+        $params = compact('form', 'message', 'error');
         $this->view()->assign($params);
     }
     

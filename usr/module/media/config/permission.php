@@ -20,7 +20,7 @@ return array(
         'list'        => array(
             'title'       => _t('List management'),
         ),
-        'analysis'    => array(
+        'stats'       => array(
             'title'       => _t('Statistics management'),
         ),
         
