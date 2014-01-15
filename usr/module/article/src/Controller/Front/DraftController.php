@@ -550,7 +550,7 @@ class DraftController extends ActionController
         }
 
         $fakeId = $this->params('fake_id', 0);
-
+        
         unset($data['article']);
         unset($data['image']);
 
@@ -729,7 +729,6 @@ class DraftController extends ActionController
         if (!$this->request->isPost()) {
             return $this->jumpTo404();
         }
-        
         $result = array(
             'status'    => self::RESULT_FALSE,
             'message'   => array(),
@@ -833,9 +832,12 @@ class DraftController extends ActionController
             'rules'   => $rules,
         ));
         
+        $module = $this->getModule();
         if ('all' == $from) {
             $template = sprintf('%s-%s', 'article', $name);
-            $this->view()->setTemplate($template);
+            $this->view()->setTemplate($template, $module, 'front');
+        } else {
+            $this->view()->setTemplate('draft-list', $module, 'front');
         }
     }
     
@@ -894,7 +896,7 @@ class DraftController extends ActionController
             'draft'    => $this->getDraftEmptyTemplate(),
             'currentDelete' => true,
         ));
-        $this->view()->setTemplate('draft-edit');
+        $this->view()->setTemplate('draft-edit', $this->getModule(), 'front');
     }
     
     /**
@@ -1124,6 +1126,8 @@ class DraftController extends ActionController
             'currentDelete'  => $currentDelete,
             'currentApprove' => $currentApprove,
         ));
+        
+        $this->view()->setTemplate('draft-edit', $module, 'front');
     }
 
     /**
@@ -1501,7 +1505,7 @@ class DraftController extends ActionController
      */
     public function saveImageAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $module  = $this->getModule();
 
         $return  = array('status' => false);
@@ -1567,7 +1571,7 @@ class DraftController extends ActionController
             $session = Media::getUploadSession($module, 'feature');
             $session->$fakeId = $uploadInfo;
         }
-
+        
         $imageSize    = getimagesize(Pi::path($fileName));
         $originalName = isset($rawInfo['name']) ? $rawInfo['name'] : $rename;
 
@@ -1579,7 +1583,6 @@ class DraftController extends ActionController
             'h'            => $imageSize['1'],
             'preview_url'  => Pi::url(Media::getThumbFromOriginal($fileName)),
         );
-
         $return['status'] = true;
         echo json_encode($return);
         exit();
@@ -1597,7 +1600,7 @@ class DraftController extends ActionController
         $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;
         $module       = $this->getModule();
-
+        
         if ($id) {
             $rowDraft = $this->getModel('draft')->find($id);
 

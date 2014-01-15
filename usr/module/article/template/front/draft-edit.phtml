@@ -745,7 +745,7 @@ var page = {
     },
     submit  : function(arg) {
         var option = {
-            url     : "<?php echo $this->url('',array('action' => 'save')); ?>",
+            url     : "<?php echo $this->url('default', array('action' => 'save')); ?>",
             msg     : true,
             fn      : function(){},
             fail    : function(){}
@@ -1039,12 +1039,14 @@ var ReleaseProcess = Backbone.View.extend({
            location.href = "<?php echo $this->url('', array(
                'controller' => 'article',
                'action'     => 'delete',
-               'id'         => $draft['article']
+               'id'         => $draft['article'],
+               'source'     => 'my',
            )); ?>" + "?from=" + encodeURIComponent(document.referrer);
            <?php } else { ?>
            location.href = "<?php echo $this->url('', array(
                'controller' => 'draft',
-               'action'     => 'delete'
+               'action'     => 'delete',
+               'source'     => 'my',
            )); ?>" + "?id=" + page.id + "&from=" + encodeURIComponent(document.referrer);    
            <?php } ?>        
         }
@@ -1645,7 +1647,7 @@ var FeatureView = Backbone.View.extend({
     },
     remove          : function() {
         $.getJSON('<?php echo $this->url(
-            '',
+            'default',
             array(
                 'controller' => 'draft',
                 'action'     => 'remove-image'

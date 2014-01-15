@@ -313,11 +313,7 @@ class ArticleController extends ActionController
         $data = Entity::getArticlePage($where, $page, $limit, null, $order);
 
         // Total count
-        $select = $modelArticle->select()
-            ->columns(array('total' => new Expression('count(id)')))
-            ->where($where);
-        $resulsetCount = $modelArticle->selectWith($select);
-        $totalCount    = (int) $resulsetCount->current()->total;
+        $totalCount = $modelArticle->count($where);
 
         // Paginator
         $paginator = Paginator::factory($totalCount);
@@ -368,7 +364,9 @@ class ArticleController extends ActionController
         ));
         
         if ('my' == $from) {
-            return $this->view()->setTemplate('draft-list');
+            $this->view()->setTemplate('draft-list', $module, 'front');
+        } else {
+            $this->view()->setTemplate('article-published', $module, 'front');
         }
     }
     
