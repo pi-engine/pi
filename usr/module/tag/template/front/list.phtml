@@ -45,11 +45,11 @@ d($list);
                         <td><?php echo _escape($item['time']); ?>
                     <?php } ?>
             </table>
-            <?php
-            if (isset($paginator)) {
-                echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
-            }
-            ?>
         </div>
+        <?php
+        if (isset($paginator)) {
+            echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
+        }
+        ?>
     </div>
 </div>
