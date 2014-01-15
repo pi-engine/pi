@@ -340,6 +340,7 @@ class DashboardController extends ActionController
             $content = Pi::user()->data(0, 'admin-welcome', true);
         }
 
+        /*
         $message = array(
             'time'      => _date($content['time']),
             'content'   => Pi::service('markup')->render(
@@ -347,6 +348,14 @@ class DashboardController extends ActionController
                     'text'
                 ),
         );
+        */
+        // Temporary solution for Issue #446: https://github.com/pi-engine/pi/issues/446
+        // Angular imposes sanitizing on rendering, which is duplicated with PHP rendering
+        $message = array(
+            'time'      => _date($content['time']),
+            'content'   => $content['value'],
+        );
+
         $messagePerm = false;
         if (Pi::service('user')->getUser()->isAdmin()) {
             $messagePerm = true;
