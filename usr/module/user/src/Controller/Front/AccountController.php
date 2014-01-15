@@ -285,9 +285,35 @@ class AccountController extends ActionController
      */
     public function checkExistAction()
     {
+        $result = array(
+            'status' => 1,
+        );
+
+        $query = array();
+        foreach (array('email', 'name') as $param) {
+            $val = $this->params($param);
+            if ($val) {
+                $query[$param] = $val;
+            }
+        }
+        if (!$query) {
+            return $result;
+        }
+
+        $where = Pi::db()->where();
+        foreach ($query as $key => $val) {
+            $where->equalTo($key, $val)->or;
+        }
+
+        $count = Pi::model('user_account')->count($where);
+        $result = array(
+            'status'    => $count ? 1 : 0,
+        );
+
+        return $result;
+
         $name  = _get('name');
         $email = _get('email');
-
         $row = '';
         if ($name) {
             $row = Pi::model('user_account')->find($name, 'name');

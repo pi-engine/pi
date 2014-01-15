@@ -289,6 +289,40 @@ class IndexController extends ActionController
      */
     public function checkExistAction()
     {
+        $result = array(
+            'status' => 1,
+        );
+
+        $query  = array();
+        foreach (array('identity', 'email', 'name') as $param) {
+            $val = $this->params($param);
+            if ($val) {
+                $query[$param] = $val;
+            }
+        }
+        if (!$query) {
+            return $result;
+        }
+        $where = Pi::db()->where();
+        foreach ($query as $key => $val) {
+            $where->equalTo($key, $val)->or;
+        }
+
+        $found = 0;
+        $row = Pi::model('user_account')->select($where)->current();
+        if ($row) {
+            $uid = $this->params('id');
+            if (!$uid || $uid == $row['id']) {
+                $found = 1;
+            }
+        }
+        $result = array(
+            'status'    => $found,
+        );
+
+        return $result;
+
+
         $status = 1;
 
         $identity = _get('identity');
