@@ -100,6 +100,7 @@ return array(
                     'value_options' => array(
                          'male' => __('Male'),
                          'female' => __('Female'),
+                         'unknown' => __('Other'),
                      ),
                     'label_attributes' => array(
                         'class' => 'radio-inline'
@@ -144,7 +145,7 @@ return array(
             'type'      => 'account',
             'name'      => 'active',
             'title'     => _a('Active'),
-//            'edit'      => 'text',
+            //'edit'      => 'text',
             'filter'    => 'YesNo',
 
             'is_edit'       => false,
@@ -155,7 +156,7 @@ return array(
             'type'      => 'account',
             'name'      => 'time_created',
             'title'     => _a('Register time'),
-//            'edit'      => 'text',
+            //'edit'      => 'text',
             'filter'    => array('Int', 'DateTimeFormatter'),
 
             'is_edit'       => false,
@@ -166,7 +167,7 @@ return array(
             'type'      => 'account',
             'name'      => 'time_activated',
             'title'     => _a('Activation time'),
-//            'edit'      => 'text',
+            //'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
@@ -197,6 +198,29 @@ return array(
 
         // Profile fields
 
+        // Profile: first_name
+        'first_name'  => array(
+            'name'  => 'first_name',
+            'title' => _a('First Name'),
+        ),
+        // Profile: last_name
+        'last_name'  => array(
+            'name'  => 'last_name',
+            'title' => _a('Last Name'),
+        ),
+        // Account: mobile phone number
+        'mobile'      => array(
+            'name'      => 'mobile',
+            'title'     => _a('Mobile phone number'),
+            // Edit element specs
+            'edit'      => array(
+                'validators'    => array(
+                    array(
+                        'name'      => 'Module\User\Validator\Telephone',
+                    ),
+                ),
+            ),
+        ),
         // Profile: Level
         'level'    => array(
             'name'      => 'level',
