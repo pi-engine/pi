@@ -49,13 +49,13 @@
                     <th style="width: 60px;"><?php echo _a('Application'); ?></th>
                     <th style="width: 20px;"><?php echo _a('Module'); ?></th>
                     <th style="width: 40px;"><?php echo _a('Category'); ?></th>
-                    <th style="width: 60px;"><?php echo _a('Time') ?></th>
+                    <th style="width: 80px;"><?php echo _a('Time') ?></th>
                 </tr>
                 <?php 
                     foreach ($medias as $media) { 
                         $media['active'] = (int) $media['active'];
                 ?>
-                <tr data-id="<?php echo _escape($media['id']); ?>" class="<?php echo 0 === $media['active'] && 0 !== $active ? ' muted' : ''; ?>">
+                <tr data-id="<?php echo _escape($media['id']); ?>" class="<?php echo 0 === $media['active'] && 0 !== $active ? ' text-muted' : ''; ?>">
                     <td>
                         <input type="checkbox" value="<?php echo _escape($media['id']); ?>" class="check-one">
                     </td>

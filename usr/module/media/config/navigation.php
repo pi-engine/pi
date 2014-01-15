@@ -76,6 +76,13 @@ return array(
                         'controller'    => 'application',
                         'action'        => 'list',
                     ),
+                    'add'               => array(
+                        'label'         => _t('Add'),
+                        'route'         => 'admin',
+                        'controller'    => 'application',
+                        'action'        => 'add',
+                        'visible'       => 0,
+                    ),
                     'edit'              => array(
                         'label'         => _t('Edit'),
                         'route'         => 'admin',
@@ -85,13 +92,13 @@ return array(
                     ),
                 ),
             ),
-            'analysis'          => array(
+            'stats'             => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',
-                'controller'    => 'analysis',
+                'controller'    => 'stats',
                 'action'        => 'index',
                 'permission'    => array(
-                    'resource'  => 'analysis',
+                    'resource'  => 'stats',
                 ),
             ),
         ),

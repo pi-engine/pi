@@ -66,7 +66,7 @@ class DocController extends ApiController
     public function uploadAction()
     {
         if ($this->request->isPost()) {
-            $params = $this->request->getPost();
+            $params = (array) $this->request->getPost();
         } else {
             $params = (array) $this->params();
         }
@@ -99,6 +99,7 @@ class DocController extends ApiController
     {
         $id = $this->params('id');
         $this->handler()->download($id);
+        exit;
     }
 
     /**

@@ -198,8 +198,8 @@ class Remote extends AbstractAdapter
             $order,
             array('id')
         );
-        array_walk($result, function (&$data) {
-            return (int) $data['id'];
+        array_walk($result, function ($data, $key) use (&$result) {
+            $result[$key] = (int) $data['id'];
         });
 
         return $result;

@@ -92,6 +92,9 @@ class Doc extends AbstractApi
     public function add(array $data)
     {
         $data = $this->canonize($data);
+        if (!isset($data['time_created'])) {
+            $data['time_created'] = time();
+        }
         $row = $this->model()->createRow($data);
         $row->save();
 
@@ -249,15 +252,20 @@ class Doc extends AbstractApi
         $model  = $this->model();
         $select = $model->select()->where(array('id' => $id));
         if ($attribute) {
-            $select->columns((array) $attribute);
+            $columns = (array) $attribute;
+            $columns = array_merge($columns, array('id'));
+            $select->columns($columns);
         }
         $rowset = $model->selectWith($select);
         $result = array();
         foreach ($rowset as $row) {
             if ($attribute && is_scalar($attribute)) {
-                $result[$row['id']] = $row[$attribute];
+                $result[$row->id] = $row->$attribute;
             } else {
-                $result[$row['id']] = $row->toArray();
+                $result[$row->id] = $row->toArray();
+                if (!in_array('id', (array) $attribute)) {
+                    unset($result[$row->id]['id']);
+                }
             }
         }
         if (is_scalar($id)) {
@@ -293,11 +301,11 @@ class Doc extends AbstractApi
      */
     public function getStats($id)
     {
-        $model  = $this->model('stats');
+        $model  = $this->model('doc');
         $rowset = $model->select(array('id' => $id));
         $result = array();
         foreach ($rowset as $row) {
-            $result[$row['id']] = $row['count'];
+            $result[$row->id] = $row->count;
         }
         if (is_scalar($id)) {
             if (isset($result[$id])) {
@@ -346,8 +354,8 @@ class Doc extends AbstractApi
             $order,
             array('id')
         );
-        array_walk($result, function (&$data) {
-            return (int) $data['id'];
+        array_walk($result, function ($data, $key) use (&$result) {
+            $result[$key] = (int) $data['id'];
         });
 
         return $result;
