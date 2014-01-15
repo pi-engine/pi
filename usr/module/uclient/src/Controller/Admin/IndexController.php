@@ -51,6 +51,8 @@ class IndexController extends ActionController
         $condition['identity']  = _get('identity') ?: '';
         $condition['name']      = _get('name') ?: '';
         $condition['email']     = _get('email') ?: '';
+        $condition = array_filter($condition);
+
         $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
         // Get user count
