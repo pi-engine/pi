@@ -277,6 +277,13 @@ html {
   position: relative;
 }
 
+
+/* Bootstrap custom */
+.nav-tabs,
+.nav-pills {
+  margin-bottom: 20px;
+}
+
 @media (min-width: 768px) {
   .navbar-default .navbar-form {
     width: 250px;
