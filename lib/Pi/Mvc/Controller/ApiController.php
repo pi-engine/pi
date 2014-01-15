@@ -328,7 +328,7 @@ abstract class ApiController extends ActionController
         $where = Pi::db()->where($where);
         if ($query) {
             foreach ($query as $qKey => $qValue) {
-                $where->like($qKey, $qValue);
+                $where->like($qKey, '%' . $qValue . '%');
             }
         }
 
