@@ -241,7 +241,7 @@ abstract class ApiController extends ActionController
         }
         $where = Pi::db()->where();
         foreach ($query as $key => $val) {
-            $where->qualTo($key, $val)->or;
+            $where->equalTo($key, $val)->or;
         }
 
         $count = $this->model($this->modelName)->count($where);
