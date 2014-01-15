@@ -1,34 +1,55 @@
-<h3><?php echo sprintf(__('About %s content'), $tag); echo ' (' . $count . ')'; ?></h3>
-<ul class="nav nav-pills">
-    <li class="<?php echo  $cur_module ? '' : 'active'; ?>">
-        <a href="<?php echo $this->url('', array('action' => 'list', 'tag' => $tag_id)); ?>">
-            <?php _e('All'); ?>
-        </a>
-    </li>
-    <?php foreach ($modules as $col => $val) { ?>
-        <li class="<?php echo  $cur_module == $col ? 'active' : ''; ?>">
-            <a href="<?php echo $this->url('', array('action' => 'list', 'tag' => $tag_id, 'm' => $col)); ?>">
-                <?php echo _escape($val);?>
-            </a>
-        </li>
-    <?php } ?>
-</ul>
-<table class="table">
-    <?php foreach ($list as $row) { ?>
-        <tr>
-        <td><?php echo _escape($row['module']);  ?></td>
-        <td>
-            <a href="<?php echo $row['item_link']?>">
-                <?php echo _escape($row['item']); ?>
-            </a>
-        </td>
-        <td><?php echo _escape($row['time']); ?></td>
-        </tr>
-    <?php } ?>
-</table>
-
 <?php
-if (isset($paginator)) {
-    echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-right'));
-}
+d($list); 
 ?>
+<div class="row">
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="<?php echo $this->url('', array('action' => 'list', 'tag' => $tag_id)); ?>"
+               class="list-group-item<?php if(!$cur_module) { echo ' active'; } ?>">
+                <?php _e('All'); ?>
+            </a>
+            <?php 
+            foreach ($modules as $key => $item) {
+                echo sprintf(
+                    '<a class="list-group-item%s" href="%s">%s</a>',
+                    $key == $cur_module ? ' active' : '',
+                    $this->url('', array('action' => 'list', 'tag' => $tag_id, 'm' => $key)),
+                    $item
+                );
+            } 
+            ?>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h3 style="margin-top: 0;">
+            <?php echo sprintf(__('About %s content'), $tag); ?>
+            <small>(<?php echo $count; ?>)</small>
+        </h3>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th><?php _e('Module'); ?>
+                        <th><?php _e('Title'); ?>
+                        <th><?php _e('Time'); ?>
+                <tbody>
+                    <?php foreach ($list as $item) { ?>
+                    <tr>
+                        <td><?php echo _escape($item['module']);  ?>
+                        <td>
+                            <a href="<?php echo $item['item_link']?>">
+                                <?php echo _escape($item['item']); ?>
+                            </a>
+                        </td>
+                        <td><?php echo _escape($item['time']); ?>
+                    <?php } ?>
+            </table>
+            <?php
+            if (isset($paginator)) {
+                echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
+            }
+            ?>
+        </div>
+    </div>
+</div>
