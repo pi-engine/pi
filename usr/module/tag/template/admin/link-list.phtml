@@ -6,7 +6,7 @@
         <?php
         $items = array();
         $item = array(
-            'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'list')),
+            'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'link-list')),
             'label' => _a('All'),
         );
         if (null == $curModule) {
@@ -15,7 +15,7 @@
         $items[] = $item;
         foreach ($moduleArray as $row) {
             $item = array(
-                'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'list', 'm' => $row)),
+                'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'link-list', 'm' => $row)),
                 'label'   => $this->escape(ucfirst($row)),
             );
             if ($curModule === $row) {

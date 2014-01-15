@@ -31,9 +31,11 @@ use Zend\Uri\Uri;
  *
  * Remote upload
  * ```
+ *  // Upload with POST method
  *  $file = </path/to/file>;
  *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
  *
+ *  // Upload with POST, specified filename
  *  $file = array(
  *      'tmp_name'  => </path/to/file>,
  *      'type'      => <mimetype>,
@@ -44,6 +46,8 @@ use Zend\Uri\Uri;
  *  );
  *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
  *
+ *  // Upload with PUT method
+ *  // http://php.net/manual/en/features.file-upload.put-method.php
  *  $file = fopen('/path/to/file', 'r');
  *  $result = Pi::service('remote')->upload(<uri>, <file>, <params[]>, <headers[]>, <options[]>);
  * ```
@@ -108,7 +112,7 @@ class Remote extends AbstractService
      *
      * @return AdapterInterface
      */
-    public function loadAdapter($name = '', array $options = array())
+    public function loadAdapter($name, array $options = array())
     {
         $class = sprintf('Zend\Http\Client\Adapter\%s', ucfirst($name));
         $adapter = new $class;
@@ -486,7 +490,7 @@ class Remote extends AbstractService
     }
 
     /**
-     * Perform a upload request
+     * Perform a upload request with cURL
      *
      * `$options`:
      *  - ftp:
@@ -578,8 +582,8 @@ class Remote extends AbstractService
             $size = $headers['Content-Length'];
             unset($headers['Content-Length']);
         }
-        $this->adapter()->setCurlOption(CURL_INFILE, $file)
-            ->setCurlOption(CURL_INFILESIZE, $size);
+        $this->adapter()->setCurlOption(CURLOPT_INFILE, $file)
+            ->setCurlOption(CURLOPT_INFILESIZE, $size);
         $this->connect($uri);
 
         $body = $uri->getQuery();
@@ -597,7 +601,7 @@ class Remote extends AbstractService
     }
 
     /**
-     * Perform a download request
+     * Perform a download request with cURL
      *
      * `$options`:
      *  - ftp:

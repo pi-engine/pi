@@ -91,8 +91,8 @@ class Updator325 extends AbstractUpdator
             $table = Pi::db()->prefix('page');
             $sql =<<<'EOT'
 ALTER TABLE %s
-ADD `permission` varchar(64) NOT NULL default \'\' AFTER `action`,
-ADD `cache_type` enum(\'page\', \'action\') NOT NULL AFTER `permission`;
+ADD `permission` varchar(64) NOT NULL default '' AFTER `action`,
+ADD `cache_type` enum('page', 'action') NOT NULL AFTER `permission`;
 EOT;
             $sql = sprintf($sql, $table);
             $status = $this->queryTable($sql);
@@ -110,14 +110,14 @@ EOT;
 ALTER TABLE %s
 MODIFY `email` varchar(64) default NULL,
 MODIFY `name` varchar(255) default NULL,
-MODIFY `active` tinyint(1) unsigned NOT NULL default \'0\',
-ADD `avatar` varchar(255) NOT NULL default \'\' AFTER `name`,
-ADD `gender` enum(\'male\', \'female\', \'unknown\') NOT NULL AFTER `avatar`,
-ADD `birthdate` varchar(10) NOT NULL default \'\' AFTER `gender`,
-ADD `time_created` int(10) unsigned NOT NULL default \'0\' AFTER `active`,
-ADD `time_activated` int(10) unsigned NOT NULL default \'0\' AFTER `time_created`,
-ADD `time_disabled` int(10) unsigned NOT NULL default \'0\' AFTER `time_activated`,
-ADD `time_deleted` int(10) unsigned NOT NULL default \'0\' AFTER `time_disabled`,
+MODIFY `active` tinyint(1) unsigned NOT NULL default '0',
+ADD `avatar` varchar(255) NOT NULL default '' AFTER `name`,
+ADD `gender` enum('male', 'female', 'unknown') NOT NULL AFTER `avatar`,
+ADD `birthdate` varchar(10) NOT NULL default '' AFTER `gender`,
+ADD `time_created` int(10) unsigned NOT NULL default '0' AFTER `active`,
+ADD `time_activated` int(10) unsigned NOT NULL default '0' AFTER `time_created`,
+ADD `time_disabled` int(10) unsigned NOT NULL default '0' AFTER `time_activated`,
+ADD `time_deleted` int(10) unsigned NOT NULL default '0' AFTER `time_disabled`,
 ADD KEY `name` UNIQUE KEY (`name`),
 ADD KEY `status` KEY (`active`);
 EOT;
@@ -127,10 +127,10 @@ EOT;
             $table = Pi::db()->prefix('user_data');
             $sql =<<<'EOT'
 ALTER TABLE %s
-CHANGE `user` `uid` int(10) unsigned NOT NULL default \'0\',
+CHANGE `user` `uid` int(10) unsigned NOT NULL default '0',
 CHANGE `type` `name` varchar(64) NOT NULL,
 CHANGE `content` `value` text default NULL,
-ADD `time` int(10) unsigned NOT NULL default \'0\' AFTER `name`,
+ADD `time` int(10) unsigned NOT NULL default '0' AFTER `name`,
 ADD `value_int` int(10) default NULL AFTER `value`,
 ADD `value_multi` text default NULL AFTER `value_int`,
 ADD KEY `user_data_name` UNIQUE KEY (`uid`, `module`, `name`),
@@ -142,9 +142,9 @@ EOT;
             $table = Pi::db()->prefix('user_role');
             $sql =<<<'EOT'
 ALTER TABLE %s
-CHANGE `user` `uid` int(10) unsigned NOT NULL default \'0\',
+CHANGE `user` `uid` int(10) unsigned NOT NULL default '0',
 MODIFY `role` varchar(64) NOT NULL,
-ADD `section` enum(\'front\', \'admin\') NOT NULL AFTER `role`,
+ADD `section` enum('front', 'admin') NOT NULL AFTER `role`,
 ADD KEY `section_user` UNIQUE KEY (`section`, `uid`, `role`),
 DROP KEY `user`;
 EOT;

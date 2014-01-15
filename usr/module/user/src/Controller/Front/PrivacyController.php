@@ -40,44 +40,69 @@ class PrivacyController extends ActionController
                         'action' => 'profile.complete',
                     )
                 );
+
                 return;
             }
         }
 
+        $fields = Pi::registry('field', 'user')->read('', 'display');
+        $forcedPrivacy = Pi::registry('privacy', 'user')->read(true);
         if ($this->request->isPost()) {
             $privacySettings = $this->request->getPost()->toArray();
-            foreach ($privacySettings as $key => $value) {
-                $this->getModel('privacy_user')->update(
-                    array(
-                        'value' => $value,
-                    ),
-                    array(
+            $model = $this->getModel('privacy_user');
+            foreach ($privacySettings as $field => $value) {
+                if (!isset($fields[$field]) || isset($forcedPrivacy[$field])) {
+                    continue;
+                }
+                $row = $model->select(array(
+                    'uid'       => $uid,
+                    'field'     => $field,
+                ))->current();
+                if ($row) {
+                    $row['value'] = $value;
+                } else {
+                    $row = $model->createRow(array(
                         'uid'       => $uid,
-                        'field'     => $key,
-                        'is_forced' => 1,
-                    )
-                );
+                        'field'     => $field,
+                    ));
+                }
+                $row->save();
             }
 
             Pi::service('event')->trigger('user_update', $uid);
-            $result = array(
-                'status'  => 1,
-                'message' => __('Privacy settings saved successfully.'),
+            $this->jump(
+                array('action' => 'index'),
+                __('Privacy settings saved successfully.'),
+                'success'
             );
-            $this->view()->assign('result', $result);
+
+            return;
         }
 
-        $privacy = Pi::api('privacy', 'user')->getUserPrivacyList($uid);
-        foreach ($privacy as $key => &$value) {
-            if (!$value['is_forced']) {
-                unset($privacy[$key]);
+        $userPrivacy = Pi::api('privacy', 'user')->getUserPrivacy($uid);
+        $privacy = array();
+        foreach ($fields as $field => $data) {
+            $pv = array(
+                'field'     => $field,
+                'title'     => $data['title'],
+                'value'     => 0,
+                'is_forced' => 0,
+            );
+            if (isset($userPrivacy[$field])) {
+                $pv['value'] = $userPrivacy[$field];
             }
+            if (isset($forcedPrivacy[$field])) {
+                $pv['is_forced'] = 1;
+            }
+            $privacy[] = $pv;
         }
 
         $levels = Pi::api('privacy', 'user')->getList(
-            array('everyone', 'member', 'owner'),
+            array(),
             true
         );
+        d($privacy);
+        d($levels);
         $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         // Get side nav items
         $groups = Pi::api('group', 'user')->getList();

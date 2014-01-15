@@ -119,7 +119,7 @@ class Install extends BasicAction
     }
 
     /**
-     * Set up user profile display/privacy settings
+     * Set up user profile display settings
      *
      * @param Event $e
      *

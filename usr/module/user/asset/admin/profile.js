@@ -101,15 +101,6 @@
   function ($scope, server, data) {
     angular.extend($scope, data);
 
-    /*server.getField().success(function(data) {
-      angular.extend($scope, data);
-      angular.forEach($scope.compounds, function(compound) {
-        angular.forEach(compound.fields, function(field) {
-          field.compound = compound.name;
-        });
-      });
-    });*/
-
     $scope.$on('piHoverInputSave', function(event, data) {
       server.updateTitle(data);
     });
@@ -235,14 +226,7 @@
 ])
 .controller('privacyCtrl', ['$scope', 'server', 'data',
   function($scope, server, data) {
-    $scope.limits = [
-      { text: 'public', value: 0 },
-//      { text: 'member', value: 1 },
-//      { text: 'follower', value: 2 },
-//      { text: 'following', value: 4 },
-      { text: 'owner', value: 255 }
-    ]
-    $scope.fields = data;
+    angular.extend($scope, data);
 
     $scope.setPrivacyAction = function(item) {
       server.setPrivacy(item);

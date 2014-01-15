@@ -24,7 +24,7 @@ class Block extends Model
         'root', 'name', 'title', 'description',
         'module', 'template', 'render',
         'config', 'type', 'content',
-        'cache_ttl', 'cache_level', 'title_hidden',
+        'cache_ttl', 'cache_level', 'title_hidden', 'body_fullsize',
         'active', 'cloned', 'class', 'subline'
     );
 

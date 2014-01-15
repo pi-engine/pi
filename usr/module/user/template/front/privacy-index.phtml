@@ -8,18 +8,11 @@ $this->css(array(
     <div class="col-md-9">
         <div class="user-page-header">
             <h3><?php _e('Privacy'); ?></h3>
-            <div class="text-muted"><?php _e('Change privacy settings.'); ?></div>
+            <div class="text-muted"><?php _e('Set profile field privacy.'); ?></div>
         </div>
-        <?php
-        if (isset($result)) {
-            echo sprintf('<div class="alert %s"><a href="#" data-dismiss="alert" class="close">&times;</a>%s</div>',
-                 $result['status'] ? 'alert-success' : 'alert-danger',
-                 $result['message']);
-        }
-        ?>
+
         <?php if (empty($privacy)) {?>
         <div class="alert alert-info">
-            <strong><?php _e('Warning!'); ?></strong>
             <?php _e('No available privacy setting'); ?>
         </div>
         <?php } else { ?>
@@ -28,7 +21,7 @@ $this->css(array(
             <div class="form-group">
                 <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
                 <div class="col-md-4">
-                    <select name="<?php echo $item['field']; ?>" class="form-control">
+                    <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?> class="form-control">
                         <?php
                         foreach ($levels as $key => $label) {
                             echo sprintf('<option value="%s"%s>%s',

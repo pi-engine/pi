@@ -7,11 +7,11 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace   Module\System\Installer\Action;
+namespace   Module\User\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Module\System\Installer\Schema;
+use Module\User\Installer\Schema;
 use Zend\EventManager\Event;
 
 /**
@@ -28,27 +28,9 @@ class Update extends BasicUpdate
     {
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
-        $events->attach('update.post', array($this, 'updateLog'));
         parent::attachDefaultListeners();
 
         return $this;
-    }
-
-    /**
-     * Logging
-     *
-     * @param Event $e
-     */
-    public function updateLog(Event $e)
-    {
-        $model = Pi::model('update', $this->module);
-        $data = array(
-            'title'     => _a('System updated'),
-            'content'   => _a('The system is updated successfully.'),
-            'uri'       => Pi::url('www', true),
-            'time'      => time(),
-        );
-        $model->insert($data);
     }
 
     /**
@@ -60,7 +42,7 @@ class Update extends BasicUpdate
     public function updateSchema(Event $e)
     {
         $moduleVersion = $e->getParam('version');
-        $updator = new Schema\Updator330($this);
+        $updator = new Schema\Updator120($this);
         $result = $updator->upgrade($moduleVersion);
 
         return $result;

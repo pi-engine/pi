@@ -62,6 +62,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'text',
+                'description'   => __('Block label for display.'),
             )
         ));
 
@@ -77,13 +78,24 @@ class BlockModuleForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'body_fullsize',
+            'type'          => 'checkbox',
+            'options'       => array(
+                'label' => __('Full-size body'),
+            ),
+            'attributes'    => array(
+                'description'   => __('Display block body in full-size w/o padding.'),
+            )
+        ));
+
+        $this->add(array(
             'name'          => 'name',
             'options'       => array(
                 'label' => __('Unique name'),
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => __('Set a unique name to be called as widget or leave as blank.'),
+                'description'   => __('A unique name to be called as widget.'),
             )
         ));
 
@@ -95,7 +107,7 @@ class BlockModuleForm extends BaseForm
             'attributes'    => array(
                 'type'          => 'text',
                 'value'         => $this->root->template,
-                'description'   => __('Set a different template on demand.'),
+                'description'   => __('PHTML rendering template, file extension is optional.'),
             )
         ));
 
@@ -117,8 +129,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'textarea',
-                'description'   =>
-                    __('For block header subline. HTML is allowed.'),
+                'description'   => __('Header subline. HTML is allowed.'),
             )
         ));
 
@@ -129,7 +140,7 @@ class BlockModuleForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => __('Specified block container css class.'),
+                'description'   => __('Specified block container CSS class.'),
             )
         ));
 
@@ -319,6 +330,12 @@ class BlockModuleForm extends BaseForm
 
         $inputFilter->add(array(
             'name'          => 'title_hidden',
+            'required'      => true,
+            'allow_empty'   => true,
+        ));
+
+        $inputFilter->add(array(
+            'name'          => 'body_fullsize',
             'required'      => true,
             'allow_empty'   => true,
         ));
