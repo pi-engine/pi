@@ -10,7 +10,7 @@
 namespace Module\User\Controller\Api;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Pi\Mvc\Controller\ApiController;
 
 /**
  * Comment webservice controller
@@ -40,7 +40,7 @@ use Pi\Mvc\Controller\ActionController;
  * @see https://developers.google.com/admin-sdk/directory/v1/reference/users
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class CommentController extends ActionController
+class CommentController extends ApiController
 {
     /**
      * Placeholder
@@ -60,18 +60,6 @@ class CommentController extends ActionController
     public function deleteAction()
     {
         return array('status' => 1);
-
-        $response   = array();
-        $id         = $this->params('id');
-        $result     = Pi::service('comment')->deletePost($id);
-        if (!$result) {
-            $response = array(
-                'status'    => 0,
-                'message'   => 'Operation failed.'
-            );
-        }
-
-        return $response;
     }
 
     /**
@@ -82,12 +70,6 @@ class CommentController extends ActionController
     public function getAction()
     {
         return array('status' => 1);
-
-        $id         = $this->params('id');
-        $result     = Pi::service('comment')->getPost($id);
-        $response   = (array) $result;
-
-        return $response;
     }
 
     /**
@@ -98,13 +80,6 @@ class CommentController extends ActionController
     public function mgetAction()
     {
         return array('status' => 1);
-
-        $id         = $this->params('id');
-        $ids        = $this->splitString($id);
-        $result     = Pi::service('comment')->mget($ids);
-        $response   = $result;
-
-        return $response;
     }
 
     /**
@@ -115,30 +90,6 @@ class CommentController extends ActionController
     public function listAction()
     {
         return array('status' => 1);
-
-        $limit  = $this->params('limit', 10);
-        $offset = $this->params('offset', 0);
-        $order  = $this->params('order');
-        $query  = $this->params('query');
-
-        $order  = $this->splitString($order);
-        $query  = $this->canonizeQuery($query);
-
-        $condition = array();
-        if ($query) {
-            $condition = Pi::db()->where();
-            foreach ($query as $qKey => $qValue) {
-                $condition->like($qKey, $qValue);
-            }
-        }
-        $posts = Pi::service('comment')->getList(
-            $condition,
-            $limit,
-            $offset,
-            $order
-        );
-
-        return $posts;
     }
 
     /**
@@ -149,76 +100,5 @@ class CommentController extends ActionController
     public function countAction()
     {
         return array('status' => 1);
-
-        $query = $this->params('query');
-        $query = $this->canonizeQuery($query);
-        $condition = array();
-        if ($query) {
-            $condition = Pi::db()->where();
-            foreach ($query as $qKey => $qValue) {
-                $condition->like($qKey, $qValue);
-            }
-        }
-        $count  = Pi::service('comment')->getCount($condition);
-        $response = array(
-            'status'    => 1,
-            'data'      => $count,
-        );
-
-        return $response;
-    }
-
-    /**
-     * Split string delimited by comma `,`
-     *
-     * @param string $string
-     *
-     * @return array
-     */
-    protected function splitString($string = '')
-    {
-        $result = array();
-        if (!$string) {
-            return $result;
-        }
-
-        $result = explode(',', $string);
-        array_walk($result, 'trim');
-        $result = array_unique(array_filter($result));
-
-        return $result;
-    }
-
-    /**
-     * Canonize query strings by convert `*` to `%` for LIKE query
-     *
-     * @param string $query
-     *
-     * @return array
-     */
-    protected function canonizeQuery($query = '')
-    {
-        $result = array();
-        if (!$query) {
-            return $result;
-        }
-        if (is_string($query)) {
-            $query = $this->splitString($query);
-        }
-        array_walk($query, function ($qString) use (&$result) {
-            list($identifier, $like) = explode(':', $qString);
-            $identifier = trim($identifier);
-            $like = trim($like);
-            if ($identifier && $like) {
-                $like = str_replace(
-                    array('%', '*', '_'),
-                    array('\\%', '%', '\\_'),
-                    $like
-                );
-                $result[$identifier] = $like;
-            }
-        });
-
-        return $result;
     }
 }

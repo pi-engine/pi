@@ -174,10 +174,9 @@ class UserController extends ApiController
         }
         $where = Pi::db()->where();
         foreach ($query as $key => $val) {
-            $where->qualTo($key, $val)->or;
+            $where->equalTo($key, $val)->or;
         }
 
-        $query  = $this->params('query');
         $count = Pi::model('user_account')->count($where);
         $result = array(
             'status'    => $count ? 1 : 0, // @FIXME: for backward compat

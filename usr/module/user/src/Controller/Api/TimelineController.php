@@ -10,14 +10,14 @@
 namespace Module\User\Controller\Api;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
+use Pi\Mvc\Controller\ApiController;
 
 /**
  * Timeline webservice controller
  *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
-class TimelineController extends ActionController
+class TimelineController extends ApiController
 {
     public function indexAction()
     {
