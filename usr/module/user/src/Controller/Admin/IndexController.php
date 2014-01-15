@@ -6,14 +6,11 @@
 * @copyright       Copyright (c) Pi Engine http://pialog.org
 * @license         http://pialog.org/license.txt New BSD License
 */
-
 namespace Module\User\Controller\Admin;
 
-use Module\User\Form\SearchForm;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Db\Sql\Predicate;
-
 
 /**
 * User manage cases controller
@@ -53,14 +50,7 @@ class IndexController extends ActionController
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
-        // Get user ids
-        $uids  = $this->getUids($condition, $limit, $offset);
-
-        // Get user count
-        $count = $this->getCount($condition);
-
-        // Get user information
-        $users = $this->getUser($uids);
+        list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = array(
@@ -98,14 +88,7 @@ class IndexController extends ActionController
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
-        // Get user ids
-        $uids  = $this->getUids($condition, $limit, $offset);
-
-        // Get user count
-        $count = $this->getCount($condition);
-
-        // Get user information
-        $users = $this->getUser($uids);
+        list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = array(
@@ -142,14 +125,7 @@ class IndexController extends ActionController
         $condition['name']          = _get('name') ?: '';
         $condition['email']         = _get('email') ?: '';
 
-        // Get user ids
-        $uids  = $this->getUids($condition, $limit, $offset);
-
-        // Get user count
-        $count = $this->getCount($condition);
-
-        // Get user information
-        $users = $this->getUser($uids);
+        list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = array(
@@ -186,6 +162,7 @@ class IndexController extends ActionController
         $enable     = (int) _post('enable');
         $roles      = _post('roles');
 
+        /*
         $configs = Pi::service('module')->config('', 'user');
         // Check username
         if (strlen($identity) > $configs['uname_max'] ||
@@ -226,7 +203,7 @@ class IndexController extends ActionController
 
             return $result;
         }
-
+        */
 
         // Check duplication
         $where = array(
@@ -321,53 +298,6 @@ class IndexController extends ActionController
         );
 
         return $result;
-
-
-        $status = 1;
-
-        $identity = _get('identity');
-        $email    = _get('email');
-        $name     = _get('name');
-        $uid      = (int) _get('id');
-
-        if (!$identity && !$email && !$name ) {
-            return array(
-                'status' => $status,
-            );
-        }
-
-        $model = Pi::model('user_account');
-        if ($identity) {
-            $row = $model->find($identity, 'identity');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        if ($email) {
-            $row = $model->find($email, 'email');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        if ($name) {
-            $row = $model->find($name, 'name');
-            if (!$row) {
-                $status = 0;
-            } else {
-                $status = ($row['id'] == $uid) ? 0 : 1;
-            }
-        }
-
-        return array(
-            'status' => $status,
-        );
-
     }
 
     /**
@@ -401,14 +331,7 @@ class IndexController extends ActionController
         $limit  = Pi::service('module')->config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
-        // Get user ids
-        $uids  = $this->getUids($condition, $limit, $offset);;
-
-        // Get user count
-        $count = $this->getCount($condition);
-
-        // Get user information
-        $users = $this->getUser($uids);
+        list($users, $count) = $this->getUsers($condition, $limit, $offset);
 
         // Set paginator
         $paginator = array(
@@ -617,11 +540,6 @@ class IndexController extends ActionController
         $role = _post('role');
 
         $result = array(
-            'status'  => 0,
-            'message' => '',
-        );
-
-        $result = array(
             'status'    => 0,
             'data'      => array(),
             'message'   => '',
@@ -691,119 +609,65 @@ class IndexController extends ActionController
         return $result;
 
     }
-
     /**
-     * Get user information
-     *
-     * @param int[] $uids
-     *
-     * @return array
-     */
-    protected function getUser($uids)
-    {
-        $users = array();
-        if (!$uids) {
-            return $users;
-        }
-
-        $columns = array(
-            'identity'       => '',
-            'name'           => '',
-            'email'          => '',
-            'active'         => '',
-            'time_disabled'  => '',
-            'time_activated' => '',
-            'time_created'   => '',
-            'ip_register'    => '',
-            'id'             => '',
-        );
-
-        $noSortUser = Pi::api('user', 'user')->get(
-            $uids,
-            array_keys($columns)
-        );
-
-        foreach ($uids as $uid) {
-            $users[] = $noSortUser[$uid];
-        }
-        array_walk($users, function (&$user) {
-            $user['link'] = Pi::service('user')->getUrl('profile', array(
-                'id'    => (int) $user['id'],
-            ));
-            $user['active']         = (bool) $user['active'];
-            $user['time_disabled']  = $user['time_disabled']
-                ? _date($user['time_disabled']) : 0;
-            $user['time_activated']  = $user['time_activated']
-                ? _date($user['time_activated']) : 0;
-            $user['time_created']  = $user['time_created']
-                ? _date($user['time_created']) : 0;
-        });
-        $users = $this->renderRole($users);
-
-        return $users;
-
-    }
-
-    /**
-     * Get user ids according to condition
+     * Get users and count according to conditions
      *
      * @param $condition
      * @param int $limit
      * @param int $offset
      *
-     * @return array
-     *
+     * @return array    User list and count
      */
-    protected function getUids($condition, $limit = 0, $offset = 0)
+    protected function getUsers($condition, $limit = 0, $offset = 0)
     {
+        $users = array();
+        $count = 0;
+
         $modelAccount = Pi::model('user_account');
         $modelRole    = Pi::model('user_role');
 
+        $where = array();
         $where['time_deleted'] = 0;
         if ($condition['active'] == 'active') {
             $where['active'] = 1;
-        }
-        if ($condition['active'] == 'inactive') {
+        } elseif ($condition['active'] == 'inactive') {
             $where['active'] = 0;
         }
         if ($condition['enable'] == 'enable') {
             $where['time_disabled'] = 0;
-        }
-        if ($condition['enable'] == 'disable') {
+        } elseif ($condition['enable'] == 'disable') {
             $where['time_disabled > ?'] = 0;
         }
         if ($condition['activated'] == 'activated') {
             $where['time_activated > ?'] = 0;
-        }
-        if ($condition['activated'] == 'pending') {
+        } elseif ($condition['activated'] == 'pending') {
             $where['time_activated'] = 0;
         }
-        if ($condition['register_date']) {
+        if (!empty($condition['register_date'])) {
             $where['time_created >= ?'] = $this->canonizeRegisterDate(
                 $condition['register_date']
             );
         }
-        if ($condition['uid']) {
+        if (!empty($condition['uid'])) {
             if ($condition['front_role'] || $condition['admin_role']) {
                 $where['account.id'] = (int) $condition['uid'];
             } else {
                 $where['id'] = (int) $condition['uid'];
             }
         }
-        if ($condition['email']) {
+        if (!empty($condition['email'])) {
             $where['email like ?'] = '%' .$condition['email'] . '%';
         }
-        if ($condition['identity']) {
+        if (!empty($condition['identity'])) {
             $where['identity like ?'] = '%' . $condition['identity'] . '%';
         }
-        if ($condition['name']) {
+        if (!empty($condition['name'])) {
             $where['name like ?'] = '%' . $condition['name'] . '%';
-
         }
-        if ($condition['time_created_from']) {
+        if (!empty($condition['time_created_from'])) {
             $where['time_created >= ?'] = strtotime($condition['time_created_from']);
         }
-        if ($condition['time_created_to']) {
+        if (!empty($condition['time_created_to'])) {
             $where['time_created <= ?'] = strtotime($condition['time_created_to'] . ' +1 day');
         }
 
@@ -812,11 +676,7 @@ class IndexController extends ActionController
         $where->add($whereAccount);
 
         $select = Pi::db()->select();
-        $select->from(
-            array('account' => $modelAccount->getTable()),
-            array('id')
-        );
-        if ($condition['front_role']) {
+        if (!empty($condition['front_role'])) {
             if (is_array($condition['front_role'])) {
                 $i = 1;
                 foreach ($condition['front_role'] as $role) {
@@ -847,7 +707,7 @@ class IndexController extends ActionController
             }
         }
 
-        if ($condition['admin_role']) {
+        if (!empty($condition['admin_role'])) {
             if (is_array($condition['admin_role'])) {
                 $i = 1;
                 foreach ($condition['admin_role'] as $role) {
@@ -878,7 +738,7 @@ class IndexController extends ActionController
             }
         }
 
-        if ($condition['ip_register']) {
+        if (!empty($condition['ip_register'])) {
             $profileModel = $this->getModel('profile');
             $whereProfile = Pi::db()->where()->create(array(
                 'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
@@ -890,188 +750,71 @@ class IndexController extends ActionController
                 array()
             );
         }
-
-        $select->order('account.id DESC');
-        if ($limit) {
-            $select->limit($limit);
-        }
-        if ($offset) {
-            $select->offset($offset);
-        }
-
         $select->where($where);
 
-        $rowset = Pi::db()->query($select);
-
-        $result = array();
-        foreach ($rowset as $row) {
-            $result1[] = $row;
-            $result[] = (int) $row['id'];
-        }
-
-        return $result;
-
-    }
-
-    /**
-     * Get count according to condition
-     *
-     * @param $condition
-     *
-     * @return int
-     */
-    protected function getCount($condition)
-    {
-        $modelAccount = Pi::model('user_account');
-        $modelRole    = Pi::model('user_role');
-
-        $where = array('time_deleted' => 0);
-        if ($condition['active'] == 'active') {
-            $where['active'] = 1;
-        }
-        if ($condition['active'] == 'inactive') {
-            $where['active'] = 0;
-        }
-        if ($condition['enable'] == 'enable') {
-            $where['time_disabled'] = 0;
-        }
-        if ($condition['enable'] == 'disable') {
-            $where['time_disabled > ?'] = 0;
-        }
-        if ($condition['activated'] == 'activated') {
-            $where['time_activated > ?'] = 0;
-        }
-        if ($condition['activated'] == 'pending') {
-            $where['time_activated'] = 0;
-        }
-        if ($condition['register_date']) {
-            $where['time_created >= ?'] = $this->canonizeRegisterDate(
-                $condition['register_date']
-            );
-        }
-        if ($condition['uid']) {
-            if ($condition['front_role'] || $condition['admin_role']) {
-                $where['account.id'] = (int) $condition['uid'];
-            } else {
-                $where['id'] = (int) $condition['uid'];
-            }
-        }
-        if ($condition['email']) {
-            $where['email like ?'] = '%' .$condition['email'] . '%';
-        }
-        if ($condition['identity']) {
-            $where['identity like ?'] = '%' . $condition['identity'] . '%';
-        }
-        if ($condition['name']) {
-            $where['name like ?'] = '%' . $condition['name'] . '%';
-
-        }
-        if ($condition['time_created_from']) {
-            $where['time_created >= ?'] = strtotime($condition['time_created_from']);
-        }
-        if ($condition['time_created_to']) {
-            $where['time_created <= ?'] = strtotime($condition['time_created_to'] . ' +1 day');
-        }
-
-        $whereAccount = Pi::db()->where()->create($where);
-        $where = Pi::db()->where();
-        $where->add($whereAccount);
-
-        $select = Pi::db()->select();
+        // Fetch count
         $select->from(
             array('account' => $modelAccount->getTable())
+        )->columns(
+            array('count' => Pi::db()->expression('COUNT(account.id)'))
         );
 
-        $select->columns(array(
-            'count' => Pi::db()->expression('COUNT(account.id)'),
-        ));
-
-        if ($condition['front_role']) {
-            if (is_array($condition['front_role'])) {
-                $i = 1;
-                foreach ($condition['front_role'] as $role) {
-                    $prefix = $i;
-                    $whereRoleFront = Pi::db()->where()->create(array(
-                        'front' . $prefix . '.role'    => $role,
-                        'front' . $prefix . '.section'  => 'front',
-                    ));
-                    $where->add($whereRoleFront);
-                    $select->join(
-                        array('front' . $prefix => $modelRole->getTable()),
-                        'front' . $prefix . '.uid=account.id',
-                        array()
-                    );
-                    $i++;
-                }
-            } else {
-                $whereRoleFront = Pi::db()->where()->create(array(
-                    'front.role'    => $condition['front_role'],
-                    'front.section' => 'front',
-                ));
-                $where->add($whereRoleFront);
-                $select->join(
-                    array('front' => $modelRole->getTable()),
-                    'front.uid=account.id',
-                    array()
-                );
-            }
-        }
-
-        if ($condition['admin_role']) {
-            if (is_array($condition['admin_role'])) {
-                $i = 1;
-                foreach ($condition['admin_role'] as $role) {
-                    $prefix = $i;
-                    $whereRoleFront = Pi::db()->where()->create(array(
-                        'admin' . $prefix . '.role'     => $role,
-                        'admin' . $prefix . '.section'  => 'admin',
-                    ));
-                    $where->add($whereRoleFront);
-                    $select->join(
-                        array('admin' . $prefix => $modelRole->getTable()),
-                        'admin' . $prefix . '.uid=account.id',
-                        array()
-                    );
-                    $i++;
-                }
-            } else {
-                $whereRoleFront = Pi::db()->where()->create(array(
-                    'admin.role'    => $condition['admin_role'],
-                    'admin.section' => 'admin',
-                ));
-                $where->add($whereRoleFront);
-                $select->join(
-                    array('admin' => $modelRole->getTable()),
-                    'admin.uid=account.id',
-                    array()
-                );
-            }
-        }
-
-        if ($condition['ip_register']) {
-            $profileModel = $this->getModel('profile');
-            $whereProfile = Pi::db()->where()->create(array(
-                'profile.ip_register like ?' => '%' . $condition['ip_register'] . '%',
-            ));
-            $where->add($whereProfile);
-            $select->join(
-                array('profile' => $profileModel->getTable()),
-                'profile.uid=account.id',
-                array()
-            );
-        }
-
-        $select->where($where);
         $rowset = Pi::db()->query($select);
-
         if ($rowset) {
-            $rowset = $rowset->current();
-        } else {
-            return 0;
+            $row = $rowset->current();
+            $count = (int) $row['count'];
         }
 
-        return (int) $rowset['count'];
+        // Fetch users
+        if ($count) {
+            $select->columns(
+                array('id')
+            );
+            $select->order('account.id DESC');
+            if ($limit) {
+                $select->limit($limit);
+            }
+            if ($offset) {
+                $select->offset($offset);
+            }
+            $rowset = Pi::db()->query($select);
+            $uids = array();
+            foreach ($rowset as $row) {
+                $uids[] = (int) $row['id'];
+            }
 
+            if ($uids) {
+                $columns = array(
+                    'identity',
+                    'name',
+                    'email',
+                    'active',
+                    'time_disabled',
+                    'time_activated',
+                    'time_created',
+                    'ip_register',
+                    'id'
+                );
+                $users = Pi::api('user', 'user')->get($uids, $columns);
+                array_walk($users, function (&$user, $uid) {
+                    $user['link'] = Pi::service('user')->getUrl('profile', array(
+                        'id'    => $uid,
+                    ));
+                    $user['active']         = (bool) $user['active'];
+                    $user['time_disabled']  = $user['time_disabled']
+                        ? _date($user['time_disabled']) : 0;
+                    $user['time_activated']  = $user['time_activated']
+                        ? _date($user['time_activated']) : 0;
+                    $user['time_created']  = $user['time_created']
+                        ? _date($user['time_created']) : 0;
+                });
+                $users = $this->renderRole($users);
+            }
+
+        }
+        $result = array($users, $count);
+
+        return $result;
     }
 
     /**
@@ -1110,46 +853,46 @@ class IndexController extends ActionController
         $time = 0;
         if ($registerDate == 'today') {
             $time = mktime(
-                0,0,0,
-                date("m"),
-                date("d"),
-                date("Y")
+                0, 0, 0,
+                date('m'),
+                date('d'),
+                date('Y')
             );
         }
 
         if ($registerDate == 'last_week') {
             $time = mktime(
-                0,0,0,
-                date("m"),
-                date("d") - 7,
-                date("Y")
+                0, 0, 0,
+                date('m'),
+                date('d') - 7,
+                date('Y')
             );
         }
 
         if ($registerDate == 'last_month') {
             $time = mktime(
-                0,0,0,
-                date("m") - 1,
-                date("d"),
-                date("Y")
+                0, 0, 0,
+                date('m') - 1,
+                date('d'),
+                date('Y')
             );
         }
 
         if ($registerDate == 'last_3_month') {
             $time = mktime(
-                0,0,0,
-                date("m") - 3,
-                date("d"),
-                date("Y")
+                0, 0, 0,
+                date('m') - 3,
+                date('d'),
+                date('Y')
             );
         }
 
         if ($registerDate == 'last_year') {
             $time = mktime(
-                0,0,0,
-                date("m"),
-                date("d"),
-                date("Y") - 1
+                0, 0, 0,
+                date('m'),
+                date('d'),
+                date('Y') - 1
             );
         }
 
@@ -1162,9 +905,7 @@ class IndexController extends ActionController
      */
     protected function renderRole(array $users)
     {
-        foreach ($users as $key => $user) {
-            $uids[] = $user['id'];
-        }
+        $uids = array_keys($users);
         $roleList = array();
         $roles = Pi::registry('role')->read();
         $rowset = Pi::model('user_role')->select(array('uid' => $uids));
@@ -1174,8 +915,7 @@ class IndexController extends ActionController
             $roleKey = $section . '_roles';
             $roleList[$uid][$roleKey][] = $roles[$row['role']]['title'];
         }
-        array_walk($users, function (&$user) use ($roleList) {
-            $uid = $user['id'];
+        array_walk($users, function (&$user, $uid) use ($roleList) {
             if (isset($roleList[$uid]['front_roles'])) {
                 $user['front_roles'] = $roleList[$uid]['front_roles'];
             }
@@ -1190,7 +930,7 @@ class IndexController extends ActionController
     /**
      * Get users status: active, activated, disable
      *
-     * @param $uids
+     * @param int[] $uids
      * @return array
      */
     protected function getUserStatus($uids)
@@ -1199,7 +939,7 @@ class IndexController extends ActionController
         $users = Pi::api('user', 'user')->get(
             $uids,
             array(
-                'active','time_activated', 'time_disabled'
+                'active', 'time_activated', 'time_disabled'
             )
         );
 
