@@ -15,7 +15,6 @@ use Module\Article\Model\Article;
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Controller\Admin\SetupController as Config;
 use Module\Article\Form\DraftEditForm;
-use Module\Article\Model\Draft;
 use Module\Article\Compiled;
 use Module\Article\Media;
 use Module\Article\Installer\Resource\Route;
