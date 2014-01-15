@@ -36,7 +36,7 @@ class AppEditFilter extends InputFilter
 
         $this->add(array(
             'name'     => 'id',
-            'required' => true,
+            'required' => false,
         ));
 
         $this->add(array(

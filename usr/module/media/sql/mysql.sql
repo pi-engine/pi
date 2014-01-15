@@ -35,7 +35,7 @@ CREATE TABLE `{doc}` (
   `ip`              varchar(64)                     NOT NULL DEFAULT '',
 
   # Usage stats
-  `count`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `count`           int(10) UNSIGNED                NOT NULL DEFAULT 0,
 
   PRIMARY KEY   (`id`),
   KEY `active`  (`active`),

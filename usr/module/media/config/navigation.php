@@ -76,6 +76,13 @@ return array(
                         'controller'    => 'application',
                         'action'        => 'list',
                     ),
+                    'add'               => array(
+                        'label'         => _t('Add'),
+                        'route'         => 'admin',
+                        'controller'    => 'application',
+                        'action'        => 'add',
+                        'visible'       => 0,
+                    ),
                     'edit'              => array(
                         'label'         => _t('Edit'),
                         'route'         => 'admin',
