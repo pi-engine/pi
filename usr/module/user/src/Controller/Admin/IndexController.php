@@ -905,6 +905,10 @@ class IndexController extends ActionController
      */
     protected function renderRole(array $users)
     {
+        if (!$users) {
+            return $users;
+        }
+
         $uids = array_keys($users);
         $roleList = array();
         $roles = Pi::registry('role')->read();

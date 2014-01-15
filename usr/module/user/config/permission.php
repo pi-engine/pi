@@ -38,12 +38,14 @@ return array(
                 //'admin',
             ),
         ),
+        /*
         'import'      => array(
             'title'         => _a('Import'),
             'access'        => array(
                 //'admin',
             ),
         ),
+        */
 
         'avatar'       => array(
             'title'         => _a('Avatars'),

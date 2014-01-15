@@ -144,7 +144,6 @@ return array(
             'type'      => 'account',
             'name'      => 'active',
             'title'     => _a('Active'),
-//            'edit'      => 'text',
             'filter'    => 'YesNo',
 
             'is_edit'       => false,
@@ -155,7 +154,6 @@ return array(
             'type'      => 'account',
             'name'      => 'time_created',
             'title'     => _a('Register time'),
-//            'edit'      => 'text',
             'filter'    => array('Int', 'DateTimeFormatter'),
 
             'is_edit'       => false,
@@ -166,7 +164,6 @@ return array(
             'type'      => 'account',
             'name'      => 'time_activated',
             'title'     => _a('Activation time'),
-//            'edit'      => 'text',
             'filter'    => 'DateTimeFormatter',
 
             'is_edit'       => false,
