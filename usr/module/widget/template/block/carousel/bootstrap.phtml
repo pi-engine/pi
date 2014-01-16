@@ -1,7 +1,13 @@
 <?php
-// Options: interval, pause
-$options = $block['options'];
-$class = 'carousel slide';
+// Options: interval, pause, height
+$options = (array) $block['options'];
+$class = 'carousel';
+if (isset($options['class'])) {
+    $class .= ' ' . $options['class'];
+    unset($options['class']);
+} else {
+    $class .= ' slide';
+}
 $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
@@ -11,16 +17,16 @@ $render = function ($item) use ($_this)
 {
     $caption = $_this->escape($item['caption']);
     $description = $_this->escape($item['desc']);
-    $image = '<img class="center-block" src="'. $item['image'] . '" alt="">';
+    $image = '<img class="center-block" src="' . $item['image'] . '" alt="">';
 
     $content = '';
     if (!empty($item['link'])) {
-        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption .'">' . $image . '</a>';
+        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption . '">' . $image . '</a>';
     } else {
         $content .= $image;
     }
     if ($caption || $description) {
-        $content .= '<div class="carousel-caption">' . '<h4>' . $caption . '</h4>' . '<p>' . $description . '</p>' . '</div>';
+        $content .= '<div class="carousel-caption"><h4>' . $caption . '</h4><p>' . $description . '</p></div>';
     }
     return $content;
 };
@@ -43,7 +49,8 @@ $carouselId = uniqid('carousel');
     </ol>
 
     <!-- Carousel items -->
-    <div class="carousel-inner" style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>">
+    <div style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>"
+         class="carousel-inner">
         <div class="active item">
             <?php echo $render($activeItem); ?>
         </div>

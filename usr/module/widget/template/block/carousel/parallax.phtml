@@ -1,28 +1,31 @@
 <?php 
-	// Load jQuerty  
-	$this->jQuery();
-	// Load css   
-	$this->css(array(
-	    $this->assetModule('script/parallax/style.css', 'widget'),
-	));
-	// Load js   
-	$this->js(array(
-	    $this->assetModule('script/parallax/modernizr.js', 'widget'),
-	    $this->assetModule('script/parallax/jquery.cslider.js', 'widget'),
-	));
-	// Setting as footscript
-	$script = "$(function() {
-			$('#da-slider').cslider({
-				autoplay	: true,
-			});
-		});";
-	$this->footScript()->appendScript($script);	
-	// Load Google font
-	$this->HeadLink(array(
-		'href' => 'http://fonts.googleapis.com/css?family=Economica:700,400italic',
-		'rel' => 'stylesheet',
-		'type' => 'text/css',
-	));
+// Load jQuerty
+$this->jQuery();
+// Load css
+$this->css(array(
+    $this->assetModule('script/parallax/style.css', 'widget'),
+));
+// Load js
+$this->js(array(
+    $this->assetModule('script/parallax/modernizr.js', 'widget'),
+    $this->assetModule('script/parallax/jquery.cslider.js', 'widget'),
+));
+// Setting as footscript
+$script = "$(function() {
+        $('#da-slider').cslider({
+            autoplay	: true,
+        });
+    });";
+$this->footScript()->appendScript($script);
+// Load Google font
+$this->HeadLink(array(
+    'href' => 'http://fonts.googleapis.com/css?family=Economica:700,400italic',
+    'rel' => 'stylesheet',
+    'type' => 'text/css',
+));
+
+// Options: interval, pause, height
+$options = (array) $block['options'];
 ?>
 <div id="da-slider" class="da-slider">
 	<?php foreach ($block['items'] as $item) { ?>
