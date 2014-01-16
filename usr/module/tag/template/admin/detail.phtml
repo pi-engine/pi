@@ -1,70 +1,52 @@
-<?php
-//$this->I18nModule('main');
-$url = $this->url('', array('controller' => 'index', 'action' => 'list'));
-?>
-<h2 class="page-header"><?php echo $this->escape($tagTerm); ?></h2>
-<ul class="breadcrumb">
-    <li>
-        <a href="<?php echo $url ?>"><?php _e('Tags') ;?></a>
-    </li>
-    <li class="active"><?php echo $this->escape($tagTerm); ?></li>
-</ul>
 <div class="row">
     <div class="col-md-3">
-        <?php
-        $items = array();
-        $item = array(
-            'href'  => $this->url('', array('controller' => 'index', 'action' => 'detail', 'id' => $tagid)),
-            'label' => _a('ALL'),
-        );
-        if (null == $curModule) {
-            $item['active'] = 1;
-        }
-        $items[] = $item;
-        foreach ($moduleArray as $row) {
-            $item = array(
-                'href'    => $this->url('', array('controller' => 'index', 'action' => 'detail', 'm' => $row, 'id' => $tagid)),
-                'label'   => ucfirst($row),
-            );
-            if ($curModule === $row) {
-                $item['active'] = 1;
+        <div class="list-group">
+            <a href="<?php echo $this->url('', array('action' => 'detail', 'id' => $tag_id)); ?>"
+               class="list-group-item<?php if(!$cur_module) { echo ' active'; } ?>">
+                <?php _e('All'); ?>
+            </a>
+            <?php
+            foreach ($modules as $key => $item) {
+                echo sprintf(
+                    '<a class="list-group-item%s" href="%s">%s</a>',
+                    $key == $cur_module ? ' active' : '',
+                    $this->url('', array('action' => 'detail', 'id' => $tag_id, 'm' => $key)),
+                    $item
+                );
             }
-            $items[] = $item;
-        }
-        echo $this->navMenu($items, array(
-            'class' => 'nav nav-pills nav-stacked'
-        ));
-        ?>
+            ?>
+        </div>
     </div>
     <div class="col-md-9">
-        <div>
-            <?php if ($details == null) { ?>
-                <div class="alert">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <p><?php echo $this->escape($tagTerm) . ' ' . _a('not related an obj in ') . $this->escape($curModule); ?></p>
-                </div>
-            <?php } else { ?>
-                <table class="table table-hover table-bordered">
-                    <tr class="box-bordered-header">
-                        <th><?php echo _a('Title'); ?></th>
-                        <th class="span2"><?php echo _a('Module'); ?></th>
-                        <th class="span2"><?php echo _a('Link Time'); ?></th>
-                    </tr>
-                    <?php foreach ($details as $detail) { ?>
-                        <tr>
-                            <?php $url = sprintf('<a href="%s">%s</a>', $this->escape($detail['url']), $this->escape($detail[$detail['itemId']])); ?>
-                            <td><?php echo $url; ?></td>
-                            <td>
-                                <?php echo  $this->escape(ucfirst($detail['module'])); ?>
-                            </td>
-                            <td><?php echo $this->escape(date("Y-m-d", $detail['time']));?></td>
-                        </tr>
-                    <?php } ?>
-                </table>
-            <?php } ?>
-            <div class="pagination-right">
-                <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml'); ?>
-            </div>
+        <h3 style="margin-top: 0;">
+            <?php echo sprintf(__('About %s content'), $tag); ?>
+            <small>(<?php echo $count; ?>)</small>
+        </h3>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><?php _e('Module'); ?>
+                    <th><?php _e('Title'); ?>
+                    <th><?php _e('Time'); ?>
+                        <tbody>
+                        <?php foreach ($list as $item) { ?>
+                <tr>
+                    <td><?php echo _escape($item['module']);  ?>
+                    <td>
+                        <a href="<?php echo $item['item_link']?>">
+                            <?php echo _escape($item['item']); ?>
+                        </a>
+                    </td>
+                    <td><?php echo _escape($item['time']); ?>
+                        <?php } ?>
+            </table>
         </div>
+        <?php
+        if (isset($paginator)) {
+            echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
+        }
+        ?>
     </div>
 </div>

@@ -275,12 +275,12 @@ html {
 
 #pi-logger-output {
   position: relative;
+  top: -60px;
 }
 
 
 /* Bootstrap custom */
-.nav-tabs,
-.nav-pills {
+.nav-tabs {
   margin-bottom: 20px;
 }
 
