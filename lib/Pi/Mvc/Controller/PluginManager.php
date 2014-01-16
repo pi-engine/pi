@@ -34,13 +34,14 @@ class PluginManager extends ZendPluginManager
         'url'                         => 'Zend\Mvc\Controller\Plugin\Url',
 
         // Pi custom plugins
+        'flashmessenger'            => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
+        'params'                    => 'Pi\Mvc\Controller\Plugin\Params',
+        'redirect'                  => 'Pi\Mvc\Controller\Plugin\Redirect',
+        'url'                       => 'Pi\Mvc\Controller\Plugin\Url',
         'cache'                     => 'Pi\Mvc\Controller\Plugin\Cache',
         'config'                    => 'Pi\Mvc\Controller\Plugin\Config',
         'jump'                      => 'Pi\Mvc\Controller\Plugin\Jump',
-        'redirect'                  => 'Pi\Mvc\Controller\Plugin\Redirect',
-        'url'                       => 'Pi\Mvc\Controller\Plugin\Url',
         'view'                      => 'Pi\Mvc\Controller\Plugin\View',
-        'flashmessenger'            => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
     );
 
     /**
