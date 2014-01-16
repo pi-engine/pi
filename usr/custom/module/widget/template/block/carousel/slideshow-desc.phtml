@@ -1,6 +1,7 @@
 <?php
 $length = count($block['items']);
 $carouselId = uniqid('carousel');
+$options = $block['options'];
 ?>
 <style>
 .pi-carousel-indicators {
@@ -17,7 +18,9 @@ $carouselId = uniqid('carousel');
 .pi-carousel-indicators li {
 	background: #ccc;
 	border-radius: 0;
-	margin: 0 2px 0 0;
+	margin: 0 3px 0 0 !important;
+	width: 14px !important;
+	height: 14px !important;
 }
 </style>
 <div id="<?php echo $carouselId; ?>" class="carousel slide">
@@ -33,7 +36,8 @@ $carouselId = uniqid('carousel');
 	}
 	?>
 	</ol>
-	<div class="carousel-inner">
+	<div style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>"
+		 class="carousel-inner">
 	<?php
 	foreach ($block['items'] as $key => $item) {
 		if ($item['link']) {

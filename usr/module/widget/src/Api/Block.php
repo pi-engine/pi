@@ -46,7 +46,7 @@ class Block extends AbstractApi
                         'title'         => _a('Time interval (ms)'),
                         'edit'          => 'text',
                         'filter'        => 'number_int',
-                        'value'         => 2000,
+                        'value'         => 4000,
                     ),
                     'pause' => array(
                         'title'         => _a('Mouse event'),
