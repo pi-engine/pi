@@ -103,7 +103,7 @@ class IndexController extends ActionController
             $modelStats = $this->getModel('stats');
             $select = $modelStats->select()->where(array('module' => $module))->order(array('count DESC'))->offset($offset)->limit($limit);
             $rowset = $modelStats->selectWith($select)->toArray();
-            //var_dump($rowset);
+
             foreach ($rowset as $row) {
                 $select = $modelTag->select()->where(array('id' => $row['tag']));
                 $items[] = array(
@@ -153,92 +153,81 @@ class IndexController extends ActionController
      */
     public function linkListAction()
     {
-        $tagModel = $this->getModel('tag');
-        $linkModel = $this->getModel('link');
-        $statsModel = $this->getModel('stats');
+        $limit      = (int) $this->config('item_per_page');
+        $page       = _get('page') ? (int) _get('page') : 1;
+        $offset     = (int) ($page - 1) * $limit;
+        $moduleName = _get('m');
 
-        $page = $this->params('page', 1);
-        $currentModule = $this->params('m', null);
-        $limit = (int) $this->config('link_per_page');
-        $offset = ($page -1) * $limit;
+        $model = $this->getModel('link');
+        $where = array();
+        if ($moduleName) {
+            $where['module'] = $moduleName;
+        }
+        $select = $model->select()->where($where);
+        $select->limit($limit);
+        $select->offset($offset);
+        $rowset = $model->selectWith($select);
+        $count = $model->count($where);
 
-        // Get link
-        $where = empty($currentModule) ? array() : array('module' => $currentModule);
-        $select = $linkModel->select()->where($where)->order('time DESC');
-        $select->offset($offset)->limit($limit);
-        $resultLinkAsset = $linkModel->selectWith($select);
-
-        $tagIds = array();
-        $itemIds = array();
-        foreach ($resultLinkAsset as $asset) {
+        $links = array();
+        foreach ($rowset as $row) {
             $links[] = array(
-                $asset->tag     => '',
-                $asset->item    => '',
-                'time'          => $asset->time,
-                'type'          => $asset->type,
-                'module'        => $asset->module,
-                'itemUrl'       => '',
-                'tagId'         => $asset->tag,
-                'itemId'        => $asset->item,
+                'tag'       => $row->tag,
+                'tag_link'  => '',
+                'item'      => $row->item,
+                'item_link' => '',
+                'module'    => $row->module,
+                'type'      => $row->type,
+                'time'      => $row->time ? _date($row->time) : 0,
+
             );
-            $tagIds[]                           = $asset->tag;
-            $itemIds[$asset->module][]          =  $asset->item;
+            $tagIds[] = $row->tag;
         }
 
-        // Get tag name
-        $tagNames = $this->getTagName($tagIds);
+        $tagTitle  = $this->getTag($tagIds);
 
-        // Get item name
-        $itemNames = array();
-        foreach ($itemIds as $module => $item) {
-            $variables = array('title');
-            $conditions['id'] = $itemIds[$module];
-            $conditions['module'] = $module;
-            $itemNames[$module] = Pi::service('module')->content($variables, $conditions);
+        foreach ($links as &$link) {
+            $moduleMeta = Pi::service('module')->loadMeta($link['module']);
+            $variables  = array('title', 'id');
+            $conditions = array(
+                'module' => $link['module'],
+                'id'     => $link['item']
+            );
+            $content = Pi::service('module')->
+                content($variables, $conditions);
+            $content = $this->canonizeContent($content);
+
+            $link['tag_link'] = $this->url('',
+                array(
+                    'action' => 'detail',
+                    'id' => $link['tag']
+                )
+            );
+            $link['tag']       = $tagTitle[$link['tag']];
+            $link['item_link'] = $content[$link['item']]['link'];
+            $link['item']      = $content[$link['item']]['title'];
+            $link['module']    = $moduleMeta['meta']['title'];
         }
 
-        // Get links
-        foreach ($links as $index => $link) {
-            $keys = array_keys($link);
-            $links[$index][$keys[0]] = $tagNames[$keys[0]];
-            $links[$index][$keys[1]] = $itemNames[$link['module']][$keys[1]]['title'];
-            $links[$index]['itemUrl']     = $itemNames[$link['module']][$keys[1]]['url'];
-        }
-
-        // Bulid where
-        $where = empty($currentModule) ? array() : array('module' => $currentModule);
-        // Total count
-        $select = $linkModel->select()
-            ->columns(array('total' =>new Expression('count(id)')))
-            ->where($where);
-        $resultsetCount = $linkModel->selectWith($select);
-        $totalCount = (int) $resultsetCount->current()->total;
-
-        // Paginator
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)->setCurrentPageNumber($page)
-            ->setUrlOptions(array(
-            'pageParam'    => 'p',
-            'totalParam'   => 't',
-            'router'       => $this->getEvent()->getRouter(),
-            'route'        => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'       => array(
-                'module'    => Pi::service('module')->current(),
-                'controller' => 'index',
-                'action'     => 'linklist',
-                'm'          => $currentModule,
-            ),
-
+        $paginator = Paginator::factory(intval($count), array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'params' => array(
+                    'm'      => $moduleName
+                )
+            )
         ));
 
         $this->view()->assign(array(
-            'datas'         => $links,
-            'curModule'     => $currentModule,
-            'paginator'        => $paginator,
-            'moduleArray'      => $this->getExistModule(),
+            'paginator'  => $paginator,
+            'links'      => $links,
+            'modules'    => $this->getModules(),
+            'count'      => $count,
+            'cur_module' => $moduleName
         ));
-        $this->view()->setTemplate('link-list');
 
+        $this->view()->setTemplate('link-list');
     }
 
     /**
@@ -517,94 +506,241 @@ class IndexController extends ActionController
     public function detailAction()
     {
 
-        // Get website module
-        $linkModel = $this->getModel('link');
-        $tagModel = $this->getModel('tag');
-        $page = $this->params('page', 1);
-        $currentModule = $this->params('m', null);
-        $limit = (int) $this->config('detail_per_page');
-        $offset = ($page -1) * $limit;
+        $tag        = _get('id');
+        $type       = _get('type');
+        $limit      = (int) $this->config('item_per_page');
+        $page       = _get('page') ? (int) _get('page') : 1;
+        $offset     = (int) ($page - 1) * $limit;
+        $moduleName = _get('m');
 
-        // Get params
-        $module = $this->params('m', null);
-        $module = $module != '' ? $module : null;
-        $tagId = $this->params('id', null);
-        if ('' == $tagId) {
-            $tagId = null;
-        }
-
-        // Get tag name
-        $select = $tagModel->select()->where(array('id' => $tagId));
-        if ($tagId) {
-            $rowset = $tagModel->selectWith($select)->current();
-            $tagName = $rowset->term;
-        }
-        // Get tag releated item ids
-        // Build where
-        $where = array('tag' => $tagId);
-        if ($module) {
-            $where['module'] = $module;
-        }
-        $select = $linkModel->select()->where($where)->order('time DESC')->offset($offset)->limit($limit);
-        $rowset = $linkModel->selectWith($select);
-        $itemIds = array();
-        foreach($rowset as $row) {
-            $details[] = array(
-                $row->item  => '',
-                'time'      => $row->time,
-                'module'    => $row->module,
-                'itemId'    => $row->item,
-            );
-            $itemIds[$row->module][] = $row->item;
-        }
-        // Get item name
-        $itemNames = array();
-        foreach ($itemIds as $module => $item) {
-            $variables = array('title');
-            $conditions['id'] = $itemIds[$module];
-            $conditions['module'] = $module;
-            $itemNames[$module] = Pi::service('module')->content($variables, $conditions);
+        $modules = $this->getModules($moduleName);
+        if (!is_numeric($tag)) {
+            $tagId = $this->getTagId($tag);
+        } else {
+            $tagId  = (int) $tag;
+            $result = $this->getTag($tag);
+            $tag    = $result[$tag];
         }
 
-        // Build details
-        foreach($details as $index => $detail) {
-            $details[$index][$detail['itemId']] = $itemNames[$detail['module']][$detail['itemId']]['title'];
-            $details[$index]['url'] = $itemNames[$detail['module']][$detail['itemId']]['url'];
-        }
+        $list = $this->getList(
+            $tagId,
+            array_keys($modules),
+            $type,
+            $limit,
+            $offset
+        );
 
-        // Total count
-        $select = $linkModel->select()
-            ->columns(array('total' =>new Expression('count(id)')))
-            ->where($where);
-        $resultsetCount = $linkModel->selectWith($select);
-        $totalCount = (int) $resultsetCount->current()->total;
+        $count = $this->getCount(
+            $tagId,
+            array_keys($modules),
+            $type
+        );
 
-        // Set paginator parameter.
-        $paginator = \Pi\Paginator\Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'        => $this->getModule(),
-                'controller'    => 'index',
-                'action'        => 'detail',
-                'id'            => $tagId,
-            ),
+        $paginator = Paginator::factory(intval($count), array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'params' => array(
+                    'tag'    => $tag,
+                    'type'   => $type,
+                    'm'      => $moduleName
+                )
+            )
         ));
 
         $this->view()->assign(array(
-            'details'         => $details,
-            'tagTerm'       => $tagName,
-            'curModule'     => $currentModule,
-            'moduleArray'   => $this->getExistModule(),
-            'tagid'         => $tagId,
-            'paginator'     => $paginator,
+            'paginator'  => $paginator,
+            'list'       => $list,
+            'modules'    => $this->getModules(),
+            'tag'        => $tag,
+            'tag_id'     => $tagId,
+            'count'      => $count,
+            'cur_module' => $moduleName
         ));
+
         $this->view()->setTemplate('detail');
+    }
+
+    /**
+     * Get modules
+     *
+     * @return array
+     */
+    protected function getModules($module = '')
+    {
+        $activeModules = Pi::registry('modulelist')->read('active');
+        if (isset($activeModules[$module])) {
+            $modules[$module] = $activeModules[$module]['title'];
+            return $modules;
+        }
+        $modules    = array();
+        $modelStats = $this->getModel('stats');
+        $select     = $modelStats->select()->columns(
+            array('module' => new Expression('distinct module')
+            ));
+        $rowset = $modelStats->selectWith($select);
+        foreach ($rowset as $row) {
+            if (in_array($row->module, array_keys($activeModules))) {
+                $modules[$row->module] = $activeModules[$row->module]['title'];
+            }
+        }
+
+        return $modules;
+    }
+
+    /**
+     * Get list
+     *
+     * @param $tag
+     * @param null $modules
+     * @param null $type
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    protected function getList(
+        $tag,
+        $modules = null,
+        $type    = null,
+        $limit   = 0,
+        $offset  = 0
+    ) {
+        $list = array();
+        $where = array(
+            'tag' => $tag,
+        );
+        if ($modules) {
+            $where['module'] = $modules;
+        }
+        if ($type) {
+            $where['type'] = $type;
+        }
+
+        $model  = $this->getModel('link');
+        $select = $model->select()->where($where);
+        $select->order('time desc');
+        if ($limit) {
+            $select->limit($limit);
+        }
+        if ($offset) {
+            $select->offset($offset);
+        }
+
+        $rowset  = $model->selectWith($select)->toArray();
+        $tagIds  = array();
+        foreach ($rowset as $row) {
+            $moduleMeta = Pi::service('module')->loadMeta($row['module']);
+            $variables  = array('title', 'id');
+            $conditions = array(
+                'module' => $row['module'],
+                'id'     => $row['item']
+            );
+            $content = Pi::service('module')->content($variables, $conditions);
+            $content = $this->canonizeContent($content);
+            $list[] = array(
+                'tag'       => $row['tag'],
+                'item'      => $content[$row['item']]['title'],
+                'time'      => $row['time'] ? _date($row['time']) : 0,
+                'item_link' => $content[$row['item']]['link'],
+                'module'    => $moduleMeta['meta']['title']
+            );
+            $tagIds[]  = $row['tag'];
+        }
+        if ($rowset) {
+            // Get tag title
+            $tagTitle  = $this->getTag($tagIds);
+            foreach ($list as &$val) {
+                $list['tag'] = $tagTitle[$val['tag']];
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get count
+     *
+     * @param $tag
+     * @param $modules
+     * @param string $type
+     * @return bool|int|\Zend\Db\ResultSet\ResultSet
+     */
+    protected function getCount($tag, $modules, $type = '')
+    {
+        $modules = (array) $modules;
+        $where   = array(
+            'tag' => $tag,
+            'module' => $modules
+        );
+        if ($type) {
+            $where['type'] = $type;
+        }
+
+        $count = $this->getModel('link')->count($where);
+
+        return $count;
+    }
+
+    /**
+     * Get tag title
+     *
+     * @param $ids
+     * @return array
+     */
+    protected function getTag($ids)
+    {
+        $result = array();
+        if (!$ids) {
+            return $result;
+        }
+
+        if (!is_array($ids)) {
+            $ids = (array) $ids;
+        }
+
+        $model  = $this->getModel('tag');
+        $where  = array('id' => $ids);
+        $select = $model->select()->where($where);
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[$row['id']] = $row['term'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Get tag id
+     *
+     * @param $tag
+     * @return int
+     */
+    protected function getTagId($tag)
+    {
+        $result = 0;
+        $row = $this->getModel('tag')->find($tag, 'term');
+        if ($row && $row->id) {
+            $result = $row->id;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Canonize content
+     *
+     * @param $content
+     * @return array
+     */
+    protected function canonizeContent($content)
+    {
+        $result = array();
+        foreach ($content as $row) {
+            $result[$row['id']] = $row;
+            unset($result[$row['id']]['id']);
+        }
+
+        return $result;
     }
 
     /**

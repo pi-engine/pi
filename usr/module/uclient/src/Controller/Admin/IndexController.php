@@ -55,6 +55,7 @@ class IndexController extends ActionController
 
         $fields = array('id', 'identity', 'name', 'email', 'time_created');
 
+        $condition = array_filter($condition);
         // Get user count
         $count = Pi::service('user')->getCount($condition);
 
