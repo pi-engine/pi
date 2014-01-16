@@ -46,8 +46,20 @@ return array(
                 'route'         => 'admin',
                 'controller'    => 'article',
                 'action'        => 'published',
+                'params'        => array(
+                    'from'          => 'all',
+                ),
                 'permission'    => array(
                     'resource'  => 'article',
+                ),
+            ),
+            'my'                => array(
+                'label'         => _t('My Article'),
+                'route'         => 'admin',
+                'controller'    => 'article',
+                'action'        => 'published',
+                'params'        => array(
+                    'from'          => 'my',
                 ),
             ),
             'topic'             => array(

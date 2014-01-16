@@ -241,7 +241,7 @@ abstract class ApiController extends ActionController
         }
         $where = Pi::db()->where();
         foreach ($query as $key => $val) {
-            $where->qualTo($key, $val)->or;
+            $where->equalTo($key, $val)->or;
         }
 
         $count = $this->model($this->modelName)->count($where);
@@ -291,16 +291,10 @@ abstract class ApiController extends ActionController
             $query = $this->splitString($query);
         }
         array_walk($query, function ($qString) use (&$result) {
-            list($identifier, $like) = explode(':', $qString);
+            list($identifier, $value) = explode(':', $qString);
             $identifier = trim($identifier);
-            $like = trim($like);
             if ($identifier) {
-                $like = str_replace(
-                    array('%', '*', '_'),
-                    array('\\%', '%', '\\_'),
-                    $like
-                );
-                $result[$identifier] = $like;
+                $result[$identifier] = $value;
             }
         });
 
@@ -328,7 +322,16 @@ abstract class ApiController extends ActionController
         $where = Pi::db()->where($where);
         if ($query) {
             foreach ($query as $qKey => $qValue) {
-                $where->like($qKey, $qValue);
+                if (false === strpos($qValue, '*')) {
+                    $where->equalTo($qKey, $qValue);
+                } else {
+                    $qValue = str_replace(
+                        array('%', '*', '_'),
+                        array('\\%', '%', '\\_'),
+                        $qValue
+                    );
+                    $where->like($qKey, $qValue);
+                }
             }
         }
 
