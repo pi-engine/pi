@@ -219,16 +219,25 @@ class Block extends AbstractHelper
         $result = false;
         $block = $blockRow->toArray();
         $isCustom = $block['type'] ? true : false;
+
+        // Merge run-time configs with system settings
+        $options = isset($block['config']) ? $block['config'] : array();
+        if (!empty($configs)) {
+            $options = array_merge($options, $configs);
+        }
+
         // Module-generated block, return array
         if (!empty($block['render'])) {
             // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
 
+            /*
             // Merge run-time configs with system settings
             $options = isset($block['config']) ? $block['config'] : array();
             if (!empty($configs)) {
                 $options = array_merge($options, $configs);
             }
+            */
 
             // Render contents
             $result = call_user_func_array(
@@ -245,7 +254,7 @@ class Block extends AbstractHelper
                     if ($items) {
                         $result = array(
                             'items'     => $items,
-                            'options'   => $configs,
+                            'options'   => $options,
                         );
                     }
                     break;
