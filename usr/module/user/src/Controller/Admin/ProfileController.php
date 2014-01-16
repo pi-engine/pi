@@ -270,7 +270,7 @@ class ProfileController extends ActionController
             $pv = array(
                 'field'     => $field,
                 'title'     => $data['title'],
-                'value'     => '0',
+                'value'     => 0,
                 'is_forced' => 0,
             );
             if (isset($privacy[$field])) {

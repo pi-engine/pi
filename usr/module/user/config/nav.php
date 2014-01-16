@@ -221,11 +221,13 @@ return array(
             'action'        => 'index',
         ),
 
+        /*
         'import'  => array(
             'label'         => _t('Import'),
             'route'         => 'admin',
             'module'        => 'user',
             'controller'    => 'import',
         ),
+        */
     ),
 );

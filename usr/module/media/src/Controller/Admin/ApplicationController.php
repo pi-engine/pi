@@ -9,6 +9,7 @@
 
 namespace Module\Media\Controller\Admin;
 
+use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\Media\Form\AppEditForm;
 use Module\Media\Form\AppEditFilter;
@@ -51,15 +52,11 @@ class ApplicationController extends ActionController
      * 
      * @param Zend\Form\Form $form     Form instance
      * @param string         $message  Message assign to template
-     * @param bool           $isError  Whether is error message
+     * @param bool           $error    Whether is error message
      */
-    public function renderForm($form, $message = null, $isError = true) {
-        $params = array('form' => $form);
-        if ($isError) {
-            $params['error'] = $message;
-        } else {
-            $params['message'] = $message;
-        }
+    public function renderForm($form, $message = null, $error = true)
+    {
+        $params = compact('form', 'message', 'error');
         $this->view()->assign($params);
     }
     
@@ -76,25 +73,18 @@ class ApplicationController extends ActionController
             ? $this->config('page_limit') : 20;
         $offset = $limit * ($page - 1);
 
+        $where = array();
+        if ($name) {
+            $where['title like ?'] = "%{$name}%";
+        }
         $module = $this->getModule();
         $model  = $this->getModel('application');
-        $select = $model->select();
-        if ($name) {
-            $select->where->like('title', "%{$name}%");
-        }
-        $select->order('id ASC')->offset($offset)->limit($limit);
-
+        $select = $model->select()
+            ->order('id ASC')->offset($offset)->limit($limit);
         $resultset = $model->selectWith($select)->toArray();
 
         // Total count
-        $select = $model->select()->columns(
-            array('total' => new Expression('count(id)'))
-        );
-        if ($name) {
-            $select->where->like('title', "%{$name}%");
-        }
-        $countResultset = $model->selectWith($select);
-        $totalCount = intval($countResultset->current()->total);
+        $totalCount = $model->count($where);
 
         // PaginatorPaginator
         $paginator = Paginator::factory($totalCount);
@@ -118,6 +108,44 @@ class ApplicationController extends ActionController
             'title'     => _a('Application List'),
             'apps'      => $resultset,
             'paginator' => $paginator,
+        ));
+    }
+    
+    public function addAction()
+    {
+        $form = $this->getApplicationForm('add');
+        $this->view()->setTemplate('application-edit');
+        
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $form->setData($post);
+            $form->setInputFilter(new AppEditFilter);
+            $form->setValidationGroup($this->columns);
+            if (!$form->isValid()) {
+                return $this->renderForm(
+                    $form,
+                    _a('There are some error occur')
+                );
+            }
+            
+            $data = $form->getData();
+            $result = Pi::api('doc', $this->getModule())->addApplication($data);
+            if (!$result) {
+                return $this->jumpTo404(_a('Cannot save data'));
+            }
+            
+            return $this->redirect()->toRoute('', array('action' => 'list'));
+        }
+        
+        $appkey = $this->params('appkey', '');
+        if (empty($appkey)) {
+            return $this->jumpTo404(_a('Invalid application key'));
+        }
+
+        $form->setData(array('appkey' => $appkey));
+        
+        $this->view()->assign(array(
+            'form'  => $form,
         ));
     }
     

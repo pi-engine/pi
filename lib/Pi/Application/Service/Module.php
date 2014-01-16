@@ -254,7 +254,7 @@ class Module extends AbstractService
             $result = null;
             if (!$name) {
                 $list = array_unique(
-                    array_keys($resourceCustom) + array_keys($resource)
+                    array_keys($resource) + array_keys($resourceCustom)
                 );
                 foreach ($list as $key) {
                     $result[$key] = $getResource($key);

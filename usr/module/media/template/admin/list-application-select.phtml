@@ -13,7 +13,19 @@
             </tr>
             <?php foreach ($items as $appkey => $item) { ?>
             <tr>
-                <td><?php echo _escape($apps[$appkey]); ?></td>
+                <td>
+                <?php 
+                    if (isset($apps[$appkey])) {
+                        echo _escape($apps[$appkey]);
+                    } else {
+                ?>
+                    <a href="<?php echo $this->url('', array('controller' => 'application', 'action' => 'add', 'appkey' => $appkey)); ?>" title="<?php _e('Click to change application name'); ?>">
+                        <?php echo _escape($appkey); ?>
+                    </a>
+                <?php
+                    }
+                ?>
+                </td>
                 <td></td>
                 <td></td>
                 <td>
