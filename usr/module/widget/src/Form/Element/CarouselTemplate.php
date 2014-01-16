@@ -17,9 +17,9 @@ class CarouselTemplate extends Select
     protected function getStyles()
     {
         $styles = array(
-            'carousel/bootstrap'    => __('Bootstrap slide'),
-            'carousel/jcarousel'    => __('jCarousel riding Carousel'),
-            'carousel/parallax'     => __('Parallax Content Slider'),
+            'carousel/bootstrap'    => __('Bootstrap slide') . ' (bootstrap)',
+            'carousel/jcarousel'    => __('jCarousel riding Carousel') . ' (jcarousel)',
+            'carousel/parallax'     => __('Parallax Content Slider') . ' (parallax)',
         );
         // Load custom templates
         $customPath = sprintf(
@@ -40,7 +40,7 @@ class CarouselTemplate extends Select
             if (preg_match('/[^a-z0-9_\-]/', $name)) {
                 continue;
             }
-            $styles['carousel/' . $name] = $name;
+            $styles['carousel/' . $name] = __('Custom: ') . $name;
         }
 
         return $styles;

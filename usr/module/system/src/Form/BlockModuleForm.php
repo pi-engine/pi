@@ -99,17 +99,30 @@ class BlockModuleForm extends BaseForm
             )
         ));
 
-        $this->add(array(
-            'name'          => 'template',
-            'options'       => array(
-                'label' => __('Template'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'value'         => $this->root->template,
-                'description'   => __('PHTML rendering template, file extension is optional.'),
-            )
-        ));
+        if ('carousel' == $this->root->type) {
+            $this->add(array(
+                'name'          => 'template',
+                'options'       => array(
+                    'label' => __('Template'),
+                ),
+                'type'          =>  'Module\Widget\Form\Element\CarouselTemplate',
+                'attributes'    => array(
+                    'value'         => $this->root->template,
+                )
+            ));
+        } else {
+            $this->add(array(
+                'name'          => 'template',
+                'options'       => array(
+                    'label' => __('Template'),
+                ),
+                'attributes'    => array(
+                    'type'          => 'text',
+                    'value'         => $this->root->template,
+                    'description'   => __('PHTML rendering template, file extension is optional.'),
+                )
+            ));
+        }
 
         $this->add(array(
             'name'          => 'description',

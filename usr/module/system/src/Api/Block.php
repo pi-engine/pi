@@ -41,16 +41,6 @@ class Block extends AbstractApi
         if (isset($root['id'])) {
             unset($root['id']);
         }
-        /*
-        foreach (array_keys($block) as $key) {
-            if (in_array($key, $this->rootColumns)) {
-                $root[$key] = $block[$key];
-            }
-            if (!in_array($key, $this->blockColumns)) {
-                unset($block[$key]);
-            }
-        }
-        */
 
         return array($block, $root);
     }
