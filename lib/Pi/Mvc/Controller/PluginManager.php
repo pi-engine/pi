@@ -23,7 +23,7 @@ class PluginManager extends ZendPluginManager
      * Default set of plugins
      * @var array
      */
-    protected $____invokableClasses = array(
+    protected $invokableClasses = array(
         'acceptableviewmodelselector' => 'Zend\Mvc\Controller\Plugin\AcceptableViewModelSelector',
         'filepostredirectget'         => 'Zend\Mvc\Controller\Plugin\FilePostRedirectGet',
         'flashmessenger'              => 'Zend\Mvc\Controller\Plugin\FlashMessenger',
@@ -41,7 +41,6 @@ class PluginManager extends ZendPluginManager
         'url'                       => 'Pi\Mvc\Controller\Plugin\Url',
         'view'                      => 'Pi\Mvc\Controller\Plugin\View',
         'flashmessenger'            => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
-        'flash_messenger'           => 'Pi\Mvc\Controller\Plugin\FlashMessenger',
     );
 
     /**
@@ -61,7 +60,9 @@ class PluginManager extends ZendPluginManager
         }
 
         $invokableClass = null;
-        if (false === strpos($name, '\\')) {
+        if (!isset($this->invokableClasses[$name])
+            && false === strpos($name, '\\')
+        ) {
             $invokableClass = sprintf(
                 '%s\Plugin\\%s',
                 __NAMESPACE__,
@@ -78,10 +79,7 @@ class PluginManager extends ZendPluginManager
 
         $cName = parent::canonicalizeName($name);
 
-        if ($invokableClass
-            && !isset($this->invokableClasses[$cName])
-            && class_exists($invokableClass)
-        ) {
+        if ($invokableClass && class_exists($invokableClass)) {
             $inCanonicalization = true;
             $this->setInvokableClass($cName, $invokableClass);
             $inCanonicalization = false;

@@ -138,6 +138,10 @@ return array(
             ),
         ),
 
+        // ViewHelper config placeholder
+        'view_helper_config'    => array(),
+
+        // Response sender config
         'send_response' => array(
             // Compress for response
             // @see Zend\Filter\Compress\Gz
