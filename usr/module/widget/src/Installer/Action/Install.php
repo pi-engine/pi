@@ -71,26 +71,6 @@ class Install extends BasicInstall
             'type'          => 'carousel',
             'template'      => 'carousel/bootstrap',
         );
-        $block['config'] = array(
-            'interval' => array(
-                'title'         => _a('Time interval (ms)'),
-                'edit'          => 'text',
-                'filter'        => 'number_int',
-                'value'         => 2000,
-            ),
-            'pause' => array(
-                'title'         => _a('Mouse event to pause cycle'),
-                'edit'          => array(
-                    'type'  =>  'select',
-                    'options'   => array(
-                        'options'   => array(
-                            'hover' => 'hover',
-                        ),
-                    ),
-                ),
-                'value'         => 'hover',
-            ),
-        );
         $images = array(
             array(
                 'caption'   => _a('Sustainable ecosystem'),
@@ -119,7 +99,7 @@ class Install extends BasicInstall
         );
         $block['content'] = json_encode($images);
 
-        $result = Pi::api('block', 'system')->add($block);
+        $result = Pi::api('block', 'widget')->add($block);
         $id = $result['root'];
         if ($id) {
             $widget = array(

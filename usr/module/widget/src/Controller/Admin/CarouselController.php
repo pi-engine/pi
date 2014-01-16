@@ -183,8 +183,15 @@ class CarouselController extends WidgetController
 
     protected function canonizePost($values)
     {
+        /*
+        // Set block configs
         if (empty($values['id'])) {
             $values['config'] = array(
+                'height'    => array(
+                    'title'         => _a('Block frame height'),
+                    'edit'          => 'text',
+                    'filter'        => 'number_int',
+                ),
                 'interval' => array(
                     'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
@@ -192,7 +199,8 @@ class CarouselController extends WidgetController
                     'value'         => 2000,
                 ),
                 'pause' => array(
-                    'title'         => _a('Mouse event to pause cycle'),
+                    'title'         => _a('Mouse event'),
+                    'description'   => _a('Event to pause cycle'),
                     'edit'          => array(
                         'type'  =>  'select',
                         'options'   => array(
@@ -205,6 +213,7 @@ class CarouselController extends WidgetController
                 ),
             );
         }
+        */
         $values['content'] = $this->canonizeImage($values['content']);
 
         return $values;

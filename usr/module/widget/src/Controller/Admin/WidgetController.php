@@ -22,7 +22,7 @@ abstract class WidgetController extends ActionController
     protected function getForm()
     {}
 
-    protected function addBlock($block)
+    protected function addBlock(array $block)
     {
         $status = 0;
         $module = $this->getModule();
@@ -34,7 +34,7 @@ abstract class WidgetController extends ActionController
         $widgetMeta = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
 
-        $result = Pi::api('block', 'system')->add($block);
+        $result = Pi::api('block', $module)->add($block, $block['type']);
         $id = $result['root'];
         if ($id) {
             $widget = array(
