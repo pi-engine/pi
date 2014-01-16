@@ -279,8 +279,7 @@ html {
 
 
 /* Bootstrap custom */
-.nav-tabs,
-.nav-pills {
+.nav-tabs {
   margin-bottom: 20px;
 }
 
