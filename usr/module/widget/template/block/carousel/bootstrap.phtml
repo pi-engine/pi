@@ -1,13 +1,7 @@
 <?php
 // Options: interval, pause
-$options = empty($block['options']) ? '' : json_encode($block['options']);
-$class = 'carousel';
-if (isset($options['class'])) {
-    $class .= ' ' . $options['class'];
-    unset($options['class']);
-} else {
-    $class .= ' slide';
-}
+$options = $block['options'];
+$class = 'carousel slide';
 $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
@@ -49,7 +43,7 @@ $carouselId = uniqid('carousel');
     </ol>
 
     <!-- Carousel items -->
-    <div class="carousel-inner">
+    <div class="carousel-inner" style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>">
         <div class="active item">
             <?php echo $render($activeItem); ?>
         </div>
@@ -68,3 +62,10 @@ $carouselId = uniqid('carousel');
         <span class="fa fa-chevron-right"></span>
     </a>
 </div>
+<?php
+$script = sprintf('$("#%s").carousel(%s);',
+        $carouselId,
+        json_encode($block['options'])
+    );
+$this->footScript()->appendScript($script);
+?>

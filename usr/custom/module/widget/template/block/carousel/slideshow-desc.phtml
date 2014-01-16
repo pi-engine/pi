@@ -68,12 +68,9 @@ $options = $block['options'];
 	</div>
 </div>
 <?php
-echo sprintf('
-	<script>
-		$("#%s").carousel(%s);
-	</script>',
-	$carouselId,
-	json_encode($block['options'])
-);
+$script = sprintf('$("#%s").carousel(%s);',
+        $carouselId,
+        json_encode($block['options'])
+    );
+$this->footScript()->appendScript($script);
 ?>
-
