@@ -11,7 +11,7 @@ $this->css($this->assetTheme('css/front.css'));
 // @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
-    'href'  => Pi::url('www/favicon.ico')
+    'href'  => $this->favicon()
 ));
 ?>
 <!DOCTYPE HTML>
@@ -25,7 +25,7 @@ $this->headLink(array(
         <div class="container">
             <div class="navbar-header">
                 <h1 class="hide">
-                    <?php echo _escape($sitename) . _escape($slogan); ?>
+                    <?php echo _escape($sitename . ' - ' . $slogan); ?>
                 </h1>
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>

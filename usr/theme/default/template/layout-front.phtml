@@ -54,7 +54,7 @@ $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
-    'href'  => Pi::url('www/favicon.ico')
+    'href'  => $this->favicon(),
 ));
 ?>
 <!DOCTYPE HTML>
@@ -68,9 +68,13 @@ $this->headLink(array(
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <h1 class="hide">
-                <?php echo _escape($sitename) . _escape($slogan); ?>
+                <?php echo _escape($sitename . ' - ' . $slogan); ?>
+                <!-- Code for rendering logo
+                <img src="<?php echo $this->logo(); ?>" alt="<?php echo _escape($sitename); ?>">
+                -->
+
             </h1>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
+            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
                title="<?php echo _escape($slogan); ?>">
                <?php echo _escape($sitename); ?>
             </a>

@@ -77,8 +77,9 @@ class Theme extends AbstractService
      * @param string $theme
      * @return string
      */
-    public function path($theme)
+    public function path($theme = '')
     {
+        $theme = $theme ?: $this->current();
         $path = Pi::path('theme') . '/' . $theme;
 
         return $path;
