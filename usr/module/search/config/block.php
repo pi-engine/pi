@@ -13,5 +13,20 @@ return array(
         'description'   => _b('Search box.'),
         'render'        => array('block', 'search'),
         'template'      => 'search',
+        'config'        => array(
+        	'target' => array(
+        		'title'         => _a('Target'),
+                'edit'          => array(
+                    'type'          => 'select',
+                    'options'    => array(
+                        'options'   => array(
+                            '_self'    => _a('_self'),
+                            '_blank'   => _a('_blank'),
+                        ),
+                    ),
+                ),
+                'value'         => '_self', 
+        	)
+        )
     ),
 );
