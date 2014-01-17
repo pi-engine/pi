@@ -49,7 +49,8 @@ $carouselId = uniqid('carousel');
     </ol>
 
     <!-- Carousel items -->
-    <div class="carousel-inner">
+    <div style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>"
+         class="carousel-inner">
         <div class="active item">
             <?php echo $render($activeItem); ?>
         </div>
@@ -68,3 +69,10 @@ $carouselId = uniqid('carousel');
         <span class="fa fa-chevron-right"></span>
     </a>
 </div>
+<?php
+$script = sprintf('$("#%s").carousel(%s);',
+        $carouselId,
+        json_encode($block['options'])
+    );
+$this->footScript()->appendScript($script);
+?>
