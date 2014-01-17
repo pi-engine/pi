@@ -1,15 +1,16 @@
-<form method="get" action="<?php echo $block['action']; ?>">
+<form method="get" action="<?php echo $block['action']; ?>"
+      target="<?php echo $block['options']['target']; ?>">
     <div class="input-group">
         <input type="text" class="form-control" name="q"
                placeholder="<?php echo _b('Keywords'); ?>">
         <div class="input-group-btn">
-            <?php if (!empty($block['options'])) { ?>
+            <?php if (!empty($block['list'])) { ?>
             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-search"></i>
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu pull-right" id="js-search-menu">
-                <?php foreach ($block['options'] as $name => $label) { ?>
+                <?php foreach ($block['list'] as $name => $label) { ?>
                 <li>
                     <a href="#" data-value="<?php echo _escape($name); ?>">
                         <?php echo _escape($label); ?>
@@ -25,7 +26,7 @@
         </div>
     </div>
 </form>
-<?php if (!empty($block['options'])) { ?>
+<?php if (!empty($block['list'])) { ?>
 <script>
 $('#js-search-menu').on('click', 'a', function(e) {
     var $this = $(this);

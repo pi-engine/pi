@@ -12,15 +12,15 @@ use Pi;
 
 class Block
 {
-    public static function search()
+    public static function search($options)
     {
         $formAction = Pi::service('url')->assemble('search');
 
-        $options = array();
+        $list = array();
         $module = Pi::service('module')->current();
         $modules = Pi::registry('search')->read();
         if ($module && isset($modules[$module])) {
-            $options = array(
+            $list = array(
                ''       => _b('Global'),
                $module  => _b('Current module'),
             );
@@ -29,6 +29,7 @@ class Block
         return array(
             'options'   => $options,
             'action'    => $formAction,
+            'list'      => $list
         );
     }
 }
