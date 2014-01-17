@@ -53,7 +53,7 @@ class ListController extends ActionController
         $offset = $limit * ($page - 1);
 
         $model  = $this->getModel('article');
-        $select = $model->select()->where($where);d($sort);
+        $select = $model->select()->where($where);
         if ('hot' == $sort) {
             $modelStats = $this->getModel('stats');
             $select->join(
@@ -126,6 +126,7 @@ class ListController extends ActionController
         $rowset = $this->getModel('category')->enumerate(null, null);
         $rowset = array_shift($rowset);
         $navs   = $this->canonizeCategory($rowset['child'], $route);
+        $categoryTitle = $this->getCategoryTitle($category, $rowset['child']);
         $allNav['all'] = array(
             'label'      => __('All'),
             'route'      => $route,
@@ -173,8 +174,9 @@ class ListController extends ActionController
         $urlHot = $this->url($route, array('category' => $category, 'sort' => 'hot'));
         $urlNew = $this->url($route, array('category' => $category));
 
+        $title = $categoryTitle ?: __('All Articles');
         $this->view()->assign(array(
-            'title'      => __('All Articles'),
+            'title'      => $title,
             'articles'   => $items,
             'paginator'  => $paginator,
             'elements'   => $config['list_item'],
@@ -212,5 +214,27 @@ class ListController extends ActionController
         }
         
         return $categories;
+    }
+    
+    /**
+     * Get category title
+     * 
+     * @param int   $id    Category ID
+     * @param array $items Category rowset
+     * @return string 
+     */
+    protected function getCategoryTitle($id, $items)
+    {
+        if (empty($id)) {
+            return '';
+        }
+        foreach ($items as $item) {
+            if ($id == $item['id']) {
+                return $item['title'];
+            }
+            if (isset($item['child'])) {
+                $this->getCategoryTitle($id, $item['child']);
+            }
+        }
     }
 }
