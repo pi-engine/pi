@@ -12,9 +12,9 @@ $this->css($this->assetModule('front/front.css'));
           data-module-url="<?php echo $this->url('search', array('m' => '_NAME')); ?>"
           data-service-url="<?php echo $this->url('search', array('service' => '_NAME')); ?>">
         <!-- You can define logo in theme -->
-        <div class="search-index-logo">
+        <a class="text-hide search-index-logo" href="<?php echo $this->url('home'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>
-        </div>
+        </a>
         <div class="search-tabs">
             <a href="#" class="js-search-global<?php if (!$searchModule) { echo ' active'; } ?>">
                 <?php _e('Global'); ?>
