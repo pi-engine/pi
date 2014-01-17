@@ -12,8 +12,8 @@ namespace Pi\Application\Service;
 
 use Pi;
 use Exception;
-use Pi\File\Upload;
-use Pi\File\Download;
+use Pi\File\Transfer\Upload;
+use Pi\File\Transfer\Download;
 
 /**
  * Filesystem manipulation service
