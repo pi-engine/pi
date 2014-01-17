@@ -145,42 +145,6 @@ if ($details['seo']['description']) {
             </ul>
         </div>
         <?php } ?>
-        <div class="article-statistics">
-            <div class="col-md-4 article-statistics-comment pull-left">
-                <span>
-                    <?php echo isset($details['comments']) ? $this->escape($details['comments']) : '0'; ?>
-                </span>&nbsp;
-                <a href="#"><?php _e('Comments'); ?>&nbsp;&gt;&gt;</a>
-            </div>
-            <div class="col-md-4">
-                <div class="pull-left article-statistics-up">
-                    <a href="#"><i class="icon-thumbs-up"></i></a>&nbsp;&nbsp;
-                    <span class="text-warning">
-                        <?php echo isset($details['up']) ? $this->escape($details['up']) : '0'; ?>
-                    </span>
-                </div>
-                <div class="pull-right article-statistics-down">
-                    <a href="#"><i class="icon-thumbs-down"></i></a>&nbsp;&nbsp;
-                    <span class="text-muted">
-                        <?php echo isset($details['down']) ? $this->escape($details['down']) : '0'; ?>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-4 pull-right" style="height: 54px">
-                <div class="article-share">
-                    <!-- JiaThis Button BEGIN -->
-                    <div class="jiathis_style">
-                        <span class="jiathis_txt"><?php _e('Share with: '); ?>&nbsp;</span>
-                        <a class="jiathis_button_tsina"></a>
-                        <a class="jiathis_button_tqq"></a>
-                        <a class="jiathis_button_renren"></a>
-                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-                    </div>
-                    <script type="text/javascript" src="http://v2.jiathis.com/code_mini/jia.js?uid=1350211266832882" charset="utf-8"></script>
-                    <!-- JiaThis Button END -->
-                </div>
-            </div>
-        </div>
         <?php if ($details['related']) { ?>
         <div class="article-content-related">
             <div class="article-section-title mb10"><?php _e('Continue read'); ?></div>

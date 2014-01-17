@@ -233,8 +233,8 @@ return array(
         ),
         'video_format'    => array(
             'category'    => 'media',
-            'title'       => _t('Vedio Format'),
-            'description' => _t('Decide which extension belong to vedio'),
+            'title'       => _t('Video Format'),
+            'description' => _t('Decide which extension belong to video'),
             'value'       => 'avi,rm,rmvb,flv,swf,wmv,mp4',
         ),
         'zip_format'      => array(
