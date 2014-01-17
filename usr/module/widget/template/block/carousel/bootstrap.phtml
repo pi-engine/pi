@@ -1,6 +1,6 @@
 <?php
-// Options: interval, pause
-$options = empty($block['options']) ? '' : json_encode($block['options']);
+// Options: interval, pause, height
+$options = (array) $block['options'];
 $class = 'carousel';
 if (isset($options['class'])) {
     $class .= ' ' . $options['class'];
@@ -17,16 +17,16 @@ $render = function ($item) use ($_this)
 {
     $caption = $_this->escape($item['caption']);
     $description = $_this->escape($item['desc']);
-    $image = '<img class="center-block" src="'. $item['image'] . '" alt="">';
+    $image = '<img class="center-block" src="' . $item['image'] . '" alt="">';
 
     $content = '';
     if (!empty($item['link'])) {
-        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption .'">' . $image . '</a>';
+        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption . '">' . $image . '</a>';
     } else {
         $content .= $image;
     }
     if ($caption || $description) {
-        $content .= '<div class="carousel-caption">' . '<h4>' . $caption . '</h4>' . '<p>' . $description . '</p>' . '</div>';
+        $content .= '<div class="carousel-caption"><h4>' . $caption . '</h4><p>' . $description . '</p></div>';
     }
     return $content;
 };

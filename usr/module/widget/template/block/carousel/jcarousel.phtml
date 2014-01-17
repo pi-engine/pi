@@ -1,8 +1,9 @@
 <?php
+// Options: interval, pause, height
+$options = (array) $block['options'];
 $config = $block;
 $items = $block['items'];
 $class = isset($block['class']) ? $block['class'] : 'jcarousel-skin';
-$options = empty($block['options']) ? '' : json_encode($block['options']);
 $carouselId = uniqid('carousel-');
 
 $this->css($this->assetModule('script/jcarousel/jcarousel.css', 'widget'));
