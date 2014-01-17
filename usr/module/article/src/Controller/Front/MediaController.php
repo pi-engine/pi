@@ -312,7 +312,7 @@ class MediaController extends ActionController
         }
         
         $filePath = 'upload/temp';
-        File::mkdir($filePath);
+        Pi::service('file')->mkdir($filePath);
         $filename = sprintf('%s/media-%s.zip', $filePath, time());
         $filename = Pi::path($filename);
         $zip      = new ZipArchive();
