@@ -33,13 +33,11 @@ class Menu
                 'name'  => AdminMode::MODE_ACCESS,
                 'label' => _a('Operation', 'system:admin'),
                 'icon'  => 'fa fa-wrench',
-                //'link'  => '',
             ),
             array(
                 'name'  => AdminMode::MODE_ADMIN,
                 'label' => _a('Setting', 'system:admin'),
                 'icon'  => 'fa fa-cogs',
-                //'link'  => '',
             ),
             array(
                 'name'  => AdminMode::MODE_DEPLOYMENT,
@@ -48,18 +46,22 @@ class Menu
                 'link'  => '',
             ),
         );
-        foreach ($modes as $key => &$config) {
-            $config['active'] = ($mode == $config['name']) ? 1 : 0;
-            if (isset($config['link'])) {
-                continue;
-            }
-            $config['link'] = Pi::service('url')->assemble('admin', array(
-                'module'        => 'system',
-                'controller'    => 'dashboard',
-                'action'        => 'mode',
-                'mode'          => $config['name'],
-            ));
+        if (AdminMode::MODE_ADMIN == $mode) {
+            $module = Pi::service('url')->getRouteMatch()->getParam('name');
+        } else {
+            $module = Pi::service('module')->current() ?: 'system';
         }
+        array_walk($modes, function (&$config) use ($mode, $module) {
+            $config['active'] = ($mode == $config['name']) ? 1 : 0;
+            if (!isset($config['link'])) {
+                $config['link'] = Pi::service('url')->assemble('admin', array(
+                    'module'        => 'system',
+                    'controller'    => 'dashboard',
+                    'action'        => 'mode',
+                    'mode'          => $config['name'],
+                ), array('query' => array('name' => $module)));
+            }
+        });
 
         return $modes;
     }

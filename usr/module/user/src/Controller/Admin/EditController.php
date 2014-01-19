@@ -23,8 +23,8 @@ use Module\User\Form\CompoundFilter;
  */
 class EditController extends ActionController
 {
-
-    public function indexAction() {
+    public function indexAction()
+    {
         $uid = _get('uid');
 
         // Get user basic information and user data

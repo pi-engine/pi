@@ -43,7 +43,7 @@ class DashboardController extends ActionController
      */
     public function modeAction()
     {
-        $mode = $this->params('mode', AdminMode::MODE_ACCESS);
+        $mode   = $this->params('mode', AdminMode::MODE_ACCESS);
         // Set run mode
         if (!empty($mode)) {
             $_SESSION['PI_BACKOFFICE'] = array(
@@ -52,25 +52,29 @@ class DashboardController extends ActionController
             );
         }
 
-        $modules = Pi::registry('modulelist')->read();
-        $moduleList = array_keys($modules);
-        $allowed = Pi::service('permission')->moduleList($mode);
-        if (null === $allowed || !is_array($allowed)) {
-            $allowed = $moduleList;
-        } else {
-            $allowed = array_intersect($moduleList, $allowed);
-        }
-        if (!$allowed) {
-            $this->redirect('', array('action' => 'system'));
-            return;
+        $module = $this->params('name');
+        if (!$module) {
+            $modules    = Pi::registry('modulelist')->read();
+            $moduleList = array_keys($modules);
+            $allowed    = Pi::service('permission')->moduleList($mode);
+            if (null === $allowed || !is_array($allowed)) {
+                $allowed = $moduleList;
+            } else {
+                $allowed = array_intersect($moduleList, $allowed);
+            }
+            if (!$allowed) {
+                $this->redirect('', array('action' => 'system'));
+
+                return;
+            }
+            $module = array_shift($allowed);
         }
 
-        $nameDefault = array_shift($allowed);
         $link = '';
         switch ($mode) {
             case AdminMode::MODE_ACCESS:
                 $link = $this->url('admin', array(
-                    'module'        => $nameDefault,
+                    'module'        => $module,
                     'controller'    => 'dashboard',
                 ));
                 break;
@@ -78,7 +82,7 @@ class DashboardController extends ActionController
                 $link = $this->url('admin', array(
                     'module'        => 'system',
                     'controller'    => 'component',
-                    'name'          => $nameDefault,
+                    'name'          => $module,
                 ));
                 break;
             case AdminMode::MODE_DEPLOYMENT:
