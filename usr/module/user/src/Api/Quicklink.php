@@ -19,6 +19,9 @@ use Pi\Application\AbstractApi;
  */
 class  Quicklink extends AbstractApi
 {
+    /**
+     * @{inheritDoc}
+     */
     protected $module = 'user';
 
     /**

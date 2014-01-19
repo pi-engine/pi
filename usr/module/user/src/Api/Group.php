@@ -19,7 +19,9 @@ use Pi\Application\AbstractApi;
  */
 class Group extends AbstractApi
 {
-    /** @var string Module name */
+    /**
+     * @{inheritDoc}
+     */
     protected $module = 'user';
 
     /**

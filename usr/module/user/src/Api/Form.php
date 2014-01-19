@@ -20,7 +20,9 @@ use Pi\Db\RowGateway\RowGateway;
  */
 class Form extends AbstractApi
 {
-    /** @var string Module name */
+    /**
+     * @{inheritDoc}
+     */
     protected $module = 'user';
 
     /**

@@ -21,11 +21,13 @@ use Pi\User\Model\Local as UserModel;
  */
 class User extends AbstractUseApi
 {
+    /**
+     * @{inheritDoc}
+     */
+    protected $module = 'user';
+
     /** @var string Route for user URLs */
     protected $route = 'user';
-
-    /** @var string Module name */
-    protected $module = 'user';
 
     /**
      * Get fields specs of specific type and action

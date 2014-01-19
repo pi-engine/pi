@@ -19,7 +19,9 @@ use Pi\Application\AbstractApi;
  */
 class Log extends AbstractApi
 {
-    /** @var string Module name */
+    /**
+     * @{inheritDoc}
+     */
     protected $module = 'user';
 
     /**
@@ -56,10 +58,14 @@ class Log extends AbstractApi
     /**
      * Write a log
      *
-     * @param array $log
+     * @param int       $uid
+     * @param string    $action
+     * @param array     $log
+     * @param int       $time
+     *
      * @return bool
      */
-    public function add($uid, $action, $data, $time = null)
+    public function add($uid, $action, $log, $time = null)
     {
         if (!isset($log['time'])) {
             $log['time'] = time();

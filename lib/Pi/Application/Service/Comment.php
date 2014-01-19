@@ -86,12 +86,11 @@ class Comment extends AbstractService
                 'controller'    => 'index',
                 'action'        => 'load',
             ));
-            $uri = Pi::service('url')->getRequestUri();
             $content =<<<"EOT"
 <div id="pi-comment-lead" style="display: none;"></div>
 <script>
     $.getJSON("{$callback}", {
-        uri: "{$uri}",
+        uri: $(location).attr('href'),
         time: new Date().getTime()
     })
     .done(function (data) {

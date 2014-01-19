@@ -19,7 +19,9 @@ use Pi\Application\AbstractApi;
  */
 class Activity extends AbstractApi
 {
-    /** @var string Module name */
+    /**
+     * @{inheritDoc}
+     */
     protected $module = 'user';
 
     /**

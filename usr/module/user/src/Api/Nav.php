@@ -19,6 +19,9 @@ use Pi\Application\AbstractApi;
  */
 class Nav extends AbstractApi
 {
+    /**
+     * @{inheritDoc}
+     */
     protected $module = 'user';
 
     public function getList($cur, $uid = '')
