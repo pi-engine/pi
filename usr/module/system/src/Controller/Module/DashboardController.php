@@ -75,7 +75,7 @@ class DashboardController extends ActionController
             case AdminMode::MODE_ACCESS:
                 $link = $this->url('admin', array(
                     'module'        => $module,
-                    'controller'    => 'dashboard',
+                    'controller'    => 'index',
                 ));
                 break;
             case AdminMode::MODE_ADMIN:
