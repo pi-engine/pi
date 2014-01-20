@@ -3,13 +3,12 @@ CREATE TABLE `{tag}` (
   `term`            varchar(255)        NOT NULL default '',
   `count`           int(10)             unsigned NOT NULL default '0',
 
-  PRIMARY KEY           (`id`)
+  PRIMARY KEY (`id`)
 );
-
 
 CREATE TABLE `{link}` (
   `id`                  int(10)                 unsigned NOT NULL auto_increment,
-  `tag`                 int(10)                 unsigned NOT NULL default '0',
+  `tag`                 varchar(255)            NOT NULL,
   `module`              varchar(255)            NOT NULL default '',
   `type`                varchar(255)            NOT NULL default '',
   `item`                int(10)                 unsigned NOT NULL default '0',
@@ -18,17 +17,15 @@ CREATE TABLE `{link}` (
 
   PRIMARY KEY              (`id`),
   KEY `tag`                (`tag`),
-  KEY `item`               (`item`),
-  KEY `order`              (`order`)
+  KEY `item`               (`item`)
 );
 
-
 CREATE TABLE `{stats}` (
-  `id`                 int(10)               unsigned NOT NULL auto_increment,
-  `tag`                int(10)               unsigned NOT NULL default '0',
-  `module`             varchar(255)          NOT NULL default '',
-  `type`               varchar(255)          NOT NULL default '',
-  `count`              int(10)               unsigned NOT NULL default '0',
+  `id`                 int(10)                unsigned NOT NULL auto_increment,
+  `tag`                varchar(255)           NOT NULL,
+  `module`             varchar(255)           NOT NULL default '',
+  `type`               varchar(255)           NOT NULL default '',
+  `count`              int(10)                unsigned NOT NULL default '0',
 
   PRIMARY KEY                (`id`),
   KEY `tag`                  (`tag`)

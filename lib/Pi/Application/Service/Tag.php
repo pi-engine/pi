@@ -18,10 +18,10 @@ use Module\Tag\Service as TagService;
  *
  * <code>
  *  Pi::service('tag')->add('article', 5, '', array('news', 'tech'));
- *  Pi::service('tag')->add('article', 5, '', 'news');
+ *  Pi::service('tag')->add('article', 5, '', 'news tech');
  *
  *  Pi::service('tag')->update('article', 5, '', array('news', 'tech'));
- *  Pi::service('tag')->update('article', 5, '', 'news');
+ *  Pi::service('tag')->update('article', 5, '', 'news tech');
  *  Pi::service('tag')->update('article', 5, '', array());
  *
  *  Pi::service('tag')->delete('article', 5, '');
@@ -29,11 +29,11 @@ use Module\Tag\Service as TagService;
  *
  *  Pi::service('tag')->get('article', 5, '');
  *
- *  Pi::service('tag')->getList('article', array('news', 'tech'), '', 100, 90);
+ *  Pi::service('tag')->getList('article', 'news', '', 100, 90);
  *  Pi::service('tag')->getList('article', 'news', null, 100);
  *
  *  Pi::service('tag')->getCount('article', 'news', '');
- *  Pi::service('tag')->getCount('article', array('news', 'tech'), null);
+ *  Pi::service('tag')->getCount('article', 'tech');
  *
  *  Pi::service('tag')->match('n', 5, 'article');
  *  Pi::service('tag')->match('new', 5);
@@ -71,18 +71,17 @@ class Tag extends AbstractService
      * @param string $item          Item identifier
      * @param string $type          Item type, default as ''
      * @param array|string  $tags   Tags to add
-     * @param int|null $time        Time adding the tags
+     * @param int $time        Time adding the tags
+     *
      * @return bool
      */
-    public function add($module, $item, $type, $tags, $time = null)
+    public function add($module, $item, $type, $tags, $time = 0)
     {
         if (!$this->active()) {
             return false;
         }
-        $time = $time ?: time();
-        $tags = (array) $tags;
 
-        return TagService::add($module, $item, $type, $tags, $time);
+        return Pi::api('api', 'tag')->add($module, $item, $type, $tags, $time);
     }
 
     /**
@@ -92,18 +91,17 @@ class Tag extends AbstractService
      * @param string $item          Item identifier
      * @param string $type          Item type, default as ''
      * @param array|string  $tags   Tags to add
-     * @param int|null $time        Time adding new tags
+     * @param int $time        Time adding new tags
+     *
      * @return bool
      */
-    public function update($module, $item, $type, $tags, $time = null)
+    public function update($module, $item, $type, $tags, $time = 0)
     {
         if (!$this->active()) {
             return false;
         }
-        $time = $time ?: time();
-        $tags = (array) $tags;
 
-        return TagService::update($module, $item, $type, $tags, $time);
+        return Pi::api('api', 'tag')->update($module, $item, $type, $tags, $time);
     }
 
     /**
@@ -120,7 +118,7 @@ class Tag extends AbstractService
             return false;
         }
 
-        return TagService::delete($module, $item, $type);
+        return Pi::api('api', 'tag')->delete($module, $item, $type);
     }
 
     /**
@@ -137,33 +135,34 @@ class Tag extends AbstractService
             return false;
         }
 
-        return TagService::get($module, $item, $type);
+        return Pi::api('api', 'tag')->get($module, $item, $type);
     }
 
     /**
      * Get item list of a tag
      *
      * @param string $module        Module name
-     * @param string|array $tag     Tag
+     * @param string $tag     Tag
      * @param string|null $type     Item type, null for all types
      * @param int    $limit         Limit
      * @param int    $offset        Offset
-     * @return array|bool
+     *
+     * @return array
      */
     public function getList(
         $module,
         $tag,
         $type = null,
-        $limit = null,
+        $limit = 0,
         $offset = 0
     ) {
         if (!$this->active()) {
             return false;
         }
 
-        return TagService::getList(
+        return Pi::api('api', 'tag')->getList(
             $module,
-            (array) $tag,
+            $tag,
             $type,
             $limit,
             $offset
@@ -171,12 +170,12 @@ class Tag extends AbstractService
     }
 
     /**
-     * Get count items of tags
+     * Get count of items having a tag
      *
      * @param string $module        Module name
-     * @param string|array $tag     Tag
+     * @param string $tag     Tag
      * @param string|null $type     Item type, null for all types
-     * @return int|bool
+     * @return int
      */
     public function getCount($module, $tag, $type = null)
     {
@@ -184,7 +183,7 @@ class Tag extends AbstractService
             return false;
         }
 
-        return TagService::getCount($module, (array) $tag, $type);
+        return Pi::api('api', 'tag')->getCount($module, $tag, $type);
     }
 
     /**
@@ -194,7 +193,8 @@ class Tag extends AbstractService
      * @param int    $limit         Limit
      * @param string $module        Module name, null for all modules
      * @param string $type          Item type, null for all types
-     * @return array|bool
+     *
+     * @return array
      */
     public function match($term, $limit, $module = null, $type = null)
     {
@@ -202,7 +202,7 @@ class Tag extends AbstractService
             return false;
         }
 
-        return TagService::match($term, $limit, $module, $type);
+        return Pi::api('api', 'tag')->match($term, $limit, $module, $type);
     }
 
     /**
@@ -217,8 +217,8 @@ class Tag extends AbstractService
         if (!$this->active()) {
             return false;
         }
-        if (method_exists('TagService', $method)) {
-            return call_user_func_array(array('TagService', $method), $args);
+        if (method_exists(Pi::api('api', 'tag'), $method)) {
+            return call_user_func_array(array(Pi::api('api', 'tag'), $method), $args);
         }
         
         return null;
