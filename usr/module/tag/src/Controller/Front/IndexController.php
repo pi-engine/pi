@@ -95,6 +95,8 @@ class IndexController extends ActionController
     /**
      * Get modules
      *
+     * @param string $module
+     *
      * @return array
      */
     protected function getModules($module = '')
@@ -127,6 +129,7 @@ class IndexController extends ActionController
      * @param null $type
      * @param int $limit
      * @param int $offset
+     *
      * @return array
      */
     protected function getList(
@@ -191,10 +194,11 @@ class IndexController extends ActionController
     /**
      * Get count
      *
-     * @param $tag
+     * @param string $tag
      * @param $modules
      * @param string $type
-     * @return bool|int|\Zend\Db\ResultSet\ResultSet
+     *
+     * @return int
      */
     protected function getCount($tag, $modules, $type = '')
     {
@@ -291,9 +295,9 @@ class IndexController extends ActionController
             $time    = time() - rand(1, 360000);
             $type    = '';
             $module  = 'article';
-            Pi::api('tag', 'tag')->add($module, $item, $type, $tag, $time);
+            Pi::api('api', 'tag')->add($module, $item, $type, $tag, $time);
             $module = 'video';
-            Pi::api('tag', 'tag')->add($module, $item, $type, $tag, $time);
+            Pi::api('api', 'tag')->add($module, $item, $type, $tag, $time);
         }
 
         $this->jump(array('action' => 'list'));

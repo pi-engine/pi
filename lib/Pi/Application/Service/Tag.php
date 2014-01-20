@@ -110,6 +110,7 @@ class Tag extends AbstractService
      * @param string $module        Module name
      * @param string $item          Item identifier
      * @param string $type          Item type, default as ''
+     *
      * @return bool
      */
     public function delete($module, $item, $type = '')
@@ -125,9 +126,10 @@ class Tag extends AbstractService
      * Get tags of an item
      *
      * @param string $module        Module name
-     * @param string $item          Item identifier
+     * @param string|array $item          Item identifier
      * @param string $type          Item type
-     * @return array|bool
+     *
+     * @return array
      */
     public function get($module, $item, $type = '')
     {

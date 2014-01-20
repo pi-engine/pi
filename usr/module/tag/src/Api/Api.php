@@ -54,13 +54,82 @@ class Api extends AbstractApi
     }
 
     /**
+     * Render a tag
+     *
+     * @param string $tag
+     * @param string $module
+     * @param string $type
+     *
+     * @return string
+     */
+    public function render($tag, $module = null, $type = '')
+    {
+        if (null === $module) {
+            $module = Pi::service('module')->current();
+        }
+        $params = array(
+            'module'        => $this->module,
+            'controller'    => 'index',
+            'action'        => 'list',
+            'tag'           => $tag
+        );
+        if ($module) {
+            $params['m'] = $module;
+            if ($type) {
+                $params['type'] = $type;
+            }
+        }
+        $url    = Pi::service('url')->assemble('default', $params);
+        $html   = '<a href="' . $url . '" title="' . _escape($tag)
+                . '" target="_blank">' . _escape($tag) . '</a>';
+
+        return $html;
+    }
+
+    /**
+     * Get tags of an item or multi-items
+     *
+     * @param string     $module Module name
+     * @param string|array     $item   Item identifier
+     * @param string     $type   Item type
+     * @param bool
+     *
+     * @return string[]
+     */
+    public function get($module, $item, $type = '', $render = false)
+    {
+        $result = array();
+
+        $items  = (array) $item;
+        $rowset = Pi::model('link', $this->module)->select(array(
+            'module'    => $module,
+            'type'      => $type,
+            'item'      => $items,
+        ));
+        foreach ($rowset as $row) {
+            $result[$row['item']][] = $render
+                ? $this->render($row['tag'], $module, $type)
+                : $row['tag'];
+        }
+        if (is_scalar($item)) {
+            if (isset($result[$item])) {
+                $result = $result[$item];
+            } else {
+                $result = array();
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Add tags of an item
      *
-     * @param  string       $module Module name
-     * @param  string       $item   Item identifier
-     * @param  string       $type   Item type, default as ''
-     * @param  array|string $tags   Tags to add
-     * @param  int          $time   Time adding the tags
+     * @param string       $module Module name
+     * @param string       $item   Item identifier
+     * @param string       $type   Item type, default as ''
+     * @param array|string $tags   Tags to add
+     * @param int          $time   Time adding the tags
      *
      * @return bool
      */
@@ -134,11 +203,11 @@ class Api extends AbstractApi
     /**
      * Update tag list of an item
      *
-     * @param  string       $module Module name
-     * @param  string       $item   Item identifier
-     * @param  string       $type   Item type
-     * @param  array|string $tags   Tags to add
-     * @param  int          $time   Time adding new tags
+     * @param string       $module Module name
+     * @param string       $item   Item identifier
+     * @param string       $type   Item type
+     * @param array|string $tags   Tags to add
+     * @param int          $time   Time adding new tags
      *
      * @return bool
      */
@@ -173,9 +242,9 @@ class Api extends AbstractApi
     /**
      * Delete tags of an item
      *
-     * @param  string $module Module name
-     * @param  string $item   Item identifier
-     * @param  string $type   Item type, default as ''
+     * @param string $module Module name
+     * @param string $item   Item identifier
+     * @param string $type   Item type, default as ''
      *
      * @return bool
      */
@@ -204,35 +273,13 @@ class Api extends AbstractApi
     }
 
     /**
-     * Get tags of an item
-     *
-     * @param  string     $module Module name
-     * @param  string     $item   Item identifier
-     * @param  string     $type   Item type
-     * @return string[]
-     */
-    public function get($module, $item, $type = '')
-    {
-        $tags = array();
-        $model = Pi::model('link', $this->module);
-        $where = array('item' => $item, 'module' => $module, 'type' => $type);
-        $select = $model->select()->where($where)->order('order ASC');
-        $rowset = $model->selectWith($select);
-        foreach ($rowset as $row) {
-            $tags[] = $row['tag'];
-        }
-
-        return $tags;
-    }
-
-    /**
      * Get list of items having a tag
      *
-     * @param  string       $module Module name
-     * @param  string       $tag    Tag
-     * @param  string|null  $type   Item type, null for all types
-     * @param  int          $limit  Limit
-     * @param  int          $offset Offset
+     * @param string       $module Module name
+     * @param string       $tag    Tag
+     * @param string|null  $type   Item type, null for all types
+     * @param int          $limit  Limit
+     * @param int          $offset Offset
      *
      * @return int[]
      */
@@ -264,9 +311,9 @@ class Api extends AbstractApi
     /**
      * Get count of items of having a tag
      *
-     * @param  string       $module Module name
-     * @param  string       $tag    Tag
-     * @param  string|null  $type   Item type, null for all types
+     * @param string       $module Module name
+     * @param string       $tag    Tag
+     * @param string|null  $type   Item type, null for all types
      *
      * @return int
      */
@@ -284,10 +331,10 @@ class Api extends AbstractApi
     /**
      * Get matched tags for quick match
      *
-     * @param  string     $term   Term
-     * @param  int        $limit  Limit
-     * @param  string     $module Module name, null for all modules
-     * @param  string     $type   Item type, null for all types
+     * @param string     $term   Term
+     * @param int        $limit  Limit
+     * @param string     $module Module name, null for all modules
+     * @param string     $type   Item type, null for all types
      *
      * @return array
      */
@@ -359,30 +406,6 @@ class Api extends AbstractApi
                 'tag'   => $row['tag'],
                 'count' => $row['count'],
             );
-        }
-
-        return $result;
-    }
-
-    /**
-     * Fetch tags shared by multiple items
-     *
-     * @param  string $module  module name not null
-     * @param  array  $items   items array
-     * @param  string $type    items type
-     *
-     * @return array  result   items relate tags
-     */
-    public function multiple($module, $items, $type = '')
-    {
-        $result = array();
-        $rowset = Pi::model('link', $this->module)->select(array(
-            'module'    => $module,
-            'type'      => $type,
-            'item'      => $items,
-        ));
-        foreach ($rowset as $row) {
-            $result[$row['item']][] = $row['tag'];
         }
 
         return $result;

@@ -27,10 +27,11 @@ class Tag extends AbstractApi
      * @param  string       $item   Item identifier
      * @param  string       $type   Item type, default as ''
      * @param  array|string $tags   Tags to add
-     * @param  int|null     $time   Time adding the tags
+     * @param  int     $time   Time adding the tags
+     *
      * @return bool
      */
-    public function add($module, $item, $type, $tags, $time = null)
+    public function add($module, $item, $type, $tags, $time = 0)
     {
         return Pi::api('api', 'tag')->add($module, $item, $type, $tags, $time);
     }
@@ -42,10 +43,11 @@ class Tag extends AbstractApi
      * @param  string       $item   Item identifier
      * @param  string       $type   Item type
      * @param  array|string $tags   Tags to add
-     * @param  int|null     $time   Time adding new tags
+     * @param  int     $time   Time adding new tags
+     *
      * @return bool
      */
-    public function update($module, $item, $type, $tags, $time)
+    public function update($module, $item, $type, $tags, $time = 0)
     {
         return Pi::api('api', 'tag')->update($module, $item, $type, $tags, $time);
     }
@@ -55,7 +57,8 @@ class Tag extends AbstractApi
      *
      * @param  string $module Module name
      * @param  string $item   Item identifier
-     * @param  string $type   Item type, default as ''
+     * @param  string $type   Item type
+     *
      * @return bool
      */
     public function delete($module, $item, $type = '')
@@ -67,9 +70,10 @@ class Tag extends AbstractApi
      * Get tags of an item
      *
      * @param  string     $module Module name
-     * @param  string     $item   Item identifier
+     * @param  string|array     $item   Item identifier
      * @param  string     $type   Item type
-     * @return array|bool
+     *
+     * @return array
      */
     public function get($module, $item, $type = null)
     {
@@ -119,22 +123,6 @@ class Tag extends AbstractApi
     }
 
     /**
-     * Search relate article according to tag array.
-     *
-     * @param  array  $tags   Tag array
-     * @param  string $module Module name
-     * @param  string $type   Item type
-     * @param  int    $limit  Return item id counts
-     * @param  null|string    $item
-     *
-     * @return array  $result     Item id array
-     */
-    public function relate($tags, $module, $type, $limit = null, $item = null)
-    {
-        return Pi::api('api', 'tag')->relate($tags, $module, $type, $limit, $item);
-    }
-
-    /**
      * Fetch top tag and count
      *
      * @param string $module Module name
@@ -146,19 +134,5 @@ class Tag extends AbstractApi
     public function top($module, $type, $limit = null)
     {
         return Pi::api('api', 'tag')->top($module, $type, $limit);
-    }
-
-    /**
-     * Fetch multiple item related tags
-     *
-     * @param  string $module  module name not null
-     * @param  array  $items   items array
-     * @param  string $type    items type  default null
-     *
-     * @return array  result   items relate tags
-     */
-    public function multiple($module, $items, $type = null)
-    {
-        return Pi::api('api', 'tag')->multiple($module, $items, $type);
     }
 }
