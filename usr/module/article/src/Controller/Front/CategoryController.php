@@ -219,7 +219,9 @@ class CategoryController extends ActionController
             $row['label']      = $row['title'];
             $row['controller'] = 'category';
             $row['action']     = 'list';
-            $row['params']     = array('category' => $row['id']);
+            $row['params']     = array(
+                'category' => $row['slug'] ?: $row['id'],
+            );
             $row['route']      = $route;
             if (isset($row['child'])) {
                 $row['pages'] = $row['child'];

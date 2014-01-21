@@ -165,6 +165,13 @@ return array(
             'value'       => 1,
             'filter'      => 'number_int',
         ),
+        'default_homepage' => array(
+            'category'    => 'general',
+            'title'       => _t('Default Homepage'),
+            'description' => _t('Use relative url, leave it empty if you want to dress up yourselves'),
+            'value'       => '',
+            'filter'      => 'string',
+        ),
 
         // Autosave
         'autosave_interval' => array(

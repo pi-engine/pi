@@ -146,8 +146,6 @@ class ListController extends ActionController
                 'url'   => Pi::service('url')->assemble(
                     Pi::api('api', $module)->getRouteName($module),
                     array(
-                        'controller' => 'list',
-                        'action'     => 'all',
                         'list'       => 'all',
                     )
                 ),
@@ -202,9 +200,9 @@ class ListController extends ActionController
     {
         foreach ($categories as &$row) {
             $row['label']      = $row['title'];
-            $row['controller'] = 'category';
-            $row['action']     = 'list';
-            $row['params']     = array('category' => $row['id']);
+            $row['params']     = array(
+                'category' => $row['slug'] ?: $row['id'],
+            );
             $row['route']      = $route;
             if (isset($row['child'])) {
                 $row['pages'] = $row['child'];

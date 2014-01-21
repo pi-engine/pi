@@ -1067,10 +1067,6 @@ class Paginator extends Pagit
 
         $params = isset($this->urlOptions['params'])
             ? $this->urlOptions['params'] : array();
-        $params[$this->urlOptions['page_param']] = $page;
-        if (!empty($this->urlOptions['total_param'])) {
-            $params[$this->urlOptions['total_param']] = $this->count();
-        }
 
         $route = isset($this->urlOptions['route'])
             ? $this->urlOptions['route']
@@ -1083,6 +1079,18 @@ class Paginator extends Pagit
         }
         if (!isset($options['reuse_matched_params'])) {
             $options['reuse_matched_params'] = true;
+        }
+
+        $queryOptions = array(
+            $this->urlOptions['page_param'] => $page,
+        );
+        if (!empty($this->urlOptions['total_param'])) {
+            $queryOptions[$this->urlOptions['total_param']] = $this->count();
+        }
+        if (isset($options['query'])) {
+            $options['query'] = array_merge($queryOptions, $options['query']);
+        } else {
+            $options['query'] = $queryOptions;
         }
 
         $url = Pi::service('url')->assemble($route, $params, $options);
