@@ -41,7 +41,10 @@ class ArticleController extends ActionController
      */
     public function indexAction()
     {
-        
+        if ($this->config('default_homepage')) {
+            return $this->redirect()
+                        ->toUrl(Pi::url($this->config('default_homepage')));
+        }
     }
     
     /**

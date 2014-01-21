@@ -200,7 +200,9 @@ class ListController extends ActionController
     {
         foreach ($categories as &$row) {
             $row['label']      = $row['title'];
-            $row['params']     = array('category' => $row['id']);
+            $row['params']     = array(
+                'category' => $row['slug'] ?: $row['id'],
+            );
             $row['route']      = $route;
             if (isset($row['child'])) {
                 $row['pages'] = $row['child'];
