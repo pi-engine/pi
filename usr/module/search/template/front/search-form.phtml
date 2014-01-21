@@ -1,15 +1,17 @@
 <div class="row">
     <div class="col-md-2">
          <!-- You can define logo in theme -->
-        <a class="search-logo" href="<?php echo $this->url('search'); ?>"
-           title="<?php _e('Go to search home'); ?>">
+        <a class="search-logo" href="<?php echo $this->url('home'); ?>"
+           title="<?php _e('Go to home page'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>
         </a>
     </div>
     <div class="col-md-6 ">
         <form method="get" id="js-search-form"
+              data-url="<?php echo $this->url('search'); ?>"
               data-module-url="<?php echo $this->url('search', array('m' => '_NAME')); ?>"
-              data-service-url="<?php echo $this->url('search', array('service' => '_NAME')); ?>">
+              data-service-url="<?php echo $this->url('search', array('service' => '_NAME')); ?>"
+              data-module="<?php echo $searchModule; ?>">
             <div class="search-tabs">
                 <a href="#" class="js-search-global<?php if (!$searchModule) { echo ' active'; } ?>">
                     <?php _e('Global'); ?>
@@ -30,7 +32,7 @@
                        value="<?php echo _escape($query); ?>"
                        placeholder="<?php _e('Keywords'); ?>">
                 <div class="input-group-btn">
-                    <button type="submit" class="btn btn-primary js-search-global">
+                    <button type="submit" class="btn btn-primary">
                         <span class="fa fa-search"></span> <?php _e('Search'); ?>
                     </button>
                 </div>
