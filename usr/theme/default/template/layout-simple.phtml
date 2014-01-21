@@ -2,8 +2,15 @@
 // Load translation data
 $this->i18nTheme('default', 'default');
 
-// Load Bootstrap css by Twitter Team
-$this->bootstrap();
+/*
+ * Load Bootstrap css by Twitter Team, auto load jquery
+ * This code should written in every theme, As much of module code
+ * need bootstrap.js, bootstrap.css, fontawesome.css
+ */
+$this->bootstrap(array(
+    'js/bootstrap.min.js',
+    'font-awesome/css/font-awesome.min.css'
+));
 // Load front.css
 $this->css($this->assetTheme('css/front.css'));
 
@@ -20,37 +27,30 @@ $this->headLink(array(
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo Pi::service('module')->current(); ?>" class="pi-locale-<?php echo $locale; ?>">
-    <!-- Header: brand, slogan, user bar -->
-    <div class="navbar navbar-default navbar-fixed-top">
+   <!-- Header: brand, slogan, user bar -->
+    <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <h1 class="hide">
-                    <?php echo _escape($sitename . ' - ' . $slogan); ?>
-                </h1>
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" 
-                   title="<?php echo _escape($slogan); ?>">
-                   <?php echo _escape($sitename); ?>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <?php echo $this->widget('system-user-bar'); ?>
-                </ul>
-            </div>
+            <h1 class="hide">
+                <?php echo _escape($sitename . ' - ' . $slogan); ?>
+            </h1>
+            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
+               title="<?php echo _escape($slogan); ?>">
+               <?php echo _escape($sitename); ?>
+            </a>
+            <?php
+            echo $this->widget('system-user-bar');
+            ?>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container pi-main-container">
 
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
 
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>
-            <div class="pi-zone-module row-fluid"><?php echo $content; ?></div>
+            <div class="pi-module-content"><?php echo $content; ?></div>
         <?php } ?>
         <!-- Module content ends -->
     </div>
@@ -58,21 +58,21 @@ $this->headLink(array(
     <!-- Footer: sitelink -->
     <div class="pi-footer">
         <div class="container pi-footer-container">
-            <a href="<?php echo Pi::url('page/terms'); ?>" title="<?php _e('Terms of use'); ?>"><?php _e('Terms of use'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/privacy'); ?>" title="<?php _e('Privacy guidelines'); ?>"><?php _e('Privacy guidelines'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/license'); ?>" title="<?php _e('License'); ?>"><?php _e('License'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/about'); ?>" title="<?php _e('About us'); ?>"><?php _e('About us'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/contact'); ?>" title="<?php _e('Contact us'); ?>"><?php _e('Contact us'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/join'); ?>" title="<?php _e('Join us'); ?>"><?php _e('Join us'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/help'); ?>" title="<?php _e('Help'); ?>"><?php _e('Help'); ?></a><span class="pi-divider">|</span>
-            <a href="<?php echo Pi::url('page/sitemap'); ?>" title="<?php _e('Sitemap'); ?>"><?php _e('Sitemap'); ?></a> <br/>
-            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy;<?php echo _escape($sitename); ?></a><span class="pi-divider">|</span>
-            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="pi-divider">|</span>
-            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a><span class="pi-divider">|</span>
-            <span title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></span>
-        </div>
+            <div class="text-center">
+                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                    &copy;<?php echo _escape($sitename); ?>
+                </a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Powered by Pi Engine
+                </a>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Design of Pi Engine
+                </a>
+                <span title="<?php _e('Execution time'); ?>">
+                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
+                </span>
+            </div>    
+        </div>    
     </div>
-    <!-- Footer ends -->
-
 </body>
 </html>
