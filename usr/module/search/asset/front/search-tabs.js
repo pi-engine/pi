@@ -6,7 +6,7 @@
   form.on('click', '.js-search-global', function(e) {
     e.preventDefault();
     form.attr({
-      'action': moduleUrl.replace(/_NAME\/?/, ''),
+      'action': form.data('url'),
       'target': ''
     });
     form[0].submit();
@@ -26,6 +26,16 @@
       'target': '_blank'
     });
     form[0].submit();
+  }).submit(function() {
+    var module = form.data('module');
+    if (module) {
+      form.attr({
+        'action': moduleUrl.replace('_NAME', module),
+        'target': ''
+      });
+    } else {
+      form.find('.js-search-global').trigger('click');
+    }
   });
 
 })(jQuery)

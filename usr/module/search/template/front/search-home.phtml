@@ -9,8 +9,10 @@ $this->css($this->assetModule('front/front.css'));
 </style>
 <div class="row">
     <form method="get" class="col-md-6 col-md-offset-3" id="js-search-form"
+          data-url="<?php echo $this->url('search'); ?>"
           data-module-url="<?php echo $this->url('search', array('m' => '_NAME')); ?>"
-          data-service-url="<?php echo $this->url('search', array('service' => '_NAME')); ?>">
+          data-service-url="<?php echo $this->url('search', array('service' => '_NAME')); ?>"
+          data-module="<?php echo $searchModule; ?>">
         <!-- You can define logo in theme -->
         <a class="text-hide search-index-logo" href="<?php echo $this->url('home'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>
@@ -35,7 +37,7 @@ $this->css($this->assetModule('front/front.css'));
                    value="<?php echo _escape($query); ?>"
                    placeholder="<?php _e('Keywords'); ?>">
             <div class="input-group-btn">
-                <button type="submit" class="btn btn-primary js-search-global">
+                <button type="submit" class="btn btn-primary">
                     <span class="fa fa-search"></span> <?php _e('Search'); ?>
                 </button>
             </div>
