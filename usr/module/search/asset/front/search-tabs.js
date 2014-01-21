@@ -6,18 +6,22 @@
   form.on('click', '.js-search-global', function(e) {
     e.preventDefault();
     form.attr({
-      'action': moduleUrl.replace(/_NAME\/?/, ''),
+      'action': form.data('url'),
       'target': ''
     });
     form[0].submit();
   }).on('click', '.js-search-module', function(e) {
-    var name = $(this).data('name');
+    var name = $(this).data('name') || form.data('module');
     e.preventDefault();
-    form.attr({
-      'action': moduleUrl.replace('_NAME', name),
-      'target': ''
-    });
-    form[0].submit();
+    if (name) {
+      form.attr({
+        'action': moduleUrl.replace('_NAME', name),
+        'target': ''
+      });
+      form[0].submit();
+    } else {
+      form.find('.js-search-global').trigger('click');
+    }
   }).on('click', '.js-search-service', function(e) {
     var name = $(this).data('name');
     e.preventDefault();
