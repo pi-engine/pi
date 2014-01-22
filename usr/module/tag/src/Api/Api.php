@@ -124,8 +124,8 @@ class Api extends AbstractApi
         ));
         foreach ($rowset as $row) {
             $result[$row['item']][] = $render
-                ? $this->render($row['tag'], $module, $type)
-                : $row['tag'];
+                ? $this->render($row['term'], $module, $type)
+                : $row['term'];
         }
         if (is_scalar($item)) {
             if (isset($result[$item])) {
@@ -163,9 +163,9 @@ class Api extends AbstractApi
 
         $rowset = $modelTag->select(array('term' => $tags));
         $tagsExist = array();
-        array_walk($rowset, function ($row) use (&$tagsExist) {
+        foreach ($rowset as $row) {
             $tagsExist[$row->term] = $row->toArray();
-        });
+        }
 
         foreach ($tags as $index => $tag) {
             if (!isset($tagsExist[$tag])) {
@@ -178,7 +178,7 @@ class Api extends AbstractApi
 
             // Insert data to link table
             $row = $modelLink->createRow(array(
-                'tag'       => $tag,
+                'term'      => $tag,
                 'module'    => $module,
                 'type'      => $type,
                 'item'      => $item,
@@ -189,18 +189,18 @@ class Api extends AbstractApi
         }
 
         $rowset = $modelStats->select(array(
-            'tag'       => $tags,
+            'term'      => $tags,
             'module'    => $module,
             'type'      => $type,
         ));
         $statsExist = array();
-        array_walk($rowset, function ($row) use (&$statsExist) {
-            $statsExist[$row->tag] = $row->toArray();
-        });
+        foreach ($rowset as $row) {
+            $statsExist[$row->term] = $row->toArray();
+        }
         foreach ($tags as $tag) {
             if (!isset($statsExist[$tag])) {
                 $row = $modelStats->createRow(array(
-                    'tag'       => $tags,
+                    'term'      => $tags,
                     'module'    => $module,
                     'type'      => $type,
                     'count'     => 0,
@@ -210,7 +210,7 @@ class Api extends AbstractApi
         }
 
         $modelTag->increment('count', array('term' => $tags));
-        $modelStats->increment('count', array('tag' => $tags));
+        $modelStats->increment('count', array('term' => $tags));
 
         return true;
     }
@@ -238,13 +238,13 @@ class Api extends AbstractApi
         if ($tagsDelete) {
             $where = array(
                 'item'      => $item,
-                'tag'       => $tagsDelete,
+                'term'      => $tagsDelete,
                 'module'    => $module,
                 'type'      => $type,
             );
             Pi::model('link', $this->module)->delete($where);
             $where = array(
-                'tag'       => $tagsDelete,
+                'term'      => $tagsDelete,
                 'module'    => $module,
                 'type'      => $type,
             );
@@ -290,23 +290,25 @@ class Api extends AbstractApi
     /**
      * Get list of items having a tag
      *
-     * @param string       $module Module name
-     * @param string       $tag    Tag
+     * @param string $tag    Tag
+     * @param string $module Module name
      * @param string|null  $type   Item type, null for all types
      * @param int          $limit  Limit
      * @param int          $offset Offset
      *
      * @return array
      */
-    public function getList($module, $tag, $type = '', $limit = 0, $offset = 0)
+    public function getList($tag, $module = '', $type = '', $limit = 0, $offset = 0)
     {
-        $where = array('module' => $module, 'tag' => $tag);
-        if (null !== $type) {
-            $where['type'] = $type;
+        $where = array('term' => $tag);
+        if ($module) {
+            $where['module'] = $module;
+            if (null !== $type) {
+                $where['type'] = $type;
+            }
         }
         $modelLink = Pi::model('link', $this->module);
         $select = $modelLink->select();
-        $select->columns(array('item' => new Expression('distinct item')));
         $select->where($where)->order('time DESC');
         if ($limit) {
             $select->limit($limit);
@@ -326,17 +328,19 @@ class Api extends AbstractApi
     /**
      * Get count of items of having a tag
      *
-     * @param string|array  $module Module name or conditions
-     * @param string        $tag    Tag
-     * @param string        $type   Item type
+     * @param string|array $tag    Tag or conditions
+     * @param string  $module Module name
+     * @param string $type   Item type
      *
      * @return int
      */
-    public function getCount($module, $tag, $type = '')
+    public function getCount($tag, $module = '', $type = '')
     {
-        if (is_array($module)) {
-            $where = $module;
-        } else {
+         if (is_array($tag)) {
+            $where = $tag;
+        } elseif (!$module) {
+             $where = array('term' => $tag);
+         } else {
             $where = array(
                 'module'    => $module,
                 'term'      => $tag

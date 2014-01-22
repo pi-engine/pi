@@ -27,6 +27,11 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
+    protected $table = 'article';
+
+    /**
+     * {@inheritDoc}
+     */
     protected $meta = array(
         'id'            => 'id',
         'subject'       => 'title',
@@ -38,7 +43,7 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
-    public function getList(
+    public function ____getList(
         array $variables,
         array $conditions,
         $limit  = 0,
@@ -64,7 +69,7 @@ class Content extends AbstractContent
             $item = $row->toArray();
             $item['title'] = $item['subject'];
             unset($item['subject']);
-            $item['link'] = $this->buildLink($item);
+            $item['url'] = $this->buildUrl($item);
             $result[] = $item;
         }
 
@@ -78,7 +83,7 @@ class Content extends AbstractContent
      *
      * @return string
      */
-    protected function buildLink(array $item)
+    protected function buildUrl(array $item)
     {
         $link = Pi::service('url')->assemble(
             'article-article',

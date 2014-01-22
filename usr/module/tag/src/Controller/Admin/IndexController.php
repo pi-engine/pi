@@ -73,7 +73,7 @@ class IndexController extends ActionController
     }
 
     /**
-     * List tags
+     * List hot tags
      */
     public function listAction()
     {
@@ -162,7 +162,7 @@ class IndexController extends ActionController
     }
 
     /**
-     * Show specific module of tag.
+     * List recent tagged contents
      */
     public function linkListAction()
     {
@@ -244,7 +244,7 @@ class IndexController extends ActionController
     }
 
     /**
-     * Delete website tag.
+     * Delete tag
      */
     public function deleteAction()
     {
@@ -307,7 +307,7 @@ class IndexController extends ActionController
     }
 
     /**
-     * Static tag
+     * Tag stats
      */
     public function statsAction()
     {

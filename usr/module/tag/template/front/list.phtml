@@ -5,11 +5,11 @@
             <?php _e('View all tagged items.'); ?>
         </a>
         <h3>
-            <?php echo sprintf(__('Items in module %s tagged by: %s'), _escape($moduleTitle), _escape($tag)); ?>
+            <?php echo sprintf(__('Items in <em>%s</em> tagged by: <strong>%s</strong>'), _escape($moduleTitle), _escape($tag)); ?>
         </h3>
     <?php } else { ?>
         <h3>
-            <?php echo sprintf(__('Items tagged by: %s'), _escape($tag)); ?>
+            <?php echo sprintf(__('Items tagged by: <strong>%s</strong>'), _escape($tag)); ?>
         </h3>
     <?php } ?>
 </div>

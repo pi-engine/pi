@@ -28,6 +28,7 @@ class Submit extends Element
         'type'  => 'submit',
         'class' => 'btn btn-default',
     );
+
     /**
      * {@inheritDoc}
      */

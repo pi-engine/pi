@@ -66,18 +66,24 @@ class IndexController extends ActionController
             $content = array();
             $batches = array();
             foreach ($items as $item) {
-                $key = $item['module'] . '-' . $item['type'];
-                $batches[$key][] = $item['item'];
+                //$key = $item['module'] . '-' . $item['type'];
+                $batches[$item['module']][$item['type']][] = $item['item'];
             }
+            d($batches);
             $vars = array('id', 'title', 'link', 'time');
             foreach ($batches as $m => $mData) {
                 foreach ($mData as $t => $tData) {
                     $content[$m . '-' . $t] = Pi::service('module')->content(
                         $vars,
-                        array('id' => $tData)
+                        array(
+                            'module'    => $m,
+                            'type'      => $t,
+                            'id'        => $tData
+                        )
                     );
                 }
             }
+            d($content);
 
             $list = array();
             array_walk($items, function ($item) use ($modules, $content, &$list) {
@@ -122,30 +128,5 @@ class IndexController extends ActionController
         ));
 
         $this->view()->setTemplate('list');
-    }
-
-    public function importAction()
-    {
-        $tagModel   = $this->getModel('tag');
-        $linkModel  = $this->getModel('link');
-        $statsModel = $this->getModel('stats');
-
-        // Flush
-        $tagModel->delete(array());
-        $linkModel->delete(array());
-        $statsModel->delete(array());
-        for ($i = 1; $i < 50; $i++) {
-            $postfix = $i % 2;
-            $item    = rand(1, 15);
-            $tag     = 'Test_tag' . ($postfix + 1);
-            $time    = time() - rand(1, 360000);
-            $type    = '';
-            $module  = 'article';
-            Pi::api('api', 'tag')->add($module, $item, $type, $tag, $time);
-            $module = 'video';
-            Pi::api('api', 'tag')->add($module, $item, $type, $tag, $time);
-        }
-
-        $this->jump(array('action' => 'list'));
     }
 }

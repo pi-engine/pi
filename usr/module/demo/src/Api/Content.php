@@ -27,7 +27,18 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
-    public function getList(
+    protected $meta = array(
+        'id'            => 'id',
+        'title'         => 'title',
+        'content'       => 'content',
+        'time_created'  => 'time',
+        'uid'           => 'uid',
+    );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function ____getList(
         array $variables,
         array $conditions,
         $limit  = 0,
@@ -41,7 +52,7 @@ class Content extends AbstractContent
                 'id'        => $i,
                 'title'     => sprintf('Demo title %d', $i),
                 'content'   => sprintf('Demo content %d', $i),
-                'link'      => Pi::url('www/demo/content/' . $i),
+                'url'      => Pi::url('www/demo/content/' . $i),
                 'uid'       => rand(1, 5),
                 'time'      => time() - rand(0, 1000),
             );
@@ -58,13 +69,18 @@ class Content extends AbstractContent
      *
      * @return string
      */
-    protected function buildLink(array $item)
+    protected function buildUrl(array $item)
     {
-        $link = Pi::service('url')->assemble(
-            'article-article',
-            array('id' => $item['id'])
+        $url = Pi::service('url')->assemble(
+            'default',
+            array(
+                'module'        => $this->module,
+                'controller'    => 'page',
+                'action'        => 'index',
+                'id'            => $item['id'],
+            )
         );
 
-        return $link;
+        return $url;
     }
 }
