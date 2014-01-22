@@ -27,4 +27,9 @@ return array(
        // Email address, optional
        'Email'     => 'taiwenjiang@tsinghua.org.cn',
     ),
+    'resource'  => array(
+        'navigation'    => array(
+            'front' => false,
+        ),
+    ),
 );
