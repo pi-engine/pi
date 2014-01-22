@@ -39,7 +39,8 @@ class Search extends AbstractSearch
      */
     protected function buildUrl(array $item)
     {
-        $url = Pi::service('url')->assemble('default',
+        $url = Pi::service('url')->assemble(
+            'default',
             array(
                 'module'        => 'tag',
                 'controller'    => 'index',

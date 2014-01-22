@@ -101,7 +101,7 @@ UPDATE %s s, %s t
 SET s.term = t.term
 WHERE s.tag = t.id;
 EOT;
-            $sql = sprintf($sql, $tableLink, $tableStats);
+            $sql = sprintf($sql, $tableStats, $tableTag);
             $result = $this->queryTable($sql);
             if (false === $result) {
                 return $result;

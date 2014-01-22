@@ -80,12 +80,13 @@ class IndexController extends ActionController
         $page = $this->params('page', 1);
         $module = $this->params('m');
 
-        $form = $this->getForm();
-
         $modules = Pi::registry('modulelist')->read();
         $limit = (int) $this->config('item_per_page');
         $offset = (int) ($page - 1) * $limit;
         $tags = Pi::service('tag')->top($limit, $module, null, $offset);
+        array_walk($tags, function (&$tag) use ($module) {
+            $tag['url'] = Pi::service('tag')->url($tag['term'], $module);
+        });
         if ($module) {
             $modelStats = $this->getModel('stats');
             $select = $modelStats->select()
@@ -108,57 +109,10 @@ class IndexController extends ActionController
         $this->view()->assign(array(
             'paginator'     => $paginator,
             'modules'       => $modules,
-            'form'          => $form,
-            'curModule'     => $module,
-            'tags'         => $tags,
+            'm'             => $module,
+            'tags'          => $tags,
         ));
         $this->view()->setTemplate('list');
-
-        /*
-        if (!$module) {
-            // Get datas from tag table
-            $select = $modelTag->select()->where(array())->order(array('count DESC'))->offset($offset)->limit($limit);
-            $items = $modelTag->selectWith($select)->toArray();
-        } else {
-            // Get datas from stats table
-            $modelStats = $this->getModel('stats');
-            $select = $modelStats->select()->where(array('module' => $module))->order(array('count DESC'))->offset($offset)->limit($limit);
-            $items = $modelStats->selectWith($select)->toArray();
-        }
-        // Get amount tag
-        if ($module) {
-            $select = $modelStats->select()->where(array('module' => $module))->columns(array('count' => new Expression('count(*)')));
-            $count = $modelStats->selectWith($select)->current()->count;
-        } else {
-            $select = $modelTag->select()->where(array())->columns(array('count' => new Expression('count(*)')));
-            $count = $modelTag->selectWith($select)->current()->count;
-        }
-
-        // Set paginator parameters
-        $paginator = \Pi\Paginator\Paginator::factory(intval($count));
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'       => $this->getModule(),
-                'controller'   => 'index',
-                'action'       => 'list',
-                'm'            => $module,
-            ),
-        ));
-        $this->view()->assign(array(
-            'paginator'     => $paginator,
-            'moduleArray'   => $moduleArray,
-            'form'          => $form,
-            'curModule'     => $module,
-            'datas'         => $items,
-        ));
-        $this->view()->setTemplate('list');
-        */
     }
 
     /**
@@ -756,54 +710,4 @@ class IndexController extends ActionController
         return $result;
     }
 
-    /**
-     * Test module interface
-     */
-    public function testAction()
-    {
-        //$module = 'article';
-        //$item = 16;
-        //$tags = 'TAG2';
-        //$type = 'typea';
-        //$tags = array('TAG1', 'TAG2', 'TAG3', 'TAG4', 'TAG6', 'TAG7', 'TAG8', 'TAG9','TAG10', 'TAG11','TAG12', 'TAG13');
-        //$tags = array('test1', 'test2', 'test3');
-        //$tags = array('TAG2', 'TAG3', 'TAG4', 'TAG16');
-        //$tags = array('t3', 't5');
-        //$tags = array('A', 'B', 'AAC', 'AAD', 'AAE', 'AAF', 'AAG', 'AAH', 'AAK', 'AAH');
-        //$time = time();
-        //$tags = array('A', 'B', 'C', 'D', 'E', 'F');
-        //$tags = array('LED');
-        //Pi::service('tag')->add($module, $item, null, $tags);
-        //Pi::service('tag')->update($module, $item, null, $tags);
-        //$re = Pi::service('tag')->getList($module, $tags);
-        //$re = Pi::service('tag')->getlist($module, $tags);
-        //d($re);
-        //Pi::service('tag')->add($module, $item, null, $tags);
-        //Pi::service('api')->partnumber->update($module, $item, null, $tags, $time);
-        //$re = Pi::service('tag')->get($module, $item, $type);
-        //d($re);
-        //$re = Pi::service('api')->partnumber->getUrl($module, $item, $type);
-        //$re =  Pi::service('api')->partnumber->getList($module, array('TAG22'));
-        //$re =  Pi::service('api')->partnumber->getCount($module, 'TAG23');
-        //$items = array('314388', 0, 314386, 1);
-        //$items = 31438;
-        //$re =  Pi::service('api')->tag->getTag($module, $items, $type = null);
-        //d($re);
-        $this->view()->setTemplate(false);
-        //$this->view()->setTemplate('false');
-    }
-    /**
-     *
-     */
-    public function getForm()
-    {
-        $form = new SearchForm('searchform');
-        $form->setAttributes(array(
-            'action'    => $this->url('admin', array('controller' => 'index', 'action' => 'search')),
-            'method'    => 'post',
-            'class'     => 'well form-inline',
-        ));
-
-        return $form;
-    }
 }
