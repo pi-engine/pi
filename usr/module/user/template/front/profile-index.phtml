@@ -2,11 +2,6 @@
     $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include '_user-media.phtml'; ?>
-<style>
-    .user-profile-item:hover .user-legend-edit {
-        display: block;
-    }
-</style>
 <div class="user-min-body user-profile-list">
     <?php foreach ($profile_group as $group) {?>
     <div class="user-profile-item">
@@ -20,8 +15,8 @@
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']));
                 }
             ?>
-            <a class="btn hide user-legend-edit" href="<?php echo $editUrl; ?>">
-                <i class="icon-pencil"></i>
+            <a class="btn btn-default user-legend-edit" href="<?php echo $editUrl; ?>">
+                <i class="fa fa-pencil"></i>
                 <?php _e('Edit'); ?>
             </a>
             <div class="user-legend-linea"></div>
