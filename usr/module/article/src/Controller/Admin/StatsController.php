@@ -43,7 +43,7 @@ class StatsController extends ActionController
         $topSubmitters30   = Stats::getSubmittersRecently(30, 10);
 
         if ($this->config('enable_tag')) {
-            $topTags = Pi::service('api')->tag->top($this->getModule(), null, 10);
+            $topTags = Pi::service('api')->tag->top(10, $this->getModule(), null);
             $this->view()->assign('topTags', $topTags);
         }
 

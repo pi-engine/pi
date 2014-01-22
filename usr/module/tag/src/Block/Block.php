@@ -28,34 +28,14 @@ class Block
      */
     public static function top($options = array(), $module = null)
     {
-        if (!$module) {
-            return false;
-        }
-        $offset = 0;
         $limit = $options['item_page'] ? intval($options['item_page']) : 10;
-
-        $modelTag = Pi::model('tag', $module);
-        $select = $modelTag->select()->where(array())
-                                  ->order(array('count DESC'))
-                                  ->offset($offset)
-                                  ->limit($limit);
-        $result = $modelTag->selectWith($select)->toArray();
-        foreach ($result as &$row) {
-            $row['url'] = Pi::engine()->application()->getRouter()->assemble(
-                array(
-                    'module'        => $module,
-                    'controller'    => 'index',
-                    'action'        => 'detail',
-                    'id'            => $row['id']
-                ),
-                array(
-                    'name'          => 'default',
-                )
-            );
-        }
+        $tags = Pi::service('tag')->top($limit);
+        array_walk($tags, function (&$tag) {
+            $tag['link'] = Pi::service('tag')->render($tag['term']);
+        });
 
         return array(
-            'data' => $result,
+            'tags' => $tags,
         );
     }
 
@@ -64,58 +44,45 @@ class Block
      */
     public static function cloud($options = array(), $module = null)
     {
-        if (!$module) {
-            return false;
-        }
-        // Set font size
-        $maxFontSize = isset($options['max_font_size'])
-            ? intval($options['max_font_size']) : 22;
-        $minFontSize = isset($options['min_font_size'])
-            ? intval($options['min_font_size']) : 13;
-        // Set color
+        $fontSizes = array(
+            'max' => isset($options['max_font_size']) ? intval($options['max_font_size']) : 22,
+            'min' => isset($options['min_font_size']) ? intval($options['min_font_size']) : 13,
+        );
         $color = isset($options['color']) ? $options['color'] : '_black';
-        $offset = 0;
-        $limit = isset($options['item_page'])
-            ? intval($options['item_page']) : 20;
-        $model = Pi::model('tag', $module);
-        $select = $model->select()->where(array())
-                                  ->order(array('count DESC'))
-                                  ->offset($offset)
-                                  ->limit($limit);
-        $result = $model->selectWith($select)->toArray();
-        // Generation tag link url.
-        foreach ($result as $row) {
-            // Set tag color
-            $tagColor[$row['id']] = '#';
+        $limit = isset($options['item_page']) ? intval($options['item_page']) : 20;
+        $data = Pi::service('tag')->top($limit);
+        $counts = array('min' => null, 'max' => null);
+        $tags = array();
+        foreach ($data as $tag) {
+            $tags[$tag['term']] = $tag;
+            if (null === $counts['min'] || $tag['count'] < $counts['min']) {
+                $counts['min'] = $tag['count'];
+            }
+            if (null === $counts['max'] || $tag['count'] > $counts['max']) {
+                $counts['max'] = $tag['count'];
+            }
+        }
+
+        array_walk($tags, function (&$tag) use ($color, $counts, $fontSizes) {
+            $tagColor = '#';
             if ($color == '_color') {
-                for ($a = 0; $a < 6; $a++) {
-                    $tagColor[$row['id']] .= dechex(rand(0,15));
+                for ($i = 0; $i < 6; $i++) {
+                    $tagColor .= dechex(rand(0,15));
                 }
             } else {
-                $tagColor[$row['id']] .= '000000';
+                $tagColor .= '000000';
             }
-
-            // Set tag url
-            $url[$row['id']] = Pi::service('url')->assemble('default', array(
-                'module'        => $module,
-                'controller'    => 'index',
-                'action'        => 'detail',
-                'id'            => $row['id']
-            ));
-        }
-
-        foreach ($result as $row) {
-            $tagCloud[$row['term']] = $row['count'];
-        }
-
-        ksort($tagCloud);
+            $tag['color'] = $tagColor;
+            $tag['size'] = floor(
+                (($fontSizes['max'] - $fontSizes['min']) * $tag['count'])
+                / ($counts['max'] - $counts['min'])
+            );
+            $tag['url'] = Pi::service('tag')->url($tag['term']);
+        });
+        ksort($tags);
 
         return array(
-            'data'          => $tagCloud,
-            'url'           => $url,
-            'maxFontSize'   => $maxFontSize,
-            'minFontSize'   => $minFontSize,
-            'tagColor'      => $tagColor,
+            'tags'          => $tags,
         );
     }
 
@@ -124,36 +91,23 @@ class Block
      */
     public static function news($options = array(), $module = null)
     {
-        if (!$module) {
-            return false;
-        }
-        $offset = 0;
         $limit = $options['item_page'] ? intval($options['item_page']) : 10;
-        $modelLink = Pi::model('link', $module);
-        $select = $modelLink->select()->where(array())
-                                  ->order(array('time DESC'))
-                                  ->group('tag')
-                                  ->offset($offset)
-                                  ->limit($limit);
-        $rowset = $modelLink->selectWith($select)->toArray();
-
-        $modelTag = Pi::model('tag', $module);
+        $modelLink = Pi::model('link', 'tag');
+        $select = $modelLink->select()
+            ->order(array('time DESC'))
+            ->group('term')
+            ->limit($limit);
+        $rowset = $modelLink->selectWith($select);
+        $tags = array();
         foreach ($rowset as $row) {
-            $select = $modelTag->select()->where(array('id' => $row['tag']));
-            $data[] = $modelTag->selectWith($select)->current()->toArray();
-            $time[$row['tag']] = $row['time'];
-        }
-        foreach ($data as &$row) {
-            $row['url'] = Pi::service('url')->assemble('default', array(
-                'module'        => $module,
-                'controller'    => 'index',
-                'action'        => 'detail',
-            ));
+            $tags[] = array(
+                'time'  => _date($row['time']),
+                'link'   => Pi::service('tag')->render($row['term']),
+            );
         }
 
         return array(
-            'data'  => $data,
-            'time'  => $time,
+            'tags'  => $tags,
         );
     }
 }

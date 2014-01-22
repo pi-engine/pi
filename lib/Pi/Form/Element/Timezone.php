@@ -56,4 +56,16 @@ class Timezone extends Select
 
         return $this->valueOptions;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel()
+    {
+        if (null === $this->label) {
+            $this->label = __('Timezone');
+        }
+
+        return parent::getLabel();
+    }
 }

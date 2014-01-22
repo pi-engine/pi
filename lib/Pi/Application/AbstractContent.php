@@ -31,7 +31,7 @@ abstract class AbstractContent extends AbstractApi
      * - Meta of an item:
      *   - title
      *   - content
-     *   - link
+     *   - url (link)
      *   - time
      *   - uid
      *

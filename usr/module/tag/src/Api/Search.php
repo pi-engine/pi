@@ -44,7 +44,7 @@ class Search extends AbstractSearch
                 'module'        => 'tag',
                 'controller'    => 'index',
                 'action'        => 'list',
-                'tag'           => $item['id']
+                'tag'           => $item['term']
         ));
         
         return $url;

@@ -38,6 +38,7 @@ class Content extends AbstractContent
 
         for ($i = 1; $i <= $limit; $i++) {
             $item = array(
+                'id'        => $i,
                 'title'     => sprintf('Demo title %d', $i),
                 'content'   => sprintf('Demo content %d', $i),
                 'link'      => Pi::url('www/demo/content/' . $i),

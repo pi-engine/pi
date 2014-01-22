@@ -42,4 +42,16 @@ class RoleCheckbox extends MultiCheckbox
 
         return $this->valueOptions;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel()
+    {
+        if (null === $this->label) {
+            $this->label = __('Roles');
+        }
+
+        return parent::getLabel();
+    }
 }

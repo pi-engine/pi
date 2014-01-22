@@ -22,11 +22,8 @@ use Zend\Db\Sql\Expression;
 class IndexController extends ActionController
 {
     /**
-    * Default action if none provided
-    * Tag admin
-    *
-    * @return ViewModel
-    */
+     * Default action if none provided
+     */
     public function indexAction()
     {
         return $this->redirect()->toRoute('', array('action' => 'list'));
@@ -38,244 +35,93 @@ class IndexController extends ActionController
     public function listAction()
     {
         $tag        = _get('tag');
-        $type       = _get('type');
         $limit      = (int) $this->config('item_per_page');
         $page       = _get('page') ? (int) _get('page') : 1;
         $offset     = (int) ($page - 1) * $limit;
-        $moduleName = _get('m');
+        $module     = _get('m');
 
-        $modules = $this->getModules($moduleName);
-        if (!is_numeric($tag)) {
-            $tagId = $this->getTagId($tag);
-        } else {
-            $tagId  = (int) $tag;
-            $result = $this->getTag($tag);
-            $tag    = $result[$tag];
+        $type           = null;
+        $moduleTitle    = '';
+
+        $modules = Pi::registry('modulelist')->read();
+        if ($module && !isset($modules[$module])) {
+            $module = '';
+        }
+        if ($module) {
+            $moduleTitle = $modules[$module]['title'];
         }
 
-        $list = $this->getList(
-            $tagId,
-            array_keys($modules),
-            $type,
-            $limit,
-            $offset
-        );
+        $paginator = null;
+        $list = array();
+        $count = Pi::service('tag')->getCount($tag, $module, $type);
+        if ($count) {
+            $items = Pi::service('tag')->getList(
+                $tag,
+                $module,
+                $type,
+                $limit,
+                $offset
+            );
 
-        $count = $this->getCount(
-            $tagId,
-            array_keys($modules),
-            $type
-        );
+            $content = array();
+            $batches = array();
+            foreach ($items as $item) {
+                $key = $item['module'] . '-' . $item['type'];
+                $batches[$key][] = $item['item'];
+            }
+            $vars = array('id', 'title', 'link', 'time');
+            foreach ($batches as $m => $mData) {
+                foreach ($mData as $t => $tData) {
+                    $content[$m . '-' . $t] = Pi::service('module')->content(
+                        $vars,
+                        array('id' => $tData)
+                    );
+                }
+            }
 
-        $paginator = Paginator::factory(intval($count), array(
-            'limit'       => $limit,
-            'page'        => $page,
-            'url_options' => array(
-                'params' => array(
-                    'tag'    => $tag,
-                    'type'   => $type,
-                    'm'      => $moduleName
+            $list = array();
+            array_walk($items, function ($item) use ($modules, $content, &$list) {
+                $key = $item['module'] . '-' . $item['type'];
+                if (isset($content[$key]) && isset($modules[$item['module']])) {
+                    $found = false;
+                    foreach ($content[$key] as $data) {
+                        if ($data['id'] == $item['item']) {
+                            $item['url'] = $data['link'];
+                            $item['title'] = $data['title'];
+                            $item['time'] = $data['time'];
+                            $found = true;
+                            break;
+                        }
+                    }
+                    if ($found) {
+                        $item['module'] = $modules[$item['module']]['title'];
+                        $list[] = $item;
+                    }
+                }
+            });
+
+            $paginator = Paginator::factory($count, array(
+                'limit'       => $limit,
+                'page'        => $page,
+                'url_options' => array(
+                    'params' => array(
+                        'tag'    => $tag,
+                        'm'      => $module
+                    )
                 )
-            )
-        ));
+            ));
+        }
 
         $this->view()->assign(array(
-            'paginator'  => $paginator,
-            'list'       => $list,
-            'modules'    => $this->getModules(),
-            'tag'        => $tag,
-            'tag_id'     => $tagId,
-            'count'      => $count,
-            'cur_module' => $moduleName
+            'paginator'     => $paginator,
+            'list'          => $list,
+            'tag'           => $tag,
+            'count'         => $count,
+            'm'             => $module,
+            'moduleTitle'   => $moduleTitle,
         ));
 
         $this->view()->setTemplate('list');
-    }
-
-    /**
-     * Get modules
-     *
-     * @param string $module
-     *
-     * @return array
-     */
-    protected function getModules($module = '')
-    {
-        $activeModules = Pi::registry('modulelist')->read('active');
-        if (isset($activeModules[$module])) {
-            $modules[$module] = $activeModules[$module]['title'];
-            return $modules;
-        }
-        $modules    = array();
-        $modelStats = $this->getModel('stats');
-        $select     = $modelStats->select()->columns(
-            array('module' => new Expression('distinct module')
-        ));
-        $rowset = $modelStats->selectWith($select);
-        foreach ($rowset as $row) {
-            if (in_array($row->module, array_keys($activeModules))) {
-                $modules[$row->module] = $activeModules[$row->module]['title'];
-            }
-        }
-
-        return $modules;
-    }
-
-    /**
-     * Get list
-     *
-     * @param $tag
-     * @param null $modules
-     * @param null $type
-     * @param int $limit
-     * @param int $offset
-     *
-     * @return array
-     */
-    protected function getList(
-        $tag,
-        $modules = null,
-        $type    = null,
-        $limit   = 0,
-        $offset  = 0
-    ) {
-        $list = array();
-        $where = array(
-            'tag' => $tag,
-        );
-        if ($modules) {
-            $where['module'] = $modules;
-        }
-        if ($type) {
-            $where['type'] = $type;
-        }
-
-        $model  = $this->getModel('link');
-        $select = $model->select()->where($where);
-        $select->order('time desc');
-        if ($limit) {
-            $select->limit($limit);
-        }
-        if ($offset) {
-            $select->offset($offset);
-        }
-
-        $rowset  = $model->selectWith($select)->toArray();
-        $tagIds  = array();
-        foreach ($rowset as $row) {
-            $moduleMeta = Pi::service('module')->loadMeta($row['module']);
-            $variables  = array('title', 'id');
-            $conditions = array(
-                'module' => $row['module'],
-                'id'     => $row['item']
-            );
-            $content = Pi::service('module')->content($variables, $conditions);
-            $content = $this->canonizeContent($content);
-            $list[] = array(
-                'tag'       => $row['tag'],
-                'item'      => $content[$row['item']]['title'],
-                'time'      => $row['time'] ? _date($row['time']) : 0,
-                'item_link' => $content[$row['item']]['link'],
-                'module'    => $moduleMeta['meta']['title']
-            );
-            $tagIds[]  = $row['tag'];
-        }
-        if ($rowset) {
-            // Get tag title
-            $tagTitle  = $this->getTag($tagIds);
-            foreach ($list as &$val) {
-                $list['tag'] = $tagTitle[$val['tag']];
-            }
-        }
-
-        return $list;
-    }
-
-    /**
-     * Get count
-     *
-     * @param string $tag
-     * @param $modules
-     * @param string $type
-     *
-     * @return int
-     */
-    protected function getCount($tag, $modules, $type = '')
-    {
-        $modules = (array) $modules;
-        $where   = array(
-            'tag' => $tag,
-            'module' => $modules
-        );
-        if ($type) {
-            $where['type'] = $type;
-        }
-
-        $count = $this->getModel('link')->count($where);
-
-        return $count;
-    }
-
-    /**
-     * Get tag title
-     *
-     * @param $ids
-     * @return array
-     */
-    protected function getTag($ids)
-    {
-        $result = array();
-        if (!$ids) {
-            return $result;
-        }
-
-        if (!is_array($ids)) {
-            $ids = (array) $ids;
-        }
-
-        $model  = $this->getModel('tag');
-        $where  = array('id' => $ids);
-        $select = $model->select()->where($where);
-        $rowset = $model->selectWith($select);
-        foreach ($rowset as $row) {
-            $result[$row['id']] = $row['term'];
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get tag id
-     *
-     * @param $tag
-     * @return int
-     */
-    protected function getTagId($tag)
-    {
-        $result = 0;
-        $row = $this->getModel('tag')->find($tag, 'term');
-        if ($row && $row->id) {
-            $result = $row->id;
-        }
-
-        return $result;
-    }
-
-    /**
-     * Canonize content
-     *
-     * @param $content
-     * @return array
-     */
-    protected function canonizeContent($content)
-    {
-        $result = array();
-        foreach ($content as $row) {
-            $result[$row['id']] = $row;
-            unset($result[$row['id']]['id']);
-        }
-
-        return $result;
     }
 
     public function importAction()

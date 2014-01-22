@@ -44,4 +44,16 @@ class CacheTtl extends Select
 
         return $this->valueOptions;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel()
+    {
+        if (null === $this->label) {
+            $this->label = __('Cache expiration');
+        }
+
+        return parent::getLabel();
+    }
 }

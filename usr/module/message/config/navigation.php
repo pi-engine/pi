@@ -8,8 +8,11 @@
  */
 
 return array(
+
+    // Hide from front menu
+    'front' => false,
+    /*
     'front'      => array(
-        /*
         'private' => array(
             'label'         => _a('Private message'),
             'route'         => 'default',
@@ -34,6 +37,6 @@ return array(
             'controller'    => 'index',
             'action'        => 'send',
         ),
-    */
     ),
+    */
 );
