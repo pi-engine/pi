@@ -17,4 +17,11 @@ use Module\Article\Controller\Front\DraftController as FrontDraft;
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class DraftController extends FrontDraft {}
+class DraftController extends FrontDraft
+{
+    /**
+     * Section identifier
+     * @var string
+     */
+    protected $section = 'admin';
+}
