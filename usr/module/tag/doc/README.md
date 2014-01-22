@@ -1,7 +1,9 @@
 
 Implement Tag in a module
+=========================
 
-1. In edit form:
+In edit form
+-------------
 
 ```
 $form->add(
@@ -25,13 +27,15 @@ $form->add(
 );
 ```
 
-2. In post receiving page:
+In post receiving page
+-----------------------
 
 ```
 Pi::service('tag')->add(<module>, <item-id>, <type>, <post value from element-name>));
 ```
 
-3. In content display page:
+In content display page
+------------------------
 
 ```
 // Comprehensive mode
