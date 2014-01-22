@@ -9,14 +9,6 @@
   padding-top: 3px;
 }
 
-.gutter {
-  margin: 0 10px;
-}
-
-.gutter-large {
-  margin: 0 20px;
-}
-
 /* Home page */
 .user-underline-list {
   border-bottom: 1px solid #ccc;
@@ -86,11 +78,15 @@
   margin-top: 90px;
 }
 
-.user-dropdown-quicklinks:hover .dropdown-menu {
-  display: block;
+/* Profile */
+.user-legend-edit {
+  display: none !important;
 }
 
-/* Profile */
+.user-profile-item:hover .user-legend-edit {
+  display: block !important;
+}
+
 .user-avatar-media {
   margin-bottom: 20px;
 }

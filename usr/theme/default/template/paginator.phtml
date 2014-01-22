@@ -3,28 +3,26 @@
 <!--
 See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
 -->
-<div class="<?php if (!empty($class)) { echo ' ' . $class; } ?>">
-    <ul class="pagination">
-        <!-- First page link -->
-        <?php if ($this->previous) { ?>
-        <li><a href="<?php echo $this->first->url; ?>">«</a>
-        <?php } ?>
-        <!-- Previous page link -->
-        <?php if ($this->previous) { ?>
-        <li><a href="<?php echo $this->previous->url; ?>">‹</a>
-        <?php } ?>
-        <!-- Numbered page links -->
-        <?php foreach ($this->pagesInRange as $page): ?>
-        <li class="<?php echo ($page->number == $this->current) ? 'active' : ''; ?>">
-                <a href="<?php echo $page->url; ?>"><?php echo $page->number; ?></a>
-        <?php endforeach; ?>
-        <?php if ($this->next) { ?>
-        <!-- Next page link -->
-        <li><a href="<?php echo $this->next->url; ?>">›</a>
-        <?php } ?>
-        <!-- Last page link -->
-        <?php if ($this->next) { ?>
-         <li><a href="<?php echo $this->last->url; ?>">»</a>
-        <?php } ?>
-    </ul>
-</div>
+<ul class="pagination<?php if (!empty($class)) { echo ' ' . $class; } ?>">
+    <!-- First page link -->
+    <?php if ($this->previous) { ?>
+    <li><a href="<?php echo $this->first->url; ?>">«</a>
+    <?php } ?>
+    <!-- Previous page link -->
+    <?php if ($this->previous) { ?>
+    <li><a href="<?php echo $this->previous->url; ?>">‹</a>
+    <?php } ?>
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+    <li class="<?php echo ($page->number == $this->current) ? 'active' : ''; ?>">
+            <a href="<?php echo $page->url; ?>"><?php echo $page->number; ?></a>
+    <?php endforeach; ?>
+    <?php if ($this->next) { ?>
+    <!-- Next page link -->
+    <li><a href="<?php echo $this->next->url; ?>">›</a>
+    <?php } ?>
+    <!-- Last page link -->
+    <?php if ($this->next) { ?>
+     <li><a href="<?php echo $this->last->url; ?>">»</a>
+    <?php } ?>
+</ul>
