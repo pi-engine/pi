@@ -26,6 +26,12 @@ use Module\Article\Rule;
 class ArticleController extends FrontArticle
 {
     /**
+     * Section identifier
+     * @var string
+     */
+    protected $section = 'admin';
+    
+    /**
      * Default page, redirect to published article list page
      */
     public function indexAction()

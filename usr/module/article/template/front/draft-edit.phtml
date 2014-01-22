@@ -4,7 +4,6 @@
         'datepicker/datepicker.css',
         'datepicker/bootstrap-datepicker.js',
         'datepicker/locales/bootstrap-datepicker.zh-CN.js',
-        'js/bootstrap.min.js',
         'js/bootstrap-typeahead.js',
     ));
     $this->css($this->assetModule('script/front.css'));
@@ -745,7 +744,7 @@ var page = {
     },
     submit  : function(arg) {
         var option = {
-            url     : "<?php echo $this->url('default', array('action' => 'save')); ?>",
+            url     : "<?php echo $this->url('', array('action' => 'save')); ?>",
             msg     : true,
             fn      : function(){},
             fail    : function(){}

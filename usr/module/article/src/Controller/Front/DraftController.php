@@ -40,6 +40,12 @@ use Module\Article\Draft;
  */
 class DraftController extends ActionController
 {
+    /**
+     * Section identifier
+     * @var string
+     */
+    protected $section = 'front';
+    
     const TAG_DELIMITER = ',';
     
     const RESULT_FALSE = false;
@@ -726,6 +732,11 @@ class DraftController extends ActionController
      */
     public function saveAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         if (!$this->request->isPost()) {
             return $this->jumpTo404();
         }
@@ -787,6 +798,11 @@ class DraftController extends ActionController
      */
     public function listAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $status = $this->params('status', DraftModel::FIELD_STATUS_DRAFT);
         $from   = $this->params('from', 'my');
         $where  = $this->params('where', '');
@@ -848,6 +864,11 @@ class DraftController extends ActionController
      */
     public function addAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $rules        = Rule::getPermission();
         $denied       = true;
         $listCategory = array();
@@ -906,6 +927,11 @@ class DraftController extends ActionController
      */
     public function editAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $id       = $this->params('id', 0);
         $module   = $this->getModule();
         $options  = Setup::getFormConfig();
@@ -1137,6 +1163,11 @@ class DraftController extends ActionController
      */
     public function deleteAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $id     = $this->params('id', '');
         $ids    = array_filter(explode(',', $id));
         $from   = $this->params('from', '');
@@ -1202,6 +1233,11 @@ class DraftController extends ActionController
      */
     public function publishAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         if (!$this->request->isPost()) {
             return $this->jumpToDenied();
         }
@@ -1241,6 +1277,11 @@ class DraftController extends ActionController
      */
     public function rejectAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $result = array(
             'status'    => self::RESULT_TRUE,
             'message'   => array(),
@@ -1288,6 +1329,11 @@ class DraftController extends ActionController
      */
     public function approveAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $options = Setup::getFormConfig();
         $form    = $this->getDraftForm('save', $options);
         $form->setInputFilter(new DraftEditFilter($options));
@@ -1332,6 +1378,11 @@ class DraftController extends ActionController
      */
     public function batchApproveAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $id     = $this->params('id', '');
         $ids    = array_filter(explode(',', $id));
         $from   = $this->params('from', '');
@@ -1465,6 +1516,11 @@ class DraftController extends ActionController
      */
     public function updateAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $options = Setup::getFormConfig();
         $form    = $this->getDraftForm('save', $options);
         $form->setInputFilter(new DraftEditFilter($options));
