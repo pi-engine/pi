@@ -20,10 +20,8 @@
 
 namespace Module\Tag\Installer\Action;
 
-use Pi;
 use Pi\Application\Installer\Action\Update as BasicUpdate;
-use Module\User\Installer\Schema;
-//use Pi\Application\Installer\SqlSchema;
+use Module\Tag\Installer\Schema;
 use Zend\EventManager\Event;
 
 class Update extends BasicUpdate
