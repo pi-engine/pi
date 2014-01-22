@@ -34,7 +34,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  *  // Render specific actions
  *  $interaction->render(
- *      array('like', 'rating', 'checkin', 'visit', 'plusone', 'twitter')
+ *      array('like', 'rate', 'checkin', 'view', 'plusone', 'twitter')
  *  );
  *
  *  // Render default actions
@@ -43,13 +43,13 @@ use Zend\View\Helper\AbstractHtmlElement;
  *  // Load/Render specific actions for specific object
  *  $this->interaction(
  *      array('module' => <module>, 'id' => <id>, 'type' => <type>),
- *      array('like', 'rating', 'checkin', 'visit', 'plusone', 'twitter')
+ *      array('like', 'rate', 'checkin', 'view', 'plusone', 'twitter')
  *  );
  *
  *  // Load/Render specific actions for current request URI
  *  $this->interaction(
  *      '',
- *      array('like', 'rating')
+ *      array('like', 'rate')
  *  );
  * ```
  *
@@ -91,8 +91,8 @@ class Interaction extends AbstractHtmlElement
      *
      *  - like
      *  - share
-     *  - rating
-     *  - visit
+     *  - rate
+     *  - view
      *  - checkin
      *  - plusone
      *  - twitter

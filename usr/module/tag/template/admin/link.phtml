@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="<?php echo $this->url('', array('action' => 'link')); ?>"
+               class="list-group-item<?php if(!$m) { echo ' active'; } ?>">
+                <?php _e('All'); ?>
+            </a>
+            <?php
+            foreach ($modules as $name => $mTitle) {
+                echo sprintf(
+                    '<a class="list-group-item%s" href="%s">%s</a>',
+                    $name == $m ? ' active' : '',
+                    $this->url('', array('action' => 'link', 'm' => $name)),
+                    $mTitle
+                );
+            }
+            ?>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h3 style="margin-top: 0;">
+            <?php _e('Tagged list'); ?>
+        </h3>
+        <hr>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th><?php _e('Tag'); ?></th>
+                    <th><?php _e('Item'); ?></th>
+                    <th><?php _e('Module'); ?></th>
+                    <th><?php _e('Type'); ?></th>
+                    <th><?php _e('Time'); ?></th>
+                </tr>
+               </thead>
+               <tbody>
+                   <?php foreach ($links as $link) { ?>
+                   <tr>
+                       <td>
+                           <a href="<?php echo $link['url']; ?>">
+                               <?php echo _escape($link['term']); ?>
+                           </a>
+                       </td>
+                       <td>
+                           <a href="<?php echo $link['item']['url']; ?>">
+                               <?php echo _escape($link['item']['title']); ?>
+                           </a>
+                       </td>
+                       <td>
+                           <?php echo _escape($link['module']); ?>
+                       </td>
+                       <td>
+                           <?php echo _escape($link['type']); ?>
+                       </td>
+                       <td>
+                           <?php echo _date($link['item']['time']); ?>
+                       </td>
+                   </tr>
+                   <?php } ?>
+               </tbody>
+            </table>
+        </div>
+        <?php
+        if (isset($paginator)) {
+            echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
+        }
+        ?>
+    </div>
+</div>
