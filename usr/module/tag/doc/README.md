@@ -17,14 +17,6 @@ $form->add(
         ),
     )
 );
-
-// Simple mode, only applicable of variable name for
-$form->add(
-    array(
-        'name'  => <element-name>,
-        'type'  => 'tag',
-    )
-);
 ```
 
 In post receiving page
