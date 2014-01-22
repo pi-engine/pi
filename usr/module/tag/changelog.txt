@@ -1,5 +1,11 @@
 Tag module changelog
 
+January 22nd, 2014
+==================
+Refactored
+
+-- @taiwen
+
 September 11th, 2012
 =============================
 1. Add Update.php 

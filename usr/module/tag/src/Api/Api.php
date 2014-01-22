@@ -298,14 +298,22 @@ class Api extends AbstractApi
      *
      * @return array
      */
-    public function getList($tag, $module = '', $type = '', $limit = 0, $offset = 0)
-    {
-        $where = array('term' => $tag);
+    public function getList(
+        $tag    = '',
+        $module = '',
+        $type   = '',
+        $limit  = 0,
+        $offset = 0
+    ) {
+        $where = array();
         if ($module) {
             $where['module'] = $module;
             if (null !== $type) {
                 $where['type'] = $type;
             }
+        }
+        if ($tag) {
+            $where['term'] = $tag;
         }
         $modelLink = Pi::model('link', $this->module);
         $select = $modelLink->select();
@@ -334,20 +342,25 @@ class Api extends AbstractApi
      *
      * @return int
      */
-    public function getCount($tag, $module = '', $type = '')
+    public function getCount($tag = '', $module = '', $type = '')
     {
          if (is_array($tag)) {
             $where = $tag;
         } elseif (!$module) {
-             $where = array('term' => $tag);
+             $where = array();
+             if ($tag) {
+                 $where['term'] = $tag;
+             }
          } else {
             $where = array(
                 'module'    => $module,
-                'term'      => $tag
             );
             if (null !== $type) {
                 $where['type'] = $type;
             }
+             if ($tag) {
+                 $where['term'] = $tag;
+             }
         }
         $count = Pi::model('link', $this->module)->count($where);
 
