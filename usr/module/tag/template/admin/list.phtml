@@ -10,10 +10,10 @@
             $item['active'] = 1;
         }
         $items[] = $item;
-        foreach ($modules as $name => $data) {
+        foreach ($modules as $name => $mTitle) {
             $item = array(
                 'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'list', 'm' => $name)),
-                'label'   => _escape($data['title']),
+                'label'   => _escape($mTitle),
             );
             if ($name == $m) {
                 $item['active'] = 1;

@@ -200,7 +200,7 @@ class Api extends AbstractApi
         foreach ($tags as $tag) {
             if (!isset($statsExist[$tag])) {
                 $row = $modelStats->createRow(array(
-                    'term'      => $tags,
+                    'term'      => $tag,
                     'module'    => $module,
                     'type'      => $type,
                     'count'     => 0,

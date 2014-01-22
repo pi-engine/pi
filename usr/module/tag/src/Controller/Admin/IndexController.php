@@ -80,10 +80,11 @@ class IndexController extends ActionController
         $page = $this->params('page', 1);
         $module = $this->params('m');
 
-        $modules = Pi::registry('modulelist')->read();
+        $modules = $this->getModules();
         $limit = (int) $this->config('item_per_page');
         $offset = (int) ($page - 1) * $limit;
         $tags = Pi::service('tag')->top($limit, $module, null, $offset);
+        d($tags);
         array_walk($tags, function (&$tag) use ($module) {
             $tag['url'] = Pi::service('tag')->url($tag['term'], $module ?: '');
         });
@@ -91,12 +92,17 @@ class IndexController extends ActionController
             $modelStats = $this->getModel('stats');
             $select = $modelStats->select()
                 ->where(array('module' => $module))
-                ->columns(array('count' => new Expression('count(distinct term)')));
-            $count = $modelStats->selectWith($select)->current()->count;
+                ->columns(array(
+                    'count' => new Expression('COUNT(DISTINCT `term`)')
+                ))
+                ->group('term');
+            $row = $modelStats->selectWith($select)->current();
+            $count = (int) $row['count'];
         } else {
             $count = $this->getModel('tag')->count();
         }
 
+        //d($tags);
         $paginator = Paginator::factory($count, array(
             'limit' => $limit,
             'page'  => $page,
@@ -351,82 +357,6 @@ class IndexController extends ActionController
     }
 
     /**
-     * Search tag.
-     */
-    public function searchAction()
-    {
-        $module = $this->params('m', null);
-        if ('' == $module) {
-            $module = null;
-        }
-        $modelTag = $this->getModel('tag');
-        $tagName = $this->params('name', null);
-
-        // Get data from form
-        if (! isset($tagName)) {
-            if (!$this->request->isPost()) {
-                return $this->redirect()->toRoute('', array('action' => 'list', 'm' => $module));
-            }
-            $post = $this->request->getPost();
-            $form = $this->getForm($module);
-            $form->setData($post);
-            $form->setInputFilter(new SearchFilter);
-            if (!$form->isValid()) {
-                return $this->redirect()->toRoute('', array('action' => 'list', 'm' => $module));
-            }
-            $term = $form->getData();
-            $tagName =  $term['tagname'];
-        }
-
-        // Get search result
-        $page = (int) $this->params('page', 1);
-        $limit = (int) $this->config('item_per_page');
-        $offset = (int) ($page - 1) * ((int) $this->config('item_per_page'));
-        $select = $modelTag->select();
-        $select->where->like('term', "%{$tagName}%");
-        $select->order(array('count DESC'));
-        $select->offset($offset)->limit($limit);
-        $rowset = $modelTag->selectWith($select);
-        $items = $rowset->toArray();
-
-        if (count($items) == 0) {
-            $this->view()->assign('find', 'n');
-        } else {
-            $this->view()->assign('find', 'y');
-        }
-
-        // Set paginator parameters
-        $select = $modelTag->select();
-        $select->where->like('term', "%{$tagName}%");
-        $select->columns(array('count' => new Expression('count(*)')));
-        $count = $modelTag->selectWith($select)->current()->count;
-        $paginator = \Pi\Paginator\Paginator::factory(intval($count));
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()->getMatchedRouteName(),
-            'params'        => array(
-                'module'       => $this->getModule(),
-                'controller'   => 'index',
-                'action'       => 'search',
-                'm'            => $module,
-                'name'         => $tagName,
-            ),
-        ));
-
-        $this->view()->assign(array(
-            'paginator'        => $paginator,
-            'tagName'          => $tagName,
-            'items'            => $items,
-        ));
-
-        $this->view()->setTemplate('search');
-    }
-
-    /**
      * Delete invalid link.
      */
     public function linkDeleteAction()
@@ -533,22 +463,19 @@ class IndexController extends ActionController
      *
      * @return array
      */
-    protected function getModules($module = '')
+    protected function getModules()
     {
-        $activeModules = Pi::registry('modulelist')->read('active');
-        if (isset($activeModules[$module])) {
-            $modules[$module] = $activeModules[$module]['title'];
-            return $modules;
-        }
+        $list = Pi::registry('modulelist')->read();
+
         $modules    = array();
         $modelStats = $this->getModel('stats');
-        $select     = $modelStats->select()->columns(
-            array('module' => new Expression('distinct module')
-            ));
+        $select     = $modelStats->select()->columns(array(
+            'module' => new Expression('distinct module')
+        ));
         $rowset = $modelStats->selectWith($select);
         foreach ($rowset as $row) {
-            if (in_array($row->module, array_keys($activeModules))) {
-                $modules[$row->module] = $activeModules[$row->module]['title'];
+            if (isset($list[$row['module']])) {
+                $modules[$row['module']] = $list[$row['module']]['title'];
             }
         }
 
