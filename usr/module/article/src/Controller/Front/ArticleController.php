@@ -37,11 +37,20 @@ use Module\Article\Media;
 class ArticleController extends ActionController
 {
     /**
+     * Section identifier
+     * @var string
+     */
+    protected $section = 'front';
+    
+    /**
      * Article homepage, all page content are dressed up by user 
      */
     public function indexAction()
     {
-        
+        if ($this->config('default_homepage')) {
+            return $this->redirect()
+                        ->toUrl(Pi::url($this->config('default_homepage')));
+        }
     }
     
     /**
@@ -147,6 +156,11 @@ class ArticleController extends ActionController
      */
     public function editAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $id     = $this->params('id', 0);
         $module = $this->getModule();
 
@@ -255,6 +269,11 @@ class ArticleController extends ActionController
      */
     public function publishedAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $where  = array();
         $page   = $this->params('p', 1);
         $limit  = $this->params('limit', 20);
@@ -377,6 +396,11 @@ class ArticleController extends ActionController
      */
     public function deleteAction()
     {
+        // Denied user viewing if no front-end management permission assigned
+        if (!$this->config('enable_front_edit') && 'front' == $this->section) {
+            return $this->jumpTo404();
+        }
+        
         $id     = $this->params('id', '');
         $ids    = array_filter(explode(',', $id));
         $from   = $this->params('from', '');
