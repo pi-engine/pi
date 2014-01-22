@@ -46,11 +46,36 @@ class Api extends AbstractApi
     public function canonize($tags)
     {
         if (is_string($tags)) {
-            $tags = preg_split('#[\|\s\,]+#', $tags, 0, PREG_SPLIT_NO_EMPTY);
+            //$tags = preg_split('#[\|\s\,\n]+#', $tags, 0, PREG_SPLIT_NO_EMPTY);
+
+            // Pre-fetch terms quoted by `"` or `'`
+            $pattern = '`(?:(?:"(?:\\"|[^"])+")|(?:\'(?:\\\'|[^\'])+\'))`is';
+            $terms = array();
+            $callback = function ($match) use (&$terms) {
+                $terms[] = substr($match[0], 1, -1);
+                return ' ';
+            };
+            $string = preg_replace_callback($pattern, $callback, $tags);
+
+            // Split string into terms by delimiters: whitespace, comma, line break
+            $tags = preg_split('#[\s\,\n\r]+#', $string, 0, PREG_SPLIT_NO_EMPTY);
+
+            // Collect
+            $tags = array_merge($tags, $terms);
         }
+        // Cleaning
         $tags = array_unique(array_filter(array_map('trim', $tags)));
 
-        return $tags;
+        // Discard short terms
+        $length = Pi::service('module')->config('min_length') ?: 2;
+        $terms = array();
+        array_walk($tags, function ($term) use (&$terms, $length) {
+            if (strlen($term) >= $length) {
+                $terms[] = $term;
+            }
+        });
+
+        return $terms;
     }
 
     /**
