@@ -14,6 +14,7 @@
  */
 return array(
     'item'  => array(
+        'front'   => false,
         
         // Default admin navigation
         'admin'   => array(
