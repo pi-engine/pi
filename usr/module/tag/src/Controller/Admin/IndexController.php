@@ -85,7 +85,7 @@ class IndexController extends ActionController
         $offset = (int) ($page - 1) * $limit;
         $tags = Pi::service('tag')->top($limit, $module, null, $offset);
         array_walk($tags, function (&$tag) use ($module) {
-            $tag['url'] = Pi::service('tag')->url($tag['term'], $module);
+            $tag['url'] = Pi::service('tag')->url($tag['term'], $module ?: '');
         });
         if ($module) {
             $modelStats = $this->getModel('stats');
