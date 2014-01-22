@@ -9,6 +9,8 @@
 
 namespace Pi\Application;
 
+use Pi;
+
 /**
  * Abstract class for content API
  *
@@ -110,8 +112,12 @@ abstract class AbstractContent extends AbstractApi
                 $result[$meta[$var]] = $value;
             }
         }
-        if (isset($result['url'])) {
-            $result['link'] = $result['url'];
+        if (isset($data['url'])) {
+            $result['url']  = $data['url'];
+            $result['link'] = $data['url'];
+        } elseif (isset($data['link'])) {
+            $result['url']  = $data['link'];
+            $result['link'] = $data['link'];
         }
 
         return $result;

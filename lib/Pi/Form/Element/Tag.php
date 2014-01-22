@@ -10,6 +10,8 @@
 
 namespace Pi\Form\Element;
 
+use Pi;
+
 /**
  * Tag input element
  *
@@ -26,13 +28,10 @@ namespace Pi\Form\Element;
  *      'name'      => <element-name>,
  *      'options'   => array(
  *          'label' => __('Tags'),
+ *          'item'      => <item-id>,
  *      ),
  *  );
- * ```
  *
- * Create tag edit element
- *
- * ```
  *  $form->add(
  *      'type'      => 'tag',
  *      'name'      => <element-name>,
@@ -64,10 +63,16 @@ class Tag extends Textarea
     public function getValue()
     {
         if (null === $this->value) {
-            $module = $this->getOption('module');
-            $type = $this->getOption('type');
+            $module = $this->getOption('module')
+                ?: Pi::service('module')->current();
+            $type = $this->getOption('type') ?: '';
             $item = $this->getOption('item');
-            if ($module && $item) {
+            if (!$item) {
+                $data = Pi::service('url')->getRequestUri();
+                $routeMatch = Pi::service('url')->match($data);
+                $item = $routeMatch->getParam('id');
+            }
+            if ($item) {
                 $tags = Pi::service('tag')->get($module, $item, $type);
                 $this->value = implode(' ', $tags);
             }

@@ -9,10 +9,9 @@
 
 namespace Module\Demo\Controller\Front;
 
-use Pi;
+//use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Predicate\Expression;
+use Pi\Form\Form as BaseForm;
 
 class PageController extends ActionController
 {
@@ -27,7 +26,17 @@ class PageController extends ActionController
         $page = $row->toArray();
         $page['module'] = $this->getModule();
 
+        $form = new BaseForm;
+        $form->add(
+            array(
+                'name'  => 'tag',
+                'type'  => 'tag',
+            )
+        );
+        $this->view()->assign('form', $form);
         $this->view()->assign('page', $page);
         $this->view()->setTemplate('page-content');
+
+
     }
 }

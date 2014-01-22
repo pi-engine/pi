@@ -69,7 +69,6 @@ class IndexController extends ActionController
                 //$key = $item['module'] . '-' . $item['type'];
                 $batches[$item['module']][$item['type']][] = $item['item'];
             }
-            d($batches);
             $vars = array('id', 'title', 'link', 'time');
             foreach ($batches as $m => $mData) {
                 foreach ($mData as $t => $tData) {
@@ -83,7 +82,6 @@ class IndexController extends ActionController
                     );
                 }
             }
-            d($content);
 
             $list = array();
             array_walk($items, function ($item) use ($modules, $content, &$list) {

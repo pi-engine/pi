@@ -27,6 +27,11 @@ class Content extends AbstractContent
     /**
      * {@inheritDoc}
      */
+    protected $table = 'page';
+
+    /**
+     * {@inheritDoc}
+     */
     protected $meta = array(
         'id'            => 'id',
         'title'         => 'title',
