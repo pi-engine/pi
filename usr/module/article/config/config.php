@@ -172,6 +172,14 @@ return array(
             'value'       => '',
             'filter'      => 'string',
         ),
+        'enable_front_edit' => array(
+            'category'    => 'general',
+            'title'       => _t('Enable Front-end Management'),
+            'description' => _t('Whether to allow user compose and manage list in front-end'),
+            'edit'        => 'checkbox',
+            'value'       => 1,
+            'filter'      => 'number_int',
+        ),
 
         // Autosave
         'autosave_interval' => array(
