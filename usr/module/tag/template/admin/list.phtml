@@ -6,16 +6,16 @@
             'href'  => $this->url('admin', array('controller' => 'index', 'action' => 'list')),
             'label' => _a('All'),
         );
-        if (null == $curModule) {
+        if (!$m) {
             $item['active'] = 1;
         }
         $items[] = $item;
-        foreach ($moduleArray as $row) {
+        foreach ($modules as $name => $data) {
             $item = array(
-                'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'list', 'm' => $row)),
-                'label'   => $this->escape(ucfirst($row)),
+                'href'    => $this->url('admin', array('controller' => 'index', 'action' => 'list', 'm' => $name)),
+                'label'   => _escape($data['title']),
             );
-            if ($curModule === $row) {
+            if ($name == $m) {
                 $item['active'] = 1;
             }
             $items[] = $item;
@@ -26,47 +26,25 @@
         ?>
     </div>
     <div class="col-md-9">
-        <div>
-            <?php
-            echo $this->form()->openTag($form);
-            ?>
-
-            <?php
-            $element = $form->get('tagname');
-            $element->setAttributes(array(
-                'class'         => 'input',
-                'placeholder'   => $element->getOption('label'),
-            ));
-            echo $this->formElement($element);
-            echo ' ';
-
-            $element = $form->get('submit');
-            $element->setAttributes(array(
-                'class'         => 'btn btn-primary',
-            ));
-            echo $this->formElement($element);
-            ?>
-            <?php echo $this->form()->closeTag(); ?>
-        </div>
         <table class="table table-hover table-bordered">
             <tr class="box-bordered-header">
-                <th><?php echo _a('Tag Name'); ?></th>
+                <th><?php echo _a('Check in admin'); ?></th>
+                <th><?php echo _a('Check in front'); ?></th>
                 <th class="span2"><?php echo _a('Count'); ?></th>
-                <th class="span1"><?php echo _a('Operator') ?></th>
+                <th class="span1"><?php echo _a('Action') ?></th>
             </tr>
-            <?php foreach ($datas as $tag) {
-            $url = $this->url('admin', array('controller' => 'index', 'action' => 'detail', 'id' => $tag['id']));
-            $tagName = sprintf('<a href="%s">%s</a>', $url, $this->escape($tag['term']));
-            if ($curModule == null) {
-                $deleteUrl = $this->url('admin', array('controller' => 'index', 'action' => 'delete', 'id' => $tag['id'], 'm' => $curModule));
-            } else {
-                $deleteUrl = $this->url('admin', array('controller' => 'index', 'action' => 'moduledelete', 'id' => $tag['id'], 'm' => $curModule));
-            }
+            <?php foreach ($tags as $tag) {
+                $url = $this->url('admin', array('controller' => 'tag', 'action' => 'detail', 'tag' => $tag['term']));
+                $tagAdmin = sprintf('<a href="%s">%s</a>', $url, _escape($tag['term']));
+                $tagFront = sprintf('<a href="%s">%s</a>', $tag['url'], _escape($tag['term']));
+                $deleteUrl = $this->url('admin', array('controller' => 'index', 'action' => 'delete', 'term' => $tag['term']));
+                $tagDelete = sprintf('<a href="%s">%s</a>', $deleteUrl, _a('Delete'));
             ?>
             <tr>
-                <td><?php echo $tagName; ?></td>
-                <td><?php echo $this->escape($tag['count']); ?></td>
-                <td><?php echo sprintf('<a href="%s">%s</a>', $deleteUrl, _a('Delete')); ?></td>
+                <td><?php echo $tagAdmin; ?></td>
+                <td><?php echo $tagFront; ?></td>
+                <td><?php echo $tag['count']; ?></td>
+                <td><?php echo $tagDelete; ?></td>
             </tr>
             <?php } ?>
         </table>
