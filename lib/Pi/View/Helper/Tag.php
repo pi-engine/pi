@@ -72,6 +72,9 @@ class Tag extends AbstractHtmlElement
         }
 
         $tags = Pi::service('tag')->get($module, $item, $type, true);
+
+        if (empty($tags)) return '';
+        
         if ($attribs && is_string($attribs)) {
             $html = $this->getView()->render($attribs, array('tags' => $tags));
         } else {
