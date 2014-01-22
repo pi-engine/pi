@@ -28,18 +28,16 @@ return array(
     ),
     // Author information
     'author'    => array(
-        // Author full name, required
-        'Dev'      => 'Chuang Liu; Taiwen Jiang; Liao Wei',
-        // Email address, optional
-        'Email'     => 'liuchuang@eefocus.com',
+        'Dev'       => 'Taiwen Jiang; Liu Chuang; Liao Wei',
+        'UI/UE'     => '@zhangsimon, @loidco',
+        'QA'        => '@lavenderli',
+        'Email'     => 'taiwenjiang@tsinghua.org.cn',
     ),
     // resource
     'resource' => array(
         // Database meta
         'database'  => array(
-            // SQL schema/data file
             'sqlfile'   => 'sql/mysql.sql',
-            // Tables to be removed during uninstall, optional - the table list will be generated automatically upon installation
             'schema'    => array(
                 'tag'          => 'table',
                 'link'         => 'table',

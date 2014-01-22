@@ -36,3 +36,6 @@ In content display page
 // Simple mode, only applicable of variable name for item is `id`
 <?php echo $this->tag(); ?>
 ```
+
+
+-- @taiwen
