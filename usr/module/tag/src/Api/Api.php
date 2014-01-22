@@ -437,6 +437,9 @@ class Api extends AbstractApi
             ->where($where)
             ->limit($limit)
             ->order('count DESC');
+        if ($module) {
+            $select->group('term');
+        }
         if ($offset) {
             $select->offset($offset);
         }

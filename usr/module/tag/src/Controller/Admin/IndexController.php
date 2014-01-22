@@ -84,7 +84,6 @@ class IndexController extends ActionController
         $limit = (int) $this->config('item_per_page');
         $offset = (int) ($page - 1) * $limit;
         $tags = Pi::service('tag')->top($limit, $module, null, $offset);
-        d($tags);
         array_walk($tags, function (&$tag) use ($module) {
             $tag['url'] = Pi::service('tag')->url($tag['term'], $module ?: '');
         });
@@ -94,15 +93,13 @@ class IndexController extends ActionController
                 ->where(array('module' => $module))
                 ->columns(array(
                     'count' => new Expression('COUNT(DISTINCT `term`)')
-                ))
-                ->group('term');
+                ));
             $row = $modelStats->selectWith($select)->current();
             $count = (int) $row['count'];
         } else {
             $count = $this->getModel('tag')->count();
         }
 
-        //d($tags);
         $paginator = Paginator::factory($count, array(
             'limit' => $limit,
             'page'  => $page,
