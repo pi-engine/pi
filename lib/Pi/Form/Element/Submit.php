@@ -28,4 +28,16 @@ class Submit extends Element
         'type'  => 'submit',
         'class' => 'btn btn-default',
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getValue()
+    {
+        if (null === $this->value) {
+            $this->value = __('Submit');
+        }
+
+        return parent::getValue();
+    }
 }

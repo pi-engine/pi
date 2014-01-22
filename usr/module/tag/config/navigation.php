@@ -22,19 +22,19 @@ return array(
     // Admin menu.
     'front'     => false,
     'admin'     => array(
-        'pagea'    => array(
+        'tags'    => array(
             'label'         => _t('Tags'),
             'route'         => 'admin',
             'controller'    => 'index',
             'action'        => 'list',
         ),
-        'pagec'    => array(
-            'label'         => _t('Relationships'),
+        'items'    => array(
+            'label'         => _t('Tagged items'),
             'route'         => 'admin',
             'controller'    => 'index',
             'action'        => 'linklist',
         ),
-        'pagef'    => array(
+        'stats'    => array(
             'label'         => _t('Statistics'),
             'route'         => 'admin',
             'controller'    => 'index',

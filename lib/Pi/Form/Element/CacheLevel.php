@@ -39,4 +39,16 @@ class CacheLevel extends Select
 
         return $this->valueOptions;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel()
+    {
+        if (null === $this->label) {
+            $this->label = __('Cache level');
+        }
+
+        return parent::getLabel();
+    }
 }

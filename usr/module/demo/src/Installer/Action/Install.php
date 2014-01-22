@@ -45,11 +45,13 @@ class Install extends BasicInstall
         $model->insert($data);
 
         $model = Pi::model($this->module . '/page');
-        $flag = 0;
-        for ($page = 1; $page <= 100; $page++) {
+        for ($page = 1; $page <= 1000; $page++) {
             $model->insert(array(
-                'title' => sprintf('Page #%d', $page),
-                'flag'  => $flag++ % 2,
+                'uid'           => rand(1, 5),
+                'time_created'  => time() - rand(100, 10000000),
+                'title'         => sprintf('Page #%d', $page),
+                'content'       => sprintf('Demo content of page #%d', $page),
+                'flag'          => rand(0, 1),
             ));
         }
 

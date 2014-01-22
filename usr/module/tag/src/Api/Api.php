@@ -19,146 +19,433 @@
 
 namespace Module\Tag\Api;
 
+use Pi;
 use Pi\Application\AbstractApi;
 use Zend\Db\Sql\Expression;
-use Pi;
 
+/**
+ * Tag API
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Liu Chuang <liuchuangww@gmail.com>
+ */
 class Api extends AbstractApi
 {
-    //protected static $moduleName = 'tag';
+    /**
+     * @{inheritDoc}
+     */
+    protected $module = 'tag';
 
     /**
-     * Search relate article according to tag array.
+     * Fetch tags from text
      *
-     * @param  array  $tags   Tag array
-     * @param  string $module Module name
-     * @param  string $type   Item type
-     * @param  int    $limit  Return item id counts
-     * @param  null|string    $item
+     * @param string|string[] $tags
      *
-     * @return array  $result     Item id array
+     * @return string[]
      */
-    public function relate($tags, $module, $type, $limit = null, $item = null)
+    public function canonize($tags)
     {
-        $offset = 0;
-        $tags = is_scalar($tags) ? array($tags) : $tags;
-        $tags = array_unique($tags);
+        if (is_string($tags)) {
+            $tags = preg_split('#[\|\s\,]+#', $tags, 0, PREG_SPLIT_NO_EMPTY);
+        }
+        $tags = array_unique(array_filter(array_map('trim', $tags)));
 
-        $modelTag = Pi::model('tag', $this->module);
-        $modelLink = Pi::model('link', $this->module);
+        return $tags;
+    }
 
-        // Switch tagName to tagId
-        $select = $modelTag->select()->where(array('term' => $tags));
-        $rowset = $modelTag->selectWith($select)->toArray();
+    /**
+     * Get url to a tag
+     *
+     * @param string $tag
+     * @param string $module
+     * @param string $type
+     *
+     * @return string
+     */
+    public function url($tag, $module = null, $type = '')
+    {
+        if (null === $module) {
+            $module = Pi::service('module')->current();
+        }
+        $params = array(
+            'module'        => $this->module,
+            'controller'    => 'index',
+            'action'        => 'list',
+            'tag'           => $tag
+        );
+        if ($module) {
+            $params['m'] = $module;
+            if ($type) {
+                $params['type'] = $type;
+            }
+        }
+        $url = Pi::service('url')->assemble('default', $params);
+
+        return $url;
+    }
+
+    /**
+     * Render a tag
+     *
+     * @param string $tag
+     * @param string $module
+     * @param string $type
+     *
+     * @return string
+     */
+    public function render($tag, $module = null, $type = '')
+    {
+        $url    = $this->url($tag, $module, $type);
+        $html   = '<a href="' . $url . '" title="' . _escape($tag)
+                . '" target="_blank">' . _escape($tag) . '</a>';
+
+        return $html;
+    }
+
+    /**
+     * Get tags of an item or multi-items
+     *
+     * @param string     $module Module name
+     * @param string|array     $item   Item identifier
+     * @param string     $type   Item type, default as ''
+     * @param bool
+     *
+     * @return string[]
+     */
+    public function get($module, $item, $type = '', $render = false)
+    {
+        $result = array();
+
+        $items  = (array) $item;
+        $rowset = Pi::model('link', $this->module)->select(array(
+            'module'    => $module,
+            'type'      => $type,
+            'item'      => $items,
+        ));
         foreach ($rowset as $row) {
-            $tagIds[] = $row['id'];
+            $result[$row['item']][] = $render
+                ? $this->render($row['term'], $module, $type)
+                : $row['term'];
         }
-        if (null !== $item) {
-            $item = (int) $item;
-            $where = array('tag' => $tagIds, 'item != ?' => $item);
-        } else {
-            $where = array('tag' => $tagIds);
+        if (is_scalar($item)) {
+            if (isset($result[$item])) {
+                $result = $result[$item];
+            } else {
+                $result = array();
+            }
         }
-        $select = $modelLink->select();
-        $select->where($where)
-            ->columns(array('item' => new Expression('distinct item')))
-            ->order('time DESC');
-        if (null !== $limit) {
-            $limit = intval($limit);
-            $select->offset($offset)->limit($limit);
-        }
-        $rowset = $modelLink->selectWith($select)->toArray();
-
-        // Change $rowset to Digital index array
-        $result = array_map(function($val) {
-            return isset($val['item']) ? $val['item'] : null;
-        }, $rowset);
 
         return $result;
     }
 
     /**
-     * Fetch top tag and count
+     * Add tags of an item
+     *
+     * @param string       $module Module name
+     * @param string       $item   Item identifier
+     * @param string       $type   Item type, default as ''
+     * @param array|string $tags   Tags to add
+     * @param int          $time   Time adding the tags
+     *
+     * @return bool
+     */
+    public function add($module, $item, $type, $tags, $time = 0)
+    {
+        $time = $time ?: time();
+        $tags = $this->canonize($tags);
+        if (!$tags) {
+            return true;
+        }
+
+        $modelTag   = Pi::model('tag', $this->module);
+        $modelLink  = Pi::model('link', $this->module);
+        $modelStats = Pi::model('stats', $this->module);
+
+        $rowset = $modelTag->select(array('term' => $tags));
+        $tagsExist = array();
+        foreach ($rowset as $row) {
+            $tagsExist[$row->term] = $row->toArray();
+        }
+
+        foreach ($tags as $index => $tag) {
+            if (!isset($tagsExist[$tag])) {
+                $row = $modelTag->createRow(array(
+                    'term'  => $tag,
+                    'count' => 0,
+                ));
+                $row->save();
+            }
+
+            // Insert data to link table
+            $row = $modelLink->createRow(array(
+                'term'      => $tag,
+                'module'    => $module,
+                'type'      => $type,
+                'item'      => $item,
+                'time'      => $time,
+                'order'     => $index
+            ));
+            $row->save();
+        }
+
+        $rowset = $modelStats->select(array(
+            'term'      => $tags,
+            'module'    => $module,
+            'type'      => $type,
+        ));
+        $statsExist = array();
+        foreach ($rowset as $row) {
+            $statsExist[$row->term] = $row->toArray();
+        }
+        foreach ($tags as $tag) {
+            if (!isset($statsExist[$tag])) {
+                $row = $modelStats->createRow(array(
+                    'term'      => $tags,
+                    'module'    => $module,
+                    'type'      => $type,
+                    'count'     => 0,
+                ));
+                $row->save();
+            }
+        }
+
+        $modelTag->increment('count', array('term' => $tags));
+        $modelStats->increment('count', array('term' => $tags));
+
+        return true;
+    }
+
+    /**
+     * Update tag list of an item
+     *
+     * @param string       $module Module name
+     * @param string       $item   Item identifier
+     * @param string       $type   Item type, default as ''
+     * @param array|string $tags   Tags to add
+     * @param int          $time   Time adding new tags
+     *
+     * @return bool
+     */
+    public function update($module, $item, $type, $tags, $time = 0)
+    {
+        $tags       = $this->canonize($tags);
+        $tagsExist  = $this->get($module, $item, $type);
+        $tagsNew    = array_diff($tags, $tagsExist);
+        if ($tagsNew) {
+            $this->add($module, $item, $type, $tagsNew, $time);
+        }
+        $tagsDelete = array_diff($tagsExist, $tags);
+        if ($tagsDelete) {
+            $where = array(
+                'item'      => $item,
+                'term'      => $tagsDelete,
+                'module'    => $module,
+                'type'      => $type,
+            );
+            Pi::model('link', $this->module)->delete($where);
+            $where = array(
+                'term'      => $tagsDelete,
+                'module'    => $module,
+                'type'      => $type,
+            );
+            Pi::model('stats', $this->module)->increment('count', $where, -1);
+        }
+
+        return true;
+    }
+
+    /**
+     * Delete tags of an item
      *
      * @param string $module Module name
-     * @param string   $type   Item type
-     * @param int   $limit  Return tag count
+     * @param string $item   Item identifier
+     * @param string $type   Item type, default as ''
+     *
+     * @return bool
+     */
+    public function delete($module, $item, $type = '')
+    {
+        $tags = $this->get($module, $item, $type);
+        if (!$tags) {
+            return true;
+        }
+
+        Pi::model('tag', $this->module)->increment('count', array(
+            'term'  => $tags
+        ), -1);
+        Pi::model('stats', $this->module)->increment('count', array(
+            'module'    => $module,
+            'type'      => $type,
+            'term'      => $tags
+        ), -1);
+        Pi::model('link', $this->module)->delete(array(
+            'module'    => $module,
+            'type'      => $type,
+            'item'      => $item,
+        ));
+
+        return true;
+    }
+
+    /**
+     * Get list of items having a tag
+     *
+     * @param string $tag    Tag
+     * @param string $module Module name
+     * @param string|null  $type   Item type, null for all types
+     * @param int          $limit  Limit
+     * @param int          $offset Offset
      *
      * @return array
      */
-    public function top($module, $type, $limit = null)
+    public function getList($tag, $module = '', $type = '', $limit = 0, $offset = 0)
     {
-        $offset = 0;
-        $modelTag = Pi::model('tag', $this->module);
-        $modelStats = Pi::model('stats', $this->module);
-        $where = array('module' => $module);
-        if (!empty($type)) {
-            $where['type'] = $type;
+        $where = array('term' => $tag);
+        if ($module) {
+            $where['module'] = $module;
+            if (null !== $type) {
+                $where['type'] = $type;
+            }
         }
-        $select = $modelStats->select()->where($where)->order('count DESC');
+        $modelLink = Pi::model('link', $this->module);
+        $select = $modelLink->select();
+        $select->where($where)->order('time DESC');
         if ($limit) {
-            $limit = intval($limit);
-            $select->offset($offset)->limit($limit);
+            $select->limit($limit);
         }
-        $rowset = $modelStats->selectWith($select)->toArray();
-        foreach ($rowset as $row) {
-            $tagIds[] = $row['tag'];
+        if ($offset) {
+            $select->offset($offset);
         }
-        $select = $modelTag->select()->where(array('id' => $tagIds))->order('count DESC');
-        $result = $modelTag->selectWith($select)->toArray();
+        $rowset = $modelLink->selectWith($select);
+        $result = array();
+        foreach($rowset as $row) {
+            $result[] = $row->toArray();
+        }
 
         return $result;
     }
 
     /**
-     * Fetch multiple item related tags
+     * Get count of items of having a tag
      *
-     * @param  string $module  module name not null
-     * @param  array  $items   items array
-     * @param  string $type    items type  default null
+     * @param string|array $tag    Tag or conditions
+     * @param string  $module Module name
+     * @param string $type   Item type
      *
-     * @return array  result   items relate tags
+     * @return int
      */
-    public function multiple($module, $items, $type = null)
+    public function getCount($tag, $module = '', $type = '')
     {
-        $items      = is_scalar($items) ? (array) $items : $items;
-        $result     = array();
-
-        $modeTag    = Pi::model('tag', $this->module);
-        $modeLink   = Pi::model('link', $this->module);
-
-        $where      = array('item' => $items, 'module' => $module);
-        if ($type) {
-            $where['type'] = $type;
-        }
-
-        // Get item related tag ids
-        $select = $modeLink->select()
-            ->where($where)
-            ->order('order ASC')
-            ->columns(array('tag', 'item'));
-        $rows = $modeLink->selectWith($select)->toArray();
-        $tagIds = array();
-        foreach ($rows as $row) {
-            $result[$row['item']][$row['tag']] = '';
-            $tagIds[] = $row['tag'];
-        }
-        if (empty($tagIds)) {
-            return array();
-        }
-        $tagIds = array_unique($tagIds);
-        $select = $modeTag->select()
-            ->where(array('id' => $tagIds))
-            ->columns(array('id', 'term'));
-        $rowset = $modeTag->selectWith($select)->toArray();
-        foreach ($rowset as $row) {
-            $terms[$row['id']] = $row['term'];
-        }
-
-        foreach($result as $index => $row) {
-            foreach ($row as $key => $value) {
-                $result[$index][$key] = $terms[$key];
+         if (is_array($tag)) {
+            $where = $tag;
+        } elseif (!$module) {
+             $where = array('term' => $tag);
+         } else {
+            $where = array(
+                'module'    => $module,
+                'term'      => $tag
+            );
+            if (null !== $type) {
+                $where['type'] = $type;
             }
+        }
+        $count = Pi::model('link', $this->module)->count($where);
+
+        return $count;
+    }
+
+    /**
+     * Get matched host tags for quick match, for typeahead purpose
+     *
+     * @param string     $term   Term
+     * @param int        $limit  Limit
+     * @param string     $module Module name
+     * @param string     $type   Item type
+     * @param string|array $order
+     *
+     * @return array
+     */
+    public function match($term, $limit = 5, $module = '', $type = '', $order = '')
+    {
+        $result = array();
+
+        $columns = array('term', 'count');
+        if (!$module) {
+            $model = Pi::model('tag', $this->module);
+            $where = array();
+        } else {
+            $model = Pi::model('stats', $this->module);
+            $where = array('module' => $module);
+            if (null !== $type) {
+                $where['type'] = $type;
+            } else {
+                $columns = array(
+                    'term',
+                    'count' => new Expression('SUM(count)')
+                );
+            }
+        }
+
+        if (!$order) {
+            $order = array('count DESC', 'term ASC');
+        }
+        $where = Pi::db()->where($where)->like('term', "{$term}%");
+        $select = $model->select()
+            ->columns($columns)
+            ->where($where)
+            ->limit($limit)
+            ->order($order);
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = $row['term'];
+        }
+
+        return $result;
+    }
+
+    /**
+     * Fetch top tags and item count
+     *
+     * @param string $module Module name
+     * @param string|null   $type   Item type
+     * @param int   $limit  Return tag count
+     * @param int   $offset
+     *
+     * @return array
+     */
+    public function top($limit = 10, $module = '', $type = '', $offset)
+    {
+        $result = array();
+        $where = array();
+        $columns = array('term', 'count');
+        if (!$module) {
+            $model = Pi::model('tag', $this->module);
+        } else {
+            $model = Pi::model('stats', $this->module);
+            $where = array('module' => $module);
+            if (null !== $type) {
+                $where['type'] = $type;
+            } else {
+                $columns = array(
+                    'term',
+                    'count' => new Expression('SUM(count)')
+                );
+            }
+        }
+        $select = $model->select()
+            ->columns($columns)
+            ->where($where)
+            ->limit($limit)
+            ->order('count DESC');
+        if ($offset) {
+            $select->offset($offset);
+        }
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[] = array(
+                'term'  => $row['term'],
+                'count' => $row['count'],
+            );
         }
 
         return $result;

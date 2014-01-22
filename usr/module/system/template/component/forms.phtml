@@ -50,7 +50,7 @@ $renderElement = function ($element) use ($_this)
     $rendered = sprintf(
         '<div class="form-group%s"><label class="col-md-2 control-label">%s</label>',
         $element->getMessages() ? ' has-error' : '',
-        $isCheckbox ?  '' : $element->getOption('label')
+        $isCheckbox ?  '' : $element->getLabel()
     );
 
     $rendered .= sprintf(

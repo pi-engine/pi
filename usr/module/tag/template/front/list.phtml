@@ -1,13 +1,17 @@
 <div class="page-header" style="margin: 0 0 20px;">
-    <?php if(!empty($cur_module)) { ?>
-    <a href="<?php echo $this->url('', array('action' => 'list', 'tag' => $tag_id)); ?>"
-       class="pull-right" style="margin-top: 5px;">
-        <?php _e('View all tags'); ?>
-    </a>
+    <?php if(!empty($moduleTitle)) { ?>
+        <a href="<?php echo $this->url('', array('action' => 'list', 'tag' => $tag)); ?>"
+           class="pull-right" style="margin-top: 5px;">
+            <?php _e('View all tagged items.'); ?>
+        </a>
+        <h3>
+            <?php echo sprintf(__('Items in <em>%s</em> tagged by: <strong>%s</strong>'), _escape($moduleTitle), _escape($tag)); ?>
+        </h3>
+    <?php } else { ?>
+        <h3>
+            <?php echo sprintf(__('Items tagged by: <strong>%s</strong>'), _escape($tag)); ?>
+        </h3>
     <?php } ?>
-    <h3>
-        <?php echo sprintf(__('About "%s" content'), $tag); ?>
-    </h3>
 </div>
 <div class="tag-list">
 <?php
@@ -20,10 +24,10 @@ foreach ($list as $item) {
             <a href="%s">%s</a>
         </div>
         ',
-        $item['time'],
-        $item['module'],
-        $item['item_link'],
-        $item['item']
+        _date($item['time']),
+        _escape($item['module']),
+        $item['url'],
+        _escape($item['title'])
     );
     if ($i % 5 == 0) {
         echo '<hr class="pi-dashed">';
@@ -33,7 +37,7 @@ foreach ($list as $item) {
 ?>
 </div>
 <?php
-if (isset($paginator)) {
+if (!empty($paginator)) {
     echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
 }
 ?>

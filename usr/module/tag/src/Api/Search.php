@@ -7,6 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 namespace Module\Tag\Api;
+
 use Pi;
 use Pi\Search\AbstractSearch;
 
@@ -24,7 +25,10 @@ class Search extends AbstractSearch
         'id',
         'term'
     );
-    
+
+    /**
+     * {@inheritDoc}
+     */
     protected $meta = array(
         'id'            => 'id',
         'term'          => 'title',
@@ -40,7 +44,7 @@ class Search extends AbstractSearch
                 'module'        => 'tag',
                 'controller'    => 'index',
                 'action'        => 'list',
-                'tag'           => $item['id']
+                'tag'           => $item['term']
         ));
         
         return $url;

@@ -42,4 +42,16 @@ class RoleAdmin extends Select
 
         return $this->valueOptions;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel()
+    {
+        if (null === $this->label) {
+            $this->label = __('Admin role');
+        }
+
+        return parent::getLabel();
+    }
 }

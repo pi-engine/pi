@@ -42,7 +42,7 @@ foreach ($elements['active'] as $element) {
         '<div class="form-group%s"><label class="col-md-%s control-label">%s</label>',
         $element->getMessages() ? ' has-error' : '',
         $gridLabel,
-        $isCheckbox ?  '' : $element->getOption('label')
+        $isCheckbox ?  '' : $element->getLabel()
     );
 
     $rendered .= sprintf(
@@ -58,11 +58,14 @@ foreach ($elements['active'] as $element) {
 foreach ($elements['hidden'] as $element) {
     echo $this->formElement($element);
 }
-echo sprintf(
-    '<div class="form-group"><div class="col-md-offset-%s col-md-4">%s%s</div></div>',
-    $gridLabel,
-    $this->formElement($elements['submit']),
-    empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
-);
+if (!empty($elements['submit'])) {
+    echo sprintf(
+        '<div class="form-group"><div class="col-md-offset-%s col-md-4">%s%s</div></div>',
+        $gridLabel,
+        $this->formElement($elements['submit']),
+        empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
+    );
+}
+
 echo $this->form()->closeTag();
 ?>

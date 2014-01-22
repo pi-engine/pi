@@ -20,14 +20,14 @@
 
 namespace Module\Tag\Controller\Admin;
 
+use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Paginator\Paginator;
 use Module\Tag\Form\SearchForm;
 use Module\Tag\Form\SearchFilter;
-//use Module\Tag\Service;
 use Module\Tag\Form;
 use Zend\Db\Sql\Expression;
-use Pi\Paginator\Paginator;
-use Pi;
+
 
 class IndexController extends ActionController
 {
@@ -44,7 +44,7 @@ class IndexController extends ActionController
         return $moduleArray;
     }
 
-    protected function getTagName($tagIds)
+    protected function ____getTagName($tagIds)
     {
         $tagModel = $this->getModel('tag');
         $result = array();
@@ -64,7 +64,6 @@ class IndexController extends ActionController
 
     /**
      * Default action if none provided
-     * Partnumber admin
      *
      * @return ViewModel
      */
@@ -74,27 +73,49 @@ class IndexController extends ActionController
     }
 
     /**
-     * List tags
+     * List hot tags
      */
     public function listAction()
     {
-        // Get website module name
-        $modelStats = $this->getModel('stats');
-        $modelTag = $this->getModel('tag');
-        $select = $modelStats->select()->columns(array('module' => new Expression('distinct module')));
-        $data = $modelStats->selectWith($select);
-        foreach ($data as $row) {
-            $moduleArray[] = $row['module'];
-        }
-        $page = intval($this->params('page', 1));
-        //var_dump($page);
-        $module = $this->params('m', null);
-        $module = $module != '' ? $module : null;
+        $page = $this->params('page', 1);
+        $module = $this->params('m');
+
         $form = $this->getForm();
+
+        $modules = Pi::registry('modulelist')->read();
         $limit = (int) $this->config('item_per_page');
         $offset = (int) ($page - 1) * $limit;
-        $items = array();
-        if (null === $module) {
+        $tags = Pi::service('tag')->top($limit, $module, null, $offset);
+        if ($module) {
+            $modelStats = $this->getModel('stats');
+            $select = $modelStats->select()
+                ->where(array('module' => $module))
+                ->columns(array('count' => new Expression('count(distinct term)')));
+            $count = $modelStats->selectWith($select)->current()->count;
+        } else {
+            $count = $this->getModel('tag')->count();
+        }
+
+        $paginator = Paginator::factory($count, array(
+            'limit' => $limit,
+            'page'  => $page,
+            'url_options'   => array(
+                'params'    => array(
+                    'm' => $module,
+                ),
+            ),
+        ));
+        $this->view()->assign(array(
+            'paginator'     => $paginator,
+            'modules'       => $modules,
+            'form'          => $form,
+            'curModule'     => $module,
+            'tags'         => $tags,
+        ));
+        $this->view()->setTemplate('list');
+
+        /*
+        if (!$module) {
             // Get datas from tag table
             $select = $modelTag->select()->where(array())->order(array('count DESC'))->offset($offset)->limit($limit);
             $items = $modelTag->selectWith($select)->toArray();
@@ -102,19 +123,10 @@ class IndexController extends ActionController
             // Get datas from stats table
             $modelStats = $this->getModel('stats');
             $select = $modelStats->select()->where(array('module' => $module))->order(array('count DESC'))->offset($offset)->limit($limit);
-            $rowset = $modelStats->selectWith($select)->toArray();
-
-            foreach ($rowset as $row) {
-                $select = $modelTag->select()->where(array('id' => $row['tag']));
-                $items[] = array(
-                    'id'    => $row['tag'],
-                    'term'  => $modelTag->selectWith($select)->current()->term,
-                    'count' => $row['count'],
-                );
-            }
+            $items = $modelStats->selectWith($select)->toArray();
         }
         // Get amount tag
-        if (null !== $module) {
+        if ($module) {
             $select = $modelStats->select()->where(array('module' => $module))->columns(array('count' => new Expression('count(*)')));
             $count = $modelStats->selectWith($select)->current()->count;
         } else {
@@ -146,10 +158,11 @@ class IndexController extends ActionController
             'datas'         => $items,
         ));
         $this->view()->setTemplate('list');
+        */
     }
 
     /**
-     * Show specific module of tag.
+     * List recent tagged contents
      */
     public function linkListAction()
     {
@@ -231,7 +244,7 @@ class IndexController extends ActionController
     }
 
     /**
-     * Delete website tag.
+     * Delete tag
      */
     public function deleteAction()
     {
@@ -294,7 +307,7 @@ class IndexController extends ActionController
     }
 
     /**
-     * Static tag
+     * Tag stats
      */
     public function statsAction()
     {

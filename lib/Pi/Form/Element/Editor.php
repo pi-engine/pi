@@ -27,4 +27,16 @@ class Editor extends Textarea
     protected $attributes = array(
         'type' => 'editor',
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getLabel()
+    {
+        if (null === $this->label) {
+            $this->label = __('Editor');
+        }
+
+        return parent::getLabel();
+    }
 }

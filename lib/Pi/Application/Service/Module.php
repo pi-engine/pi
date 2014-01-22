@@ -358,18 +358,36 @@ class Module extends AbstractService
      *                          title, summary, uid, time, etc.
      * @param array $conditions associative array of conditions:
      *                          item - item ID or ID list, module, type - optional, user, Where
+     * @param int           $limit
+     * @param int           $offset
+     * @param string|array  $order
      *
      * @throws \Exception
      * @return  array Associative array of returned content,
      *      or list of associative array if $item is an array
      */
-    public function content(array $variables, array $conditions)
-    {
+    public function content(
+        array $variables,
+        array $conditions,
+        $limit  = 0,
+        $offset = 0,
+        $order  = array()
+    ) {
         if (!isset($conditions['module'])) {
             throw new \Exception('module is required.');
         }
         $api = Pi::api('content', $conditions['module']);
-        $result = $api ? $api->getList($variables, $conditions) : array();
+        if ($api) {
+            $result = $api->getList(
+                $variables,
+                $conditions,
+                $limit,
+                $offset,
+                $order
+            );
+        } else {
+            $result = array();
+        }
 
         return $result;
     }

@@ -14,7 +14,10 @@
  */
 return array(
     'item'  => array(
-        
+
+        // Hide from front menu
+        'front' => false,
+
         // Default admin navigation
         'admin'   => array(
             'list'              => array(

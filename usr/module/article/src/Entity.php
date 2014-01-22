@@ -401,11 +401,10 @@ class Entity
             }
 
             if (!empty($articleIds)) {
-                if ((empty($columns) 
-                    || in_array('tag', $columns)) && $config['enable_tag']
+                if ((empty($columns) || in_array('tag', $columns))
+                    && $config['enable_tag']
                 ) {
-                    $tags = Pi::service('api')
-                        ->tag->multiple($module, $articleIds);
+                    $tags = Pi::service('tag')->get($module, $articleIds);
                 }
             }
 

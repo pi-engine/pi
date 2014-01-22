@@ -49,13 +49,6 @@ return array(
         'database'  => array(
             // SQL schema/data file
             'sqlfile'   => 'sql/mysql.sql',
-            // Tables to be removed during uninstall
-            'schema'    => array(
-                'test'          => 'table',
-                'page'          => 'table',
-                //'test_view'     => 'view',
-                //'test_trigger'  => 'trigger',
-            ),
         ),
         // Module configs
         'config'    => 'config.php',
