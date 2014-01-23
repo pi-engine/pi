@@ -46,7 +46,7 @@ foreach ($elements['active'] as $element) {
         );
     } else {
         $rendered .= sprintf(
-            '<div class="col-md-5 col-lg-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
+            '<div class="col-md-5 col-lg-4 js-form-element">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
             $this->formElement($element),
             $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
             $this->formElementErrors($element)
