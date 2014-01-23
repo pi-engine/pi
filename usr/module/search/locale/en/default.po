@@ -1,22 +1,83 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pi-service\n"
-"POT-Creation-Date: 2013-11-06 09:51+0800\n"
-"PO-Revision-Date: 2013-11-06 09:51+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Project-Id-Version: Pi-search\n"
+"POT-Creation-Date: 2014-01-22 10:26+0800\n"
+"PO-Revision-Date: 2014-01-22 10:26+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
-"X-Poedit-KeywordsList: __;_t;_e\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master-i18n\\usr\\module\\service\n"
+"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\search\n"
 
-#: C:\wamp\www\master-i18n\usr\module\service/config/module.php:14
-msgid "Remote"
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:377
+msgid "Google"
 msgstr ""
 
-#: C:\wamp\www\master-i18n\usr\module\service/config/module.php:16
-msgid "Test for remote access."
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:381
+msgid "Bing"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:385
+msgid "Baidu"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:389
+msgid "Sogou"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:5
+msgid "Go to home page"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:17
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-home.phtml:22
+msgid "Global"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:33
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-home.phtml:38
+msgid "Keywords"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:36
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:37
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-home.phtml:41
+msgid "Search"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:7
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:30
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:63
+#, php-format
+msgid "Google search for %s"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:65
+msgid "Loading ..."
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-module-result.phtml:30
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:8
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:42
+#, php-format
+msgid "%d found."
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-module-result.phtml:35
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:12
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:50
+msgid "No result found."
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:10
+msgid "Submission flood detected, please wait for a while."
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:45
+msgid "All result &raquo;"
 msgstr ""

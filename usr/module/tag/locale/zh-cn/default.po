@@ -1,81 +1,60 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2013-11-10 14:05+0800\n"
-"PO-Revision-Date: 2013-11-10 14:05+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-01-23 09:50+0800\n"
+"PO-Revision-Date: 2014-01-23 10:12+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\tag\n"
+"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\tag\n"
 
-#: C:\wamp\www\master\usr\module\tag/src/Form/SearchForm.php:37
-#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:5
-msgid "Tags"
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:6
+msgid "All"
+msgstr "所有标签"
+
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:22
+msgid "Tagged list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:17
-#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:13
-msgid "ALL"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:29
+msgid "Tag"
+msgstr "标签"
 
-#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:41
-msgid "not related an obj in "
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:30
+msgid "Item"
+msgstr "关联项目"
 
-#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:46
-msgid "Title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:47
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:31
 msgid "Module"
-msgstr ""
+msgstr "模块"
 
-#: C:\wamp\www\master\usr\module\tag/template/front/detail.phtml:48
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:32
+msgid "Type"
+msgstr "类型"
+
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/link.phtml:33
 msgid "Time"
-msgstr ""
+msgstr "时间"
 
-#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:58
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:15
-msgid "Tag Name"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/front/list.phtml:5
+msgid "View all tagged items."
+msgstr "查看所有内容"
 
-#: C:\wamp\www\master\usr\module\tag/template/front/list.phtml:59
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:16
-msgid "Count"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/front/list.phtml:8
+#, php-format
+msgid "Items in <em>%s</em> tagged by: <strong>%s</strong>"
+msgstr "<em>%s</em> 中关于<strong>%s</strong>的内容"
 
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:5
-msgid "Search"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:6
-msgid "Search result"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:10
-msgid "is not found Try some other words"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:17
-msgid "Operator"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/front/search.phtml:38
-msgid "Delete"
-msgstr ""
-
-#, fuzzy
-#~ msgid "Link Time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "All"
-#~ msgstr "All Categories"
+#: D:\wamp\www\deploy\usr\module\tag/template/front/list.phtml:12
+#, php-format
+msgid "Items tagged by: <strong>%s</strong>"
+msgstr "关于<strong>%s</strong>的所有内容"
 
 #, fuzzy
 #~ msgid "Link time"

@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-search\n"
+"POT-Creation-Date: 2014-01-22 14:46+0800\n"
+"PO-Revision-Date: 2014-01-22 14:47+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\search\n"
+
+#: D:\wamp\www\deploy\usr\module\search/config/block.php:12
+msgid "Search"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/config/block.php:13
+msgid "Search box."
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/src/Block/Block.php:24
+msgid "Global"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/src/Block/Block.php:25
+msgid "Current module"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/template/block/search.phtml:5
+msgid "Keywords"
+msgstr ""
