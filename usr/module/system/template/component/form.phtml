@@ -33,19 +33,25 @@ foreach ($elements['active'] as $element) {
     if (!$isEmptyControl && !$element->getAttribute('class')) {
         $element->setAttribute('class', 'form-control');
     }
-
     $rendered = sprintf(
         '<div class="form-group%s"><label class="col-md-3 col-lg-2 control-label">%s</label>',
         $element->getMessages() ? ' has-error' : '',
         $isCheckbox ?  '' : $element->getLabel()
     );
-
-    $rendered .= sprintf(
-        '<div class="col-md-5 col-lg-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
-        $this->formElement($element),
-        $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
-        $this->formElementErrors($element)
-    );
+    if ($type == 'multi_checkbox') {
+        $rendered .= sprintf(
+            '<div class="col-md-9">%s<div class="help-block">%s</div></div></div>',
+            $this->formElement($element),
+            $this->formElementErrors($element)
+        );
+    } else {
+        $rendered .= sprintf(
+            '<div class="col-md-5 col-lg-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
+            $this->formElement($element),
+            $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
+            $this->formElementErrors($element)
+        );
+    }
     echo $rendered;
 }
 foreach ($elements['hidden'] as $element) {
