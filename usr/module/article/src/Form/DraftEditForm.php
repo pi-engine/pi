@@ -417,7 +417,13 @@ class DraftEditForm extends BaseForm
         if ($config['enable_tag']) {
             $parameters['tag'] = array(
                 'name'       => 'tag',
-                'type'       => 'hidden',
+                'type'       => 'tag',
+                'options'    => array(
+                    'label'     => __('Tags'),
+                ),
+                'attributes' => array(
+                    'id'        => 'tag',
+                ),
             );
         }
         

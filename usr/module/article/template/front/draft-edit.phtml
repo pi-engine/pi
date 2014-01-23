@@ -455,16 +455,12 @@
             <div class="widget-header">
                 <strong><?php _e('Tags'); ?></strong>
             </div>
-            <div class="widget-body">
-                <div class="tag-list">
-                    <div class="select-list">
-                    </div>    
-                    <input placeholder="<?php _e('separate by commas or enter'); ?>" />
-                    <ul class="typeahead dropdown-menu">
-                    </ul>
-                    <?php $element = $form->get('tag');
-                        echo $this->formElement($element); ?>
-                </div>
+            <div class="widget-body" style="overflow: hidden">
+                <?php 
+                    $element = $form->get('tag');
+                    $element->setAttribute("class", "col-md-12 form-control");
+                    echo $this->formElement($element);
+                ?>
             </div>
         </div>
         <?php } ?>
