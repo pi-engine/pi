@@ -36,11 +36,12 @@ class Article extends AbstractComment
 
         foreach ($items as $id) {
             $result[$id] = array(
+                'id'    => $id,
                 'title' => sprintf(__('Demo article %d'), $id),
                 'url'   => Pi::service('url')->assemble(
                     'comment',
                     array(
-                        'module'    => 'comment',
+                        'module'        => 'comment',
                         'controller'    => 'demo',
                         'id'            => $id,
                         'enable'        => 'yes',
