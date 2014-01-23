@@ -46,9 +46,9 @@ class Extended extends AbstractRegistry
      * 
      * @return array 
      */
-    public function read()
+    public function read($module = null)
     {
-        $module  = Pi::service('module')->current();
+        $module  = $module ?: Pi::service('module')->current();
         $options = compact('module');
         
         return $this->loadData($options);

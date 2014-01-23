@@ -362,9 +362,8 @@ class DraftController extends ActionController
             Pi::service('tag')->add(
                 $module,
                 $articleId,
-                null,
-                $row->tag,
-                $timestamp
+                '',
+                $row->tag
             );
         }
 
@@ -511,9 +510,8 @@ class DraftController extends ActionController
             Pi::service('tag')->update(
                 $module,
                 $articleId,
-                null,
-                $rowDraft->tag,
-                $timestamp
+                '',
+                $rowDraft->tag
             );
         }
 

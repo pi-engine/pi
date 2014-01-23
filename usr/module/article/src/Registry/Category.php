@@ -48,9 +48,9 @@ class Category extends AbstractRegistry
      * 
      * @return array 
      */
-    public function read($where = array(), $isTree = false)
+    public function read($where = array(), $isTree = false, $module = null)
     {
-        $module  = Pi::service('module')->current();
+        $module  = $module ?: Pi::service('module')->current();
         $options = compact('module', 'where', 'isTree');
         
         return $this->loadData($options);

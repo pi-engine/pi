@@ -44,13 +44,13 @@ class TagController extends ActionController
         $offset = ($page - 1) * $limit;
 
         // Total count
-        $totalCount = (int) Pi::service('tag')->getCount($module, $tag);
+        $totalCount = (int) Pi::service('tag')->getCount($tag, $module);
 
         // Get article ids
         $articleIds = Pi::service('tag')->getList(
-            $module, 
             $tag, 
-            null, 
+            $module, 
+            '', 
             $limit, 
             $offset
         );
