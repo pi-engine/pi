@@ -79,13 +79,13 @@ class Tag extends AbstractHtmlElement
         if ($attribs && is_string($attribs)) {
             $html = $this->getView()->render($attribs, array('tags' => $tags));
         } else {
-            $html = '<div';
+            $html = '<div class="tag-terms"';
             if ($attribs) {
                 $html .= $this->htmlAttribs($attribs);
             }
             $html .= '><span class="tag-label">' . __('Tags: ') . '</span>';
             foreach ($tags as $tag) {
-                $html .= '<span class="tag-term">' . $tag . '</span>';
+                $html .= $tag;
             }
             $html .= '</div>';
         }
