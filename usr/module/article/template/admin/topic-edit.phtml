@@ -114,7 +114,7 @@ var UploadView = Backbone.View.extend({
     initialize      : function() {
         page.$("[name=placeholder]")
             .parents(".form-group:first")
-            .find(".col-md-4:first")
+            .find(".js-form-element")
             .html($("#temp-upload").html());
         page.$("[name=template-placeholder]")
             .parents(".col-md-4")

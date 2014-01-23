@@ -108,7 +108,7 @@
         init: function() {
             page.$("[name=placeholder]")
                 .parents(".form-group:first")
-                .find(".col-md-4:first")
+                .find(".js-form-element")
                 .html($("#template-upload").html());
             
             $('.glyphicon-remove').click(this.removePhoto.bind(this));

@@ -79,7 +79,7 @@
         initialize: function() {
             page.$("[name=placeholder]")
                 .parents(".form-group:first")
-                .find(".col-md-4:first")
+                .find(".js-form-element")
                 .html($("#temp-upload").html());
             this.$el   = $("#jsUpload");
             this.input = this.$("[name=upload]");
