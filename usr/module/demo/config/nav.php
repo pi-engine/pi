@@ -10,6 +10,11 @@
 return array(
     //'translate' => 'navigation',
     'front'   => array(
+        'pages'     => array(
+            'label'         => _a('Pages'),
+            'route'         => 'default',
+            'controller'    => 'page',
+        ),
         'tree'     => array(
             'label'         => _a('Test User Call'),
             'route'         => 'default',

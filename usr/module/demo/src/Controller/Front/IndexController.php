@@ -12,7 +12,6 @@ namespace Module\Demo\Controller\Front;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Zend\Db\Sql\Predicate\Expression;
 
 class IndexController extends ActionController
 {
@@ -43,42 +42,6 @@ class IndexController extends ActionController
         // Specify template,
         // otherwise template will be set up as {controller}-{action}
         $this->view()->setTemplate('demo-index');
-    }
-
-    /**
-     * Demo for full usage of pagination with ArrayAdapter, resource consumed!
-     */
-    public function pageAction()
-    {
-        $page = $this->params('p', 5);
-        $flag = $this->params('f', 0);
-
-        //$offset = ($page - 1) * $this->config('item_per_page');
-        $limit = $this->config('item_per_page');
-        $model = $this->getModel('page');
-        $select = $model->select()->where(array('flag' => $flag))->order('id');
-        $rowset = $model->selectWith($select);
-        $pages = array();
-        foreach ($rowset as $row) {
-            $pages[] = $row;
-        }
-
-        //$data = $rowset->toArray();
-        $paginator = Paginator::factory($pages);
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            // Use router to build URL for each page
-            'page_param'    => 'p',
-            'total_param'   => 't',
-            'params'        => array(
-                'f'             => $flag,
-            ),
-            // Or use a URL template to create URLs
-            //'template'      => '/url/p/%page%/t/%total%',
-
-        ));
-        $this->view()->assign('paginator', $paginator);
     }
 
     /**

@@ -81,7 +81,7 @@ class Content extends AbstractContent
             array(
                 'module'        => $this->module,
                 'controller'    => 'page',
-                'action'        => 'index',
+                'action'        => 'view',
                 'id'            => $item['id'],
             )
         );
