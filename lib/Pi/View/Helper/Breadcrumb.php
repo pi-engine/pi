@@ -61,6 +61,13 @@ class Breadcrumb extends AbstractHtmlElement
     protected $module = '';
 
     /**
+     * HTML attributes
+     *
+     * @var array
+     */
+    protected $attributes = array();
+
+    /**
      * Items to prepend
      *
      * @var array
@@ -95,28 +102,49 @@ class Breadcrumb extends AbstractHtmlElement
     public function render(array $options = array())
     {
         $result = '';
+        $data   = array();
+
         $module = isset($options['module'])
             ? $options['module']
             : $this->module;
         $module = $module ?: Pi::service('module')->current();
 
-        $class = sprintf('Custom\Module\%s\Api\Breadcrumbs', ucfirst($module));
+        $class = sprintf('Custom\%s\Api\Breadcrumbs', ucfirst($module));
         if (!class_exists($class)) {
-            $class = sprintf('Module\%s\Api\Breadcrumbs', ucfirst($module));
+            $directory = Pi::service('module')->directory($module);
+            $class = sprintf('Module\%s\Api\Breadcrumbs', ucfirst($directory));
         }
         if (class_exists($class)) {
             $bcHandler = new $class($module);
             $data = $bcHandler->load();
-            if ($data) {
-                $prefix = isset($options['prefix'])
-                    ? $options['prefix']
-                    : $this->prefix;
+        }
+        if ($data) {
+            $prefix = isset($options['prefix'])
+                ? $options['prefix']
+                : $this->prefix;
 
-                $data = $prefix + $data;
-                $separator = isset($options['separator'])
-                    ? $options['separator']
-                    : $this->separator;
+            $data = array_merge($prefix, $data);
+            $separator = isset($options['separator'])
+                ? $options['separator']
+                : $this->separator;
+            $attribs = isset($options['attributes'])
+                ? $options['attributes']
+                : $this->attributes;
+
+            $pattern = '<ol class="breadcrumb"%s>' . PHP_EOL . '%s' . PHP_EOL . '</ol>';
+            $patternLink = '<li><a href="%s">%s</a></li>' . PHP_EOL;
+            $patternLabel = '<li>%s</li>' . PHP_EOL;
+
+            $elements = '';
+            foreach ($data as $item) {
+                if (empty($item['href'])) {
+                    $elements .= sprintf($patternLabel, _escape($item['label']));
+                } else {
+                    $elements .= sprintf($patternLink,$item['href'],  _escape($item['label']));
+                }
             }
+            $attributes = $attribs ? $this->htmlAttribs($attribs) : '';
+            $result = sprintf($pattern, $attributes, $elements);
         }
 
         return $result;
@@ -145,6 +173,29 @@ class Breadcrumb extends AbstractHtmlElement
     public function getSeparator()
     {
         return $this->separator;
+    }
+
+    /**
+     * Sets breadcrumb html attributes
+     *
+     * @param array $attribs
+     * @return $this
+     */
+    public function setAttributes(array $attribs)
+    {
+        $this->attributes = $attribs;
+
+        return $this;
+    }
+
+    /**
+     * Returns breadcrumb html attribs
+     *
+     * @return array
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
     }
 
     /**
