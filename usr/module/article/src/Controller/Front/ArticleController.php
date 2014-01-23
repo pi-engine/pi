@@ -145,6 +145,7 @@ class ArticleController extends ActionController
             'page'        => $page,
             'showTitle'   => isset($showTitle) ? $showTitle : null,
             'config'      => $config,
+            'module'      => $module,
         ));
     }
 

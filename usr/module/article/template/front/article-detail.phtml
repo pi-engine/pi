@@ -30,24 +30,8 @@ if ($details['seo']['description']) {
                     <?php echo date('M d, Y H:i:s', $details['time_publish']); ?>
                 </div>
                 <div>
-                    <div class="article-subline-desc"><?php echo _e('Tags: '); ?>
-                    <?php if (empty($details['tag'])) {
-                        echo '<span>' . __('None') . '</span>';
-                    } ?>
-                    <?php foreach ($details['tag'] as $tag) { ?>
-                        <span>
-                            <a href="<?php echo $this->url('', array(
-                                'controller' => 'tag', 
-                                'action'     => 'list', 
-                                'tag'        => $tag
-                            )); ?>">
-                                <?php echo $this->escape($tag); ?>
-                            </a>
-                        </span>
-                        <?php if ($tag != end($details['tag'])) {
-                            echo '<span>, </span>'; ?>
-                        <?php } ?>
-                    <?php } ?>
+                    <div class="article-subline-desc">
+                        <?php echo $this->tag(array('module' => $module, 'item' => $details['id'])); ?>
                     </div>
                     <div class="clearfix article-share">
                         <!-- JiaThis Button BEGIN -->

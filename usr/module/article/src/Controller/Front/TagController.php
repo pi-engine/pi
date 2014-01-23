@@ -47,14 +47,18 @@ class TagController extends ActionController
         $totalCount = (int) Pi::service('tag')->getCount($tag, $module);
 
         // Get article ids
-        $articleIds = Pi::service('tag')->getList(
+        $articleTags = Pi::service('tag')->getList(
             $tag, 
             $module, 
             '', 
             $limit, 
             $offset
         );
-
+        
+        foreach ($articleTags as $row) {
+            $articleIds[] = $row['item'];
+        }
+        
         if ($articleIds) {
             $where['id']    = $articleIds;
             $articles       = array_flip($articleIds);
