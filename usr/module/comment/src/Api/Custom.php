@@ -37,11 +37,12 @@ class Custom extends AbstractComment
 
         foreach ($items as $id) {
             $result[$id] = array(
+                'id'    => $id,
                 'title' => sprintf(__('Custom article %d'), $id),
                 'url'   => Pi::service('url')->assemble(
                     'comment',
                     array(
-                        'module'    => 'comment',
+                        'module'        => 'comment',
                         'controller'    => 'custom',
                         'id'            => $id,
                         'custom'        => 'yes',

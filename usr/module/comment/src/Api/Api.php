@@ -703,15 +703,17 @@ class Api extends AbstractApi
                 'post'  => $post['id']
             ));
             if (!empty($ops['users'])) {
-                if (isset($ops['users'][$post['uid']])) {
-                    $post['user'] = $ops['users'][$post['uid']];
+                $uid = (int) $post['uid'];
+                if (isset($ops['users'][$uid])) {
+                    $post['user'] = $ops['users'][$uid];
                 } else {
                     $post['user'] = $ops['users'][0];
                 }
             }
             if (!empty($ops['targets'])) {
-                if (isset($ops['targets'][$post['root']])) {
-                    $post['target'] = $ops['targets'][$post['root']];
+                $root = (int) $post['root'];
+                if (isset($ops['targets'][$root])) {
+                    $post['target'] = $ops['targets'][$root];
                 } else {
                     $post['target'] = $ops['targets'][0];
                 }
@@ -955,14 +957,14 @@ class Api extends AbstractApi
             $items[$row['module']][$row['type']][$row['item']] = $id;
         }
         //d($items);
-        $targets = Pi::registry('type', 'comment')->read();
+        $types = Pi::registry('type', 'comment')->read();
         $list = array();
         foreach ($items as $module => $mList) {
             foreach ($mList as $type => $cList) {
-                if (!isset($targets[$module][$type])) {
+                if (!isset($types[$module][$type])) {
                     continue;
                 }
-                $callback = $targets[$module][$type]['callback'];
+                $callback = $types[$module][$type]['callback'];
                 $handler = new $callback($module);
                 $targets = $handler->get(array_keys($cList));
                 foreach ($targets as $item => $target) {
@@ -1047,13 +1049,11 @@ class Api extends AbstractApi
             $select->order($order);
         }
 
-        $targets = Pi::registry('type', 'comment')->read();
-
-        $items = array();
-        $keyList = array();
-        $rowset = Pi::db()->query($select);
+        $types      = Pi::registry('type', 'comment')->read();
+        $items      = array();
+        $keyList    = array();
+        $rowset     = Pi::db()->query($select);
         foreach ($rowset as $row) {
-            //vd((array) $row);
             $root = (int) $row['id'];
             $keyList[] = $root;
             $items[$row['module']][$row['type']][$row['item']] = array(
@@ -1062,11 +1062,11 @@ class Api extends AbstractApi
                 'comment_uid'   => (int) $row['uid'],
             );
         }
-        //d($items);
+
         $targetList = array();
         foreach ($items as $module => $mList) {
             foreach ($mList as $type => $cList) {
-                if (!isset($targets[$module][$type])) {
+                if (!isset($types[$module][$type])) {
                     continue;
                 }
                 $callback = $targets[$module][$type]['callback'];
@@ -1078,11 +1078,9 @@ class Api extends AbstractApi
                 }
             }
         }
-        //d($targetList);
         foreach ($keyList as $key) {
             $result[$key] = &$targetList[$key];
         }
-        //d($result);
 
         return $result;
     }

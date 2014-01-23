@@ -54,6 +54,7 @@ class Comment extends AbstractComment
         
         foreach ($items as $id) {
             $result[$id] = array(
+                'id'    => $id,
                 'title' => $articles[$id]['subject'],
                 'url'   => Pi::service('url')->assemble(
                     $route,
