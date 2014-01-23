@@ -2,9 +2,9 @@
   var config = $('#user-js-compound').data('config');
 
   function submitTip(form, msg) {
-    form.find('.error').
-      removeClass('error').
-      find('.help-inline').hide();
+    form.find('.has-error').
+      removeClass('has-error').
+      find('.help-block').hide();
     if (!msg) return;
     for(var i in msg) {
       var err = [];
@@ -12,9 +12,9 @@
         err.push(msg[i][j]);
       }
       form.find('[name=' + i + ']').
-        parents('.control-group').
-        addClass('error').
-        find('.help-inline').
+        parents('.form-group').
+        addClass('has-error').
+        find('.help-block').
         show().
         html(err.join(','));
     }
