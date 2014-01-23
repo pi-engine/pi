@@ -34,19 +34,19 @@ foreach ($elements['active'] as $element) {
         $element->setAttribute('class', 'form-control');
     }
     $rendered = sprintf(
-        '<div class="form-group%s"><label class="col-md-3 col-lg-2 control-label">%s</label>',
+        '<div class="form-group%s"><label class="col-sm-3 col-lg-2 control-label">%s</label>',
         $element->getMessages() ? ' has-error' : '',
         $isCheckbox ?  '' : $element->getLabel()
     );
     if ($type == 'multi_checkbox') {
         $rendered .= sprintf(
-            '<div class="col-md-9">%s<div class="help-block">%s</div></div></div>',
+            '<div class="col-sm-9">%s<div class="help-block">%s</div></div></div>',
             $this->formElement($element),
             $this->formElementErrors($element)
         );
     } else {
         $rendered .= sprintf(
-            '<div class="col-md-5 col-lg-4 js-form-element">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
+            '<div class="col-sm-5 js-form-element">%s%s</div><div class="col-sm-4 help-block">%s</div></div>',
             $this->formElement($element),
             $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
             $this->formElementErrors($element)
@@ -59,7 +59,7 @@ foreach ($elements['hidden'] as $element) {
 }
 if (!empty($elements['submit'])) {
     echo sprintf(
-        '<div class="form-group"><div class="col-md-offset-3 col-lg-offset-2 col-md-4">%s%s</div></div>',
+        '<div class="form-group"><div class="col-sm-offset-3 col-lg-offset-2 col-md-4">%s%s</div></div>',
         $this->formElement($elements['submit']),
         empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
     );
