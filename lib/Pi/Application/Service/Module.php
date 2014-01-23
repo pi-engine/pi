@@ -180,15 +180,21 @@ class Module extends AbstractService
      */
     public function config($key = null, $module = null)
     {
+        $result = null;
         $module = $module ?: $this->currentModule;
         if (!isset($this->container['config'][$module])) {
             $this->container['config'][$module] =
                 Pi::registry('config')->read($module);
         }
+        if ($key) {
+            if (isset($this->container['config'][$module][$key])) {
+                $result = $this->container['config'][$module][$key];
+            }
+        } else {
+            $result = $this->container['config'][$module];
+        }
 
-        return $key
-            ? $this->container['config'][$module][$key]
-            : $this->container['config'][$module];
+        return $result;
     }
 
     /**

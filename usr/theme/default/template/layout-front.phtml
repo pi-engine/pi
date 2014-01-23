@@ -103,12 +103,14 @@ $this->headLink(array(
     </div>
     <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
     <?php
-        $blocks = $this->blocks();
-        $blockTemplate = $this->template('block');
+        $blocks         = $this->blocks();
+        $blockTemplate  = $this->template('block');
     ?>
     <div class="container pi-main-container">
         <?php
-        $breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
+        //$breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
+        $breadcrumbs = $this->breadcrumb()->setSeparator(' &gt; ')->render();
+
         if ($breadcrumbs) {
             echo sprintf(
                 '<div class="breadcrumb">%s</div>',
