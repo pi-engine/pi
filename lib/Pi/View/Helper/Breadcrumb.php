@@ -51,7 +51,7 @@ class Breadcrumb extends AbstractHtmlElement
      *
      * @var string
      */
-    protected $separator = ' &gt; ';
+    protected $separator = '';
 
     /**
      * Module to load
