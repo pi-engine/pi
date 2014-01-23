@@ -42,6 +42,9 @@ class Breadcrumbs extends AbstractBreadcrumbs
                             'controller'    => 'page',
                         )),
                 );
+                $result[] = array(
+                    'label' => __('Content'),
+                );
             } else {
                 $result[] = array(
                     'label' => __('Pages'),
