@@ -278,7 +278,7 @@ class Entity
         // Generate columns of extended table and statistics table
         $extendedColumns = Pi::service('registry')
             ->handler('extended', $module)
-            ->read();
+            ->read($module);
         $statisColumns = ModelStats::getAvailableColumns();
         if (!empty($columns)) {
             // Get needed columns of extended table

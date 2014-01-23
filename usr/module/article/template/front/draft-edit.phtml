@@ -2131,7 +2131,7 @@ var TipView = {
     lookup: function () {
         var val = this.input.val().replace(/[\,，]+$/g, "");
         if (val) {
-            $.getJSON(this.options.getUrl + val).done(_.bind(function(result) {
+            $.getJSON(this.options.getUrl.replace(/placeholder$/, "") + val).done(_.bind(function(result) {
                 var d = this.handler(result.data),
                     l = d.length,
                     html = "";
@@ -2379,7 +2379,7 @@ new GalleryListView;
 new RelatedView;
 new TipListView({
     el     : $("#jsTag"),
-    getUrl : "<?php echo $this->url('', array('controller' => 'ajax', 'action' => 'get.fuzzy.tag', 'name' => '')); ?>"
+    getUrl : "<?php echo $this->url('default', array('controller' => 'ajax', 'action' => 'get.fuzzy.tag', 'name' => 'placeholder')); ?>"
 });
 })(jQuery)
 </script>

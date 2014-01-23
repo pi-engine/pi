@@ -516,14 +516,14 @@ class ArticleController extends ActionController
 
         if (strcasecmp('tag', $type) == 0) {
             if ($keyword) {
-                $total     = Pi::service('tag')->getCount($module, $keyword);
+                $total     = Pi::service('tag')->getCount($keyword, $module);
                 $pageCount = ceil($total / $limit);
 
                 // Get article ids
                 $articleIds = Pi::service('tag')->getList(
-                    $module, 
-                    $keyword,
-                    null, 
+                    $keyword, 
+                    $module,
+                    '', 
                     $limit, 
                     $offset
                 );

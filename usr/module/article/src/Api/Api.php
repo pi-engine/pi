@@ -123,7 +123,7 @@ class Api extends AbstractApi
         $module = $this->getModule();
         $rows   = Pi::service('registry')
             ->handler('category', $module)
-            ->read($where, $isTree);
+            ->read($where, $isTree, $module);
         
         return $rows;
     }
@@ -137,7 +137,9 @@ class Api extends AbstractApi
     public function getAuthorList($ids = array())
     {
         $module = $this->getModule();
-        $rows   = Pi::service('registry')->handler('author', $module)->read();
+        $rows   = Pi::service('registry')
+            ->handler('author', $module)
+            ->read($module);
         
         if (!empty($ids)) {
             foreach ($rows as $key => $row) {
@@ -184,7 +186,9 @@ class Api extends AbstractApi
         
         // Check if the route is already in database
         $routeName = $module . '-' . $name;
-        $cacheName = Pi::service('registry')->handler('route', $module)->read();
+        $cacheName = Pi::service('registry')
+            ->handler('route', $module)
+            ->read($module);
         if ($routeName != $cacheName) {
             return $defaultRoute;
         }
