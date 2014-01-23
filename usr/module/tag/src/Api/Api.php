@@ -176,6 +176,7 @@ class Api extends AbstractApi
      */
     public function add($module, $item, $type, $tags, $time = 0)
     {
+        $type = $type ?: '';
         $time = $time ?: time();
         $tags = $this->canonize($tags);
         if (!$tags) {
@@ -253,6 +254,7 @@ class Api extends AbstractApi
      */
     public function update($module, $item, $type, $tags, $time = 0)
     {
+        $type       = $type ?: '';
         $tags       = $this->canonize($tags);
         $tagsExist  = $this->get($module, $item, $type);
         $tagsNew    = array_diff($tags, $tagsExist);
@@ -290,6 +292,7 @@ class Api extends AbstractApi
      */
     public function delete($module, $item, $type = '')
     {
+        $type = $type ?: '';
         $tags = $this->get($module, $item, $type);
         if (!$tags) {
             return true;
