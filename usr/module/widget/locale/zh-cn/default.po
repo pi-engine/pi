@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2013-11-21 10:19+0800\n"
-"PO-Revision-Date: 2013-11-21 10:19+0800\n"
+"POT-Creation-Date: 2013-11-26 14:47+0800\n"
+"PO-Revision-Date: 2013-11-26 14:57+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,80 +11,80 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\widget\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\deploy\\usr\\module\\widget\n"
 
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:15
-#: D:\GitHub\custom-pi\usr\module\widget/config/permission.php:13
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:15
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:13
 msgid "Script widgets"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:24
-#: D:\GitHub\custom-pi\usr\module\widget/config/permission.php:16
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:24
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:16
 msgid "Static widgets"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:34
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:60
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:86
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:34
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:60
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:86
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:41
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:67
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:93
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:41
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:67
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:93
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:50
-#: D:\GitHub\custom-pi\usr\module\widget/config/permission.php:19
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:50
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:19
 msgid "Carousel widgets"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/config/nav.php:76
-#: D:\GitHub\custom-pi\usr\module\widget/config/permission.php:22
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:76
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:22
 msgid "Compound tabs"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockCarouselForm.php:42
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockStaticForm.php:55
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockTabForm.php:41
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockCarouselForm.php:42
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockStaticForm.php:55
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockTabForm.php:41
 msgid "Title"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockCarouselForm.php:53
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockStaticForm.php:66
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockTabForm.php:52
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockCarouselForm.php:53
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockStaticForm.php:66
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockTabForm.php:52
 msgid "Unique name"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockCarouselForm.php:64
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockStaticForm.php:77
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockTabForm.php:63
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockCarouselForm.php:64
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockStaticForm.php:77
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockTabForm.php:63
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockCarouselForm.php:74
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockCarouselForm.php:74
 msgid "Template"
-msgstr ""
+msgstr "模板"
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockCarouselForm.php:109
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockStaticForm.php:134
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockTabForm.php:99
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockCarouselForm.php:109
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockStaticForm.php:134
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockTabForm.php:99
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/BlockStaticForm.php:102
+#: D:\GitHub\deploy\usr\module\widget/src/Form/BlockStaticForm.php:102
 msgid "Content"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:20
+#: D:\GitHub\deploy\usr\module\widget/src/Form/Element/CarouselTemplate.php:20
 msgid "Bootstrap slide"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:21
+#: D:\GitHub\deploy\usr\module\widget/src/Form/Element/CarouselTemplate.php:21
 msgid "jCarousel riding Carousel"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:22
+#: D:\GitHub\deploy\usr\module\widget/src/Form/Element/CarouselTemplate.php:22
 msgid "Parallax Content Slider"
 msgstr ""

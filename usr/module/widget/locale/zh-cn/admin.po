@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2013-11-10 14:11+0800\n"
-"PO-Revision-Date: 2013-11-10 14:11+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2013-11-26 14:47+0800\n"
+"PO-Revision-Date: 2013-11-26 14:47+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,284 +11,284 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\widget\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\deploy\\usr\\module\\widget\n"
 
-#: C:\wamp\www\master\usr\module\widget/config/module.php:14
+#: D:\GitHub\deploy\usr\module\widget/config/module.php:14
 msgid "Widget"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/module.php:16
+#: D:\GitHub\deploy\usr\module\widget/config/module.php:16
 msgid "Management of custom blocks/widgets."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:15
-#: C:\wamp\www\master\usr\module\widget/config/permission.php:13
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:15
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:13
 msgid "Script widgets"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:24
-#: C:\wamp\www\master\usr\module\widget/config/permission.php:16
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:60
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:24
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:16
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:60
 msgid "Static widgets"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:34
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:60
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:86
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:34
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:60
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:86
 msgid "Add"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:41
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:67
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:93
-#: C:\wamp\www\master\usr\module\widget/template/admin/common-list.phtml:14
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:41
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:67
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:93
+#: D:\GitHub\deploy\usr\module\widget/template/admin/common-list.phtml:14
 msgid "Edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:50
-#: C:\wamp\www\master\usr\module\widget/config/permission.php:19
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/CarouselController.php:89
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:50
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:19
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/CarouselController.php:89
 msgid "Carousel widgets"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/config/nav.php:76
-#: C:\wamp\www\master\usr\module\widget/config/permission.php:22
+#: D:\GitHub\deploy\usr\module\widget/config/nav.php:76
+#: D:\GitHub\deploy\usr\module\widget/config/permission.php:22
 msgid "Compound tabs"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:11
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:11
 msgid "Navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:12
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:12
 msgid "Block to display navigation menu and breadcrumbs"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:16
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:16
 msgid "Navigation name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:22
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:48
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:22
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:48
 msgid "Display menu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:28
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:28
 msgid "ul class for menu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:29
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:29
 msgid "Separate classes with space"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:35
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:35
 msgid "Minimum depth for menu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:41
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:41
 msgid "Maximum depth for menu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:54
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:54
 msgid "Separator for breadcrumb"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:60
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:60
 msgid "Minimum depth for breadcrumb"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/meta/navigation.php:66
+#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:66
 msgid "Add link to last page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/CarouselController.php:187
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:76
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/CarouselController.php:187
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:76
 msgid "Time interval (ms)"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/CarouselController.php:193
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:82
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/CarouselController.php:193
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:82
 msgid "Mouse event to pause cycle"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/IndexController.php:76
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/IndexController.php:76
 msgid "Widget list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/IndexController.php:130
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/IndexController.php:131
 #, php-format
 msgid "The widget \"%s\" is installed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/IndexController.php:132
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/IndexController.php:133
 #, php-format
 msgid "The widget \"%s\" is not installed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:30
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:30
 msgid "HTML"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:31
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:31
 msgid "Text"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:32
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:32
 msgid "Markdown"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:97
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:183
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:219
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:97
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:183
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:219
 msgid "Block data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:103
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:191
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:227
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:102
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:191
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:227
 msgid "Block data not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:105
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:195
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:229
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:104
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:195
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:229
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/StaticController.php:117
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:244
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:116
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:244
 msgid "Block edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/TabController.php:40
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/TabController.php:40
 msgid "Custom blocks"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/TabController.php:52
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/TabController.php:52
 msgid "Compound tab widgets"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:92
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:92
 msgid "The widget does not exist."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:100
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:100
 #, php-format
 msgid "The widget \"%s\" is uninstalled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:105
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:105
 #, php-format
 msgid "The widget \"%s\" is not uninstalled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Controller/Admin/WidgetController.php:207
+#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:207
 msgid "Add a block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:69
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:69
 msgid "Pi Highlights"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:70
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:70
 msgid "Introduction to Pi Engine with carousel."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:96
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:96
 msgid "Sustainable ecosystem"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:97
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:97
 msgid ""
 "A sustainable ecosystem built upon open standard, open source code, open "
 "development and open management on Github."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:102
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:102
 msgid "Engineered development"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:103
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:103
 msgid ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
 "API and strict starndards."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:108
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:108
 msgid "Visualization of application management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:109
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:109
 msgid ""
 "Easy and responsive application and content management based on visualized "
 "mangement tools and interface with page and widget mechanism."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:114
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:114
 msgid "Agile compliant development workflow"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/src/Installer/Action/Install.php:115
+#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:115
 msgid ""
 "Role oriented architecture and deployment skeleton supports managable agile "
 "development workflow."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/common-list.phtml:16
+#: D:\GitHub\deploy\usr\module\widget/template/admin/common-list.phtml:16
 msgid "Are you sure delete this widget?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/common-list.phtml:16
+#: D:\GitHub\deploy\usr\module\widget/template/admin/common-list.phtml:16
 msgid "Delete"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-carousel.phtml:2
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-carousel.phtml:2
 msgid "Add a carousel"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-script.phtml:8
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-script.phtml:8
 msgid "Installed widgets"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-script.phtml:20
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-script.phtml:20
 msgid "Available widgets"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-static.phtml:2
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:2
 msgid "Add a static block :"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-static.phtml:4
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:4
 msgid "HTML tags allowed in content."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-static.phtml:5
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:5
 msgid "Only plaintext content is allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-static.phtml:6
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:6
 msgid "Markdown syntax allowed in content."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/list-tab.phtml:2
+#: D:\GitHub\deploy\usr\module\widget/template/admin/list-tab.phtml:2
 msgid "Add a compound"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/widget-carousel.phtml:66
-#: C:\wamp\www\master\usr\module\widget/template/admin/widget-tab.phtml:64
+#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-carousel.phtml:66
+#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-tab.phtml:64
 msgid "Caption"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/widget-carousel.phtml:72
-#: C:\wamp\www\master\usr\module\widget/template/admin/widget-tab.phtml:70
+#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-carousel.phtml:72
+#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-tab.phtml:70
 msgid "Link"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/widget-carousel.phtml:78
+#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-carousel.phtml:78
 msgid "Desc"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\widget/template/admin/widget-tab.phtml:149
+#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-tab.phtml:149
 msgid "No Blocks"
 msgstr ""

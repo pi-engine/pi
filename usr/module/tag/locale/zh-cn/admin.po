@@ -1,258 +1,148 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2013-11-10 14:06+0800\n"
-"PO-Revision-Date: 2013-11-10 14:06+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-01-23 09:49+0800\n"
+"PO-Revision-Date: 2014-01-23 10:15+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\tag\n"
+"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\tag\n"
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:23
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:23
 msgid "Top tag list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:24
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:24
 msgid "Top 10 tag block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:29
-#: C:\wamp\www\master\usr\module\tag/config/block.php:45
-#: C:\wamp\www\master\usr\module\tag/config/block.php:90
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:29
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:45
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:90
 msgid "Limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:30
-#: C:\wamp\www\master\usr\module\tag/config/block.php:46
-#: C:\wamp\www\master\usr\module\tag/config/block.php:91
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:30
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:46
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:91
 msgid "Block display item count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:39
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:39
 msgid "Tag Cloud"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:40
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:40
 msgid "Top tag cloud block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:52
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:52
 msgid "Color"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:53
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:53
 msgid "Set tag cloud color"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:67
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:67
 msgid "Max font size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:68
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:68
 msgid "Set max font size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:74
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:74
 msgid "Min font size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:75
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:75
 msgid "Set min font size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/block.php:84
-#: C:\wamp\www\master\usr\module\tag/config/block.php:85
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:84
+#: D:\wamp\www\deploy\usr\module\tag/config/block.php:85
 msgid "The latest tag"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:24
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:24
 msgid "General"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:33
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:33
 msgid "Item per page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:34
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:34
 msgid "Number of items on tag list page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:51
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:51
 msgid "Detail per page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:52
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:52
 msgid "Number of items on tag detail page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:69
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:69
 msgid "Link per page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/config.php:70
+#: D:\wamp\www\deploy\usr\module\tag/config/config.php:70
 msgid "Number of items on one relationships page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\tag/config/module.php:27
-#: C:\wamp\www\master\usr\module\tag/config/navigation.php:26
-#: C:\wamp\www\master\usr\module\tag/template/admin/list.phtml:4
+#: D:\wamp\www\deploy\usr\module\tag/config/module.php:18
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
-#: C:\wamp\www\master\usr\module\tag/config/module.php:29
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:11
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:46
+#: D:\wamp\www\deploy\usr\module\tag/config/module.php:20
 msgid "Tag"
-msgstr ""
+msgstr "标签"
 
-#: C:\wamp\www\master\usr\module\tag/config/navigation.php:32
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:4
-msgid "Relationships"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:26
+msgid "Top tags"
+msgstr "最热标签"
 
-#: C:\wamp\www\master\usr\module\tag/config/navigation.php:38
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:5
-msgid "Statistics"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:32
+msgid "New tags"
+msgstr "最新标签"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/detail.phtml:17
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:12
-#, fuzzy
-msgid "ALL"
-msgstr "All Categories"
+#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:38
+msgid "Tagged items"
+msgstr "关联项目"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/detail.phtml:41
-msgid "not related an obj in "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/detail.phtml:46
-msgid "Title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/detail.phtml:47
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:38
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:12
-msgid "Module"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/detail.phtml:48
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:40
-#, fuzzy
-msgid "Link Time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:33
-msgid "tags relationships"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:36
-#: C:\wamp\www\master\usr\module\tag/template/admin/list.phtml:57
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:15
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:10
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:31
-msgid "Tag Name"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:37
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:10
-msgid "Item"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/link-list.phtml:39
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:13
-msgid "Type"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/list.phtml:12
-#, fuzzy
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:7
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:7
 msgid "All"
-msgstr "All Categories"
+msgstr "所有标签"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/list.phtml:58
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:16
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:11
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:47
-msgid "Count"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:31
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:31
+msgid "Tag name"
+msgstr "标签名"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/list.phtml:59
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:17
-msgid "Operator"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/list.phtml:73
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:28
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:27
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:57
-msgid "Delete"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:5
-msgid "Search"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:6
-msgid "Search result"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/search.phtml:10
-msgid "is not found Try some other words"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:6
-msgid "Global Top tags"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:9
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:30
-msgid "No"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:27
-msgid "Latest tags"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/stats.phtml:32
-#, fuzzy
-msgid "Link time"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:5
-msgid "Verifydas"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:6
-msgid "Invalid links"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:14
-#, fuzzy
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:32
 msgid "Time"
-msgstr "Application Execution Time"
+msgstr "时间"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:15
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:48
-msgid "Operation"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:33
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:33
+msgid "Action"
+msgstr "操作"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:37
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:67
-msgid "Congratulations"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:38
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:38
+msgid "Delete"
+msgstr "删除"
 
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:38
-msgid "No invalid link found"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:42
-msgid "Invalid tags"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\tag/template/admin/verify.phtml:68
-msgid "No invalid tag found"
-msgstr ""
+#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:32
+msgid "Count"
+msgstr "总数"
