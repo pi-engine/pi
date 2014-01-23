@@ -16,18 +16,156 @@ namespace Pi\Setup;
  */
 class Persist
 {
-    const PERSIST_FILE = 'PI-PERSIST.tmp';
+    /** @var string Identifier for conatiner */
+    const PERSIST_IDENTIFIER = 'PI-SETUP.tmp';
 
-    /** @var string */
+    /** @var string Storage for persistent data */
+    protected $storage = 'session'; //or 'file';
+
+    /** @var string Directory to store tem file */
     protected $tmpDir;
 
+    /** @var array Container for persistent data */
     protected $container = array();
 
-    public function __construct($tmpDir = null)
+    /**
+     * Storage methods
+     *
+     * @param string $method
+     * @param array|null $data
+     *
+     * @return mixed
+     */
+    protected function storage($method, $data = null)
     {
-        $this->setTmpDir($tmpDir);
+        $result = null;
+        $_this = $this;
+        $fileLookup = function() use ($_this) {
+            return $this->getTmpDir() . '/' . static::PERSIST_IDENTIFIER;
+        };
+
+        switch ($this->storage) {
+            case 'file':
+                switch ($method) {
+                    case 'load':
+                        $file = $fileLookup();
+                        if (file_exists($file)) {
+                            $content = file_get_contents($file);
+                            $result = json_decode($content, true);
+                        } else {
+                            $result = array();
+                        }
+                        break;
+                    case 'save':
+                        $file = $fileLookup();
+                        if ($file) {
+                            file_put_contents($file, json_encode($data));
+                        }
+                        break;
+                    case 'destroy':
+                        $file = $fileLookup();
+                        if ($file) {
+                            @unlink($file);
+                        }
+                        break;
+                }
+                break;
+
+            case 'session':
+            default:
+                switch ($method) {
+                    case 'load':
+                        session_start();
+                        if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
+                            $result = $_SESSION[static::PERSIST_IDENTIFIER];
+                        } else {
+                            $result = array();
+                        }
+                        break;
+                    case 'save':
+                        $_SESSION[static::PERSIST_IDENTIFIER] = $data;
+                        session_write_close();
+                        break;
+                    case 'destroy':
+                        if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
+                            unset($_SESSION[static::PERSIST_IDENTIFIER]);
+                        }
+                        break;
+                }
+                break;
+        }
+
+        return $result;
     }
 
+    /**
+     * Loads container from storage
+     */
+    public function load()
+    {
+        $this->container = $this->storage('load');
+    }
+
+    /**
+     * Save container to storage
+     *
+     * @param array $container
+     */
+    public function save($container = null)
+    {
+        $data = (null === $container) ? $this->container : $container;
+        $this->storage('save', $data);
+
+        return;
+    }
+
+    /**
+     * Destroy persistent data
+     *
+     * @return bool
+     */
+    public function destroy()
+    {
+        $this->container = array();
+        $this->storage('destroy');
+
+        return true;
+    }
+
+    /**
+     * Set a param
+     *
+     * @param string $key
+     * @param mixed $value
+     *
+     * @return $this
+     */
+    public function set($key, $value)
+    {
+        $this->container[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get a param
+     *
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function get($key)
+    {
+        return isset($this->container[$key]) ? $this->container[$key] : null;
+    }
+
+    /**
+     * Set temp dir for file storage
+     *
+     * @param string $tmpDir
+     *
+     * @return $this
+     */
     public function setTmpDir($tmpDir)
     {
         $this->tmpDir = $tmpDir;
@@ -91,59 +229,4 @@ class Persist
         return $this->tmpDir;
     }
 
-    protected function storage()
-    {
-        $result = '';
-        $tmpDir = $this->getTmpDir();
-        if ($tmpDir) {
-            $result = $tmpDir . '/' . static::PERSIST_FILE;
-        }
-
-        return $result;
-    }
-
-    public function load()
-    {
-        $file = $this->storage();
-        if (file_exists($file)) {
-            $content = file_get_contents($file);
-            $this->container = json_decode($content, true);
-        } else {
-            $this->container = array();
-        }
-    }
-
-    public function save($container = null)
-    {
-        $data = (null === $container) ? $this->container : $container;
-        $file = $this->storage();
-        if ($file) {
-            file_put_contents($file, json_encode($data));
-        }
-
-        return;
-    }
-
-    public function destroy()
-    {
-        $file = $this->storage();
-        if ($file) {
-            @unlink($file);
-        }
-        $this->container = array();
-
-        return true;
-    }
-
-    public function set($key, $value)
-    {
-        $this->container[$key] = $value;
-
-        return $this;
-    }
-
-    public function get($key)
-    {
-        return isset($this->container[$key]) ? $this->container[$key] : null;
-    }
 }

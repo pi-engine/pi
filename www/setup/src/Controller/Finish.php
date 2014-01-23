@@ -33,9 +33,7 @@ class Finish extends AbstractController
         $vars = $wizard->getPersist('paths');
         $configs = array();
 
-        /**#@+
-         * htdocs/boot.php
-         */
+        // `www/boot.php`
         $file = $vars['www']['path'] . '/boot.php';
         $file_dist = $wizard->getRoot() . '/dist/boot.php.dist';
         $content = file_get_contents($file_dist);
@@ -54,31 +52,27 @@ class Finish extends AbstractController
             $content
         );
         $configs[] = array('file' => $file, 'content' => $content);
-        /**#@-*/
 
-        /**#@+
-         * htdocs/.htaccess
-         */
+        // `www/.htaccess`
         $file = $vars['www']['path'] . '/.htaccess';
         $file_dist = $wizard->getRoot() . '/dist/.htaccess.dist';
         $content = file_get_contents($file_dist);
         $configs[] = array('file' => $file, 'content' => $content);
-        /**#@-*/
 
         // Write content to files and record errors in case occured
         foreach ($configs as $config) {
-            $error = false;
+            //$error = false;
             if (!$file = fopen($config['file'], 'w')) {
-                $error = true;
+                //$error = true;
             } else {
                 if (fwrite($file, $config['content']) == -1) {
-                    $error = true;
+                    //$error = true;
                 }
                 fclose($file);
             }
         }
 
-        $readPaths = "<ul>";
+        $readPaths = '<ul>';
         $readonly = $this->wizard->getConfig('readonly');
         foreach ($readonly as $section => $list) {
             foreach ($list as $item) {

@@ -31,7 +31,7 @@ class Directive extends AbstractController
 
     public function init()
     {
-        @set_time_limit(0);
+        //@set_time_limit(0);
     }
 
     protected function loadForm()
@@ -152,9 +152,16 @@ class Directive extends AbstractController
         $this->normalizeHost($vars);
         $wizard->setPersist('paths', $vars);
 
-        /**#@+
-         * config/host.php
-         */
+        // List of engine configs
+        $configEngine = array(
+            'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
+            'salt'          => md5(uniqid(mt_rand(), true)),
+            'storage'       => $wizard->getPersist('persist'),
+            'namespace'     => substr(md5($vars['www']['url']), 0, 4),
+            'environment'   => 'development',
+        );
+
+        // config/host.php
         $file = $vars['config']['path'] . '/host.php';
         $file_dist = $wizard->getRoot() . '/dist/host.php.dist';
         $content = file_get_contents($file_dist);
@@ -174,30 +181,21 @@ class Directive extends AbstractController
                 );
             }
         }
-        $configs[] = array('file' => $file, 'content' => $content);
-        /**#@-*/
-
-        /**#@+
-         * config/engine.php
-         */
-        // List of configs
-        $config = array(
-            'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
-            'salt'          => md5(uniqid(mt_rand(), true)),
-            'storage'       => $wizard->getPersist('persist'),
-            'namespace'     => substr(md5($vars['www']['url']), 0, 4),
-            'environment'   => 'development',
-        );
-        $file = $vars['config']['path'] . '/engine.php';
-        $file_dist = $wizard->getRoot() . '/dist/engine.php.dist';
-        $content = file_get_contents($file_dist);
-        foreach ($config as $var => $val) {
+        foreach ($configEngine as $var => $val) {
             $content = str_replace('%' . $var . '%', $val, $content);
         }
         $configs[] = array('file' => $file, 'content' => $content);
-        /**#@-*/
 
-        // Write content to files and record errors in case occured
+        // config/engine.php
+        $file = $vars['config']['path'] . '/engine.php';
+        $file_dist = $wizard->getRoot() . '/dist/engine.php.dist';
+        $content = file_get_contents($file_dist);
+        foreach ($configEngine as $var => $val) {
+            $content = str_replace('%' . $var . '%', $val, $content);
+        }
+        $configs[] = array('file' => $file, 'content' => $content);
+
+        // Write content to files and record errors in case occurred
         foreach ($configs as $config) {
             $error = false;
             if (!$file = fopen($config['file'], 'w')) {
@@ -280,10 +278,10 @@ class Directive extends AbstractController
         $config = $this->wizard->getConfig('extension');
         $content = '';
 
-        $valid = false;
+        //$valid = false;
         if (extension_loaded('apc')) {
             $persist = $persist ?: 'apc';
-            $valid = true;
+            //$valid = true;
             $checkedString = ($persist == 'apc') ? 'checked' : '';
         } else {
             $checkedString = 'disabled';
@@ -296,7 +294,7 @@ class Directive extends AbstractController
 
         if (extension_loaded('redis')) {
             $persist = $persist ?: 'redis';
-            $valid = true;
+            //$valid = true;
             $checkedString = ($persist == 'redis') ? 'checked' : '';
             $content .= '<label class="radio"><input type="radio" name="persist"'
                       . ' value="redis" ' . $checkedString . ' />'
@@ -308,7 +306,7 @@ class Directive extends AbstractController
         if (extension_loaded('memcached')) {
             $persist = $persist ?: 'memcached';
             $checkedString = ($persist == 'memcached') ? 'checked' : '';
-            $valid = true;
+            //$valid = true;
         } else {
             $checkedString = ' disabled';
         }
@@ -321,7 +319,7 @@ class Directive extends AbstractController
         if (extension_loaded('memcache')) {
             $persist = $persist ?: 'memcache';
             $checkedString = ($persist == 'memcache') ? 'checked' : '';
-            $valid = true;
+            //$valid = true;
         } else {
             $checkedString = ' disabled';
         }

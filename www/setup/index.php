@@ -13,7 +13,9 @@ if (version_compare(PHP_VERSION, '5.3.0') < 0) {
     die('PHP 5.3+ required');
 }
 
-$wizard = include './include/init.php';
+@set_time_limit(0);
+
+$wizard = include __DIR__ . '/include/init.php';
 
 $wizard->dispatch();
 $wizard->render();
