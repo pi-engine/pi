@@ -20,7 +20,8 @@ use Pi;
  *  <type-name>  => array(
  *      'title'         => __('Comment type title'),
  *      'icon'          => <img-src>,
- *      // Callback to fetch source meta data
+ *
+ *      // Callback to fetch source meta data, optional
  *      'callback'      => <source-callback>
  *
  *      // Parameters to identify/locate root data
@@ -38,7 +39,8 @@ use Pi;
  *  <type-name>  => array(
  *      'title'         => __('Comment type title'),
  *      'icon'          => <img-src>,
- *      // Callback to fetch source meta data
+ *
+ *      // Callback to fetch source meta data, optional
  *      'callback'      => <source-callback>
  *
  *      // Callback to identify/locate root data
@@ -125,6 +127,8 @@ class Comment extends AbstractResource
             if (!isset($data['name'])) {
                 $data['name'] = $type;
             }
+
+            // To be removed
             if (!isset($data['callback'])) {
                 $data['callback'] = sprintf(
                     'Module\\%s\Api\Comment%s',
@@ -132,6 +136,7 @@ class Comment extends AbstractResource
                     ucfirst($type)
                 );
             }
+
             $result[$type] = $data;
         }
 
