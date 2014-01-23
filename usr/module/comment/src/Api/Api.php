@@ -908,6 +908,42 @@ class Api extends AbstractApi
     }
 
     /**
+     * Get target(s) content
+     *
+     * @param int|int[] $item
+     * @param array $options Callback or module + type
+     *
+     * @return mixed
+     */
+    public function getTargetContent($item, array $options)
+    {
+        if (empty($options['module'])) {
+            return array();
+        }
+
+        $items = (array) $item;
+        if (!empty($options['callback'])) {
+            $handler = new $options['callback']($options['module']);
+            $list = array_values($handler->get($items));
+        } else {
+            $vars = array('title', 'url', 'uid', 'time');
+            $conditions = array(
+                'module'    => $options['module'],
+                'type'      => empty($options['type']) ? '' : $options['type'],
+                'id'        => $items,
+            );
+            $list = Pi::service('module')->content($vars, $conditions);
+        }
+        if (is_scalar($item)) {
+            $result = current($list);
+        } else {
+            $result = $list;
+        }
+
+        return $result;
+    }
+
+    /**
      * Get target content of a root
      *
      * @param int $root
@@ -927,9 +963,31 @@ class Api extends AbstractApi
         if (!$target) {
             return false;
         }
-        $handler = new $target['callback']($rootData['module']);
-        //$handler->setItem($rootData['item']);
-        $result = $handler->get($rootData['item']);
+        $data = array(
+            'module'    => $rootData['module'],
+            'type'      => $rootData['type'],
+            'callback'  => $target['callback'],
+        );
+        $result = $this->getTargetContent($rootData['item'], $data);
+        /*
+        if (!empty($target['callback'])) {
+            $handler = new $target['callback']($rootData['module']);
+            $result = $handler->get($rootData['item']);
+        } else {
+            $vars = array('title', 'url', 'uid', 'time');
+            $conditions = array(
+                'module'    => $rootData['module'],
+                'type'      => $rootData['type'],
+                'id'        => $rootData['item']
+            );
+            $list = Pi::service('module')->content($vars, $conditions);
+            if ($list) {
+                $result = current($list);
+            } else {
+                $result = false;
+            }
+        }
+        */
 
         return $result;
     }
@@ -964,11 +1022,23 @@ class Api extends AbstractApi
                 if (!isset($types[$module][$type])) {
                     continue;
                 }
+                /*
                 $callback = $types[$module][$type]['callback'];
                 $handler = new $callback($module);
                 $targets = $handler->get(array_keys($cList));
                 foreach ($targets as $item => $target) {
                     $root = $cList[$item];
+                    $list[$root] = $target;
+                }
+                */
+                $data = array(
+                    'module'    => $module,
+                    'type'      => $type,
+                    'callback'  => $types[$module][$type]['callback'],
+                );
+                $targets = $this->getTargetContent(array_keys($cList), $data);
+                foreach ($targets as $target) {
+                    $root = $cList[$target['id']];
                     $list[$root] = $target;
                 }
             }
@@ -1069,10 +1139,24 @@ class Api extends AbstractApi
                 if (!isset($types[$module][$type])) {
                     continue;
                 }
+                /*
                 $callback = $targets[$module][$type]['callback'];
                 $handler = new $callback($module);
                 $targets = $handler->get(array_keys($cList));
                 foreach ($targets as $item => $target) {
+                    $root = $cList[$item]['root'];
+                    $targetList[$root] = array_merge($target, $cList[$item]);
+                }
+                */
+
+                $data = array(
+                    'module'    => $module,
+                    'type'      => $type,
+                    'callback'  => $types[$module][$type]['callback'],
+                );
+                $targets = $this->getTargetContent(array_keys($cList), $data);
+                foreach ($targets as $target) {
+                    $item = $target['id'];
                     $root = $cList[$item]['root'];
                     $targetList[$root] = array_merge($target, $cList[$item]);
                 }
