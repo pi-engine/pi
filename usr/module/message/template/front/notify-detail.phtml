@@ -1,8 +1,5 @@
 <?php
-    $this->bootstrap();
     $this->css($this->assetModule('script/front.css'));
-    $this->jQuery();
-    $this->bootstrap('js/bootstrap.min.js');
 ?>
 <ul class="nav nav-tabs message-nav-tabs">
     <li><a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Messages'); ?>"><?php echo $messageTitle; ?></a></li>
