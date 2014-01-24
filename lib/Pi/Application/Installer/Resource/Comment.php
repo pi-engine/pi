@@ -128,13 +128,16 @@ class Comment extends AbstractResource
                 $data['name'] = $type;
             }
 
-            // To be removed
+            // Set up callback
             if (!isset($data['callback'])) {
-                $data['callback'] = sprintf(
+                $callback = sprintf(
                     'Module\\%s\Api\Comment%s',
                     ucfirst($this->event->getParam('directory')),
                     ucfirst($type)
                 );
+                if (class_exists($callback)) {
+                    $data['callback'] = $callback;
+                }
             }
 
             $result[$type] = $data;

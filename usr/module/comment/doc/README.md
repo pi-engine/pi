@@ -24,7 +24,10 @@ Step 1. Set up comment specification in module meta configuration
         '<comment-type-a>' => array(
             'title'         => _a('Comments for A'),
             'icon'          => 'icon-post',
+
+            // Optional, Api\Content will be used to fetch source data if no callback available
             'callback'      => '<Class\To\Fetch\Object\Information>',
+
             'locator'       => array(
                 'controller'    => '<controller-to-match-this-comment-type>',
                 'action'        => '<action-to-match-this-comment-type>',
@@ -37,7 +40,10 @@ Step 1. Set up comment specification in module meta configuration
         'example' => array(
             'title'         => _a('Article comments'),
             'icon'          => 'icon-post',
+
+            // Optional, Api\Content will be used to fetch source data if no callback available
             'callback'      => 'Module\<ModuleName>\Api\Article',
+
             'locator'       => array(
                 'controller'    => 'demo',
                 'action'        => 'index',
@@ -50,7 +56,10 @@ Step 1. Set up comment specification in module meta configuration
         'custom' => array(
             'title'     => _a('Custom comments'),
             'icon'      => 'icon-post',
+
+            // Optional, Api\Content will be used to fetch source data if no callback available
             'callback'  => 'Module\<ModuleName>\Api\Custom',
+
             'locator'   => 'Module\<ModuleName>\Api\Custom',
         ),
     );
@@ -58,7 +67,8 @@ Step 1. Set up comment specification in module meta configuration
 
 Step 2. Build callback for item information fetch
 
-- The callback is required to extend `Pi\Application\AbstractComment`
+- Callback is optional, `Module\<ModuleName>\Api\Content` will be used to fetch source data if no callback available
+- Callback class must extend `Pi\Application\AbstractComment`
 - The callback is recommended to locate in module api folder
 - Check `Module\Comment\Api\Article` and `Module\Comment\Api\Custom` for example
 
