@@ -271,14 +271,16 @@ class IndexController extends ActionController
         $modules        = (array) $in;
         $result         = array();
 
-        if ($this->config('search_in') && empty($modules)) {
+        if ($this->config('search_in')) {
             $modulesSpecified = explode(',', $this->config('search_in'));
             $modulesSpecified = array_map('trim', $modulesSpecified);
-            foreach (array_keys($moduleSearch) as $name) {
-                if (!in_array($name, $modulesSpecified)) {
-                    unset($moduleSearch[$name]);
+            $list = array();
+            foreach ($modulesSpecified as $name) {
+                if (isset($moduleSearch[$name])) {
+                    $list[$name] = $moduleSearch[$name];
                 }
             }
+            $moduleSearch = $list;
         }
 
         foreach ($moduleSearch as $name => $callback) {
@@ -312,14 +314,16 @@ class IndexController extends ActionController
         $moduleList     = Pi::registry('modulelist')->read();
         $modules        = array();
 
-        if ($this->config('search_in') && empty($modules)) {
+        if ($this->config('search_in')) {
             $modulesSpecified = explode(',', $this->config('search_in'));
             $modulesSpecified = array_map('trim', $modulesSpecified);
-            foreach (array_keys($moduleSearch) as $name) {
-                if (!in_array($name, $modulesSpecified)) {
-                    unset($moduleSearch[$name]);
+            $list = array();
+            foreach ($modulesSpecified as $name) {
+                if (isset($moduleSearch[$name])) {
+                    $list[$name] = $moduleSearch[$name];
                 }
             }
+            $moduleSearch = $list;
         }
         
         foreach (array_keys($moduleSearch) as $name) {

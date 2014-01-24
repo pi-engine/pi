@@ -81,8 +81,8 @@ $config = array(
     ),
     
     'search_in'         => array(
-        'title'         => _t('Search module'),
-        'description'   => _t('Define which modules to search in , separate with ","'),
+        'title'         => _t('Modules to search'),
+        'description'   => _t('Only specified modules are allowed to search, separated by ",".'),
     ),
 );
 
