@@ -230,8 +230,11 @@ class ListController extends ActionController
             if ($id == $item['id']) {
                 return $item['title'];
             }
-            if (isset($item['child'])) {
-                $this->getCategoryTitle($id, $item['child']);
+            if (isset($item['pages'])) {
+                $title = $this->getCategoryTitle($id, $item['pages']);
+                if ($title) {
+                    return $title;
+                }
             }
         }
     }
