@@ -20,7 +20,7 @@ $mode = 'resultonly'; // 'resultonly', 'custom'
                     s.parentNode.insertBefore(gcse, s);
                 })();
             </script>
-            <gcse:search></gcse:search>
+            <gcse:search><div><?php _e('Loading ...'); ?></div></gcse:search>
         </div>
     </div>
 
@@ -60,7 +60,7 @@ $mode = 'resultonly'; // 'resultonly', 'custom'
             s.parentNode.insertBefore(gcse, s);
         })();
     </script>
-    <gcse:searchresults-only></gcse:searchresults-only>
+    <gcse:searchresults-only><div><?php _e('Loading ...'); ?></div></gcse:searchresults-only>
 </div>
 <?php } else { ?>
 <div class="panel panel-primary">
