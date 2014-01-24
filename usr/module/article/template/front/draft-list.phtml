@@ -68,9 +68,9 @@
                     echo $this->escape($draft['category_title']);
                 } ?>
                 </td>
-                <td><?php
+                <td><?php 
                     echo (isset($draft['tag']) and !empty($draft['tag']))
-                        ? is_array($draft['tag']) ? implode(',', $draft['tag']) : $this->escape($draft['tag']) 
+                        ? $this->escape(implode(',', $draft['tag'])) 
                         : '<span class="text-muted">' . __('No tags') . '</span>' 
                 ?>
                 </td>
