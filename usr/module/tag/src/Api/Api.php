@@ -457,7 +457,7 @@ class Api extends AbstractApi
      *
      * @return array
      */
-    public function top($limit = 10, $module = '', $type = '', $offset)
+    public function top($limit = 10, $module = '', $type = '', $offset = 0)
     {
         $result = array();
         $where = array();
