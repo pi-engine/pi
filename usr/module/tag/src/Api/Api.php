@@ -47,7 +47,6 @@ class Api extends AbstractApi
     {
         if (is_string($tags)) {
             //$tags = preg_split('#[\|\s\,\n]+#', $tags, 0, PREG_SPLIT_NO_EMPTY);
-
             // Pre-fetch terms quoted by `"` or `'`
             $pattern = '`(?:(?:"(?:\\"|[^"])+")|(?:\'(?:\\\'|[^\'])+\'))`is';
             $terms = array();
@@ -270,6 +269,10 @@ class Api extends AbstractApi
                 'type'      => $type,
             );
             Pi::model('link', $this->module)->delete($where);
+            $where = array(
+                'term'      => $tagsDelete,
+            );
+            Pi::model('tag', $this->module)->increment('count', $where, -1);
             $where = array(
                 'term'      => $tagsDelete,
                 'module'    => $module,
