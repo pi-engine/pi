@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-01-24 15:44+0800\n"
-"PO-Revision-Date: 2014-01-24 15:44+0800\n"
+"POT-Creation-Date: 2014-01-24 18:09+0800\n"
+"PO-Revision-Date: 2014-01-24 18:09+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -14,24 +14,24 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\search\n"
 
-#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:377
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:402
 msgid "Google"
 msgstr "谷歌"
 
-#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:381
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:406
 msgid "Bing"
 msgstr "必应"
 
-#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:385
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:410
 msgid "Baidu"
 msgstr "百度"
 
-#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:389
+#: D:\wamp\www\deploy\usr\module\search/src/Controller/Front/IndexController.php:414
 msgid "Sogou"
 msgstr "搜狗"
 
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:5
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:32
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:42
 msgid "Go to home page"
 msgstr "回首页"
 
@@ -51,18 +51,20 @@ msgid "Search"
 msgstr "搜索"
 
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:8
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:68
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:88
 #, php-format
 msgid "Google search for %s"
 msgstr "%s的谷歌搜索结果"
 
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:43
-msgid "Google search"
-msgstr "谷歌搜索"
-
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:70
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:28
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:78
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:90
 msgid "Loading ..."
 msgstr "加载中..."
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:53
+msgid "Google search"
+msgstr "谷歌搜索"
 
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-module-result.phtml:30
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-result.phtml:8
