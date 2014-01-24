@@ -45,10 +45,11 @@ return array(
             ),
         ),
         // Navigation definition
-        'navigation' => 'navigation.php',
+        'navigation'    => 'navigation.php',
         // Config definition.
-        'config'     => 'config.php',
+        'config'        => 'config.php',
         // Block definition.
-        'block'      => 'block.php',
+        'block'         => 'block.php',
+        'route'         => 'route.php',
     ),
 );

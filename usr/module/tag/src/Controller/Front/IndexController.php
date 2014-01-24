@@ -108,11 +108,12 @@ class IndexController extends ActionController
                 'limit'       => $limit,
                 'page'        => $page,
                 'url_options' => array(
+                    'route' => 'tag',
                     'params' => array(
                         'tag'    => $tag,
                         'm'      => $module
                     )
-                )
+                ),
             ));
         }
 
