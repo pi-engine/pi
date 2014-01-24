@@ -271,6 +271,15 @@ class IndexController extends ActionController
         $modules        = (array) $in;
         $result         = array();
 
+        if ($this->config('search_in') && empty($modules)) {
+            $modules  = explode(',', $this->config('search_in'));
+            $searchIn = array();
+            foreach ($modules as $module) {
+            	$searchIn[$module] = $moduleSearch[$module];
+            }
+            $moduleSearch = $searchIn;
+        }
+
         foreach ($moduleSearch as $name => $callback) {
             if ($modules && !in_array($name, $modules)) {
                 continue;
@@ -301,6 +310,16 @@ class IndexController extends ActionController
         $moduleSearch   = Pi::registry('search')->read();
         $moduleList     = Pi::registry('modulelist')->read();
         $modules        = array();
+        
+        if ($this->config('search_in')) {
+        	$search  = explode(',', $this->config('search_in'));
+            $searchIn = array();
+            foreach ($search as $module) {
+            	$searchIn[$module] = $moduleSearch[$module];
+            }
+            $moduleSearch = $searchIn;
+        }
+        
         foreach (array_keys($moduleSearch) as $name) {
             if (!isset($moduleList[$name])) {
                 continue;
