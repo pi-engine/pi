@@ -93,9 +93,9 @@ class Api extends AbstractApi
             $module = Pi::service('module')->current();
         }
         $params = array(
-            'module'        => $this->module,
-            'controller'    => 'index',
-            'action'        => 'list',
+            //'module'        => $this->module,
+            //'controller'    => 'index',
+            //'action'        => 'list',
             'tag'           => $tag
         );
         if ($module) {
@@ -104,7 +104,7 @@ class Api extends AbstractApi
                 $params['type'] = $type;
             }
         }
-        $url = Pi::service('url')->assemble('default', $params);
+        $url = Pi::service('url')->assemble('tag', $params);
 
         return $url;
     }
