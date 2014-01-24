@@ -99,8 +99,9 @@ class Mvc extends ZendMvcPage
      * This method will inject the container as the given page's parent by
      * calling {@link Page\AbstractPage::setParent()}.
      *
-     * @param  Page\AbstractPage|array|Traversable $page  page to add
-     * @return self
+     * @param AbstractPage|array|Traversable $page  page to add
+     *
+     * @return this
      * @throws Exception\InvalidArgumentException if page is invalid
      * @see Pi\Navigation\Navigation::addPage()
      * @see Pi\Navigation\Page\Uri::addPage()
@@ -188,6 +189,16 @@ class Mvc extends ZendMvcPage
                 }
 
                 if (null !== $this->getRoute()) {
+                    /**#@+
+                     * Added by Taiwen Jiang
+                     */
+                    if ($myParams['module'] === $reqParams['module']
+                        && empty($myParams['controller'])
+                        && empty($myParams['index'])
+                    ) {
+                        $this->active = true;
+                        return $this->active;
+                    }
                     if ($this->routeMatch->getMatchedRouteName()
                             === $this->getRoute()
                         && (count(array_intersect_assoc($reqParams, $myParams))
@@ -197,12 +208,19 @@ class Mvc extends ZendMvcPage
                         $this->active = true;
                         return $this->active;
                     } else {
-                        /**#@+
-                         * Added by Taiwen Jiang
-                         */
                         return $this->isAbstractActive($recursive);
-                        /**#@-*/
+                    }
+                    /**#@-*/
 
+                    if ($this->routeMatch->getMatchedRouteName()
+                            === $this->getRoute()
+                        && (count(array_intersect_assoc($reqParams, $myParams))
+                            == count($myParams)
+                        )
+                    ) {
+                        $this->active = true;
+                        return $this->active;
+                    } else {
                         return parent::isActive($recursive);
                     }
                 }
