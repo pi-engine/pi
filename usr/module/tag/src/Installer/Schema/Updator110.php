@@ -60,6 +60,8 @@ EOT;
             $sql =<<<'EOT'
 ALTER TABLE %s
 ADD `term` varchar(255) NOT NULL,
+MODIFY `module` varchar(64) NOT NULL default '',
+MODIFY `type` varchar(64) NOT NULL default '',
 DROP key `item`,
 ADD KEY `item` (`module`, `type`, `item`),
 ADD KEY `term` (`term`),
@@ -77,6 +79,8 @@ EOT;
 ALTER TABLE %s
 ADD `term` varchar(255) NOT NULL,
 ADD KEY `count` (`module`, `type`, `count`),
+MODIFY `module` varchar(64) NOT NULL default '',
+MODIFY `type` varchar(64) NOT NULL default '',
 DROP key `tag`;
 EOT;
             $sql = sprintf($sql, $tableStats);
