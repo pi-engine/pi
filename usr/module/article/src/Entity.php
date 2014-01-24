@@ -400,6 +400,7 @@ class Entity
                 unset($resultsetUser);
             }
 
+            /*
             if (!empty($articleIds)) {
                 if ((empty($columns) || in_array('tag', $columns))
                     && $config['enable_tag']
@@ -407,6 +408,7 @@ class Entity
                     $tags = Pi::service('tag')->get($module, $articleIds);
                 }
             }
+            */
 
             foreach ($resultset as &$row) {
                 if (empty($columns) || in_array('category', $columns)) {
@@ -434,12 +436,14 @@ class Entity
                     }
                 }
 
+                /*
                 if ((empty($columns) 
                     || in_array('tag', $columns)) && $config['enable_tag']) {
                     if (!empty($tags[$row['id']])) {
                         $row['tag'] = $tags[$row['id']];
                     }
                 }
+                */
 
                 if (empty($columns) || in_array('subject', $columns)) {
                     $route      = Pi::api('api', $module)->getRouteName($module);
@@ -530,7 +534,7 @@ class Entity
             'seo'           => array(),
             'author'        => array(),
             'attachment'    => array(),
-            'tag'           => array(),
+            'tag'           => '',
             'related'       => array(),
         );
 
@@ -587,9 +591,11 @@ class Entity
         }
 
         // Get tag
+        /*
         if ($config['enable_tag']) {
             $result['tag'] = Pi::service('tag')->get($module, $id);
         }
+        */
 
         // Get related articles
         $relatedIds = $related = array();
@@ -637,12 +643,14 @@ class Entity
 
         return $result;
     }
-    
+
     /**
      * Get count statistics of draft with different status and published article
-     * 
-     * @param string  $from
-     * @return array 
+     *
+     * @param string $from
+     * @param array  $rules
+     *
+     * @return array
      */
     public static function getSummary($from = 'my', $rules = array())
     {

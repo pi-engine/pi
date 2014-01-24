@@ -228,9 +228,11 @@ class ArticleController extends ActionController
         $draft['related'] = $related;
 
         // Get tag
+        /*
         if ($this->config('enable_tag')) {
             $draft['tag'] = Pi::service('tag')->get($module, $id);
         }
+        */
 
         // Save as draft
         $draftRow = $draftModel->saveRow($draft);
