@@ -107,7 +107,7 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
-        /*
+    /*
     'asset_versioning'  => array(
         'title'         => _t('Enable asset versions'),
         'description'   => _t('Append version to asset URLs. It is suggested to trun off in production environments for performance consideration.'),
@@ -134,6 +134,7 @@ $config['item'] = array(
 
     // Meta section
 
+    /*
     'copyright'     => array(
         'title'         => _t('Meta copyright'),
         'description'   => _t('The copyright meta tag defines any copyright statements you wish to disclose about your web page documents.'),
@@ -141,6 +142,7 @@ $config['item'] = array(
         'value'         => 'Copyright &copy; ' . date('Y'),
         'category'      => 'meta',
     ),
+    */
 
     'author'        => array(
         'title'         => _t('Meta author'),
