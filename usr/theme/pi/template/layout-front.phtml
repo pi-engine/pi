@@ -87,13 +87,15 @@ $this->headLink(array(
             $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
             echo $navigation->menu()->setUlClass('unstyled pi-menu');
         ?>
+
         <!-- Breadcrumbs: check if it exists  -->
-        <?php $breadcrumbs = $navigation->breadcrumbs()->setSeparator('<span class="pi-divider">/</span>')->render(); ?>
-        <?php if ($breadcrumbs) { ?>
-        <div class="breadcrumb">
-           <?php echo $breadcrumbs; ?>
-        </div>
-        <?php } ?>
+        <?php
+        $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home')))));
+        if ($breadcrumbs) {
+            echo $breadcrumbs;
+        }
+        ?>
+
     </nav>
 
     <!-- Page main content: blocks and module content -->

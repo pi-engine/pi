@@ -108,17 +108,9 @@ $this->headLink(array(
     ?>
     <div class="container pi-main-container">
         <?php
-        //$breadcrumbs = $navigation->breadcrumbs()->setSeparator(' &gt; ')->render();
         $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home')))));
-
         if ($breadcrumbs) {
             echo $breadcrumbs;
-            /*
-            echo sprintf(
-                '<div class="breadcrumb">%s</div>',
-                $breadcrumbs
-            );
-            */
         }
         ?>
         <!-- Flash messenger -->
