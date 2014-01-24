@@ -56,10 +56,10 @@ return array(
             'feed'     => array(
                 'label'     => _a('Feed'),
                 'route'     => 'feed',
+                'section'   => 'feed',
             ),
         ),
     ),
-
 
     'modules'   => array(
         'callback'  => array('navigation', 'front'),
