@@ -195,10 +195,12 @@ class Mvc extends ZendMvcPage
                     if ($myParams['module'] === $reqParams['module']
                         && empty($myParams['controller'])
                         && empty($myParams['index'])
-                        && $myParams['section'] == $this->routeMatch->getParam('section')
                     ) {
-                        $this->active = true;
-                        return $this->active;
+                        $section = isset($myParams['section']) ? $myParams['section'] : '';
+                        if ($section == $this->routeMatch->getParam('section')) {
+                            $this->active = true;
+                            return $this->active;
+                        }
                     }
                     if ($this->routeMatch->getMatchedRouteName()
                             === $this->getRoute()
