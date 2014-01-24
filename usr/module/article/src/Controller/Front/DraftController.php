@@ -580,12 +580,6 @@ class DraftController extends ActionController
                 explode(self::TAG_DELIMITER, $data['related'])
             );
         }
-
-        if (isset($data['tag'])) {
-            $data['tag']     = array_filter(
-                explode(self::TAG_DELIMITER, $data['tag'])
-            );
-        }
         
         // Added current logged user as submitter if there is no submitter
         $data['uid'] = $data['uid'] ?: Pi::user()->getId();
@@ -995,10 +989,9 @@ class DraftController extends ActionController
         $data                 = (array) $row;
         $data['category']     = $data['category'] ?: $this->config('default_category');
         $data['related']      = $data['related'] ? implode(self::TAG_DELIMITER, $data['related']) : '';
-        $data['tag']          = isset($data['tag']) ? implode(self::TAG_DELIMITER, $data['tag']) : '';
         $data['time_publish'] = $data['time_publish'] ? date('Y-m-d H:i:s', $data['time_publish']) : '';
         $data['time_update']  = $data['time_update'] ? date('Y-m-d H:i:s', $data['time_update']) : '';
-
+        
         $featureImage = $data['image'] ? Pi::url($data['image']) : '';
         $featureThumb = $data['image'] ? Pi::url(Media::getThumbFromOriginal($data['image'])) : '';
 
