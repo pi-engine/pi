@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-01-22 10:26+0800\n"
-"PO-Revision-Date: 2014-01-22 10:44+0800\n"
+"POT-Creation-Date: 2014-01-24 15:44+0800\n"
+"PO-Revision-Date: 2014-01-24 15:44+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -31,6 +31,7 @@ msgid "Sogou"
 msgstr "搜狗"
 
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:5
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:32
 msgid "Go to home page"
 msgstr "回首页"
 
@@ -45,19 +46,21 @@ msgid "Keywords"
 msgstr "关键字"
 
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-form.phtml:36
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:37
 #: D:\wamp\www\deploy\usr\module\search/template/front/search-home.phtml:41
 msgid "Search"
 msgstr "搜索"
 
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:7
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:30
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:63
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:8
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:68
 #, php-format
 msgid "Google search for %s"
 msgstr "%s的谷歌搜索结果"
 
-#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:65
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:43
+msgid "Google search"
+msgstr "谷歌搜索"
+
+#: D:\wamp\www\deploy\usr\module\search/template/front/search-google.phtml:70
 msgid "Loading ..."
 msgstr "加载中..."
 

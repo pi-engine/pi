@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
 "POT-Creation-Date: 2013-11-21 22:06+0800\n"
-"PO-Revision-Date: 2013-11-22 03:24+0800\n"
+"PO-Revision-Date: 2013-11-26 15:25+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -11,25 +11,25 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\lib\\Pi\n"
-"X-Poedit-SearchPath-1: D:\\GitHub\\custom-pi\\www\n"
-"X-Poedit-SearchPath-2: D:\\GitHub\\custom-pi\\usr\\editor\n"
+"X-Poedit-SearchPath-0: D:\\GitHub\\deploy\\lib\\Pi\n"
+"X-Poedit-SearchPath-1: D:\\GitHub\\deploy\\www\n"
+"X-Poedit-SearchPath-2: D:\\GitHub\\deploy\\usr\\editor\n"
 
 #: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:11
 msgid "First"
-msgstr "第一页"
+msgstr "«"
 
 #: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:15
 msgid "&lt; Previous"
-msgstr "&lt; 上一页"
+msgstr "‹"
 
 #: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:23
 msgid "Next &gt;"
-msgstr "下一页 &gt;"
+msgstr "›"
 
 #: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:27
 msgid "Last"
-msgstr "最后一页"
+msgstr "»"
 
 #: D:\GitHub\custom-pi\lib\Pi/Application/Installer/Theme.php:346
 msgid "Theme updated successfully."
@@ -107,7 +107,7 @@ msgstr "女"
 
 #: D:\GitHub\custom-pi\lib\Pi/Filter/Gender.php:48
 msgid "Unknown gender"
-msgstr ""
+msgstr "未知"
 
 #: D:\GitHub\custom-pi\lib\Pi/Filter/YesNo.php:40
 msgid "No"
