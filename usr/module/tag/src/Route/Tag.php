@@ -43,7 +43,7 @@ class Tag extends Standard
         $parts = array();
         if ($path) {
             $parts = explode($this->paramDelimiter, $path);
-            $matches['tag'] = array_shift($parts);
+            $matches['tag'] = $this->decode(array_shift($parts));
         }
         if ($parts) {
             $matches = array_merge(
