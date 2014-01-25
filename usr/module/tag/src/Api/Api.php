@@ -277,7 +277,7 @@ class Api extends AbstractApi
         $type       = $type ?: '';
         $tags       = $this->canonize($tags);
 
-        $tagsExist  = $this->get($module, $item, $type);
+        $tagsExist  = $this->get($module, $item, $type, true);
         $tagsNew    = array_diff($tags, $tagsExist);
         if ($tagsNew) {
             $this->add($module, $item, $type, $tagsNew, $time);
@@ -326,7 +326,7 @@ class Api extends AbstractApi
         }
 
         $type = $type ?: '';
-        $tags = $this->get($module, $item, $type);
+        $tags = $this->get($module, $item, $type, true);
         if (!$tags) {
             return true;
         }
@@ -559,7 +559,7 @@ class Api extends AbstractApi
      */
     public function disable($module, $item, $type = '')
     {
-        $tags = $this->get($module, $item, $type);
+        $tags = $this->get($module, $item, $type, true);
         if ($tags) {
             $this->delete($module, $item, $type);
             $this->add($module, $item, $type, $tags, false);
