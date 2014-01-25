@@ -136,7 +136,7 @@ class Api extends AbstractApi
      *
      * @return string[]
      */
-    public function get($module, $item, $type = '', $active = false)
+    public function get($module, $item, $type = '', $active = true)
     {
         if (!$active) {
             $result = Pi::api('draft', $this->module)
@@ -265,7 +265,7 @@ class Api extends AbstractApi
      *
      * @return bool
      */
-    public function update($module, $item, $type, $tags, $time = 0, $active = false)
+    public function update($module, $item, $type, $tags, $time = 0, $active = true)
     {
         if (!$active) {
             $result = Pi::api('draft', $this->module)
@@ -277,7 +277,7 @@ class Api extends AbstractApi
         $type       = $type ?: '';
         $tags       = $this->canonize($tags);
 
-        $tagsExist  = $this->get($module, $item, $type, true);
+        $tagsExist  = $this->get($module, $item, $type);
         $tagsNew    = array_diff($tags, $tagsExist);
         if ($tagsNew) {
             $this->add($module, $item, $type, $tagsNew, $time);
@@ -316,7 +316,7 @@ class Api extends AbstractApi
      *
      * @return bool
      */
-    public function delete($module, $item, $type = '', $active = false)
+    public function delete($module, $item, $type = '', $active = true)
     {
         if (!$active) {
             $result = Pi::api('draft', $this->module)
@@ -326,7 +326,7 @@ class Api extends AbstractApi
         }
 
         $type = $type ?: '';
-        $tags = $this->get($module, $item, $type, true);
+        $tags = $this->get($module, $item, $type);
         if (!$tags) {
             return true;
         }
@@ -559,7 +559,7 @@ class Api extends AbstractApi
      */
     public function disable($module, $item, $type = '')
     {
-        $tags = $this->get($module, $item, $type, true);
+        $tags = $this->get($module, $item, $type);
         if ($tags) {
             $this->delete($module, $item, $type);
             $this->add($module, $item, $type, $tags, false);
