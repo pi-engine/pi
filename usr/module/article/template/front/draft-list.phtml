@@ -11,7 +11,12 @@
                 </th>
                 <th><?php echo __('Title'); ?></th>
                 <th style="width: 15%;"><?php _e('Category'); ?></th>
+                <?php
+                /*
+                ?>
                 <th style="width: 15%;"><?php _e('Tag'); ?></th>
+                */
+                ?>
                 <th style="width: 15%;">
                 <?php echo $status == $flags['published'] ? __('Published time') 
                     : __('Last update date'); 
@@ -68,12 +73,17 @@
                     echo $this->escape($draft['category_title']);
                 } ?>
                 </td>
+                <?php
+                /*
+                ?>
                 <td><?php
-                    echo (isset($draft['tag']) and !empty($draft['tag']))
+                    echo !empty($draft['tag'])
                         ? $this->escape($draft['tag']) 
                         : '<span class="text-muted">' . __('No tags') . '</span>' 
                 ?>
                 </td>
+                */
+                ?>
                 <td><?php 
                     echo date('Y-m-d', $status == $flags['published'] 
                         ? $draft['time_publish'] 

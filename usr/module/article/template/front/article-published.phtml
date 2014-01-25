@@ -65,7 +65,11 @@
                 </th>
                 <th><?php echo _a('Title'); ?></th>
                 <th style="width: 10%;"><?php echo _a('Category'); ?></th>
+                <?php
+                /*
                 <th style="width: 14%"><?php echo _a('Tag'); ?></th>
+                */
+                ?>
                 <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
                 <th style="width: 8%"><?php echo _a('View'); ?></th>
                 <th style="width: 100px;"><?php echo _a('Publish date'); ?></th>
@@ -100,11 +104,16 @@
                     </div>
                 </td>
                 <td><?php echo $this->escape($article['category_title']); ?></td>
+                <?php
+                /*
+                ?>
                 <td><?php 
                     echo !empty($article['tag']) ? $this->escape(join($article['tag'], ',')) 
                         : '<span class="muted">' . _a('No tags') . '</span>'
                 ?>
                 </td>
+                */
+                ?>
                 <td><?php echo !empty($article['user_name']) ? $this->escape($article['user_name']) : '&nbsp;'; ?></td>
                 <td><?php echo $article['visits'] ? $this->escape($article['visits']) : 0; ?></td>
                 <td><?php echo date('Y-m-d', $article['time_publish']); ?></td>
