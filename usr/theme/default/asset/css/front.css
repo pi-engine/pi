@@ -8,6 +8,17 @@ html {
   padding-bottom: 80px;
 }
 
+/* Bootstrap custom */
+.nav-tabs {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .navbar-default .navbar-form {
+    width: 250px;
+  }
+}
+
 /* Navbar custom */
 .navbar-inverse {
   margin-bottom: 0;
@@ -70,18 +81,6 @@ html {
     left: 100%;
     top: -5px;
   }
-}
-
-
-.pi-menu-search {
-  float: right;
-  width: 250px;
-  margin: 2px 10px 0;
-}
-
-.pi-breadcrumb {
-  margin-bottom: 0;
-  padding: 10px 0;
 }
 
 /* Block */
@@ -180,18 +179,17 @@ html {
   max-height: 6em;
 }
 
+/* list or order list */
+.pi-list {
+
+}
+
+.pi-order-list {
+
+}
+
 /* Module custom */
 .tag-terms a {
   padding: 0 5px;
 }
 
-/* Bootstrap custom */
-.nav-tabs {
-  margin-bottom: 20px;
-}
-
-@media (min-width: 768px) {
-  .navbar-default .navbar-form {
-    width: 250px;
-  }
-}
