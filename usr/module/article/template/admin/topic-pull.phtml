@@ -1,4 +1,5 @@
 <?php
+    $this->css($this->assetModule('script/admin.css'));
     $this->jQuery();
     $this->Backbone();
     $this->js(Pi::url('static/vendor/bootstrap/js/bootstrap.js'));
@@ -17,7 +18,7 @@
 
 <div class="row-fluid">
     <div class="span12">
-        <div id="jsList">
+        <div id="pi-js-list">
             <div class="article-pull-title">
                 <strong><?php echo _a('Pull articles for '); ?>
                     <a href="<?php echo $this->url('', array('action' => 'list-article', 'topic' => $topic['id'])); ?>">
@@ -145,7 +146,7 @@
             'controller' => 'article',
             'action'     => ''
         )); ?>" . replace(/\/$/,""),
-        el      : $("#jsList"),
+        el      : $("#pi-js-list"),
         $       : function(selector){
             return this.el.find(selector);
         },
@@ -159,7 +160,7 @@
             this.$("#pull-topic").click(this.pullToTopic);
             
             var count = '<?php echo $this->escape($count); ?>';
-            if (count.length) {
+            if (count) {
                 var message = count + ' article have been pull into '
                             + '<?php echo $this->escape($topic['title']); ?>'
                             + '&nbsp;&nbsp;&nbsp;&nbsp'
