@@ -85,8 +85,6 @@ class DraftController extends ActionController
         );
         $maxImageSize = $config['max_image_size'];
         $maxMediaSize = $config['max_media_size'];
-        $defaultMediaImage   = Pi::service('asset')
-            ->getModuleAsset($config['default_media_image'], $module);
         $defaultFeatureThumb = Pi::service('asset')
             ->getModuleAsset($config['default_feature_thumb'], $module);
         $this->view()->assign(array(
@@ -103,7 +101,6 @@ class DraftController extends ActionController
             'maxSubjectLength'    => $config['max_subject_length'],
             'maxSubtitleLength'   => $config['max_subtitle_length'],
             'defaultSource'       => $config['default_source'],
-            'defaultMediaImage'   => $defaultMediaImage,
             'defaultFeatureThumb' => $defaultFeatureThumb,
             'contentImageWidth'   => $config['content_thumb_width'],
             'contentImageHeight'  => $config['content_thumb_height'],
@@ -574,7 +571,8 @@ class DraftController extends ActionController
             ? strtotime($data['time_update']) : 0;
         $data['time_submit']  = $data['time_submit'] ? $data['time_submit'] : 0;
         $data['time_save']    = time();
-
+        $data['author']       = (int) $data['author'];
+        
         if (isset($data['related'])) {
             $data['related'] = array_filter(
                 explode(self::TAG_DELIMITER, $data['related'])

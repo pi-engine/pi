@@ -251,6 +251,9 @@ class TopicController extends ActionController
         $form = new SimpleSearchForm;
         $form->setData($this->params()->fromQuery());
         
+        $count = $this->getModel('article_topic')
+                      ->count(array('topic' => $rowTopic->id));
+        
         $this->view()->assign(array(
             'title'      => _a('All Articles'),
             'data'       => $data,
@@ -263,6 +266,7 @@ class TopicController extends ActionController
             'relation'   => $relation,
             'topic'      => $rowTopic->toArray(),
             'pulled'     => $topicArticles,
+            'count'      => $count,
         ));
     }
     

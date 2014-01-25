@@ -25,6 +25,7 @@
     <div id="jsUpload">
         <div class="upload-media">
         <?php 
+            $imageExtension = array_map('trim', explode(',', $configs['image_format']));
             $src = $form->get('url')->getValue();
             if ($src) {
                 if (in_array(

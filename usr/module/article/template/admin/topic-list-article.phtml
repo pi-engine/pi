@@ -1,4 +1,5 @@
 <?php
+    $this->css($this->assetModule('script/admin.css'));
     $this->jQuery();
     $this->Backbone();
 ?>
@@ -11,7 +12,7 @@
 
 <div class="row-fluid">
     <div class="span12">
-        <div id="jsList">
+        <div id="pi-js-list">
             <div class="clearfix">
                 <div class="pull-left form-inline">
                     <span><strong><?php echo _a('Topic: ') . $this->escape($title); ?></strong></span>
@@ -87,7 +88,7 @@
             '', 
             array('controller' => 'article', 'action' => '')
         ); ?>" . replace(/list-article\/$/,""),
-        el      : $("#jsList"),
+        el      : $("#pi-js-list"),
         $       : function (selector) {
             return this.el.find(selector);
         },

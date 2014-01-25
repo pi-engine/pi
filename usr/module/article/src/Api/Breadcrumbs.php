@@ -46,7 +46,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
             && 'detail' == $params['action']
         ) {
             $model = Pi::model('article', $module);
-            if ($params['slug']) {
+            if (isset($params['slug'])) {
                 $row = Pi::model('extended', $module)->find($params['slug'], 'slug');
                 $row = $model->find($row->article);
             } else {
