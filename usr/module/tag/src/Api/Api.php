@@ -46,27 +46,46 @@ class Api extends AbstractApi
     public function canonize($tags)
     {
         if (is_string($tags)) {
-            //$tags = preg_split('#[\|\s\,\n]+#', $tags, 0, PREG_SPLIT_NO_EMPTY);
-            // Pre-fetch terms quoted by `"` or `'`
-            $pattern = '`(?:(?:"(?:\\"|[^"])+")|(?:\'(?:\\\'|[^\'])+\'))`is';
-            $terms = array();
-            $callback = function ($match) use (&$terms) {
-                $terms[] = substr($match[0], 1, -1);
-                return ' ';
-            };
-            $string = preg_replace_callback($pattern, $callback, $tags);
+            $terms  = array();
+            $string = $tags;
 
+            // Canonize delimiters
+            $delimiter = Pi::service('module')->config('tag_delimiter', $this->module);
+            if (!$delimiter) {
+                $delimiters = array('s');
+            } else {
+                $delimiters = explode('|', $delimiter);
+            }
+
+            // Pre-fetch terms quoted by `"`
+            $quote  = Pi::service('module')->config('tag_quote', $this->module);
+            if ($quote) {
+                //$pattern = '`(?:(?:"(?:\\"|[^"])+")|(?:\'(?:\\\'|[^\'])+\'))`is';
+                if (in_array('s', $delimiters)) {
+                    $replacement = ' ';
+                } else {
+                    $replacement = $delimiters[0];
+                }
+                $pattern = '`(?:(?:"(?:\\"|[^"])+"))`is';
+                $callback = function ($match) use (&$terms, $replacement) {
+                    $terms[] = substr($match[0], 1, -1);
+                    return $replacement;
+                };
+                $string = preg_replace_callback($pattern, $callback, $tags);
+            }
+
+            $pattern = '\\' . implode('\\', $delimiters);
             // Split string into terms by delimiters: whitespace, comma, line break
-            $tags = preg_split('#[\s\,\n\r]+#', $string, 0, PREG_SPLIT_NO_EMPTY);
+            $tags = preg_split('#[' . $pattern . ']+#', $string, 0, PREG_SPLIT_NO_EMPTY);
 
             // Collect
-            $tags = array_merge($tags, $terms);
+            $tags = array_merge($terms, $tags);
         }
         // Cleaning
         $tags = array_unique(array_filter(array_map('trim', $tags)));
 
         // Discard short terms
-        $length = Pi::service('module')->config('min_length') ?: 2;
+        $length = Pi::service('module')->config('min_length', $this->module) ?: 2;
         $terms = array();
         array_walk($tags, function ($term) use (&$terms, $length) {
             if (strlen($term) >= $length) {
