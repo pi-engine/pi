@@ -274,9 +274,10 @@ class Block
         return array(
             'articles'  => $articles,
             'target'    => $options['target'],
-            'style'     => $options['block-style'],
+            'elements'  => $options['element'],
             'config'    => $config,
             'column'    => $options['column-number'],
+            'rows'      => $options['description_rows'],
         );
     }
     
@@ -333,9 +334,10 @@ class Block
         return array(
             'articles'  => $articles,
             'target'    => $options['target'],
-            'style'     => $options['block-style'],
+            'elements'  => $options['element'],
             'column'    => $options['column-number'],
             'config'    => $config,
+            'rows'      => $options['description_rows'],
         );
     }
     
@@ -499,9 +501,10 @@ class Block
         return array(
             'articles'  => $articles,
             'target'    => $options['target'],
-            'style'     => $options['block-style'],
+            'elements'  => $options['element'],
             'column'    => $options['column-number'],
             'config'    => $config,
+            'rows'      => $options['description_rows'],
         );
     }
     
@@ -602,10 +605,11 @@ class Block
             'articles'  => $articles,
             'target'    => $options['target'],
             'style'     => $options['block-style'],
-            'width'     => $options['image-width'],
+            'elements'  => $options['elements'],
             'height'    => $options['image-height'],
             'images'    => $images,
             'config'    => Pi::service('module')->config('', $module),
+            'rows'      => $options['description_rows'],
         );
     }
     

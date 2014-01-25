@@ -1,5 +1,5 @@
 <?php 
-    $style    = $block['style'];
+    $elements = $block['elements'];
     $target   = $block['target'];
     $articles = $block['articles'];
     $width    = $block['width'];
@@ -37,7 +37,8 @@
         </a>
     </div>
     <div class="col-md-5" style="padding: 10px 15px 10px 10px">
-        <?php $template = 'list-single-' . $style . '.phtml';
+        <?php $template = 'list-single.phtml';
+            $items = $articles;
             include $template;
         ?>
     </div>

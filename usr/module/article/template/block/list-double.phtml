@@ -1,0 +1,25 @@
+<?php
+    $left = $right = array();
+    foreach ($articles as $article) {
+        if ($i++ % 2 == 0) {
+            $left[$article['id']] = $article;
+        } else {
+            $right[$article['id']] = $article;
+        }
+    }
+?>
+
+<div class="row">
+    <div class="col-md-6">
+        <?php
+            $items = $left;
+            include 'list-single.phtml';
+        ?>
+    </div>
+    <div class="col-md-6 pull-right">
+        <?php
+            $items = $right;
+            include 'list-single.phtml';
+        ?>
+    </div>
+</div>

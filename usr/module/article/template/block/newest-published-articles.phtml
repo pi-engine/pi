@@ -1,14 +1,19 @@
 <?php
-    $style    = $block['style'];
+    $elements = $block['elements'];
     $column   = $block['column'];
     $target   = $block['target'];
     $articles = $block['articles'];
-
-    $template = sprintf('list-%s-%s.phtml', $column, $style);
+    
+    $template = sprintf('list-%s.phtml', $column);
 ?>
 
 <div class="article-block-newest-published">
-    <?php include $template; ?>
+    <?php 
+        if ('single' == $column) {
+            $items = $articles;
+        }
+        include $template;
+    ?>
 </div>
 
 <script>
