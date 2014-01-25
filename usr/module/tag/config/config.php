@@ -11,7 +11,7 @@ return array(
 
     'tag_delimiter' => array(
         'title'         => _t('Tag delimiter'),
-        'description'   => _t('Delimiter(s) to separator tag terms, use `s` for space and separate delimiters with `|`.'),
+        'description'   => _t('Delimiter(s) to separate tag terms, use `s` for space and separate delimiters with `|`.'),
         'value'         => '',
     ),
 
