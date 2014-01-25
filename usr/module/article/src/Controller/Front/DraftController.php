@@ -287,20 +287,20 @@ class DraftController extends ActionController
         $timestamp = time();
         $article = array(
             'subject'      => $row->subject,
-            'subtitle'     => empty($row->subtitle) ? '' : $row->subtitle,
+            'subtitle'     => $row->subtitle ?: '',
             'summary'      => $row->summary,
             'content'      => $row->content,
             'markup'       => $row->markup,
             'uid'          => $row->uid,
             'author'       => $row->author,
-            'source'       => empty($row->source) ? '' : $row->source,
+            'source'       => $row->source ?: '',
             'pages'        => $row->pages,
             'category'     => $row->category,
             'status'       => Article::FIELD_STATUS_PUBLISHED,
             'active'       => 1,
             'time_submit'  => $row->time_submit,
             'time_publish' => $row->time_publish ?: $timestamp,
-            'time_update'  => $row->time_update ? $row->time_update : 0,
+            'time_update'  => $row->time_update ?: 0,
             'image'        => $row->image ?: '',
         );
         $rowArticle = $modelArticle->createRow($article);

@@ -85,7 +85,7 @@ return array(
             'category'    => 'general',
             'title'       => _t('Default Source'),
             'description' => _t('Display when no source is provided.'),
-            'value'       => 'Pi',
+            'value'       => Pi::config('sitename') . ' (' . Pi::url('www', true) . ')',
         ),
         'default_category' => array(
             'category'    => 'general',
