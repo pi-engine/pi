@@ -192,7 +192,8 @@ class Mvc extends ZendMvcPage
                     /**#@+
                      * Added by Taiwen Jiang
                      */
-                    if ($myParams['module'] === $reqParams['module']
+                    if (!empty($myParams['module'])
+                        && $myParams['module'] === $reqParams['module']
                         && empty($myParams['controller'])
                         && empty($myParams['index'])
                     ) {
