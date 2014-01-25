@@ -1,5 +1,5 @@
 <div id="message-box">
-    <?php if ($message) { ?>
+    <?php if (isset($message)) { ?>
     <div class="alert alert-<?php echo $error ? 'danger' : 'success'; ?>">
         <button class="close" data-dismiss="alert" type="button">×</button>
         <?php echo $this->escape($message); ?>
