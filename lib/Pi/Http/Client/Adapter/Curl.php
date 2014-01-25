@@ -9,7 +9,7 @@
 
 namespace Pi\Http\Client\Adapter;
 
-use Zend\Http\Client\Curl as ZendCurl;
+use Zend\Http\Client\Adapter\Curl as ZendCurl;
 use Zend\Http\Client\Adapter\Exception as AdapterException;
 
 /**
