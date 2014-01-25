@@ -136,7 +136,7 @@ class Api extends AbstractApi
      *
      * @return string[]
      */
-    public function get($module, $item, $type = '', $active = false)
+    public function get($module, $item, $type = '', $active = true)
     {
         if (!$active) {
             $result = Pi::api('draft', $this->module)
@@ -265,7 +265,7 @@ class Api extends AbstractApi
      *
      * @return bool
      */
-    public function update($module, $item, $type, $tags, $time = 0, $active = false)
+    public function update($module, $item, $type, $tags, $time = 0, $active = true)
     {
         if (!$active) {
             $result = Pi::api('draft', $this->module)
@@ -316,7 +316,7 @@ class Api extends AbstractApi
      *
      * @return bool
      */
-    public function delete($module, $item, $type = '', $active = false)
+    public function delete($module, $item, $type = '', $active = true)
     {
         if (!$active) {
             $result = Pi::api('draft', $this->module)
