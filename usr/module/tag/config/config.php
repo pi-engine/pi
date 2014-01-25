@@ -17,7 +17,7 @@ return array(
 
     'tag_quote' => array(
         'title'         => _t('Enable quote'),
-        'description'   => _t('Use double quotes to identify multiple-term tag.'),
+        'description'   => _t('Use double quotes to identify multi-term tag.'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
