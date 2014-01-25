@@ -48,9 +48,34 @@ return array(
                 'action'        => 'published',
                 'params'        => array(
                     'from'          => 'all',
+                    'top'           => 1,
                 ),
                 'permission'    => array(
                     'resource'  => 'article',
+                ),
+
+                'pages'         => array(
+                    'published' => array(
+                        'label'         => _t('Published'),
+                        'route'         => 'admin',
+                        'controller'    => 'article',
+                        'action'        => 'published',
+                        'params'        => array(
+                            'from'          => 'all',
+                        ),
+                        'visible'   => 0,
+                    ),
+                    'pending'   => array(
+                        'label'         => _t('Pending'),
+                        'route'         => 'admin',
+                        'controller'    => 'draft',
+                        'action'        => 'list',
+                        'params'        => array(
+                            'from'          => 'all',
+                            'status'        => 2,
+                        ),
+                        'visible'   => 0,
+                    ),
                 ),
             ),
             'my'                => array(
@@ -60,6 +85,60 @@ return array(
                 'action'        => 'published',
                 'params'        => array(
                     'from'          => 'my',
+                    'top'           => 1,
+                ),
+
+                'pages'         => array(
+                    'published' => array(
+                        'label'         => _t('Published'),
+                        'route'         => 'admin',
+                        'controller'    => 'article',
+                        'action'        => 'published',
+                        'params'        => array(
+                            'from'          => 'my',
+                        ),
+                        'visible'   => 0,
+                    ),
+                    'pending'   => array(
+                        'label'         => _t('Pending'),
+                        'route'         => 'admin',
+                        'controller'    => 'draft',
+                        'action'        => 'list',
+                        'params'        => array(
+                            'from'          => 'my',
+                            'status'        => 2,
+                        ),
+                        'visible'   => 0,
+                    ),
+                    'rejected'   => array(
+                        'label'         => _t('Pending'),
+                        'route'         => 'admin',
+                        'controller'    => 'draft',
+                        'action'        => 'list',
+                        'params'        => array(
+                            'from'          => 'my',
+                            'status'        => 3,
+                        ),
+                        'visible'   => 0,
+                    ),
+                    'draft'   => array(
+                        'label'         => _t('Pending'),
+                        'route'         => 'admin',
+                        'controller'    => 'draft',
+                        'action'        => 'list',
+                        'params'        => array(
+                            'from'          => 'my',
+                            'status'        => 1,
+                        ),
+                        'visible'   => 0,
+                    ),
+                    'compose'   => array(
+                        'label'         => _t('Compose'),
+                        'route'         => 'admin',
+                        'controller'    => 'draft',
+                        'action'        => 'add',
+                        'visible'   => 0,
+                    ),
                 ),
             ),
             'topic'             => array(
