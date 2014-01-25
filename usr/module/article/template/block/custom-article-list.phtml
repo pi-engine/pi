@@ -1,10 +1,10 @@
 <?php
-    $style    = $block['style'];
+    $elements = $block['elements'];
     $column   = $block['column'];
     $target   = $block['target'];
     $articles = $block['articles'];
 
-    $template = sprintf('list-%s-%s.phtml', $column, $style);
+    $template = sprintf('list-%s.phtml', $column);
 ?>
 
 <style>
@@ -12,7 +12,12 @@
 </style>
 
 <div class="article-block-custom-list">
-    <?php include $template; ?>
+    <?php 
+        if ('single' == $column) {
+            $items = $articles;
+        }
+        include $template; 
+    ?>
 </div>
 
 <script>

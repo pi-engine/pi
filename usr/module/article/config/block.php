@@ -184,24 +184,20 @@ return array(
                 'filter'       => 'string',
                 'value'        => 'single',
             ),
-            'block-style'      => array(
-                'title'        => _a('Template Style'),
-                'description'  => _a('The template style of list'),
+            'element'          => array(
+                'title'        => _a('Element to Display'),
+                'description'  => _a('The article element to display'),
                 'edit'         => array(
-                    'type'        => 'radio',
+                    'type'        => 'multi_checkbox',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'        => _a('basic'),
-                            'common'       => _a('Common'),
-                            'summary'      => _a('With summary'),
-                            'feature'      => _a('With feature'),
-                            'all-featured' => _a('All with feature'),
-                            'all-summary'  => _a('All with summary'),
-                            'rank'         => _a('With rank number'),
+                            'time'         => _a('Time publish'),
+                            'summary'      => _a('Summary'),
+                            'feature'      => _a('Feature image'),
                         ),
                     ),
                 ),
-                'filter'       => 'string',
+                'filter'       => 'array',
                 'value'        => 'basic',
             ),
             'target'           => array(
@@ -235,6 +231,13 @@ return array(
                 'filter'        => 'number_int',
                 'value'         => 255,
             ),
+            'description_rows'  => array(
+                'title'         => _a('Description rows'),
+                'description'   => _a('Maximum row count of description'),
+                'edit'          => 'text',
+                'filter'        => 'number_int',
+                'value'         => 2,
+            ),
         ),
     ),
     'recommended-slideshow'    => array(
@@ -251,21 +254,21 @@ return array(
                 'filter'       => 'string',
                 'value'        => 0,
             ),
-            'block-style'      => array(
-                'title'        => _a('Template Style'),
-                'description'  => _a('The template style of list'),
+            'element'          => array(
+                'title'        => _a('Element to Display'),
+                'description'  => _a('The article element to display'),
                 'edit'         => array(
-                    'type'        => 'radio',
+                    'type'        => 'multi_checkbox',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'     => _a('Basic'),
-                            'common'    => _a('Common'),
-                            'summary'   => _a('With summary'),
+                            'time'         => _a('Time publish'),
+                            'summary'      => _a('Summary'),
+                            'feature'      => _a('Feature image'),
                         ),
                     ),
                 ),
-                'filter'       => 'string',
-                'value'        => 'common',
+                'filter'       => 'array',
+                'value'        => 'basic',
             ),
             'images'           => array(
                 'title'        => _a('Image ID'),
@@ -326,6 +329,13 @@ return array(
                 'filter'        => 'number_int',
                 'value'         => 255,
             ),
+            'description_rows'  => array(
+                'title'         => _a('Description rows'),
+                'description'   => _a('Maximum row count of description'),
+                'edit'          => 'text',
+                'filter'        => 'number_int',
+                'value'         => 2,
+            ),
         ),
     ),
     'custom-article-list'      => array(
@@ -356,25 +366,21 @@ return array(
                 'filter'       => 'string',
                 'value'        => 'single',
             ),
-            'block-style'      => array(
-                'title'        => _a('Template Style'),
-                'description'  => _a('The template style of list'),
+            'element'          => array(
+                'title'        => _a('Element to Display'),
+                'description'  => _a('The article element to display'),
                 'edit'         => array(
-                    'type'        => 'radio',
+                    'type'        => 'multi_checkbox',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'        => _a('basic'),
-                            'common'       => _a('Common'),
-                            'summary'      => _a('With summary'),
-                            'feature'      => _a('With feature'),
-                            'all-featured' => _a('All with feature'),
-                            'all-summary'  => _a('All with summary'),
-                            'rank'         => _a('With rank number'),
+                            'time'         => _a('Time publish'),
+                            'summary'      => _a('Summary'),
+                            'feature'      => _a('Feature image'),
                         ),
                     ),
                 ),
-                'filter'       => 'string',
-                'value'        => 'common',
+                'filter'       => 'array',
+                'value'        => 'basic',
             ),
             'target'           => array(
                 'title'        => _a('Target'),
@@ -406,6 +412,13 @@ return array(
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 255,
+            ),
+            'description_rows'  => array(
+                'title'         => _a('Description rows'),
+                'description'   => _a('Maximum row count of description'),
+                'edit'          => 'text',
+                'filter'        => 'number_int',
+                'value'         => 2,
             ),
         ),
     ),
@@ -468,6 +481,13 @@ return array(
                 'filter'        => 'number_int',
                 'value'         => 80,
             ),
+            'description_rows'  => array(
+                'title'         => _a('Description rows'),
+                'description'   => _a('Maximum row count of description'),
+                'edit'          => 'text',
+                'filter'        => 'number_int',
+                'value'         => 2,
+            ),
         ),
     ),
     'hot-article'              => array(
@@ -516,25 +536,21 @@ return array(
                 'filter'       => 'string',
                 'value'        => 'single',
             ),
-            'block-style'      => array(
-                'title'        => _a('Template Style'),
-                'description'  => _a('The template style of list'),
+            'element'          => array(
+                'title'        => _a('Element to Display'),
+                'description'  => _a('The article element to display'),
                 'edit'         => array(
-                    'type'        => 'radio',
+                    'type'        => 'multi_checkbox',
                     'attributes'  => array(
                         'options'    => array(
-                            'basic'        => _a('basic'),
-                            'common'       => _a('Common'),
-                            'summary'      => _a('With summary'),
-                            'feature'      => _a('With feature'),
-                            'all-featured' => _a('All with feature'),
-                            'all-summary'  => _a('All with summary'),
-                            'rank'         => _a('With rank number'),
+                            'time'         => _a('Time publish'),
+                            'summary'      => _a('Summary'),
+                            'feature'      => _a('Feature image'),
                         ),
                     ),
                 ),
-                'filter'       => 'string',
-                'value'        => 'common',
+                'filter'       => 'array',
+                'value'        => 'basic',
             ),
             'target'           => array(
                 'title'        => _a('Target'),
@@ -566,6 +582,13 @@ return array(
                 'edit'          => 'text',
                 'filter'        => 'number_int',
                 'value'         => 255,
+            ),
+            'description_rows'  => array(
+                'title'         => _a('Description rows'),
+                'description'   => _a('Maximum row count of description'),
+                'edit'          => 'text',
+                'filter'        => 'number_int',
+                'value'         => 2,
             ),
         ),
     ),
