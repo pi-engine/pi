@@ -8,6 +8,7 @@
  */
 
 namespace Module\Page\Installer\Action;
+
 use Pi;
 use Pi\Application\Installer\Action\Install as BasicInstall;
 use Zend\EventManager\Event;
