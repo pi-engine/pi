@@ -85,8 +85,6 @@ class DraftController extends ActionController
         );
         $maxImageSize = $config['max_image_size'];
         $maxMediaSize = $config['max_media_size'];
-        $defaultMediaImage   = Pi::service('asset')
-            ->getModuleAsset($config['default_media_image'], $module);
         $defaultFeatureThumb = Pi::service('asset')
             ->getModuleAsset($config['default_feature_thumb'], $module);
         $this->view()->assign(array(
@@ -103,7 +101,6 @@ class DraftController extends ActionController
             'maxSubjectLength'    => $config['max_subject_length'],
             'maxSubtitleLength'   => $config['max_subtitle_length'],
             'defaultSource'       => $config['default_source'],
-            'defaultMediaImage'   => $defaultMediaImage,
             'defaultFeatureThumb' => $defaultFeatureThumb,
             'contentImageWidth'   => $config['content_thumb_width'],
             'contentImageHeight'  => $config['content_thumb_height'],

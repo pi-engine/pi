@@ -172,6 +172,7 @@ class MediaController extends FrontMedia
      */
     public function addAction()
     {
+        $module  = $this->getModule();
         $configs = Pi::service('module')->config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
@@ -218,11 +219,15 @@ class MediaController extends FrontMedia
      */
     public function editAction()
     {
+        $module  = $this->getModule();
         $configs = Pi::service('module')->config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
-        $this->view()->assign('title', _a('Edit Media Info'));
+        $this->view()->assign(array(
+            'title'   => _a('Edit Media Info'),
+            'configs' => $configs,
+        ));
         
         $form = $this->getMediaForm('edit');
         

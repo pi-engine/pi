@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div id="jsList">
+        <div id="pi-js-list">
             <div>
                 <ul class="nav nav-tabs">
                     <li class="<?php echo 'image' == $type ? 'active' : ''; ?>">
@@ -176,7 +176,7 @@
     var page = {
         url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')); ?>" . replace(/list\/$/,""),
         type    : '<?php echo $this->escape($type); ?>',
-        el      : $("#jsList"),
+        el      : $("#pi-js-list"),
         $       : function(selector) {
             return this.el.find(selector);
         },
