@@ -79,6 +79,11 @@ $config = array(
         'title'         => _t('Baidu custom search code'),
         'description'   => _t('Custom search provided by Baidu at http://zhanzhang.baidu.com/search/'),
     ),
+    
+    'search_in'         => array(
+        'title'         => _t('Modules to search'),
+        'description'   => _t('Only specified modules are allowed to search, separated by ",".'),
+    ),
 );
 
 return $config;

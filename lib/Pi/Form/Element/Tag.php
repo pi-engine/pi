@@ -41,6 +41,28 @@ use Pi;
  *          'type'      => <type>,
  *      ),
  *  );
+ *
+ * // For drafts
+ *  $form->add(
+ *      'type'      => 'tag',
+ *      'name'      => <element-name>,
+ *      'options'   => array(
+ *          'label' => __('Tags'),
+ *          'item'      => <item-id>,
+ *          'active'    => false,       // For draft
+ *      ),
+ *  );
+ *
+ *  $form->add(
+ *      'type'      => 'tag',
+ *      'name'      => <element-name>,
+ *      'options'   => array(
+ *          'module'    => <module>,
+ *          'item'      => <item-id>,
+ *          'type'      => <type>,
+ *          'active'    => false,       // For draft
+ *      ),
+ *  );
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -66,6 +88,10 @@ class Tag extends Textarea
             $module = $this->getOption('module')
                 ?: Pi::service('module')->current();
             $type = $this->getOption('type') ?: '';
+            $active = $this->getOption('active');
+            if (null === $active) {
+                $active = true;
+            }
             $item = $this->getOption('item');
             if (!$item) {
                 $data = Pi::service('url')->getRequestUri();
@@ -73,7 +99,7 @@ class Tag extends Textarea
                 $item = $routeMatch->getParam('id');
             }
             if ($item) {
-                $tags = Pi::service('tag')->get($module, $item, $type);
+                $tags = Pi::service('tag')->get($module, $item, $type, $active);
                 $this->value = implode(' ', $tags);
             }
         }

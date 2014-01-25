@@ -84,11 +84,13 @@ class DraftEditForm extends BaseForm
     {
         return array('subject', 'content', 'category');
     }
-    
+
     /**
      * Get default elements for displaying
-     * 
-     * @return array 
+     *
+     * @param string $mode
+     *
+     * @return array
      */
     public static function getDefaultElements(
         $mode = Config::FORM_MODE_EXTENDED

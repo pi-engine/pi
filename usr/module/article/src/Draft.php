@@ -48,7 +48,7 @@ class Draft
 
         $module     = $module ?: Pi::service('module')->current();
         $draftIds   = $userIds = $authorIds = $categoryIds = array();
-        $categories = $authors = $users = $tags = $urls = array();
+        //$categories = $authors = $users = $tags = $urls = array();
 
         $modelDraft     = Pi::model('draft', $module);
         $modelAuthor    = Pi::model('author', $module);
@@ -267,7 +267,7 @@ class Draft
         if (empty($row->id)) {
             return array();
         }
-        
+
         $subject = $subtitle = $content = '';
         if ($row->markup) {
             $subject    = Pi::service('markup')->render($row->subject, 'html', $row->markup);

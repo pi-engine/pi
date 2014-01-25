@@ -2,8 +2,8 @@ CREATE TABLE `{article}` (
   `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
   `subject`         varchar(255)                    NOT NULL DEFAULT '',
   `subtitle`        varchar(255)                    NOT NULL DEFAULT '',
-  `summary`         text                            NOT NULL DEFAULT '',
-  `content`         longtext                        NOT NULL DEFAULT '',
+  `summary`         text,
+  `content`         longtext,
   `markup`          varchar(64)                     NOT NULL DEFAULT 'html',
   `image`           varchar(255)                    NOT NULL DEFAULT '',
   `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
@@ -52,7 +52,7 @@ CREATE TABLE `{compiled}` (
   `name`            varchar(64)                     NOT NULL DEFAULT '',
   `article`         int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `type`            varchar(64)                     NOT NULL DEFAULT '',
-  `content`         longtext                        NOT NULL DEFAULT '',
+  `content`         longtext,
 
   PRIMARY KEY                     (`id`),
   UNIQUE KEY                      (`name`),
@@ -63,7 +63,7 @@ CREATE TABLE `{draft}` (
   `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
   `article`         int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `markup`          varchar(64)                     NOT NULL DEFAULT 'html',
-  `detail`          LONGTEXT                        NOT NULL DEFAULT '',
+  `detail`          LONGTEXT,
   `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `author`          int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `category`        int(10) UNSIGNED                NOT NULL DEFAULT 0,
@@ -123,7 +123,7 @@ CREATE TABLE `{author}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `name`            varchar(64)           NOT NULL DEFAULT '',
   `photo`           varchar(255)          NOT NULL DEFAULT '',
-  `description`     text                  NOT NULL DEFAULT '',
+  `description`     text,
 
   PRIMARY KEY           (`id`),
   KEY `name`            (`name`)
@@ -142,7 +142,7 @@ CREATE TABLE `{stats}` (
 CREATE TABLE `{topic}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `name`            varchar(64)           NOT NULL DEFAULT '',
-  `content`         text                  NOT NULL DEFAULT '',
+  `content`         text,
   `title`           varchar(255)          NOT NULL DEFAULT '',
   `image`           varchar(255)          NOT NULL DEFAULT '',
   `slug`            varchar(64)           DEFAULT NULL,
@@ -179,7 +179,7 @@ CREATE TABLE `{media}` (
   `uid`             int(10) UNSIGNED      NOT NULL DEFAULT 0,
   `time_upload`     int(10) UNSIGNED      NOT NULL DEFAULT 0,
   `time_update`     int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `meta`            text                  DEFAULT NULL,
+  `meta`            text,
 
   PRIMARY KEY           (`id`),
   UNIQUE KEY `name`     (`name`),

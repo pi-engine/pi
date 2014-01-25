@@ -69,7 +69,8 @@ class AjaxController extends ActionController
      * 
      * @return array
      */
-    public function getFuzzyTagAction()
+    /*
+    public function ____getFuzzyTagAction()
     {
         Pi::service('log')->mute();
         $resultset = array();
@@ -89,6 +90,7 @@ class AjaxController extends ActionController
             'data'      => $resultset,
         );
     }
+    */
     
     /**
      * Get author name by AJAX

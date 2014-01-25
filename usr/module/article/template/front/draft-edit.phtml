@@ -100,7 +100,7 @@
     }
 </style>
 
-<?php include 'message-box.phtml'; ?>
+<?php/* include 'message-box.phtml'; */?>
 
 <form class="row" method="POST" enctype="multipart/form-data" action="<?php echo $form->getAttribute("action"); ?>" onkeypress="return event.keyCode != 13;">
     <div class="col-md-8">
@@ -458,6 +458,9 @@
             <div class="widget-body" style="overflow: hidden">
                 <?php 
                     $element = $form->get('tag');
+                    $element->setOptions(array(
+                        'item'    => $form->get('article')->getValue(),
+                    ));
                     $element->setAttribute("class", "col-md-12 form-control");
                     echo $this->formElement($element);
                 ?>

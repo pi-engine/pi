@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-01-22 10:26+0800\n"
-"PO-Revision-Date: 2014-01-22 10:37+0800\n"
+"POT-Creation-Date: 2014-01-24 18:10+0800\n"
+"PO-Revision-Date: 2014-01-24 18:10+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -104,6 +104,14 @@ msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\search/config/config.php:80
 msgid "Custom search provided by Baidu at http://zhanzhang.baidu.com/search/"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/config/config.php:84
+msgid "Modules to search"
+msgstr ""
+
+#: D:\wamp\www\deploy\usr\module\search/config/config.php:85
+msgid "Only specified modules are allowed to search, separated by \",\"."
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\search/config/module.php:12
