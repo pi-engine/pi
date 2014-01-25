@@ -363,7 +363,7 @@ class IndexController extends ActionController
      */
     protected function getService($service = '')
     {
-        $home = Pi::url('www');
+        $home = parse_url(Pi::url('www'), PHP_URL_HOST);
         //$home = 'pialog.org'; // For localhost test
 
         $googleQuery = function ($query) use ($home) {
@@ -380,12 +380,17 @@ class IndexController extends ActionController
 
             return $link;
         };
-	$_this = $this;
-        $baiduQuery = function ($query) use ($_this) {
+        $_this = $this;
+        $baiduQuery = function ($query) use ($home, $_this) {
             $code = $_this->config('baidu_code');
-            $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
-            //$pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
-            $link = sprintf($pattern, urlencode($code), urlencode($query));
+            if ($code) {
+                $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
+                $link = sprintf($pattern, urlencode($code), urlencode($query));
+            } else {
+                $pattern = 'http://www.baidu.com/s?wd=site:(%s)+%s';
+                $link = sprintf($pattern, urlencode($home), urlencode($query));
+
+            }
 
             return $link;
         };
