@@ -195,9 +195,9 @@ class ListController extends ActionController
      */
     public function applicationAction()
     {
-        $application = $this->params('appkey', null);
+        $app = $this->params('appkey', null);
         
-        if (empty($application)) {
+        if (empty($app)) {
             // Fetch data count
             $model = $this->getModel('doc');
             $select = $model->select()
@@ -275,13 +275,13 @@ class ListController extends ActionController
         $active = $active === null ? $active : (int) $active;
         
         $where = array(
-            'appkey'   => $application,
+            'appkey'   => $app,
             'module'   => $module,
             'token'    => $token,
         );
         $where = array_filter($where);
         $params = array(
-            'appkey'   => $application,
+            'appkey'   => $app,
             'name'     => $module,
             'token'    => $token,
         );
@@ -392,7 +392,7 @@ class ListController extends ActionController
             'avatars'    => $avatars,
             'active'     => $active,
             'delete'     => $delete,
-            'app'        => $apps[$application],
+            'app'        => isset($apps[$app]) ? $apps[$app] : $app,
             'name'       => $module,
             'token'      => $token,
         ));
@@ -585,6 +585,8 @@ class ListController extends ActionController
             $userModel = Pi::service('user')->getUser($user);
         } elseif ($user) {
             $userModel = Pi::service('user')->getUser($user, 'identity');
+        } else {
+            $userModel = '';
         }
         $uid = $userModel ? $userModel->get('id') : 0;
         

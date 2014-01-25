@@ -100,7 +100,11 @@ class Stats extends AbstractApi
         }
         
         foreach ($result as &$row) {
-            $row = array_merge($row, $users[$row['uid']]);
+            $user = isset($users[$row['uid']]) ? $users[$row['uid']] : array(
+                'identity' => '',
+            );
+            $row = array_merge($row, $user);
+            $row['url'] = Pi::user()->getUrl('profile', $row['uid']);
         }
         
         return $result;
