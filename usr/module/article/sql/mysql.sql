@@ -142,7 +142,7 @@ CREATE TABLE `{stats}` (
 CREATE TABLE `{topic}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `name`            varchar(64)           NOT NULL DEFAULT '',
-  `content`         text                  NOT NULL DEFAULT '',
+  `content`         text,
   `title`           varchar(255)          NOT NULL DEFAULT '',
   `image`           varchar(255)          NOT NULL DEFAULT '',
   `slug`            varchar(64)           DEFAULT NULL,
