@@ -258,4 +258,15 @@ abstract class AbstractAction
         return true;
     }
 
+    /**
+     * Get parameter from Event
+     *
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function getParam($name)
+    {
+        return $this->event->getParam($name);
+    }
 }
