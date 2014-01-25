@@ -9,9 +9,11 @@ if ($hiddenMessages) {
         <?php foreach ($hiddenMessages as $elName => $elMessages) { ?>
         <h4><?php echo $elName; ?></h4>
         <ol>
-        <?php foreach ($elMessages as $elMessage) { ?>
-            <li><?php echo $elMessage; ?>
-        <?php } ?>
+            <?php 
+            foreach ($elMessages as $elMessage) {
+                echo '<li>' . $elMessage;
+            } 
+            ?>
         </ol>
         <?php } ?>
     </div>
