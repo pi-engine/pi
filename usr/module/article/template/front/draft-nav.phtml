@@ -19,22 +19,22 @@
 <ul class="nav nav-pills" style="margin-bottom: 10px">
     <li class="<?php if ($status == $flags['published']) echo 'active'; ?>">
         <a href="<?php echo $this->url('', array('action' => 'published', 'controller' => 'article', 'from' => $from)); ?>">
-            <?php _e('Published'); ?>(<?php echo $summary['published'] ?>)
-        </a>
-    </li>
-    <li class="<?php if ($status == $flags['draft']) echo 'active'; ?>">
-        <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['draft']))); ?>">
-            <?php _e('Draft'); ?>(<?php echo $summary['draft'] ?>)
+            <?php _e('Published'); ?> (<?php echo $summary['published'] ?>)
         </a>
     </li>
     <li class="<?php if ($status == $flags['pending']) echo 'active'; ?>">
         <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['pending']))); ?>">
-            <?php _e('Pending'); ?>(<?php echo $summary['pending'] ?>)
+            <?php _e('Pending'); ?> (<?php echo $summary['pending'] ?>)
         </a>
     </li>
     <li class="<?php if ($status == $flags['rejected']) echo 'active'; ?>">
         <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['rejected']))); ?>">
-            <?php _e('Rejected'); ?>(<?php echo $summary['rejected'] ?>)
+            <?php _e('Rejected'); ?> (<?php echo $summary['rejected'] ?>)
+        </a>
+    </li>
+    <li class="<?php if ($status == $flags['draft']) echo 'active'; ?>">
+        <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['draft']))); ?>">
+            <?php _e('Draft'); ?> (<?php echo $summary['draft'] ?>)
         </a>
     </li>
     <li style="margin-left: 20px;">

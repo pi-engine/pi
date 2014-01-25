@@ -7,14 +7,16 @@
 <ul class="nav nav-pills" style="margin-bottom: 10px">
     <li class="<?php if ($status == $flags['published']) echo 'active'; ?>">
         <a href="<?php echo $this->url('', array('action' => 'published', 'controller' => 'article', 'from' => $from)); ?>">
-            <?php echo _a('Published'); ?>(<?php echo $this->escape($summary['published']); ?>)
+            <?php echo _a('Published'); ?> (<?php echo $this->escape($summary['published']); ?>)
         </a>
     </li>
     <li  class="<?php if ($status == $flags['pending']) echo 'active'; ?>">
         <a href="<?php echo $this->url('', array_merge($params, array('status' => $flags['pending']))); ?>">
-            <?php echo _a('Pending'); ?>(<?php echo $this->escape($summary['pending']); ?>)
+            <?php echo _a('Pending'); ?> (<?php echo $this->escape($summary['pending']); ?>)
         </a>
     </li>
+    <?php
+    /*
     <?php $allowCompose = false;
     foreach ($rules as $rule) {
         if ($rule['compose']) {
@@ -29,4 +31,6 @@
         </a>
         </li>
     <?php } ?>
+    */
+    ?>
 </ul>

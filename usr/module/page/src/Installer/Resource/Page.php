@@ -1,6 +1,4 @@
 <?php
-use Zend\EventManager\Event;
-
 namespace Module\Page\Installer\Resource;
 
 use Pi;
