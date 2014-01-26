@@ -280,6 +280,10 @@ class User extends AbstractResource
 
         $module = $this->getModule();
         foreach ($config as $key => $data) {
+            // Skip empty fields
+            if (!$data) {
+                continue;
+            }
             $data = $this->canonizeField($data);
             if (!isset($data['active'])) {
                 $data['active'] = 1;
