@@ -5,21 +5,9 @@
     $articles = $block['articles'];
 
     $template = sprintf('list-%s.phtml', $column);
+
+    if ('single' == $column) {
+        $items = $articles;
+    }
+    include $template; 
 ?>
-
-<style>
-    
-</style>
-
-<div class="article-block-custom-list">
-    <?php 
-        if ('single' == $column) {
-            $items = $articles;
-        }
-        include $template; 
-    ?>
-</div>
-
-<script>
-    $('.article-block-custom-list').parent().addClass('block-nopadding');
-</script>
