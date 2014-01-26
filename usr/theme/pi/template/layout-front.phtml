@@ -232,7 +232,7 @@ $this->headLink(array(
                 <p>Pi Engine is a role oriented application development engine for web and mobile, designed as the next generation and a successor to Xoops. Pi is developed upon PHP and MySQL with selected third-party frameworks including but not limited to Zend Framework library, jQuery, Bootstrap and Backbone.</p>
             </div>
             <div class="span12 pi-footer-copyright">
-                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy;<?php echo _escape($sitename); ?></a><span class="pi-divider">|</span>
+                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">&copy; <?php echo date('Y') . ' ' . _escape($sitename); ?></a><span class="pi-divider">|</span>
                 <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Powered by Pi Engine</a><span class="pi-divider">|</span>
                 <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">Design of Pi Engine</a><span class="pi-divider">|</span>
                 <span title="<?php _e('Execution time'); ?>"><?php printf('%.4fs', microtime(true) - Pi::startTime()); ?></span>

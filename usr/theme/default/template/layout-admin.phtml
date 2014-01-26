@@ -87,7 +87,7 @@ $module = $this->routeMatch('module');
         </article>
         <footer class="pi-footer">
             <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                &copy; <?php echo _escape($sitename); ?>
+                &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
             </a>
              <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
                 Powered by Pi Engine
