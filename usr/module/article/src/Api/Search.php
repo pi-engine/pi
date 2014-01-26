@@ -44,6 +44,15 @@ class Search extends AbstractSearch
         'time_publish'  => 'time',
         'uid'           => 'uid',
     );
+    
+    /**
+     * {@inheritDoc}
+     */
+    protected function buildContent($content = '')
+    {
+        $content = mb_substr(strip_tags($content), 0, 255, 'utf-8');
+        return $content;
+    }
 
     /**
      * {@inheritDoc}
