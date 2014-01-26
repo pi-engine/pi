@@ -296,13 +296,13 @@ class AuthorController extends ActionController
 
         // Crop and resize avatar
         Pi::image()->crop(
-            $sourceName,
+            Pi::path($sourceName),
             array($x, $y),
             array($width, $height),
-            $fileName
+            Pi::path($fileName)
         );
         Pi::image()->resize(
-            $fileName,
+            Pi::path($fileName),
             array($this->config('author_size'), $this->config('author_size'))
         );
         

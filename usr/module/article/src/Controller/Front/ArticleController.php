@@ -501,7 +501,7 @@ class ArticleController extends ActionController
      */
     public function getFuzzyArticleAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $articles   = array();
         $pageCount  = $total = 0;
         $module     = $this->getModule();
@@ -599,7 +599,7 @@ class ArticleController extends ActionController
      */
     public function checkArticleExistsAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $subject = trim($this->params('subject', ''));
         $id      = $this->params('id', null);
         $result  = false;

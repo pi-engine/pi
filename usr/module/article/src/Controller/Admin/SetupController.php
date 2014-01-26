@@ -189,7 +189,7 @@ class SetupController extends ActionController
      */
     public function updateAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $elements = $this->params('elements', '');
         $elements = explode(',', $elements);
