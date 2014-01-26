@@ -35,8 +35,10 @@ class SystemInfo implements FormatterInterface
         if ($format === null) {
             $format = '<div class="pi-event">' . PHP_EOL
                     . '<div class="message info">'
-                    . '<span class="label">%name%</span>'
-                    . '<span class="text">%value%</span>'
+                    . '<dl class="dl-horizontal">'
+                    . '<dt>%name%</dt>'
+                    . '<dd>%value%</dd>'
+                    . '</dl>'
                     . '</div>' . PHP_EOL
                     . '</div>' . PHP_EOL;
         }

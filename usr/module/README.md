@@ -18,6 +18,9 @@ Folder and file skeleton
         'license'       => 'New BSD',
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
+        // Logo icon, use font-awsome icons from http://fortawesome.github.io/Font-Awesome/icons/
+        'icon'          => 'fa fa-search',
+
         // Readme file, for admin, optional
         'readme'        => 'docs/readme.txt',
         // Direct download link, available for wget, optional
@@ -85,18 +88,25 @@ Folder and file skeleton
 * `sql/`: optional, contains sql file
   * `mysql.sql`: optional, contains MySQL query for initializing module tables
 * `src/`: required, core files of a module
-  * `Api/`: optional, API classes for other module
+  * `Api/`: optional, API classes for other module, recommended classes as following
+    * `Breadcrumbs.php`: custom module breadcrumbs
+    * `Comment.php`: comment locator and callbacks
+    * `Content.php`: module content fetch API
+    * `Search.php`: module search API
   * `Controller/`: required, controller classes used by a module
     * `Admin/`: optional, backend controllers
 	* `Front/`: optional, front-end controllers
+	* `Api/`: optional, API controllers for webservices
+	* `Feed/`: optional, feed controllers
   * `Form/`: optional, form classes used by a module
   * `Installer/`: optional, custom setup classes used by a module
     * `Action/`: optional, custom module setup
 	* `Resource/`: optional, custom resources setup
+	* `Schema/`: optional, database schema handlers
   * `Model/`: optional, extend database model used by a module
   * `Route/`: optional, custom route used by a module
   * `Registry/`: optional, custom registry used by a module
-  * `Block.php`: optional, block controllers used by a module
+  * `Block/`: optional, block controllers used by a module
 * `template/`: optional, template files used by a module
   * `admin/`: optional, backend template files
   * `front/`: optional, front-end template files
