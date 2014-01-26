@@ -106,7 +106,7 @@ class Http extends ZendHttp
     protected function getFiles($files, $names = false, $noexception = false)
     {
         $files = $files ?: null;
-        $check = parent($files, $names, $noexception);
+        $check = parent::getFiles($files, $names, $noexception);
 
         return $check;
     }
