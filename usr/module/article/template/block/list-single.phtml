@@ -5,7 +5,7 @@ if (empty($elements)) {
     foreach($items as $item) {
         $render .= sprintf(
             '<li><a href="%s" title="%s">%s</a>',
-            $item['address'],
+            $item['url'],
             _escape($item['subject']),
             _escape($item['subject'])
         );
