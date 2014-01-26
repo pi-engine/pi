@@ -70,6 +70,8 @@ class CacheController extends ComponentController
                 }
             }
 
+            Pi::registry('page_cache')->flush($name);
+
             $this->jump(
                 array('action' => 'index', 'name' => $name),
                 _a('Page cache updated successfully.'),
