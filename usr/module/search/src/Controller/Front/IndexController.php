@@ -407,18 +407,18 @@ class IndexController extends ActionController
                 'title' => __('Google'),
                 'url'   => $googleQuery,
             ),
-            'bing' => array(
+/*            'bing' => array(
                 'title' => __('Bing'),
                 'url'   => $bingQuery,
-            ),
+            ),*/
             'baidu' => array(
                 'title' => __('Baidu'),
                 'url'   => $baiduQuery,
             ),
-            'sogou' => array(
+/*            'sogou' => array(
                 'title' => __('Sogou'),
                 'url'   => $sogouQuery,
-            ),
+            ),*/
         );
 
         if ($service) {
