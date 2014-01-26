@@ -35,7 +35,7 @@ angular.module('pi.upload', [])
   error: angular.noop,
   progress: angular.noop //Not support now
 })
-.directive('piUpload', ['piUploadConfig', 'upload',
+.directive('piUpload', ['piUploadConfig', 'piUpload',
   function(piUploadConfig, upload) {
     return {
       restrict: 'A',
@@ -57,6 +57,8 @@ angular.module('pi.upload', [])
         var config = angular.copy(piUploadConfig);
         
         angular.extend(config, scope.options);
+
+        console.log(config);
 
         element.css({
           position: 'relative',
@@ -86,7 +88,7 @@ angular.module('pi.upload', [])
     }; 
   }
 ])
-.factory('formDataUpload', ['$http', '$timeout',
+.factory('piFormDataUpload', ['$http', '$timeout',
   function($http, $timeout) {
     return function(config) {
       if (config.start) {
@@ -125,7 +127,7 @@ angular.module('pi.upload', [])
     };
   }
 ])
-.factory('iframeUpload', ['$timeout',
+.factory('piIframeUpload', ['$timeout',
   function($timeout) {
     return function(config) {
       var body = angular.element(document.body);
@@ -133,7 +135,7 @@ angular.module('pi.upload', [])
       var form = angular.element('<form>');
 
       if (config.start) {
-        $timeout(config.start, 0, false);
+        $timeout(config.start, 0);
       }
       form.attr({
         target: config.iframeName,
@@ -162,7 +164,13 @@ angular.module('pi.upload', [])
       iframe.on('load', function() {
         var doc = this.contentWindow ? this.contentWindow.document : this.contentDocument;
         var res = angular.element(doc.body).text();
-        config.success(angular.fromJson(res));
+        $timeout(function() {
+          try {
+            config.success(angular.fromJson(res));
+          } catch(e) {
+            config.error(res);
+          }
+        }, 0);
         iframe.off('load');
         form.remove();
       });
@@ -170,17 +178,17 @@ angular.module('pi.upload', [])
     };
   }
 ])
-.factory('upload', ['formDataUpload', 'iframeUpload',
-  function(formDataUpload, iframeUpload) {
+.factory('piUpload', ['piFormDataUpload', 'piIframeUpload',
+  function(piFormDataUpload, piIframeUpload) {
       var support = {
         formData: window.FormData,
         xhr: window.XMLHttpRequest
       };
       function upoad (config) {
         if (!config.forceIFrameUpload && support.formData) {
-          formDataUpload(config);
+          piFormDataUpload(config);
         } else {
-          iframeUpload(config);
+          piIframeUpload(config);
         }
       }
       return upoad;
