@@ -113,6 +113,9 @@ class Doc extends AbstractApi
      */
     public function upload(array $params, $method = 'POST')
     {
+        @ignore_user_abort(true);
+        @set_time_limit(0);
+
         $options    = Pi::service('media')->getOption('local', 'options');
         $rootUri    = $options['root_uri'];
         $rootPath   = $options['root_path'];

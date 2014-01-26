@@ -516,6 +516,9 @@ class Remote extends AbstractService
         array $headers = array(),
         array $options = array()
     ) {
+        @ignore_user_abort(true);
+        @set_time_limit(0);
+
         $uri = $this->canonizeUrl($url, $params);
 
         $isFtp = false;
@@ -627,6 +630,9 @@ class Remote extends AbstractService
         array $headers = array(),
         array $options = array()
     ) {
+        @ignore_user_abort(true);
+        @set_time_limit(0);
+
         $uri = $this->canonizeUrl($url, $params);
 
         $isFtp = false;
