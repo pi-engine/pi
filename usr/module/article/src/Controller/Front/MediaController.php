@@ -420,7 +420,7 @@ class MediaController extends ActionController
      */
     public function saveAction()
     {
-        Pi::service('log')->muted();
+        Pi::service('log')->mute();
         
         $id     = $this->params('id', 0);
         $fakeId = $this->params('fake_id', 0);

@@ -401,7 +401,7 @@ class CategoryController extends ActionController
      */
     public function saveImageAction()
     {
-        Pi::service('log')->muted();
+        Pi::service('log')->mute();
         $module  = $this->getModule();
 
         $return  = array('status' => false);
@@ -498,7 +498,7 @@ class CategoryController extends ActionController
      */
     public function removeImageAction()
     {
-        Pi::service('log')->muted();
+        Pi::service('log')->mute();
         $id           = $this->params('id', 0);
         $fakeId       = $this->params('fake_id', 0);
         $affectedRows = 0;

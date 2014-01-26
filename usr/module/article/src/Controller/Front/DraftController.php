@@ -1696,7 +1696,7 @@ class DraftController extends ActionController
      */
     public function saveAssetAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $type    = $this->params('type', 'attachment');
         $mediaId = $this->params('media', 0);
@@ -1748,7 +1748,7 @@ class DraftController extends ActionController
             'id'          => $row->id,
             'title'       => $rowMedia->title,
             'size'        => $rowMedia->size,
-            'downloadUrl' => $this->url('admin', array(
+            'downloadUrl' => $this->url('default', array(
                 'controller' => 'media',
                 'action'     => 'download',
                 'id'         => $mediaId,
@@ -1769,7 +1769,7 @@ class DraftController extends ActionController
      */
     public function removeAssetAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         
         $return = array('status' => false);
         $id = $this->params('id', 0);

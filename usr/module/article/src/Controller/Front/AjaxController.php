@@ -36,7 +36,7 @@ class AjaxController extends ActionController
      */
     public function getFuzzyUserAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $resultset = $result = array();
 
         $name  = $this->params('name', '');
@@ -98,7 +98,7 @@ class AjaxController extends ActionController
      */
     public function getFuzzyAuthorAction()
     {
-        Pi::service('log')->active(false);
+        Pi::service('log')->mute();
         $resultset = $result = array();
 
         $name   = $this->params('name', '');

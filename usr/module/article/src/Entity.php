@@ -573,20 +573,15 @@ class Entity
                 'original_name' => $media->title,
                 'extension'     => $media->type,
                 'size'          => $media->size,
-                'url'           => Pi::engine()
-                    ->application()
-                    ->getRouter()
-                    ->assemble(
-                        array(
-                            'module'     => $module,
-                            'controller' => 'media',
-                            'action'     => 'download',
-                            'id'         => $media->id,
-                        ),
-                        array(
-                            'name'       => 'default',
-                        )
-                    ),
+                'url'           => Pi::service('url')->assemble(
+                    'default',
+                    array(
+                        'module'     => $module,
+                        'controller' => 'media',
+                        'action'     => 'download',
+                        'id'         => $media->id,
+                    )
+                ),
             );
         }
 
