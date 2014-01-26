@@ -98,6 +98,19 @@ class Http extends ZendHttp
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @FIXME Array (or cURL upload) is handled differently in PHP 5.3/5.4
+     */
+    protected function getFiles($files, $names = false, $noexception = false)
+    {
+        $files = $files ?: null;
+        $check = parent($files, $names, $noexception);
+
+        return $check;
+    }
+
     /**#@+
      * Added by Taiwen Jiang
      */
