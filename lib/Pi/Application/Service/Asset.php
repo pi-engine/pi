@@ -262,9 +262,9 @@ class Asset extends AbstractService
      */
     public function getModuleAsset(
         $file,
-        $module = '',
-        $type = 'asset',
-        $appendVersion = null
+        $module         = '',
+        $type           = 'asset',
+        $appendVersion  = null
     ) {
         $module = $module ?: Pi::service('module')->current();
         $component = 'module/' . $module;
@@ -284,9 +284,9 @@ class Asset extends AbstractService
      */
     public function getThemeAsset(
         $file,
-        $theme = '',
-        $type = 'asset',
-        $appendVersion = null
+        $theme          = '',
+        $type           = 'asset',
+        $appendVersion  = null
     ) {
         $theme = $theme ?: Pi::service('theme')->current();
         $component = 'theme/' . $theme;
@@ -307,9 +307,9 @@ class Asset extends AbstractService
      */
     public function getCustomAsset(
         $file,
-        $module = '',
-        $type = 'asset',
-        $appendVersion = null
+        $module         = '',
+        $type           = 'asset',
+        $appendVersion  = null
     ) {
         $module = $module ?: Pi::service('module')->current();
         $file = $module . '/' . $file;

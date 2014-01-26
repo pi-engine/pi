@@ -193,7 +193,7 @@ abstract class AbstractSearch extends AbstractModuleAwareness
      */
     protected function buildContent($content = '')
     {
-        $content = substr(strip_tags($content), 0, 255);
+        $content = mb_substr(strip_tags($content), 0, 255);
 
         return $content;
     }
