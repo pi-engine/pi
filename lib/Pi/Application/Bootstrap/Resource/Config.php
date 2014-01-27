@@ -26,16 +26,8 @@ class Config extends AbstractResource
         // Config will be fetched from database if not cached yet
         //$this->bootstrap->bootResource('db');
 
-        // Environment from `var/config/engine.php`
-        $environment = Pi::config()->get('environment');
-
         // Load system general configuration
         Pi::config()->loadDomain();
-
-        // Keep original environment
-        if ($environment) {
-            Pi::config()->set('environment', $environment);
-        }
 
         // Setup timezone
         $timezone = Pi::config('timezone');

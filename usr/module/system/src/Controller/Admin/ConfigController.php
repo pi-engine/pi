@@ -48,6 +48,7 @@ class ConfigController extends ComponentController
         }
 
         $updateLanguage = false;
+        $updateEnv      = false;
         if ($module) {
             $model = Pi::model('config');
             $select = $model->select()
@@ -96,11 +97,15 @@ class ConfigController extends ComponentController
                     if ($form->isValid()) {
 
                         // Prepare for language check
-                        $currentLocale = null;
+                        $currentLocale  = null;
+                        $currentEnv     = null;
                         if ('system' == $module) {
                             $currentLocale = array(
-                                'locale' => Pi::config('locale'),
+                                'locale'    => Pi::config('locale'),
                                 'charset'   => Pi::config('charset'),
+                            );
+                            $currentEnv = array(
+                                'environment'   =>  Pi::config('environment')
                             );
                         }
 
@@ -116,11 +121,30 @@ class ConfigController extends ComponentController
                             ) {
                                 $updateLanguage = true;
                             }
+                            // Check for environment update
+                            if ($currentEnv
+                                && isset($currentEnv[$row->name])
+                                && $row->value != $currentEnv[$row->name]
+                            ) {
+                                $currentEnv[$row->name] = $row->value;
+                                $updateEnv = true;
+                            }
                         }
                         Pi::registry('config')->clear($module);
+
                         if ($updateLanguage) {
                             Pi::service('cache')->flush();
                         }
+
+                        if ($updateEnv) {
+                            $data = Pi::config()->load('engine');
+                            $data['config'] = array_replace_recursive(
+                                $data['config'],
+                                $currentEnv
+                            );
+                            Pi::config()->write('engine', $data, true);
+                        }
+
                         $this->jump(
                             array('action' => 'index', 'name' => $module),
                             _a('Configuration data saved successfully.'),
