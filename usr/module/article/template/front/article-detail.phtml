@@ -2,27 +2,29 @@
 $this->css(array(
     $this->assetModule('script/block.css'),
 ));
-if ($details['seo']['keywords']) {
-    $this->headMeta()->setName('keywords', $details['seo']['keywords']);
-}
-if ($details['seo']['description']) {
-    $this->headMeta()->setName('description', $details['seo']['description']);
+if (!empty($details['seo'])) {
+    if ($details['seo']['keywords']) {
+        $this->headMeta()->setName('keywords', $details['seo']['keywords']);
+    }
+    if ($details['seo']['description']) {
+        $this->headMeta()->setName('description', $details['seo']['description']);
+    }
 }
 ?>
 
 <div class="pi-article-module">
     <div class="article-header">
-        <h1 class="headline"><?php echo $this->escape($details['title']); ?></h1>
+        <h1 class="headline"><?php echo _escape($details['title']); ?></h1>
         <?php if ($details['subtitle']) { ?>
         <div class="byline">
-            <?php echo $this->escape($details['subtitle']); ?>
+            <?php echo _escape($details['subtitle']); ?>
         </div>
         <?php } ?>
         <div class="text-muted subline">
             <div>
-                <?php if (isset($details['source']) and $details['source']) { ?>
+                <?php if (!empty($details['source'])) { ?>
                 <div class="article-subline-desc">
-                    <?php echo __('From ') . $this->escape($details['source']); ?>
+                    <?php echo sprintf(__('Source: %s', _escape($details['source']))); ?>
                 </div>
                 <?php } ?>
                 <div class="article-subline-desc">
@@ -35,7 +37,7 @@ if ($details['seo']['description']) {
                     <div class="clearfix article-share">
                         <!-- JiaThis Button BEGIN -->
                         <div class="pull-right jiathis_style">
-                            <span class="jiathis_txt"><?php _e('Share with: '); ?>&nbsp;</span>
+                            <span class="jiathis_txt"><?php _e('Share with: '); ?></span>
                             <a class="jiathis_button_tsina"></a>
                             <a class="jiathis_button_tqq"></a>
                             <a class="jiathis_button_renren"></a>

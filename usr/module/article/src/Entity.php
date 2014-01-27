@@ -511,7 +511,6 @@ class Entity
         if (empty($row->id)) {
             return array();
         }
-        $subject = $subtitle = $content = '';
         if ($row->markup) {
             $subject  = Pi::service('markup')->render($row->subject, 'html', $row->markup);
             $subtitle = Pi::service('markup')->render($row->subtitle, 'html', $row->markup);
@@ -593,7 +592,6 @@ class Entity
         */
 
         // Get related articles
-        $relatedIds = $related = array();
         $relatedIds = Pi::model('related', $module)->getRelated($id);
 
         if ($relatedIds) {
@@ -623,18 +621,22 @@ class Entity
 
         // Getting seo
         $modelExtended  = Pi::model('extended', $module);
-        $rowExtended    = $modelExtended->find($row->id, 'article');
-        $result['slug'] = $rowExtended->slug;
-        $result['seo']  = array(
-            'title'        => $rowExtended->seo_title,
-            'keywords'     => $rowExtended->seo_keywords,
-            'description'  => $rowExtended->seo_description,
-        );
+        $rowExtended    = $modelExtended->find($row->id, $module);
+        if ($rowExtended) {
+            $result['slug'] = $rowExtended->slug;
+            $result['seo']  = array(
+                'title'        => $rowExtended->seo_title,
+                'keywords'     => $rowExtended->seo_keywords,
+                'description'  => $rowExtended->seo_description,
+            );
+        }
         
         // Getting stats data
         $modelStatis    = Pi::model('stats', $module);
-        $rowStatis      = $modelStatis->find($row->id, 'article');
-        $result['visits'] = $rowStatis->visits;
+        $rowStatis      = $modelStatis->find($row->id, $module);
+        if ($rowStatis) {
+            $result['visits'] = $rowStatis->visits;
+        }
 
         return $result;
     }
