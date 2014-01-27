@@ -558,30 +558,31 @@ class Entity
             'article'   => $id,
             'type'      => 'attachment',
         ));
-        $mediaIds = array(0);
+        $mediaIds = array();
         foreach ($resultsetAsset as $asset) {
             $mediaIds[$asset->media] = $asset->media;
         }
-        
-        $resultsetMedia = Pi::model('media', $module)->select(
-            array('id' => $mediaIds)
-        );
-
-        foreach ($resultsetMedia as $media) {
-            $result['attachment'][] = array(
-                'original_name' => $media->title,
-                'extension'     => $media->type,
-                'size'          => $media->size,
-                'url'           => Pi::service('url')->assemble(
-                    'default',
-                    array(
-                        'module'     => $module,
-                        'controller' => 'media',
-                        'action'     => 'download',
-                        'id'         => $media->id,
-                    )
-                ),
+        if ($mediaIds) {
+            $resultsetMedia = Pi::model('media', $module)->select(
+                array('id' => $mediaIds)
             );
+
+            foreach ($resultsetMedia as $media) {
+                $result['attachment'][] = array(
+                    'original_name' => $media->title,
+                    'extension'     => $media->type,
+                    'size'          => $media->size,
+                    'url'           => Pi::service('url')->assemble(
+                        'default',
+                        array(
+                            'module'     => $module,
+                            'controller' => 'media',
+                            'action'     => 'download',
+                            'id'         => $media->id,
+                        )
+                    ),
+                );
+            }
         }
 
         // Get tag
