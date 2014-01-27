@@ -132,6 +132,24 @@ $config['item'] = array(
         'visible'       => 0,
     ),
 
+    'environment'    => array(
+        'title'         => _t('Run environment'),
+        'description'   => _t('Only applicable if not set in `var/config/engine.php`.'),
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'   => array(
+                    'production'        => _t('Production'),
+                    'development'       => _t('Development'),
+                    'test'              => _t('QA test'),
+                    'close'             => _t('Site closed'),
+                ),
+            ),
+        ),
+        'value'         => 'production',
+        'category'      => 'general',
+    ),
+
     // Meta section
 
     /*

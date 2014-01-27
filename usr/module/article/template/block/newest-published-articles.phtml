@@ -6,16 +6,9 @@
     
     $template = sprintf('list-%s.phtml', $column);
 ?>
-
-<div class="article-block-newest-published">
-    <?php 
-        if ('single' == $column) {
-            $items = $articles;
-        }
-        include $template;
-    ?>
-</div>
-
-<script>
-    $('.article-block-newest-published').parent().addClass('block-nopadding');
-</script>
+<?php 
+    if ('single' == $column) {
+        $items = $articles;
+    }
+    include $template;
+?>

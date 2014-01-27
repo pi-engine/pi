@@ -25,7 +25,8 @@ return array(
         // debug - for users debugging;
         // development - for developers;
         // close - for maintenance
-        'environment'   => 'development',
+        // '' - To set in system preference
+        'environment'   => '',
     ),
 
     // System persist storage configs
