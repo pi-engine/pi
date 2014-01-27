@@ -5,10 +5,17 @@
     $articles = $block['articles'];
     
     $template = sprintf('list-%s.phtml', $column);
-
-    if ('single' == $column) {
-        $items = $articles;
-    }
-    include $template;
 ?>
 
+<div class="article-block-newest-published">
+    <?php 
+        if ('single' == $column) {
+            $items = $articles;
+        }
+        include $template;
+    ?>
+</div>
+
+<script>
+    $('.article-block-newest-published').parent().addClass('block-nopadding');
+</script>

@@ -42,7 +42,7 @@
                 <li class="text-muted">
                     <div class="list-hover">
                         <span class="pull-right article-list-desc">
-                            <?php echo date('Y/m/d H:i', $article['time_publish']); ?>
+                            <?php echo _date($article['time_publish']); ?>
                         </span>
                         <a class="article-list-title" target="_blank" href="<?php echo $article['url'] ?>" title="<?php echo $this->escape($article['subject']); ?>" style="color: #333333">
                             <?php echo $this->escape($article['subject']); ?>

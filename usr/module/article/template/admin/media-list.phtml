@@ -155,7 +155,7 @@
                     </td>
                     <td><?php echo isset($media['download']) ? $this->escape($media['download']) : 0 ?></td>
                     <td><?php echo $this->escape($media['submitter']); ?></td>
-                    <td><?php echo date('Y-m-d', $media['time_upload']); ?></td>
+                    <td><?php echo _date($media['time_upload']); ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>

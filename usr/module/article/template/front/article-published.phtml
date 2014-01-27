@@ -116,7 +116,7 @@
                 ?>
                 <td><?php echo !empty($article['user_name']) ? $this->escape($article['user_name']) : '&nbsp;'; ?></td>
                 <td><?php echo $article['visits'] ? $this->escape($article['visits']) : 0; ?></td>
-                <td><?php echo date('Y-m-d', $article['time_publish']); ?></td>
+                <td><?php echo _date($article['time_publish']); ?></td>
             </tr>
             <?php } ?>
             </tbody>

@@ -83,7 +83,7 @@
                 */
                 ?>
                 <td><?php 
-                    echo date('Y-m-d', $status == $flags['published'] 
+                    echo _date($status == $flags['published']
                         ? $draft['time_publish'] 
                         : ($draft['time_update'] ?: $draft['time_save'])
                     ); ?>

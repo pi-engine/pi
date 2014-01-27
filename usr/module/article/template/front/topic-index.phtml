@@ -24,14 +24,17 @@
         <div class="article-topic-title"><?php echo $this->escape($title); ?></div>
         <div style="margin-top: 5px; font-size: 12px">
             <span class="text-muted">
-                <?php echo __('Created at ') . date('Y/m/d', $topic['time_create']); ?>
+                <?php echo sprintf__('Created at %s', _date($topic['time_create'])); ?>
             </span>
             <span class="text-muted" style="margin-left: 10px">
-                <?php echo current($pullTime) ? __('Last added at ') . date('Y/m/d', current($pullTime)) : ''; ?>
+                <?php echo current($pullTime)
+                    ? sprintf(__('Last added at %s', _date(current($pullTime))))
+                    : '';
+                ?>
             </span>
             <span class="pull-right">
                 <a href="<?php echo $this->escape($url); ?>">
-                    <?php echo $this->escape($count) . ' articles'; ?>
+                    <?php echo sprintf('%d articles', $count); ?>
                 </a>
             </span>
         </div>
@@ -48,9 +51,9 @@
                         <?php echo $this->escape($row['subject']); ?>
                 </a>
                 <div class="text-muted" style="font-size: 12px">
-                    <span><?php echo __('Created at ') . date('Y/m/d', $row['time_published']); ?></span>
+                    <span><?php echo sprintf(__('Created at %s', _date($row['time_published']))); ?></span>
                     <span style="margin-left: 10px">
-                        <?php echo __('Last added at ') . date('Y/m/d', $pullTime[$row['id']]); ?>
+                        <?php echo sprintf(__('Last added at %s', _date($pullTime[$row['id']]))); ?>
                     </span>
                 </div>
                 <div style="margin-top: 5px; color: #333333" class="article-size12">

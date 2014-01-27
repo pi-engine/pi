@@ -331,7 +331,7 @@
                     <span class="publish-time-edit">
                         <?php if ($draft['time_publish']) { ?>
                             <?php _e('Scheduled at'); ?>
-                        <strong><?php echo date('Y-m-d H:i', $draft['time_publish']); ?></strong>
+                        <strong><?php echo _date($draft['time_publish']); ?></strong>
                         <?php } else { 
                             _e('publish immediately');
                         } ?>
@@ -361,10 +361,9 @@
                     <p>
                         <?php 
                             if ($draft['time_save']) {
-                                echo __('Last edited at ') 
-                                . date('Y-m-d H:i', $draft['time_save'])
-                                . __(' by ')
-                                . (isset($userUpdate) ? $userUpdate['name'] : $user['name']); 
+                                echo sprintf(
+                                    __('Last edit at %s by %s', _date($draft['time_save']), (isset($userUpdate) ? $userUpdate['name'] : $user['name']))
+                                );
                             }
                         ?> 
                     </p>

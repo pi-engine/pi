@@ -987,8 +987,8 @@ class DraftController extends ActionController
         $data                 = (array) $row;
         $data['category']     = $data['category'] ?: $this->config('default_category');
         $data['related']      = $data['related'] ? implode(self::TAG_DELIMITER, $data['related']) : '';
-        $data['time_publish'] = $data['time_publish'] ? date('Y-m-d H:i:s', $data['time_publish']) : '';
-        $data['time_update']  = $data['time_update'] ? date('Y-m-d H:i:s', $data['time_update']) : '';
+        $data['time_publish'] = $data['time_publish'] ? _date($data['time_publish']) : '';
+        $data['time_update']  = $data['time_update'] ? _date($data['time_update']) : '';
         
         $featureImage = $data['image'] ? Pi::url($data['image']) : '';
         $featureThumb = $data['image'] ? Pi::url(Media::getThumbFromOriginal($data['image'])) : '';

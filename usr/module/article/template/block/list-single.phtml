@@ -41,7 +41,7 @@ if (empty($elements)) {
         if (in_array('time', $elements)) {
             echo sprintf(
                 '<div class="text-muted"><small>%s</small></div>',
-                date('Y-m-d', $item['time_publish'])
+                _date($item['time_publish'])
             );   
         }
         if (in_array('summary', $elements)) {
