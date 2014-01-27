@@ -25,6 +25,7 @@ return array(
         // debug - for users debugging;
         // development - for developers;
         // close - for maintenance
+        // '' - To set in system preference
         'environment'   => '%environment%',
     ),
 

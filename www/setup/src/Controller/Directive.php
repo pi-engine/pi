@@ -158,7 +158,7 @@ class Directive extends AbstractController
             'salt'          => md5(uniqid(mt_rand(), true)),
             'storage'       => $wizard->getPersist('persist'),
             'namespace'     => substr(md5($vars['www']['url']), 0, 4),
-            'environment'   => 'development',
+            'environment'   => '',
         );
 
         // config/host.php
