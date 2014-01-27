@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
 "POT-Creation-Date: 2014-01-22 14:16+0800\n"
-"PO-Revision-Date: 2014-01-22 14:16+0800\n"
+"PO-Revision-Date: 2014-01-27 15:52+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
@@ -79,9 +79,8 @@ msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/block.php:63
 #: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:239
-#, fuzzy
 msgid "Category List"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/block.php:64
 msgid "Listing all category"
@@ -102,9 +101,8 @@ msgid "The max categories to display"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/block.php:94
-#, fuzzy
 msgid "Hot Categories"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/block.php:95
 msgid "Listing hot categories according to their articles"
@@ -121,9 +119,8 @@ msgid "Day range"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/block.php:131
-#, fuzzy
 msgid "Newest Published Articles"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/block.php:132
 msgid "Listing the newest published articles of topic or non-topic"
@@ -472,9 +469,8 @@ msgid "Display when no source is provided."
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:92
-#, fuzzy
 msgid "Default Category"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:93
 msgid "Can not be deleted."
@@ -489,9 +485,8 @@ msgid "Maximum related articles to fetch."
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:107
-#, fuzzy
 msgid "Markup Language"
-msgstr "语言选择"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:108
 msgid "Default markup language for editing draft."
@@ -549,9 +544,8 @@ msgid "Summary"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:146
-#, fuzzy
 msgid "Created time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:147
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:187
@@ -576,9 +570,8 @@ msgid "Whether to enable category nav in list page"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:170
-#, fuzzy
 msgid "Default Homepage"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/config.php:171
 msgid "Use relative url, leave it empty if you want to dress up yourselves"
@@ -937,7 +930,7 @@ msgstr ""
 #: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:166
 #: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:187
 msgid "Article"
-msgstr ""
+msgstr "文章"
 
 #: D:\wamp\www\deploy\usr\module\article/config/module.php:19
 msgid "General module for content management."
@@ -956,9 +949,8 @@ msgid "My Draft"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:45
-#, fuzzy
 msgid "All Article"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:57
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:266
@@ -966,23 +958,20 @@ msgid "My Article"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:76
-#, fuzzy
 msgid "All topics"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:82
-#, fuzzy
 msgid "Add topic"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:88
 msgid "List topic articles"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:95
-#, fuzzy
 msgid "Pull topic articles"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:102
 msgid "Edit topic"
@@ -993,29 +982,24 @@ msgid "Media list"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:127
-#, fuzzy
 msgid "Upload Media"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:133
-#, fuzzy
 msgid "Edit Media"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:152
-#, fuzzy
 msgid "Category list"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:158
-#, fuzzy
 msgid "Add Category"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:164
-#, fuzzy
 msgid "Edit Category"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/navigation.php:171
 #: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:253
@@ -1122,19 +1106,16 @@ msgid "Setup management"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/permission.php:51
-#, fuzzy
 msgid "Published Active/Deactivate"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/permission.php:54
-#, fuzzy
 msgid "Publish Edit"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/permission.php:57
-#, fuzzy
 msgid "Published Delete"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/config/permission.php:60
 msgid "Draft Compose"
@@ -1311,9 +1292,8 @@ msgid "Category cannot be moved to self or a child."
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:117
-#, fuzzy
 msgid "All Media"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:154
 msgid "This page have not been considered yet!"
@@ -1384,9 +1364,8 @@ msgid "Invalid topic ID!"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:255
-#, fuzzy
 msgid "All Articles"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:281
 msgid "Target topic is needed!"
@@ -1698,9 +1677,8 @@ msgid "Download"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:49
-#, fuzzy
 msgid "All"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:103
 msgid "ID"
@@ -1831,9 +1809,8 @@ msgstr ""
 #: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:19
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:40
 #: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:30
-#, fuzzy
 msgid "All categories"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:34
 msgid "Top Articles"
@@ -1919,9 +1896,8 @@ msgstr ""
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:33
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:83
 #: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:72
-#, fuzzy
 msgid "Publish date"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:51
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:39
@@ -1962,9 +1938,8 @@ msgid "Active"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-nav.phtml:4
-#, fuzzy
 msgid "All Topics"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/admin/topic-nav.phtml:9
 msgid "Add Topic"
@@ -2019,9 +1994,8 @@ msgid "Activate"
 msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:23
-#, fuzzy
 msgid "All articles"
-msgstr "All Categories"
+msgstr ""
 
 #: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:24
 #: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:88

@@ -66,6 +66,6 @@
 }
 
 .pi-sidenav .disabled {
-  cursor: not-allowed;
+  cursor: default;
   color: #999 !important; 
 }
