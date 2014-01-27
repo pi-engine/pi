@@ -60,6 +60,18 @@ class Timezone extends Select
     /**
      * {@inheritDoc}
      */
+    public function getValue()
+    {
+        if (!$this->value) {
+            $this->value = date_default_timezone_get();
+        }
+
+        return parent::getValue();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getLabel()
     {
         if (null === $this->label) {

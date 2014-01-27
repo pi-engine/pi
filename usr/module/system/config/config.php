@@ -146,7 +146,7 @@ $config['item'] = array(
                 ),
             ),
         ),
-        'value'         => 'production',
+        'value'         => 'development',
         'category'      => 'general',
     ),
 
