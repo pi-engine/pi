@@ -100,7 +100,7 @@ class Tag extends Textarea
             }
             if ($item) {
                 $tags = Pi::service('tag')->get($module, $item, $type, $active);
-                $this->value = implode(' ', $tags);
+                $this->value = Pi::service('tag')->implode($tags);
             }
         }
 

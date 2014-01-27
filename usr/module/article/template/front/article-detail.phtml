@@ -22,14 +22,14 @@ if (!empty($details['seo'])) {
         <?php } ?>
         <div class="text-muted subline">
             <div>
-                <?php if (!empty($details['source'])) { ?>
-                <div class="article-subline-desc">
-                    <?php echo sprintf(__('Source: %s', _escape($details['source']))); ?>
-                </div>
-                <?php } ?>
                 <div class="article-subline-desc">
                     <?php echo _date($details['time_publish']); ?>
                 </div>
+                <?php if (!empty($details['source'])) { ?>
+                    <div class="article-subline-desc">
+                        <?php echo sprintf(__('Source: %s', _escape($details['source']))); ?>
+                    </div>
+                <?php } ?>
                 <div>
                     <div class="article-subline-desc">
                         <?php echo $this->tag(array('module' => $module, 'item' => $details['id'])); ?>

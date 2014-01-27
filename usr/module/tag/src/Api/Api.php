@@ -37,6 +37,37 @@ class Api extends AbstractApi
     protected $module = 'tag';
 
     /**
+     * Generate text from tags
+     *
+     * @param string|string[] $tags
+     * @param string $delimiter Default delimiter
+     *
+     * @return string
+     */
+    public function implode($tags, $delimiter = '')
+    {
+        if (is_array($tags)) {
+            if (!$delimiter) {
+                // Canonize delimiters
+                $delimiter = Pi::service('module')->config('tag_delimiter', $this->module);
+                if (!$delimiter) {
+                    $delimiters = array('s');
+                } else {
+                    $delimiters = explode('|', $delimiter);
+                }
+                if (in_array('s', $delimiters)) {
+                    $delimiter = ' ';
+                } else {
+                    $delimiter = $delimiters[0] . ' ';
+                }
+            }
+            $tags = implode($delimiter, $tags);
+        }
+
+        return $tags;
+    }
+
+    /**
      * Fetch tags from text
      *
      * @param string|string[] $tags
