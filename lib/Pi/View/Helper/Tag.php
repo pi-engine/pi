@@ -64,7 +64,9 @@ class Tag extends AbstractHtmlElement
             $item   = $routeMatch->getParam('id');
             $type   = '';
         } else {
-            $module = $data['module'] ?: Pi::service('module')->current();
+            $module = isset($data['module'])
+                ? $data['module']
+                : Pi::service('module')->current();
             $item   = $data['item'];
             $type   = isset($data['type']) ? $data['type'] : '';
         }
