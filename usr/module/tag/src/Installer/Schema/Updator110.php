@@ -61,7 +61,7 @@ CREATE TABLE `{draft}` (
   KEY `term`        (`term`)
 );
 EOD;
-            $status = $this->querySchema($sql);
+            $status = $this->querySchema($sql, $this->handler->getParam('module'));
             if (false === $status) {
                 return $status;
             }

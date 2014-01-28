@@ -62,14 +62,15 @@ class AbstractUpdator
      * Update system table schema
      *
      * @param string $sql
+     * @param string $type Schema type: `core` or <module>, default as SqlSchema::getType()
      *
      * @return bool
      */
-    protected function querySchema($sql)
+    protected function querySchema($sql, $type = '')
     {
         $sqlHandler = new SqlSchema;
         try {
-            $sqlHandler->queryContent($sql);
+            $sqlHandler->queryContent($sql, $type);
         } catch (\Exception $exception) {
             $this->handler->setResult('db', array(
                 'status'    => false,
