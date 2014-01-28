@@ -25,15 +25,6 @@ class AdminNav extends AbstractHelper
     /** @var string Module name */
     protected $module;
 
-    /** @var string Leaf operation menu */
-    protected $leafOperation = '';
-
-    /** @var string Side menu content */
-    //protected $side;
-
-    /** @var string Top menu content */
-    //protected $top;
-
     /**
      * Invoke for helper
      *
@@ -97,6 +88,53 @@ EOT;
         $module = $this->module ?: Pi::service('module')->currrent();
         $mode = $_SESSION['PI_BACKOFFICE']['mode'];
 
+
+        $patternModule = <<<'EOT'
+<li class="%s">
+    <a href="%s">
+        <i class="%s"></i>
+        <span class="pi-modules-nav-text">%s</span>
+    </a>
+</li>
+EOT;
+        $patternCategory = <<<'EOT'
+<li>
+    <a href="%s">
+        <span class="pi-modules-nav-text">%s</span>
+        <i class="%s"></i>
+    </a>
+</li>
+EOT;
+        $pattern = array(
+            'module'    => $patternModule,
+            'category'  => $patternCategory,
+        );
+
+        $buildContent = function($navigation) use ($pattern) {
+            $content = '';
+            foreach ($navigation as $category) {
+                if (!empty($category['label'])) {
+                    $content .= sprintf(
+                        $pattern['category'],
+                        '',
+                        $category['label'],
+                        $category['icon'] ? : 'fa fa-level-down'
+                    );
+                }
+                foreach ($category['modules'] as $name => $item) {
+                    $content .= sprintf(
+                        $pattern['module'],
+                        $item['active'] ? 'active' : '',
+                        $item['href'],
+                        $item['icon'] ? : 'fa fa-th',
+                        $item['label']
+                    );
+                }
+            }
+
+            return $content;
+        };
+
         $class = $class ?: 'nav';
         $content = sprintf('<ul class="%s">', $class);
         // Get manage mode navigation
@@ -110,93 +148,17 @@ EOT;
                 $params['name'],
                 $params['controller']
             );
-
-            $pattern =<<<'EOT'
-<li class="%s">
-    <a href="%s">
-        <i class="%s"></i>
-        <span class="pi-modules-nav-text">%s</span>
-    </a>
-</li>
-EOT;
-            foreach ($navigation as $item) {
-                $content .= sprintf(
-                    $pattern,
-                    $item['active'] ? 'active' : '',
-                    $item['href'],
-                    $item['icon'] ? : 'fa fa-th',
-                    $item['label']
-                );
-            }
+            $content .= $buildContent($navigation);
 
         // Get operation mode navigation
         } elseif (AdminMode::MODE_ACCESS == $mode) {
             $navigation = Menu::mainOperation($module);
-
-            $pattern =<<<'EOT'
-<li class="%s">
-    <a href="%s">
-        <i class="%s"></i>
-        <span class="pi-modules-nav-text">%s</span>
-    </a>
-</li>
-EOT;
-
-            foreach ($navigation as $item) {
-                // Callback for hover action
-                $callback = $item['callback'];
-
-                $content .= sprintf(
-                    $pattern,
-                    $item['active'] ? 'active' : '',
-                    $item['href'],
-                    $item['icon'] ? : 'fa fa-th',
-                    $item['label']
-                );
-            }
-
+            $content .= $buildContent($navigation);
         }
 
         $content .= '</ul>';
 
         return $content;
-    }
-
-    /**
-     * Get back-office sub menu
-     *
-     * @param array|string $options
-     *
-     * @return string
-     */
-    public function ____sub($options = array())
-    {
-        $module = $this->module ?: Pi::service('module')->currrent();
-        $mode   = $_SESSION['PI_BACKOFFICE']['mode'];
-
-        if (is_string($options)) {
-            $options = array('ulClass' => $options);
-        }
-        if (!isset($options['ulClass'])) {
-            $options['ulClass'] = 'nav pi-modules-nav-sub';
-        }
-        $navigation = '';
-        // Managed components
-        if (AdminMode::MODE_ADMIN == $mode && 'system' == $module) {
-
-        // Module operations
-        } elseif (AdminMode::MODE_ACCESS == $mode) {
-            if (!isset($options['sub'])) {
-                $options['sub'] = array(
-                    'ulClass'   => 'nav nav-tabs',
-                    'maxDepth'  => 0,
-                );
-            }
-            list($navigation, $leaf) = Menu::subOperation($module, $options);
-            $this->leafOperation = $leaf;
-        }
-
-        return $navigation;
     }
 
     /**

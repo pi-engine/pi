@@ -14,8 +14,6 @@ use Pi\Mvc\Controller\ActionController;
 use Pi\Application\Installer\Module as ModuleInstaller;
 use Module\System\Form\ModuleForm;
 use Module\System\Form\ModuleFilter;
-use Zend\Rest\Client\RestClient;
-use Zend\Form\Form;
 use Zend\Db\Sql\Expression;
 
 /**

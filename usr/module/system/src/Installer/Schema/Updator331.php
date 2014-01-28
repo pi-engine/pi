@@ -17,7 +17,7 @@ use Pi\Application\Installer\Schema\AbstractUpdator;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Updator330 extends AbstractUpdator
+class Updator331 extends AbstractUpdator
 {
     /**
      * Update system table schema
@@ -28,14 +28,14 @@ class Updator330 extends AbstractUpdator
      */
     public function upgrade($version)
     {
-        if (version_compare($version, '3.2.5', '<')) {
-            $updator = new Updator325($this->handler);
+        if (version_compare($version, '3.3.0', '<')) {
+            $updator = new Updator330($this->handler);
             $result = $updator->upgrade($version);
             if (false === $result) {
                 return $result;
             }
         }
-        $result = $this->from325($version);
+        $result = $this->from330($version);
 
         return $result;
     }
@@ -47,22 +47,28 @@ class Updator330 extends AbstractUpdator
      *
      * @return bool
      */
-    protected function from325($version)
+    protected function from330($version)
     {
         $status = true;
-        if (version_compare($version, '3.3.0', '<')) {
+        if (version_compare($version, '3.3.1', '<')) {
 
-            $table = Pi::db()->prefix('block');
-            $sql =<<<'EOT'
-ALTER TABLE %s
-ADD `body_fullsize` tinyint(1) unsigned NOT NULL default '0' AFTER `title_hidden`;
-EOT;
-            $sql = sprintf($sql, $table);
-            $status = $this->queryTable($sql);
+            $sql =<<<'EOD'
+CREATE TABLE `{category}` (
+  `id`          int(10)         unsigned NOT NULL auto_increment,
+  `title`       varchar(255)    default NULL,
+  `icon`        varchar(255)    default NULL,
+  `order`       int(5)          unsigned NOT NULL default '0',
+  -- Json-encoded module list
+  `modules`     text,
 
+  PRIMARY KEY  (`id`)
+);
+EOD;
+            $status = $this->querySchema($sql, $this->handler->getparam('module'));
             if (false === $status) {
                 return $status;
             }
+
         }
 
         return $status;

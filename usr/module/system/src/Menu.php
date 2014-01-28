@@ -77,36 +77,16 @@ class Menu
     {
         $mode   = AdminMode::MODE_ACCESS;
 
-        $modules = Pi::registry('modulelist')->read();
-        $modulesAllowed = Pi::service('permission')->moduleList($mode);
-        $navConfig = array();
-        foreach ($modules as $name => $item) {
-            if (in_array($name, $modulesAllowed)) {
-                $link = Pi::service('url')->assemble('admin', array(
-                    'module'        => $name,
-                    'controller'    => 'index',
-                    'action'        => 'index',
-                ));
-                $callback = Pi::service('url')->assemble('admin', array(
-                    'module'        => 'system',
-                    'controller'    => 'menu',
-                    'action'        => 'sub',
-                    'name'          => $name,
-                ));
+        $linkCallback = function ($name) {
+            return Pi::service('url')->assemble('admin', array(
+                'module'        => $name,
+                'controller'    => 'index',
+                'action'        => 'index',
+            ));
+        };
+        $categories = static::getCategories($mode, $module, $linkCallback);
 
-                $config = array(
-                    'name'      => $name,
-                    'label'     => $item['title'],
-                    'href'      => $link,
-                    'active'    => $name == $module ? 1 : 0,
-                    'icon'      => $item['icon'],
-                    'callback'  => $callback,
-                );
-            }
-            $navConfig[] = $config;
-        }
-
-        return $navConfig;
+        return $categories;
     }
 
     /**
@@ -120,29 +100,17 @@ class Menu
     public static function mainComponent($module, $component)
     {
         $mode   = AdminMode::MODE_ADMIN;
-        $modules = Pi::registry('modulelist')->read();
-        $modulesAllowed = Pi::service('permission')->moduleList($mode);
-        $navConfig = array();
-        foreach ($modules as $name => $item) {
-            if (in_array($name, $modulesAllowed)) {
-                $link = Pi::service('url')->assemble('admin', array(
-                    'module'        => 'system',
-                    'controller'    => $component,
-                    'name'          => $name,
-                ));
 
-                $config = array(
-                    'name'      => $name,
-                    'label'     => $item['title'],
-                    'href'      => $link,
-                    'active'    => $name == $module ? 1 : 0,
-                    'icon'      => $item['icon'],
-                );
-            }
-            $navConfig[] = $config;
-        }
+        $linkCallback = function ($name) use ($component) {
+            return Pi::service('url')->assemble('admin', array(
+                'module'        => 'system',
+                'controller'    => $component,
+                'name'          => $name,
+            ));
+        };
+        $categories = static::getCategories($mode, $module, $linkCallback);
 
-        return $navConfig;
+        return $categories;
     }
 
     /**
@@ -198,5 +166,93 @@ class Menu
         }
 
         return $content;
+    }
+
+    /**
+     * Get categorized modules
+     *
+     * @param string $mode
+     * @param string $module
+     * @param Closure $linkCallback
+     *
+     * @return array
+     */
+    protected static function getCategories($mode, $module, $linkCallback)
+    {
+        //$categories     = Pi::registry('category', 'system')->read();
+        $categories     = array(
+            array(
+                'title'     => __('Application'),
+                'icon'      => '',
+                'modules'   => array(
+                    'user',
+                    'article',
+                    'forum',
+                    'page',
+                    'demo',
+                ),
+            ),
+            array(
+                'title'     => __('Service'),
+                'icon'      => '',
+                'modules'   => array(
+                    'tag',
+                    'comment',
+                    'search',
+                    'widget',
+                ),
+            ),
+        );
+        $categories += Pi::registry('category', 'system')->read();
+        $moduleList     = Pi::registry('modulelist')->read();
+        $modulesAllowed = Pi::service('permission')->moduleList($mode);
+        foreach (array_keys($moduleList) as $name) {
+            // Filter restricted modules
+            if (!in_array($name, $modulesAllowed)) {
+                unset($moduleList[$name]);
+            }
+            // Build module meta
+            $moduleList[$name] = array(
+                'name'      => $name,
+                'label'     => $moduleList[$name]['title'],
+                'icon'      => $moduleList[$name]['icon'],
+                'active'    => $name == $module ? 1 : 0,
+                'href'      => call_user_func($linkCallback, $name),
+            );
+
+        }
+
+        if (isset($moduleList['system'])) {
+            $category = array(
+                'title'     => '',
+                'icon'      => '',
+                'modules'   => array('system'),
+            );
+            array_unshift($categories, $category);
+        }
+        // Categorize modules
+        foreach ($categories as $key => &$cData) {
+            $cData['label'] = $cData['title'];
+            $modules = $cData['modules'];
+            $cData['modules'] = array();
+            foreach ($modules as $name) {
+                if (!isset($moduleList[$name])) {
+                    continue;
+                }
+                $cData['modules'][$name] = $moduleList[$name];
+                unset($moduleList[$name]);
+            }
+        }
+
+        // Collect uncategorized modules
+        if ($moduleList) {
+            $categories[] = array(
+                'label'     => __('Uncategoried'),
+                'icon'      => '',
+                'modules'   => $moduleList,
+            );
+        }
+
+        return $categories;
     }
 }
