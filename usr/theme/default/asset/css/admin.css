@@ -119,6 +119,15 @@ legend {
   text-align: center;
 }
 
+.pi-modules-nav > .category  i {
+    width: 15px;
+}
+
+.pi-modules-nav > .category > a {
+    padding-left: 0px;
+}
+
+/* NOT USED: pi-modules-nav-director */
 .pi-modules-nav-director {
   position: absolute;
   right: 15px;
@@ -126,6 +135,7 @@ legend {
   font-size: 18px;
 }
 
+/* NOT USED: pi-modules-nav-sub */
 .pi-modules-nav-sub {
   background: #fff;
   border-top: 1px solid #fcfcfc;
@@ -158,6 +168,7 @@ legend {
   top: 6px;
 }
 
+/* NOT USED: pi-siderbar-collapse */
 .pi-siderbar-collapse {
   cursor: pointer;
   padding: 10px 15px;

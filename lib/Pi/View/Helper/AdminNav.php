@@ -98,10 +98,10 @@ EOT;
 </li>
 EOT;
         $patternCategory = <<<'EOT'
-<li>
-    <a href="%s">
-        <span class="pi-modules-nav-text">%s</span>
-        <i class="%s"></i>
+<li class="category">
+    <a href="">
+        <i class="%s text-muted"></i>
+        <span class="pi-modules-nav-category text-muted">%s</span>
     </a>
 </li>
 EOT;
@@ -116,9 +116,9 @@ EOT;
                 if (!empty($category['label'])) {
                     $content .= sprintf(
                         $pattern['category'],
-                        '',
-                        $category['label'],
-                        $category['icon'] ? : 'fa fa-level-down'
+                        //'',
+                        $category['icon'] ? : 'fa fa-sign-in',
+                        $category['label']
                     );
                 }
                 foreach ($category['modules'] as $name => $item) {
