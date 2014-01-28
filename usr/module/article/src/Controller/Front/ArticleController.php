@@ -278,7 +278,7 @@ class ArticleController extends ActionController
         }
 
         $page       = $this->params('p', 1);
-        $limit      = $this->params('limit', 5);
+        $limit      = $this->params('limit', 20);
         $from       = $this->params('from', 'my');
         $keyword    = $this->params('keyword', '');
         $category   = $this->params('category', 0);
