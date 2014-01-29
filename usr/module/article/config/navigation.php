@@ -48,7 +48,6 @@ return array(
                 'action'        => 'published',
                 'params'        => array(
                     'from'          => 'all',
-                    'top'           => 1,
                 ),
                 'permission'    => array(
                     'resource'  => 'article',
@@ -63,7 +62,6 @@ return array(
                         'params'        => array(
                             'from'          => 'all',
                         ),
-                        //'visible'   => 0,
                     ),
                     'pending'   => array(
                         'label'         => _t('Pending'),
@@ -74,7 +72,6 @@ return array(
                             'from'          => 'all',
                             'status'        => 2,
                         ),
-                        //'visible'   => 0,
                     ),
                 ),
             ),
@@ -85,7 +82,6 @@ return array(
                 'action'        => 'published',
                 'params'        => array(
                     'from'          => 'my',
-                    'top'           => 1,
                 ),
 
                 'pages'         => array(
@@ -97,7 +93,6 @@ return array(
                         'params'        => array(
                             'from'          => 'my',
                         ),
-                        //'visible'   => 0,
                     ),
                     'pending'   => array(
                         'label'         => _t('Pending'),
@@ -108,7 +103,6 @@ return array(
                             'from'          => 'my',
                             'status'        => 2,
                         ),
-                        //'visible'   => 0,
                     ),
                     'rejected'   => array(
                         'label'         => _t('Rejected'),
@@ -119,7 +113,6 @@ return array(
                             'from'          => 'my',
                             'status'        => 3,
                         ),
-                        //'visible'   => 0,
                     ),
                     'draft'   => array(
                         'label'         => _t('Draft'),
@@ -130,14 +123,13 @@ return array(
                             'from'          => 'my',
                             'status'        => 1,
                         ),
-                        //'visible'   => 0,
                     ),
                     'compose'   => array(
                         'label'         => _t('Compose'),
                         'route'         => 'admin',
                         'controller'    => 'draft',
                         'action'        => 'add',
-                        //'visible'   => 0,
+                        'class'         => 'active',
                     ),
                 ),
             ),

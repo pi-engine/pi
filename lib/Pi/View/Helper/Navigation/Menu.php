@@ -25,6 +25,11 @@ use Zend\Cache\Storage\Adapter\AbstractAdapter as CacheAdapter;
 class Menu extends ZendMenu
 {
     /**
+     * {@inheritDoc}
+     */
+    protected $addClassToListItem = true;
+
+    /**
      * Cache container
      * @var \StdClass
      */
@@ -58,11 +63,13 @@ class Menu extends ZendMenu
      *          minDepth - minimum depth for parent menu;
      *          maxDepth - maximum depth for parent menu;
      *          escapeLabels - to escape labels for parent menu;
+     *          addClassToListItem - to add page class to list
      *          sub:
      *           ulClass - CSS class for first UL for sub menu;
      *           indent - initial indentation for sub menu;
      *           maxDepth - maximum depth for sub menu;
      *           escapeLabels - to escape labels for sub menu;
+     *           addClassToListItem - to add page class to list
      *
      * @return array()  array of parent menu and sub menu
      */
@@ -101,6 +108,7 @@ class Menu extends ZendMenu
             $indent             = $options['indent'];
             $ulClass            = $options['ulClass'];
             $escapeLabels       = $options['escapeLabels'];
+            $addClassToListItem = $options['addClassToListItem'];
 
             $html = '';
             // create iterator
@@ -182,11 +190,29 @@ class Menu extends ZendMenu
                     $html .= $myIndent . '    </li>' . PHP_EOL;
                 }
 
-                // render li tag and page
-                $liClass = $isActive ? ' class="active"' : '';
-                $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
-                    . $myIndent . '        '
-                    . $_this->htmlify($page, $escapeLabels) . PHP_EOL;
+               if (!$page->getLabel()) {
+                    $liClass = $page->getClass() ?: 'divider';
+                    $html .= $myIndent . '    <li class="' . $liClass . '" />'
+                        . PHP_EOL;
+                } else {
+
+                    // render li tag and page
+                    $liClasses = array();
+                    // Is page active?
+                    if ($isActive) {
+                        $liClasses[] = 'active';
+                    }
+                    // Add CSS class from page to <li>
+                    if ($addClassToListItem && $page->getClass()) {
+                        $liClasses[] = $page->getClass();
+                    }
+                    $liClass = empty($liClasses)
+                        ? '' : ' class="' . implode(' ', array_unique($liClasses)) . '"';
+
+                    $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
+                        . $myIndent . '        '
+                        . $_this->htmlify($page, $escapeLabels) . PHP_EOL;
+               }
 
                 // store as previous depth for next iteration
                 $prevDepth = $depth;
