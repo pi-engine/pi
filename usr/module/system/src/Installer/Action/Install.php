@@ -184,6 +184,43 @@ class Install extends BasicInstall
             $ret = $installer->install($app);
         }
 
+        $categories = array(
+            array(
+                'title' => _a('Application'),
+                'order' => 1,
+                'modules'   => array(
+                    'user',
+                    'uclient',
+                    'article',
+                    'document',
+                    'solution',
+                    'video',
+                    'forum',
+                    'page',
+                    'demo'
+                ),
+            ),
+            array(
+                'title' => _a('Service'),
+                'order' => 2,
+                'modules'   => array(
+                    'uclient',
+                    'message',
+                    'tag',
+                    'comment',
+                    'search',
+                    'widget',
+                    'media',
+                    'saml'
+                ),
+            )
+        );
+        $model = Pi::model('category', 'system');
+        foreach ($categories as $category) {
+            $row = $model->createRow($category);
+            $row->save();
+        }
+
         return true;
     }
 

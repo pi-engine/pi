@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\System\Model\Category;
+namespace Module\System\Model;
 
 use Pi\Application\Model\Model;
 
@@ -23,5 +23,12 @@ class Category extends Model
      */
     protected $encodeColumns = array(
         'modules'  => true,
+    );
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $columns = array(
+        'id', 'title', 'icon', 'order', 'modules'
     );
 }

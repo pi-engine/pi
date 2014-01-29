@@ -86,8 +86,7 @@ EOT;
     public function main($class = '')
     {
         $module = $this->module ?: Pi::service('module')->currrent();
-        $mode = $_SESSION['PI_BACKOFFICE']['mode'];
-
+        $mode   = $_SESSION['PI_BACKOFFICE']['mode'];
 
         $patternModule = <<<'EOT'
 <li class="%s">
@@ -100,7 +99,7 @@ EOT;
         $patternCategory = <<<'EOT'
 <li class="category">
     <a href="">
-        <i class="%s text-muted"></i>
+        <i class="fa %s text-muted"></i>
         <span class="pi-modules-nav-category text-muted">%s</span>
     </a>
 </li>
@@ -112,12 +111,14 @@ EOT;
 
         $buildContent = function($navigation) use ($pattern) {
             $content = '';
-            foreach ($navigation as $category) {
+            foreach ($navigation as $id => $category) {
+                if (empty($category['modules'])) {
+                    continue;
+                }
                 if (!empty($category['label'])) {
                     $content .= sprintf(
                         $pattern['category'],
-                        //'',
-                        $category['icon'] ? : 'fa fa-square-o',
+                        $category['icon'] ? : 'fa-square-o',
                         $category['label']
                     );
                 }

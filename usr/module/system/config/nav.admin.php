@@ -63,6 +63,13 @@ return array(
                     ),
                 ),
             ),
+            'category'  => array(
+                'label'         => _t('Category'),
+                'route'         => 'admin',
+                'module'        => 'system',
+                'controller'    => 'module',
+                'action'        => 'category',
+            ),
             'repo'  => array(
                 'label'         => _t('Repository'),
                 'route'         => 'admin',

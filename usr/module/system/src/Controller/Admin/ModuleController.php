@@ -14,6 +14,8 @@ use Pi\Mvc\Controller\ActionController;
 use Pi\Application\Installer\Module as ModuleInstaller;
 use Module\System\Form\ModuleForm;
 use Module\System\Form\ModuleFilter;
+use Module\System\Form\ModuleCategoryForm;
+use Module\System\Form\ModuleCategoryFilter;
 use Zend\Db\Sql\Expression;
 
 /**
@@ -30,6 +32,7 @@ use Zend\Db\Sql\Expression;
  *  7. Module deactivation
  *  8. Module uninstallation
  *  9. Module asset publish
+ * 10. Module categorization
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -133,6 +136,186 @@ class ModuleController extends ActionController
 
         $this->view()->assign('modules', $modules);
         $this->view()->assign('title', _a('Modules ready for installation'));
+    }
+
+    /**
+     * Manage module categories for admin
+     */
+    public function categoryAction()
+    {
+        // Category, `_all` for all and `_none` for uncategorized
+        $id = $this->params('id', '_all');
+        // Module
+        $m = $this->params('m');
+        // Operation: move module, delete category, add category, edit category
+        $op = $this->params('op');
+        if ('_new' == $id) {
+            $op = 'add';
+        }
+        // From: category id
+        $from = $this->params('from');
+
+        $message = '';
+        $model = Pi::model('category', 'system');
+        switch ($op) {
+            case 'move':
+                if ($m) {
+                    if ($from) {
+                        $row = $model->find($from);
+                        $modules = $row->modules;
+                        $modules = array_diff($modules, array($m));
+                        $row->modules = $modules;
+                        $row->save();
+                    }
+                    if ($id && is_numeric($id)) {
+                        $row = $model->find($id);
+                        $modules = (array) $row['modules'];
+                        $modules[] = $m;
+                        $row->modules = $modules;
+                        $row->save();
+                    } else {
+                        $id = $from;
+                    }
+                    $message = _a('Module moved successfully.');
+                }
+                break;
+
+            case 'delete':
+                if ($id && is_numeric($id)) {
+                    $model->delete(array('id' => $id));
+                    $message = _a('Category deleted successfully.');
+                }
+                break;
+
+            case 'add':
+            case 'edit':
+                if ($id && is_numeric($id)) {
+                    $row = $model->find($id);
+                    $data = $row->toArray();
+                } else {
+                    $data = array();
+                }
+                $form = new ModuleCategoryForm;
+                $form->setData($data);
+                $form->setAttributes(array('action' => $this->url('', array(
+                        'action'    => 'category',
+                    ))));
+                $this->view()->assign('form', $form);
+                break;
+
+            case 'save':
+                if ($this->request->isPost()) {
+                    if ($id && is_numeric($id)) {
+                        $row = $model->find($id);
+                    } else {
+                        $row = $model->createRow();
+                    }
+                    $form = new ModuleCategoryForm;
+                    $post = $this->request->getPost();
+                    $form->setData($post);
+                    $form->setInputFilter(new ModuleCategoryFilter);
+                    if ($form->isValid()) {
+                        $values = $form->getData();
+                        if (isset($values['id'])) {
+                            unset($values['id']);
+                        }
+                        $row->assign($values);
+                        $row->save();
+                        $id = (int) $row->id;
+                    }
+                    $message = _a('Category updated successfully.');
+                }
+                break;
+
+            case 'sort':
+                if ($id && is_numeric($id) && $this->request->isPost()) {
+                    $sort = $this->request->getPost('sort');
+                    $modules = array_keys($sort);
+                    array_multisort(array_values($sort), $modules);
+                    $row = $model->find($id);
+                    $row->modules = $modules;
+                    $row->save();
+                    $message = _a('Modules sorted successfully.');
+                }
+                break;
+
+            default:
+                break;
+        }
+        if ($op && $message) {
+            $this->flashMessenger($message, 'success');
+        }
+
+        // Build categories
+        Pi::registry('category', 'system')->flush();
+        $categories = Pi::registry('category', 'system')->read();
+        $moduleList = Pi::registry('modulelist')->read();
+        unset($moduleList['system']);
+        array_walk($categories, function (&$category) use (&$moduleList) {
+            $modules = (array) $category['modules'];
+            $category['modules'] = array();
+            foreach ($modules as $name) {
+                if (isset($moduleList[$name])) {
+                    $category['modules'][] = array(
+                        'name'  => $name,
+                        'title' => $moduleList[$name]['title'],
+                    );
+                    unset($moduleList[$name]);
+                }
+            }
+        });
+
+        // Build navigation tabs
+        $tabs = array(
+            array(
+                'label'     => _a('All categorized'),
+                'href'      => $this->url('', array(
+                        'action'    => 'category',
+                        'id'        => '_all'
+                    )),
+                'active'    => ($id == '_all') ? 1 : 0,
+            ),
+        );
+        foreach ($categories as $key => $category) {
+            $tabs[] = array(
+                'label'     => $category['title'],
+                'href'      => $this->url('', array(
+                        'action'    => 'category',
+                        'id'        => $category['id']
+                    )),
+                'active'    => ($id == $category['id']) ? 1 : 0,
+            );
+        }
+        if ($moduleList) {
+            $tabs[] = array(
+                'label'     => _a('Uncategorized'),
+                'href'      => $this->url('', array(
+                        'action'    => 'category',
+                        'id'        => '_none'
+                    )),
+                'active'    => ($id == '_none') ? 1 : 0,
+            );
+        }
+        $tabs[] = array(
+            'label'     => _a('+ New category'),
+            'href'      => $this->url('', array(
+                    'action'    => 'category',
+                    'id'        => '_new'
+                )),
+            'active'    => ($id == '_new') ? 1 : 0,
+        );
+        $this->view()->assign(array(
+            // Operation
+            'op'            => $op,
+            // Category id
+            'id'            => $id,
+            // Categorized modules
+            'categories'    => $categories,
+            // Uncategorized modules
+            'modules'       => $moduleList,
+            // Tabs
+            'tabs'          => $tabs,
+        ));
     }
 
     /**

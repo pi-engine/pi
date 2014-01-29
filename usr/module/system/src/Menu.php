@@ -179,38 +179,7 @@ class Menu
      */
     protected static function getCategories($mode, $module, $linkCallback)
     {
-        //$categories     = Pi::registry('category', 'system')->read();
-        $categories     = array(
-            array(
-                'title'     => __('Application'),
-                'icon'      => '',
-                'modules'   => array(
-                    'user',
-                    'uclient',
-                    'article',
-                    'document',
-                    'solution',
-                    'video',
-                    'forum',
-                    'page',
-                    'demo'
-                ),
-            ),
-            array(
-                'title'     => __('Service'),
-                'icon'      => '',
-                'modules'   => array(
-                    'message',
-                    'tag',
-                    'comment',
-                    'search',
-                    'widget',
-                    'media',
-                    'saml'
-                ),
-            ),
-        );
-        $categories += Pi::registry('category', 'system')->read();
+        $categories     = Pi::registry('category', 'system')->read();
         $moduleList     = Pi::registry('modulelist')->read();
         $modulesAllowed = Pi::service('permission')->moduleList($mode);
         foreach (array_keys($moduleList) as $name) {
@@ -237,6 +206,7 @@ class Menu
             );
             array_unshift($categories, $category);
         }
+
         // Categorize modules
         array_walk($categories, function (&$category) use (&$moduleList) {
             $category['label'] = $category['title'];
