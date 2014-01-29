@@ -185,17 +185,16 @@ class TopicController extends ActionController
         // Pagination
         $module    = $this->getModule();
         $route     = Pi::api('api', $module)->getRouteName();
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-                  ->setCurrentPageNumber($page)
-                  ->setUrlOptions(array(
-                'page_param' => 'p',
-                'router'     => $this->getEvent()->getRouter(),
-                'route'      => $route,
-                'params'     => array(
+        $paginator = Paginator::factory($totalCount, array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'page_param'    => 'p',
+                'params'        => array(
                     'topic'      => 'all',
                 ),
-            ));
+            ),
+        ));
 
         $this->view()->assign(array(
             'title'         => __('All Topics'),

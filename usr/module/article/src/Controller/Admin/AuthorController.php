@@ -217,20 +217,19 @@ class AuthorController extends ActionController
 
         $totalCount = $model->count($where);
 
-        // PaginatorPaginator
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-            ->setCurrentPageNumber($page)
-            ->setUrlOptions(array(
-                'page_param' => 'p',
-                'router'     => $this->getEvent()->getRouter(),
-                'route'      => 'admin',
+        // Paginator
+        $paginator = Paginator::factory($totalCount, array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'page_param'    => 'p',
                 'params'     => array_filter(array(
                     'controller'    => 'author',
                     'action'        => 'list',
                     'name'          => $name,
                 )),
-            ));
+            ),
+        ));
 
         $this->view()->assign(array(
             'title'     => _a('Author List'),

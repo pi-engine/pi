@@ -64,22 +64,20 @@ class SearchController extends ActionController
         $totalCount     = $modelArticle->getSearchRowsCount($where);
 
         // Paginator
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-            ->setCurrentPageNumber($page)
-            ->setUrlOptions(array(
-            'page_param' => 'p',
-            'router'     => $this->getEvent()->getRouter(),
-            'route'      => $this->getEvent()
-                ->getRouteMatch()->getMatchedRouteName(),
-            'params'     => array_filter(array(
-                'module'        => $module,
-                'controller'    => 'search',
-                'action'        => 'simple',
-                'keyword'       => $keyword,
-            )),
+        $paginator = Paginator::factory($totalCount, array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'page_param'    => 'p',
+                'params'        => array(
+                    'module'        => $module,
+                    'controller'    => 'search',
+                    'action'        => 'simple',
+                    'keyword'       => $keyword,
+                ),
+            ),
         ));
-        
+
         // Prepare search form
         $form = new SimpleSearchForm;
         $form->setData($this->params()->fromQuery());

@@ -667,25 +667,22 @@ class DraftController extends ActionController
         $action     = $this->getEvent()->getRouteMatch()->getParam('action');
 
         // Paginator
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-                  ->setCurrentPageNumber($page)
-                  ->setUrlOptions(array(
-                    'page_param' => 'p',
-                    'router'     => $this->getEvent()->getRouter(),
-                    'route'      => $this->getEvent()
-                        ->getRouteMatch()
-                        ->getMatchedRouteName(),
-                    'params'     => array(
-                        'module'        => $module,
-                        'controller'    => 'draft',
-                        'action'        => $action,
-                        'status'        => $status,
-                        'from'          => $from,
-                        'where'         => urlencode(json_encode($options)),
-                        'limit'         => $limit,
-                    ),
-                ));
+        $paginator = Paginator::factory($totalCount, array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'page_param'    => 'p',
+                'params'        => array(
+                    'module'        => $module,
+                    'controller'    => 'draft',
+                    'action'        => $action,
+                    'status'        => $status,
+                    'from'          => $from,
+                    'where'         => urlencode(json_encode($options)),
+                    'limit'         => $limit,
+                ),
+            ),
+        ));
 
         $this->view()->assign(array(
             'data'      => $resultsetDraft,

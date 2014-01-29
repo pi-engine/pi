@@ -38,13 +38,13 @@ class Block
         
         $maxTopCount = $options['top-category'];
         $maxSubCount = $options['sub-category'];
-        $route       = Pi::api('api', $module)->getRouteName($module);
+        $route       = Pi::api('api', $module)->getRouteName();
         
         $categories  = Pi::api('api', $module)->getCategoryList(
             array('is-tree' => true)
         );
         
-        $allItems = self::canonizeCategories(
+        $allItems = static::canonizeCategories(
             $categories['child'],
             array('route' => $route)
         );
@@ -84,7 +84,7 @@ class Block
             return false;
         }
         
-        $route = Pi::api('api', $module)->getRouteName($module);
+        $route = Pi::api('api', $module)->getRouteName();
         
         // Get all categories
         $categories = array(
@@ -171,7 +171,7 @@ class Block
         }
         
         // Get category Info
-        $route = Pi::api('api', $module)->getRouteName($module);
+        $route = Pi::api('api', $module)->getRouteName();
         $where = array('id' => $categoryIds);
         $rowCategory = Pi::model('category', $module)->select($where);
         $categories = array();

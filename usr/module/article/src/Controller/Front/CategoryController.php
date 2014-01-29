@@ -54,7 +54,7 @@ class CategoryController extends ActionController
         $limit  = (int) $config['page_limit_all'] ?: 40;
         $where  = array();
         
-        $route  = Pi::api('api', $module)->getRouteName($module);
+        $route  = Pi::api('api', $module)->getRouteName();
 
         // Get category nav
         $rowset = Pi::model('category', $module)->enumerate(null, null);
@@ -166,18 +166,17 @@ class CategoryController extends ActionController
         $totalCount     = $modelArticle->getSearchRowsCount($where);
 
         // Pagination
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-            ->setCurrentPageNumber($page)
-            ->setUrlOptions(array(
-                'page_param' => 'p',
-                'router'     => $this->getEvent()->getRouter(),
-                'route'      => $route,
-                'params'     => array(
+        $paginator = Paginator::factory($totalCount, array(
+            'limit'       => $limit,
+            'page'        => $page,
+            'url_options' => array(
+                'page_param'    => 'p',
+                'params'        => array(
                     'category'      => $category,
                 ),
-            ));
-        
+            ),
+        ));
+
         $module = $this->getModule();
         $config = Pi::service('module')->config('', $module);
 
