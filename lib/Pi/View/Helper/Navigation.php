@@ -205,9 +205,9 @@ class Navigation extends NavigationHelper
     {
         //  Sets the default router for MVC pages
         $router = Pi::engine()->application()->getRouter();
-        $routeMatch = Pi::engine()->application()->getRouteMatch();
         MvcPage::setDefaultRouter($router);
-        MvcPage::setDefaultRouteMatch($routeMatch);
+        //$routeMatch = Pi::engine()->application()->getRouteMatch();
+        //MvcPage::setDefaultRouteMatch($routeMatch);
 
         if (is_array($container)) {
             $container = new Container($container);

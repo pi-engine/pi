@@ -117,7 +117,7 @@ EOT;
                     $content .= sprintf(
                         $pattern['category'],
                         //'',
-                        $category['icon'] ? : 'fa fa-sign-in',
+                        $category['icon'] ? : 'fa fa-square-o',
                         $category['label']
                     );
                 }
