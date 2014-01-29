@@ -121,7 +121,7 @@ EOT;
                         $category['label']
                     );
                 }
-                foreach ($category['modules'] as $name => $item) {
+                foreach ($category['modules'] as $item) {
                     $content .= sprintf(
                         $pattern['module'],
                         $item['active'] ? 'active' : '',

@@ -238,25 +238,25 @@ class Menu
             array_unshift($categories, $category);
         }
         // Categorize modules
-        foreach ($categories as $key => &$cData) {
-            $cData['label'] = $cData['title'];
-            $modules = $cData['modules'];
-            $cData['modules'] = array();
+        array_walk($categories, function (&$category) use (&$moduleList) {
+            $category['label'] = $category['title'];
+            $modules = (array) $category['modules'];
+            $category['modules'] = array();
             foreach ($modules as $name) {
-                if (!isset($moduleList[$name])) {
-                    continue;
+                if (isset($moduleList[$name])) {
+                    $category['modules'][] = $moduleList[$name];
+                    unset($moduleList[$name]);
                 }
-                $cData['modules'][$name] = $moduleList[$name];
-                unset($moduleList[$name]);
             }
-        }
+
+        });
 
         // Collect uncategorized modules
         if ($moduleList) {
             $categories[] = array(
                 'label'     => __('Uncategoried'),
                 'icon'      => '',
-                'modules'   => $moduleList,
+                'modules'   => array_values($moduleList),
             );
         }
 

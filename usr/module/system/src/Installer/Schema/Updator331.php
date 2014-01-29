@@ -56,7 +56,7 @@ class Updator331 extends AbstractUpdator
 CREATE TABLE `{category}` (
   `id`          int(10)         unsigned NOT NULL auto_increment,
   `title`       varchar(255)    default NULL,
-  `icon`        varchar(255)    default NULL,
+  `icon`        varchar(255)    default '',
   `order`       int(5)          unsigned NOT NULL default '0',
   -- Json-encoded module list
   `modules`     text,
