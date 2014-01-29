@@ -30,11 +30,12 @@ class Breadcrumbs extends AbstractBreadcrumbs
     public function load()
     {
         $module = $this->module;
-        $route  = Pi::api('api', $module)->getRouteName($module);
+        $moduleData = Pi::registry('module')->read($module);
+        $route  = Pi::api('api', $module)->getRouteName();
         $result = array(
             array(
-                'label' => __('Article'),
-                'href'  => Pi::service('url')->assemble($route, array(
+                'label' => $moduleData['title'],
+                'href'  => Pi::service('url')->assemble('default', array(
                     'module' => $module,
                 )),
             ),

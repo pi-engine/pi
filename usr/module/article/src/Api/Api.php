@@ -51,7 +51,7 @@ class Api extends AbstractApi
         $limit = null
     ) {
         if (empty($submitter)) {
-            $user      = Pi::service('user')->getUser();
+            //$user      = Pi::service('user')->getUser();
             $submitter = Pi::user()->getId();
         }
         if (!is_numeric($submitter)) {
@@ -151,15 +151,22 @@ class Api extends AbstractApi
         
         return $rows;
     }
-    
+
     /**
      * Get route name
-     * 
-     * @return string 
+     *
+     * @param string $module
+     *
+     * @return string
      */
-    public function getRouteName($module = null)
+    public function getRouteName($module = '')
     {
         $module = $module ?: $this->getModule();
+        $route = $module . '-article';
+
+        return $route;
+
+        /*
         $defaultRoute = $module . '-article';
         $resFilename = sprintf(
             '%s/module/%s/config/route.php',
@@ -194,5 +201,6 @@ class Api extends AbstractApi
         }
         
         return $cacheName;
+        */
     }
 }
