@@ -186,20 +186,27 @@ class Menu
                 'icon'      => '',
                 'modules'   => array(
                     'user',
+                    'uclient',
                     'article',
+                    'document',
+                    'solution',
+                    'video',
                     'forum',
                     'page',
-                    'demo',
+                    'demo'
                 ),
             ),
             array(
                 'title'     => __('Service'),
                 'icon'      => '',
                 'modules'   => array(
+                    'message',
                     'tag',
                     'comment',
                     'search',
                     'widget',
+                    'media',
+                    'saml'
                 ),
             ),
         );
