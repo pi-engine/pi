@@ -75,6 +75,15 @@ return array(
                     ),
                 ),
             ),
+            'compose'   => array(
+                'label'         => _t('Compose'),
+                'route'         => 'admin',
+                'controller'    => 'draft',
+                'action'        => 'add',
+                'permission'    => array(
+                    'resource'  => 'compose',
+                ),
+            ),
             'my'                => array(
                 'label'         => _t('My Article'),
                 'route'         => 'admin',
@@ -123,13 +132,6 @@ return array(
                             'from'          => 'my',
                             'status'        => 1,
                         ),
-                    ),
-                    'compose'   => array(
-                        'label'         => _t('Compose'),
-                        'route'         => 'admin',
-                        'controller'    => 'draft',
-                        'action'        => 'add',
-                        'class'         => 'active',
                     ),
                 ),
             ),
