@@ -30,14 +30,16 @@ class SetupController extends ActionController
     const FORM_MODE_NORMAL   = 'normal';
     const FORM_MODE_EXTENDED = 'extension';
     const FORM_MODE_CUSTOM   = 'custom';
-    
+
     /**
      * Get config file name
-     * 
+     *
      * @param bool $custom
-     * @return string 
+     * @param string $module
+     *
+     * @return string
      */
-    public static function getFilename($custom = false, $module = null)
+    public static function getFilename($custom = false, $module = '')
     {
         $identifier = $custom ? 'custom.form' : 'form';
         $module     = $module ?: Pi::service('module')->current();
@@ -315,7 +317,7 @@ class SetupController extends ActionController
      */
     protected function updateCustomElement($elements)
     {
-        $filename = self::getFilename(true);
+        $filename = static::getFilename(true);
         $result   = Pi::config()->write($filename, $elements, true);
         
         return $result;
