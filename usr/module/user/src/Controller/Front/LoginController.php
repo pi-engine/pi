@@ -181,17 +181,26 @@ class LoginController extends ActionController
             return;
         }
 
+        $uid = (int) $result->getData('id');
+        try {
+            Pi::service('user')->bind($uid);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            $this->renderForm($form, $message);
+
+            return;
+        }
+
+        Pi::service('session')->setUser($uid);
+        Pi::service('event')->trigger('login', $uid);
+
         if ($configs['rememberme'] && $values['rememberme']) {
             Pi::service('session')->manager()
                 ->rememberme($configs['rememberme'] * 86400);
         }
-        $uid = $result->getData('id');
-        Pi::service('session')->setUser($uid);
-        Pi::service('user')->bind($uid);
         //Pi::service('user')->setPersist($result->getData());
 
-
-        if (!empty($configs['attempts'])) {
+        if (isset($_SESSION['PI_LOGIN'])) {
             unset($_SESSION['PI_LOGIN']);
         }
 

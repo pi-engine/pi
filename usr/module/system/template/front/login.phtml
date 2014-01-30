@@ -1,6 +1,11 @@
 <div class="page-header">
     <h2><?php echo _escape($title); ?></h2>
 </div>
+<?php if (!empty($message)) { ?>
+    <div class="alert alert-danger">
+        <?php echo _escape($message); ?>
+    </div>
+<?php } ?>
 <?php include $this->templateComponent('form'); ?>
 <div class="row" style="padding: 40px 0;">
     <div class="col-md-offset-2 col-md-10">

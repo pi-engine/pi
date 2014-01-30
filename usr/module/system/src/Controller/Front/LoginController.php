@@ -156,7 +156,7 @@ class LoginController extends ActionController
             }
         }
 
-        $result = Pi::service('user')->authenticate($identity, $credential);
+        $result = Pi::service('authentication')->authenticate($identity, $credential);
         $result = $this->postProcess($result);
 
         if (!$result->isValid()) {
@@ -174,15 +174,23 @@ class LoginController extends ActionController
             return;
         }
 
+        $uid = (int) $result->getData('id');
+        try {
+            Pi::service('user')->bind($uid);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            $this->renderForm($form, $message);
+
+            return;
+        }
+
+        Pi::service('session')->setUser($uid);
+        Pi::service('event')->trigger('login', $uid);
+
         if ($configs['rememberme'] && $values['rememberme']) {
             Pi::service('session')->manager()
                 ->rememberme($configs['rememberme'] * 86400);
         }
-        $uid = $result->getData('id');
-        Pi::service('session')->setUser($uid);
-        Pi::service('user')->bind($uid);
-        Pi::service('event')->trigger('login', $uid);
-
         if (isset($_SESSION['PI_LOGIN'])) {
             unset($_SESSION['PI_LOGIN']);
         }
