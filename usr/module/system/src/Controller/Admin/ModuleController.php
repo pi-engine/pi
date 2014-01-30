@@ -275,6 +275,14 @@ class ModuleController extends ActionController
                     )),
                 'active'    => ($id == '_all') ? 1 : 0,
             ),
+            array(
+                'label'     => _a('Uncategorized'),
+                'href'      => $this->url('', array(
+                        'action'    => 'category',
+                        'id'        => '_none'
+                    )),
+                'active'    => ($id == '_none') ? 1 : 0,
+            )
         );
         foreach ($categories as $key => $category) {
             $tabs[] = array(
@@ -284,16 +292,6 @@ class ModuleController extends ActionController
                         'id'        => $category['id']
                     )),
                 'active'    => ($id == $category['id']) ? 1 : 0,
-            );
-        }
-        if ($moduleList) {
-            $tabs[] = array(
-                'label'     => _a('Uncategorized'),
-                'href'      => $this->url('', array(
-                        'action'    => 'category',
-                        'id'        => '_none'
-                    )),
-                'active'    => ($id == '_none') ? 1 : 0,
             );
         }
         $tabs[] = array(

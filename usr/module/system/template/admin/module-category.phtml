@@ -1,0 +1,100 @@
+<?php
+$this->css($this->assetModule('admin/admin.css'));
+?>
+<?php echo $this->tab($tabs);?>
+
+<?php
+if ('_all' == $id) {
+    foreach ($categories as $key => $category) {
+?>
+        <div class="panel panel-default">
+            <div class="panel-heading"><?php echo _escape($category['title']); ?></div>
+            <ul class="list-group">
+                <?php foreach ($category['modules'] as $item) { ?>
+                    <li class="list-group-item">
+                        <span><?php echo _escape($item['title']); ?></span>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+<?php
+    }
+} elseif ('_none' == $id) {
+?>
+    <script>
+        var move = function (module, category) {
+            var url = "<?php echo $this->url('', array('action' => 'category', 'op' => 'move', 'm' => '__module__', 'id' => '__category__')); ?>";
+            url = url.replace('__module__', module).replace('__category__', category);
+            window.location.href = url;
+        }
+    </script>
+    <ul class="list-group">
+        <?php foreach ($modules as $item) { ?>
+            <li class="list-group-item">
+                <p>
+                <span><?php echo _escape($item['title']); ?></span>
+                <span class="pull-right">
+                    <select class="form-control" onchange="move('<?php echo $item['name']; ?>', this.options[this.selectedIndex].value);">
+                        <option value=""><?php echo _a('Assign to:'); ?></option>
+                        <?php foreach ($categories as $key => $data) { ?>
+                            <option value="<?php echo $key; ?>"><?php echo _escape($data['title']); ?></option>
+                        <?php } ?>
+                    </select>
+                </span>
+                </p>
+            </li>
+        <?php } ?>
+    </ul>
+<?php
+} elseif ('_new' == $id || 'edit' == $op) {
+    include $this->templateComponent('form');
+} else {
+?>
+
+    <p class="btn-group pull-right">
+        <a class="btn btn-default" href="<?php echo $this->url('', array('action' => 'category', 'op' => 'edit', 'id' => $id)); ?>">
+            <?php echo _a('Edit this category'); ?>
+        </a>
+        <a class="btn btn-default" href="<?php echo $this->url('', array('action' => 'category', 'op' => 'delete', 'id' => $id)); ?>">
+            <?php echo _a('Delete this category'); ?>
+        </a>
+    </p>
+    <div class="clearfix"></div>
+
+    <?php if (!empty($categories[$id]['modules'])) { ?>
+    <form action="<?php echo $this->url('', array('action' => 'category')); ?>" method="post">
+        <ul class="list-group">
+            <?php
+            $i = 0;
+            foreach ($categories[$id]['modules'] as $item) {
+            ?>
+                <li class="list-group-item">
+                    <?php echo _escape($item['title']); ?>
+                    <a class="btn btn-default btn-xs" href="<?php echo $this->url('', array('action' => 'category', 'op' => 'move', 'm' => $item['name'], 'from' => $id)); ?>" title="<?php echo _a('Remove'); ?>">
+                        &times;
+                    </a>
+                    <div class="pull-right col-lg-2">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon"><?php echo _a('Order'); ?></span>
+                            <input type="text" class="form-control" name="sort[<?php echo $item['name']; ?>]" value="<?php echo $i++; ?>">
+                       </div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="hidden" name="op" value="sort">
+        <div class="btn-group pull-right">
+        <input
+            type="submit"
+            class="btn btn-primary"
+            value="<?php echo _a('Sort modules'); ?>"
+            />
+        </div>
+    </form>
+    <?php } ?>
+
+<?php
+}
+?>

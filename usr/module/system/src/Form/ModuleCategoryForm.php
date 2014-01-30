@@ -27,7 +27,7 @@ class ModuleCategoryForm extends BaseForm
         $this->add(array(
             'name'          => 'title',
             'options'       => array(
-                'label' => __('Title'),
+                'label' => _a('Title'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
@@ -37,17 +37,18 @@ class ModuleCategoryForm extends BaseForm
         $this->add(array(
             'name'          => 'icon',
             'options'       => array(
-                'label' => __('Font-awsome icon'),
+                'label' => _a('Font-awsome icon'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
+                'description'   => _a('Check http://fortawesome.github.io/Font-Awesome/icons/'),
             )
         ));
 
         $this->add(array(
             'name'          => 'order',
             'options'       => array(
-                'label' => __('Order'),
+                'label' => _a('Order'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
@@ -73,7 +74,7 @@ class ModuleCategoryForm extends BaseForm
             'name'          => 'submit',
             'type'          => 'submit',
             'attributes'    => array(
-                'value' => __('Submit'),
+                'class' => 'btn btn-primary',
             )
         ));
     }
