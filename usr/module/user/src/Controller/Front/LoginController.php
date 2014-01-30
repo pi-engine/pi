@@ -238,6 +238,7 @@ class LoginController extends ActionController
             $this->getModule()
         );
         */
+        /*
         // Check user complete profile
         if ($configs['profile_complete_form']) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
@@ -251,6 +252,7 @@ class LoginController extends ActionController
                 );
             }
         }
+        */
 
         $this->jump($redirect, __('You have logged in successfully.'));
     }

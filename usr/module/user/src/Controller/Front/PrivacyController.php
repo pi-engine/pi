@@ -28,7 +28,9 @@ class PrivacyController extends ActionController
     public function indexAction()
     {
         Pi::service('authentication')->requireLogin();
+        Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
+        /*
         // Check profile complete
         if ($this->config('profile_complete_form')) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
@@ -44,6 +46,7 @@ class PrivacyController extends ActionController
                 return;
             }
         }
+        */
 
         $fields = Pi::registry('field', 'user')->read('', 'display');
         $forcedPrivacy = Pi::registry('privacy', 'user')->read(true);

@@ -47,8 +47,8 @@ class RegisterController extends ActionController
         );
 
         // Get register form
-        $registerFormConfig = $this->config('register_form');
-        list($fields, $filters) = $this->canonizeForm($registerFormConfig, 'register');
+        $registerFormConfig = $this->config('register_form') ?: 'register.php';
+        list($fields, $filters) = $this->canonizeForm($registerFormConfig);
         $form = $this->getRegisterForm($fields);
         $registeredSource = _get('app') ? : '';
         $form->setData(array('registered_source' => $registeredSource));
@@ -63,8 +63,7 @@ class RegisterController extends ActionController
                     // Display custom complete form
                     $values = $form->getData();
                     list($fields, $filters) = $this->canonizeForm(
-                        $registerCompleteFormConfig,
-                        'register_complete'
+                        $registerCompleteFormConfig
                     );
                     $form = $this->getRegisterForm(
                         $fields,
@@ -163,8 +162,7 @@ class RegisterController extends ActionController
         );
         $post = $this->request->getPost();
         list($fields, $filters) = $this->canonizeForm(
-            $registerCompleteFormConfig,
-            'register_complete'
+            $registerCompleteFormConfig
         );
         $form = $this->getRegisterForm(
             $fields,
@@ -495,25 +493,24 @@ class RegisterController extends ActionController
             'status' => 0,
         );
 
+        $redirect = $this->params('redirect') ?: $this->url('' , array(
+            'controller'    => 'profile',
+            'action'        => 'index',
+        ));
+
         $profileCompleteFormConfig = $this->config('profile_complete_form');
         if (!$profileCompleteFormConfig) {
-            return $this->redirect(
-                '',
-                array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
-            );
+            return $this->redirect($redirect);
         }
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
 
         // Get fields for generate form
         list($fields, $filters) = $this->canonizeForm(
-            $profileCompleteFormConfig,
-            'profile_complete'
+            $profileCompleteFormConfig
         );
         $form = $this->getProfileCompleteForm($fields);
+        $form->get('redirect')->setValue($redirect);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -522,17 +519,13 @@ class RegisterController extends ActionController
 
             if ($form->isValid()) {
                 $values = $form->getData();
+                $redirect = $values['redirect'];
+                unset($values['redirect']);
                 $values['level'] = 1;
                 $values['last_modified'] = time();
                 Pi::api('user', 'user')->updateUser($uid, $values);
 
-                return $this->redirect(
-                    '',
-                    array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                    )
-                );
+                return $this->redirect($redirect);
             } else {
                 $this->view()->assign('result', $result);
             }
@@ -582,13 +575,16 @@ class RegisterController extends ActionController
     /**
      * Canonize form
      *
-     * @param $file
+     * @param string $fileName
+     *
      * @return array
      */
-    protected function canonizeForm($fileName, $type)
+    protected function canonizeForm($fileName)
     {
         $elements = array();
         $filters  = array();
+
+        /*
         if ($type == 'register') {
             if (!$fileName) {
                 $file = sprintf(
@@ -612,7 +608,12 @@ class RegisterController extends ActionController
                 $fileName
             );
         }
+        */
 
+        $file = sprintf(Pi::path('custom/user/config/%s.php'), $fileName);
+        if (!file_exists($file)) {
+            $file = sprintf(Pi::path('module/user/config/%s.php'), $fileName);
+        }
         $config = include $file;
         $meta = Pi::registry('field', 'user')->read();
         foreach ($config as $value) {

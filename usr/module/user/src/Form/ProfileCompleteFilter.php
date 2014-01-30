@@ -26,5 +26,10 @@ class ProfileCompleteFilter extends InputFilter
                 $this->add($filter);
             }
         }
+
+        $this->add(array(
+            'name'      => 'redirect',
+            'required'  => false,
+        ));
     }
 }

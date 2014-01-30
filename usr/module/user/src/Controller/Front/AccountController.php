@@ -30,7 +30,9 @@ class AccountController extends ActionController
     {
         // Check login in
         Pi::service('authentication')->requireLogin();
+        Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
+        /*
         // Check profile complete
         if ($this->config('profile_complete_form')) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
@@ -45,6 +47,7 @@ class AccountController extends ActionController
                 return;
             }
         }
+        */
 
         // Get identity, email, name
         $data = Pi::api('user', 'user')->get(

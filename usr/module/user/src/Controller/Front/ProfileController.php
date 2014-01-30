@@ -32,7 +32,9 @@ class ProfileController extends ActionController
     public function indexAction()
     {
         Pi::service('authentication')->requireLogin();
+        Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
+        /*
         // Check profile complete
         if ($this->config('profile_complete_form')) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
@@ -47,6 +49,7 @@ class ProfileController extends ActionController
                 return;
             }
         }
+        */
         // Get user information
         $user = $this->getUser($uid);
 
@@ -143,7 +146,9 @@ class ProfileController extends ActionController
     public function editProfileAction()
     {
         Pi::service('authentication')->requireLogin();
+        Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
+        /*
         // Check profile complete
         if ($this->config('profile_complete_form')) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
@@ -158,6 +163,7 @@ class ProfileController extends ActionController
                 return;
             }
         }
+        */
 
         $groupId   = $this->params('group', '');
         $result = array(
@@ -248,7 +254,9 @@ class ProfileController extends ActionController
     public function editCompoundAction()
     {
         Pi::service('authentication')->requireLogin();
+        Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
+        /*
         // Check profile complete
         if ($this->config('profile_complete_form')) {
             $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
@@ -263,6 +271,7 @@ class ProfileController extends ActionController
                 return;
             }
         }
+        */
 
         $groupId = $this->params('group', '');
         // Get compound name

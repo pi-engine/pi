@@ -36,6 +36,10 @@ class ProfileCompleteForm extends BaseForm
         }
 
         $this->add(array(
+            'name'  => 'redirect',
+            'type'  => 'hidden',
+        ));
+        $this->add(array(
             'name'       => 'submit',
             'type'       => 'submit',
             'attributes' => array(
