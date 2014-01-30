@@ -185,7 +185,7 @@ class LoginController extends ActionController
         }
 
         Pi::service('session')->setUser($uid);
-        Pi::service('event')->trigger('login', $uid);
+        //Pi::service('event')->trigger('login', $uid);
 
         if ($configs['rememberme'] && $values['rememberme']) {
             Pi::service('session')->manager()

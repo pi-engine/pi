@@ -192,7 +192,6 @@ class LoginController extends ActionController
         }
 
         Pi::service('session')->setUser($uid);
-        Pi::service('event')->trigger('login', $uid);
 
         if ($configs['rememberme'] && $values['rememberme']) {
             Pi::service('session')->manager()
@@ -209,14 +208,6 @@ class LoginController extends ActionController
         } else {
             $redirect = urldecode($values['redirect']);
         }
-
-        // Get user id according to identity
-        /*
-        $uid = $this->getModel('account')->find(
-            $result->getIdentity(),
-            'identity'
-        )->id;
-        */
 
         // Trigger login event
         $rememberTime = isset($configs['rememberme']) && $values['rememberme']

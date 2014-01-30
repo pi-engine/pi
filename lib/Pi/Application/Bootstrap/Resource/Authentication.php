@@ -29,6 +29,10 @@ class Authentication extends AbstractResource
             }
         }
 
-        Pi::service('authentication')->bind();
+        try {
+            Pi::service('authentication')->bind();
+        } catch (\Exception $e) {
+            trigger_error($e->getMessage());
+        }
     }
 }
