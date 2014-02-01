@@ -47,21 +47,27 @@ class RegisterController extends ActionController
         );
 
         // Get register form
-        $registerFormConfig = $this->config('register_form') ?: 'register.php';
+        /*
+        $registerFormConfig = $this->config('register_form') ?: 'register';
         list($fields, $filters) = $this->canonizeForm($registerFormConfig);
         $form = $this->getRegisterForm($fields);
+        */
+        $form = Pi::api('form', 'user')->loadForm('register');
         $registeredSource = _get('app') ? : '';
-        $form->setData(array('registered_source' => $registeredSource));
+        //$form->setData(array('registered_source' => $registeredSource));
+        $form->get('registered_source')->setValue($registeredSource);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new RegisterFilter($filters));
+            $form->loadInputFilter();
             $form->setData($post);
             if ($form->isValid()) {
-                $registerCompleteFormConfig = $this->config('register_complete_form');
-                if ($registerCompleteFormConfig) {
+                if ($this->config('require_register_complete')) {
+                //$registerCompleteFormConfig = $this->config('register_complete_form');
+                //if ($registerCompleteFormConfig) {
                     // Display custom complete form
                     $values = $form->getData();
+                    /*
                     list($fields, $filters) = $this->canonizeForm(
                         $registerCompleteFormConfig
                     );
@@ -69,6 +75,8 @@ class RegisterController extends ActionController
                         $fields,
                         'register_complete'
                     );
+                    */
+                    $form = Pi::api('form', 'user')->loadForm('register-complete');
                     unset($values['submit']);
                     $form->setData($values);
                     $form->setAttributes(array(
@@ -83,6 +91,7 @@ class RegisterController extends ActionController
                         'form'     => $form,
                         'complete' => 1
                     ));
+
                     return;
                 } else {
                     // Complete register
@@ -142,13 +151,18 @@ class RegisterController extends ActionController
         ));
     }
 
+    /**
+     * User register complete form
+     *
+     * @return void|
+     */
     public function completeAction()
     {
-        $registerCompleteFormConfig = $this->config('register_complete_form');
-        if (!$registerCompleteFormConfig ||
+        //$registerCompleteFormConfig = $this->config('register_complete_form');
+        if (!$this->config('require_register_complete') ||
             !$this->request->isPost()
         ) {
-            return $this->redirect(
+            $this->redirect(
                 '',
                 array(
                     'controller'    => 'register',
@@ -161,6 +175,7 @@ class RegisterController extends ActionController
             'status' => 0,
         );
         $post = $this->request->getPost();
+        /*
         list($fields, $filters) = $this->canonizeForm(
             $registerCompleteFormConfig
         );
@@ -168,15 +183,11 @@ class RegisterController extends ActionController
             $fields,
             'register_complete'
         );
+        */
+        $form = Pi::api('form', 'user')->loadForm('register-complete', true);
         unset($post['submit']);
         $form->setData($post);
-        $form->setInputFilter(new RegisterFilter($filters));
-        $form->setAttributes(array(
-            'action' => $this->url('', array(
-                    'controller' => 'register',
-                    'action' => 'complete'
-                )),
-        ));
+        //$form->setInputFilter(new RegisterFilter($filters));
         if ($form->isValid()) {
             $values = $form->getData();
             $values = $this->canonizeUser($values, 'work');
@@ -321,9 +332,9 @@ class RegisterController extends ActionController
     }
 
     /**
-     * Reactive user
+     * Reactivate user account
      *
-     * @return \Pi\Mvc\Controller\ActionController
+     * @return array
      */
     public function reactivateAction()
     {
@@ -396,6 +407,9 @@ class RegisterController extends ActionController
 
     }
 
+    /**
+     * Re-send account activation email
+     */
     public function resendActiveMailAction()
     {
         $form = new ResendActivateMailForm();
@@ -498,23 +512,32 @@ class RegisterController extends ActionController
             'action'        => 'index',
         ));
 
+        /*
         $profileCompleteFormConfig = $this->config('profile_complete_form');
         if (!$profileCompleteFormConfig) {
+            return $this->redirect($redirect);
+        }
+        */
+        if (!$this->config('require_profile_complete')) {
             return $this->redirect($redirect);
         }
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
 
+        /*
         // Get fields for generate form
         list($fields, $filters) = $this->canonizeForm(
             $profileCompleteFormConfig
         );
         $form = $this->getProfileCompleteForm($fields);
+        */
+        $form = Pi::api('form', 'user')->loadForm('profile-complete');
         $form->get('redirect')->setValue($redirect);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
-            $form->setInputFilter(new ProfileCompleteFilter($filters));
+            //$form->setInputFilter(new ProfileCompleteFilter($filters));
+            $form->loadInputFilter();
             $form->setData($post);
 
             if ($form->isValid()) {
@@ -542,6 +565,7 @@ class RegisterController extends ActionController
      * @param string $name form name
      * @return \Module\User\Form\RegisterForm
      */
+    /*
     protected function getRegisterForm($fields, $name = 'register')
     {
         $form = new RegisterForm($name, $fields);
@@ -553,6 +577,7 @@ class RegisterController extends ActionController
 
         return $form;
     }
+    */
 
     /**
      * Get profile complete form
@@ -561,6 +586,7 @@ class RegisterController extends ActionController
      * @param string $name form name
      * @return \Module\User\Form\CompleteCompleteForm
      */
+    /*
     protected function getProfileCompleteForm($fields, $name = 'profileComplete')
     {
         $form = new ProfileCompleteForm($name, $fields);
@@ -571,6 +597,7 @@ class RegisterController extends ActionController
 
         return $form;
     }
+    */
 
     /**
      * Canonize form
@@ -578,8 +605,9 @@ class RegisterController extends ActionController
      * @param string $fileName
      *
      * @return array
+     * @deprecated
      */
-    protected function canonizeForm($fileName)
+    protected function ____canonizeForm($fileName)
     {
         $elements = array();
         $filters  = array();

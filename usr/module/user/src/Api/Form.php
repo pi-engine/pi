@@ -11,7 +11,7 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\AbstractApi;
-use Pi\Db\RowGateway\RowGateway;
+use Module\User\Form\AbstractUserForm;
 
 /**
  * User profile form manipulation APIs
@@ -24,6 +24,156 @@ class Form extends AbstractApi
      * @{inheritDoc}
      */
     protected $module = 'user';
+
+    /**
+     * Load form from with fields, supporting custom form
+     *
+     * @param string $name
+     * @param bool $withFilter  To set InputFilter
+     *
+     * @return AbstractUserForm
+     */
+    public function loadForm($name, $withFilter = false)
+    {
+        $class = str_replace(' ', '', ucwords(
+            str_replace(array('-', '_', '.', '\\', '/'), ' ', $name)
+        ));
+        $formClass = $class . 'Form';
+        $formClassName = 'Custom\User\Form\\' . $formClass;
+        if (!class_exists($formClassName)) {
+            $formClassName = 'Module\User\Form\\' . $formClass;
+        }
+
+        if ($withFilter) {
+            list($elements, $filters) = $this->loadFields($name, $withFilter);
+        } else {
+            $elements   = $this->loadFields($name, $withFilter);
+            $filters    = array();
+        }
+
+        $form = new $formClassName($name, $elements);
+        if ($withFilter && $form instanceof AbstractUserForm) {
+            $form->loadInputFilter($filters);
+        }
+
+        return $form;
+    }
+
+    /**
+     * Load form elements from field config, supporting custom configs
+     *
+     * @param string $name
+     * @param bool $withFilter  To return filters
+     *
+     * @return array
+     */
+    public function loadFields($name, $withFilter = false)
+    {
+        $elements   = array();
+        $filters    = array();
+        $file       = sprintf(Pi::path('custom/user/config/%s.php'), $name);
+        if (!file_exists($file)) {
+            $file = sprintf(Pi::path('module/user/config/%s.php'), $name);
+        }
+        $config     = include $file;
+        $meta       = Pi::registry('field', $this->module)->read();
+        foreach ($config as $value) {
+            if (is_string($value)) {
+                if (isset($meta[$value]) &&
+                    $meta[$value]['type'] == 'compound'
+                ) {
+                    $compoundElements = $this->getCompoundElement($value);
+                    foreach ($compoundElements as $element) {
+                        if ($element) {
+                            $elements[] = $element;
+                        }
+                    }
+                    if ($withFilter) {
+                        $compoundFilters = $this->getCompoundFilter($value);
+                        foreach ($compoundFilters as $filter) {
+                            if ($filter) {
+                                $filters[] = $filter;
+                            }
+                        }
+                    }
+                } else {
+                    $element = $this->getElement($value);
+                    if ($element) {
+                        $elements[] = $element;
+                    }
+                    if ($withFilter) {
+                        $filter = $this->getFilter($value);
+                        if ($filter) {
+                            $filters[] = $filter;
+                        }
+                    }
+                }
+            } else {
+                if ($value['element']) {
+                    $elements[] = $value['element'];
+                }
+                if ($withFilter) {
+                    if (isset($value['filter']) && $value['filter']) {
+                        $filters[] = $value['filter'];
+                    }
+                }
+            }
+        }
+
+        if ($withFilter) {
+            $result = array(
+                'elements'  => $elements,
+                'filters'   => $filters,
+            );
+        } else {
+            $result = $elements;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Load form filters from config, supporting custom configs
+     *
+     * @param string $name
+     *
+     * @return array
+     */
+    public function loadFilters($name)
+    {
+        $filters    = array();
+        $file       = sprintf(Pi::path('custom/user/config/%s.php'), $name);
+        if (!file_exists($file)) {
+            $file = sprintf(Pi::path('module/user/config/%s.php'), $name);
+        }
+        $config     = include $file;
+        $meta       = Pi::registry('field', $this->module)->read();
+        foreach ($config as $value) {
+            if (is_string($value)) {
+                if (isset($meta[$value]) &&
+                    $meta[$value]['type'] == 'compound'
+                ) {
+                    $compoundFilters = $this->getCompoundFilter($value);
+                    foreach ($compoundFilters as $filter) {
+                        if ($filter) {
+                            $filters[] = $filter;
+                        }
+                    }
+                } else {
+                    $filter = $this->getFilter($value);
+                    if ($filter) {
+                        $filters[] = $filter;
+                    }
+                }
+            } else {
+                if (isset($value['filter']) && $value['filter']) {
+                    $filters[] = $value['filter'];
+                }
+            }
+        }
+
+        return $filters;
+    }
 
     /**
      * Canonize form element for a field

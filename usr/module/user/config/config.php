@@ -14,17 +14,19 @@
  */
 
 $category = array(
+    /*
     array(
         'name'  => 'general',
         'title' => _t('General'),
     ),
+    */
+    array(
+        'name'      => 'account',
+        'title'     => _t('Account'),
+    ),
     array(
         'name'  => 'avatar',
         'title' => _t('Avatar'),
-    ),
-    array(
-        'name'      => 'account',
-        'title'     => _t('User account'),
     ),
 );
 
@@ -35,6 +37,24 @@ $config = array(
         'value'  => 10,
         'filter' => 'int',
     ),
+
+    'require_register_complete' => array(
+        'title'         => _t('Register complete'),
+        'description'   => _t('Is extra registration form required.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+    ),
+
+    'require_profile_complete' => array(
+        'title'         => _t('Profile complete'),
+        'description'   => _t('Is extra profile form required.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+    ),
+
+    /*
     'register_form' => array(
         'title'         => _t('Register form config file name'),
         'description'   => _t('Set it only if necessary.'),
@@ -50,6 +70,7 @@ $config = array(
         'description'   => _t('Set it only if necessary.'),
         'value'         => '', // 'profile.complete',
     ),
+    */
 
     // User account
     'uname_format'  => array(
@@ -137,7 +158,7 @@ $config = array(
 
     'uname_backlist'    => array(
         'title'         => _t('Username backlist'),
-        'description'   => _t('Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
+        'description'   => _t('Reserved and forbidden username list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
         'category'      => 'account',
@@ -145,7 +166,7 @@ $config = array(
 
     'name_backlist'    => array(
         'title'         => _t('Display backlist'),
-        'description'   => _t('Reserved and forbidden display name list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
+        'description'   => _t('Reserved and forbidden display name list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
         'category'      => 'account',
@@ -153,7 +174,7 @@ $config = array(
 
     'email_backlist'    => array(
         'title'         => _t('Email backlist'),
-        'description'   => _t('Forbidden email list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
+        'description'   => _t('Forbidden email list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',
         'category'      => 'account',

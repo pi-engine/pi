@@ -29,7 +29,7 @@ return array(
             ),
             'attributes'    => array(
                 'type'  => 'password',
-            )
+            ),
         ),
 
         'filter' => array(

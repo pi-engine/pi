@@ -9,43 +9,26 @@
 
 namespace Module\User\Form;
 
-use Pi;
-use Pi\Form\Form as BaseForm;
-
 /**
- * Class for initializing form of profile complete
+ * User profile complete form
  *
- * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class ProfileCompleteForm extends BaseForm
+class ProfileCompleteForm extends AbstractUserForm
 {
-    protected $fields;
-    protected $name;
+    /** {@inheritDoc} */
+    protected $configFile = 'profile-complete';
 
-    public function __construct($name, $field)
-    {
-        $this->fields = $field;
-        $this->name   = $name;
-        parent::__construct($this->name);
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     public function init()
     {
-        foreach ($this->fields as $field) {
-            $this->add($field);
-        }
+        parent::init();
 
         $this->add(array(
-            'name'  => 'redirect',
-            'type'  => 'hidden',
+            'name'       => 'redirect',
+            'type'       => 'hidden',
         ));
-        $this->add(array(
-            'name'       => 'submit',
-            'type'       => 'submit',
-            'attributes' => array(
-                'value' => __('Submit'),
-            ),
-        ));
-
     }
 }

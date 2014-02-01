@@ -1,3 +1,29 @@
+# User module custom develop guid
+
+## Custom for profile fields
+* Original config: `usr/module/user/config/user.php`
+* Custom config: `usr/custom/module/user/config/user.php`
+
+## Custom for forms
+### Register form
+* Original form config: `usr/module/user/config/register.php`
+* Custom form config: `usr/custom/module/user/config/register.php`
+
+### Register complete form
+* The form is optional, to enable it, check config `require_register_complete`
+* Original form config: `usr/module/user/config/register-complete.php`
+* Custo form config: `usr/custom/module/user/config/register-complete.php`
+
+### Profile complete form
+* The form is optional, to enable it, check config `require_profile_complete`
+* Original form config: `usr/module/user/config/profile-complete.php`
+* Custom form config: `usr/custom/module/user/config/profile-complete.php`
+
+## Custom for display templates
+* Original template: `usr/module/user/template/front/<template>.phtml`
+* Custom template: `usr/custom/module/user/template/front/<template>.phtml`
+
+
 ## User 模块定制开发整理
 ### 定制说明
 * 字段定制
@@ -9,7 +35,7 @@
 
 ### 字段定制
 * 字段定制主要分为两种：
-  * 普通字段
+  * 常规字段
   * 组合字段
 * 定制方法
 
