@@ -66,7 +66,7 @@ class Asset extends AbstractRegistry
                         )) {
                             continue;
                         }
-                        $fileUrl = Pi::service('asset')->getCustomAsset(
+                        $fileUrl = Pi::service('asset')->getThemeCustomAsset(
                             $filePath,
                             $module,
                             $appendVersion

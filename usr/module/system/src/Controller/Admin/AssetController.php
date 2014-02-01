@@ -72,8 +72,8 @@ class AssetController extends ActionController
         $target = sprintf('%s/%s', $type, $name);
         $status = (int) Pi::service('asset')->publish($source, $target);
         if ($status && 'module' != $type) {
-            Pi::service('asset')->removeCustom($name);
-            Pi::service('asset')->publishCustom($name);
+            Pi::service('asset')->removeThemeCustom($name);
+            Pi::service('asset')->publishThemeCustom($name);
         }
         clearstatcache();
         if (!$status) {
@@ -143,8 +143,8 @@ class AssetController extends ActionController
             }
         }
         foreach ($assetCustom as $name) {
-            Pi::service('asset')->removeCustom($name);
-            Pi::service('asset')->publishCustom($name);
+            Pi::service('asset')->removeThemeCustom($name);
+            Pi::service('asset')->publishThemeCustom($name);
         }
         clearstatcache();
 
