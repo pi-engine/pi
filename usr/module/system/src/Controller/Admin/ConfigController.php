@@ -35,7 +35,7 @@ class ConfigController extends ComponentController
      */
     public function indexAction()
     {
-        $messageSuccessful = '';
+        //$messageSuccessful = '';
 
         if ($this->request->isPost()) {
             $module = $this->params()->fromPost('name');
@@ -74,9 +74,24 @@ class ConfigController extends ComponentController
                             'elements'  => array(),
                         );
                     }
+                    $generalList = array();
                     foreach ($configs as $config) {
-                        $groups[$config->category]['elements'][] =
-                            $config->name;
+                        $category = $config->category;
+                        if (isset($groups[$category])) {
+                            $groups[$category]['elements'][] = $config->name;
+                        } else {
+                            $generalList[] = $config->name;
+                        }
+                    }
+                    if ($generalList) {
+                        if (isset($groups['general'])) {
+                            $groups['general']['elements'] += $generalList;
+                        } else {
+                            array_unshift($groups, array(
+                                'label'     => _a('General'),
+                                'elements'  => $generalList,
+                            ));
+                        }
                     }
                 }
                 $this->view()->assign('configs', $configs);
@@ -161,6 +176,7 @@ class ConfigController extends ComponentController
 
         //$this->view()->assign('success', $messageSuccessful);
 
+        /*
         $model = Pi::model('config');
         $select = $model->select()->group('module')
             ->columns(array('count' => new Expression('count(*)'), 'module'));
@@ -169,6 +185,7 @@ class ConfigController extends ComponentController
         foreach ($rowset as $row) {
             $configCounts[$row->module] = $row->count;
         }
+        */
 
         $this->view()->assign('name', $module);
 
