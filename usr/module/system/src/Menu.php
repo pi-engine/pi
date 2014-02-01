@@ -221,7 +221,7 @@ class Menu
 
         });
 
-        // Collect uncategorized modules
+        // Collect un-categorized modules
         if ($moduleList) {
             $categories[] = array(
                 'label'     => __('Uncategoried'),
