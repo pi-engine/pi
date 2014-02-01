@@ -47,14 +47,8 @@ class RegisterController extends ActionController
         );
 
         // Get register form
-        /*
-        $registerFormConfig = $this->config('register_form') ?: 'register';
-        list($fields, $filters) = $this->canonizeForm($registerFormConfig);
-        $form = $this->getRegisterForm($fields);
-        */
         $form = Pi::api('form', 'user')->loadForm('register');
         $registeredSource = _get('app') ? : '';
-        //$form->setData(array('registered_source' => $registeredSource));
         $form->get('registered_source')->setValue($registeredSource);
 
         if ($this->request->isPost()) {
@@ -63,19 +57,7 @@ class RegisterController extends ActionController
             $form->setData($post);
             if ($form->isValid()) {
                 if ($this->config('require_register_complete')) {
-                //$registerCompleteFormConfig = $this->config('register_complete_form');
-                //if ($registerCompleteFormConfig) {
-                    // Display custom complete form
                     $values = $form->getData();
-                    /*
-                    list($fields, $filters) = $this->canonizeForm(
-                        $registerCompleteFormConfig
-                    );
-                    $form = $this->getRegisterForm(
-                        $fields,
-                        'register_complete'
-                    );
-                    */
                     $form = Pi::api('form', 'user')->loadForm('register-complete');
                     unset($values['submit']);
                     $form->setData($values);
@@ -96,9 +78,7 @@ class RegisterController extends ActionController
                 } else {
                     // Complete register
                     $values = $form->getData();
-                    $values['last_modified'] = time();
-                    $values['ip_register']   = Pi::user()->getIp();
-                    $uid = Pi::api('user', 'user')->addUser($values);
+                    $uid = $this->completeRegister($values);
                     if (is_array($uid)) {
                         $this->view()->assign(array(
                             'result' => $result,
@@ -107,48 +87,20 @@ class RegisterController extends ActionController
 
                         return;
                     }
-
-                    // Set user role
-                    Pi::api('user', 'user')->setRole($uid, 'member');
-
-                    // Set user data
-                    $content = md5($uid . $values['name']);
-                    Pi::user()->data()->set(
-                        $uid,
-                        'register-activation',
-                        $content,
-                        $this->getModule()
-                    );
-
-                    // Send activity email
-                    $to  = $values['email'];
-                    $url = $this->url('', array(
-                            'action'  => 'activate',
-                            'uid'     => md5($uid),
-                            'token'   => $content,
-                        )
-                    );
-
-                    $link = Pi::url($url, true);
-                    list($subject, $body, $type) = $this->setMailParams(
-                        $values['identity'],
-                        $link
-                    );
-
-                    $message = Pi::service('mail')->message($subject, $body, $type);
-                    $message->addTo($to);
-                    $transport = Pi::service('mail')->transport();
-                    $transport->send($message);
                     $result['uid']     = $uid;
                     $result['status']  = 1;
                 }
             }
-            $this->view()->assign('result', $result);
+            $this->view()->assign(array(
+                'result'            => $result,
+            ));
         }
 
         $this->view()->assign(array(
-            'form'   => $form,
+            'form'          => $form,
+            'activation'    => $this->config('register_activation'),
         ));
+        $this->view()->setTemplate('register-index');
     }
 
     /**
@@ -158,7 +110,6 @@ class RegisterController extends ActionController
      */
     public function completeAction()
     {
-        //$registerCompleteFormConfig = $this->config('register_complete_form');
         if (!$this->config('require_register_complete') ||
             !$this->request->isPost()
         ) {
@@ -175,25 +126,13 @@ class RegisterController extends ActionController
             'status' => 0,
         );
         $post = $this->request->getPost();
-        /*
-        list($fields, $filters) = $this->canonizeForm(
-            $registerCompleteFormConfig
-        );
-        $form = $this->getRegisterForm(
-            $fields,
-            'register_complete'
-        );
-        */
         $form = Pi::api('form', 'user')->loadForm('register-complete', true);
         unset($post['submit']);
         $form->setData($post);
-        //$form->setInputFilter(new RegisterFilter($filters));
         if ($form->isValid()) {
             $values = $form->getData();
             $values = $this->canonizeUser($values, 'work');
-            $values['last_modified'] = time();
-            $values['ip_register']   = Pi::user()->getIp();
-            $uid = Pi::api('user', 'user')->addUser($values);
+            $uid = $this->completeRegister($values);
             if (is_array($uid)) {
                 $this->view()->assign(array(
                     'result' => $result,
@@ -202,46 +141,15 @@ class RegisterController extends ActionController
 
                 return;
             }
-            // Set user role
-            Pi::api('user', 'user')->setRole($uid, 'member');
-
-            // Set user data
-            $content = md5($uid . $values['name']);
-            Pi::user()->data()->set(
-                $uid,
-                'register-activation',
-                $content,
-                $this->getModule()
-            );
-
-            // Send activity email
-            $to  = $values['email'];
-            $url = $this->url('', array(
-                    'action'  => 'activate',
-                    'uid'     => md5($uid),
-                    'token'   => $content,
-                )
-            );
-
-            $link = Pi::url($url, true);
-            list($subject, $body, $type) = $this->setMailParams(
-                $values['identity'],
-                $link
-            );
-
-            $message = Pi::service('mail')->message($subject, $body, $type);
-            $message->addTo($to);
-            $transport = Pi::service('mail')->transport();
-            $transport->send($message);
             $result['uid']     = $uid;
             $result['status']  = 1;
-            $result['email']   = $to;
         }
 
         $this->view()->assign(array(
-            'result'   => $result,
-            'complete' => 1,
-            'form'     => $form
+            'result'        => $result,
+            'complete'      => 1,
+            'form'          => $form,
+            'activation'    => $this->config('register_activation'),
         ));
 
         $this->view()->setTemplate('register-index');
@@ -688,8 +596,8 @@ class RegisterController extends ActionController
     /**
      * Set mail params
      *
-     * @param $username
-     * @param $link
+     * @param string $username
+     * @param string $link
      * @return array
      */
     protected function setMailParams($username, $link)
@@ -732,5 +640,82 @@ class RegisterController extends ActionController
         }
 
         return $data;
+    }
+
+    /**
+     * Activate an account
+     *
+     * @param int $uid
+     *
+     * @return bool
+     */
+    protected function activateUser($uid)
+    {
+        $status = Pi::api('user', 'user')->activateUser($uid);
+        if ($status) {
+            // Target activate user event
+            Pi::service('event')->trigger('user_activate', $uid);
+        }
+
+        return $status;
+    }
+
+    /**
+     * Complete user register
+     *
+     * @param array $values
+     *
+     * @return int|array
+     */
+    protected function completeRegister(array $values)
+    {
+        $values['last_modified'] = time();
+        $values['ip_register']   = Pi::user()->getIp();
+        $uid = Pi::api('user', 'user')->addUser($values);
+        if (is_array($uid)) {
+            return $uid;
+        }
+
+        // Set user role
+        Pi::api('user', 'user')->setRole($uid, 'member');
+
+        // Process activation
+        $activationMode = $this->config('register_activation');
+        // Automatically activated
+        if ('auto' == $activationMode) {
+            $this->activateUser($uid);
+            // Activated by email
+        } elseif ('email' == $activationMode) {
+            // Set user data
+            $content = md5($uid . $values['name']);
+            Pi::user()->data()->set(
+                $uid,
+                'register-activation',
+                $content,
+                $this->getModule()
+            );
+
+            // Send activity email
+            $to  = $values['email'];
+            $url = $this->url('', array(
+                    'action'  => 'activate',
+                    'uid'     => md5($uid),
+                    'token'   => $content,
+                )
+            );
+
+            $link = Pi::url($url, true);
+            list($subject, $body, $type) = $this->setMailParams(
+                $values['identity'],
+                $link
+            );
+
+            $message = Pi::service('mail')->message($subject, $body, $type);
+            $message->addTo($to);
+            $transport = Pi::service('mail')->transport();
+            $transport->send($message);
+        }
+
+        return $uid;
     }
 }

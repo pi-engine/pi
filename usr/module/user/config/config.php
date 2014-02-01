@@ -25,6 +25,14 @@ $category = array(
         'title'     => _t('Account'),
     ),
     array(
+        'name'      => 'login',
+        'title'     => _t('Login'),
+    ),
+    array(
+        'name'      => 'register',
+        'title'     => _t('Registration'),
+    ),
+    array(
         'name'  => 'avatar',
         'title' => _t('Avatar'),
     ),
@@ -36,14 +44,6 @@ $config = array(
         'title'  => _t('Number of items on list page.'),
         'value'  => 10,
         'filter' => 'int',
-    ),
-
-    'require_register_complete' => array(
-        'title'         => _t('Register complete'),
-        'description'   => _t('Is extra registration form required.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
     ),
 
     'require_profile_complete' => array(
@@ -180,12 +180,22 @@ $config = array(
         'category'      => 'account',
     ),
 
+    // Login
+    'login_disable'     => array(
+        'title'         => _t('Login disable'),
+        'description'   => _t('Disable user login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'login',
+    ),
+
     'rememberme'        => array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
         'filter'        => 'number_int',
-        'category'      => 'account',
+        'category'      => 'login',
     ),
 
     'attempts'      => array(
@@ -193,25 +203,7 @@ $config = array(
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
         'filter'        => 'number_int',
-        'category'      => 'account',
-    ),
-
-    'login_disable'     => array(
-        'title'         => _t('Login disable'),
-        'description'   => _t('Disable user login'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'account',
-    ),
-
-    'register_disable'  => array(
-        'title'         => _t('Register disable'),
-        'description'   => _t('Disable user registration'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'account',
+        'category'      => 'login',
     ),
 
     'login_captcha'       => array(
@@ -220,7 +212,35 @@ $config = array(
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
-        'category'      => 'account',
+        'category'      => 'login',
+    ),
+
+    // Register
+    'register_disable'  => array(
+        'title'         => _t('Register disable'),
+        'description'   => _t('Disable user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
+    'register_activation'  => array(
+        'title'         => _t('Activation'),
+        'description'   => _t('Activation mode for user accounts'),
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'       => array(
+                    'auto'      => _t('Automatically activated'),
+                    'email'     => _t('Activated by user email'),
+                    'approval'  => _t('Activated by admin approval'),
+                ),
+            ),
+        ),
+        'filter'        => 'string',
+        'value'         => 'email',
+        'category'      => 'register',
     ),
 
     'register_captcha'  => array(
@@ -229,9 +249,18 @@ $config = array(
         'edit'          => 'checkbox',
         'value'         => 1,
         'filter'        => 'number_int',
-        'category'      => 'account',
+        'category'      => 'register',
     ),
-    
+
+    'require_register_complete' => array(
+        'title'         => _t('Register complete'),
+        'description'   => _t('Is extra registration form required.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
     // Avatar
     // Allowed width of avatar image, 0 for no limit
     'max_avatar_width'  => array(
