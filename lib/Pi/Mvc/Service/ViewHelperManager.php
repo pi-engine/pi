@@ -172,7 +172,7 @@ class ViewHelperManager extends HelperPluginManager
             // Lookup in helper locations
             } else {
                 $class = str_replace(' ', '', ucwords(
-                    str_replace(array('-', '_', '\\', '/'), ' ', $name)
+                    str_replace(array('-', '_', '.', '\\', '/'), ' ', $name)
                 ));
                 foreach ($this->helperLocations as $location) {
                     $invokableClass = 'Pi\\' . $location . '\\' . $class;
