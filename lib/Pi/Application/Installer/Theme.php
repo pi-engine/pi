@@ -319,7 +319,7 @@ class Theme
                     'message'   => 'Theme asset publish failed.'
                 );
             } else {
-                Pi::service('asset')->publishCustom($name);
+                Pi::service('asset')->publishThemeCustom($name);
             }
         }
 
@@ -361,8 +361,8 @@ class Theme
                 }
             }
         }
-        Pi::service('asset')->removeCustom($name);
-        Pi::service('asset')->publishCustom($name);
+        Pi::service('asset')->removeThemeCustom($name);
+        Pi::service('asset')->publishThemeCustom($name);
 
         return array(
             'status'    => $status,
@@ -373,6 +373,7 @@ class Theme
     /**
      * Uninstall action
      *
+     * @throws \Exception
      * @return array
      */
     protected function uninstallAction()
@@ -402,7 +403,7 @@ class Theme
                 'message'   => 'Theme assets removal failed.'
             );
         }
-        Pi::service('asset')->removeCustom($name);
+        Pi::service('asset')->removeThemeCustom($name);
 
         return $result;
     }

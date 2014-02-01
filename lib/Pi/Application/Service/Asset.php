@@ -26,7 +26,7 @@ use Pi;
  *     - for both module "demo" and cloned "democlone":
  *      `module/demo/asset/`
  *      `module/demo/public/`
- *   - Module custom assets:
+ *   - Module theme-custom assets:
  *      (Note: the custom relationship is not maintained by the Asset service,
  *          it shall be addressed by module maintainer instead.)
  *     - for module "demo": `theme/default/module/demo/asset/`
@@ -305,7 +305,7 @@ class Asset extends AbstractService
      * @internal param string $theme Theme directory
      * @return string Full URL to the asset
      */
-    public function getCustomAsset(
+    public function getThemeCustomAsset(
         $file,
         $module         = '',
         $type           = 'asset',
@@ -332,6 +332,29 @@ class Asset extends AbstractService
     {
         $dir = ('public' == $type) ? static::DIR_PUBLIC : static::DIR_ASSET;
         $sourcePath = Pi::path($component) . '/' . $dir;
+        if (is_dir($sourcePath . '/' . static::DIR_BUILD)) {
+            $sourcePath .= '/' . static::DIR_BUILD;
+        }
+        if (!empty($file)) {
+            $sourcePath .= '/' . $file;
+        }
+
+        return $sourcePath;
+    }
+
+    /**
+     * Gets custom source path of an asset
+     *
+     * @param string $component     Component name
+     * @param string $file          File path
+     * @param string $type          Type: asset, public
+     *
+     * @return string Full path to an asset source
+     */
+    public function getCustomPath($component, $file = '', $type = 'asset')
+    {
+        $dir = ('public' == $type) ? static::DIR_PUBLIC : static::DIR_ASSET;
+        $sourcePath = Pi::path('custom/' . $component) . '/' . $dir;
         if (is_dir($sourcePath . '/' . static::DIR_BUILD)) {
             $sourcePath .= '/' . static::DIR_BUILD;
         }
@@ -416,13 +439,40 @@ class Asset extends AbstractService
      */
     public function publish($component, $target = '')
     {
+        $copyOnWindows = true;
+        $override = (false === $this->getOption('override')) ? false : true;
+        $flags = $copyOnWindows
+            ? \FilesystemIterator::SKIP_DOTS
+            | \FilesystemIterator::FOLLOW_SYMLINKS
+            : \FilesystemIterator::SKIP_DOTS;
+
         foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
+            // Publish original assets
             $sourceFolder = $this->getSourcePath($component, '', $type);
             $targetFolder = $this->getPath($target ?: $component, $type);
             if (!is_dir($sourceFolder) && !is_link($sourceFolder)) {
                 continue;
             }
             $this->publishFile($sourceFolder, $targetFolder, $type);
+
+            // Publish custom assets
+            $customFolder = $this->getCustomPath($component, '', $type);
+            if (!is_dir($customFolder) && !is_link($customFolder)) {
+                continue;
+            }
+            $iterator = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($customFolder, $flags),
+                \RecursiveIteratorIterator::LEAVES_ONLY
+            );
+            Pi::service('file')->mirror(
+                $customFolder,
+                $targetFolder,
+                $iterator,
+                array(
+                    'copy_on_windows'   => $copyOnWindows,
+                    'override'          => $override,
+                )
+            );
         }
 
         return true;
@@ -435,7 +485,7 @@ class Asset extends AbstractService
      *
      * @return bool
      */
-    public function publishCustom($theme)
+    public function publishThemeCustom($theme)
     {
         $path = Pi::path('theme') . '/' . $theme . '/module';
         if (!is_dir($path)) {
@@ -473,7 +523,7 @@ class Asset extends AbstractService
      *
      * @return bool
      */
-    public function removeCustom($theme)
+    public function removeThemeCustom($theme)
     {
         foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
             $this->remove('custom/' . $theme, $type);
