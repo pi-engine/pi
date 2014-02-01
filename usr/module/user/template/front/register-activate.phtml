@@ -1,7 +1,7 @@
 <div class="page-header">
     <h2><?php _e('Activate account'); ?></h2>
 </div>
-<?php if (isset($result) && $result['status']) { ?>
+<?php if (!empty($result['status'])) { ?>
     <p><?php _e('Congratulations!'); ?></p>
     <p><?php _e('Your account has been activated.'); ?></p>
     <p><a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>">
@@ -9,8 +9,8 @@
         </a>
     </p>
 <?php } else { ?>
-    <p><?php _e('Sorry, the link has expired.'); ?></p>
+    <p><?php _e('Sorry, account activation is failed.'); ?></p>
     <p>
-        <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.active.mail')); ?>"><?php _e('resend active mail');?></a>
+        <a href="<?php echo $this->url('', array('controller' => 'register', 'action' => 'resend.activation')); ?>"><?php _e('Resend activation email.');?></a>
     </p>
 <?php } ?>

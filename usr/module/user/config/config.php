@@ -243,6 +243,14 @@ $config = array(
         'category'      => 'register',
     ),
 
+    'activation_expiration' => array(
+        'title'         => _t('Activation expiration'),
+        'description'   => _t('Expiration time for activation email (in hours).'),
+        'value'         => 24,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
     'register_captcha'  => array(
         'title'         => _t('Register CAPTCHA'),
         'description'   => _t('Enable CAPTCHA for user registration'),

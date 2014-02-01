@@ -1,0 +1,13 @@
+<div class="page-header">
+    <h3><?php _e('Resend activation email');?></h3>
+</div>
+<?php
+if (!empty($result)) {
+    echo sprintf(
+        '<div class="alert %s">%s<button data-dismiss="alert" class="close" type="button">&times;</button></div>',
+        $result['status'] ? 'alert-success' : 'alert-error',
+        $result['message']
+    );
+}
+?>
+<?php if (!empty($form)) { include $this->templateComponent('form'); } ?>

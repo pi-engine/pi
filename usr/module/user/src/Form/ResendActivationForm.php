@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-use Pi;
+//use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -17,11 +17,10 @@ use Pi\Form\Form as BaseForm;
  *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
-class ResendActivateMailForm extends BaseForm
+class ResendActivationForm extends BaseForm
 {
     public function init()
     {
-
         $this->add(array(
             'name'          => 'email',
             'options'       => array(

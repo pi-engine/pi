@@ -14,10 +14,10 @@ namespace Module\User\Form;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class RegisterForm extends AbstractUserForm
+class RegisterForm extends UserForm
 {
     /** {@inheritDoc} */
-    protected $configFile = 'register';
+    protected $configIdentifier = 'register';
 
     /**
      * {@inheritDoc}

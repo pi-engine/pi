@@ -11,7 +11,7 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\AbstractApi;
-use Module\User\Form\AbstractUserForm;
+use Module\User\Form\UserForm;
 
 /**
  * User profile form manipulation APIs
@@ -31,7 +31,7 @@ class Form extends AbstractApi
      * @param string $name
      * @param bool $withFilter  To set InputFilter
      *
-     * @return AbstractUserForm
+     * @return UserForm
      */
     public function loadForm($name, $withFilter = false)
     {
@@ -42,6 +42,9 @@ class Form extends AbstractApi
         $formClassName = 'Custom\User\Form\\' . $formClass;
         if (!class_exists($formClassName)) {
             $formClassName = 'Module\User\Form\\' . $formClass;
+            if (!class_exists($formClassName)) {
+                $formClassName = 'Module\User\Form\UserForm';
+            }
         }
 
         if ($withFilter) {
@@ -52,7 +55,7 @@ class Form extends AbstractApi
         }
 
         $form = new $formClassName($name, $elements);
-        if ($withFilter && $form instanceof AbstractUserForm) {
+        if ($withFilter && $form instanceof UserForm) {
             $form->loadInputFilter($filters);
         }
 
@@ -71,9 +74,9 @@ class Form extends AbstractApi
     {
         $elements   = array();
         $filters    = array();
-        $file       = sprintf(Pi::path('custom/user/config/%s.php'), $name);
+        $file       = sprintf(Pi::path('custom/user/config/form.%s.php'), $name);
         if (!file_exists($file)) {
-            $file = sprintf(Pi::path('module/user/config/%s.php'), $name);
+            $file = sprintf(Pi::path('module/user/config/form.%s.php'), $name);
         }
         $config     = include $file;
         $meta       = Pi::registry('field', $this->module)->read();
@@ -142,9 +145,9 @@ class Form extends AbstractApi
     public function loadFilters($name)
     {
         $filters    = array();
-        $file       = sprintf(Pi::path('custom/user/config/%s.php'), $name);
+        $file       = sprintf(Pi::path('custom/user/config/form.%s.php'), $name);
         if (!file_exists($file)) {
-            $file = sprintf(Pi::path('module/user/config/%s.php'), $name);
+            $file = sprintf(Pi::path('module/user/config/form.%s.php'), $name);
         }
         $config     = include $file;
         $meta       = Pi::registry('field', $this->module)->read();

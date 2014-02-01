@@ -15,11 +15,11 @@ use Zend\InputFilter\InputFilter as UserInputFilter;
 
 
 /**
- * Abstract User form with support for predefined user profile fields
+ * User form with support for predefined user profile fields
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class AbstractUserForm extends BaseForm
+class UserForm extends BaseForm
 {
     /**
      * Fields to render
@@ -28,8 +28,8 @@ class AbstractUserForm extends BaseForm
      */
     protected $fields = array();
 
-    /** @var string Config filename */
-    protected $configFile = '';
+    /** @var string Config file identifier */
+    protected $configIdentifier = '';
 
     /** @var string InputFilter class */
     protected $inputFilterClass = '';
@@ -37,12 +37,19 @@ class AbstractUserForm extends BaseForm
     /**
      * {@inheritDoc}
      *
-     * @param array $fields
+     * @param array|string $fields
      */
-    public function __construct($name = 'register', array $fields = array())
+    public function __construct($name = 'register', $fields = array())
     {
-        if (!$fields && $this->configFile) {
-            $fields = Pi::api('form', 'user')->loadFields($this->configFile);
+        if (!$fields || !is_array($fields)) {
+            if ($fields && is_string($fields)) {
+                $configFile = $fields;
+            } else {
+                $configFile = $this->configIdentifier;
+            }
+            if ($configFile) {
+                $fields = Pi::api('form', 'user')->loadFields($configFile);
+            }
         }
 
         $this->fields = $fields;
@@ -74,7 +81,7 @@ class AbstractUserForm extends BaseForm
     public function loadInputFilter(array $filters = array())
     {
         if (!$filters) {
-            $filters = Pi::api('form', 'user')->loadFilters($this->configFile);
+            $filters = Pi::api('form', 'user')->loadFilters($this->configIdentifier);
         }
         $inputFilter = $this->initInputFilter();
         foreach ($filters as $filter) {
