@@ -11,6 +11,11 @@
 namespace Pi\Application\Service;
 
 use Pi;
+use Traversable;
+use DirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
+use FilesystemIterator;
 
 /**
  * Asset maintenance service:
@@ -26,7 +31,16 @@ use Pi;
  *     - for both module "demo" and cloned "democlone":
  *      `module/demo/asset/`
  *      `module/demo/public/`
- *   - Module theme-custom assets:
+ *
+ *   - Module custom assets:
+ *     - for module "demo" and cloned "democlone":
+ *      `custom/module/demo/asset/`
+ *      `custom/module/demo/public/`
+ *      `custom/module/democlone/asset/`
+ *      `custom/module/democlone/public/`
+ *
+ *
+ *   - Module theme-specific assets:
  *      (Note: the custom relationship is not maintained by the Asset service,
  *          it shall be addressed by module maintainer instead.)
  *     - for module "demo": `theme/default/module/demo/asset/`
@@ -305,18 +319,19 @@ class Asset extends AbstractService
      * @internal param string $theme Theme directory
      * @return string Full URL to the asset
      */
-    public function getThemeCustomAsset(
+    public function getThemeModuleAsset(
         $file,
         $module         = '',
         $type           = 'asset',
         $appendVersion  = null
     ) {
-        $module = $module ?: Pi::service('module')->current();
-        $file = $module . '/' . $file;
-        $theme = Pi::service('theme')->current();
-        $component = 'custom/' . $theme;
+        $file = sprintf(
+            'module/%s/%s',
+            $module ?: Pi::service('module')->current(),
+            $file
+        );
 
-        return $this->getAssetUrl($component, $file, $type, $appendVersion);
+        return $this->getThemeAsset($file, '', $type, $appendVersion);
     }
 
     /**
@@ -351,16 +366,10 @@ class Asset extends AbstractService
      *
      * @return string Full path to an asset source
      */
-    public function getCustomPath($component, $file = '', $type = 'asset')
+    protected function getCustomPath($component, $file = '', $type = 'asset')
     {
-        $dir = ('public' == $type) ? static::DIR_PUBLIC : static::DIR_ASSET;
-        $sourcePath = Pi::path('custom/' . $component) . '/' . $dir;
-        if (is_dir($sourcePath . '/' . static::DIR_BUILD)) {
-            $sourcePath .= '/' . static::DIR_BUILD;
-        }
-        if (!empty($file)) {
-            $sourcePath .= '/' . $file;
-        }
+        $component = 'custom/' . $component;
+        $sourcePath = $this->getSourcePath($component, $file, $type);
 
         return $sourcePath;
     }
@@ -371,13 +380,20 @@ class Asset extends AbstractService
     /**
      * Publishes a file
      *
-     * @param string    $sourceFile     Source file
-     * @param string    $targetFile     Destination
+     * @param string $sourceFile Source file
+     * @param string $targetFile Destination
+     * @param Traversable $iterator A Traversable instance for directory scan
      *
      * @return bool
      */
-    public function publishFile($sourceFile, $targetFile)
-    {
+    public function publishFile(
+        $sourceFile,
+        $targetFile,
+        Traversable $iterator = null
+    ) {
+        if (!is_dir($sourceFile) && !is_link($sourceFile)) {
+            return true;
+        }
         try {
             $copyOnWindows = true;
             $override = (false === $this->getOption('override')) ? false : true;
@@ -386,7 +402,7 @@ class Asset extends AbstractService
                 Pi::service('file')->mirror(
                     $sourceFile,
                     $targetFile,
-                    null,
+                    $iterator,
                     array(
                         'copy_on_windows'   => $copyOnWindows,
                         'override'          => $override,
@@ -420,8 +436,9 @@ class Asset extends AbstractService
      * @param string $type          Type: asset, public
      *
      * @return bool
+     * @FIXME Not used
      */
-    public function publishAsset($component, $file, $type = 'asset')
+    protected function publishAsset($component, $file, $type = 'asset')
     {
         $sourceFile = $this->getSourcePath($component, $file, $type);
         $targetFile = $this->getAssetPath($component, $file, $type);
@@ -434,65 +451,154 @@ class Asset extends AbstractService
      *
      * @param string $component     Component name
      * @param string $target        Target component
+     * @param Traversable $iterator A Traversable instance for directory scan
      *
      * @return bool
      */
-    public function publish($component, $target = '')
-    {
-        $copyOnWindows = true;
-        $override = (false === $this->getOption('override')) ? false : true;
-        $flags = $copyOnWindows
-            ? \FilesystemIterator::SKIP_DOTS
-            | \FilesystemIterator::FOLLOW_SYMLINKS
-            : \FilesystemIterator::SKIP_DOTS;
-
+    public function publish(
+        $component,
+        $target = '',
+        Traversable $iterator = null
+    ) {
+        $status = true;
+        $target = $target ?: $component;
         foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
             // Publish original assets
-            $sourceFolder = $this->getSourcePath($component, '', $type);
-            $targetFolder = $this->getPath($target ?: $component, $type);
-            if (!is_dir($sourceFolder) && !is_link($sourceFolder)) {
-                continue;
-            }
-            $this->publishFile($sourceFolder, $targetFolder, $type);
-
-            // Publish custom assets
-            $customFolder = $this->getCustomPath($component, '', $type);
-            if (!is_dir($customFolder) && !is_link($customFolder)) {
-                continue;
-            }
-            $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($customFolder, $flags),
-                \RecursiveIteratorIterator::LEAVES_ONLY
-            );
-            Pi::service('file')->mirror(
-                $customFolder,
+            $sourceFolder   = $this->getSourcePath($component, '', $type);
+            $targetFolder   = $this->getPath($target, $type);
+            $status         = $this->publishFile(
+                $sourceFolder,
                 $targetFolder,
-                $iterator,
-                array(
-                    'copy_on_windows'   => $copyOnWindows,
-                    'override'          => $override,
-                )
+                $iterator
             );
+            if (!$status) {
+                //break;
+            }
         }
 
-        return true;
+        return $status;
     }
 
     /**
-     * Publishes custom assets in a theme
+     * Publishes custom assets
+     *
+     * @param string $component     Component name
+     * @param string $target        Target component
+     *
+     * @return bool
+     */
+    public function publishCustom($component, $target = '')
+    {
+        $status     = true;
+        $iterator   = function ($folder) {
+            return new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator(
+                    $folder,
+                    FilesystemIterator::SKIP_DOTS
+                ),
+                RecursiveIteratorIterator::LEAVES_ONLY
+            );
+        };
+        $target     = $target ?: $component;
+        $component  = 'custom/' . $component;
+        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
+            $sourceFolder   = $this->getSourcePath($component, '', $type);
+            if (!is_dir($sourceFolder)) {
+                continue;
+            }
+            $targetFolder   = $this->getPath($target, $type);
+            $status         = $this->publishFile(
+                $sourceFolder,
+                $targetFolder,
+                $iterator($sourceFolder)
+            );
+            if (!$status) {
+                //break;
+            }
+        }
+
+        return $status;
+    }
+
+    /**
+     * Publishes module assets, including original and custom assets
+     *
+     * @param string $module
+     *
+     * @return bool
+     */
+    public function publishModule($module)
+    {
+        // Publish original assets
+        $component  = 'module/' . Pi::service('module')->directory($module);
+        $target     = 'module/' . $module;
+        $status     = $this->publish($component, $target);
+        if (!$status) {
+            //return $status;
+        }
+        // Publish custom assets
+        $component  = 'module/' . $module;
+        $status     = $this->publishCustom($component);
+
+        return $status;
+    }
+
+    /**
+     * Publishes theme assets, including original and custom assets,
+     * as well as module assets for the theme
      *
      * @param string $theme
      *
      * @return bool
      */
-    public function publishThemeCustom($theme)
+    public function publishTheme($theme)
+    {
+        // Publish original assets
+        $component  = 'theme/' . $theme;
+        $status     = $this->publish($component);
+        if (!$status) {
+            //return $status;
+        }
+        // Publish custom assets
+        $status = $this->publishCustom($component);
+        if (!$status) {
+            //return $status;
+        }
+        // Publish module assets for this theme
+        $status = $this->publishThemeModule($theme);
+        if (!$status) {
+            //return $status;
+        }
+
+        return $status;
+    }
+
+    /**
+     * Publishes module assets in a theme
+     *
+     * @param string $theme
+     *
+     * @return bool
+     */
+    protected function publishThemeModule($theme)
     {
         $path = Pi::path('theme') . '/' . $theme . '/module';
         if (!is_dir($path)) {
-            return false;
+            return true;
         }
-        $iterator = new \DirectoryIterator($path);
-        foreach ($iterator as $fileinfo) {
+        $status     = true;
+        $iterator   = function ($folder) {
+            return new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator(
+                    $folder,
+                    FilesystemIterator::SKIP_DOTS
+                ),
+                RecursiveIteratorIterator::LEAVES_ONLY
+            );
+        };
+        $component = 'theme/' . $theme;
+        $directoryIterator = new DirectoryIterator($path);
+        foreach ($directoryIterator as $fileinfo) {
             if (!$fileinfo->isDir() && !$fileinfo->isLink()
                 || $fileinfo->isDot()
             ) {
@@ -502,18 +608,29 @@ class Asset extends AbstractService
             if (preg_match('/[^a-z0-9]+/', $module)) {
                 continue;
             }
+
             foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-                $sourcePath = $path . '/' . $module . '/' . $type;
-                if (!is_dir($sourcePath)) {
+                $sourceFolder = $path . '/' . $module . '/' . $type;
+                if (!is_dir($sourceFolder)) {
                     continue;
                 }
-                $targetPath = $this->getPath('custom/' . $theme, $type)
-                            . '/' . $module;
-                $this->publishFile($sourcePath, $targetPath);
+                $targetFolder = sprintf(
+                    '%s/module/%s',
+                    $this->getPath($component, $type),
+                    $module
+                );
+                $status = $this->publishFile(
+                    $sourceFolder,
+                    $targetFolder,
+                    $iterator($sourceFolder)
+                );
+                if (!$status) {
+                    // break;
+                }
             }
         }
 
-        return true;
+        return $status;
     }
 
     /**
@@ -522,8 +639,9 @@ class Asset extends AbstractService
      * @param string $theme
      *
      * @return bool
+     * @FIXME Not used
      */
-    public function removeThemeCustom($theme)
+    protected function removeThemeCustom($theme)
     {
         foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
             $this->remove('custom/' . $theme, $type);

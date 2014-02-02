@@ -312,14 +312,15 @@ class Theme
                 );
                 return $result;
             }
-            $status = Pi::service('asset')->publish('theme/' . $name);
+            Pi::service('asset')->remove('theme/' . $name);
+            $status = Pi::service('asset')->publishTheme($name);
             if (!$status) {
                 $result = array(
                     'status'    => false,
                     'message'   => 'Theme asset publish failed.'
                 );
             } else {
-                Pi::service('asset')->publishThemeCustom($name);
+                //Pi::service('asset')->publishThemeCustom($name);
             }
         }
 
@@ -337,7 +338,7 @@ class Theme
         $version = $this->event->getParam('version');
         $config = $this->event->getParam('config');
         $status = true;
-        $message = '';
+        //$message = '';
 
         $row = Pi::model('theme')->find($name, 'name');
         $isUpgrade = version_compare($version, $config['version'], '<');
@@ -354,15 +355,16 @@ class Theme
                 $message = __('Theme failed to update.');
             } else {
                 $message = __('Theme upgraded successfully.');
-                $res = Pi::service('asset')->publish('theme/' . $name);
+                Pi::service('asset')->remove('theme/' . $name);
+                $res = Pi::service('asset')->publishTheme($name);
                 if (!$res) {
                     $status = false;
                     $message = __('Theme asset publish failed.');
                 }
             }
         }
-        Pi::service('asset')->removeThemeCustom($name);
-        Pi::service('asset')->publishThemeCustom($name);
+        //Pi::service('asset')->removeThemeCustom($name);
+        //Pi::service('asset')->publishThemeCustom($name);
 
         return array(
             'status'    => $status,
@@ -403,7 +405,7 @@ class Theme
                 'message'   => 'Theme assets removal failed.'
             );
         }
-        Pi::service('asset')->removeThemeCustom($name);
+        //Pi::service('asset')->removeThemeCustom($name);
 
         return $result;
     }

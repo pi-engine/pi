@@ -1,5 +1,5 @@
 <?php
-    $this->bootstrap();
+    //$this->bootstrap();
     $this->css($this->assetModule('admin/admin.css'));
     $this->jQuery();
     $this->Backbone();
@@ -63,7 +63,7 @@ var ThemeItemView = Backbone.View.extend({
         this.model.fetch({
             url: url.replace('__NAME__', this.model.get('name')),
             success: function() {
-                systemMessage.succ('<?php echo _a('theme Update ok!')?>');
+                systemMessage.succ('<?php echo _a('Theme Updated successfully.')?>');
             },
             error: function() {
                 systemMessage.fail();
