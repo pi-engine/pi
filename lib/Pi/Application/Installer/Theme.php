@@ -363,8 +363,6 @@ class Theme
                 }
             }
         }
-        //Pi::service('asset')->removeThemeCustom($name);
-        //Pi::service('asset')->publishThemeCustom($name);
 
         return array(
             'status'    => $status,
@@ -405,7 +403,6 @@ class Theme
                 'message'   => 'Theme assets removal failed.'
             );
         }
-        //Pi::service('asset')->removeThemeCustom($name);
 
         return $result;
     }

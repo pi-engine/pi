@@ -75,24 +75,6 @@ class AssetController extends ActionController
                 $status = Pi::service('asset')->publish($component);
                 break;
         }
-        /*
-        if ('module' == $type) {
-            $source = sprintf(
-                '%s/%s',
-                $type,
-                Pi::service('module')->directory($name)
-            );
-        } else {
-            $source = sprintf('%s/%s', $type, $name);
-        }
-        $target = sprintf('%s/%s', $type, $name);
-        $status = (int) Pi::service('asset')->publish($source, $target);
-
-        if ($status && 'module' != $type) {
-            //Pi::service('asset')->removeThemeCustom($name);
-            //Pi::service('asset')->publishThemeCustom($name);
-        }
-        */
         clearstatcache();
         if (!$status) {
             $message = _a('Asset files are not published correctly, please copy asset files manually.');
@@ -190,19 +172,6 @@ class AssetController extends ActionController
                 $erroneous[] = 'theme-publish-' . $name;
             }
         }
-        /*
-        foreach ($assetList as $target => $item) {
-            $target = str_replace('-', '/', $target);
-            $status = Pi::service('asset')->publish($item['source'], $target);
-            if (!$status) {
-                $erroneous[] = $item['title'];
-            }
-        }
-        foreach ($assetCustom as $name) {
-            Pi::service('asset')->removeThemeCustom($name);
-            Pi::service('asset')->publishThemeCustom($name);
-        }
-        */
         clearstatcache();
 
         if ($erroneous) {

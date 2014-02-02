@@ -428,25 +428,6 @@ class Asset extends AbstractService
     }
 
     /**
-     * Publishes an asset file of a component,
-     * only applicable for direct copy not for symbolic link
-     *
-     * @param string $component     Component name
-     * @param string $file          File path
-     * @param string $type          Type: asset, public
-     *
-     * @return bool
-     * @FIXME Not used
-     */
-    protected function publishAsset($component, $file, $type = 'asset')
-    {
-        $sourceFile = $this->getSourcePath($component, $file, $type);
-        $targetFile = $this->getAssetPath($component, $file, $type);
-
-        return $this->publishFile($sourceFile, $targetFile);
-    }
-
-    /**
      * Publishes component assets folder
      *
      * @param string $component     Component name
@@ -631,23 +612,6 @@ class Asset extends AbstractService
         }
 
         return $status;
-    }
-
-    /**
-     * Remove custom assets in a theme
-     *
-     * @param string $theme
-     *
-     * @return bool
-     * @FIXME Not used
-     */
-    protected function removeThemeCustom($theme)
-    {
-        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-            $this->remove('custom/' . $theme, $type);
-        }
-
-        return true;
     }
 
     /**
