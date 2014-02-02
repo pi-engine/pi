@@ -293,7 +293,7 @@ class AccountController extends ActionController
         );
 
         $query = array();
-        foreach (array('email', 'name') as $param) {
+        foreach (array('email', 'name', 'identity') as $param) {
             $val = $this->params($param);
             if ($val) {
                 $query[$param] = $val;
@@ -327,7 +327,7 @@ class AccountController extends ActionController
         $status = $row ? 1 : 0;
 
         return array(
-            'status' => $status
+            'status' => $status,
         );
     }
 

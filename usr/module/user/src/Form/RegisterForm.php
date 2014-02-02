@@ -27,11 +27,6 @@ class RegisterForm extends UserForm
         parent::init();
 
         $this->add(array(
-            'name'       => 'registered_source',
-            'type'       => 'hidden',
-        ));
-
-        $this->add(array(
             'name'       => 'redirect',
             'type'       => 'hidden',
         ));

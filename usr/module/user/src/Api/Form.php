@@ -74,9 +74,10 @@ class Form extends AbstractApi
     {
         $elements   = array();
         $filters    = array();
-        $file       = sprintf(Pi::path('custom/user/config/form.%s.php'), $name);
+        $filePath   = sprintf('user/config/form.%s.php', $name);
+        $file       = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
-            $file = sprintf(Pi::path('module/user/config/form.%s.php'), $name);
+            $file = Pi::path('module') . '/' . $filePath;
         }
         $config     = include $file;
         $meta       = Pi::registry('field', $this->module)->read();
@@ -145,9 +146,10 @@ class Form extends AbstractApi
     public function loadFilters($name)
     {
         $filters    = array();
-        $file       = sprintf(Pi::path('custom/user/config/form.%s.php'), $name);
+        $filePath   = sprintf('user/config/form.%s.php', $name);
+        $file       = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
-            $file = sprintf(Pi::path('module/user/config/form.%s.php'), $name);
+            $file = Pi::path('module') . '/' . $filePath;
         }
         $config     = include $file;
         $meta       = Pi::registry('field', $this->module)->read();

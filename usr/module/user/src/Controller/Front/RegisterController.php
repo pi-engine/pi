@@ -44,8 +44,11 @@ class RegisterController extends ActionController
 
         // Get register form
         $form = Pi::api('form', 'user')->loadForm('register');
-        $registeredSource = _get('app') ? : '';
-        $form->get('registered_source')->setValue($registeredSource);
+        $form->setAttributes(array(
+            'action'    => $this->url('', array('action' => 'index')),
+        ));
+        //$registeredSource = _get('app') ? : '';
+        //$form->get('registered_source')->setValue($registeredSource);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -59,8 +62,7 @@ class RegisterController extends ActionController
                     $form->setData($values);
                     $form->setAttributes(array(
                         'action' => $this->url('', array(
-                                'controller' => 'register',
-                                'action'     => 'complete'
+                                'action'     => 'complete',
                             )
                         ),
                     ));
@@ -81,7 +83,8 @@ class RegisterController extends ActionController
                 }
             }
             $this->view()->assign(array(
-                'result'            => $result,
+                'result'    => $result,
+                //'form'      => $form,
             ));
         }
 
@@ -116,7 +119,9 @@ class RegisterController extends ActionController
         );
         $post = $this->request->getPost();
         $form = Pi::api('form', 'user')->loadForm('register-complete', true);
-        unset($post['submit']);
+        $form->setAttributes(array(
+            'action'    => $this->url('', array('action' => 'complete')),
+        ));
         $form->setData($post);
         if ($form->isValid()) {
             $values = $form->getData();
@@ -161,10 +166,6 @@ class RegisterController extends ActionController
             ));
         };
 
-        $result = array(
-            'status'  => 0,
-            'message' => '',
-        );
         $hashUid = $this->params('uid', '');
         $token   = $this->params('token', '');
         // Check link params
@@ -329,6 +330,7 @@ class RegisterController extends ActionController
                 );
             }
             $this->view()->assign('result', $result);
+            $this->view()->assign('form', $form);
         } else {
             $this->view()->assign('form', $form);
         }
@@ -359,6 +361,9 @@ class RegisterController extends ActionController
         $uid = Pi::user()->getId();
 
         $form = Pi::api('form', 'user')->loadForm('profile-complete');
+        $form->setAttributes(array(
+            'action'    => $this->url('', array('action' => 'profile.complete')),
+        ));
         $form->get('redirect')->setValue($redirect);
 
         if ($this->request->isPost()) {
@@ -465,7 +470,7 @@ class RegisterController extends ActionController
             $status = $this->sendActivation(array(
                 'email'     => $values['email'],
                 'uid'       => $uid,
-                'identity'  => $values['username'],
+                'identity'  => $values['identity'],
             ));
             if (!$status) {
                 $result['message'] = __('Account activation email was not able to send, please contact admin.');

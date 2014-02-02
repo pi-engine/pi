@@ -17,7 +17,7 @@ use Zend\InputFilter\InputFilter;
  *
  * @author Liu Chuang <lichuangww@gmail.com>
  */
-class ResendActivateMailFilter extends InputFilter
+class ResendActivationFilter extends InputFilter
 {
     /**
      * Constructor

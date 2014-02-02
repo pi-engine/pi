@@ -39,7 +39,7 @@ class UserForm extends BaseForm
      *
      * @param array|string $fields
      */
-    public function __construct($name = 'register', $fields = array())
+    public function __construct($name, $fields = array())
     {
         if (!$fields || !is_array($fields)) {
             if ($fields && is_string($fields)) {
