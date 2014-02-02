@@ -31,12 +31,10 @@ class Asset extends AbstractResource
     public function installAction()
     {
         $module = $this->event->getParam('module');
-        $directory = $this->event->getParam('directory');
-        // Publish module native assets
-        Pi::service('asset')->publish(
-            'module/' . $directory,
-            'module/' . $module
-        );
+        // Remove published assets
+        Pi::service('asset')->remove('module/' . $module);
+        // Publish module assets
+        Pi::service('asset')->publishModule($module);
 
         return true;
     }
@@ -50,12 +48,11 @@ class Asset extends AbstractResource
             return;
         }
         $module = $this->event->getParam('module');
-        $directory = $this->event->getParam('directory');
-        // Publish module native assets
-        Pi::service('asset')->publish(
-            'module/' . $directory,
-            'module/' . $module
-        );
+        //$directory = $this->event->getParam('directory');
+        // Remove published assets
+        Pi::service('asset')->remove('module/' . $module);
+        // Publish module assets
+        Pi::service('asset')->publishModule($module);
 
         return true;
     }
@@ -77,14 +74,11 @@ class Asset extends AbstractResource
      */
     public function activateAction()
     {
-        return;
         $module = $this->event->getParam('module');
-        $directory = $this->event->getParam('directory');
+        // Remove published assets
+        Pi::service('asset')->remove('module/' . $module);
         // Publish module native assets
-        Pi::service('asset')->publish(
-            'module/' . $directory,
-            'module/' . $module
-        );
+        Pi::service('asset')->publishModule($module);
     }
 
     /**

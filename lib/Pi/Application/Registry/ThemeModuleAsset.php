@@ -13,13 +13,15 @@ namespace Pi\Application\Registry;
 use Pi;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use DirectoryIterator;
+use FilesystemIterator;
 
 /**
- * Custom asset/resource list
+ * Theme-specific module asset/resource list
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Asset extends AbstractRegistry
+class ThemeModuleAsset extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
@@ -30,9 +32,11 @@ class Asset extends AbstractRegistry
         $appendVersion = isset($options['v']) ? $options['v'] : null;
         $theme = $options['theme'];
         $type = $options['type'];
-        $path = Pi::service('asset')->getPath('custom/' . $theme, $type);
+        //$path = Pi::service('asset')->getSourcePath('theme/' . $theme . '/', $type) . '/module';
+        $path = Pi::path('theme/' . $theme . '/module');
+        $component = 'theme/' . $theme . '/module';
         if (is_dir($path)) {
-            $iterator = new \DirectoryIterator($path);
+            $iterator = new DirectoryIterator($path);
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isDir() && !$fileinfo->isLink()
                     || $fileinfo->isDot()
@@ -43,16 +47,24 @@ class Asset extends AbstractRegistry
                 if (preg_match('/[^a-z0-9]+/', $module)) {
                     continue;
                 }
-                $modulePath = $path . '/' . $module . '/';
-                $modulePathLength = strlen($modulePath);
+                $sourceFolder = Pi::service('asset')->getSourcePath(
+                    $component . '/' . $module,
+                    '',
+                    $type
+                );
+                if (!is_dir($sourceFolder)) {
+                    continue;
+                }
+                $modulePathLength = strlen($sourceFolder);
+
                 $iterator = new RecursiveIteratorIterator(
                     new RecursiveDirectoryIterator(
-                        $modulePath,
-                        \FilesystemIterator::SKIP_DOTS
-                            | \FilesystemIterator::FOLLOW_SYMLINKS
+                        $sourceFolder,
+                        FilesystemIterator::SKIP_DOTS
                     ),
-                    RecursiveIteratorIterator::SELF_FIRST
+                    RecursiveIteratorIterator::LEAVES_ONLY
                 );
+
                 foreach ($iterator as $fileData) {
                     if ($fileData->isFile() || $fileData->isLink()) {
                         $filePath = $fileData->getPathname();
@@ -66,7 +78,7 @@ class Asset extends AbstractRegistry
                         )) {
                             continue;
                         }
-                        $fileUrl = Pi::service('asset')->getThemeCustomAsset(
+                        $fileUrl = Pi::service('asset')->getThemeModuleAsset(
                             $filePath,
                             $module,
                             $appendVersion
