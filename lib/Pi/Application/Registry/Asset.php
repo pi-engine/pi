@@ -15,7 +15,7 @@ use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 
 /**
- * Custom asset/resource list
+ * Theme custom asset/resource list
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
