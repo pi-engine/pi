@@ -36,7 +36,7 @@ class FlushController extends ActionController
         $cacheList = array(
             'stat'          => _a('File status cache'),
             'apc'           => _a('APC file cache'),
-            'folder'        => _a('System cache files'),
+            'file'          => _a('System cache files'),
             'persist'       => _a('System persistent data'),
             'module'        => _a('Module cache'),
             'comment'       => _a('Comment cache'),
@@ -123,6 +123,7 @@ class FlushController extends ActionController
      * Flush APC caches
      *
      * @return void
+     * @deprecated
      */
     protected function flushApc()
     {
@@ -138,6 +139,7 @@ class FlushController extends ActionController
      * Flush filesystem folders
      *
      * @return void
+     * @deprecated
      */
     protected function flushFolder()
     {
@@ -162,6 +164,7 @@ class FlushController extends ActionController
      * Flush applications (modules)
      *
      * @return void
+     * @deprecated
      */
     protected function flushApplication()
     {
@@ -179,6 +182,7 @@ class FlushController extends ActionController
      *
      * @param string|null $namespace
      * @return void
+     * @deprecated
      */
     protected function flushPage($namespace = null)
     {
@@ -191,6 +195,7 @@ class FlushController extends ActionController
      * Flush comment caches
      *
      * @return void
+     * @deprecated
      */
     protected function flushComment()
     {

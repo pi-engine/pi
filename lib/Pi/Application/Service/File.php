@@ -10,8 +10,12 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Exception;
+use Traversable;
+use ArrayObject;
+use FilesystemIterator;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 use Pi\File\Transfer\Upload;
 use Pi\File\Transfer\Download;
 
@@ -137,7 +141,7 @@ class File extends AbstractService
     /**
      * Creates a directory recursively.
      *
-     * @param string|array|\Traversable $dirs The directory path
+     * @param string|array|Traversable  $dirs The directory path
      * @param int                       $mode The directory mode
      * @return $this
      *
@@ -161,8 +165,8 @@ class File extends AbstractService
     /**
      * Checks the existence of files or directories.
      *
-     * @param string|array|\Traversable $files A filename,
-     *      an array of files, or a \Traversable instance to check
+     * @param string|array|Traversable $files A filename,
+     *      an array of files, or a Traversable instance to check
      *
      * @return Bool
      */
@@ -180,8 +184,8 @@ class File extends AbstractService
     /**
      * Sets access and modification time of file.
      *
-     * @param string|array|\Traversable $files
-     *      A filename, an array of files, or a \Traversable instance to create
+     * @param string|array|Traversable $files
+     *      A filename, an array of files, or a Traversable instance to create
      * @param int                       $time
      *      The touch time as a unix timestamp
      * @param int                       $atime
@@ -208,7 +212,7 @@ class File extends AbstractService
     /**
      * Empties directories.
      *
-     * @param string|array|\Traversable $dirs The directory path
+     * @param string|array|Traversable $dirs The directory path
      * @return $this
      */
     public function flush($dirs)
@@ -218,7 +222,7 @@ class File extends AbstractService
             if (!is_dir($dir)) {
                 continue;
             }
-            $this->remove(new \DirectoryIterator($dir));
+            $this->remove(new FilesystemIterator($dir));
         }
 
         return $this;
@@ -227,8 +231,8 @@ class File extends AbstractService
     /**
      * Removes files or directories.
      *
-     * @param string|array|\Traversable $files
-     *      A filename, an array of files, or a \Traversable instance to remove
+     * @param string|array|Traversable $files
+     *      A filename, an array of files, or a Traversable instance to remove
      * @return $this
      *
      * @throws Exception When removal fails
@@ -242,8 +246,9 @@ class File extends AbstractService
                 continue;
             }
 
+            // hard directory
             if (is_dir($file) && !is_link($file)) {
-                $this->remove(new \FilesystemIterator($file));
+                $this->remove(new FilesystemIterator($file));
 
                 if (true !== @rmdir($file)) {
                     throw new Exception(
@@ -251,6 +256,7 @@ class File extends AbstractService
                     );
                 }
             } else {
+                // symbolic directory on Windows
                 // https://bugs.php.net/bug.php?id=52176
                 if (defined('PHP_WINDOWS_VERSION_MAJOR') && is_dir($file)) {
                     if (true !== @rmdir($file)) {
@@ -258,6 +264,7 @@ class File extends AbstractService
                             sprintf('Failed to remove file %s', $file)
                         );
                     }
+                // symbolic directory or file
                 } else {
                     if (true !== @unlink($file)) {
                         throw new Exception(
@@ -274,9 +281,9 @@ class File extends AbstractService
     /**
      * Change mode for an array of files or directories.
      *
-     * @param string|array|\Traversable $files
+     * @param string|array|Traversable $files
      *      A filename, an array of files,
-     *      or a \Traversable instance to change mode
+     *      or a Traversable instance to change mode
      * @param int                       $mode      The new mode (octal)
      * @param int                       $umask     The mode mask (octal)
      * @param Bool                      $recursive
@@ -290,7 +297,7 @@ class File extends AbstractService
         foreach ($this->toIterator($files) as $file) {
             if ($recursive && is_dir($file) && !is_link($file)) {
                 $this->chmod(
-                    new \FilesystemIterator($file),
+                    new FilesystemIterator($file),
                     $mode,
                     $umask,
                     true
@@ -307,7 +314,7 @@ class File extends AbstractService
     /**
      * Change the owner of an array of files or directories
      *
-     * @param string|array|\Traversable $files
+     * @param string|array|Traversable $files
      *      A filename, an array of files,
      *      or a \Traversable instance to change owner
      * @param string                    $user      The new owner user name
@@ -321,7 +328,7 @@ class File extends AbstractService
     {
         foreach ($this->toIterator($files) as $file) {
             if ($recursive && is_dir($file) && !is_link($file)) {
-                $this->chown(new \FilesystemIterator($file), $user, true);
+                $this->chown(new FilesystemIterator($file), $user, true);
             }
             if (is_link($file) && function_exists('lchown')) {
                 if (true !== @lchown($file, $user)) {
@@ -344,9 +351,9 @@ class File extends AbstractService
     /**
      * Change the group of an array of files or directories
      *
-     * @param string|array|\Traversable $files
+     * @param string|array|Traversable $files
      *      A filename, an array of files,
-     *      or a \Traversable instance to change group
+     *      or a Traversable instance to change group
      * @param string                    $group     The group name
      * @param Bool                      $recursive
      *      Whether change the group recursively or not
@@ -358,7 +365,7 @@ class File extends AbstractService
     {
         foreach ($this->toIterator($files) as $file) {
             if ($recursive && is_dir($file) && !is_link($file)) {
-                $this->chgrp(new \FilesystemIterator($file), $group, true);
+                $this->chgrp(new FilesystemIterator($file), $group, true);
             }
             if (is_link($file) && function_exists('lchgrp')) {
                 if (true !== @lchgrp($file, $group)) {
@@ -534,10 +541,10 @@ class File extends AbstractService
      *  - copy_on_windows: Whether to copy files instead of links on Windows
      *      {@see symlink()}.
      *
-     * @param string       $originDir The origin directory
-     * @param string       $targetDir The target directory
-     * @param \Traversable $iterator  A Traversable instance
-     * @param array        $options   An array of bool options
+     * @param string        $originDir The origin directory
+     * @param string        $targetDir The target directory
+     * @param Traversable   $iterator  A Traversable instance
+     * @param array         $options   An array of bool options
      * @return $this
      *
      * @throws Exception When file type is unknown
@@ -545,7 +552,7 @@ class File extends AbstractService
     public function mirror(
         $originDir,
         $targetDir,
-        \Traversable $iterator = null,
+        Traversable $iterator = null,
         $options = array()
     ) {
         $copyOnWindows = true;
@@ -557,12 +564,12 @@ class File extends AbstractService
 
         if (null === $iterator) {
             $flags = $copyOnWindows
-                ? \FilesystemIterator::SKIP_DOTS
-                    | \FilesystemIterator::FOLLOW_SYMLINKS
-                : \FilesystemIterator::SKIP_DOTS;
-            $iterator = new \RecursiveIteratorIterator(
-                new \RecursiveDirectoryIterator($originDir, $flags),
-                \RecursiveIteratorIterator::SELF_FIRST
+                ? FilesystemIterator::SKIP_DOTS
+                    | FilesystemIterator::FOLLOW_SYMLINKS
+                : FilesystemIterator::SKIP_DOTS;
+            $iterator = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator($originDir, $flags),
+                RecursiveIteratorIterator::SELF_FIRST
             );
         }
 
@@ -622,12 +629,12 @@ class File extends AbstractService
      * Transform array to iterator
      *
      * @param mixed $files
-     * @return \Traversable
+     * @return Traversable
      */
     protected function toIterator($files)
     {
-        if (!$files instanceof \Traversable) {
-            $files = new \ArrayObject(is_array($files)
+        if (!$files instanceof Traversable) {
+            $files = new ArrayObject(is_array($files)
                 ? $files : array($files));
         }
 

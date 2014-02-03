@@ -329,10 +329,13 @@ class Cache extends AbstractService
             }
         }
         if ('comment' == $type || 'all' == $type) {
-            Pi::service('cache')->clearByNamespace('comment');
+            $this->clearByNamespace('comment');
         }
         if ('file' == $type || 'all' == $type) {
             $path = Pi::path('cache');
+            Pi::service('file')->flush($path);
+            Pi::service('file')->touch($path . '/index.html');
+            /*
             $iterator = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator($path),
                 \RecursiveIteratorIterator::CHILD_FIRST
@@ -345,14 +348,15 @@ class Cache extends AbstractService
                     rmdir($object->getPathname());
                 }
             }
+            */
         }
         if ('application' == $type || 'all' == $type) {
-            Pi::service('cache')->clearByNamespace();
+            $this->clearByNamespace();
         }
         if ('module' == $type || 'all' == $type) {
             $modules = Pi::service('module')->meta();
             foreach (array_keys($modules) as $module) {
-                Pi::service('cache')->clearByNamespace($module);
+                $this->clearByNamespace($module);
             }
         }
         if ('page' == $type || 'all' == $type) {
