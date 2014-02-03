@@ -11,7 +11,7 @@ return array(
     // Module meta
     'meta'  => array(
         // Build metadata, optional
-        'build'         => '20140115',
+        'build'         => '20140202',
     ),
     // Custom resource
     'resource' => array(
