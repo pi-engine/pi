@@ -48,29 +48,11 @@ $config = array(
 
     'require_profile_complete' => array(
         'title'         => _t('Profile complete'),
-        'description'   => _t('Is extra profile form required.'),
+        'description'   => _t('Require user to complete profile data.'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
     ),
-
-    /*
-    'register_form' => array(
-        'title'         => _t('Register form config file name'),
-        'description'   => _t('Set it only if necessary.'),
-        'value'         => '', // 'register',
-    ),
-    'register_complete_form' => array(
-        'title'         => _t('Register complete form config file name'),
-        'description'   => _t('Set it only if necessary.'),
-        'value'         => '',
-    ),
-    'profile_complete_form' => array(
-        'title'         => _t('Profile complete form config file name'),
-        'description'   => _t('Set it only if necessary.'),
-        'value'         => '', // 'profile.complete',
-    ),
-    */
 
     // User account
     'uname_format'  => array(
@@ -190,6 +172,15 @@ $config = array(
         'category'      => 'login',
     ),
 
+    'login_captcha'       => array(
+        'title'         => _t('Login CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for user login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'login',
+    ),
+
     'rememberme'        => array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
@@ -206,19 +197,28 @@ $config = array(
         'category'      => 'login',
     ),
 
-    'login_captcha'       => array(
-        'title'         => _t('Login CAPTCHA'),
-        'description'   => _t('Enable CAPTCHA for user login'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'login',
-    ),
-
     // Register
     'register_disable'  => array(
         'title'         => _t('Register disable'),
         'description'   => _t('Disable user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
+    'register_captcha'  => array(
+        'title'         => _t('Register CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 1,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
+    'require_register_complete' => array(
+        'title'         => _t('Register complete'),
+        'description'   => _t('Require user to complete register data in an extra form.'),
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
@@ -247,24 +247,6 @@ $config = array(
         'title'         => _t('Activation expiration'),
         'description'   => _t('Expiration time for activation email (in hours).'),
         'value'         => 24,
-        'filter'        => 'number_int',
-        'category'      => 'register',
-    ),
-
-    'register_captcha'  => array(
-        'title'         => _t('Register CAPTCHA'),
-        'description'   => _t('Enable CAPTCHA for user registration'),
-        'edit'          => 'checkbox',
-        'value'         => 1,
-        'filter'        => 'number_int',
-        'category'      => 'register',
-    ),
-
-    'require_register_complete' => array(
-        'title'         => _t('Register complete'),
-        'description'   => _t('Is extra registration form required.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
         'filter'        => 'number_int',
         'category'      => 'register',
     ),

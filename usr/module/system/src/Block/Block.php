@@ -10,7 +10,8 @@
 namespace Module\System\Block;
 
 use Pi;
-use Module\System\Form\LoginForm;
+use Module\System\Form\LoginForm as LoginFormSystem;
+use Module\User\Form\LoginForm as LoginFormUser;
 
 /**
  * Block renderer
@@ -131,7 +132,11 @@ class Block
         if (Pi::service('user')->hasIdentity()) {
             return false;
         }
-        $form = new LoginForm('login');
+        if (Pi::service('module')->isActive('user')) {
+            $form = new LoginFormUser('login');
+        } else {
+            $form = new LoginFormSystem('login');
+        }
         if (!empty($options['route'])) {
             $route = $options['route'];
             unset($options['route']);

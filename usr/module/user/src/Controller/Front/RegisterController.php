@@ -28,6 +28,10 @@ class RegisterController extends ActionController
      */
     public function indexAction()
     {
+        if (!$this->checkAccess()) {
+            return;
+        }
+
         if (Pi::user()->getId()) {
             return $this->redirect(
                 '',
@@ -102,6 +106,10 @@ class RegisterController extends ActionController
      */
     public function completeAction()
     {
+        if (!$this->checkAccess()) {
+            return;
+        }
+
         if (!$this->config('require_register_complete') ||
             !$this->request->isPost()
         ) {
@@ -549,4 +557,19 @@ class RegisterController extends ActionController
         return $token;
     }
 
+    /**
+     * Check access
+     *
+     * @return bool
+     */
+    protected function checkAccess()
+    {
+        $registerDisable = $this->config('register_disable');
+        if ($registerDisable) {
+            $this->view()->setTemplate('register-disabled');
+            return false;
+        }
+
+        return true;
+    }
 }

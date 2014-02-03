@@ -22,7 +22,7 @@ class LoginForm extends BaseForm
     public function init()
     {
         // Get config data.
-        $config = Pi::service('registry')->config->read('user', 'account');
+        $config = Pi::service('module')->config('', 'user');
 
         $this->add(array(
             'name'          => 'identity',
@@ -75,12 +75,8 @@ class LoginForm extends BaseForm
             'type'  => 'csrf',
         ));
 
-        $request = Pi::engine()->application()->getRequest();
-        $redirect = $request->getQuery('redirect');
-        if (null === $redirect) {
-            $redirect = $request->getServer('HTTP_REFERER') ?: $request->getRequestUri();
-        }
-        $redirect = $redirect ? urlencode($redirect) : '';
+        $redirect = _get('redirect') ?: Pi::service('url')->getRequestUri();
+        $redirect = $redirect ? rawurlencode($redirect) : '';
         $this->add(array(
             'name'  => 'redirect',
             'type'  => 'hidden',

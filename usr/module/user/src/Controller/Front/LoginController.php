@@ -29,14 +29,16 @@ class LoginController extends ActionController
      */
     public function indexAction()
     {
+        if (!$this->checkAccess()) {
+            return;
+        }
+
         // If already logged in
         if (Pi::service('user')->hasIdentity()) {
-            $this->view()->assign('title', __('User login'));
-            $this->view()->setTemplate('login-message');
-            $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity()
-            ));
-
+            $this->jump(
+                Pi::service('user')->getUrl('profile'),
+                __('You have already logged in.')
+            );
             return;
         }
 
@@ -123,6 +125,10 @@ class LoginController extends ActionController
      */
     public function processAction()
     {
+        if (!$this->checkAccess()) {
+            return;
+        }
+
         if (!$this->request->isPost()) {
             $this->jump(array('action' => 'index'), __('Invalid request.'), 'error');
             return;
@@ -271,5 +277,21 @@ class LoginController extends ActionController
         );
 
         return $form;
+    }
+
+    /**
+     * Check access
+     *
+     * @return bool
+     */
+    protected function checkAccess()
+    {
+        $loginDisable = $this->config('login_disable');
+        if ($loginDisable) {
+            $this->view()->setTemplate('login-disabled');
+            return false;
+        }
+
+        return true;
     }
 }

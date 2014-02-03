@@ -40,11 +40,10 @@ class LoginController extends ActionController
 
         // If already logged in
         if (Pi::service('user')->hasIdentity()) {
-            $this->view()->assign('title', __('User login'));
-            $this->view()->setTemplate('login-message');
-            $this->view()->assign(array(
-                'identity'  => Pi::service('user')->getIdentity()
-            ));
+            $this->jump(
+                Pi::service('user')->getUrl('profile'),
+                __('You have already logged in.')
+            );
             return;
         }
 

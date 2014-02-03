@@ -9,9 +9,9 @@
 
 /**
 * User register form config
-*
-* @author Liu Chuang <liuchuang@eefocus.com>
 */
+
+$captchaEnable = Pi::service('module')->config('register_captcha', 'user');
 
 return array(
     // Use user module field
@@ -52,7 +52,7 @@ return array(
         ),
     ),
 
-    'captcha' => array(
+    'captcha' => !$captchaEnable ? false : array(
         'element' => array(
             'name'          => 'captcha',
             'type'          => 'captcha',
@@ -60,8 +60,7 @@ return array(
                 'label'     => _a('Please type the word.'),
                 'separator'         => '<br />',
                 'captcha_position'  => 'append',
-            )
+            ),
         ),
-        'filter'  => array(),
     ),
 );

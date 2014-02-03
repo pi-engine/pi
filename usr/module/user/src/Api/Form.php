@@ -74,26 +74,29 @@ class Form extends AbstractApi
     {
         $elements   = array();
         $filters    = array();
+        /*
         $filePath   = sprintf('user/config/form.%s.php', $name);
         $file       = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
             $file = Pi::path('module') . '/' . $filePath;
         }
         $config     = include $file;
+        */
+        $config     = $this->loadConfig($name);
         $meta       = Pi::registry('field', $this->module)->read();
-        foreach ($config as $value) {
-            if (is_string($value)) {
-                if (isset($meta[$value]) &&
-                    $meta[$value]['type'] == 'compound'
+        foreach ($config as $name => $value) {
+            if (!$value) {
+                if (isset($meta[$name]) &&
+                    $meta[$name]['type'] == 'compound'
                 ) {
-                    $compoundElements = $this->getCompoundElement($value);
+                    $compoundElements = $this->getCompoundElement($name);
                     foreach ($compoundElements as $element) {
                         if ($element) {
                             $elements[] = $element;
                         }
                     }
                     if ($withFilter) {
-                        $compoundFilters = $this->getCompoundFilter($value);
+                        $compoundFilters = $this->getCompoundFilter($name);
                         foreach ($compoundFilters as $filter) {
                             if ($filter) {
                                 $filters[] = $filter;
@@ -101,23 +104,29 @@ class Form extends AbstractApi
                         }
                     }
                 } else {
-                    $element = $this->getElement($value);
+                    $element = $this->getElement($name);
                     if ($element) {
                         $elements[] = $element;
                     }
                     if ($withFilter) {
-                        $filter = $this->getFilter($value);
+                        $filter = $this->getFilter($name);
                         if ($filter) {
                             $filters[] = $filter;
                         }
                     }
                 }
             } else {
-                if ($value['element']) {
+                if (!empty($value['element'])) {
+                    if (empty($value['element']['name']) && is_string($name)) {
+                        $value['element']['name'] = $name;
+                    }
                     $elements[] = $value['element'];
                 }
                 if ($withFilter) {
-                    if (isset($value['filter']) && $value['filter']) {
+                    if (!empty($value['filter'])) {
+                        if (empty($value['filter']['name']) && is_string($name)) {
+                            $value['filter']['name'] = $name;
+                        }
                         $filters[] = $value['filter'];
                     }
                 }
@@ -146,38 +155,71 @@ class Form extends AbstractApi
     public function loadFilters($name)
     {
         $filters    = array();
-        $filePath   = sprintf('user/config/form.%s.php', $name);
-        $file       = Pi::path('custom/module') . '/' . $filePath;
-        if (!file_exists($file)) {
-            $file = Pi::path('module') . '/' . $filePath;
-        }
-        $config     = include $file;
+        $config     = $this->loadConfig($name);
         $meta       = Pi::registry('field', $this->module)->read();
-        foreach ($config as $value) {
-            if (is_string($value)) {
-                if (isset($meta[$value]) &&
-                    $meta[$value]['type'] == 'compound'
+        foreach ($config as $name => $value) {
+            if (!$value) {
+                if (isset($meta[$name]) &&
+                    $meta[$name]['type'] == 'compound'
                 ) {
-                    $compoundFilters = $this->getCompoundFilter($value);
+                    $compoundFilters = $this->getCompoundFilter($name);
                     foreach ($compoundFilters as $filter) {
                         if ($filter) {
                             $filters[] = $filter;
                         }
                     }
                 } else {
-                    $filter = $this->getFilter($value);
+                    $filter = $this->getFilter($name);
                     if ($filter) {
                         $filters[] = $filter;
                     }
                 }
             } else {
-                if (isset($value['filter']) && $value['filter']) {
+                if (!empty($value['filter'])) {
+                    if (empty($value['filter']['name']) && is_string($name)) {
+                        $value['filter']['name'] = $name;
+                    }
                     $filters[] = $value['filter'];
                 }
             }
         }
 
         return $filters;
+    }
+
+    /**
+     * Load form specs from field config, supporting custom configs
+     *
+     * @param string $name
+     *
+     * @return array
+     */
+    protected function loadConfig($name)
+    {
+        $filePath   = sprintf('user/config/form.%s.php', $name);
+        $file       = Pi::path('custom/module') . '/' . $filePath;
+        if (!file_exists($file)) {
+            $file = Pi::path('module') . '/' . $filePath;
+        }
+        $config     = include $file;
+        $result     = array();
+        foreach ($config as $key => $value) {
+            if (false === $value) {
+                continue;
+            }
+            if (!is_string($key)) {
+                if (!$value) {
+                    continue;
+                }
+                if (is_string($value)) {
+                    $key    = $value;
+                    $value  = array();
+                }
+            }
+            $result[$key] = (array) $value;
+        }
+
+        return $result;
     }
 
     /**
