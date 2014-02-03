@@ -38,7 +38,7 @@ return array(
     // Database schema
     'schema'        => 'pi',
     // Prefix for all tables
-    'table_prefix'  => 'x83a_',
+    'table_prefix'  => 'pidb_',
     // Prefix for system tables
     // module identifiers will be used for its tables, respectively
     'core_prefix'   => 'core_'

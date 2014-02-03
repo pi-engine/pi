@@ -25,13 +25,13 @@ return array(
     // If URI is a relative one then www root URI will be prepended
     'uri'       => array(
         // WWW root URI
-        'www'       => 'http://pi.liaowei.com',
+        'www'       => 'http://pi.tld',
         // URI to access uploads directory
-        'upload'    => 'http://pi.liaowei.com/upload',
+        'upload'    => 'http://pi.tld/upload',
         // URI to access assets directory
-        'asset'     => 'http://pi.liaowei.com/asset',
+        'asset'     => 'http://pi.tld/asset',
         // URI to access static files directory
-        'static'    => 'http://pi.liaowei.com/static',
+        'static'    => 'http://pi.tld/static',
     ),
 
     // Paths to resources
@@ -39,37 +39,37 @@ return array(
     'path'      => array(
         // Sharable paths
         // WWW root path, dependent sub folders: `script`, `public`
-        'www'       => 'D:/wamp/www/pi/www',
+        'www'       => 'path/to/pi-application/www',
         // Library directory
-        'lib'       => 'D:/wamp/www/pi/lib',
+        'lib'       => 'path/to/pi-framework/lib',
         // User extension directory
-        'usr'       => 'D:/wamp/www/pi/usr',
+        'usr'       => 'path/to/pi-framework/usr',
         // Application module directory
-        'module'    => 'D:/wamp/www/pi/usr/module',
+        'module'    => 'path/to/pi-framework/usr/module',
         // Theme directory
-        'theme'     => 'D:/wamp/www/pi/usr/theme',
+        'theme'     => 'path/to/pi-framework/usr/theme',
         // Path to static files directory
-        'static'    => 'D:/wamp/www/pi/www/static',
+        'static'    => 'path/to/pi-framework/www/static',
         // Path to vendor library directory: default as `lib/vendor`
-        'vendor'    => 'D:/wamp/www/pi/lib/vendor',
+        'vendor'    => 'path/to/pi-framework/lib/vendor',
         // Path to module custom directory: default as `usr/custom`
-        'custom'    => 'D:/wamp/www/pi/usr/custom',
+        'custom'    => 'path/to/pi-framework/usr/custom',
 
         // Application specific paths
         // Path to uploads directory
-        'upload'    => 'D:/wamp/www/pi/www/upload',
+        'upload'    => 'path/to/pi-application/www/upload',
         // Path to assets directory
-        'asset'     => 'D:/wamp/www/pi/www/asset',
+        'asset'     => 'path/to/pi-application/www/asset',
         // User data directory
-        'var'       => 'D:/wamp/www/pi/var',
+        'var'       => 'path/to/pi-application/var',
 
         // Sub-paths of var
         // Path to global collective configuration directory
-        'config'    => 'D:/wamp/www/pi/var/config',
+        'config'    => 'path/to/pi-application/var/config',
         // Path to cache files directory
-        'cache'     => 'D:/wamp/www/pi/var/cache',
+        'cache'     => 'path/to/pi-application/var/cache',
         // Path to logs directory
-        'log'       => 'D:/wamp/www/pi/var/log',
+        'log'       => 'path/to/pi-application/var/log',
     ),
 
     // Paths dependent on upper paths
