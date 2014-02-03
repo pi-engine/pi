@@ -91,7 +91,7 @@ EOT;
         $patternModule = <<<'EOT'
 <li class="%s">
     <a href="%s">
-        <i class="%s"></i>
+        <i class="fa %s"></i>
         <span class="pi-modules-nav-text">%s</span>
     </a>
 </li>
@@ -127,7 +127,7 @@ EOT;
                         $pattern['module'],
                         $item['active'] ? 'active' : '',
                         $item['href'],
-                        $item['icon'] ? : 'fa fa-th',
+                        $item['icon'] ? : 'fa-th',
                         $item['label']
                     );
                 }

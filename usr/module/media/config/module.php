@@ -22,7 +22,7 @@ return array(
         'logo'          => 'image/logo.png',
         'readme'        => 'README.md',
         'clonable'      => false,
-        'icon'          => 'fa fa-picture-o'
+        'icon'          => 'fa-picture-o'
     ),
     // Author information
     'author'        => array(

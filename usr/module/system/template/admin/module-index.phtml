@@ -8,8 +8,8 @@ $this->css($this->assetModule('admin/admin.css'));
                 <th><?php echo _a('Icon'); ?></th>
                 <th style="width: 15%;"><?php echo _a('Title'); ?></th>
                 <th style="width: 10%;"><?php echo _a('Version'); ?></th>
-                <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
                 <th style="width: 30%;"><?php echo _a('Description'); ?></th>
+                <th style="width: 15%;"><?php echo _a('Last Update'); ?></th>
                 <th><?php echo _a('Action'); ?></th>
             </tr>
         </thead>
@@ -18,8 +18,7 @@ $this->css($this->assetModule('admin/admin.css'));
             <tr class="<?php if (!$module['active']) { echo 'muted system-module-disable'; } else { echo 'system-module-item'; } ?>">
                 <td>
                    <?php
-                   echo sprintf('<i class="%s fa-3x"></i>',
-                            $module['icon'] ? : 'fa fa-th');
+                   echo sprintf('<i class="fa %s fa-3x"></i>', $module['icon'] ?: 'fa-th');
                    ?>    
                 </td>
                 <td>
@@ -33,10 +32,6 @@ $this->css($this->assetModule('admin/admin.css'));
                 </td>
                 <td>
                     <?php echo $module['version']; ?>
-                </td>
-                <td>
-                    <p><?php echo $module['update']; ?></p>
-                    <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'], 'from' => 'installed')); ?>" class="invisible"><?php echo _a('Update'); ?></a>
                 </td>
                 <td>
                     <p><?php echo $module['description']; ?></p>
@@ -55,8 +50,15 @@ $this->css($this->assetModule('admin/admin.css'));
                         </dl>
                 </td>
                 <td>
+                    <p><?php echo $module['update']; ?></p>
+                    <?php
+                    /* <a href="<?php echo $this->url('', array('action' => 'update', 'id' => $module['id'], 'from' => 'installed')); ?>" class="invisible"><?php echo _a('Update'); ?></a> */
+                    ?>
+                </td>
+                <td>
                     <div class="btn-group">
                         <?php
+                        echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array('action' => 'update', 'id' => $module['id'], 'active' => 1, 'from' => 'installed')), _a('Update'));
                         if($module['name'] != 'system') {
                             if ($module['active']) {
                                 echo sprintf('<a class="btn btn-default" href="%s">%s</a>', $this->url('', array('action' => 'enable', 'id' => $module['id'], 'active' => 0, 'from' => 'installed')), _a('Disable'));

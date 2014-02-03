@@ -18,7 +18,7 @@ $this->css($this->assetModule('admin/admin.css'));
                 data-name="<?php echo $directory; ?>">
                 <td>
                     <?php
-                    echo sprintf('<i class="%s fa-3x"></i>', $module['meta']['icon'] ? : 'fa fa-th');
+                    echo sprintf('<i class="fa %s fa-3x"></i>', $module['meta']['icon'] ? : 'fa-th');
                     ?>
                 </td>
                 <td>
@@ -48,13 +48,13 @@ $this->css($this->assetModule('admin/admin.css'));
                     <div class="btn-group">
                     <?php
                         if (empty($module['meta']['installed'])) {
-                            $buttonClass = ' btn-default';
+                            $buttonClass = '';
                             $installUrl = $this->url('', array('action' => 'install', 'directory' => $directory, 'from' => 'available'));
                         } else {
                             $buttonClass = ' disabled';
                             $installUrl = 'javascript:void(0)';
                         }
-                        echo sprintf('<a class="btn%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
+                        echo sprintf('<a class="btn btn-default%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
                     ?>
                     <?php if (!empty($module['meta']['clonable'])) { ?>
                     <span class="btn btn-default module-clone" data-toggle="modal" data-target="#js-module-form" 

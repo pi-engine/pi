@@ -25,7 +25,7 @@ return array(
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
         // Logo icon
-        'icon'          => 'fa fa-tags',
+        'icon'          => 'fa-tags',
     ),
     // Author information
     'author'    => array(
