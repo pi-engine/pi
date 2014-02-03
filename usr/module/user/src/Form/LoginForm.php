@@ -13,25 +13,21 @@ use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
- * Class for initializing form of login
- *
- * @author Liu Chuang <liuchuang@eefocus.com>
+ * User login form
  */
 class LoginForm extends BaseForm
 {
     public function init()
     {
-        // Get config data.
         $config = Pi::service('module')->config('', 'user');
 
+        // Get config data.
         $this->add(array(
             'name'          => 'identity',
+            'type'          => 'Module\User\Form\Element\LoginField',
             'options'       => array(
-                'label' => __('Username'),
+                'fields'    => $config['login_field'],
             ),
-            'attributes'    => array(
-                'type'  => 'text',
-            )
         ));
 
         $this->add(array(
@@ -44,6 +40,17 @@ class LoginForm extends BaseForm
             )
         ));
 
+        if ($config['login_captcha']) {
+            $this->add(array(
+                'name'          => 'captcha',
+                'type'          => 'captcha',
+                'options'       => array(
+                    'label'     => __('Please type the word.'),
+                    'separator'         => '<br />',
+                )
+            ));
+        }
+
         if ($config['rememberme']) {
             $this->add(array(
                 'name'          => 'rememberme',
@@ -54,18 +61,6 @@ class LoginForm extends BaseForm
                 'attributes'    => array(
                     'value'         => '1',
                     'description'   => __('Remember me')
-                )
-            ));
-        }
-
-
-        if ($config['login_captcha']) {
-            $this->add(array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => __('Please type the word.'),
-                    'separator'         => '<br />',
                 )
             ));
         }

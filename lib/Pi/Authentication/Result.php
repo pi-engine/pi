@@ -20,7 +20,7 @@ use Zend\Authentication\Result as BaseResult;
 class Result extends BaseResult
 {
     /**
-     * Profile data retturned by authentication result
+     * Profile data returned by authentication result
      *
      * @var array
      */

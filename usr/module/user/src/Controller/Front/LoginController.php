@@ -64,7 +64,7 @@ class LoginController extends ActionController
     protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
-        $configs = Pi::service('registry')->config->read('user', 'account');
+        $configs = Pi::service('module')->config('', 'user');
 
         if (!empty($configs['attempts'])) {
             $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
@@ -135,6 +135,7 @@ class LoginController extends ActionController
         }
 
         $post = $this->request->getPost();
+
         $form = $this->getForm();
         $form->setData($post);
         $form->setInputFilter(new LoginFilter);
@@ -148,7 +149,19 @@ class LoginController extends ActionController
         $configs = Pi::service('module')->config();
 
         $values = $form->getData();
-        $identity = $values['identity'];
+        $identityData = (array) $values['identity'];
+        $identity = array_shift($identityData);
+        $field    = '';
+        if (!$configs['login_field']) {
+            $field = '';
+        } elseif (1 == count($configs['login_field'])) {
+            $field = current($configs['login_field']);
+        } elseif ($identityData) {
+            $field = array_shift($identityData);
+            if (!in_array($field, $configs['login_field'])) {
+                $field = '';
+            }
+        }
         $credential = $values['credential'];
 
         if (!empty($configs['attempts'])) {
@@ -169,7 +182,8 @@ class LoginController extends ActionController
 
         $result = Pi::service('authentication')->authenticate(
             $identity,
-            $credential
+            $credential,
+            $field
         );
 
         if (!$result->isValid()) {

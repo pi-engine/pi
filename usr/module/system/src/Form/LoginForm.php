@@ -42,6 +42,17 @@ class LoginForm extends BaseForm
             ),
         ));
 
+        if ($config['login_captcha']) {
+            $this->add(array(
+                'name'          => 'captcha',
+                'type'          => 'captcha',
+                'options'       => array(
+                    'label'     => __('Please type the word.'),
+                    'separator'         => '<br />',
+                )
+            ));
+        }
+
         if ($config['rememberme']) {
             $this->add(array(
                 'name'          => 'rememberme',
@@ -52,17 +63,6 @@ class LoginForm extends BaseForm
                 'attributes'    => array(
                     'value'         => '1',
                     'description'   => __('Keep me logged in.')
-                )
-            ));
-        }
-
-        if ($config['login_captcha']) {
-            $this->add(array(
-                'name'          => 'captcha',
-                'type'          => 'captcha',
-                'options'       => array(
-                    'label'     => __('Please type the word.'),
-                    'separator'         => '<br />',
                 )
             ));
         }

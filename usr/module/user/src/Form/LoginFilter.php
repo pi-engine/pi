@@ -9,28 +9,25 @@
 
 namespace Module\User\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
 
 /**
- * Class for verifying and filtering form
- *
- * @author Liu Chuang <liuchuang@eefocus.com>
+ * Filter for user login
  */
 class LoginFilter extends InputFilter
 {
     public function __construct()
     {
-        $config = Pi::service('registry')->config->read('user', 'account');
-
         $this->add(array(
             'name'          => 'identity',
             'required'      => true,
+            /*
             'filters'    => array(
                 array(
                     'name'  => 'StringTrim',
                 ),
             ),
+            */
         ));
 
         $this->add(array(
@@ -43,11 +40,17 @@ class LoginFilter extends InputFilter
             ),
         ));
 
-        if ($config['rememberme']) {
-            $this->add(array(
-                'name'  => 'rememberme',
-            ));
-        }
+        /*
+        $this->add(array(
+            'name'      => 'field',
+            'required'  => false,
+        ));
+        */
+
+        $this->add(array(
+            'name'      => 'rememberme',
+            'required'  => false,
+        ));
 
         $this->add(array(
             'name'      => 'redirect',

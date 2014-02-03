@@ -30,23 +30,23 @@
 </div>
 
 <?php
-if ($form->has('rememberme')) {
-?>
-<div class="form-group">
-    <?php
-    $rememberme = $form->get('rememberme');
-    echo $this->formElement($rememberme);
-    ?>
-</div>
-<?php } ?>
-
-<?php
 if ($form->has('captcha')) {
     ?>
     <div class="form-group">
         <?php
         $captcha = $form->get('captcha');
         echo $this->formCaptcha($captcha);
+        ?>
+    </div>
+<?php } ?>
+
+<?php
+if ($form->has('rememberme')) {
+    ?>
+    <div class="form-group">
+        <?php
+        $rememberme = $form->get('rememberme');
+        echo $this->formElement($rememberme);
         ?>
     </div>
 <?php } ?>

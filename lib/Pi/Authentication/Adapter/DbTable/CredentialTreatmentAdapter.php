@@ -9,8 +9,6 @@
 
 namespace Pi\Authentication\Adapter\DbTable;
 
-use Pi;
-
 /**
  * Pi authentication db table credential treatment adapter
  *

@@ -172,12 +172,17 @@ class Authentication extends AbstractService
      *
      * @param string $identity
      * @param string $credential
+     * @param string $field Field name for identity
      *
      * @return AuthenticationResult
      */
-    public function authenticate($identity, $credential)
+    public function authenticate($identity, $credential, $field = '')
     {
-        return $this->getStrategy()->authenticate($identity, $credential);
+        return $this->getStrategy()->authenticate(
+            $identity,
+            $credential,
+            $field
+        );
     }
 
     /**

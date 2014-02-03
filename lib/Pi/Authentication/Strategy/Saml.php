@@ -194,7 +194,7 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential)
+    public function authenticate($identity, $credential, $field = '')
     {
         throw new \Exception('Method is disabled.');
     }

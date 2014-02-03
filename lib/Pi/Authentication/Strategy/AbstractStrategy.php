@@ -159,10 +159,11 @@ abstract class AbstractStrategy
      *
      * @param string $identity
      * @param string $credential
+     * @param string $field Field name for identity
      *
      * @return AuthenticationResult
      */
-    abstract public function authenticate($identity, $credential);
+    abstract public function authenticate($identity, $credential, $field = '');
 
     /**
      * Check if authenticated and go to authentication process if not

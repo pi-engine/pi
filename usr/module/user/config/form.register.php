@@ -23,7 +23,7 @@ return array(
     // Custom field
     'credential-confirm' => array(
         'element' => array(
-            'name'          => 'credential-confirm',
+            //'name'          => 'credential-confirm',
             'options'       => array(
                 'label' => _a('Confirm credential'),
             ),
@@ -33,7 +33,7 @@ return array(
         ),
 
         'filter' => array(
-            'name'          => 'credential-confirm',
+            //'name'          => 'credential-confirm',
             'required'      => true,
             'filters'       => array(
                 array(
@@ -54,7 +54,7 @@ return array(
 
     'captcha' => !$captchaEnable ? false : array(
         'element' => array(
-            'name'          => 'captcha',
+            //'name'          => 'captcha',
             'type'          => 'captcha',
             'options'       => array(
                 'label'     => _a('Please type the word.'),

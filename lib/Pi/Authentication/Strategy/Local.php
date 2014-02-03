@@ -185,9 +185,14 @@ class Local extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential)
+    public function authenticate($identity, $credential, $field = '')
     {
         $adapter = $this->getAdapter();
+        if ($field && method_exists($adapter, 'setIdentityColumn')) {
+            $adapter->setIdentityColumn($field);
+        } else {
+            $field = '';
+        }
         $adapter->setIdentity($identity);
         $adapter->setCredential($credential);
         $result = $adapter->authenticate();
@@ -197,8 +202,13 @@ class Local extends AbstractStrategy
         }
 
         if ($result->isValid()) {
-            $this->getStorage()->write($result->getIdentity());
             $result->setData($adapter->getResultRow());
+            if (!$field) {
+                $identity = $result->getIdentity();
+            } else {
+                $identity = $result->getData($field);
+            }
+            $this->getStorage()->write($identity);
         }
 
         return $result;

@@ -16,8 +16,6 @@ use Module\User\Form\ResendActivationFilter;
 
 /**
  * Register controller
- *
- * @author Liu Chuang <liuchuang@eefocus.com>
  */
 class RegisterController extends ActionController
 {
@@ -49,10 +47,8 @@ class RegisterController extends ActionController
         // Get register form
         $form = Pi::api('form', 'user')->loadForm('register');
         $form->setAttributes(array(
-            'action'    => $this->url('', array('action' => 'index')),
+            'action' => $this->url('', array('action' => 'index')),
         ));
-        //$registeredSource = _get('app') ? : '';
-        //$form->get('registered_source')->setValue($registeredSource);
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -88,7 +84,6 @@ class RegisterController extends ActionController
             }
             $this->view()->assign(array(
                 'result'    => $result,
-                //'form'      => $form,
             ));
         }
 
@@ -133,7 +128,6 @@ class RegisterController extends ActionController
         $form->setData($post);
         if ($form->isValid()) {
             $values = $form->getData();
-            $values = $this->canonizeUser($values, 'work');
             $result = $this->completeRegister($values);
             if (!empty($result['uid'])) {
                 $form = null;
@@ -395,29 +389,6 @@ class RegisterController extends ActionController
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('register-profile-complete');
-    }
-
-    /**
-     * Canonize user compound
-     *
-     * @param $data
-     * @param $type
-     * @return mixed
-     */
-    protected function canonizeUser($data, $type)
-    {
-        if ($type == 'work') {
-            $workMeta = Pi::registry('compound_field', 'user')->read($type);
-            $workMeta = array_keys($workMeta);
-            foreach ($workMeta as $field) {
-                if (isset($data[$field])) {
-                    $data[$type][0][$field] = $data[$field];
-                    unset($data[$field]);
-                }
-            }
-        }
-
-        return $data;
     }
 
     /**

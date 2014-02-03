@@ -21,16 +21,16 @@ $category = array(
     ),
     */
     array(
-        'name'      => 'account',
-        'title'     => _t('Account'),
-    ),
-    array(
         'name'      => 'login',
         'title'     => _t('Login'),
     ),
     array(
         'name'      => 'register',
         'title'     => _t('Registration'),
+    ),
+    array(
+        'name'      => 'account',
+        'title'     => _t('Account'),
     ),
     array(
         'name'  => 'avatar',
@@ -52,6 +52,115 @@ $config = array(
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'number_int',
+    ),
+
+    // Login
+    'login_disable'     => array(
+        'title'         => _t('Login disable'),
+        'description'   => _t('Disable user login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'login',
+    ),
+
+    'login_captcha'       => array(
+        'title'         => _t('Login CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for user login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'login',
+    ),
+
+    'rememberme'        => array(
+        'title'         => _t('Remember me'),
+        'description'   => _t('Days to remember login, 0 for disable.'),
+        'value'         => 14,
+        'filter'        => 'number_int',
+        'category'      => 'login',
+    ),
+
+    'login_field'      => array(
+        'title'         => _t('Login field'),
+        'description'   => _t('Identity field(s) for authentication.'),
+        'edit'          => array(
+            'type'      => 'select',
+            'attributes'    => array(
+                'multiple'  => true,
+            ),
+            'options'   => array(
+                'value_options'   => array(
+                    'identity'  => _t('Username'),
+                    'email'     => _t('Email'),
+                ),
+            ),
+        ),
+        'filter'        => 'array',
+        'value'         => array('identity'),
+        'category'      => 'login',
+    ),
+
+    'attempts'      => array(
+        'title'         => _t('Maximum attempts'),
+        'description'   => _t('Maximum attempts allowed to try for user login'),
+        'value'         => 5,
+        'filter'        => 'number_int',
+        'category'      => 'login',
+    ),
+
+    // Register
+    'register_disable'  => array(
+        'title'         => _t('Register disable'),
+        'description'   => _t('Disable user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
+    'register_captcha'  => array(
+        'title'         => _t('Register CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for user registration'),
+        'edit'          => 'checkbox',
+        'value'         => 1,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
+    'require_register_complete' => array(
+        'title'         => _t('Register complete'),
+        'description'   => _t('Require user to complete register data in an extra form.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
+    'register_activation'  => array(
+        'title'         => _t('Activation'),
+        'description'   => _t('Activation mode for user accounts'),
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'       => array(
+                    'auto'      => _t('Automatically activated'),
+                    'email'     => _t('Activated by user email'),
+                    'approval'  => _t('Activated by admin approval'),
+                ),
+            ),
+        ),
+        'filter'        => 'string',
+        'value'         => 'email',
+        'category'      => 'register',
+    ),
+
+    'activation_expiration' => array(
+        'title'         => _t('Activation expiration'),
+        'description'   => _t('Expiration time for activation email (in hours).'),
+        'value'         => 24,
+        'filter'        => 'number_int',
+        'category'      => 'register',
     ),
 
     // User account
@@ -160,95 +269,6 @@ $config = array(
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',
         'category'      => 'account',
-    ),
-
-    // Login
-    'login_disable'     => array(
-        'title'         => _t('Login disable'),
-        'description'   => _t('Disable user login'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'login',
-    ),
-
-    'login_captcha'       => array(
-        'title'         => _t('Login CAPTCHA'),
-        'description'   => _t('Enable CAPTCHA for user login'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'login',
-    ),
-
-    'rememberme'        => array(
-        'title'         => _t('Remember me'),
-        'description'   => _t('Days to remember login, 0 for disable.'),
-        'value'         => 14,
-        'filter'        => 'number_int',
-        'category'      => 'login',
-    ),
-
-    'attempts'      => array(
-        'title'         => _t('Maximum attempts'),
-        'description'   => _t('Maximum attempts allowed to try for user login'),
-        'value'         => 5,
-        'filter'        => 'number_int',
-        'category'      => 'login',
-    ),
-
-    // Register
-    'register_disable'  => array(
-        'title'         => _t('Register disable'),
-        'description'   => _t('Disable user registration'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'register',
-    ),
-
-    'register_captcha'  => array(
-        'title'         => _t('Register CAPTCHA'),
-        'description'   => _t('Enable CAPTCHA for user registration'),
-        'edit'          => 'checkbox',
-        'value'         => 1,
-        'filter'        => 'number_int',
-        'category'      => 'register',
-    ),
-
-    'require_register_complete' => array(
-        'title'         => _t('Register complete'),
-        'description'   => _t('Require user to complete register data in an extra form.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'number_int',
-        'category'      => 'register',
-    ),
-
-    'register_activation'  => array(
-        'title'         => _t('Activation'),
-        'description'   => _t('Activation mode for user accounts'),
-        'edit'          => array(
-            'type'      => 'select',
-            'options'   => array(
-                'options'       => array(
-                    'auto'      => _t('Automatically activated'),
-                    'email'     => _t('Activated by user email'),
-                    'approval'  => _t('Activated by admin approval'),
-                ),
-            ),
-        ),
-        'filter'        => 'string',
-        'value'         => 'email',
-        'category'      => 'register',
-    ),
-
-    'activation_expiration' => array(
-        'title'         => _t('Activation expiration'),
-        'description'   => _t('Expiration time for activation email (in hours).'),
-        'value'         => 24,
-        'filter'        => 'number_int',
-        'category'      => 'register',
     ),
 
     // Avatar
