@@ -632,6 +632,7 @@ class Asset extends AbstractService
         } else {
             $path = $this->getPath($component, $type);
             try {
+                Pi::service('file')->flush($path);
                 Pi::service('file')->remove($path);
                 $status = true;
             } catch (\Exception $e) {
