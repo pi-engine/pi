@@ -19,7 +19,7 @@ return array(
         'version'       => '1.3.0-beta',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org',
-        'icon'          => 'fa fa-user',
+        'icon'          => 'fa-user',
     ),
     // Author information
     'author'    => array(

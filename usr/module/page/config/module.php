@@ -23,7 +23,7 @@ return array(
         // Demo site link, optional
         'demo'          => 'http://demo.pialog.org/demo',
 
-        'icon'          => 'fa fa-file-text-o',
+        'icon'          => 'fa-file-text-o',
 
         // Module is ready for clone? Default as false
         'clonable'      => true,

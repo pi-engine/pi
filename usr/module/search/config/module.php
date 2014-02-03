@@ -13,7 +13,7 @@ return array(
         'description'   => _a('Search service applications.'),
         'version'       => '1.0.0',
         'license'       => 'New BSD',
-        'icon'          => 'fa fa-search',
+        'icon'          => 'fa-search',
     ),
     'author'    => array(
         'Name'      => 'Taiwen Jiang',

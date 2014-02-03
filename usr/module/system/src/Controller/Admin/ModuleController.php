@@ -71,6 +71,7 @@ class ModuleController extends ActionController
             $data['description'] = $meta['description'];
             $data['author'] = $author;
             $data['active'] = isset($active[$name]) ? true : false;
+            /*
             if (empty($meta['logo'])) {
                 $data['logo'] = Pi::url('static/image/module.png');
             } elseif (empty($data['active'])) {
@@ -85,6 +86,8 @@ class ModuleController extends ActionController
                     $data['name']
                 );
             }
+            */
+            $data['icon'] = $data['icon'] ?: 'fa-th';
             if (empty($data['update'])) {
                 $data['update'] = _a('Never updated.');
             } else {
@@ -124,10 +127,13 @@ class ModuleController extends ActionController
             if (empty($meta['clonable']) && $meta['installed']) {
                 continue;
             }
+            /*
             $meta['logo'] = !empty($meta['logo'])
                 ? Pi::url('script/browse.php') . '?'
                     . sprintf('module/%s/asset/%s', $directory, $meta['logo'])
                 : Pi::url('static/image/module.png');
+            */
+            $meta['icon'] = $meta['icon'] ?: 'fa-th';
             $modules[$directory] = array(
                 'meta'      => $meta,
                 'author'    => $author,

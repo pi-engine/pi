@@ -18,7 +18,7 @@ return array(
        'version'       => '1.0.0',
        // Distribution license, required
        'license'       => 'New BSD',
-       'icon'          => 'fa fa-key',
+       'icon'          => 'fa-key',
     ),
     // Author information
     'author'    => array(

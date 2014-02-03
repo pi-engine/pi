@@ -21,7 +21,7 @@ return array(
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',
         'readme'        => 'README.md',
-        'icon'          => 'fa fa-edit',
+        'icon'          => 'fa-edit',
         'clonable'      => true,
     ),
     // Author information

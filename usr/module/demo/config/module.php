@@ -25,7 +25,7 @@ return array(
         // Demo site link, optional
         'demo'          => 'http://demo.pialog.org/demo',
         // Logo icon
-        'icon'          => 'fa fa-code',
+        'icon'          => 'fa-code',
 
         // Module is ready for clone? Default as false
         'clonable'      => true,

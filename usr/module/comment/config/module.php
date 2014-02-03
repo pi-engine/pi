@@ -19,7 +19,7 @@ return array(
         'version'       => '1.1.0',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org',
-        'icon'          => 'fa fa-comments-o'
+        'icon'          => 'fa-comments-o'
     ),
     // Author information
     'author'    => array(
