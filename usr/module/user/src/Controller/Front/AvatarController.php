@@ -35,37 +35,6 @@ class AvatarController extends ActionController
         
         return $form;
     }
-    
-    /**
-     * Get directory to save image
-     * 
-     * @param string  $section
-     * @param string  $module
-     * @param bool    $autoCreate
-     * @param bool    $autoSplit
-     * @return string 
-     */
-    protected function getTargetDir(
-        $section,
-        $module = null,
-        $autoCreate = false,
-        $autoSplit = true
-    ) {
-        $module  = $module ?: $this->getModule();
-        $config  = Pi::user()->config('');
-        $pathKey = sprintf('path_%s', strtolower($section));
-        $path    = isset($config[$pathKey]) ? $config[$pathKey] : '';
-
-        if ($autoSplit && !empty($config['sub_dir_pattern'])) {
-            $path .= '/' . date($config['sub_dir_pattern']);
-        }
-
-        if ($autoCreate) {
-            Pi::service('file')->mkdir(Pi::path($path));
-        }
-
-        return $path;
-    }
 
     /**
      * Get session instance
@@ -258,7 +227,9 @@ class AvatarController extends ActionController
         $rename   = $fakeId . '.' . $ext;
 
         // Get path to store
-        $destination = $this->getTargetDir('tmp', $module, true, false);
+        $location = $this->config('path_tmp')
+            ?: sprintf('upload/%s/tmp', $this->getModule());
+        //$destination = Pi::path($location);
 
         $uploadConfig   = Pi::service('avatar')->getOption('upload');
         $extension      = implode(',', $uploadConfig['extension']);
@@ -271,7 +242,7 @@ class AvatarController extends ActionController
             $maxSize['height'] = (int) $config['max_avatar_height'];
         }
         $upload = new UploadHandler;
-        $upload->setDestination(Pi::path($destination))
+        $upload->setDestination($location)
             ->setRename($rename)
             ->setExtension($extension);
         if ($maxFile) {
@@ -298,8 +269,9 @@ class AvatarController extends ActionController
         }
 
         $upload->receive();
-        $fileName = $destination . '/' . $rename;
-        
+        //$fileName = $upload->getDestination() . '/' . $rename;
+        $fileName = $location . '/' . $upload->getUploaded();
+
         // Resolve allowed image extension
         $imageSize    = array();
         $imageSizeRaw = getimagesize(Pi::path($fileName));

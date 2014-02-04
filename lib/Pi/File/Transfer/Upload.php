@@ -177,10 +177,12 @@ class Upload extends Transfer
     public function setDestination($value, $verify = true)
     {
         if (!Pi::service('file')->isAbsolutePath($value)) {
-            $path = Pi::path('upload') . '/' . $value;
+            $path = Pi::path($value);
+            /*
             if (!is_dir($path)) {
                 Pi::service('file')->mkdir($path);
             }
+            */
         } else {
             $path = $value;
         }
