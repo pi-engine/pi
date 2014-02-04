@@ -64,7 +64,7 @@ class Assemble extends AbstractHelper
     public function initStrategy()
     {
         // Load meta config
-        $configMeta = Pi::registry('config')->read('system', 'meta');
+        $configMeta = Pi::config('', 'system', 'meta');
         // Set head meta
         foreach ($configMeta as $key => $value) {
             if (!$value) {
@@ -74,7 +74,7 @@ class Assemble extends AbstractHelper
         }
 
         // Load general config
-        $configGeneral = Pi::registry('config')->read('system');
+        $configGeneral = Pi::config('', 'system', 'general');
 
         // Set Google Analytics scripts in case available
         if ($configGeneral['ga_account']) {

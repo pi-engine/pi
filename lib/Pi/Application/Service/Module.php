@@ -35,7 +35,7 @@ class Module extends AbstractService
         // module models
         //'model'     => array(),
         // module configs
-        'config'    => array()
+        //'config'    => array()
     );
 
     /**
@@ -95,10 +95,12 @@ class Module extends AbstractService
         foreach ($rowset as $row) {
             $meta[$row->name] = array(
                 'directory' => $row->directory,
-                'active'    => $row->active,
+                'active'    => (int) $row->active,
             );
         }
 
+        $status = Pi::service('config')->write($this->fileMeta, $meta);
+        /*
         $configFile = Pi::path('config') . '/' . $this->fileMeta;
         clearstatcache();
         if (!file_exists($configFile)) {
@@ -111,6 +113,7 @@ class Module extends AbstractService
         file_put_contents($configFile, $content);
         @chmod($configFile, intval('0444', 8));
         clearstatcache();
+        */
 
         $this->init(true);
 
@@ -177,24 +180,11 @@ class Module extends AbstractService
      * @param string $module
      *
      * @return array
+     * @deprecated
      */
-    public function config($key = null, $module = null)
+    public function config($key = '', $module = '')
     {
-        $result = null;
-        $module = $module ?: $this->currentModule;
-        if (!isset($this->container['config'][$module])) {
-            $this->container['config'][$module] =
-                Pi::registry('config')->read($module);
-        }
-        if ($key) {
-            if (isset($this->container['config'][$module][$key])) {
-                $result = $this->container['config'][$module][$key];
-            }
-        } else {
-            $result = $this->container['config'][$module];
-        }
-
-        return $result;
+        return Pi::config($key, $module);
     }
 
     /**

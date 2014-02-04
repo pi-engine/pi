@@ -32,7 +32,7 @@ class Config extends AbstractRegistry
             $module = $options['module'];
         }
         $category = null;
-        if (isset($options['category'])) {
+        if (!empty($options['category'])) {
             $category = $options['category'];
         }
 
@@ -55,15 +55,12 @@ class Config extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string        $module
-     * @param string|null   $category
+     * @param string     $module
+     * @param string    $category
      */
-    public function read($module = '', $category = null)
+    public function read($module = '', $category = '')
     {
         $module = $module ?: 'system';
-        if ('system' == $module && null === $category) {
-            $category = 'general';
-        }
         $options = compact('module', 'category');
 
         return $this->loadData($options);
@@ -74,7 +71,7 @@ class Config extends AbstractRegistry
      * @param string        $module
      * @param string|null   $category
      */
-    public function create($module = '', $category = null)
+    public function create($module = '', $category = '')
     {
         $this->clear($module);
         $this->read($module, $category);

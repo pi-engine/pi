@@ -19,7 +19,7 @@ class LoginForm extends BaseForm
 {
     public function init()
     {
-        $config = Pi::service('module')->config('', 'user');
+        $config = Pi::config('', 'user');
 
         // Get config data.
         $this->add(array(

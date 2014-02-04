@@ -11,7 +11,6 @@ namespace Module\User\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-//use Pi\Acl\Acl as AclManager;
 use Module\User\Form\LoginForm;
 use Module\User\Form\LoginFilter;
 
@@ -64,7 +63,7 @@ class LoginController extends ActionController
     protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
-        $configs = Pi::service('module')->config('', 'user');
+        $configs = Pi::config('', 'user');
 
         if (!empty($configs['attempts'])) {
             $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
@@ -146,12 +145,11 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs = Pi::service('module')->config();
-
-        $values = $form->getData();
-        $identityData = (array) $values['identity'];
-        $identity = array_shift($identityData);
-        $field    = '';
+        $configs        = Pi::config('', 'user');
+        $values         = $form->getData();
+        $identityData   = (array) $values['identity'];
+        $identity       = array_shift($identityData);
+        $field          = '';
         if (!$configs['login_field']) {
             $field = '';
         } elseif (1 == count($configs['login_field'])) {
@@ -213,9 +211,11 @@ class LoginController extends ActionController
 
         Pi::service('session')->setUser($uid);
 
+        $rememberMe = 0;
         if ($configs['rememberme'] && $values['rememberme']) {
+            $rememberMe = $configs['rememberme'] * 86400;
             Pi::service('session')->manager()
-                ->rememberme($configs['rememberme'] * 86400);
+                ->rememberme($rememberMe);
         }
         //Pi::service('user')->setPersist($result->getData());
 
@@ -230,12 +230,9 @@ class LoginController extends ActionController
         }
 
         // Trigger login event
-        $rememberTime = isset($configs['rememberme']) && $values['rememberme']
-                      ? $values['rememberme'] * 86400
-                      : 0;
         $args = array(
             'uid'           => $uid,
-            'remember_time' => $rememberTime,
+            'remember_time' => $rememberMe,
         );
         Pi::service('event')->trigger('user_login', $args);
 

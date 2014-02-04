@@ -52,7 +52,6 @@ class TestController extends ActionController
         vd($count);
         */
 
-        d(Pi::config('max_avatar_height', 'account'));
         $this->view()->setTemplate(false);
     }
 

@@ -210,14 +210,14 @@ class Mail extends AbstractService
     {
         $message = new MailHandler\Message;
         $sender = array(
-            'mail'  => Pi::config('adminmail', 'mail'),
-            'name'  => Pi::config('adminname', 'mail') ?: null
+            'mail'  => Pi::config('adminmail'),
+            'name'  => Pi::config('adminname') ?: null
         );
         if ($sender['mail']) {
             $message->setSender($sender['mail'], $sender['name']);
             $message->setFrom($sender['mail'], $sender['name']);
         }
-        $encoding = Pi::config('mail_encoding', 'mail');
+        $encoding = Pi::config('mail_encoding');
         if ($encoding) {
             $message->setEncoding($encoding);
         }
@@ -343,13 +343,11 @@ class Mail extends AbstractService
     {
         // Bind system variables
         $systemVars = array(
-            'site_adminmail'    => _sanitize(Pi::config('adminmail', 'mail')),
-            'site_adminname'    => _sanitize(Pi::config('adminname', 'mail')),
+            'site_adminmail'    => _sanitize(Pi::config('adminmail')),
+            'site_adminname'    => _sanitize(Pi::config('adminname')),
             'site_name'         => _sanitize(Pi::config('sitename')),
             'site_slogan'       => _sanitize(Pi::config('slogan')),
-            'site_description'  => _sanitize(
-                Pi::config('description', 'meta')
-            ),
+            'site_description'  => _sanitize(Pi::config('description')),
             'site_url'          => Pi::url('www', true),
         );
         $vars = array_merge($systemVars, $vars);

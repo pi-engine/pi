@@ -38,7 +38,7 @@ class IndexController extends ActionController
             $model->update(array('clicks' => new Expression('`clicks` + 1')),
                            array('id' => $row->id));
             // Module config 
-            $config = Pi::service('registry')->config->read($this->getModule()); 
+            $config = Pi::config('', $this->getModule());
             // Set view
             $this->view()->headTitle($row->seo_title);
             $this->view()->headdescription($row->seo_description, 'set');

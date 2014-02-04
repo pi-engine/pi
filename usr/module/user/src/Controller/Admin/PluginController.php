@@ -36,7 +36,7 @@ class PluginController extends ActionController
     public function timelineAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         // Get list

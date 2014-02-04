@@ -161,7 +161,7 @@ class PostController extends ActionController
             if ($form->isValid()) {
                 $values = $form->getData();
                 if (empty($values['id'])) {
-                    if (Pi::config()->module('auto_approve', 'comment')) {
+                    if (Pi::config('auto_approve', 'comment')) {
                         $values['active'] = 1;
                     }
                     $values['uid'] = Pi::service('user')->getId();

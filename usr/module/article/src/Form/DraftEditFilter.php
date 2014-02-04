@@ -77,7 +77,7 @@ class DraftEditFilter extends InputFilter
     protected function getFilterParameters()
     {
         $module = Pi::service('module')->current();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
 
         $parameters = array(
             'subject'       => array(

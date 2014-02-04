@@ -76,7 +76,7 @@ class DraftController extends ActionController
     protected function setModuleConfig()
     {
         $module        = Pi::service('module')->current();
-        $config        = Pi::service('module')->config('', $module);
+        $config        = Pi::config('', $module);
         $imageExt      = $config['image_extension'];
         $mediaExt      = $config['media_extension'];
         $attachmentExt = array_diff(
@@ -123,7 +123,7 @@ class DraftController extends ActionController
             'message'   => array(),
             'data'      => array(),
         );
-        $config       = Pi::service('module')->config('', $this->getModule());
+        $config       = Pi::config('', $this->getModule());
         $modelArticle = $this->getModel('article');
 
         // Validate subject
@@ -895,7 +895,7 @@ class DraftController extends ActionController
         $this->view()->assign(array(
             'title'    => __('Create Article'),
             'form'     => $form,
-            'config'   => Pi::service('module')->config('', $this->getModule()),
+            'config'   => Pi::config('', $this->getModule()),
             'elements' => $options['elements'],
             'rules'    => $rules,
             'approve'  => $approve,
@@ -1128,7 +1128,7 @@ class DraftController extends ActionController
             'images'         => $images,
             'featureImage'   => $featureImage,
             'featureThumb'   => $featureThumb,
-            'config'         => Pi::service('module')->config('', $module),
+            'config'         => Pi::config('', $module),
             'from'           => $this->params('from', ''),
             'elements'       => $elements,
             'status'         => $row->article ? Article::FIELD_STATUS_PUBLISHED : $row->status,
@@ -1489,7 +1489,7 @@ class DraftController extends ActionController
             'details'     => $details,
             'page'        => $page,
             'showTitle'   => isset($showTitle) ? $showTitle : null,
-            'config'      => Pi::service('module')->config('', $module),
+            'config'      => Pi::config('', $module),
         ));
 
         $this->view()->setTemplate('article-detail');

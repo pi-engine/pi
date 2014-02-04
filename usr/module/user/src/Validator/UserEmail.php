@@ -92,7 +92,7 @@ class UserEmail extends AbstractValidator
     public function setConfigOption()
     {
         $this->options = array(
-            'backlist'         => Pi::service('module')->config('email_backlist', 'user'),
+            'backlist'         => Pi::config('email_backlist', 'user'),
             'checkDuplication' => true,
         );
 

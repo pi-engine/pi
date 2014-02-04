@@ -15,6 +15,59 @@ use Pi;
 /**
  * Configuration handling service
  *
+ * Sample code
+ *
+ * ```
+ *  // Get a system config
+ *  $value = Pi::config(<name>);
+ *
+ *  // Get a config of a module
+ *  $value = Pi::config(<name>, <module>);
+ *
+ *  // Get a category of system configs
+ *  $values = Pi::config('', '', <categoryOrDomain>);
+ *
+ *  // Get a category of configs of a module
+ *  $values = Pi::config('', <module>, <categoryOrDomain>);
+ *
+ *  // Get all system configs
+ *  $values = Pi::config('');
+ *
+ *  // Get all configs of a module
+ *  $values = Pi::config('', <module>);
+ *
+ *  // Set a system config
+ *  Pi::config()->set(<name>, <value>);
+ *
+ *  // Set a system config to a category
+ *  Pi::config()->set(<name>, <value>, <category>);
+ *
+ *  // Set a system config to a category
+ *  Pi::config()->set(<name>, <value>, <category>);
+ *
+ *  // Set system configs to a category
+ *  Pi::config()->set(<configs>, <category>);
+ *  Pi::config()->setDomain(<configs>, <category>);
+ *
+ *  // Unset system configs from a category
+ *  Pi::config()->unsetDomain(<category>);
+ *
+ *  // Load system configs to a category
+ *  Pi::config()->loadDomain(<category>);
+ *
+ *  // Load configs from a file, checking `var/config/custom/<file>` then `var/config/<file>`
+ *  $configs = Pi::config()->load(<file-name>);
+ *
+ *  // Load configs from a file, only from `var/config/<file>`
+ *  $configs = Pi::config()->load(<file-name>, false);
+ *
+ *  // Write configs to `var/config/<file>`
+ *  Pi::config()->load(<[data]>, <file-name>);
+ *
+ *  // Write configs to `var/config/custom/<file>`
+ *  Pi::config()->load(<[data]>, <file-name>, true);
+ * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Config extends AbstractService
@@ -37,15 +90,18 @@ class Config extends AbstractService
     protected $customLocation = '';
 
     /**
-     * Container for config data:
-     *
-     * - Global general config
-     * - Domain config
+     * Container for system config data:
      *
      * @var array
      */
-    protected $configs = array(
-    );
+    protected $configs = array();
+
+    /**
+     * Container for system config-domain map
+     *
+     * @var array  `<domain> => array(<config>)`
+     */
+    protected $configsDomain = array();
 
     /**
      * {@inheritDoc}
@@ -73,73 +129,133 @@ class Config extends AbstractService
      * @param string $module
      *
      * @return mixed
+     * @deprecated
      */
     public function module($name = '', $module = '')
     {
-        $moduleConfig = Pi::service('module')->config($name, $module);
-
-        return $moduleConfig;
+        $module = $module ?: Pi::service('module')->current();
+        return $this->get($name, $module);
     }
 
     /**
-     * Get a config by name and its domain
+     * Get a config by name from a module,
+     * or a category of configs if name not specified
      *
      * @param string    $name       Name of the config element
-     * @param string    $domain     Configuration domain
-     * @return mixed    configuration value
+     * @param string    $module     Module
+     * @param string    $domain     Domain (category) name
+     *
+     * @return mixed|array Configuration value(s)
      */
-    public function get($name, $domain = null)
+    public function get($name, $module = '', $domain = '')
     {
-        $value = null;
-        $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
-
-        if (!isset($this->configs[$domain])) {
-            $this->loadDomain($domain);
-        }
-
-        if (isset($this->configs[$domain])
-            && isset($this->configs[$domain][$name])
-        ) {
-            $value = $this->configs[$domain][$name];
+        $module = $module ?: 'system';
+        if ('system' == $module) {
+            $value = $this->getSystemConfig($name, $domain);
+        } else {
+            $configs = Pi::registry('config')->read($module, $domain);
+            if ($name) {
+                $value = isset($configs[$name]) ? $configs[$name] : null;
+            } else {
+                $value = $configs;
+            }
         }
 
         return $value;
     }
 
     /**
-     * Set a config
+     * Get a system config
      *
-     * @param string $name       Name of the config element
-     * @param mixed  $value
+     * @param string    $name       Name of the config element
+     * @param string    $domain     Domain (category) name
+     *
+     * @return mixed|array    configuration value
+     */
+    public function getSystemConfig($name, $domain = '')
+    {
+        if ($domain && !isset($this->configsDomain[$domain])) {
+            $this->loadDomain($domain);
+        }
+        if ($name) {
+            $result = isset($this->configs[$name])
+                ? $this->configs[$name] : null;
+        } else {
+            $result = array();
+            if ($domain) {
+                if (isset($this->configsDomain[$domain])) {
+                    foreach ($this->configsDomain[$domain] as $key) {
+                        if (isset($this->configs[$key])) {
+                            $result[$key] = $this->configs[$key];
+                        } else {
+                            $result[$key] = null;
+                        }
+                    }
+                }
+            } else {
+                $result = $this->configs;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Set a config, or a category of configs
+     *
+     * @param string|array  $name Name of the config element, or associative configs
+     * @param mixed|string  $value Config value or config domain if first arg is array
      * @param string $domain     Configuration domain
      *
      * @return $this
      */
-    public function set($name, $value, $domain = null)
+    public function set($name, $value = '', $domain = '')
     {
-        $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
-        $this->configs[$domain][$name] = $value;
+        if (is_scalar($name)) {
+            $configs    = array($name => $value);
+        } else {
+            $configs    = $name;
+            $domain     = $value;
+        }
+        $this->setDomain($configs, $domain);
 
         return $this;
     }
 
     /**
-     * Set configuration data
+     * Set a category of configs
+     *
+     * @param array $configs Associative configs
+     * @param string $domain     Configuration domain
+     *
+     * @return $this
+     * @deprecated
+     */
+    public function setConfigs($configs, $domain = '')
+    {
+        return $this->set($configs, $domain);
+    }
+
+    /**
+     * Set configuration data to a domain (category)
      *
      * @param array     $configs    Associative array of config data
      * @param string    $domain     Configuration domain
+     *
      * @return $this
      */
-    public function setConfigs($configs, $domain = null)
+    public function setDomain($configs, $domain = '')
     {
-        $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
-        if (isset($this->configs[$domain])) {
-            $this->configs[$domain] = array_merge(
-                $this->configs[$domain],
-                $configs
-            );
-        } else {
-            $this->configs[$domain] = $configs;
+        $this->configs = array_replace($this->configs, $configs);
+        if ($domain) {
+            if (isset($this->configsDomain[$domain])) {
+                $this->configsDomain[$domain] = array_merge(
+                    $this->configsDomain[$domain],
+                    array_keys($configs)
+                );
+            } else {
+                $this->configsDomain[$domain] = array_keys($configs);
+            }
         }
 
         return $this;
@@ -151,28 +267,37 @@ class Config extends AbstractService
      * @param string    $domain     Configuration domain
      * @return $this
      */
-    public function unsetDomain($domain = null)
+    public function unsetDomain($domain = '')
     {
-        $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
-        if (isset($this->configs[$domain])) {
-            $this->configs[$domain] = null;
+        if ($domain) {
+            if (isset($this->configsDomain[$domain])) {
+                foreach ($this->configsDomain[$domain] as $key) {
+                    if (isset($this->configs[$key])) {
+                        unset($this->configs[$key]);
+                    }
+                }
+                $this->configsDomain[$domain] = array();
+            }
+        } else {
+            $this->configs          = array();
+            $this->configsDomain    = array();
         }
 
         return $this;
     }
 
     /**
-     * Load configuration data of a domain from database
+     * Load system configuration data of a domain from database
      *
      * @param string    $domain     Configuration domain
+     *
      * @return $this
      */
-    public function loadDomain($domain = null)
+    public function loadDomain($domain = '')
     {
-        $domain = (null === $domain) ? static::DEFAULT_DOMAIN : $domain;
         // Load data from cache
-        $this->setConfigs(
-            (array) Pi::registry('config')->read('system', $domain),
+        $this->setDomain(
+            Pi::registry('config')->read('system', $domain),
             $domain
         );
 
@@ -197,14 +322,12 @@ class Config extends AbstractService
         $file = '';
         if ($checkCustom) {
             $file = $this->getPath($configFile, true);
-            //$file = $this->customLocation . '/' . $configFile;
             if (!file_exists($file)) {
                 $file = '';
             }
         }
         if (!$file) {
             $file = $this->getPath($configFile);
-            //$file = $this->configLocation . '/' . $configFile;
             if (!file_exists($file)) {
                 $file = '';
             }
@@ -230,9 +353,22 @@ class Config extends AbstractService
         if ('.php' != substr($file, -4)) {
             $file .= '.php';
         }
-        //$path = $toCustom ? $this->customLocation : $this->configLocation;
-        //$file = $path . '/' . $file;
         $file = $this->getPath($file, $toCustom);
+
+        try {
+            if (!Pi::service('file')->exists($file)) {
+                Pi::service('file')->touch($file);
+            } elseif (!is_writable($file)) {
+                Pi::service('file')->chmod($file, intval('0777', 8));
+            }
+        } catch (\Exception $e) {
+            trigger_error(
+                'Config file `%s` not writable: ' . $e->getMessage(),
+                $file
+            );
+
+            return false;
+        }
 
         $content = '<?php' . PHP_EOL
             . '// Generated on ' . date('Y-m-d H:i:s') . PHP_EOL

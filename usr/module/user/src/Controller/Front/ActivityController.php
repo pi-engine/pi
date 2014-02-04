@@ -29,7 +29,7 @@ class ActivityController extends ActionController
         $name     = _get('name');
         $uid      = _get('uid');
         $ownerUid = Pi::user()->getId();
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $isOwner  = 0;
 
         if (!$uid && !$ownerUid) {

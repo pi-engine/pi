@@ -168,13 +168,13 @@ class Model
     public function initialize()
     {
         $this->assign(array(
-            'copyright'     => Pi::config('copyright', 'meta')
-                ?: Pi::config('sitename'),
-            'description'   => Pi::config('description', 'meta')
-                ?: Pi::config('slogan'),
+            'copyright'     => Pi::config('copyright')
+                    ?: Pi::config('sitename'),
+            'description'   => Pi::config('description')
+                    ?: Pi::config('slogan'),
             'authors'       => array(
                 array(
-                    'name'      => Pi::config('author', 'meta'),
+                    'name'      => Pi::config('author'),
                     'email'     => Pi::config('adminmail'),
                 ),
             ),

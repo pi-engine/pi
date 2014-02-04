@@ -69,7 +69,7 @@ class LoginController extends LoginControllerFront
             return;
         }
 
-        $configs = Pi::registry('config')->read('', 'user');
+        $configs = Pi::user()->config('');
 
         return $configs;
     }

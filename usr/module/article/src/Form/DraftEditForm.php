@@ -173,7 +173,7 @@ class DraftEditForm extends BaseForm
     protected function getFormParameters()
     {
         $module = Pi::service('module')->current();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         
         switch ($config['markup']) {
             case 'html':

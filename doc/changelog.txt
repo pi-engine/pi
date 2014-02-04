@@ -5,6 +5,8 @@ Jan 1st, 2014
 ============
 * Refactored API calls to be compatible with registry and model calls: changed `Pi::api(<module>)` and `Pi::api(<module>, <api>)` to `Pi::api(<api>, <module>)`
 * Added built-in support for module custom with build metadata versioning
+* Added built-in support for module and theme custom asset
+* Simplified config API with `Pi::config()`
 
 
 Pi 2.3.0
@@ -15,7 +17,7 @@ Dec 3rd, 2013
 * Modified config files: `var/config/service.authentication.php`; `var/config/service.user.php`
 * Added config for PHP-CS-Fixer: .php_cs
 * Moved timezone initialization from `Pi` class to `boot.php` for PSR "side effect" compliance
-* Modified boot file conftent: `boot.php`
+* Modified boot file content: `boot.php`
 * Changed `Pi::registry` API to `Pi::entity`
 * Added API `Pi::registry()` as alias for `Pi::service('registry')->handler()`
 * Added API `Pi::api()` as alias for `Pi::service('api')->handler()`

@@ -191,9 +191,9 @@ class Module
         $events->attach('start', array($this, 'loadConfig'));
         $events->attach('start', array($this, 'clearCache'));
         $events->attach('finish', array($this, 'clearCache'));
-        //$events->attach('finish', array($this, 'updateMeta'));
-        $events->attach('install.post', array($this, 'updateMeta'), 9999);
-        $events->attach('uninstall.post', array($this, 'updateMeta'), 9999);
+        $events->attach('finish', array($this, 'updateMeta'));
+        //$events->attach('install.post', array($this, 'updateMeta'), 9999);
+        //$events->attach('uninstall.post', array($this, 'updateMeta'), 9999);
     }
 
     /**

@@ -260,7 +260,7 @@ class SetupController extends ActionController
         $module = $this->getModule();
         $this->view()->assign(array(
             'form'      => $form,
-            'config'    => Pi::service('module')->config('', $module),
+            'config'    => Pi::config('', $module),
             'elements'  => $options['elements'],
             'rules'     => $rules,
             'approve'   => $approve,

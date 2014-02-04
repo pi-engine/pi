@@ -212,7 +212,7 @@ class Pi
         // Load engine global config
         $engineConfig = static::config()->load('engine.php');
         if (isset($engineConfig['config'])) {
-            static::config()->setConfigs($engineConfig['config']);
+            static::config()->set($engineConfig['config']);
         }
 
         // Initialize Persist handler
@@ -525,18 +525,20 @@ class Pi
      * Load a config by name or return config handler if name is not specified
      *
      * @param string    $name       Name of the config element
-     * @param string    $domain     Configuration domain
+     * @param string    $module     Module name, default as `system`
+     * @param string    $domain     Configuration domain(category)
+     *
      * @return Config|mixed    config value or config handler if $name not specified
      * @api
      */
-    public static function config($name = null, $domain = null)
+    public static function config($name = '', $module = '', $domain = '')
     {
         // Return config service
-        if (null === $name) {
+        if (0 == func_num_args()) {
             return static::service('config');
         }
         // Read a config
-        $value = static::service('config')->get($name, $domain);
+        $value = static::service('config')->get($name, $module, $domain);
 
         return $value;
     }

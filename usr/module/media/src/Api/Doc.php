@@ -137,7 +137,7 @@ class Doc extends AbstractApi
                     'destination'   => $destination,
                     'rename'        => $rename,
                 ));
-                $maxSize = Pi::service('module')->config(
+                $maxSize = Pi::config(
                     'max_size',
                     $this->module
                 );

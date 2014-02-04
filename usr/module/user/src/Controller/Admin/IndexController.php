@@ -39,7 +39,7 @@ class IndexController extends ActionController
     public function allAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $condition['active']        = _get('active') ?: '';
@@ -75,7 +75,7 @@ class IndexController extends ActionController
     public function activatedAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $condition['activated']     = 'activated';
@@ -113,7 +113,7 @@ class IndexController extends ActionController
     public function pendingAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $condition['activated']     = 'pending';
@@ -163,7 +163,7 @@ class IndexController extends ActionController
         $roles      = _post('roles');
 
         /*
-        $configs = Pi::service('module')->config('', 'user');
+        $configs = Pi::config('', 'user');
         // Check username
         if (strlen($identity) > $configs['uname_max'] ||
             strlen($identity) < $configs['uname_min']
@@ -328,7 +328,7 @@ class IndexController extends ActionController
         }
 
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         list($users, $count) = $this->getUsers($condition, $limit, $offset);

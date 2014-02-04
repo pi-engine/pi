@@ -29,7 +29,7 @@ class RegisterController extends ActionController
      */
     public function indexAction()
     {
-        if (Pi::config('register_disable', 'user')) {
+        if (Pi::service('user')->config('register_disable')) {
             $this->jump(
                 array('route' => 'home'),
                 __('Registration is disabled. Please come back later.'),
@@ -74,7 +74,7 @@ class RegisterController extends ActionController
      */
     public function processAction()
     {
-        if (Pi::config('register_disable', 'user')) {
+        if (Pi::user()->config('register_disable')) {
             $this->redirect()->toRoute('home');
 
             return;

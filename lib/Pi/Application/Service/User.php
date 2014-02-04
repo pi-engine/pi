@@ -158,6 +158,24 @@ class User extends AbstractService
     );
 
     /**
+     * Get config(s)
+     *
+     * @param string $name
+     *
+     * @return mixed|null|array
+     */
+    public function config($name = '')
+    {
+        if (Pi::service('module')->isActive('user')) {
+            $config = Pi::config($name, 'user');
+        } else {
+            $config = Pi::config($name, 'system', 'user');
+        }
+
+        return $config;
+    }
+
+    /**
      * Set service adapter
      *
      * @param AbstractAdapter $adapter
@@ -478,89 +496,6 @@ class User extends AbstractService
     }
 
     /**
-     * Get get resource handler or user variables
-     *
-     * @param string $var
-     * @return AbstractResource|mixed
-     */
-    public function __get($var)
-    {
-        /*
-        switch ($var) {
-            // User activity
-            case 'activity':
-            // User data
-            case 'data':
-            // User message
-            case 'message':
-            // User timeline
-            case 'timeline':
-                $result = $this->getResource($var);
-                break;
-            // Avatar
-            case 'avatar':
-                $result = Pi::service('avatar')->setUser($this->getUser());
-                break;
-            // User profile field
-            default:
-                $result = $this->getAdapter()->{$var};
-                break;
-        }
-        */
-
-        $result = $this->getAdapter()->{$var};
-
-        return $result;
-    }
-
-    /**
-     * Method adapter allows a shortcut
-     *
-     * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
-     *
-     * @param  string  $method
-     * @param  array  $args
-     * @return mixed
-     */
-    public function __call($method, $args)
-    {
-        /*
-        switch ($method) {
-            // User activity
-            case 'activity':
-            // User data
-            case 'data':
-            // User message
-            case 'message':
-            // User timeline
-            case 'timeline':
-                $result = $this->getResource($method, $args);
-                break;
-            // Avatar
-            case 'avatar':
-                $result = Pi::service('avatar')->setUser($this->getUser());
-                if ($args) {
-                    $result = call_user_func_array(array($result,'get'), $args);
-                }
-                break;
-            // User profile adapter methods
-            default:
-                $result = call_user_func_array(
-                    array($this->getAdapter(), $method),
-                    $args
-                );
-                break;
-        }
-        */
-
-        $result = call_user_func_array(
-            array($this->getAdapter(), $method),
-            $args
-        );
-        return $result;
-    }
-
-    /**
      * Set user persist profile
      *
      * Persistent user profile data
@@ -649,6 +584,89 @@ class User extends AbstractService
             }
         }
 
+        return $result;
+    }
+
+    /**
+     * Get get resource handler or user variables
+     *
+     * @param string $var
+     * @return AbstractResource|mixed
+     */
+    public function __get($var)
+    {
+        /*
+        switch ($var) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($var);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                break;
+            // User profile field
+            default:
+                $result = $this->getAdapter()->{$var};
+                break;
+        }
+        */
+
+        $result = $this->getAdapter()->{$var};
+
+        return $result;
+    }
+
+    /**
+     * Method adapter allows a shortcut
+     *
+     * Call APIs defined in {@link Pi\User\Adapter\AbstractAdapter}
+     *
+     * @param  string  $method
+     * @param  array  $args
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        /*
+        switch ($method) {
+            // User activity
+            case 'activity':
+            // User data
+            case 'data':
+            // User message
+            case 'message':
+            // User timeline
+            case 'timeline':
+                $result = $this->getResource($method, $args);
+                break;
+            // Avatar
+            case 'avatar':
+                $result = Pi::service('avatar')->setUser($this->getUser());
+                if ($args) {
+                    $result = call_user_func_array(array($result,'get'), $args);
+                }
+                break;
+            // User profile adapter methods
+            default:
+                $result = call_user_func_array(
+                    array($this->getAdapter(), $method),
+                    $args
+                );
+                break;
+        }
+        */
+
+        $result = call_user_func_array(
+            array($this->getAdapter(), $method),
+            $args
+        );
         return $result;
     }
 }

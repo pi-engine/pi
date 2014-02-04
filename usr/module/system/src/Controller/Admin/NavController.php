@@ -90,8 +90,8 @@ class NavController extends ActionController
         $modules[''] = array('title' => _a('Custom'));
 
         $navGlobal = array(
-            'front' => Pi::config('nav_front', ''),
-            'admin' => Pi::config('nav_admin', ''),
+            'front' => Pi::config('nav_front'),
+            'admin' => Pi::config('nav_admin'),
         );
         $navModule = array(
             'front' => array(),
@@ -294,8 +294,8 @@ class NavController extends ActionController
     {
         $nav = $this->params('name');
         $navigation = array(
-            'front' => Pi::config('nav_front', ''),
-            'admin' => Pi::config('nav_admin', ''),
+            'front' => Pi::config('nav_front'),
+            'admin' => Pi::config('nav_admin'),
         );
         if ($nav == $navigation['front'] || $nav == $navigation['admin']) {
             $result = array(

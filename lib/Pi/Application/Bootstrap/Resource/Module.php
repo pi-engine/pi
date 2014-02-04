@@ -45,7 +45,7 @@ class Module extends AbstractResource
 
         // Load module theme
         if ('front' == $this->application->getSection()) {
-            $themes = Pi::config('theme_module', '');
+            $themes = Pi::config('theme_module');
             if (!empty($themes[$module])) {
                 Pi::service('theme')->setTheme($themes[$module]);
             }

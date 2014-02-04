@@ -260,7 +260,7 @@ class Api extends AbstractApi
         } else {
             $params = (array) $routeMatch;
         }
-        $limit = Pi::config()->module('leading_limit', 'comment') ?: 5;
+        $limit = Pi::config('leading_limit', 'comment') ?: 5;
 
         // Look up root against route data
         $root           = array();
@@ -1106,7 +1106,7 @@ class Api extends AbstractApi
         $select->group('post.root');
         $select->where($where);
         $limit = (null === $limit)
-            ? Pi::config()->module('list_limit', 'comment')
+            ? Pi::config('list_limit', 'comment')
             : (int) $limit;
         $order = (null === $order) ? 'post.time desc' : $order;
         if ($limit) {
@@ -1238,7 +1238,7 @@ class Api extends AbstractApi
 
         $select->where($where);
         $limit = (null === $limit)
-            ? Pi::config()->module('list_limit', 'comment')
+            ? Pi::config('list_limit', 'comment')
             : (int) $limit;
         if ($limit) {
             $select->limit($limit);

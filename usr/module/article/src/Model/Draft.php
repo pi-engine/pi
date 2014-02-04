@@ -78,13 +78,12 @@ class Draft extends Model
         );
 
         $module = $module ?: Pi::service('module')->current();
-        $moduleConfig = Pi::service('registry')->config->read($module);
 
-        if ($moduleConfig['enable_summary']) {
+        if (Pi::config('enable_summary', $module)) {
             $result[] = 'summary';
         }
 
-        if ($moduleConfig['enable_tag']) {
+        if (Pi::config('enable_tag', $module)) {
             $result[] = 'tag';
         }
 

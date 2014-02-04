@@ -85,8 +85,8 @@ class Password extends AbstractValidator
     public function setConfigOption()
     {
         $this->options = array(
-            'min'       => Pi::service('module')->config('password_min', 'user'),
-            'max'       => Pi::service('module')->config('password_max', 'user'),
+            'min'       => Pi::config('password_min', 'user'),
+            'max'       => Pi::config('password_max', 'user'),
         );
 
         return $this;

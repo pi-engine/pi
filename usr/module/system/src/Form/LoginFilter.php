@@ -44,7 +44,7 @@ class LoginFilter extends InputFilter
             ),
         ));
 
-        if (Pi::config('rememberme', 'user')) {
+        if (Pi::service('user')->config('rememberme')) {
             $this->add(array(
                 'name'  => 'rememberme',
             ));

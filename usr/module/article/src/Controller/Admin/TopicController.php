@@ -58,7 +58,7 @@ class TopicController extends ActionController
         $page       = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_management'] ?: 20;
         $offset = ($page - 1) * $limit;
         $where  = array();
@@ -358,7 +358,7 @@ class TopicController extends ActionController
     public function addAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -410,7 +410,7 @@ class TopicController extends ActionController
     public function editAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -502,7 +502,7 @@ class TopicController extends ActionController
     public function listTopicAction()
     {
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_management'] ?: 20;
         $page   = $this->params('p', 1);
         $page   = $page > 0 ? $page : 1;

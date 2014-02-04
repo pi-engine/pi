@@ -49,7 +49,7 @@ class Api extends AbstractApi
         if (is_array($tags)) {
             if (!$delimiter) {
                 // Canonize delimiters
-                $delimiter = Pi::service('module')->config('tag_delimiter', $this->module);
+                $delimiter = Pi::config('tag_delimiter', $this->module);
                 if (!$delimiter) {
                     $delimiters = array('s');
                 } else {
@@ -81,7 +81,7 @@ class Api extends AbstractApi
             $string = $tags;
 
             // Canonize delimiters
-            $delimiter = Pi::service('module')->config('tag_delimiter', $this->module);
+            $delimiter = Pi::config('tag_delimiter', $this->module);
             if (!$delimiter) {
                 $delimiters = array('s');
             } else {
@@ -89,7 +89,7 @@ class Api extends AbstractApi
             }
 
             // Pre-fetch terms quoted by `"`
-            $quote  = Pi::service('module')->config('tag_quote', $this->module);
+            $quote  = Pi::config('tag_quote', $this->module);
             if ($quote) {
                 //$pattern = '`(?:(?:"(?:\\"|[^"])+")|(?:\'(?:\\\'|[^\'])+\'))`is';
                 if (in_array('s', $delimiters)) {
@@ -116,7 +116,7 @@ class Api extends AbstractApi
         $tags = array_unique(array_filter(array_map('trim', $tags)));
 
         // Discard short terms
-        $length = Pi::service('module')->config('min_length', $this->module) ?: 2;
+        $length = Pi::config('min_length', $this->module) ?: 2;
         $terms = array();
         array_walk($tags, function ($term) use (&$terms, $length) {
             if (strlen($term) >= $length) {

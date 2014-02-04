@@ -62,7 +62,7 @@ class CategoryController extends ActionController
         $form->setData(array('fake_id' => uniqid()));
 
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -113,7 +113,7 @@ class CategoryController extends ActionController
     public function editAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         

@@ -145,7 +145,7 @@ class Media
         $autoSplit = true
     ) {
         $module  = $module ?: Pi::service('module')->current();
-        $config  = Pi::service('module')->config('', $module);
+        $config  = Pi::config('', $module);
         $pathKey = sprintf('path_%s', strtolower($section));
         $path    = isset($config[$pathKey]) ? $config[$pathKey] : '';
 

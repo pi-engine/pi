@@ -48,7 +48,7 @@ class AuthorController extends ActionController
     public function addAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -102,7 +102,7 @@ class AuthorController extends ActionController
     public function editAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -400,7 +400,7 @@ class AuthorController extends ActionController
         Pi::service('log')->mute();
         
         $module   = $this->getModule();
-        $config   = Pi::service('module')->config('', $module);
+        $config   = Pi::config('', $module);
 
         $return   = array('status' => false);
         $fakeId   = $this->params('fake_id', 0);

@@ -85,7 +85,7 @@ class MediaController extends FrontMedia
         $page  = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_all'] ?: 40;
         
         $resultSet = Media::getList($where, $page, $limit, null, null, $module);
@@ -137,7 +137,7 @@ class MediaController extends FrontMedia
         }
         
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         
         $media = $this->getModel('media')->find($id);
         
@@ -172,7 +172,7 @@ class MediaController extends FrontMedia
     public function addAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -219,7 +219,7 @@ class MediaController extends FrontMedia
     public function editAction()
     {
         $module  = $this->getModule();
-        $configs = Pi::service('module')->config('', $module);
+        $configs = Pi::config('', $module);
         $configs['max_media_size'] = Pi::service('file')
             ->transformSize($configs['max_media_size']);
         
@@ -369,7 +369,7 @@ class MediaController extends FrontMedia
         }
         
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         
         // Get image
         $images = array_filter(explode(',', $config['image_format']));

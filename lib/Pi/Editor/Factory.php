@@ -28,12 +28,12 @@ class Factory
     public static function load($type = null, $options = array())
     {
         if (empty($type)) {
-            $type = Pi::config('editor', 'text') ?: 'pi';
+            $type = Pi::config('editor') ?: 'pi';
         }
         $editor = '';
         switch ($type) {
             case 'html':
-                $editor = Pi::config('editor', 'text') ?: 'ckeditor';
+                $editor = Pi::config('editor') ?: 'ckeditor';
                 break;
             /*
             case 'markitup':
@@ -41,7 +41,7 @@ class Factory
             case 'wiki':
             case 'bbcode':
                 $options['set'] = $type;
-                $editor = Pi::config('editor', 'text') ?: 'ckeditor';
+                $editor = Pi::config('editor') ?: 'ckeditor';
                 break;
             */
             default:

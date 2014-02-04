@@ -101,7 +101,7 @@ class MaintenanceController extends ActionController
         $sort = _get('sort') ?: 'time_created';
 
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $uids   = $this->getUids($sort, $limit, $offset);
@@ -130,7 +130,7 @@ class MaintenanceController extends ActionController
     public function deletedListAction()
     {
         $page   = (int) $this->params('p', 1);
-        $limit  = Pi::service('module')->config('list_limit', 'user');
+        $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
         $model  = Pi::model('user_account');

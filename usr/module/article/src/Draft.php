@@ -261,7 +261,7 @@ class Draft
     {
         $result = array();
         $module = Pi::service('module')->current();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
 
         $row    = Pi::model('draft', $module)->findRow($id, 'id', false);
         if (empty($row->id)) {

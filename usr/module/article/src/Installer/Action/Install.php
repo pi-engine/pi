@@ -158,7 +158,7 @@ class Install extends BasicInstall
         // Copy screenshot into target folder
         if ($result) {
             chmod($destFilename, 0777);
-            $config = Pi::service('module')->config('', $module);
+            $config = Pi::config('', $module);
             $basename = $config['default_topic_template_image'];
             $srcFilename = sprintf(
                 '%s/article/asset/%s',

@@ -269,7 +269,7 @@ class Entity
         $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
         $module = $module ?: Pi::service('module')->current();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $articleIds = $userIds = $authorIds = $categoryIds = array();
         $categories = $authors = $users = $tags = $urls = array();
 
@@ -505,7 +505,7 @@ class Entity
     public static function getEntity($id)
     {
         $module = Pi::service('module')->current();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
 
         $row = Pi::model('article', $module)->find($id);
         if (empty($row->id)) {

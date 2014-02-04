@@ -208,7 +208,7 @@ class Block
         
         $params   = Pi::service('url')->getRouteMatch()->getParams();
         
-        $config   = Pi::service('module')->config('', $module);
+        $config   = Pi::config('', $module);
         $image    = $config['default_feature_thumb'];
         $image    = Pi::service('asset')->getModuleAsset($image, $module);
         
@@ -294,7 +294,7 @@ class Block
             return false;
         }
         
-        $config   = Pi::service('module')->config('', $module);
+        $config   = Pi::config('', $module);
         $image    = $config['default_feature_thumb'];
         $image    = Pi::service('asset')->getModuleAsset($image, $module);
         
@@ -414,7 +414,7 @@ class Block
         $limit  = ($options['list-count'] <= 0) ? 10 : $options['list-count'];
         $order  = 'id DESC';
         $topics = Topic::getTopics(array(), 1, $limit, null, $order, $module);
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $image  = Pi::service('asset')
             ->getModuleAsset($config['default_topic_thumb'], $module);
         
@@ -458,7 +458,7 @@ class Block
         
         $limit  = isset($options['list-count']) 
             ? (int) $options['list-count'] : 10;
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $image  = $config['default_feature_thumb'];
         $image  = Pi::service('asset')->getModuleAsset($image, $module);
         $day    = $options['day-range'] ? intval($options['day-range']) : 7;
@@ -539,7 +539,7 @@ class Block
             $module
         );
         
-        $config   = Pi::service('module')->config('', $module);
+        $config   = Pi::config('', $module);
         $image    = $config['default_feature_thumb'];
         $image    = Pi::service('asset')->getModuleAsset($image, $module);
         foreach ($articles as &$article) {
@@ -608,7 +608,7 @@ class Block
             'elements'  => (array) $options['element'],
             'height'    => $options['image-height'],
             'images'    => $images,
-            'config'    => Pi::service('module')->config('', $module),
+            'config'    => Pi::config('', $module),
             'rows'      => $options['description_rows'],
         );
     }

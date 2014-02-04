@@ -34,7 +34,7 @@ class Profile extends AbstractApi
     public function isComplete($uid = 0)
     {
         $result = true;
-        $config = Pi::service('module')->config('profile_complete_form', $this->module);
+        $config = Pi::config('profile_complete_form', $this->module);
         if ($config) {
             $uid = $uid ?: Pi::service('user')->getId();
             $level = Pi::api('user', $this->module)->get($uid, 'level');

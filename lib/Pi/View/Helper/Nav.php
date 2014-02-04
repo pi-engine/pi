@@ -51,7 +51,7 @@ class Nav extends Navigation
         }
 
         $config = ('admin' == $name) ? 'nav_admin' : 'nav_front';
-        $name = Pi::config($config, '');
+        $name = Pi::config($config);
         if (!$name) {
             return false;
         }

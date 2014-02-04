@@ -105,7 +105,7 @@ EOT;
         $this->view()->setTemplate(false);
 
         $to = array(
-            Pi::config('adminmail', 'mail') => Pi::config('adminname', 'mail'),
+            Pi::config('adminmail') => Pi::config('adminname'),
             'infomax@gmail.com'             => 'Pi GMail',
             'taiwenjiang@tsinghua.org.cn'   => 'Pi THU',
         );

@@ -39,7 +39,7 @@ class TagController extends ActionController
         }
 
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $limit  = $config['page_limit_all'] ?: 40;
         $offset = ($page - 1) * $limit;
 

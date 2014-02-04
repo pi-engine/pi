@@ -527,7 +527,6 @@ class ModuleController extends ActionController
 
         $result     = false;
         $error      = '';
-        $message    = '';
         $details    = array();
         $row        = null;
 
@@ -587,7 +586,6 @@ class ModuleController extends ActionController
 
         $result     = false;
         $error      = '';
-        $message    = '';
         $details    = array();
         $row        = null;
 

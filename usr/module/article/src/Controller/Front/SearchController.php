@@ -33,7 +33,7 @@ class SearchController extends ActionController
         $page   = $this->params('p', 1);
         $module = $this->getModule();
 
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $limit  = intval($config['page_limit_all']) ?: 40;
         $offset = $limit * ($page - 1);
 

@@ -50,7 +50,7 @@ class CategoryController extends ActionController
         $page       = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_all'] ?: 40;
         $where  = array();
         
@@ -178,7 +178,7 @@ class CategoryController extends ActionController
         ));
 
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
 
         $this->view()->assign(array(
             'title'         => __('Article List in Category'),

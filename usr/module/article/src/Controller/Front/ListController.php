@@ -119,7 +119,7 @@ class ListController extends ActionController
         ));
 
         $module = $this->getModule();
-        $config = Pi::service('module')->config('', $module);
+        $config = Pi::config('', $module);
         
         // Get category nav
         $rowset = $this->getModel('category')->enumerate(null, null);

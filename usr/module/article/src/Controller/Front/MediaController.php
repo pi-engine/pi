@@ -94,7 +94,7 @@ class MediaController extends ActionController
         Pi::service('log')->mute();
         
         $module   = $this->getModule();
-        $config   = Pi::service('module')->config('', $module);
+        $config   = Pi::config('', $module);
 
         $return   = array('status' => false);
         $id       = $this->params('id', 0);

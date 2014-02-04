@@ -29,7 +29,7 @@ class LoginController extends ActionController
      */
     public function indexAction()
     {
-        if (Pi::config('login_disable', 'user')) {
+        if (Pi::service('user')->config('login_disable')) {
             $this->jump(
                 array('route' => 'home'),
                 __('Login is disabled. Please come back later.'),
@@ -86,7 +86,7 @@ class LoginController extends ActionController
     protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
-        $configs = Pi::registry('config')->read('', 'user');
+        $configs = Pi::user()->config('');
 
         if (!empty($configs['attempts'])) {
             $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
@@ -134,7 +134,6 @@ class LoginController extends ActionController
             return;
         }
 
-        //$configs    = Pi::registry('config')->read('', 'user');
         $values     = $form->getData();
         $identity   = $values['identity'];
         $credential = $values['credential'];
@@ -225,7 +224,7 @@ class LoginController extends ActionController
      */
     protected function preProcess()
     {
-        if (Pi::config('login_disable', 'user')) {
+        if (Pi::service('user')->config('login_disable')) {
             $this->jump(array('route' => 'home'),
                 __('Login is closed. Please try later.'),
                 'error'
@@ -240,7 +239,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs = Pi::registry('config')->read('', 'user');
+        $configs = Pi::user()->config('');
 
         return $configs;
     }

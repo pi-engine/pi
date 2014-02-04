@@ -139,7 +139,7 @@ class ArticleController extends ActionController
             'action'      => 'detail',
         ), $params));
         
-        $config = Pi::service('module')->config('', $this->getModule());
+        $config = Pi::config('', $this->getModule());
         $this->view()->assign(array(
             'details'     => $details,
             'page'        => $page,

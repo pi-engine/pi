@@ -57,7 +57,6 @@ abstract class AbstractController
             Pi::config()->set('locale', $locale);
             Pi::config()->set('charset', $charset);
 
-
             Pi::service('i18n')->setLocale($locale);
             \setlocale(\LC_ALL, $locale);
 

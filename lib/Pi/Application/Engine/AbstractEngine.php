@@ -104,13 +104,13 @@ abstract class AbstractEngine
             );
             // Set configs if available
             if (!empty($options['config'])) {
-                Pi::config()->setConfigs($options['config']);
+                Pi::config()->set($options['config']);
                 unset($options['config']);
             }
             $options = $options ? array_merge_recursive($opt, $options) : $opt;
         }
         if (!empty($options['config'])) {
-            Pi::config()->setConfigs($options['config']);
+            Pi::config()->set($options['config']);
             unset($options['config']);
         }
         $this->options = $this->options

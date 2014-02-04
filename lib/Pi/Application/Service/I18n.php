@@ -252,7 +252,7 @@ namespace Pi\Application\Service
  * </code>
  *
  *   - Format defined in system intl config
- *      (<pre>Pi::config('date_format', 'intl')</pre>)
+ *      (<pre>Pi::config('date_format')</pre>)
  *      will be used if format is not specified
  *
  * <code>
@@ -721,7 +721,7 @@ namespace Pi\Application\Service
             }
 
             if (null === $calendar) {
-                $calendar = Pi::config('date_calendar', 'intl');
+                $calendar = Pi::config('date_calendar');
                 if (!$calendar) {
                     $calendar = IntlDateFormatter::GREGORIAN;
                 }
@@ -736,11 +736,11 @@ namespace Pi\Application\Service
 
             $datetype = constant(
                 'IntlDateFormatter::'
-                . strtoupper($datetype ?: Pi::config('date_datetype', 'intl'))
+                . strtoupper($datetype ?: Pi::config('date_datetype'))
             );
             $timetype = constant(
                 'IntlDateFormatter::'
-                . strtoupper($timetype ?: Pi::config('date_timetype', 'intl'))
+                . strtoupper($timetype ?: Pi::config('date_timetype'))
             );
             $timezone = $timezone ?: Pi::config('timezone');
 
@@ -779,7 +779,7 @@ namespace Pi\Application\Service
             }
 
             $locale = $locale ?: $this->getLocale();
-            $style = $style ?: Pi::config('number_style', 'intl');
+            $style = $style ?: Pi::config('number_style');
             $style = $style
                 ? constant('NumberFormatter::' . strtoupper($style))
                 : NumberFormatter::DEFAULT_STYLE;
@@ -971,7 +971,7 @@ namespace
             extract($locale);
         }
 
-        $format = $format ?: Pi::config('date_format', 'intl');
+        $format = $format ?: Pi::config('date_format');
 
         if (!_intl() || $format) {
             $result = date($format, $value);
@@ -1042,7 +1042,7 @@ namespace
         }
         $result = $value;
         $currency = (null === $currency)
-            ? Pi::config('number_currency', 'intl') : $currency;
+            ? Pi::config('number_currency') : $currency;
         if ($currency) {
             $style = 'CURRENCY';
             $formatter = Pi::service('i18n')->getNumberFormatter(
