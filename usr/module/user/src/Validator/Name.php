@@ -141,10 +141,10 @@ class Name extends AbstractValidator
     public function setConfigOption()
     {
         $this->options = array(
-            'min'               => Pi::config('name_min', 'user'),
-            'max'               => Pi::config('name_max', 'user'),
-            'format'            => Pi::config('name_format', 'user'),
-            'backlist'          => Pi::config('name_backlist', 'user'),
+            'min'               => Pi::user()->config('name_min'),
+            'max'               => Pi::user()->config('name_max'),
+            'format'            => Pi::user()->config('name_format'),
+            'backlist'          => Pi::user()->config('name_backlist'),
             'checkDuplication'  => true,
         );
 

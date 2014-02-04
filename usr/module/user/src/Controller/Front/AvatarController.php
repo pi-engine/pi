@@ -52,7 +52,7 @@ class AvatarController extends ActionController
         $autoSplit = true
     ) {
         $module  = $module ?: $this->getModule();
-        $config  = Pi::config('', $module);
+        $config  = Pi::user()->config('');
         $pathKey = sprintf('path_%s', strtolower($section));
         $path    = isset($config[$pathKey]) ? $config[$pathKey] : '';
 
@@ -239,7 +239,7 @@ class AvatarController extends ActionController
     {
        
         $module   = $this->getModule();
-        $config   = Pi::config('', $module);
+        $config   = Pi::user()->config('');
 
         $result   = array('status' => false);
         $fakeId   = $this->params('fake_id', 0);

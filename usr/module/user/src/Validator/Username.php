@@ -143,11 +143,11 @@ class Username extends AbstractValidator
     public function setConfigOption()
     {
         $this->options = array(
-            'min'       => Pi::config('uname_min', 'user'),
-            'max'       => Pi::config('uname_max', 'user'),
-            'format'    => Pi::config('uname_format', 'user'),
-            'backlist'  => Pi::config('uname_backlist', 'user'),
-            'format'    => Pi::config('uname_format', 'user'),
+            'min'       => Pi::user()->config('uname_min'),
+            'max'       => Pi::user()->config('uname_max'),
+            'format'    => Pi::user()->config('uname_format'),
+            'backlist'  => Pi::user()->config('uname_backlist'),
+            'format'    => Pi::user()->config('uname_format'),
             'checkDuplication' => true,
         );
 

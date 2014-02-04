@@ -63,7 +63,7 @@ class LoginController extends ActionController
     protected function renderForm($form, $message = '')
     {
         $this->view()->setTemplate('login');
-        $configs = Pi::config('', 'user');
+        $configs = Pi::user()->config('');
 
         if (!empty($configs['attempts'])) {
             $attempts = isset($_SESSION['PI_LOGIN']['attempts'])
@@ -145,7 +145,7 @@ class LoginController extends ActionController
             return;
         }
 
-        $configs        = Pi::config('', 'user');
+        $configs        = Pi::user()->config('');
         $values         = $form->getData();
         $identityData   = (array) $values['identity'];
         $identity       = array_shift($identityData);
