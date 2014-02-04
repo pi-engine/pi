@@ -140,7 +140,7 @@ class LoginController extends ActionController
         $form->setInputFilter(new LoginFilter);
 
         if (!$form->isValid()) {
-            $this->renderForm($form, __('Invalid input, please try again.'));
+            $this->renderForm($form);
 
             return;
         }

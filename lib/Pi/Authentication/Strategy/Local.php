@@ -190,8 +190,6 @@ class Local extends AbstractStrategy
         $adapter = $this->getAdapter();
         if ($field && method_exists($adapter, 'setIdentityColumn')) {
             $adapter->setIdentityColumn($field);
-        } else {
-            $field = '';
         }
         $adapter->setIdentity($identity);
         $adapter->setCredential($credential);
@@ -203,11 +201,7 @@ class Local extends AbstractStrategy
 
         if ($result->isValid()) {
             $result->setData($adapter->getResultRow());
-            if (!$field) {
-                $identity = $result->getIdentity();
-            } else {
-                $identity = $result->getData($field);
-            }
+            $identity = $result->getData('identity');
             $this->getStorage()->write($identity);
         }
 
