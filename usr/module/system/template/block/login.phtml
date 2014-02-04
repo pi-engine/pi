@@ -3,28 +3,30 @@
     echo $this->form()->openTag($form);
 ?>
 <?php
-    $identity = $form->get('identity');
+    $identity   = $form->get('identity');
+    $label      = $identity->getLabel();
     $identity->setAttributes(array(
-        'placeholder' => $identity->getOption('label'),
-        'class' => 'form-control'
+        'placeholder'   => $label,
+        'class'         => 'form-control'
     ));
 ?>
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <span class="input-group-addon"><i class="fa fa-user" title="<?php echo _escape($label); ?>"></i></span>
         <?php echo $this->formElement($identity); ?>
     </div>
 </div>
 <?php
     $credential = $form->get('credential');
+    $label      = $credential->getLabel();
     $credential->setAttributes(array(
-        'placeholder' => $credential->getOption('label'),
-        'class' => 'form-control'
+        'placeholder'   => $label,
+        'class'         => 'form-control'
     ));
 ?>
 <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+        <span class="input-group-addon"><i class="fa fa-lock" title="<?php echo _escape($label); ?>"></i></span>
         <?php echo $this->formElement($credential); ?>
     </div>
 </div>
