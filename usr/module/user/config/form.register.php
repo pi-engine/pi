@@ -11,7 +11,7 @@
 * User register form config
 */
 
-$captchaEnable = Pi::config('register_captcha', 'user');
+$captchaEnable = Pi::user()->config('register_captcha');
 
 return array(
     // Use user module field
