@@ -137,6 +137,7 @@ class LoginController extends ActionController
         $values     = $form->getData();
         $identity   = $values['identity'];
         $credential = $values['credential'];
+        $column     = 'identity';
 
         if (!empty($configs['attempts'])) {
             $sessionLogin = isset($_SESSION['PI_LOGIN'])
@@ -154,7 +155,11 @@ class LoginController extends ActionController
             }
         }
 
-        $result = Pi::service('authentication')->authenticate($identity, $credential);
+        $result = Pi::service('authentication')->authenticate(
+            $identity,
+            $credential,
+            $column
+        );
         $result = $this->postProcess($result);
 
         if (!$result->isValid()) {

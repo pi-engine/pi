@@ -63,8 +63,7 @@ abstract class AbstractAdapter extends ZendAbstractAdapter implements
             && isset($this->options['return_columns'])
         ) {
             $returnColumns = (array) $this->options['return_columns'];
-        }
-        if (null === $omitColumns && isset($this->options['omit_columns'])) {
+        } elseif (null === $omitColumns && isset($this->options['omit_columns'])) {
             $omitColumns = (array) $this->options['omit_columns'];
         }
         $omitColumns = $omitColumns ?: array();

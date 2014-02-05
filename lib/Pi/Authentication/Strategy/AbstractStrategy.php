@@ -34,6 +34,9 @@ abstract class AbstractStrategy
      */
     protected $storage;
 
+    /** @var string Field name for identity to be stored in storage */
+    protected $identityField = 'id';
+
     /**
      * Constructor
      *
@@ -115,6 +118,43 @@ abstract class AbstractStrategy
     }
 
     /**
+     * Returns identity field name
+     *
+     * @return string
+     */
+    public function getIdentityField()
+    {
+        $field = $this->getOption('identity_field') ?: $this->identityField;
+
+        return $field;
+    }
+
+    /**
+     * Returns the identity from storage or false if no identity is available
+     *
+     * @return int|string|bool
+     */
+    public function getIdentity()
+    {
+        $identity = false;
+        $storage = $this->getStorage();
+        if (!$storage->isEmpty()) {
+            $field  = $this->getIdentityField();
+            $data   = $storage->read();
+            if (is_scalar($data)) {
+                $identity = $data;
+            } elseif (is_array($data) && isset($data[$field])) {
+                $identity = $data[$field];
+            }
+            if ($identity && 'id' == $field) {
+                $identity = (int) $identity;
+            }
+        }
+
+        return $identity;
+    }
+
+    /**
      * Get URIs
      *
      * @param string $type  Type for URI: login, logout
@@ -141,13 +181,6 @@ abstract class AbstractStrategy
     abstract public function hasIdentity();
 
     /**
-     * Returns the identity from storage or null if no identity is available
-     *
-     * @return mixed|null
-     */
-    abstract public function getIdentity();
-
-    /**
      * Clears the identity from persistent storage
      *
      * @return void
@@ -159,11 +192,11 @@ abstract class AbstractStrategy
      *
      * @param string $identity
      * @param string $credential
-     * @param string $field Field name for identity
+     * @param string $column Column name for identity to authenticate
      *
      * @return AuthenticationResult
      */
-    abstract public function authenticate($identity, $credential, $field = '');
+    abstract public function authenticate($identity, $credential, $column = '');
 
     /**
      * Check if authenticated and go to authentication process if not

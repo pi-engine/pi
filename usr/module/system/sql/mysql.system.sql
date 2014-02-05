@@ -386,12 +386,13 @@ CREATE TABLE `{core.theme}` (
 # User account and authentication data
 CREATE TABLE `{core.user_account}` (
   `id`              int(10)         unsigned    NOT NULL    auto_increment,
-  -- Account name
-  `identity`        varchar(32)     NOT NULL,
+  -- Account identity or username
+  `identity`        varchar(32)     default NULL,
   -- Credential/password hash
   `credential`      varchar(255)    NOT NULL default '',
   -- Salt for credential hash
   `salt`            varchar(255)    NOT NULL default '',
+  -- User email
   `email`           varchar(64)     default NULL,
 
   -- Display name

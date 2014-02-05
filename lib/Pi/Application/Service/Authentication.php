@@ -10,7 +10,6 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Pi\Authentication\Strategy\AbstractStrategy;
 use Zend\Authentication\Result as AuthenticationResult;
 
@@ -136,6 +135,16 @@ class Authentication extends AbstractService
     }
 
     /**
+     * Returns identity field name
+     *
+     * @return string
+     */
+    public function getIdentityField()
+    {
+        return $this->getStrategy()->getIdentityField();
+    }
+
+    /**
      * Check if an identity in current session
      *
      * Returns true if and only if an identity is available from storage
@@ -148,9 +157,10 @@ class Authentication extends AbstractService
     }
 
     /**
-     * Returns the identity from storage or null if no identity is available
+     * Returns the identity and column name from storage,
+     * or return false if no identity is available
      *
-     * @return mixed|null
+     * @return int|string|bool
      */
     public function getIdentity()
     {
@@ -172,16 +182,16 @@ class Authentication extends AbstractService
      *
      * @param string $identity
      * @param string $credential
-     * @param string $field Field name for identity
+     * @param string $column Column name for identity
      *
      * @return AuthenticationResult
      */
-    public function authenticate($identity, $credential, $field = '')
+    public function authenticate($identity, $credential, $column = '')
     {
         return $this->getStrategy()->authenticate(
             $identity,
             $credential,
-            $field
+            $column
         );
     }
 

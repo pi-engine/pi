@@ -160,6 +160,7 @@ class LoginController extends ActionController
                 $field = '';
             }
         }
+        $field = $field ?: 'identity';
         $credential = $values['credential'];
 
         if (!empty($configs['attempts'])) {

@@ -52,6 +52,14 @@ class Updator331 extends AbstractUpdator
         $status = true;
         if (version_compare($version, '3.3.1', '<')) {
 
+            $table = Pi::db()->prefix('user_account');
+            $sql =<<<'EOT'
+ALTER TABLE %s
+MODIFY `identity`        varchar(32)     default NULL;
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+
             $sql =<<<'EOD'
 CREATE TABLE `{category}` (
   `id`          int(10)         unsigned NOT NULL auto_increment,

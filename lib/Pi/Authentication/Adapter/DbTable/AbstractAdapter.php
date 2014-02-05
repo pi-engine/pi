@@ -302,4 +302,27 @@ abstract class AbstractAdapter extends BaseAbstractAdapter implements
         return $this;
     }
 
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResultRow($returnColumns = null, $omitColumns = null)
+    {
+        if (isset($this->options['return_columns'])) {
+            $columns = (array) $this->options['return_columns'];
+            if (!in_array('id', $columns)) {
+                $columns[] = 'id';
+            }
+            $this->options['return_columns'] = $columns;
+        } elseif (isset($this->options['omit_columns'])) {
+            $columns = (array) $this->options['omit_columns'];
+            if (in_array('id', $columns)) {
+                $columns = array_diff($columns, array('id'));
+                $this->options['omit_columns'] = $columns;
+            }
+        }
+
+        return parent::getResultRow($returnColumns, $omitColumns);
+    }
+
 }

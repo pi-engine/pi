@@ -27,6 +27,11 @@ class Saml extends AbstractStrategy
      */
     protected $fileIdentifier = 'saml';
 
+    /**
+     * {@inheritDoc}
+     */
+    protected $identityField = 'identity';
+
     /** @var  SimpleSAML_Auth_Simple SimpleSAMLphp handler */
     protected $authSource;
 
@@ -97,8 +102,9 @@ class Saml extends AbstractStrategy
     public function bind()
     {
         //return;
-        $ssoAuthenticated = $this->getAuthSource()->isAuthenticated();
-        $identity = $this->getIdentity() ?: '';
+        $ssoAuthenticated   = $this->getAuthSource()->isAuthenticated();
+        $identity           = $this->getIdentity() ?: '';
+        $field              = $this->getIdentityField();
 
         if (!$ssoAuthenticated && $identity) {
             $this->clearIdentity();
@@ -108,11 +114,11 @@ class Saml extends AbstractStrategy
             array_walk($attributes, function($data, $key) use (&$profile) {
                 $profile[$key] = is_array($data) ? array_pop($data) : $data;
             });
-            $identity = $profile['identity'];
+            $identity = $profile[$field];
             $this->getStorage()->write($profile);
             Pi::service('user')->setPersist($profile);
         }
-        Pi::service('user')->bind($identity, 'identity');
+        Pi::service('user')->bind($identity, $field);
 
         return;
     }
@@ -170,22 +176,6 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function getIdentity()
-    {
-        $storage = $this->getStorage();
-        if ($storage->isEmpty()) {
-            return '';
-        }
-
-        $profile = $storage->read();
-        $identity = isset($profile['idenity']) ? $profile['idenity'] : null;
-
-        return $identity;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function clearIdentity()
     {
         $this->getStorage()->clear();
@@ -194,7 +184,7 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
-    public function authenticate($identity, $credential, $field = '')
+    public function authenticate($identity, $credential, $column = '')
     {
         throw new \Exception('Method is disabled.');
     }
