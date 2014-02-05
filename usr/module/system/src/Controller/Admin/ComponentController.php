@@ -27,8 +27,20 @@ class ComponentController extends BasicController
     public function indexAction()
     {
         //$module = $this->params('module');
-        $module = $name = $this->params('name', $this->moduleName('system'));
+        $module = $this->params('name', $this->moduleName('system'));
 
+        // Jump to a specific component if available
+        $navConfig = Pi::registry('navigation')->read('system-component');
+        if ($navConfig) {
+            $page = current($navConfig);
+            $this->redirect($page['route'], array(
+                'module' => $page['module'],
+                'controller'    => $page['controller'],
+                'name'          => $module,
+            ));
+        }
+
+        // Display module dashboard
         $directory = Pi::service('module')->directory($module);
         $callback = sprintf(
             'Module\\%s\Dashboard::summary',
@@ -45,6 +57,7 @@ class ComponentController extends BasicController
         $author = Pi::service('module')->loadMeta($directory, 'author');
         $data['description'] = $meta['description'];
         $data['author'] = $author;
+        /*
         if (empty($meta['logo'])) {
             $data['logo'] = Pi::url('static/image/module.png');
         } else {
@@ -53,14 +66,13 @@ class ComponentController extends BasicController
                 $module
             );
         }
+        */
         if (empty($data['update'])) {
             $data['update'] = _a('Never updated.');
         } else {
             $data['update'] = _date($data['update']);
         }
 
-        //d($_SESSION['PI_BACKOFFICE']['mode']); d($module); exit();
-        //d($data);exit();
         $this->view()->assign('summary', $summary);
         $this->view()->assign('data', $data);
         $this->view()->assign('title', _a('Dashboard'));
