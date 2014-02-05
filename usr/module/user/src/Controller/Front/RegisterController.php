@@ -455,7 +455,7 @@ class RegisterController extends ActionController
                 $result['message'] = __('Account activation email was not able to send, please contact admin.');
             }
         }
-        $user['status'] = $status;
+        $result['status'] = $status;
 
         return $result;
     }

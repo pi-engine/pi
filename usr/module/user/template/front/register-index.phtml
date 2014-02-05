@@ -2,7 +2,16 @@
 
 <?php
 if (!empty($form)) {
+    if (empty($result['status']) && !empty($result['message'])) {
+?>
+        <div class="alert alert-danger">
+            <?php echo _escape($result['message']); ?>
+        </div>
+<?php
+    }
+
     include $this->templateComponent('form');
+
 } elseif ('auto' == $activation) {
     if (!empty($result['status'])) {
 ?>

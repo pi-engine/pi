@@ -10,6 +10,7 @@
 namespace Module\User\Form;
 
 use Pi;
+use Zend\Form\Element\Captcha;
 use Zend\Form\Element\Csrf;
 
 /**
@@ -20,7 +21,7 @@ use Zend\Form\Element\Csrf;
 class RegisterCompleteForm extends UserForm
 {
     /** {@inheritDoc} */
-    protected $configIdentifier = 'register.complete';
+    protected $configIdentifier = 'register-complete';
 
     /** @var  UserForm Register form */
     protected $registerForm;
@@ -34,8 +35,9 @@ class RegisterCompleteForm extends UserForm
 
         $this->registerForm = Pi::api('form', 'user')->loadForm('register');
         foreach ($this->registerForm->getElements() as $element) {
-            if ('captcha' == $element->getAttribute('type')
+            if ($element instanceof Captcha
                 || $element instanceof Csrf
+                || 'submit' == $element->getAttribute('type')
             ) {
                 continue;
             }
@@ -56,13 +58,16 @@ class RegisterCompleteForm extends UserForm
      *
      * Load RegisterForm InputFilter
      */
-    public function loadInputFilter()
+    public function loadInputFilter(array $filters = array())
     {
-        parent::loadInputFilter();
+        parent::loadInputFilter($filters);
         $inputFilter = $this->getInputFilter();
         $registerFilter = $this->registerForm->getInputFilter();
         foreach ($this->registerForm->getElements() as $element) {
-            if ('submit' == $element->getAttribute('type')) {
+            if ($element instanceof Captcha
+                || $element instanceof Csrf
+                || 'submit' == $element->getAttribute('type')
+            ) {
                 continue;
             }
             $name = $element->getName();

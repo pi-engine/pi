@@ -134,10 +134,7 @@ class Form extends AbstractApi
         }
 
         if ($withFilter) {
-            $result = array(
-                'elements'  => $elements,
-                'filters'   => $filters,
-            );
+            $result = array($elements, $filters);
         } else {
             $result = $elements;
         }
