@@ -9,52 +9,10 @@
 
 namespace Module\User\Form;
 
-use Zend\InputFilter\InputFilter;
+use Module\System\Form\LoginFilter as InputFilter;
 
 /**
  * Filter for user login
  */
 class LoginFilter extends InputFilter
-{
-    public function __construct()
-    {
-        $this->add(array(
-            'name'          => 'identity',
-            'required'      => true,
-            /*
-            'filters'    => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            */
-        ));
-
-        $this->add(array(
-            'name'          => 'credential',
-            'required'      => true,
-            'filters'    => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
-
-        /*
-        $this->add(array(
-            'name'      => 'field',
-            'required'  => false,
-        ));
-        */
-
-        $this->add(array(
-            'name'      => 'rememberme',
-            'required'  => false,
-        ));
-
-        $this->add(array(
-            'name'      => 'redirect',
-            'required'  => false,
-        ));
-    }
-}
+{}

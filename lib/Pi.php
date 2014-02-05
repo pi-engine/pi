@@ -75,7 +75,7 @@ class Pi
      * Default application environment
      * @var string
      */
-    const DEFAULT_APPLICATION_ENV = 'production';
+    const DEFAULT_APPLICATION_ENV = 'development';
 
     /**
      * Path to library root

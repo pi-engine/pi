@@ -24,7 +24,7 @@ class PasswordForm extends BaseForm
      */
     public function init()
     {
-        $config = Pi::registry('config')->read('', 'user');
+        $config = Pi::user()->config();
 
         $this->add(array(
             'name'          => 'credential',

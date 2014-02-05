@@ -19,30 +19,50 @@ use Pi\Form\Form as BaseForm;
  */
 class LoginForm extends BaseForm
 {
+    protected $config = array();
+
+    /**
+     * Constructor
+     *
+     * @param string $name
+     * @param array $config
+     */
+    public function __construct($name, array $config = array())
+    {
+        if (!$config) {
+            $config = Pi::user()->config();
+        }
+        $this->config  = $config;
+        parent::__construct($name);
+    }
+
     /**
      * {@inheritDoc}
      */
     public function init()
     {
-        $config = Pi::registry('config')->read('', 'user');
+        $config = $this->config;
 
+        // Get config data.
         $this->add(array(
-            'type'          => 'text',
             'name'          => 'identity',
+            'type'          => 'Pi\Form\Element\LoginField',
             'options'       => array(
-                'label' => __('Username'),
+                'fields'    => $config['login_field'],
             ),
         ));
 
         $this->add(array(
-            'type'          => 'password',
             'name'          => 'credential',
             'options'       => array(
                 'label' => __('Password'),
             ),
+            'attributes'    => array(
+                'type'  => 'password',
+            )
         ));
 
-        if ($config['login_captcha']) {
+        if (!empty($config['login_captcha'])) {
             $this->add(array(
                 'name'          => 'captcha',
                 'type'          => 'captcha',
@@ -53,7 +73,7 @@ class LoginForm extends BaseForm
             ));
         }
 
-        if ($config['rememberme']) {
+        if (!empty($config['rememberme'])) {
             $this->add(array(
                 'name'          => 'rememberme',
                 'type'          => 'checkbox',
@@ -62,7 +82,7 @@ class LoginForm extends BaseForm
                 ),
                 'attributes'    => array(
                     'value'         => '1',
-                    'description'   => __('Keep me logged in.')
+                    'description'   => __('Remember me')
                 )
             ));
         }
@@ -84,9 +104,10 @@ class LoginForm extends BaseForm
 
         $this->add(array(
             'name'          => 'submit',
-             'type'         => 'submit',
             'attributes'    => array(
+                'type'  => 'submit',
                 'value' => __('Login'),
+                'class' => 'btn btn-primary',
             )
         ));
     }

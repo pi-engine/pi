@@ -27,6 +27,9 @@ return array(
         // close - for maintenance
         // '' - To set in system preference
         'environment'   => '%environment%',
+
+        // Disable admin login
+        'admin_disable' => 0,
     ),
 
     // System persist storage configs

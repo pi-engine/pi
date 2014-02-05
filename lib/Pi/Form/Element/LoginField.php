@@ -8,16 +8,15 @@
  * @package         Form
  */
 
-namespace Module\User\Form\Element;
+namespace Pi\Form\Element;
 
-use Pi;
 use Zend\Form\Element\Text;
 
 class LoginField extends Text
 {
     /** {@inheritDoc} */
     protected $attributes = array(
-        'type'  => 'Module\User\Form\View\LoginField',
+        'type'  => 'Pi\Form\View\Helper\LoginField',
     );
 
     /** @var string[] Allowed fields for authentication */

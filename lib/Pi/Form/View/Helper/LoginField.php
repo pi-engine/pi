@@ -8,9 +8,9 @@
  * @package         Form
  */
 
-namespace Module\User\Form\View;
+namespace Pi\Form\View\Helper;
 
-use Module\User\Form\Element\LoginField as LoginFieldElement;
+use Pi\Form\Element\LoginField as LoginFieldElement;
 use Zend\Form\View\Helper\FormInput;
 use Zend\Form\ElementInterface;
 

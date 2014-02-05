@@ -24,7 +24,7 @@ class AccountFilter extends InputFilter
      */
     public function __construct()
     {
-        $config = Pi::registry('config')->read('', 'user');
+        $config = Pi::user()->config();
 
         $this->add(array(
             'name'          => 'identity',

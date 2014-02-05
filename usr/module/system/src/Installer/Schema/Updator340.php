@@ -17,7 +17,7 @@ use Pi\Application\Installer\Schema\AbstractUpdator;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Updator331 extends AbstractUpdator
+class Updator340 extends AbstractUpdator
 {
     /**
      * Update system table schema
@@ -50,7 +50,7 @@ class Updator331 extends AbstractUpdator
     protected function from330($version)
     {
         $status = true;
-        if (version_compare($version, '3.3.1', '<')) {
+        if (version_compare($version, '3.4.0', '<')) {
 
             $table = Pi::db()->prefix('user_account');
             $sql =<<<'EOT'
@@ -59,7 +59,9 @@ MODIFY `identity`        varchar(32)     default NULL;
 EOT;
             $sql = sprintf($sql, $table);
             $status = $this->queryTable($sql);
+        }
 
+        if (version_compare($version, '3.3.1', '<')) {
             $sql =<<<'EOD'
 CREATE TABLE `{category}` (
   `id`          int(10)         unsigned NOT NULL auto_increment,

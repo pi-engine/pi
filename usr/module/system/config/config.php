@@ -33,6 +33,10 @@ $config['category'] = array(
         'title'     => _t('User account'),
     ),
     array(
+        'name'      => 'admin',
+        'title'     => _t('Admin login'),
+    ),
+    array(
         'name'      => 'text',
         'title'     => _t('Text processing'),
     ),
@@ -135,7 +139,7 @@ $config['item'] = array(
                 ),
             ),
         ),
-        'value'         => 'development',
+        'value'         => Pi::environment(),
         'category'      => 'general',
     ),
 
@@ -215,7 +219,27 @@ $config['item'] = array(
         'category'      => 'user',
     ),
 
-    'attempts'      => array(
+    'login_field'      => array(
+        'title'         => _t('Login field'),
+        'description'   => _t('Identity field(s) for authentication.'),
+        'edit'          => array(
+            'type'      => 'select',
+            'attributes'    => array(
+                'multiple'  => true,
+            ),
+            'options'   => array(
+                'value_options'   => array(
+                    'identity'  => _t('Username'),
+                    'email'     => _t('Email'),
+                ),
+            ),
+        ),
+        'filter'        => 'array',
+        'value'         => array('identity'),
+        'category'      => 'user',
+    ),
+
+    'login_attempts'      => array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
@@ -257,6 +281,54 @@ $config['item'] = array(
         'value'         => 1,
         'filter'        => 'number_int',
         'category'      => 'user',
+    ),
+
+    // Admin login section
+
+    'admin_login_attempts'      => array(
+        'title'         => _t('Maximum attempts'),
+        'description'   => _t('Maximum attempts allowed to try for admin login'),
+        'value'         => 5,
+        'filter'        => 'number_int',
+        'category'      => 'admin',
+    ),
+
+    'admin_login_field'      => array(
+        'title'         => _t('Login field'),
+        'description'   => _t('Identity field(s) for admin authentication.'),
+        'edit'          => array(
+            'type'      => 'select',
+            'attributes'    => array(
+                'multiple'  => true,
+            ),
+            'options'   => array(
+                'value_options'   => array(
+                    'identity'  => _t('Username'),
+                    'email'     => _t('Email'),
+                ),
+            ),
+        ),
+        'filter'        => 'array',
+        'value'         => array('identity'),
+        'category'      => 'admin',
+    ),
+
+    'admin_login_disable'     => array(
+        'title'         => _t('Login disable'),
+        'description'   => _t('Disable admin login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'admin',
+    ),
+
+    'admin_login_captcha'       => array(
+        'title'         => _t('Login CAPTCHA'),
+        'description'   => _t('Enable CAPTCHA for admin login'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'admin',
     ),
 
     // Meta section

@@ -21,17 +21,14 @@ class LoginFilter extends InputFilter
 {
     /**
      * Constructor
+     *
+     * @param array $config
      */
-    public function __construct()
+    public function __construct(array $config)
     {
         $this->add(array(
             'name'          => 'identity',
             'required'      => true,
-            'filters'    => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
         ));
 
         $this->add(array(
@@ -44,9 +41,10 @@ class LoginFilter extends InputFilter
             ),
         ));
 
-        if (Pi::service('user')->config('rememberme')) {
+        if (!empty($config['rememberme'])) {
             $this->add(array(
-                'name'  => 'rememberme',
+                'name'      => 'rememberme',
+                'required'  => false,
             ));
         }
 

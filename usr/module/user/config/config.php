@@ -101,7 +101,7 @@ $config = array(
         'category'      => 'login',
     ),
 
-    'attempts'      => array(
+    'login_attempts'      => array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
