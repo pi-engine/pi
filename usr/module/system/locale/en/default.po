@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2013-11-10 14:03+0800\n"
-"PO-Revision-Date: 2013-11-10 14:03+0800\n"
+"POT-Creation-Date: 2014-02-06 14:46+0800\n"
+"PO-Revision-Date: 2014-02-06 14:46+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,585 +11,545 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:31
+#: c:\Code\pi\usr\module\system/src/Event.php:31
 #, php-format
 msgid "Module %s installed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:32
+#: c:\Code\pi\usr\module\system/src/Event.php:32
 #, php-format
 msgid "The module %s is installed successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:49
+#: c:\Code\pi\usr\module\system/src/Event.php:49
 #, php-format
 msgid "Module %s uninstalled"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:50
+#: c:\Code\pi\usr\module\system/src/Event.php:50
 #, php-format
 msgid "The module %s is uninstalled successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:67
-#, php-format
+#: c:\Code\pi\usr\module\system/src/Event.php:67
+#, fuzzy, php-format
 msgid "Module %s updated"
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:68
+#: c:\Code\pi\usr\module\system/src/Event.php:68
 #, php-format
 msgid "The module %s is updated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:85
+#: c:\Code\pi\usr\module\system/src/Event.php:85
 #, php-format
 msgid "Module %s activated"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:86
+#: c:\Code\pi\usr\module\system/src/Event.php:86
 #, php-format
 msgid "The module %s is activated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:103
+#: c:\Code\pi\usr\module\system/src/Event.php:103
 #, php-format
 msgid "Module %s deactivated"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Event.php:104
+#: c:\Code\pi\usr\module\system/src/Event.php:104
 #, php-format
 msgid "The module %s is deactivated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Navigation.php:161
+#: c:\Code\pi\usr\module\system/src/Menu.php:227
+msgid "Uncategoried"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Navigation.php:161
 msgid "Edit a block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Navigation.php:172
+#: c:\Code\pi\usr\module\system/src/Navigation.php:172
 msgid "Clone a block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Navigation.php:218
+#: c:\Code\pi\usr\module\system/src/Navigation.php:218
 msgid "Block layout"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Navigation.php:229
+#: c:\Code\pi\usr\module\system/src/Navigation.php:229
 msgid "Setup page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Feed/IndexController.php:32
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:35
+msgid "Page wide"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
+msgid "Action data"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
 msgid "What's new"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Feed/IndexController.php:33
+#: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:33
 msgid "Recent module updates."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:58
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:42
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:93
-msgid "ID"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:59
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:43
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:94
-#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:33
-msgid "Username"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:60
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:44
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:95
-msgid "Email"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:61
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:45
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:96
-#: C:\wamp\www\master\usr\module\system/src/Form/RoleForm.php:44
-msgid "Name"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:62
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:46
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:97
-msgid "Role"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:66
-#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:47
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:59
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:32
-msgid "User account"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:106
-msgid "User data saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:114
-msgid "User data not saved."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:117
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:66
-msgid "Invalid data, please check and re-submit."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/AccountController.php:123
-#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:5
-#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:5
-#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:6
-#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:6
-msgid "Edit account"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/EmailController.php:41
-msgid "Change Email"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/EmailController.php:53
-msgid "Send activation"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:35
-msgid "Login is disabled. Please come back later."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:43
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:113
-msgid "User login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:77
-msgid "You logged out successfully. Now go back to homepage."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:100
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:71
 #, php-format
 msgid ""
-"Login with the account is suspended, please wait for %d minutes to try again."
+"Login with the account is suspended,\n"
+"                            please wait for %d minutes to try again."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:107
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:80
 #, php-format
 msgid "You have %d times to try."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:133
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:95
-msgid "Invalid input, please try again."
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:88
+#: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:2
+msgid "User login"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:151
-msgid "You have tried too many times. Please try later."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:171
-msgid "Invalid credentials provided, please try again."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:195
-msgid "You have logged in successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:223
-msgid "Login is closed. Please try later."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/LoginController.php:229
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:108
 msgid "Invalid request."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:55
-msgid "Password changed successfully."
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:152
+msgid "You have tried too many times. Please try later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:63
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:176
+msgid "Invalid credentials provided, please try again."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:218
+msgid "You have logged in successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:237
+msgid "You logged out successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:292
+msgid "You have already logged in."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
+#, fuzzy
+msgid "Password changed successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:58
 msgid "Password not changed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:73
-#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:8
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:61
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:68
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:44
 msgid "Change password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/PasswordController.php:87
-#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/login.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:10
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:82
+#: c:\Code\pi\usr\module\system/template/front/login.phtml:14
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:9
 msgid "Find password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:33
-msgid "Please log in."
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:51
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
+msgid "Logout"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:49
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:100
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
+msgid "ID"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:55
+msgid "Username"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:56
+msgid "Email"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:44
+msgid "Name"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
+#, fuzzy
+msgid "Role"
+msgstr "角色"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:62
+msgid "Password"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:64
 msgid "User profile"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:70
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/ProfileController.php:85
-msgid "The user does not exists."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:35
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:35
 msgid "Registration is disabled. Please come back later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:66
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:66
 msgid "User account register"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:114
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
+msgid "Invalid input, please try again."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:114
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/RegisterController.php:125
-#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:10
-#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:18
-#: C:\wamp\www\master\usr\module\system/template/front/login.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:10
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:125
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
+#: c:\Code\pi\usr\module\system/template/front/login.phtml:17
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:9
 msgid "Register"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/TestController.php:44
-#: C:\wamp\www\master\usr\module\system/template/front/home.phtml:8
+#: c:\Code\pi\usr\module\system/src/Controller/Front/TestController.php:46
 msgid "site name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Front/TestController.php:385
+#: c:\Code\pi\usr\module\system/src/Controller/Front/TestController.php:170
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:102
-msgid "No permitted operation available."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:229
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:276
-msgid "Dashboard"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:269
-msgid "Never updated."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/IndexController.php:30
+#: c:\Code\pi\usr\module\system/src/Controller/Module/IndexController.php:30
 msgid "Admin area"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:58
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:70
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:42
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:47
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:59
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:32
+msgid "User account"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:70
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:42
 msgid "Display name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:69
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:69
 msgid "Birthdate"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/AccountForm.php:93
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:164
-#: C:\wamp\www\master\usr\module\system/src/Form/ConfigForm.php:58
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:157
-#: C:\wamp\www\master\usr\module\system/src/Form/ModuleForm.php:58
-#: C:\wamp\www\master\usr\module\system/src/Form/NavForm.php:67
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:131
-#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:109
-#: C:\wamp\www\master\usr\module\system/src/Form/PageEditForm.php:69
-#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:84
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:100
-#: C:\wamp\www\master\usr\module\system/src/Form/RoleForm.php:107
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:200
+#: c:\Code\pi\usr\module\system/src/Form/ConfigForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:157
+#: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/NavForm.php:67
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:131
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:126
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:74
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:84
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:100
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:115
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:49
 msgid "Submit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:61
-#: C:\wamp\www\master\usr\module\system/src/Form/ModuleForm.php:40
-#: C:\wamp\www\master\usr\module\system/src/Form/NavForm.php:40
-#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:45
-#: C:\wamp\www\master\usr\module\system/src/Form/RoleForm.php:54
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:61
+#: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:40
+#: c:\Code\pi\usr\module\system/src/Form/NavForm.php:40
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:45
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:54
 msgid "Title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:65
+msgid "Block label for display."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:73
 msgid "Hide title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:75
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:76
 msgid "Hide block title from display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:82
-#: C:\wamp\www\master\usr\module\system/src/Form/ModuleForm.php:30
-#: C:\wamp\www\master\usr\module\system/src/Form/NavForm.php:30
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:84
+msgid "Full-size body"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:87
+msgid "Display block body in full-size w/o padding."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:94
+#: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:30
+#: c:\Code\pi\usr\module\system/src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:86
-msgid "Set a unique name to be called as widget or leave as blank."
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:98
+msgid "A unique name to be called as widget."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:106
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:117
+msgid "Template"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:122
+msgid "PHTML rendering template, file extension is optional."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:130
 msgid "Description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:97
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:134
 msgid "Set a hint to distinguish the block."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:104
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
 msgid "Subline"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:109
-msgid "For block header subline. HTML is allowed."
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+msgid "Header subline. HTML is allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:116
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
 msgid "Style class"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:120
-msgid "Specified block container css class."
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
+msgid "Specified block container CSS class."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:128
-#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:80
-#: C:\wamp\www\master\usr\module\system/src/Form/PageEditForm.php:31
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:164
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:46
+#, fuzzy
 msgid "Cache TTL"
-msgstr ""
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:136
-#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:88
-#: C:\wamp\www\master\usr\module\system/src/Form/PageEditForm.php:44
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:172
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:54
+#, fuzzy
 msgid "Cache level"
-msgstr ""
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\system/src/Form/BlockModuleForm.php:184
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:220
 msgid "Configs"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:41
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:62
-msgid "Password"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:50
-msgid "Remember me"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:54
-msgid "Keep me logged in."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:64
-#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:64
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:84
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:70
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:64
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:84
 msgid "Please type the word."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/LoginForm.php:105
-#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:17
-#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:11
-msgid "Login"
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:81
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:85
+msgid "Remember me"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:81
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:52
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:109
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:17
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:10
+#, fuzzy
+msgid "Login"
+msgstr "登录"
+
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:81
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:52
 msgid "Email address"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:93
-#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:42
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:42
 msgid "New password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:101
-#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:52
-#: C:\wamp\www\master\usr\module\system/src/Form/RegisterForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:101
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:52
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:72
 msgid "Confirm password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:110
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:110
 msgid "User role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:121
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:121
 msgid "Management role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/MemberForm.php:133
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:133
 msgid "Active"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:30
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:30
 msgid "Label"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:37
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:37
 msgid "Route"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:40
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:40
 msgid "Route to assemble URI."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:47
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:47
 msgid "Module"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:54
-#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:63
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:54
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:63
 msgid "Controller"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:61
-#: C:\wamp\www\master\usr\module\system/src/Form/PageAddForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:61
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:72
 msgid "Action"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:68
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:68
 msgid "URI"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:76
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:76
 msgid "Open target"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:78
-#: C:\wamp\www\master\usr\module\system/src/Form/Element/Controller.php:53
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:78
+#: c:\Code\pi\usr\module\system/src/Form/Element/Controller.php:53
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "无"
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:79
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:79
 msgid "Current window"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:80
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:80
 msgid "Open a new window"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:88
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:88
 msgid "Permission resource"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:92
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:92
 msgid "The resource identity for permission check."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:100
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:100
 msgid "Display"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/NavPageForm.php:103
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:103
 msgid "To display in menu."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Form/PasswordForm.php:32
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:31
+#, fuzzy
+msgid "Cache type"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:32
 msgid "Current password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:4
-#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:4
-#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:5
-#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:5
-msgid "View account"
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:65
+msgid "Section"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:6
-#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:6
-#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:7
-msgid "Change email"
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:67
+msgid "Front"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/account-edit.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/account.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/front/password-change.phtml:9
-msgid "Logout"
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:68
+msgid "Admin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/email-change.phtml:14
-#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:4
-#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:4
-msgid "Coming soon ..."
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
+msgid "Force for all pages"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/email-send.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:16
-#: C:\wamp\www\master\usr\module\system/template/front/login.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:8
-msgid "Choose: "
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
+#: c:\Code\pi\usr\module\system/template/component/form.phtml:66
+msgid "Cancel"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/home.phtml:9
-msgid "module name"
+#: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/jump.phtml:8
-msgid "the link"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/front/jump.phtml:9
-#, php-format
-msgid "The page will redirected in %d seconds. Or you can click %s directly."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/login-success.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/register-success.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/login-success.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:8
 msgid "homepage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:10
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:10
 msgid "re-login"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/login-logout.phtml:11
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/login-message.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:16
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:7
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:8
+msgid "Choose: "
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/front/login-message.phtml:8
 msgid "logout"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/login-message.phtml:9
+#: c:\Code\pi\usr\module\system/template/front/login-message.phtml:9
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/login-success.phtml:9
+#: c:\Code\pi\usr\module\system/template/front/login-success.phtml:9
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/password-find.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/front/register.phtml:9
-msgid "Re-send activation email"
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:4
+msgid "Coming soon ..."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/front/register-success.phtml:10
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:10
+#, fuzzy
 msgid "login"
-msgstr ""
+msgstr "登录"
 
-#: C:\wamp\www\master\usr\module\system/template/front/register-success.phtml:11
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:11
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr ""

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2013-11-10 14:03+0800\n"
-"PO-Revision-Date: 2013-11-10 14:03+0800\n"
+"POT-Creation-Date: 2014-02-06 14:45+0800\n"
+"PO-Revision-Date: 2014-02-06 14:46+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,38 +11,50 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\usr\\module\\system\n"
 
-#: C:\wamp\www\master\usr\module\system/src/Block/Block.php:30
+#: c:\Code\pi\\usr\module\system/src/Block/Block.php:31
 #, php-format
 msgid "About %s"
 msgstr "About %s"
 
-#: C:\wamp\www\master\usr\module\system/src/Block/Block.php:32
+#: c:\Code\pi\\usr\module\system/src/Block/Block.php:33
 msgid "Site name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Block/Block.php:33
+#: c:\Code\pi\\usr\module\system/src/Block/Block.php:34
 msgid "Slogan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:28
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:8
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:57
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:86
+#, fuzzy
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:9
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:12
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:61
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:90
 msgid "Register"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:14
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:38
-#: C:\wamp\www\master\usr\module\system/template/block/user.phtml:3
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:17
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:73
+#: c:\Code\pi\\usr\module\system/template/block/user.phtml:3
 msgid "Profile"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:16
-#: C:\wamp\www\master\usr\module\system/template/block/user-bar.phtml:39
-#: C:\wamp\www\master\usr\module\system/template/block/user.phtml:4
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:21
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:22
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:74
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:102
+msgid "Message"
+msgstr ""
+
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:26
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:75
+#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:106
+#: c:\Code\pi\\usr\module\system/template/block/user.phtml:4
 msgid "Logout"
 msgstr ""

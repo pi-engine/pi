@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2013-11-09 19:20+0800\n"
-"PO-Revision-Date: 2013-11-28 00:53+0800\n"
+"POT-Creation-Date: 2014-02-06 14:33+0800\n"
+"PO-Revision-Date: 2014-02-06 14:42+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -11,29 +11,29 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _s\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\www\\setup\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\www\\setup\n"
 
-#: C:\wamp\www\master\www\setup/include/config.php:15
+#: c:\Code\pi\\www\setup/include/config.php:15
 msgid "Web server"
 msgstr "服务器"
 
-#: C:\wamp\www\master\www\setup/include/config.php:16
+#: c:\Code\pi\\www\setup/include/config.php:16
 msgid "PHP"
 msgstr "PHP语言"
 
-#: C:\wamp\www\master\www\setup/include/config.php:17
+#: c:\Code\pi\\www\setup/include/config.php:17
 msgid "Persist options"
 msgstr "持久数据参数"
 
-#: C:\wamp\www\master\www\setup/include/config.php:18
+#: c:\Code\pi\\www\setup/include/config.php:18
 msgid "PDO drivers"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:24
+#: c:\Code\pi\\www\setup/include/config.php:24
 msgid "APC"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:25
+#: c:\Code\pi\\www\setup/include/config.php:25
 msgid ""
 "The Alternative PHP Cache (APC) is highly recommended for high-performance "
 "scenario. Refer to <a href=\"http://www.php.net/manual/en/intro.apc.php\" "
@@ -41,22 +41,22 @@ msgid ""
 "details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:28
+#: c:\Code\pi\\www\setup/include/config.php:28
 msgid "Redis"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:29
+#: c:\Code\pi\\www\setup/include/config.php:29
 msgid ""
 "The extension is highly recommended for performance scenario and advanced "
 "data structure. Refer to <a href=\"http://redis.io\" target=\"_blank\" title="
 "\"Redis\">Redis page</a> for details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:32
+#: c:\Code\pi\\www\setup/include/config.php:32
 msgid "Memcached"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:33
+#: c:\Code\pi\\www\setup/include/config.php:33
 msgid ""
 "Memcached is highly recommended for high-performance yet robust distributed "
 "scenario. However it is not suitable for shared-hosting usage since tag is "
@@ -65,11 +65,11 @@ msgid ""
 "introduction</a> for details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:36
+#: c:\Code\pi\\www\setup/include/config.php:36
 msgid "Memcache"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:37
+#: c:\Code\pi\\www\setup/include/config.php:37
 msgid ""
 "Memcache a widely used cache engine. However it is not suitable for shared-"
 "hosting usage since tag is not supported. Refer to <a href=\"http://www.php."
@@ -77,11 +77,11 @@ msgid ""
 "introduction\">Memcache introduction</a> for details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:40
+#: c:\Code\pi\\www\setup/include/config.php:40
 msgid "cURL"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:41
+#: c:\Code\pi\\www\setup/include/config.php:41
 msgid ""
 "The extension allows to connect and communicate to different types of "
 "servers with different types of protocols, check <a href=\"http://www.php."
@@ -89,11 +89,11 @@ msgid ""
 "details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:44
+#: c:\Code\pi\\www\setup/include/config.php:44
 msgid "Intl"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:45
+#: c:\Code\pi\\www\setup/include/config.php:45
 msgid ""
 "Internationalization extension enables collation and date/time/number/"
 "currency formatting, check <a href=\"http://www.php.net/manual/en/book.intl."
@@ -101,11 +101,11 @@ msgid ""
 "\">Internationalization extension</a> for details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:48
+#: c:\Code\pi\\www\setup/include/config.php:48
 msgid "Markdown"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:49
+#: c:\Code\pi\\www\setup/include/config.php:49
 msgid ""
 "The extension is suggested for text parser, check <a href=\"http://"
 "daringfireball.net/projects/markdown/\" title=\"Markdown project\" target="
@@ -114,235 +114,235 @@ msgid ""
 "page</a>."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:52
+#: c:\Code\pi\\www\setup/include/config.php:52
 msgid "Mbstring"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/config.php:53
+#: c:\Code\pi\\www\setup/include/config.php:53
 msgid ""
 "The extension is required for multibyte string processing, check <a href="
 "\"http://www.php.net/manual/en/book.mbstring.php\" title=\"Multibyte String"
 "\" target=\"_blank\">Multibyte String</a> for details."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/include/page.php:13
+#: c:\Code\pi\\www\setup/include/page.php:13
 msgid "Presettings"
 msgstr "系统配置"
 
-#: C:\wamp\www\master\www\setup/include/page.php:14
+#: c:\Code\pi\\www\setup/include/page.php:14
 msgid "Presettings and server configuration detection"
 msgstr "系统需求及服务器配置检测"
 
-#: C:\wamp\www\master\www\setup/include/page.php:17
+#: c:\Code\pi\\www\setup/include/page.php:17
 msgid "Directives"
 msgstr "路径设置"
 
-#: C:\wamp\www\master\www\setup/include/page.php:18
+#: c:\Code\pi\\www\setup/include/page.php:18
 msgid "Directive settings for website"
 msgstr "网站路径及URL设置"
 
-#: C:\wamp\www\master\www\setup/include/page.php:21
+#: c:\Code\pi\\www\setup/include/page.php:21
 msgid "Database"
 msgstr "数据库"
 
-#: C:\wamp\www\master\www\setup/include/page.php:22
+#: c:\Code\pi\\www\setup/include/page.php:22
 msgid "Database settings"
 msgstr "数据库设置及生成"
 
-#: C:\wamp\www\master\www\setup/include/page.php:25
+#: c:\Code\pi\\www\setup/include/page.php:25
 msgid "Administrator"
 msgstr "管理员"
 
-#: C:\wamp\www\master\www\setup/include/page.php:26
+#: c:\Code\pi\\www\setup/include/page.php:26
 msgid "Administrator account creation"
 msgstr "管理员账号建立"
 
-#: C:\wamp\www\master\www\setup/include/page.php:29
+#: c:\Code\pi\\www\setup/include/page.php:29
 msgid "Finish"
 msgstr "完成"
 
-#: C:\wamp\www\master\www\setup/include/page.php:30
+#: c:\Code\pi\\www\setup/include/page.php:30
 msgid "Finishing installation process"
 msgstr "安装完成及处理"
 
-#: C:\wamp\www\master\www\setup/src/Wizard.php:225
+#: c:\Code\pi\\www\setup/src/Wizard.php:295
 msgid "Pi Engine Setup Wizard"
 msgstr "Pi Engine 安装助手"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:36
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:32
 msgid "Database connection is failed."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:47
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:43
 msgid "PiAdmin"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:88
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:84
 msgid "System module uninstallation is failed. Please continue to try again."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:119
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:124
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:134
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:115
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:120
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:130
 msgid "Information is required."
-msgstr ""
+msgstr "必需信息。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:126
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:184
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:122
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:180
 msgid "Invalid Email."
-msgstr ""
+msgstr "无效邮箱。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:136
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:187
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:132
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:183
 msgid "The two passwords do not match"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:152
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:148
 msgid "System module installation is failed. Please continue to try again."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:172
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:168
 msgid "Username is required."
-msgstr ""
+msgstr "用户名必填。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:175
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:171
 msgid "Name is required."
-msgstr ""
+msgstr "昵称必填。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:178
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:174
 msgid "Email is required."
-msgstr ""
+msgstr "邮箱必填。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:181
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:177
 msgid "Password is required."
-msgstr ""
+msgstr "密码必填。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:292
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:288
 msgid "Deprecated tables exist in the database. Please continue to re-install."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:309
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:305
 msgid "Admin email"
-msgstr ""
+msgstr "管理员邮箱"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:310
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:306
 msgid "Admin username"
-msgstr ""
+msgstr "管理员用户名"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:311
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:307
 msgid "Admin name"
-msgstr ""
+msgstr "管理员昵称"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:312
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:308
 msgid "Admin password"
-msgstr ""
+msgstr "管理员密码"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:313
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:309
 msgid "Confirm password"
-msgstr ""
+msgstr "确认密码"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Admin.php:329
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:325
 msgid "Administrator account"
-msgstr ""
+msgstr "管理员账号"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:150
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:251
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:160
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:246
 msgid "Configuration file write error"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:153
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:256
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:163
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:251
 #, php-format
 msgid "The configuration file \"%s\" is not written correctly."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:175
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:185
 msgid "Server hostname"
 msgstr "服务器"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:176
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:186
 msgid ""
 "Hostname (and port, delimited by \":\") or Unix socket of the database "
 "server. If you are unsure, \"localhost\" works in most cases, or "
 "\"127.0.0.1\""
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:179
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:189
 msgid "User name"
-msgstr ""
+msgstr "用户ID或用户名"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:180
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:190
 msgid ""
 "Name of the user account that will be used to connect to the database server"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:183
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:193
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:184
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:194
 msgid "Password of your database user account"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:187
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:197
 msgid "Database name"
-msgstr ""
+msgstr "数据库名"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:188
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:198
 msgid ""
 "The name of database on the host. The database must be already available."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:191
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:201
 msgid "Table prefix"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:192
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:202
 msgid ""
 "This prefix will be added to all new tables created to avoid name conflicts "
 "in the database. If you are unsure, just keep the default."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:227
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:237
 msgid "Database setup"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Database.php:228
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:238
 msgid "Settings for database"
-msgstr ""
+msgstr "数据库设置"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:132
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:129
 #, php-format
 msgid "%s is NOT writable."
-msgstr ""
+msgstr "%s不可写。"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:266
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:261
 msgid "Configuration file copy error"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:268
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:263
 msgid ""
 "The configuration files are not copied correctly or not readable, please "
 "create and/or set read permissions for the files manually."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:340
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:335
 msgid "File system"
-msgstr ""
+msgstr "文件系统"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:342
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:337
 msgid "Caching storage with files on disks specified in following steps."
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:346
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:341
 msgid "Persistent data container"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Directive.php:350
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:345
 msgid "Choose the proper backend container for persistent data"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Finish.php:101
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:95
 #, php-format
 msgid ""
 "\n"
@@ -368,23 +368,23 @@ msgid ""
 "</div>\n"
 msgstr ""
 
-#: C:\wamp\www\master\www\setup/src/Controller/Presetting.php:89
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:59
 msgid "Language Selection"
 msgstr "语言选择"
 
-#: C:\wamp\www\master\www\setup/src/Controller/Presetting.php:91
-msgid "Choose the language for the installation and website"
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:60
+msgid "Choose the language for the installation and website."
 msgstr "选择安装及网站所用语言"
 
-#: C:\wamp\www\master\www\setup/include/template.phtml:64
+#: c:\Code\pi\\www\setup/include/template.phtml:65
 msgid "Previous"
 msgstr "上一步"
 
-#: C:\wamp\www\master\www\setup/include/template.phtml:69
+#: c:\Code\pi\\www\setup/include/template.phtml:70
 msgid "Reload"
 msgstr "重新载入"
 
-#: C:\wamp\www\master\www\setup/include/template.phtml:78
-#: C:\wamp\www\master\www\setup/include/template.phtml:83
+#: c:\Code\pi\\www\setup/include/template.phtml:79
+#: c:\Code\pi\\www\setup/include/template.phtml:84
 msgid "Next"
 msgstr "下一步"

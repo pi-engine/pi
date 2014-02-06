@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2013-11-09 19:05+0800\n"
-"PO-Revision-Date: 2013-11-09 19:05+0800\n"
+"POT-Creation-Date: 2014-02-06 14:26+0800\n"
+"PO-Revision-Date: 2014-02-06 14:28+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -11,204 +11,250 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\lib\\Pi\n"
-"X-Poedit-SearchPath-1: C:\\wamp\\www\\master\\www\n"
-"X-Poedit-SearchPath-2: C:\\wamp\\www\\master\\lib\\usr\\editor\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\lib\n"
+"X-Poedit-SearchPath-1: c:\\Code\\pi\\www\n"
+"X-Poedit-SearchPath-2: c:\\Code\\pi\\usr\\editor\n"
 
-#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:346
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:348
 msgid "Theme updated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:353
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:355
 msgid "Theme failed to update."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:355
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:357
 msgid "Theme upgraded successfully."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Application/Installer/Theme.php:359
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Application/Service/Comment.php:456
-msgid "Posted a new comment."
-msgstr ""
-
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
 msgid ""
 "An identity column must be supplied for the DbTable authentication adapter."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
 msgid ""
 "A credential column must be supplied for the DbTable authentication adapter."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
 msgid ""
 "A value for the identity was not provided prior to authentication with "
 "DbTable."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
 msgid ""
 "A credential value was not provided prior to authentication with DbTable."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
 msgid "A record with the supplied identity could not be found."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
 msgid "More than one record matches the supplied identity."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
 msgid "Supplied credential is invalid."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
 msgid "Authentication successful."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Editor/Factory.php:76
+#: c:\Code\pi\lib/Pi/Editor/Factory.php:76
 msgid "Pi Default Editor"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Feed/Model.php:198
+#: c:\Code\pi\lib/Pi/Feed/Model.php:199
 #, php-format
 msgid "Feed of %s - %s"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Filter/Gender.php:39
+#: c:\Code\pi\lib/Pi/Filter/Gender.php:39
 msgid "Male"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Filter/Gender.php:43
+#: c:\Code\pi\lib/Pi/Filter/Gender.php:43
 msgid "Female"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Filter/Gender.php:48
+#: c:\Code\pi\lib/Pi/Filter/Gender.php:48
 msgid "Unknown gender"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Filter/YesNo.php:40
+#: c:\Code\pi\lib/Pi/Filter/YesNo.php:40
 msgid "No"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Filter/YesNo.php:43
+#: c:\Code\pi\lib/Pi/Filter/YesNo.php:43
 msgid "Yes"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:32
-#: C:\wamp\www\master\lib\Pi/Form/Element/Role.php:37
-#: C:\wamp\www\master\lib\Pi/Form/Element/RoleAdmin.php:35
-#: C:\wamp\www\master\lib\Pi/Form/Element/RoleUser.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:32
+#: c:\Code\pi\lib/Pi/Form/Element/Role.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/RoleUser.php:35
 msgid "None"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:33
-msgid "Locale"
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:68
+msgid "Language"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:34
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:34
+msgid "Authenticated or not"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
 msgid "Role"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheLevel.php:35
-msgid "User"
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:49
+msgid "Cache level"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:32
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:32
 msgid "No cache"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:33
 #, php-format
 msgid "%d seconds"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:34
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:34
 msgid "1 minute"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:35
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:36
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:36
 #, php-format
 msgid "%d minutes"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:37
 msgid "1 hour"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:38
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:38
 #, php-format
 msgid "%d hours"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:39
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:39
 msgid "1 day"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:40
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:40
 msgid "1 week"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/CacheTtl.php:41
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:41
 msgid "1 month"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Form/Element/Locale.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:54
+msgid "Cache expiration"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:37
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:231
+msgid "Editor"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:33
 msgid "Auto-detection"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Mvc/Controller/ActionController.php:98
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:36
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:78
+msgid "Username"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:81
+msgid "Email"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:84
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:88
+msgid "Identity"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Navigation.php:50
+msgid "Navigation"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:52
+msgid "Admin role"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/RoleCheckbox.php:52
+msgid "Roles"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Submit.php:38
+msgid "Submit"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Tag.php:116
+msgid "Tags"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:48
+msgid "Theme"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Timezone.php:78
+msgid "Timezone"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Mvc/Controller/Plugin/Terminate.php:39
+#: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 msgid "Login"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/Mvc/Controller/Plugin/Terminate.php:42
+#: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
 #, php-format
 msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/View/Helper/AdminNav.php:59
-msgid "Operation"
+#: c:\Code\pi\lib/Pi/User/Model/AbstractModel.php:239
+msgid "Guest"
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/View/Helper/AdminNav.php:63
-msgid "Setting"
+#: c:\Code\pi\lib/Pi/View/Helper/Tag.php:92
+msgid "Tags: "
 msgstr ""
 
-#: C:\wamp\www\master\lib\Pi/View/Helper/AdminNav.php:67
-msgid "Deployment"
-msgstr ""
-
-#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:221
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:217
 msgid "Manager"
 msgstr ""
 
-#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:228
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:224
 msgid "Moderator"
 msgstr ""
 
-#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:235
-msgid "Editor"
-msgstr ""
-
-#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:242
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:238
 msgid "Staff"
 msgstr ""
 
-#: C:\wamp\www\master\www/setup/src/Controller/Admin.php:249
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:245
 msgid "Member"
 msgstr ""

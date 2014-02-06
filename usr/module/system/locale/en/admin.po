@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2013-12-05 15:57+0800\n"
-"PO-Revision-Date: 2013-12-05 15:57+0800\n"
+"POT-Creation-Date: 2014-02-06 14:44+0800\n"
+"PO-Revision-Date: 2014-02-06 14:45+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,1638 +11,1785 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:18
+#: c:\Code\pi\usr\module\system/config/block.php:18
 msgid "Site Info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:19
+#: c:\Code\pi\usr\module\system/config/block.php:19
 msgid "Website information"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:26
-#: C:\wamp\www\master\usr\module\system/config/page.php:116
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:17
+#: c:\Code\pi\usr\module\system/config/block.php:26
+#: c:\Code\pi\usr\module\system/config/page.php:116
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:17
 msgid "User"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:27
-#: C:\wamp\www\master\usr\module\system/config/config.php:33
+#: c:\Code\pi\usr\module\system/config/block.php:27
+#: c:\Code\pi\usr\module\system/config/config.php:33
 msgid "User account"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:34
+#: c:\Code\pi\usr\module\system/config/block.php:34
 msgid "User bar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:35
+#: c:\Code\pi\usr\module\system/config/block.php:35
 msgid "User profile or login bar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:40
+#: c:\Code\pi\usr\module\system/config/block.php:40
 msgid "Display type"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:41
+#: c:\Code\pi\usr\module\system/config/block.php:41
+#, fuzzy
 msgid "Mode to render."
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:47
+#: c:\Code\pi\usr\module\system/config/block.php:47
 msgid "Flat"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:48
+#: c:\Code\pi\usr\module\system/config/block.php:48
 msgid "Dropdown menu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:49
+#: c:\Code\pi\usr\module\system/config/block.php:49
 msgid "JavaScript"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:59
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:30
+#: c:\Code\pi\usr\module\system/config/block.php:59
+#: c:\Code\pi\usr\module\system/config/nav.front.php:30
+#, fuzzy
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:60
+#: c:\Code\pi\usr\module\system/config/block.php:60
 msgid "User login block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:67
+#: c:\Code\pi\usr\module\system/config/block.php:67
 msgid "Pi feature"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/block.php:68
+#: c:\Code\pi\usr\module\system/config/block.php:68
 msgid "Introduction to Pi Engine"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:21
+#: c:\Code\pi\usr\module\system/config/config.php:21
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:95
 msgid "General"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:25
+#: c:\Code\pi\usr\module\system/config/config.php:25
 msgid "Head meta"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:29
+#: c:\Code\pi\usr\module\system/config/config.php:29
 msgid "Internationalization"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:37
+#: c:\Code\pi\usr\module\system/config/config.php:37
+msgid "Admin login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:41
 msgid "Text processing"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:41
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:264
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:9
+#: c:\Code\pi\usr\module\system/config/config.php:45
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:300
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:53
+#: c:\Code\pi\usr\module\system/config/config.php:57
 msgid "Site name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:54
+#: c:\Code\pi\usr\module\system/config/config.php:58
 msgid "Website name."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:61
+#: c:\Code\pi\usr\module\system/config/config.php:65
 msgid "Slogan"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:62
+#: c:\Code\pi\usr\module\system/config/config.php:66
 msgid "Website slogan."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:68
+#: c:\Code\pi\usr\module\system/config/config.php:72
 msgid "Locale"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:69
+#: c:\Code\pi\usr\module\system/config/config.php:73
 msgid "Locale for application content."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:76
+#: c:\Code\pi\usr\module\system/config/config.php:80
 msgid "Charset"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:77
+#: c:\Code\pi\usr\module\system/config/config.php:81
 msgid "Charset for page display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:83
+#: c:\Code\pi\usr\module\system/config/config.php:87
 msgid "Timezone"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:84
+#: c:\Code\pi\usr\module\system/config/config.php:88
 msgid "Timezone for application system."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:90
+#: c:\Code\pi\usr\module\system/config/config.php:94
 msgid "List count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:91
+#: c:\Code\pi\usr\module\system/config/config.php:95
 msgid "Number of items on a list."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:98
+#: c:\Code\pi\usr\module\system/config/config.php:102
 msgid "GA account"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:99
+#: c:\Code\pi\usr\module\system/config/config.php:103
 msgid "Google Analytics account. Or use following custom foot scripts."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:104
+#: c:\Code\pi\usr\module\system/config/config.php:108
 msgid "Foot scripts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:105
+#: c:\Code\pi\usr\module\system/config/config.php:109
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:122
+#: c:\Code\pi\usr\module\system/config/config.php:115
+#, fuzzy
 msgid "Theme"
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:129
+#: c:\Code\pi\usr\module\system/config/config.php:122
+#, fuzzy
 msgid "Admin theme"
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/config/config.php:129
+msgid "Run environment"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:138
-msgid "Meta copyright"
+#: c:\Code\pi\usr\module\system/config/config.php:130
+msgid "Only applicable if not set in `var/config/engine.php`."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:139
+#: c:\Code\pi\usr\module\system/config/config.php:135
+msgid "Production"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:136
+msgid "Development"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:137
+msgid "QA test"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:138
+msgid "Site closed"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:149
+msgid "Username format"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:150
+msgid "Format of username for registration."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:155
+msgid "Strict: alphabet or number only"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:156
+msgid "Medium: ASCII characters"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:157
+msgid "Loose: multi-byte characters"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:167
+msgid "Minimum username"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:168
+msgid "Minimum length of username for user registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:175
+msgid "Maximum username"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:176
+msgid "Maximum length of username for user registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:183
+msgid "Minimum password"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:184
+msgid "Minimum length of password for user registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:191
+msgid "Maximum password"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:192
+msgid "Maximum length of password for user registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:199
+msgid "Username backlist"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:200
 msgid ""
-"The copyright meta tag defines any copyright statements you wish to disclose "
-"about your web page documents."
+"Reserved and forbidden username list. Separate each with a <strong>|</"
+"strong>, regexp syntax is allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:146
+#: c:\Code\pi\usr\module\system/config/config.php:207
+msgid "Email backlist"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:208
+msgid ""
+"Forbidden username list. Separate each with a <strong>|</strong>, regexp "
+"syntax is allowed."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:215
+#: c:\Code\pi\usr\module\system/config/config.php:297
+msgid "Remember me"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:216
+#: c:\Code\pi\usr\module\system/config/config.php:298
+msgid "Days to remember login, 0 for disable."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:223
+#: c:\Code\pi\usr\module\system/config/config.php:305
+msgid "Login field"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:224
+msgid "Identity field(s) for authentication."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:232
+#: c:\Code\pi\usr\module\system/config/config.php:314
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:23
+msgid "Username"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:233
+#: c:\Code\pi\usr\module\system/config/config.php:315
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:25
+msgid "Email"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:243
+#: c:\Code\pi\usr\module\system/config/config.php:289
+msgid "Maximum attempts"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:244
+msgid "Maximum attempts allowed to try for user login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:251
+#: c:\Code\pi\usr\module\system/config/config.php:325
+msgid "Login disable"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:252
+msgid "Disable user login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:260
+msgid "Register disable"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:261
+msgid "Disable user registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:269
+#: c:\Code\pi\usr\module\system/config/config.php:334
+msgid "Login CAPTCHA"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:270
+msgid "Enable CAPTCHA for user login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:278
+msgid "Register CAPTCHA"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:279
+msgid "Enable CAPTCHA for user registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:290
+msgid "Maximum attempts allowed to try for admin login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:306
+msgid "Identity field(s) for admin authentication."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:326
+msgid "Disable admin login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:335
+msgid "Enable CAPTCHA for admin login"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:345
 msgid "Meta author"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:147
+#: c:\Code\pi\usr\module\system/config/config.php:346
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
 "webmaster, company name or URL."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:154
+#: c:\Code\pi\usr\module\system/config/config.php:353
 msgid "Meta generator"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:155
+#: c:\Code\pi\usr\module\system/config/config.php:354
 msgid "Generator of the document being read."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:162
+#: c:\Code\pi\usr\module\system/config/config.php:361
 msgid "Meta keywords"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:163
+#: c:\Code\pi\usr\module\system/config/config.php:362
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:170
+#: c:\Code\pi\usr\module\system/config/config.php:369
 msgid "Meta description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:171
+#: c:\Code\pi\usr\module\system/config/config.php:370
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:180
+#: c:\Code\pi\usr\module\system/config/config.php:379
 msgid "Default number style"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:181
+#: c:\Code\pi\usr\module\system/config/config.php:380
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:186
+#: c:\Code\pi\usr\module\system/config/config.php:385
 msgid "Default format for the locale"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:187
+#: c:\Code\pi\usr\module\system/config/config.php:386
 msgid "Decimal format defined by pattern"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:188
+#: c:\Code\pi\usr\module\system/config/config.php:387
 msgid "Decimal format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:189
+#: c:\Code\pi\usr\module\system/config/config.php:388
 msgid "Percent format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:190
+#: c:\Code\pi\usr\module\system/config/config.php:389
 msgid "Scientific format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:191
+#: c:\Code\pi\usr\module\system/config/config.php:390
 msgid "Spellout rule-based format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:192
+#: c:\Code\pi\usr\module\system/config/config.php:391
 msgid "Ordinal rule-based format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:193
+#: c:\Code\pi\usr\module\system/config/config.php:392
 msgid "Duration rule-based format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:194
+#: c:\Code\pi\usr\module\system/config/config.php:393
 msgid "Rule-based format defined by pattern"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:203
+#: c:\Code\pi\usr\module\system/config/config.php:402
 msgid "Default pattern for selected number style"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:204
+#: c:\Code\pi\usr\module\system/config/config.php:403
 msgid "Only if required by style"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:211
+#: c:\Code\pi\usr\module\system/config/config.php:410
 msgid "Default currency type"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:212
+#: c:\Code\pi\usr\module\system/config/config.php:411
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:219
+#: c:\Code\pi\usr\module\system/config/config.php:418
 msgid "Default calendar for the locale"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:220
+#: c:\Code\pi\usr\module\system/config/config.php:419
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:227
+#: c:\Code\pi\usr\module\system/config/config.php:426
 msgid "Default date type"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:228
-#: C:\wamp\www\master\usr\module\system/config/config.php:247
+#: c:\Code\pi\usr\module\system/config/config.php:427
+#: c:\Code\pi\usr\module\system/config/config.php:446
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:233
-#: C:\wamp\www\master\usr\module\system/config/config.php:252
+#: c:\Code\pi\usr\module\system/config/config.php:432
+#: c:\Code\pi\usr\module\system/config/config.php:451
 msgid "Do not include this element"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:234
-#: C:\wamp\www\master\usr\module\system/config/config.php:253
+#: c:\Code\pi\usr\module\system/config/config.php:433
+#: c:\Code\pi\usr\module\system/config/config.php:452
 msgid ""
 "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:235
-#: C:\wamp\www\master\usr\module\system/config/config.php:254
+#: c:\Code\pi\usr\module\system/config/config.php:434
+#: c:\Code\pi\usr\module\system/config/config.php:453
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:236
-#: C:\wamp\www\master\usr\module\system/config/config.php:255
+#: c:\Code\pi\usr\module\system/config/config.php:435
+#: c:\Code\pi\usr\module\system/config/config.php:454
 msgid "Medium style (Jan 12, 1952)"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:237
-#: C:\wamp\www\master\usr\module\system/config/config.php:256
+#: c:\Code\pi\usr\module\system/config/config.php:436
+#: c:\Code\pi\usr\module\system/config/config.php:455
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:246
+#: c:\Code\pi\usr\module\system/config/config.php:445
 msgid "Default time type"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:265
+#: c:\Code\pi\usr\module\system/config/config.php:464
 msgid "Default formatting pattern for date-time"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:266
+#: c:\Code\pi\usr\module\system/config/config.php:465
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:273
+#: c:\Code\pi\usr\module\system/config/config.php:472
 msgid "Default format for legacy date function"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:274
+#: c:\Code\pi\usr\module\system/config/config.php:473
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:283
+#: c:\Code\pi\usr\module\system/config/config.php:482
 msgid "Admin email"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:284
+#: c:\Code\pi\usr\module\system/config/config.php:483
 msgid "Admin email address for contact."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:290
+#: c:\Code\pi\usr\module\system/config/config.php:489
 msgid "Admin name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:291
+#: c:\Code\pi\usr\module\system/config/config.php:490
 msgid "User name used to send emails"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:296
+#: c:\Code\pi\usr\module\system/config/config.php:495
 msgid "Email encoding"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:297
+#: c:\Code\pi\usr\module\system/config/config.php:496
 msgid "Encoding for email contents"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:305
+#: c:\Code\pi\usr\module\system/config/config.php:504
+#, fuzzy
 msgid "Editor"
-msgstr ""
+msgstr "编辑"
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:306
+#: c:\Code\pi\usr\module\system/config/config.php:505
 msgid "Default editor for text processing"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:311
+#: c:\Code\pi\usr\module\system/config/config.php:510
 msgid "Enable word censoring"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:312
+#: c:\Code\pi\usr\module\system/config/config.php:511
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:320
+#: c:\Code\pi\usr\module\system/config/config.php:519
+#, fuzzy
 msgid "Words to censor"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:321
+#: c:\Code\pi\usr\module\system/config/config.php:520
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:328
+#: c:\Code\pi\usr\module\system/config/config.php:527
 msgid "Word to replace censored words"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:329
+#: c:\Code\pi\usr\module\system/config/config.php:528
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:337
-msgid "Username format"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:338
-msgid "Format of username for registration."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:343
-msgid "Strict: alphabet or number only"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:344
-msgid "Medium: ASCII characters"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:345
-msgid "Loose: multi-byte characters"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:355
-msgid "Minmum username"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:356
-msgid "Minmum length of username for user registration"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:363
-msgid "Maximum username"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:364
-msgid "Maximum length of username for user registration"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:371
-msgid "Minmum password"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:372
-msgid "Minmum length of password for user registration"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:379
-msgid "Maximum password"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:380
-msgid "Maximum length of password for user registration"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:387
-msgid "Username backlist"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:388
-msgid ""
-"Reserved and forbidden username list. Separate each with a <strong>|</"
-"strong>, regexp syntax is allowed."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:395
-msgid "Email backlist"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:396
-msgid ""
-"Forbidden username list. Separate each with a <strong>|</strong>, regexp "
-"syntax is allowed."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:403
-msgid "Remember me"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:404
-msgid "Days to remember login, 0 for disable."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:411
-msgid "Maximum attempts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:412
-msgid "Maximum attempts allowed to try for user login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:419
-msgid "Login disable"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:420
-msgid "Disable user login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:428
-msgid "Register disable"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:429
-msgid "Disable user registration"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:437
-msgid "Login CAPTCHA"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:438
-msgid "Enable CAPTCHA for user login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:446
-msgid "Register CAPTCHA"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:447
-msgid "Enable CAPTCHA for user registration"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/config.php:456
+#: c:\Code\pi\usr\module\system/config/config.php:535
 msgid "Module themes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:457
+#: c:\Code\pi\usr\module\system/config/config.php:536
 msgid "Themes for modules."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:465
-#: C:\wamp\www\master\usr\module\system/config/nav.php:21
+#: c:\Code\pi\usr\module\system/config/config.php:544
+#: c:\Code\pi\usr\module\system/config/nav.php:21
 msgid "Front navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:466
+#: c:\Code\pi\usr\module\system/config/config.php:545
 msgid "Global navigation for front end."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:473
-#: C:\wamp\www\master\usr\module\system/config/nav.php:27
+#: c:\Code\pi\usr\module\system/config/config.php:552
+#: c:\Code\pi\usr\module\system/config/nav.php:27
 msgid "Admin navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/config.php:474
+#: c:\Code\pi\usr\module\system/config/config.php:553
 msgid "Global navigation for admin."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/event.php:21
+#: c:\Code\pi\usr\module\system/config/event.php:21
 msgid "Module installed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/event.php:24
+#: c:\Code\pi\usr\module\system/config/event.php:24
 msgid "Module uninstalled"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/event.php:27
+#: c:\Code\pi\usr\module\system/config/event.php:27
 msgid "Module activated"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/event.php:30
+#: c:\Code\pi\usr\module\system/config/event.php:30
 msgid "Module deactivated"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/event.php:33
+#: c:\Code\pi\usr\module\system/config/event.php:33
+#, fuzzy
 msgid "Module updated"
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/config/module.php:19
+#: c:\Code\pi\usr\module\system/config/module.php:19
 msgid "System"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/module.php:22
+#: c:\Code\pi\usr\module\system/config/module.php:22
 msgid "For administration of core functions of the site."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:17
-#: C:\wamp\www\master\usr\module\system/config/page.php:91
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:23
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:17
+#: c:\Code\pi\usr\module\system/config/page.php:91
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:23
 msgid "Modules"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:28
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:74
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:7
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:10
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:28
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:104
 msgid "Installed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:36
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:82
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:10
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:10
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:11
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:48
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:112
 msgid "Availables"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:44
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:90
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:10
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:10
-#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:9
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:11
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:11
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:12
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:67
+msgid "Category"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:74
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:120
 msgid "Repository"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:55
-#: C:\wamp\www\master\usr\module\system/config/page.php:97
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:36
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:85
+#: c:\Code\pi\usr\module\system/config/page.php:97
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:36
 msgid "Themes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:66
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:96
 msgid "In action"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:102
-#: C:\wamp\www\master\usr\module\system/config/page.php:103
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:132
+#: c:\Code\pi\usr\module\system/config/page.php:103
 msgid "Navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:113
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:79
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:127
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:143
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:79
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:127
 msgid "Navigation list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:122
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:152
 msgid "Data manipulation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:133
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:163
+msgid "Add new"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:172
 msgid "Navigation setup"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:144
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:183
+#, fuzzy
 msgid "Role"
+msgstr "角色"
+
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:194
+msgid "Role list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:154
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:63
-#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:25
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:21
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:29
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:39
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:19
-msgid "Front"
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:202
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:18
+msgid "Add role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:164
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:52
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:67
-#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:26
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:22
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:30
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:40
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:24
-msgid "Admin"
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:260
+#, fuzzy
+msgid "Cache flush"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:270
+msgid "Asset publish"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:224
-#: C:\wamp\www\master\usr\module\system/config/page.php:135
-msgid "Cache"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:234
-#: C:\wamp\www\master\usr\module\system/config/page.php:123
-msgid "Asset"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:245
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:281
 msgid "Toolkit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.admin.php:256
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:8
+#: c:\Code\pi\usr\module\system/config/nav.admin.php:292
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.component.php:17
+#: c:\Code\pi\usr\module\system/config/nav.component.php:17
 msgid "Configurations"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.component.php:28
-#: C:\wamp\www\master\usr\module\system/config/page.php:65
+#: c:\Code\pi\usr\module\system/config/nav.component.php:28
+#: c:\Code\pi\usr\module\system/config/page.php:65
 msgid "Blocks"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.component.php:40
-#: C:\wamp\www\master\usr\module\system/config/page.php:71
+#: c:\Code\pi\usr\module\system/config/nav.component.php:39
+#: c:\Code\pi\usr\module\system/config/page.php:71
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:22
 msgid "Pages"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.component.php:52
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:72
+#: c:\Code\pi\usr\module\system/config/nav.component.php:50
+#: c:\Code\pi\usr\module\system/config/page.php:135
+#, fuzzy
+msgid "Cache"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/config/nav.component.php:61
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:74
 msgid "Permission"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.component.php:64
+#: c:\Code\pi\usr\module\system/config/nav.component.php:72
 msgid "Event/Hook"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:19
+#: c:\Code\pi\usr\module\system/config/nav.front.php:19
 msgid "Home"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:24
+#: c:\Code\pi\usr\module\system/config/nav.front.php:24
 msgid "Profile"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:37
+#: c:\Code\pi\usr\module\system/config/nav.front.php:37
 msgid "Register"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:44
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:37
+#: c:\Code\pi\usr\module\system/config/nav.front.php:44
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:37
 msgid "Password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.front.php:57
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:71
+#: c:\Code\pi\usr\module\system/config/nav.front.php:52
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:22
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:36
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:18
+msgid "Admin"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/nav.front.php:57
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:98
 msgid "Feed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/nav.php:33
+#: c:\Code\pi\usr\module\system/config/nav.php:33
 msgid "Managed components"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:20
+#: c:\Code\pi\usr\module\system/config/page.php:20
 msgid "Homepage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:28
+#: c:\Code\pi\usr\module\system/config/page.php:28
 msgid "Utility"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:35
+#: c:\Code\pi\usr\module\system/config/page.php:35
 msgid "Error reporting"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:45
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ComponentController.php:66
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:76
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:401
+#: c:\Code\pi\usr\module\system/config/page.php:45
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:78
+#: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:373
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:51
+#: c:\Code\pi\usr\module\system/config/page.php:51
 msgid "Readme"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:59
+#: c:\Code\pi\usr\module\system/config/page.php:59
 msgid "Config"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:77
+#: c:\Code\pi\usr\module\system/config/page.php:77
 msgid "Event/listener"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:83
+#: c:\Code\pi\usr\module\system/config/page.php:83
 msgid "Permissions"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:110
+#: c:\Code\pi\usr\module\system/config/page.php:110
 msgid "Roles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:129
+#: c:\Code\pi\usr\module\system/config/page.php:123
+msgid "Asset"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/page.php:129
 msgid "Auditing"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/page.php:145
+#: c:\Code\pi\usr\module\system/config/page.php:145
 msgid "What's new"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:20
+#: c:\Code\pi\usr\module\system/config/permission.php:20
 msgid "Global public resource"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:28
+#: c:\Code\pi\usr\module\system/config/permission.php:28
 msgid "Guest only"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:35
+#: c:\Code\pi\usr\module\system/config/permission.php:35
 msgid "Member only"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:45
+#: c:\Code\pi\usr\module\system/config/permission.php:45
 msgid "Generic permission"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:57
+#: c:\Code\pi\usr\module\system/config/permission.php:57
 msgid "Operation: modules"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:64
+#: c:\Code\pi\usr\module\system/config/permission.php:64
 msgid "Operation: themes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:72
+#: c:\Code\pi\usr\module\system/config/permission.php:72
 msgid "Operation: navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:80
+#: c:\Code\pi\usr\module\system/config/permission.php:80
 msgid "Operation: roles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:96
+#: c:\Code\pi\usr\module\system/config/permission.php:96
 msgid "Operation: maintenance"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:106
+#: c:\Code\pi\usr\module\system/config/permission.php:106
 msgid "Management: configs"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:114
+#: c:\Code\pi\usr\module\system/config/permission.php:114
 msgid "Management: blocks"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:122
+#: c:\Code\pi\usr\module\system/config/permission.php:122
 msgid "Management: pages"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:130
+#: c:\Code\pi\usr\module\system/config/permission.php:130
+msgid "Management: caches"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/permission.php:137
 msgid "Management: permissions"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/permission.php:137
+#: c:\Code\pi\usr\module\system/config/permission.php:144
 msgid "Management: events/hooks"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/role.php:19
+#: c:\Code\pi\usr\module\system/config/role.php:19
 msgid "Administrator"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/role.php:21
+#: c:\Code\pi\usr\module\system/config/role.php:21
 msgid "Staff"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/role.php:35
+#: c:\Code\pi\usr\module\system/config/role.php:35
 msgid "Webmaster"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/config/role.php:37
+#: c:\Code\pi\usr\module\system/config/role.php:37
+#, fuzzy
 msgid "Member"
-msgstr ""
+msgstr "成员"
 
-#: C:\wamp\www\master\usr\module\system/config/role.php:39
+#: c:\Code\pi\usr\module\system/config/role.php:39
 msgid "Guest"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Menu.php:34
+#: c:\Code\pi\usr\module\system/src/Menu.php:34
 msgid "Operation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Menu.php:40
+#: c:\Code\pi\usr\module\system/src/Menu.php:39
 msgid "Setting"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Menu.php:46
+#: c:\Code\pi\usr\module\system/src/Menu.php:44
 msgid "Deployment"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:50
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:50
 msgid "Asset component list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:80
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:80
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:82
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:82
 msgid "Asset files are published correctly."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:109
-#, php-format
-msgid "module %s"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:115
-#, php-format
-msgid "theme %s"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:154
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:180
 #, php-format
 msgid "There are errors with: %s."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/AssetController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:185
 msgid "Assets re-published successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:113
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:113
 msgid "Block list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:129
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:168
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:129
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:168
 msgid "The block is not allowed to clone."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:152
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:239
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:152
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:239
 msgid "Block data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:159
 msgid "Block data not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:162
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:246
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:147
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:258
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:162
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:246
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:147
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:258
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:202
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:202
 #, php-format
 msgid "Block clone from: %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:252
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:252
 msgid "Block is not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/BlockController.php:267
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:267
 #, php-format
 msgid "Block edit: %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:37
-msgid "File status cache"
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:77
+msgid "Page cache updated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:38
-msgid "APC file cache"
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:64
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:35
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:13
+msgid "Front"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:39
-msgid "System cache files"
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:148
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:89
+msgid "Module wide"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:40
-msgid "System persistent data"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:41
-msgid "Module cache"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:42
-msgid "Comment cache"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:63
-#, php-format
-msgid "Application cache [%s]"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:81
-#, php-format
-msgid "Page cache [%s]"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:93
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:165
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
+#, fuzzy
 msgid "Cache list"
-msgstr ""
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:110
-msgid "Cache is flushed successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/CacheController.php:113
-#, php-format
-msgid "Cache flush failed: %s"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ComponentController.php:57
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:88
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:69
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:71
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:92
+#, fuzzy
 msgid "Never updated."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ConfigController.php:122
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:174
 msgid "Configuration data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ConfigController.php:148
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:188
 msgid "Module configurations"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:143
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/EventController.php:143
 #, php-format
 msgid "Event listeners of module %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:168
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/EventController.php:168
 msgid "The item not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:183
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/EventController.php:183
 msgid "The item is not allowed to activate since module is inactive."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/EventController.php:190
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/EventController.php:190
+#, fuzzy
 msgid "The item updated successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:37
+msgid "File status cache"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/LoginController.php:37
-msgid "Admin login"
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:38
+msgid "APC file cache"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/LoginController.php:67
-msgid "Invalid request."
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:39
+msgid "System cache files"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/LoginController.php:88
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:40
+msgid "System persistent data"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:41
+#, fuzzy
+msgid "Module cache"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:42
+#, fuzzy
+msgid "Comment cache"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:63
+#, fuzzy, php-format
+msgid "Application cache [%s]"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:81
+#, fuzzy, php-format
+msgid "Page cache [%s]"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:110
+msgid "Cache is flushed successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:113
+#, fuzzy, php-format
+msgid "Cache flush failed: %s"
+msgstr "主题更新失败。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/LoginController.php:44
 msgid "Not privileged."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:95
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:99
 msgid "Installed modules"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:137
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:144
 msgid "Modules ready for installation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:162
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:185
+#, fuzzy
+msgid "Module moved successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:192
+#, fuzzy
+msgid "Category deleted successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:232
+#, fuzzy
+msgid "Category updated successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:244
+#, fuzzy
+msgid "Modules sorted successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:277
+#, fuzzy
+msgid "All categorized"
+msgstr "All Categories"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:285
+msgid "Uncategorized"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:304
+msgid "+ New category"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:347
 msgid "Directory is not specified."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:168
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:353
 #, php-format
 msgid "Meta data are not loaded for \"%s\"."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:185
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:370
 msgid "The module has already been installed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:200
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:385
 #, php-format
 msgid "Module \"%s\" is installed successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:207
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:392
 #, php-format
 msgid "Module \"%s\" is not installed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:211
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:396
 msgid "Module is not installed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:215
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:269
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:400
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:454
 msgid "Module installation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:289
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:350
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:410
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:474
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:534
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:593
 msgid "Module is not specified."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:298
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:359
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:419
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:500
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:483
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:543
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:602
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:683
 msgid "Module is not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:300
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:485
 msgid "System module is protected."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:308
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:493
 #, php-format
 msgid "Module \"%s\" is uninstalled successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:313
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:316
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:498
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:501
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:319
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:504
 msgid "Module is not uninstalled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:323
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:508
 msgid "Module uninstallation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:367
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:551
 #, php-format
 msgid "Module \"%s\" is updated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:373
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:375
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:557
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:559
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:378
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:562
 msgid "Module is not updated."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:382
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:566
+#, fuzzy
 msgid "Module update"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:432
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:615
 #, php-format
 msgid "Module \"%s\" is enabled successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:437
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:440
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:620
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:623
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:443
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:626
 msgid "Module is not enabled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:447
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:630
 #, php-format
 msgid "Module \"%s\" is disabled successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:452
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:455
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:635
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:638
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:458
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:641
 msgid "Module is not disabled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:463
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:646
 msgid "Module activation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ModuleController.php:486
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:669
 msgid "Title is required."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:63
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:90
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:41
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:41
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:63
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:90
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:42
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:37
 msgid "Custom"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:159
 msgid "Navigation set up successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:190
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:254
-msgid "Navigation saved successfully."
-msgstr ""
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:192
+#, fuzzy
+msgid "Navigation added successfully."
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:194
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:260
-msgid "Navigation data not saved."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:221
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:207
 msgid "Add a navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:298
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:240
+#, fuzzy
+msgid "Navigation saved successfully."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:246
+msgid "Navigation data not saved."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:284
 msgid "Clone navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:318
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:304
 msgid "The navigation is in use and not allowed to delete."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:330
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:316
 msgid "The navigation is deleted successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:397
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:383
 #, php-format
 msgid "View of navigation details: %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:399
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:385
 #, php-format
 msgid "Navigation data edit: %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:485
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:471
 msgid "Navigation data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:492
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:478
 msgid "Navigation not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/NavController.php:496
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:482
 msgid "Only custom navigations are allowed to manipulate."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:87
-#, php-format
-msgid "%s module wide"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:106
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:106
 msgid "Pages list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:132
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:192
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:256
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:304
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:132
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:192
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:256
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:304
 msgid "Page data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:144
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:214
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:144
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
 msgid "Page data not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:159
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:9
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:159
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:9
 msgid "Setup a page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:272
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:272
 msgid "Pages edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:348
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:524
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:348
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:524
 msgid "Page is not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:353
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:353
 msgid "Page is deleted."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:466
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:466
 #, php-format
 msgid "%s blocks"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PageController.php:549
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:549
 msgid "Page block links are updated."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PermController.php:75
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:75
 msgid "Module access"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PermController.php:82
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:82
 msgid "Module admin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/PermController.php:316
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:316
+#, fuzzy
 msgid "Permission assigned successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:60
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:84
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:60
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:84
 #, php-format
 msgid "A new version %s is available"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:65
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:89
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:65
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:89
+#, fuzzy
 msgid "No update available"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:69
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RepoController.php:93
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:69
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:93
 msgid "Error occurred, check later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:156
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:210
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:156
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:210
 msgid "Role data saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:159
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:213
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:213
 msgid "Role data not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:181
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:181
 msgid "Add a role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:239
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:239
 msgid "Edit a role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:259
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:259
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:269
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:269
+#, fuzzy
 msgid "Role updated successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:308
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:308
 msgid "Only custom roles are allowed to delete."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/RoleController.php:314
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:314
+#, fuzzy
 msgid "Role deleted successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:49
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:49
 msgid "admin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:52
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:52
 msgid "front"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:66
-#, php-format
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:66
+#, fuzzy, php-format
 msgid "Select theme for %s"
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:109
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:109
 msgid "Theme set up successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:124
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:124
 msgid "Installed themes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:163
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:163
 msgid "Themes available for installation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:182
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:182
 #, php-format
 msgid "The theme \"%s\" is not updated."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:185
-#, php-format
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:185
+#, fuzzy, php-format
 msgid "The theme \"%s\" is updated."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:205
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:206
 #, php-format
 msgid "The theme \"%s\" is not installed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:209
-#, php-format
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:210
+#, fuzzy, php-format
 msgid "The theme \"%s\" is installed."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:228
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:229
 msgid "Default theme is protected from uninstallation."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:237
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:238
 #, php-format
 msgid "The theme \"%s\" is not uninstalled."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Admin/ThemeController.php:243
-#, php-format
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:244
+#, fuzzy, php-format
 msgid "The theme \"%s\" is uninstalled."
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/src/Controller/Module/DashboardController.php:132
+#: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:95
 msgid "No permitted operation available."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:87
-msgid "Default taxonomy"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:89
-msgid "Default global taxonomy domain. Not allowed to change."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Install.php:94
-msgid "Welcome to Pi powered system."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:46
-msgid "System updated"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/src/Installer/Action/Update.php:47
-msgid "The system is updated successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:11
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:16
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:10
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:18
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:17
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:14
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:13
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:26
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:34
+#: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:30
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:18
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:14
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:10
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:9
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:9
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:10
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:13
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:22
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:30
 msgid "Title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:12
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:22
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:19
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:11
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:21
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:21
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:112
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:17
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:14
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:32
+#: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:40
+msgid "Font-awsome icon"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:44
+msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:51
+#: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:78
+msgid "Order"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:87
+msgid "Default taxonomy"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:89
+msgid "Default global taxonomy domain. Not allowed to change."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:94
+msgid "Welcome to Pi powered system."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:189
+msgid "Application"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:204
+msgid "Service"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Update.php:46
+#, fuzzy
+msgid "System updated"
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Installer/Action/Update.php:47
+msgid "The system is updated successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:12
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:22
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:12
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:13
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:114
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:13
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:14
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:28
 msgid "Action"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:19
 msgid "Re-publish all"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:31
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:44
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:31
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:44
 msgid "Publish"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/asset-index.phtml:54
+#: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:54
 msgid "Asset publish in process"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:12
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:12
 msgid "Audit list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:16
 #, fuzzy
 msgid "time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:18
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:18
 msgid "IP"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:19
 msgid "Section"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:20
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:106
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:108
 msgid "Module"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:21
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:96
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
 msgid "Controller"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:23
 msgid "Method"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:24
 msgid "Message"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:25
 msgid "extra"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:47
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:47
 msgid "Count of items to display: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:48
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:48
 msgid "10"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:49
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:49
 msgid "20"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/audit-index.phtml:50
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:50
 msgid "50"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:9
-msgid "No block available."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:12
-msgid "Search in block title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:17
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:20
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:20
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:38
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:61
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:40
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:28
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:55
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:34
 msgid "Description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:18
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:20
 msgid "Related pages"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:34
-msgid "pages"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:42
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:35
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:50
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:35
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:48
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:27
 msgid "Edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:44
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:39
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:51
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:32
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:39
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:49
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:34
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:19
 msgid "Delete"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:46
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:70
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:48
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:62
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:45
 msgid "Clone"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:67
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:26
 msgid "No page uses this block yet."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/block-list.phtml:84
-msgid "Are you sure to delete this block? "
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:27
+msgid "Search in block title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:17
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:15
+msgid "Expiration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:16
 #, fuzzy
-msgid "Flush all"
-msgstr "All Categories"
+msgid "Cache level"
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:24
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:33
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:41
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:50
-msgid "Flush"
-msgstr ""
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:17
+#, fuzzy
+msgid "Cache scope"
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:39
-msgid "Registry"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/cache-index.phtml:62
-msgid "Cache flush in process"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/config-index.phtml:3
+#: c:\Code\pi\usr\module\system/template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/config-index.phtml:5
+#: c:\Code\pi\usr\module\system/template/admin/config-index.phtml:5
 msgid "No configuration available."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:14
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:6
 #, fuzzy
 msgid "About"
 msgstr "About %s"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:14
 msgid "Module information"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:16
 msgid "Title:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:18
 msgid "Version:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:27
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:20
 msgid "Update:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:29
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:22
 msgid "Description:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:32
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:25
 msgid "Demo:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:38
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:29
 msgid "Author information"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-module.phtml:53
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:45
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:28
 msgid "Summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-system.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:22
+msgid "Announcement"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:123
+msgid "Save"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:32
+msgid "Cancel"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:25
+msgid "Quicklinks"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:27
+msgid "URL"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:29
+msgid "Powered by"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:30
 msgid ""
 "Pi Engine is a role oriented application development engine for web and "
 "mobile, designed as the next generation and a successor to Xoops. Pi is "
@@ -1650,7 +1797,7 @@ msgid ""
 "but not limited to Zend Framework library, jQuery, Bootstrap and Backbone."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/dashboard-system.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:31
 msgid ""
 " Pi Project follows the philosophy of open standard, open design, open "
 "development and open structure. Pi is born as a complete open source project "
@@ -1658,429 +1805,430 @@ msgid ""
 "and users."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:21
-msgid "Check events"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:21
-msgid "Events"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:22
-#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:17
 msgid "Listeners"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:45
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:59
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:71
-msgid "Disable"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:45
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:62
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:73
-msgid "Enable"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/event-listener.phtml:55
-msgid "Being updated."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:22
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
 msgid "No listeners available"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:19
 msgid "No events available"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/event.phtml:24
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:28
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:18
 msgid "Error, please try again later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:3
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:17
+#, fuzzy
+msgid "Flush all"
+msgstr "All Categories"
+
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:33
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:41
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:50
+msgid "Flush"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:39
+msgid "Registry"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:62
+msgid "Cache flush in process"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/index.phtml:3
 msgid "There is no entry page for this module management. Please:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:5
+#: c:\Code\pi\usr\module\system/template/admin/index.phtml:5
 msgid "Module config"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:5
+#: c:\Code\pi\usr\module\system/template/admin/index.phtml:5
 msgid "Go to set up module configs;"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:6
+#: c:\Code\pi\usr\module\system/template/admin/index.phtml:6
 msgid "System admin"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/index.phtml:6
+#: c:\Code\pi\usr\module\system/template/admin/index.phtml:6
 msgid "Go back to system dashboard."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:6
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:6
 msgid "Add a member"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:11
 msgid "Select a role: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:23
-msgid "Username"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:24
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:21
 msgid "Name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:25
-msgid "Email"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:26
 msgid "Front role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:27
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:27
 msgid "Admin role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:28
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:29
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:28
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:25
 msgid "Active"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:43
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:43
 msgid "Not set"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:46
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:46
+#, fuzzy
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/member-index.phtml:46
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:46
+#, fuzzy
 msgid "No"
-msgstr ""
+msgstr "否"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:17
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:8
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:8
 msgid "Icon"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:19
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:18
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:34
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:59
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:36
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:10
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:10
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:53
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:30
 msgid "Version"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:44
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:50
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:30
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:56
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:31
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:34
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:38
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:50
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:25
 msgid "Detail"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:47
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:55
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:37
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:42
 msgid "Directory:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-available.phtml:67
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:29
+#: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:57
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:19
 msgid "Install"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:16
-msgid "Logo"
+#: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:38
+#, fuzzy
+msgid "Assign to:"
+msgstr "主题更新失败。"
+
+#: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:56
+msgid "Edit this category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:59
+msgid "Delete this category"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:73
+msgid "Remove"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:92
+msgid "Sort modules"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:12
+#, fuzzy
 msgid "Last Update"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:38
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:30
 msgid "Rename"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:46
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:33
-msgid "Update"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:53
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:40
 msgid "Name:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:57
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:44
 msgid "Author"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:75
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:61
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:27
+msgid "Update"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:64
+msgid "Disable"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:66
+msgid "Enable"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
 msgid "Are you sure to uninstall this module?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-index.phtml:75
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:29
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:23
 msgid "Uninstall"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:14
+#: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:7
+#, fuzzy
 msgid "Press to continue ..."
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:17
 msgid "Failed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/module-operation.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:19
 msgid "Succeeded"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:14
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:15
 msgid "Only click this button to save data"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:16
 msgid "Save menu"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:22
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:24
+#, fuzzy
 msgid "Add to menu"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:29
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:33
 msgid "This navgation is only for viewing"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:40
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:41
 msgid "Click to toggle edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:51
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:53
 msgid "Label"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:57
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:59
 msgid "Url"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:59
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:61
 msgid "Page link by url or by the after of route"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:63
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:65
 msgid "Target"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:66
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:68
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "无"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:67
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:69
 msgid "_blank"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:80
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:82
 msgid "To display in menu."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:85
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:87
 msgid "Page link by route"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:90
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:92
 msgid "Route"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:121
-msgid "Save"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-data.phtml:423
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:425
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:10
-msgid "Add a custom navigation"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:15
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:11
 msgid "Setup"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:12
 msgid "Related"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:20
+#, fuzzy
 msgid "None to use"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:35
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:31
 msgid "Set global"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:47
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:43
 msgid "View"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/nav-index.phtml:80
+#: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:82
 msgid "Are you sure to delete this navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/page-block.phtml:163
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:35
+#: c:\Code\pi\usr\module\system/template/admin/page-block.phtml:163
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:31
 msgid "Submit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/page-block.phtml:169
-#: C:\wamp\www\master\usr\module\system/template/admin/page-block.phtml:170
+#: c:\Code\pi\usr\module\system/template/admin/page-block.phtml:169
+#: c:\Code\pi\usr\module\system/template/admin/page-block.phtml:170
 msgid "Available Themes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:29
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:31
 msgid "Dress up"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/page-list.phtml:81
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:83
 msgid "Are you sure to delete the page?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
 msgid "Module Global permission"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
 msgid "Module resource"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/perm.phtml:27
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:17
 msgid "Block"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:18
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:14
 msgid "Admin roles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:15
 msgid "Add admin role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:16
 msgid "Front roles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:17
 msgid "Add front role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:22
-msgid "Add role"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:20
 msgid "Edit permission"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:27
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:43
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:39
 msgid "Users in role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:28
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:24
 msgid "Status"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:30
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:26
 msgid "Activated"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:31
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:27
 msgid "Inactive"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:33
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:29
 msgid "Unique name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:36
-msgid "Cancel"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:37
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:33
 msgid "Required"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:38
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:36
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:38
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:34
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:32
 msgid "Type"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:41
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:37
 msgid "Role name is already token"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:42
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:38
 msgid "Are you sure to delete this role?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:44
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:40
 msgid "User id or name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:45
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:41
 msgid "Users"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:46
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:42
 msgid "First"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/role.phtml:47
+#: c:\Code\pi\usr\module\system/template/admin/role.phtml:43
 msgid "Add user"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:8
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:9
-msgid "Theme in action"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:21
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:50
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:44
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:14
+#, fuzzy
 msgid "Click To preview"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-available.phtml:31
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:32
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:26
 msgid "Check"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:30
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:24
+#, fuzzy
 msgid "Theme in use"
-msgstr ""
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:43
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:37
 msgid "Themes available to use"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-index.phtml:55
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:49
 msgid "Apply"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:71
-msgid "theme Update ok!"
-msgstr ""
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:66
+#, fuzzy
+msgid "Theme Updated successfully."
+msgstr "主题更新成功。"
 
-#: C:\wamp\www\master\usr\module\system/template/admin/theme-installed.phtml:79
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr ""
 

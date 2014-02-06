@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
-"POT-Creation-Date: 2013-11-16 16:56+0800\n"
-"PO-Revision-Date: 2013-11-16 16:56+0800\n"
+"POT-Creation-Date: 2014-02-06 14:17+0800\n"
+"PO-Revision-Date: 2014-02-06 14:17+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,8 +11,8 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\custom\\usr\\locale\\_source\\Country\n"
+"X-Poedit-SearchPath-0: C:\\Code\\pi\\usr\\locale\\_source\\Country\n"
 
-#: C:\wamp\www\custom\usr\locale\_source\Country/Country.php:16
+#: C:\Code\pi\usr\locale\_source\Country/Country.php:16
 msgid "China"
 msgstr ""

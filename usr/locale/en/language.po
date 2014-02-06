@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
-"POT-Creation-Date: 2013-11-16 16:57+0800\n"
-"PO-Revision-Date: 2013-11-16 16:57+0800\n"
+"POT-Creation-Date: 2014-02-06 14:29+0800\n"
+"PO-Revision-Date: 2014-02-06 14:29+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,81 +11,80 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\custom\\usr\\locale\\_source"
-"\\Language\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\usr\\locale\\_source\\Language\n"
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:16
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:16
 msgid "en"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:17
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:17
 msgid "ar"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:18
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:18
 msgid "bg"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:19
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:19
 msgid "cs"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:20
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:20
 msgid "zh"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:21
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:21
 msgid "zh-cn"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:22
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:22
 msgid "zh-tw"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:23
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:23
 msgid "nl"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:24
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:24
 msgid "fa"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:25
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:25
 msgid "fi"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:26
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:26
 msgid "fr"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:27
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:27
 msgid "de"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:28
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:28
 msgid "it"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:29
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:29
 msgid "ko"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:30
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:30
 msgid "jp"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:31
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:31
 msgid "pt"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:32
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:32
 msgid "ru"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:33
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:33
 msgid "sk"
 msgstr ""
 
-#: C:\wamp\www\custom\usr\locale\_source\Language/Language.php:34
+#: c:\Code\pi\\usr\locale\_source\Language/Language.php:34
 msgid "es"
 msgstr ""

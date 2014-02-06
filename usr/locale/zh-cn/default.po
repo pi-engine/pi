@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2013-11-21 22:06+0800\n"
-"PO-Revision-Date: 2013-11-26 15:25+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-02-06 14:15+0800\n"
+"PO-Revision-Date: 2014-02-06 14:17+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,226 +11,277 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\GitHub\\deploy\\lib\\Pi\n"
-"X-Poedit-SearchPath-1: D:\\GitHub\\deploy\\www\n"
-"X-Poedit-SearchPath-2: D:\\GitHub\\deploy\\usr\\editor\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\lib\n"
+"X-Poedit-SearchPath-1: c:\\Code\\pi\\www\n"
+"X-Poedit-SearchPath-2: c:\\Code\\pi\\usr\\editor\n"
 
-#: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:11
-msgid "First"
-msgstr "«"
-
-#: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:15
-msgid "&lt; Previous"
-msgstr "‹"
-
-#: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:23
-msgid "Next &gt;"
-msgstr "›"
-
-#: D:\GitHub\custom-pi\usr\theme\eefocus/template/paginator.phtml:27
-msgid "Last"
-msgstr "»"
-
-#: D:\GitHub\custom-pi\lib\Pi/Application/Installer/Theme.php:346
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:348
 msgid "Theme updated successfully."
 msgstr "主题更新成功。"
 
-#: D:\GitHub\custom-pi\lib\Pi/Application/Installer/Theme.php:353
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:355
 msgid "Theme failed to update."
 msgstr "主题更新失败。"
 
-#: D:\GitHub\custom-pi\lib\Pi/Application/Installer/Theme.php:355
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:357
 msgid "Theme upgraded successfully."
 msgstr "主题升级成功。"
 
-#: D:\GitHub\custom-pi\lib\Pi/Application/Installer/Theme.php:359
+#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
 msgid ""
 "An identity column must be supplied for the DbTable authentication adapter."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
 msgid ""
 "A credential column must be supplied for the DbTable authentication adapter."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
 msgid ""
 "A value for the identity was not provided prior to authentication with "
 "DbTable."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
 msgid ""
 "A credential value was not provided prior to authentication with DbTable."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
 msgid "A record with the supplied identity could not be found."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
 msgid "More than one record matches the supplied identity."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
 msgid "Supplied credential is invalid."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
 msgid "Authentication successful."
 msgstr "身份验证成功。"
 
-#: D:\GitHub\custom-pi\lib\Pi/Editor/Factory.php:76
+#: c:\Code\pi\lib/Pi/Editor/Factory.php:76
 msgid "Pi Default Editor"
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Feed/Model.php:198
+#: c:\Code\pi\lib/Pi/Feed/Model.php:199
 #, php-format
 msgid "Feed of %s - %s"
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Filter/Gender.php:39
+#: c:\Code\pi\lib/Pi/Filter/Gender.php:39
 msgid "Male"
 msgstr "男"
 
-#: D:\GitHub\custom-pi\lib\Pi/Filter/Gender.php:43
+#: c:\Code\pi\lib/Pi/Filter/Gender.php:43
 msgid "Female"
 msgstr "女"
 
-#: D:\GitHub\custom-pi\lib\Pi/Filter/Gender.php:48
+#: c:\Code\pi\lib/Pi/Filter/Gender.php:48
 msgid "Unknown gender"
 msgstr "未知"
 
-#: D:\GitHub\custom-pi\lib\Pi/Filter/YesNo.php:40
+#: c:\Code\pi\lib/Pi/Filter/YesNo.php:40
 msgid "No"
 msgstr "否"
 
-#: D:\GitHub\custom-pi\lib\Pi/Filter/YesNo.php:43
+#: c:\Code\pi\lib/Pi/Filter/YesNo.php:43
 msgid "Yes"
 msgstr "是"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheLevel.php:32
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/Role.php:37
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/RoleAdmin.php:35
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/RoleUser.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:32
+#: c:\Code\pi\lib/Pi/Form/Element/Role.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/RoleUser.php:35
 msgid "None"
 msgstr "无"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheLevel.php:33
-msgid "Locale"
-msgstr "本地"
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:68
+#, fuzzy
+msgid "Language"
+msgstr "语言选择"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheLevel.php:34
-msgid "Authenticated"
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:34
+msgid "Authenticated or not"
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheLevel.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
 msgid "Role"
 msgstr "角色"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:32
+#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:49
+msgid "Cache level"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:32
 msgid "No cache"
 msgstr "无缓存"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:33
 #, php-format
 msgid "%d seconds"
 msgstr "%d 秒"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:34
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:34
 msgid "1 minute"
 msgstr "1分钟"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:35
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:36
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:35
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:36
 #, php-format
 msgid "%d minutes"
 msgstr "%d 分钟"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:37
 msgid "1 hour"
 msgstr "1小时"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:38
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:38
 #, php-format
 msgid "%d hours"
 msgstr "%d 小时"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:39
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:39
 msgid "1 day"
 msgstr "1天"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:40
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:40
 msgid "1 week"
 msgstr "1 周"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/CacheTtl.php:41
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:41
 msgid "1 month"
 msgstr "1月"
 
-#: D:\GitHub\custom-pi\lib\Pi/Form/Element/Locale.php:33
+#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:54
+msgid "Cache expiration"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:37
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:231
+msgid "Editor"
+msgstr "编辑"
+
+#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:33
 msgid "Auto-detection"
 msgstr "自动检测"
 
-#: D:\GitHub\custom-pi\lib\Pi/Mvc/Controller/ActionController.php:98
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:36
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:78
+#, fuzzy
+msgid "Username"
+msgstr "用户"
+
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:81
+msgid "Email"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:84
+#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:88
+msgid "Identity"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Navigation.php:50
+msgid "Navigation"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:52
+msgid "Admin role"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/RoleCheckbox.php:52
+#, fuzzy
+msgid "Roles"
+msgstr "角色"
+
+#: c:\Code\pi\lib/Pi/Form/Element/Submit.php:38
+msgid "Submit"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Tag.php:116
+msgid "Tags"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:48
+msgid "Theme"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/Element/Timezone.php:78
+msgid "Timezone"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/Mvc/Controller/Plugin/Terminate.php:39
+#: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 msgid "Login"
 msgstr "登录"
 
-#: D:\GitHub\custom-pi\lib\Pi/Mvc/Controller/Plugin/Terminate.php:42
+#: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
 #, php-format
 msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
 msgstr "请重新 <a href=\"%s\" title=\"\">登录</a> 。"
 
-#: D:\GitHub\custom-pi\lib\Pi/User/Model/AbstractModel.php:239
+#: c:\Code\pi\lib/Pi/User/Model/AbstractModel.php:239
 msgid "Guest"
 msgstr ""
 
-#: D:\GitHub\custom-pi\lib\Pi/View/Helper/AdminNav.php:59
-msgid "Operation"
-msgstr "操作"
-
-#: D:\GitHub\custom-pi\lib\Pi/View/Helper/AdminNav.php:63
-msgid "Setting"
-msgstr "设置"
-
-#: D:\GitHub\custom-pi\lib\Pi/View/Helper/AdminNav.php:67
-msgid "Deployment"
+#: c:\Code\pi\lib/Pi/View/Helper/Tag.php:92
+msgid "Tags: "
 msgstr ""
 
-#: D:\GitHub\custom-pi\www/setup/src/Controller/Admin.php:221
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:217
 msgid "Manager"
 msgstr ""
 
-#: D:\GitHub\custom-pi\www/setup/src/Controller/Admin.php:228
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:224
 msgid "Moderator"
 msgstr ""
 
-#: D:\GitHub\custom-pi\www/setup/src/Controller/Admin.php:235
-msgid "Editor"
-msgstr "编辑"
-
-#: D:\GitHub\custom-pi\www/setup/src/Controller/Admin.php:242
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:238
 msgid "Staff"
 msgstr ""
 
-#: D:\GitHub\custom-pi\www/setup/src/Controller/Admin.php:249
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:245
 msgid "Member"
 msgstr "成员"
 
-msgid "Posted a new comment."
-msgstr "发表新评论。"
+#~ msgid "First"
+#~ msgstr "«"
 
-#~ msgid "User"
-#~ msgstr "用户"
+#~ msgid "&lt; Previous"
+#~ msgstr "‹"
+
+#~ msgid "Next &gt;"
+#~ msgstr "›"
+
+#~ msgid "Last"
+#~ msgstr "»"
+
+#~ msgid "Locale"
+#~ msgstr "本地"
+
+#~ msgid "Operation"
+#~ msgstr "操作"
+
+#~ msgid "Setting"
+#~ msgstr "设置"
+
+#~ msgid "Posted a new comment."
+#~ msgstr "发表新评论。"

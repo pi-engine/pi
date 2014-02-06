@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2013-11-21 10:02+0800\n"
-"PO-Revision-Date: 2013-11-21 12:31+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-02-06 15:15+0800\n"
+"PO-Revision-Date: 2014-02-06 15:15+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,523 +11,594 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\GitHub\\custom-pi\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:31
+#: c:\Code\pi\usr\module\system/src/Event.php:31
 #, php-format
 msgid "Module %s installed"
 msgstr "成功安装 %s 模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:32
+#: c:\Code\pi\usr\module\system/src/Event.php:32
 #, php-format
 msgid "The module %s is installed successfully."
 msgstr "成功安装%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:49
+#: c:\Code\pi\usr\module\system/src/Event.php:49
 #, php-format
 msgid "Module %s uninstalled"
 msgstr "成功卸载 %s 模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:50
+#: c:\Code\pi\usr\module\system/src/Event.php:50
 #, php-format
 msgid "The module %s is uninstalled successfully."
 msgstr "成功卸载%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:67
+#: c:\Code\pi\usr\module\system/src/Event.php:67
 #, php-format
 msgid "Module %s updated"
 msgstr "%s模块已更新"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:68
+#: c:\Code\pi\usr\module\system/src/Event.php:68
 #, php-format
 msgid "The module %s is updated successfully."
 msgstr "成功更新%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:85
+#: c:\Code\pi\usr\module\system/src/Event.php:85
 #, php-format
 msgid "Module %s activated"
 msgstr "%s模块已激活"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:86
+#: c:\Code\pi\usr\module\system/src/Event.php:86
 #, php-format
 msgid "The module %s is activated successfully."
 msgstr "成功激活%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:103
+#: c:\Code\pi\usr\module\system/src/Event.php:103
 #, php-format
 msgid "Module %s deactivated"
 msgstr "%s模块已禁用"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Event.php:104
+#: c:\Code\pi\usr\module\system/src/Event.php:104
 #, php-format
 msgid "The module %s is deactivated successfully."
 msgstr "成功禁用%s模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Navigation.php:161
+#: c:\Code\pi\usr\module\system/src/Menu.php:227
+msgid "Uncategoried"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Navigation.php:161
 msgid "Edit a block"
 msgstr "编辑区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Navigation.php:172
+#: c:\Code\pi\usr\module\system/src/Navigation.php:172
 msgid "Clone a block"
 msgstr "克隆区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Navigation.php:218
+#: c:\Code\pi\usr\module\system/src/Navigation.php:218
+#, fuzzy
 msgid "Block layout"
-msgstr ""
+msgstr "登录区块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Navigation.php:229
+#: c:\Code\pi\usr\module\system/src/Navigation.php:229
+#, fuzzy
 msgid "Setup page"
-msgstr ""
+msgstr "页面编码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Feed/IndexController.php:32
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:35
+#, fuzzy
+msgid "Page wide"
+msgstr "页面编码"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
+#, fuzzy
+msgid "Action data"
+msgstr "用户动作"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
+#, fuzzy
 msgid "What's new"
-msgstr ""
+msgstr "添加一个"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Feed/IndexController.php:33
+#: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:33
 msgid "Recent module updates."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:35
-msgid "Login is disabled. Please come back later."
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:43
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:113
-msgid "User login"
-msgstr "用户登录"
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:77
-msgid "You logged out successfully. Now go back to homepage."
-msgstr "退出成功，现在回到主页。"
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:100
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:71
 #, php-format
 msgid ""
-"Login with the account is suspended, please wait for %d minutes to try again."
+"Login with the account is suspended,\n"
+"                            please wait for %d minutes to try again."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:107
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:80
 #, php-format
 msgid "You have %d times to try."
 msgstr "还有%d次尝试机会"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:133
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/RegisterController.php:95
-msgid "Invalid input, please try again."
-msgstr ""
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:88
+#: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:2
+msgid "User login"
+msgstr "用户登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:151
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:108
+#, fuzzy
+msgid "Invalid request."
+msgstr "邮箱错误"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:152
 msgid "You have tried too many times. Please try later."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:171
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:176
 msgid "Invalid credentials provided, please try again."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:195
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:218
 msgid "You have logged in successfully."
 msgstr "成功登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:223
-msgid "Login is closed. Please try later."
-msgstr ""
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:237
+#, fuzzy
+msgid "You logged out successfully."
+msgstr "成功登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/LoginController.php:229
-msgid "Invalid request."
-msgstr ""
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:292
+#, fuzzy
+msgid "You have already logged in."
+msgstr "用户已在本用户组"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/PasswordController.php:50
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
 msgid "Password changed successfully."
 msgstr "修改密码成功"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/PasswordController.php:58
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:58
+#, fuzzy
 msgid "Password not changed."
-msgstr ""
+msgstr "用户不能在。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/PasswordController.php:61
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:61
 msgid "Invalid data, please check and re-submit."
 msgstr "无效数据，请检查后重新提交。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/PasswordController.php:68
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:44
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:68
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:44
 msgid "Change password"
 msgstr "修改密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/PasswordController.php:82
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/front/register.phtml:9
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:82
+#: c:\Code\pi\usr\module\system/template/front/login.phtml:14
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:9
 msgid "Find password"
 msgstr "找回密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:51
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:60
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:51
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
 msgid "Logout"
 msgstr "退出"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:54
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
+#, fuzzy
 msgid "ID"
-msgstr ""
+msgstr "用户 ID"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:55
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/LoginForm.php:33
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:55
 msgid "Username"
 msgstr "用户名"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:56
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:56
 msgid "Email"
 msgstr "邮箱"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:57
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RoleForm.php:44
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:44
+#, fuzzy
 msgid "Name"
-msgstr ""
+msgstr "姓名"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:58
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
 msgid "Role"
 msgstr "角色"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:59
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/LoginForm.php:41
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:62
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:62
 msgid "Password"
 msgstr "密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/ProfileController.php:64
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:64
 msgid "User profile"
 msgstr "用户资料"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/RegisterController.php:35
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:35
 msgid "Registration is disabled. Please come back later."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/RegisterController.php:66
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:66
+#, fuzzy
 msgid "User account register"
+msgstr "管理员账号建立"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
+msgid "Invalid input, please try again."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/RegisterController.php:114
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:114
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/RegisterController.php:125
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-logout.phtml:18
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login.phtml:9
-#: D:\GitHub\custom-pi\usr\module\system/template/front/password-find.phtml:9
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:125
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
+#: c:\Code\pi\usr\module\system/template/front/login.phtml:17
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:9
 msgid "Register"
 msgstr "注册"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/TestController.php:44
+#: c:\Code\pi\usr\module\system/src/Controller/Front/TestController.php:46
+#, fuzzy
 msgid "site name"
-msgstr ""
+msgstr "网站名称"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Front/TestController.php:385
+#: c:\Code\pi\usr\module\system/src/Controller/Front/TestController.php:170
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Module/DashboardController.php:102
-msgid "No permitted operation available."
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Module/DashboardController.php:229
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Module/DashboardController.php:276
-msgid "Dashboard"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Module/DashboardController.php:269
-msgid "Never updated."
-msgstr "从未更新"
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Controller/Module/IndexController.php:30
+#: c:\Code\pi\usr\module\system/src/Controller/Module/IndexController.php:30
+#, fuzzy
 msgid "Admin area"
-msgstr ""
+msgstr "管理员组"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/AccountForm.php:47
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:59
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:32
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:47
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:59
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:32
+#, fuzzy
 msgid "User account"
-msgstr ""
+msgstr "用户账号"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/AccountForm.php:58
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:70
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:42
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:70
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:42
+#, fuzzy
 msgid "Display name"
-msgstr ""
+msgstr "昵称"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/AccountForm.php:69
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:69
+#, fuzzy
 msgid "Birthdate"
-msgstr ""
+msgstr "生日"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/AccountForm.php:93
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:164
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/ConfigForm.php:58
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:157
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/ModuleForm.php:58
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavForm.php:67
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:131
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:124
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageEditForm.php:74
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PasswordForm.php:84
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:100
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RoleForm.php:107
+#: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:200
+#: c:\Code\pi\usr\module\system/src/Form/ConfigForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:157
+#: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:58
+#: c:\Code\pi\usr\module\system/src/Form/NavForm.php:67
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:131
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:126
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:74
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:84
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:100
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:115
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:49
+#, fuzzy
 msgid "Submit"
-msgstr ""
+msgstr "提交"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:61
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/ModuleForm.php:40
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavForm.php:40
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:45
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RoleForm.php:54
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:61
+#: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:40
+#: c:\Code\pi\usr\module\system/src/Form/NavForm.php:40
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:45
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:54
+#, fuzzy
 msgid "Title"
-msgstr ""
+msgstr "标题"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:65
+#, fuzzy
+msgid "Block label for display."
+msgstr "页面编码"
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:73
 msgid "Hide title"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:75
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:76
 msgid "Hide block title from display."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:82
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/ModuleForm.php:30
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavForm.php:30
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:84
+#, fuzzy
+msgid "Full-size body"
+msgstr "最大文件尺寸"
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:87
+msgid "Display block body in full-size w/o padding."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:94
+#: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:30
+#: c:\Code\pi\usr\module\system/src/Form/NavForm.php:30
+#, fuzzy
 msgid "Unique name"
+msgstr "名称"
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:98
+msgid "A unique name to be called as widget."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:86
-msgid "Set a unique name to be called as widget or leave as blank."
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:106
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:117
+msgid "Template"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:122
+msgid "PHTML rendering template, file extension is optional."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:130
+#, fuzzy
 msgid "Description"
-msgstr ""
+msgstr "简介"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:97
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:134
 msgid "Set a hint to distinguish the block."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:104
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
 msgid "Subline"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:109
-msgid "For block header subline. HTML is allowed."
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+msgid "Header subline. HTML is allowed."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:116
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
+#, fuzzy
 msgid "Style class"
+msgstr "缺省数字格式"
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
+msgid "Specified block container CSS class."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:120
-msgid "Specified block container css class."
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:128
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:95
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageEditForm.php:46
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:164
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:46
+#, fuzzy
 msgid "Cache TTL"
-msgstr ""
+msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:136
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:103
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageEditForm.php:54
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:172
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:54
+#, fuzzy
 msgid "Cache level"
-msgstr ""
+msgstr "缓存列表"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/BlockModuleForm.php:184
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:220
+#, fuzzy
 msgid "Configs"
-msgstr ""
+msgstr "管理：配置"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/LoginForm.php:50
-msgid "Remember me"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/LoginForm.php:54
-msgid "Keep me logged in."
-msgstr "记住登录"
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/LoginForm.php:64
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PasswordForm.php:64
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:84
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:70
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:64
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:84
 msgid "Please type the word."
 msgstr "验证码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/LoginForm.php:105
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-logout.phtml:17
-#: D:\GitHub\custom-pi\usr\module\system/template/front/password-find.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/front/register.phtml:10
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:81
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:85
+#, fuzzy
+msgid "Remember me"
+msgstr "自动登录"
+
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:109
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:17
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:10
 msgid "Login"
 msgstr "登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:81
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:52
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:81
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:52
 msgid "Email address"
-msgstr "邮箱"
+msgstr "Email地址"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:93
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PasswordForm.php:42
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:42
 msgid "New password"
 msgstr "新密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:101
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PasswordForm.php:52
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/RegisterForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:101
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:52
+#: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:72
 msgid "Confirm password"
 msgstr "确认密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:110
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:110
+#, fuzzy
 msgid "User role"
-msgstr ""
+msgstr "用户已从该用户组移除。"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:121
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:121
+#, fuzzy
 msgid "Management role"
-msgstr ""
+msgstr "用户角色 %s"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/MemberForm.php:133
+#: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:133
+#, fuzzy
 msgid "Active"
-msgstr ""
+msgstr "激活"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:30
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:30
 msgid "Label"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:37
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:37
 msgid "Route"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:40
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:40
 msgid "Route to assemble URI."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:47
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:47
 msgid "Module"
 msgstr "模块"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:54
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:63
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:54
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:63
 msgid "Controller"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:61
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:61
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:72
+#, fuzzy
 msgid "Action"
-msgstr ""
+msgstr "动作"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:68
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:68
 msgid "URI"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:76
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:76
 msgid "Open target"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:78
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/Element/Controller.php:53
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:78
+#: c:\Code\pi\usr\module\system/src/Form/Element/Controller.php:53
 msgid "None"
 msgstr "无"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:79
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:79
 msgid "Current window"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:80
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:80
 msgid "Open a new window"
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:88
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:88
+#, fuzzy
 msgid "Permission resource"
-msgstr ""
+msgstr "总体权限"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:92
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:92
 msgid "The resource identity for permission check."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:100
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:100
+#, fuzzy
 msgid "Display"
-msgstr ""
+msgstr "显示"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/NavPageForm.php:103
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:103
+#, fuzzy
 msgid "To display in menu."
-msgstr ""
+msgstr "点击选择已有用户组"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:80
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageEditForm.php:31
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:31
 msgid "Cache type"
 msgstr "缓存类型"
 
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:84
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageEditForm.php:35
-msgid "Page wide"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageAddForm.php:85
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PageEditForm.php:36
-msgid "Action data"
-msgstr ""
-
-#: D:\GitHub\custom-pi\usr\module\system/src/Form/PasswordForm.php:32
+#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:32
 msgid "Current password"
 msgstr "当前密码"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/jump.phtml:8
-msgid "the link"
-msgstr "这里"
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:65
+msgid "Section"
+msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/jump.phtml:9
-#, php-format
-msgid "The page will redirected in %d seconds. Or you can click %s directly."
-msgstr "页面将在%d秒后跳转，或者直接点击%s跳转。"
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:67
+#, fuzzy
+msgid "Front"
+msgstr "前台"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-logout.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-success.phtml:8
-#: D:\GitHub\custom-pi\usr\module\system/template/front/register-success.phtml:8
+#: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:68
+#, fuzzy
+msgid "Admin"
+msgstr "Admin"
+
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
+msgid "Force for all pages"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
+#: c:\Code\pi\usr\module\system/template/component/form.phtml:66
+#, fuzzy
+msgid "Cancel"
+msgstr "取消"
+
+#: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/login-success.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:8
 msgid "homepage"
 msgstr "主页"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-logout.phtml:10
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:10
 msgid "re-login"
 msgstr "重新登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-logout.phtml:11
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "您已成功退出，请前往%s或%s。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-logout.phtml:16
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login.phtml:7
-#: D:\GitHub\custom-pi\usr\module\system/template/front/password-find.phtml:7
-#: D:\GitHub\custom-pi\usr\module\system/template/front/register.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:16
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:7
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:8
 msgid "Choose: "
 msgstr "选择："
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-message.phtml:8
+#: c:\Code\pi\usr\module\system/template/front/login-message.phtml:8
 msgid "logout"
 msgstr "退出"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-message.phtml:9
+#: c:\Code\pi\usr\module\system/template/front/login-message.phtml:9
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr "您已使用账号<strong>%s</strong>登录，请%s重新登录。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/login-success.phtml:9
+#: c:\Code\pi\usr\module\system/template/front/login-success.phtml:9
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr "您已经成功登录，即将去往%s。"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/password-find.phtml:4
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:4
 msgid "Coming soon ..."
 msgstr ""
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/register-success.phtml:10
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:10
 msgid "login"
 msgstr "登录"
 
-#: D:\GitHub\custom-pi\usr\module\system/template/front/register-success.phtml:11
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:11
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "您已注册成功，请前往%s或%s。"
+
+#~ msgid "You logged out successfully. Now go back to homepage."
+#~ msgstr "退出成功，现在回到主页。"
+
+#~ msgid "Never updated."
+#~ msgstr "从未更新"
+
+#~ msgid "Keep me logged in."
+#~ msgstr "记住登录"
+
+#~ msgid "the link"
+#~ msgstr "这里"
+
+#~ msgid ""
+#~ "The page will redirected in %d seconds. Or you can click %s directly."
+#~ msgstr "页面将在%d秒后跳转，或者直接点击%s跳转。"
 
 #~ msgid "Please log in."
 #~ msgstr "请登录"
