@@ -293,6 +293,14 @@ $config['item'] = array(
         'category'      => 'admin',
     ),
 
+    'admin_rememberme'        => array(
+        'title'         => _t('Remember me'),
+        'description'   => _t('Days to remember login, 0 for disable.'),
+        'value'         => 14,
+        'filter'        => 'number_int',
+        'category'      => 'admin',
+    ),
+
     'admin_login_field'      => array(
         'title'         => _t('Login field'),
         'description'   => _t('Identity field(s) for admin authentication.'),
