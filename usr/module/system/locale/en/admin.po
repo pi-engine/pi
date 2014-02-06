@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-06 16:25+0800\n"
-"PO-Revision-Date: 2014-02-06 16:25+0800\n"
+"POT-Creation-Date: 2014-02-06 18:19+0800\n"
+"PO-Revision-Date: 2014-02-06 18:19+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1014,6 +1014,14 @@ msgstr ""
 msgid "Front"
 msgstr ""
 
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
+msgid "Page wide"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
+msgid "Action data"
+msgstr ""
+
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:148
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:89
 msgid "Module wide"
@@ -1704,6 +1712,10 @@ msgstr "无缓存"
 #, fuzzy
 msgid "Cache scope"
 msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
+msgid "Force for all pages"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."

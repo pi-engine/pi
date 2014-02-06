@@ -74,7 +74,7 @@ class ConfigController extends ComponentController
                 if ($categories->count() > 1) {
                     foreach ($categories as $category) {
                         $groups[$category->name] = array(
-                            'label'     => $category->title,
+                            'label'     => _a($category->title),
                             'elements'  => array(),
                         );
                     }

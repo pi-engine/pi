@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-06 16:13+0800\n"
-"PO-Revision-Date: 2014-02-06 16:24+0800\n"
+"POT-Creation-Date: 2014-02-06 18:18+0800\n"
+"PO-Revision-Date: 2014-02-06 18:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -651,9 +651,8 @@ msgid "Availables"
 msgstr "可用"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:67
-#, fuzzy
 msgid "Category"
-msgstr "添加分类"
+msgstr "分类"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:74
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:120
@@ -682,8 +681,9 @@ msgid "Navigation list"
 msgstr "导航列表"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:152
+#, fuzzy
 msgid "Data manipulation"
-msgstr ""
+msgstr "当前请求逻辑缓存"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:163
 msgid "Add new"
@@ -721,7 +721,7 @@ msgstr "工具"
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:292
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:8
 msgid "Audit"
-msgstr ""
+msgstr "监控"
 
 #: c:\Code\pi\usr\module\system/config/nav.component.php:17
 msgid "Configurations"
@@ -771,7 +771,8 @@ msgstr "密码"
 
 #: c:\Code\pi\usr\module\system/config/nav.front.php:52
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:25
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:36
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:18
 msgid "Admin"
@@ -811,7 +812,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/page.php:59
 msgid "Config"
-msgstr ""
+msgstr "参数"
 
 #: c:\Code\pi\usr\module\system/config/page.php:77
 msgid "Event/listener"
@@ -999,11 +1000,20 @@ msgstr "页面缓存清空成功。"
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:64
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:24
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:35
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:13
 msgid "Front"
 msgstr "前台"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
+msgid "Page wide"
+msgstr "全页面缓存"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
+msgid "Action data"
+msgstr "当前请求逻辑缓存"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:148
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:89
@@ -1313,7 +1323,7 @@ msgstr "添加自定义导航"
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:385
 #, fuzzy, php-format
 msgid "Navigation data edit: %s"
-msgstr "添加自定义导航"
+msgstr "编辑该分类"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:471
 msgid "Navigation data saved successfully."
@@ -1398,7 +1408,7 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:89
 #, fuzzy
 msgid "No update available"
-msgstr "未激活用户。"
+msgstr "无事件定义。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:69
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:93
@@ -1632,8 +1642,9 @@ msgid "extra"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:47
+#, fuzzy
 msgid "Count of items to display: "
-msgstr ""
+msgstr "在菜单中显示"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:48
 msgid "10"
@@ -1696,11 +1707,15 @@ msgstr "有效期"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:16
 msgid "Cache level"
-msgstr "缓存标准"
+msgstr "缓存条件"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:17
 msgid "Cache scope"
 msgstr "缓存范围"
+
+#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
+msgid "Force for all pages"
+msgstr "应用于该模块所有页面"
 
 #: c:\Code\pi\usr\module\system/template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."
@@ -1807,7 +1822,7 @@ msgid "No events available"
 msgstr "无事件定义。"
 
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:23
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:18
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
 msgid "Error, please try again later."
 msgstr ""
 
@@ -2093,15 +2108,15 @@ msgstr "装扮"
 msgid "Are you sure to delete the page?"
 msgstr "请确认是否删除页面。"
 
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:17
 msgid "Module Global permission"
 msgstr "模块全局权限"
 
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:18
 msgid "Module resource"
 msgstr "模块权限资源"
 
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:17
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:19
 msgid "Block"
 msgstr "区块"
 

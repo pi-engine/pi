@@ -108,10 +108,11 @@ class CacheController extends ComponentController
                 'type'          => 'select',
                 'attributes'    => array(
                     'options'   => array(
-                        'page'      => __('Page wide'),
-                        'action'    => __('Action data'),
+                        'page'      => _a('Page wide'),
+                        'action'    => _a('Action data'),
                     ),
                     'value'     => $value ?: 'page',
+                    'class'     => 'form-control',
                 ),
             ));
             $content = $helper->render($element);
@@ -123,6 +124,7 @@ class CacheController extends ComponentController
                 'type'          => 'cache_ttl',
                 'attributes'    => array(
                     'value'     => $value,
+                    'class'     => 'form-control',
                 ),
             ));
             $content = $helper->render($element);
@@ -134,6 +136,7 @@ class CacheController extends ComponentController
                 'type'          => 'cache_level',
                 'attributes'    => array(
                     'value'     => $value,
+                    'class'     => 'form-control',
                 ),
             ));
             $content = $helper->render($element);

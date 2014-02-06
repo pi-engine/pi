@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-06 16:25+0800\n"
-"PO-Revision-Date: 2014-02-06 16:25+0800\n"
+"POT-Creation-Date: 2014-02-06 18:19+0800\n"
+"PO-Revision-Date: 2014-02-06 18:19+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,16 +81,6 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Navigation.php:229
 msgid "Setup page"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
-#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:35
-msgid "Page wide"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
-#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
-msgid "Action data"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
@@ -474,6 +464,14 @@ msgstr ""
 msgid "Cache type"
 msgstr "无缓存"
 
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:35
+msgid "Page wide"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
+msgid "Action data"
+msgstr ""
+
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:32
 msgid "Current password"
 msgstr ""
@@ -488,10 +486,6 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:68
 msgid "Admin"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
-msgid "Force for all pages"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50

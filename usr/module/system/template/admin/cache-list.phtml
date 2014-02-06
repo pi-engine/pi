@@ -35,7 +35,7 @@
                     </td>
                     <td>
                         <?php if ($page['is_module'] && 'front' == $section) { ?>
-                            <input type="submit" class="btn btn-default btn-primary" name="force" value="<?php _e('Force for all pages'); ?>">
+                            <input type="submit" class="btn btn-default btn-primary" name="force" value="<?php echo _a('Force for all pages'); ?>">
                             <input type="hidden" name="page" value="<?php echo $page['id']; ?>">
                         <?php } ?>
                         &nbsp;
