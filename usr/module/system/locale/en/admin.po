@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-06 14:44+0800\n"
-"PO-Revision-Date: 2014-02-06 14:45+0800\n"
+"POT-Creation-Date: 2014-02-06 16:25+0800\n"
+"PO-Revision-Date: 2014-02-06 16:25+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -368,10 +368,6 @@ msgstr ""
 msgid "Enable CAPTCHA for admin login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:345
-msgid "Meta author"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/config/config.php:346
 msgid ""
 "The author meta tag defines the name of the author of the document being "
@@ -379,26 +375,14 @@ msgid ""
 "webmaster, company name or URL."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:353
-msgid "Meta generator"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/config/config.php:354
 msgid "Generator of the document being read."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/config/config.php:361
-msgid "Meta keywords"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:362
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/config/config.php:369
-msgid "Meta description"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:370
@@ -794,8 +778,9 @@ msgid "Password"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/nav.front.php:52
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:22
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:36
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:18
 msgid "Admin"
@@ -1021,8 +1006,9 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:64
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:21
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:35
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:13
 msgid "Front"
@@ -1527,6 +1513,7 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:14
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:17
 #: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:10
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:9
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:9
@@ -1582,6 +1569,7 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:12
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:11
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:12
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:13
@@ -1805,20 +1793,24 @@ msgid ""
 "and users."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:17
-msgid "Listeners"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
-msgid "No listeners available"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:19
-msgid "No events available"
+msgid "Events"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:20
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:18
+msgid "Listeners"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:21
+msgid "No listeners available"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:22
+msgid "No events available"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
 msgid "Error, please try again later."
 msgstr ""
 
@@ -2111,15 +2103,15 @@ msgstr ""
 msgid "Are you sure to delete the page?"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:17
 msgid "Module Global permission"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:18
 msgid "Module resource"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:17
+#: c:\Code\pi\usr\module\system/template/admin/perm.phtml:19
 msgid "Block"
 msgstr ""
 

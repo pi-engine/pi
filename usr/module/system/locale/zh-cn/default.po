@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-06 15:15+0800\n"
-"PO-Revision-Date: 2014-02-06 15:15+0800\n"
+"POT-Creation-Date: 2014-02-06 16:13+0800\n"
+"PO-Revision-Date: 2014-02-06 16:25+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -78,18 +78,18 @@ msgstr "克隆区块"
 #: c:\Code\pi\usr\module\system/src/Navigation.php:218
 #, fuzzy
 msgid "Block layout"
-msgstr "登录区块"
+msgstr "编辑区块"
 
 #: c:\Code\pi\usr\module\system/src/Navigation.php:229
 #, fuzzy
 msgid "Setup page"
-msgstr "页面编码"
+msgstr "页面缓存 [%s]"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:35
 #, fuzzy
 msgid "Page wide"
-msgstr "页面编码"
+msgstr "模块范围"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
@@ -100,11 +100,12 @@ msgstr "用户动作"
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
 #, fuzzy
 msgid "What's new"
-msgstr "添加一个"
+msgstr "最近更新"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:33
+#, fuzzy
 msgid "Recent module updates."
-msgstr ""
+msgstr "模块移动成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:71
 #, php-format
@@ -148,7 +149,7 @@ msgstr "成功登录"
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:292
 #, fuzzy
 msgid "You have already logged in."
-msgstr "用户已在本用户组"
+msgstr "成功登录"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
 msgid "Password changed successfully."
@@ -157,7 +158,7 @@ msgstr "修改密码成功"
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:58
 #, fuzzy
 msgid "Password not changed."
-msgstr "用户不能在。"
+msgstr "修改密码成功"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:61
 msgid "Invalid data, please check and re-submit."
@@ -180,9 +181,8 @@ msgid "Logout"
 msgstr "退出"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
-#, fuzzy
 msgid "ID"
-msgstr "用户 ID"
+msgstr "ID"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:55
 msgid "Username"
@@ -194,7 +194,6 @@ msgstr "邮箱"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:44
-#, fuzzy
 msgid "Name"
 msgstr "姓名"
 
@@ -217,9 +216,8 @@ msgid "Registration is disabled. Please come back later."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:66
-#, fuzzy
 msgid "User account register"
-msgstr "管理员账号建立"
+msgstr "账号注册"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
 msgid "Invalid input, please try again."
@@ -237,7 +235,6 @@ msgid "Register"
 msgstr "注册"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/TestController.php:46
-#, fuzzy
 msgid "site name"
 msgstr "网站名称"
 
@@ -247,26 +244,22 @@ msgid "Greetings in raw body %d"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Module/IndexController.php:30
-#, fuzzy
 msgid "Admin area"
-msgstr "管理员组"
+msgstr "管理区"
 
 #: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:47
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:59
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:32
-#, fuzzy
 msgid "User account"
 msgstr "用户账号"
 
 #: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:58
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:70
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:42
-#, fuzzy
 msgid "Display name"
 msgstr "昵称"
 
 #: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:69
-#, fuzzy
 msgid "Birthdate"
 msgstr "生日"
 
@@ -283,7 +276,6 @@ msgstr "生日"
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:100
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:115
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:49
-#, fuzzy
 msgid "Submit"
 msgstr "提交"
 
@@ -292,27 +284,24 @@ msgstr "提交"
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:40
 #: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:45
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:54
-#, fuzzy
 msgid "Title"
 msgstr "标题"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:65
-#, fuzzy
 msgid "Block label for display."
-msgstr "页面编码"
+msgstr "区块标题。"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:73
 msgid "Hide title"
-msgstr ""
+msgstr "隐藏标题"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:76
 msgid "Hide block title from display."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:84
-#, fuzzy
 msgid "Full-size body"
-msgstr "最大文件尺寸"
+msgstr "全福尺寸"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:87
 msgid "Display block body in full-size w/o padding."
@@ -321,9 +310,8 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:94
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:30
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:30
-#, fuzzy
 msgid "Unique name"
-msgstr "名称"
+msgstr "唯一名称"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:98
 msgid "A unique name to be called as widget."
@@ -332,14 +320,13 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:106
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:117
 msgid "Template"
-msgstr ""
+msgstr "模板"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:122
 msgid "PHTML rendering template, file extension is optional."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:130
-#, fuzzy
 msgid "Description"
 msgstr "简介"
 
@@ -349,16 +336,15 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
 msgid "Subline"
-msgstr ""
+msgstr "副标题"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
 msgid "Header subline. HTML is allowed."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
-#, fuzzy
 msgid "Style class"
-msgstr "缺省数字格式"
+msgstr "样式类名"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
 msgid "Specified block container CSS class."
@@ -366,20 +352,17 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:164
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:46
-#, fuzzy
 msgid "Cache TTL"
-msgstr "缓存列表"
+msgstr "缓存有效期"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:172
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:54
-#, fuzzy
 msgid "Cache level"
-msgstr "缓存列表"
+msgstr "缓存标准"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:220
-#, fuzzy
 msgid "Configs"
-msgstr "管理：配置"
+msgstr "配置参数"
 
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:70
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:64
@@ -389,9 +372,8 @@ msgstr "验证码"
 
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:81
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:85
-#, fuzzy
 msgid "Remember me"
-msgstr "自动登录"
+msgstr "记住登录"
 
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:109
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:17
@@ -417,17 +399,14 @@ msgid "Confirm password"
 msgstr "确认密码"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:110
-#, fuzzy
 msgid "User role"
-msgstr "用户已从该用户组移除。"
+msgstr "用户角色"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:121
-#, fuzzy
 msgid "Management role"
-msgstr "用户角色 %s"
+msgstr "管理角色"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:133
-#, fuzzy
 msgid "Active"
 msgstr "激活"
 
@@ -454,9 +433,8 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:61
 #: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:72
-#, fuzzy
 msgid "Action"
-msgstr "动作"
+msgstr "操作"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:68
 msgid "URI"
@@ -473,30 +451,27 @@ msgstr "无"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:79
 msgid "Current window"
-msgstr ""
+msgstr "当前窗口"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:80
 msgid "Open a new window"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:88
-#, fuzzy
 msgid "Permission resource"
-msgstr "总体权限"
+msgstr "权限资源"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:92
 msgid "The resource identity for permission check."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:100
-#, fuzzy
 msgid "Display"
 msgstr "显示"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:103
-#, fuzzy
 msgid "To display in menu."
-msgstr "点击选择已有用户组"
+msgstr "在菜单中显示"
 
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:31
 msgid "Cache type"
@@ -511,14 +486,12 @@ msgid "Section"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:67
-#, fuzzy
 msgid "Front"
 msgstr "前台"
 
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:68
-#, fuzzy
 msgid "Admin"
-msgstr "Admin"
+msgstr "后台"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
 msgid "Force for all pages"
@@ -526,7 +499,6 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
 #: c:\Code\pi\usr\module\system/template/component/form.phtml:66
-#, fuzzy
 msgid "Cancel"
 msgstr "取消"
 

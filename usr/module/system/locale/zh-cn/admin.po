@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-06 14:47+0800\n"
-"PO-Revision-Date: 2014-02-06 15:26+0800\n"
+"POT-Creation-Date: 2014-02-06 16:13+0800\n"
+"PO-Revision-Date: 2014-02-06 16:24+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "用户账号"
 
 #: c:\Code\pi\usr\module\system/config/block.php:35
 msgid "User profile or login bar"
-msgstr ""
+msgstr "用户资料或登录"
 
 #: c:\Code\pi\usr\module\system/config/block.php:40
 msgid "Display type"
@@ -50,7 +50,7 @@ msgstr "渲染模式"
 
 #: c:\Code\pi\usr\module\system/config/block.php:47
 msgid "Flat"
-msgstr ""
+msgstr "普通模式"
 
 #: c:\Code\pi\usr\module\system/config/block.php:48
 msgid "Dropdown menu"
@@ -58,7 +58,7 @@ msgstr "下拉菜单"
 
 #: c:\Code\pi\usr\module\system/config/block.php:49
 msgid "JavaScript"
-msgstr ""
+msgstr "JavaScript模式"
 
 #: c:\Code\pi\usr\module\system/config/block.php:59
 #: c:\Code\pi\usr\module\system/config/nav.front.php:30
@@ -80,15 +80,15 @@ msgstr "Pi Engine 简介"
 #: c:\Code\pi\usr\module\system/config/config.php:21
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:95
 msgid "General"
-msgstr ""
+msgstr "通用"
 
 #: c:\Code\pi\usr\module\system/config/config.php:25
 msgid "Head meta"
-msgstr ""
+msgstr "HTML页面Meta"
 
 #: c:\Code\pi\usr\module\system/config/config.php:29
 msgid "Internationalization"
-msgstr ""
+msgstr "国际化"
 
 #: c:\Code\pi\usr\module\system/config/config.php:37
 msgid "Admin login"
@@ -96,13 +96,13 @@ msgstr "管理员登录"
 
 #: c:\Code\pi\usr\module\system/config/config.php:41
 msgid "Text processing"
-msgstr ""
+msgstr "内容处理"
 
 #: c:\Code\pi\usr\module\system/config/config.php:45
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:300
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:9
 msgid "Mailing"
-msgstr ""
+msgstr "邮件服务"
 
 #: c:\Code\pi\usr\module\system/config/config.php:57
 msgid "Site name"
@@ -122,15 +122,15 @@ msgstr "网站口号"
 
 #: c:\Code\pi\usr\module\system/config/config.php:72
 msgid "Locale"
-msgstr ""
+msgstr "语言"
 
 #: c:\Code\pi\usr\module\system/config/config.php:73
 msgid "Locale for application content."
-msgstr ""
+msgstr "本地化语言。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:80
 msgid "Charset"
-msgstr ""
+msgstr "编码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:81
 msgid "Charset for page display."
@@ -138,11 +138,11 @@ msgstr "页面编码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:87
 msgid "Timezone"
-msgstr ""
+msgstr "时区"
 
 #: c:\Code\pi\usr\module\system/config/config.php:88
 msgid "Timezone for application system."
-msgstr ""
+msgstr "系统应用时区。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:94
 msgid "List count"
@@ -154,21 +154,21 @@ msgstr "每页展示条目数。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:102
 msgid "GA account"
-msgstr "Google Analytics 账号"
+msgstr "谷歌分析账号"
 
 #: c:\Code\pi\usr\module\system/config/config.php:103
 msgid "Google Analytics account. Or use following custom foot scripts."
-msgstr ""
+msgstr "谷歌分析账号，或者使用下面的定制页脚代码。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:108
 msgid "Foot scripts"
-msgstr ""
+msgstr "页脚代码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:109
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
-msgstr ""
+msgstr "该代码将显示在每个页面的底部，可以是纯JS代码或封装的代码。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:115
 msgid "Theme"
@@ -180,11 +180,11 @@ msgstr "后台主题"
 
 #: c:\Code\pi\usr\module\system/config/config.php:129
 msgid "Run environment"
-msgstr ""
+msgstr "运行环境"
 
 #: c:\Code\pi\usr\module\system/config/config.php:130
 msgid "Only applicable if not set in `var/config/engine.php`."
-msgstr ""
+msgstr "只有当 `var/config/engine.php`中没有设置才会生效。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:135
 msgid "Production"
@@ -196,7 +196,7 @@ msgstr "开发模式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:137
 msgid "QA test"
-msgstr ""
+msgstr "QA测试"
 
 #: c:\Code\pi\usr\module\system/config/config.php:138
 msgid "Site closed"
@@ -212,15 +212,15 @@ msgstr "用户名规则。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:155
 msgid "Strict: alphabet or number only"
-msgstr ""
+msgstr "严格模式：只接受数字和字母"
 
 #: c:\Code\pi\usr\module\system/config/config.php:156
 msgid "Medium: ASCII characters"
-msgstr ""
+msgstr "普通模式：允许ASCII码字符"
 
 #: c:\Code\pi\usr\module\system/config/config.php:157
 msgid "Loose: multi-byte characters"
-msgstr ""
+msgstr "宽松模式：允许多字节字符"
 
 #: c:\Code\pi\usr\module\system/config/config.php:167
 msgid "Minimum username"
@@ -364,10 +364,6 @@ msgstr "禁止管理区登录"
 msgid "Enable CAPTCHA for admin login"
 msgstr "管理区登录时启用验证码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:345
-msgid "Meta author"
-msgstr "作者信息"
-
 #: c:\Code\pi\usr\module\system/config/config.php:346
 msgid ""
 "The author meta tag defines the name of the author of the document being "
@@ -375,26 +371,14 @@ msgid ""
 "webmaster, company name or URL."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:353
-msgid "Meta generator"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/config/config.php:354
 msgid "Generator of the document being read."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/config/config.php:361
-msgid "Meta keywords"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:362
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/config/config.php:369
-msgid "Meta description"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:370
@@ -451,7 +435,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:402
 msgid "Default pattern for selected number style"
-msgstr ""
+msgstr "选定数字格式的缺省模式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:403
 msgid "Only if required by style"
@@ -467,7 +451,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:418
 msgid "Default calendar for the locale"
-msgstr ""
+msgstr "当前语言的缺省日历"
 
 #: c:\Code\pi\usr\module\system/config/config.php:419
 msgid ""
@@ -518,7 +502,7 @@ msgstr "缺省时间格式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:464
 msgid "Default formatting pattern for date-time"
-msgstr ""
+msgstr "日期时间的格式化缺省模式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:465
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
@@ -526,7 +510,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:472
 msgid "Default format for legacy date function"
-msgstr ""
+msgstr "旧日期函数的缺省模式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:473
 msgid ""
@@ -568,7 +552,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:510
 msgid "Enable word censoring"
-msgstr "启用内容审查"
+msgstr "启用敏感词审查"
 
 #: c:\Code\pi\usr\module\system/config/config.php:511
 msgid ""
@@ -578,7 +562,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:519
 msgid "Words to censor"
-msgstr "审查的词句内容"
+msgstr "敏感词内容"
 
 #: c:\Code\pi\usr\module\system/config/config.php:520
 msgid ""
@@ -588,12 +572,12 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:527
 msgid "Word to replace censored words"
-msgstr ""
+msgstr "替换词语"
 
 #: c:\Code\pi\usr\module\system/config/config.php:528
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
-msgstr ""
+msgstr "用于替换敏感词的词语"
 
 #: c:\Code\pi\usr\module\system/config/config.php:535
 msgid "Module themes"
@@ -618,8 +602,9 @@ msgid "Admin navigation"
 msgstr "后台导航"
 
 #: c:\Code\pi\usr\module\system/config/config.php:553
+#, fuzzy
 msgid "Global navigation for admin."
-msgstr ""
+msgstr "管理区登录时启用验证码"
 
 #: c:\Code\pi\usr\module\system/config/event.php:21
 msgid "Module installed"
@@ -666,8 +651,9 @@ msgid "Availables"
 msgstr "可用"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:67
+#, fuzzy
 msgid "Category"
-msgstr ""
+msgstr "添加分类"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:74
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:120
@@ -784,7 +770,7 @@ msgid "Password"
 msgstr "密码"
 
 #: c:\Code\pi\usr\module\system/config/nav.front.php:52
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:22
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:25
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:36
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:18
@@ -980,15 +966,17 @@ msgid "Block data saved successfully."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:159
+#, fuzzy
 msgid "Block data not saved."
-msgstr ""
+msgstr "区块不存在。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:162
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:246
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:147
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:258
+#, fuzzy
 msgid "Invalid data, please check and re-submit."
-msgstr ""
+msgstr "无效数据，请检查后重新提交。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:202
 #, php-format
@@ -1010,7 +998,7 @@ msgstr "页面缓存清空成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:64
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:24
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:19
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:35
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:13
@@ -1041,9 +1029,9 @@ msgid "Module configurations"
 msgstr "模块设置"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/EventController.php:143
-#, php-format
+#, fuzzy, php-format
 msgid "Event listeners of module %s"
-msgstr ""
+msgstr "模块移动成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/EventController.php:168
 msgid "The item not found."
@@ -1070,8 +1058,9 @@ msgid "System cache files"
 msgstr "系统缓存文件"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:40
+#, fuzzy
 msgid "System persistent data"
-msgstr ""
+msgstr "系统缓存文件"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:41
 msgid "Module cache"
@@ -1141,8 +1130,9 @@ msgid "+ New category"
 msgstr "添加分类"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:347
+#, fuzzy
 msgid "Directory is not specified."
-msgstr ""
+msgstr "区块不存在。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:353
 #, php-format
@@ -1159,13 +1149,14 @@ msgid "Module \"%s\" is installed successfully."
 msgstr "模块 `%s` 安装成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:392
-#, php-format
+#, fuzzy, php-format
 msgid "Module \"%s\" is not installed."
-msgstr ""
+msgstr "成功安装%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:396
+#, fuzzy
 msgid "Module is not installed."
-msgstr ""
+msgstr "成功安装%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:400
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:454
@@ -1175,8 +1166,9 @@ msgstr "模块安装"
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:474
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:534
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:593
+#, fuzzy
 msgid "Module is not specified."
-msgstr ""
+msgstr "模块不存在。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:483
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:543
@@ -1186,8 +1178,9 @@ msgid "Module is not found."
 msgstr "模块不存在。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:485
+#, fuzzy
 msgid "System module is protected."
-msgstr ""
+msgstr "成功安装%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:493
 #, php-format
@@ -1196,13 +1189,14 @@ msgstr "模块 `%s` 卸载成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:498
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:501
-#, php-format
+#, fuzzy, php-format
 msgid "Module \"%s\" is not uninstalled."
-msgstr ""
+msgstr "成功卸载%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:504
+#, fuzzy
 msgid "Module is not uninstalled."
-msgstr ""
+msgstr "成功卸载%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:508
 msgid "Module uninstallation"
@@ -1215,13 +1209,14 @@ msgstr "模块 `%s` 更新成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:557
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:559
-#, php-format
+#, fuzzy, php-format
 msgid "Module \"%s\" is not updated."
-msgstr ""
+msgstr "成功更新%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:562
+#, fuzzy
 msgid "Module is not updated."
-msgstr ""
+msgstr "成功更新%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:566
 msgid "Module update"
@@ -1234,13 +1229,14 @@ msgstr "模块 `%s` 激活成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:620
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:623
-#, php-format
+#, fuzzy, php-format
 msgid "Module \"%s\" is not enabled."
-msgstr ""
+msgstr "模块 `%s` 激活成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:626
+#, fuzzy
 msgid "Module is not enabled."
-msgstr ""
+msgstr "模块 `%s` 激活成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:630
 #, php-format
@@ -1249,13 +1245,14 @@ msgstr "模块 `%s` 禁用成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:635
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:638
-#, php-format
+#, fuzzy, php-format
 msgid "Module \"%s\" is not disabled."
-msgstr ""
+msgstr "模块 `%s` 禁用成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:641
+#, fuzzy
 msgid "Module is not disabled."
-msgstr ""
+msgstr "模块 `%s` 禁用成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:646
 msgid "Module activation"
@@ -1288,7 +1285,7 @@ msgstr "添加自定义导航"
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:240
 #, fuzzy
 msgid "Navigation saved successfully."
-msgstr "添加用户成功"
+msgstr "导航添加成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:246
 msgid "Navigation data not saved."
@@ -1340,8 +1337,9 @@ msgstr "登录次数"
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:192
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:256
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:304
+#, fuzzy
 msgid "Page data saved successfully."
-msgstr ""
+msgstr "页面缓存清空成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:144
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
@@ -1350,9 +1348,8 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:159
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:9
-#, fuzzy
 msgid "Setup a page"
-msgstr "页面编码"
+msgstr "设置新页面"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:272
 #, fuzzy
@@ -1363,17 +1360,17 @@ msgstr "编辑用户："
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:524
 #, fuzzy
 msgid "Page is not found."
-msgstr "用户不存在。"
+msgstr "区块不存在。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:353
 #, fuzzy
 msgid "Page is deleted."
-msgstr "必需信息。"
+msgstr "分类删除成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:466
-#, fuzzy, php-format
+#, php-format
 msgid "%s blocks"
-msgstr "区块"
+msgstr "%s 区块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:549
 msgid "Page block links are updated."
@@ -1445,7 +1442,7 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:314
 #, fuzzy
 msgid "Role deleted successfully."
-msgstr "角色分配成功"
+msgstr "分类删除成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:49
 msgid "admin"
@@ -1473,9 +1470,9 @@ msgid "Themes available for installation"
 msgstr "可安装主题"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:182
-#, php-format
+#, fuzzy, php-format
 msgid "The theme \"%s\" is not updated."
-msgstr ""
+msgstr "成功更新%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:185
 #, fuzzy, php-format
@@ -1483,28 +1480,28 @@ msgid "The theme \"%s\" is updated."
 msgstr "主题更新成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:206
-#, php-format
+#, fuzzy, php-format
 msgid "The theme \"%s\" is not installed."
-msgstr ""
+msgstr "成功安装%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:210
 #, fuzzy, php-format
 msgid "The theme \"%s\" is installed."
-msgstr "必需信息。"
+msgstr "成功安装%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:229
 msgid "Default theme is protected from uninstallation."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:238
-#, php-format
+#, fuzzy, php-format
 msgid "The theme \"%s\" is not uninstalled."
-msgstr ""
+msgstr "成功卸载%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:244
 #, fuzzy, php-format
 msgid "The theme \"%s\" is uninstalled."
-msgstr "必需信息。"
+msgstr "成功卸载%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:95
 #, fuzzy
@@ -1516,6 +1513,7 @@ msgstr "未激活用户。"
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:14
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:17
 #: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:10
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:9
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:9
@@ -1540,8 +1538,9 @@ msgid "Order"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:87
+#, fuzzy
 msgid "Default taxonomy"
-msgstr ""
+msgstr "缺省数字格式"
 
 #: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:89
 msgid "Default global taxonomy domain. Not allowed to change."
@@ -1560,18 +1559,17 @@ msgid "Service"
 msgstr "服务"
 
 #: c:\Code\pi\usr\module\system/src/Installer/Action/Update.php:46
-#, fuzzy
 msgid "System updated"
-msgstr "模块已更新"
+msgstr "系统已更新"
 
 #: c:\Code\pi\usr\module\system/src/Installer/Action/Update.php:47
-#, fuzzy
 msgid "The system is updated successfully."
-msgstr "成功清除缓存"
+msgstr "系统更新成功。"
 
 #: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:12
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:21
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:11
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:12
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:13
@@ -1596,17 +1594,14 @@ msgid "Asset publish in process"
 msgstr "重新发布资源中"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:12
-#, fuzzy
 msgid "Audit list"
-msgstr "登录次数"
+msgstr "监控列表"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:16
-#, fuzzy
 msgid "time"
-msgstr "注册时间"
+msgstr "时间"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:18
-#, fuzzy
 msgid "IP"
 msgstr "IP"
 
@@ -1616,9 +1611,8 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:20
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:108
-#, fuzzy
 msgid "Module"
-msgstr "%s模块"
+msgstr "模块"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
@@ -1663,9 +1657,8 @@ msgid "Description"
 msgstr "简介"
 
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:20
-#, fuzzy
 msgid "Related pages"
-msgstr "管理：pages"
+msgstr "关联页面"
 
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:23
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:21
@@ -1695,31 +1688,27 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:27
 msgid "Search in block title"
-msgstr ""
+msgstr "搜索区块标题"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:15
-#, fuzzy
 msgid "Expiration"
-msgstr "操作：模块"
+msgstr "有效期"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:16
-#, fuzzy
 msgid "Cache level"
-msgstr "缓存列表"
+msgstr "缓存标准"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:17
-#, fuzzy
 msgid "Cache scope"
-msgstr "缓存列表"
+msgstr "缓存范围"
 
 #: c:\Code\pi\usr\module\system/template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/config-index.phtml:5
-#, fuzzy
 msgid "No configuration available."
-msgstr "未激活用户。"
+msgstr "无配置参数。"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:6
 msgid "About"
@@ -1773,14 +1762,12 @@ msgid "Cancel"
 msgstr "取消"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:25
-#, fuzzy
 msgid "Quicklinks"
 msgstr "快速链接"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:27
-#, fuzzy
 msgid "URL"
-msgstr "ID 或 URL"
+msgstr "URL"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:29
 #, fuzzy
@@ -1803,21 +1790,23 @@ msgid ""
 "and users."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:17
-msgid "Listeners"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
-#, fuzzy
-msgid "No listeners available"
-msgstr "未激活用户。"
-
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:19
-#, fuzzy
-msgid "No events available"
-msgstr "管理：events/hooks"
+msgid "Events"
+msgstr "事件"
 
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:20
+msgid "Listeners"
+msgstr "监听器"
+
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:21
+msgid "No listeners available"
+msgstr "无监听器定义。"
+
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:22
+msgid "No events available"
+msgstr "无事件定义。"
+
+#: c:\Code\pi\usr\module\system/template/admin/event.phtml:23
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:18
 msgid "Error, please try again later."
 msgstr ""
@@ -1846,9 +1835,8 @@ msgid "There is no entry page for this module management. Please:"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/index.phtml:5
-#, fuzzy
 msgid "Module config"
-msgstr "模块主题"
+msgstr "模块参数"
 
 #: c:\Code\pi\usr\module\system/template/admin/index.phtml:5
 msgid "Go to set up module configs;"
@@ -1864,14 +1852,12 @@ msgid "Go back to system dashboard."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:6
-#, fuzzy
 msgid "Add a member"
-msgstr "仅会员可见"
+msgstr "添加会员"
 
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:11
-#, fuzzy
 msgid "Select a role: "
-msgstr "用户角色 %s"
+msgstr "选择角色"
 
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:24
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:21
@@ -1892,9 +1878,8 @@ msgid "Active"
 msgstr "启用"
 
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:43
-#, fuzzy
 msgid "Not set"
-msgstr "设为全局"
+msgstr "未分配"
 
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:46
 msgid "Yes"
@@ -1936,28 +1921,24 @@ msgid "Install"
 msgstr "安装"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:38
-#, fuzzy
 msgid "Assign to:"
-msgstr "设置角色"
+msgstr "分配到"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:56
-#, fuzzy
 msgid "Edit this category"
-msgstr "删除该组成功"
+msgstr "编辑该分类"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:59
-#, fuzzy
 msgid "Delete this category"
-msgstr "删除该组成功"
+msgstr "删除该分类"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:73
 msgid "Remove"
 msgstr "移除"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:92
-#, fuzzy
 msgid "Sort modules"
-msgstr "操作：模块"
+msgstr "模块排序"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:12
 msgid "Last Update"
@@ -1968,9 +1949,8 @@ msgid "Rename"
 msgstr "重命名"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:40
-#, fuzzy
 msgid "Name:"
-msgstr "姓名"
+msgstr "名称"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:44
 msgid "Author"
@@ -1990,9 +1970,8 @@ msgid "Enable"
 msgstr "启用"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
-#, fuzzy
 msgid "Are you sure to uninstall this module?"
-msgstr "请确认是否删除该用户。"
+msgstr "请确认是否删除该模块。"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:23
@@ -2000,9 +1979,8 @@ msgid "Uninstall"
 msgstr "卸载"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:7
-#, fuzzy
 msgid "Press to continue ..."
-msgstr "渲染模式"
+msgstr "点击继续 ......"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:17
 msgid "Failed"
@@ -2038,9 +2016,8 @@ msgid "Label"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:59
-#, fuzzy
 msgid "Url"
-msgstr "ID 或 URL"
+msgstr "URL"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:61
 msgid "Page link by url or by the after of route"
@@ -2051,18 +2028,16 @@ msgid "Target"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:68
-#, fuzzy
 msgid "None"
-msgstr "误"
+msgstr "无"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:69
 msgid "_blank"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:82
-#, fuzzy
 msgid "To display in menu."
-msgstr "点击选择已有用户组"
+msgstr "在菜单中显示"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:87
 msgid "Page link by route"
@@ -2073,7 +2048,6 @@ msgid "Route"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:425
-#, fuzzy
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr "修改未保存，请确认是否离开该页面？"
 
@@ -2098,9 +2072,8 @@ msgid "View"
 msgstr "查看"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:82
-#, fuzzy
 msgid "Are you sure to delete this navigation"
-msgstr "请确认是否删除该用户。"
+msgstr "请确认是否删除该导航。"
 
 #: c:\Code\pi\usr\module\system/template/admin/page-block.phtml:163
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:31
@@ -2114,27 +2087,23 @@ msgstr "可用主题"
 
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:31
 msgid "Dress up"
-msgstr ""
+msgstr "装扮"
 
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:83
-#, fuzzy
 msgid "Are you sure to delete the page?"
-msgstr "请确认是否删除该用户。"
+msgstr "请确认是否删除页面。"
 
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
-#, fuzzy
 msgid "Module Global permission"
-msgstr "成功分配权限"
+msgstr "模块全局权限"
 
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
-#, fuzzy
 msgid "Module resource"
-msgstr "模块主题"
+msgstr "模块权限资源"
 
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:17
-#, fuzzy
 msgid "Block"
-msgstr "登录区块"
+msgstr "区块"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:14
 msgid "Admin roles"
@@ -2153,15 +2122,13 @@ msgid "Add front role"
 msgstr "添加前台角色"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:20
-#, fuzzy
 msgid "Edit permission"
-msgstr "总体权限"
+msgstr "编辑权限"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:23
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:39
-#, fuzzy
 msgid "Users in role"
-msgstr "用户不在该用户组"
+msgstr "用户"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:24
 msgid "Status"
@@ -2198,12 +2165,10 @@ msgid "Are you sure to delete this role?"
 msgstr "确认删除该角色？"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:40
-#, fuzzy
 msgid "User id or name"
-msgstr "用户 id 或 名称"
+msgstr "用户 ID 或用户名"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:41
-#, fuzzy
 msgid "Users"
 msgstr "用户"
 
@@ -2212,7 +2177,6 @@ msgid "First"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:43
-#, fuzzy
 msgid "Add user"
 msgstr "添加用户"
 
@@ -2240,14 +2204,15 @@ msgid "Apply"
 msgstr "应用"
 
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:66
-#, fuzzy
 msgid "Theme Updated successfully."
 msgstr "主题更新成功。"
 
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
-#, fuzzy
 msgid "Are you sure to uninstall this theme ? "
-msgstr "请确认是否删除该用户。"
+msgstr "请确认是否删除该主题。"
+
+#~ msgid "Meta author"
+#~ msgstr "作者信息"
 
 #~ msgid "module %s"
 #~ msgstr "%s模块"
@@ -2273,10 +2238,6 @@ msgstr "请确认是否删除该用户。"
 
 #, fuzzy
 #~ msgid "Check events"
-#~ msgstr "管理：events/hooks"
-
-#, fuzzy
-#~ msgid "Events"
 #~ msgstr "管理：events/hooks"
 
 #, fuzzy

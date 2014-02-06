@@ -342,7 +342,7 @@ $config['item'] = array(
     // Meta section
 
     'author'        => array(
-        'title'         => _t('Meta author'),
+        'title'         => '`author`',
         'description'   => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
         'edit'          => 'text',
         'value'         => 'Pi Engine',
@@ -350,7 +350,7 @@ $config['item'] = array(
     ),
 
     'generator'     => array(
-        'title'         => _t('Meta generator'),
+        'title'         => '`generator`',
         'description'   => _t('Generator of the document being read.'),
         'edit'          => 'text',
         'value'         => 'Pi Engine',
@@ -358,7 +358,7 @@ $config['item'] = array(
     ),
 
     'keywords'      => array(
-        'title'         => _t('Meta keywords'),
+        'title'         => '`keywords`',
         'description'   => _t('The keywords meta tag is a series of keywords that represents the content of your site. Separated keywords by a comma.'),
         'edit'          => 'textarea',
         'value'         => 'Pi Engine,Web application,PHP,Zend Framework',
@@ -366,7 +366,7 @@ $config['item'] = array(
     ),
 
     'description'   => array(
-        'title'         => _t('Meta description'),
+        'title'         => '`description`',
         'description'   => _t('The description meta tag is a general description of what is contained in your web page'),
         'edit'          => 'textarea',
         'value'         => 'Pi Engine is an extensible development engine for web and mobile applications written in PHP.',

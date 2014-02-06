@@ -14,6 +14,9 @@ angular
         events: <?php echo json_encode($events); ?>,
         listeners: <?php echo json_encode(array_values($listeners)); ?>,
         t: {
+            Title: '<?php echo _a('Title'); ?>',
+            Action: '<?php echo _a('Action'); ?>',
+            Events: '<?php echo _a('Events'); ?>',
             Listeners: '<?php echo _a('Listeners'); ?>',
             NoneListeners: '<?php echo _a('No listeners available'); ?>',
             NoneEvents: '<?php echo _a('No events available'); ?>',
