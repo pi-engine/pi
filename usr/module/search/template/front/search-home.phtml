@@ -34,7 +34,7 @@ $this->css($this->assetModule('front/front.css'));
         </div>
         <div class="input-group">
             <input type="text" name="q" class="form-control" 
-                   value="<?php echo _escape($query); ?>"
+                   value="<?php echo !empty($query) ? _escape($query) : ''; ?>"
                    placeholder="<?php _e('Keywords'); ?>">
             <div class="input-group-btn">
                 <button type="submit" class="btn btn-primary">
