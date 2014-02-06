@@ -6,7 +6,7 @@ Pi is developed upon PHP and MySQL with selected third-party frameworks includin
 
 Pi Project follows the philosophy of open standard, open design, open development and open management. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users. 
 
-Pi Engine is started by [Taiwen Jiang](http://github.com/taiwen) (Xoops Project Lead and Dev Lead), [Marc Desrousseaux](http://github.com/MarcoXoops) (Xoops QA Lead), [Hossein Azizabadi](http://github.com/voltan) (Xoops Persian Lead), [Kris](http://github.com/krisxoofoo) (Xoops Council Member and Xoops France Lead), etc. [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team) is highly inspired by the Xoops led by onokazu (Ono Kazumi), skalpa and phppp (Taiwen Jiang, or D.J.) successively since 2001 and will continue to support and promote Xoops.
+Pi Engine is developed by [Pi Team](https://github.com/pi-engine/pi/wiki/Pi-Team) initially as a successor to Xoops led by Ono Kazumi (onokazu), skalpa and Taiwen Jiang (phppp or D.J.) successively since 2001.
 
 **Check out [Latest Release](https://github.com/pi-engine/pi/blob/master/doc/releasenotes.md).**
 
