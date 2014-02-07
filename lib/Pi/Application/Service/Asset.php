@@ -383,13 +383,15 @@ class Asset extends AbstractService
      * @param string $sourceFile Source file
      * @param string $targetFile Destination
      * @param Traversable $iterator A Traversable instance for directory scan
+     * @param bool $disableSymlink
      *
      * @return bool
      */
     public function publishFile(
         $sourceFile,
         $targetFile,
-        Traversable $iterator = null
+        Traversable $iterator = null,
+        $disableSymlink = false
     ) {
         if (!is_dir($sourceFile) && !is_link($sourceFile)) {
             return true;
@@ -397,8 +399,12 @@ class Asset extends AbstractService
         try {
             $copyOnWindows = true;
             $override = (false === $this->getOption('override')) ? false : true;
+            $useSymlink = $this->getOption('use_symlink');
+            if ($disableSymlink) {
+                $useSymlink = false;
+            }
             // Make hard copy
-            if (false === $this->getOption('use_symlink')) {
+            if (false === $useSymlink) {
                 Pi::service('file')->mirror(
                     $sourceFile,
                     $targetFile,
@@ -433,13 +439,15 @@ class Asset extends AbstractService
      * @param string $component     Component name
      * @param string $target        Target component
      * @param Traversable $iterator A Traversable instance for directory scan
+     * @param array $hasCustom
      *
      * @return bool
      */
     public function publish(
         $component,
         $target = '',
-        Traversable $iterator = null
+        Traversable $iterator = null,
+        array $hasCustom = array()
     ) {
         $status = true;
         $target = $target ?: $component;
@@ -447,10 +455,12 @@ class Asset extends AbstractService
             // Publish original assets
             $sourceFolder   = $this->getSourcePath($component, '', $type);
             $targetFolder   = $this->getPath($target, $type);
+            $disableSymlink = !empty($hasCustom[$type]) ? true : false;
             $status         = $this->publishFile(
                 $sourceFolder,
                 $targetFolder,
-                $iterator
+                $iterator,
+                $disableSymlink
             );
             if (!$status) {
                 //break;
@@ -502,6 +512,30 @@ class Asset extends AbstractService
     }
 
     /**
+     * Check if custom assets available
+     *
+     * @param string $component     Component name
+     *
+     * @return bool[]
+     */
+    protected function hasCustom($component)
+    {
+        $result = array(
+            static::DIR_ASSET   => false,
+            static::DIR_PUBLIC  => false,
+        );
+        $component  = 'custom/' . $component;
+        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
+            $sourceFolder   = $this->getSourcePath($component, '', $type);
+            if (is_dir($sourceFolder)) {
+                $result[$type] = true;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Publishes module assets, including original and custom assets
      *
      * @param string $module
@@ -512,8 +546,9 @@ class Asset extends AbstractService
     {
         // Publish original assets
         $component  = 'module/' . Pi::service('module')->directory($module);
+        $hasCustom  = $this->hasCustom($component);
         $target     = 'module/' . $module;
-        $status     = $this->publish($component, $target);
+        $status     = $this->publish($component, $target, $hasCustom);
         if (!$status) {
             //return $status;
         }
@@ -536,7 +571,10 @@ class Asset extends AbstractService
     {
         // Publish original assets
         $component  = 'theme/' . $theme;
-        $status     = $this->publish($component);
+        $hasCustom  = $this->hasCustom($component);
+        $hasCustom  = $this->hasModule($component, $hasCustom);
+
+        $status     = $this->publish($component, '', $hasCustom);
         if (!$status) {
             //return $status;
         }
@@ -612,6 +650,43 @@ class Asset extends AbstractService
         }
 
         return $status;
+    }
+
+    /**
+     * Check if module assets available
+     *
+     * @param string $theme
+     * @param array $result
+     *
+     * @return bool[]
+     */
+    protected function hasModule($theme, array $result = array())
+    {
+        $path = Pi::path('theme') . '/' . $theme . '/module';
+        if (!is_dir($path)) {
+            return $result;
+        }
+        $directoryIterator = new DirectoryIterator($path);
+        foreach ($directoryIterator as $fileinfo) {
+            if (!$fileinfo->isDir() && !$fileinfo->isLink()
+                || $fileinfo->isDot()
+            ) {
+                continue;
+            }
+            $module = $fileinfo->getFilename();
+            if (preg_match('/[^a-z0-9]+/', $module)) {
+                continue;
+            }
+
+            foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
+                $sourceFolder = $path . '/' . $module . '/' . $type;
+                if (is_dir($sourceFolder)) {
+                    $result[$type] = true;
+                }
+            }
+        }
+
+        return $result;
     }
 
     /**
