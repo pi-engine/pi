@@ -16,7 +16,7 @@ class LoginField extends Text
 {
     /** {@inheritDoc} */
     protected $attributes = array(
-        'type'  => 'Pi\Form\View\Helper\LoginField',
+        'type'  => 'LoginField',
     );
 
     /** @var string[] Allowed fields for authentication */

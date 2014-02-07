@@ -19,7 +19,7 @@ use Zend\Form\ElementInterface;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class LoginField extends FormInput
+class FormLoginField extends FormInput
 {
     /**
      * {@inheritDoc}
@@ -34,25 +34,27 @@ class LoginField extends FormInput
             $element->setAttribute('placeholder', current($fields));
             return parent::render($element);
         }
+        $template = $element->getOption('template')
+            ?: '<div class="input-group">%s</div>';
 
         $pattern =<<<EOT
-<div class="input-group">
-    <input name="%s[0]" %s>
-    <span class="input-group-addon">
-        <select class="pull-right" name="%s[1]">
-            %s
-        </select>
-    </span>
-</div>
+<input name="%s[0]" %s%s
+<span class="input-group-addon">
+    <select class="pull-right" name="%s[1]">
+        %s
+    </select>
+</span>
 EOT;
 
         $name = $element->getName();
         list($value, $field) = $element->getValue();
-
-        $attributes          = $element->getAttributes();
-        $attributes['type']  = 'text';
-        $attributes['class'] = 'form-control';
+        $attributes = $element->getAttributes();
         $attributes['value'] = $value;
+        $defaultAtrribs = array(
+            'type'  => 'text',
+            'class' => 'form-control',
+        );
+        $attributes = array_replace($defaultAtrribs, $attributes);
         $attribString = $this->createAttributesString($attributes);
 
         $patternField = '<option value="%s"%s>%s</option>' . PHP_EOL;
@@ -62,13 +64,14 @@ EOT;
             $fieldString .= sprintf($patternField, $key, $class, $label);
         }
 
-        $html = sprintf(
+        $html = sprintf($template, sprintf(
             $pattern,
             $name,
             $attribString,
+            $this->getInlineClosingBracket(),
             $name,
             $fieldString
-        );
+        ));
 
         return $html;
     }

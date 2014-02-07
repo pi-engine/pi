@@ -5,7 +5,9 @@
 <?php
     $identity   = $form->get('identity');
     $label      = $identity->getLabel();
-    $identity->setAttributes(array(
+    $identity->setOptions(array(
+        'template'  => '%s',
+    ))->setAttributes(array(
         'placeholder'   => $label,
         'class'         => 'form-control'
     ));
