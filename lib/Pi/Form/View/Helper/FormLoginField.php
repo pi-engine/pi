@@ -48,13 +48,13 @@ EOT;
 
         $name = $element->getName();
         list($value, $field) = $element->getValue();
-        $attributes = $element->getAttributes();
-        $attributes['value'] = $value;
-        $defaultAtrribs = array(
+        $attributes = array_replace($element->getAttributes(), array(
             'type'  => 'text',
-            'class' => 'form-control',
-        );
-        $attributes = array_replace($defaultAtrribs, $attributes);
+            'value' => $value,
+        ));
+        if (!isset($attributes['class'])) {
+            $attributes['class'] = 'form-control';
+        }
         $attribString = $this->createAttributesString($attributes);
 
         $patternField = '<option value="%s"%s>%s</option>' . PHP_EOL;
