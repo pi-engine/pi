@@ -27,7 +27,7 @@ class Version
      * @var string
      * @see http://semver.org/ for semantic versioning
      */
-    const VERSION = '2.3.0';
+    const VERSION = '2.4.0-rc';
 
     /**
      * The latest stable version Pi Engine available
