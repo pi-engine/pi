@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
 "POT-Creation-Date: 2014-02-06 14:18+0800\n"
-"PO-Revision-Date: 2014-02-06 14:18+0800\n"
+"PO-Revision-Date: 2014-02-07 18:09+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,20 +19,19 @@ msgstr "英语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:17
 msgid "ar"
-msgstr ""
+msgstr "阿拉伯语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:18
 msgid "bg"
-msgstr ""
+msgstr "保加利亚语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:19
 msgid "cs"
-msgstr ""
+msgstr "捷克语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:20
-#, fuzzy
 msgid "zh"
-msgstr "简体中文"
+msgstr "中文"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:21
 msgid "zh-cn"
@@ -44,48 +43,48 @@ msgstr "繁体中文"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:23
 msgid "nl"
-msgstr ""
+msgstr "荷兰语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:24
 msgid "fa"
-msgstr ""
+msgstr "波斯语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:25
 msgid "fi"
-msgstr ""
+msgstr "芬兰语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:26
 msgid "fr"
-msgstr ""
+msgstr "法语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:27
 msgid "de"
-msgstr ""
+msgstr "德语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:28
 msgid "it"
-msgstr ""
+msgstr "意大利语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:29
 msgid "ko"
-msgstr ""
+msgstr "韩语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:30
 msgid "jp"
-msgstr ""
+msgstr "日语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:31
 msgid "pt"
-msgstr ""
+msgstr "葡萄牙语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:32
 msgid "ru"
-msgstr ""
+msgstr "俄语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:33
 msgid "sk"
-msgstr ""
+msgstr "斯洛伐克语"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:34
 msgid "es"
-msgstr ""
+msgstr "西班牙语"

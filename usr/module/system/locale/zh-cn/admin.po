@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-02-06 18:18+0800\n"
-"PO-Revision-Date: 2014-02-06 18:18+0800\n"
+"PO-Revision-Date: 2014-02-07 17:52+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -146,7 +146,7 @@ msgstr "系统应用时区。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:94
 msgid "List count"
-msgstr "登录次数"
+msgstr "列表条目数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:95
 msgid "Number of items on a list."
@@ -188,7 +188,7 @@ msgstr "只有当 `var/config/engine.php`中没有设置才会生效。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:135
 msgid "Production"
-msgstr "产品模式"
+msgstr "生产模式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:136
 msgid "Development"

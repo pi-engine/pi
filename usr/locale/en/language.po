@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Timezone\n"
 "POT-Creation-Date: 2014-02-06 14:29+0800\n"
-"PO-Revision-Date: 2014-02-06 14:29+0800\n"
+"PO-Revision-Date: 2014-02-07 18:06+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,76 +15,76 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:16
 msgid "en"
-msgstr ""
+msgstr "English"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:17
 msgid "ar"
-msgstr ""
+msgstr "Arabic"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:18
 msgid "bg"
-msgstr ""
+msgstr "Bulgarian"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:19
 msgid "cs"
-msgstr ""
+msgstr "Czech"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:20
 msgid "zh"
-msgstr ""
+msgstr "Chinese"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:21
 msgid "zh-cn"
-msgstr ""
+msgstr "Simplified Chinese"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:22
 msgid "zh-tw"
-msgstr ""
+msgstr "Tranditional Chinese"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:23
 msgid "nl"
-msgstr ""
+msgstr "Dutch"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:24
 msgid "fa"
-msgstr ""
+msgstr "Persian"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:25
 msgid "fi"
-msgstr ""
+msgstr "Filan"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:26
 msgid "fr"
-msgstr ""
+msgstr "French"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:27
 msgid "de"
-msgstr ""
+msgstr "German"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:28
 msgid "it"
-msgstr ""
+msgstr "Italian"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:29
 msgid "ko"
-msgstr ""
+msgstr "Korean"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:30
 msgid "jp"
-msgstr ""
+msgstr "Japanese"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:31
 msgid "pt"
-msgstr ""
+msgstr "Portuguese"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:32
 msgid "ru"
-msgstr ""
+msgstr "Russian"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:33
 msgid "sk"
-msgstr ""
+msgstr "Slovak"
 
 #: c:\Code\pi\\usr\locale\_source\Language/Language.php:34
 msgid "es"
-msgstr ""
+msgstr "Spanish"
