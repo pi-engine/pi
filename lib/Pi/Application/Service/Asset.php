@@ -632,7 +632,13 @@ class Asset extends AbstractService
         } else {
             $path = $this->getPath($component, $type);
             try {
-                Pi::service('file')->flush($path);
+                /*
+                 * @fixme The method of `flush` will remove all contents inside the path.
+                 *          In this case, if symlink is enabled, original contents will be removed.
+                 *          Disable the flush temporarily
+                 */
+                //Pi::service('file')->flush($path);
+
                 Pi::service('file')->remove($path);
                 $status = true;
             } catch (\Exception $e) {
