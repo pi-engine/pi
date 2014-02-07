@@ -427,7 +427,7 @@ class Asset extends AbstractService
 
             $status = true;
         } catch (\Exception $e) {
-            $status = false;
+            trigger_error($e->getMessage());
         }
 
         return $status;
@@ -548,7 +548,7 @@ class Asset extends AbstractService
         $component  = 'module/' . Pi::service('module')->directory($module);
         $hasCustom  = $this->hasCustom($component);
         $target     = 'module/' . $module;
-        $status     = $this->publish($component, $target, $hasCustom);
+        $status     = $this->publish($component, $target, null, $hasCustom);
         if (!$status) {
             //return $status;
         }
@@ -574,7 +574,7 @@ class Asset extends AbstractService
         $hasCustom  = $this->hasCustom($component);
         $hasCustom  = $this->hasModule($component, $hasCustom);
 
-        $status     = $this->publish($component, '', $hasCustom);
+        $status     = $this->publish($component, '', null, $hasCustom);
         if (!$status) {
             //return $status;
         }
