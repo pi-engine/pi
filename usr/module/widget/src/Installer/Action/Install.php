@@ -76,25 +76,25 @@ class Install extends BasicInstall
                 'caption'   => _a('Sustainable ecosystem'),
                 'desc'      => _a('A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.'),
                 'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-ecosystem.png'),
+                'image'     => Pi::url('static/image/pi-ecosystem.png'),
             ),
             array(
                 'caption'   => _a('Engineered development'),
                 'desc'      => _a('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.'),
                 'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-engineering.png'),
+                'image'     => Pi::url('static/image/pi-engineering.png'),
             ),
             array(
                 'caption'   => _a('Visualization of application management'),
                 'desc'      => _a('Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism.'),
                 'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-visualization.png'),
+                'image'     => Pi::url('static/image/pi-visualization.png'),
             ),
             array(
                 'caption'   => _a('Agile compliant development workflow'),
                 'desc'      => _a('Role oriented architecture and deployment skeleton supports managable agile development workflow.'),
                 'link'      => 'http://pialog.org',
-                'image'     => Pi::url('www/static/image/pi-agile.png'),
+                'image'     => Pi::url('static/image/pi-agile.png'),
             ),
         );
         $block['content'] = json_encode($images);
