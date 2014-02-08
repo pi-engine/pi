@@ -1,31 +1,27 @@
+# nginx conf sample for Pi Engine Installation
 
-# DEMO of virtual host configuration for Pi Engine deployment
-#
-# NOTE: replace contents in [] with your corresponding settings
-# By Taiwen Jiang (aka phppp)
-#
-# Assumption with following folder skeleton
-#  Web path: /home/pi/web/
-#                                  .htaccess
-#                                  boot.php
-#                                  lib/
-#                                  usr/
-#                                  www/
-#  Deployment: /home/pi/deployment/
-#                                  asset/
-#                                  static/
-#                                  upload/
-#                                  var/
-#
+## Assumption
+- site: `pi-demo.org`
+- conf: `pi-demo.conf`
+
+## pi-demo.org skeleton
+- web root: `/home/pi/deploy/pi-demo/www`
+- data directory: `/home/pi/deploy/pi-demo/var`
+- asset resource directory: `/home/pi/deploy/pi-demo/asset`
+- upload directory: `/home/pi/deploy/pi-demo/upload`
+- lib, symlink from common root: `/home/pi/common/code/deploy/lib`
+- usr, symlink from common root: `/home/pi/common/code/deploy/usr`
+- static, symlink from common root: `/home/pi/deploy/pi-demo/static`
 
 
-# Pi Engine main site
+## pi-demo main site
+```
 server {
     listen 80;
     # Change the server_name according to your applications
-    server_name pialog.org www.pialog.org;
+    server_name pi-demo.org www.pi-demo.org;
     # Change the root according to your applications
-    root [/home/pi/web/www];
+    root /home/pi/deploy/pi-demo/www;
     index index.html index.php index.htm;
 
     # Usually you don't need to change the following settings
@@ -80,29 +76,32 @@ server {
         add_header Cache-Control public;
     }
 }
+```
 
-# DEMO for Pi Engine asset site IN CASE applicable
+## pi-demo asset
+```
 server {
     listen 80;
     # Change the server_name according to your applications
-    server_name [asset.pialog.org];
+    server_name asset.pi-demo.org;
     # Change the root according to your applications
-    root [/home/pi/deployment/asset];
+    root /home/pi/deploy/pi-demo/asset;
     index index.html index.htm;
 
     access_log off;
     expires max;
     add_header Cache-Control public;
 }
+```
 
-
-# DEMO for Pi Engine static (i.e. img) site IN CASE applicable
+## pi-demo static
+```
 server {
     listen 80;
     # Change the server_name according to your applications
-    server_name [static.pialog.org][ img.pialog.org];
+    server_name static.pi-demo.org;
     # Change the root according to your applications
-    root [/home/pi/deployment/static];
+    root /home/pi/deploy/pi-demo/static;
     index index.html index.htm;
 
     access_log off;
@@ -117,18 +116,25 @@ server {
         add_header Access-Control-Allow-Origin [http://www.pialog.org][*];
     }
 }
+```
 
-
-# DEMO for Pi Engine upload site IN CASE applicable
+## pi-demo upload
+```
 server {
     listen 80;
     # Change the server_name according to your applications
-    server_name [upload.pialog.org];
+    server_name upload.pi-demo.org;
     # Change the root according to your applications
-    root [/home/pi/deployment/upload];
+    root /home/pi/deploy/pi-demo/upload;
     index index.html index.htm;
 
     access_log off;
     expires max;
     add_header Cache-Control public;
 }
+```
+
+
+-----------
+By @taiwen
+2014-02-08

@@ -19,29 +19,29 @@ RewriteRule ^.*$ - [NC,L]
 # Transfer to API section for host admin.domain.tld
 RewriteCond %{HTTP_HOST} ^admin\..*
 # Then skip the rewrite and go ahead
-RewriteRule ^.*$ admin.php [NC,L]
+RewriteRule ^.*$ ./script/admin.php [NC,L]
 
 # Transfer to API section for host api.domain.tld
 RewriteCond %{HTTP_HOST} ^api\..*
 # Then skip the rewrite and go ahead
-RewriteRule ^.*$ api.php [NC,L]
+RewriteRule ^.*$ ./script/api.php [NC,L]
 
 # Transfer to feed section for host feed.domain.tld
 RewriteCond %{HTTP_HOST} ^feed\..*
 # Then skip the rewrite and go ahead
-RewriteRule ^.*$ feed.php [NC,L]
+RewriteRule ^.*$ ./script/feed.php [NC,L]
 
 # Application admin routes
-RewriteRule ^admin(/.*)?$ admin.php [NC,L]
+RewriteRule ^admin(/.*)?$ ./script/admin.php [NC,L]
 
 # Application feed routes
-RewriteRule ^feed(/.*)?$ feed.php [NC,L]
+RewriteRule ^feed(/.*)?$ ./script/feed.php [NC,L]
 
 # API routes
-RewriteRule ^api(/.*)?$ api.php [NC,L]
+RewriteRule ^api(/.*)?$ ./script/api.php [NC,L]
 
 # Widget routes
-RewriteRule ^widget(/.*)?$ widget.php [NC,L]
+RewriteRule ^widget(/.*)?$ ./script/widget.php [NC,L]
 
 # Otherwise, go through application routes
-RewriteRule ^.*$ app.php [NC,L]
+RewriteRule ^.*$ ./script/app.php [NC,L]
