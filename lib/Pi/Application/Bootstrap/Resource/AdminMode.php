@@ -68,7 +68,7 @@ class AdminMode extends AbstractResource
                                  . ucfirst($controller) . 'Controller';
                 if (is_subclass_of(
                     $controllerClass,
-                    'Module\System\Controller\ComponentController'
+                    'Module\System\Controller\Admin\ComponentController'
                 )) {
                     $mode = static::MODE_ADMIN;
                 }

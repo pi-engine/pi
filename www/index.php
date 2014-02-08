@@ -27,5 +27,5 @@ define('APPLICATION_ENGINE', 'Standard');
 define('PI_BOOT_ENABLE', 1);
 
 //Load application boot
-include './boot.php';
+include realpath('./boot.php');
 exit();

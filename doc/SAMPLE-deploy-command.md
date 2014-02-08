@@ -19,10 +19,6 @@
 ### Fetch code package and unzip to `/home/pi/common/code/pi-develop`
 ```
 rm -f tmp.zip && wget -qO- -O tmp.zip https://github.com/pi-engine/pi/archive/develop.zip && rm -Rf /home/pi/common/code/pi-develop && unzip -qo tmp.zip -d /home/pi/common/code && rm tmp.zip
-```
-
-### Symlink code to `/home/pi/common/code/deploy`
-```
 rm -f /home/pi/common/code/deploy && ln -sf /home/pi/common/code/pi-develop /home/pi/common/code/deploy
 ```
 
@@ -35,7 +31,8 @@ rm -Rf /home/pi/deploy/pi-demo/www && mkdir /home/pi/deploy/pi-demo/www
 
 ### Copy folders/files to `/home/pi/deploy/pi-demo/www`
 ```
-rm -Rf /home/pi/deploy/pi-demo/www/public/*.* && cp -R /home/pi/common/code/deploy/www/*.* /home/pi/deploy/pi-demo/www/
+rm -Rf /home/pi/deploy/pi-demo/www/setup && cp -R /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/setup
+rm -Rf /home/pi/deploy/pi-demo/www/public/ && cp -R /home/pi/common/code/deploy/www/public /home/pi/deploy/pi-demo/www/
 rm -f /home/pi/deploy/pi-demo/www/.htaccess && cp /home/pi/common/code/deploy/www/.htaccess /home/pi/deploy/pi-demo/www/.htaccess
 rm -f /home/pi/deploy/pi-demo/www/boot.php && cp /home/pi/common/code/deploy/www/boot.php /home/pi/deploy/pi-demo/www/boot.php
 ```
@@ -44,43 +41,28 @@ rm -f /home/pi/deploy/pi-demo/www/boot.php && cp /home/pi/common/code/deploy/www
 ```
 rm -Rf /home/pi/deploy/pi-demo/www/script && ln -sf /home/pi/common/code/deploy/www/script /home/pi/deploy/pi-demo/www/script
 rm -Rf /home/pi/deploy/pi-demo/www/module && ln -sf /home/pi/common/code/deploy/www/module /home/pi/deploy/pi-demo/www/module
-rm -Rf /home/pi/deploy/pi-demo/www/setup && ln -sf /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/setup
 rm -f /home/pi/deploy/pi-demo/www/index.php && ln -sf /home/pi/common/code/deploy/www/index.php /home/pi/deploy/pi-demo/www/index.php
+rm -f /home/pi/deploy/pi-demo/www/favicon.ico && ln -sf /home/pi/common/code/deploy/www/favicon.ico /home/pi/deploy/pi-demo/www/favicon.ico
+rm -f /home/pi/deploy/pi-demo/www/robots.txt && ln -sf /home/pi/common/code/deploy/www/robots.txt /home/pi/deploy/pi-demo/www/robots.txt
+
 rm -f /home/pi/deploy/pi-demo/www/admin.php && ln -sf /home/pi/common/code/deploy/www/admin.php /home/pi/deploy/pi-demo/www/admin.php
 rm -f /home/pi/deploy/pi-demo/www/api.php && ln -sf /home/pi/common/code/deploy/www/api.php /home/pi/deploy/pi-demo/www/api.php
 rm -f /home/pi/deploy/pi-demo/www/app.php && ln -sf /home/pi/common/code/deploy/www/app.php /home/pi/deploy/pi-demo/www/app.php
 rm -f /home/pi/deploy/pi-demo/www/feed.php && ln -sf /home/pi/common/code/deploy/www/feed.php /home/pi/deploy/pi-demo/www/feed.php
-rm -f /home/pi/deploy/pi-demo/www/favicon.ico && ln -sf /home/pi/common/code/deploy/www/favicon.ico /home/pi/deploy/pi-demo/www/favicon.ico
-rm -f /home/pi/deploy/pi-demo/www/robots.txt && ln -sf /home/pi/common/code/deploy/www/robots.txt /home/pi/deploy/pi-demo/www/robots.txt
 ```
 
-### Symlink lib to `/home/pi/deploy/pi-demo/lib`
+
+### Symlink paths
 ```
 rm -f /home/pi/deploy/pi-demo/lib && ln -sf /home/pi/common/code/deploy/lib /home/pi/deploy/pi-demo/lib
-```
-
-### Symlink usr to `/home/pi/deploy/pi-demo/usr`
-```
 rm -f /home/pi/deploy/pi-demo/usr && ln -sf /home/pi/common/code/deploy/usr /home/pi/deploy/pi-demo/usr
-```
-
-### Symlink static to `/home/pi/deploy/pi-demo/static`
-```
 rm -f /home/pi/deploy/pi-demo/static && ln -sf /home/pi/common/code/deploy/www/static /home/pi/deploy/pi-demo/static
 ```
 
-### Copy var to `/home/pi/deploy/pi-demo/var`
+### Copy folders
 ```
 rm -Rf /home/pi/deploy/pi-demo/var && cp -R /home/pi/common/code/deploy/var /home/pi/deploy/pi-demo
-```
-
-### Copy asset to `/home/pi/deploy/pi-demo/asset`
-```
 rm -Rf /home/pi/deploy/pi-demo/asset && cp -R /home/pi/common/code/deploy/www/asset /home/pi/deploy/pi-demo
-```
-
-### Copy upload to `/home/pi/deploy/pi-demo/upload`
-```
 rm -Rf /home/pi/deploy/pi-demo/upload && cp -R /home/pi/common/code/deploy/www/upload /home/pi/deploy/pi-demo
 ```
 
