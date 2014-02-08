@@ -72,8 +72,8 @@ class Select extends AbstractAvatar
         if (isset($this->options['root_url'])) {
             $root = $this->options['root_url'];
         } else {
-            if (is_dir(Pi::path('static/custom/avatar/select'))) {
-                $root = Pi::url('static/custom/avatar/select', true);
+            if (is_dir(Pi::path('public/custom/avatar/select'))) {
+                $root = Pi::url('public/custom/avatar/select', true);
             } else {
                 $root = Pi::url('static/avatar/select', true);
             }
@@ -122,7 +122,7 @@ class Select extends AbstractAvatar
         if (isset($this->options['root_path'])) {
             $root = $this->options['root_path'];
         } else {
-            $root = Pi::path('static/custom/avatar/select');
+            $root = Pi::path('public/custom/avatar/select');
             if (!is_dir($root)) {
                 $root = Pi::path('static/avatar/select');
             }

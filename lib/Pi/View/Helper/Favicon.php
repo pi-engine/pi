@@ -34,7 +34,7 @@ class Favicon extends AbstractHelper
     public function __invoke($name = '')
     {
         $name = $name ?: 'favicon.ico';
-        $customFile = 'static/custom/image/' . $name;
+        $customFile = 'public/custom/image/' . $name;
         if (file_exists(Pi::path($customFile))) {
             $src = Pi::url($customFile);
         } else {

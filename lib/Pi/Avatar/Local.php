@@ -45,7 +45,7 @@ class Local extends AbstractAvatar
     public function build($source, $size = '', $uid = null)
     {
         $identifier = $this->canonizeSize($size, false);
-        $root = Pi::path('static/custom/avatar/local');
+        $root = Pi::path('public/custom/avatar/local');
         if (!is_dir($root)) {
             $root = 'static/avatar/local';
         }

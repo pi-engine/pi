@@ -37,7 +37,7 @@ class Logo extends AbstractHtmlElement
         $src = '';
         $name = $name ?: 'logo.png';
 
-        $customFile = 'static/custom/image/' . $name;
+        $customFile = 'public/custom/image/' . $name;
         if (file_exists(Pi::path($customFile))) {
             $src = Pi::url($customFile);
         } else {
