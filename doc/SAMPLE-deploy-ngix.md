@@ -3,7 +3,7 @@
 ## Assumption
 - site: `pi-demo.org`
 - conf: `pi-demo.conf`
-- check `SAMPLE-deploy-command` for skeleton
+- check `SAMPLE-deploy-command.md` for skeleton
 
 ## pi-demo main site
 ```

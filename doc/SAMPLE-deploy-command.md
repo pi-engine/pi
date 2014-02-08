@@ -50,43 +50,43 @@ rm -f /home/pi/deploy/pi-demo/www/favicon.ico && ln -sf /home/pi/common/code/dep
 rm -f /home/pi/deploy/pi-demo/www/robots.txt && ln -sf /home/pi/common/code/deploy/www/robots.txt /home/pi/deploy/pi-demo/www/robots.txt
 ```
 
-### Symlink lib to `/home/pi/deploy/pi-demo/lib`, for first deployment only
+### Symlink lib to `/home/pi/deploy/pi-demo/lib`
 ```
 rm -f /home/pi/deploy/pi-demo/lib && ln -sf /home/pi/common/code/deploy/lib /home/pi/deploy/pi-demo/lib
 ```
 
-### Symlink usr to `/home/pi/deploy/pi-demo/usr`, for first deployment only
+### Symlink usr to `/home/pi/deploy/pi-demo/usr`
 ```
 rm -f /home/pi/deploy/pi-demo/usr && ln -sf /home/pi/common/code/deploy/usr /home/pi/deploy/pi-demo/usr
 ```
 
-### Symlink static to `/home/pi/deploy/pi-demo/static`, for first deployment only
+### Symlink static to `/home/pi/deploy/pi-demo/static`
 ```
 rm -f /home/pi/deploy/pi-demo/static && ln -sf /home/pi/common/code/deploy/www/static /home/pi/deploy/pi-demo/static
 ```
 
-### Copy var to `/home/pi/deploy/pi-demo/var`, for first deployment only
+### Copy var to `/home/pi/deploy/pi-demo/var`
 ```
 rm -Rf /home/pi/deploy/pi-demo/var && cp -R /home/pi/common/code/deploy/var /home/pi/deploy/pi-demo
 ```
 
-### Copy asset to `/home/pi/deploy/pi-demo/asset`, for first deployment only
+### Copy asset to `/home/pi/deploy/pi-demo/asset`
 ```
 rm -Rf /home/pi/deploy/pi-demo/asset && cp -R /home/pi/common/code/deploy/www/asset /home/pi/deploy/pi-demo
 ```
 
-### Copy upload to `/home/pi/deploy/pi-demo/upload`, for first deployment only
+### Copy upload to `/home/pi/deploy/pi-demo/upload`
 ```
 rm -Rf /home/pi/deploy/pi-demo/upload && cp -R /home/pi/common/code/deploy/www/upload /home/pi/deploy/pi-demo
 ```
 
-### Change owner/group, for first deployment only
+### Change owner/group
 ```
 chown -Rf www-data:www-data /home/pi/common/code/deploy/
 chown -Rf www-data:www-data /home/pi/deploy/pi-demo/
 ```
 
-### Write mode, for first deployment only
+### Write mode
 ```
 chmod -f 0777 /home/pi/deploy/pi-demo/www/.htaccess
 chmod -f 0777 /home/pi/deploy/pi-demo/www/boot.php
