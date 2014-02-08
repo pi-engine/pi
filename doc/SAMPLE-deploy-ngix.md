@@ -3,16 +3,7 @@
 ## Assumption
 - site: `pi-demo.org`
 - conf: `pi-demo.conf`
-
-## pi-demo.org skeleton
-- web root: `/home/pi/deploy/pi-demo/www`
-- data directory: `/home/pi/deploy/pi-demo/var`
-- asset resource directory: `/home/pi/deploy/pi-demo/asset`
-- upload directory: `/home/pi/deploy/pi-demo/upload`
-- lib, symlink from common root: `/home/pi/common/code/deploy/lib`
-- usr, symlink from common root: `/home/pi/common/code/deploy/usr`
-- static, symlink from common root: `/home/pi/deploy/pi-demo/static`
-
+- check `SAMPLE-deploy-command` for skeleton
 
 ## pi-demo main site
 ```
