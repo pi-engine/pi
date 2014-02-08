@@ -46,6 +46,10 @@ rm -Rf /home/pi/deploy/pi-demo/www/script && ln -sf /home/pi/common/code/deploy/
 rm -Rf /home/pi/deploy/pi-demo/www/module && ln -sf /home/pi/common/code/deploy/www/module /home/pi/deploy/pi-demo/www/module
 rm -Rf /home/pi/deploy/pi-demo/www/setup && ln -sf /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/setup
 rm -f /home/pi/deploy/pi-demo/www/index.php && ln -sf /home/pi/common/code/deploy/www/index.php /home/pi/deploy/pi-demo/www/index.php
+rm -f /home/pi/deploy/pi-demo/www/admin.php && ln -sf /home/pi/common/code/deploy/www/admin.php /home/pi/deploy/pi-demo/www/admin.php
+rm -f /home/pi/deploy/pi-demo/www/api.php && ln -sf /home/pi/common/code/deploy/www/api.php /home/pi/deploy/pi-demo/www/api.php
+rm -f /home/pi/deploy/pi-demo/www/app.php && ln -sf /home/pi/common/code/deploy/www/app.php /home/pi/deploy/pi-demo/www/app.php
+rm -f /home/pi/deploy/pi-demo/www/feed.php && ln -sf /home/pi/common/code/deploy/www/feed.php /home/pi/deploy/pi-demo/www/feed.php
 rm -f /home/pi/deploy/pi-demo/www/favicon.ico && ln -sf /home/pi/common/code/deploy/www/favicon.ico /home/pi/deploy/pi-demo/www/favicon.ico
 rm -f /home/pi/deploy/pi-demo/www/robots.txt && ln -sf /home/pi/common/code/deploy/www/robots.txt /home/pi/deploy/pi-demo/www/robots.txt
 ```

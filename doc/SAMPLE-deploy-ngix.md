@@ -19,35 +19,35 @@ server {
     # Dispatch to Pi Engine entry
     # Admin subdoamin
     if ($host ~* ^admin\.(.*)$) {
-        rewrite ^(.*)$      /script/admin.php   last;
+        rewrite ^(.*)$      /admin.php   last;
         break;
     }
     # API subdoamin
     if ($host ~* ^api\.(.*)$) {
-        rewrite ^(.*)$      /script/api.php   last;
+        rewrite ^(.*)$      /api.php   last;
         break;
     }
     # Feed subdomain
     if ($host ~* ^feed\.(.*)$) {
-        rewrite ^(.*)$      /script/feed.php   last;
+        rewrite ^(.*)$      /feed.php   last;
         break;
     }
     # Widget subdoamin
     if ($host ~* ^widget\.(.*)$) {
-        rewrite ^(.*)$      /script/widget.php   last;
+        rewrite ^(.*)$      /widget.php   last;
         break;
     }
     if (!-e $request_filename) {
         # Admin route
-        rewrite ^/admin(/(.*)?)?$   /script/admin.php   last;
+        rewrite ^/admin(/(.*)?)?$   /admin.php   last;
         # API route
-        rewrite ^/api(/(.*)?)?$     /script/api.php    last;
+        rewrite ^/api(/(.*)?)?$     /api.php    last;
         # Feed route
-        rewrite ^/feed(/(.*)?)?$    /script/feed.php   last;
+        rewrite ^/feed(/(.*)?)?$    /feed.php   last;
         # Widget route
-        rewrite ^/widget(/(.*)?)?$  /script/widget.php last;
+        rewrite ^/widget(/(.*)?)?$  /widget.php last;
         # Default app route
-        rewrite ^/(.+)$             /script/app.php    last;
+        rewrite ^/(.+)$             /app.php    last;
         break;
     }
 
