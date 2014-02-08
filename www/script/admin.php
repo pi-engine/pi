@@ -2,7 +2,7 @@
 /**
  * Pi Engine (http://pialog.org)
  *
- * Pi Engine application entry
+ * Pi Engine admin application entry
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
@@ -10,7 +10,7 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-define('APPLICATION_ENGINE', getenv('APPLICATION_ENGINE') ?: 'Standard');
+define('APPLICATION_ENGINE', 'Admin');
 define('PI_BOOT_ENABLE', 1);
 
-include __DIR__ . '/boot.php';
+include dirname(__DIR__) . '/boot.php';

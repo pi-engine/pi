@@ -38,7 +38,7 @@ $allowedExtension = array('css', 'js', 'gif', 'jpg', 'png');
 //define('APPLICATION_ENV', 'production');
 
 // Pi boot with no engine bootup: current file is located in www/script/...
-require __DIR__ . '/../boot.php';
+require dirname(__DIR__) . '/boot.php';
 
 // Disable debugger message
 Pi::service('log')->mute();
