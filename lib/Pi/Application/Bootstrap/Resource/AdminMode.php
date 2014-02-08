@@ -67,10 +67,17 @@ class AdminMode extends AbstractResource
             if ('system' == $module) {
                 $controllerClass = 'Module\System\Controller\Admin\\'
                                  . ucfirst($controller) . 'Controller';
-                if (is_subclass_of(
-                    $controllerClass,
-                    'Module\System\Controller\ComponentController'
-                )) {
+                /*
+                 * @FIXME `is_subclass_of` does not call __autoload in case if first argument is an object.
+                 *  If first argument is string, PHP will call __autoload.
+                 *  However, it seems __autoload is not called although the first argument is string.
+                 */
+                if (class_exists('Module\System\Controller\ComponentController')
+                    && is_subclass_of(
+                        $controllerClass,
+                        'Module\System\Controller\ComponentController'
+                    )
+                ) {
                     $mode = static::MODE_ADMIN;
                 }
             }
