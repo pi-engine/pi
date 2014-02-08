@@ -136,5 +136,6 @@ server {
 
 
 -----------
-By @taiwen
+By [@taiwen](https://github.com/taiwen)
+
 2014-02-08
