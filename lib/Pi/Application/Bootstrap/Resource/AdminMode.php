@@ -61,6 +61,7 @@ class AdminMode extends AbstractResource
         $route = $e->getRouteMatch();
         if (empty($_SESSION['PI_BACKOFFICE']['changed']) && $route) {
             $mode       = static::MODE_ACCESS;
+
             $module     = $route->getParam('module');
             $controller = $route->getParam('controller');
             if ('system' == $module) {
@@ -68,11 +69,12 @@ class AdminMode extends AbstractResource
                                  . ucfirst($controller) . 'Controller';
                 if (is_subclass_of(
                     $controllerClass,
-                    'Module\System\Controller\Admin\ComponentController'
+                    'Module\System\Controller\ComponentController'
                 )) {
                     $mode = static::MODE_ADMIN;
                 }
             }
+
             $_SESSION['PI_BACKOFFICE']['mode'] = $mode;
         } else {
             $_SESSION['PI_BACKOFFICE']['changed'] = 0;
