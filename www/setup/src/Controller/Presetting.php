@@ -329,7 +329,7 @@ SCRIPT;
             if (function_exists('apache_get_modules')) {
                 $modules = apache_get_modules();
                 if (!in_array('mod_rewrite', $modules)) {
-                    $status = -1;
+                    $status = 0;
                 }
             } elseif (getenv('HTTP_MOD_REWRITE') != 'On') {
                 ob_start();
