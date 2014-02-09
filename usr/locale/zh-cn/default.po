@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
 "POT-Creation-Date: 2014-02-06 18:11+0800\n"
-"PO-Revision-Date: 2014-02-06 18:11+0800\n"
+"PO-Revision-Date: 2014-02-09 11:37+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -33,40 +33,40 @@ msgstr "主题资源发布失败"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
-msgstr ""
+msgstr "DbTable认证方式需要提供数据表名。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
 msgid ""
 "An identity column must be supplied for the DbTable authentication adapter."
-msgstr ""
+msgstr "DbTable认证方式需要提供身份字段名。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
 msgid ""
 "A credential column must be supplied for the DbTable authentication adapter."
-msgstr ""
+msgstr "DbTable认证方式需要提供密码字段名。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
 msgid ""
 "A value for the identity was not provided prior to authentication with "
 "DbTable."
-msgstr ""
+msgstr "DbTable认证方式需要提供身份字段值。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
 msgid ""
 "A credential value was not provided prior to authentication with DbTable."
-msgstr ""
+msgstr "DbTable认证方式需要提供密码字段名。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
 msgid "A record with the supplied identity could not be found."
-msgstr ""
+msgstr "未找到与提供的身份对应的数据记录。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
 msgid "More than one record matches the supplied identity."
-msgstr ""
+msgstr "有多于一个与提供的身份相匹配的记录。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
 msgid "Supplied credential is invalid."
-msgstr ""
+msgstr "密码错误。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
 msgid "Authentication successful."
@@ -79,7 +79,7 @@ msgstr "缺省编辑器"
 #: c:\Code\pi\lib/Pi/Feed/Model.php:199
 #, php-format
 msgid "Feed of %s - %s"
-msgstr ""
+msgstr "%s - %s Feed"
 
 #: c:\Code\pi\lib/Pi/Filter/Gender.php:39
 msgid "Male"
@@ -189,7 +189,7 @@ msgstr "邮箱"
 #: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:84
 #: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:88
 msgid "Identity"
-msgstr ""
+msgstr "身份"
 
 #: c:\Code\pi\lib/Pi/Form/Element/Navigation.php:50
 msgid "Navigation"
@@ -215,7 +215,7 @@ msgstr "提交"
 
 #: c:\Code\pi\lib/Pi/Form/Element/Tag.php:116
 msgid "Tags"
-msgstr ""
+msgstr "标签"
 
 #: c:\Code\pi\lib/Pi/Form/Element/Theme.php:48
 msgid "Theme"
@@ -227,7 +227,7 @@ msgstr "时区"
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
-msgstr ""
+msgstr "请求的Action未找到。"
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 msgid "Login"
@@ -244,19 +244,19 @@ msgstr "游客"
 
 #: c:\Code\pi\lib/Pi/View/Helper/Tag.php:92
 msgid "Tags: "
-msgstr ""
+msgstr "标签："
 
 #: c:\Code\pi\www/setup/src/Controller/Admin.php:217
 msgid "Manager"
-msgstr ""
+msgstr "管理员"
 
 #: c:\Code\pi\www/setup/src/Controller/Admin.php:224
 msgid "Moderator"
-msgstr ""
+msgstr "版主"
 
 #: c:\Code\pi\www/setup/src/Controller/Admin.php:238
 msgid "Staff"
-msgstr ""
+msgstr "工作人员"
 
 #: c:\Code\pi\www/setup/src/Controller/Admin.php:245
 msgid "Member"

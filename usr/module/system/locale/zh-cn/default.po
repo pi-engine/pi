@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-06 18:13+0800\n"
-"PO-Revision-Date: 2014-02-06 18:13+0800\n"
+"POT-Creation-Date: 2014-02-09 11:28+0800\n"
+"PO-Revision-Date: 2014-02-09 11:30+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -63,9 +63,9 @@ msgstr "%s模块已禁用"
 msgid "The module %s is deactivated successfully."
 msgstr "成功禁用%s模块"
 
-#: c:\Code\pi\usr\module\system/src/Menu.php:227
-msgid "Uncategoried"
-msgstr ""
+#: c:\Code\pi\usr\module\system/src/Menu.php:228
+msgid "Uncategorized"
+msgstr "未分类"
 
 #: c:\Code\pi\usr\module\system/src/Navigation.php:161
 msgid "Edit a block"
@@ -76,24 +76,20 @@ msgid "Clone a block"
 msgstr "克隆区块"
 
 #: c:\Code\pi\usr\module\system/src/Navigation.php:218
-#, fuzzy
 msgid "Block layout"
-msgstr "编辑区块"
+msgstr "区块布局"
 
 #: c:\Code\pi\usr\module\system/src/Navigation.php:229
-#, fuzzy
 msgid "Setup page"
 msgstr "设置新页面"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
-#, fuzzy
 msgid "What's new"
 msgstr "最近更新"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:33
-#, fuzzy
 msgid "Recent module updates."
-msgstr "模块移动成功。"
+msgstr "最新模块更新。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:71
 #, php-format
@@ -113,9 +109,8 @@ msgid "User login"
 msgstr "用户登录"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:108
-#, fuzzy
 msgid "Invalid request."
-msgstr "邮箱错误"
+msgstr "无效请求。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:152
 msgid "You have tried too many times. Please try later."
@@ -130,23 +125,20 @@ msgid "You have logged in successfully."
 msgstr "成功登录"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:237
-#, fuzzy
 msgid "You logged out successfully."
-msgstr "成功登录"
+msgstr "成功退出。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:292
-#, fuzzy
 msgid "You have already logged in."
-msgstr "成功登录"
+msgstr "你已在登录状态。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
 msgid "Password changed successfully."
 msgstr "修改密码成功"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:58
-#, fuzzy
 msgid "Password not changed."
-msgstr "修改密码成功"
+msgstr "密码未修改。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:61
 msgid "Invalid data, please check and re-submit."
@@ -466,14 +458,12 @@ msgid "Cache type"
 msgstr "缓存类型"
 
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:35
-#, fuzzy
 msgid "Page wide"
-msgstr "模块范围"
+msgstr "全页面缓存"
 
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
-#, fuzzy
 msgid "Action data"
-msgstr "用户动作"
+msgstr "当前请求逻辑缓存"
 
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:32
 msgid "Current password"
@@ -490,10 +480,6 @@ msgstr "前台"
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:68
 msgid "Admin"
 msgstr "后台"
-
-#: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
-msgid "Force for all pages"
-msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
 #: c:\Code\pi\usr\module\system/template/component/form.phtml:66

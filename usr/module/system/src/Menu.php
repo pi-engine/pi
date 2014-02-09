@@ -186,6 +186,7 @@ class Menu
             // Filter restricted modules
             if (!in_array($name, $modulesAllowed)) {
                 unset($moduleList[$name]);
+                continue;
             }
             // Build module meta
             $moduleList[$name] = array(
@@ -224,7 +225,7 @@ class Menu
         // Collect un-categorized modules
         if ($moduleList) {
             $categories[] = array(
-                'label'     => __('Uncategoried'),
+                'label'     => __('Uncategorized'),
                 'icon'      => '',
                 'modules'   => array_values($moduleList),
             );

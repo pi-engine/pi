@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-06 18:19+0800\n"
-"PO-Revision-Date: 2014-02-06 18:19+0800\n"
+"POT-Creation-Date: 2014-02-09 11:27+0800\n"
+"PO-Revision-Date: 2014-02-09 11:28+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1022,12 +1022,12 @@ msgstr ""
 msgid "Action data"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:148
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:151
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:89
 msgid "Module wide"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:165
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:168
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
 #, fuzzy
 msgid "Cache list"
