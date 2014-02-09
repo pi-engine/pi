@@ -8,7 +8,8 @@ return array(
     'append_version'    => true,
 
     // Use symlink for asset publish
-    'use_symlink'       => true,
+    // @FIXME Unidentified issues reported, thus symlink is disabled by default temporarily
+    'use_symlink'       => false,
 
     // Override existent files on copy
     'override'          => true,
