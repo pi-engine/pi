@@ -53,28 +53,46 @@ class Presetting extends AbstractController
 
     protected function loadLanguageForm()
     {
-        $languageList = $this->wizard->getLanguages();
         $locale = $this->wizard->getLocale();
+        $languageList = $this->wizard->getLanguages();
 
-        $title = _s('Language Selection');
-        $caption = _s('Choose the language for the installation and website.');
-        $content = '<div class="well"><h2>'
-                 . $title
-                 . '</h2><p class="caption">'
-                 . $caption
-                 . '</p>'
-                 . '<div class="install-form"><p>'
-                 . '<select id="language-selector" size="5" name="language">';
+        $listPattern =<<<'EOT'
+<li class="list-group-item">
+    <input type="radio" name="language" value="%s"%s>
+    <img src="%s" alt="%s" title="%s" style="padding: 0 5px;" />
+     %s
+</li>
+EOT;
+
+        $languageString = '<ul class="list-group">';
         foreach ($languageList as $name => $language) {
-            $selected = ($name == $locale) ? ' selected="selected"' : '';
-            $content .= sprintf(
-                '<option value="%s"%s>%s</option>',
+            $languageString .= sprintf(
+                $listPattern,
                 $name,
-                $selected,
+                $name == $locale ? ' checked' : '',
+                $language['icon'],
+                $language['title'],
+                $language['title'],
                 $language['title']
             );
         }
-        $content .= '</select></p></div></div>';
+        $languageString .= '</ul>';
+
+        $title      = _s('Language Selection');
+        $caption    = _s('Choose the language for the installation and website.');
+        $groupPattern =<<<'EOT'
+<div class="well">
+    <h2>%s</h2>
+    <p class="caption">%s</p>
+    <div class="install-form">%s</div>
+</div>
+EOT;
+        $content = sprintf(
+            $groupPattern,
+            $title,
+            $caption,
+            $languageString
+        );
         $this->content .= $content;
 
         $this->headContent .=<<<'STYLE'

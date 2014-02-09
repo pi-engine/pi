@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-02-09 13:04+0800\n"
-"PO-Revision-Date: 2014-02-09 13:04+0800\n"
+"POT-Creation-Date: 2014-02-06 14:33+0800\n"
+"PO-Revision-Date: 2014-02-06 14:42+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -15,15 +15,15 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/include/config.php:15
 msgid "Web server"
-msgstr ""
+msgstr "服务器"
 
 #: c:\Code\pi\\www\setup/include/config.php:16
 msgid "PHP"
-msgstr ""
+msgstr "PHP语言"
 
 #: c:\Code\pi\\www\setup/include/config.php:17
 msgid "Persist options"
-msgstr ""
+msgstr "持久数据参数"
 
 #: c:\Code\pi\\www\setup/include/config.php:18
 msgid "PDO drivers"
@@ -126,49 +126,48 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/include/page.php:13
-#, fuzzy
 msgid "Presettings"
-msgstr "Presettings data"
+msgstr "系统配置"
 
 #: c:\Code\pi\\www\setup/include/page.php:14
 msgid "Presettings and server configuration detection"
-msgstr ""
+msgstr "系统需求及服务器配置检测"
 
 #: c:\Code\pi\\www\setup/include/page.php:17
 msgid "Directives"
-msgstr ""
+msgstr "路径设置"
 
 #: c:\Code\pi\\www\setup/include/page.php:18
 msgid "Directive settings for website"
-msgstr ""
+msgstr "网站路径及URL设置"
 
 #: c:\Code\pi\\www\setup/include/page.php:21
 msgid "Database"
-msgstr ""
+msgstr "数据库"
 
 #: c:\Code\pi\\www\setup/include/page.php:22
 msgid "Database settings"
-msgstr ""
+msgstr "数据库设置及生成"
 
 #: c:\Code\pi\\www\setup/include/page.php:25
 msgid "Administrator"
-msgstr ""
+msgstr "管理员"
 
 #: c:\Code\pi\\www\setup/include/page.php:26
 msgid "Administrator account creation"
-msgstr ""
+msgstr "管理员账号建立"
 
 #: c:\Code\pi\\www\setup/include/page.php:29
 msgid "Finish"
-msgstr ""
+msgstr "完成"
 
 #: c:\Code\pi\\www\setup/include/page.php:30
 msgid "Finishing installation process"
-msgstr ""
+msgstr "安装完成及处理"
 
 #: c:\Code\pi\\www\setup/src/Wizard.php:295
 msgid "Pi Engine Setup Wizard"
-msgstr ""
+msgstr "Pi Engine 安装助手"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:32
 msgid "Database connection is failed."
@@ -186,12 +185,12 @@ msgstr ""
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:120
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:130
 msgid "Information is required."
-msgstr ""
+msgstr "必需信息。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:122
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:180
 msgid "Invalid Email."
-msgstr ""
+msgstr "无效邮箱。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:132
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:183
@@ -204,19 +203,19 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:168
 msgid "Username is required."
-msgstr ""
+msgstr "用户名必填。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:171
 msgid "Name is required."
-msgstr ""
+msgstr "昵称必填。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:174
 msgid "Email is required."
-msgstr ""
+msgstr "邮箱必填。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:177
 msgid "Password is required."
-msgstr ""
+msgstr "密码必填。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:288
 msgid "Deprecated tables exist in the database. Please continue to re-install."
@@ -224,27 +223,27 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:305
 msgid "Admin email"
-msgstr ""
+msgstr "管理员邮箱"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:306
 msgid "Admin username"
-msgstr ""
+msgstr "管理员用户名"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:307
 msgid "Admin name"
-msgstr ""
+msgstr "管理员昵称"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:308
 msgid "Admin password"
-msgstr ""
+msgstr "管理员密码"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:309
 msgid "Confirm password"
-msgstr ""
+msgstr "确认密码"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:325
 msgid "Administrator account"
-msgstr ""
+msgstr "管理员账号"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:160
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:246
@@ -259,7 +258,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:185
 msgid "Server hostname"
-msgstr ""
+msgstr "服务器"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:186
 msgid ""
@@ -270,7 +269,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:189
 msgid "User name"
-msgstr ""
+msgstr "用户ID或用户名"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:190
 msgid ""
@@ -279,7 +278,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:193
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:194
 msgid "Password of your database user account"
@@ -287,7 +286,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:197
 msgid "Database name"
-msgstr ""
+msgstr "数据库名"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:198
 msgid ""
@@ -310,12 +309,12 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:238
 msgid "Settings for database"
-msgstr ""
+msgstr "数据库设置"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:129
 #, php-format
 msgid "%s is NOT writable."
-msgstr ""
+msgstr "%s不可写。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:261
 msgid "Configuration file copy error"
@@ -329,7 +328,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:335
 msgid "File system"
-msgstr ""
+msgstr "文件系统"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:337
 msgid "Caching storage with files on disks specified in following steps."
@@ -370,23 +369,22 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:59
-#, fuzzy
 msgid "Language Selection"
 msgstr "语言选择"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:60
 msgid "Choose the language for the installation and website."
-msgstr ""
+msgstr "选择安装及网站所用语言"
 
 #: c:\Code\pi\\www\setup/include/template.phtml:65
 msgid "Previous"
-msgstr ""
+msgstr "上一步"
 
 #: c:\Code\pi\\www\setup/include/template.phtml:70
 msgid "Reload"
-msgstr ""
+msgstr "重新载入"
 
 #: c:\Code\pi\\www\setup/include/template.phtml:79
 #: c:\Code\pi\\www\setup/include/template.phtml:84
 msgid "Next"
-msgstr ""
+msgstr "下一步"

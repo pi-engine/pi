@@ -181,6 +181,47 @@ class Wizard
         if (!$this->languages) {
             $languageList = array();
 
+            $_this = $this;
+            $lookupIcon = function ($name) use ($_this) {
+                $icon       = '';
+                $root       = $_this->getRoot();
+                $pathLocale = sprintf('%s/locale/%s', $root, $name);
+                $pathIcon   = sprintf('%s/asset/image/country', $root);
+                $iconFile   = $pathLocale  . '/icon.gif';
+                if (is_readable($iconFile)) {
+                    $icon = $iconFile;
+                } else {
+                    $iconFile = $pathLocale  . '/icon.png';
+                    if (is_readable($iconFile)) {
+                        $icon = $iconFile;
+                    } else {
+                        $configFile = $pathLocale . '/config.ini';
+                        if (is_readable($configFile)) {
+                            $config = parse_ini_file($configFile);
+                            if (!empty($config['icon'])) {
+                                $iconFile = $pathIcon . '/' . $config['icon'];
+                                if (is_readable($iconFile)) {
+                                    $icon = $iconFile;
+                                }
+                            }
+                        }
+                        if (!$icon) {
+                            $icon = $pathIcon . '/blank.png';
+                        }
+                    }
+                }
+                if ($icon) {
+                    // Get root URI
+                    $request = $_this->getRequest();
+                    $baseUrl = '//' . $request->getHttpHost() . $request->getBaseUrl();
+
+                    // Assemble icon URI
+                    $icon = rtrim($baseUrl, '/') . '/' . substr($icon, strlen($root) + 1);
+                }
+
+                return $icon;
+            };
+
             $iterator = new \DirectoryIterator(
                 $this->getRoot() . '/locale/'
             );
@@ -188,16 +229,16 @@ class Wizard
                 if (!$fileinfo->isDir() || $fileinfo->isDot()) {
                     continue;
                 }
-                $localeName = $fileinfo->getFilename();
-                if ($localeName[0] == '.') {
+                $name = $fileinfo->getFilename();
+                if ($name[0] == '.') {
                     continue;
                 }
-                $title = $localeName;
+                $title = $name;
                 if (class_exists('\Locale')) {
-                    $title = Locale::getDisplayName($localeName) ?: $title;
+                    $title = Locale::getDisplayName($name) ?: $title;
                 }
-                $iconFile = $fileinfo->getPathname() . '/icon.gif';
-                $languageList[$localeName] = array(
+                $iconFile = $lookupIcon($name);
+                $languageList[$name] = array(
                     'title' => $title,
                     'icon'  => $iconFile
                 );
@@ -358,26 +399,11 @@ class Wizard
         $this->persist()->load();
 
         return;
-
-        session_start();
-
-        $_SESSION[__CLASS__] = isset($_SESSION[__CLASS__])
-            ? $_SESSION[__CLASS__] : array();
-        $this->persistentData = $_SESSION[__CLASS__];
-        //print_r($_SESSION);
-
-        return;
     }
 
     public function savePersist()
     {
         $this->persist()->save();
-
-        return;
-
-        $_SESSION[__CLASS__] = $this->persistentData;
-        session_write_close();
-        //print_r($_SESSION);
 
         return;
     }
@@ -401,9 +427,6 @@ class Wizard
     public function getPersist($key)
     {
         return $this->persist()->get($key);
-
-        return isset($this->persistentData[$key])
-            ? $this->persistentData[$key] : null;
     }
 
     public function shutdown()
