@@ -20,7 +20,7 @@ class Presetting extends AbstractController
 {
     public function init()
     {
-        $this->wizard->destroyPersist();
+        //$this->wizard->destroyPersist();
     }
 
     public function submitAction()
@@ -57,7 +57,7 @@ class Presetting extends AbstractController
         $languageList = $this->wizard->getLanguages();
 
         $listPattern =<<<'EOT'
-<li class="list-group-item">
+<li class="list-group-item language-picker">
     <input type="radio" name="language" value="%s"%s>
     <img src="%s" alt="%s" title="%s" style="padding: 0 5px;" />
      %s
@@ -95,38 +95,15 @@ EOT;
         );
         $this->content .= $content;
 
-        $this->headContent .=<<<'STYLE'
-<style type="text/css" media="screen">
-    #language-selector {
-        width: 300px;
-        margin: 10px auto;
-        border: 1px solid #ddd;
-    }
-
-    #language-selector li {
-        margin: 0;
-        list-style: none;
-        cursor: pointer;
-    }
-
-    #language-selector .ui-selecting {
-        background: #ccc;
-    }
-
-    #language-selector .ui-selected {
-        background: #999;
-        color: #fff;
-    }
-</style>
-STYLE;
-
         $this->footContent .=<<<"SCRIPT"
-<script type="text/javascript">
-$("#language-selector").change(function () {
-    $.ajax({
-        url: "{$_SERVER['PHP_SELF']}",
-        data: { page: "presetting", language: this.value, action: "submit" },
-        success: function() { window.location.reload(true); }
+<script>
+$(document).ready(function() {
+    $('input[type=radio][name=language]').change(function() {
+        $.ajax({
+            url: "{$_SERVER['PHP_SELF']}",
+            data: { page: "presetting", language: this.value, action: "submit" },
+            success: function (data) { window.location.reload(true); }
+        });
     });
 });
 </script>
