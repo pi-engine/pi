@@ -29,6 +29,8 @@ class ControllerManager extends ZendControllerManager
     {
         static $inCanonicalization = false;
 
+        $name = strtolower($name);
+
         if ($inCanonicalization) {
             $inCanonicalization = false;
             return $name;
