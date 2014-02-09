@@ -32,7 +32,10 @@ class ComponentController extends BasicController
         // Jump to a specific component if available
         $navConfig = Pi::registry('navigation')->read('system-component');
         if ($navConfig) {
-            $page = current($navConfig);
+            foreach ($navConfig as $key => $config) {
+                $page = $config;
+                break;
+            }
             $this->redirect($page['route'], array(
                 'module' => $page['module'],
                 'controller'    => $page['controller'],

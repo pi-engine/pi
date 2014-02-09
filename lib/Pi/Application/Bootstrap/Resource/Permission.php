@@ -54,6 +54,12 @@ class Permission extends AbstractResource
             return;
         }
 
+        // Deny all access to front for close/maintenance
+        if ('close' ==  Pi::environment()) {
+            $this->denyAccess($e);
+            return;
+        }
+
         // Grant permission for admin
         if (Pi::service('permission')->isAdmin()) {
             return;
@@ -68,18 +74,15 @@ class Permission extends AbstractResource
             'action'        => $routeMatch->getparam('action')
         );
 
-        /*
-        // Deny all access to front for close/maintenance
-        if ('close' ==  Pi::config('environment') && 'front' == $section) {
-            $this->denyAccess($e);
-            return;
-        }
-        */
-
         // Skip module access check for system front section and admin login
         if ('system' == $route['module']
             && ('front' == $section
                 || in_array($route['controller'], array('login')))
+        ) {
+        // Grant access permission to system home page and dashboard for all admins
+        } elseif ('system' == $route['module']
+            && in_array($route['controller'], array('index', 'dashboard'))
+            && Pi::service('authentication')->hasIdentity()
         ) {
         // Check against module access
         } else {

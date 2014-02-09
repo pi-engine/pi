@@ -75,7 +75,7 @@ class Menu
      */
     public static function mainOperation($module)
     {
-        $mode   = AdminMode::MODE_ACCESS;
+        $mode = AdminMode::MODE_ACCESS;
 
         $linkCallback = function ($name) {
             return Pi::service('url')->assemble('admin', array(
@@ -123,19 +123,25 @@ class Menu
      */
     public static function subComponent($module, array $options = array())
     {
-        $navConfig = Pi::registry('navigation')->read('system-component');
-        /*
-        //@FIXME The following assignment will break navigation highlight, thus remove it.
-        foreach ($navConfig as $key => &$nav) {
-            $nav['params']['name'] = $module;
+        $mode = AdminMode::MODE_ADMIN;
+        $modulesAllowed = Pi::service('permission')->moduleList($mode);
+        if (!in_array($module, $modulesAllowed)) {
+            $content = '';
+        } else {
+            $navConfig = Pi::registry('navigation')->read('system-component');
+            /*
+            //@FIXME The following assignment will break navigation highlight, thus remove it.
+            foreach ($navConfig as $key => &$nav) {
+                $nav['params']['name'] = $module;
+            }
+            */
+            $helper     = Pi::service('view')->getHelper('navigation');
+            $navigation = $helper($navConfig);
+            if (!isset($options['ulClass'])) {
+                $options['ulClass'] = 'nav nav-tabs';
+            }
+            $content = $navigation->menu()->renderMenu(null, $options);
         }
-        */
-        $helper     = Pi::service('view')->getHelper('navigation');
-        $navigation = $helper($navConfig);
-        if (!isset($options['ulClass'])) {
-            $options['ulClass'] = 'nav nav-tabs';
-        }
-        $content = $navigation->menu()->renderMenu(null, $options);
 
         return $content;
     }
@@ -150,19 +156,25 @@ class Menu
      */
     public static function subOperation($module, array $options = array())
     {
-        $helper = Pi::service('view')->getHelper('navigation');
-        $navigation = $helper(
-            $module . '-admin',
-            array('section' => 'admin')
-        );
-        $options['maxDepth'] = 0;
-        if (!isset($options['ulClass'])) {
-            $options['ulClass'] = 'nav';
-        }
-        if (!empty($options['sub'])) {
-            $content = $navigation->menu()->renderPair(null, $options);
+        $mode = AdminMode::MODE_ACCESS;
+        $modulesAllowed = Pi::service('permission')->moduleList($mode);
+        if (!in_array($module, $modulesAllowed)) {
+            $content = '';
         } else {
-            $content = $navigation->menu()->renderMenu(null, $options);
+            $helper = Pi::service('view')->getHelper('navigation');
+            $navigation = $helper(
+                $module . '-admin',
+                array('section' => 'admin')
+            );
+            $options['maxDepth'] = 0;
+            if (!isset($options['ulClass'])) {
+                $options['ulClass'] = 'nav';
+            }
+            if (!empty($options['sub'])) {
+                $content = $navigation->menu()->renderPair(null, $options);
+            } else {
+                $content = $navigation->menu()->renderMenu(null, $options);
+            }
         }
 
         return $content;

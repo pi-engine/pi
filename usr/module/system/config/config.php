@@ -135,7 +135,8 @@ $config['item'] = array(
                     'production'        => _t('Production'),
                     'development'       => _t('Development'),
                     'test'              => _t('QA test'),
-                    'close'             => _t('Site closed'),
+                    // Close status is only set via config file
+                    //'close'             => _t('Site closed'),
                 ),
             ),
         ),

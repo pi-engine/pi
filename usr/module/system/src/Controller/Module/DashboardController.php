@@ -43,7 +43,7 @@ class DashboardController extends ActionController
      */
     public function modeAction()
     {
-        $mode   = $this->params('mode', AdminMode::MODE_ACCESS);
+        $mode = $this->params('mode', AdminMode::MODE_ACCESS);
         // Set run mode
         if (!empty($mode)) {
             $_SESSION['PI_BACKOFFICE'] = array(
@@ -89,6 +89,7 @@ class DashboardController extends ActionController
             default:
                 break;
         }
+
         if (!$link) {
             $this->jump(
                 array('action' => 'system'),
@@ -97,8 +98,8 @@ class DashboardController extends ActionController
             );
 
             return;
-
         }
+
         $this->redirect()->toUrl($link);
 
         return;

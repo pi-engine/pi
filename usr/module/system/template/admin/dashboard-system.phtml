@@ -11,7 +11,7 @@ angular
         urlRoot: '<?php echo $this->url('', array('controller' => 'dashboard')); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
         data: {
-            messagePerm: <?php echo $messagePerm; ?>,
+            messagePerm: <?php echo (int) $messagePerm; ?>,
             message: <?php echo json_encode($message) ?>,
             links: <?php echo json_encode($links); ?>,
             summaryList: <?php echo json_encode($summaryList); ?>

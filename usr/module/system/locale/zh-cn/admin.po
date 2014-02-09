@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-02-06 18:18+0800\n"
-"PO-Revision-Date: 2014-02-09 12:03+0800\n"
+"PO-Revision-Date: 2014-02-09 18:15+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -748,7 +748,7 @@ msgstr "权限"
 
 #: c:\Code\pi\usr\module\system/config/nav.component.php:72
 msgid "Event/Hook"
-msgstr "Event/Hook"
+msgstr "事件"
 
 #: c:\Code\pi\usr\module\system/config/nav.front.php:19
 msgid "Home"
@@ -886,7 +886,7 @@ msgstr "管理：页面"
 
 #: c:\Code\pi\usr\module\system/config/permission.php:130
 msgid "Management: caches"
-msgstr "缓存管理"
+msgstr "管理：缓存"
 
 #: c:\Code\pi\usr\module\system/config/permission.php:137
 msgid "Management: permissions"
@@ -894,7 +894,7 @@ msgstr "管理：权限"
 
 #: c:\Code\pi\usr\module\system/config/permission.php:144
 msgid "Management: events/hooks"
-msgstr "管理：events/hooks"
+msgstr "管理：事件"
 
 #: c:\Code\pi\usr\module\system/config/role.php:19
 msgid "Administrator"
@@ -1365,11 +1365,11 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:75
 msgid "Module access"
-msgstr "使用模块"
+msgstr "模块操作"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:82
 msgid "Module admin"
-msgstr "管理模块"
+msgstr "模块管理"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:316
 msgid "Permission assigned successfully."

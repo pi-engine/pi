@@ -83,11 +83,17 @@ class PermController extends ComponentController
             'roles'     => array(),
         );
 
-
+        /*
         $rowset = Pi::model('permission_resource')->select(array(
             'module'    => $module,
             'section'   => $section,
         ));
+        */
+        $select = Pi::model('permission_resource')->select()->where(array(
+            'module'    => $module,
+            'section'   => $section,
+        ))->order('id ASC');
+        $rowset = Pi::model('permission_resource')->selectWith($select);
         $callback = '';
         foreach ($rowset as $row) {
             if ('custom' == $row['type']) {
