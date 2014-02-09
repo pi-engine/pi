@@ -34,7 +34,7 @@ class Editor extends Textarea
     public function getLabel()
     {
         if (null === $this->label) {
-            $this->label = __('Editor');
+            $this->label = __('Text editor');
         }
 
         return parent::getLabel();

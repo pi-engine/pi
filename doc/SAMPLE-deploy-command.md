@@ -20,6 +20,7 @@
 ```
 rm -f tmp.zip && wget -qO- -O tmp.zip https://github.com/pi-engine/pi/archive/develop.zip && rm -Rf /home/pi/common/code/pi-develop && unzip -qo tmp.zip -d /home/pi/common/code && rm tmp.zip
 rm -f /home/pi/common/code/deploy && ln -sf /home/pi/common/code/pi-develop /home/pi/common/code/deploy
+chown -Rf www-data:www-data /home/pi/common/code/deploy/
 ```
 
 ## Installation command, for first deployment only
@@ -68,7 +69,6 @@ rm -Rf /home/pi/deploy/pi-demo/upload && cp -R /home/pi/common/code/deploy/www/u
 
 ### Change owner/group
 ```
-chown -Rf www-data:www-data /home/pi/common/code/deploy/
 chown -Rf www-data:www-data /home/pi/deploy/pi-demo/
 ```
 
