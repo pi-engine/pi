@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-09 11:27+0800\n"
-"PO-Revision-Date: 2014-02-09 11:28+0800\n"
+"POT-Creation-Date: 2014-02-09 22:57+0800\n"
+"PO-Revision-Date: 2014-02-09 22:57+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -202,412 +202,407 @@ msgstr ""
 msgid "QA test"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:138
-msgid "Site closed"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/config/config.php:149
+#: c:\Code\pi\usr\module\system/config/config.php:150
 msgid "Username format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:150
+#: c:\Code\pi\usr\module\system/config/config.php:151
 msgid "Format of username for registration."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:155
+#: c:\Code\pi\usr\module\system/config/config.php:156
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:156
+#: c:\Code\pi\usr\module\system/config/config.php:157
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:157
+#: c:\Code\pi\usr\module\system/config/config.php:158
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:167
+#: c:\Code\pi\usr\module\system/config/config.php:168
 msgid "Minimum username"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:168
+#: c:\Code\pi\usr\module\system/config/config.php:169
 msgid "Minimum length of username for user registration"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:175
+#: c:\Code\pi\usr\module\system/config/config.php:176
 msgid "Maximum username"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:176
+#: c:\Code\pi\usr\module\system/config/config.php:177
 msgid "Maximum length of username for user registration"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:183
+#: c:\Code\pi\usr\module\system/config/config.php:184
 msgid "Minimum password"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:184
+#: c:\Code\pi\usr\module\system/config/config.php:185
 msgid "Minimum length of password for user registration"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:191
+#: c:\Code\pi\usr\module\system/config/config.php:192
 msgid "Maximum password"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:192
+#: c:\Code\pi\usr\module\system/config/config.php:193
 msgid "Maximum length of password for user registration"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:199
+#: c:\Code\pi\usr\module\system/config/config.php:200
 msgid "Username backlist"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:200
+#: c:\Code\pi\usr\module\system/config/config.php:201
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:207
+#: c:\Code\pi\usr\module\system/config/config.php:208
 msgid "Email backlist"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:208
+#: c:\Code\pi\usr\module\system/config/config.php:209
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:215
-#: c:\Code\pi\usr\module\system/config/config.php:297
+#: c:\Code\pi\usr\module\system/config/config.php:216
+#: c:\Code\pi\usr\module\system/config/config.php:298
 msgid "Remember me"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:216
-#: c:\Code\pi\usr\module\system/config/config.php:298
+#: c:\Code\pi\usr\module\system/config/config.php:217
+#: c:\Code\pi\usr\module\system/config/config.php:299
 msgid "Days to remember login, 0 for disable."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:223
-#: c:\Code\pi\usr\module\system/config/config.php:305
+#: c:\Code\pi\usr\module\system/config/config.php:224
+#: c:\Code\pi\usr\module\system/config/config.php:306
 msgid "Login field"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:224
+#: c:\Code\pi\usr\module\system/config/config.php:225
 msgid "Identity field(s) for authentication."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/config/config.php:232
-#: c:\Code\pi\usr\module\system/config/config.php:314
-#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:23
-msgid "Username"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:233
 #: c:\Code\pi\usr\module\system/config/config.php:315
+#: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:23
+msgid "Username"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:234
+#: c:\Code\pi\usr\module\system/config/config.php:316
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:25
 msgid "Email"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:243
-#: c:\Code\pi\usr\module\system/config/config.php:289
+#: c:\Code\pi\usr\module\system/config/config.php:244
+#: c:\Code\pi\usr\module\system/config/config.php:290
 msgid "Maximum attempts"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:244
+#: c:\Code\pi\usr\module\system/config/config.php:245
 msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:251
-#: c:\Code\pi\usr\module\system/config/config.php:325
+#: c:\Code\pi\usr\module\system/config/config.php:252
+#: c:\Code\pi\usr\module\system/config/config.php:326
 msgid "Login disable"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:252
+#: c:\Code\pi\usr\module\system/config/config.php:253
 msgid "Disable user login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:260
+#: c:\Code\pi\usr\module\system/config/config.php:261
 msgid "Register disable"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:261
+#: c:\Code\pi\usr\module\system/config/config.php:262
 msgid "Disable user registration"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:269
-#: c:\Code\pi\usr\module\system/config/config.php:334
+#: c:\Code\pi\usr\module\system/config/config.php:270
+#: c:\Code\pi\usr\module\system/config/config.php:335
 msgid "Login CAPTCHA"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:270
+#: c:\Code\pi\usr\module\system/config/config.php:271
 msgid "Enable CAPTCHA for user login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:278
+#: c:\Code\pi\usr\module\system/config/config.php:279
 msgid "Register CAPTCHA"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:279
+#: c:\Code\pi\usr\module\system/config/config.php:280
 msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:290
+#: c:\Code\pi\usr\module\system/config/config.php:291
 msgid "Maximum attempts allowed to try for admin login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:306
+#: c:\Code\pi\usr\module\system/config/config.php:307
 msgid "Identity field(s) for admin authentication."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:326
+#: c:\Code\pi\usr\module\system/config/config.php:327
 msgid "Disable admin login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:335
+#: c:\Code\pi\usr\module\system/config/config.php:336
 msgid "Enable CAPTCHA for admin login"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:346
+#: c:\Code\pi\usr\module\system/config/config.php:347
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
 "webmaster, company name or URL."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:354
+#: c:\Code\pi\usr\module\system/config/config.php:355
 msgid "Generator of the document being read."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:362
+#: c:\Code\pi\usr\module\system/config/config.php:363
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:370
+#: c:\Code\pi\usr\module\system/config/config.php:371
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:379
+#: c:\Code\pi\usr\module\system/config/config.php:380
 msgid "Default number style"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:380
+#: c:\Code\pi\usr\module\system/config/config.php:381
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:385
+#: c:\Code\pi\usr\module\system/config/config.php:386
 msgid "Default format for the locale"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:386
+#: c:\Code\pi\usr\module\system/config/config.php:387
 msgid "Decimal format defined by pattern"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:387
+#: c:\Code\pi\usr\module\system/config/config.php:388
 msgid "Decimal format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:388
+#: c:\Code\pi\usr\module\system/config/config.php:389
 msgid "Percent format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:389
+#: c:\Code\pi\usr\module\system/config/config.php:390
 msgid "Scientific format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:390
+#: c:\Code\pi\usr\module\system/config/config.php:391
 msgid "Spellout rule-based format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:391
+#: c:\Code\pi\usr\module\system/config/config.php:392
 msgid "Ordinal rule-based format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:392
+#: c:\Code\pi\usr\module\system/config/config.php:393
 msgid "Duration rule-based format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:393
+#: c:\Code\pi\usr\module\system/config/config.php:394
 msgid "Rule-based format defined by pattern"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:402
+#: c:\Code\pi\usr\module\system/config/config.php:403
 msgid "Default pattern for selected number style"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:403
+#: c:\Code\pi\usr\module\system/config/config.php:404
 msgid "Only if required by style"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:410
+#: c:\Code\pi\usr\module\system/config/config.php:411
 msgid "Default currency type"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:411
+#: c:\Code\pi\usr\module\system/config/config.php:412
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:418
+#: c:\Code\pi\usr\module\system/config/config.php:419
 msgid "Default calendar for the locale"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:419
+#: c:\Code\pi\usr\module\system/config/config.php:420
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:426
+#: c:\Code\pi\usr\module\system/config/config.php:427
 msgid "Default date type"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:427
-#: c:\Code\pi\usr\module\system/config/config.php:446
+#: c:\Code\pi\usr\module\system/config/config.php:428
+#: c:\Code\pi\usr\module\system/config/config.php:447
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:432
-#: c:\Code\pi\usr\module\system/config/config.php:451
-msgid "Do not include this element"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/config/config.php:433
 #: c:\Code\pi\usr\module\system/config/config.php:452
-msgid ""
-"Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
+msgid "Do not include this element"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:434
 #: c:\Code\pi\usr\module\system/config/config.php:453
-msgid "Long style (January 12, 1952 or 3:30:32pm)"
+msgid ""
+"Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:435
 #: c:\Code\pi\usr\module\system/config/config.php:454
-msgid "Medium style (Jan 12, 1952)"
+msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:436
 #: c:\Code\pi\usr\module\system/config/config.php:455
+msgid "Medium style (Jan 12, 1952)"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:437
+#: c:\Code\pi\usr\module\system/config/config.php:456
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:445
+#: c:\Code\pi\usr\module\system/config/config.php:446
 msgid "Default time type"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:464
+#: c:\Code\pi\usr\module\system/config/config.php:465
 msgid "Default formatting pattern for date-time"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:465
+#: c:\Code\pi\usr\module\system/config/config.php:466
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:472
+#: c:\Code\pi\usr\module\system/config/config.php:473
 msgid "Default format for legacy date function"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:473
+#: c:\Code\pi\usr\module\system/config/config.php:474
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:482
+#: c:\Code\pi\usr\module\system/config/config.php:483
 msgid "Admin email"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:483
+#: c:\Code\pi\usr\module\system/config/config.php:484
 msgid "Admin email address for contact."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:489
+#: c:\Code\pi\usr\module\system/config/config.php:490
 msgid "Admin name"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:490
+#: c:\Code\pi\usr\module\system/config/config.php:491
 msgid "User name used to send emails"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:495
+#: c:\Code\pi\usr\module\system/config/config.php:496
 msgid "Email encoding"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:496
+#: c:\Code\pi\usr\module\system/config/config.php:497
 msgid "Encoding for email contents"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:504
-#, fuzzy
-msgid "Editor"
-msgstr "编辑"
-
 #: c:\Code\pi\usr\module\system/config/config.php:505
+msgid "Text editor"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/config/config.php:506
 msgid "Default editor for text processing"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:510
+#: c:\Code\pi\usr\module\system/config/config.php:511
 msgid "Enable word censoring"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:511
+#: c:\Code\pi\usr\module\system/config/config.php:512
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:519
+#: c:\Code\pi\usr\module\system/config/config.php:520
 #, fuzzy
 msgid "Words to censor"
 msgstr "主题更新失败。"
 
-#: c:\Code\pi\usr\module\system/config/config.php:520
+#: c:\Code\pi\usr\module\system/config/config.php:521
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:527
+#: c:\Code\pi\usr\module\system/config/config.php:528
 msgid "Word to replace censored words"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:528
+#: c:\Code\pi\usr\module\system/config/config.php:529
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:535
+#: c:\Code\pi\usr\module\system/config/config.php:536
 msgid "Module themes"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:536
+#: c:\Code\pi\usr\module\system/config/config.php:537
 msgid "Themes for modules."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:544
+#: c:\Code\pi\usr\module\system/config/config.php:545
 #: c:\Code\pi\usr\module\system/config/nav.php:21
 msgid "Front navigation"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:545
+#: c:\Code\pi\usr\module\system/config/config.php:546
 msgid "Global navigation for front end."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:552
+#: c:\Code\pi\usr\module\system/config/config.php:553
 #: c:\Code\pi\usr\module\system/config/nav.php:27
 msgid "Admin navigation"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:553
+#: c:\Code\pi\usr\module\system/config/config.php:554
 msgid "Global navigation for admin."
 msgstr ""
 
@@ -808,8 +803,8 @@ msgid "Error reporting"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/page.php:45
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:78
-#: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:373
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:81
+#: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:374
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
 msgstr ""
@@ -1033,7 +1028,7 @@ msgstr ""
 msgid "Cache list"
 msgstr "无缓存"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:71
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:74
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:92
 #, fuzzy
 msgid "Never updated."
@@ -1395,7 +1390,7 @@ msgstr ""
 msgid "Module admin"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:316
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:322
 #, fuzzy
 msgid "Permission assigned successfully."
 msgstr "主题更新成功。"
@@ -1512,7 +1507,7 @@ msgstr ""
 msgid "The theme \"%s\" is uninstalled."
 msgstr "主题更新成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:95
+#: c:\Code\pi\usr\module\system/src/Controller/Module/DashboardController.php:96
 msgid "No permitted operation available."
 msgstr ""
 
@@ -2235,6 +2230,10 @@ msgstr "主题更新成功。"
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr ""
+
+#, fuzzy
+#~ msgid "Editor"
+#~ msgstr "编辑"
 
 #, fuzzy
 #~ msgid "Toggle all"

@@ -502,7 +502,7 @@ $config['item'] = array(
     // Text processing
 
     'editor'        => array(
-        'title'         => _t('Editor'),
+        'title'         => _t('Text editor'),
         'description'   => _t('Default editor for text processing'),
         'category'      => 'text',
     ),
