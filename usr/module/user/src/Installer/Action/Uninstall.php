@@ -65,6 +65,7 @@ class Uninstall extends BasicAction
         $config = Pi::config()->load('service.user.php', false);
         $config['adapter'] = 'system';
         Pi::config()->write('service.user.php', $config, true);
+        Pi::service('user')->reload($config);
 
         return true;
     }
