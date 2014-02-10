@@ -522,7 +522,7 @@ class ModuleController extends ActionController
     public function refreshAction()
     {
         @set_time_limit(0);
-        
+
         $result     = array();
         $rowset     = Pi::model('module')->select(array('active' => 1));
         foreach ($rowset as $row) {
