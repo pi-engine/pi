@@ -1,0 +1,43 @@
+<?php
+$this->css($this->assetModule('admin/admin.css'));
+?>
+<h2 class="page-header"><?php echo _escape($title); ?></h2>
+<div class="lead">
+    <span class="text-success"><?php echo _a('Module updates finished.'); ?></span>
+    <a href="<?php echo $url; ?>" title=""><?php echo _a('Press to continue ...'); ?></a>
+</div>
+<?php
+foreach ($result as $name => $data) {
+?>
+    <div class="panel <?php echo $data['status'] ? 'panel-success' : 'panel-danger'; ?>">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><?php echo _escape($data['title']); ?></div>
+        <div class="panel-body">
+            <p><?php echo $data['status'] ? _a('Update succeeded.') : _a('Update failed.');  ?></p>
+        </div>
+        <?php
+        if (!$data['status'] && !empty($data['result'])) {
+            echo '<ol>';
+            foreach ($data['result'] as $action => $state) {
+                if (isset($state['status']) && $state['status'] === false) {
+                    echo '<li>' . _escape($action)  . ': <strong class="text-error">' . _a('Failed') . '</strong><script>$(".alert-success").addClass("alert-error")</script>';
+                } else {
+                    echo '<li>' . _escape($action)  . ': <strong class="text-success">' . _a('Succeeded'). '</strong>';
+                }
+
+                if (!empty($state['message'])) {
+                    echo '<ul>';
+                    foreach ((array) $state['message'] as $msg) {
+                            echo '<li>' . _escape($msg);
+                    }
+                    echo '</ul>';
+                }
+
+            }
+            echo '</ol>';
+        }
+        ?>
+    </div>
+<?php
+}
+?>
