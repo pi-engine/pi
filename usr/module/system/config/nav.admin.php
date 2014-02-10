@@ -160,7 +160,7 @@ return array(
             ),
 
             'add'    => array(
-                'label'         => _t('Add new'),
+                'label'         => _t('Add'),
                 'route'         => 'admin',
                 'module'        => 'system',
                 'controller'    => 'nav',

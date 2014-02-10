@@ -82,6 +82,14 @@ chmod -Rf 0777 /home/pi/deploy/pi-demo/asset/
 chmod -Rf 0777 /home/pi/deploy/pi-demo/upload/
 ````
 
+### Clear folders/files after installation
+```
+chmod -f 0444 /home/pi/deploy/pi-demo/www/.htaccess
+chmod -f 0444 /home/pi/deploy/pi-demo/www/boot.php
+rm -Rf /home/pi/deploy/pi-demo/www/setup
+````
+
+
 -----------
 By [@taiwen](https://github.com/taiwen)
 

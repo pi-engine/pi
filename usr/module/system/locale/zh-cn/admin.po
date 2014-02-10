@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-10 16:39+0800\n"
-"PO-Revision-Date: 2014-02-10 16:40+0800\n"
+"POT-Creation-Date: 2014-02-10 19:48+0800\n"
+"PO-Revision-Date: 2014-02-10 19:50+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,6 @@ msgstr "网站信息"
 
 #: c:\Code\pi\usr\module\system/config/block.php:26
 #: c:\Code\pi\usr\module\system/config/page.php:116
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:17
 msgid "User"
 msgstr "用户管理"
 
@@ -307,8 +306,9 @@ msgid "Maximum attempts"
 msgstr "登录尝试最大允许次数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:245
+#, fuzzy
 msgid "Maximum attempts allowed to try for user login"
-msgstr ""
+msgstr "用户登录时的最大尝试次数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:252
 #: c:\Code\pi\usr\module\system/config/config.php:326
@@ -345,8 +345,9 @@ msgid "Enable CAPTCHA for user registration"
 msgstr "用户注册时启用验证码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:291
+#, fuzzy
 msgid "Maximum attempts allowed to try for admin login"
-msgstr ""
+msgstr "用户登录时的最大尝试次数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:307
 msgid "Identity field(s) for admin authentication."
@@ -535,8 +536,9 @@ msgid "Email encoding"
 msgstr "邮件内容编码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:497
+#, fuzzy
 msgid "Encoding for email contents"
-msgstr ""
+msgstr "无效Gravatar邮箱"
 
 #: c:\Code\pi\usr\module\system/config/config.php:505
 msgid "Text editor"
@@ -680,7 +682,7 @@ msgid "Data manipulation"
 msgstr "数据操作"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:163
-msgid "Add new"
+msgid "Add"
 msgstr "添加"
 
 #: c:\Code\pi\usr\module\system/config/nav.admin.php:172
@@ -1560,7 +1562,6 @@ msgid "The system is updated successfully."
 msgstr "系统更新成功。"
 
 #: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:12
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:11
@@ -1594,49 +1595,37 @@ msgstr "监控列表"
 msgid "time"
 msgstr "时间"
 
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:17
+#, fuzzy
+msgid "User ID"
+msgstr "用户 ID"
+
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:18
 msgid "IP"
 msgstr "IP"
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:19
-msgid "Section"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:20
-#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:108
-msgid "Module"
-msgstr "模块"
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:21
-#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
-msgid "Controller"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:23
-msgid "Method"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:24
+#, fuzzy
 msgid "Message"
-msgstr ""
+msgstr "发送私信"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:25
 msgid "extra"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:47
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:48
 msgid "Count of items to display: "
 msgstr "显示条目数："
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:48
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:51
 msgid "10"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:49
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:52
 msgid "20"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:50
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:53
 msgid "50"
 msgstr ""
 
@@ -1741,8 +1730,9 @@ msgstr "作者信息"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:45
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:28
+#, fuzzy
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:22
 msgid "Announcement"
@@ -1960,22 +1950,22 @@ msgstr "更新"
 msgid "Update all"
 msgstr "更新所有模块"
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:66
-msgid "Disable"
-msgstr "禁用"
-
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
-msgid "Enable"
-msgstr "启用"
-
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:70
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:65
 msgid "Are you sure to uninstall this module?"
 msgstr "请确认是否删除该模块。"
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:70
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:65
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:23
 msgid "Uninstall"
 msgstr "卸载"
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:67
+msgid "Disable"
+msgstr "禁用"
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:69
+msgid "Enable"
+msgstr "启用"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:7
 #: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:7
@@ -2059,6 +2049,14 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:92
 msgid "Route"
 msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
+msgid "Controller"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:108
+msgid "Module"
+msgstr "模块"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:425
 msgid "You have made unsaved changes. Would you still like to leave this page?"

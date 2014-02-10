@@ -44,19 +44,14 @@ class AuditController extends ActionController
         */
         $count = $model->count();
 
-        $paginator = Paginator::factory($count);
-        $paginator->setItemCountPerPage($limit);
-        $paginator->setCurrentPageNumber($page);
-        $paginator->setUrlOptions(array(
-            'pageParam'     => 'p',
-            'totalParam'    => 't',
-            'router'        => $this->getEvent()->getRouter(),
-            'route'         => $this->getEvent()->getRouteMatch()
-                ->getMatchedRouteName(),
-            'params'        => array(
-                'module'       => $this->getModule(),
-                'controller'   => 'audit',
-                'count'        => $limit,
+        $paginator = Paginator::factory($count, array(
+            'limit' => $limit,
+            'page'  => $page,
+            'url_options'   => array(
+                'page_param'    => 'p',
+                'params'    => array(
+                    'count' => $limit,
+                ),
             ),
         ));
 

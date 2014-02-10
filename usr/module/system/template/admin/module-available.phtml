@@ -54,10 +54,10 @@ $this->css($this->assetModule('admin/admin.css'));
                             $buttonClass = ' disabled';
                             $installUrl = 'javascript:void(0)';
                         }
-                        echo sprintf('<a class="btn btn-default%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
+                        echo sprintf('<a class="btn btn-sm btn-primary%s" href="%s">%s</a>', $buttonClass, $installUrl, _a('Install'));
                     ?>
                     <?php if (!empty($module['meta']['clonable'])) { ?>
-                    <span class="btn btn-default module-clone" data-toggle="modal" data-target="#js-module-form" 
+                    <span class="btn btn-sm btn-primary module-clone" data-toggle="modal" data-target="#js-module-form"
                           href="<?php echo $this->url('', array('action' => 'clone', 'directory' => $directory, 'from' => 'available')); ?>">
                         <?php echo _a('Clone'); ?>
                     </span>

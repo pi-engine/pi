@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-10 16:40+0800\n"
-"PO-Revision-Date: 2014-02-10 16:40+0800\n"
+"POT-Creation-Date: 2014-02-10 19:01+0800\n"
+"PO-Revision-Date: 2014-02-10 19:01+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,6 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/block.php:26
 #: c:\Code\pi\usr\module\system/config/page.php:116
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:17
 msgid "User"
 msgstr ""
 
@@ -1590,7 +1589,6 @@ msgid "The system is updated successfully."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:12
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/flush-index.phtml:11
@@ -1625,26 +1623,12 @@ msgstr ""
 msgid "time"
 msgstr "Application Execution Time"
 
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:17
+msgid "User ID"
+msgstr ""
+
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:18
 msgid "IP"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:19
-msgid "Section"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:20
-#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:108
-msgid "Module"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:21
-#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
-msgid "Controller"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:23
-msgid "Method"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:24
@@ -1655,19 +1639,19 @@ msgstr ""
 msgid "extra"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:47
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:48
 msgid "Count of items to display: "
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:48
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:51
 msgid "10"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:49
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:52
 msgid "20"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:50
+#: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:53
 msgid "50"
 msgstr ""
 
@@ -2000,21 +1984,21 @@ msgstr ""
 msgid "Update all"
 msgstr "All Categories"
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:66
-msgid "Disable"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
-msgid "Enable"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:70
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:65
 msgid "Are you sure to uninstall this module?"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:70
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:65
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:23
 msgid "Uninstall"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:67
+msgid "Disable"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:69
+msgid "Enable"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:7
@@ -2104,6 +2088,14 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:92
 msgid "Route"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
+msgid "Controller"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:108
+msgid "Module"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:425

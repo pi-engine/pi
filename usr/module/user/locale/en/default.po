@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2013-11-10 14:09+0800\n"
-"PO-Revision-Date: 2013-11-10 14:09+0800\n"
+"POT-Creation-Date: 2014-02-10 19:18+0800\n"
+"PO-Revision-Date: 2014-02-10 19:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,802 +11,981 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\user\n"
+"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\user\n"
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Nav.php:43
-msgid "Homepage"
+#: C:\code\pi\usr\module\user/config/event.php:21
+msgid "User registered"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Nav.php:59
+#: C:\code\pi\usr\module\user/config/event.php:27
+msgid "User activated"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:33
+msgid "User enabled"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:39
+msgid "User disabled"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:45
+msgid "User deleted"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:51
+msgid "User profile updated"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:57
+msgid "Display name changed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:63
+msgid "Email changed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:69
+msgid "Avatar changed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:75
+msgid "Password changed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:81
+msgid "Role assigned"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:87
+msgid "Role removed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:93
+msgid "User logged in"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:99
+msgid "User logged out"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/user.php:101
+#: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:30
+msgid "Male"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/user.php:102
+#: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:31
+msgid "Female"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Api/Nav.php:46
 msgid "Profile"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Relation.php:53
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:70
-msgid "Public"
+#: C:\code\pi\usr\module\user/src/Api/Nav.php:62
+msgid "Feed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Relation.php:57
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:71
-msgid "Member"
+#: C:\code\pi\usr\module\user/src/Api/Privacy.php:93
+msgid "Everyone"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Relation.php:61
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:72
+#: C:\code\pi\usr\module\user/src/Api/Privacy.php:94
+msgid "Logged-in user"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Api/Privacy.php:95
+#: C:\code\pi\usr\module\user/src/Api/Relation.php:63
 msgid "Follower"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Relation.php:65
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:73
-msgid "Following"
+#: C:\code\pi\usr\module\user/src/Api/Privacy.php:96
+msgid "Followed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Api/Relation.php:69
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:74
+#: C:\code\pi\usr\module\user/src/Api/Privacy.php:97
+#: C:\code\pi\usr\module\user/src/Api/Relation.php:71
 msgid "Owner"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AccountController.php:123
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:185
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:194
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:201
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:210
+#: C:\code\pi\usr\module\user/src/Api/Relation.php:55
+msgid "Public"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Api/Relation.php:59
+msgid "Member"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Api/Relation.php:67
+msgid "Following"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Api/TimelineController.php:46
+msgid "Timeline post failed."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Api/TimelineController.php:89
+msgid "Timeline added successfully."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:144
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:205
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:212
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:221
 msgid "Verify link invalid"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AccountController.php:183
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:226
 msgid "Reset email successfully"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AccountController.php:197
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:240
 msgid "Incorrect password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AccountController.php:219
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:256
 msgid "Correct password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:119
+#: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:41
+#: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:75
+#: C:\code\pi\usr\module\user/src/Controller/Front/HomeController.php:116
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:92
+msgid "User was not found."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:57
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:180
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:287
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:341
+msgid "An error occurred."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:103
 msgid "Allowed extensions:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:210
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:108
+msgid "Max files ize:"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:114
+msgid "Max image size:"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:189
 msgid "Avatar Settings"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:240
-msgid "Invalid fake ID!"
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:218
+msgid "Invalid token!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:338
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:463
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:165
-msgid "Invalid email."
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:322
+msgid "Invalid email for gravatar."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:349
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:382
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:333
 msgid "Successful"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:366
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:350
 msgid "No image selected!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:405
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:366
+msgid "Successful."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:384
 #, php-format
 msgid "Invalid source %s."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:416
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:395
 msgid "Not image selected."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:427
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:404
+msgid "Image is missing."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:410
 msgid "Image does not exist."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:437
-msgid "Image width or height is needed."
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:420
+msgid "Image width or height is missing."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:472
-msgid "Invalid image file."
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:447
+msgid "Email address is missing."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:497
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:456
+msgid "Invalid image set name."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:491
 msgid "Avatar set successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:512
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:506
 msgid "Image is not removed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/AvatarController.php:527
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:521
 msgid "Image removed successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/HomeController.php:38
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/ProfileController.php:42
-#: C:\wamp\www\master\usr\module\user/template/front/password-process.phtml:14
-msgid "Please login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/HomeController.php:100
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/ProfileController.php:80
-msgid "Invalid user ID!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:34
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:92
-msgid "User login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:76
-#, php-format
-msgid ""
-"Login with the account is suspended,\n"
-"                            please wait for %d minutes to try again."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:85
-#, php-format
-msgid "You have %d times to try."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:111
-msgid "You logged out successfully. Now go back to homepage."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:123
-msgid "Invalid request."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:133
-msgid "Invalid input, please try again."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:152
-msgid "You have tried too many times. Please try later."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:171
-msgid "Invalid credentials provided, please try again."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/LoginController.php:246
-msgid "You have logged in successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:38
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:57
 msgid "Reset password failed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:49
-msgid "Change password need login"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:80
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:233
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:81
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:245
 msgid "Reset password successfully"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:82
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:83
 msgid "Input password error"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:111
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:112
 msgid "Find password failed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PasswordController.php:160
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:161
 msgid "Send email successfully. check email and reset password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:36
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/ProfileController.php:148
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/ProfileController.php:235
-msgid "Need login"
+#: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
+msgid "Privacy settings saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/PrivacyController.php:57
-msgid "Set privacy successfully"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/ProfileController.php:187
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:216
 msgid "Update successfully"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:244
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:255
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:263
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:272
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:284
-msgid "Activate link is invalid"
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:218
+msgid "Data saved failed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:296
-msgid "Activate successfully"
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:478
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:502
+#, fuzzy
+msgid "Delete failed."
+msgstr "Application Execution Time"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:497
+msgid "Cannot delete the last one."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:312
-msgid "Resend activate mail failed"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:164
+#, fuzzy
+msgid "Activation token is invalid."
+msgstr "Application Execution Time"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:189
+#, fuzzy
+msgid "Activation link is expired."
+msgstr "Application Execution Time"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:224
+msgid "Account Activated successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:372
-msgid "Resend activate mail successfully"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:240
+#, fuzzy
+msgid "Activation email sent failed."
+msgstr "Application Execution Time"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:274
+msgid "Resend activation mail successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Controller/Front/RegisterController.php:393
-msgid "An error occur"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:302
+msgid "Email was not found."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/AccountForm.php:27
-#: C:\wamp\www\master\usr\module\user/src/Form/FindPasswordForm.php:27
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:48
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:108
-msgid "Email"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:307
+msgid "Account already activated."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/AccountForm.php:37
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:39
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:99
-msgid "Display name"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
+msgid "Activation mail sent successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/AccountForm.php:54
-#: C:\wamp\www\master\usr\module\user/src/Form/CompoundForm.php:58
-#: C:\wamp\www\master\usr\module\user/src/Form/EditUserForm.php:42
-#: C:\wamp\www\master\usr\module\user/src/Form/EmailForm.php:58
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:122
-#: C:\wamp\www\master\usr\module\user/src/Form/PasswordForm.php:79
-#: C:\wamp\www\master\usr\module\user/src/Form/ProfileCompleteForm.php:42
-#: C:\wamp\www\master\usr\module\user/src/Form/ProfileEditForm.php:42
-#: C:\wamp\www\master\usr\module\user/src/Form/RegisterForm.php:42
-#: C:\wamp\www\master\usr\module\user/src/Form/ResetPasswordForm.php:68
-#: C:\wamp\www\master\usr\module\user/src/Form/RoleForm.php:99
-#: C:\wamp\www\master\usr\module\user/template/front/privacy-index.phtml:49
-msgid "Submit"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:323
+msgid "Activation mail was not sent."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/EmailForm.php:27
-msgid "New email"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
+msgid "Invalid input."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/EmailForm.php:37
-#: C:\wamp\www\master\usr\module\user/src/Form/PasswordForm.php:42
-msgid "Current password"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:430
+msgid "User account was not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:445
+msgid ""
+"User account is registered successfully but activation was failed, please "
+"contact admin."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/FindPasswordForm.php:52
-#: C:\wamp\www\master\usr\module\user/template/front/login.phtml:28
-#: C:\wamp\www\master\usr\module\user/template/front/password-find.phtml:1
-msgid "Find password"
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:455
+msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/LoginForm.php:30
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:30
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:90
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:14
+#: C:\code\pi\usr\module\user/src/Form/AccountForm.php:27
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:30
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:90
 msgid "Username"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/LoginForm.php:40
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:32
-#: C:\wamp\www\master\usr\module\user/template/front/_user-side-nav.phtml:18
-msgid "Password"
+#: C:\code\pi\usr\module\user/src/Form/AccountForm.php:38
+#: C:\code\pi\usr\module\user/src/Form/FindPasswordForm.php:27
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:48
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:108
+msgid "Email"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/LoginForm.php:52
-#: C:\wamp\www\master\usr\module\user/src/Form/LoginForm.php:56
-msgid "Remember me"
+#: C:\code\pi\usr\module\user/src/Form/AccountForm.php:48
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:39
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:99
+msgid "Display name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/LoginForm.php:67
-msgid "Please type the word."
+#: C:\code\pi\usr\module\user/src/Form/AccountForm.php:65
+#: C:\code\pi\usr\module\user/src/Form/CompoundForm.php:58
+#: C:\code\pi\usr\module\user/src/Form/EditUserForm.php:42
+#: C:\code\pi\usr\module\user/src/Form/EmailForm.php:58
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:122
+#: C:\code\pi\usr\module\user/src/Form/PasswordForm.php:79
+#: C:\code\pi\usr\module\user/src/Form/ProfileEditForm.php:42
+#: C:\code\pi\usr\module\user/src/Form/ResendActivationForm.php:47
+#: C:\code\pi\usr\module\user/src/Form/ResetPasswordForm.php:68
+#: C:\code\pi\usr\module\user/src/Form/RoleForm.php:99
+#: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:40
+msgid "Submit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/LoginForm.php:96
-#: C:\wamp\www\master\usr\module\user/template/front/login-logout.phtml:17
-msgid "Login"
+#: C:\code\pi\usr\module\user/src/Form/EmailForm.php:27
+msgid "New email"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:57
-#: C:\wamp\www\master\usr\module\user/src/Form/PasswordForm.php:53
-#: C:\wamp\www\master\usr\module\user/src/Form/ResetPasswordForm.php:42
+#: C:\code\pi\usr\module\user/src/Form/EmailForm.php:37
+#: C:\code\pi\usr\module\user/src/Form/PasswordForm.php:42
+msgid "Current password"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Form/FindPasswordForm.php:52
+#: C:\code\pi\usr\module\user/template/front/login.phtml:15
+#: C:\code\pi\usr\module\user/template/front/password-find.phtml:2
+msgid "Find password"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:57
+#: C:\code\pi\usr\module\user/src/Form/PasswordForm.php:53
+#: C:\code\pi\usr\module\user/src/Form/ResetPasswordForm.php:42
 msgid "New password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:66
-#: C:\wamp\www\master\usr\module\user/src/Form/PasswordForm.php:63
-#: C:\wamp\www\master\usr\module\user/src/Form/ResetPasswordForm.php:52
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:66
+#: C:\code\pi\usr\module\user/src/Form/PasswordForm.php:63
+#: C:\code\pi\usr\module\user/src/Form/ResetPasswordForm.php:52
 msgid "Confirm password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:75
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:71
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:75
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:71
 msgid "Front role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:84
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:80
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:84
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:80
 msgid "Admin role"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:94
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:94
 msgid "Activate"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/MemberForm.php:106
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:46
+#: C:\code\pi\usr\module\user/src/Form/MemberForm.php:106
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:46
 msgid "Enable"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/RoleForm.php:44
+#: C:\code\pi\usr\module\user/src/Form/ResendActivationForm.php:27
+msgid "Email address"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Form/ResendActivationForm.php:38
+msgid "Please type the word."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Form/RoleForm.php:44
 msgid "Name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/RoleForm.php:54
+#: C:\code\pi\usr\module\user/src/Form/RoleForm.php:54
 msgid "Title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:29
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:29
 msgid "Active state"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:31
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:45
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:59
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:31
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:45
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:59
 msgid "Any"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:32
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:32
 msgid "Active"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:33
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:33
 msgid "Inactive"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:43
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:43
 msgid "Enable state"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:47
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:47
 msgid "Disable"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:57
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:57
 msgid "Activated state"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:60
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:60
 msgid "Pending"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:61
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:61
 msgid "Activated"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:117
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:117
 msgid "Register date from"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:126
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:126
 msgid "Register date end"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:135
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:135
 msgid "Register ip from"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/SearchForm.php:143
+#: C:\code\pi\usr\module\user/src/Form/SearchForm.php:143
 msgid "Search"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/Element/Gender.php:30
-msgid "Male"
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:44
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:45
+msgid "Invalid user name: %formatHint%"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/Element/Gender.php:31
-msgid "Female"
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:45
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:46
+msgid "User name is reserved"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/src/Form/Element/Gender.php:32
-msgid "Unknown"
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:46
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:48
+msgid "User name is less than %min% characters long"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:7
-#: C:\wamp\www\master\usr\module\user/template/front/_user-side-nav.phtml:13
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:47
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:49
+msgid "User name is more than %max% characters long"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:51
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:53
+msgid "Only alphabetic and digits are allowed with leading alphabetic"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:52
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:54
+msgid "Only ASCII characters are allowed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Name.php:53
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:55
+msgid "Multibyte characters are allowed"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Password.php:42
+msgid "Password is less than %min% characters long"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Password.php:43
+msgid "Password is more than %max% characters long"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Postcode.php:30
+msgid "The input is not 6 numeric"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Telephone.php:30
+msgid "The input is not 7-20 numeric"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:41
+msgid "User email is reserved"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:42
+msgid "User email is already used"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:47
+msgid "User name is already taken"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:8
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:17
 msgid "Account settings"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:8
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:9
 msgid "Basic settings"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:26
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:22
 msgid "Save account changes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:29
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:26
 msgid "Re-enter your password to save changes to your account."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:40
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:178
-msgid "Cancel"
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:30
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
+msgid "Password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:41
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:38
 msgid "Save changes"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:106
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:107
 msgid "A message has been sent to you"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:106
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:107
 msgid ""
 "to confirm your new email address. Check the email in 24 hours. The new "
 "email will not work until your confirm."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:109
-msgid "Display name change saved."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:112
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:111
 msgid "Sorry, email change failed. Try it later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:116
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:116
+msgid "Display name change saved."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:121
 msgid "Sorry, display name change failed. Try it later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:183
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:170
+msgid "Invalid email."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:188
 msgid "Email has been used."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:201
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:206
 msgid "Invalid display name."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:219
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:224
 msgid "Display name has been used."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-index.phtml:248
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:253
 msgid "That\\'s you !"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-reset-email.phtml:1
+#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:1
 msgid "Change email"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-reset-email.phtml:3
-#: C:\wamp\www\master\usr\module\user/template/front/password-process.phtml:12
-#: C:\wamp\www\master\usr\module\user/template/front/register-activate.phtml:3
+#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:3
+#: C:\code\pi\usr\module\user/template/front/password-process.phtml:12
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:5
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:19
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:39
 msgid "Congratulations!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-reset-email.phtml:4
+#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:4
 msgid "Your email has been changed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-reset-email.phtml:6
+#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:6
 #, php-format
 msgid "<a href=\"%s\">Login right now</a>"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/account-reset-email.phtml:10
+#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:10
 msgid "Sorry, the link has expired, or maybe your email has been changed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/activity-index.phtml:11
+#: C:\code\pi\usr\module\user/template/front/activity-index.phtml:25
 #, fuzzy
 msgid "View all"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:15
+#: C:\code\pi\usr\module\user/template/front/activity-index.phtml:32
+msgid "None blogs"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:13
 msgid "Upload"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:20
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:18
 msgid "Gavatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:25
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:23
 msgid "Select"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:30
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:28
 msgid "Default"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:43
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:11
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:41
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:62
 msgid "Change avatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:44
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:42
 msgid "Customize your avatar anyway you like"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:47
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:45
 msgid "Current avatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:51
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:49
 msgid ""
 "once switch source and saved,the avatar data from other source will be "
 "deleted."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:73
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:187
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:71
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:186
 msgid "Upload avatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:83
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:110
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:139
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:166
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:81
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:112
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:138
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:164
 msgid "Avatar previews"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:103
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:100
 msgid "Change from Gravatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:105
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:104
 msgid "Gravatar email"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:162
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:160
 msgid "Apply system avatar as your avatar"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:177
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:175
 msgid "Save"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/avatar-index.phtml:188
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:176
+msgid "Cancel"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:187
 msgid "Uploading"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-logout.phtml:8
-#: C:\wamp\www\master\usr\module\user/template/front/login-success.phtml:8
+#: C:\code\pi\usr\module\user/template/front/home-index.phtml:37
+msgid "Does not have any data"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/login-disabled.phtml:2
+msgid "User login"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:7
+#: C:\code\pi\usr\module\user/template/front/login-success.phtml:7
 msgid "homepage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-logout.phtml:10
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:9
 msgid "re-login"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-logout.phtml:11
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:10
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-logout.phtml:16
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:15
 msgid "Choose: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-logout.phtml:18
-#: C:\wamp\www\master\usr\module\user/template/front/login.phtml:29
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:16
+msgid "Login"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:17
+#: C:\code\pi\usr\module\user/template/front/login.phtml:18
+#: C:\code\pi\usr\module\user/template/front/register-disabled.phtml:2
 msgid "Register"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-message.phtml:8
+#: C:\code\pi\usr\module\user/template/front/login-message.phtml:7
 msgid "logout"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-message.phtml:9
+#: C:\code\pi\usr\module\user/template/front/login-message.phtml:8
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login-success.phtml:9
+#: C:\code\pi\usr\module\user/template/front/login-success.phtml:8
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/login.phtml:28
-msgid "Forget password"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/password-find.phtml:11
+#: C:\code\pi\usr\module\user/template/front/password-find.phtml:13
 msgid "A reset link has been sent to your email."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-find.phtml:12
+#: C:\code\pi\usr\module\user/template/front/password-find.phtml:14
 msgid "Please check to reset your password in 24 hours."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-index.phtml:7
+#: C:\code\pi\usr\module\user/template/front/password-index.phtml:8
 msgid "Change password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-index.phtml:8
+#: C:\code\pi\usr\module\user/template/front/password-index.phtml:9
 msgid "To ensure your account security, complex password is required."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-process.phtml:1
+#: C:\code\pi\usr\module\user/template/front/password-process.phtml:1
 msgid "Reset password"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-process.phtml:6
+#: C:\code\pi\usr\module\user/template/front/password-process.phtml:6
 msgid "Sorry, your link has expired."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-process.phtml:7
+#: C:\code\pi\usr\module\user/template/front/password-process.phtml:7
 msgid "Try to find password again"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/password-process.phtml:13
+#: C:\code\pi\usr\module\user/template/front/password-process.phtml:13
 msgid "Your new password has worked"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/privacy-index.phtml:9
-#: C:\wamp\www\master\usr\module\user/template/front/_user-side-nav.phtml:37
+#: C:\code\pi\usr\module\user/template/front/password-process.phtml:14
+msgid "Please login"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:10
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:35
 msgid "Privacy"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/privacy-index.phtml:11
-msgid "Change your privacy settings."
+#: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:11
+msgid "Set profile field privacy."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/privacy-index.phtml:15
-msgid "No  available privacy setting"
+#: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:16
+msgid "No available privacy setting"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/profile-edit-compound.phtml:12
-#: C:\wamp\www\master\usr\module\user/template/front/profile-edit-compound.phtml:20
+#: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
+#, php-format
+msgid "Change your %s"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:13
+#: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:21
 msgid "Add new"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/profile-edit-compound.phtml:29
-#: C:\wamp\www\master\usr\module\user/template/front/profile-index.phtml:25
+#: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:31
+#: C:\code\pi\usr\module\user/template/front/profile-index.phtml:20
 msgid "Edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/profile-edit-compound.phtml:46
+#: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:42
+#: C:\code\pi\usr\module\user/template/front/profile-index.phtml:33
+#: C:\code\pi\usr\module\user/template/front/profile-view.phtml:20
+msgid "Unfiled"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:53
 msgid "Are you sure delete this one"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/profile-edit.phtml:8
-msgid "Change your basic profile info"
+#: C:\code\pi\usr\module\user/template/front/profile-edit.phtml:10
+#, php-format
+msgid "Change your %s info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/profile-index.phtml:47
-msgid "Add"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/profile-index.phtml:54
-msgid " doesn't have any "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/profile-index.phtml:56
-msgid " you can view"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/profile-view.phtml:30
+#: C:\code\pi\usr\module\user/template/front/profile-index.phtml:42
 #, php-format
 msgid "Add %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/profile-view.phtml:35
-#, php-format
-msgid "%s does not have any %s"
+#: C:\code\pi\usr\module\user/template/front/profile-view.phtml:33
+msgid "does not have any"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-activate.phtml:1
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:2
 msgid "Activate account"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-activate.phtml:4
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:6
 msgid "Your account has been activated."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-activate.phtml:6
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:8
 msgid "Login right now."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-activate.phtml:10
-msgid "Sorry, the link has expired."
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:12
+msgid "Sorry, account activation is failed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-display.phtml:5
-msgid ""
-"A link for activation has been sent to you. Please check it in 24 hours."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/register-display.phtml:9
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:14
 msgid "Resend activation email."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:4
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:17
-msgid "Register sitename"
+#: C:\code\pi\usr\module\user/template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:11
-msgid "Input invalid"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:1
+msgid "Account registration"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:20
-msgid "An activation link has been sent to your email"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:21
+#, php-format
+msgid ""
+"Your account has been registered successfully. Please <a href=\"%s\">login</"
+"a> with your account."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:21
-msgid "Please check it to finish registration in 24 hours"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:30
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:46
+msgid "Registration was not completed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:24
-msgid "Get no email"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:40
+msgid ""
+"You account has been registered successfully. However it needs to be "
+"approved by our admins before you can use it."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:26
-msgid "Wait a few minutes"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:55
+msgid "An email with activation link has been sent to your."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:27
-msgid "Check your email rubbish"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:56
+msgid "Please check it to finish the registration."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:28
-msgid "Resend a email"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:59
+msgid "If you do not receive the activation email:"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/register-index.phtml:63
-msgid "Alreaday sent"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:61
+msgid "Wait a few minutes and check again."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:20
-msgid "Born at"
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:62
+msgid "Check your email spam box."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:27
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:63
+msgid "Request to resend activation email"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:98
+msgid "Already sent"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
+msgid "Resend activation email"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:7
 msgid "Switch to view of others"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:38
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:11
 msgid "Quicklinks"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:43
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:17
 msgid "Setting"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:59
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:42
 msgid "Back to view of own"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:65
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:46
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:51
 msgid "Send message"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-media.phtml:145
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:72
+msgid "Birthdate:"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:156
 msgid "More"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-side-nav.phtml:6
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:10
 msgid "View my profile"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\user/template/front/_user-side-nav.phtml:23
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
 msgid "Avatar"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\user/template/front/_user-side-nav.phtml:26
-msgid "Edit profile"
 msgstr ""
 
 #, fuzzy
@@ -814,15 +993,7 @@ msgstr ""
 #~ msgstr "Application Execution Time"
 
 #, fuzzy
-#~ msgid "Activation time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
 #~ msgid "Disabled time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Deleted time"
 #~ msgstr "Application Execution Time"
 
 #, fuzzy

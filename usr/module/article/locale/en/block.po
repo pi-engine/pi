@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2013-11-10 13:50+0800\n"
-"PO-Revision-Date: 2013-11-10 13:51+0800\n"
+"POT-Creation-Date: 2014-02-10 19:40+0800\n"
+"PO-Revision-Date: 2014-02-10 19:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,36 +11,37 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\article\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: C:\wamp\www\master\usr\module\article/src/Block/Block.php:523
+#: c:\code\pi\usr\module\article/src/Block/Block.php:583
 msgid "This is default recommended image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Block/Block.php:524
+#: c:\code\pi\usr\module\article/src/Block/Block.php:584
 msgid "You should to add your own images and its title and description!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/block/simple-search.phtml:11
+#: c:\code\pi\usr\module\article/template/block/simple-search.phtml:11
 msgid "Keyword"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/block/simple-search.phtml:12
+#: c:\code\pi\usr\module\article/template/block/simple-search.phtml:13
 msgid "Search"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/block/submitter-statistics.phtml:19
+#: c:\code\pi\usr\module\article/template/block/submitter-statistics.phtml:17
 msgid "Today"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/block/submitter-statistics.phtml:20
+#: c:\code\pi\usr\module\article/template/block/submitter-statistics.phtml:18
 msgid "7 days"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/block/submitter-statistics.phtml:21
+#: c:\code\pi\usr\module\article/template/block/submitter-statistics.phtml:19
 msgid "30 days"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/block/submitter-statistics.phtml:22
+#: c:\code\pi\usr\module\article/template/block/submitter-statistics.phtml:20
+#, fuzzy
 msgid "All"
-msgstr ""
+msgstr "All Categories"

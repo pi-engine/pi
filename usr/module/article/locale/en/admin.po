@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2013-11-10 13:50+0800\n"
-"PO-Revision-Date: 2013-11-10 13:50+0800\n"
+"POT-Creation-Date: 2014-02-10 19:40+0800\n"
+"PO-Revision-Date: 2014-02-10 19:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -11,1935 +11,1967 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\article\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:17
+#: c:\code\pi\usr\module\article/config/block.php:17
 msgid "All Categories"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:18
+#: c:\code\pi\usr\module\article/config/block.php:18
 msgid "Listing the parent category and its children"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:23
+#: c:\code\pi\usr\module\article/config/block.php:23
 msgid "Top-Category Count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:24
+#: c:\code\pi\usr\module\article/config/block.php:24
 msgid "The max top category count want to display"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:30
+#: c:\code\pi\usr\module\article/config/block.php:30
 msgid "Sub-Category Count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:31
+#: c:\code\pi\usr\module\article/config/block.php:31
 msgid "The max child category count want to display"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:37
+#: c:\code\pi\usr\module\article/config/block.php:37
 msgid "Default Category Name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:38
+#: c:\code\pi\usr\module\article/config/block.php:38
 msgid "Default category name when there is no category acquired"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:41
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:146
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:33
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:153
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:168
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:179
+#: c:\code\pi\usr\module\article/config/block.php:41
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:147
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "无"
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:44
-#: C:\wamp\www\master\usr\module\article/config/block.php:81
-#: C:\wamp\www\master\usr\module\article/config/block.php:177
-#: C:\wamp\www\master\usr\module\article/config/block.php:254
-#: C:\wamp\www\master\usr\module\article/config/block.php:335
-#: C:\wamp\www\master\usr\module\article/config/block.php:396
-#: C:\wamp\www\master\usr\module\article/config/block.php:495
+#: c:\code\pi\usr\module\article/config/block.php:44
+#: c:\code\pi\usr\module\article/config/block.php:75
+#: c:\code\pi\usr\module\article/config/block.php:112
+#: c:\code\pi\usr\module\article/config/block.php:204
+#: c:\code\pi\usr\module\article/config/block.php:302
+#: c:\code\pi\usr\module\article/config/block.php:386
+#: c:\code\pi\usr\module\article/config/block.php:454
+#: c:\code\pi\usr\module\article/config/block.php:556
 msgid "Target"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:45
-#: C:\wamp\www\master\usr\module\article/config/block.php:82
-#: C:\wamp\www\master\usr\module\article/config/block.php:178
-#: C:\wamp\www\master\usr\module\article/config/block.php:255
-#: C:\wamp\www\master\usr\module\article/config/block.php:336
-#: C:\wamp\www\master\usr\module\article/config/block.php:397
-#: C:\wamp\www\master\usr\module\article/config/block.php:496
+#: c:\code\pi\usr\module\article/config/block.php:45
+#: c:\code\pi\usr\module\article/config/block.php:76
+#: c:\code\pi\usr\module\article/config/block.php:113
+#: c:\code\pi\usr\module\article/config/block.php:205
+#: c:\code\pi\usr\module\article/config/block.php:303
+#: c:\code\pi\usr\module\article/config/block.php:387
+#: c:\code\pi\usr\module\article/config/block.php:455
+#: c:\code\pi\usr\module\article/config/block.php:557
 msgid "Open url in which window"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:63
+#: c:\code\pi\usr\module\article/config/block.php:63
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:239
+#, fuzzy
+msgid "Category List"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/block.php:64
+msgid "Listing all category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:69
+#: c:\code\pi\usr\module\article/config/block.php:100
+#: c:\code\pi\usr\module\article/config/block.php:137
+#: c:\code\pi\usr\module\article/config/block.php:432
+#: c:\code\pi\usr\module\article/config/block.php:447
+#: c:\code\pi\usr\module\article/config/block.php:500
+msgid "List Count"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:70
+#: c:\code\pi\usr\module\article/config/block.php:101
+msgid "The max categories to display"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:94
 #, fuzzy
 msgid "Hot Categories"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:64
+#: c:\code\pi\usr\module\article/config/block.php:95
 msgid "Listing hot categories according to their articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:69
-#: C:\wamp\www\master\usr\module\article/config/block.php:106
-#: C:\wamp\www\master\usr\module\article/config/block.php:374
-#: C:\wamp\www\master\usr\module\article/config/block.php:389
-#: C:\wamp\www\master\usr\module\article/config/block.php:435
-msgid "List Count"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:70
-msgid "The max categories to display"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:75
-#: C:\wamp\www\master\usr\module\article/config/block.php:453
+#: c:\code\pi\usr\module\article/config/block.php:106
+#: c:\code\pi\usr\module\article/config/block.php:518
 msgid "Day Range"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:76
-#: C:\wamp\www\master\usr\module\article/config/block.php:454
+#: c:\code\pi\usr\module\article/config/block.php:107
+#: c:\code\pi\usr\module\article/config/block.php:519
 msgid "Day range"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:100
+#: c:\code\pi\usr\module\article/config/block.php:131
 #, fuzzy
 msgid "Newest Published Articles"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:101
+#: c:\code\pi\usr\module\article/config/block.php:132
 msgid "Listing the newest published articles of topic or non-topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:107
-#: C:\wamp\www\master\usr\module\article/config/block.php:375
-#: C:\wamp\www\master\usr\module\article/config/block.php:390
-#: C:\wamp\www\master\usr\module\article/config/block.php:436
+#: c:\code\pi\usr\module\article/config/block.php:138
+#: c:\code\pi\usr\module\article/config/block.php:433
+#: c:\code\pi\usr\module\article/config/block.php:448
+#: c:\code\pi\usr\module\article/config/block.php:501
 msgid "The max articles to display"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:113
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:72
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:20
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:62
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:75
+#: c:\code\pi\usr\module\article/config/block.php:144
+#: c:\code\pi\usr\module\article/config/config.php:148
+#: c:\code\pi\usr\module\article/config/navigation.php:215
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:79
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:22
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:67
 msgid "Category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:114
+#: c:\code\pi\usr\module\article/config/block.php:145
 msgid "Which category article want to list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:122
-#: C:\wamp\www\master\usr\module\article/config/block.php:442
+#: c:\code\pi\usr\module\article/config/block.php:153
+#: c:\code\pi\usr\module\article/config/block.php:507
 msgid "Is Topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:123
-#: C:\wamp\www\master\usr\module\article/config/block.php:443
+#: c:\code\pi\usr\module\article/config/block.php:154
+#: c:\code\pi\usr\module\article/config/block.php:508
 msgid "Whether to list topic articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:133
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:54
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:116
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:76
+#: c:\code\pi\usr\module\article/config/block.php:164
+#: c:\code\pi\usr\module\article/config/navigation.php:139
+#: c:\code\pi\usr\module\article/config/navigation.php:333
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:80
 msgid "Topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:134
+#: c:\code\pi\usr\module\article/config/block.php:165
 msgid "Which topic article want to list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:142
-#: C:\wamp\www\master\usr\module\article/config/block.php:300
-#: C:\wamp\www\master\usr\module\article/config/block.php:460
+#: c:\code\pi\usr\module\article/config/block.php:173
+#: c:\code\pi\usr\module\article/config/block.php:355
+#: c:\code\pi\usr\module\article/config/block.php:525
 msgid "List Column Number"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:143
-#: C:\wamp\www\master\usr\module\article/config/block.php:301
-#: C:\wamp\www\master\usr\module\article/config/block.php:461
+#: c:\code\pi\usr\module\article/config/block.php:174
+#: c:\code\pi\usr\module\article/config/block.php:356
+#: c:\code\pi\usr\module\article/config/block.php:526
 msgid "Whether to display only one column or two columns"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:148
-#: C:\wamp\www\master\usr\module\article/config/block.php:306
-#: C:\wamp\www\master\usr\module\article/config/block.php:466
+#: c:\code\pi\usr\module\article/config/block.php:179
+#: c:\code\pi\usr\module\article/config/block.php:361
+#: c:\code\pi\usr\module\article/config/block.php:531
 msgid "Single column"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:149
-#: C:\wamp\www\master\usr\module\article/config/block.php:307
-#: C:\wamp\www\master\usr\module\article/config/block.php:467
+#: c:\code\pi\usr\module\article/config/block.php:180
+#: c:\code\pi\usr\module\article/config/block.php:362
+#: c:\code\pi\usr\module\article/config/block.php:532
 msgid "Double columns"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:157
-#: C:\wamp\www\master\usr\module\article/config/block.php:224
-#: C:\wamp\www\master\usr\module\article/config/block.php:315
-#: C:\wamp\www\master\usr\module\article/config/block.php:475
-msgid "Template Style"
+#: c:\code\pi\usr\module\article/config/block.php:188
+#: c:\code\pi\usr\module\article/config/block.php:258
+#: c:\code\pi\usr\module\article/config/block.php:370
+#: c:\code\pi\usr\module\article/config/block.php:540
+#, fuzzy
+msgid "Element to Display"
+msgstr "主题更新失败。"
+
+#: c:\code\pi\usr\module\article/config/block.php:189
+#: c:\code\pi\usr\module\article/config/block.php:259
+#: c:\code\pi\usr\module\article/config/block.php:371
+#: c:\code\pi\usr\module\article/config/block.php:541
+msgid "The article element to display"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:158
-#: C:\wamp\www\master\usr\module\article/config/block.php:225
-#: C:\wamp\www\master\usr\module\article/config/block.php:316
-#: C:\wamp\www\master\usr\module\article/config/block.php:476
-msgid "The template style of list"
+#: c:\code\pi\usr\module\article/config/block.php:194
+#: c:\code\pi\usr\module\article/config/block.php:264
+#: c:\code\pi\usr\module\article/config/block.php:376
+#: c:\code\pi\usr\module\article/config/block.php:546
+#, fuzzy
+msgid "Time publish"
+msgstr "Application Execution Time"
+
+#: c:\code\pi\usr\module\article/config/block.php:195
+#: c:\code\pi\usr\module\article/config/block.php:265
+#: c:\code\pi\usr\module\article/config/block.php:377
+#: c:\code\pi\usr\module\article/config/block.php:547
+#: c:\code\pi\usr\module\article/config/config.php:145
+msgid "Summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:163
-#: C:\wamp\www\master\usr\module\article/config/block.php:321
-#: C:\wamp\www\master\usr\module\article/config/block.php:481
-msgid "basic"
+#: c:\code\pi\usr\module\article/config/block.php:196
+#: c:\code\pi\usr\module\article/config/block.php:266
+#: c:\code\pi\usr\module\article/config/block.php:378
+#: c:\code\pi\usr\module\article/config/block.php:548
+#: c:\code\pi\usr\module\article/config/config.php:144
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:54
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:106
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:92
+msgid "Feature image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:164
-#: C:\wamp\www\master\usr\module\article/config/block.php:231
-#: C:\wamp\www\master\usr\module\article/config/block.php:322
-#: C:\wamp\www\master\usr\module\article/config/block.php:482
-msgid "Common"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:165
-#: C:\wamp\www\master\usr\module\article/config/block.php:232
-#: C:\wamp\www\master\usr\module\article/config/block.php:323
-#: C:\wamp\www\master\usr\module\article/config/block.php:483
-msgid "With summary"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:166
-#: C:\wamp\www\master\usr\module\article/config/block.php:324
-#: C:\wamp\www\master\usr\module\article/config/block.php:484
-msgid "With feature"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:167
-#: C:\wamp\www\master\usr\module\article/config/block.php:325
-#: C:\wamp\www\master\usr\module\article/config/block.php:485
-msgid "All with feature"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:168
-#: C:\wamp\www\master\usr\module\article/config/block.php:326
-#: C:\wamp\www\master\usr\module\article/config/block.php:486
-msgid "All with summary"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:169
-#: C:\wamp\www\master\usr\module\article/config/block.php:327
-#: C:\wamp\www\master\usr\module\article/config/block.php:487
-msgid "With rank number"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:194
-#: C:\wamp\www\master\usr\module\article/config/block.php:271
-#: C:\wamp\www\master\usr\module\article/config/block.php:352
-#: C:\wamp\www\master\usr\module\article/config/block.php:512
+#: c:\code\pi\usr\module\article/config/block.php:221
+#: c:\code\pi\usr\module\article/config/block.php:319
+#: c:\code\pi\usr\module\article/config/block.php:403
+#: c:\code\pi\usr\module\article/config/block.php:573
 msgid "Subject length"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:195
-#: C:\wamp\www\master\usr\module\article/config/block.php:272
-#: C:\wamp\www\master\usr\module\article/config/block.php:353
-#: C:\wamp\www\master\usr\module\article/config/block.php:513
+#: c:\code\pi\usr\module\article/config/block.php:222
+#: c:\code\pi\usr\module\article/config/block.php:320
+#: c:\code\pi\usr\module\article/config/block.php:404
+#: c:\code\pi\usr\module\article/config/block.php:574
 msgid "Maximum length of subject"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:201
-#: C:\wamp\www\master\usr\module\article/config/block.php:278
-#: C:\wamp\www\master\usr\module\article/config/block.php:359
-#: C:\wamp\www\master\usr\module\article/config/block.php:519
+#: c:\code\pi\usr\module\article/config/block.php:228
+#: c:\code\pi\usr\module\article/config/block.php:326
+#: c:\code\pi\usr\module\article/config/block.php:410
+#: c:\code\pi\usr\module\article/config/block.php:580
 msgid "Summary length"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:202
-#: C:\wamp\www\master\usr\module\article/config/block.php:279
-#: C:\wamp\www\master\usr\module\article/config/block.php:360
-#: C:\wamp\www\master\usr\module\article/config/block.php:520
+#: c:\code\pi\usr\module\article/config/block.php:229
+#: c:\code\pi\usr\module\article/config/block.php:327
+#: c:\code\pi\usr\module\article/config/block.php:411
+#: c:\code\pi\usr\module\article/config/block.php:581
 msgid "Maximum length of summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:210
+#: c:\code\pi\usr\module\article/config/block.php:235
+#: c:\code\pi\usr\module\article/config/block.php:333
+#: c:\code\pi\usr\module\article/config/block.php:417
+#: c:\code\pi\usr\module\article/config/block.php:485
+#: c:\code\pi\usr\module\article/config/block.php:587
+msgid "Description rows"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:236
+#: c:\code\pi\usr\module\article/config/block.php:334
+#: c:\code\pi\usr\module\article/config/block.php:418
+#: c:\code\pi\usr\module\article/config/block.php:486
+#: c:\code\pi\usr\module\article/config/block.php:588
+msgid "Maximum row count of description"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:244
 msgid "Recommended Articles With Slideshow"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:212
+#: c:\code\pi\usr\module\article/config/block.php:246
 msgid "Listing a slideshow and recommended articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:217
-#: C:\wamp\www\master\usr\module\article/config/block.php:293
+#: c:\code\pi\usr\module\article/config/block.php:251
+#: c:\code\pi\usr\module\article/config/block.php:348
 msgid "Article ID"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:218
-#: C:\wamp\www\master\usr\module\article/config/block.php:294
+#: c:\code\pi\usr\module\article/config/block.php:252
+#: c:\code\pi\usr\module\article/config/block.php:349
 msgid "Articles want to list"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:230
-msgid "Basic"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/block.php:240
+#: c:\code\pi\usr\module\article/config/block.php:274
 msgid "Image ID"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:241
+#: c:\code\pi\usr\module\article/config/block.php:275
+#, fuzzy
 msgid "Images to display"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:247
+#: c:\code\pi\usr\module\article/config/block.php:281
 msgid "Image Link"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:248
+#: c:\code\pi\usr\module\article/config/block.php:282
 msgid "URL to redirect when click image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:287
+#: c:\code\pi\usr\module\article/config/block.php:288
+msgid "Slide image width"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:289
+msgid "Maximum width of slide image"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:295
+msgid "Slide image height"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:296
+msgid "Maximum height of slide image"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:342
 msgid "Custom Article List"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:288
+#: c:\code\pi\usr\module\article/config/block.php:343
 msgid "Listing custom articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:368
+#: c:\code\pi\usr\module\article/config/block.php:426
 msgid "Submitter Statistics"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:369
+#: c:\code\pi\usr\module\article/config/block.php:427
 msgid "Listing the total article count of submitters"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:383
+#: c:\code\pi\usr\module\article/config/block.php:441
 msgid "Newest Topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:384
+#: c:\code\pi\usr\module\article/config/block.php:442
 msgid "Listing the newest topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:413
+#: c:\code\pi\usr\module\article/config/block.php:471
 msgid "Title length"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:414
+#: c:\code\pi\usr\module\article/config/block.php:472
 msgid "Maximum length of title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:420
+#: c:\code\pi\usr\module\article/config/block.php:478
 msgid "Description length"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:421
+#: c:\code\pi\usr\module\article/config/block.php:479
 msgid "Maximum length of description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:429
+#: c:\code\pi\usr\module\article/config/block.php:494
 msgid "Hot Articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:430
+#: c:\code\pi\usr\module\article/config/block.php:495
 msgid "Listing the hotest articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:528
+#: c:\code\pi\usr\module\article/config/block.php:596
 msgid "Simple Search"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/block.php:530
+#: c:\code\pi\usr\module\article/config/block.php:598
 msgid "Search form for searching articles by article title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/comment.php:18
+#: c:\code\pi\usr\module\article/config/comment.php:18
 msgid "Article comments"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:19
+#: c:\code\pi\usr\module\article/config/config.php:19
 msgid "General"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:23
+#: c:\code\pi\usr\module\article/config/config.php:23
 msgid "Autosave"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:27
+#: c:\code\pi\usr\module\article/config/config.php:27
 msgid "SEO"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:31
+#: c:\code\pi\usr\module\article/config/config.php:31
 msgid "Summary and subject"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:35
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:63
+#: c:\code\pi\usr\module\article/config/config.php:35
+#: c:\code\pi\usr\module\article/config/navigation.php:184
 msgid "Media"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:43
+#: c:\code\pi\usr\module\article/config/config.php:43
 msgid "Article List Page Limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:44
+#: c:\code\pi\usr\module\article/config/config.php:44
 msgid "Maximum count of articles in a front page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:50
+#: c:\code\pi\usr\module\article/config/config.php:50
 msgid "Topic Article List Page Limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:51
+#: c:\code\pi\usr\module\article/config/config.php:51
 msgid "Maximum count of topic articles in a front page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:57
+#: c:\code\pi\usr\module\article/config/config.php:57
 msgid "Article Management Page Limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:58
+#: c:\code\pi\usr\module\article/config/config.php:58
 msgid "Maximum count of articles in a management page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:64
+#: c:\code\pi\usr\module\article/config/config.php:64
 msgid "Author Limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:65
+#: c:\code\pi\usr\module\article/config/config.php:65
 msgid "Maximum count of author in management page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:71
+#: c:\code\pi\usr\module\article/config/config.php:71
 msgid "Category Limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:72
+#: c:\code\pi\usr\module\article/config/config.php:72
 msgid "Maximum count of category in management page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:78
+#: c:\code\pi\usr\module\article/config/config.php:78
 msgid "Enable Tag"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:79
+#: c:\code\pi\usr\module\article/config/config.php:79
 msgid "Enable tag (Tag module must be installed)"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:86
+#: c:\code\pi\usr\module\article/config/config.php:86
 msgid "Default Source"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:87
+#: c:\code\pi\usr\module\article/config/config.php:87
 msgid "Display when no source is provided."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:92
+#: c:\code\pi\usr\module\article/config/config.php:92
 #, fuzzy
 msgid "Default Category"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:93
+#: c:\code\pi\usr\module\article/config/config.php:93
 msgid "Can not be deleted."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:100
+#: c:\code\pi\usr\module\article/config/config.php:100
 msgid "Max Related Articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:101
+#: c:\code\pi\usr\module\article/config/config.php:101
 msgid "Maximum related articles to fetch."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:107
+#: c:\code\pi\usr\module\article/config/config.php:107
 #, fuzzy
 msgid "Markup Language"
 msgstr "语言选择"
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:108
+#: c:\code\pi\usr\module\article/config/config.php:108
 msgid "Default markup language for editing draft."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:109
+#: c:\code\pi\usr\module\article/config/config.php:109
 msgid "html"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:114
+#: c:\code\pi\usr\module\article/config/config.php:114
 msgid "HTML"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:115
+#: c:\code\pi\usr\module\article/config/config.php:115
 msgid "Compound"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:116
+#: c:\code\pi\usr\module\article/config/config.php:116
 msgid "Markdown"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:117
+#: c:\code\pi\usr\module\article/config/config.php:117
 msgid "Textarea"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:125
+#: c:\code\pi\usr\module\article/config/config.php:125
 msgid "Default Topic Template Screenshot"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:131
+#: c:\code\pi\usr\module\article/config/config.php:131
 msgid "Max Sub-category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:132
+#: c:\code\pi\usr\module\article/config/config.php:132
 msgid "Max sub-category number in category article list page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:139
+#: c:\code\pi\usr\module\article/config/config.php:137
+msgid "Items of List Page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:138
+msgid "Items to display in list page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:146
+#, fuzzy
+msgid "Created time"
+msgstr "Application Execution Time"
+
+#: c:\code\pi\usr\module\article/config/config.php:147
+#: c:\code\pi\usr\module\article/config/navigation.php:260
+msgid "Author"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:156
+#: c:\code\pi\usr\module\article/config/config.php:204
+msgid "Max Summary Length"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:157
+msgid "Max summary length to display in list page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:162
+msgid "Enable List Nav"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:163
+msgid "Whether to enable category nav in list page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:170
+#, fuzzy
+msgid "Default Homepage"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/config.php:171
+msgid "Use relative url, leave it empty if you want to dress up yourselves"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:177
+msgid "Enable Front-end Management"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:178
+msgid "Whether to allow user compose and manage list in front-end"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:187
 msgid "Interval"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:140
+#: c:\code\pi\usr\module\article/config/config.php:188
 msgid ""
 "How many minutes to save draft once again, there will not autosave if it set "
 "to 0."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:148
+#: c:\code\pi\usr\module\article/config/config.php:196
 msgid "Enable Summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:149
+#: c:\code\pi\usr\module\article/config/config.php:197
 msgid "Enable summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:156
-msgid "Max Summary Length"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/config.php:157
-#: C:\wamp\www\master\usr\module\article/config/config.php:164
-#: C:\wamp\www\master\usr\module\article/config/config.php:171
+#: c:\code\pi\usr\module\article/config/config.php:205
+#: c:\code\pi\usr\module\article/config/config.php:212
+#: c:\code\pi\usr\module\article/config/config.php:219
 msgid "Not more than 255"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:163
+#: c:\code\pi\usr\module\article/config/config.php:211
 msgid "Max Subject Length"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:170
+#: c:\code\pi\usr\module\article/config/config.php:218
 msgid "Max Subtitle Length"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:179
+#: c:\code\pi\usr\module\article/config/config.php:227
 msgid "Media Path"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:180
+#: c:\code\pi\usr\module\article/config/config.php:228
 msgid "Path to save media file."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:185
+#: c:\code\pi\usr\module\article/config/config.php:233
 msgid "Media Extension"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:186
+#: c:\code\pi\usr\module\article/config/config.php:234
 msgid "Media types which can be uploaded."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:191
+#: c:\code\pi\usr\module\article/config/config.php:239
 msgid "Image Format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:192
+#: c:\code\pi\usr\module\article/config/config.php:240
 msgid "Decide which extension belong to image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:197
+#: c:\code\pi\usr\module\article/config/config.php:245
 msgid "Documentation Format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:198
+#: c:\code\pi\usr\module\article/config/config.php:246
 msgid "Decide which extension belong to doc"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:203
-msgid "Vedio Format"
+#: c:\code\pi\usr\module\article/config/config.php:251
+msgid "Video Format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:204
-msgid "Decide which extension belong to vedio"
+#: c:\code\pi\usr\module\article/config/config.php:252
+msgid "Decide which extension belong to video"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:209
+#: c:\code\pi\usr\module\article/config/config.php:257
 msgid "Compression Format"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:210
+#: c:\code\pi\usr\module\article/config/config.php:258
 msgid "Decide which extension belong to compression"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:215
+#: c:\code\pi\usr\module\article/config/config.php:263
 msgid "Max Media Size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:216
-msgid "Max media size"
+#: c:\code\pi\usr\module\article/config/config.php:264
+msgid "Max media size, unit is Byte"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:221
+#: c:\code\pi\usr\module\article/config/config.php:270
 msgid "Default Media Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:222
+#: c:\code\pi\usr\module\article/config/config.php:271
 msgid "Path to default media image of article."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:227
+#: c:\code\pi\usr\module\article/config/config.php:276
 msgid "Default media thumb"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:228
+#: c:\code\pi\usr\module\article/config/config.php:277
 msgid "Path to default media thumb of article."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:233
+#: c:\code\pi\usr\module\article/config/config.php:282
 msgid "Image Width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:234
+#: c:\code\pi\usr\module\article/config/config.php:283
 msgid "Max allowed image width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:239
+#: c:\code\pi\usr\module\article/config/config.php:288
 msgid "Image Height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:240
+#: c:\code\pi\usr\module\article/config/config.php:289
 msgid "Max allowed image height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:245
+#: c:\code\pi\usr\module\article/config/config.php:294
 msgid "Image Extension"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:246
+#: c:\code\pi\usr\module\article/config/config.php:295
 msgid "Images types which can be uploaded."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:251
+#: c:\code\pi\usr\module\article/config/config.php:300
 msgid "Max Image Size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:252
-msgid "Max image size allowed"
+#: c:\code\pi\usr\module\article/config/config.php:301
+msgid "Max image size allowed, unit is Byte"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:257
+#: c:\code\pi\usr\module\article/config/config.php:307
 msgid "Author Path"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:258
+#: c:\code\pi\usr\module\article/config/config.php:308
 msgid "Path to upload photo of author."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:263
+#: c:\code\pi\usr\module\article/config/config.php:313
 msgid "Category Path"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:264
+#: c:\code\pi\usr\module\article/config/config.php:314
 msgid "Path to upload image of category."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:269
+#: c:\code\pi\usr\module\article/config/config.php:319
 msgid "Feature Path"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:270
+#: c:\code\pi\usr\module\article/config/config.php:320
 msgid "Path to upload feature image of article."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:275
+#: c:\code\pi\usr\module\article/config/config.php:325
 msgid "Topic Path"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:276
+#: c:\code\pi\usr\module\article/config/config.php:326
 msgid "Path to upload image of topic."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:281
+#: c:\code\pi\usr\module\article/config/config.php:331
 msgid "Pattern"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:282
+#: c:\code\pi\usr\module\article/config/config.php:332
 msgid "Use datetime as pattern of sub directory."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:283
-msgid "Y/m/d"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/config.php:297
+#: c:\code\pi\usr\module\article/config/config.php:347
 msgid "Author Photo Size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:298
+#: c:\code\pi\usr\module\article/config/config.php:348
 msgid "Author photo width and height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:304
+#: c:\code\pi\usr\module\article/config/config.php:354
 msgid "Default Author Photo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:305
+#: c:\code\pi\usr\module\article/config/config.php:355
 msgid "Path to default photo of author."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:310
+#: c:\code\pi\usr\module\article/config/config.php:360
 msgid "Category Image Width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:311
+#: c:\code\pi\usr\module\article/config/config.php:361
 msgid "Category image width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:317
+#: c:\code\pi\usr\module\article/config/config.php:367
 msgid "Category Image Height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:318
+#: c:\code\pi\usr\module\article/config/config.php:368
 msgid "Category image height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:324
+#: c:\code\pi\usr\module\article/config/config.php:374
 msgid "Default Category Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:325
+#: c:\code\pi\usr\module\article/config/config.php:375
 msgid "Path to default image of category."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:330
+#: c:\code\pi\usr\module\article/config/config.php:380
 msgid "Topic Image Width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:331
+#: c:\code\pi\usr\module\article/config/config.php:381
 msgid "Topic image width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:337
+#: c:\code\pi\usr\module\article/config/config.php:387
 msgid "Topic Image Height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:338
+#: c:\code\pi\usr\module\article/config/config.php:388
 msgid "Topic image height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:344
+#: c:\code\pi\usr\module\article/config/config.php:394
 msgid "Topic thumb width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:351
+#: c:\code\pi\usr\module\article/config/config.php:401
 msgid "Topic thumb height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:358
+#: c:\code\pi\usr\module\article/config/config.php:408
 msgid "Default topic thumb"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:359
+#: c:\code\pi\usr\module\article/config/config.php:409
 msgid "Path to default topic thumb."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:364
+#: c:\code\pi\usr\module\article/config/config.php:414
 msgid "Default Topic Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:365
+#: c:\code\pi\usr\module\article/config/config.php:415
 msgid "Path to default image of topic."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:370
+#: c:\code\pi\usr\module\article/config/config.php:420
 msgid "Feature Image Width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:371
+#: c:\code\pi\usr\module\article/config/config.php:421
 msgid "Feature image width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:377
+#: c:\code\pi\usr\module\article/config/config.php:427
 msgid "Feature Image Height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:378
+#: c:\code\pi\usr\module\article/config/config.php:428
 msgid "Feature image height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:384
+#: c:\code\pi\usr\module\article/config/config.php:434
 msgid "Default Feature Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:385
+#: c:\code\pi\usr\module\article/config/config.php:435
 msgid "Path to default feature image of article."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:390
+#: c:\code\pi\usr\module\article/config/config.php:440
 msgid "Feature thumb width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:397
+#: c:\code\pi\usr\module\article/config/config.php:447
 msgid "Feature thumb height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:404
+#: c:\code\pi\usr\module\article/config/config.php:454
 msgid "Default feature thumb"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:405
+#: c:\code\pi\usr\module\article/config/config.php:455
 msgid "Path to default feature thumb of article."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:410
+#: c:\code\pi\usr\module\article/config/config.php:460
 msgid "Content thumb width"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:417
+#: c:\code\pi\usr\module\article/config/config.php:467
 msgid "Content thumb height"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:426
+#: c:\code\pi\usr\module\article/config/config.php:476
 msgid "Keywords"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:427
+#: c:\code\pi\usr\module\article/config/config.php:477
 msgid "Setup head keywords."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:434
-#: C:\wamp\www\master\usr\module\article/config/config.php:451
+#: c:\code\pi\usr\module\article/config/config.php:484
+#: c:\code\pi\usr\module\article/config/config.php:501
 msgid "Site default"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:435
+#: c:\code\pi\usr\module\article/config/config.php:485
 msgid "Use tag"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:436
+#: c:\code\pi\usr\module\article/config/config.php:486
 msgid "Use category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:443
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:107
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:17
+#: c:\code\pi\usr\module\article/config/config.php:493
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:11
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:108
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:15
 msgid "Description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:444
+#: c:\code\pi\usr\module\article/config/config.php:494
 msgid "Setup head description."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/config.php:452
+#: c:\code\pi\usr\module\article/config/config.php:502
 msgid "Use summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/module.php:18
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:149
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:166
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:187
+#: c:\code\pi\usr\module\article/config/module.php:18
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:148
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:165
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:186
 msgid "Article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/module.php:19
+#: c:\code\pi\usr\module\article/config/module.php:19
 msgid "General module for content management."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:18
+#: c:\code\pi\usr\module\article/config/navigation.php:18
 msgid "Article site navigation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:26
+#: c:\code\pi\usr\module\article/config/navigation.php:26
 msgid "Homepage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:32
+#: c:\code\pi\usr\module\article/config/navigation.php:32
 msgid "My Draft"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:45
+#: c:\code\pi\usr\module\article/config/navigation.php:45
 #, fuzzy
 msgid "All Article"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:81
-msgid "Author"
+#: c:\code\pi\usr\module\article/config/navigation.php:58
+#: c:\code\pi\usr\module\article/config/navigation.php:98
+#: c:\code\pi\usr\module\article/template/front/article-nav.phtml:10
+msgid "Published"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:90
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:89
-msgid "Setup"
+#: c:\code\pi\usr\module\article/config/navigation.php:67
+#: c:\code\pi\usr\module\article/config/navigation.php:107
+#: c:\code\pi\usr\module\article/template/front/article-nav.phtml:15
+msgid "Pending"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:99
-msgid "Statistics"
+#: c:\code\pi\usr\module\article/config/navigation.php:79
+msgid "Compose"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:111
-#: C:\wamp\www\master\usr\module\article/config/page.php:18
-msgid "Article Homepage"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/config/navigation.php:122
+#: c:\code\pi\usr\module\article/config/navigation.php:88
+#: c:\code\pi\usr\module\article/config/navigation.php:339
 msgid "My Article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:24
+#: c:\code\pi\usr\module\article/config/navigation.php:117
+msgid "Rejected"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:127
+msgid "Draft"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:149
+#, fuzzy
+msgid "All topics"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:155
+#, fuzzy
+msgid "Add topic"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:161
+msgid "List topic articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:168
+#, fuzzy
+msgid "Pull topic articles"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:175
+msgid "Edit topic"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:194
+msgid "Media list"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:200
+#, fuzzy
+msgid "Upload Media"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:206
+#, fuzzy
+msgid "Edit Media"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:225
+#, fuzzy
+msgid "Category list"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:231
+#, fuzzy
+msgid "Add Category"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:237
+#, fuzzy
+msgid "Edit Category"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:244
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:253
+msgid "Merge Category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:251
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:341
+msgid "Move Category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:270
+msgid "Author list"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:276
+msgid "Add author"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:282
+msgid "Edit author"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:291
+msgid "Setup"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:301
+msgid "Custom form"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:307
+msgid "Preview form"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:316
+msgid "Statistics"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:328
+#: c:\code\pi\usr\module\article/config/page.php:18
+msgid "Article Homepage"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/page.php:24
 msgid "All Article List Page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:30
+#: c:\code\pi\usr\module\article/config/page.php:30
 msgid "Category Related Article List Page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:36
+#: c:\code\pi\usr\module\article/config/page.php:36
 msgid "Tag Related Article List Page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:42
+#: c:\code\pi\usr\module\article/config/page.php:42
 msgid "Article Detail Page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:48
+#: c:\code\pi\usr\module\article/config/page.php:48
 msgid "Search Result Page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:54
+#: c:\code\pi\usr\module\article/config/page.php:54
 msgid "Topic Homepage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/page.php:60
+#: c:\code\pi\usr\module\article/config/page.php:60
 msgid "Topic Article List Page"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:18
+#: c:\code\pi\usr\module\article/config/permission.php:18
 msgid "Article management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:22
+#: c:\code\pi\usr\module\article/config/permission.php:22
 msgid "Author management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:26
+#: c:\code\pi\usr\module\article/config/permission.php:26
 msgid "Category management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:30
+#: c:\code\pi\usr\module\article/config/permission.php:30
 msgid "Topic management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:34
+#: c:\code\pi\usr\module\article/config/permission.php:34
 msgid "Media management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:38
+#: c:\code\pi\usr\module\article/config/permission.php:38
 msgid "Statistics page view"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:42
+#: c:\code\pi\usr\module\article/config/permission.php:42
 msgid "Permission management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:46
+#: c:\code\pi\usr\module\article/config/permission.php:46
 msgid "Setup management"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:51
+#: c:\code\pi\usr\module\article/config/permission.php:51
 #, fuzzy
 msgid "Published Active/Deactivate"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:54
+#: c:\code\pi\usr\module\article/config/permission.php:54
 #, fuzzy
 msgid "Publish Edit"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:57
+#: c:\code\pi\usr\module\article/config/permission.php:57
 #, fuzzy
 msgid "Published Delete"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:60
+#: c:\code\pi\usr\module\article/config/permission.php:60
 msgid "Draft Compose"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:63
+#: c:\code\pi\usr\module\article/config/permission.php:63
 msgid "Rejected Edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:66
+#: c:\code\pi\usr\module\article/config/permission.php:66
 msgid "Rejected Delete"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:69
+#: c:\code\pi\usr\module\article/config/permission.php:69
 msgid "Pending Edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:72
+#: c:\code\pi\usr\module\article/config/permission.php:72
 msgid "Pending Delete"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/config/permission.php:75
+#: c:\code\pi\usr\module\article/config/permission.php:75
 msgid "Pending Approve"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/ArticleController.php:60
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/ArticleController.php:212
-msgid "Invalid article ID"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/ArticleController.php:238
-msgid "Can not create draft"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/ArticleController.php:413
-#: C:\wamp\www\master\usr\module\article/template/admin/article-nav.phtml:10
-msgid "Published"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:145
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:57
 msgid "Add author info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:158
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:206
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:199
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:466
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:514
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:71
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:124
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:84
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:198
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:386
 msgid "There are some error occured!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:168
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:209
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:476
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:963
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:378
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:590
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:525
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:81
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:93
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:207
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:177
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:396
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:452
 msgid "Can not save data!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:194
-msgid "Edit Author Info"
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:111
+msgid "Edit author info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:224
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:141
 msgid "Invalid author id"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:229
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:146
 msgid "The author is not exists"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:246
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:163
 msgid "Invalid author id!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:326
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:235
 msgid "Author List"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:350
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:548
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:407
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:615
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:944
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:735
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:259
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:415
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:136
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:609
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:107
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:433
 msgid "Invalid ID!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:357
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:266
 msgid "Invalid image fake ID!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:368
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:277
 msgid "Image is not exists!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:382
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:291
 msgid "Image width or height is needed"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:499
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/AuthorController.php:586
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:410
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:488
 msgid "Invalid fake ID!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:99
-msgid "Category is not exists."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:115
-msgid "Category cannot be moved to self or a child."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:185
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:70
 msgid "Add Category Info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:234
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:123
 msgid "Edit Category Info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:250
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:508
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:561
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:138
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:245
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:437
 msgid "Can not update data!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:273
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:352
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:159
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:227
 msgid "Invalid category ID!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:279
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:165
 msgid "Can not find category!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:302
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:186
 msgid "Root node cannot be deleted."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:311
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:192
 msgid "Cannot remove default category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:319
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:198
 msgid "Cannot remove category with children"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:329
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:206
 msgid "Cannot remove category in used"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:365
-#, fuzzy
-msgid "Category List"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:382
-msgid "Merge Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:393
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:265
 msgid "Can not merge category!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:406
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:497
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:277
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:365
 msgid "Category cannot be moved to self or a child!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:415
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:285
 msgid "Cannot merge default category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:426
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:295
 msgid "Move children error."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:473
-msgid "Move Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:484
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:353
 msgid "Can not move category!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:567
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:753
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:433
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:626
 msgid "Media is not exists!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:573
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:759
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:439
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:632
 msgid "Invalid file extension!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/CategoryController.php:582
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:768
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:448
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:641
 msgid "Can not create image file!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/DraftController.php:109
-msgid "Invalid source"
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:601
+msgid "Category is not exists."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/DraftController.php:133
-msgid "Draft"
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:614
+msgid "Category cannot be moved to self or a child."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/DraftController.php:137
-#: C:\wamp\www\master\usr\module\article/template/admin/article-nav.phtml:15
-msgid "Pending"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/DraftController.php:141
-msgid "Rejected"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:279
-msgid "Raw image width and height data is needed!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:285
-msgid "The limitation data is needed!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:387
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:116
 #, fuzzy
 msgid "All Media"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:424
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:153
 msgid "This page have not been considered yet!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:431
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:160
 msgid "Media Detail"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:451
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:183
 msgid "Add Media"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:491
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:227
 msgid "Edit Media Info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:519
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:777
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:256
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:270
 msgid "Invalid media ID!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:525
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:262
 msgid "Can not find media!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:551
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:286
 msgid "Invalid media ID"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:564
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:297
 msgid "The following medias is in used, and can not be delete: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:792
-msgid "Can not find file!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/MediaController.php:972
-msgid "Media data saved successful!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:324
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:123
 msgid "Form Configuration"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:346
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:144
 msgid "Items marked red is required!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:385
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:183
 msgid "Data saved successful!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:402
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:710
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:203
 msgid "Success!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:402
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:203
 msgid "Can not save file!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:418
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:219
 msgid "Invalid mode!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:581
-msgid "Validation failed!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:611
-msgid "Successful!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:655
-msgid "Route resource class is not exists!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:661
-msgid "Update method is not exists!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:679
-msgid "Config file is not exists!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:690
-msgid "Route class is not exists!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/SetupController.php:710
-msgid "Setup failed!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/StatisticsController.php:51
+#: c:\code\pi\usr\module\article/src/Controller/Admin/StatsController.php:51
 msgid "Statistic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:286
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:575
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:599
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:699
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:156
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:451
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:475
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:573
 msgid "Invalid topic ID!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:385
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:256
 #, fuzzy
 msgid "All Articles"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:413
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:283
 msgid "Target topic is needed!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:419
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:287
 msgid "No articles are selected, please try again!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:497
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:369
 msgid "Add Topic Info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:543
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:418
 msgid "Edit Topic Info"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:581
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:457
 msgid "Can not find topic!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:680
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:554
 msgid "Topic List"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:949
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:801
 msgid "Success"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Admin/TopicController.php:969
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:820
 msgid "Invalid template name!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Installer/Action/Install.php:102
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:60
+msgid "Raw image width and height data is needed!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:66
+msgid "The limitation data is needed!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:285
+msgid "Can not find file!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:461
+msgid "Media data saved successful!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:101
 msgid "Root"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Installer/Action/Install.php:103
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:102
 msgid "Module root category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Installer/Action/Install.php:110
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:109
 msgid "Default"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Installer/Action/Install.php:111
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:110
 msgid "The default category can not be delete, but can be modified!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/article-nav.phtml:28
-msgid "Compose"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:11
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:38
-msgid "Approve"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:19
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:61
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:13
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:35
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:46
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:73
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:103
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:30
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:74
-msgid "Title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:21
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:63
-msgid "Tag"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:22
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:64
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:109
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:131
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:77
-msgid "Submitter"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:23
-msgid "Last update"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:34
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:85
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:47
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:59
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list-normal.phtml:29
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:134
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:52
-msgid "Edit"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-pending.phtml:47
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:100
-msgid "No tags"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:45
-msgid "Bulk operation"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:15
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:93
-msgid "Activate"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:16
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:90
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:58
-msgid "Deactivate"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:17
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:87
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:51
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:61
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list-normal.phtml:4
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:47
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:84
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:136
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:22
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:69
-msgid "Delete"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:20
-#, fuzzy
-msgid "All articles"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:21
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:82
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:51
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:40
-msgid "Deactive"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:22
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:64
-msgid "Active"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:25
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:19
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:37
-#, fuzzy
-msgid "All categories"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:47
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:51
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:73
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:94
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:148
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:165
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:60
-msgid "Subject"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:51
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:17
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:36
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:77
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:64
-msgid "Search"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:65
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:52
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:74
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:95
-msgid "View"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:66
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:33
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:78
-#, fuzzy
-msgid "Publish date"
-msgstr "Application Execution Time"
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:83
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:55
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:102
-msgid "Feature image"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:166
-msgid "Are you sure delete selected article?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/article-published.phtml:199
-msgid "Are you sure delete this article?"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:42
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:57
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:146
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:151
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:234
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:266
-#: C:\wamp\www\master\usr\module\article/template/admin/category-edit.phtml:26
-#: C:\wamp\www\master\usr\module\article/template/admin/media-edit.phtml:62
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:26
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:111
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:38
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:30
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:33
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:141
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:146
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:229
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:261
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:24
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:52
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:28
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:117
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:26
 msgid "Upload"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:51
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:44
 msgid "Modify Photo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:59
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:115
-msgid "Format supported: "
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:52
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:121
+#, php-format
+msgid "Format supported: %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:66
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:59
 msgid "Please make sure your photo is clearly."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:71
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:64
 msgid "Size: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:77
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:73
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:70
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:77
 msgid "Cancel"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:78
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:74
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:71
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:78
+#, fuzzy
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:135
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:130
 msgid "In process ..."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-edit.phtml:150
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:145
 msgid "Error occured, please try again!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:7
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:7
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:58
-msgid "Add"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:25
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:186
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:9
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:19
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:185
 msgid "Name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:24
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:12
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:39
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:79
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:69
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:57
+msgid "Search"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:18
 msgid "Photo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/author-list.phtml:26
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:20
 msgid "Biography"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/category-edit.phtml:167
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:219
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:41
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:58
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:29
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:135
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:50
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:38
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:94
+msgid "Edit"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:45
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:60
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:4
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:43
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:85
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:137
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:67
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:17
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:96
+msgid "Delete"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:165
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:215
 msgid "Error ocurred when request saving image!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:12
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:45
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:102
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:13
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:230
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:9
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:47
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:103
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:11
 msgid "Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:62
-msgid "Merge"
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:231
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:10
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:37
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:74
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:104
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:29
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:12
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:78
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:21
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:66
+msgid "Title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/category-list.phtml:63
-msgid "Move"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/category-merge.phtml:15
-#: C:\wamp\www\master\usr\module\article/template/admin/category-move.phtml:16
-msgid "Move all articles from source category to target category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/category-merge.phtml:21
-#: C:\wamp\www\master\usr\module\article/template/admin/category-move.phtml:22
-msgid "Source Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/category-merge.phtml:34
-msgid "merge into"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/category-merge.phtml:38
-#: C:\wamp\www\master\usr\module\article/template/admin/category-move.phtml:39
-msgid "Target Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/category-move.phtml:35
-msgid "move into"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/media-edit.phtml:12
-msgid "Media must be uploaded!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/media-edit.phtml:58
-#: C:\wamp\www\master\usr\module\article/template/admin/media-edit.phtml:156
-msgid "No item!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:5
-msgid "Choose Image"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:12
-msgid "Upload Image"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:16
-msgid "Choose From Media"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:47
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:106
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:232
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:49
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:107
 msgid "Size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:233
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:50
 msgid "Select"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:57
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:57
+msgid "Add"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:61
+msgid "Merge"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:62
+msgid "Move"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:13
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:14
+msgid "Move all articles from source category to target category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:19
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:20
+msgid "Source Category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:32
+msgid "merge into"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:36
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:37
+msgid "Target Category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:33
+msgid "move into"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:12
+msgid "Media must be uploaded!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:146
+#, fuzzy
+msgid "No item!"
+msgstr "无缓存"
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:7
+msgid "Choose Image"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:14
+msgid "Upload Image"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:18
+msgid "Choose From Media"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:59
 msgid "Prev"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:60
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:64
 msgid "Next"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:86
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:92
 msgid "Insert"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-image-box.phtml:96
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:102
 msgid "Image choosed: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list-normal.phtml:31
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:31
 msgid "Full size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list-normal.phtml:203
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:226
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:203
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:227
 msgid "Are you sure want to delete selected images?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list-normal.phtml:211
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:211
 msgid "Are you sure want to delete this images?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:19
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:17
 msgid "Images"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:24
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:22
 msgid "Docs"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:29
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:27
 msgid "Videos"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:34
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:32
 msgid "Zips"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:46
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:108
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:138
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:41
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:14
+msgid "Bulk operation"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:42
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:109
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:139
 msgid "Download"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:48
 #, fuzzy
 msgid "All"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:101
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:102
 msgid "ID"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:104
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:105
 msgid "Type"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:105
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:106
 msgid "File size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:110
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:110
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:130
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:81
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:26
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:73
+msgid "Submitter"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:111
 msgid "Uploaded date"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:152
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:77
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:153
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:75
+#, fuzzy
 msgid "No description"
-msgstr ""
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:271
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:272
 msgid "Are you sure delete selected media?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/media-list.phtml:325
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:326
 msgid "Are you sure delete this article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/operation-error.phtml:8
+#: c:\code\pi\usr\module\article/template/admin/operation-error.phtml:8
 msgid "You have an error operation: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-form.phtml:31
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:165
+#: c:\code\pi\usr\module\article/template/admin/setup-form.phtml:27
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:169
 msgid "Preview"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-form.phtml:46
+#: c:\code\pi\usr\module\article/template/admin/setup-form.phtml:42
 msgid "Form Elements"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-form.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/setup-form.phtml:44
 msgid "Save"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-nav.phtml:5
-msgid "Custom Form"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-nav.phtml:10
-msgid "Custom Route"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:19
-msgid "Custom Parameters"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:20
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:190
-msgid "Install"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:20
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:188
-msgid "Un-install"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:48
-msgid "Required File"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:53
-msgid "Current route: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:73
-msgid "Route configuration: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:75
-msgid "No file"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:79
-msgid "Route class: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:81
-msgid "No class"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/setup-route.phtml:90
-msgid "Use default"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:9
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:8
 msgid "Article amounts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:37
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:118
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:13
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:36
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:117
 msgid "In 7 days"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:15
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:40
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:121
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:14
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:39
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:120
 msgid "In 30 days"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:16
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:43
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:124
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:15
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:42
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:123
 msgid "history"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:34
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:18
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:39
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:29
+#, fuzzy
+msgid "All categories"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:33
 msgid "Top Articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:115
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:72
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:93
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:147
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:164
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:64
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:52
+msgid "Subject"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:51
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:73
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:94
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:74
+msgid "View"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:114
 msgid "Top editors"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:132
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:131
 msgid "Total"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/statistics-index.phtml:181
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:180
 msgid "Top Tags"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:33
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:29
 msgid "Feature image for topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:34
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:30
 msgid "Required size: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:44
 msgid "This is screenshot"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:46
 msgid "Change"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:62
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:58
 msgid "Apply"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:65
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:61
 msgid "Fullsize"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-edit.phtml:432
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:436
 msgid "Error occured when required url!"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:19
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:18
 msgid "Topic: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:20
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:19
 msgid " articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:22
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:21
 msgid "Pull articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:31
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:30
 msgid "Pulled date"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:32
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:31
 msgid "Pulled by"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-article.phtml:66
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:32
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:82
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:75
+#, fuzzy
+msgid "Publish date"
+msgstr "Application Execution Time"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:38
+msgid "Deactive"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:65
 msgid "Remove Pull"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:15
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:13
 msgid "Article Number"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:16
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:14
 msgid "Template"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:44
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:42
 msgid "Manage"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-list-topic.phtml:47
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:34
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:111
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:45
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:34
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:115
 msgid "Pull"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-nav.phtml:4
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:56
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:16
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:99
+msgid "Deactivate"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:62
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:24
+msgid "Active"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-nav.phtml:4
 #, fuzzy
 msgid "All Topics"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-nav.phtml:9
+#: c:\code\pi\usr\module\article/template/admin/topic-nav.phtml:9
 msgid "Add Topic"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:24
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:23
 msgid "Pull articles for "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:99
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:103
 msgid "Pulled"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/admin/topic-pull.phtml:118
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:122
+#, fuzzy
 msgid "No topics"
+msgstr "无缓存"
+
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:12
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:42
+msgid "Approve"
 msgstr ""
 
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:27
 #, fuzzy
-#~ msgid "Update time"
-#~ msgstr "Application Execution Time"
+msgid "Last update"
+msgstr "主题更新失败。"
+
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:15
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:102
+msgid "Activate"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:22
+#, fuzzy
+msgid "All articles"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:23
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:91
+msgid "Inactive"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:180
+msgid "Are you sure delete selected article?"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:213
+msgid "Are you sure delete this article?"
+msgstr ""
 
 #, fuzzy
 #~ msgid "Submit time"

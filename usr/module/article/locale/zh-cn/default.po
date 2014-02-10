@@ -1,1018 +1,974 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2014-01-24 11:13+0800\n"
-"PO-Revision-Date: 2014-01-24 11:23+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-02-10 19:38+0800\n"
+"PO-Revision-Date: 2014-02-10 19:39+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\article\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:41
+#: c:\code\pi\usr\module\article/src/Rule.php:41
 msgid "article"
 msgstr "文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:42
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:43
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:44
+#: c:\code\pi\usr\module\article/src/Rule.php:42
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:44
 msgid "publish"
 msgstr "发布"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:42
+#: c:\code\pi\usr\module\article/src/Rule.php:42
 msgid "active"
 msgstr "激活"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:43
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:50
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:52
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:52
 msgid "edit"
 msgstr "编辑"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:44
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:51
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:53
+#: c:\code\pi\usr\module\article/src/Rule.php:44
+#: c:\code\pi\usr\module\article/src/Rule.php:51
+#: c:\code\pi\usr\module\article/src/Rule.php:53
 msgid "delete"
 msgstr "删除"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:48
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:49
+#: c:\code\pi\usr\module\article/src/Rule.php:48
+#: c:\code\pi\usr\module\article/src/Rule.php:49
 msgid "draft"
 msgstr "草稿"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:49
+#: c:\code\pi\usr\module\article/src/Rule.php:49
 msgid "compose"
 msgstr "撰写"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:50
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:51
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:51
 msgid "rejected"
 msgstr "被拒"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:52
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:53
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:54
+#: c:\code\pi\usr\module\article/src/Rule.php:52
+#: c:\code\pi\usr\module\article/src/Rule.php:53
+#: c:\code\pi\usr\module\article/src/Rule.php:54
 msgid "pending"
 msgstr "待审核"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Rule.php:54
+#: c:\code\pi\usr\module\article/src/Rule.php:54
 msgid "approve"
 msgstr "通过"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Api/Breadcrumbs.php:36
-msgid "Article"
-msgstr "文章"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Api/Breadcrumbs.php:66
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:69
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:360
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:82
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:67
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:69
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:362
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:82
 msgid "Content"
 msgstr "详情"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Api/Breadcrumbs.php:72
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/CategoryController.php:64
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ListController.php:131
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:292
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:73
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:64
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:130
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:291
 msgid "All"
 msgstr "所有文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Block/Block.php:93
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/CategoryController.php:77
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ListController.php:144
+#: c:\code\pi\usr\module\article/src/Block/Block.php:93
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:77
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:143
 msgid "All articles"
 msgstr "所有文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Feed/IndexController.php:35
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:35
 msgid "All Articles of EEFOCUS"
 msgstr "EEFOCUS的所有文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Feed/IndexController.php:36
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:36
 msgid "All articles of EEFOCUS."
 msgstr "EEFOCUS的所有文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Feed/IndexController.php:37
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:37
 msgid "EEFOCUS"
 msgstr "与非网"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/AjaxController.php:127
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:579
+#: c:\code\pi\usr\module\article/src/Controller/Front/AjaxController.php:129
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:598
 msgid "OK"
 msgstr "好"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:81
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1451
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:81
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1439
 msgid "Page not found"
 msgstr "未找到页面"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:85
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:85
 msgid "The article requested is not active"
 msgstr "请求的文章未激活"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:169
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:410
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:169
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:429
 msgid "Invalid article ID"
 msgstr "无效文章ID"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:195
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:195
 msgid "Can not create draft"
 msgstr "无法创建草稿"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:371
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:287
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:22
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:390
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:285
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:22
 msgid "Published"
 msgstr "已发布"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:612
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:152
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:631
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:149
 msgid "Subject is used by another article."
 msgstr "标题已被使用"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:613
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:632
 msgid "ok"
 msgstr "好"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ArticleController.php:632
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:651
 msgid "success"
 msgstr "成功"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/CategoryController.php:108
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:108
 msgid "Invalid category id"
 msgstr "无效分类ID"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/CategoryController.php:185
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:184
 msgid "Article List in Category"
 msgstr "分类下的文章列表"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:141
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:138
 msgid "Subject cannot be empty."
 msgstr "标题不能为空"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:197
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:194
 msgid "Category cannot be empty."
 msgstr "分类不能为空"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:219
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:266
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:404
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1293
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:216
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:263
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:401
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1281
 msgid "Not enough parameter."
 msgstr "参数不够"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:231
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:272
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:411
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1299
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:228
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:269
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:408
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1287
 msgid "Invalid draft."
 msgstr "无效草稿"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:235
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:232
 msgid "Draft has been published."
 msgstr "草稿已被发布"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:243
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:240
 msgid "Draft submitted successfully."
 msgstr "草稿投递成功"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:247
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:827
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:293
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:32
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:244
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:816
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:291
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:27
 msgid "Pending"
 msgstr "待审核"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:248
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:380
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:2408
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:245
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:377
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2408
 msgid "Approve"
 msgstr "通过"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:533
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:530
 msgid "Article update successfully."
 msgstr "文章更新成功"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:764
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1263
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1356
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1546
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:753
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1251
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1344
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1534
 msgid "Failed to save draft."
 msgstr "保存草稿失败"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:781
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:770
 msgid "Draft saved successfully."
 msgstr "草稿保存成功"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:810
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:799
 msgid "Invalid source"
 msgstr "无效资源"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:823
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:291
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:319
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:27
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:812
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:289
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:317
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:37
 msgid "Draft"
 msgstr "草稿"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:831
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:295
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:37
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:820
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:293
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:32
 msgid "Rejected"
 msgstr "被拒"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:907
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:896
 msgid "Create Article"
 msgstr "创建文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1135
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1123
 msgid "Edit Article"
 msgstr "编辑文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1176
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1164
 msgid "Invalid draft ID"
 msgstr "无效草稿ID"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1369
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1357
 msgid "approve successfully."
 msgstr "成功通过"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1572
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1786
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1560
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1774
 msgid "Invalid ID!"
 msgstr "无效ID!"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1589
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1577
 msgid "Media is not exists!"
 msgstr "媒体文件不存在"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1595
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1583
 msgid "Invalid file extension!"
 msgstr "无效的文件格式"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1604
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1592
 msgid "Can not create image file!"
 msgstr "无法创建图片文件"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1720
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1708
 msgid "Invalid draft ID!"
 msgstr "无效草稿ID!"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1728
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1716
 msgid "Invalid media!"
 msgstr "无效媒体！"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1749
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1737
 msgid "Can not save data!"
 msgstr "不能保存数据！"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1771
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1759
 msgid "Save asset successful!"
 msgstr "保存成功"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1793
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1781
 msgid "Delete item sucessful!"
 msgstr "条目删除成功！"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/DraftController.php:1796
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1784
 msgid "Can not delete item!"
 msgstr "不能删除条目！"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/ListController.php:175
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:174
 msgid "All Articles"
 msgstr "所有文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/SearchController.php:88
+#: c:\code\pi\usr\module\article/src/Controller/Front/SearchController.php:86
 msgid "Search result of "
 msgstr "搜索结果"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TagController.php:38
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:38
 msgid "Cannot find this page"
 msgstr "页面未找到"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TagController.php:100
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:98
 msgid "Articles on Tag "
 msgstr "标签下的文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:48
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:218
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:48
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:217
 msgid "Invalid topic ID!"
 msgstr "无效专题ID"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:56
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:56
 msgid "Topic is not exists!"
 msgstr "专题不存在"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:61
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:229
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:61
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:228
 msgid "The topic requested is not active"
 msgstr "请求的专题尚未激活"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/TopicController.php:201
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:200
 msgid "All Topics"
 msgstr "所有专题"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/AuthorEditForm.php:30
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:42
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:30
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:30
 msgid "Name"
 msgstr "姓名"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/AuthorEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:41
 msgid "Photo"
 msgstr "照片"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/AuthorEditForm.php:50
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:50
 msgid "Biography"
 msgstr "传记"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/AuthorEditForm.php:89
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:126
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryMergeForm.php:59
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryMoveForm.php:59
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftCustomForm.php:81
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:108
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:162
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:394
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:89
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:126
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:81
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:108
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:162
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:391
 msgid "Submit"
 msgstr "提交"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:30
 msgid "Parent"
 msgstr "父级"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:33
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:33
 msgid "Category Hierarchy"
 msgstr "分类层级"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:46
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:34
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:46
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:34
 msgid "The unique identifier of category."
 msgstr "分享唯一标示"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:54
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:76
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:285
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:54
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:76
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:287
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:41
 msgid "Slug"
 msgstr "Slug"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:58
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:58
 msgid "The \"Slug\" is category name in URL."
 msgstr "Slug是在URL中的展示名"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:66
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:41
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:52
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:538
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1360
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1900
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:12
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:23
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:55
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:23
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:56
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:37
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:48
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:66
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:52
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:538
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1360
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1900
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:12
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:23
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:55
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:23
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:56
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:48
 msgid "Title"
 msgstr "标题"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:70
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:45
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:56
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:70
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:45
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:56
 msgid "Will be displayed on your website."
 msgstr "将会在站点显示"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:78
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:53
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:107
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:78
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:53
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:107
 msgid "Description"
 msgstr "描述"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:82
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:57
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:82
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:57
 msgid "Display in the website depends on theme."
 msgstr "根据主题情况可能在站点显示"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryEditForm.php:90
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:70
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:222
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:96
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1899
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:55
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:47
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:90
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:70
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:224
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:96
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1899
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:55
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:47
 msgid "Image"
 msgstr "图片"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryMergeForm.php:30
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryMoveForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:30
 msgid "From"
 msgstr "表单"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryMergeForm.php:42
-#: D:\wamp\www\deploy\usr\module\article/src/Form/CategoryMoveForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:42
 msgid "To"
 msgstr "到"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftCustomForm.php:52
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:52
 msgid "Form Mode"
 msgstr "表单模式"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftCustomForm.php:57
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:57
 msgid "Normal"
 msgstr "正常"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftCustomForm.php:58
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:58
 msgid "Extended"
 msgstr "扩展"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftCustomForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:59
 msgid "Custom"
 msgstr "定制"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:66
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:198
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:66
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:200
 msgid "Subject"
 msgstr "标题"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:67
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:210
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:147
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:67
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:212
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:145
 msgid "Subtitle"
 msgstr "子标题"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:68
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:408
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:68
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:410
 msgid "Summary"
 msgstr "摘要"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:71
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:244
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:71
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:246
 msgid "Author"
 msgstr "作者"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:72
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:255
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:72
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:257
 msgid "Source"
 msgstr "来源"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:73
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:266
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:13
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:73
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:268
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:13
 msgid "Category"
 msgstr "分类"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:74
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:542
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:14
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:74
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:542
 msgid "Tag"
 msgstr "标签"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:75
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:75
 msgid "Related"
 msgstr "相关"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:77
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:77
 msgid "SEO Title"
 msgstr "SEO标题"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:78
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:78
 msgid "SEO Keywords"
 msgstr "SEO 关键词"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:79
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:79
 msgid "SEO Description"
 msgstr "SEO 描述"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:160
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:162
 msgid "Save draft"
 msgstr "保存草稿"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:233
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:235
 msgid "Submitter"
 msgstr "提交者"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:274
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:276
 msgid "Related article"
 msgstr "相关文章"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:297
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:490
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:299
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:490
 msgid "SEO title"
 msgstr "SEO 标题"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:308
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:498
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:310
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:498
 msgid "SEO keywords"
 msgstr "SEO 关键词"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:319
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:506
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:321
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:506
 msgid "SEO description"
 msgstr "SEO 描述"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:330
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:332
 msgid "Publish time"
 msgstr "发布时间"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:340
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:342
 msgid "Update time"
 msgstr "更新时间"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:350
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:352
 msgid "Submit time"
 msgstr "提交时间"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/DraftEditForm.php:422
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:456
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:424
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:453
 msgid "Tags"
 msgstr "标签"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:34
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:34
 msgid "The unique identifier of media."
 msgstr "媒体文件的唯一标示"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/MediaEditForm.php:65
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:65
 msgid "Media"
 msgstr "媒体"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:30
-msgid "Route Name"
-msgstr "路由名称"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:34
-msgid "Route unique name, only letter, _ and - required"
-msgstr "路由的唯一名称：仅支持字母，_ 和 - "
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:41
-msgid "Priority"
-msgstr "优先级"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:45
-msgid "Route priority, we recommend you to set a number more that 100"
-msgstr "路由优先级：建议设置为大于100的数字"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:52
-msgid "Class"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:56
-msgid "Namespace of class which use to match and assemble url"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:63
-msgid "Structure Delimiter"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:67
-msgid "Symbol use to delimit module, controller, action, etc."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:74
-msgid "Param Delimiter"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:78
-msgid "Symbol use to delimit different parameter groups"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:85
-msgid "Key Value Delimiter"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:89
-msgid "Symbol use to delimit parameter key and its value"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:96
-msgid "URL Prefix"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:100
-msgid "Route prefix, it will help to match route more quickly and correctly"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:107
-msgid "Controller"
-msgstr "Controller"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:111
-msgid "Default controller, not very important"
-msgstr "默认Controller，不是特别重要"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:118
-msgid "Action"
-msgstr "Action"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:122
-msgid "Default action, not very important"
-msgstr "默认Action，不是很重要"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/RouteCustomForm.php:143
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:329
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:342
-msgid "Save"
-msgstr "保存"
-
-#: D:\wamp\www\deploy\usr\module\article/src/Form/SimpleSearchForm.php:37
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:548
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:25
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:25
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:39
-#: D:\wamp\www\deploy\usr\module\article/template/front/search-simple.phtml:35
+#: c:\code\pi\usr\module\article/src/Form/SimpleSearchForm.php:37
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:548
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:25
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:25
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:39
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:34
 msgid "Search"
 msgstr "搜索"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:45
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:45
 msgid "The \"Slug\" is topic name in URL."
 msgstr "Slug是URL中展示的标题名"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:89
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:89
 msgid "Topic main content."
 msgstr "专题主要内容"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:100
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:100
 msgid "Topic feature image, optional."
 msgstr "专题特征图（选填）"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:111
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:111
 msgid "Display in the website."
 msgstr "在站点展示"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:118
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:118
 msgid "Template"
 msgstr "模板"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/TopicEditForm.php:121
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:121
 msgid "Choose a template for topic."
 msgstr "为专题选择模板"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/Element/Account.php:50
-#: D:\wamp\www\deploy\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
-#: D:\wamp\www\deploy\usr\module\article/src/Form/Element/Topic.php:38
+#: c:\code\pi\usr\module\article/src/Form/Element/Account.php:50
+#: c:\code\pi\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
+#: c:\code\pi\usr\module\article/src/Form/Element/Topic.php:38
 msgid "Null"
 msgstr "无"
 
-#: D:\wamp\www\deploy\usr\module\article/src/Form/Element/Template.php:46
+#: c:\code\pi\usr\module\article/src/Form/Element/Template.php:46
 msgid "Default"
 msgstr "默认"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:26
-msgid "From "
-msgstr "从"
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:26
+#, fuzzy
+msgid "Publish time: "
+msgstr "注册时间"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:39
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:30
+#, fuzzy
+msgid "Source: "
+msgstr "无效来源 %s。"
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:40
 msgid "Share with: "
 msgstr "分享到"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:82
-msgid "Tags: "
-msgstr "标签"
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:84
-msgid "None"
-msgstr "无"
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:106
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:109
 msgid "Next Page"
 msgstr "下一页"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:109
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:112
 msgid "Remain Page"
 msgstr "剩余页面"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:126
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:129
 msgid "Read More"
 msgstr "阅读更多"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:134
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:137
 msgid "Continue read"
 msgstr "继续阅读"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-detail.phtml:155
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:158
 msgid "Author introduction"
 msgstr "作者简介"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/category-list.phtml:22
-#: D:\wamp\www\deploy\usr\module\article/template/front/search-simple.phtml:13
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-all-topic.phtml:35
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-list.phtml:13
+#: c:\code\pi\usr\module\article/template/front/category-list.phtml:21
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:12
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:33
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:12
 msgid " articles"
 msgstr "文章"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:128
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:126
 msgid "Subject:"
 msgstr "标题"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:138
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:172
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:136
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:170
 msgid "character left"
 msgstr "剩余字数"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:162
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:160
 msgid "Subtitle:"
 msgstr "子标题"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:181
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:179
 msgid "Category:"
 msgstr "分类"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:201
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:199
 msgid "Source:"
 msgstr "来源"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:213
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:211
 msgid "Author:"
 msgstr "作者"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:222
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:220
 msgid "Submitter:"
 msgstr "提交者"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:238
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:236
 msgid "Summary:"
 msgstr "摘要"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:251
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:249
 msgid "words left"
 msgstr "剩余字数"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:267
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:265
 msgid "Choose files"
 msgstr "选择文件"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:272
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:270
 msgid "Max Size: "
 msgstr "最大尺寸"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:284
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:282
 msgid "Status:"
 msgstr "状态"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:327
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:325
 msgid "Preview"
 msgstr "预览"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:335
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:327
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:340
+msgid "Save"
+msgstr "保存"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:333
 msgid "Scheduled at"
 msgstr "定时发布于"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:338
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:336
 msgid "publish immediately"
 msgstr "立即发布"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:341
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:52
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:339
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:56
 msgid "Edit"
 msgstr "编辑"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:343
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:622
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:67
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:68
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:77
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:341
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:622
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:67
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:68
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:77
 msgid "Cancel"
 msgstr "取消"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:366
-msgid "Last edited at "
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:365
+#, fuzzy, php-format
+msgid "Last edit at %s by %s"
 msgstr "最后编辑"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:368
-msgid " by "
-msgstr "被"
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:376
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:373
 msgid "Update"
 msgstr "更新"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:387
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:411
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:2416
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:384
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:408
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2416
 msgid "Reject"
 msgstr "退稿"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:397
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:624
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:642
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:4
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:54
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:394
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:624
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:642
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:4
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:58
 msgid "Delete"
 msgstr "删除"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:405
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:402
 msgid "Reject reason"
 msgstr "退稿理由"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:421
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:418
 msgid "Feature image"
 msgstr "特征图"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:428
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:444
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:16
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:16
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:28
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:117
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:425
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:441
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:28
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:117
 msgid "Upload"
 msgstr "上传"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:430
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:427
 msgid "image size "
 msgstr "图片大小"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:437
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:434
 msgid "Click toggle show"
 msgstr "点击切换是否显示"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:440
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:437
 msgid "Image gallery"
 msgstr "图片库"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:477
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:477
 msgid "SEO"
 msgstr "SEO"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:481
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:481
 msgid "SEO url name"
 msgstr "SEO url name"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:520
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:520
 msgid "Related articles"
 msgstr "相关文章"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:524
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:524
 msgid "Add"
 msgstr "添加"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:533
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:533
 msgid "Manage related articles"
 msgstr "管理相关文章"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:554
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:554
 msgid "Articles to be selected"
 msgstr "将被选中的文章"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:561
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:561
 msgid "Articles selected"
 msgstr "选中的文章"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:569
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:590
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:569
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:590
 msgid "Done"
 msgstr "完成"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:584
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:584
 msgid "Error"
 msgstr "错误"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:602
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:602
 msgid "Add a new article"
 msgstr "添加新文章"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:625
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:643
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1372
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1913
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:92
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:625
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:643
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1372
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1913
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:92
 msgid "Insert"
 msgstr "插入"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1032
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:111
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1032
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:111
 msgid "Are you sure delete this article?"
 msgstr "确定删除该文章？"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1202
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1403
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1946
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:56
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:57
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1202
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1403
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1946
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:56
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:57
 msgid "Remove"
 msgstr "移除"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1308
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1308
 msgid ""
 "This operation will also remove attachment in editor, do you still want to "
 "continue?"
 msgstr "该操作将移除编辑器中的附件，是否继续？"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1361
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1901
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:49
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1361
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1901
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:49
 msgid "Size"
 msgstr "尺寸"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1362
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1902
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:50
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1362
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1902
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:50
 msgid "Select"
 msgstr "选择"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1418
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1961
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1418
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1961
 msgid "Do you really want to remove this media?"
 msgstr "确定删除该媒体文件？"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-edit.phtml:1846
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1846
 msgid ""
 "This operation will also remove image in editor, do you still want to "
 "continue?"
 msgstr "该操作将移除编辑器中的图片，是否删除？"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:16
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:20
 msgid "Published time"
 msgstr "发布时间"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:17
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:21
 msgid "Last update date"
 msgstr "更新日期"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:39
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:43
 msgid "No Title"
 msgstr "没有标题"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-list.phtml:74
-msgid "No tags"
-msgstr "没有标签"
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:50
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:50
 msgid "Compose"
 msgstr "撰写"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/draft-nav.phtml:104
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:104
 msgid "Are you sure delete checked article?"
 msgstr "确定删除选中的文章？"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:7
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:7
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:7
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:7
 msgid "Choose Files"
 msgstr "选择文件"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:37
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:37
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:59
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:59
 msgid "Prev"
 msgstr "上一个"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:42
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:42
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:64
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:42
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:42
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:64
 msgid "Next"
 msgstr "下一个"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-attachments-box.phtml:68
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-gallery-box.phtml:69
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:78
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:68
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:69
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:78
 msgid "Yes"
 msgstr "是"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:7
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:7
 msgid "Choose Image"
 msgstr "选择图片"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:14
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:14
 msgid "Upload Image"
 msgstr "上传图片"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:18
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:18
 msgid "Choose From Media"
 msgstr "从媒体库选择"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:102
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:102
 msgid "Image choosed: "
 msgstr "选中的图片"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/media-image-box.phtml:121
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:121
 msgid "Format supported: "
 msgstr "格式支持"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/search-simple.phtml:30
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:29
 msgid "title"
 msgstr "标题"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-all-topic.phtml:24
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-index.phtml:28
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-index.phtml:52
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-list.phtml:17
-msgid "Created at "
-msgstr "创建于"
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:20
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:54
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:16
+#, fuzzy, php-format
+msgid "Created at %s"
+msgstr "创建时间"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-all-topic.phtml:26
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-index.phtml:31
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-index.phtml:54
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-list.phtml:19
-msgid "Last added at "
-msgstr "最后添加于"
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:23
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:31
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:56
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:19
+#, fuzzy, php-format
+msgid "Last added at %s"
+msgstr "导航添加成功。"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/topic-index.phtml:67
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:69
 msgid "View All"
 msgstr "查看所有"
+
+#~ msgid "Article"
+#~ msgstr "文章"
+
+#~ msgid "Route Name"
+#~ msgstr "路由名称"
+
+#~ msgid "Route unique name, only letter, _ and - required"
+#~ msgstr "路由的唯一名称：仅支持字母，_ 和 - "
+
+#~ msgid "Priority"
+#~ msgstr "优先级"
+
+#~ msgid "Route priority, we recommend you to set a number more that 100"
+#~ msgstr "路由优先级：建议设置为大于100的数字"
+
+#~ msgid "Controller"
+#~ msgstr "Controller"
+
+#~ msgid "Default controller, not very important"
+#~ msgstr "默认Controller，不是特别重要"
+
+#~ msgid "Action"
+#~ msgstr "Action"
+
+#~ msgid "Default action, not very important"
+#~ msgstr "默认Action，不是很重要"
+
+#~ msgid "From "
+#~ msgstr "从"
+
+#~ msgid "Tags: "
+#~ msgstr "标签"
+
+#~ msgid "None"
+#~ msgstr "无"
+
+#~ msgid " by "
+#~ msgstr "被"
+
+#~ msgid "No tags"
+#~ msgstr "没有标签"
 
 #~ msgid "separate by commas or enter"
 #~ msgstr "用逗号或者Enter键隔开"

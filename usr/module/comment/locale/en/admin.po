@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2013-11-10 13:52+0800\n"
-"PO-Revision-Date: 2013-11-10 13:52+0800\n"
+"POT-Creation-Date: 2014-02-10 19:55+0800\n"
+"PO-Revision-Date: 2014-02-10 19:55+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,521 +11,533 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\comment\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\comment\n"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:13
+#: c:\code\pi\usr\module\comment/config/block.php:13
 #, fuzzy
 msgid "Recent comments"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:14
+#: c:\code\pi\usr\module\comment/config/block.php:14
 msgid "Recent active comment posts."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:20
+#: c:\code\pi\usr\module\comment/config/block.php:20
 msgid "Post count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:21
+#: c:\code\pi\usr\module\comment/config/block.php:21
 msgid "Number of posts to display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:28
-#: C:\wamp\www\master\usr\module\comment/config/block.php:53
+#: c:\code\pi\usr\module\comment/config/block.php:28
+#: c:\code\pi\usr\module\comment/config/block.php:53
 msgid "Module"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:29
+#: c:\code\pi\usr\module\comment/config/block.php:29
 msgid "Select module for articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:38
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:20
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:62
+#: c:\code\pi\usr\module\comment/config/block.php:38
+#: c:\code\pi\usr\module\comment/config/nav.php:20
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:62
 msgid "Commented articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:39
+#: c:\code\pi\usr\module\comment/config/block.php:39
 msgid "Articles being commented."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:45
+#: c:\code\pi\usr\module\comment/config/block.php:45
 msgid "Article count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:46
+#: c:\code\pi\usr\module\comment/config/block.php:46
 msgid "Number of articles to display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:54
+#: c:\code\pi\usr\module\comment/config/block.php:54
 msgid "Select module for articles."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:60
+#: c:\code\pi\usr\module\comment/config/block.php:60
 msgid "Sort order"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:61
+#: c:\code\pi\usr\module\comment/config/block.php:61
 msgid "Criteria to select articles."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:66
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:89
+#: c:\code\pi\usr\module\comment/config/block.php:66
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:90
 #, fuzzy
 msgid "Most commented"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:67
+#: c:\code\pi\usr\module\comment/config/block.php:67
 #, fuzzy
 msgid "Last commented"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:68
+#: c:\code\pi\usr\module\comment/config/block.php:68
 msgid "Last published"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:79
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:25
+#: c:\code\pi\usr\module\comment/config/block.php:79
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:26
 msgid "Top posters"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:80
+#: c:\code\pi\usr\module\comment/config/block.php:80
 msgid "Users with most posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:86
+#: c:\code\pi\usr\module\comment/config/block.php:86
 msgid "User count"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:87
+#: c:\code\pi\usr\module\comment/config/block.php:87
 msgid "Number of users to display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:94
+#: c:\code\pi\usr\module\comment/config/block.php:94
 msgid "Excluded user ids"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:95
+#: c:\code\pi\usr\module\comment/config/block.php:95
 msgid "Users to exclude, separated by \",\"."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:101
+#: c:\code\pi\usr\module\comment/config/block.php:101
 msgid "Excluded roles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/block.php:102
+#: c:\code\pi\usr\module\comment/config/block.php:102
+#, fuzzy
 msgid "Roles to exclude."
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\comment/config/comment.php:18
+#: c:\code\pi\usr\module\comment/config/comment.php:18
 #, fuzzy
 msgid "Article comments"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/comment.php:29
+#: c:\code\pi\usr\module\comment/config/comment.php:31
 #, fuzzy
 msgid "Custom comments"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:12
-msgid "Leading page comment limit."
+#: c:\code\pi\usr\module\comment/config/config.php:12
+msgid "Leading page comment limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:13
+#: c:\code\pi\usr\module\comment/config/config.php:13
 msgid "Number of comments on leading page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:19
-msgid "List page comment limit."
+#: c:\code\pi\usr\module\comment/config/config.php:19
+msgid "List page comment limit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:20
+#: c:\code\pi\usr\module\comment/config/config.php:20
 msgid "Number of comments on list page."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:26
+#: c:\code\pi\usr\module\comment/config/config.php:26
 msgid "Display operation"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:27
+#: c:\code\pi\usr\module\comment/config/config.php:27
 msgid "Level of operations on post list pages."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:33
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:41
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:58
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:30
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:37
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:38
+#: c:\code\pi\usr\module\comment/config/config.php:33
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:42
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:28
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:34
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:35
 msgid "Disable"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:34
+#: c:\code\pi\usr\module\comment/config/config.php:34
 msgid "For members"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:35
+#: c:\code\pi\usr\module\comment/config/config.php:35
 msgid "For authors"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:36
+#: c:\code\pi\usr\module\comment/config/config.php:36
 msgid "For administrators"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/config.php:43
-msgid "Auto approve submission."
+#: c:\code\pi\usr\module\comment/config/config.php:43
+msgid "Auto approve submission"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/module.php:17
+#: c:\code\pi\usr\module\comment/config/module.php:17
 msgid "Comment"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/module.php:18
+#: c:\code\pi\usr\module\comment/config/module.php:18
 #, fuzzy
 msgid "Comment management and services."
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:14
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:61
+#: c:\code\pi\usr\module\comment/config/nav.php:14
+#: c:\code\pi\usr\module\comment/config/nav.php:61
 #, fuzzy
 msgid "All comments"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:26
+#: c:\code\pi\usr\module\comment/config/nav.php:26
 msgid "My comments"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:35
+#: c:\code\pi\usr\module\comment/config/nav.php:35
 msgid "My received"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:44
+#: c:\code\pi\usr\module\comment/config/nav.php:44
 msgid "My articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:55
+#: c:\code\pi\usr\module\comment/config/nav.php:55
 msgid "Portal"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:90
-#, fuzzy
-msgid "Categories"
-msgstr "All Categories"
+#: c:\code\pi\usr\module\comment/config/nav.php:71
+#: c:\code\pi\usr\module\comment/config/nav.php:80
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:95
+msgid "Active posts"
+msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:96
+#: c:\code\pi\usr\module\comment/config/nav.php:89
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:104
+msgid "Inactive posts"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/config/nav.php:100
+msgid "Types"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/config/nav.php:106
 msgid "By module"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:102
+#: c:\code\pi\usr\module\comment/config/nav.php:112
 msgid "By user"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/nav.php:108
+#: c:\code\pi\usr\module\comment/config/nav.php:118
 msgid "By article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/user.php:20
+#: c:\code\pi\usr\module\comment/config/nav.php:128
+#, fuzzy
+msgid "Article with comments"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\comment/config/nav.php:137
+#, fuzzy
+msgid "Article with active comments"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\comment/config/user.php:20
 msgid "Comment posts by me"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/config/user.php:26
+#: c:\code\pi\usr\module\comment/config/user.php:26
 #, fuzzy
 msgid "Comment posts on my articles"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:22
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:276
-#, fuzzy
-msgid "Comment categories"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:33
-msgid "Active"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:33
-msgid "Disabled"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:41
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:58
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:25
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:32
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:33
-msgid "Enable"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:91
-msgid "Category was not found."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:95
-msgid "Invalid operation."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:101
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:596
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:224
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:300
-msgid "Operation succeeded."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/CategoryController.php:104
-msgid "Operation failed."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:23
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:23
 #, php-format
 msgid "Comment portal for %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:26
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:26
 msgid "Build comment data for demo articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:33
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:33
 msgid "Demo article with comments"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:39
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:84
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:39
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:85
 msgid "All comment posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:46
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:88
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:46
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:89
 msgid "All active comment posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:54
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:86
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:54
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:87
 msgid "All inactive comment posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:69
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:69
 msgid "Comment posts by user"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:76
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:76
 msgid "Comment posts by module"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:87
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:87
 #, fuzzy
 msgid "Total posts"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:95
-msgid "Active posts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:104
-msgid "Inactive posts"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/IndexController.php:277
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:277
 #, fuzzy, php-format
 msgid "Demo comment %d."
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:111
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:237
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:414
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:128
+msgid "Comments by username or id"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:167
+msgid "Comment posts of user"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:200
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:377
 #, fuzzy
 msgid "All Posts"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:118
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:245
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:423
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:208
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:386
 msgid "Active Posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:126
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:254
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:433
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:217
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:396
 msgid "Inactive Posts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:165
-msgid "Comments by username or id"
-msgstr ""
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:239
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:22
+#, fuzzy
+msgid "Comment types"
+msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:204
-msgid "Comment posts of user"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:371
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:334
 #, php-format
-msgid "Comment posts of Module %s with Category %s"
+msgid "Comment posts of Module %s with type %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:377
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:340
 #, php-format
 msgid "Comment posts of Module %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:487
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:448
 msgid "Guest"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:524
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:487
 msgid "All commented articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:526
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:489
 msgid "All active commented articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:538
-msgid "Articles with comments"
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:561
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:224
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:102
+msgid "Operation succeeded."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/ListController.php:545
-msgid "Articles with active comments"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:44
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:44
 msgid "Edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:51
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:34
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:41
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:42
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:51
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:32
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:38
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:39
 msgid "Delete"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:67
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:42
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:23
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:29
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:30
+msgid "Enable"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:67
 msgid "Comment post"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:91
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:91
 msgid "Comment post edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:175
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:175
 msgid "Comment post saved successfully."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:178
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:178
 msgid "Comment post not saved."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:182
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:182
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:186
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:186
 msgid "Invalid submission."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:224
-#: C:\wamp\www\master\usr\module\comment/src/Controller/Admin/PostController.php:300
-msgid "Operation failed"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:3
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:9
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:52
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:3
-msgid "Title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:4
-msgid "Enable Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:5
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:4
-msgid "Action"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:11
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:27
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:11
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module-select.phtml:20
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:224
 #, fuzzy
-msgid "View comments"
-msgstr "All Categories"
+msgid "Operation failed"
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:20
-msgid "Yes"
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:34
+msgid "Active"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-category.phtml:23
-msgid "No"
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:34
+msgid "Disabled"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:6
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:92
+msgid "Type was not found."
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:96
+msgid "Invalid operation."
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:105
+#, fuzzy
+msgid "Operation failed."
+msgstr "主题更新失败。"
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:5
 #, fuzzy
 msgid "Comment stats"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:10
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:53
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:10
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:53
+#: c:\code\pi\usr\module\comment/template/admin/comment-module-select.phtml:3
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:6
+msgid "Title"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:11
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:54
 msgid "Amounts"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:29
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:30
 msgid "Submitters"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:30
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:94
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:31
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:95
 #, fuzzy
 msgid "Comments"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:49
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:50
 msgid "Active comment posts by module"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:76
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:77
 msgid "Links"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-index.phtml:93
+#: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:94
 msgid "Article title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:95
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:102
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:103
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:93
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:99
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:100
 msgid "Pending"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:109
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:116
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:117
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:107
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:113
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:114
 msgid "No comments available yet."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:189
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:196
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:197
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:187
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:193
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:194
 msgid "Are you sure delete these comments?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-list.phtml:235
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-module.phtml:242
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:243
+#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:233
+#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:239
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:240
 msgid "Are you sure delete this article?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user-select.phtml:2
+#: c:\code\pi\usr\module\comment/template/admin/comment-module-select.phtml:4
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:8
+msgid "Action"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-module-select.phtml:11
+#: c:\code\pi\usr\module\comment/template/admin/comment-module-select.phtml:20
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:14
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:30
+#, fuzzy
+msgid "View comments"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:7
+msgid "Enable type"
+msgstr ""
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:23
+#, fuzzy
+msgid "No"
+msgstr "否"
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:26
+#, fuzzy
+msgid "Yes"
+msgstr "是"
+
+#: c:\code\pi\usr\module\comment/template/admin/comment-user-select.phtml:2
 msgid "Filter comments by a specific user."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user-select.phtml:5
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:18
+#: c:\code\pi\usr\module\comment/template/admin/comment-user-select.phtml:5
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:18
 msgid "Type user id or identity"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user-select.phtml:6
-#: C:\wamp\www\master\usr\module\comment/template/admin/comment-user.phtml:19
+#: c:\code\pi\usr\module\comment/template/admin/comment-user-select.phtml:6
+#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:19
 msgid "Submit"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Comment categories"
+#~ msgstr "All Categories"
 
 #, fuzzy
 #~ msgid "All"

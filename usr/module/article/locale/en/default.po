@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2013-11-10 13:50+0800\n"
-"PO-Revision-Date: 2013-11-10 13:50+0800\n"
+"POT-Creation-Date: 2014-02-10 19:39+0800\n"
+"PO-Revision-Date: 2014-02-10 19:39+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -11,997 +11,936 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\article\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:681
+#: c:\code\pi\usr\module\article/src/Rule.php:41
 msgid "article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:682
-#: C:\wamp\www\master\usr\module\article/src/Service.php:683
-#: C:\wamp\www\master\usr\module\article/src/Service.php:684
+#: c:\code\pi\usr\module\article/src/Rule.php:42
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:44
 msgid "publish"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:682
+#: c:\code\pi\usr\module\article/src/Rule.php:42
 msgid "active"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:683
-#: C:\wamp\www\master\usr\module\article/src/Service.php:690
-#: C:\wamp\www\master\usr\module\article/src/Service.php:692
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:52
 msgid "edit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:684
-#: C:\wamp\www\master\usr\module\article/src/Service.php:691
-#: C:\wamp\www\master\usr\module\article/src/Service.php:693
+#: c:\code\pi\usr\module\article/src/Rule.php:44
+#: c:\code\pi\usr\module\article/src/Rule.php:51
+#: c:\code\pi\usr\module\article/src/Rule.php:53
 msgid "delete"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:688
-#: C:\wamp\www\master\usr\module\article/src/Service.php:689
+#: c:\code\pi\usr\module\article/src/Rule.php:48
+#: c:\code\pi\usr\module\article/src/Rule.php:49
 msgid "draft"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:689
+#: c:\code\pi\usr\module\article/src/Rule.php:49
 msgid "compose"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:690
-#: C:\wamp\www\master\usr\module\article/src/Service.php:691
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:51
 msgid "rejected"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:692
-#: C:\wamp\www\master\usr\module\article/src/Service.php:693
-#: C:\wamp\www\master\usr\module\article/src/Service.php:694
+#: c:\code\pi\usr\module\article/src/Rule.php:52
+#: c:\code\pi\usr\module\article/src/Rule.php:53
+#: c:\code\pi\usr\module\article/src/Rule.php:54
 msgid "pending"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:694
+#: c:\code\pi\usr\module\article/src/Rule.php:54
 msgid "approve"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Service.php:823
-msgid "Operating error!"
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:67
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:69
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:362
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:82
+msgid "Content"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/AjaxController.php:127
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:558
-msgid "OK"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:68
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1388
-msgid "Page not found"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:72
-msgid "The article requested is not active"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:157
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:389
-msgid "Invalid article ID"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:183
-msgid "Can not create draft"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:357
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:224
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:22
-msgid "Published"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:591
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:143
-msgid "Subject is used by another article."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ArticleController.php:592
-msgid "ok"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/CategoryController.php:68
-msgid "Invalid category id"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/CategoryController.php:118
-msgid "Article List in Category"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:132
-msgid "Subject cannot be empty."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:188
-msgid "Category cannot be empty."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:210
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:257
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:396
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1240
-msgid "Not enough parameter."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:222
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:263
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:403
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1246
-msgid "Invalid draft."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:226
-msgid "Draft has been published."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:234
-msgid "Draft submitted successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:238
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:805
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:230
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:32
-msgid "Pending"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:239
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:317
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:2327
-msgid "Approve"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:526
-msgid "Article update successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:748
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1215
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1298
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1477
-msgid "Failed to save draft."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:764
-msgid "Draft saved successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:788
-msgid "Invalid source"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:801
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:228
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:256
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:27
-msgid "Draft"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:809
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:232
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:37
-msgid "Rejected"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:877
-msgid "Create Article"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1099
-msgid "Edit Article"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1133
-msgid "Invalid draft ID"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1311
-msgid "approve successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1502
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1739
-msgid "Invalid ID!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1520
-msgid "Media is not exists!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1526
-msgid "Invalid file extension!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1535
-msgid "Can not create image file!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1673
-msgid "Invalid draft ID!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1681
-msgid "Invalid media!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1702
-msgid "Can not save data!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1724
-msgid "Save asset successful!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1746
-msgid "Delete item sucessful!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/DraftController.php:1749
-msgid "Can not delete item!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/ListController.php:86
-#, fuzzy
-msgid "All Articles"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/SearchController.php:87
-msgid "Search result of "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TagController.php:38
-msgid "Cannot find this page"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TagController.php:95
-msgid "Articles on Tag "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:48
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:216
-msgid "Invalid topic ID!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:56
-msgid "Topic is not exists!"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:61
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:227
-msgid "The topic requested is not active"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:199
-#, fuzzy
-msgid "All Topics"
-msgstr "All Categories"
-
-#: C:\wamp\www\master\usr\module\article/src/Controller/Front/TopicController.php:289
-#: C:\wamp\www\master\usr\module\article/template/front/list-all.phtml:10
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:73
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:64
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:130
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:291
 #, fuzzy
 msgid "All"
 msgstr "All Categories"
 
-#: C:\wamp\www\master\usr\module\article/src/Form/AuthorEditForm.php:30
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:42
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:30
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Block/Block.php:93
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:77
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:143
+#, fuzzy
+msgid "All articles"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:35
+#, fuzzy
+msgid "All Articles of EEFOCUS"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:36
+#, fuzzy
+msgid "All articles of EEFOCUS."
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:37
+msgid "EEFOCUS"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/AjaxController.php:129
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:598
+msgid "OK"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:81
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1439
+msgid "Page not found"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:85
+msgid "The article requested is not active"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:169
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:429
+msgid "Invalid article ID"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:195
+msgid "Can not create draft"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:390
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:285
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:22
+msgid "Published"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:631
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:149
+msgid "Subject is used by another article."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:632
+msgid "ok"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:651
+msgid "success"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:108
+msgid "Invalid category id"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:184
+msgid "Article List in Category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:138
+msgid "Subject cannot be empty."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:194
+msgid "Category cannot be empty."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:216
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:263
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:401
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1281
+msgid "Not enough parameter."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:228
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:269
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:408
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1287
+msgid "Invalid draft."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:232
+msgid "Draft has been published."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:240
+#, fuzzy
+msgid "Draft submitted successfully."
+msgstr "主题更新成功。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:244
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:816
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:291
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:27
+msgid "Pending"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:245
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:377
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2408
+msgid "Approve"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:530
+#, fuzzy
+msgid "Article update successfully."
+msgstr "主题更新成功。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:753
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1251
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1344
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1534
+#, fuzzy
+msgid "Failed to save draft."
+msgstr "主题更新失败。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:770
+#, fuzzy
+msgid "Draft saved successfully."
+msgstr "主题更新成功。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:799
+msgid "Invalid source"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:812
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:289
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:317
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:37
+msgid "Draft"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:820
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:293
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:32
+msgid "Rejected"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:896
+msgid "Create Article"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1123
+msgid "Edit Article"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1164
+msgid "Invalid draft ID"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1357
+#, fuzzy
+msgid "approve successfully."
+msgstr "主题更新成功。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1560
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1774
+msgid "Invalid ID!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1577
+msgid "Media is not exists!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1583
+msgid "Invalid file extension!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1592
+msgid "Can not create image file!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1708
+msgid "Invalid draft ID!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1716
+msgid "Invalid media!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1737
+msgid "Can not save data!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1759
+msgid "Save asset successful!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1781
+msgid "Delete item sucessful!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1784
+msgid "Can not delete item!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:174
+#, fuzzy
+msgid "All Articles"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/SearchController.php:86
+msgid "Search result of "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:38
+msgid "Cannot find this page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:98
+msgid "Articles on Tag "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:48
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:217
+msgid "Invalid topic ID!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:56
+msgid "Topic is not exists!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:61
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:228
+msgid "The topic requested is not active"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:200
+#, fuzzy
+msgid "All Topics"
+msgstr "All Categories"
+
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:30
 msgid "Name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/AuthorEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:41
 msgid "Photo"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/AuthorEditForm.php:50
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:50
 msgid "Biography"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/AuthorEditForm.php:89
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:126
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryMergeForm.php:57
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryMoveForm.php:57
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftCustomForm.php:81
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:108
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:162
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:331
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:89
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:126
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:81
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:108
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:162
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:391
 msgid "Submit"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:30
 msgid "Parent"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:33
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:33
 msgid "Category Hierarchy"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:46
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:34
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:46
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:34
 msgid "The unique identifier of category."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:54
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:76
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:285
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:54
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:76
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:287
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:41
 msgid "Slug"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:58
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:58
 msgid "The \"Slug\" is category name in URL."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:66
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:41
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:52
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:473
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1276
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1820
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:12
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:21
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:50
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:21
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:51
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:35
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:46
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:66
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:52
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:538
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1360
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1900
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:12
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:23
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:55
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:23
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:56
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:48
 msgid "Title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:70
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:45
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:56
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:70
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:45
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:56
 msgid "Will be displayed on your website."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:78
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:53
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:107
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:78
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:53
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:107
 msgid "Description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:82
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:57
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:82
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:57
 msgid "Display in the website depends on theme."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryEditForm.php:90
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:70
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:222
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:96
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1819
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:50
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:45
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:90
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:70
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:224
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:96
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1899
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:55
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:47
 msgid "Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryMergeForm.php:30
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryMoveForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:30
 msgid "From"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryMergeForm.php:41
-#: C:\wamp\www\master\usr\module\article/src/Form/CategoryMoveForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:42
 msgid "To"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftCustomForm.php:52
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:52
 msgid "Form Mode"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftCustomForm.php:57
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:57
 msgid "Normal"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftCustomForm.php:58
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:58
 msgid "Extended"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftCustomForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:59
 msgid "Custom"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:66
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:198
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:66
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:200
 msgid "Subject"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:67
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:210
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:122
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:67
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:212
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:145
 msgid "Subtitle"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:68
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:408
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:68
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:410
 msgid "Summary"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:69
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:360
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:82
-msgid "Content"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:71
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:244
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:71
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:246
 msgid "Author"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:72
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:255
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:72
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:257
 msgid "Source"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:73
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:266
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:13
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:73
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:268
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:13
 msgid "Category"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:74
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:477
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:14
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:74
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:542
 msgid "Tag"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:75
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:75
 msgid "Related"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:77
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:77
 msgid "SEO Title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:78
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:78
 msgid "SEO Keywords"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:79
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:79
 msgid "SEO Description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:160
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:162
 msgid "Save draft"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:233
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:235
 msgid "Submitter"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:274
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:276
 msgid "Related article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:297
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:427
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:299
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:490
 msgid "SEO title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:308
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:435
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:310
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:498
 msgid "SEO keywords"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:319
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:443
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:321
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:506
 msgid "SEO description"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:330
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:332
 #, fuzzy
 msgid "Publish time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:340
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:342
 #, fuzzy
 msgid "Update time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/src/Form/DraftEditForm.php:350
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:352
 #, fuzzy
 msgid "Submit time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:34
-msgid "The unique identifier of media."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/MediaEditForm.php:65
-msgid "Media"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:30
-msgid "Route Name"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:34
-msgid "Route unique name, only letter, _ and - required"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:41
-msgid "Priority"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:45
-msgid "Route priority, we recommend you to set a number more that 100"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:52
-msgid "Class"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:56
-msgid "Namespace of class which use to match and assemble url"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:63
-msgid "Structure Delimiter"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:67
-msgid "Symbol use to delimit module, controller, action, etc."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:74
-msgid "Param Delimiter"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:78
-msgid "Symbol use to delimit different parameter groups"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:85
-msgid "Key Value Delimiter"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:89
-msgid "Symbol use to delimit parameter key and its value"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:96
-msgid "URL Prefix"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:100
-msgid "Route prefix, it will help to match route more quickly and correctly"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:107
-msgid "Controller"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:111
-msgid "Default controller, not very important"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:118
-msgid "Action"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:122
-msgid "Default action, not very important"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/RouteCustomForm.php:143
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:266
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:279
-msgid "Save"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/SimpleSearchForm.php:37
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:483
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:22
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:22
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:36
-#: C:\wamp\www\master\usr\module\article/template/front/search-simple.phtml:34
-msgid "Search"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:45
-msgid "The \"Slug\" is topic name in URL."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:89
-msgid "Topic main content."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:100
-msgid "Topic feature image, optional."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:111
-msgid "Display in the website."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:118
-msgid "Template"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/TopicEditForm.php:121
-msgid "Choose a template for topic."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/Element/Account.php:50
-#: C:\wamp\www\master\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
-#: C:\wamp\www\master\usr\module\article/src/Form/Element/Topic.php:38
-msgid "Null"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/src/Form/Element/Template.php:46
-msgid "Default"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:26
-msgid "From "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:33
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:98
-msgid "Tags: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:35
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:100
-msgid "None"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:55
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:173
-msgid "Share with: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:122
-msgid "Next Page"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:125
-msgid "Remain Page"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:142
-msgid "Read More"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:153
-msgid "Comments"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:186
-msgid "Continue read"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/article-detail.phtml:207
-msgid "Author introduction"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/category-list.phtml:13
-#: C:\wamp\www\master\usr\module\article/template/front/search-simple.phtml:13
-#: C:\wamp\www\master\usr\module\article/template/front/topic-all-topic.phtml:35
-#: C:\wamp\www\master\usr\module\article/template/front/topic-list.phtml:13
-msgid " articles"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:107
-msgid "Subject:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:113
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:140
-msgid "Character left"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:134
-msgid "Subtitle:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:145
-msgid "Category:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:157
-msgid "Source:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:164
-msgid "Author:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:169
-msgid "Submitter:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:180
-msgid "Summary:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:189
-msgid "words left"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:204
-msgid "Choose files"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:209
-msgid "Max Size: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:221
-msgid "Status:"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:264
-msgid "Preview"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:272
-msgid "Scheduled at"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:275
-msgid "publish immediately"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:278
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:52
-msgid "Edit"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:280
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:555
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:61
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:62
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:73
-msgid "Cancel"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:303
-msgid "Last edited at "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:305
-msgid " by "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:313
-msgid "Update"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:324
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:346
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:2335
-msgid "Reject"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:334
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:557
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:575
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:4
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:54
-msgid "Delete"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:340
-msgid "Reject reason"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:354
-msgid "Feature image"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:361
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:377
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:14
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:26
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:111
-msgid "Upload"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:363
-msgid "image size "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:370
-msgid "Click toggle show"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:373
-msgid "Image gallery"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:389
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:424
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:453
 msgid "Tags"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:395
-msgid "separate by commas or enter"
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:34
+msgid "The unique identifier of media."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:414
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:65
+msgid "Media"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/SimpleSearchForm.php:37
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:548
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:25
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:25
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:39
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:34
+msgid "Search"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:45
+msgid "The \"Slug\" is topic name in URL."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:89
+msgid "Topic main content."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:100
+msgid "Topic feature image, optional."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:111
+msgid "Display in the website."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:118
+msgid "Template"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:121
+msgid "Choose a template for topic."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/Element/Account.php:50
+#: c:\code\pi\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
+#: c:\code\pi\usr\module\article/src/Form/Element/Topic.php:38
+msgid "Null"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Form/Element/Template.php:46
+msgid "Default"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:26
+#, fuzzy
+msgid "Publish time: "
+msgstr "Application Execution Time"
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:30
+msgid "Source: "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:40
+msgid "Share with: "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:109
+msgid "Next Page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:112
+msgid "Remain Page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:129
+msgid "Read More"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:137
+msgid "Continue read"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:158
+msgid "Author introduction"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/category-list.phtml:21
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:12
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:33
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:12
+msgid " articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:126
+msgid "Subject:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:136
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:170
+msgid "character left"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:160
+msgid "Subtitle:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:179
+msgid "Category:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:199
+msgid "Source:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:211
+msgid "Author:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:220
+msgid "Submitter:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:236
+msgid "Summary:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:249
+msgid "words left"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:265
+msgid "Choose files"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:270
+msgid "Max Size: "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:282
+msgid "Status:"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:325
+msgid "Preview"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:327
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:340
+msgid "Save"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:333
+msgid "Scheduled at"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:336
+msgid "publish immediately"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:339
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:56
+msgid "Edit"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:341
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:622
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:67
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:68
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:77
+msgid "Cancel"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:365
+#, php-format
+msgid "Last edit at %s by %s"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:373
+msgid "Update"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:384
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:408
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2416
+msgid "Reject"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:394
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:624
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:642
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:4
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:58
+msgid "Delete"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:402
+msgid "Reject reason"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:418
+msgid "Feature image"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:425
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:441
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:28
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:117
+msgid "Upload"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:427
+msgid "image size "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:434
+msgid "Click toggle show"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:437
+msgid "Image gallery"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:477
 msgid "SEO"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:418
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:481
 msgid "SEO url name"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:457
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:520
 msgid "Related articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:461
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:524
 msgid "Add"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:468
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:533
 msgid "Manage related articles"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:489
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:554
 msgid "Articles to be selected"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:496
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:561
 msgid "Articles selected"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:504
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:523
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:569
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:590
 msgid "Done"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:517
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:584
 msgid "Error"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:535
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:602
 msgid "Add a new article"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:558
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:576
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1288
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1833
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:86
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:625
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:643
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1372
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1913
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:92
 msgid "Insert"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:965
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:111
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1032
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:111
 msgid "Are you sure delete this article?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1118
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1319
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1866
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:51
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:52
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1202
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1403
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1946
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:56
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:57
 msgid "Remove"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1224
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1308
 msgid ""
 "This operation will also remove attachment in editor, do you still want to "
 "continue?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1277
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1821
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:47
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1361
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1901
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:49
 msgid "Size"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1278
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1822
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:48
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1362
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1902
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:50
 msgid "Select"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1334
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1881
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1418
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1961
 msgid "Do you really want to remove this media?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-edit.phtml:1766
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1846
 msgid ""
 "This operation will also remove image in editor, do you still want to "
 "continue?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:16
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:20
 #, fuzzy
 msgid "Published time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:17
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:21
+#, fuzzy
 msgid "Last update date"
-msgstr ""
+msgstr "主题更新失败。"
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:39
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:43
+#, fuzzy
 msgid "No Title"
-msgstr ""
+msgstr "无缓存"
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-list.phtml:74
-msgid "No tags"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:50
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:50
 msgid "Compose"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/draft-nav.phtml:104
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:104
 msgid "Are you sure delete checked article?"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:5
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:5
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:7
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:7
 msgid "Choose Files"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:34
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:34
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:57
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:59
 msgid "Prev"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:37
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:37
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:60
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:42
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:42
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:64
 msgid "Next"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-attachments-box.phtml:62
-#: C:\wamp\www\master\usr\module\article/template/front/media-gallery-box.phtml:63
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:74
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:68
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:69
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:78
+#, fuzzy
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:5
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:7
 msgid "Choose Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:12
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:14
 msgid "Upload Image"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:18
 msgid "Choose From Media"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:96
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:102
 msgid "Image choosed: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/media-image-box.phtml:115
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:121
 msgid "Format supported: "
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/search-simple.phtml:30
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:29
 msgid "title"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/topic-all-topic.phtml:24
-#: C:\wamp\www\master\usr\module\article/template/front/topic-index.phtml:28
-#: C:\wamp\www\master\usr\module\article/template/front/topic-index.phtml:52
-#: C:\wamp\www\master\usr\module\article/template/front/topic-list.phtml:17
-msgid "Created at "
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:20
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:54
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:16
+#, php-format
+msgid "Created at %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/topic-all-topic.phtml:26
-#: C:\wamp\www\master\usr\module\article/template/front/topic-index.phtml:31
-#: C:\wamp\www\master\usr\module\article/template/front/topic-index.phtml:54
-#: C:\wamp\www\master\usr\module\article/template/front/topic-list.phtml:19
-msgid "Last added at "
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:23
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:31
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:56
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:19
+#, php-format
+msgid "Last added at %s"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\article/template/front/topic-index.phtml:67
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:69
 #, fuzzy
 msgid "View All"
 msgstr "All Categories"

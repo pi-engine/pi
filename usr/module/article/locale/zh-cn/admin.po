@@ -1,2014 +1,2196 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2014-01-22 14:16+0800\n"
-"PO-Revision-Date: 2014-01-27 15:52+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-02-10 19:37+0800\n"
+"PO-Revision-Date: 2014-02-10 19:38+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\article\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:17
+#: c:\code\pi\usr\module\article/config/block.php:17
 msgid "All Categories"
 msgstr "All Categories"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:18
+#: c:\code\pi\usr\module\article/config/block.php:18
 msgid "Listing the parent category and its children"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:23
+#: c:\code\pi\usr\module\article/config/block.php:23
+#, fuzzy
 msgid "Top-Category Count"
-msgstr ""
+msgstr "分类删除成功。"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:24
+#: c:\code\pi\usr\module\article/config/block.php:24
 msgid "The max top category count want to display"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:30
+#: c:\code\pi\usr\module\article/config/block.php:30
+#, fuzzy
 msgid "Sub-Category Count"
-msgstr ""
+msgstr "分类删除成功。"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:31
+#: c:\code\pi\usr\module\article/config/block.php:31
 msgid "The max child category count want to display"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:37
+#: c:\code\pi\usr\module\article/config/block.php:37
+#, fuzzy
 msgid "Default Category Name"
-msgstr ""
+msgstr "昵称规则"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:38
+#: c:\code\pi\usr\module\article/config/block.php:38
 msgid "Default category name when there is no category acquired"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:41
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:148
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:29
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:149
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:164
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:175
+#: c:\code\pi\usr\module\article/config/block.php:41
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:147
+#, fuzzy
 msgid "None"
-msgstr ""
+msgstr "误"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:44
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:75
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:112
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:208
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:299
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:380
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:441
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:540
+#: c:\code\pi\usr\module\article/config/block.php:44
+#: c:\code\pi\usr\module\article/config/block.php:75
+#: c:\code\pi\usr\module\article/config/block.php:112
+#: c:\code\pi\usr\module\article/config/block.php:204
+#: c:\code\pi\usr\module\article/config/block.php:302
+#: c:\code\pi\usr\module\article/config/block.php:386
+#: c:\code\pi\usr\module\article/config/block.php:454
+#: c:\code\pi\usr\module\article/config/block.php:556
 msgid "Target"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:45
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:76
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:113
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:209
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:300
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:381
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:442
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:541
+#: c:\code\pi\usr\module\article/config/block.php:45
+#: c:\code\pi\usr\module\article/config/block.php:76
+#: c:\code\pi\usr\module\article/config/block.php:113
+#: c:\code\pi\usr\module\article/config/block.php:205
+#: c:\code\pi\usr\module\article/config/block.php:303
+#: c:\code\pi\usr\module\article/config/block.php:387
+#: c:\code\pi\usr\module\article/config/block.php:455
+#: c:\code\pi\usr\module\article/config/block.php:557
 msgid "Open url in which window"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:63
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:239
+#: c:\code\pi\usr\module\article/config/block.php:63
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:239
+#, fuzzy
 msgid "Category List"
-msgstr ""
+msgstr "登录次数"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:64
+#: c:\code\pi\usr\module\article/config/block.php:64
+#, fuzzy
 msgid "Listing all category"
-msgstr ""
+msgstr "分类删除成功。"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:69
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:100
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:137
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:419
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:434
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:480
+#: c:\code\pi\usr\module\article/config/block.php:69
+#: c:\code\pi\usr\module\article/config/block.php:100
+#: c:\code\pi\usr\module\article/config/block.php:137
+#: c:\code\pi\usr\module\article/config/block.php:432
+#: c:\code\pi\usr\module\article/config/block.php:447
+#: c:\code\pi\usr\module\article/config/block.php:500
+#, fuzzy
 msgid "List Count"
-msgstr ""
+msgstr "登录次数"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:70
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:101
+#: c:\code\pi\usr\module\article/config/block.php:70
+#: c:\code\pi\usr\module\article/config/block.php:101
+#, fuzzy
 msgid "The max categories to display"
-msgstr ""
+msgstr "在菜单中显示"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:94
+#: c:\code\pi\usr\module\article/config/block.php:94
 msgid "Hot Categories"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:95
+#: c:\code\pi\usr\module\article/config/block.php:95
 msgid "Listing hot categories according to their articles"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:106
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:498
+#: c:\code\pi\usr\module\article/config/block.php:106
+#: c:\code\pi\usr\module\article/config/block.php:518
 msgid "Day Range"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:107
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:499
+#: c:\code\pi\usr\module\article/config/block.php:107
+#: c:\code\pi\usr\module\article/config/block.php:519
 msgid "Day range"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:131
+#: c:\code\pi\usr\module\article/config/block.php:131
+#, fuzzy
 msgid "Newest Published Articles"
-msgstr ""
+msgstr "重新发布资源成功"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:132
+#: c:\code\pi\usr\module\article/config/block.php:132
 msgid "Listing the newest published articles of topic or non-topic"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:138
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:420
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:435
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:481
+#: c:\code\pi\usr\module\article/config/block.php:138
+#: c:\code\pi\usr\module\article/config/block.php:433
+#: c:\code\pi\usr\module\article/config/block.php:448
+#: c:\code\pi\usr\module\article/config/block.php:501
+#, fuzzy
 msgid "The max articles to display"
-msgstr ""
+msgstr "在菜单中显示"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:144
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:148
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:142
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:80
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:22
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:68
+#: c:\code\pi\usr\module\article/config/block.php:144
+#: c:\code\pi\usr\module\article/config/config.php:148
+#: c:\code\pi\usr\module\article/config/navigation.php:215
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:79
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:22
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:67
+#, fuzzy
 msgid "Category"
-msgstr ""
+msgstr "分类"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:145
+#: c:\code\pi\usr\module\article/config/block.php:145
 msgid "Which category article want to list"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:153
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:487
+#: c:\code\pi\usr\module\article/config/block.php:153
+#: c:\code\pi\usr\module\article/config/block.php:507
+#, fuzzy
 msgid "Is Topic"
-msgstr ""
+msgstr "必需信息。"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:154
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:488
+#: c:\code\pi\usr\module\article/config/block.php:154
+#: c:\code\pi\usr\module\article/config/block.php:508
 msgid "Whether to list topic articles"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:164
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:66
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:260
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:81
+#: c:\code\pi\usr\module\article/config/block.php:164
+#: c:\code\pi\usr\module\article/config/navigation.php:139
+#: c:\code\pi\usr\module\article/config/navigation.php:333
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:80
 msgid "Topic"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:165
+#: c:\code\pi\usr\module\article/config/block.php:165
 msgid "Which topic article want to list"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:173
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:345
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:505
+#: c:\code\pi\usr\module\article/config/block.php:173
+#: c:\code\pi\usr\module\article/config/block.php:355
+#: c:\code\pi\usr\module\article/config/block.php:525
+#, fuzzy
 msgid "List Column Number"
-msgstr ""
+msgstr "每页展示条目数。"
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:174
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:346
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:506
+#: c:\code\pi\usr\module\article/config/block.php:174
+#: c:\code\pi\usr\module\article/config/block.php:356
+#: c:\code\pi\usr\module\article/config/block.php:526
 msgid "Whether to display only one column or two columns"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:179
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:351
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:511
+#: c:\code\pi\usr\module\article/config/block.php:179
+#: c:\code\pi\usr\module\article/config/block.php:361
+#: c:\code\pi\usr\module\article/config/block.php:531
 msgid "Single column"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:180
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:352
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:512
+#: c:\code\pi\usr\module\article/config/block.php:180
+#: c:\code\pi\usr\module\article/config/block.php:362
+#: c:\code\pi\usr\module\article/config/block.php:532
 msgid "Double columns"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:188
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:255
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:360
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:520
-msgid "Template Style"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:189
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:256
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:361
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:521
-msgid "The template style of list"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:194
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:366
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:526
-msgid "basic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:195
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:262
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:367
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:527
-msgid "Common"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:196
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:263
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:368
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:528
-msgid "With summary"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:197
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:369
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:529
-msgid "With feature"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:198
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:370
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:530
-msgid "All with feature"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:199
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:371
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:531
-msgid "All with summary"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:200
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:372
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:532
-msgid "With rank number"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:225
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:316
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:397
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:557
-msgid "Subject length"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:226
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:317
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:398
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:558
-msgid "Maximum length of subject"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:232
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:323
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:404
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:564
-msgid "Summary length"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:233
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:324
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:405
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:565
-msgid "Maximum length of summary"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:241
-msgid "Recommended Articles With Slideshow"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:243
-msgid "Listing a slideshow and recommended articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:248
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:338
-msgid "Article ID"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:249
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:339
-msgid "Articles want to list"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:261
-msgid "Basic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:271
-msgid "Image ID"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:272
-msgid "Images to display"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:278
-msgid "Image Link"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:279
-msgid "URL to redirect when click image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:285
-msgid "Slide image width"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:286
-msgid "Maximum width of slide image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:292
-msgid "Slide image height"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:293
-msgid "Maximum height of slide image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:332
-msgid "Custom Article List"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:333
-msgid "Listing custom articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:413
-msgid "Submitter Statistics"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:414
-msgid "Listing the total article count of submitters"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:428
-msgid "Newest Topic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:429
-msgid "Listing the newest topic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:458
-msgid "Title length"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:459
-msgid "Maximum length of title"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:465
-msgid "Description length"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:466
-msgid "Maximum length of description"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:474
-msgid "Hot Articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:475
-msgid "Listing the hotest articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:573
-msgid "Simple Search"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/block.php:575
-msgid "Search form for searching articles by article title"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/comment.php:18
-msgid "Article comments"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:19
-msgid "General"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:23
-msgid "Autosave"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:27
-msgid "SEO"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:31
-msgid "Summary and subject"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:35
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:111
-msgid "Media"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:43
-msgid "Article List Page Limit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:44
-msgid "Maximum count of articles in a front page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:50
-msgid "Topic Article List Page Limit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:51
-msgid "Maximum count of topic articles in a front page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:57
-msgid "Article Management Page Limit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:58
-msgid "Maximum count of articles in a management page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:64
-msgid "Author Limit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:65
-msgid "Maximum count of author in management page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:71
-msgid "Category Limit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:72
-msgid "Maximum count of category in management page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:78
-msgid "Enable Tag"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:79
-msgid "Enable tag (Tag module must be installed)"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:86
-msgid "Default Source"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:87
-msgid "Display when no source is provided."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:92
-msgid "Default Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:93
-msgid "Can not be deleted."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:100
-msgid "Max Related Articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:101
-msgid "Maximum related articles to fetch."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:107
-msgid "Markup Language"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:108
-msgid "Default markup language for editing draft."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:109
-msgid "html"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:114
-msgid "HTML"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:115
-msgid "Compound"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:116
-msgid "Markdown"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:117
-msgid "Textarea"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:125
-msgid "Default Topic Template Screenshot"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:131
-msgid "Max Sub-category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:132
-msgid "Max sub-category number in category article list page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:137
-msgid "Items of List Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:138
-msgid "Items to display in list page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:144
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:55
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:107
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:89
-msgid "Feature image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:145
+#: c:\code\pi\usr\module\article/config/block.php:188
+#: c:\code\pi\usr\module\article/config/block.php:258
+#: c:\code\pi\usr\module\article/config/block.php:370
+#: c:\code\pi\usr\module\article/config/block.php:540
+#, fuzzy
+msgid "Element to Display"
+msgstr "在菜单中显示"
+
+#: c:\code\pi\usr\module\article/config/block.php:189
+#: c:\code\pi\usr\module\article/config/block.php:259
+#: c:\code\pi\usr\module\article/config/block.php:371
+#: c:\code\pi\usr\module\article/config/block.php:541
+#, fuzzy
+msgid "The article element to display"
+msgstr "在菜单中显示"
+
+#: c:\code\pi\usr\module\article/config/block.php:194
+#: c:\code\pi\usr\module\article/config/block.php:264
+#: c:\code\pi\usr\module\article/config/block.php:376
+#: c:\code\pi\usr\module\article/config/block.php:546
+#, fuzzy
+msgid "Time publish"
+msgstr "发布资源"
+
+#: c:\code\pi\usr\module\article/config/block.php:195
+#: c:\code\pi\usr\module\article/config/block.php:265
+#: c:\code\pi\usr\module\article/config/block.php:377
+#: c:\code\pi\usr\module\article/config/block.php:547
+#: c:\code\pi\usr\module\article/config/config.php:145
 msgid "Summary"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:146
+#: c:\code\pi\usr\module\article/config/block.php:196
+#: c:\code\pi\usr\module\article/config/block.php:266
+#: c:\code\pi\usr\module\article/config/block.php:378
+#: c:\code\pi\usr\module\article/config/block.php:548
+#: c:\code\pi\usr\module\article/config/config.php:144
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:54
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:106
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:92
+#, fuzzy
+msgid "Feature image"
+msgstr "Pi Engine 特性"
+
+#: c:\code\pi\usr\module\article/config/block.php:221
+#: c:\code\pi\usr\module\article/config/block.php:319
+#: c:\code\pi\usr\module\article/config/block.php:403
+#: c:\code\pi\usr\module\article/config/block.php:573
+msgid "Subject length"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:222
+#: c:\code\pi\usr\module\article/config/block.php:320
+#: c:\code\pi\usr\module\article/config/block.php:404
+#: c:\code\pi\usr\module\article/config/block.php:574
+#, fuzzy
+msgid "Maximum length of subject"
+msgstr "昵称最大长度"
+
+#: c:\code\pi\usr\module\article/config/block.php:228
+#: c:\code\pi\usr\module\article/config/block.php:326
+#: c:\code\pi\usr\module\article/config/block.php:410
+#: c:\code\pi\usr\module\article/config/block.php:580
+msgid "Summary length"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:229
+#: c:\code\pi\usr\module\article/config/block.php:327
+#: c:\code\pi\usr\module\article/config/block.php:411
+#: c:\code\pi\usr\module\article/config/block.php:581
+#, fuzzy
+msgid "Maximum length of summary"
+msgstr "昵称最大长度"
+
+#: c:\code\pi\usr\module\article/config/block.php:235
+#: c:\code\pi\usr\module\article/config/block.php:333
+#: c:\code\pi\usr\module\article/config/block.php:417
+#: c:\code\pi\usr\module\article/config/block.php:485
+#: c:\code\pi\usr\module\article/config/block.php:587
+msgid "Description rows"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:236
+#: c:\code\pi\usr\module\article/config/block.php:334
+#: c:\code\pi\usr\module\article/config/block.php:418
+#: c:\code\pi\usr\module\article/config/block.php:486
+#: c:\code\pi\usr\module\article/config/block.php:588
+msgid "Maximum row count of description"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:244
+msgid "Recommended Articles With Slideshow"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:246
+msgid "Listing a slideshow and recommended articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:251
+#: c:\code\pi\usr\module\article/config/block.php:348
+#, fuzzy
+msgid "Article ID"
+msgstr "用户 ID"
+
+#: c:\code\pi\usr\module\article/config/block.php:252
+#: c:\code\pi\usr\module\article/config/block.php:349
+#, fuzzy
+msgid "Articles want to list"
+msgstr "返回用户列表"
+
+#: c:\code\pi\usr\module\article/config/block.php:274
+#, fuzzy
+msgid "Image ID"
+msgstr "用户 ID"
+
+#: c:\code\pi\usr\module\article/config/block.php:275
+#, fuzzy
+msgid "Images to display"
+msgstr "在菜单中显示"
+
+#: c:\code\pi\usr\module\article/config/block.php:281
+#, fuzzy
+msgid "Image Link"
+msgstr "验证链接无效"
+
+#: c:\code\pi\usr\module\article/config/block.php:282
+msgid "URL to redirect when click image"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:288
+#, fuzzy
+msgid "Slide image width"
+msgstr "头像最大宽度"
+
+#: c:\code\pi\usr\module\article/config/block.php:289
+#, fuzzy
+msgid "Maximum width of slide image"
+msgstr "允许的图片宽度，0到无限"
+
+#: c:\code\pi\usr\module\article/config/block.php:295
+#, fuzzy
+msgid "Slide image height"
+msgstr "头像最大高度"
+
+#: c:\code\pi\usr\module\article/config/block.php:296
+#, fuzzy
+msgid "Maximum height of slide image"
+msgstr "最大图片高度，0代表无限制"
+
+#: c:\code\pi\usr\module\article/config/block.php:342
+#, fuzzy
+msgid "Custom Article List"
+msgstr "资源类型列表"
+
+#: c:\code\pi\usr\module\article/config/block.php:343
+#, fuzzy
+msgid "Listing custom articles"
+msgstr "添加自定义导航"
+
+#: c:\code\pi\usr\module\article/config/block.php:426
+msgid "Submitter Statistics"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:427
+msgid "Listing the total article count of submitters"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:441
+msgid "Newest Topic"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:442
+msgid "Listing the newest topic"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:471
+#, fuzzy
+msgid "Title length"
+msgstr "隐藏标题"
+
+#: c:\code\pi\usr\module\article/config/block.php:472
+#, fuzzy
+msgid "Maximum length of title"
+msgstr "标题为必需信息。"
+
+#: c:\code\pi\usr\module\article/config/block.php:478
+msgid "Description length"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:479
+#, fuzzy
+msgid "Maximum length of description"
+msgstr "昵称最大长度"
+
+#: c:\code\pi\usr\module\article/config/block.php:494
+msgid "Hot Articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:495
+msgid "Listing the hotest articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/block.php:596
+#, fuzzy
+msgid "Simple Search"
+msgstr "高级搜索"
+
+#: c:\code\pi\usr\module\article/config/block.php:598
+msgid "Search form for searching articles by article title"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/comment.php:18
+msgid "Article comments"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:19
+#, fuzzy
+msgid "General"
+msgstr "通用"
+
+#: c:\code\pi\usr\module\article/config/config.php:23
+msgid "Autosave"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:27
+msgid "SEO"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:31
+#, fuzzy
+msgid "Summary and subject"
+msgstr "用户信息和服务。"
+
+#: c:\code\pi\usr\module\article/config/config.php:35
+#: c:\code\pi\usr\module\article/config/navigation.php:184
+msgid "Media"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:43
+#, fuzzy
+msgid "Article List Page Limit"
+msgstr "页面展示数。"
+
+#: c:\code\pi\usr\module\article/config/config.php:44
+msgid "Maximum count of articles in a front page."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:50
+msgid "Topic Article List Page Limit"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:51
+msgid "Maximum count of topic articles in a front page."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:57
+msgid "Article Management Page Limit"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:58
+msgid "Maximum count of articles in a management page."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:64
+#, fuzzy
+msgid "Author Limit"
+msgstr "作者信息"
+
+#: c:\code\pi\usr\module\article/config/config.php:65
+msgid "Maximum count of author in management page."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:71
+#, fuzzy
+msgid "Category Limit"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/config/config.php:72
+msgid "Maximum count of category in management page."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:78
+#, fuzzy
+msgid "Enable Tag"
+msgstr "启用状态"
+
+#: c:\code\pi\usr\module\article/config/config.php:79
+msgid "Enable tag (Tag module must be installed)"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:86
+#, fuzzy
+msgid "Default Source"
+msgstr "无效来源 %s。"
+
+#: c:\code\pi\usr\module\article/config/config.php:87
+msgid "Display when no source is provided."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:92
+#, fuzzy
+msgid "Default Category"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/config/config.php:93
+msgid "Can not be deleted."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:100
+#, fuzzy
+msgid "Max Related Articles"
+msgstr "头像最大宽度"
+
+#: c:\code\pi\usr\module\article/config/config.php:101
+msgid "Maximum related articles to fetch."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:107
+#, fuzzy
+msgid "Markup Language"
+msgstr "语言选择"
+
+#: c:\code\pi\usr\module\article/config/config.php:108
+msgid "Default markup language for editing draft."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:109
+msgid "html"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:114
+msgid "HTML"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:115
+#, fuzzy
+msgid "Compound"
+msgstr "组合字段"
+
+#: c:\code\pi\usr\module\article/config/config.php:116
+msgid "Markdown"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:117
+msgid "Textarea"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:125
+msgid "Default Topic Template Screenshot"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:131
+#, fuzzy
+msgid "Max Sub-category"
+msgstr "分类删除成功。"
+
+#: c:\code\pi\usr\module\article/config/config.php:132
+msgid "Max sub-category number in category article list page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:137
+#, fuzzy
+msgid "Items of List Page"
+msgstr "页面展示数。"
+
+#: c:\code\pi\usr\module\article/config/config.php:138
+msgid "Items to display in list page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/config.php:146
+#, fuzzy
 msgid "Created time"
-msgstr ""
+msgstr "创建时间"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:147
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:187
+#: c:\code\pi\usr\module\article/config/config.php:147
+#: c:\code\pi\usr\module\article/config/navigation.php:260
+#, fuzzy
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:156
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:204
+#: c:\code\pi\usr\module\article/config/config.php:156
+#: c:\code\pi\usr\module\article/config/config.php:204
+#, fuzzy
 msgid "Max Summary Length"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:157
+#: c:\code\pi\usr\module\article/config/config.php:157
 msgid "Max summary length to display in list page"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:162
+#: c:\code\pi\usr\module\article/config/config.php:162
+#, fuzzy
 msgid "Enable List Nav"
-msgstr ""
+msgstr "资源类型列表"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:163
+#: c:\code\pi\usr\module\article/config/config.php:163
 msgid "Whether to enable category nav in list page"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:170
+#: c:\code\pi\usr\module\article/config/config.php:170
+#, fuzzy
 msgid "Default Homepage"
-msgstr ""
+msgstr "缺省分类"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:171
+#: c:\code\pi\usr\module\article/config/config.php:171
 msgid "Use relative url, leave it empty if you want to dress up yourselves"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:177
+#: c:\code\pi\usr\module\article/config/config.php:177
 msgid "Enable Front-end Management"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:178
+#: c:\code\pi\usr\module\article/config/config.php:178
 msgid "Whether to allow user compose and manage list in front-end"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:187
+#: c:\code\pi\usr\module\article/config/config.php:187
 msgid "Interval"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:188
+#: c:\code\pi\usr\module\article/config/config.php:188
 msgid ""
 "How many minutes to save draft once again, there will not autosave if it set "
 "to 0."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:196
+#: c:\code\pi\usr\module\article/config/config.php:196
+#, fuzzy
 msgid "Enable Summary"
-msgstr ""
+msgstr "启用状态"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:197
+#: c:\code\pi\usr\module\article/config/config.php:197
+#, fuzzy
 msgid "Enable summary"
-msgstr ""
+msgstr "启用状态"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:205
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:212
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:219
+#: c:\code\pi\usr\module\article/config/config.php:205
+#: c:\code\pi\usr\module\article/config/config.php:212
+#: c:\code\pi\usr\module\article/config/config.php:219
 msgid "Not more than 255"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:211
+#: c:\code\pi\usr\module\article/config/config.php:211
+#, fuzzy
 msgid "Max Subject Length"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:218
+#: c:\code\pi\usr\module\article/config/config.php:218
+#, fuzzy
 msgid "Max Subtitle Length"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:227
+#: c:\code\pi\usr\module\article/config/config.php:227
+#, fuzzy
 msgid "Media Path"
-msgstr ""
+msgstr "临时路径"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:228
+#: c:\code\pi\usr\module\article/config/config.php:228
 msgid "Path to save media file."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:233
+#: c:\code\pi\usr\module\article/config/config.php:233
 msgid "Media Extension"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:234
+#: c:\code\pi\usr\module\article/config/config.php:234
 msgid "Media types which can be uploaded."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:239
+#: c:\code\pi\usr\module\article/config/config.php:239
+#, fuzzy
 msgid "Image Format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:240
+#: c:\code\pi\usr\module\article/config/config.php:240
 msgid "Decide which extension belong to image"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:245
+#: c:\code\pi\usr\module\article/config/config.php:245
+#, fuzzy
 msgid "Documentation Format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:246
+#: c:\code\pi\usr\module\article/config/config.php:246
 msgid "Decide which extension belong to doc"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:251
+#: c:\code\pi\usr\module\article/config/config.php:251
+#, fuzzy
 msgid "Video Format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:252
+#: c:\code\pi\usr\module\article/config/config.php:252
 msgid "Decide which extension belong to video"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:257
+#: c:\code\pi\usr\module\article/config/config.php:257
+#, fuzzy
 msgid "Compression Format"
-msgstr ""
+msgstr "用户名规则"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:258
+#: c:\code\pi\usr\module\article/config/config.php:258
 msgid "Decide which extension belong to compression"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:263
+#: c:\code\pi\usr\module\article/config/config.php:263
+#, fuzzy
 msgid "Max Media Size"
-msgstr ""
+msgstr "最大文件尺寸"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:264
+#: c:\code\pi\usr\module\article/config/config.php:264
 msgid "Max media size, unit is Byte"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:270
+#: c:\code\pi\usr\module\article/config/config.php:270
+#, fuzzy
 msgid "Default Media Image"
-msgstr ""
+msgstr "最大图片尺寸："
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:271
+#: c:\code\pi\usr\module\article/config/config.php:271
 msgid "Path to default media image of article."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:276
+#: c:\code\pi\usr\module\article/config/config.php:276
+#, fuzzy
 msgid "Default media thumb"
-msgstr ""
+msgstr "缺省数字格式"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:277
+#: c:\code\pi\usr\module\article/config/config.php:277
 msgid "Path to default media thumb of article."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:282
+#: c:\code\pi\usr\module\article/config/config.php:282
+#, fuzzy
 msgid "Image Width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:283
+#: c:\code\pi\usr\module\article/config/config.php:283
+#, fuzzy
 msgid "Max allowed image width"
-msgstr ""
+msgstr "允许的图片宽度，0到无限"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:288
+#: c:\code\pi\usr\module\article/config/config.php:288
+#, fuzzy
 msgid "Image Height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:289
+#: c:\code\pi\usr\module\article/config/config.php:289
+#, fuzzy
 msgid "Max allowed image height"
-msgstr ""
+msgstr "最大图片高度，0代表无限制"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:294
+#: c:\code\pi\usr\module\article/config/config.php:294
+#, fuzzy
 msgid "Image Extension"
-msgstr ""
+msgstr "最大图片尺寸："
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:295
+#: c:\code\pi\usr\module\article/config/config.php:295
 msgid "Images types which can be uploaded."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:300
+#: c:\code\pi\usr\module\article/config/config.php:300
+#, fuzzy
 msgid "Max Image Size"
-msgstr ""
+msgstr "最大图片尺寸："
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:301
+#: c:\code\pi\usr\module\article/config/config.php:301
 msgid "Max image size allowed, unit is Byte"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:307
+#: c:\code\pi\usr\module\article/config/config.php:307
+#, fuzzy
 msgid "Author Path"
-msgstr ""
+msgstr "临时路径"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:308
+#: c:\code\pi\usr\module\article/config/config.php:308
 msgid "Path to upload photo of author."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:313
+#: c:\code\pi\usr\module\article/config/config.php:313
+#, fuzzy
 msgid "Category Path"
-msgstr ""
+msgstr "临时路径"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:314
+#: c:\code\pi\usr\module\article/config/config.php:314
 msgid "Path to upload image of category."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:319
+#: c:\code\pi\usr\module\article/config/config.php:319
+#, fuzzy
 msgid "Feature Path"
-msgstr ""
+msgstr "临时路径"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:320
+#: c:\code\pi\usr\module\article/config/config.php:320
 msgid "Path to upload feature image of article."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:325
+#: c:\code\pi\usr\module\article/config/config.php:325
+#, fuzzy
 msgid "Topic Path"
-msgstr ""
+msgstr "临时路径"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:326
+#: c:\code\pi\usr\module\article/config/config.php:326
 msgid "Path to upload image of topic."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:331
+#: c:\code\pi\usr\module\article/config/config.php:331
 msgid "Pattern"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:332
+#: c:\code\pi\usr\module\article/config/config.php:332
 msgid "Use datetime as pattern of sub directory."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:347
+#: c:\code\pi\usr\module\article/config/config.php:347
+#, fuzzy
 msgid "Author Photo Size"
-msgstr ""
+msgstr "最大文件尺寸"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:348
+#: c:\code\pi\usr\module\article/config/config.php:348
 msgid "Author photo width and height"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:354
+#: c:\code\pi\usr\module\article/config/config.php:354
+#, fuzzy
 msgid "Default Author Photo"
-msgstr ""
+msgstr "缺省数字格式"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:355
+#: c:\code\pi\usr\module\article/config/config.php:355
 msgid "Path to default photo of author."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:360
+#: c:\code\pi\usr\module\article/config/config.php:360
+#, fuzzy
 msgid "Category Image Width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:361
+#: c:\code\pi\usr\module\article/config/config.php:361
+#, fuzzy
 msgid "Category image width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:367
+#: c:\code\pi\usr\module\article/config/config.php:367
+#, fuzzy
 msgid "Category Image Height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:368
+#: c:\code\pi\usr\module\article/config/config.php:368
+#, fuzzy
 msgid "Category image height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:374
+#: c:\code\pi\usr\module\article/config/config.php:374
+#, fuzzy
 msgid "Default Category Image"
-msgstr ""
+msgstr "最大图片尺寸："
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:375
+#: c:\code\pi\usr\module\article/config/config.php:375
 msgid "Path to default image of category."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:380
+#: c:\code\pi\usr\module\article/config/config.php:380
+#, fuzzy
 msgid "Topic Image Width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:381
+#: c:\code\pi\usr\module\article/config/config.php:381
+#, fuzzy
 msgid "Topic image width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:387
+#: c:\code\pi\usr\module\article/config/config.php:387
+#, fuzzy
 msgid "Topic Image Height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:388
+#: c:\code\pi\usr\module\article/config/config.php:388
+#, fuzzy
 msgid "Topic image height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:394
+#: c:\code\pi\usr\module\article/config/config.php:394
+#, fuzzy
 msgid "Topic thumb width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:401
+#: c:\code\pi\usr\module\article/config/config.php:401
+#, fuzzy
 msgid "Topic thumb height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:408
+#: c:\code\pi\usr\module\article/config/config.php:408
+#, fuzzy
 msgid "Default topic thumb"
-msgstr ""
+msgstr "缺省数字格式"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:409
+#: c:\code\pi\usr\module\article/config/config.php:409
 msgid "Path to default topic thumb."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:414
+#: c:\code\pi\usr\module\article/config/config.php:414
+#, fuzzy
 msgid "Default Topic Image"
-msgstr ""
+msgstr "最大图片尺寸："
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:415
+#: c:\code\pi\usr\module\article/config/config.php:415
 msgid "Path to default image of topic."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:420
+#: c:\code\pi\usr\module\article/config/config.php:420
+#, fuzzy
 msgid "Feature Image Width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:421
+#: c:\code\pi\usr\module\article/config/config.php:421
+#, fuzzy
 msgid "Feature image width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:427
+#: c:\code\pi\usr\module\article/config/config.php:427
+#, fuzzy
 msgid "Feature Image Height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:428
+#: c:\code\pi\usr\module\article/config/config.php:428
+#, fuzzy
 msgid "Feature image height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:434
+#: c:\code\pi\usr\module\article/config/config.php:434
+#, fuzzy
 msgid "Default Feature Image"
-msgstr ""
+msgstr "最大图片尺寸："
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:435
+#: c:\code\pi\usr\module\article/config/config.php:435
 msgid "Path to default feature image of article."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:440
+#: c:\code\pi\usr\module\article/config/config.php:440
+#, fuzzy
 msgid "Feature thumb width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:447
+#: c:\code\pi\usr\module\article/config/config.php:447
+#, fuzzy
 msgid "Feature thumb height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:454
+#: c:\code\pi\usr\module\article/config/config.php:454
+#, fuzzy
 msgid "Default feature thumb"
-msgstr ""
+msgstr "缺省数字格式"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:455
+#: c:\code\pi\usr\module\article/config/config.php:455
 msgid "Path to default feature thumb of article."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:460
+#: c:\code\pi\usr\module\article/config/config.php:460
+#, fuzzy
 msgid "Content thumb width"
-msgstr ""
+msgstr "头像最大宽度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:467
+#: c:\code\pi\usr\module\article/config/config.php:467
+#, fuzzy
 msgid "Content thumb height"
-msgstr ""
+msgstr "头像最大高度"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:476
+#: c:\code\pi\usr\module\article/config/config.php:476
 msgid "Keywords"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:477
+#: c:\code\pi\usr\module\article/config/config.php:477
+#, fuzzy
 msgid "Setup head keywords."
-msgstr ""
+msgstr "Pi Engine 安装助手"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:484
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:501
+#: c:\code\pi\usr\module\article/config/config.php:484
+#: c:\code\pi\usr\module\article/config/config.php:501
+#, fuzzy
 msgid "Site default"
-msgstr ""
+msgstr "缺省分类"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:485
+#: c:\code\pi\usr\module\article/config/config.php:485
+#, fuzzy
 msgid "Use tag"
-msgstr ""
+msgstr "均不使用"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:486
+#: c:\code\pi\usr\module\article/config/config.php:486
+#, fuzzy
 msgid "Use category"
-msgstr ""
+msgstr "添加分类"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:493
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:11
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:109
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:16
+#: c:\code\pi\usr\module\article/config/config.php:493
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:11
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:108
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:15
+#, fuzzy
 msgid "Description"
-msgstr ""
+msgstr "简介"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:494
+#: c:\code\pi\usr\module\article/config/config.php:494
+#, fuzzy
 msgid "Setup head description."
-msgstr ""
+msgstr "Pi Engine 安装助手"
 
-#: D:\wamp\www\deploy\usr\module\article/config/config.php:502
+#: c:\code\pi\usr\module\article/config/config.php:502
+#, fuzzy
 msgid "Use summary"
-msgstr ""
+msgstr "均不使用"
 
-#: D:\wamp\www\deploy\usr\module\article/config/module.php:18
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:149
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:166
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:187
+#: c:\code\pi\usr\module\article/config/module.php:18
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:148
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:165
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:186
 msgid "Article"
 msgstr "文章"
 
-#: D:\wamp\www\deploy\usr\module\article/config/module.php:19
+#: c:\code\pi\usr\module\article/config/module.php:19
 msgid "General module for content management."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:18
+#: c:\code\pi\usr\module\article/config/navigation.php:18
+#, fuzzy
 msgid "Article site navigation"
-msgstr ""
+msgstr "添加自定义导航"
 
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:26
+#: c:\code\pi\usr\module\article/config/navigation.php:26
+#, fuzzy
 msgid "Homepage"
-msgstr ""
+msgstr "首页"
 
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:32
+#: c:\code\pi\usr\module\article/config/navigation.php:32
+#, fuzzy
 msgid "My Draft"
-msgstr ""
+msgstr "查看我的资料"
 
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:45
+#: c:\code\pi\usr\module\article/config/navigation.php:45
+#, fuzzy
 msgid "All Article"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:57
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:266
-msgid "My Article"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:76
-msgid "All topics"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:82
-msgid "Add topic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:88
-msgid "List topic articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:95
-msgid "Pull topic articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:102
-msgid "Edit topic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:121
-msgid "Media list"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:127
-msgid "Upload Media"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:133
-msgid "Edit Media"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:152
-msgid "Category list"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:158
-msgid "Add Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:164
-msgid "Edit Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:171
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:253
-msgid "Merge Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:178
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:341
-msgid "Move Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:197
-msgid "Author list"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:203
-msgid "Add author"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:209
-msgid "Edit author"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:218
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:85
-msgid "Setup"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:228
-msgid "Custom form"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:234
-msgid "Preview form"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:243
-msgid "Statistics"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/navigation.php:255
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:18
-msgid "Article Homepage"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:24
-msgid "All Article List Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:30
-msgid "Category Related Article List Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:36
-msgid "Tag Related Article List Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:42
-msgid "Article Detail Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:48
-msgid "Search Result Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:54
-msgid "Topic Homepage"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/page.php:60
-msgid "Topic Article List Page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:18
-msgid "Article management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:22
-msgid "Author management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:26
-msgid "Category management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:30
-msgid "Topic management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:34
-msgid "Media management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:38
-msgid "Statistics page view"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:42
-msgid "Permission management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:46
-msgid "Setup management"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:51
-msgid "Published Active/Deactivate"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:54
-msgid "Publish Edit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:57
-msgid "Published Delete"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:60
-msgid "Draft Compose"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:63
-msgid "Rejected Edit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:66
-msgid "Rejected Delete"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:69
-msgid "Pending Edit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:72
-msgid "Pending Delete"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/config/permission.php:75
-msgid "Pending Approve"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:57
-msgid "Add author info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:71
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:124
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:84
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:198
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:384
-msgid "There are some error occured!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:81
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:93
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:207
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:175
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:394
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:452
-msgid "Can not save data!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:111
-msgid "Edit author info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:141
-msgid "Invalid author id"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:146
-msgid "The author is not exists"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:163
-msgid "Invalid author id!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:236
-msgid "Author List"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:260
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:415
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:137
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:608
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:107
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:433
-msgid "Invalid ID!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:267
-msgid "Invalid image fake ID!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:278
-msgid "Image is not exists!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:292
-msgid "Image width or height is needed"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:411
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/AuthorController.php:489
-msgid "Invalid fake ID!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:70
-msgid "Add Category Info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:123
-msgid "Edit Category Info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:138
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:241
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:435
-msgid "Can not update data!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:159
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:227
-msgid "Invalid category ID!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:165
-msgid "Can not find category!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:186
-msgid "Root node cannot be deleted."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:192
-msgid "Cannot remove default category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:198
-msgid "Cannot remove category with children"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:206
-msgid "Cannot remove category in used"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:265
-msgid "Can not merge category!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:277
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:365
-msgid "Category cannot be moved to self or a child!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:285
-msgid "Cannot merge default category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:295
-msgid "Move children error."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:353
-msgid "Can not move category!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:433
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:625
-msgid "Media is not exists!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:439
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:631
-msgid "Invalid file extension!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:448
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:640
-msgid "Can not create image file!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:601
-msgid "Category is not exists."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/CategoryController.php:614
-msgid "Category cannot be moved to self or a child."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:117
-msgid "All Media"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:154
-msgid "This page have not been considered yet!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:161
-msgid "Media Detail"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:183
-msgid "Add Media"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:225
-msgid "Edit Media Info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:252
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:270
-msgid "Invalid media ID!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:258
-msgid "Can not find media!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:282
-msgid "Invalid media ID"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/MediaController.php:293
-msgid "The following medias is in used, and can not be delete: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:121
-msgid "Form Configuration"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:142
-msgid "Items marked red is required!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:181
-msgid "Data saved successful!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:201
-msgid "Success!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:201
-msgid "Can not save file!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/SetupController.php:217
-msgid "Invalid mode!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/StatsController.php:51
-msgid "Statistic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:157
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:449
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:473
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:572
-msgid "Invalid topic ID!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:255
-msgid "All Articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:281
-msgid "Target topic is needed!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:285
-msgid "No articles are selected, please try again!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:367
-msgid "Add Topic Info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:416
-msgid "Edit Topic Info"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:455
-msgid "Can not find topic!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:553
-msgid "Topic List"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:800
-msgid "Success"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Admin/TopicController.php:819
-msgid "Invalid template name!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:60
-msgid "Raw image width and height data is needed!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:66
-msgid "The limitation data is needed!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:285
-msgid "Can not find file!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Controller/Front/MediaController.php:461
-msgid "Media data saved successful!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Installer/Action/Install.php:101
-msgid "Root"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Installer/Action/Install.php:102
-msgid "Module root category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Installer/Action/Install.php:109
-msgid "Default"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/src/Installer/Action/Install.php:110
-msgid "The default category can not be delete, but can be modified!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:33
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:50
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:141
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:146
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:229
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:261
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-edit.phtml:24
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-edit.phtml:51
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:28
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:117
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:26
-msgid "Upload"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:44
-msgid "Modify Photo"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:52
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:121
-#, php-format
-msgid "Format supported: %s"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:59
-msgid "Please make sure your photo is clearly."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:64
-msgid "Size: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:70
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:77
-msgid "Cancel"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:71
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:78
-msgid "Yes"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:130
-msgid "In process ..."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-edit.phtml:145
-msgid "Error occured, please try again!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:10
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:20
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:186
-msgid "Name"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:13
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:39
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:80
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:70
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:58
-msgid "Search"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:19
-msgid "Photo"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:21
-msgid "Biography"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:42
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:58
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list-normal.phtml:29
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:136
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:51
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:36
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:91
-msgid "Edit"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/author-list.phtml:46
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:60
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list-normal.phtml:4
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:44
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:86
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:138
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:18
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:68
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:18
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:93
-msgid "Delete"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-edit.phtml:165
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:215
-msgid "Error ocurred when request saving image!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-edit.phtml:230
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:9
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:47
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:104
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:12
-msgid "Image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-edit.phtml:231
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:10
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:37
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:48
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:75
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:105
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:30
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:13
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:79
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:21
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:67
-msgid "Title"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-edit.phtml:232
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:49
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:108
-msgid "Size"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-edit.phtml:233
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:50
-msgid "Select"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:57
-msgid "Add"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:61
-msgid "Merge"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-list.phtml:62
-msgid "Move"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-merge.phtml:13
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-move.phtml:14
-msgid "Move all articles from source category to target category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-merge.phtml:19
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-move.phtml:20
-msgid "Source Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-merge.phtml:32
-msgid "merge into"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-merge.phtml:36
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-move.phtml:37
-msgid "Target Category"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/category-move.phtml:33
-msgid "move into"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-edit.phtml:12
-msgid "Media must be uploaded!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-edit.phtml:47
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-edit.phtml:145
-msgid "No item!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:7
-msgid "Choose Image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:14
-msgid "Upload Image"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:18
-msgid "Choose From Media"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:59
-msgid "Prev"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:64
-msgid "Next"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:92
-msgid "Insert"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-image-box.phtml:102
-msgid "Image choosed: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list-normal.phtml:31
-msgid "Full size"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list-normal.phtml:203
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:228
-msgid "Are you sure want to delete selected images?"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list-normal.phtml:211
-msgid "Are you sure want to delete this images?"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:18
-msgid "Images"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:23
-msgid "Docs"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:28
-msgid "Videos"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:33
-msgid "Zips"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:42
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:15
-msgid "Bulk operation"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:43
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:110
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:140
-msgid "Download"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:49
-msgid "All"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:103
-msgid "ID"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:106
-msgid "Type"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:107
-msgid "File size"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:111
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:131
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:82
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:24
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:70
-msgid "Submitter"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:112
-msgid "Uploaded date"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:154
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:76
-msgid "No description"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:273
-msgid "Are you sure delete selected media?"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/media-list.phtml:327
-msgid "Are you sure delete this article"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/operation-error.phtml:8
-msgid "You have an error operation: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-form.phtml:27
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:170
-msgid "Preview"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-form.phtml:42
-msgid "Form Elements"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-form.phtml:44
-msgid "Save"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-nav.phtml:5
-msgid "Custom Form"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-nav.phtml:10
-msgid "Custom Route"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:15
-msgid "Custom Parameters"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:16
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:186
-msgid "Install"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:16
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:184
-msgid "Un-install"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:44
-msgid "Required File"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:49
-msgid "Current route: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:69
-msgid "Route configuration: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:71
-msgid "No file"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:75
-msgid "Route class: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:77
-msgid "No class"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/setup-route.phtml:86
-msgid "Use default"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:9
-msgid "Article amounts"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:14
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:37
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:118
-msgid "In 7 days"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:15
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:40
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:121
-msgid "In 30 days"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:16
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:43
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:124
-msgid "history"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:19
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:40
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:30
-msgid "All categories"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:34
-msgid "Top Articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:51
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:73
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:94
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:148
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:165
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:65
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:53
-msgid "Subject"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:52
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:74
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:95
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:71
-msgid "View"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:115
-msgid "Top editors"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:132
-msgid "Total"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/stats-index.phtml:181
-msgid "Top Tags"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:29
-msgid "Feature image for topic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:30
-msgid "Required size: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:44
-msgid "This is screenshot"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:46
-msgid "Change"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:58
-msgid "Apply"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:61
-msgid "Fullsize"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-edit.phtml:436
-msgid "Error occured when required url!"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:19
-msgid "Topic: "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:20
-msgid " articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:22
-msgid "Pull articles"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:31
-msgid "Pulled date"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:32
-msgid "Pulled by"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:33
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:83
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:72
-msgid "Publish date"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:51
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:39
-msgid "Deactive"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-article.phtml:66
-msgid "Remove Pull"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:14
-msgid "Article Number"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:15
-msgid "Template"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:43
-msgid "Manage"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:46
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:35
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:116
-msgid "Pull"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:57
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:17
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:96
-msgid "Deactivate"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-list-topic.phtml:63
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:25
-msgid "Active"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-nav.phtml:4
-msgid "All Topics"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-nav.phtml:9
-msgid "Add Topic"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:24
-msgid "Pull articles for "
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:104
-msgid "Pulled"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/admin/topic-pull.phtml:123
-msgid "No topics"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-nav.phtml:10
+msgstr "清除所有"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:58
+#: c:\code\pi\usr\module\article/config/navigation.php:98
+#: c:\code\pi\usr\module\article/template/front/article-nav.phtml:10
 msgid "Published"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-nav.phtml:15
+#: c:\code\pi\usr\module\article/config/navigation.php:67
+#: c:\code\pi\usr\module\article/config/navigation.php:107
+#: c:\code\pi\usr\module\article/template/front/article-nav.phtml:15
 msgid "Pending"
-msgstr ""
+msgstr "待审核"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-nav.phtml:28
+#: c:\code\pi\usr\module\article/config/navigation.php:79
 msgid "Compose"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:12
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:40
+#: c:\code\pi\usr\module\article/config/navigation.php:88
+#: c:\code\pi\usr\module\article/config/navigation.php:339
+#, fuzzy
+msgid "My Article"
+msgstr "查看我的资料"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:117
+msgid "Rejected"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:127
+msgid "Draft"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:149
+#, fuzzy
+msgid "All topics"
+msgstr "清除所有"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:155
+#, fuzzy
+msgid "Add topic"
+msgstr "添加组"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:161
+#, fuzzy
+msgid "List topic articles"
+msgstr "资源类型列表"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:168
+msgid "Pull topic articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:175
+#, fuzzy
+msgid "Edit topic"
+msgstr "编辑用户："
+
+#: c:\code\pi\usr\module\article/config/navigation.php:194
+#, fuzzy
+msgid "Media list"
+msgstr "登录次数"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:200
+#, fuzzy
+msgid "Upload Media"
+msgstr "上传头像"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:206
+#, fuzzy
+msgid "Edit Media"
+msgstr "编辑用户："
+
+#: c:\code\pi\usr\module\article/config/navigation.php:225
+#, fuzzy
+msgid "Category list"
+msgstr "登录次数"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:231
+#, fuzzy
+msgid "Add Category"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:237
+#, fuzzy
+msgid "Edit Category"
+msgstr "编辑该分类"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:244
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:253
+#, fuzzy
+msgid "Merge Category"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:251
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:341
+#, fuzzy
+msgid "Move Category"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:270
+#, fuzzy
+msgid "Author list"
+msgstr "登录次数"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:276
+#, fuzzy
+msgid "Add author"
+msgstr "作者信息"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:282
+#, fuzzy
+msgid "Edit author"
+msgstr "作者信息"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:291
+#, fuzzy
+msgid "Setup"
+msgstr "启用"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:301
+#, fuzzy
+msgid "Custom form"
+msgstr "添加自定义导航"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:307
+#, fuzzy
+msgid "Preview form"
+msgstr "点击预览"
+
+#: c:\code\pi\usr\module\article/config/navigation.php:316
+msgid "Statistics"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/navigation.php:328
+#: c:\code\pi\usr\module\article/config/page.php:18
+msgid "Article Homepage"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/page.php:24
+#, fuzzy
+msgid "All Article List Page"
+msgstr "页面展示数。"
+
+#: c:\code\pi\usr\module\article/config/page.php:30
+msgid "Category Related Article List Page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/page.php:36
+msgid "Tag Related Article List Page"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/page.php:42
+#, fuzzy
+msgid "Article Detail Page"
+msgstr "页面删除成功。"
+
+#: c:\code\pi\usr\module\article/config/page.php:48
+#, fuzzy
+msgid "Search Result Page"
+msgstr "页面删除成功。"
+
+#: c:\code\pi\usr\module\article/config/page.php:54
+msgid "Topic Homepage"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/page.php:60
+#, fuzzy
+msgid "Topic Article List Page"
+msgstr "页面展示数。"
+
+#: c:\code\pi\usr\module\article/config/permission.php:18
+#, fuzzy
+msgid "Article management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:22
+#, fuzzy
+msgid "Author management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:26
+#, fuzzy
+msgid "Category management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:30
+#, fuzzy
+msgid "Topic management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:34
+#, fuzzy
+msgid "Media management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:38
+#, fuzzy
+msgid "Statistics page view"
+msgstr "导航数据预览：%s"
+
+#: c:\code\pi\usr\module\article/config/permission.php:42
+#, fuzzy
+msgid "Permission management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:46
+#, fuzzy
+msgid "Setup management"
+msgstr "插件管理"
+
+#: c:\code\pi\usr\module\article/config/permission.php:51
+#, fuzzy
+msgid "Published Active/Deactivate"
+msgstr "重新发布资源成功"
+
+#: c:\code\pi\usr\module\article/config/permission.php:54
+#, fuzzy
+msgid "Publish Edit"
+msgstr "编辑用户："
+
+#: c:\code\pi\usr\module\article/config/permission.php:57
+#, fuzzy
+msgid "Published Delete"
+msgstr "删除失败。"
+
+#: c:\code\pi\usr\module\article/config/permission.php:60
+msgid "Draft Compose"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/config/permission.php:63
+#, fuzzy
+msgid "Rejected Edit"
+msgstr "编辑用户："
+
+#: c:\code\pi\usr\module\article/config/permission.php:66
+#, fuzzy
+msgid "Rejected Delete"
+msgstr "删除失败。"
+
+#: c:\code\pi\usr\module\article/config/permission.php:69
+#, fuzzy
+msgid "Pending Edit"
+msgstr "编辑用户："
+
+#: c:\code\pi\usr\module\article/config/permission.php:72
+#, fuzzy
+msgid "Pending Delete"
+msgstr "删除失败。"
+
+#: c:\code\pi\usr\module\article/config/permission.php:75
+#, fuzzy
+msgid "Pending Approve"
+msgstr "未激活数量"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:57
+#, fuzzy
+msgid "Add author info"
+msgstr "修改您的%s"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:71
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:124
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:84
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:198
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:386
+msgid "There are some error occured!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:81
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:93
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:207
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:177
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:396
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:452
+#, fuzzy
+msgid "Can not save data!"
+msgstr "区块数据未保存。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:111
+#, fuzzy
+msgid "Edit author info"
+msgstr "编辑用户信息失败"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:141
+#, fuzzy
+msgid "Invalid author id"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:146
+#, fuzzy
+msgid "The author is not exists"
+msgstr "区块不存在。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:163
+#, fuzzy
+msgid "Invalid author id!"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:235
+#, fuzzy
+msgid "Author List"
+msgstr "登录次数"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:259
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:415
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:136
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:609
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:107
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:433
+#, fuzzy
+msgid "Invalid ID!"
+msgstr "用户 ID"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:266
+#, fuzzy
+msgid "Invalid image fake ID!"
+msgstr "无效图片名"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:277
+#, fuzzy
+msgid "Image is not exists!"
+msgstr "区块不存在。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:291
+#, fuzzy
+msgid "Image width or height is needed"
+msgstr "未给定图片高度或宽度。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:410
+#: c:\code\pi\usr\module\article/src/Controller/Admin/AuthorController.php:488
+#, fuzzy
+msgid "Invalid fake ID!"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:70
+#, fuzzy
+msgid "Add Category Info"
+msgstr "修改您的%s"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:123
+#, fuzzy
+msgid "Edit Category Info"
+msgstr "编辑该分类"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:138
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:245
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:437
+#, fuzzy
+msgid "Can not update data!"
+msgstr "区块数据未保存。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:159
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:227
+#, fuzzy
+msgid "Invalid category ID!"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:165
+msgid "Can not find category!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:186
+msgid "Root node cannot be deleted."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:192
+msgid "Cannot remove default category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:198
+msgid "Cannot remove category with children"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:206
+msgid "Cannot remove category in used"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:265
+msgid "Can not merge category!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:277
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:365
+msgid "Category cannot be moved to self or a child!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:285
+msgid "Cannot merge default category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:295
+#, fuzzy
+msgid "Move children error."
+msgstr "密码输入错误"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:353
+msgid "Can not move category!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:433
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:626
+#, fuzzy
+msgid "Media is not exists!"
+msgstr "区块不存在。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:439
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:632
+#, fuzzy
+msgid "Invalid file extension!"
+msgstr "最大文件尺寸"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:448
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:641
+msgid "Can not create image file!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:601
+#, fuzzy
+msgid "Category is not exists."
+msgstr "区块不存在。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:614
+msgid "Category cannot be moved to self or a child."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:116
+#, fuzzy
+msgid "All Media"
+msgstr "清除所有"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:153
+msgid "This page have not been considered yet!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:160
+msgid "Media Detail"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:183
+#, fuzzy
+msgid "Add Media"
+msgstr "添加组"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:227
+#, fuzzy
+msgid "Edit Media Info"
+msgstr "编辑用户信息失败"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:256
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:270
+#, fuzzy
+msgid "Invalid media ID!"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:262
+msgid "Can not find media!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:286
+#, fuzzy
+msgid "Invalid media ID"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/MediaController.php:297
+msgid "The following medias is in used, and can not be delete: "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:123
+#, fuzzy
+msgid "Form Configuration"
+msgstr "无配置参数。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:144
+msgid "Items marked red is required!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:183
+#, fuzzy
+msgid "Data saved successful!"
+msgstr "数据保存失败"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:203
+msgid "Success!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:203
+#, fuzzy
+msgid "Can not save file!"
+msgstr "文件上传失败"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/SetupController.php:219
+#, fuzzy
+msgid "Invalid mode!"
+msgstr "邮箱错误"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/StatsController.php:51
+msgid "Statistic"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:156
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:451
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:475
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:573
+#, fuzzy
+msgid "Invalid topic ID!"
+msgstr "隐私设置失败：id错误。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:256
+#, fuzzy
+msgid "All Articles"
+msgstr "清除所有"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:283
+msgid "Target topic is needed!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:287
+msgid "No articles are selected, please try again!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:369
+#, fuzzy
+msgid "Add Topic Info"
+msgstr "修改您的%s"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:418
+#, fuzzy
+msgid "Edit Topic Info"
+msgstr "编辑用户信息失败"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:457
+msgid "Can not find topic!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:554
+#, fuzzy
+msgid "Topic List"
+msgstr "登录次数"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:801
+msgid "Success"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/TopicController.php:820
+#, fuzzy
+msgid "Invalid template name!"
+msgstr "无效昵称。"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:60
+msgid "Raw image width and height data is needed!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:66
+msgid "The limitation data is needed!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:285
+#, fuzzy
+msgid "Can not find file!"
+msgstr "文件上传失败"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/MediaController.php:461
+#, fuzzy
+msgid "Media data saved successful!"
+msgstr "区块数据保存成功。"
+
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:101
+msgid "Root"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:102
+#, fuzzy
+msgid "Module root category"
+msgstr "分类删除成功。"
+
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:109
+#, fuzzy
+msgid "Default"
+msgstr "系统默认"
+
+#: c:\code\pi\usr\module\article/src/Installer/Action/Install.php:110
+msgid "The default category can not be delete, but can be modified!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:33
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:141
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:146
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:229
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:261
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:24
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:52
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:28
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:117
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:26
+#, fuzzy
+msgid "Upload"
+msgstr "上传"
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:44
+msgid "Modify Photo"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:52
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:121
+#, fuzzy, php-format
+msgid "Format supported: %s"
+msgstr "用户名规则"
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:59
+msgid "Please make sure your photo is clearly."
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:64
+#, fuzzy
+msgid "Size: "
+msgstr "最大文件尺寸"
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:70
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:77
+#, fuzzy
+msgid "Cancel"
+msgstr "取消"
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:71
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:78
+#, fuzzy
+msgid "Yes"
+msgstr "是"
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:130
+#, fuzzy
+msgid "In process ..."
+msgstr "重新发布资源中"
+
+#: c:\code\pi\usr\module\article/template/admin/author-edit.phtml:145
+msgid "Error occured, please try again!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:9
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:19
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:185
+#, fuzzy
+msgid "Name"
+msgstr "姓名"
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:12
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:39
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:79
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:69
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:57
+#, fuzzy
+msgid "Search"
+msgstr "搜索"
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:18
+msgid "Photo"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:20
+msgid "Biography"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:41
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:58
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:29
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:135
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:50
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:38
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:94
+#, fuzzy
+msgid "Edit"
+msgstr "编辑"
+
+#: c:\code\pi\usr\module\article/template/admin/author-list.phtml:45
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:60
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:4
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:43
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:85
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:137
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:67
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:17
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:96
+#, fuzzy
+msgid "Delete"
+msgstr "删除"
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:165
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:215
+msgid "Error ocurred when request saving image!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:230
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:9
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:47
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:103
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:11
+#, fuzzy
+msgid "Image"
+msgstr "最大图片尺寸："
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:231
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:10
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:37
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:74
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:104
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:29
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:12
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:78
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:21
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:66
+#, fuzzy
+msgid "Title"
+msgstr "标题"
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:232
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:49
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:107
+#, fuzzy
+msgid "Size"
+msgstr "最大文件尺寸"
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:233
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:50
+#, fuzzy
+msgid "Select"
+msgstr "系统挑选"
+
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:57
+#, fuzzy
+msgid "Add"
+msgstr "添加"
+
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:61
+msgid "Merge"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-list.phtml:62
+msgid "Move"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:13
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:14
+msgid "Move all articles from source category to target category"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:19
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:20
+#, fuzzy
+msgid "Source Category"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:32
+msgid "merge into"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/category-merge.phtml:36
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:37
+#, fuzzy
+msgid "Target Category"
+msgstr "添加分类"
+
+#: c:\code\pi\usr\module\article/template/admin/category-move.phtml:33
+msgid "move into"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:12
+msgid "Media must be uploaded!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:48
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:146
+#, fuzzy
+msgid "No item!"
+msgstr "项目名称"
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:7
+#, fuzzy
+msgid "Choose Image"
+msgstr "最大图片尺寸："
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:14
+#, fuzzy
+msgid "Upload Image"
+msgstr "上传头像"
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:18
+#, fuzzy
+msgid "Choose From Media"
+msgstr "克隆区块：%s"
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:59
+msgid "Prev"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:64
+#, fuzzy
+msgid "Next"
+msgstr "下一步"
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:92
+msgid "Insert"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-image-box.phtml:102
+#, fuzzy
+msgid "Image choosed: "
+msgstr "最大图片尺寸："
+
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:31
+#, fuzzy
+msgid "Full size"
+msgstr "全福尺寸"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:203
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:227
+msgid "Are you sure want to delete selected images?"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list-normal.phtml:211
+msgid "Are you sure want to delete this images?"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:17
+msgid "Images"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:22
+msgid "Docs"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:27
+msgid "Videos"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:32
+msgid "Zips"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:41
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:14
+#, fuzzy
+msgid "Bulk operation"
+msgstr "操作：模块"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:42
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:109
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:139
+msgid "Download"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:48
+#, fuzzy
+msgid "All"
+msgstr "全部"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:102
+#, fuzzy
+msgid "ID"
+msgstr "ID"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:105
+#, fuzzy
+msgid "Type"
+msgstr "类型"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:106
+#, fuzzy
+msgid "File size"
+msgstr "最大文件尺寸"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:110
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:130
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:81
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:26
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:73
+msgid "Submitter"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:111
+#, fuzzy
+msgid "Uploaded date"
+msgstr "缺省日期格式"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:153
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:75
+#, fuzzy
+msgid "No description"
+msgstr "无缓存"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:272
+#, fuzzy
+msgid "Are you sure delete selected media?"
+msgstr "请确认是否删除该组？"
+
+#: c:\code\pi\usr\module\article/template/admin/media-list.phtml:326
+#, fuzzy
+msgid "Are you sure delete this article"
+msgstr "请确认是否删除该组？"
+
+#: c:\code\pi\usr\module\article/template/admin/operation-error.phtml:8
+#, fuzzy
+msgid "You have an error operation: "
+msgstr "密码输入错误"
+
+#: c:\code\pi\usr\module\article/template/admin/setup-form.phtml:27
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:169
+#, fuzzy
+msgid "Preview"
+msgstr "点击预览"
+
+#: c:\code\pi\usr\module\article/template/admin/setup-form.phtml:42
+msgid "Form Elements"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/setup-form.phtml:44
+#, fuzzy
+msgid "Save"
+msgstr "保存"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:8
+msgid "Article amounts"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:13
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:36
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:117
+#, fuzzy
+msgid "In 7 days"
+msgstr "启用的主题"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:14
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:39
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:120
+#, fuzzy
+msgid "In 30 days"
+msgstr "当前主题"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:15
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:42
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:123
+#, fuzzy
+msgid "history"
+msgstr "历史"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:18
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:39
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:29
+#, fuzzy
+msgid "All categories"
+msgstr "清除所有"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:33
+#, fuzzy
+msgid "Top Articles"
+msgstr "注册IP排行"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:72
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:93
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:147
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:164
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:64
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:52
+msgid "Subject"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:51
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:73
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:94
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:74
+#, fuzzy
+msgid "View"
+msgstr "预览"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:114
+#, fuzzy
+msgid "Top editors"
+msgstr "注册IP排行"
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:131
+msgid "Total"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/stats-index.phtml:180
+#, fuzzy
+msgid "Top Tags"
+msgstr "注册IP排行"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:29
+#, fuzzy
+msgid "Feature image for topic"
+msgstr "允许的图片宽度，0到无限"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:30
+#, fuzzy
+msgid "Required size: "
+msgstr "最大文件尺寸"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:44
+#, fuzzy
+msgid "This is screenshot"
+msgstr "必需信息。"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:46
+#, fuzzy
+msgid "Change"
+msgstr "修改密码"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:58
+#, fuzzy
+msgid "Apply"
+msgstr "应用"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:61
+msgid "Fullsize"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:436
+msgid "Error occured when required url!"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:18
+msgid "Topic: "
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:19
+msgid " articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:21
+msgid "Pull articles"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:30
+#, fuzzy
+msgid "Pulled date"
+msgstr "缺省日期格式"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:31
+#, fuzzy
+msgid "Pulled by"
+msgstr "排序："
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:32
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:82
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:75
+#, fuzzy
+msgid "Publish date"
+msgstr "发布资源"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:50
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:38
+msgid "Deactive"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-article.phtml:65
+#, fuzzy
+msgid "Remove Pull"
+msgstr "移除角色"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:13
+#, fuzzy
+msgid "Article Number"
+msgstr "缺省数字格式"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:14
+#, fuzzy
+msgid "Template"
+msgstr "模板"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:42
+msgid "Manage"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:45
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:34
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:115
+msgid "Pull"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:56
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:16
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:99
+msgid "Deactivate"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-list-topic.phtml:62
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:24
+#, fuzzy
+msgid "Active"
+msgstr "激活"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-nav.phtml:4
+#, fuzzy
+msgid "All Topics"
+msgstr "清除所有"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-nav.phtml:9
+#, fuzzy
+msgid "Add Topic"
+msgstr "添加组"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:23
+#, fuzzy
+msgid "Pull articles for "
+msgstr "选择%s主题"
+
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:103
+msgid "Pulled"
+msgstr ""
+
+#: c:\code\pi\usr\module\article/template/admin/topic-pull.phtml:122
+#, fuzzy
+msgid "No topics"
+msgstr "无缓存"
+
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:12
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:42
 msgid "Approve"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:23
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:69
-msgid "Tag"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:25
+#: c:\code\pi\usr\module\article/template/front/article-pending.phtml:27
+#, fuzzy
 msgid "Last update"
-msgstr ""
+msgstr "最近更新"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-pending.phtml:49
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:106
-msgid "No tags"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:16
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:99
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:15
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:102
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "未锁定"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:23
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:22
+#, fuzzy
 msgid "All articles"
-msgstr ""
+msgstr "清除所有"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:24
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:88
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:23
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:91
+#, fuzzy
 msgid "Inactive"
-msgstr ""
+msgstr "未激活"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:172
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:180
+#, fuzzy
 msgid "Are you sure delete selected article?"
-msgstr ""
+msgstr "请确认是否删除该组？"
 
-#: D:\wamp\www\deploy\usr\module\article/template/front/article-published.phtml:205
+#: c:\code\pi\usr\module\article/template/front/article-published.phtml:213
+#, fuzzy
 msgid "Are you sure delete this article?"
-msgstr ""
+msgstr "请确认是否删除该组？"
 
 #, fuzzy
 #~ msgid "Submit time"

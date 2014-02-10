@@ -43,7 +43,7 @@ return array(
                     'fragment'      => '!/all'
                 ),
                 'activated'      => array(
-                    'label'         => _t('Activated'),
+                    'label'         => _t('Activated user'),
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
@@ -51,7 +51,7 @@ return array(
                     'fragment'      => '!/activated'
                 ),
                 'pending'      => array(
-                    'label'         => _t('Pending'),
+                    'label'         => _t('Pending user'),
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',
@@ -59,7 +59,7 @@ return array(
                     'fragment'      => '!/pending'
                 ),
                 'new'         => array(
-                    'label'         => _t('Add new'),
+                    'label'         => _t('Add user'),
                     'route'         => 'admin',
                     'module'        => 'user',
                     'controller'    => 'index',

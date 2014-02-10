@@ -13,14 +13,14 @@
 
 <table class="table table-hover">
     <thead>
-        <td width="12%"><?php echo _a('time') ?></td>
-        <td width="5%"><?php echo _a('User') ?></td>
+        <td width="15%"><?php echo _a('time') ?></td>
+        <td width="2%"><?php echo _a('User ID') ?></td>
         <td width="5%"><?php echo _a('IP') ?></td>
-        <td width="2%"><?php echo _a('Section') ?></td>
-        <td width="8%"><?php echo _a('Module') ?></td>
-        <td width="8%"><?php echo _a('Controller') ?></td>
-        <td width="8%"><?php echo _a('Action') ?></td>
-        <td width="2%"><?php echo _a('Method') ?></td>
+        <td width="2%">`section`</td>
+        <td width="8%">`module`</td>
+        <td width="8%">`controller`</td>
+        <td width="8%">`action`</td>
+        <td width="2%">`method`</td>
         <td width="30%"><?php echo _a('Message') ?></td>
         <td><?php echo _a('extra') ?></td>
     </thead>
@@ -34,8 +34,8 @@
         <td><?php echo $row['controller']; ?></td>
         <td><?php echo $row['action']; ?></td>
         <td><?php echo $row['method']; ?></td>
-        <td><?php echo $row['message']; ?></td>
-        <td><?php echo $row['extra']; ?></td>
+        <td><span title="<?php echo _escape($row['message']); ?>"><?php echo _escape(substr($row['message'], 0, 50)); ?></span></td>
+        <td><span title="<?php echo _escape($row['extra']); ?>"><?php echo _escape(substr($row['extra'], 0, 20)); ?></span></td>
     </tr>
     <?php } ?>
 </table>
@@ -44,11 +44,16 @@
 
 <div style="padding: 10px">
 <form method='GET'>
-    <?php echo _a('Count of items to display: '); ?><select id='audit-count' audit-url='<?php echo $this->url('admin', array('controller' => 'audit', 'count' => '')) ?>'>
-        <option value='10' <?php echo (!isset($count) or (10 === $count) ? 'selected' : '')?>><?php echo _a('10') ?></option>
-        <option value='20' <?php echo (20 === $count ? 'selected' : '') ?>><?php echo _a('20') ?></option>
-        <option value='50' <?php echo (50 === $count ? 'selected' : '') ?>><?php echo _a('50') ?></option>
-    </select>
+    <div class="form-group">
+        <label class="col-md-2 control-label text-right"><?php echo _a('Count of items to display: '); ?></label>
+        <div class="col-md-1">
+        <select id='audit-count' class="form-control" audit-url='<?php echo $this->url('admin', array('controller' => 'audit', 'count' => '__COUNT__')) ?>'>
+            <option value='10' <?php echo (!isset($count) or (10 === $count) ? 'selected' : '')?>><?php echo _a('10') ?></option>
+            <option value='20' <?php echo (20 === $count ? 'selected' : '') ?>><?php echo _a('20') ?></option>
+            <option value='50' <?php echo (50 === $count ? 'selected' : '') ?>><?php echo _a('50') ?></option>
+        </select>
+        </div>
+    </div>
 </form>
 </div>
 
@@ -56,7 +61,7 @@
 (function($) {
     $("#audit-count").change(function() {
         var $this = $(this);
-        location.href = $this.attr('audit-url') + $this.val();
+        location.href = $this.attr('audit-url').replace('__COUNT__', $this.val());
     })
 })(jQuery)
 </script>
