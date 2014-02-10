@@ -102,6 +102,9 @@ class Asset extends AbstractService
      */
     const DIR_BUILD = '_build';
 
+    /** @var array List of files/directories not published or removed */
+    protected $error = array();
+
     /**
      * Get path to assets root folder
      *
@@ -378,6 +381,116 @@ class Asset extends AbstractService
      * Resource folder and file manipulation
      */
     /**
+     * Publishes component assets folder
+     *
+     * @param string $component     Component name
+     * @param string $target        Target component
+     * @param Traversable $iterator A Traversable instance for directory scan
+     * @param array $hasCustom
+     *
+     * @return bool
+     */
+    public function publish(
+        $component,
+        $target = '',
+        Traversable $iterator = null,
+        array $hasCustom = array()
+    ) {
+        // Initialize erroneous file list
+        $this->setErrors();
+
+        $result = true;
+        $target = $target ?: $component;
+        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
+            // Publish original assets
+            $sourceFolder   = $this->getSourcePath($component, '', $type);
+            $targetFolder   = $this->getPath($target, $type);
+            $disableSymlink = !empty($hasCustom[$type]) ? true : false;
+            $status         = $this->publishFile(
+                $sourceFolder,
+                $targetFolder,
+                $iterator,
+                $disableSymlink
+            );
+            if (!$status) {
+                $result = $status;
+                //break;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Publishes module assets, including original and custom assets
+     *
+     * @param string $module
+     *
+     * @return bool
+     */
+    public function publishModule($module)
+    {
+        // Initialize erroneous file list
+        $this->setErrors();
+
+        $result = true;
+        // Publish original assets
+        $component  = 'module/' . Pi::service('module')->directory($module);
+        $hasCustom  = $this->hasCustom($component);
+        $target     = 'module/' . $module;
+        $status     = $this->publish($component, $target, null, $hasCustom);
+        if (!$status) {
+            $result = $status;
+        }
+        // Publish custom assets
+        $component  = 'module/' . $module;
+        $status     = $this->publishCustom($component);
+        if (!$status) {
+            $result = $status;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Publishes theme assets, including original and custom assets,
+     * as well as module assets for the theme
+     *
+     * @param string $theme
+     *
+     * @return bool
+     */
+    public function publishTheme($theme)
+    {
+        // Initialize erroneous file list
+        $this->setErrors();
+
+        $result = true;
+
+        // Publish original assets
+        $component  = 'theme/' . $theme;
+        $hasCustom  = $this->hasCustom($component);
+        $hasCustom  = $this->hasModule($component, $hasCustom);
+
+        $status     = $this->publish($component, '', null, $hasCustom);
+        if (!$status) {
+            $result = $status;
+        }
+        // Publish custom assets
+        $status = $this->publishCustom($component);
+        if (!$status) {
+            $result = $status;
+        }
+        // Publish module assets for this theme
+        $status = $this->publishThemeModule($theme);
+        if (!$status) {
+            $result = $status;
+        }
+
+        return $result;
+    }
+
+    /**
      * Publishes a file
      *
      * @param string $sourceFile Source file
@@ -387,7 +500,7 @@ class Asset extends AbstractService
      *
      * @return bool
      */
-    public function publishFile(
+    protected function publishFile(
         $sourceFile,
         $targetFile,
         Traversable $iterator = null,
@@ -396,6 +509,8 @@ class Asset extends AbstractService
         if (!is_dir($sourceFile) && !is_link($sourceFile)) {
             return true;
         }
+
+        $result = true;
         try {
             $copyOnWindows = true;
             $override = (false === $this->getOption('override')) ? false : true;
@@ -415,7 +530,7 @@ class Asset extends AbstractService
                     )
                 );
 
-            // Use symlink for performance consideration
+                // Use symlink for performance consideration
             } else {
                 Pi::service('file')->symlink(
                     $sourceFile,
@@ -424,50 +539,16 @@ class Asset extends AbstractService
                     $override
                 );
             }
-
-            $status = true;
         } catch (\Exception $e) {
-            trigger_error($e->getMessage());
+            $result = false;
+            $this->appendErrors(Pi::service('security')->path(sprintf(
+                '%s: %s',
+                $sourceFile,
+                $e->getMessage()
+            )));
         }
 
-        return $status;
-    }
-
-    /**
-     * Publishes component assets folder
-     *
-     * @param string $component     Component name
-     * @param string $target        Target component
-     * @param Traversable $iterator A Traversable instance for directory scan
-     * @param array $hasCustom
-     *
-     * @return bool
-     */
-    public function publish(
-        $component,
-        $target = '',
-        Traversable $iterator = null,
-        array $hasCustom = array()
-    ) {
-        $status = true;
-        $target = $target ?: $component;
-        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-            // Publish original assets
-            $sourceFolder   = $this->getSourcePath($component, '', $type);
-            $targetFolder   = $this->getPath($target, $type);
-            $disableSymlink = !empty($hasCustom[$type]) ? true : false;
-            $status         = $this->publishFile(
-                $sourceFolder,
-                $targetFolder,
-                $iterator,
-                $disableSymlink
-            );
-            if (!$status) {
-                //break;
-            }
-        }
-
-        return $status;
+        return $result;
     }
 
     /**
@@ -478,9 +559,9 @@ class Asset extends AbstractService
      *
      * @return bool
      */
-    public function publishCustom($component, $target = '')
+    protected function publishCustom($component, $target = '')
     {
-        $status     = true;
+        $result     = true;
         $iterator   = function ($folder) {
             return new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator(
@@ -504,92 +585,11 @@ class Asset extends AbstractService
                 $iterator($sourceFolder)
             );
             if (!$status) {
-                //break;
-            }
-        }
-
-        return $status;
-    }
-
-    /**
-     * Check if custom assets available
-     *
-     * @param string $component     Component name
-     *
-     * @return bool[]
-     */
-    protected function hasCustom($component)
-    {
-        $result = array(
-            static::DIR_ASSET   => false,
-            static::DIR_PUBLIC  => false,
-        );
-        $component  = 'custom/' . $component;
-        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-            $sourceFolder   = $this->getSourcePath($component, '', $type);
-            if (is_dir($sourceFolder)) {
-                $result[$type] = true;
+                $result = $status;
             }
         }
 
         return $result;
-    }
-
-    /**
-     * Publishes module assets, including original and custom assets
-     *
-     * @param string $module
-     *
-     * @return bool
-     */
-    public function publishModule($module)
-    {
-        // Publish original assets
-        $component  = 'module/' . Pi::service('module')->directory($module);
-        $hasCustom  = $this->hasCustom($component);
-        $target     = 'module/' . $module;
-        $status     = $this->publish($component, $target, null, $hasCustom);
-        if (!$status) {
-            //return $status;
-        }
-        // Publish custom assets
-        $component  = 'module/' . $module;
-        $status     = $this->publishCustom($component);
-
-        return $status;
-    }
-
-    /**
-     * Publishes theme assets, including original and custom assets,
-     * as well as module assets for the theme
-     *
-     * @param string $theme
-     *
-     * @return bool
-     */
-    public function publishTheme($theme)
-    {
-        // Publish original assets
-        $component  = 'theme/' . $theme;
-        $hasCustom  = $this->hasCustom($component);
-        $hasCustom  = $this->hasModule($component, $hasCustom);
-
-        $status     = $this->publish($component, '', null, $hasCustom);
-        if (!$status) {
-            //return $status;
-        }
-        // Publish custom assets
-        $status = $this->publishCustom($component);
-        if (!$status) {
-            //return $status;
-        }
-        // Publish module assets for this theme
-        $status = $this->publishThemeModule($theme);
-        if (!$status) {
-            //return $status;
-        }
-
-        return $status;
     }
 
     /**
@@ -605,7 +605,7 @@ class Asset extends AbstractService
         if (!is_dir($path)) {
             return true;
         }
-        $status     = true;
+        $result     = true;
         $iterator   = function ($folder) {
             return new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator(
@@ -644,12 +644,36 @@ class Asset extends AbstractService
                     $iterator($sourceFolder)
                 );
                 if (!$status) {
-                    // break;
+                    $result = $status;
                 }
             }
         }
 
-        return $status;
+        return $result;
+    }
+
+    /**
+     * Check if custom assets available
+     *
+     * @param string $component     Component name
+     *
+     * @return bool[]
+     */
+    protected function hasCustom($component)
+    {
+        $result = array(
+            static::DIR_ASSET   => false,
+            static::DIR_PUBLIC  => false,
+        );
+        $component  = 'custom/' . $component;
+        foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
+            $sourceFolder   = $this->getSourcePath($component, '', $type);
+            if (is_dir($sourceFolder)) {
+                $result[$type] = true;
+            }
+        }
+
+        return $result;
     }
 
     /**
@@ -699,11 +723,20 @@ class Asset extends AbstractService
      */
     public function remove($component, $type = '')
     {
-        $status = true;
+        // Initialize erroneous file list
+        $this->setErrors();
+
+        $result = true;
         if (!$type) {
+            $errors = array();
             foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-                $this->remove($component, $type);
+                $status = $this->remove($component, $type);
+                if (!$status) {
+                    $result = $status;
+                    $errors = array_merge($errors, $this->getErrors());
+                }
             }
+            $this->setErrors($errors);
         } else {
             $path = $this->getPath($component, $type);
             try {
@@ -715,13 +748,62 @@ class Asset extends AbstractService
                 //Pi::service('file')->flush($path);
 
                 Pi::service('file')->remove($path);
-                $status = true;
             } catch (\Exception $e) {
-                $status = false;
+                $result = false;
+                $this->appendErrors(Pi::service('security')->path(sprintf(
+                    '%s: %s',
+                    $component,
+                    $e->getMessage()
+                )));
             }
         }
 
-        return $status;
+        return $result;
+    }
+
+    /**
+     * Set list of erroneous files
+     *
+     * @param array|string $errors
+     *
+     * @return $this
+     */
+    public function setErrors($errors = array())
+    {
+        $this->errors = (array) $errors;
+
+        return $this;
+    }
+
+    /**
+     * Append list of erroneous file(s)
+     *
+     * @param array|string $errors
+     *
+     * @return $this
+     */
+    protected function appendErrors($errors = array())
+    {
+        $this->errors = array_merge($this->errors, (array) $errors);
+
+        return $this;
+    }
+
+    /**
+     * Get list of erroneous files
+     *
+     * @param bool $clearErrors Clear erroneous list after the fetch
+     *
+     * @return array
+     */
+    public function getErrors($clearErrors = true)
+    {
+        $errors = $this->errors;
+        if ($clearErrors) {
+            $this->setErrors();
+        }
+
+        return $errors;
     }
     /**#@-*/
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-09 22:56+0800\n"
-"PO-Revision-Date: 2014-02-09 22:56+0800\n"
+"POT-Creation-Date: 2014-02-10 14:46+0800\n"
+"PO-Revision-Date: 2014-02-10 14:50+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -774,9 +774,8 @@ msgstr "后台"
 
 #: c:\Code\pi\usr\module\system/config/nav.front.php:57
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:98
-#, fuzzy
 msgid "Feed"
-msgstr "%s - %s Feed"
+msgstr "Feed"
 
 #: c:\Code\pi\usr\module\system/config/nav.php:33
 msgid "Managed components"
@@ -929,23 +928,37 @@ msgstr "部署"
 msgid "Asset component list"
 msgstr "资源类型列表"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:80
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:100
+msgid ""
+"Some old files were not able to remove and asset publish was not completed."
+msgstr "部分原有文件不能删除，发布未完成。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:105
+msgid "Asset publish was not completed, please check and copy manually."
+msgstr "资源文件未能完整，请检查并手工拷贝。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:110
+msgid ""
+"Asset publish was not completed because some old files were not able to "
+"remove."
+msgstr "由于部分原有文件不能删除导致发布未完成。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:115
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr "资源文件未能发布，请手工拷贝。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:82
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:120
 msgid "Asset files are published correctly."
 msgstr "资源文件发布成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:180
-#, php-format
-msgid "There are errors with: %s."
-msgstr "错误：%s。"
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:187
+msgid "Publish is not completed, please check and re-publish one by one."
+msgstr "发布未完整进行，请检查并逐一进行发布。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:185
-msgid "Assets re-published successfully."
-msgstr "重新发布资源成功"
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:192
+msgid "All assets published successfully."
+msgstr "所有资源发布成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:113
 msgid "Block list"
@@ -1264,9 +1277,8 @@ msgid "Custom"
 msgstr "定制"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:159
-#, fuzzy
 msgid "Navigation set up successfully."
-msgstr "导航删除成功。"
+msgstr "导航设置成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:192
 msgid "Navigation added successfully."
@@ -1281,9 +1293,8 @@ msgid "Navigation saved successfully."
 msgstr "导航保存成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:246
-#, fuzzy
 msgid "Navigation data not saved."
-msgstr "区块数据未保存。"
+msgstr "导航数据未保存。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:284
 msgid "Clone navigation"
@@ -1308,9 +1319,8 @@ msgid "Navigation data edit: %s"
 msgstr "导航数据编辑：%s"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:471
-#, fuzzy
 msgid "Navigation data saved successfully."
-msgstr "区块数据保存成功。"
+msgstr "导航数据保存成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/NavController.php:478
 msgid "Navigation not found."
@@ -1333,9 +1343,8 @@ msgstr "页面数据保存成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:144
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
-#, fuzzy
 msgid "Page data not saved."
-msgstr "区块数据未保存。"
+msgstr "页面数据未保存。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:159
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:9
@@ -1394,9 +1403,8 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:156
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:210
-#, fuzzy
 msgid "Role data saved successfully."
-msgstr "区块数据保存成功。"
+msgstr "角色数据保存成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:159
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:213
@@ -1755,9 +1763,8 @@ msgid "URL"
 msgstr "URL"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:29
-#, fuzzy
 msgid "Powered by"
-msgstr "排序："
+msgstr "Powered by"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:30
 msgid ""
@@ -2193,6 +2200,9 @@ msgstr "主题更新成功。"
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "请确认是否删除该主题。"
+
+#~ msgid "There are errors with: %s."
+#~ msgstr "错误：%s。"
 
 #~ msgid "Site closed"
 #~ msgstr "网站关闭"

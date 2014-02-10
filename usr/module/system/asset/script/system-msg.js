@@ -1,5 +1,5 @@
 var systemMessage = {
-  tmp: '<div class="label label-{type}" style="font-size: 14px; line-height: 20px; padding: 5px 20px; text-align: left; white-space: normal;"><i class="icon-{cls}"></i><span style="margin-left: 10px;">{msg}</span></div>',
+  tmp: '<div class="alert alert-{type}" style="font-size: 14px; line-height: 20px; padding: 5px 20px; text-align: left; white-space: normal;"><i class="icon-{cls}"></i><span style="margin-left: 10px;">{msg}</span></div>',
   _init: function() {
     this.el = $('<div class="system-layer" style="position: fixed; z-index: 1043; width: 60%; left: 20%; text-align: center;">').appendTo(document.body);
   },
@@ -7,7 +7,7 @@ var systemMessage = {
     this._type('succ', msg, time || 3000);
   },
   fail: function(msg, time) {
-    this._type('fail', msg, time || 3000);
+    this._type('fail', msg, time || 5000);
   },
   hits: function(msg, time) {
     this._type('hits', msg, time || 3000);
@@ -36,7 +36,7 @@ var systemMessage = {
         break;
       case 'fail':
         obj.cls = 'minus-sign';
-        obj.type = 'important';
+        obj.type = 'info';
         break;
       case 'hits':
         obj.cls = 'info-sign';

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-09 22:57+0800\n"
-"PO-Revision-Date: 2014-02-09 22:57+0800\n"
+"POT-Creation-Date: 2014-02-10 14:46+0800\n"
+"PO-Revision-Date: 2014-02-10 14:46+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -938,23 +938,38 @@ msgstr ""
 msgid "Asset component list"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:80
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:100
+msgid ""
+"Some old files were not able to remove and asset publish was not completed."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:105
+msgid "Asset publish was not completed, please check and copy manually."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:110
+msgid ""
+"Asset publish was not completed because some old files were not able to "
+"remove."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:115
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:82
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:120
 msgid "Asset files are published correctly."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:180
-#, php-format
-msgid "There are errors with: %s."
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:187
+msgid "Publish is not completed, please check and re-publish one by one."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:185
-msgid "Assets re-published successfully."
-msgstr ""
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:192
+#, fuzzy
+msgid "All assets published successfully."
+msgstr "主题更新成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:113
 msgid "Block list"

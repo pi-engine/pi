@@ -58,28 +58,69 @@ class AssetController extends ActionController
      */
     public function publishAction()
     {
-        $type = $this->params('type', 'module');
-        $name = $this->params('name');
+        $type   = $this->params('type', 'module');
+        $name   = $this->params('name');
+        $result = true;
+        $errors = array(
+            'remove'    => array(),
+            'publish'   => array(),
+        );
+        $canonizeResult = function ($type, $status) use (&$errors, &$result) {
+            if (!$status) {
+                $errors[$type] = Pi::service('asset')->getErrors();
+                $result = $status;
+            }
+        };
         switch ($type) {
             case 'module':
                 $status = Pi::service('asset')->remove('module/' . $name);
+                $canonizeResult('remove', $status);
                 $status = Pi::service('asset')->publishModule($name);
+                $canonizeResult('publish', $status);
                 break;
             case 'theme':
                 $status = Pi::service('asset')->remove('theme/' . $name);
+                $canonizeResult('remove', $status);
                 $status = Pi::service('asset')->publishTheme($name);
+                $canonizeResult('publish', $status);
                 break;
             default:
                 $component = sprintf('%s/%s', $type, $name);
                 $status = Pi::service('asset')->remove($component);
+                $canonizeResult('remove', $status);
                 $status = Pi::service('asset')->publish($component);
+                $canonizeResult('publish', $status);
                 break;
         }
         clearstatcache();
-        if (!$status) {
-            $message = _a('Asset files are not published correctly, please copy asset files manually.');
+
+        if (!$result) {
+            if (!empty($errors['publish']) && !empty($errors['remove'])) {
+                $message = $this->renderMessage(
+                    _a('Some old files were not able to remove and asset publish was not completed.'),
+                    array_merge($errors['remove'], $errors['publish'])
+                );
+            } elseif (!empty($errors['publish'])) {
+                $message = $this->renderMessage(
+                    _a('Asset publish was not completed, please check and copy manually.'),
+                    $errors['publish']
+                );
+            } elseif (!empty($errors['remove'])) {
+                $message = $this->renderMessage(
+                    _a('Asset publish was not completed because some old files were not able to remove.'),
+                    $errors['remove']
+                );
+            } else {
+                $message = $this->renderMessage(
+                    _a('Asset files are not published correctly, please copy asset files manually.')
+                );
+            }
         } else {
-            $message = _a('Asset files are published correctly.');
+            $message = $this->renderMessage(
+                _a('Asset files are published correctly.'),
+                array(),
+                'success'
+            );
         }
 
         //$this->redirect()->toRoute('', array('action' => 'index'));
@@ -101,93 +142,109 @@ class AssetController extends ActionController
         $modules = Pi::registry('module')->read();
         $themes = Pi::registry('theme')->read();
 
-        /*
-        $assetList = array();
-        $assetCustom = array();
-        foreach ($modules as $name => $item) {
-            $moduleList[$name] = array(
-                //'source'    => 'module/' . $item['directory'],
-                'title'     => sprintf(_a('module %s'), $item['title']),
-            );
-        }
-        foreach ($themes as $name => $item) {
-            $themeList[$name] = array(
-                'source'    => 'theme/' . $name,
-                'title'     => sprintf(_a('theme %s'), $item['title']),
-            );
-            //$assetCustom[] = $name;
-        }
-
-        // Remove published module and theme assets
-        $iterator = new \DirectoryIterator(Pi::path('asset'));
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
+        $result = true;
+        $errors = array(
+            'remove'    => array(),
+            'publish'   => array(),
+        );
+        $canonizeResult = function ($type, $status) use (&$errors, &$result) {
+            if (!$status) {
+                $errors[$type] = Pi::service('asset')->getErrors();
+                $result = $status;
             }
-            $directory = $fileinfo->getFilename();
-            if (('module-' == substr($directory, 0, 7)
-                || 'theme-' == substr($directory, 0, 6))
-                && !isset($assetList[$directory])
-            ) {
-                $component = str_replace('-', '/', $directory);
-                Pi::service('asset')->remove($component);
-            }
-        }
-
-        $iterator = new \DirectoryIterator(Pi::path('public'));
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
-            }
-            $directory = $fileinfo->getFilename();
-            if (('module-' == substr($directory, 0, 7)
-                    || 'theme-' == substr($directory, 0, 6))
-                && !isset($assetList[$directory])
-            ) {
-                $component = str_replace('-', '/', $directory);
-                Pi::service('asset')->remove($component);
-            }
-        }
-        */
+        };
 
         // Republish all module/theme components
         $erroneous = array();
         foreach (array_keys($modules) as $name) {
             $status = Pi::service('asset')->remove('module/' . $name);
             if (!$status) {
-                $erroneous[] = 'module-remove-' . $name;
+                $erroneous[] = 'Remove: module-' . $name;
+                $canonizeResult('remove', $status);
             }
             $status = Pi::service('asset')->publishModule($name);
             if (!$status) {
-                $erroneous[] = 'module-publish-' . $name;
+                $erroneous[] = 'Publish: module-' . $name;
+                $canonizeResult('publish', $status);
             }
         }
         foreach (array_keys($themes) as $name) {
             $status = Pi::service('asset')->remove('theme/' . $name);
             if (!$status) {
-                $erroneous[] = 'theme-remove-' . $name;
+                $erroneous[] = 'Remove: theme-' . $name;
+                $canonizeResult('remove', $status);
             }
             $status = Pi::service('asset')->publishTheme($name);
             if (!$status) {
-                $erroneous[] = 'theme-publish-' . $name;
+                $erroneous[] = 'Publish: theme-' . $name;
+                $canonizeResult('publish', $status);
             }
         }
         clearstatcache();
 
-        if ($erroneous) {
-            $status = 0;
-            $message = sprintf(
-                _a('There are errors with: %s.'),
-                implode(' | ', $erroneous)
+        if (!$result) {
+            $message = $this->renderMessage(
+                _a('Publish is not completed, please check and re-publish one by one.'),
+                $erroneous
             );
         } else {
-            $status = 1;
-            $message = _a('Assets re-published successfully.');
+            $message = $this->renderMessage(
+                _a('All assets published successfully.'),
+                array(),
+                'success'
+            );
         }
 
         return array(
-            'status'    => $status,
+            'status'    => $result,
             'message'   => $message,
         );
+    }
+
+    /**
+     * Renders errors
+     *
+     * @param string $title
+     * @param array  $errors
+     *
+     * @param string $type
+     *
+     * @return string
+     */
+    protected function renderMessage($title, $errors = array(), $type = 'error')
+    {
+        switch ($type) {
+            case 'error':
+                $class = 'danger';
+                break;
+            default:
+                $class = $type ?: 'info';
+                break;
+        }
+
+        if (!$errors) {
+            $message = _escape($title);
+        } else {
+            $patternPanel =<<<'EOT'
+<div class="panel panel-%s">
+  <div class="panel-heading">%s</div>
+
+  <ul class="list-group">
+    %s
+  </ul>
+</div>
+EOT;
+            $patternList =<<<'EOT'
+    <li class="list-group-item">%s</li>
+EOT;
+
+            $list = '';
+            foreach ($errors as $error) {
+                $list .= sprintf($patternList, _escape($error)) . PHP_EOL;
+            }
+            $message = sprintf($patternPanel, $class, _escape($title), $list);
+        }
+
+        return $message;
     }
 }
