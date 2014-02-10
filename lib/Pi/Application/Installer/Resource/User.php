@@ -714,9 +714,11 @@ class User extends AbstractResource
      */
     public function activateAction()
     {
+        /*
         if (!$this->isActive()) {
             return;
         }
+        */
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
