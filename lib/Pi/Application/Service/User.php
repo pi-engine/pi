@@ -588,6 +588,24 @@ class User extends AbstractService
     }
 
     /**
+     * Reload user service
+     *
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function reload(array $options = array())
+    {
+        if ($options) {
+            $this->setOptions($options);
+        }
+        $this->adapter = null;
+        $this->bind();
+
+        return $this;
+    }
+
+    /**
      * Get get resource handler or user variables
      *
      * @param string $var
