@@ -517,13 +517,45 @@ class ModuleController extends ActionController
     }
 
     /**
+     * Update all modules
+     */
+    public function refreshAction()
+    {
+        @set_time_limit(0);
+        
+        $result     = array();
+        $rowset     = Pi::model('module')->select(array('active' => 1));
+        foreach ($rowset as $row) {
+            $installer  = new ModuleInstaller;
+            $status = $installer->update($row);
+            $details = $installer->getResult();
+            $result[$row['name']] = array(
+                'title'     => $row['title'],
+                'status'    => $status,
+                'result'    => $details,
+            );
+            if ($status) {
+                Pi::service('event')->trigger('module_update', $row['name']);
+            }
+        }
+
+        $data = array(
+            'title'     => _a('Module updates'),
+            'result'    => $result,
+            'url'       => $this->url('', array('action' => 'index')),
+        );
+        $this->view()->assign($data);
+        $this->view()->setTemplate('module-refresh');
+    }
+
+    /**
      * Update a module
      */
     public function updateAction()
     {
         $id         = _get('id', 'int');
         $name       = _get('name', 'regexp',
-                           array('regexp' => '/^[a-z0-9_]+$/i'));
+            array('regexp' => '/^[a-z0-9_]+$/i'));
 
         $result     = false;
         $error      = '';
@@ -549,15 +581,15 @@ class ModuleController extends ActionController
         }
         if ($result) {
             $message = sprintf(_a('Module "%s" is updated successfully.'),
-                               $row->title);
+                $row->title);
 
-            Pi::service('event')->trigger('module_updatel', $name);
+            Pi::service('event')->trigger('module_update', $name);
 
         } elseif ($row) {
             $message = sprintf(_a('Module "%s" is not updated.'), $row->title);
         } elseif ($id || $name) {
             $message = sprintf(_a('Module "%s" is not updated.'),
-                               $name ?: $id);
+                $name ?: $id);
         } else {
             $message = _a('Module is not updated.');
         }

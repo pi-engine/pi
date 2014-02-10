@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-10 14:46+0800\n"
-"PO-Revision-Date: 2014-02-10 14:46+0800\n"
+"POT-Creation-Date: 2014-02-10 16:40+0800\n"
+"PO-Revision-Date: 2014-02-10 16:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1198,15 +1198,15 @@ msgid "Module installation"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:474
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:534
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:593
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:566
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:625
 msgid "Module is not specified."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:483
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:543
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:602
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:683
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:575
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:634
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:715
 msgid "Module is not found."
 msgstr ""
 
@@ -1233,61 +1233,66 @@ msgstr ""
 msgid "Module uninstallation"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:551
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:543
+#, fuzzy
+msgid "Module updates"
+msgstr "主题更新失败。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:583
 #, php-format
 msgid "Module \"%s\" is updated successfully."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:557
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:559
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:589
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:591
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:562
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:594
 msgid "Module is not updated."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:566
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:598
 #, fuzzy
 msgid "Module update"
 msgstr "主题更新失败。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:615
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:647
 #, php-format
 msgid "Module \"%s\" is enabled successfully."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:620
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:623
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:652
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:655
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:626
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:658
 msgid "Module is not enabled."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:630
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:662
 #, php-format
 msgid "Module \"%s\" is disabled successfully."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:635
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:638
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:667
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:670
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:641
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:673
 msgid "Module is not disabled."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:646
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:678
 msgid "Module activation"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:669
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:701
 msgid "Title is required."
 msgstr ""
 
@@ -1990,35 +1995,58 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:64
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:63
+#, fuzzy
+msgid "Update all"
+msgstr "All Categories"
+
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:66
 msgid "Disable"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:66
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
 msgid "Enable"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:70
 msgid "Are you sure to uninstall this module?"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:68
+#: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:70
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:23
 msgid "Uninstall"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:7
+#: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:7
 #, fuzzy
 msgid "Press to continue ..."
 msgstr "主题更新失败。"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:17
+#: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:23
 msgid "Failed"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/module-operation.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:25
 msgid "Succeeded"
 msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:6
+#, fuzzy
+msgid "Module updates finished."
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:16
+#, fuzzy
+msgid "Update succeeded."
+msgstr "主题更新失败。"
+
+#: c:\Code\pi\usr\module\system/template/admin/module-refresh.phtml:16
+#, fuzzy
+msgid "Update failed."
+msgstr "主题更新失败。"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:15
 msgid "Only click this button to save data"
