@@ -582,7 +582,8 @@ class Asset extends AbstractService
             $status         = $this->publishFile(
                 $sourceFolder,
                 $targetFolder,
-                $iterator($sourceFolder)
+                $iterator($sourceFolder),
+                true
             );
             if (!$status) {
                 $result = $status;
@@ -641,7 +642,8 @@ class Asset extends AbstractService
                 $status = $this->publishFile(
                     $sourceFolder,
                     $targetFolder,
-                    $iterator($sourceFolder)
+                    $iterator($sourceFolder),
+                    true
                 );
                 if (!$status) {
                     $result = $status;
