@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-10 19:18+0800\n"
-"PO-Revision-Date: 2014-02-10 19:18+0800\n"
+"POT-Creation-Date: 2014-02-11 19:28+0800\n"
+"PO-Revision-Date: 2014-02-11 19:28+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,9 @@ msgid "User deleted"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/event.php:51
+#, fuzzy
 msgid "User profile updated"
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/config/event.php:57
 msgid "Display name changed"
@@ -71,13 +72,15 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:101
 #: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:30
+#, fuzzy
 msgid "Male"
-msgstr ""
+msgstr "男"
 
 #: C:\code\pi\usr\module\user/config/user.php:102
 #: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:31
+#, fuzzy
 msgid "Female"
-msgstr ""
+msgstr "女"
 
 #: C:\code\pi\usr\module\user/src/Api/Nav.php:46
 msgid "Profile"
@@ -114,20 +117,23 @@ msgid "Public"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Api/Relation.php:59
+#, fuzzy
 msgid "Member"
-msgstr ""
+msgstr "成员"
 
 #: C:\code\pi\usr\module\user/src/Api/Relation.php:67
 msgid "Following"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Api/TimelineController.php:46
+#, fuzzy
 msgid "Timeline post failed."
-msgstr ""
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Api/TimelineController.php:89
+#, fuzzy
 msgid "Timeline added successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:144
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
@@ -138,8 +144,9 @@ msgid "Verify link invalid"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:226
+#, fuzzy
 msgid "Reset email successfully"
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:240
 msgid "Incorrect password"
@@ -188,16 +195,18 @@ msgid "Invalid email for gravatar."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:333
+#, fuzzy
 msgid "Successful"
-msgstr ""
+msgstr "身份验证成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:350
 msgid "No image selected!"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:366
+#, fuzzy
 msgid "Successful."
-msgstr ""
+msgstr "身份验证成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:384
 #, php-format
@@ -229,33 +238,38 @@ msgid "Invalid image set name."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:491
+#, fuzzy
 msgid "Avatar set successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:506
 msgid "Image is not removed."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:521
+#, fuzzy
 msgid "Image removed successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:57
+#, fuzzy
 msgid "Reset password failed"
-msgstr ""
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:81
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:245
+#, fuzzy
 msgid "Reset password successfully"
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:83
 msgid "Input password error"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:112
+#, fuzzy
 msgid "Find password failed"
-msgstr ""
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:161
 msgid "Send email successfully. check email and reset password"
@@ -266,18 +280,20 @@ msgid "Privacy settings saved successfully."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:216
+#, fuzzy
 msgid "Update successfully"
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:218
+#, fuzzy
 msgid "Data saved failed"
-msgstr ""
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:478
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:502
 #, fuzzy
 msgid "Delete failed."
-msgstr "Application Execution Time"
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:497
 msgid "Cannot delete the last one."
@@ -294,8 +310,9 @@ msgid "Activation link is expired."
 msgstr "Application Execution Time"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:224
+#, fuzzy
 msgid "Account Activated successfully."
-msgstr ""
+msgstr "主题更新成功。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:240
 #, fuzzy
@@ -760,8 +777,9 @@ msgid "Choose: "
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/login-logout.phtml:16
+#, fuzzy
 msgid "Login"
-msgstr ""
+msgstr "登录"
 
 #: C:\code\pi\usr\module\user/template/front/login-logout.phtml:17
 #: C:\code\pi\usr\module\user/template/front/login.phtml:18

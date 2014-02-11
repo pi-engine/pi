@@ -585,7 +585,7 @@ class IndexController extends ActionController
             foreach ($uids as $uid) {
                 $status = Pi::api('user', 'user')->revokeRole($uid, $role);
                 if (!$status) {
-                    $result['message'] = _a('Role assignment failed');
+                    $result['message'] = _a('Role assignment failed.');
                     return $result;
                 } else {
                     $roleRemoveUids[] = $uid;

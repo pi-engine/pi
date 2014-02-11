@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-10 19:42+0800\n"
-"PO-Revision-Date: 2014-02-10 19:45+0800\n"
+"POT-Creation-Date: 2014-02-11 19:16+0800\n"
+"PO-Revision-Date: 2014-02-11 19:19+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,14 +14,12 @@ msgstr ""
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\user\n"
 
 #: c:\Code\pi\usr\module\user/config/config.php:25
-#, fuzzy
 msgid "Login"
 msgstr "登录"
 
 #: c:\Code\pi\usr\module\user/config/config.php:29
-#, fuzzy
 msgid "Registration"
-msgstr "禁止用户注册"
+msgstr "注册"
 
 #: c:\Code\pi\usr\module\user/config/config.php:33
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:25
@@ -39,14 +37,12 @@ msgid "Number of items on list page."
 msgstr "页面展示项目数"
 
 #: c:\Code\pi\usr\module\user/config/config.php:50
-#, fuzzy
 msgid "Profile complete"
-msgstr "用户信息"
+msgstr "资料完善"
 
 #: c:\Code\pi\usr\module\user/config/config.php:51
-#, fuzzy
 msgid "Require user to complete profile data."
-msgstr "Application Execution Time"
+msgstr "要求用户完善个人资料数据。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:59
 msgid "Login disable"
@@ -73,13 +69,12 @@ msgid "Days to remember login, 0 for disable."
 msgstr "账号保持登录状态时间，0是不保持。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:85
-#, fuzzy
 msgid "Login field"
-msgstr "登录失败"
+msgstr "登录字段"
 
 #: c:\Code\pi\usr\module\user/config/config.php:86
 msgid "Identity field(s) for authentication."
-msgstr ""
+msgstr "用于认证的字段。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:94
 #: c:\Code\pi\usr\module\user/config/user.php:26
@@ -111,7 +106,6 @@ msgid "Maximum attempts allowed to try for user login"
 msgstr "用户登录时的最大尝试次数"
 
 #: c:\Code\pi\usr\module\user/config/config.php:114
-#, fuzzy
 msgid "Register disable"
 msgstr "注册关闭"
 
@@ -128,45 +122,41 @@ msgid "Enable CAPTCHA for user registration"
 msgstr "启用注册验证码"
 
 #: c:\Code\pi\usr\module\user/config/config.php:132
-#, fuzzy
 msgid "Register complete"
-msgstr "注册验证码"
+msgstr "注册数据完善"
 
 #: c:\Code\pi\usr\module\user/config/config.php:133
 msgid "Require user to complete register data in an extra form."
-msgstr ""
+msgstr "要求用户注册后提供必需资料。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:141
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:19
-#, fuzzy
 msgid "Activation"
-msgstr "激活时间"
+msgstr "激活"
 
 #: c:\Code\pi\usr\module\user/config/config.php:142
 msgid "Activation mode for user accounts"
-msgstr ""
+msgstr "用户注册激活模式"
 
 #: c:\Code\pi\usr\module\user/config/config.php:147
 msgid "Automatically activated"
 msgstr "自动激活"
 
 #: c:\Code\pi\usr\module\user/config/config.php:148
-#, fuzzy
 msgid "Activated by user email"
-msgstr "邮箱已被占用"
+msgstr "邮箱激活"
 
 #: c:\Code\pi\usr\module\user/config/config.php:149
 msgid "Activated by admin approval"
-msgstr ""
+msgstr "管理员激活"
 
 #: c:\Code\pi\usr\module\user/config/config.php:159
-#, fuzzy
 msgid "Activation expiration"
-msgstr "缓存有效期"
+msgstr "激活有效期"
 
 #: c:\Code\pi\usr\module\user/config/config.php:160
 msgid "Expiration time for activation email (in hours)."
-msgstr ""
+msgstr "激活邮件的有效期（单位小时）。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:168
 msgid "Username format"
@@ -178,19 +168,16 @@ msgstr "注册用户名规则。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:174
 #: c:\Code\pi\usr\module\user/config/config.php:207
-#, fuzzy
 msgid "Strict: alphabet or number only"
 msgstr "严格模式：只接受数字和字母"
 
 #: c:\Code\pi\usr\module\user/config/config.php:175
 #: c:\Code\pi\usr\module\user/config/config.php:208
-#, fuzzy
 msgid "Medium: ASCII characters"
 msgstr "普通模式：允许ASCII码字符"
 
 #: c:\Code\pi\usr\module\user/config/config.php:176
 #: c:\Code\pi\usr\module\user/config/config.php:209
-#, fuzzy
 msgid "Loose: multi-byte characters"
 msgstr "宽松模式：允许多字节字符"
 
@@ -255,7 +242,6 @@ msgid "Username backlist"
 msgstr "用户名黑名单"
 
 #: c:\Code\pi\usr\module\user/config/config.php:252
-#, fuzzy
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -266,20 +252,18 @@ msgid "Display backlist"
 msgstr "显示黑名单"
 
 #: c:\Code\pi\usr\module\user/config/config.php:260
-#, fuzzy
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
-msgstr "保留及禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
+msgstr "保留及禁止的昵称列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:267
 msgid "Email backlist"
 msgstr "邮箱黑名单"
 
 #: c:\Code\pi\usr\module\user/config/config.php:268
-#, fuzzy
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
-msgstr "禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
+msgstr "禁止的邮件地址列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:277
 msgid "Max Avatar Width"
@@ -303,7 +287,7 @@ msgstr "最大文件尺寸"
 
 #: c:\Code\pi\usr\module\user/config/config.php:292
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
-msgstr ""
+msgstr "头像上传最大允许文件（KB），0 为不限制。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:307
 msgid "Temporary Path"
@@ -370,7 +354,7 @@ msgstr "资料字段"
 
 #: c:\Code\pi\usr\module\user/config/nav.php:110
 msgid "Profile dress up"
-msgstr "资料 dress up"
+msgstr "资料组织"
 
 #: c:\Code\pi\usr\module\user/config/nav.php:118
 msgid "Field privacy"
@@ -391,7 +375,7 @@ msgstr "时间线"
 
 #: c:\Code\pi\usr\module\user/config/nav.php:160
 msgid "Activity"
-msgstr ""
+msgstr "活动记录"
 
 #: c:\Code\pi\usr\module\user/config/nav.php:168
 msgid "Quicklink"
@@ -432,9 +416,8 @@ msgid "Roles"
 msgstr "角色"
 
 #: c:\Code\pi\usr\module\user/config/permission.php:36
-#, fuzzy
 msgid "Profile fields"
-msgstr "用户信息"
+msgstr "用户资料字段"
 
 #: c:\Code\pi\usr\module\user/config/permission.php:51
 msgid "Avatars"
@@ -442,7 +425,7 @@ msgstr "头像"
 
 #: c:\Code\pi\usr\module\user/config/permission.php:57
 msgid "Forms"
-msgstr ""
+msgstr "表单"
 
 #: c:\Code\pi\usr\module\user/config/user.php:42
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:46
@@ -502,9 +485,8 @@ msgid "Last modified"
 msgstr "修改时间"
 
 #: c:\Code\pi\usr\module\user/config/user.php:217
-#, fuzzy
 msgid "Personal website"
-msgstr "网站名称"
+msgstr "个人网站"
 
 #: c:\Code\pi\usr\module\user/config/user.php:222
 msgid "Short bio"
@@ -584,19 +566,17 @@ msgid "Add user successfully"
 msgstr "添加用户成功"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:367
-#, fuzzy
 msgid "Enable user failed: invalid uid."
-msgstr "激活用户失败：uid错误"
+msgstr "账号启用失败：UID错误"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:388
-#, fuzzy, php-format
+#, php-format
 msgid "%d users enabled."
-msgstr "已起用账号"
+msgstr "%d 个账号被启用。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:408
-#, fuzzy
 msgid "Disable user failed: invalid uid."
-msgstr "锁定用户失败：UID不存在"
+msgstr "账号禁用失败：UID不存在"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:429
 #, php-format
@@ -614,9 +594,8 @@ msgstr "删除 %d 用户成功"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:498
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:504
-#, fuzzy
 msgid "Activate user failed: invalid uid."
-msgstr "用户激活失败：UID错误"
+msgstr "账号激活失败：UID错误"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:524
 #, php-format
@@ -624,32 +603,23 @@ msgid "%d users activated."
 msgstr "%d 个用户已激活。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:549
-#, fuzzy
 msgid "Role assignment failed: invalid parameters."
-msgstr "角色分配失败：操作错误。"
+msgstr "角色分配失败：无效参数。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:555
-#, fuzzy
 msgid "Role assignment failed: invalid user ids."
-msgstr "角色分配失败：用户id不存在。"
+msgstr "角色分配失败：用户ID不存在。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:560
-#, fuzzy
 msgid "Role assignment failed: invalid operation."
-msgstr "角色分配失败：操作错误。"
+msgstr "角色分配失败：无效操作。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:570
-#, fuzzy
+#: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:588
 msgid "Role assignment failed."
 msgstr "设置角色失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:588
-#, fuzzy
-msgid "Role assignment failed"
-msgstr "设置角色失败。"
-
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:607
-#, fuzzy
 msgid "Role assignment succeeded."
 msgstr "设置角色失败。"
 
@@ -663,29 +633,24 @@ msgid "Clear all deleted user successfully."
 msgstr "成功清除已删除用户。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:195
-#, fuzzy
 msgid "Profile dress-up data saved successfully."
-msgstr "数据导入成功"
+msgstr "数据保存成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:319
-#, fuzzy
 msgid "Privacy set up failed: invalid field."
-msgstr "隐私设置失败：id错误。"
+msgstr "隐私设置失败：无效字段。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:324
-#, fuzzy
 msgid "Privacy set up failed: invalid privacy."
-msgstr "隐私设置失败：id错误。"
+msgstr "隐私设置失败：无效隐私值。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:346
-#, fuzzy
 msgid "Privacy set up failed: update error."
-msgstr "隐私设置失败"
+msgstr "隐私设置失败：更新错误。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:361
-#, fuzzy
 msgid "Privacy set up successfully."
-msgstr "导航设置成功。"
+msgstr "隐私设置成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/RoleController.php:102
 msgid "User removed from the role."
@@ -713,9 +678,8 @@ msgid "Users of role %s"
 msgstr "用户角色 %s"
 
 #: c:\Code\pi\usr\module\user/src/Installer/Action/Install.php:138
-#, fuzzy
 msgid "Basic profile"
-msgstr "用户信息"
+msgstr "基本信息"
 
 #: c:\Code\pi\usr\module\user/template/admin/edit-user.phtml:3
 msgid "Edit user: "
@@ -735,15 +699,13 @@ msgstr "请确认是否删除该组？"
 
 #: c:\Code\pi\usr\module\user/template/admin/form-profile-complete.phtml:4
 #: c:\Code\pi\usr\module\user/template/admin/form-register.phtml:4
-#, fuzzy
 msgid "Register form"
-msgstr "表单模式"
+msgstr "注册表单"
 
 #: c:\Code\pi\usr\module\user/template/admin/form-profile-complete.phtml:9
 #: c:\Code\pi\usr\module\user/template/admin/form-register.phtml:9
-#, fuzzy
 msgid "Profile complete form"
-msgstr "资料 dress up"
+msgstr "资料完善表单"
 
 #: c:\Code\pi\usr\module\user/template/admin/import.phtml:2
 #: c:\Code\pi\usr\module\user/template/admin/import.phtml:4
@@ -757,7 +719,6 @@ msgid "Submit"
 msgstr "提交"
 
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:16
-#, fuzzy
 msgid "Inquire of user via ID, username, display name or email."
 msgstr "通过用户ID，用户名，昵称或Email查询用户信息"
 
@@ -832,7 +793,7 @@ msgstr "无"
 
 #: c:\Code\pi\usr\module\user/template/admin/maintenance.phtml:26
 msgid "Sort by key:"
-msgstr ""
+msgstr "排序："
 
 #: c:\Code\pi\usr\module\user/template/admin/maintenance.phtml:27
 msgid "uid"
@@ -946,19 +907,18 @@ msgid "No"
 msgstr "否"
 
 #: c:\Code\pi\usr\module\user/template/admin/plugin.phtml:23
-#, fuzzy
 msgid "Activities"
-msgstr "Activity资源库"
+msgstr "用户活动记录"
 
 #: c:\Code\pi\usr\module\user/template/admin/plugin.phtml:24
 msgid "Activities items repository"
-msgstr "Activity资源库"
+msgstr "活动记录资源库"
 
 #: c:\Code\pi\usr\module\user/template/admin/plugin.phtml:25
 msgid ""
 "Items to display on the user\\'s homepage, Drag items vertically to "
 "determine the order displays"
-msgstr ""
+msgstr "显示在用户个人页面的内容，可以上下拖动排序。"
 
 #: c:\Code\pi\usr\module\user/template/admin/plugin.phtml:26
 msgid "Quicklinks"
@@ -975,22 +935,19 @@ msgstr "基本字段"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:19
 msgid "Field title can be edited for display."
-msgstr ""
+msgstr "字段标题不可编辑。"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:20
-#, fuzzy
 msgid "Field"
-msgstr "登录失败"
+msgstr "字段"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:21
-#, fuzzy
 msgid "Default setting"
-msgstr "缺省分类"
+msgstr "缺省设置"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:22
-#, fuzzy
 msgid "Forced setting"
-msgstr "没有可用的隐私设置"
+msgstr "强制设置"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:23
 msgid "Field title"
@@ -1010,13 +967,13 @@ msgstr "组合字段"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:29
 msgid "Compound to organize a group of fields."
-msgstr ""
+msgstr "组合字段用于显示一组字段。"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:30
 msgid ""
 "Privacy policy: set default value for profile field privacy setting. If "
 "`Forced` is set, user can not change privacy for corresponding field."
-msgstr ""
+msgstr "隐私规则：设定字段的缺省隐私；如果设定为“强制”，则用户不能修改。"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:31
 msgid "Add group"
@@ -1033,18 +990,16 @@ msgid "Title"
 msgstr "标题"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:35
-#, fuzzy
 msgid "Data will not be saved until `Save` button is hit."
 msgstr "不点击保存按钮信息将不会被保存。"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:36
 msgid "Click to choose a group for the field to add."
-msgstr ""
+msgstr "点击选中一个组添加该字段。"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:37
-#, fuzzy
 msgid "Click to add a group."
-msgstr "点击添加用户组"
+msgstr "点击添加组"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:38
 msgid "Cancel"
@@ -1055,12 +1010,10 @@ msgid "Save"
 msgstr "保存"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:40
-#, fuzzy
 msgid "Changes are not saved yet. Would you still like to leave this page?"
 msgstr "修改未保存，请确认是否离开该页面？"
 
 #: c:\Code\pi\usr\module\user/template/admin/profile.phtml:41
-#, fuzzy
 msgid "Create a group before adding."
 msgstr "添加之前先创建一个组"
 
@@ -1150,14 +1103,12 @@ msgid "Pending"
 msgstr "未激活"
 
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:31
-#, fuzzy
 msgid "Register time from"
 msgstr "注册日期 从"
 
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:32
-#, fuzzy
 msgid "Register time to"
-msgstr "渲染模式"
+msgstr "注册日期到"
 
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:35
 msgid "Delete"
@@ -1278,13 +1229,15 @@ msgid "Edit user"
 msgstr "编辑用户信息"
 
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:88
-#, fuzzy
 msgid "Replace with default avatar."
 msgstr "重置为默认头像。"
 
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:89
 msgid "Are you sure to delete this group?"
 msgstr "请确认是否删除该组？"
+
+#~ msgid "Role assignment failed"
+#~ msgstr "设置角色失败。"
 
 #~ msgid "Add new"
 #~ msgstr "添加"

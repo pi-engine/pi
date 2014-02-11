@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-10 19:10+0800\n"
-"PO-Revision-Date: 2014-02-10 19:17+0800\n"
+"POT-Creation-Date: 2014-02-11 19:19+0800\n"
+"PO-Revision-Date: 2014-02-11 19:27+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "已激活账号"
 
 #: c:\Code\pi\usr\module\user/config/event.php:33
 msgid "User enabled"
-msgstr "已起用账号"
+msgstr "已启用账号"
 
 #: c:\Code\pi\usr\module\user/config/event.php:39
 msgid "User disabled"
@@ -38,44 +38,36 @@ msgid "User profile updated"
 msgstr "用户资料更新成功。"
 
 #: c:\Code\pi\usr\module\user/config/event.php:57
-#, fuzzy
 msgid "Display name changed"
-msgstr "昵称规则"
+msgstr "修改昵称"
 
 #: c:\Code\pi\usr\module\user/config/event.php:63
-#, fuzzy
 msgid "Email changed"
-msgstr "邮箱黑名单"
+msgstr "修改邮箱"
 
 #: c:\Code\pi\usr\module\user/config/event.php:69
-#, fuzzy
 msgid "Avatar changed"
-msgstr "修改密码成功"
+msgstr "修改头像"
 
 #: c:\Code\pi\usr\module\user/config/event.php:75
-#, fuzzy
 msgid "Password changed"
-msgstr "修改密码成功"
+msgstr "修改密码"
 
 #: c:\Code\pi\usr\module\user/config/event.php:81
-#, fuzzy
 msgid "Role assigned"
-msgstr "用户角色 %s"
+msgstr "角色调整"
 
 #: c:\Code\pi\usr\module\user/config/event.php:87
-#, fuzzy
 msgid "Role removed"
-msgstr "用户已从该用户组移除。"
+msgstr "移除角色 "
 
 #: c:\Code\pi\usr\module\user/config/event.php:93
-#, fuzzy
 msgid "User logged in"
-msgstr "成功登录"
+msgstr "用户登录"
 
 #: c:\Code\pi\usr\module\user/config/event.php:99
-#, fuzzy
 msgid "User logged out"
-msgstr "成功退出。"
+msgstr "用户退出 "
 
 #: c:\Code\pi\usr\module\user/config/user.php:101
 #: c:\Code\pi\usr\module\user/src/Form/Element/Gender.php:30
@@ -100,9 +92,8 @@ msgid "Everyone"
 msgstr "所有人"
 
 #: c:\Code\pi\usr\module\user/src/Api/Privacy.php:94
-#, fuzzy
 msgid "Logged-in user"
-msgstr "用户不在该用户组"
+msgstr "已登录用户"
 
 #: c:\Code\pi\usr\module\user/src/Api/Privacy.php:95
 #: c:\Code\pi\usr\module\user/src/Api/Relation.php:63
@@ -110,7 +101,6 @@ msgid "Follower"
 msgstr "关注我的人"
 
 #: c:\Code\pi\usr\module\user/src/Api/Privacy.php:96
-#, fuzzy
 msgid "Followed"
 msgstr "关注我的人"
 
@@ -132,14 +122,12 @@ msgid "Following"
 msgstr "我关注的人"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Api/TimelineController.php:46
-#, fuzzy
 msgid "Timeline post failed."
-msgstr "设置角色失败。"
+msgstr "时间线发布失败。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Api/TimelineController.php:89
-#, fuzzy
 msgid "Timeline added successfully."
-msgstr "导航添加成功。"
+msgstr "时间线发布成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:144
 #: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
@@ -221,9 +209,8 @@ msgid "Not image selected."
 msgstr "没有选中图片。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:404
-#, fuzzy
 msgid "Image is missing."
-msgstr "必需信息。"
+msgstr "图片丢失。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:410
 msgid "Image does not exist."
@@ -246,9 +233,8 @@ msgid "Avatar set successfully."
 msgstr "头像设置成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:506
-#, fuzzy
 msgid "Image is not removed."
-msgstr "区块不存在。"
+msgstr "图片未能移除。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:521
 msgid "Image removed successfully."
@@ -276,9 +262,8 @@ msgid "Send email successfully. check email and reset password"
 msgstr "发送找回密码邮件成功。请查收邮件修改密码"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
-#, fuzzy
 msgid "Privacy settings saved successfully."
-msgstr "区块数据保存成功。"
+msgstr "隐私数据保存成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:216
 msgid "Update successfully"
@@ -298,58 +283,48 @@ msgid "Cannot delete the last one."
 msgstr "最后一条不能删除"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:164
-#, fuzzy
 msgid "Activation token is invalid."
-msgstr "密码错误。"
+msgstr "激活密钥无效。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:189
-#, fuzzy
 msgid "Activation link is expired."
-msgstr "激活链接已失效"
+msgstr "激活链接已过期。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:224
-#, fuzzy
 msgid "Account Activated successfully."
-msgstr "%d 用户激活成功"
+msgstr "账号激活成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:240
-#, fuzzy
 msgid "Activation email sent failed."
-msgstr "重新发送激活邮件失败"
+msgstr "激活邮件发送失败。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:274
-#, fuzzy
 msgid "Resend activation mail successfully."
-msgstr "重新发送激活邮件成功"
+msgstr "激活邮件重新发送成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:302
-#, fuzzy
 msgid "Email was not found."
-msgstr "用户不存在。"
+msgstr "邮箱不存在。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:307
-#, fuzzy
 msgid "Account already activated."
-msgstr "%d 用户激活成功"
+msgstr "账号早已激活。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
-#, fuzzy
 msgid "Activation mail sent successfully."
-msgstr "头像设置成功。"
+msgstr "激活邮件发送成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:323
 msgid "Activation mail was not sent."
 msgstr "激活邮件未能发出。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
-#, fuzzy
 msgid "Invalid input."
-msgstr "邮箱错误"
+msgstr "无效输入。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:430
-#, fuzzy
 msgid "User account was not saved."
-msgstr "您的账号已激活。"
+msgstr "账号保存失败。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:445
 msgid ""
@@ -436,9 +411,8 @@ msgid "Admin role"
 msgstr "后台角色"
 
 #: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:94
-#, fuzzy
 msgid "Activate"
-msgstr "未锁定"
+msgstr "激活"
 
 #: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:106
 #: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:46
@@ -462,7 +436,6 @@ msgid "Title"
 msgstr "标题"
 
 #: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:29
-#, fuzzy
 msgid "Active state"
 msgstr "可用状态"
 
@@ -851,9 +824,8 @@ msgid "Privacy"
 msgstr "隐私设置"
 
 #: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:11
-#, fuzzy
 msgid "Set profile field privacy."
-msgstr "显示在资料页上的字段"
+msgstr "设定用户资料字段隐私。"
 
 #: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:16
 msgid "No available privacy setting"
@@ -911,23 +883,20 @@ msgid "Login right now."
 msgstr "立即登录。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:12
-#, fuzzy
 msgid "Sorry, account activation is failed."
-msgstr "您的账号已激活。"
+msgstr "抱歉，账号激活失败。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:14
-#, fuzzy
 msgid "Resend activation email."
-msgstr "邮箱必填。"
+msgstr "重新发送激活邮件"
 
 #: c:\Code\pi\usr\module\user/template/front/register-disabled.phtml:5
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr "抱歉，现在禁止注册。请稍后尝试。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:1
-#, fuzzy
 msgid "Account registration"
-msgstr "用户账号"
+msgstr "账号注册"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:21
 #, php-format
@@ -938,9 +907,8 @@ msgstr "账号已注册成功，请点击<a href=\"%s\">登录</a>。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:30
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:46
-#, fuzzy
 msgid "Registration was not completed."
-msgstr "用户不存在。"
+msgstr "注册未完成。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:40
 msgid ""
@@ -949,43 +917,36 @@ msgid ""
 msgstr "账号已注册成功，但是需要管理员激活。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:55
-#, fuzzy
 msgid "An email with activation link has been sent to your."
-msgstr "激活链接已经发送到您的邮箱"
+msgstr "激活链接已经发送到您的邮箱。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:56
-#, fuzzy
 msgid "Please check it to finish the registration."
-msgstr "请在24小时内确认点击激活链接完成注册。"
+msgstr "请查收邮件点击激活链接完成注册。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:59
 msgid "If you do not receive the activation email:"
 msgstr "如果你未收到激活邮件："
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:61
-#, fuzzy
 msgid "Wait a few minutes and check again."
-msgstr "稍等几分钟再看 "
+msgstr "稍等几分钟再查收。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:62
-#, fuzzy
 msgid "Check your email spam box."
-msgstr "看看是否在垃圾箱中"
+msgstr "检查邮件垃圾箱。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:63
-#, fuzzy
 msgid "Request to resend activation email"
-msgstr "重新发送激活邮件"
+msgstr "请求重新发送激活邮件。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:98
-#, fuzzy
 msgid "Already sent"
-msgstr "用户已在本用户组"
+msgstr "邮件已发送"
 
 #: c:\Code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
-#, fuzzy
 msgid "Resend activation email"
-msgstr "邮箱必填。"
+msgstr "重新发送激活邮件"
 
 #: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:7
 msgid "Switch to view of others"
