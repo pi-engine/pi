@@ -101,6 +101,14 @@ namespace Pi\Utility
         protected static $postParams;
 
         /**
+         * Constructor
+         *
+         * Solely to avoid conflict with method of `filter`
+         */
+        public function __construct()
+        {}
+
+        /**
          * Loads filter methods, nothing to do at this moment
          *
          * @return void
