@@ -62,6 +62,14 @@ class Version
     protected static $piApiRelease = '';
 
     /**
+     * Constructor
+     *
+     * Solely to avoid conflict with method of `version`
+     */
+    public function __construct()
+    {}
+
+    /**
      * Get version number
      *
      * @param string $service
