@@ -23,10 +23,11 @@ return array(
         // Run mode. Potential values:
         // production - for production;
         // debug - for users debugging;
-        // development - for developers;
-        // close - for maintenance
-        // '' - To set in system preference
+        // development - for developers
         'environment'   => '%environment%',
+
+        // Site close for maintenance
+        'site_close'    => 0,
 
         // Disable admin login
         'admin_disable' => 0,

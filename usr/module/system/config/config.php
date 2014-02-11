@@ -127,7 +127,7 @@ $config['item'] = array(
 
     'environment'    => array(
         'title'         => _t('Run environment'),
-        'description'   => _t('Only applicable if not set in `var/config/engine.php`.'),
+        'description'   => _t('Will override setting in `var/config/engine.php`.'),
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
@@ -135,8 +135,6 @@ $config['item'] = array(
                     'production'        => _t('Production'),
                     'development'       => _t('Development'),
                     'test'              => _t('QA test'),
-                    // Close status is only set via config file
-                    //'close'             => _t('Site closed'),
                 ),
             ),
         ),

@@ -55,7 +55,7 @@ class Permission extends AbstractResource
         }
 
         // Deny all access to front for close/maintenance
-        if ('close' ==  Pi::environment()) {
+        if (Pi::config('site_close')) {
             $this->denyAccess($e);
             return;
         }

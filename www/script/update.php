@@ -14,17 +14,17 @@ use Pi\Application\Installer\Module as ModuleInstaller;
  *
  * Usage guide
  * 1. Edit `var/config/engine.php` (or `var/config/custom/engine.php` is specified), set:
- *      `'environment' => 'close'`
+ *      `'site_close'   => true`
  * 2. Execute the script `//pi.tld/script/update.php` to update system module
  * 3. Restore engine config:
- *      `'environment' => ''`
+ *      `'site_close' => false`
  */
 
 // Pi boot with no engine bootup: current file is located in www/script/...
 require __DIR__ . '/../boot.php';
 
 // Only allowed under maintenance state
-if ('close' !== Pi::config('environment')) {
+if (!Pi::config('site_close')) {
     if (substr(PHP_SAPI, 0, 3) == 'cgi') {
         header('Status: 403 Forbidden');
     } else {
@@ -52,7 +52,6 @@ if (empty($module) || !Pi::service('module')->isActive($module)) {
 
     return;
 }
-Pi::config()->set('environment', 'development');
 $row = Pi::model('module')->find($module, 'name');
 $installer = new ModuleInstaller;
 $result = $installer->update($row);
