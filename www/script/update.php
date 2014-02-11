@@ -52,7 +52,7 @@ if (empty($module) || !Pi::service('module')->isActive($module)) {
 
     return;
 }
-
+Pi::config()->set('environment', 'development');
 $row = Pi::model('module')->find($module, 'name');
 $installer = new ModuleInstaller;
 $result = $installer->update($row);

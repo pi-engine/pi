@@ -50,6 +50,11 @@ class Updator120 extends AbstractUpdator
                 array('module' => '')
             );
 
+            Pi::model('compound_field', 'user')->update(
+                array('module' => 'user'),
+                array('module' => '')
+            );
+
             $table = Pi::db()->prefix('privacy', 'user');
             $sql =<<<'EOT'
 ALTER TABLE %s
