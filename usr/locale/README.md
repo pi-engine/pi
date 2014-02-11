@@ -76,6 +76,16 @@ Skeleton
     * ...
   * `/zh-cn`
     * ...
+* `usr/custom/module/demo`: Module `demo` custom
+  * `/en`
+    * `/mail`: Mail templates
+      * `mail-template.text`
+    * `default.mo`: module global, loaded on every request of current module
+    * `admin.mo`: Admin area
+    * `block.mo`: Module block
+    * ...
+  * `/zh-cn`
+    * ...
 * `usr/theme/default`: Theme `default`
   * `/en`
     * `default.mo`: theme global
@@ -88,3 +98,8 @@ Tools
 
 * `Poedit`
   * Download: http://www.poedit.net/download.php
+
+* Use `poedit` to extract module language items:
+  * `_a()`, `t()` => `admin.mo`
+  * `_b()` => `block.mo`
+  * `__()`, `_e()` and others => `default.mo`

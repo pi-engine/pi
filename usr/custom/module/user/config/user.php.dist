@@ -48,14 +48,14 @@ $customConfig = array(
         // Profile: Language
         'language'  => array(
             'name'  => 'language',
-            'title' => __('Language'),
+            'title' => _a('Language'),
             'edit'  => 'locale',
         ),
 
         // Profile: phone
         'phone'  => array(
             'name'  => 'phone',
-            'title' => __('Phone'),
+            'title' => _a('Phone'),
             'is_display'    => false,
             'is_edit'       => false,
         ),
@@ -66,7 +66,7 @@ $customConfig = array(
         // Compound: Education experiences
         'education'  => array(
             'name'  => 'education',
-            'title' => __('Education'),
+            'title' => _a('Education'),
 
             // Custom handler
             'handler'   => 'Custom\User\Field\Education',
@@ -74,39 +74,39 @@ $customConfig = array(
             // Fields
             'field' => array(
                 'school'    => array(
-                    'title' => __('School name'),
+                    'title' => _a('School name'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'department'    => array(
-                    'title' => __('Department'),
+                    'title' => _a('Department'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'major'    => array(
-                    'title' => __('Major'),
+                    'title' => _a('Major'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'degree'    => array(
-                    'title' => __('Degree'),
+                    'title' => _a('Degree'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'start'    => array(
-                    'title' => __('Start time'),
+                    'title' => _a('Start time'),
                     'edit'  => 'Custom\User\Form\Element\StartTime',
                 ),
                 'end'    => array(
-                    'title' => __('End time'),
+                    'title' => _a('End time'),
                     'edit'  => 'Custom\User\Form\Element\EndTime',
                 ),
                 'description'   => array(
-                    'title' => __('Description'),
+                    'title' => _a('Description'),
                     'edit'  => array(
                         'element' => 'textarea',
                         'attributes' => array(
@@ -121,7 +121,7 @@ $customConfig = array(
         // Compound: Profession experiences
         'work'      => array(
             'name'  => 'work',
-            'title' => __('Work'),
+            'title' => _a('Work'),
             'is_required' => true,
             // Custom handler
             'handler'   => 'Custom\User\Field\Work',
@@ -129,53 +129,53 @@ $customConfig = array(
             // Fields
             'field' => array(
                 'company'    => array(
-                    'title' => __('Company name'),
+                    'title' => _a('Company name'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'department'    => array(
-                    'title' => __('Work Department'),
+                    'title' => _a('Work Department'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'industry'    => array(
-                    'title' => __('Industry'),
+                    'title' => _a('Industry'),
                     'edit' => array(
                         'element'  => 'Custom\User\Form\Element\Industry',
                         'required' => true,
                     ),
                 ),
                 'sector'    => array(
-                    'title' => __('Sector'),
+                    'title' => _a('Sector'),
                     'edit'  => 'hidden',
                 ),
                 'position'    => array(
-                    'title' => __('Job Position'),
+                    'title' => _a('Job Position'),
                     'edit'  => array(
                         'element'    => 'select',
                         'attributes' => array(
                             'options' => array(
-                                ''                  => __('Select'),
-                                __('R&D')           => __('R&D'),
-                                __('Management')    => __('Management'),
-                                __('Measurement')   => __('Measurement'),
-                                __('QA')            => __('QA'),
-                                __('Market')        => __('Market'),
-                                __('Student')       => __('Student'),
+                                ''                  => _a('Select'),
+                                _a('R&D')           => _a('R&D'),
+                                _a('Management')    => _a('Management'),
+                                _a('Measurement')   => _a('Measurement'),
+                                _a('QA')            => _a('QA'),
+                                _a('Market')        => _a('Market'),
+                                _a('Student')       => _a('Student'),
                             ),
                         ),
                     ),
                 ),
                 'title'    => array(
-                    'title' => __('Job title'),
+                    'title' => _a('Job title'),
                     'edit' => array(
                         'required' => true,
                     ),
                 ),
                 'description'   => array(
-                    'title' => __('Description'),
+                    'title' => _a('Description'),
                     'edit'  => array(
                         'element' => 'textarea',
                         'attributes' => array(
@@ -185,11 +185,11 @@ $customConfig = array(
                     ),
                 ),
                 'start'    => array(
-                    'title' => __('Start time'),
+                    'title' => _a('Start time'),
                     'edit'  => 'Custom\User\Form\Element\StartTime',
                 ),
                 'end'    => array(
-                    'title' => __('End time'),
+                    'title' => _a('End time'),
                     'edit'  => 'Custom\User\Form\Element\EndTime',
                 ),
             ),

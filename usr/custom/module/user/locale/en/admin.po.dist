@@ -1,0 +1,993 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2014-02-11 18:37+0800\n"
+"PO-Revision-Date: 2014-02-11 18:38+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\custom\\module\\user\n"
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:25
+msgid "First Name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:31
+msgid "Last Name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:37
+msgid "Mobile phone number"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:51
+msgid "Language"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:58
+msgid "Phone"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:69
+msgid "Education"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:77
+msgid "School name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:83
+msgid "Department"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:89
+msgid "Major"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:95
+msgid "Degree"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:101
+#: c:\Code\pi\usr\custom\module\user/config/user.php:188
+msgid "Start time"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:105
+#: c:\Code\pi\usr\custom\module\user/config/user.php:192
+msgid "End time"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:109
+#: c:\Code\pi\usr\custom\module\user/config/user.php:178
+msgid "Description"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:124
+msgid "Work"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:132
+msgid "Company name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:138
+msgid "Work Department"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:144
+msgid "Industry"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:151
+msgid "Sector"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:155
+msgid "Job Position"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:160
+msgid "Select"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:161
+msgid "R&D"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:162
+msgid "Management"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:163
+msgid "Measurement"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:164
+msgid "QA"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:165
+msgid "Market"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:166
+msgid "Student"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.php:172
+msgid "Job title"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Full name"
+#~ msgstr "工具名称"
+
+#, fuzzy
+#~ msgid "Registered source"
+#~ msgstr "表单模式"
+
+#, fuzzy
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Account"
+#~ msgstr "账号"
+
+#~ msgid "Avatar"
+#~ msgstr "头像"
+
+#~ msgid "Number of items on list page."
+#~ msgstr "页面展示项目数"
+
+#, fuzzy
+#~ msgid "Profile complete"
+#~ msgstr "完善资料"
+
+#, fuzzy
+#~ msgid "Require user to complete profile data."
+#~ msgstr "Application Execution Time"
+
+#~ msgid "Login disable"
+#~ msgstr "关闭登录"
+
+#~ msgid "Disable user login"
+#~ msgstr "禁止用户登录"
+
+#~ msgid "Login CAPTCHA"
+#~ msgstr "登录验证码"
+
+#~ msgid "Enable CAPTCHA for user login"
+#~ msgstr "启用登录验证码"
+
+#~ msgid "Remember me"
+#~ msgstr "自动登录"
+
+#~ msgid "Days to remember login, 0 for disable."
+#~ msgstr "账号保持登录状态时间，0是不保持。"
+
+#, fuzzy
+#~ msgid "Login field"
+#~ msgstr "登录失败"
+
+#~ msgid "Username"
+#~ msgstr "用户名"
+
+#~ msgid "Email"
+#~ msgstr "邮箱"
+
+#~ msgid "Maximum attempts"
+#~ msgstr "最大尝试次数"
+
+#~ msgid "Maximum attempts allowed to try for user login"
+#~ msgstr "用户登录时的最大尝试次数"
+
+#, fuzzy
+#~ msgid "Register disable"
+#~ msgstr "注册关闭"
+
+#~ msgid "Disable user registration"
+#~ msgstr "禁止用户注册"
+
+#~ msgid "Register CAPTCHA"
+#~ msgstr "注册验证码"
+
+#~ msgid "Enable CAPTCHA for user registration"
+#~ msgstr "启用注册验证码"
+
+#, fuzzy
+#~ msgid "Register complete"
+#~ msgstr "完善资料"
+
+#, fuzzy
+#~ msgid "Activation"
+#~ msgstr "激活时间"
+
+#~ msgid "Automatically activated"
+#~ msgstr "自动激活"
+
+#, fuzzy
+#~ msgid "Activated by user email"
+#~ msgstr "邮箱已被占用"
+
+#, fuzzy
+#~ msgid "Activation expiration"
+#~ msgstr "缓存有效期"
+
+#~ msgid "Username format"
+#~ msgstr "用户名规则"
+
+#~ msgid "Format of username for registration."
+#~ msgstr "注册用户名规则。"
+
+#, fuzzy
+#~ msgid "Strict: alphabet or number only"
+#~ msgstr "严格模式：只接受数字和字母"
+
+#, fuzzy
+#~ msgid "Medium: ASCII characters"
+#~ msgstr "普通模式：允许ASCII码字符"
+
+#, fuzzy
+#~ msgid "Loose: multi-byte characters"
+#~ msgstr "宽松模式：允许多字节字符"
+
+#~ msgid "Minimum username"
+#~ msgstr "用户名最小长度"
+
+#~ msgid "Minimum length of username for user registration"
+#~ msgstr "用户注册时用户名最小长度"
+
+#~ msgid "Maximum username"
+#~ msgstr "用户名最大长度"
+
+#~ msgid "Maximum length of username for user registration"
+#~ msgstr "用户注册时用户名最大长度"
+
+#~ msgid "Display name format"
+#~ msgstr "昵称规则"
+
+#~ msgid "Format of display name for registration."
+#~ msgstr "注册昵称规则。"
+
+#~ msgid "Minmum display name"
+#~ msgstr "昵称最小长度"
+
+#~ msgid "Minmum length of display name for user registration"
+#~ msgstr "注册时昵称最小长度"
+
+#~ msgid "Maximum display name"
+#~ msgstr "昵称最大长度"
+
+#~ msgid "Maximum length of display name for user registration"
+#~ msgstr "注册时昵称最大长度"
+
+#~ msgid "Minimum password"
+#~ msgstr "密码最小长度"
+
+#~ msgid "Minimum length of password for user registration"
+#~ msgstr "用户注册时密码最小长度"
+
+#~ msgid "Maximum password"
+#~ msgstr "密码最大长度"
+
+#~ msgid "Maximum length of password for user registration"
+#~ msgstr "用户注册时密码最大长度"
+
+#~ msgid "Username backlist"
+#~ msgstr "用户名黑名单"
+
+#, fuzzy
+#~ msgid ""
+#~ "Reserved and forbidden username list, separated with `|`, regexp syntax "
+#~ "is allowed."
+#~ msgstr ""
+#~ "保留及禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
+
+#~ msgid "Display backlist"
+#~ msgstr "显示黑名单"
+
+#, fuzzy
+#~ msgid ""
+#~ "Reserved and forbidden display name list, separated with `|`, regexp "
+#~ "syntax is allowed."
+#~ msgstr ""
+#~ "保留及禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
+
+#~ msgid "Email backlist"
+#~ msgstr "邮箱黑名单"
+
+#, fuzzy
+#~ msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
+#~ msgstr "禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
+
+#~ msgid "Max Avatar Width"
+#~ msgstr "头像最大宽度"
+
+#~ msgid "Allowed image width, 0 for no limit"
+#~ msgstr "最大图片宽度，0代表无限制"
+
+#~ msgid "Max Avatar Height"
+#~ msgstr "头像最大高度"
+
+#~ msgid "Allowed image height, 0 for no limit"
+#~ msgstr "最大图片高度，0代表无限制"
+
+#~ msgid "Max File Size"
+#~ msgstr "最大文件尺寸"
+
+#~ msgid "Temporary Path"
+#~ msgstr "临时路径"
+
+#~ msgid "For temporary storage of avatar"
+#~ msgstr "用于临时储存头像"
+
+#~ msgid "Confirm credential"
+#~ msgstr "确认密码"
+
+#~ msgid "Please type the word."
+#~ msgstr "验证码"
+
+#~ msgid "User"
+#~ msgstr "用户"
+
+#~ msgid "User profile and services."
+#~ msgstr "用户资料和管理服务。"
+
+#~ msgid "All"
+#~ msgstr "全部"
+
+#~ msgid "Activated user"
+#~ msgstr "已激活用户"
+
+#~ msgid "Pending user"
+#~ msgstr "未激活用户"
+
+#~ msgid "Add user"
+#~ msgstr "添加用户"
+
+#~ msgid "Advanced search"
+#~ msgstr "高级搜索"
+
+#~ msgid "Role"
+#~ msgstr "角色"
+
+#~ msgid "Profile"
+#~ msgstr "资料"
+
+#~ msgid "Profile field"
+#~ msgstr "资料字段"
+
+#~ msgid "Profile dress up"
+#~ msgstr "资料 dress up"
+
+#~ msgid "Field privacy"
+#~ msgstr "字段隐私"
+
+#~ msgid "Form"
+#~ msgstr "表单"
+
+#~ msgid "Timeline"
+#~ msgstr "时间线"
+
+#~ msgid "Quicklink"
+#~ msgstr "快速链接"
+
+#~ msgid "Maintenance"
+#~ msgstr "维护"
+
+#~ msgid "Stats"
+#~ msgstr "统计数据"
+
+#~ msgid "User log"
+#~ msgstr "用户日志"
+
+#~ msgid "Deleted users"
+#~ msgstr "已删除用户"
+
+#~ msgid "Inquiry"
+#~ msgstr "查询"
+
+#~ msgid "User account"
+#~ msgstr "用户账号"
+
+#~ msgid "User profile"
+#~ msgstr "用户资料"
+
+#~ msgid "Roles"
+#~ msgstr "角色"
+
+#, fuzzy
+#~ msgid "Profile fields"
+#~ msgstr "用户信息"
+
+#~ msgid "Avatars"
+#~ msgstr "头像"
+
+#~ msgid "Password"
+#~ msgstr "密码"
+
+#~ msgid "Gender"
+#~ msgstr "性别"
+
+#~ msgid "Birthdate"
+#~ msgstr "生日"
+
+#~ msgid "Active"
+#~ msgstr "可用"
+
+#~ msgid "Register time"
+#~ msgstr "注册时间"
+
+#~ msgid "Activation time"
+#~ msgstr "激活时间"
+
+#~ msgid "Disabled time"
+#~ msgstr "禁用时间"
+
+#~ msgid "Level"
+#~ msgstr "等级"
+
+#~ msgid "Last modified"
+#~ msgstr "修改时间"
+
+#, fuzzy
+#~ msgid "Personal website"
+#~ msgstr "网站名称"
+
+#~ msgid "Short bio"
+#~ msgstr "自我介绍"
+
+#~ msgid "Signature"
+#~ msgstr "签名"
+
+#~ msgid "Register IP"
+#~ msgstr "注册IP"
+
+#~ msgid "Social tools"
+#~ msgstr "社交工具"
+
+#~ msgid "ID or URL"
+#~ msgstr "ID 或 URL"
+
+#~ msgid "User action"
+#~ msgstr "用户动作"
+
+#~ msgid "Logout"
+#~ msgstr "退出"
+
+#~ msgid "Edit user info failed"
+#~ msgstr "编辑用户信息失败"
+
+#~ msgid "Edit user info successfully"
+#~ msgstr "编辑用户信息成功"
+
+#~ msgid "Replace user avater failed"
+#~ msgstr "替换用户头像失败"
+
+#~ msgid "Replace user avater successfully"
+#~ msgstr "替换用户头像成功"
+
+#~ msgid "Delete this group successfully"
+#~ msgstr "删除组成功"
+
+#~ msgid "Base info"
+#~ msgstr "基本信息"
+
+#~ msgid "User was not found."
+#~ msgstr "用户不存在。"
+
+#~ msgid "Add user failed: user already exists."
+#~ msgstr "添加用户失败：该用户已存在。"
+
+#~ msgid "Add user failed: invalid operation."
+#~ msgstr "添加用户失败：不合法操作。"
+
+#~ msgid "Add user successfully"
+#~ msgstr "添加用户成功"
+
+#, fuzzy
+#~ msgid "Enable user failed: invalid uid."
+#~ msgstr "激活用户失败：uid错误"
+
+#, fuzzy
+#~ msgid "%d users enabled."
+#~ msgstr "已起用账号"
+
+#, fuzzy
+#~ msgid "Disable user failed: invalid uid."
+#~ msgstr "锁定用户失败：UID不存在"
+
+#~ msgid "%d disable user successfully"
+#~ msgstr "锁定 %d 用户成功"
+
+#~ msgid "Delete user failed: invalid uid"
+#~ msgstr "删除用户失败：UID错误"
+
+#~ msgid "%d delete user successfully"
+#~ msgstr "删除 %d 用户成功"
+
+#, fuzzy
+#~ msgid "Activate user failed: invalid uid."
+#~ msgstr "用户激活失败：UID错误"
+
+#~ msgid "%d users activated."
+#~ msgstr "%d 个用户已激活。"
+
+#, fuzzy
+#~ msgid "Role assignment failed: invalid parameters."
+#~ msgstr "角色分配失败：操作错误。"
+
+#, fuzzy
+#~ msgid "Role assignment failed: invalid user ids."
+#~ msgstr "角色分配失败：用户id不存在。"
+
+#, fuzzy
+#~ msgid "Role assignment failed: invalid operation."
+#~ msgstr "角色分配失败：操作错误。"
+
+#, fuzzy
+#~ msgid "Role assignment failed."
+#~ msgstr "设置角色失败。"
+
+#, fuzzy
+#~ msgid "Role assignment failed"
+#~ msgstr "设置角色失败。"
+
+#, fuzzy
+#~ msgid "Role assignment succeeded."
+#~ msgstr "设置角色失败。"
+
+#~ msgid "Clear failed."
+#~ msgstr "清除失败。"
+
+#~ msgid "Clear all deleted user successfully."
+#~ msgstr "成功清除已删除用户。"
+
+#, fuzzy
+#~ msgid "Profile dress-up data saved successfully."
+#~ msgstr "数据导入成功"
+
+#, fuzzy
+#~ msgid "Privacy set up failed: invalid field."
+#~ msgstr "隐私设置失败：id错误。"
+
+#, fuzzy
+#~ msgid "Privacy set up failed: invalid privacy."
+#~ msgstr "隐私设置失败：id错误。"
+
+#, fuzzy
+#~ msgid "Privacy set up failed: update error."
+#~ msgstr "隐私设置失败"
+
+#, fuzzy
+#~ msgid "Privacy set up successfully."
+#~ msgstr "导航设置成功。"
+
+#~ msgid "User removed from the role."
+#~ msgstr "已从该角色中移除用户。"
+
+#~ msgid "User not in the role."
+#~ msgstr "用户不在该角色内。"
+
+#~ msgid "User added to the role."
+#~ msgstr "已添加用户到本角色"
+
+#~ msgid "User already in the role."
+#~ msgstr "用户已在本角色"
+
+#~ msgid "User not found."
+#~ msgstr "未找到用户。"
+
+#~ msgid "Users of role %s"
+#~ msgstr "用户角色 %s"
+
+#, fuzzy
+#~ msgid "Basic profile"
+#~ msgstr "用户信息"
+
+#~ msgid "Edit user: "
+#~ msgstr "编辑用户："
+
+#~ msgid "Replace with defalt avatar."
+#~ msgstr "重置为默认头像。"
+
+#~ msgid "This user doesn't have any you can view"
+#~ msgstr "该用户无可查看的信息"
+
+#~ msgid "Are you sure delete this group?"
+#~ msgstr "请确认是否删除该组？"
+
+#, fuzzy
+#~ msgid "Profile complete form"
+#~ msgstr "完善个人资料，以便100多万与非用户认识您！"
+
+#~ msgid "Import"
+#~ msgstr "导入"
+
+#~ msgid "Submit"
+#~ msgstr "提交"
+
+#, fuzzy
+#~ msgid "Inquire of user via ID, username, display name or email."
+#~ msgstr "通过用户ID，用户名，昵称或Email查询用户信息"
+
+#~ msgid "Activated"
+#~ msgstr "已激活"
+
+#~ msgid "Not activated"
+#~ msgstr "未激活"
+
+#~ msgid "Enabled"
+#~ msgstr "启用"
+
+#~ msgid "Disabled"
+#~ msgstr "禁用"
+
+#~ msgid "Yes"
+#~ msgstr "是"
+
+#~ msgid "Unavailable"
+#~ msgstr "不可用"
+
+#~ msgid "Today"
+#~ msgstr "今天"
+
+#~ msgid "Last month"
+#~ msgstr "上个月"
+
+#~ msgid "History"
+#~ msgstr "历史"
+
+#~ msgid "Register num"
+#~ msgstr "注册数量"
+
+#~ msgid "Activated num"
+#~ msgstr "已激活数量"
+
+#~ msgid "Pending num"
+#~ msgstr "未激活数量"
+
+#~ msgid "Top 10 registered IP"
+#~ msgstr "前十注册IP"
+
+#~ msgid "None"
+#~ msgstr "无"
+
+#, fuzzy
+#~ msgid "Sort by key:"
+#~ msgstr "我发表的评论"
+
+#~ msgid "uid"
+#~ msgstr "uid"
+
+#~ msgid "Edit"
+#~ msgstr "编辑"
+
+#~ msgid "View log"
+#~ msgstr "查看日志"
+
+#~ msgid "Register ip"
+#~ msgstr "注册IP"
+
+#~ msgid "Last login time"
+#~ msgstr "最后登录时间"
+
+#~ msgid "Last loin ip"
+#~ msgstr "最后登录IP"
+
+#~ msgid "Login count"
+#~ msgstr "登录次数"
+
+#~ msgid "Sort by:"
+#~ msgstr "排序："
+
+#~ msgid "Are you sure to delete this user?"
+#~ msgstr "请确认是否删除该用户？"
+
+#~ msgid "Are you sure to delete these users?"
+#~ msgstr "请确认是否删除这些用户？"
+
+#~ msgid "Are you sure to delete all of these users?"
+#~ msgstr "请确认是否删除这些用户？"
+
+#~ msgid "IP"
+#~ msgstr "IP"
+
+#~ msgid "Displayname"
+#~ msgstr "昵称"
+
+#~ msgid "Clear the users"
+#~ msgstr "清除用户"
+
+#~ msgid "CLear all deleted users"
+#~ msgstr "清除已删除用户"
+
+#~ msgid "No user matched your request."
+#~ msgstr "未找到匹配用户。"
+
+#~ msgid "Last login ip"
+#~ msgstr "最后登录IP"
+
+#~ msgid "Created time"
+#~ msgstr "创建时间"
+
+#~ msgid "Last login"
+#~ msgstr "最后登录"
+
+#~ msgid "Null"
+#~ msgstr "空"
+
+#~ msgid "Item name"
+#~ msgstr "项目名称"
+
+#~ msgid "From module"
+#~ msgstr "来源模块"
+
+#~ msgid "Display"
+#~ msgstr "显示"
+
+#~ msgid "Items displayed on the homepage timeline"
+#~ msgstr "显示在主页时间线上的项目"
+
+#~ msgid "No"
+#~ msgstr "否"
+
+#, fuzzy
+#~ msgid "Activities"
+#~ msgstr "Activity资源库"
+
+#~ msgid "Activities items repository"
+#~ msgstr "Activity资源库"
+
+#~ msgid "Quicklinks"
+#~ msgstr "快速链接"
+
+#~ msgid "Quicklinks items repository"
+#~ msgstr "快速链接资源库"
+
+#~ msgid "Basic field"
+#~ msgstr "基本字段"
+
+#, fuzzy
+#~ msgid "Field"
+#~ msgstr "登录失败"
+
+#, fuzzy
+#~ msgid "Default setting"
+#~ msgstr "缺省分类"
+
+#, fuzzy
+#~ msgid "Forced setting"
+#~ msgstr "没有可用的隐私设置"
+
+#~ msgid "Search"
+#~ msgstr "搜索"
+
+#~ msgid "Editable"
+#~ msgstr "可编辑"
+
+#~ msgid "Compound"
+#~ msgstr "组合字段"
+
+#~ msgid "Add group"
+#~ msgstr "添加组"
+
+#~ msgid "Field display on profile page"
+#~ msgstr "显示在资料页上的字段"
+
+#~ msgid "Title"
+#~ msgstr "标题"
+
+#, fuzzy
+#~ msgid "Data will not be saved until `Save` button is hit."
+#~ msgstr "不点击保存按钮信息将不会被保存。"
+
+#, fuzzy
+#~ msgid "Click to add a group."
+#~ msgstr "点击添加用户组"
+
+#~ msgid "Cancel"
+#~ msgstr "取消"
+
+#~ msgid "Save"
+#~ msgstr "保存"
+
+#, fuzzy
+#~ msgid "Changes are not saved yet. Would you still like to leave this page?"
+#~ msgstr "修改未保存，请确认是否离开该页面？"
+
+#, fuzzy
+#~ msgid "Create a group before adding."
+#~ msgstr "添加之前先创建一个组"
+
+#~ msgid "Admin roles"
+#~ msgstr "后台角色"
+
+#~ msgid "Front roles"
+#~ msgstr "前台角色"
+
+#~ msgid "Name"
+#~ msgstr "名称"
+
+#~ msgid "Users in role"
+#~ msgstr "用户数量"
+
+#~ msgid "Required"
+#~ msgstr "必填"
+
+#~ msgid "Type"
+#~ msgstr "类型"
+
+#~ msgid "Front"
+#~ msgstr "前台"
+
+#~ msgid "Admin"
+#~ msgstr "后台"
+
+#~ msgid "User id or name"
+#~ msgstr "用户 id 或 用户名"
+
+#~ msgid "Users"
+#~ msgstr "用户"
+
+#~ msgid "User id"
+#~ msgstr "用户 ID"
+
+#~ msgid "None user in this role."
+#~ msgstr "该角色内无用户。"
+
+#~ msgid "Active State"
+#~ msgstr "可用状态"
+
+#~ msgid "Enable State"
+#~ msgstr "启用状态"
+
+#~ msgid "Apply"
+#~ msgstr "应用"
+
+#~ msgid "Inactive"
+#~ msgstr "不可用"
+
+#~ msgid "Pending"
+#~ msgstr "未激活"
+
+#, fuzzy
+#~ msgid "Register time from"
+#~ msgstr "注册日期 从"
+
+#, fuzzy
+#~ msgid "Register time to"
+#~ msgstr "渲染模式"
+
+#~ msgid "Delete"
+#~ msgstr "删除"
+
+#~ msgid "Passwords don\\'t match."
+#~ msgstr "密码不匹配"
+
+#~ msgid "Username is already taken."
+#~ msgstr "用户名已存在。"
+
+#~ msgid "Email is already taken."
+#~ msgstr "邮箱已占用。"
+
+#~ msgid "Display name is already taken."
+#~ msgstr "昵称已存在。"
+
+#~ msgid "Back to users list"
+#~ msgstr "返回用户列表"
+
+#~ msgid "Email invalid"
+#~ msgstr "邮箱错误"
+
+#~ msgid "Password confirm"
+#~ msgstr "确认密码"
+
+#~ msgid "Enable"
+#~ msgstr "启用"
+
+#~ msgid "Disable"
+#~ msgstr "禁用"
+
+#~ msgid "Front role"
+#~ msgstr "前台角色"
+
+#~ msgid "Admin role"
+#~ msgstr "后台角色"
+
+#~ msgid "Last three months"
+#~ msgstr "过去三个月"
+
+#~ msgid "Last six months"
+#~ msgstr "过去半年"
+
+#~ msgid "Last year"
+#~ msgstr "去年"
+
+#~ msgid "Assign role"
+#~ msgstr "分配角色"
+
+#~ msgid "Remove role"
+#~ msgstr "移除角色"
+
+#~ msgid "Are you sure to delete this users?"
+#~ msgstr "请确认是否删除这些用户？"
+
+#~ msgid "Are you sure active this account, it can not be return"
+#~ msgstr "请确认是否激活该账号，本操作无法撤销"
+
+#~ msgid "Are you sure active these account, it can not be return"
+#~ msgstr "请确认是否激活这些账号，本操作无法撤销"
+
+#~ msgid "Choose at least one item before submission."
+#~ msgstr "请至少选择一项提交。"
+
+#~ msgid "Confirm password"
+#~ msgstr "确认密码"
+
+#~ msgid "Activate"
+#~ msgstr "激活"
+
+#~ msgid "Invalid email."
+#~ msgstr "邮箱错误。"
+
+#~ msgid "Activation state"
+#~ msgstr "激活状态"
+
+#~ msgid "User ID"
+#~ msgstr "用户 ID"
+
+#~ msgid "Search result"
+#~ msgstr "搜索结果"
+
+#~ msgid "No pending user."
+#~ msgstr "没有未激活用户。"
+
+#~ msgid "Edit user"
+#~ msgstr "编辑用户信息"
+
+#, fuzzy
+#~ msgid "Replace with default avatar."
+#~ msgstr "重置为默认头像。"
+
+#~ msgid "Are you sure to delete this group?"
+#~ msgstr "请确认是否删除该组？"
+
+#~ msgid "Add new"
+#~ msgstr "添加"
+
+#~ msgid "Set it only if necessary."
+#~ msgstr "仅在必要时设置。"
+
+#~ msgid "Homepage"
+#~ msgstr "首页"
+
+#~ msgid "User data import failed: "
+#~ msgstr "数据导入失败："
+
+#~ msgid "%d enable user successfully"
+#~ msgstr "启用 %d 用户成功"
+
+#~ msgid "%d activated user successfully"
+#~ msgstr "激活 %d 用户成功"
+
+#~ msgid "Assign role successfully"
+#~ msgstr "分配角色成功"
+
+#~ msgid "Set privacy failed: invalid value."
+#~ msgstr "隐私设置失败：值错误。"
+
+#~ msgid "Click to select a group added in"
+#~ msgstr "点击选择已有组添加"
+
+#~ msgid "From"
+#~ msgstr "从"
+
+#~ msgid "To"
+#~ msgstr "到"

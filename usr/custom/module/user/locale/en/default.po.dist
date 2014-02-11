@@ -1,0 +1,62 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-custom-user\n"
+"POT-Creation-Date: 2014-02-11 18:38+0800\n"
+"PO-Revision-Date: 2014-02-11 18:38+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e;_b\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\custom\\module\\user\n"
+
+#: C:\code\pi\usr\custom\module\user/config/form.register.php:28
+msgid "Confirm credential"
+msgstr ""
+
+#: C:\code\pi\usr\custom\module\user/config/form.register.php:60
+msgid "Please type the word."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Publish time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Belong to community"
+#~ msgstr "主题更新失败。"
+
+#, fuzzy
+#~ msgid "No content"
+#~ msgstr "无缓存"
+
+#, fuzzy
+#~ msgid "Create time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Update time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Password recovery failed."
+#~ msgstr "主题更新失败。"
+
+#, fuzzy
+#~ msgid "Password recovered successfully."
+#~ msgstr "主题更新成功。"
+
+#, fuzzy
+#~ msgid "Language"
+#~ msgstr "语言选择"
+
+#, fuzzy
+#~ msgid "Start time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "End time"
+#~ msgstr "Application Execution Time"

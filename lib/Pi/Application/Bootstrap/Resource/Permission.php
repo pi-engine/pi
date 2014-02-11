@@ -82,7 +82,7 @@ class Permission extends AbstractResource
         // Grant access permission to system home page and dashboard for all admins
         } elseif ('system' == $route['module']
             && in_array($route['controller'], array('index', 'dashboard'))
-            && Pi::service('authentication')->hasIdentity()
+            && Pi::service('user')->hasIdentity()
         ) {
         // Check against module access
         } else {

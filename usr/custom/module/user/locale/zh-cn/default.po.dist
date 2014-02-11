@@ -1,0 +1,494 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-custom-user\n"
+"POT-Creation-Date: 2014-02-11 18:39+0800\n"
+"PO-Revision-Date: 2014-02-11 18:39+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\custom\\module\\user\n"
+
+#: c:\code\pi\usr\custom\module\user/config/form.register.php:28
+msgid "Confirm credential"
+msgstr "确认密码"
+
+#: c:\code\pi\usr\custom\module\user/config/form.register.php:60
+msgid "Please type the word."
+msgstr "验证码"
+
+#~ msgid "Change email"
+#~ msgstr "修改邮箱"
+
+#~ msgid "Congratulations!"
+#~ msgstr "恭喜！"
+
+#~ msgid "Your email has been changed."
+#~ msgstr "邮箱修改成功。"
+
+#~ msgid "Sorry, the link has expired, or maybe your email has been changed."
+#~ msgstr "对不起，链接已过期，或邮箱已经修改成功。"
+
+#~ msgid "Topic"
+#~ msgstr "帖子"
+
+#~ msgid "Reply"
+#~ msgstr "回复"
+
+#~ msgid "Title"
+#~ msgstr "标题"
+
+#~ msgid "Publish time"
+#~ msgstr "发布时间"
+
+#~ msgid "Belong to community"
+#~ msgstr "所属社区"
+
+#~ msgid "No content"
+#~ msgstr "没有内容"
+
+#~ msgid "Manage"
+#~ msgstr "管理"
+
+#~ msgid "Circuit diagram"
+#~ msgstr "电路图"
+
+#~ msgid "Question"
+#~ msgstr "提问"
+
+#~ msgid "Answer"
+#~ msgstr "回答"
+
+#~ msgid "Project"
+#~ msgstr "项目"
+
+#~ msgid "Create time"
+#~ msgstr "创建时间"
+
+#~ msgid "Update time"
+#~ msgstr "更新时间"
+
+#~ msgid "Relationship"
+#~ msgstr "关系"
+
+#~ msgid "Point"
+#~ msgstr "积分："
+
+#~ msgid "You do not join in community"
+#~ msgstr "尚未加入社区"
+
+#~ msgid "Find password"
+#~ msgstr "找回密码"
+
+#, fuzzy
+#~ msgid "An email with password reset link has been sent to you."
+#~ msgstr "重设密码的链接已经发往您的邮箱。"
+
+#, fuzzy
+#~ msgid "Set password"
+#~ msgstr "密码最小长度"
+
+#, fuzzy
+#~ msgid "Password recovery failed."
+#~ msgstr "重置密码失败"
+
+#, fuzzy
+#~ msgid "Retrieve password."
+#~ msgstr "密码最小长度"
+
+#, fuzzy
+#~ msgid "Password recovered successfully."
+#~ msgstr "修改密码成功"
+
+#, fuzzy
+#~ msgid "Log in."
+#~ msgstr "启用的主题"
+
+#, fuzzy
+#~ msgid "User activation"
+#~ msgstr "激活时间"
+
+#, fuzzy
+#~ msgid "Activation was successful."
+#~ msgstr "激活邮件未能发出。"
+
+#, fuzzy
+#~ msgid "Resend activation email."
+#~ msgstr "重新发送激活邮件"
+
+#~ msgid "already registered,havent activited"
+#~ msgstr "已注册，未激活？"
+
+#~ msgid "shenglingyufeitongxingzheng"
+#~ msgstr "申领与非网通行证"
+
+#~ msgid "qinsongshixianrengwoxing"
+#~ msgstr "轻松实现“任我行”"
+
+#~ msgid "queefocus"
+#~ msgstr "去“与非网”交流技术"
+
+#~ msgid "qucndzz"
+#~ msgstr "去“电子电路网”下载电路图"
+
+#~ msgid "qud5"
+#~ msgstr "去“集成电路查询网”查询器件信息"
+
+#~ msgid "queeboard"
+#~ msgstr "去“爱板网”选购开发板"
+
+#~ msgid "I have read and agree to"
+#~ msgstr "我已经阅读并同意相关"
+
+#~ msgid "Terms of Service"
+#~ msgstr "服务条款"
+
+#, fuzzy
+#~ msgid "Tell EEFOCUS what you like"
+#~ msgstr "告诉与非你喜欢的"
+
+#, fuzzy
+#~ msgid "EEFOCUS offers what you want"
+#~ msgstr "与非提供你想要的"
+
+#, fuzzy
+#~ msgid "We will provide services according to your interests."
+#~ msgstr "我们会根据您的兴趣打造专属服务"
+
+#, fuzzy
+#~ msgid "Send gift"
+#~ msgstr "发送私信"
+
+#, fuzzy
+#~ msgid "We will cherish your trust."
+#~ msgstr "我们更会珍视您的这份信任"
+
+#, fuzzy
+#~ msgid "EEFOCUS solemnly promise:"
+#~ msgstr "EEFOCUS的所有文章"
+
+#, fuzzy
+#~ msgid "We will protect the security of your information."
+#~ msgstr "我们一定保护您的信息资料安全"
+
+#, fuzzy
+#~ msgid "Registration was not completed."
+#~ msgstr "用户不存在。"
+
+#, fuzzy
+#~ msgid ""
+#~ "You account has been registered successfully. However it needs to be "
+#~ "approved by our admins before you can use it."
+#~ msgstr "账号已注册成功，但是需要管理员激活。"
+
+#, fuzzy
+#~ msgid "An activation email has been sent to you at %s."
+#~ msgstr "重设密码的链接已经发往您的邮箱。"
+
+#, fuzzy
+#~ msgid "Please check the email to complete your registration."
+#~ msgstr "请点击邮件中的链接，以完成注册"
+
+#, fuzzy
+#~ msgid "What to do if you do not receive the activation email?"
+#~ msgstr "没有收到激活邮件怎么办？"
+
+#, fuzzy
+#~ msgid "Email address is wrong?"
+#~ msgstr "邮箱地址丢失"
+
+#, fuzzy
+#~ msgid "Wait a few more minutes and check."
+#~ msgstr "稍等几分钟再看"
+
+#, fuzzy
+#~ msgid "Or"
+#~ msgstr "ID 或 URL"
+
+#~ msgid "Resend activation email"
+#~ msgstr "重新发送激活邮件"
+
+#~ msgid "Message has been sent"
+#~ msgstr "邮件已发送"
+
+#~ msgid "Complete profile"
+#~ msgstr "完善资料"
+
+#~ msgid "Complete profile description"
+#~ msgstr "完善个人资料，以便100多万与非用户认识您！"
+
+#~ msgid "chuangan/MEMS"
+#~ msgstr "传感/MEMS"
+
+#~ msgid "kongzhiqi/chuliqi/DSP"
+#~ msgstr "控制器/处理器/DSP"
+
+#~ msgid "baohu/geli"
+#~ msgstr "控制器/处理器/DSP"
+
+#~ msgid "kaiguan/duolufuyongqi"
+#~ msgstr "开关/多路复用器"
+
+#~ msgid "fadahexianxingchanpin"
+#~ msgstr "放大和线性产品"
+
+#~ msgid "cunchu"
+#~ msgstr "存储"
+
+#~ msgid "lianjieqi"
+#~ msgstr "连接器"
+
+#~ msgid "ceshiceliang"
+#~ msgstr "测试测量"
+
+#~ msgid "shujuzhuanhuanqi"
+#~ msgstr "测试测量"
+
+#~ msgid "jiekou"
+#~ msgstr "测试测量"
+
+#~ msgid "guangdian/xianshi"
+#~ msgstr "光电/显示"
+
+#~ msgid "qianrushikaifagongju"
+#~ msgstr "嵌入式开发工具"
+
+#~ msgid "dianyuan/dianchiguanli"
+#~ msgstr "电源/电池管理"
+
+#~ msgid "yin/shipin"
+#~ msgstr "音/视频"
+
+#~ msgid "RF/weibo"
+#~ msgstr "RF/微波"
+
+#~ msgid "EDA/IP/IC/PCBsheji"
+#~ msgstr "EDA/IP/IC/PCB设计"
+
+#~ msgid "shuzi/kebianchengluoji"
+#~ msgstr "数字/可编程逻辑"
+
+#~ msgid "fenli/wuyuanqijian"
+#~ msgstr "分立/无源器件"
+
+#~ msgid "tongxin/wangluoIC"
+#~ msgstr "通信/网络IC"
+
+#~ msgid "zhizao/fengzhuang"
+#~ msgstr "制造/封装"
+
+#~ msgid "shizhong/dingshi"
+#~ msgstr "时钟/定时"
+
+#~ msgid "qianrushixitongsheji"
+#~ msgstr "嵌入式系统设计"
+
+#~ msgid "wuxian&shepin"
+#~ msgstr "无线&射频"
+
+#~ msgid "lvsesheji"
+#~ msgstr "绿色设计"
+
+#~ msgid "xiaofeidianzi"
+#~ msgstr "消费电子"
+
+#~ msgid "dianzizixunjinji"
+#~ msgstr "电子资讯集锦"
+
+#~ msgid "moni&dianyuan"
+#~ msgstr "模拟&电源"
+
+#~ msgid "gongyedianzi"
+#~ msgstr "工业电子"
+
+#~ msgid "Full name"
+#~ msgstr "姓名"
+
+#~ msgid "Language"
+#~ msgstr "语言"
+
+#~ msgid "Country"
+#~ msgstr "地区"
+
+#~ msgid "Province"
+#~ msgstr "省"
+
+#~ msgid "City"
+#~ msgstr "市"
+
+#~ msgid "Telephone"
+#~ msgstr "手机"
+
+#~ msgid "Registered source"
+#~ msgstr "注册来源"
+
+#~ msgid "Phone"
+#~ msgstr "电话"
+
+#~ msgid "Address"
+#~ msgstr "详细地址"
+
+#~ msgid "Postcode"
+#~ msgstr "邮编"
+
+#~ msgid "Interest"
+#~ msgstr "感兴趣的产品技术"
+
+#~ msgid "Subscriptions"
+#~ msgstr "订阅信息"
+
+#~ msgid "Education"
+#~ msgstr "教育经历"
+
+#~ msgid "School name"
+#~ msgstr "学校"
+
+#~ msgid "Department"
+#~ msgstr "院系"
+
+#~ msgid "Major"
+#~ msgstr "专业"
+
+#~ msgid "Degree"
+#~ msgstr "学历"
+
+#~ msgid "Start time"
+#~ msgstr "开始时间"
+
+#~ msgid "End time"
+#~ msgstr "结束时间"
+
+#~ msgid "Description"
+#~ msgstr "描述"
+
+#~ msgid "Work"
+#~ msgstr "工作经验"
+
+#~ msgid "Company name"
+#~ msgstr "公司"
+
+#~ msgid "Work Department"
+#~ msgstr "部门"
+
+#~ msgid "Industry"
+#~ msgstr "行业"
+
+#~ msgid "Sector"
+#~ msgstr "领域"
+
+#~ msgid "Job Position"
+#~ msgstr "职位描述"
+
+#~ msgid "Select"
+#~ msgstr "请选择"
+
+#~ msgid "R&D"
+#~ msgstr "研发"
+
+#~ msgid "Management"
+#~ msgstr "研发管理/项目管理"
+
+#~ msgid "Measurement"
+#~ msgstr "测试测量"
+
+#~ msgid "QA"
+#~ msgstr "生产管理/质量控制"
+
+#~ msgid "Market"
+#~ msgstr "采购/市场/服务"
+
+#~ msgid "Student"
+#~ msgstr "学生"
+
+#~ msgid "Job title"
+#~ msgstr "职务职称"
+
+#~ msgid "Community bbs"
+#~ msgstr "社区帖子"
+
+#~ msgid "CNDZZ"
+#~ msgstr "CNDZZ"
+
+#~ msgid "Blog"
+#~ msgstr "博客"
+
+#~ msgid "Community"
+#~ msgstr "加入的社区"
+
+#~ msgid "EEFOCUS"
+#~ msgstr "EEFOCUS"
+
+#~ msgid "Article channel"
+#~ msgstr "----- 资讯频道"
+
+#~ msgid "Blog channel"
+#~ msgstr "----- 博客频道"
+
+#~ msgid "Forum"
+#~ msgstr "----- 论坛"
+
+#~ msgid "Diagram"
+#~ msgstr "----- 电路图"
+
+#~ msgid "EEboard"
+#~ msgstr "EEboard"
+
+#~ msgid "Kaifaban"
+#~ msgstr "----- 开发板"
+
+#~ msgid "Datasheet 5"
+#~ msgstr "Datasheet 5"
+
+#~ msgid ""
+#~ "Sorry, this link has expired. Maybe you have to complete the activation, "
+#~ "or exceed the effective activation time."
+#~ msgstr "对不起，此链接已失效。可能您已完成激活，或者超过有效激活时间。"
+
+#~ msgid "resend activited email"
+#~ msgstr "重新发送激活邮件"
+
+#~ msgid "System has been to you mailbox"
+#~ msgstr "系统已经向你的邮箱"
+
+#~ msgid "Send an email"
+#~ msgstr "发送了一封电子邮件"
+
+#~ msgid "Reregister"
+#~ msgstr "重新注册"
+
+#~ msgid "To see is it in the trash"
+#~ msgstr "看看是否在垃圾箱中"
+
+#~ msgid "or"
+#~ msgstr "或者"
+
+#~ msgid "Resend activate email"
+#~ msgstr "重新发送激活邮件"
+
+#~ msgid "You can"
+#~ msgstr "你可以选择"
+
+#~ msgid ",or"
+#~ msgstr "，或"
+
+#~ msgid "<a href=\"%s\">Login right now</a>"
+#~ msgstr "<a href=\"%s\">立即登录</a>"
+
+#~ msgid "Find password proceed:"
+#~ msgstr "找回密码流程："
+
+#~ msgid "input email address,send find password email"
+#~ msgstr "填写 Email 地址, 发送找回密码邮件"
+
+#~ msgid "click the link in email"
+#~ msgstr "查收邮件，点击邮件中的修改密码链接"
+
+#~ msgid "change password"
+#~ msgstr "修改密码"
+
+#~ msgid "done"
+#~ msgstr "完成"
