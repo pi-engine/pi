@@ -59,8 +59,22 @@ $result = $installer->update($row);
 //$details = $installer->getResult();
 
 if ($result) {
-    Pi::service('asset')->remove('module/' . $module);
-    Pi::service('asset')->publishModule($module);
+    // Refresh caches
+    Pi::service('cache')->flush();
+
+    // Refresh assets
+    $modules = Pi::registry('module')->read();
+    $themes = Pi::registry('theme')->read();
+    foreach (array_keys($modules) as $name) {
+        $status = Pi::service('asset')->remove('module/' . $name);
+        $status = Pi::service('asset')->publishModule($name);
+    }
+    foreach (array_keys($themes) as $name) {
+        $status = Pi::service('asset')->remove('theme/' . $name);
+        $status = Pi::service('asset')->publishTheme($name);
+    }
+    clearstatcache();
+
     $message = sprintf('Module %s update succeeded.', $module);
 } else {
     $message = sprintf('Module %s update failed.', $module);

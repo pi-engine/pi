@@ -45,6 +45,11 @@ class Updator120 extends AbstractUpdator
         $status = true;
         if (version_compare($version, '1.2.0', '<')) {
 
+            Pi::model('field', 'user')->update(
+                array('module' => 'user'),
+                array('module' => '')
+            );
+
             $table = Pi::db()->prefix('privacy', 'user');
             $sql =<<<'EOT'
 ALTER TABLE %s
