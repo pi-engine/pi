@@ -48,8 +48,7 @@ $this->headStyle()->appendStyle($style);
     </ol>
 
     <!-- Carousel items -->
-    <div style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>"
-         class="carousel-inner">
+    <div <?php if ($options['height']) { echo 'style="height: ' . $options['height'] . 'px;"'; } ?> class="carousel-inner">
         <div class="active item">
             <?php echo $render($activeItem); ?>
         </div>
