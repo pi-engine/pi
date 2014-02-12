@@ -1,13 +1,21 @@
 <?php
-    $this->jQuery('extension/fileupload-min.js');
-    $this->bootstrap(array(
-        'datepicker/datepicker.css',
-        'datepicker/bootstrap-datepicker.js',
-        'datepicker/locales/bootstrap-datepicker.es.js',
-        'js/bootstrap-typeahead.js',
-    ));
-    $this->css($this->assetModule('script/front.css'));
-    $this->Backbone();
+$this->jQuery('extension/fileupload-min.js');
+
+$locale = Pi::config('locale');
+if (false !== strpos('-', $locale)) {
+    $list = explode('-', $locale, 2);
+    $locale = $list[0] . '-' . strtoupper($list[1]);
+}
+$datepickerLocale = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $locale);
+$this->bootstrap(array(
+    'datepicker/datepicker.css',
+    'datepicker/bootstrap-datepicker.js',
+    $datepickerLocale,
+    'js/bootstrap-typeahead.js',
+));
+
+$this->css($this->assetModule('script/front.css'));
+$this->Backbone();
 ?>
 
 <style>
