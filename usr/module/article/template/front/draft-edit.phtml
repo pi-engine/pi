@@ -3,7 +3,7 @@
     $this->bootstrap(array(
         'datepicker/datepicker.css',
         'datepicker/bootstrap-datepicker.js',
-        'datepicker/locales/bootstrap-datepicker.zh-CN.js',
+        'datepicker/locales/bootstrap-datepicker.es.js',
         'js/bootstrap-typeahead.js',
     ));
     $this->css($this->assetModule('script/front.css'));
@@ -639,8 +639,8 @@
             <a href="<%= data.downloadUrl %>" class="attachment-name"><%= data.title %></a>
         </td>
         <td>
-            <a href="javascript:void(0)" class="delete"><?php _e('Delete'); ?></a><span class="text-muted"> | </span>
-            <a href="javascript:void(0)" class="insert"><?php _e('Insert'); ?></a>
+            <a href="javascript:void(0)" class="insert btn btn-info btn-sm"><?php _e('Insert'); ?></a>&nbsp;&nbsp;
+            <a href="javascript:void(0)" class="delete"><?php _e('Delete'); ?></a>
         </td>
     </tr>
 </script>
