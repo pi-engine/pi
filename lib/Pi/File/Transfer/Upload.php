@@ -146,7 +146,8 @@ class Upload extends Transfer
         $direction = false;
         $rename = !empty($options['rename']) ? $options['rename'] : '%random%';
         $destination = !empty($options['destination'])
-            ? $options['destination'] : Pi::service('module')->current();
+            ? $options['destination'] 
+            : 'upload/' . Pi::service('module')->current();
         $this->setAdapter($adapter, $direction, $options);
         $this->setDestination($destination);
         $this->setRename($rename);
