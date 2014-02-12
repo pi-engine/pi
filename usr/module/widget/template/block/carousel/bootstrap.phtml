@@ -17,7 +17,7 @@ $render = function ($item) use ($_this)
 {
     $caption = $_this->escape($item['caption']);
     $description = $_this->escape($item['desc']);
-    $image = '<img class="center-block" src="' . $item['image'] . '" alt="">';
+    $image = '<img class="center-block" src="' . $item['image'] . '" alt="' . $caption . '" />';
 
     $content = '';
     if (!empty($item['link'])) {
@@ -32,14 +32,13 @@ $render = function ($item) use ($_this)
 };
 
 $carouselId = uniqid('carousel');
-?>
-<style>
-.carousel-control .fa-chevron-left,
+$style = ".carousel-control .fa-chevron-left,
 .carousel-control .fa-chevron-right {
     position: absolute;
     top: 50%;
-}
-</style>
+}";
+$this->headStyle()->appendStyle($style);
+?>
 <div id="<?php echo $carouselId; ?>" class="<?php echo $class; ?>">
     <ol class="carousel-indicators">
         <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
