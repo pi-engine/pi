@@ -135,7 +135,7 @@ class Doc extends AbstractApi
             case 'POST':
                 $uploader = new Upload(array(
                     'destination'   => $destination,
-                    'rename'        => $rename,
+                    'rename'        => $rename($params['filename']),
                 ));
                 $maxSize = Pi::config(
                     'max_size',
@@ -144,7 +144,8 @@ class Doc extends AbstractApi
                 if ($maxSize) {
                     $uploader->setSize($maxSize);
                 }
-                if ($uploader->isValid()) {
+                $result = $uploader->isValid();
+                if ($result) {
                     $uploader->receive();
                     $filename = $uploader->getUploaded();
                     if (is_array($filename)) {
