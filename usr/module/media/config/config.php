@@ -51,22 +51,19 @@ return array(
             'category'    => 'validator',
             'title'       => _t('Max Media Size'),
             'description' => _t('Max media size'),
-            'value'       => 2097152,
-            'filter'      => 'number_int',
+            'value'       => '2MB',
         ),
         'image_width'     => array(
             'category'    => 'validator',
             'title'       => _t('Image Width'),
             'description' => _t('Max allowed image width'),
             'value'       => 1000,
-            'filter'      => 'number_int',
         ),
         'image_height'    => array(
             'category'    => 'validator',
             'title'       => _t('Image Height'),
             'description' => _t('Max allowed image height'),
             'value'       => 1000,
-            'filter'      => 'number_int',
         ),
     ),
 );
