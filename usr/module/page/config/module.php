@@ -13,9 +13,9 @@ return array(
         // Module title, required
         'title'         => _a('Page'),
         // Description, for admin, optional
-        'description'   => _a('Page configurations for cache, blocks and permissions.'),
+        'description'   => _a('Single page for direct content display.'),
         // Version number, required
-        'version'       => '1.0.1',
+        'version'       => '1.0.2',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -46,11 +46,6 @@ return array(
         'database'  => array(
             // SQL schema/data file
             'sqlfile'   => 'sql/mysql.sql',
-            // Tables to be removed during uninstall
-            'schema'    => array(
-                'page'          => 'table',
-                'stats'         => 'table',
-            )
         ),
         // Module Config
         'config'        => 'config.php',

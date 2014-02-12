@@ -29,25 +29,14 @@ class IndexController extends ActionController
      */
     public function indexAction()
     {
-        $model = $this->getModel('page');
-        $rowset = $model->select(array());
-        $pages = array(
-            'active'    => array(),
-            'inactive'  => array(),
-        );
+        $model  = $this->getModel('page');
+        $select = $model->select()->order(array('active DESC', 'id DESC'));
+        $rowset = $model->selectWith($select);
+        $pages  = array();
         foreach ($rowset as $row) {
-            $page = array(
-                'id'    => $row->id,
-                'name'  => $row->name,
-                'title' => $row->title,
-                'slug'  => $row->slug,
-            );
-            $page['url'] = $this->url($this->getModule() . '-page', $page);
-            if ($row->active) {
-                $pages['active'][] = $page;
-            } else {
-                $pages['inactive'][] = $page;
-            }
+            $page           = $row->toArray();
+            $page['url']    = $this->url($this->getModule() . '-page', $page);
+            $pages[]        = $page;
         }
 
         $this->view()->assign('pages', $pages);
@@ -112,8 +101,7 @@ class IndexController extends ActionController
                     }
                     Pi::registry('page')->clear($this->getModule());
                     $message = _a('Page data saved successfully.');
-                    $this->jump(array('action' => 'index'), $message);
-                    return;
+                    return $this->jump(array('action' => 'index'), $message);
                 } else {
                     $message = _a('Page data not saved.');
                 }
@@ -133,78 +121,6 @@ class IndexController extends ActionController
         $this->view()->assign('title', _a('Add a page'));
         $this->view()->assign('message', $message);
         $this->view()->setTemplate('page-add');
-    }
-
-    /**
-     * AJAX action for adding a custom page
-     */
-    public function addsaveAction()
-    {
-        $status     = 1;
-        $message    = '';
-        $route      = array();
-
-        $data = $this->request->getPost();
-        $form = new PageForm('page-form', $data['markup']);
-        $form->setInputFilter(new PageFilter);
-        $form->setData($data);
-        if ($form->isValid()) {
-            $values = $form->getData();
-            foreach (array_keys($values) as $key) {
-                if (!in_array($key, $this->pageColumns)) {
-                    unset($values[$key]);
-                }
-            }
-            if (empty($values['name'])) {
-                $values['name'] = null;
-            }
-            if (empty($values['slug'])) {
-                $values['slug'] = null;
-            }
-            $values['active'] = 1;
-            $values['user'] = Pi::service('user')->getUser()->id;
-            $values['time_created'] = time();
-            unset($values['id']);
-
-            $row = $this->getModel('page')->createRow($values);
-            $row->save();
-            if ($row->id) {
-                if ($row->name) {
-                    $this->setPage($row->name, $row->title);
-                }
-                $message = _a('Page added successfully.');
-                $page = array(
-                    'id'            => $row->id,
-                    'title'         => $row->title,
-                    'url'           => $this->url('page', $values),
-                    'edit'          => $this->url('', array(
-                        'action' => 'edit',
-                        'id' => $row->id
-                    )),
-                    'delete'        => $this->url('', array(
-                        'action' => 'delete',
-                        'id' => $row->id
-                    )),
-                );
-                Pi::registry('page')->clear($this->getModule());
-            } else {
-                $message = _a('Page data not saved.');
-                $status = 0;
-            }
-        } else {
-            $messages = $form->getMessages();
-            $message = array();
-            foreach ($messages as $key => $msg) {
-                $message[$key] = array_values($msg);
-            }
-            $status = -1;
-        }
-
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'page'      => $page,
-        );
     }
 
     /**
@@ -276,8 +192,7 @@ class IndexController extends ActionController
                 }
                 Pi::registry('page')->clear($this->getModule());
                 $message = _a('Page data saved successfully.');
-                $this->jump(array('action' => 'index'), $message);
-                return;
+                return $this->jump(array('action' => 'index'), $message);
             } else {
                 $message = _a('Invalid data, please check and re-submit.');
             }
@@ -301,112 +216,29 @@ class IndexController extends ActionController
     }
 
     /**
-     * AJAX for editing a page
-     */
-    public function editsaveAction()
-    {
-        $status     = 1;
-        $message    = '';
-        $page       = array();
-
-        $data = $this->request->getPost();
-
-        $id = $data['id'];
-        $row = $this->getModel('page')->find($id);
-        $form = new PageForm('page-form', $row->markup);
-        $form->setInputFilter(new PageFilter);
-        $form->setData($data);
-        if ($form->isValid()) {
-            $values = $form->getData();
-            foreach (array_keys($values) as $key) {
-                if (!in_array($key, $this->pageColumns)) {
-                    unset($values[$key]);
-                }
-            }
-            if (empty($values['name'])) {
-                $values['name'] = null;
-            }
-            if (empty($values['slug'])) {
-                $values['slug'] = null;
-            }
-            $pageSet = array();
-            if ($row->name != $values['name']) {
-                $pageSet = array(
-                    'remove'    => $row->name,
-                    'set'       => array($values['name'], $values['title']),
-                );
-            }
-            $values['time_updated'] = time();
-            $row->assign($values);
-            $row->save();
-            if ($pageSet) {
-                if (!empty($pageSet['set'])) {
-                    $this->setPage(
-                        $pageSet['set']['name'],
-                        $pageSet['set']['title']
-                    );
-                }
-                if (!empty($pageSet['remove'])) {
-                    $this->removePage($pageSet['remove']);
-                }
-            }
-            $message = _a('Page data saved successfully.');
-            $page = array(
-                'id'            => $id,
-                'title'         => $row->title,
-            );
-            Pi::registry('page')->clear($this->getModule());
-        } else {
-            $messages = $form->getMessages();
-            $message = array();
-            foreach ($messages as $key => $msg) {
-                $message[$key] = array_values($msg);
-            }
-            $status = -1;
-        }
-
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-            'page'      => $page,
-        );
-    }
-
-    /**
-     * AJAX for deleting a page
+     * Delete a page
      *
      */
     public function deleteAction()
     {
-        $status     = 1;
-        $message    = _a('Page deleleted successfaully.');
-
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
             $row->delete();
-            if ($row->name) {
-                $this->removePage($row->name);
-            }
             Pi::registry('page')->clear($this->getModule());
         }
-        //$this->redirect()->toRoute('', array('action' => 'index'));
-
-        return array(
-            'status'    => $status,
-            'message'   => $message,
+        return $this->jump(
+            array('action' => 'index'),
+            _a('Page deleted successfully.')
         );
     }
 
     /**
-     * AJAX for activate/deactivate a page
+     * Activate/deactivate a page
      *
      */
     public function activateAction()
     {
-        $status     = 1;
-        $message    = _a('Page updated successfully.');
-
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
@@ -414,11 +246,9 @@ class IndexController extends ActionController
             $row->save();
             Pi::registry('page')->clear($this->getModule());
         }
-        //$this->redirect()->toRoute('', array('action' => 'index'));
-
-        return array(
-            'status'    => $status,
-            'message'   => $message,
+        return $this->jump(
+            array('action' => 'index'),
+            _a('Page updated successfully.')
         );
     }
 
@@ -449,7 +279,7 @@ class IndexController extends ActionController
     /**
      * Remove from system page settings
      *
-     * @param stinr $name
+     * @param string $name
      * @return int
      */
     protected function removePage($name)

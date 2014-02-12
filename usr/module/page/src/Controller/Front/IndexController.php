@@ -35,8 +35,7 @@ class IndexController extends ActionController
             $title = $row->title;
             // update clicks
             $model = $this->getModel('page');
-            $model->update(array('clicks' => new Expression('`clicks` + 1')),
-                           array('id' => $row->id));
+            $model->increment('clicks', array('id' => $row->id));
             // Module config 
             $config = Pi::config('', $this->getModule());
             // Set view
@@ -54,29 +53,23 @@ class IndexController extends ActionController
     }
 
     /**
-     * Access a page via
-     *  1. /url/page/123
-     *  2. /url/page/my-slug
-     * Access a page via
-     *  1. /url/page/index/pagename
-     *  2. /url/page/view/pagename
+     * Page render
+     *
+     * @see Module\Page\Route\Page
      */
     public function indexAction()
     {
-        $id = $this->params('id');
-        $slug = $this->params('slug');
-        $name = $this->params('name');
-        $action = $this->params('action');
+        $id     = $this->params('id');
+        $name   = $this->params('name');
 
         $row = null;
         if ($id) {
             $row = $this->getModel('page')->find($id);
         } elseif ($name) {
-            $row = $this->getModel('page')->find($name, 'name');
-        } elseif ($slug) {
-            $row = $this->getModel('page')->find($slug, 'slug');
-        } elseif ($action) {
-            $row = $this->getModel('page')->find($action, 'name');
+            $row = $this->getModel('page')->find($name, 'slug');
+            if (!$row) {
+                $row = $this->getModel('page')->find($name, 'name');
+            }
         }
 
         $this->render($row);

@@ -1,98 +1,50 @@
 <?php
-    $this->css($this->assetModule('script/system-ui.css','system'));
-    $this->jQuery();
-    $this->Backbone();
-    $this->js($this->assetModule('script/system-msg.js','system'));
+$this->css($this->assetModule('admin/admin.css', 'system'));
 ?>
-<style>
-    .box-hover .pull-right {
-        margin: 15px 20px 0 0;
-    }
-    .box-disable .box-title:after {
-	    content:" (disabled)";
-    }
-</style>
-<div id="page-list" class="submain">
-<h2 class="page-header"><?php echo _a('Active pages'); ?></h2>
-<ul class="active-pages list-unstyled">
-    <?php foreach ($pages['active'] as $page) { ?>
-    <li id="page-<?php echo $page['id']; ?>" class="well well-sm box-hover page" data-id="<?php echo $page['id']; ?>" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
-        <div class="pull-right btn-group">
-           <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
-           <a class="btn btn-primary" href="<?php echo $this->url($module . '-page', $page); ?>"  target="_blank"><?php echo _a('View'); ?></a>
-           <span class="btn btn-warning page-active"><?php echo _a('Deactivate'); ?></span>
-           <span class="btn btn-danger page-delete"><?php echo _a('Delete'); ?></span>
-        </div>
-        <h4 class="box-title"><?php echo _escape($page['title']); ?></h4>
-        <dl class="dl-horizontal mb10">
-            <dt><?php echo _a('name: '); ?></dt>
-            <dd><?php echo $page['name'] ?: ''; ?></dd>
-            <dt><?php echo _a('slug: '); ?></dt>
-            <dd><?php echo $page['slug'] ? _escape($page['slug']) : ''; ?></dd>
-        </dl>
-    </li>
-    <?php } ?>
-</ul>
-<?php if (!empty($pages['inactive'])) { ?>
-<h2 class="page-header"><?php echo _a('Inactive pages'); ?></h2>
-<ul class="inactive-pages list-unstyled">
-    <?php foreach ($pages['inactive'] as $page) { ?>
-    <li id="page-<?php echo $page['id']; ?>" class="well well-sm box-hover box-disable page" data-id="<?php echo $page['id']; ?>" data-action="disable" data-action="enable" data-active="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>" data-delete="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>">
-        <div class="pull-right btn-group">
-           <a class="btn btn-primary" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
-           <a class="btn btn-primary" href="<?php echo $this->url($module . '-page', $page); ?>"  target="_View"><?php echo _a('View'); ?></a>
-           <span class="btn btn-success page-active"><?php echo _a('Activate'); ?></span>
-           <span class="btn btn-danger page-delete"><?php echo _a('Delete'); ?></span>
-        </div>
-        <h4 class="box-title"><?php echo _escape($page['title']); ?></h4>
-        <dl class="dl-horizontal mb10">
-            <dt><?php echo _a('name: '); ?></dt>
-            <dd><?php echo $page['name'] ?: ''; ?></dd>
-            <dt><?php echo _a('slug: '); ?></dt>
-            <dd><?php echo $page['slug'] ? _escape($page['slug']) : ''; ?></dd>
-        </dl>
-    </li>
-    <?php } ?>
-</ul>
-<?php } ?>
-
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><?php echo _a('Page title'); ?></th>
+            <th style="width: 5%;"><?php echo _a('Name'); ?></th>
+            <th style="width: 5%;"><?php echo _a('Slug'); ?></th>
+            <th style="width: 20%;"><?php echo _a('Time published'); ?></th>
+            <th style="width: 20%;"><?php echo _a('Last Update'); ?></th>
+            <th><?php echo _a('Action'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($pages as $page) { ?>
+            <tr>
+                <td>
+                    <?php echo _escape($page['title']); ?>
+                </td>
+                <td>
+                    <?php echo _escape($page['name']); ?>
+                </td>
+                <td>
+                    <?php echo _escape($page['slug']); ?>
+                </td>
+                <td>
+                    <?php echo _date($page['time_created']); ?>
+                </td>
+                <td>
+                    <?php echo $page['time_updated'] ? _date($page['time_updated']) : ''; ?>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-primary" href="<?php echo $page['url']; ?>"  target="_blank"><?php echo _a('View'); ?></a>
+                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'edit', 'id' => $page['id'])); ?>"><?php echo _a('Edit'); ?></a>
+                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>"><?php echo _a('Delete'); ?></a>
+                        <?php if ($page['active']) { ?>
+                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Disable'); ?></a>
+                        <?php } else { ?>
+                            <a class="btn btn-sm btn-warning" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Enable'); ?></a>
+                        <?php }?>
+                    </div>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
 </div>
-<script>
-(function($) {
-    var page = {
-        el: $('#page-list'),
-        $: function(selector) {
-            return this.el.find(selector);
-        },
-        init: function() {
-            _.bindAll(this);
-            this.$('.page-delete').click(this.deleteAction);
-            this.$('.page-active').click(this.activeAction);
-        },
-        deleteAction: function(e) {
-            if (confirm("<?php echo _a("Are you sure to delete the page?"); ?>")) {
-                $.getJSON($(e.target).parents(".page").attr('data-delete')).done(function(result) {
-                    if (result.status == 1) {
-                        $('#page-' + $(e.target).parents(".page").attr('data-id')).slideUp('fast');
-                        systemMessage.succ(result.message);
-                    }
-                });
-            }
-        },
-        activeAction: function(e) {
-	          $.getJSON($(e.target).parents(".page").attr('data-active')).done(function(result) {
-	              if (result.status == 1) {
-	                  if ($(e.target).parents(".page").attr("data-action") == "disable") {
-	                      $(e.target).parents(".page").attr("data-action", "enable").removeClass("box-disable").find(".page-active").html("<?php echo _a('Deactivate'); ?>");
-	                      $(e.target).parents(".page").appendTo(pageItems1.activePages);
-	                  } else {
-	                      $(e.target).parents(".page").attr("data-action", "disable").addClass("box-disable").find(".page-active").html("<?php echo _a('Activate'); ?>");
-	                      $(e.target).parents(".page").appendTo(pageItems1.inactivePages);
-	                  }
-	              }
-	          });
-        },
-    }
-    page.init();
-})(jQuery)
-</script>
