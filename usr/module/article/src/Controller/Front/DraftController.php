@@ -20,7 +20,6 @@ use Module\Article\Model\Article;
 use Module\Article\Rule;
 use Module\Article\Compiled;
 use Module\Article\Entity;
-use Pi\File\Transfer\Upload as UploadHandler;
 use Module\Article\Media;
 use Module\Article\Draft;
 

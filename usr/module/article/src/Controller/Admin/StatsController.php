@@ -9,8 +9,8 @@
 
 namespace Module\Article\Controller\Admin;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Module\Article\Stats;
 use Module\Article\Entity;
 

@@ -15,7 +15,6 @@ use Pi\Paginator\Paginator;
 use Module\Article\Model\Article;
 use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Form\SimpleSearchForm;
-use Zend\Db\Sql\Expression;
 use Module\Article\Rule;
 use Module\Article\Entity;
 use Module\Article\Stats;

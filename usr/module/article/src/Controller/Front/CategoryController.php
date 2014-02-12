@@ -12,18 +12,9 @@ namespace Module\Article\Controller\Front;
 use Pi\Mvc\Controller\ActionController;
 use Pi;
 use Pi\Paginator\Paginator;
-use Module\Article\Form\CategoryEditForm;
-use Module\Article\Form\CategoryEditFilter;
-use Module\Article\Form\CategoryMergeForm;
-use Module\Article\Form\CategoryMergeFilter;
-use Module\Article\Form\CategoryMoveForm;
-use Module\Article\Form\CategoryMoveFilter;
-use Module\Article\Model\Category;
 use Zend\Db\Sql\Expression;
-use Module\Article\Service;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
-use Pi\File\Transfer\Upload as UploadHandler;
 
 /**
  * Category controller

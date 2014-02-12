@@ -10,7 +10,6 @@
 namespace Module\Article\Controller\Front;
 
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Service;
 use Module\Article\Model\Article;
 use Zend\Db\Sql\Expression;
 use Pi\Paginator\Paginator;

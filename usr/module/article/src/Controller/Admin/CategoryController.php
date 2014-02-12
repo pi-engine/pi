@@ -19,7 +19,6 @@ use Module\Article\Form\CategoryMoveForm;
 use Module\Article\Form\CategoryMoveFilter;
 use Module\Article\Model\Category;
 use Module\Article\Media;
-use Pi\File\Transfer\Upload as UploadHandler;
 
 /**
  * Category controller

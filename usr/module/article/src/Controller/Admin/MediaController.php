@@ -16,8 +16,6 @@ use Module\Article\Form\MediaEditForm;
 use Module\Article\Form\MediaEditFilter;
 use Module\Article\Form\SimpleSearchForm;
 use Module\Article\Media;
-use Pi\File\Transfer\Upload as UploadHandler;
-use ZipArchive;
 
 /**
  * Media controller

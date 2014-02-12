@@ -421,10 +421,11 @@ class AuthorController extends ActionController
         // Get path to store
         $destination = Media::getTargetDir('author', $module, true, false);
 
-        $uploader = new UploadHandler;
-        $uploader->setDestination(Pi::path($destination))
-                 ->setRename($rename)
-                 ->setExtension($config['image_extension'])
+        $uploader = new UploadHandler(array(
+            'destination' => Pi::path($destination),
+            'rename'      => $rename,
+        ));
+        $uploader->setExtension($config['image_extension'])
                  ->setSize($config['max_media_size']);
         
         // Checking whether uploaded file is valid
