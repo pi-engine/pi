@@ -11,12 +11,7 @@ namespace Module\Article\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Form\MediaEditForm;
-use Module\Article\Form\MediaEditFilter;
-use Module\Article\Form\SimpleSearchForm;
-use Zend\Db\Sql\Expression;
 use Module\Article\Media;
-use Module\Article\File;
 use Pi\File\Transfer\Upload as UploadHandler;
 use ZipArchive;
 
@@ -123,10 +118,11 @@ class MediaController extends ActionController
         $mediaSize        = ($type == 'image')
             ? $config['max_image_size'] : $config['max_media_size'];
         $destination = Media::getTargetDir('media', $module, true, true);
-        $uploader    = new UploadHandler;
-        $uploader->setDestination(Pi::path($destination))
-                 ->setRename($rename)
-                 ->setExtension($allowedExtension)
+        $uploader    = new UploadHandler(array(
+            'destination' => Pi::path($destination),
+            'rename'      => $rename,
+        ));
+        $uploader->setExtension($allowedExtension)
                  ->setSize($mediaSize);
         
         // Get raw file name

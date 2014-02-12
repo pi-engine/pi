@@ -13,7 +13,6 @@ use Pi\Mvc\Controller\ActionController;
 use Pi;
 use Pi\Paginator\Paginator;
 use Module\Article\Model\Article;
-use Module\Article\Service;
 use Module\Article\Entity;
 use Module\Article\Form\SimpleSearchForm;
 

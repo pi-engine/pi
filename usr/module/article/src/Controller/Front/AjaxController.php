@@ -11,7 +11,6 @@ namespace Module\Article\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Service;
 
 /**
  * Ajax controller

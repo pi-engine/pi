@@ -20,7 +20,6 @@ use Zend\Db\Sql\Expression;
 use Module\Article\Media;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
-use Module\Article\Topic as TopicService;
 
 /**
  * Topic controller

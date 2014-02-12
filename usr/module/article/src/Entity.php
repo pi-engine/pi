@@ -450,6 +450,7 @@ class Entity
                     $row['url'] = Pi::service('url')->assemble($route, array(
                         'time'   => date('Ymd', $row['time_publish']),
                         'id'     => $row['id'],
+                        'slug'   => $extended[$row['id']]['slug'],
                     ));
                 }
                 

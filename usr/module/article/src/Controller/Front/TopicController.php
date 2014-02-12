@@ -12,15 +12,10 @@ namespace Module\Article\Controller\Front;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Module\Article\Form\TopicEditForm;
-use Module\Article\Form\TopicEditFilter;
-use Module\Article\Form\SimpleSearchForm;
-use Module\Article\Model\Topic;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
 use Module\Article\Topic as TopicService;
-use Pi\File\Transfer\Upload as UploadHandler;
 use Module\Article\Media;
 
 /**

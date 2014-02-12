@@ -19,11 +19,11 @@
                 foreach ($options as $name => $label) {
             ?>
             <div class="row" style="margin-left: 30px">
-                <label class="radio col-md-3">
+                <label class="radio col-md-1" style="padding-top: 0">
                     <input type="radio" value="<?php echo $this->escape($name); ?>" name="mode"<?php echo ($value == $name) ? ' checked' : ''; ?>>
                         <?php echo $this->escape($label); ?>
                 </label>
-                <a class="article-form-mode col-md-3" data-mode="<?php echo $this->escape($name); ?>" href="javascript:void(0)">
+                <a class="article-form-mode col-md-1" data-mode="<?php echo $this->escape($name); ?>" href="javascript:void(0)">
                     <?php echo _a('Preview'); ?>
                 </a>
             </div>

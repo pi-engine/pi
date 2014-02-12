@@ -115,10 +115,12 @@ class Article extends Standard
                 '/^id' . $this->keyValueDelimiter . '/',
                 $urlParams[0]
             )) {
-                list($ignored, $id) = explode(
+                list($ignored, $uniqueVal) = explode(
                     $this->keyValueDelimiter, 
                     $urlParams[0]
                 );
+                $id   = is_numeric($uniqueVal) ? $uniqueVal : 0;
+                $slug = !is_numeric($uniqueVal) ? $uniqueVal : '';
                 $controller = 'article';
                 $action     = 'detail';
             } elseif ('topic' == $urlParams[0]) {
@@ -146,7 +148,7 @@ class Article extends Standard
             }
         }
         $matches  = compact(
-            'controller', 'action', 'category', 'tag', 'id', 'topic'
+            'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic'
         );
         
         $params   = array_filter(explode(self::COMBINE_DELIMITER, $parameter));
@@ -192,7 +194,17 @@ class Article extends Standard
         unset($mergedParams['action']);
         unset($mergedParams['module']);
         
-        if (isset($mergedParams['id'])
+        if (isset($mergedParams['slug'])
+            && !empty($mergedParams['slug'])
+            && !is_numeric($mergedParams['slug'])
+        ) {
+            $url .= 'id'
+                 . $this->keyValueDelimiter 
+                 . $mergedParams['slug'];
+            unset($mergedParams['id']);
+            unset($mergedParams['slug']);
+            unset($mergedParams['time']);
+        } elseif (isset($mergedParams['id'])
             && !empty($mergedParams['id'])
             && is_numeric($mergedParams['id'])
         ) {
