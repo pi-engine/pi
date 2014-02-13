@@ -75,6 +75,6 @@ return array(
             'title'       => _t('Pending Approve'),
         ),
         
-        'custom'         => 'Module\Article\Permission',
+        'custom'         => 'Module\Article\Api\Permission',
     ),
 );

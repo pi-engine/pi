@@ -7,13 +7,13 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Article;
+namespace Module\Article\Api;
 
 use Pi\Application\Api\Api\AbstractApi;
 use Pi;
 
 /**
- * Custom resources
+ * Custom resource loader for permissions
  * 
  * @author Zongshu Lin <lin40553024@163.com> 
  */
