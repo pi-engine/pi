@@ -90,7 +90,8 @@ class Article extends Standard
             )) {
                 list($ignored, $category) = explode(
                     $this->keyValueDelimiter, 
-                    $urlParams[0]
+                    $urlParams[0],
+                    2
                 );
                 if ('all' == $category) {
                     $controller = 'list';
@@ -106,7 +107,8 @@ class Article extends Standard
             )) {
                 list($ignored, $tag) = explode(
                     $this->keyValueDelimiter, 
-                    $urlParams[0]
+                    $urlParams[0],
+                    2
                 );
                 $controller = 'tag';
                 $action     = 'list';
@@ -117,7 +119,8 @@ class Article extends Standard
             )) {
                 list($ignored, $uniqueVal) = explode(
                     $this->keyValueDelimiter, 
-                    $urlParams[0]
+                    $urlParams[0],
+                    2
                 );
                 $id   = is_numeric($uniqueVal) ? $uniqueVal : 0;
                 $slug = !is_numeric($uniqueVal) ? $uniqueVal : '';
@@ -133,7 +136,8 @@ class Article extends Standard
                 $controller = 'topic';
                 list($ignored, $topic) = explode(
                     $this->keyValueDelimiter, 
-                    $urlParams[0]
+                    $urlParams[0],
+                    2
                 );
                 if (preg_match(
                     '/^list' . $this->keyValueDelimiter . '/',

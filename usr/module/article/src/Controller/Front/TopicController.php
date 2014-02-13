@@ -127,6 +127,7 @@ class TopicController extends ActionController
         $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
+        $module = $this->getModule();
         $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_all'];
         
@@ -178,7 +179,6 @@ class TopicController extends ActionController
         $totalCount = $modelTopic->getSearchRowsCount($where);
 
         // Pagination
-        $module    = $this->getModule();
         $route     = Pi::api('api', $module)->getRouteName();
         $paginator = Paginator::factory($totalCount, array(
             'limit'       => $limit,
