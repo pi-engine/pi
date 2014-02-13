@@ -93,9 +93,10 @@
   </table>
   <pagination ng-if="paginator.count > paginator.limit" 
               total-items="paginator.count" page="paginator.page" max-size="10"
+              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
               boundary-links="true" items-per-page="paginator.limit">
   </pagination>
 </div>
-<div class="alert" ng-show="!users.length">
+<div class="alert alert-info" ng-if="!users.length">
   {{'NONE_USER' | translate}}
 </div>
