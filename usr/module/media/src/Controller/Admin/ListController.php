@@ -124,7 +124,8 @@ class ListController extends ActionController
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
 
-        // PaginatorPaginator
+        // Paginator
+        /*
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
@@ -140,18 +141,30 @@ class ListController extends ActionController
                     'action'        => 'index',
                 ), $params)),
             ));
-        
+        */
+        $paginator = Paginator::factory($totalCount, array(
+            'page' => $page,
+            'url_options'   => array(
+                'page_param' => 'p',
+                'params'     => array_filter(array_merge(array(
+                    'module'        => $this->getModule(),
+                    'controller'    => 'list',
+                    'action'        => 'index',
+                ), $params)),
+            ),
+        ));
+
         $navTabs = array(
             array(
                 'active'    => null === $active && !$delete,
-                'label'     => _a('All medias'),
+                'label'     => _a('All resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                 )),
             ),
             array(
                 'active'    => 1 === $active && !$delete,
-                'label'     => _a('Active medias'),
+                'label'     => _a('Active resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'status'    => 1,
@@ -159,7 +172,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active && !$delete,
-                'label'     => _a('Inactive medias'),
+                'label'     => _a('Inactive resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'status'    => 0,
@@ -167,7 +180,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => $delete,
-                'label'     => _a('Deleted medias'),
+                'label'     => _a('Deleted resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'index',
                     'delete'    => 1,
@@ -176,7 +189,7 @@ class ListController extends ActionController
         );
         
         $this->view()->assign(array(
-            'title'      => _a('Media List'),
+            'title'      => _a('Resource List'),
             'apps'       => $apps,
             'medias'     => $resultset,
             'paginator'  => $paginator,
@@ -256,7 +269,7 @@ class ListController extends ActionController
             $apps = $this->getAppTitle($appkeys);
             
             $this->view()->assign(array(
-                'title'      => _a('Media List by Application'),
+                'title'      => _a('Resource List by Application'),
                 'items'      => $result,
                 'apps'       => $apps,
             ));
@@ -332,7 +345,8 @@ class ListController extends ActionController
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
 
-        // PaginatorPaginator
+        // Paginator
+        /*
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
@@ -347,18 +361,29 @@ class ListController extends ActionController
                     'action'        => 'application',
                 ), $params)),
             ));
-        
+        */
+        $paginator = Paginator::factory($totalCount, array(
+            'page'          => $page,
+            'url_options'   => array(
+                'page_param'    => 'p',
+                'params'        => array_filter(array_merge(array(
+                    'controller'    => 'list',
+                    'action'        => 'application',
+                ), $params)),
+            ),
+        ));
+
         $navTabs = array(
             array(
                 'active'    => null === $active && !$delete,
-                'label'     => _a('All medias'),
+                'label'     => _a('All resources'),
                 'href'      => $this->url('', array_merge(array(
                     'action'    => 'application',
                 ), $navParams)),
             ),
             array(
                 'active'    => 1 === $active && !$delete,
-                'label'     => _a('Active medias'),
+                'label'     => _a('Active resources'),
                 'href'      => $this->url('', array_merge(array(
                     'action'    => 'application',
                     'status'    => 1,
@@ -366,7 +391,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active && !$delete,
-                'label'     => _a('Inactive medias'),
+                'label'     => _a('Inactive resources'),
                 'href'      => $this->url('', array_merge(array(
                     'action'    => 'application',
                     'status'    => 0,
@@ -374,7 +399,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => $delete,
-                'label'     => _a('Deleted medias'),
+                'label'     => _a('Deleted resources'),
                 'href'      => $this->url('', array_merge(array(
                     'action'    => 'application',
                     'delete'    => 1,
@@ -383,7 +408,7 @@ class ListController extends ActionController
         );
 
         $this->view()->assign(array(
-            'title'      => _a('Media List By module'),
+            'title'      => _a('Resource List By module'),
             'apps'       => $apps,
             'medias'     => $resultset,
             'paginator'  => $paginator,
@@ -501,7 +526,8 @@ class ListController extends ActionController
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
 
-        // PaginatorPaginator
+        // Paginator
+        /*
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
@@ -516,11 +542,22 @@ class ListController extends ActionController
                     'action'        => 'type',
                 ), $params)),
             ));
-        
+        */
+        $paginator = Paginator::factory($totalCount, array(
+            'page'          => $page,
+            'url_options'   => array(
+                'page_param'    => 'p',
+                'params'        => array_filter(array_merge(array(
+                    'controller'    => 'list',
+                    'action'        => 'type',
+                ), $params)),
+            ),
+        ));
+
         $navTabs = array(
             array(
                 'active'    => null === $active && !$delete,
-                'label'     => _a('All medias'),
+                'label'     => _a('All resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'type',
                     'type'      => $type,
@@ -528,7 +565,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 1 === $active && !$delete,
-                'label'     => _a('Active medias'),
+                'label'     => _a('Active resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'type',
                     'type'      => $type,
@@ -537,7 +574,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active && !$delete,
-                'label'     => _a('Inactive medias'),
+                'label'     => _a('Inactive resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'type',
                     'type'      => $type,
@@ -546,7 +583,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => $delete,
-                'label'     => _a('Deleted medias'),
+                'label'     => _a('Deleted resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'type',
                     'type'      => $type,
@@ -560,7 +597,7 @@ class ListController extends ActionController
         }
 
         $this->view()->assign(array(
-            'title'      => _a('Media List By Type'),
+            'title'      => _a('Resource List By Type'),
             'apps'       => $apps,
             'medias'     => $resultset,
             'paginator'  => $paginator,
@@ -646,7 +683,8 @@ class ListController extends ActionController
         // Total count
         $totalCount = $this->getModel('doc')->count($where);
 
-        // PaginatorPaginator
+        // Paginator
+        /*
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
@@ -661,11 +699,22 @@ class ListController extends ActionController
                     'action'        => 'user',
                 ), $params)),
             ));
-        
+        */
+        $paginator = Paginator::factory($totalCount, array(
+            'page'          => $page,
+            'url_options'   => array(
+                'page_param'    => 'p',
+                'params'        => array_filter(array_merge(array(
+                    'controller'    => 'list',
+                    'action'        => 'user',
+                ), $params)),
+            ),
+        ));
+
         $navTabs = array(
             array(
                 'active'    => null === $active && !$delete,
-                'label'     => _a('All medias'),
+                'label'     => _a('All resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'user'      => $user,
@@ -673,7 +722,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 1 === $active && !$delete,
-                'label'     => _a('Active medias'),
+                'label'     => _a('Active resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'user'      => $user,
@@ -682,7 +731,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active && !$delete,
-                'label'     => _a('Inactive medias'),
+                'label'     => _a('Inactive resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'user'      => $user,
@@ -691,7 +740,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => $delete,
-                'label'     => _a('Deleted medias'),
+                'label'     => _a('Deleted resources'),
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'user'      => $user,
@@ -702,7 +751,7 @@ class ListController extends ActionController
         $url = $this->url('', array('action' => 'user'));
         
         $this->view()->assign(array(
-            'title'      => _a('Media List By User'),
+            'title'      => _a('Resource List By User'),
             'apps'       => $apps,
             'medias'     => $resultset,
             'paginator'  => $paginator,

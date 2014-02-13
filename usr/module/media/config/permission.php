@@ -18,12 +18,12 @@ return array(
             'title'       => _t('Application management'),
         ),
         'list'        => array(
-            'title'       => _t('List management'),
+            'title'       => _t('Resource management'),
         ),
         'stats'       => array(
-            'title'       => _t('Statistics management'),
+            'title'       => _t('Statistics access'),
         ),
         
-        'custom'      => 'Module\Media\Permission',
+        //'custom'      => 'Module\Media\Api\Permission',
     ),
 );

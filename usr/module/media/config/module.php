@@ -16,7 +16,7 @@ return array(
     // Module meta
     'meta'         => array(
         'title'         => _a('Media'),
-        'description'   => _a('Module for managing medias and provide API for users'),
+        'description'   => _a('Module for media resources and APIs.'),
         'version'       => '1.0.1-beta.1',
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',

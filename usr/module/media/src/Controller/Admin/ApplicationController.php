@@ -86,7 +86,8 @@ class ApplicationController extends ActionController
         // Total count
         $totalCount = $model->count($where);
 
-        // PaginatorPaginator
+        // Paginator
+        /*
         $paginator = Paginator::factory($totalCount);
         $paginator->setItemCountPerPage($limit)
             ->setCurrentPageNumber($page)
@@ -103,7 +104,20 @@ class ApplicationController extends ActionController
                     'name'          => $name,
                 )),
             ));
-        
+        */
+        $paginator = Paginator::factory($totalCount, array(
+            'page'          => $page,
+            'url_options'   => array(
+                'page_param'    => 'p',
+                'params'     => array_filter(array(
+                    'module'        => $module,
+                    'controller'    => 'application',
+                    'action'        => 'list',
+                    'name'          => $name,
+                )),
+            ),
+        ));
+
         $this->view()->assign(array(
             'title'     => _a('Application List'),
             'apps'      => $resultset,
@@ -124,14 +138,14 @@ class ApplicationController extends ActionController
             if (!$form->isValid()) {
                 return $this->renderForm(
                     $form,
-                    _a('There are some error occur')
+                    _a('There are some error occurred.')
                 );
             }
             
             $data = $form->getData();
             $result = Pi::api('doc', $this->getModule())->addApplication($data);
             if (!$result) {
-                return $this->jumpTo404(_a('Cannot save data'));
+                return $this->jumpTo404(_a('Cannot save data.'));
             }
             
             return $this->redirect()->toRoute('', array('action' => 'list'));
@@ -139,7 +153,7 @@ class ApplicationController extends ActionController
         
         $appkey = $this->params('appkey', '');
         if (empty($appkey)) {
-            return $this->jumpTo404(_a('Invalid application key'));
+            return $this->jumpTo404(_a('Invalid application key.'));
         }
 
         $form->setData(array('appkey' => $appkey));
@@ -179,7 +193,7 @@ class ApplicationController extends ActionController
             if (!$form->isValid()) {
                 return $this->renderForm(
                     $form,
-                    _a('There are some error occur')
+                    _a('There are some error occurred.')
                 );
             }
             
@@ -193,7 +207,7 @@ class ApplicationController extends ActionController
             ) {
                 return $this->renderForm(
                     $form,
-                    _a('Cannot save data')
+                    _a('Cannot save data.')
                 );
             }
             
@@ -215,14 +229,14 @@ class ApplicationController extends ActionController
         $appkeys = array_filter(explode(',', $appkey));
 
         if (empty($appkeys)) {
-            throw new \Exception(_a('Invalid application'));
+            throw new \Exception(_a('Invalid application.'));
         }
         
         // Checking if application is in used
         $rowDoc = $this->getModel('doc')
             ->select(array('appkey' => $appkeys));
         if (count($rowDoc) > 0) {
-            throw new \Exception(_a('Application already in used'));
+            throw new \Exception(_a('Application already in use.'));
         }
         
         // Removing application

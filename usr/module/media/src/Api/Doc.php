@@ -142,7 +142,7 @@ class Doc extends AbstractApi
                     $this->module
                 );
                 if ($maxSize) {
-                    $uploader->setSize($maxSize);
+                    $uploader->setSize($maxSize * 1024);
                 }
                 $result = $uploader->isValid();
                 if ($result) {

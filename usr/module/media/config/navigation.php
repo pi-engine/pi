@@ -21,7 +21,7 @@ return array(
         // Default admin navigation
         'admin'   => array(
             'list'              => array(
-                'label'         => _t('List Media'),
+                'label'         => _t('Resource list'),
                 'route'         => 'admin',
                 'controller'    => 'list',
                 'action'        => 'index',
@@ -64,7 +64,7 @@ return array(
                 ),
             ),
             'application'       => array(
-                'label'         => _t('Application'),
+                'label'         => _t('Application list'),
                 'route'         => 'admin',
                 'controller'    => 'application',
                 'action'        => 'list',
