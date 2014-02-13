@@ -10,7 +10,7 @@
 namespace Module\Demo\Api;
 
 use Pi;
-use Pi\Application\AbstractContent;
+use Pi\Application\Api\AbstractContent;
 
 /**
  * Public API for content fetch

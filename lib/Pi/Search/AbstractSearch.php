@@ -10,7 +10,7 @@
 namespace Pi\Search;
 
 use Pi;
-use Pi\Application\AbstractModuleAwareness;
+use Pi\Application\Api\AbstractApi;
 use Pi\Db\Sql\Where;
 use Pi\Application\Model\Model;
 
@@ -19,7 +19,7 @@ use Pi\Application\Model\Model;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractSearch extends AbstractModuleAwareness
+abstract class AbstractSearch extends AbstractApi
 {
     /** @var string Table name */
     protected $table;

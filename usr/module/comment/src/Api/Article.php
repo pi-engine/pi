@@ -10,7 +10,7 @@
 namespace Module\Comment\Api;
 
 use Pi;
-use Pi\Application\AbstractComment;
+use Pi\Application\Api\AbstractComment;
 
 /**
  * Comment target callback handler

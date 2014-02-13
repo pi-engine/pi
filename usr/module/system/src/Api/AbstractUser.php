@@ -10,7 +10,7 @@
 namespace Module\System\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Pi\Db\Sql\Where;
 use Pi\User\Model\AbstractModel as UserModel;
 

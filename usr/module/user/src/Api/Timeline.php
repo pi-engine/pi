@@ -10,7 +10,7 @@
 namespace Module\User\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 
 /**
  * User timeline APIs

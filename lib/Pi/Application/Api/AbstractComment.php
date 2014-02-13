@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application;
+namespace Pi\Application\Api;
 
 use Zend\Mvc\Router\RouteMatch;
 
@@ -16,7 +16,7 @@ use Zend\Mvc\Router\RouteMatch;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractComment extends AbstractModuleAwareness
+abstract class AbstractComment extends AbstractApi
 {
     /**
      * Get target data of item(s)

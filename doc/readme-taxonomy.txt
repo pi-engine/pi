@@ -80,7 +80,7 @@ Attachment:
 <?php
 namespace   Module\Provider\Api;
 
-use Pi\Application\AbstractProvider;
+use Pi\Application\Api\AbstractProvider;
 
 class Provider extends AbstractProvider
 {

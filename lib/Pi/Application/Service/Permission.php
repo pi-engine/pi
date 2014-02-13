@@ -11,7 +11,7 @@
 namespace Pi\Application\Service;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 
 /**
  * Permission handling service

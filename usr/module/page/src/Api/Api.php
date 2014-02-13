@@ -10,7 +10,7 @@
 namespace Module\Page\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 
 class Api extends AbstractApi
 {

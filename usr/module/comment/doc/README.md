@@ -68,14 +68,14 @@ Step 1. Set up comment specification in module meta configuration
 Step 2. Build callback for item information fetch
 
 - Callback is optional, `Module\<ModuleName>\Api\Content` will be used to fetch source data if no callback available
-- Callback class must extend `Pi\Application\AbstractComment`
+- Callback class must extend `Pi\Application\Api\AbstractComment`
 - The callback is recommended to locate in module api folder
 - Check `Module\Comment\Api\Article` and `Module\Comment\Api\Custom` for example
 
 Step 3. Build custom locator to identify target item, JIC
 
 - Build the locator only if 'locator' is specified in comment specifications
-- Extend `Pi\Application\AbstractComment` with method `locate`
+- Extend `Pi\Application\Api\AbstractComment` with method `locate`
 - Check `Module\Comment\Api\Custom::locate` for example
 
 Step 4. Increase module version number and update

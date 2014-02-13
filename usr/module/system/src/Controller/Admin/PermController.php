@@ -251,7 +251,7 @@ class PermController extends ComponentController
                 // Load module defined resources
                 if ($callback && is_subclass_of(
                         $callback,
-                        'Pi\Application\AbstractModuleAwareness'
+                        'Pi\Application\Api\AbstractApi'
                     )
                 ) {
                     $callbackClass      = $callback;
@@ -277,7 +277,7 @@ class PermController extends ComponentController
                     // Load module defined resources
                     if ($callback && is_subclass_of(
                             $callback,
-                            'Pi\Application\AbstractModuleAwareness'
+                            'Pi\Application\Api\AbstractApi'
                         )
                     ) {
                         $callbackHandler = new $callback($module);

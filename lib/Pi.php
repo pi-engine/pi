@@ -17,7 +17,7 @@ use Pi\Application\Config;
 use Pi\Application\Service\User;
 use Pi\Application\Model\Model;
 use Pi\Application\Registry\AbstractRegistry;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Pi\Db\DbGateway;
 use Pi\Debug\Debug;
 use Pi\Utility\Filter;

@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application;
+namespace Pi\Application\Api;
 
 /**
  * Abstract class for module aware classes

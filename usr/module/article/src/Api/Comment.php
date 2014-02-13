@@ -10,7 +10,7 @@
 namespace Module\Article\Api;
 
 use Pi;
-use Pi\Application\AbstractComment;
+use Pi\Application\Api\AbstractComment;
 use Zend\Mvc\Router\RouteMatch;
 use Module\Article\Service;
 

@@ -9,7 +9,7 @@
 
 namespace Module\Article;
 
-use Pi\Application\AbstractModuleAwareness;
+use Pi\Application\Api\Api\AbstractApi;
 use Pi;
 
 /**
@@ -17,7 +17,7 @@ use Pi;
  * 
  * @author Zongshu Lin <lin40553024@163.com> 
  */
-class Permission extends AbstractModuleAwareness
+class Permission extends AbstractApi
 {
     protected $module = 'article';
 

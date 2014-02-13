@@ -9,9 +9,9 @@
 
 namespace Module\Demo\Api;
 
-use Pi\Application\AbstractModuleAwareness;
+use Pi\Application\Api\AbstractApi;
 
-class PermAdmin extends AbstractModuleAwareness
+class PermAdmin extends AbstractApi
 {
     protected $module = 'demo';
 

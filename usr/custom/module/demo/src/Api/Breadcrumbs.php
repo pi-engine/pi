@@ -10,7 +10,7 @@
 namespace Custom\Demo\Api;
 
 use Pi;
-use Pi\Application\AbstractBreadcrumbs;
+use Pi\Application\Api\AbstractBreadcrumbs;
 
 class Breadcrumbs extends AbstractBreadcrumbs
 {

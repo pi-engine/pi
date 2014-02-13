@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application;
+namespace Pi\Application\Api;
 
 use Zend\View\ViewModel;
 
@@ -17,7 +17,7 @@ use Zend\View\ViewModel;
  * @todo    Move the class to a Taxonomy dedicated namespace
  * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractProvider extends AbstractModuleAwareness
+abstract class AbstractProvider extends AbstractApi
 {
     /**
      * Get renderer

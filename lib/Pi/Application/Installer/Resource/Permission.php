@@ -29,7 +29,7 @@ use Pi;
  *              ),
  *              <...>
  *              // Callback for custom resources
- *              // @see Pi\Application\AbstractModuleAwareness
+ *              // @see Pi\Application\Api\AbstractApi
  *              'custom'  => 'Module\<Module-name>\Api\<FrontCallbackName>',
  *          ),
  *
@@ -37,7 +37,7 @@ use Pi;
  *          'admin' => array(
  *              <...>
  *              // Callback for custom resources
- *              // @see Pi\Application\AbstractModuleAwareness
+ *              // @see Pi\Application\Api\AbstractApi
  *              'custom'  => 'Module\<Module-name>\Api\<AdminCallbackName>',
  *          ),
  *  );

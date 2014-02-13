@@ -10,7 +10,7 @@
 namespace Module\Tag\Api;
 
 use Zend\Db\Sql\Expression;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Pi;
 
 /**

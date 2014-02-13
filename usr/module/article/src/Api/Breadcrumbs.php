@@ -10,7 +10,7 @@
 namespace Module\Article\Api;
 
 use Pi;
-use Pi\Application\AbstractBreadcrumbs;
+use Pi\Application\Api\AbstractBreadcrumbs;
 
 /**
  * Custom breadcrumbs class

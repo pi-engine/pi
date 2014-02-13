@@ -7,14 +7,14 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Pi\Application;
+namespace Pi\Application\Api;
 
 /**
  * Abstract class for user callback
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-abstract class AbstractActivity extends AbstractModuleAwareness
+abstract class AbstractActivity extends AbstractApi
 {
     /**
      * Get activity link and log list

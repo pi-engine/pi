@@ -9,7 +9,7 @@
 
 namespace Module\Demo\Api;
 
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 
 class Check extends AbstractApi
 {

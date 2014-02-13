@@ -10,7 +10,7 @@
 namespace Module\Comment\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Pi\Db\Sql\Where;
 use Pi\Db\RowGateway\RowGateway;
 use Module\Comment\Form\PostForm;

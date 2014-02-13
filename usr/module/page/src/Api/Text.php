@@ -13,7 +13,7 @@
 namespace Module\Page\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 
 /*
  * Pi::api('text', 'page')->keywords($keywords);

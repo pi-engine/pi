@@ -10,7 +10,7 @@
 namespace Module\Article\Api;
 
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Module\Article\Model\Article;
 use Module\Article\Installer\Resource\Route;
 

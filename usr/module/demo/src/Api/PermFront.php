@@ -9,9 +9,9 @@
 
 namespace Module\Demo\Api;
 
-use Pi\Application\AbstractModuleAwareness;
+use Pi\Application\Api\AbstractApi;
 
-class PermFront extends AbstractModuleAwareness
+class PermFront extends AbstractApi
 {
     protected $module = 'demo';
 

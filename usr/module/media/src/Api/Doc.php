@@ -11,7 +11,7 @@ namespace Module\Media\Api;
 
 use Closure;
 use Pi;
-use Pi\Application\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Pi\File\Transfer\Upload;
 
 class Doc extends AbstractApi
