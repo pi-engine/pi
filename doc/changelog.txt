@@ -8,6 +8,7 @@ Jan 1st, 2014
 * Added built-in support for module and theme custom asset
 * Simplified config API with `Pi::config()`
 * Moved custom static to `public` folder and entry scripts to `script` folder for better deployment
+* Moved system abstract API classes to sub namespace `Api` located in `lib/Pi/Application/Api`
 
 
 Pi 2.3.0
