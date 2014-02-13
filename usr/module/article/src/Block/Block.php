@@ -614,6 +614,33 @@ class Block
     }
     
     /**
+     * Show RSS link
+     * 
+     * @param array   $options
+     * @param string  $module
+     * @return boolean 
+     */
+    public static function rss($options = array(), $module = null)
+    {
+        if (!$module) {
+            return false;
+        }
+        
+        $url = $options['default_image'];
+        if (!preg_match('/^http/', $url)) {
+            $url = Pi::service('asset')->getModuleAsset($url, $module);
+        }
+        
+        return array(
+            'target'      => $options['target'],
+            'description' => $options['description'],
+            'height'      => $options['image_height'],
+            'width'       => $options['image_width'],
+            'url'         => $url,
+        );
+    }
+    
+    /**
      * Added all sub-categories as children array of top category.
      * 
      * @param array  $categories

@@ -7,6 +7,7 @@ INSERT INTO `{prefix}core_page_block` (`page`, `block`, `zone`, `order`) VALUES
 (####article-index####, {{{{{module}-feature-articles}}}}, 2, 1),
 (####article-index####, {{{{{module}-lastest-articles}}}}, 2, 2),
 (####article-index####, {{{{{module}-newest-sport-articles}}}}, 2, 3),
+(####article-index####, {{{{{module}-homepage-rss}}}}, 8, 5),
 (####article-index####, {{{{{module}-hot-categories}}}}, 8, 4),
 (####article-index####, {{{{{module}-submitter-statistics}}}}, 8, 3),
 (####article-index####, {{{{{module}-newest-topic}}}}, 8, 2),
