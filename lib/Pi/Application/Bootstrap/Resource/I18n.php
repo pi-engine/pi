@@ -41,7 +41,10 @@ class I18n extends AbstractResource
         Pi::service('i18n')->setLocale($locale);
         $locale = Pi::service('i18n')->getLocale();
         setlocale(LC_ALL, $locale);
+        // Set encoding for multi-byte handling
         mb_internal_encoding($charset);
+        // Set `default_charset` for filters like `FILTER_SANITIZE_FULL_SPECIAL_CHARS`
+        @ini_set('default_charset', $charset);
 
         // Preload translations
         if (!empty($this->options['translator'])) {
