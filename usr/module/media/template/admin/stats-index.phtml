@@ -8,12 +8,12 @@
 </style>
 <div class="row">
     <div class="col-md-6 pull-left">
-        <div class="stats-title"><?php echo _a('Top 10 medias'); ?></div>
+        <div class="stats-title"><?php echo _a('Top 10 resources'); ?></div>
         <table class="table table-striped" id="top-media">
             <?php
                 $items = $medias;
                 $field = 'count';
-                include 'stats-page.phtml';
+                include $this->template('module/media:admin/stats-page');
             ?>
         </table>
     </div>

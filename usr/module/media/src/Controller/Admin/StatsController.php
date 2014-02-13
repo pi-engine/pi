@@ -28,7 +28,7 @@ class StatsController extends ActionController
     {
         $module = $this->getModule();
         
-        // Get top 10 medias
+        // Get top 10 media resources
         $topMedias = Pi::api('stats', $module)->getTopTotal(10);
         
         // Get top submitter

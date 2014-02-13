@@ -284,7 +284,7 @@ class Doc extends AbstractApi
     }
     
     /**
-     * Get attributes of medias
+     * Get attributes of media resources
      * 
      * @param int[] $ids
      * @param string|string[] $attribute

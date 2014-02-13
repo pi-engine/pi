@@ -158,7 +158,7 @@ class DocController extends ApiController
     }
     
     /**
-     * Get media attributes of medias
+     * Get media attributes of media resources
      * 
      * @return array
      */
@@ -213,7 +213,7 @@ class DocController extends ApiController
     }
     
     /**
-     * Get statistics data of medias
+     * Get statistics data of media resources
      */
     public function mstatsAction()
     {

@@ -97,7 +97,7 @@
     <?php
         } else {
     ?>
-    <div class="pi-media-none"><?php echo _a('No medias available yet.'); ?></div>
+    <div class="pi-media-none"><?php echo _a('No resource available yet.'); ?></div>
     <?php
         }
     ?>
@@ -176,7 +176,7 @@
                 };
             if (name) {
                 if (name == "delete") {
-                    if (confirm("<?php echo _a('Please make sure these medias are no in use!'); ?>")) {
+                    if (confirm("<?php echo _a('Please make sure these resources are no in use!'); ?>")) {
                         fn.call(this);
                     }
                 } else {
@@ -226,7 +226,7 @@
                 val = el.attr("data-value"),
                 status = el.attr("data-status");
             if (val == "delete") {
-                if (confirm("<?php echo _a('Please make sure this media is not in use!'); ?>")) {
+                if (confirm("<?php echo _a('Please make sure this resource is not in use!'); ?>")) {
                     location.href = url + "delete?id=" + id + "&redirect=" + this.encodeUrl(); 
                 }
             } else if ('active' == val) {

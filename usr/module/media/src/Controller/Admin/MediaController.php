@@ -126,7 +126,7 @@ class MediaController extends ActionController
     }
     
     /**
-     * Delete medias
+     * Delete media resources
      * 
      * @return ViewModel
      * @throws \Exception 
