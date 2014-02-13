@@ -600,4 +600,59 @@ return array(
         'template'    => 'simple-search',
         'class'       => 'block-noborder',
     ),
+    'rss'             => array(
+        'title'       => _a('RSS Link'),
+        'title_hidden'  => 1,
+        'description' => _a('Click to subscribe article'),
+        'render'      => 'block::rss',
+        'template'    => 'rss',
+        'class'       => 'block-noborder',
+        'config'      => array(
+            'target'           => array(
+                'title'        => _a('Target'),
+                'description'  => _a('Open url in which window'),
+                'edit'         => array(
+                    'type'        => 'select',
+                    'attributes'  => array(
+                        'options'    => array(
+                            '_blank'    => 'Blank',
+                            '_parent'   => 'Parent',
+                            '_self'     => 'Self',
+                            '_top'      => 'Top',
+                        ),
+                    ),
+                ),
+                'filter'       => 'string',
+                'value'        => '_blank',
+            ),
+            'description'      => array(
+                'title'        => _a('Description'),
+                'description'  => _a('Description after RSS logo'),
+                'edit'         => 'textarea',
+                'filter'       => 'string',
+                'value'        => _t('Subscribe content of this website'),
+            ),
+            'image_width'      => array(
+                'title'        => _a('Image width'),
+                'description'  => _a('Maximum width of RSS image'),
+                'edit'         => 'text',
+                'filter'       => 'number_int',
+                'value'        => 25,
+            ),
+            'image_height'     => array(
+                'title'        => _a('Image height'),
+                'description'  => _a('Maximum height of RSS image'),
+                'edit'         => 'text',
+                'filter'       => 'number_int',
+                'value'        => 25,
+            ),
+            'default_image'    => array(
+                'title'        => _a('Default image URL'),
+                'description'  => _a('Remote image URL must start with http'),
+                'edit'         => 'text',
+                'filter'       => 'string',
+                'value'        => 'image/rss.jpg',
+            ),
+        ),
+    ),
 );
