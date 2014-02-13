@@ -26,9 +26,9 @@ abstract class AbstractModuleAwareness
      *
      * @throws \Exception
      */
-    public function __construct($module)
+    public function __construct($module = null)
     {
-        if (!$module) {
+        if (null === $module) {
             throw new \Exception('$module parameter is required.');
         }
         $this->setModule($module);

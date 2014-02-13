@@ -386,7 +386,10 @@ class ModuleController extends ActionController
                 $name ?: $directory
             );
 
-            Pi::service('event')->trigger('module_install', $name);
+            Pi::service('event')->trigger(
+                'module_install',
+                $name ?: $directory
+            );
         } elseif ($directory) {
             $message = sprintf(
                 _a('Module "%s" is not installed.'),
@@ -466,7 +469,6 @@ class ModuleController extends ActionController
 
         $result     = false;
         $error      = '';
-        $message    = '';
         $details    = array();
         $row        = null;
 
@@ -490,16 +492,22 @@ class ModuleController extends ActionController
             }
         }
         if ($result) {
-            $message = sprintf(_a('Module "%s" is uninstalled successfully.'),
-                               $row->title);
+            $message = sprintf(
+                _a('Module "%s" is uninstalled successfully.'),
+                $row->title
+            );
 
             Pi::service('event')->trigger('module_uninstall', $row->name);
         } elseif ($row) {
-            $message = sprintf(_a('Module "%s" is not uninstalled.'),
-                               $row->title);
+            $message = sprintf(
+                _a('Module "%s" is not uninstalled.'),
+                $row->title
+            );
         } elseif ($id || $name) {
-            $message = sprintf(_a('Module "%s" is not uninstalled.'),
-                               $name ?: $id);
+            $message = sprintf(
+                _a('Module "%s" is not uninstalled.'),
+                $name ?: $id
+            );
         } else {
             $message = _a('Module is not uninstalled.');
         }
@@ -580,10 +588,12 @@ class ModuleController extends ActionController
             }
         }
         if ($result) {
-            $message = sprintf(_a('Module "%s" is updated successfully.'),
-                $row->title);
+            $message = sprintf(
+                _a('Module "%s" is updated successfully.'),
+                $row->title
+            );
 
-            Pi::service('event')->trigger('module_update', $name);
+            Pi::service('event')->trigger('module_update', $row->name);
 
         } elseif ($row) {
             $message = sprintf(_a('Module "%s" is not updated.'), $row->title);
@@ -644,31 +654,43 @@ class ModuleController extends ActionController
         }
         if ($active) {
             if ($result) {
-                $message = sprintf(_a('Module "%s" is enabled successfully.'),
-                                   $row->title);
+                $message = sprintf(
+                    _a('Module "%s" is enabled successfully.'),
+                    $row->title
+                );
 
-                Pi::service('event')->trigger('module_activate', $name);
+                Pi::service('event')->trigger('module_activate', $row['name']);
             } elseif ($row) {
-                $message = sprintf(_a('Module "%s" is not enabled.'),
-                                   $row->title);
+                $message = sprintf(
+                    _a('Module "%s" is not enabled.'),
+                    $row->title
+                );
             } elseif ($id || $name) {
-                $message = sprintf(_a('Module "%s" is not enabled.'),
-                                   $name ?: $id);
+                $message = sprintf(
+                    _a('Module "%s" is not enabled.'),
+                    $name ?: $id
+                );
             } else {
                 $message = _a('Module is not enabled.');
             }
         } else {
             if ($result) {
-                $message = sprintf(_a('Module "%s" is disabled successfully.'),
-                                  $row->title);
+                $message = sprintf(
+                    _a('Module "%s" is disabled successfully.'),
+                    $row->title
+                );
 
-                Pi::service('event')->trigger('module_deactivate', $name);
+                Pi::service('event')->trigger('module_deactivate', $row['name']);
             } elseif ($row) {
-                $message = sprintf(_a('Module "%s" is not disabled.'),
-                                   $row->title);
+                $message = sprintf(
+                    _a('Module "%s" is not disabled.'),
+                    $row->title
+                );
             } elseif ($id || $name) {
-                $message = sprintf(_a('Module "%s" is not disabled.'),
-                                   $name ?: $id);
+                $message = sprintf(
+                    _a('Module "%s" is not disabled.'),
+                    $name ?: $id
+                );
             } else {
                 $message = _a('Module is not disabled.');
             }

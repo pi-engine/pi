@@ -54,14 +54,14 @@ class Event extends AbstractRegistry
             $module = $row['module'];
             if (false === strpos($row['class'], '\\')) {
                 $class = sprintf(
-                    'Custom\\%s\\%s',
+                    'Custom\\%s\Api\\%s',
                     ucfirst($module),
                     ucfirst($row['class'])
                 );
                 if (!class_exists($class)) {
                     $directory = Pi::service('module')->directory($module);
                     $class = sprintf(
-                        'Module\\%s\\%s',
+                        'Module\\%s\Api\\%s',
                         ucfirst($directory),
                         ucfirst($row['class'])
                     );

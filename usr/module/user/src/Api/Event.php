@@ -7,23 +7,24 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User;
+namespace Module\User\Api;
 
 use Pi;
+use Pi\Application\Api\AbstractApi;
 
 /**
  * User Event Handler
  *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
-class Event
+class Event extends AbstractApi
 {
     /**
      * User register event
      *
      * @param int $uid
      */
-    public static function userRegister($uid)
+    public function userRegister($uid)
     {
     }
 
@@ -32,7 +33,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function userActivate($uid)
+    public function userActivate($uid)
     {
     }
 
@@ -41,9 +42,9 @@ class Event
      *
      * @param int $uid
      */
-    public static function userUpdate($uid)
+    public function userUpdate($uid)
     {
-        static::updatePersist($uid);
+        $this->updatePersist($uid);
     }
 
     /**
@@ -51,7 +52,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function userEnable($uid)
+    public function userEnable($uid)
     {
     }
 
@@ -60,7 +61,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function userDisable($uid)
+    public function userDisable($uid)
     {
     }
 
@@ -69,7 +70,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function userDelete($uid)
+    public function userDelete($uid)
     {
     }
 
@@ -78,12 +79,12 @@ class Event
      *
      * @param array $params
      */
-    public static function nameChange($params)
+    public function nameChange($params)
     {
         if (!empty($params)) {
             Pi::service('audit')->log('user-name-change', $params);
 
-            static::updatePersist($params['uid'], 'name', $params['new_name']);
+            $this->updatePersist($params['uid'], 'name', $params['new_name']);
         }
     }
 
@@ -92,12 +93,12 @@ class Event
      *
      * @param array $params
      */
-    public static function emailChange($params)
+    public function emailChange($params)
     {
         if (!empty($params)) {
             Pi::service('audit')->log('user-email-change', $params);
 
-            static::updatePersist($params['uid'], 'email', $params['new_email']);
+            $this->updatePersist($params['uid'], 'email', $params['new_email']);
         }
     }
 
@@ -106,9 +107,9 @@ class Event
      *
      * @param int $uid
      */
-    public static function avatarChange($uid)
+    public function avatarChange($uid)
     {
-        static::updatePersist($uid);
+        $this->updatePersist($uid);
     }
 
     /**
@@ -116,7 +117,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function passwordChange($uid)
+    public function passwordChange($uid)
     {
         if ($uid) {
             Pi::service('audit')->log('user-password-change', $uid);
@@ -128,7 +129,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function roleAssign($uid)
+    public function roleAssign($uid)
     {
     }
 
@@ -137,7 +138,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function roleRemove($uid)
+    public function roleRemove($uid)
     {
     }
 
@@ -146,7 +147,7 @@ class Event
      *
      * @param array $params
      */
-    public static function userLogin($params)
+    public function userLogin($params)
     {
         if (isset($params['uid']) && $params['uid']) {
             // Set ip login
@@ -176,7 +177,7 @@ class Event
      *
      * @param int $uid
      */
-    public static function userLogout($uid)
+    public function userLogout($uid)
     {
     }
 
@@ -189,7 +190,7 @@ class Event
      *
      * @return void
      */
-    protected static function updatePersist($uid, $field = null, $value = null)
+    protected function updatePersist($uid, $field = null, $value = null)
     {
         if ($uid != Pi::service('user')->getId()) {
             return;

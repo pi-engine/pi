@@ -78,14 +78,17 @@ class Event extends AbstractService
         if (false === $listeners) {
             return true;
         }
+        $callListener = function (array $specs, $data) {
+            list($class, $method, $module) = $specs;
+            $listener = new $class($module);
+            $result = $listener->{$method}($data);
+
+            return $result;
+        };
 
         $isStopped = false;
         foreach ($listeners as $listener) {
-            $moduleName = array_pop($listener);
-            $result = call_user_func_array(
-                $listener,
-                array($object, $moduleName)
-            );
+            $result = $callListener($listener, $object);
             if ($shortcircuit) {
                 $status = call_user_func($shortcircuit, $result);
                 if ($status) {
@@ -98,13 +101,7 @@ class Event extends AbstractService
         // Load run-time attached listeners
         if (!$isStopped && !empty($this->container[$module][$event])) {
             foreach ($this->container[$module][$event] as $key => $listener) {
-                if (isset($listener[2])) {
-                    $moduleName = array_pop($listener);
-                    $data = array($object, $moduleName);
-                } else {
-                    $data = array($object);
-                }
-                $result = call_user_func_array($listener, $data);
+                $result = $callListener($listener, $object);
                 if ($shortcircuit) {
                     $status = call_user_func($shortcircuit, $result);
                     if ($status) {
@@ -142,11 +139,11 @@ class Event extends AbstractService
             return;
         }
 
-        $config = Pi::service('config')->load('service.event.php');
-        if (empty($config['listener'])) {
+        $listeners = Pi::service('config')->load('event.listener.php');
+        if (empty($listeners)) {
             return;
         }
-        foreach ($config['listener'] as $item) {
+        foreach ($listeners as $item) {
             list($module, $event) = $item['event'];
             $listener = $item['callback'];
             $this->attach($module, $event, $listener);
@@ -167,6 +164,9 @@ class Event extends AbstractService
      */
     public function attach($module, $event, array $listener)
     {
+        if (!isset($listener[2])) {
+            $listener[] = '';
+        }
         $key = implode('-', $listener);
         $this->container[$module][$event][$key] = $listener;
 
@@ -186,6 +186,9 @@ class Event extends AbstractService
     public function detach($module, $event, $listener = null)
     {
         if ($listener !== null) {
+            if (!isset($listener[2])) {
+                $listener[] = '';
+            }
             $key = implode('-', $listener);
             $this->container[$module][$event][$key] = null;
         } else {
