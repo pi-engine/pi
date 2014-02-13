@@ -28,8 +28,8 @@ class IndexController extends ActionController
      */
     public function loginAction()
     {
-        $url_redirect   = Pi::url($this->params('redirect', Pi::url('www')), true);
-        $url_trigger    = Pi::service('url')->assemble(
+        $urlRedirect    = Pi::url($this->params('redirect', Pi::url('www')), true);
+        $urlTrigger     = Pi::service('url')->assemble(
             '',
             array(
                 'module'     => $this->getModule(),
@@ -38,12 +38,12 @@ class IndexController extends ActionController
             ),
             array(
                 'query'      => array(
-                    'redirect'   => $url_redirect,
+                    'redirect'   => $urlRedirect,
                 ),
             )
         );
 
-        Pi::service('authentication')->login(array('redirect' => $url_trigger));
+        Pi::service('authentication')->login(array('redirect' => $urlTrigger));
     }
 
     /**
@@ -129,7 +129,8 @@ EOT;
     /**
      * trigger user-login event
      */
-    protected function triggerAction() {
+    protected function triggerAction()
+    {
         $data = Pi::service('authentication')->getData();
         if ($data['id']) {
             Pi::service('event')->trigger('user-user_login', array('uid'=>$data['id']));
