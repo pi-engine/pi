@@ -90,7 +90,8 @@ class Article extends Standard
             } elseif (preg_match('/^list-/', $urlParams[0])) {
                 list($ignored, $category) = explode(
                     $this->keyValueDelimiter, 
-                    $urlParams[0]
+                    $urlParams[0],
+                    2
                 );
                 $controller = 'category';
                 $action     = 'list';
@@ -98,7 +99,8 @@ class Article extends Standard
             } elseif (preg_match('/^tag-/', $urlParams[0])) {
                 list($ignored, $tag) = explode(
                     $this->keyValueDelimiter, 
-                    $urlParams[0]
+                    $urlParams[0],
+                    2
                 );
                 $tag        = $this->decode($tag);
                 $controller = 'tag';
@@ -120,7 +122,8 @@ class Article extends Standard
                 } elseif (preg_match('/^list-/', $urlParams[1])) {
                     list($ignored, $topic) = explode(
                         $this->keyValueDelimiter, 
-                        $urlParams[1]
+                        $urlParams[1],
+                        2
                     );
                     $action = 'list';
                 } else {
