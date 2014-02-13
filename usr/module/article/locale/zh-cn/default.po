@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
 "POT-Creation-Date: 2014-02-10 19:38+0800\n"
-"PO-Revision-Date: 2014-02-10 19:39+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"PO-Revision-Date: 2014-02-12 10:04+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
@@ -580,14 +580,12 @@ msgid "Default"
 msgstr "默认"
 
 #: c:\code\pi\usr\module\article/template/front/article-detail.phtml:26
-#, fuzzy
 msgid "Publish time: "
-msgstr "注册时间"
+msgstr "发布时间："
 
 #: c:\code\pi\usr\module\article/template/front/article-detail.phtml:30
-#, fuzzy
 msgid "Source: "
-msgstr "无效来源 %s。"
+msgstr "来源："
 
 #: c:\code\pi\usr\module\article/template/front/article-detail.phtml:40
 msgid "Share with: "
@@ -700,9 +698,9 @@ msgid "Cancel"
 msgstr "取消"
 
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:365
-#, fuzzy, php-format
+#, php-format
 msgid "Last edit at %s by %s"
-msgstr "最后编辑"
+msgstr ""
 
 #: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:373
 msgid "Update"
@@ -912,17 +910,17 @@ msgstr "标题"
 #: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:20
 #: c:\code\pi\usr\module\article/template/front/topic-index.phtml:54
 #: c:\code\pi\usr\module\article/template/front/topic-list.phtml:16
-#, fuzzy, php-format
+#, php-format
 msgid "Created at %s"
-msgstr "创建时间"
+msgstr ""
 
 #: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:23
 #: c:\code\pi\usr\module\article/template/front/topic-index.phtml:31
 #: c:\code\pi\usr\module\article/template/front/topic-index.phtml:56
 #: c:\code\pi\usr\module\article/template/front/topic-list.phtml:19
-#, fuzzy, php-format
+#, php-format
 msgid "Last added at %s"
-msgstr "导航添加成功。"
+msgstr ""
 
 #: c:\code\pi\usr\module\article/template/front/topic-index.phtml:69
 msgid "View All"

@@ -12,7 +12,7 @@ namespace Pi\Application\Installer\Resource;
 use Pi;
 
 /**
- * Event/Listner setup
+ * Event/Listener setup
  *
  * Event specifications:
  *
@@ -26,6 +26,7 @@ use Pi;
  *          'title' => Pi::_('Event hook demo'),
  *      ),
  *  ),
+ *
  *  // Listener list
  *  'listener' => array(
  *      array(
