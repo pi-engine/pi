@@ -1,0 +1,36 @@
+<?php
+//$this->css($this->assetModule('admin/admin.css', 'system'));
+?>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th><?php echo _a('Template name'); ?></th>
+            <th style="width: 20%;"><?php echo _a('Time modified'); ?></th>
+            <th style="width: 20%;"><?php echo _a('Filesize'); ?></th>
+            <th><?php echo _a('Action'); ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($templates as $template) { ?>
+            <tr>
+                <td>
+                    <?php echo $template['name']; ?>
+                </td>
+                <td>
+                    <?php echo _date($template['time']); ?>
+                </td>
+                <td>
+                    <?php echo $template['size']; ?>
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('action' => 'view', 'name' => $template['name'])); ?>" target="_blank"><?php echo _a('View'); ?></a>
+                        <a class="btn btn-sm btn-primary" href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'add', 'type' => 'phtml', 'template' => $template['name'])); ?>"><?php echo _a('Add to page'); ?></a>
+                    </div>
+                </td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>

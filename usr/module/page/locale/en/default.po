@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2013-11-10 13:59+0800\n"
-"PO-Revision-Date: 2013-11-10 13:59+0800\n"
+"POT-Creation-Date: 2014-02-14 15:00+0800\n"
+"PO-Revision-Date: 2014-02-14 15:00+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,48 +13,22 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\page\n"
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Front/IndexController.php:24
-msgid "Page request"
+#: C:\wamp\www\master\usr\module\page/config/config.php:13
+msgid "Social networking"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/config/config.php:37
+msgid "Enable Twitter"
 msgstr ""
 
 #: C:\wamp\www\master\usr\module\page/src/Controller/Front/IndexController.php:25
+msgid "Page request"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\page/src/Controller/Front/IndexController.php:26
 msgid "The page requested does not exist."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:45
-msgid "Page title"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:55
-msgid "Unique name"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:59
-msgid ""
-"For named call and custom page settings; Only alphabet, number and "
-"underscore allowed."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:79
-msgid "SEO slug"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:83
-msgid "Unique slug for SEO."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:91
-msgid "Active"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:116
-msgid "Content"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:146
+#: C:\wamp\www\master\usr\module\page/src/Form/PageForm.php:191
 msgid "Submit"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Installer/Action/Install.php:71
-msgid "Pages added."
 msgstr ""

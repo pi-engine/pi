@@ -1,6 +1,4 @@
 <?php
-use Zend\EventManager\Event;
-
 namespace Module\Page\Validator;
 
 use Pi;
@@ -10,12 +8,14 @@ class PageSlugDuplicate extends AbstractValidator
 {
     const TAKEN        = 'slugExists';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Page slug already exists',
-    );
+    public function __construct()
+    {
+        $this->messageTemplates = array(
+            self::TAKEN => _a('Page slug already exists.'),
+        );
+
+        parent::__construct();
+    }
 
     /**
      * Page slug validate

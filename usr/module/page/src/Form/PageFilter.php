@@ -10,6 +10,7 @@
 namespace Module\Page\Form;
 
 use Pi;
+use Module\Page\Validator;
 use Zend\InputFilter\InputFilter;
 
 class PageFilter extends InputFilter
@@ -40,7 +41,7 @@ class PageFilter extends InputFilter
                         'pattern'   => '/[a-z0-9_]/',
                     ),
                 ),
-                new \Module\Page\Validator\PageNameDuplicate(),
+                new Validator\PageNameDuplicate(),
             ),
         ));
 
@@ -53,7 +54,7 @@ class PageFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
-                new \Module\Page\Validator\PageSlugDuplicate(),
+                new Validator\PageSlugDuplicate(),
             ),
         ));
 
@@ -76,6 +77,9 @@ class PageFilter extends InputFilter
                 array(
                     'name'  => 'StringTrim',
                 ),
+            ),
+            'validators'    => array(
+                new Validator\PageTemplateAvailable(),
             ),
         ));
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2013-11-10 14:00+0800\n"
-"PO-Revision-Date: 2013-11-10 14:00+0800\n"
+"POT-Creation-Date: 2014-02-14 14:58+0800\n"
+"PO-Revision-Date: 2014-02-14 14:59+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,181 +11,335 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\page\n"
+"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\page\n"
 
-#: C:\wamp\www\master\usr\module\page/config/module.php:14
+#: C:\code\pi\usr\module\page/config/config.php:21
+#, fuzzy
+msgid "Enable Google Plus"
+msgstr "%d 激活用户成功"
+
+#: C:\code\pi\usr\module\page/config/config.php:29
+#, fuzzy
+msgid "Enable Facebook"
+msgstr "启用状态"
+
+#: C:\code\pi\usr\module\page/config/module.php:14
+#, fuzzy
 msgid "Page"
+msgstr "页面缓存 [%s]"
+
+#: C:\code\pi\usr\module\page/config/module.php:16
+msgid "Single page for direct content display."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/config/module.php:16
-msgid "Page configurations for cache, blocks and permissions."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/config/nav.php:13
+#: C:\code\pi\usr\module\page/config/nav.php:13
+#, fuzzy
 msgid "Custom site navigation"
-msgstr ""
+msgstr "添加自定义导航"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:21
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:54
+#: C:\code\pi\usr\module\page/config/nav.php:21
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:44
+#, fuzzy
 msgid "Page list"
-msgstr ""
+msgstr "登录次数"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:28
+#: C:\code\pi\usr\module\page/config/nav.php:28
+#, fuzzy
 msgid "Edit page"
-msgstr ""
+msgstr "页面缓存 [%s]"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:35
+#: C:\code\pi\usr\module\page/config/nav.php:35
+#, fuzzy
 msgid "Delete page"
-msgstr ""
+msgstr "页面缓存 [%s]"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:44
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:115
+#: C:\code\pi\usr\module\page/config/nav.php:44
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:134
+#, fuzzy
 msgid "Add a page"
-msgstr ""
+msgstr "页面缓存 [%s]"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:54
+#: C:\code\pi\usr\module\page/config/nav.php:50
+#: C:\code\pi\usr\module\page/src/Controller/Admin/TemplateController.php:48
+#, fuzzy
+msgid "Template list"
+msgstr "登录次数"
+
+#: C:\code\pi\usr\module\page/config/nav.php:60
+#, fuzzy
 msgid "Home"
-msgstr ""
+msgstr "首页"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:58
+#: C:\code\pi\usr\module\page/config/nav.php:64
 msgid "About us"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:63
+#: C:\code\pi\usr\module\page/config/nav.php:69
 msgid "Contact us"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:68
+#: C:\code\pi\usr\module\page/config/nav.php:74
+#, fuzzy
 msgid "Terms of use"
-msgstr ""
+msgstr "服务条款"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:73
+#: C:\code\pi\usr\module\page/config/nav.php:79
+#, fuzzy
 msgid "Privacy guidelines"
-msgstr ""
+msgstr "字段隐私"
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:78
+#: C:\code\pi\usr\module\page/config/nav.php:84
 msgid "Join us"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:82
+#: C:\code\pi\usr\module\page/config/nav.php:88
 msgid "Applications"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/config/nav.php:87
+#: C:\code\pi\usr\module\page/config/nav.php:93
+#, fuzzy
 msgid "Pi Engine"
-msgstr ""
+msgstr "Pi Engine 安装助手"
 
-#: C:\wamp\www\master\usr\module\page/config/page.php:15
+#: C:\code\pi\usr\module\page/config/page.php:15
+#, fuzzy
 msgid "Homepage"
-msgstr ""
+msgstr "首页"
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:96
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:241
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:316
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:106
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:209
+#, fuzzy
 msgid "Page data saved successfully."
-msgstr ""
+msgstr "页面数据保存成功。"
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:100
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:173
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:109
+#, fuzzy
 msgid "Page data not saved."
-msgstr ""
+msgstr "页面数据未保存。"
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:103
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:245
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:112
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:212
+#, fuzzy
 msgid "Invalid data, please check and re-submit."
-msgstr ""
+msgstr "无效数据，请检查后重新提交。"
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:157
-msgid "Page added successfully."
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:261
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:228
+#, fuzzy
 msgid "Page edit"
-msgstr ""
+msgstr "编辑用户："
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:345
-msgid "Page deleleted successfaully."
-msgstr ""
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:247
+#, fuzzy
+msgid "Page deleted successfully."
+msgstr "分类删除成功。"
 
-#: C:\wamp\www\master\usr\module\page/src/Controller/Admin/IndexController.php:371
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:266
+#, fuzzy
 msgid "Page updated successfully."
+msgstr "页面缓存清空成功。"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:45
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:8
+#, fuzzy
+msgid "Page title"
+msgstr "隐藏标题"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:55
+#, fuzzy
+msgid "Unique name"
+msgstr "名称"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:59
+msgid "Only alphabet, number and underscore allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/src/Installer/Action/Install.php:71
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:66
+#, fuzzy
+msgid "SEO slug"
+msgstr "SEO标题"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:70
+msgid "Unique slug for SEO URL."
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:78
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:8
+#, fuzzy
+msgid "Template name"
+msgstr "昵称"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:81
+msgid ""
+"Select a template from `usr/custom/module/page/template/front/` w/o "
+"extension."
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:104
+#, fuzzy
+msgid "Content"
+msgstr "详情"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:119
+#, fuzzy
+msgid "SEO settings"
+msgstr "数据库设置及生成"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:127
+#, fuzzy
+msgid "SEO Title"
+msgstr "SEO标题"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:131
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:143
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:155
+msgid "To be used for HTML head meta."
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:139
+#, fuzzy
+msgid "SEO Keywords"
+msgstr "SEO 关键词"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:151
+#, fuzzy
+msgid "SEO Description"
+msgstr "SEO 描述"
+
+#: C:\code\pi\usr\module\page/src/Form/PageForm.php:164
+#, fuzzy
+msgid "Active"
+msgstr "激活"
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:77
+#, fuzzy
+msgid "Demo for PHTML page"
+msgstr "页面编码"
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:84
+#, fuzzy
 msgid "Pages added."
+msgstr "管理：pages"
+
+#: C:\code\pi\usr\module\page/src/Validator/PageNameDuplicate.php:14
+#, fuzzy
+msgid "Page name already exists."
+msgstr "添加用户失败：该用户已存在。"
+
+#: C:\code\pi\usr\module\page/src/Validator/PageSlugDuplicate.php:14
+#, fuzzy
+msgid "Page slug already exists."
+msgstr "添加用户失败：该用户已存在。"
+
+#: C:\code\pi\usr\module\page/src/Validator/PageTemplateAvailable.php:14
+msgid "Template file is not available."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:4
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:4
+#, fuzzy
 msgid "Page content type:"
-msgstr ""
+msgstr "请发表评论……"
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:5
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:5
 msgid "Only plaintext content is allowed."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:5
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:5
+#, fuzzy
 msgid "Text"
-msgstr ""
+msgstr "内容处理"
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:6
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:6
 msgid "HTML tags allowed in content."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:6
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:6
 msgid "HTML"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:7
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:7
 msgid "Markdown syntax allowed in content."
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-add.phtml:7
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:7
 msgid "Markdown"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:17
-msgid "Active pages"
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:8
+#, fuzzy
+msgid "PHTML template."
+msgstr "为专题选择模板"
+
+#: C:\code\pi\usr\module\page/template/admin/page-add.phtml:8
+msgid "PHTML"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:22
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:43
-msgid "Edit"
-msgstr ""
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:9
+#, fuzzy
+msgid "Name"
+msgstr "姓名"
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:23
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:44
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:10
+#, fuzzy
+msgid "Slug"
+msgstr "Slug"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:11
+#, fuzzy
+msgid "Type"
+msgstr "类型"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
+#, fuzzy
+msgid "Time published"
+msgstr "发布时间"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:13
+#, fuzzy
+msgid "Last Update"
+msgstr "最近更新"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:14
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:11
+#, fuzzy
+msgid "Action"
+msgstr "动作"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:40
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:28
+#, fuzzy
 msgid "View"
-msgstr ""
+msgstr "预览"
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:24
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:87
-msgid "Deactivate"
-msgstr ""
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:41
+#, fuzzy
+msgid "Edit"
+msgstr "编辑"
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:25
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:46
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:42
+#, fuzzy
 msgid "Delete"
+msgstr "删除"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:44
+#, fuzzy
+msgid "Disable"
+msgstr "关闭"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:46
+#, fuzzy
+msgid "Enable"
+msgstr "打开"
+
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:9
+#, fuzzy
+msgid "Time modified"
+msgstr "修改时间"
+
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:10
+msgid "Filesize"
 msgstr ""
 
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:29
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:50
-msgid "name: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:31
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:52
-msgid "slug: "
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:38
-msgid "Inactive pages"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:45
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:90
-msgid "Activate"
-msgstr ""
-
-#: C:\wamp\www\master\usr\module\page/template/admin/page-list.phtml:74
-msgid "Are you sure to delete the page?"
-msgstr ""
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:29
+#, fuzzy
+msgid "Add to page"
+msgstr "添加到菜单"
