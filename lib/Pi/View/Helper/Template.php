@@ -19,8 +19,16 @@ use Zend\View\Helper\AbstractHelper;
  * Usage inside a phtml template
  *
  * ```
+ *  // Load a template from a specific module
  *  include $this->template('module/demo:admin/public_index.phtml');
+ *
+ *  // Load a template from a current module
+ *  include $this->template('admin/public_index.phtml');
+ *
+ *  // Load a component template
  *  include $this->template('lib/Pi/Captcha/Image:form.phtml');
+ *
+ *  // Load a theme template
  *  include $this->template('header.phtml');
  * ```
  *
