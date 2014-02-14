@@ -1008,13 +1008,13 @@ class DraftController extends ActionController
         }
 
         // Get submitter info
-        $columns = array('id', 'identity');
+        $columns = array('id', 'name');
         if ($data['uid']) {
             $user = Pi::user()->get($data['uid'], $columns);
             if ($user) {
                 $this->view()->assign('user', array(
                     'id'   => $user['id'],
-                    'name' => $user['identity'],
+                    'name' => $user['name'],
                 ));
             }
         }
@@ -1025,7 +1025,7 @@ class DraftController extends ActionController
             if ($userUpdate) {
                 $this->view()->assign('userUpdate', array(
                     'id'   => $userUpdate['id'],
-                    'name' => $userUpdate['identity'],
+                    'name' => $userUpdate['name'],
                 ));
             }
         }

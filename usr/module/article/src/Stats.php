@@ -247,10 +247,10 @@ class Stats
         $userIds = array_unique($userIds);
 
         if (!empty($userIds)) {
-            $resultsetUser = Pi::user()->get($userIds, array('id', 'identity'));
+            $resultsetUser = Pi::user()->get($userIds, array('id', 'name'));
             foreach ($resultsetUser as $row) {
                 $users[$row['id']] = array(
-                    'name' => $row['identity'],
+                    'name' => $row['name'],
                 );
             }
             unset($resultsetUser);
@@ -258,7 +258,7 @@ class Stats
 
         foreach ($result as &$row) {
             if (!empty($users[$row['uid']])) {
-                $row['identity'] = $users[$row['uid']]['name'];
+                $row['name'] = $users[$row['uid']]['name'];
             }
         }
 
