@@ -79,7 +79,7 @@ $this->headLink(array(
                <?php echo _escape($sitename); ?>
             </a>
             <?php
-            echo $this->widget('system-user-bar');
+            echo $this->widget('system-user-bar', array('type' => 'js'));
             ?>
         </div>
     </div>
