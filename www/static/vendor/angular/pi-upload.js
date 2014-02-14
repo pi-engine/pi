@@ -32,7 +32,7 @@ angular.module('pi.upload', [])
   start: null,
   success: angular.noop,
   error: angular.noop,
-  progress: angular.noop //Not support now
+  progress: angular.noop
 })
 .directive('piUpload', ['piUploadConfig', 'piUpload',
   function(config, upload) {
@@ -58,20 +58,17 @@ angular.module('pi.upload', [])
         angular.extend(config, scope.options);
 
         element.css({
-          position: 'relative',
-          overflow: 'hidden',
-          cursor: 'pointer',
-          width: btnRect.width + 'px',
-          height: btnRect.height + 'px'
+          position: 'relative'
         });
         inputFile.css({
           position: 'absolute',
           display: 'block',
           left: 0,
           top: 0,
-          bottom: 0,
           opacity: 0,
+          width: btnRect.width + 'px',
           'filter': 'alpha(opacity=0)',
+          height: btnRect.height + 'px'
         })
         .attr({
           multiple: config.multiple,
@@ -82,9 +79,10 @@ angular.module('pi.upload', [])
         //Solve event delegate
         element.on('click', function() {
           var input = element.find('input');
-          input.one('change', function() {
+          input.on('change', function() {
             config.data[config.name] = input;
             upload(config);
+            input.off('change');
           });
         });
       }
@@ -94,11 +92,46 @@ angular.module('pi.upload', [])
 .factory('piFormDataUpload', ['$http', '$timeout',
   function($http, $timeout) {
     return function(config) {
-      if (config.start) {
-        $timeout(config.start, 0, false);
-      }
+      var xhr = new XMLHttpRequest;
+      var formData = new FormData();
 
-      $http({
+      if (config.start) {
+        $timeout(config.start);
+      }
+      angular.forEach(config.data, function(value, key) {
+        //Upload file
+        if (key == config.name) {
+          value = value[0].files;
+          if (value.length > 1) {
+            angular.forEach(value, function(file, index) {
+              formData.append(key + '[' + index + ']', file);
+            });
+          } else {
+            formData.append(key, value[0]);
+          }
+        } else {
+          formData.append(key, value);
+        }
+      });
+      xhr.upload.addEventListener('progress', function(e) {
+        $timeout(function() {
+          config.progress(e);
+        });
+      }, false);
+      xhr.addEventListener('load', function(e) {
+        $timeout(function() {
+          var res = e.target.responseText;
+           try {
+            config.success(angular.fromJson(res));
+          } catch(e) {
+            config.error(res);
+          }
+        });
+      });
+      xhr.open(config.method, config.url);
+      xhr.send(formData);
+
+/*      $http({
         url: config.url,
         method: config.method,
         data: config.data,
@@ -126,7 +159,7 @@ angular.module('pi.upload', [])
         }
       })
       .success(config.success)
-      .error(config.error);
+      .error(config.error);*/
     };
   }
 ])
@@ -138,7 +171,7 @@ angular.module('pi.upload', [])
       var form = angular.element('<form>');
 
       if (config.start) {
-        $timeout(config.start, 0);
+        $timeout(config.start);
       }
       form.attr({
         target: 'piUploadIframe',
@@ -176,7 +209,7 @@ angular.module('pi.upload', [])
           } catch(e) {
             config.error(res);
           }
-        }, 0);
+        });
         iframe.off('load');
         form.remove();
       });
@@ -188,15 +221,22 @@ angular.module('pi.upload', [])
   function(piFormDataUpload, piIframeUpload) {
       var support = {
         formData: window.FormData,
-        xhr: window.XMLHttpRequest
+        XHR: window.XMLHttpRequest,
+        progress: false
       };
+      
       function upoad (config) {
-        if (!config.forceIFrameUpload && support.formData) {
+        if (support.XHR) {
+          var xhr = new XMLHttpRequest();
+          support.progress = !config.forceIFrameUpload && support.formData && xhr.upload;
+        }
+        if (support.progress) {
           piFormDataUpload(config);
         } else {
           piIframeUpload(config);
         }
       }
+      upoad.support = support;
       return upoad;
   }
 ]);
