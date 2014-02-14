@@ -56,7 +56,7 @@ class PageForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'text',
-                'description'   => _a('For named call and custom page settings; Only alphabet, number and underscore allowed.'),
+                'description'   => _a('Only alphabet, number and underscore allowed.'),
             ),
         ));
 
@@ -71,33 +71,45 @@ class PageForm extends BaseForm
             )
         ));
 
-        $set = '';
-        switch ($this->markup) {
-            case 'html':
-                $editor         = 'html';
-                break;
-            case 'markdown':
-                $editor         = 'markitup';
-                $set            = 'markdown';
-                break;
-            case 'text':
-            default:
-                $editor         = 'textarea';
-                break;
-        }
+        if ('phtml' == $this->markup) {
+            $this->add(array(
+                'name'          => 'content',
+                'options'       => array(
+                    'label' => _a('Template name'),
+                ),
+                'attributes'    => array(
+                    'description'   => _a('Select a template from `usr/custom/module/page/template/front/` w/o extension.'),
+                ),
+            ));
+        } else {
+            $set = '';
+            switch ($this->markup) {
+                case 'html':
+                    $editor         = 'html';
+                    break;
+                case 'markdown':
+                    $editor         = 'markitup';
+                    $set            = 'markdown';
+                    break;
+                case 'text':
+                default:
+                    $editor         = 'textarea';
+                    break;
+            }
 
-        $this->add(array(
-            'name'          => 'content',
-            'type'          => 'editor',
-            'options'       => array(
-                'label'     => _a('Content'),
-                'editor'    => $editor,
-                'set'       => $set,
-            ),
-            'attributes'    => array(
-                'rows'         => 5,
-            ),
-        ));
+            $this->add(array(
+                'name'          => 'content',
+                'type'          => 'editor',
+                'options'       => array(
+                    'label'     => _a('Content'),
+                    'editor'    => $editor,
+                    'set'       => $set,
+                ),
+                'attributes'    => array(
+                    'rows'         => 5,
+                ),
+            ));
+        }
 
         // extra_seo
         $this->add(array(

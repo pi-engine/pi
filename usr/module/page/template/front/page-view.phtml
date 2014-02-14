@@ -1,7 +1,13 @@
 <div class="page">
 	<h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
 	<div class="article-body">
-		<?php echo $content; ?>
+		<?php
+        if ('phtml' == $markup && $content) {
+            include $this->template('front/' . $content);
+        } else {
+            echo $content;
+        }
+        ?>
 	</div>
 	<div class="article-footer">
 		<?php if($config['social_facebook']) { echo $this->facebook(); } ?>

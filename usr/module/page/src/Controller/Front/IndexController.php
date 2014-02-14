@@ -20,16 +20,19 @@ class IndexController extends ActionController
     protected function render($row)
     {
         $this->view()->setTemplate('page-view');
+
         if (!$row instanceof RowGateway || !$row->active) {
-            $title = __('Page request');
-            $content = __('The page requested does not exist.');
+            $title      = __('Page request');
+            $content    = __('The page requested does not exist.');
+            $markup     = '';
         } else {
-            $content = $row->content;
-            if ($content) {
+            $content    = $row->content;
+            $markup     = $row->markup ?: 'text';
+            if ($content && 'pthml' != $markup) {
                 $content = Pi::service('markup')->render(
                     $content, 
                     'html',
-                    $row->markup ?: 'text'
+                    $markup
                 );
             }
             $title = $row->title;
@@ -48,6 +51,7 @@ class IndexController extends ActionController
         $this->view()->assign(array(
             'title'     => $title,
             'content'   => $content,
+            'markup'    => $markup,
         ));
         //return $content;
     }

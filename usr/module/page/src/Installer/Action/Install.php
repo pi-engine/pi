@@ -32,6 +32,9 @@ class Install extends BasicInstall
     public function postInstall(Event $e)
     {
         $module = $e->getParam('module');
+        $apiHandler = Pi::api('api', 'page')->setModule($module);
+
+        // Add demo pages
         $path = Pi::service('i18n')->getPath(array('module/page', ''))
               . '/install';
         if (!is_dir($path)) {
@@ -45,7 +48,6 @@ class Install extends BasicInstall
         $meta = array_map('trim', file($metaFile));
         $meta = array_filter($meta);
 
-        $apiHandler = Pi::api('api', 'page')->setModule($module);
         $pages = array_chunk($meta, 3);
         foreach ($pages as $page) {
             if (count($page) < 3) {
@@ -66,6 +68,16 @@ class Install extends BasicInstall
             $page = compact('name', 'markup', 'title', 'content');
             $apiHandler->add($page);
         }
+
+        // Add demo page with pthml markup
+        $page = array(
+            'name'      => 'demo',
+            'slug'      => 'phtml-demo',
+            'markup'    => 'phtml',
+            'title'     => _a('Demo for PHTML page'),
+            'content'   => 'page-demo',
+        );
+        $apiHandler->add($page);
 
         $result = array(
             'status'    => true,

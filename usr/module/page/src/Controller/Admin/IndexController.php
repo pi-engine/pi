@@ -111,8 +111,10 @@ class IndexController extends ActionController
         } else {
             $markup = $this->params('type', 'text');
             $form = new PageForm('page-form', $markup);
-            $form->setAttribute('action',
-                                $this->url('', array('action' => 'add')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'add'))
+            );
             $message = '';
         }
 
