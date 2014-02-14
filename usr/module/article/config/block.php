@@ -632,27 +632,6 @@ return array(
                 'filter'       => 'string',
                 'value'        => _t('Subscribe content of this website'),
             ),
-            'image_width'      => array(
-                'title'        => _a('Image width'),
-                'description'  => _a('Maximum width of RSS image'),
-                'edit'         => 'text',
-                'filter'       => 'number_int',
-                'value'        => 25,
-            ),
-            'image_height'     => array(
-                'title'        => _a('Image height'),
-                'description'  => _a('Maximum height of RSS image'),
-                'edit'         => 'text',
-                'filter'       => 'number_int',
-                'value'        => 25,
-            ),
-            'default_image'    => array(
-                'title'        => _a('Default image URL'),
-                'description'  => _a('Remote image URL must start with http'),
-                'edit'         => 'text',
-                'filter'       => 'string',
-                'value'        => 'image/rss.jpg',
-            ),
         ),
     ),
 );

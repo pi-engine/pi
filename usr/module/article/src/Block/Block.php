@@ -626,16 +626,14 @@ class Block
             return false;
         }
         
-        $url = $options['default_image'];
-        if (!preg_match('/^http/', $url)) {
-            $url = Pi::service('asset')->getModuleAsset($url, $module);
-        }
+        $url = Pi::service('asset')->getModuleAsset(
+            $options['default_image'],
+            $module
+        );
         
         return array(
             'target'      => $options['target'],
             'description' => $options['description'],
-            'height'      => $options['image_height'],
-            'width'       => $options['image_width'],
             'url'         => $url,
         );
     }
