@@ -123,43 +123,13 @@ angular.module('pi.upload', [])
           var res = e.target.responseText;
            try {
             config.success(angular.fromJson(res));
-          } catch(e) {
+          } catch(msg) {
             config.error(res);
           }
         });
-      });
+      }, false);
       xhr.open(config.method, config.url);
       xhr.send(formData);
-
-/*      $http({
-        url: config.url,
-        method: config.method,
-        data: config.data,
-        headers: {
-          'Content-Type': undefined //Important
-        },
-        transformRequest: function(data) {
-          var formData = new FormData();
-          angular.forEach(data, function(value, key) {
-            //Upload file
-            if (key == config.name) {
-              value = value[0].files;
-              if (value.length > 1) {
-                angular.forEach(value, function(file, index) {
-                  formData.append(key + '[' + index + ']', file);
-                });
-              } else {
-                formData.append(key, value[0]);
-              }
-            } else {
-              formData.append(key, value);
-            }
-          });
-          return formData;
-        }
-      })
-      .success(config.success)
-      .error(config.error);*/
     };
   }
 ])
