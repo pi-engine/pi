@@ -44,7 +44,6 @@ $renderElement = function ($element) use ($_this)
     $desc = $element->getAttribute('description');
 
     if (!$isEmptyControl) {
-        d($element->getName());
         $class      = $element->getAttribute('class');
         $attrClass  = 'form-control' . ($class ? ' ' . $class : '');
         $element->setAttribute('class', $attrClass);
