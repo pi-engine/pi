@@ -42,7 +42,7 @@ class PageForm extends BaseForm
         $this->add(array(
             'name'          => 'title',
             'options'       => array(
-                'label' => __('Page title'),
+                'label' => _a('Page title'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
@@ -52,46 +52,22 @@ class PageForm extends BaseForm
         $this->add(array(
             'name'          => 'name',
             'options'       => array(
-                'label' => __('Unique name'),
+                'label' => _a('Unique name'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
-                'description'   => __('For named call and custom page settings; Only alphabet, number and underscore allowed.'),
+                'description'   => _a('For named call and custom page settings; Only alphabet, number and underscore allowed.'),
             ),
         ));
-
-        /*
-        $this->add(array(
-            'name'          => 'url',
-            'options'       => array(
-                'label' => __('URL'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'description'   => __('URL relative to www root.'),
-            )
-        ));
-        */
 
         $this->add(array(
             'name'          => 'slug',
             'options'       => array(
-                'label' => __('SEO slug'),
+                'label' => _a('SEO slug'),
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => __('Unique slug for SEO.'),
-            )
-        ));
-
-        $this->add(array(
-            'name'          => 'active',
-            'type'          => 'checkbox',
-            'options'       => array(
-                'label' => __('Active'),
-            ),
-            'attributes'    => array(
-                'value'     => '1',
+                'description'   => _a('Unique slug for SEO URL.'),
             )
         ));
 
@@ -112,15 +88,72 @@ class PageForm extends BaseForm
 
         $this->add(array(
             'name'          => 'content',
+            'type'          => 'editor',
             'options'       => array(
-                'label'     => __('Content'),
+                'label'     => _a('Content'),
                 'editor'    => $editor,
                 'set'       => $set,
             ),
             'attributes'    => array(
-                'type'          => 'editor',
-                'class'         => 'span6',
+                'rows'         => 5,
             ),
+        ));
+
+        // extra_seo
+        $this->add(array(
+            'name' => 'extra_seo',
+            'type' => 'fieldset',
+            'options' => array(
+                'label' => _a('SEO settings'),
+            ),
+        ));
+
+        // seo_title
+        $this->add(array(
+            'name' => 'seo_title',
+            'options' => array(
+                'label' => _a('SEO Title'),
+            ),
+            'attributes' => array(
+                'type'          => 'text',
+                'description'   => _a('To be used for HTML head meta.'),
+            )
+        ));
+
+        // seo_keywords
+        $this->add(array(
+            'name' => 'seo_keywords',
+            'options' => array(
+                'label' => _a('SEO Keywords'),
+            ),
+            'attributes' => array(
+                'type'          => 'text',
+                'description'   => _a('To be used for HTML head meta.'),
+            )
+        ));
+
+        // seo_description
+        $this->add(array(
+            'name' => 'seo_description',
+            'options' => array(
+                'label' => _a('SEO Description'),
+            ),
+            'attributes' => array(
+                'type'          => 'text',
+                'description'   => _a('To be used for HTML head meta.'),
+            )
+        ));
+
+        // Enable for online
+        $this->add(array(
+            'name'          => 'active',
+            'type'          => 'checkbox',
+            'options'       => array(
+                'label' => _a('Active'),
+            ),
+            'attributes'    => array(
+                'value'     => '1',
+            )
         ));
 
         $this->add(array(
@@ -136,51 +169,6 @@ class PageForm extends BaseForm
             'attributes'    => array(
                 'type'  => 'hidden',
                 'value' => $this->markup,
-            )
-        ));
-
-        // extra_seo
-        $this->add(array(
-            'name' => 'extra_seo',
-            'type' => 'fieldset',
-            'options' => array(
-                'label' => __('SEO options'),
-            ),
-        ));
-
-        // seo_title
-        $this->add(array(
-            'name' => 'seo_title',
-            'options' => array(
-                'label' => __('SEO Title'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'description' => '',
-            )
-        ));
-
-        // seo_keywords
-        $this->add(array(
-            'name' => 'seo_keywords',
-            'options' => array(
-                'label' => __('SEO Keywords'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'description' => '',
-            )
-        ));
-
-        // seo_description
-        $this->add(array(
-            'name' => 'seo_description',
-            'options' => array(
-                'label' => __('SEO Description'),
-            ),
-            'attributes' => array(
-                'type' => 'text',
-                'description' => '',
             )
         ));
 
