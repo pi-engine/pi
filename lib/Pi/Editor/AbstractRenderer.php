@@ -43,7 +43,7 @@ abstract class AbstractRenderer
     /**
      * Constructor
      *
-     * @param  array $confg Options and attributes
+     * @param array $config
      */
     public function __construct($config = array())
     {
@@ -133,6 +133,8 @@ abstract class AbstractRenderer
      * Set value for option
      *
      * @param  string $name
+     * @param  mixed $value
+     *
      * @return $this
      */
     public function setOption($name, $value)

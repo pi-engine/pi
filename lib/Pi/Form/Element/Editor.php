@@ -10,8 +10,6 @@
 
 namespace Pi\Form\Element;
 
-use Zend\Form\Element\Textarea;
-
 /**
  * Custom Textarea element with custom editor
  *
@@ -25,7 +23,7 @@ class Editor extends Textarea
      * @var array
      */
     protected $attributes = array(
-        'type' => 'editor',
+        'type'  => 'editor',
     );
 
     /**
