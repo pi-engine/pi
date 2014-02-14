@@ -11,7 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Paginator\Paginator;
+//use Pi\Paginator\Paginator;
 use Module\System\Form\RoleForm;
 use Module\System\Form\RoleFilter;
 

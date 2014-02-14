@@ -119,7 +119,7 @@ class TopicController extends ActionController
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
-                'params'     => array_filter(array(
+                'params'        => array_filter(array(
                     'module'        => $module,
                     'controller'    => 'topic',
                     'action'        => 'list-article',
@@ -233,7 +233,7 @@ class TopicController extends ActionController
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
-                'params'     => array_filter(array(
+                'params'        => array_filter(array(
                     'module'        => $module,
                     'controller'    => 'topic',
                     'action'        => 'pull',
@@ -550,11 +550,12 @@ class TopicController extends ActionController
         ));
 
         $this->view()->assign(array(
-            'title'   => _a('Topic List'),
-            'topics'  => $rowset,
-            'action'  => 'list-topic',
-            'route'   => Pi::api('api', $module)->getRouteName(),
-            'count'   => $count,
+            'title'     => _a('Topic List'),
+            'topics'    => $rowset,
+            'action'    => 'list-topic',
+            'route'     => Pi::api('api', $module)->getRouteName(),
+            'count'     => $count,
+            'paginator' => $paginator,
         ));
     }
 
