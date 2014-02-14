@@ -391,10 +391,10 @@ class Entity
                 && (empty($columns) || in_array('uid', $columns))
             ) {
                 $resultsetUser = Pi::user()
-                    ->get($userIds, array('id', 'identity'));
+                    ->get($userIds, array('id', 'name'));
                 foreach ($resultsetUser as $row) {
                     $users[$row['id']] = array(
-                        'name' => $row['identity'],
+                        'name' => $row['name'],
                     );
                 }
                 unset($resultsetUser);

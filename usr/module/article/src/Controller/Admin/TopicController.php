@@ -97,7 +97,7 @@ class TopicController extends ActionController
         );
         
         // Get users
-        $users = Pi::user()->get($userIds, array('id', 'identity'));
+        $users = Pi::user()->get($userIds, array('id', 'name'));
         
         // Get topic details
         $rowTopicSet   = $model->select(array());
