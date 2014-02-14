@@ -173,7 +173,7 @@ $this->headLink(array(
                 <?php } ?>
                 <!-- Module zone -->
                 <?php if (!empty($content)) { ?>
-                <div class="pi-module-content">
+                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
                     <?php echo $content; ?>
                 </div>
                 <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
