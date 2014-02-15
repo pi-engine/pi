@@ -169,7 +169,6 @@ class Model
     {
         $logoFile = 'public/custom/image/logo.png';
         if (!file_exists(Pi::path($logoFile))) {
-        } else {
             $logoFile = 'static/image/logo.png';
         }
         $logo = Pi::url($logoFile, true);
