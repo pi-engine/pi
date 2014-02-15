@@ -207,8 +207,14 @@ legend {
   right: 20px;
 }
 
-.pi-footer a {
-  margin-right: 20px;
+.pi-footer-links {
+    padding-top: 10px;
+    padding-left: 0;
+    color: #333;
+}
+.pi-footer-links li {
+    display: inline;
+    padding: 0 2px;
 }
 
 #pi-logger-output {

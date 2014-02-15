@@ -233,22 +233,32 @@ $module = Pi::service('module')->current();
     </div>
 
     <!-- Footer: sitelink -->
-    <div class="pi-footer">
-        <div class="container pi-footer-container">
-            <div class="text-center">
-                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                    &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                </a>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Powered by Pi Engine
-                </a>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Design of Pi Engine
-                </a>
+    <div class="pi-footer text-center">
+        <div class="container">
+            <ul class="pi-footer-links muted">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Design of Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+
                 <span title="<?php _e('Execution time'); ?>">
                     <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
                 </span>
-            </div>    
+            </ul>
         </div>    
     </div>
     <?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>

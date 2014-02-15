@@ -223,35 +223,49 @@ $blockTemplate  = $this->template('block');
 </div>
 
 <!-- Footer: sitelink -->
-<div class="pi-footer">
-    <div class="container pi-footer-container">
-        <div class="text-center">
-            <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-            </a>
-            <span class="divider">|</span>
-            <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                Powered by Pi Engine
-            </a>
-            <span class="divider">|</span>
-            <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                Design of Pi Engine
-            </a>
-            <span class="divider">|</span>
+<div class="pi-footer text-center">
+    <div class="container">
+        <ul class="pi-footer-links muted">
+            <li>
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                    &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                </a>
+            </li>
+            <li>|</li>
+            <li>
+                <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Powered by Pi Engine
+                </a>
+            </li>
+            <li>|</li>
+            <li>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Design of Pi Engine
+                </a>
+            </li>
+            <li>|</li>
 
-            <?php echo $this->page('about-us', __('About us'), array('target' => '_blank')); ?>
-            <span class="divider">|</span>
-            <?php echo $this->page('contact-us', __('Contact us'), array('target' => '_blank')); ?>
-            <span class="divider">|</span>
-            <?php echo $this->page('sitemap', __('Sitemap'), array('target' => '_blank', 'title' => __('Direct links to site elements'))); ?>
-            <span class="divider">|</span>
-            <?php echo $this->page('help', __('Get help')); ?>
-            <span class="divider">|</span>
+            <li>
+                <?php echo $this->page('about-us', __('About us'), array('target' => '_blank')); ?>
+            </li>
+            <li>|</li>
+            <li>
+                <?php echo $this->page('contact-us', __('Contact us'), array('target' => '_blank')); ?>
+            </li>
+            <li>|</li>
+            <li>
+                <?php echo $this->page('sitemap', __('Sitemap'), array('target' => '_blank', 'title' => __('Direct links to site elements'))); ?>
+            </li>
+            <li>|</li>
+            <li>
+                <?php echo $this->page('help', __('Get help')); ?>
+            </li>
+            <li>|</li>
 
             <span title="<?php _e('Execution time'); ?>">
                 <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
             </span>
-        </div>
+        </ul>
     </div>
 </div>
 <?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>
