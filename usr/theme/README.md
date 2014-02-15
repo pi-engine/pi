@@ -22,6 +22,7 @@ Folder and file skeleton
     // Optional description
     'description'   => 'Default theme for Pi Engine',
     // Parent theme from which templates can be inherited, default as 'default'
+    // If parent is specified, assets from parent theme will be used in case corresponding files are not available in current theme for asset publish
     'parent'        => '',
 ```
 * ```README.md```: optional readme for a theme
