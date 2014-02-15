@@ -12,7 +12,7 @@ namespace Pi\Feed;
 use Pi;
 
 /**
- * Feed data model
+ * Feed data container for FeedModel
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -178,12 +178,10 @@ class Model
                     ?: Pi::config('sitename'),
             'description'   => Pi::config('description')
                     ?: Pi::config('slogan'),
-            'authors'       => array(
-                array(
-                    'name'      => Pi::config('author'),
-                    'email'     => Pi::config('adminmail'),
-                ),
-            ),
+            'authors'       => array(array(
+                'name'      => Pi::config('author'),
+                'email'     => Pi::config('adminmail'),
+            )),
             'generator'     => array(
                 'name'      => 'Pi Engine',
                 'version'   => Pi::config('version'),
