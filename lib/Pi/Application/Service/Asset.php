@@ -478,17 +478,19 @@ class Asset extends AbstractService
 
         // Publish original assets
         $component  = 'theme/' . $theme;
-        if (!empty($target)) {
+        // Disable symbolic link for inherited assets
+        if (!empty($target) || !empty($config['parent'])) {
             $hasCustom = array(
-                'asset'     => true,
-                'public'    => true,
+                static::DIR_ASSET   => true,
+                static::DIR_PUBLIC  => true,
             );
         } else {
             $hasCustom  = $this->hasCustom($component);
             $hasCustom  = $this->hasModule($component, $hasCustom);
         }
 
-        $status = $this->publish($component, $target ? 'theme/' . $target : '', null, $hasCustom);
+        $targetTheme = $target ? 'theme/' . $target : '';
+        $status = $this->publish($component, $targetTheme, null, $hasCustom);
         if (!$status) {
             $result = $status;
         }
