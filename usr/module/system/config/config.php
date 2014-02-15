@@ -100,7 +100,7 @@ $config['item'] = array(
 
     'ga_account'   => array(
         'title'         => _t('GA account'),
-        'description'   => _t('Google Analytics account. Or use following custom foot scripts.'),
+        'description'   => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
         'category'      => 'general',
     ),
 

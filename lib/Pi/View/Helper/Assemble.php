@@ -78,17 +78,21 @@ class Assemble extends AbstractHelper
 
         // Set Google Analytics scripts in case available
         if ($configGeneral['ga_account']) {
-            $this->view->footScript()
-                ->appendScript($this->view->ga($configGeneral['ga_account']));
+            $this->view->headScript()->appendScript(
+                $this->view->ga($configGeneral['ga_account'])
+            );
         }
         // Set foot scripts in case available
         if ($configGeneral['foot_script']) {
             if (false !== stripos($configGeneral['foot_script'], '<script ')) {
-                $this->view->footScript()
-                    ->appendScript($configGeneral['foot_script'], 'raw');
+                $this->view->footScript()->appendScript(
+                    $configGeneral['foot_script'],
+                    'raw'
+                );
             } else {
-                $this->view->footScript()
-                    ->appendScript($configGeneral['foot_script']);
+                $this->view->footScript()->appendScript(
+                    $configGeneral['foot_script']
+                );
             }
         }
         unset($configGeneral['ga_account'], $configGeneral['foot_script']);
