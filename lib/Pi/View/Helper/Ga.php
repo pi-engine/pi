@@ -14,7 +14,7 @@ use Pi;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Helper for load Google analytics code
+ * Helper for register/render Google analytics code
  *
  * Usage inside a phtml template
  *
@@ -39,7 +39,7 @@ class Ga extends AbstractHelper
      * @param   string  $trackingId
      * @param   string  $host
      *
-     * @return  string
+     * @return  $this
      */
     public function __invoke($trackingId = '', $host = '')
     {
@@ -69,7 +69,8 @@ class Ga extends AbstractHelper
 EOT;
 
         $scripts = sprintf($gaScripts, $trackingId, $host);
+        $this->view->headScript()->appendScript($scripts);
 
-        return $scripts;
+        return $this;
     }
 }

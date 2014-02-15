@@ -30,25 +30,25 @@ $this->css(
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'href'  => $this->assetTheme('image/touch-icon-iphone.png')
-), 'PREPEND');
+));
 // Apple icon for ipad
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '72x72',
     'href'  => $this->assetTheme('image/touch-icon-ipad.png')
-), 'PREPEND');
+));
 // Apple icon for iphone retina
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
-), 'PREPEND');
+));
 // Apple icon for ipad retina
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
-), 'PREPEND');
+));
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 // Explicitly load favicon
@@ -56,6 +56,10 @@ $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon(),
 ));
+// Load google analytics code
+$this->ga();
+
+$module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -63,7 +67,7 @@ $this->headLink(array(
     <meta charset="<?php echo $charset; ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
-<body id="pi-<?php echo Pi::service('module')->current(); ?>" class="pi-locale-<?php echo $locale; ?>">
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
     <!-- Header: brand, slogan, user bar -->
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
@@ -171,13 +175,16 @@ $this->headLink(array(
                     </div>
                 </div>
                 <?php } ?>
-                <!-- Module zone -->
+
+                <!-- Module content starts -->
                 <?php if (!empty($content)) { ?>
-                <div class="pi-module-content" ng-app="<?php echo Pi::service('module')->current(); ?>">
+                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
                     <?php echo $content; ?>
                 </div>
                 <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
                 <?php } ?>
+                <!-- Module content ends -->
+
                 <?php if (isset($blocks['5']) || isset($blocks['6'])) { ?>
                 <div class="row">
                     <div class="col-md-6 pi-zone-5">
@@ -248,7 +255,6 @@ $this->headLink(array(
             </div>    
         </div>    
     </div>
-    <?php echo $this->assemble('footScript', 4); ?>
-    <script src="<?php echo $this->assetTheme('js/front.js'); ?>"></script>
+    <?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>
 </body>
 </html>

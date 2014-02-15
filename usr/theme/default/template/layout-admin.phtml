@@ -21,7 +21,8 @@ $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon()
 ));
-$module = $this->routeMatch('module');
+
+$module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -100,6 +101,6 @@ $module = $this->routeMatch('module');
             </div>
         </footer>
     </section>
-    <script src="<?php echo $this->assetTheme('js/admin.js'); ?>"></script>
+    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
 </body>
 </html>

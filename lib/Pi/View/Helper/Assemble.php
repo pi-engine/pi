@@ -77,11 +77,13 @@ class Assemble extends AbstractHelper
         $configGeneral = Pi::config('', 'system', 'general');
 
         // Set Google Analytics scripts in case available
+        /*
         if ($configGeneral['ga_account']) {
             $this->view->headScript()->appendScript(
                 $this->view->ga($configGeneral['ga_account'])
             );
         }
+        */
         // Set foot scripts in case available
         if ($configGeneral['foot_script']) {
             if (false !== stripos($configGeneral['foot_script'], '<script ')) {

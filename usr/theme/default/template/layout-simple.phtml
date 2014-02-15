@@ -20,13 +20,17 @@ $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon()
 ));
+// Load google analytics code
+$this->ga();
+
+$module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
 </head>
-<body id="pi-<?php echo Pi::service('module')->current(); ?>" class="pi-locale-<?php echo $locale; ?>">
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
    <!-- Header: brand, slogan, user bar -->
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
@@ -50,9 +54,12 @@ $this->headLink(array(
 
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>
-            <div class="pi-module-content"><?php echo $content; ?></div>
+            <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                <?php echo $content; ?>
+            </div>
         <?php } ?>
         <!-- Module content ends -->
+
     </div>
 
     <!-- Footer: sitelink -->

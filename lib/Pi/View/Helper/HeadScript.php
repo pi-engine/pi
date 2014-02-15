@@ -59,7 +59,8 @@ class HeadScript extends ZendHeadScript
      * End capture action and store after checking against stored scripts.
      * The content will be discarded if content with the name already exists
      *
-     * @params string $name
+     * @param string $name
+     *
      * @return void
      */
     public function captureTo($name)
