@@ -167,6 +167,13 @@ class Model
      */
     public function initialize()
     {
+        $logoFile = 'public/custom/image/logo.png';
+        if (!file_exists(Pi::path($logoFile))) {
+        } else {
+            $logoFile = 'static/image/logo.png';
+        }
+        $logo = Pi::url($logoFile, true);
+
         $this->assign(array(
             'copyright'     => Pi::config('copyright')
                     ?: Pi::config('sitename'),
@@ -184,7 +191,7 @@ class Model
                 'uri'       => 'http://pialog.org',
             ),
             'image'         => array(
-                'uri'       => Pi::url('static', true) . '/image/logo.png',
+                'uri'       => $logo,
                 'title'     => Pi::config('sitename'),
                 'link'      => Pi::url('www', true),
             ),
@@ -196,9 +203,8 @@ class Model
                 'type'      => $this->type,
             ),
             'title'         => sprintf(
-                __('Feed of %s - %s'),
-                Pi::config('sitename'),
-                Pi::config('slogan')
+                __('Feed of %s'),
+                Pi::config('sitename')
             ),
             'encoding'      => Pi::service('i18n')->charset,
             'base_url'      => Pi::url('www', true),

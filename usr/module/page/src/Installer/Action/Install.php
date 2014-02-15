@@ -69,15 +69,42 @@ class Install extends BasicInstall
             $apiHandler->add($page);
         }
 
-        // Add demo page with pthml markup
-        $page = array(
-            'name'      => 'demo',
-            'slug'      => 'phtml-demo',
-            'markup'    => 'phtml',
-            'title'     => _a('Demo for PHTML page'),
-            'content'   => 'page-demo',
+        // Add pre-defined pages
+        $pages = array(
+            array(
+                'name'      => 'demo',
+                'slug'      => 'phtml-demo',
+                'markup'    => 'phtml',
+                'title'     => _a('Demo for PHTML page'),
+                'content'   => 'page-demo',
+            ),
+            array(
+                'name'      => 'feed',
+                'slug'      => 'feed',
+                'markup'    => 'phtml',
+                'title'     => _a('Feed'),
+                'content'   => 'page-feed',
+            ),
+            array(
+                'name'      => 'sitemap',
+                'slug'      => 'sitemap',
+                'markup'    => 'phtml',
+                'title'     => _a('Sitemap'),
+                'content'   => 'page-sitemap',
+            ),
+
+            array(
+                'name'      => 'sitemap-feed',
+                'slug'      => 'sitemap-feed',
+                'markup'    => 'phtml',
+                'title'     => _a('Sitemap feed'),
+                'content'   => 'page-sitemap-feed',
+            ),
+
         );
-        $apiHandler->add($page);
+        foreach ($pages as $page) {
+            $apiHandler->add($page);
+        }
 
         $result = array(
             'status'    => true,

@@ -316,7 +316,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     $model = $result;
                 } else {
                     $variables = array();
-                    $options = array();
+                    //$options = array();
                     if ($result instanceof ViewModel) {
                         $variables = $result->getVariables();
                         $options = $result->getOptions();
@@ -326,7 +326,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     } else {
                         if ($viewModel) {
                             $variables = $viewModel->getVariables();
-                            $options = $viewModel->getOptions();
+                            //$options = $viewModel->getOptions();
                         }
                         if (ArrayUtils::hasStringKeys($result, true)) {
                             $variables = array_merge_recursive(
@@ -347,7 +347,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     $model      = $result;
                 } else {
                     $options    = array();
-                    $data       = array();
+                    //$data       = array();
                     if ($result instanceof ViewModel) {
                         $data = $result->getVariables();
                         $options = $result->getOptions();
