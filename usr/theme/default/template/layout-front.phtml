@@ -73,10 +73,6 @@ $module = Pi::service('module')->current();
         <div class="container">
             <h1 class="hide">
                 <?php echo _escape($sitename . ' - ' . $slogan); ?>
-                <!-- Code for rendering logo
-                <img src="<?php echo $this->logo(); ?>" alt="<?php echo _escape($sitename); ?>">
-                -->
-
             </h1>
             <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
                title="<?php echo _escape($slogan); ?>">
@@ -96,7 +92,7 @@ $module = Pi::service('module')->current();
             </div>
             <div class="navbar-collapse collapse">
                 <?php
-                $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
+                $navigation = $this->nav('front');
                 echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav');
                 ?>
                 <div class="navbar-form navbar-left">
