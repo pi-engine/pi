@@ -256,9 +256,7 @@ $blockTemplate  = $this->template('block');
             </li>
             <li>·</li>
 
-            <span title="<?php _e('Execution time'); ?>">
-                <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
-            </span>
+            <i class="fa fa-sm fa-spinner fa-spin" title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
         </ul>
     </div>
 </div>
