@@ -23,7 +23,7 @@
             </div>
             <div class="modal-body">
                 <div class="alert alert-info">
-                    <?php _e('Re-enter your password to save changes to your account.'); ?>
+                    <?php _e('Input your password to verify your account.'); ?>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label" for="password">
@@ -104,7 +104,7 @@
                             this.$name.next().remove();
 
                             if (result.email_error === 0) {
-                                this.$email.after('<span class="help-block"><?php _e('A message has been sent to you'); ?> ( ' + result.new_email + ' )<?php _e('to confirm your new email address. Check the email in 24 hours. The new email will not work until your confirm.'); ?> </span>');
+                                this.$email.after('<span class="help-block"><?php _e('A confirmation email has been sent to you. Please check your email and confirm.'); ?> </span>');
                             }
 
                             if (result.email_error === 1) {

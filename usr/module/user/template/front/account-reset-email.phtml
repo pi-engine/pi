@@ -1,11 +1,9 @@
 <h2 class="page-header"><?php _e('Change email'); ?></h2>
+
 <?php if ($result['status']) { ?>
     <p><?php _e('Congratulations!'); ?></p>
-    <p><?php _e('Your email has been changed.'); ?></p>
-    <p><?php echo sprintf(
-            __('<a href="%s">Login right now</a>'),
-            Pi::service('authentication')->getUrl('login')
-        ); ?></p>
+    <p><?php _escape($result['message']); ?></p>
+    <p><a href="<?php echo Pi::service('authentication')->getUrl('login'); ?>"><?php echo __('Login right now.'); ?></a></p>
 <?php } else { ?>
-    <p><?php _e('Sorry, the link has expired, or maybe your email has been changed.'); ?></p>
+    <p><?php echo _escape($result['message']); ?></p>
 <?php } ?>

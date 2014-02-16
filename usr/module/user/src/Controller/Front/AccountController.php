@@ -17,6 +17,7 @@ use Module\User\Form\AccountFilter;
 /**
  * Account controller
  *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
 class AccountController extends ActionController
@@ -32,22 +33,6 @@ class AccountController extends ActionController
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-                return;
-            }
-        }
-        */
 
         // Get identity, email, name
         $data = Pi::api('user', 'user')->get(
@@ -59,8 +44,8 @@ class AccountController extends ActionController
         $groups = Pi::api('group', 'user')->getList();
 
         // Generate form
-        $form = new AccountForm('account');
-        $data['uid'] = $uid;
+        $form           = new AccountForm('account');
+        $data['uid']    = $uid;
         $form->setData($data);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -71,24 +56,26 @@ class AccountController extends ActionController
                 $values = $form->getData();
                 // Reset email
                 if ($values['email'] != $data['email']) {
-                    $status = $this->sendVerifyMail(
-                        $uid,
-                        $data['identity'],
-                        $values['email']
-                    );
-                    if (!$status) {
-                        $result['email_error'] = 1;
+                    if ($this->config('email_confirm')) {
+                        $status = $this->sendConfirmationMail(
+                            $uid,
+                            $data['identity'],
+                            $data['email'],
+                            $values['email']
+                        );
+                    } else {
+                        $status = Pi::api('user', 'user')->updateUser(
+                            $uid,
+                            array(
+                                'email'         => $values['email'],
+                                'last_modified' => time(),
+                            )
+                        );
                     }
-
-                    $this->sendConfirmMail(
-                        $data['identity'],
-                        $data['email'],
-                        $values['email']
-                    );
-
-                    $result['email_error']   = 0;
-                    $result['new_email']     = $values['email'];
+                    $result['email_error']  = $status ? 0 : 1;
+                    $result['new_email']    = $values['email'];
                 }
+
                 // Reset display name
                 if ($values['name'] != $data['name']) {
                     $status = Pi::api('user', 'user')->updateUser(
@@ -139,17 +126,17 @@ class AccountController extends ActionController
      */
     public function resetEmailAction()
     {
+        $this->view()->setTemplate('account-reset-email');
+
         $result = array(
             'status'  => 0,
-            'message' => __('Verify link invalid'),
+            'message' => __('Invalid data provided for email change.'),
         );
-        $hashUid = _get('uid');
         $token   = _get('token');
         $email   = _get('email');
 
-        $this->view()->setTemplate('account-reset-email');
         // Check link
-        if (!$hashUid || !$token) {
+        if (!$token || !$email) {
             $this->view()->assign('result', $result);
             return;
         }
@@ -166,8 +153,7 @@ class AccountController extends ActionController
         }
 
         // Check new email
-        $email = urldecode($email);
-        if ($userData['value'] != md5($userData['uid'] . $email)) {
+        if ($userData['value'] != $this->createToken($userData['uid'], $email)) {
             $this->view()->assign('result', $result);
             return;
         }
@@ -184,46 +170,43 @@ class AccountController extends ActionController
             $this->view()->assign('result', $result);
             return;
         }
-        if ($hashUid != md5($userData['uid'])) {
-            $this->view()->assign('result', $result);
-            return;
-        }
 
         // Check link expire time
-        $expire  = $userData['time'] + 24 * 3600;
-        $current = time();
-        if ($current > $expire) {
-            $this->view()->assign('result', $result);
-            return;
+        $expire = $this->config('email_expiration');
+        if ($expire) {
+            $expire  = $userData['time'] + $expire * 3600;
+            if (time() > $expire) {
+                $this->view()->assign('result', $result);
+                return;
+            }
         }
 
         // Reset email
+        $oldEmail = $userRow->email;
         Pi::api('user', 'user')->updateUser(
             $userData['uid'],
             array(
-                'email'         => urldecode($email),
+                'email'         => $email,
                 'last_modified' => time(),
             )
         );
         Pi::user()->data()->delete($userData['uid'], 'change-email');
-        // Set log
-        $oldEmail = $userRow->email;
         $args = array(
             'uid'       => $userData['uid'],
             'old_email' => $oldEmail,
             'new_email' => $email,
         );
-        /*
-        Pi::service('audit')->attach('reset-email', array(
-            'file'  => Pi::path('log') . '/reset.email.csv'
-        ));
-        */
-        /*
-        Pi::service('audit')->log('reset-email', $args);
-        */
+
+        $this->sendSuccessMail(
+            $userRow['identity'],
+            $oldEmail,
+            $email
+        );
+
+        // Set log
         Pi::service('event')->trigger('email_change', $args);
         $result['status'] = 1;
-        $result['message'] = __('Reset email successfully');
+        $result['message'] = __('Email changed successfully.');
 
         $this->view()->assign('result', $result);
     }
@@ -237,7 +220,7 @@ class AccountController extends ActionController
     {
         $result = array(
             'status' => 0,
-            'message' => __('Incorrect password'),
+            'message' => __('Incorrect password.'),
         );
         $uid        = Pi::service('user')->getId();
         $credential = _get('credential');
@@ -253,29 +236,9 @@ class AccountController extends ActionController
         }
         // Verify
         if ($user['credential'] == $user->transformCredential($credential)) {
-            $result['message'] = __('Correct password');
+            $result['message'] = __('Password verified.');
             $result['status']  = 1;
         }
-        /*
-        $identity = $user['identity'];
-        $authResult = Pi::service('authentication')->authenticate($identity, $credential);
-        if ($authResult->isValid()) {
-            $result['message'] = __('Correct password');
-            $result['status']  = 1;
-        }
-        */
-        /*
-        $credential = md5(sprintf(
-            '%s%s%s',
-            $user['salt'],
-            $credential,
-            Pi::config('salt')
-        ));
-        if ($credential == $user['credential']) {
-            $result['message'] = __('Correct password');
-            $result['status']  = 1;
-        }
-        */
 
         return $result;
 
@@ -314,41 +277,28 @@ class AccountController extends ActionController
         );
 
         return $result;
-
-        $name  = _get('name');
-        $email = _get('email');
-        $row = '';
-        if ($name) {
-            $row = Pi::model('user_account')->find($name, 'name');
-        } else {
-            $row = Pi::model('user_account')->find($email, 'email');
-        }
-
-        $status = $row ? 1 : 0;
-
-        return array(
-            'status' => $status,
-        );
     }
 
     /**
-     * Send verify mail
+     * Send confirmation email for email change request
      *
-     * @param $uid
-     * @param $username
-     * @param $email
+     * @param int $uid
+     * @param string $username
+     * @param string $curEmail
+     * @param string $newEmail
+     *
      * @return int
      */
-    protected function sendVerifyMail($uid, $username, $email)
+    protected function sendConfirmationMail($uid, $username, $curEmail, $newEmail)
     {
         $result = 0;
 
-        if (!$uid || !$email) {
+        if (!$uid || !$newEmail) {
             return $result;
         }
 
         // Set user data
-        $token    = md5($uid . $email);
+        $token    = $this->createToken($uid, $newEmail);
         $userData = Pi::user()->data()->set(
             $uid,
             'change-email',
@@ -359,12 +309,10 @@ class AccountController extends ActionController
         }
 
         // Send verify email
-        $to  = $email;
         $url = $this->url('', array(
-                'action'=> 'reset.email',
-                'id'    => md5($uid),
-                'token' => $token,
-                'email' => urlencode($email),
+                'action'    => 'reset.email',
+                'token'     => $token,
+                'email'     => $newEmail,
             )
         );
         $link = Pi::url($url, true);
@@ -372,10 +320,13 @@ class AccountController extends ActionController
         $params = array(
             'username'          => $username,
             'change_email_link' => $link,
-            'sn'                => _date(),
+            'new_email'         => $newEmail,
+            'old_email'         => $curEmail,
+            'expiration'        => $this->config('email_expiration'),
         );
         // Load from HTML template
-        $data = Pi::service('mail')->template('reset-email-html', $params);
+        $data   = Pi::service('mail')->template('reset-email-html', $params);
+
         // Set subject and body
         $subject = $data['subject'];
         $body    = $data['body'];
@@ -383,40 +334,64 @@ class AccountController extends ActionController
 
         // Sending
         $message = Pi::service('mail')->message($subject, $body, $type);
-        $message->addTo($to);
+        $message->addTo($curEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
         $result = 1;
+
+        // Mail body logging
+        Pi::user()->data()->set(
+            $uid,
+            'change-email-body',
+            $data['body']
+        );
 
         return $result;
 
     }
 
     /**
-     * Send reset email confirm
+     * Send confirmation of email change success
      *
-     * @param $username
-     * @param $oldEmail
-     * @param $newEmail
+     * @param string $username
+     * @param string $oldEmail
+     * @param string $newEmail
+     *
+     * @return void
      */
-    protected function sendConfirmMail($username, $oldEmail, $newEmail)
+    protected function sendSuccessMail($username, $oldEmail, $newEmail)
     {
         // Set mail params
         $params = array(
             'old_email' => $oldEmail,
             'new_email' => $newEmail,
             'username'  => $username,
-            'sn'        => _date(),
         );
         // Load from HTML template
         $data = Pi::service('mail')->template('reset-email-confirm-html', $params);
+
         // Set subject and body
         $subject = $data['subject'];
         $body    = $data['body'];
         $type    = $data['format'];
         $message = Pi::service('mail')->message($subject, $body, $type);
-        $message->addTo($oldEmail);
+        $message->addTo($newEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
+    }
+
+    /**
+     * Creates token
+     *
+     * @param int $uid
+     * @param string $email
+     *
+     * @return string
+     */
+    protected function createToken($uid, $email)
+    {
+        $token = md5($uid . $email . Pi::config('salt'));
+
+        return $token;
     }
 }

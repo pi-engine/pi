@@ -44,6 +44,12 @@ use Zend\Mime;
  *
  * Send mails with template
  *
+ * * Template location
+ *   - Full path
+ *   - Custom template in locale folder of module custom: usr/custom/module/locale/en/mail/
+ *   - Original template in locale folder of module: usr/module/locale/en/mail/
+ *
+ * * Sample
  * <code>
  *  // Load from absolute template
  *  $data = Pi::service('mail')->template('/path/to/mail-template.txt',
@@ -188,6 +194,7 @@ class Mail extends AbstractService
      */
     public function send(MailHandler\Message $message)
     {
+        @set_time_limit(0);
         try {
             $this->transport()->send($message);
         } catch (\Exception $e) {
@@ -276,13 +283,13 @@ class Mail extends AbstractService
             // Canonize path from array('module' => , 'locale' => , 'file' => )
             if (is_array($template)) {
                 $module = isset($template['module'])
-                    ? $template['module'] : Pi::service('module')->directory();
+                    ? $template['module'] : Pi::service('module')->current();
                 $locale = isset($template['locale'])
                     ? $template['locale'] : null;
                 $file = $template['file'];
             // Canonize for current module
             } else {
-                $module = Pi::service('module')->directory();
+                $module = Pi::service('module')->current();
                 $locale = null;
                 $file = $template;
             }
@@ -301,7 +308,7 @@ class Mail extends AbstractService
                 // Load default template if custom template is not available
                 if (!file_exists($path)) {
                     $path = Pi::service('i18n')->getPath(
-                        array('module/' . $module, 'mail/' . $file),
+                        array('module/' . Pi::service('module')->directory($module), 'mail/' . $file),
                         $locale
                     );
                 }
