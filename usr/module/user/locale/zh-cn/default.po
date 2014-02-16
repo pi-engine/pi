@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-11 19:19+0800\n"
-"PO-Revision-Date: 2014-02-11 19:27+0800\n"
+"POT-Creation-Date: 2014-02-16 16:00+0800\n"
+"PO-Revision-Date: 2014-02-16 16:02+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -129,25 +129,21 @@ msgstr "时间线发布失败。"
 msgid "Timeline added successfully."
 msgstr "时间线发布成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:144
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:205
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:212
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:221
-msgid "Verify link invalid"
-msgstr "验证链接无效"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:133
+msgid "Invalid data provided for email change."
+msgstr "邮箱修改提供的信息无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:226
-msgid "Reset email successfully"
-msgstr "重设邮箱成功"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:209
+msgid "Email changed successfully."
+msgstr "修改Email成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:240
-msgid "Incorrect password"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:223
+msgid "Incorrect password."
 msgstr "密码错误"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:256
-msgid "Correct password"
-msgstr "密码正确"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:239
+msgid "Password verified."
+msgstr "密码验证通过。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ActivityController.php:41
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ActivityController.php:75
@@ -240,26 +236,33 @@ msgstr "图片未能移除。"
 msgid "Image removed successfully."
 msgstr "图片已删除。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:57
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:41
 msgid "Reset password failed"
 msgstr "重置密码失败"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:81
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:245
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:65
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:229
 msgid "Reset password successfully"
 msgstr "重置密码成功"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:83
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:67
 msgid "Input password error"
 msgstr "密码输入错误"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:112
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:96
 msgid "Find password failed"
 msgstr "找回密码失败"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:161
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:145
 msgid "Send email successfully. check email and reset password"
 msgstr "发送找回密码邮件成功。请查收邮件修改密码"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:180
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:189
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:205
+msgid "Verify link invalid"
+msgstr "验证链接无效"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
 msgid "Privacy settings saved successfully."
@@ -566,8 +569,8 @@ msgid "Save account changes"
 msgstr "保存账号修改"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:26
-msgid "Re-enter your password to save changes to your account."
-msgstr "请重新输入密码保存账号修改。"
+msgid "Input your password to verify your account."
+msgstr "请输入密码验证身份。"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:30
 #: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
@@ -579,14 +582,10 @@ msgid "Save changes"
 msgstr "保存修改"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:107
-msgid "A message has been sent to you"
-msgstr "修改邮箱确认邮件已发送到您的新邮箱"
-
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:107
 msgid ""
-"to confirm your new email address. Check the email in 24 hours. The new "
-"email will not work until your confirm."
-msgstr "请24小时内验证新邮箱。新注册邮箱将在验证后生效。"
+"A confirmation email has been sent to you. Please check your email and "
+"confirm."
+msgstr "确认邮件已经发送。请检查邮件并确认。"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:111
 msgid "Sorry, email change failed. Try it later."
@@ -624,7 +623,7 @@ msgstr "就是你！"
 msgid "Change email"
 msgstr "修改邮箱"
 
-#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:3
+#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:4
 #: c:\Code\pi\usr\module\user/template/front/password-process.phtml:12
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:5
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:19
@@ -632,18 +631,10 @@ msgstr "修改邮箱"
 msgid "Congratulations!"
 msgstr "恭喜！"
 
-#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:4
-msgid "Your email has been changed."
-msgstr "您的邮箱已修改。"
-
 #: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:6
-#, php-format
-msgid "<a href=\"%s\">Login right now</a>"
-msgstr "<a href=\"%s\">立即登录</a>"
-
-#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:10
-msgid "Sorry, the link has expired, or maybe your email has been changed."
-msgstr "对不起，链接已过期，或您的邮箱已经修改成功"
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:8
+msgid "Login right now."
+msgstr "立即登录。"
 
 #: c:\Code\pi\usr\module\user/template/front/activity-index.phtml:25
 msgid "View all"
@@ -878,10 +869,6 @@ msgstr "激活帐号"
 msgid "Your account has been activated."
 msgstr "您的账号已激活。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:8
-msgid "Login right now."
-msgstr "立即登录。"
-
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:12
 msgid "Sorry, account activation is failed."
 msgstr "抱歉，账号激活失败。"
@@ -985,6 +972,29 @@ msgstr "查看我的资料"
 msgid "Avatar"
 msgstr "修改头像"
 
+#~ msgid "Reset email successfully"
+#~ msgstr "重设邮箱成功"
+
+#~ msgid "Correct password"
+#~ msgstr "密码正确"
+
+#~ msgid "A message has been sent to you"
+#~ msgstr "修改邮箱确认邮件已发送到您的新邮箱"
+
+#~ msgid ""
+#~ "to confirm your new email address. Check the email in 24 hours. The new "
+#~ "email will not work until your confirm."
+#~ msgstr "请24小时内验证新邮箱。新注册邮箱将在验证后生效。"
+
+#~ msgid "Your email has been changed."
+#~ msgstr "您的邮箱已修改。"
+
+#~ msgid "<a href=\"%s\">Login right now</a>"
+#~ msgstr "<a href=\"%s\">立即登录</a>"
+
+#~ msgid "Sorry, the link has expired, or maybe your email has been changed."
+#~ msgstr "对不起，链接已过期，或您的邮箱已经修改成功"
+
 #~ msgid "You have %d times to try."
 #~ msgstr "还有%d次尝试机会"
 
@@ -996,9 +1006,6 @@ msgstr "修改头像"
 
 #~ msgid "You have tried too many times. Please try later."
 #~ msgstr "尝试次数过多，请稍后重试"
-
-#~ msgid "Invalid credentials provided, please try again."
-#~ msgstr "密码不正确，请重试。"
 
 #~ msgid "You have logged in successfully."
 #~ msgstr "您已经成功登录。"

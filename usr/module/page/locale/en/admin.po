@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-02-14 14:59+0800\n"
-"PO-Revision-Date: 2014-02-14 15:00+0800\n"
+"POT-Creation-Date: 2014-02-16 16:02+0800\n"
+"PO-Revision-Date: 2014-02-16 16:02+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -182,11 +182,23 @@ msgstr ""
 msgid "Active"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:77
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:78
 msgid "Demo for PHTML page"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:84
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:85
+msgid "Feed"
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:92
+msgid "Sitemap"
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:100
+msgid "Sitemap feed"
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:111
 msgid "Pages added."
 msgstr ""
 

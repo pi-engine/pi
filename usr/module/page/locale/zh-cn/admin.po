@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-02-14 14:58+0800\n"
-"PO-Revision-Date: 2014-02-14 14:59+0800\n"
+"POT-Creation-Date: 2014-02-16 16:02+0800\n"
+"PO-Revision-Date: 2014-02-16 16:03+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -71,12 +71,14 @@ msgid "Home"
 msgstr "首页"
 
 #: C:\code\pi\usr\module\page/config/nav.php:64
+#, fuzzy
 msgid "About us"
-msgstr ""
+msgstr "关于我们"
 
 #: C:\code\pi\usr\module\page/config/nav.php:69
+#, fuzzy
 msgid "Contact us"
-msgstr ""
+msgstr "联系我们"
 
 #: C:\code\pi\usr\module\page/config/nav.php:74
 #, fuzzy
@@ -89,8 +91,9 @@ msgid "Privacy guidelines"
 msgstr "字段隐私"
 
 #: C:\code\pi\usr\module\page/config/nav.php:84
+#, fuzzy
 msgid "Join us"
-msgstr ""
+msgstr "关于我们"
 
 #: C:\code\pi\usr\module\page/config/nav.php:88
 msgid "Applications"
@@ -210,12 +213,26 @@ msgstr "SEO 描述"
 msgid "Active"
 msgstr "激活"
 
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:77
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:78
 #, fuzzy
 msgid "Demo for PHTML page"
 msgstr "页面编码"
 
-#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:84
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:85
+#, fuzzy
+msgid "Feed"
+msgstr "Feed"
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:92
+#, fuzzy
+msgid "Sitemap"
+msgstr "网站地图"
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:100
+msgid "Sitemap feed"
+msgstr ""
+
+#: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:111
 #, fuzzy
 msgid "Pages added."
 msgstr "管理：pages"

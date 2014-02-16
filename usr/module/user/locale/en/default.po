@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-11 19:28+0800\n"
-"PO-Revision-Date: 2014-02-11 19:28+0800\n"
+"POT-Creation-Date: 2014-02-16 15:58+0800\n"
+"PO-Revision-Date: 2014-02-16 15:58+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -135,26 +135,23 @@ msgstr "主题更新失败。"
 msgid "Timeline added successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:144
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:205
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:212
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:221
-msgid "Verify link invalid"
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:133
+msgid "Invalid data provided for email change."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:226
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:209
 #, fuzzy
-msgid "Reset email successfully"
+msgid "Email changed successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:240
-msgid "Incorrect password"
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:223
+msgid "Incorrect password."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:256
-msgid "Correct password"
-msgstr ""
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:239
+#, fuzzy
+msgid "Password verified."
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:41
 #: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:75
@@ -251,28 +248,35 @@ msgstr ""
 msgid "Image removed successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:57
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:41
 #, fuzzy
 msgid "Reset password failed"
 msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:81
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:245
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:65
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:229
 #, fuzzy
 msgid "Reset password successfully"
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:83
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:67
 msgid "Input password error"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:112
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:96
 #, fuzzy
 msgid "Find password failed"
 msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:161
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:145
 msgid "Send email successfully. check email and reset password"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:180
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:189
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:196
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:205
+msgid "Verify link invalid"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
@@ -587,7 +591,7 @@ msgid "Save account changes"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:26
-msgid "Re-enter your password to save changes to your account."
+msgid "Input your password to verify your account."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:30
@@ -600,13 +604,9 @@ msgid "Save changes"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:107
-msgid "A message has been sent to you"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:107
 msgid ""
-"to confirm your new email address. Check the email in 24 hours. The new "
-"email will not work until your confirm."
+"A confirmation email has been sent to you. Please check your email and "
+"confirm."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:111
@@ -645,7 +645,7 @@ msgstr ""
 msgid "Change email"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:3
+#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:4
 #: C:\code\pi\usr\module\user/template/front/password-process.phtml:12
 #: C:\code\pi\usr\module\user/template/front/register-activate.phtml:5
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:19
@@ -653,17 +653,9 @@ msgstr ""
 msgid "Congratulations!"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:4
-msgid "Your email has been changed."
-msgstr ""
-
 #: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:6
-#, php-format
-msgid "<a href=\"%s\">Login right now</a>"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:10
-msgid "Sorry, the link has expired, or maybe your email has been changed."
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:8
+msgid "Login right now."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/activity-index.phtml:25
@@ -899,10 +891,6 @@ msgstr ""
 msgid "Your account has been activated."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:8
-msgid "Login right now."
-msgstr ""
-
 #: C:\code\pi\usr\module\user/template/front/register-activate.phtml:12
 msgid "Sorry, account activation is failed."
 msgstr ""
@@ -1005,6 +993,10 @@ msgstr ""
 #: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
 msgid "Avatar"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Reset email successfully"
+#~ msgstr "主题更新成功。"
 
 #, fuzzy
 #~ msgid "Register time"
