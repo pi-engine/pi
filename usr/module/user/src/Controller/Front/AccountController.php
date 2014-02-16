@@ -52,6 +52,14 @@ class AccountController extends ActionController
             $form->setInputFilter(new AccountFilter);
             $form->setData($post);
 
+            $result = array(
+                'email_value'       => $data['email'],
+                'email_error'       => 0,
+                'email_message'    => ' ',
+                'name_value'        => $data['name'],
+                'name_error'        => 0,
+                'name_message'      => ' ',
+            );
             if ($form->isValid()) {
                 $values = $form->getData();
                 // Reset email
@@ -63,6 +71,12 @@ class AccountController extends ActionController
                             $data['email'],
                             $values['email']
                         );
+                        if ($status) {
+                            $result['email_message']    = __('A confirmation email has been sent to you. Please check your email and confirm.');
+                        } else {
+                            $result['email_error']      = 1;
+                            $result['email_message']    = __('It was failed to send you confirmation email. Please try later.');
+                        }
                     } else {
                         $status = Pi::api('user', 'user')->updateUser(
                             $uid,
@@ -71,9 +85,14 @@ class AccountController extends ActionController
                                 'last_modified' => time(),
                             )
                         );
+                        if ($status) {
+                            $result['email_value']      = $values['email'];
+                            $result['email_message']    = __('Email has been changed successfully.');
+                        } else {
+                            $result['email_error']      = 1;
+                            $result['email_message']    = __('It was failed to save new email. Please try later.');
+                        }
                     }
-                    $result['email_error']  = $status ? 0 : 1;
-                    $result['new_email']    = $values['email'];
                 }
 
                 // Reset display name
@@ -85,10 +104,13 @@ class AccountController extends ActionController
                             'last_modified' => time(),
                         )
                     );
-                    if (!$status) {
-                        $result['name_error'] = 1;
+                    if ($status) {
+                        $result['name_value']      = $values['name'];
+                        $result['name_message']    = __('Name has been changed successfully.');
+                    } else {
+                        $result['name_error']      = 1;
+                        $result['name_message']    = __('It was failed to save new name. Please try later.');
                     }
-                    $result['name_error'] = 0;
 
                     $args = array(
                         'uid'       => $uid,
@@ -107,9 +129,9 @@ class AccountController extends ActionController
             }
         }
 
-        $user['name']     = $data['name'];
-        $user['identity'] = $data['identity'];
-        $user['id']      = $uid;
+        $user['name']       = $data['name'];
+        $user['identity']   = $data['identity'];
+        $user['id']         = $uid;
 
         $this->view()->assign(array(
             'form'      => $form,
