@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-16 16:00+0800\n"
-"PO-Revision-Date: 2014-02-16 16:02+0800\n"
+"POT-Creation-Date: 2014-02-16 18:05+0800\n"
+"PO-Revision-Date: 2014-02-16 18:07+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -129,19 +129,45 @@ msgstr "时间线发布失败。"
 msgid "Timeline added successfully."
 msgstr "时间线发布成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:133
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:75
+msgid ""
+"A confirmation email has been sent to you. Please check your email and "
+"confirm."
+msgstr "确认邮件已经发送。请检查邮件并确认。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:78
+msgid "It was failed to send you confirmation email. Please try later."
+msgstr "确认邮件发送失败，请稍后重试"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:90
+msgid "Email has been changed successfully."
+msgstr "Email地址已修改。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:93
+msgid "It was failed to save new email. Please try later."
+msgstr "新邮箱地址保存失败，请稍后重试"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:109
+msgid "Name has been changed successfully."
+msgstr "昵称已修改。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:112
+msgid "It was failed to save new name. Please try later."
+msgstr "新昵称保存失败，请稍后重试"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:155
 msgid "Invalid data provided for email change."
 msgstr "邮箱修改提供的信息无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:209
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:231
 msgid "Email changed successfully."
 msgstr "修改Email成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:223
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:245
 msgid "Incorrect password."
 msgstr "密码错误"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:239
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:261
 msgid "Password verified."
 msgstr "密码验证通过。"
 
@@ -368,6 +394,7 @@ msgstr "昵称"
 #: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:47
 #: c:\Code\pi\usr\module\user/src/Form/ResetPasswordForm.php:68
 #: c:\Code\pi\usr\module\user/src/Form/RoleForm.php:99
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:38
 #: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:40
 msgid "Submit"
 msgstr "提交"
@@ -565,59 +592,37 @@ msgid "Basic settings"
 msgstr "修改您的账号信息"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:22
-msgid "Save account changes"
-msgstr "保存账号修改"
+msgid "Verify identity"
+msgstr "身份验证"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:26
-msgid "Input your password to verify your account."
-msgstr "请输入密码验证身份。"
+msgid "Input password to verify your identity for account changes."
+msgstr "在保存账号数据前请输入密码验证身份。"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:30
 #: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 msgid "Password"
 msgstr "密码"
 
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:38
-msgid "Save changes"
-msgstr "保存修改"
-
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:107
-msgid ""
-"A confirmation email has been sent to you. Please check your email and "
-"confirm."
-msgstr "确认邮件已经发送。请检查邮件并确认。"
-
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:111
-msgid "Sorry, email change failed. Try it later."
-msgstr "修改邮箱失败，请稍后再试。"
-
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:116
-msgid "Display name change saved."
-msgstr "昵称修改已保存。"
-
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:121
-msgid "Sorry, display name change failed. Try it later."
-msgstr "抱歉，昵称修改失败。请重试。"
-
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:170
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:171
 msgid "Invalid email."
 msgstr "无效邮箱。"
 
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:188
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:189
 msgid "Email has been used."
 msgstr "邮箱已存在。"
 
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:206
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:207
 msgid "Invalid display name."
 msgstr "无效昵称。"
 
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:224
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:225
 msgid "Display name has been used."
 msgstr "昵称已使用。"
 
-#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:253
-msgid "That\\'s you !"
-msgstr "就是你！"
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:254
+msgid "No change!"
+msgstr "无修改。"
 
 #: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:1
 msgid "Change email"
@@ -972,6 +977,21 @@ msgstr "查看我的资料"
 msgid "Avatar"
 msgstr "修改头像"
 
+#~ msgid "Save account changes"
+#~ msgstr "保存账号修改"
+
+#~ msgid "Sorry, email change failed. Try it later."
+#~ msgstr "修改邮箱失败，请稍后再试。"
+
+#~ msgid "Display name change saved."
+#~ msgstr "昵称修改已保存。"
+
+#~ msgid "Sorry, display name change failed. Try it later."
+#~ msgstr "抱歉，昵称修改失败。请重试。"
+
+#~ msgid "That\\'s you !"
+#~ msgstr "就是你！"
+
 #~ msgid "Reset email successfully"
 #~ msgstr "重设邮箱成功"
 
@@ -1003,9 +1023,6 @@ msgstr "修改头像"
 
 #~ msgid "Invalid input, please try again."
 #~ msgstr "无效输入，请重试。"
-
-#~ msgid "You have tried too many times. Please try later."
-#~ msgstr "尝试次数过多，请稍后重试"
 
 #~ msgid "You have logged in successfully."
 #~ msgstr "您已经成功登录。"

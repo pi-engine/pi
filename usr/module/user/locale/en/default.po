@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-16 15:58+0800\n"
-"PO-Revision-Date: 2014-02-16 15:58+0800\n"
+"POT-Creation-Date: 2014-02-16 18:05+0800\n"
+"PO-Revision-Date: 2014-02-16 18:05+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -135,20 +135,48 @@ msgstr "主题更新失败。"
 msgid "Timeline added successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:133
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:75
+msgid ""
+"A confirmation email has been sent to you. Please check your email and "
+"confirm."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:78
+msgid "It was failed to send you confirmation email. Please try later."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:90
+#, fuzzy
+msgid "Email has been changed successfully."
+msgstr "主题更新成功。"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:93
+msgid "It was failed to save new email. Please try later."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:109
+#, fuzzy
+msgid "Name has been changed successfully."
+msgstr "主题更新成功。"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:112
+msgid "It was failed to save new name. Please try later."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:155
 msgid "Invalid data provided for email change."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:209
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:231
 #, fuzzy
 msgid "Email changed successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:223
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:245
 msgid "Incorrect password."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:239
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:261
 #, fuzzy
 msgid "Password verified."
 msgstr "主题更新失败。"
@@ -390,6 +418,7 @@ msgstr ""
 #: C:\code\pi\usr\module\user/src/Form/ResendActivationForm.php:47
 #: C:\code\pi\usr\module\user/src/Form/ResetPasswordForm.php:68
 #: C:\code\pi\usr\module\user/src/Form/RoleForm.php:99
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:38
 #: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:40
 msgid "Submit"
 msgstr ""
@@ -587,11 +616,11 @@ msgid "Basic settings"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:22
-msgid "Save account changes"
+msgid "Verify identity"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:26
-msgid "Input your password to verify your account."
+msgid "Input password to verify your identity for account changes."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:30
@@ -599,47 +628,26 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:38
-msgid "Save changes"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:107
-msgid ""
-"A confirmation email has been sent to you. Please check your email and "
-"confirm."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:111
-msgid "Sorry, email change failed. Try it later."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:116
-msgid "Display name change saved."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:121
-msgid "Sorry, display name change failed. Try it later."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:170
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:171
 msgid "Invalid email."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:188
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:189
 msgid "Email has been used."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:206
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:207
 msgid "Invalid display name."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:224
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:225
 msgid "Display name has been used."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:253
-msgid "That\\'s you !"
-msgstr ""
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:254
+#, fuzzy
+msgid "No change!"
+msgstr "无缓存"
 
 #: C:\code\pi\usr\module\user/template/front/account-reset-email.phtml:1
 msgid "Change email"
