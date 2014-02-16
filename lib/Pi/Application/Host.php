@@ -430,8 +430,10 @@ class Host
      *
      * For URL to be examined:
      *
-     *  - With URI scheme `://` - absolute URI, do not convert;
-     *  - First part as section, map to `www` if no section matched;
+     *  - With URI scheme `://` - absolute URI, do not convert, otherwise
+     *  - With leading `//` - globally absolute URI, do not convert, otherwise
+     *  - With leading `/` - in-Pi absolute URI, prepend with baseLocation, otherwise
+     *  - First part as section, map to `www` if no section matched, otherwise
      *  - If section URI is relative, `www` URI will be appended.
      *
      * @param string    $url
@@ -455,8 +457,17 @@ class Host
             $directory  = $this->directory[$url];
             $section    = $directory['parent'];
             $path       = $directory['folder'];
+        // Absolute URI with leading `//`
+        } elseif (0 === strpos($url, '//')) {
+            $uri = $url;
+        // In-Pi absolute URI with leading `/`
+        } elseif (0 === strpos($url, '/')) {
+            $uri = $this->baseLocation . $url;
+        // Absolute URI with scheme
+        } elseif (false !== strpos($url, '://')) {
+            $uri = $url;
         // Relative URI
-        } elseif (false === strpos($url, '://')) {
+        } else {
             // No '/' included, map to www path
             if (false === strpos($url, '/')) {
                 list($section, $path) = array('www', $url);
@@ -473,9 +484,6 @@ class Host
                 $section    = $directory['parent'];
                 $path       = $directory['folder'] . '/' . $path;
             }
-        // Absolute URI
-        } else {
-            $uri = $url;
         }
 
         if (null === $uri) {
