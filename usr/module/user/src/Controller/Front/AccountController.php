@@ -157,10 +157,14 @@ class AccountController extends ActionController
         $token   = _get('token');
         $email   = _get('email');
 
+        $view = $this->view();
+        $fallback = function () use ($view, $result) {
+            $view->assign('result', $result);
+        };
+
         // Check link
         if (!$token || !$email) {
-            $this->view()->assign('result', $result);
-            return;
+            return $fallback();
         }
 
         // Get user data
@@ -170,37 +174,21 @@ class AccountController extends ActionController
         ));
         // Check user data
         if (!$userData) {
-            $this->view()->assign('result', $result);
-            return;
+            return $fallback();
         }
-
-        // Check new email
-        if ($userData['value'] != $this->createToken($userData['uid'], $email)) {
-            $this->view()->assign('result', $result);
-            return;
-        }
-
-        // Check token
-        if ($userData['value'] != $token) {
-            $this->view()->assign('result', $result);
-            return;
-        }
-
-        // Check uid
-        $userRow = $this->getModel('account')->find($userData['uid'], 'id');
-        if (!$userRow) {
-            $this->view()->assign('result', $result);
-            return;
-        }
-
         // Check link expire time
         $expire = $this->config('email_expiration');
         if ($expire) {
             $expire  = $userData['time'] + $expire * 3600;
             if (time() > $expire) {
-                $this->view()->assign('result', $result);
-                return;
+                return $fallback();
             }
+        }
+
+        // Check uid
+        $userRow = $this->getModel('account')->find($userData['uid'], 'id');
+        if (!$userRow) {
+            return $fallback();
         }
 
         // Reset email
@@ -412,7 +400,7 @@ class AccountController extends ActionController
      */
     protected function createToken($uid, $email)
     {
-        $token = md5($uid . $email . Pi::config('salt'));
+        $token = md5($uid . $email . Pi::config('salt') . mt_rand());
 
         return $token;
     }

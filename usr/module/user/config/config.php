@@ -49,7 +49,7 @@ $config = array(
 
     'email_expiration' => array(
         'title'         => _t('Email expiration'),
-        'description'   => _t('Expiration time for email change (in hours).'),
+        'description'   => _t('Expiration time for email/password reset (in hours).'),
         'value'         => 24,
         'filter'        => 'number_int',
     ),

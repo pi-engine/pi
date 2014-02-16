@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-16 15:58+0800\n"
-"PO-Revision-Date: 2014-02-16 16:00+0800\n"
+"POT-Creation-Date: 2014-02-16 19:20+0800\n"
+"PO-Revision-Date: 2014-02-16 19:20+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -45,8 +45,8 @@ msgid "Email expiration"
 msgstr "Email有效期"
 
 #: c:\Code\pi\usr\module\user/config/config.php:52
-msgid "Expiration time for email change (in hours)."
-msgstr "修改Email的邮件有效期（单位小时）。"
+msgid "Expiration time for email/password reset (in hours)."
+msgstr "修改Email或密码的确认邮件有效期（单位小时）。"
 
 #: c:\Code\pi\usr\module\user/config/config.php:58
 msgid "Email confirmation"
@@ -100,7 +100,7 @@ msgstr "用于认证的字段。"
 #: c:\Code\pi\usr\module\user/config/user.php:26
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:17
 #: c:\Code\pi\usr\module\user/template/admin/maintenance.phtml:30
-#: c:\Code\pi\usr\module\user/template/admin/role.phtml:32
+#: c:\Code\pi\usr\module\user/template/admin/role.phtml:31
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:21
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:43
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:67
@@ -111,7 +111,7 @@ msgstr "用户名"
 #: c:\Code\pi\usr\module\user/config/user.php:58
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:18
 #: c:\Code\pi\usr\module\user/template/admin/maintenance.phtml:47
-#: c:\Code\pi\usr\module\user/template/admin/role.phtml:34
+#: c:\Code\pi\usr\module\user/template/admin/role.phtml:33
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:44
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:71
 msgid "Email"
@@ -347,7 +347,7 @@ msgid "Pending user"
 msgstr "未激活用户"
 
 #: c:\Code\pi\usr\module\user/config/nav.php:62
-#: c:\Code\pi\usr\module\user/template/admin/role.phtml:35
+#: c:\Code\pi\usr\module\user/template/admin/role.phtml:34
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:36
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:66
 msgid "Add user"
@@ -455,7 +455,7 @@ msgstr "密码"
 
 #: c:\Code\pi\usr\module\user/config/user.php:81
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:14
-#: c:\Code\pi\usr\module\user/template/admin/role.phtml:33
+#: c:\Code\pi\usr\module\user/template/admin/role.phtml:32
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:22
 msgid "Display name"
 msgstr "昵称"
@@ -1086,14 +1086,10 @@ msgid "Users"
 msgstr "用户"
 
 #: c:\Code\pi\usr\module\user/template/admin/role.phtml:30
-msgid "First"
-msgstr ""
-
-#: c:\Code\pi\usr\module\user/template/admin/role.phtml:31
 msgid "User id"
 msgstr "用户 ID"
 
-#: c:\Code\pi\usr\module\user/template/admin/role.phtml:36
+#: c:\Code\pi\usr\module\user/template/admin/role.phtml:35
 msgid "None user in this role."
 msgstr "该角色内无用户。"
 
@@ -1255,6 +1251,10 @@ msgstr "重置为默认头像。"
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:89
 msgid "Are you sure to delete this group?"
 msgstr "请确认是否删除该组？"
+
+#, fuzzy
+#~ msgid "First"
+#~ msgstr "名"
 
 #~ msgid "Role assignment failed"
 #~ msgstr "设置角色失败。"
