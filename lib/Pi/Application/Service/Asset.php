@@ -115,7 +115,7 @@ class Asset extends AbstractService
     public function getBasePath($type = 'asset')
     {
         if ('public' == $type) {
-            $basePath = Pi::path('public');// . '/' . static::DIR_PUBLIC;
+            $basePath = Pi::path('public');
         } else {
             $basePath = Pi::path('asset');
         }
@@ -209,8 +209,13 @@ class Asset extends AbstractService
     public function getPath($component, $type = 'asset')
     {
         $basePath = $this->getBasePath($type);
+        if ($component) {
+            $path = $basePath . '/' . $this->canonize($component);
+        } else {
+            $path = $basePath;
+        }
 
-        return $basePath . '/' . $this->canonize($component);
+        return $path;
     }
 
     /**
@@ -224,8 +229,13 @@ class Asset extends AbstractService
     public function getUrl($component, $type = 'asset')
     {
         $baseUrl = $this->getBaseUrl($type);
+        if ($component) {
+            $url = $baseUrl . '/' . $this->canonize($component);
+        } else {
+            $url = $baseUrl;
+        }
 
-        return $baseUrl . '/' . $this->canonize($component);
+        return $url;
     }
 
     /**
