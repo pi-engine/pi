@@ -45,7 +45,7 @@ if (!empty($notification)) { ?>
             </h5>
             <p class="message-time text-right">
                 <span class="muted">
-                    <?php echo date('Y/m/d H:i', $notification['time_send']); ?>
+                    <?php echo _date($notification['time_send']); ?>
                 </span>
             </p>
         </div>
