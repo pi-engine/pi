@@ -8,7 +8,6 @@
 ## pi-demo.org skeleton
 - web root: `/home/pi/deploy/pi-demo/www`
 - data directory: `/home/pi/deploy/pi-demo/var`
-- asset directory: `/home/pi/deploy/pi-demo/asset`
 - upload directory: `/home/pi/deploy/pi-demo/upload`
 - lib, symlink from common root: `/home/pi/deploy/pi-demo/lib`
 - usr, symlink from common root: `/home/pi/deploy/pi-demo/usr`
@@ -33,14 +32,14 @@ rm -Rf /home/pi/deploy/pi-demo/www && mkdir /home/pi/deploy/pi-demo/www
 ### Copy folders/files to `/home/pi/deploy/pi-demo/www`
 ```
 rm -Rf /home/pi/deploy/pi-demo/www/setup && cp -R /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/
-rm -Rf /home/pi/deploy/pi-demo/www/public/ && cp -R /home/pi/common/code/deploy/www/public /home/pi/deploy/pi-demo/www/
+rm -Rf /home/pi/deploy/pi-demo/www/asset/ && cp -R /home/pi/common/code/deploy/www/asset /home/pi/deploy/pi-demo/www/
 rm -f /home/pi/deploy/pi-demo/www/.htaccess && cp /home/pi/common/code/deploy/www/.htaccess /home/pi/deploy/pi-demo/www/.htaccess
 rm -f /home/pi/deploy/pi-demo/www/boot.php && cp /home/pi/common/code/deploy/www/boot.php /home/pi/deploy/pi-demo/www/boot.php
 ```
 
 ### Symlink files to `/home/pi/deploy/pi-demo/www`
 ```
-rm -Rf /home/pi/deploy/pi-demo/www/resource && ln -sf /home/pi/common/code/deploy/www/resource /home/pi/deploy/pi-demo/www/resource
+rm -Rf /home/pi/deploy/pi-demo/www/public && ln -sf /home/pi/common/code/deploy/www/public /home/pi/deploy/pi-demo/www/public
 rm -Rf /home/pi/deploy/pi-demo/www/script && ln -sf /home/pi/common/code/deploy/www/script /home/pi/deploy/pi-demo/www/script
 rm -Rf /home/pi/deploy/pi-demo/www/module && ln -sf /home/pi/common/code/deploy/www/module /home/pi/deploy/pi-demo/www/module
 rm -f /home/pi/deploy/pi-demo/www/index.php && ln -sf /home/pi/common/code/deploy/www/index.php /home/pi/deploy/pi-demo/www/index.php
@@ -64,7 +63,6 @@ rm -f /home/pi/deploy/pi-demo/static && ln -sf /home/pi/common/code/deploy/www/s
 ### Copy folders
 ```
 rm -Rf /home/pi/deploy/pi-demo/var && cp -R /home/pi/common/code/deploy/var /home/pi/deploy/pi-demo
-rm -Rf /home/pi/deploy/pi-demo/asset && cp -R /home/pi/common/code/deploy/www/asset /home/pi/deploy/pi-demo
 rm -Rf /home/pi/deploy/pi-demo/upload && cp -R /home/pi/common/code/deploy/www/upload /home/pi/deploy/pi-demo
 ```
 
@@ -77,9 +75,8 @@ chown -Rf www-data:www-data /home/pi/deploy/pi-demo/
 ```
 chmod -f 0777 /home/pi/deploy/pi-demo/www/.htaccess
 chmod -f 0777 /home/pi/deploy/pi-demo/www/boot.php
-chmod -Rf 0777 /home/pi/deploy/pi-demo/www/public/
+chmod -Rf 0777 /home/pi/deploy/pi-demo/www/asset/
 chmod -Rf 0777 /home/pi/deploy/pi-demo/var/
-chmod -Rf 0777 /home/pi/deploy/pi-demo/asset/
 chmod -Rf 0777 /home/pi/deploy/pi-demo/upload/
 ````
 

@@ -34,7 +34,6 @@ class AssetLocale extends AbstractHelper
      *
      * @param   string      $file
      * @param   string      $locale
-     * @param   bool        $isPublic
      * @param   bool|null $appendVersion
      *
      * @return  string
@@ -42,17 +41,15 @@ class AssetLocale extends AbstractHelper
     public function __invoke(
         $file,
         $locale = '',
-        $isPublic = false,
         $appendVersion = null
     ) {
-        $type = $isPublic ? 'public' : 'asset';
+        //$type = $isPublic ? 'public' : 'asset';
         $locale = $locale ?: Pi::service('i18n')->locale;
         $file = sprintf('locale/%s/%s', $locale, $file);
 
         $result = Pi::service('asset')->getThemeAsset(
             $file,
             '',
-            $type,
             $appendVersion
         );
 

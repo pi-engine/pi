@@ -36,7 +36,7 @@ class Host
         'lib'       => '',
         'var'       => '',
         'usr'       => '',
-        'asset'     => '',
+        //'asset'     => '',
         'static'    => '',
         'upload'    => '',
     );
@@ -50,7 +50,7 @@ class Host
         'var'       => -1,
         'lib'       => -1,
         'usr'       => -1,
-        'asset'     => -1,
+        //'asset'     => -1,
         'static'    => 0,
         'upload'    => -1,
     );
@@ -60,7 +60,7 @@ class Host
      * @var array
      */
     protected $validUrl = array(
-        'asset'     => -1,
+        //'asset'     => -1,
         'static'    => -1,
         'upload'    => -1,
     );
@@ -72,7 +72,7 @@ class Host
     protected $permErrors = array();
 
     /**
-     * Constructore
+     * Constructor
      *
      * @param Wizard $wizard
      */

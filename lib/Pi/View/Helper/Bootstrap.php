@@ -16,7 +16,7 @@ use Pi;
  * Helper for loading Bootstrap files
  *
  * Theme specific bootstrap customization is supported with file skeleton
- * `usr/theme/<theme-name>/public/vendor/bootstrap/css/bootstrap.min.css`
+ * `usr/theme/<theme-name>/asset/vendor/bootstrap/css/bootstrap.min.css`
  *
  *
  * Usage inside a phtml template
@@ -78,12 +78,12 @@ class Bootstrap extends AssetCanonize
 
             // Lookup in theme custom bootstrap
             $theme  = Pi::service('theme')->current();
-            $custom = Pi::service('asset')->getAssetPath('theme/' . $theme, $file, 'public');
+            $custom = Pi::service('asset')->getAssetPath('theme/' . $theme, $file);
             if (is_readable($custom)) {
-                $url = Pi::service('asset')->getThemeAsset($file, $theme, 'public', $appendVersion);
+                $url = Pi::service('asset')->getThemeAsset($file, $theme,  $appendVersion);
             // Load original bootstrap
             } else {
-                $url = Pi::service('asset')->getResourceUrl($file, $appendVersion);
+                $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             }
             $attrs = $this->canonizeFile($bootstrap);
             $attrs['href'] = $url;
@@ -101,7 +101,7 @@ class Bootstrap extends AssetCanonize
 
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getResourceUrl($file, $appendVersion);
+            $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {

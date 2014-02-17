@@ -33,7 +33,6 @@ class AssetTheme extends AbstractHelper
      *
      * @param   string      $file
      * @param   string      $theme
-     * @param   bool        $isPublic
      * @param   bool|null   $appendVersion
      *
      * @return  string
@@ -41,15 +40,13 @@ class AssetTheme extends AbstractHelper
     public function __invoke(
         $file,
         $theme = '',
-        $isPublic = false,
         $appendVersion = null
     ) {
-        $type = $isPublic ? 'public' : 'asset';
+        //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getThemeAsset(
             $file,
             $theme,
-            $type,
             $appendVersion
         );
 

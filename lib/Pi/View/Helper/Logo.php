@@ -17,7 +17,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  * Helper for building logo URL
  *
  * Look up logo in following locations:
- *  - public/custom/image/<logo-name>
+ *  - asset/custom/image/<logo-name>
  *  - asset/theme-<theme-name>/image/<logo-name>
  *  - static/image/<logo-name>
  *
@@ -37,7 +37,7 @@ class Logo extends AbstractHtmlElement
         $src = '';
         $name = $name ?: 'logo.png';
 
-        $customFile = 'public/custom/image/' . $name;
+        $customFile = 'asset/custom/image/' . $name;
         if (file_exists(Pi::path($customFile))) {
             $src = Pi::url($customFile);
         } else {

@@ -71,6 +71,7 @@ $configs['paths'] = array(
         'path'  => array('../usr', 'usr'),
         'url'   => false,
     ),
+        /*
     'asset'         => array(
         'path'  => array('asset', '../asset'),
         'url'   => array(
@@ -79,6 +80,7 @@ $configs['paths'] = array(
                                            $_SERVER['HTTP_HOST']),
         ),
     ),
+    */
     // To remove?
     'static'        => array(
         'path'  => array('static', '../static'),
@@ -103,11 +105,11 @@ $configs['paths'] = array(
 $configs['skip_url_validate'] = false;
 
 // Writable files and directories prior to installation
-$configs['writable']['www'] = array('public', '.htaccess', 'boot.php');
+$configs['writable']['www'] = array('asset', '.htaccess', 'boot.php');
 // For non-apache server
 //$configs['writable']['www'] = array('boot.php');
 $configs['writable']['var'] = '';
-$configs['writable']['asset'] = '';
+//$configs['writable']['asset'] = '';
 $configs['writable']['upload'] = '';
 
 // Readonly files and directories after installation

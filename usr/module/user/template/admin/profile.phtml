@@ -13,7 +13,7 @@ angular
     .module('<?php echo $module; ?>', ['ngRoute', 'pi', 'ui.bootstrap', 'ui.sortable'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => $controller)); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
         t: {
            BASIC_FIELD: '<?php echo _a('Basic field'); ?>',
            BASIC_FIELD_DESC: '<?php echo _a('Field title can be edited for display.'); ?>',

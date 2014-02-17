@@ -29,7 +29,7 @@ return array(
         // URI to access uploads directory
         'upload'    => 'http://pi.tld/upload',
         // URI to access assets directory
-        'asset'     => 'http://pi.tld/asset',
+        //'asset'     => 'http://pi.tld/asset',
         // URI to access static files directory
         'static'    => 'http://pi.tld/static',
     ),
@@ -74,6 +74,10 @@ return array(
 
     // Paths dependent on upper paths
     'directory' => array(
+        'asset'     => array(
+            'parent'    => 'www',
+            'folder'    => 'asset',
+        ),
         'public'    => array(
             'parent'    => 'www',
             'folder'    => 'public',

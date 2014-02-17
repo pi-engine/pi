@@ -10,7 +10,7 @@ angular
     .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'role')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
         t: {
             ADMIN_TITLE: '<?php echo _a('Admin roles'); ?>',
             FRONT_TITLE: '<?php echo _a('Front roles'); ?>',

@@ -11,7 +11,7 @@ angular
   .module('<?php echo $module; ?>', ['ngRoute', 'ui.bootstrap', 'pi', 'piTabs'])
   .constant('config', {
     urlRoot: '<?php echo $this->url('', array('controller' => 'maintenance')); ?>',
-    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
     editUrlRoot: '<?php echo $this->url('', array('controller' => 'edit')); ?>',
     t: {
       TODAY: '<?php echo _a('Today'); ?>',

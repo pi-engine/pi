@@ -33,7 +33,8 @@ class I18n extends AbstractResource
         $charset = Pi::config('charset') ?: 'utf-8';
 
         if ('auto' == $locale) {
-            $locale = Pi::service('i18n')->getClient() ?: Pi::config('locale');
+            $locale = Pi::service('i18n')->getClient() ?: 'en';
+            Pi::config()->set('locale', $locale);
         }
 
         // Set default locale and charset
