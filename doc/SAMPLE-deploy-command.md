@@ -32,7 +32,7 @@ rm -Rf /home/pi/deploy/pi-demo/www && mkdir /home/pi/deploy/pi-demo/www
 
 ### Copy folders/files to `/home/pi/deploy/pi-demo/www`
 ```
-rm -Rf /home/pi/deploy/pi-demo/www/setup && cp -R /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/setup
+rm -Rf /home/pi/deploy/pi-demo/www/setup && cp -R /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/
 rm -Rf /home/pi/deploy/pi-demo/www/public/ && cp -R /home/pi/common/code/deploy/www/public /home/pi/deploy/pi-demo/www/
 rm -f /home/pi/deploy/pi-demo/www/.htaccess && cp /home/pi/common/code/deploy/www/.htaccess /home/pi/deploy/pi-demo/www/.htaccess
 rm -f /home/pi/deploy/pi-demo/www/boot.php && cp /home/pi/common/code/deploy/www/boot.php /home/pi/deploy/pi-demo/www/boot.php
@@ -40,6 +40,7 @@ rm -f /home/pi/deploy/pi-demo/www/boot.php && cp /home/pi/common/code/deploy/www
 
 ### Symlink files to `/home/pi/deploy/pi-demo/www`
 ```
+rm -Rf /home/pi/deploy/pi-demo/www/resource && ln -sf /home/pi/common/code/deploy/www/resource /home/pi/deploy/pi-demo/www/resource
 rm -Rf /home/pi/deploy/pi-demo/www/script && ln -sf /home/pi/common/code/deploy/www/script /home/pi/deploy/pi-demo/www/script
 rm -Rf /home/pi/deploy/pi-demo/www/module && ln -sf /home/pi/common/code/deploy/www/module /home/pi/deploy/pi-demo/www/module
 rm -f /home/pi/deploy/pi-demo/www/index.php && ln -sf /home/pi/common/code/deploy/www/index.php /home/pi/deploy/pi-demo/www/index.php

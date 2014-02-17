@@ -17,7 +17,7 @@ use Zend\View\Helper\AbstractHelper;
  * Helper for building favicon URL
  *
  * Look up logo in following locations:
- *  - static/custom/image/<favicon-name>
+ *  - public/custom/image/<favicon-name>
  *  - www/<favicon-name>
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>

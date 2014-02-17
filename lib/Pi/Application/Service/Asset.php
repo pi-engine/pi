@@ -133,7 +133,7 @@ class Asset extends AbstractService
     public function getBaseUrl($type = 'asset')
     {
         if ('public' == $type) {
-            $baseUrl = Pi::url('public');// . '/' . static::DIR_PUBLIC;
+            $baseUrl = Pi::url('public');
         } else {
             $baseUrl = Pi::url('asset');
         }
@@ -841,6 +841,39 @@ class Asset extends AbstractService
     }
     /**#@-*/
 
+    /**#@+
+     * Static assets located in resource folder
+     */
+    /**
+     * Gets path of a resource asset
+     *
+     * @param string $file      File path
+     * @return string Full path to a resource asset
+     */
+    public function getResourcePath($file)
+    {
+        return Pi::path('www') . '/resource/' . $file;
+    }
+
+    /**
+     * Gets URL of a resource asset
+     *
+     * @param string    $file       File path
+     * @param bool|null $appendVersion
+     *
+     * @return string Full URL to the asset
+     */
+    public function getResourceUrl($file, $appendVersion = null)
+    {
+        $file = $this->versionStamp(
+            $this->getResourcePath($file),
+            $file,
+            $appendVersion
+        );
+
+        return Pi::url('www') . '/resource/' . $file;
+    }
+    /**#@-*/
 
     /**#@+
      * Static assets located in static folder
@@ -874,4 +907,5 @@ class Asset extends AbstractService
 
         return Pi::url('static') . '/' . $file;
     }
+    /**#@-*/
 }

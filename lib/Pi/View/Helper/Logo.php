@@ -17,7 +17,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  * Helper for building logo URL
  *
  * Look up logo in following locations:
- *  - static/custom/image/<logo-name>
+ *  - public/custom/image/<logo-name>
  *  - asset/theme-<theme-name>/image/<logo-name>
  *  - static/image/<logo-name>
  *
