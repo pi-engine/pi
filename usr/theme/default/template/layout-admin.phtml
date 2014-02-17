@@ -1,6 +1,7 @@
 <?php
 // Load translation data
-$this->i18nTheme('default', 'default');
+$this->i18nTheme('default');
+
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
     pi::url('static/js/html5shiv.js') => array(
@@ -11,16 +12,21 @@ $this->js(array(
     ),
 ));
 
-/*
- * Load jQuery
- */
+// Load jQuery
 $this->jquery();
 
+// Load Bootstrap css/js and font-awesome
 $this->bootstrap(array(
-    'js/bootstrap.js',
-    'font-awesome/css/font-awesome.css'
+    'js/bootstrap.min.js',
+    'font-awesome/css/font-awesome.min.css'
 ));
-$this->css($this->assetTheme('css/admin.css'));
+
+// Load front.css/print.css
+$this->css(array(
+    $this->assetTheme('css/admin.css'),
+    $this->assetTheme('css/print.css') => array('media' => "print")
+));
+
 // Explicitly load favicon
 // @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(

@@ -1,6 +1,7 @@
 <?php
 // Load translation data
-$this->i18nTheme('default', 'default');
+$this->i18nTheme('default');
+
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
     pi::url('static/js/html5shiv.js') => array(
@@ -11,24 +12,22 @@ $this->js(array(
     ),
 ));
 
-/*
- * Load jQuery
- */
+// Load jQuery
 $this->jquery();
-/*
- * Load Bootstrap css/js and font-awesome
- */
+
+// Load Bootstrap css/js and font-awesome
 $this->bootstrap(array(
     'js/bootstrap.min.js',
     'font-awesome/css/font-awesome.min.css'
 ));
-// Load front.css
-$this->css($this->assetTheme('css/front.css'));
-// Print css
-$this->css(
-    $this->assetTheme('css/print.css'),
-    array('media' => "print")
-);
+
+// Load front.css/print.css
+$this->css(array(
+    $this->assetTheme('css/front.css'),
+    $this->assetTheme('css/print.css') => array('media' => "print")
+));
+
+// Apple icons
 // Apple icon for iphone
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
@@ -52,13 +51,16 @@ $this->headLink(array(
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
 ));
+
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon(),
 ));
+
 // Load google analytics code
 $this->ga();
 

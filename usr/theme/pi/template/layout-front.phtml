@@ -1,5 +1,7 @@
 <?php
 $this->i18nTheme('default');
+
+// IE conditional
 $this->js(array(
     pi::url('static/js/html5shiv.js') => array(
         'conditional' => 'lt IE 9'
@@ -15,11 +17,10 @@ $this->bootstrap(array(
     'js/bootstrap.min.js',
     'font-awesome/css/font-awesome.min.css'
 ));
-$this->css($this->assetTheme('css/front.css'));
-$this->css(
-    $this->assetTheme('css/print.css'),
-    array('media' => "print")
-);
+$this->css(array(
+    $this->assetTheme('css/front.css'),
+    $this->assetTheme('css/print.css') => array('media' => "print")
+));
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'href'  => $this->assetTheme('image/touch-icon-iphone.png')
