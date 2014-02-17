@@ -1,8 +1,7 @@
 <?php
-    //$this->bootstrap();
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery();
-    $this->backbone();
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery();
+$this->backbone();
 ?>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
@@ -40,6 +39,7 @@
     </fieldset>
 </div>
 <script type="text/template" id="temp-theme">
+<div class="thumbnail">
     <a class="theme-screenshot">
         <img src="<%=screenshot %>" alt="<%= _.escape(title) %>"  title="<?php echo _a('Click To preview'); ?>">
     </a>
@@ -55,12 +55,13 @@
             <dt><?php echo _a('Description'); ?></dt>
             <dd><%= description %></dd>
         </dl>        
-    </div>    
+    </div>
+</div>    
 </script>
 <script>
 var themeCollection = new Backbone.Collection(<?php echo json_encode(array_values($themes)) ?>);
 var ThemeItemView = Backbone.View.extend({
-    className: 'thumbnail theme-item',
+    className: 'col-md-4',
     template: _.template($('#temp-theme').html()),
     events: {
         'click .theme-apply': 'apply',
