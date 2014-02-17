@@ -10,10 +10,13 @@ $this->js(array(
         'conditional' => 'lt IE 9'
     ),
 ));
+
 /*
- * Load Bootstrap css by Twitter Team, auto load jquery
- * This code should written in every theme, As much of module code
- * need bootstrap.js, bootstrap.css, fontawesome.css
+ * Load jQuery
+ */
+$this->jquery();
+/*
+ * Load Bootstrap css/js and font-awesome
  */
 $this->bootstrap(array(
     'js/bootstrap.min.js',
