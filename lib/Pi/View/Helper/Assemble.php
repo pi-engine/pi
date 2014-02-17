@@ -12,10 +12,9 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHelper;
-use Zend\View\Renderer\RendererInterface as Renderer;
 
 /**
- * Helper for page element rendering assemble
+ * Helper for page element rendering assemble in theme
  *
  * Usage inside a theme phtml template:
  *
