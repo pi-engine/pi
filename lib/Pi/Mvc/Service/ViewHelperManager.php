@@ -129,7 +129,7 @@ class ViewHelperManager extends HelperPluginManager
         'sitemap'               => 'View\Helper\Navigation\Sitemap',
 
         // Pi helpers
-        'jquery'                => 'View\Helper\Navigation\JQuery',
+        'jquery'                => 'View\Helper\JQuery',
     );
 
     /**
