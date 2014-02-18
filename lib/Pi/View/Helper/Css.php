@@ -92,6 +92,9 @@ class Css extends AssetCanonize
 
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
+            if (!isset($attrs['href'])) {
+                $attrs['href'] = $file;
+            }
             if ('prepend' == $position) {
                 $helper->prependStylesheet($attrs);
             } else {

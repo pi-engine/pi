@@ -93,6 +93,9 @@ class Js extends AssetCanonize
             }
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
+            if (!isset($attrs['src'])) {
+                $attrs['src'] = $file;
+            }
             if ('prepend' == $position) {
                 $helper->prependFile($attrs['src'], 'text/javascript', $attrs);
             } else {
