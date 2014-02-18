@@ -48,9 +48,7 @@ class ThemeModuleAsset extends AbstractRegistry
                     continue;
                 }
                 $sourceFolder = Pi::service('asset')->getSourcePath(
-                    $component . '/' . $module,
-                    '',
-                    $type
+                    $component . '/' . $module
                 );
                 if (!is_dir($sourceFolder)) {
                     continue;
@@ -110,22 +108,17 @@ class ThemeModuleAsset extends AbstractRegistry
      * {@inheritDoc}
      * @param string    $module
      * @param string    $theme
-     * @param string    $type   `asset` or `public`
      * @param bool|null $appendVersion
      */
     public function read(
         $module = '',
         $theme = '',
-        $type = 'asset',
         $appendVersion = null
     ) {
         //$this->cache = false;
         $module = $module ?: Pi::service('module')->current();
         $theme  = $theme ?: Pi::service('theme')->current();
-        if ('public' != $type) {
-            $type = 'asset';
-        }
-        $options = compact('theme', 'type');
+        $options = compact('theme');
         if (null !== $appendVersion) {
             $options['v'] = (bool) $appendVersion;
         }
@@ -144,8 +137,7 @@ class ThemeModuleAsset extends AbstractRegistry
         $module = $module ?: Pi::service('module')->current();
         $theme  = $theme ?: Pi::service('theme')->current();
         $this->clear($theme);
-        $this->read($module, $theme, 'asset');
-        $this->read($module, $theme, 'public');
+        $this->read($module, $theme);
 
         return true;
     }

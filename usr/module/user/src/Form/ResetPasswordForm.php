@@ -24,8 +24,8 @@ class ResetPasswordForm extends BaseForm
     /**
      * Constructor
      *
-     * @param null|string|int $name Optional name for the element
-     * @param Account $user User account row
+     * @param string|int $name Optional name for the element
+     * @param string            $type
      */
     public function __construct($name = null, $type = null)
     {
@@ -59,6 +59,11 @@ class ResetPasswordForm extends BaseForm
         $this->add(array(
             'name'  => 'security',
             'type'  => 'csrf',
+        ));
+
+        $this->add(array(
+            'name'  => 'token',
+            'type'  => 'hidden',
         ));
 
         $this->add(array(

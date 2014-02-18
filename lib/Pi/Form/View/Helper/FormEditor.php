@@ -11,7 +11,6 @@
 namespace Pi\Form\View\Helper;
 
 use Pi\Editor\Factory as EditorFactory;
-//use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 use Zend\Form\View\Helper\AbstractHelper;

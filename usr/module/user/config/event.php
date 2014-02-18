@@ -15,6 +15,18 @@
 return array(
     // Event list
     'event'    => array(
+        // Login
+        'user_login' => array(
+            // title
+            'title' => __('User logged in'),
+        ),
+
+        // Logout
+        'user_logout' => array(
+            // title
+            'title' => __('User logged out'),
+        ),
+
         // Register user event
         'user_register' => array(
             // title
@@ -85,18 +97,6 @@ return array(
         'role_remove' => array(
             // title
             'title' => __('Role removed'),
-        ),
-
-        // Login
-        'user_login' => array(
-            // title
-            'title' => __('User logged in'),
-        ),
-
-        // Logout
-        'user_logout' => array(
-            // title
-            'title' => __('User logged out'),
         ),
     ),
 

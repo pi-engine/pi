@@ -64,7 +64,8 @@ class IndexController extends FeedController
                     'controller'    => $row->controller,
                     'action'        => $row->action,
                     'params'        => empty($row->params)
-                        ? array() : parse_str($row->params)
+                            ? array()
+                            : parse_str($row->params)
                 )
             );
 

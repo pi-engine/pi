@@ -25,7 +25,3 @@ License
 help
 text
 Help
-
-sitemap
-html
-Sitemap

@@ -31,9 +31,11 @@ foreach ($elements['active'] as $element) {
     $isEmptyControl = in_array($type, $emptyControl);
     $isCheckbox = $type == 'checkbox';
     $desc = $element->getAttribute('description');
-    
-    if (!$isEmptyControl && !$element->getAttribute('class')) {
-        $element->setAttribute('class', 'form-control');
+
+    if (!$isEmptyControl) {
+        $class      = $element->getAttribute('class');
+        $attrClass  = 'form-control' . ($class ? ' ' . $class : '');
+        $element->setAttribute('class', $attrClass);
     }
     $rendered = sprintf(
         '<div class="form-group%s"><label class="col-sm-3 col-lg-2 control-label">%s</label>',

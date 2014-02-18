@@ -15,6 +15,10 @@ use Pi;
 /**
  * Helper for loading Bootstrap files
  *
+ * Theme specific bootstrap customization is supported with file skeleton
+ * `usr/theme/<theme-name>/asset/vendor/bootstrap/css/bootstrap.min.css`
+ *
+ *
  * Usage inside a phtml template
  *
  * ```
@@ -70,19 +74,34 @@ class Bootstrap extends AssetCanonize
         $bootstrap = 'css/bootstrap.min.css';
 
         if (!static::$rootLoaded) {
-            $files = array(
-                $bootstrap  => $this->canonizeFile($bootstrap),
-            ) + $files;
-            static::$rootLoaded = true;
-        } else {
-            if (isset($files[$bootstrap])) {
-                unset($files[$bootstrap]);
+            $file = static::DIR_ROOT . '/' . $bootstrap;
+
+            // Lookup in theme custom bootstrap
+            $theme  = Pi::service('theme')->current();
+            $custom = Pi::service('asset')->getAssetPath('theme/' . $theme, $file);
+            if (is_readable($custom)) {
+                $url = Pi::service('asset')->getThemeAsset($file, $theme,  $appendVersion);
+            // Load original bootstrap
+            } else {
+                $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             }
+            $attrs = $this->canonizeFile($bootstrap);
+            $attrs['href'] = $url;
+            $position = isset($attrs['position']) ? $attrs['position'] : 'append';
+            if ('prepend' == $position) {
+                $this->view->headLink()->prependStylesheet($attrs);
+            } else {
+                $this->view->headLink()->appendStylesheet($attrs);
+            }
+            static::$rootLoaded = true;
+        }
+        if (isset($files[$bootstrap])) {
+            unset($files[$bootstrap]);
         }
 
         foreach ($files as $file => $attrs) {
             $file = static::DIR_ROOT . '/' . $file;
-            $url = Pi::service('asset')->getStaticUrl($file, $appendVersion);
+            $url = Pi::service('asset')->getPublicUrl($file, $appendVersion);
             $position = isset($attrs['position'])
                 ? $attrs['position'] : 'append';
             if ('css' == $attrs['ext']) {
@@ -93,7 +112,6 @@ class Bootstrap extends AssetCanonize
                     $this->view->headLink()->appendStylesheet($attrs);
                 }
             } else {
-                $this->view->jQuery();
                 if ('prepend' == $position) {
                     $this->view->headScript()
                         ->prependFile($url, 'text/javascript', $attrs);

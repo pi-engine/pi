@@ -11,7 +11,7 @@ angular
     .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
     .constant('config', {
     	urlRoot: '<?php echo $this->url('', array('module' => $module)) . $controller . '/'; ?>',
-    	assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+    	assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
         data: <?php echo json_encode($data); ?>,
     	t: {
             INSTALLED_WIDGETS: '<?php echo _a('Installed widgets'); ?>',

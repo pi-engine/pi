@@ -38,7 +38,7 @@ class IndexController extends ActionController
             ),
             array(
                 'query'      => array(
-                    'redirect'   => $urlRedirect,
+                    'redirect'   => rawurlencode($urlRedirect),
                 ),
             )
         );

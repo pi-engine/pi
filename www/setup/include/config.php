@@ -71,29 +71,19 @@ $configs['paths'] = array(
         'path'  => array('../usr', 'usr'),
         'url'   => false,
     ),
-    'asset'         => array(
-        'path'  => array('asset', '../asset'),
-        'url'   => array(
-            '%www/asset',
-            'http://asset.' . preg_replace('/^(www\.)/i', '',
-                                           $_SERVER['HTTP_HOST']),
-        ),
-    ),
     // To remove?
     'static'        => array(
         'path'  => array('static', '../static'),
         'url'   => array(
             '%www/static',
-            'http://static.' . preg_replace('/^(www\.)/i', '',
-                                            $_SERVER['HTTP_HOST']),
+            'http://static.' . preg_replace('/^(www\.)/i', '', $_SERVER['HTTP_HOST']),
         ),
     ),
     'upload'        => array(
         'path'  => array('upload', '../upload'),
         'url'   => array(
             '%www/upload',
-            'http://upload.' . preg_replace('/^(www\.)/i', '',
-                                            $_SERVER['HTTP_HOST']),
+            'http://upload.' . preg_replace('/^(www\.)/i', '', $_SERVER['HTTP_HOST']),
         ),
     ),
 );
@@ -103,17 +93,12 @@ $configs['paths'] = array(
 $configs['skip_url_validate'] = false;
 
 // Writable files and directories prior to installation
-$configs['writable']['www'] = array('public', '.htaccess', 'boot.php');
-// For non-apache server
-//$configs['writable']['www'] = array('boot.php');
+$configs['writable']['www'] = array('asset', '.htaccess', 'boot.php');
 $configs['writable']['var'] = '';
-$configs['writable']['asset'] = '';
 $configs['writable']['upload'] = '';
 
 // Readonly files and directories after installation
 $configs['readonly']['www'] = array('.htaccess', 'boot.php');
-//$configs['readonly']['var'] = array('config', 'cache', 'log');
-//$configs['readonly']['asset'] = array();
 
 // DB config for DSN
 $configs['database']['charset'] = 'utf8';

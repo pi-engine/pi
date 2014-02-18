@@ -1,6 +1,7 @@
 <?php
 // Load translation data
-$this->i18nTheme('default', 'default');
+$this->i18nTheme('default');
+
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
     pi::url('static/js/html5shiv.js') => array(
@@ -10,52 +11,60 @@ $this->js(array(
         'conditional' => 'lt IE 9'
     ),
 ));
-/*
- * Load Bootstrap css by Twitter Team, auto load jquery
- * This code should written in every theme, As much of module code
- * need bootstrap.js, bootstrap.css, fontawesome.css
- */
+
+// Load jQuery
+$this->jquery();
+
+// Load Bootstrap css/js and font-awesome
 $this->bootstrap(array(
     'js/bootstrap.min.js',
     'font-awesome/css/font-awesome.min.css'
 ));
-// Load front.css
-$this->css($this->assetTheme('css/front.css'));
-// Print css
-$this->css(
-    $this->assetTheme('css/print.css'),
-    array('media' => "print")
-);
+
+// Load front.css/print.css
+$this->css(array(
+    $this->assetTheme('css/front.css'),
+    $this->assetTheme('css/print.css') => array('media' => "print")
+));
+
+// Apple icons
 // Apple icon for iphone
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'href'  => $this->assetTheme('image/touch-icon-iphone.png')
-), 'PREPEND');
+));
 // Apple icon for ipad
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '72x72',
     'href'  => $this->assetTheme('image/touch-icon-ipad.png')
-), 'PREPEND');
+));
 // Apple icon for iphone retina
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
-), 'PREPEND');
+));
 // Apple icon for ipad retina
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
-), 'PREPEND');
+));
+
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon(),
 ));
+
+// Load google analytics code
+$this->ga();
+
+$module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -63,23 +72,19 @@ $this->headLink(array(
     <meta charset="<?php echo $charset; ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
-<body id="pi-<?php echo Pi::service('module')->current(); ?>" class="pi-locale-<?php echo $locale; ?>">
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
     <!-- Header: brand, slogan, user bar -->
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <h1 class="hide">
                 <?php echo _escape($sitename . ' - ' . $slogan); ?>
-                <!-- Code for rendering logo
-                <img src="<?php echo $this->logo(); ?>" alt="<?php echo _escape($sitename); ?>">
-                -->
-
             </h1>
             <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
                title="<?php echo _escape($slogan); ?>">
                <?php echo _escape($sitename); ?>
             </a>
             <?php
-            echo $this->widget('system-user-bar');
+            echo $this->widget('system-user-bar', array('type' => 'js'));
             ?>
         </div>
     </div>
@@ -92,7 +97,7 @@ $this->headLink(array(
             </div>
             <div class="navbar-collapse collapse">
                 <?php
-                $navigation = $this->nav('front'/*, array('cache_ttl' => null, 'cache_level' => 'role')*/);
+                $navigation = $this->nav('front');
                 echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav');
                 ?>
                 <div class="navbar-form navbar-left">
@@ -171,13 +176,16 @@ $this->headLink(array(
                     </div>
                 </div>
                 <?php } ?>
-                <!-- Module zone -->
+
+                <!-- Module content starts -->
                 <?php if (!empty($content)) { ?>
-                <div class="pi-module-content">
+                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
                     <?php echo $content; ?>
                 </div>
                 <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
                 <?php } ?>
+                <!-- Module content ends -->
+
                 <?php if (isset($blocks['5']) || isset($blocks['6'])) { ?>
                 <div class="row">
                     <div class="col-md-6 pi-zone-5">
@@ -230,25 +238,33 @@ $this->headLink(array(
     </div>
 
     <!-- Footer: sitelink -->
-    <div class="pi-footer">
-        <div class="container pi-footer-container">
-            <div class="text-center">
-                <a rel="license" href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                    &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                </a>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Powered by Pi Engine
-                </a>
-                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                    Design of Pi Engine
-                </a>
-                <span title="<?php _e('Execution time'); ?>">
-                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
-                </span>
-            </div>    
+    <div class="pi-footer text-center">
+        <div class="container">
+            <ul class="pi-footer-links muted">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Design of Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+
+
+                <i class="fa fa-spinner fa-spin" title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
+            </ul>
         </div>    
     </div>
-    <?php echo $this->assemble('footScript', 4); ?>
-    <script src="<?php echo $this->assetTheme('js/front.js'); ?>"></script>
+    <?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>
 </body>
 </html>

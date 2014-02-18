@@ -34,7 +34,6 @@ class Asset extends AbstractHelper
      *
      * @param   string    $component
      * @param   string    $file
-     * @param   bool      $isPublic
      * @param   bool|null $appendVersion
      *
      * @return  string
@@ -42,15 +41,13 @@ class Asset extends AbstractHelper
     public function __invoke(
         $component,
         $file,
-        $isPublic = false,
         $appendVersion = null
     ) {
-        $type = $isPublic ? 'public' : 'asset';
+        //$type = $isPublic ? 'public' : 'asset';
 
         $result = Pi::service('asset')->getAssetUrl(
             $component,
             $file,
-            $type,
             $appendVersion
         );
 

@@ -30,6 +30,7 @@ class Event extends AbstractRegistry
             'event'     => '',
             'listener'  => array(),
         );
+        /*
         $modelEvent = Pi::model('event');
         $count = $modelEvent->count(array(
             'module'    => $options['module'],
@@ -39,6 +40,7 @@ class Event extends AbstractRegistry
         if (!$count) {
             return $result;
         }
+        */
         $result['event'] = $options['module'] . '-' . $options['event'];
 
         $modelListener = Pi::model('event_listener');

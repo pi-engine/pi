@@ -17,7 +17,7 @@ use Zend\View\Helper\AbstractHelper;
  * Helper for building favicon URL
  *
  * Look up logo in following locations:
- *  - static/custom/image/<favicon-name>
+ *  - asset/custom/image/<favicon-name>
  *  - www/<favicon-name>
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -34,7 +34,7 @@ class Favicon extends AbstractHelper
     public function __invoke($name = '')
     {
         $name = $name ?: 'favicon.ico';
-        $customFile = 'public/custom/image/' . $name;
+        $customFile = 'asset/custom/image/' . $name;
         if (file_exists(Pi::path($customFile))) {
             $src = Pi::url($customFile);
         } else {

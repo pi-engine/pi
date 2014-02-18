@@ -134,20 +134,18 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-.pi-footer-container {
-  padding: 15px 0;
+  margin: 20px 0;
   border-top: 1px solid #ddd;
 }
 
-.pi-footer a {
-  color: #333;
-  margin-right: 10px;
+.pi-footer-links {
+    padding-top: 10px;
+    padding-left: 0;
+    color: #333;
 }
-
-.pi-footer a:hover {
-  color: #0088CC;
+.pi-footer-links li {
+    display: inline;
+    padding: 0 2px;
 }
 
 #pi-logger-output {

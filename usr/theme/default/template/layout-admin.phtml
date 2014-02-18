@@ -1,6 +1,7 @@
 <?php
 // Load translation data
-$this->i18nTheme('default', 'default');
+$this->i18nTheme('default');
+
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
     pi::url('static/js/html5shiv.js') => array(
@@ -10,18 +11,30 @@ $this->js(array(
         'conditional' => 'lt IE 9'
     ),
 ));
+
+// Load jQuery
+$this->jquery();
+
+// Load Bootstrap css/js and font-awesome
 $this->bootstrap(array(
-    'js/bootstrap.js',
-    'font-awesome/css/font-awesome.css'
+    'js/bootstrap.min.js',
+    'font-awesome/css/font-awesome.min.css'
 ));
-$this->css($this->assetTheme('css/admin.css'));
+
+// Load front.css/print.css
+$this->css(array(
+    $this->assetTheme('css/admin.css'),
+    $this->assetTheme('css/print.css') => array('media' => "print")
+));
+
 // Explicitly load favicon
 // @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon()
 ));
-$module = $this->routeMatch('module');
+
+$module = Pi::service('module')->current();
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -85,21 +98,34 @@ $module = $this->routeMatch('module');
             <div ng-view></div>
             <?php echo $content; ?>
         </article>
+
         <footer class="pi-footer">
-            <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-            </a>
-             <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                Powered by Pi Engine
-            </a>
-            <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                Design of Pi Engine
-            </a>
-            <div style="font-size: 80%; padding-right: 10px;" class="pull-right" title="<?php _e('Execution time'); ?>">
-                <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
-            </div>
+            <ul class="pi-footer-links muted">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Design of Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+
+                <span title="<?php _e('Execution time'); ?>">
+                    <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
+                </span>
+            </ul>
         </footer>
     </section>
-    <script src="<?php echo $this->assetTheme('js/admin.js'); ?>"></script>
+    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
 </body>
 </html>

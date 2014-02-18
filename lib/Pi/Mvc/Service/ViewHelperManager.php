@@ -127,6 +127,9 @@ class ViewHelperManager extends HelperPluginManager
         'links'                 => 'View\Helper\Navigation\Links',
         'menu'                  => 'View\Helper\Navigation\Menu',
         'sitemap'               => 'View\Helper\Navigation\Sitemap',
+
+        // Pi helpers
+        'jquery'                => 'View\Helper\JQuery',
     );
 
     /**

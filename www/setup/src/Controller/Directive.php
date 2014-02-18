@@ -25,7 +25,6 @@ class Directive extends AbstractController
     const DIR_CACHE     = 'cache';
     const DIR_LOG       = 'log';
     const DIR_VENDOR    = 'vendor';
-    //const DIR_CUSTOM_MODULE    = 'custom';
 
     protected $host;
 
@@ -391,14 +390,6 @@ SCRIPT;
                 _s('Website location (URL)'),
                 _s('Main URL that will be used to access your Pi Engine'),
             ),
-            'path_asset'    => array(
-                _s('Asset file directory'),
-                _s('Physical path to asset file directory without trailing slash.'),
-            ),
-            'url_asset'     => array(
-                _s('URL of asset file root directory'),
-                _s('URL that will be used to access asset files.'),
-            ),
             'path_upload'   => array(
                 _s('Upload directory'),
                 _s('Physical path to upload directory without trailing slash. A relative path will be allocated in PI root directory; PHP disabled.'),
@@ -481,9 +472,9 @@ HTML;
         $content = '';
         // Advanced item elements
         $itemList = array(
-            'path_lib', 'path_var', 'path_usr', 'path_asset',
-            'url_asset', 'path_upload', 'url_upload', 'path_static',
-            'url_static'
+            'path_lib', 'path_var', 'path_usr',
+            //'path_asset', 'url_asset',
+            'path_upload', 'url_upload', 'path_static', 'url_static'
         );
         foreach ($itemList as $item) {
             $content .= $displayItem($item);

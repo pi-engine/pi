@@ -19,11 +19,12 @@ use Module\Page\Form\PageFilter;
  */
 class IndexController extends ActionController
 {
+    /*
     protected $pageColumns = array(
         'name', 'title', 'slug', 'content', 'markup', 'active',
         'user', 'time_created', 'seo_title', 'seo_keywords', 'seo_description'
     );
-
+    */
     /**
      * List of custom pages
      */
@@ -68,11 +69,13 @@ class IndexController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+                /*
                 foreach (array_keys($values) as $key) {
                     if (!in_array($key, $this->pageColumns)) {
                         unset($values[$key]);
                     }
                 }
+                */
                 if (empty($values['name'])) {
                     $values['name'] = null;
                 }
@@ -111,8 +114,18 @@ class IndexController extends ActionController
         } else {
             $markup = $this->params('type', 'text');
             $form = new PageForm('page-form', $markup);
-            $form->setAttribute('action',
-                                $this->url('', array('action' => 'add')));
+            $form->setAttribute(
+                'action',
+                $this->url('', array('action' => 'add'))
+            );
+            if ('phtml' == $markup) {
+                $template = $this->params('template');
+                if ($template) {
+                    $form->setData(array(
+                        'content'   => $template,
+                    ));
+                }
+            }
             $message = '';
         }
 
@@ -147,11 +160,13 @@ class IndexController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+                /*
                 foreach (array_keys($values) as $key) {
                     if (!in_array($key, $this->pageColumns)) {
                         unset($values[$key]);
                     }
                 }
+                */
                 if (empty($values['name'])) {
                     $values['name'] = null;
                 }

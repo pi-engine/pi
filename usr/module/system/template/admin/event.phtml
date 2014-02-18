@@ -9,7 +9,7 @@ angular
     .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'event')); ?>',
-        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', true, false); ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
         name: '<?php echo $name ?>',
         events: <?php echo json_encode($events); ?>,
         listeners: <?php echo json_encode(array_values($listeners)); ?>,

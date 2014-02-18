@@ -1,6 +1,4 @@
 <?php
-use Zend\EventManager\Event;
-
 namespace Module\Page\Validator;
 
 use Pi;
@@ -10,12 +8,14 @@ class PageNameDuplicate extends AbstractValidator
 {
     const TAKEN        = 'pageExists';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Page name already exists',
-    );
+    public function __construct()
+    {
+        $this->messageTemplates = array(
+            self::TAKEN => _a('Page name already exists.'),
+        );
+
+        parent::__construct();
+    }
 
     /**
      * Page name validate

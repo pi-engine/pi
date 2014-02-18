@@ -23,6 +23,7 @@ class DemoController extends ActionController
         $id     = _get('id', 'int') ?: rand(1, 5);
         $page   = _get('page', 'int') ?: 1;
         $paginator = Paginator::factory(100, array(
+            'limit' => 10,
             'page'  => $page,
             'url_options'           => array(
                 'params'        => array(

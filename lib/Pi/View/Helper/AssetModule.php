@@ -33,7 +33,6 @@ class AssetModule extends AbstractHelper
      *
      * @param   string      $file
      * @param   string      $module
-     * @param   bool        $isPublic
      * @param   bool|null   $appendVersion
      *
      * @return  string
@@ -41,14 +40,13 @@ class AssetModule extends AbstractHelper
     public function __invoke(
         $file,
         $module = '',
-        $isPublic = false,
         $appendVersion = null
     ) {
-        $type = $isPublic ? 'public' : 'asset';
+        //$type = $isPublic ? 'public' : 'asset';
         $module = $module ?: Pi::service('module')->current();
 
         // Check if customized asset available in current theme
-        $customAssets = Pi::registry('theme_module_asset')->read($module, '', $type);
+        $customAssets = Pi::registry('theme_module_asset')->read($module);
         if (!empty($customAssets[$file])) {
             $result = $customAssets[$file];
         // Load original module asset
@@ -56,7 +54,6 @@ class AssetModule extends AbstractHelper
             $result = Pi::service('asset')->getModuleAsset(
                 $file,
                 $module,
-                $type,
                 $appendVersion
             );
         }

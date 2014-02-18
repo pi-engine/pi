@@ -55,5 +55,10 @@ class ResetPasswordFilter extends InputFilter
                 ),
             ),
         ));
+
+        $this->add(array(
+            'name'          => 'token',
+            'required'      => true,
+        ));
     }
 }

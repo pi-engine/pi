@@ -35,7 +35,7 @@ class Page extends Standard
     {
         $name = '';
         if ($path) {
-            if (false === ($pos = strpos($this->paramDelimiter, $path))) {
+            if (false !== ($pos = strpos($this->paramDelimiter, $path))) {
                 list($name, $path) = explode($this->paramDelimiter, $path, 2);
             } else {
                 $name = $path;

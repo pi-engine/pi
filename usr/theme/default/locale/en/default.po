@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2013-11-09 19:23+0800\n"
-"PO-Revision-Date: 2013-11-09 19:34+0800\n"
+"POT-Creation-Date: 2014-02-15 15:19+0800\n"
+"PO-Revision-Date: 2014-02-15 15:20+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -82,68 +82,16 @@ msgstr ""
 msgid "Please verify your request or visit later."
 msgstr ""
 
-#: C:\wamp\www\master\usr\theme\default/template/layout-admin.phtml:55
-msgid "Go to front"
+#: C:\wamp\www\master\usr\theme\default/template/layout-admin.phtml:53
+msgid "Front"
 msgstr ""
 
-#: C:\wamp\www\master\usr\theme\default/template/layout-admin.phtml:88
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:250
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:53
+#: C:\wamp\www\master\usr\theme\default/template/layout-admin.phtml:99
+#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:248
+#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:78
 msgid "Execution time"
 msgstr "Application Execution Time"
 
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:229
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:42
-msgid "Terms of use"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:230
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:43
-msgid "Privacy guidelines"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:231
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:44
-msgid "License"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:232
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:45
-msgid "About us"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:237
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:46
-msgid "Contact us"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:238
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:47
-msgid "Join us"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:239
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:48
-msgid "Help"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:240
-#: C:\wamp\www\master\usr\theme\default/template/layout-simple.phtml:49
-msgid "Sitemap"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/paginator.phtml:11
-msgid "First"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/paginator.phtml:15
-msgid "&lt; Previous"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/paginator.phtml:24
-msgid "Next &gt;"
-msgstr ""
-
-#: C:\wamp\www\master\usr\theme\default/template/paginator.phtml:28
-msgid "Last"
+#: C:\wamp\www\master\usr\theme\default/template/layout-front.phtml:111
+msgid "Home"
 msgstr ""

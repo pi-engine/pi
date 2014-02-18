@@ -1,0 +1,10 @@
+<?php
+$navigation = $this->nav('front');
+echo $navigation->menu();
+?>
+
+<div class="pull-right muted">
+    <span><?php echo $this->page('sitemap-feed', __('Sitemap feed'), array('target' => '_blank')); ?></span>
+    <span>·</span>
+    <span><?php echo $this->page('feed', __('News feed'), array('target' => '_blank')); ?></span>
+</div>

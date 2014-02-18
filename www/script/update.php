@@ -21,7 +21,8 @@ use Pi\Application\Installer\Module as ModuleInstaller;
  */
 
 // Pi boot with no engine bootup: current file is located in www/script/...
-require __DIR__ . '/../boot.php';
+$boot = dirname(dirname($_SERVER['SCRIPT_FILENAME'])) . '/boot.php';
+include $boot;
 
 // Only allowed under maintenance state
 if (!Pi::config('site_close')) {

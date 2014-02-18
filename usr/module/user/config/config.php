@@ -41,9 +41,25 @@ $category = array(
 $config = array(
     // General
     'list_limit' => array(
-        'title'  => _t('Number of items on list page.'),
-        'value'  => 10,
-        'filter' => 'int',
+        'title'         => _t('List limit'),
+        'description'   => _t('Number of items on list page.'),
+        'value'         => 20,
+        'filter'        => 'int',
+    ),
+
+    'email_expiration' => array(
+        'title'         => _t('Email expiration'),
+        'description'   => _t('Expiration time for email/password reset (in hours).'),
+        'value'         => 24,
+        'filter'        => 'number_int',
+    ),
+
+    'email_confirm'     => array(
+        'title'         => _t('Email confirmation'),
+        'description'   => _t('Email confirmation with token is required for email change.'),
+        'edit'          => 'checkbox',
+        'value'         => 1,
+        'filter'        => 'number_int',
     ),
 
     'require_profile_complete' => array(

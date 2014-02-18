@@ -1,5 +1,5 @@
 <?php
-$this->css($this->assetModule('admin/admin.css', 'system'));
+//$this->css($this->assetModule('admin/admin.css', 'system'));
 ?>
 <div class="table-responsive">
     <table class="table">
@@ -8,6 +8,7 @@ $this->css($this->assetModule('admin/admin.css', 'system'));
             <th><?php echo _a('Page title'); ?></th>
             <th style="width: 5%;"><?php echo _a('Name'); ?></th>
             <th style="width: 5%;"><?php echo _a('Slug'); ?></th>
+            <th style="width: 5%;"><?php echo _a('Type'); ?></th>
             <th style="width: 20%;"><?php echo _a('Time published'); ?></th>
             <th style="width: 20%;"><?php echo _a('Last Update'); ?></th>
             <th><?php echo _a('Action'); ?></th>
@@ -24,6 +25,9 @@ $this->css($this->assetModule('admin/admin.css', 'system'));
                 </td>
                 <td>
                     <?php echo _escape($page['slug']); ?>
+                </td>
+                <td>
+                    <?php echo _escape($page['markup']); ?>
                 </td>
                 <td>
                     <?php echo _date($page['time_created']); ?>

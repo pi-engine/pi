@@ -223,7 +223,7 @@ class AuthorController extends ActionController
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
-                'params'     => array_filter(array(
+                'params'        => array_filter(array(
                     'controller'    => 'author',
                     'action'        => 'list',
                     'name'          => $name,

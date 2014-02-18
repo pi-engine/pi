@@ -13,7 +13,8 @@
 //define('APPLICATION_ENV', 'production');
 
 // Pi boot with no engine bootup: current file is located in www/script/...
-include realpath('../boot.php');
+$boot = dirname(dirname($_SERVER['SCRIPT_FILENAME'])) . '/boot.php';
+include $boot;
 
 // Disable debugger message
 Pi::service('log')->mute();

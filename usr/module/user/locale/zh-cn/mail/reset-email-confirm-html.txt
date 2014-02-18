@@ -1,16 +1,16 @@
-[comment]Pi user system change email confirm mail[/comment]
+[comment]Pi user system change email success confirmation[/comment]
 
 [format]html[/format]
 
-[subject]Pi user system change email confirm mail[/subject]
+[subject]%site_name% Change Email Success Confirmation[/subject]
 
 [body]
-<div style="margin-bottom: 5px">Dear <strong>%username%</strong>:</div>
-<div style="margin: 5px">You email reset %old_email% to %new_email%</div>
-<div style="margin-top: 10px">
-    %site_adminname%<br />
-    %site_adminmail%<br />
+<p style="margin-bottom: 5px">Dear <strong>%username%</strong>:</p>
+
+<p style="margin-top: 5px">Your email address at %site_name% has been changed successfully from %old_email% to %new_email%.</p>
+
+<p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
-    <small>sn: %sn%</small>
-</div>
+</p>
+
 [/body]

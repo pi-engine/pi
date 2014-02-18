@@ -30,7 +30,6 @@ class Factory
         if (empty($type)) {
             $type = Pi::config('editor') ?: 'pi';
         }
-        $editor = '';
         switch ($type) {
             case 'html':
                 $editor = Pi::config('editor') ?: 'ckeditor';
@@ -48,9 +47,11 @@ class Factory
                 $editor = $type;
                 break;
         }
-        $editorFile = Pi::path('usr') . '/editor/' . $editor
-                    . '/src/Renderer.php';
-
+        $editorFile = sprintf(
+            '%s/editor/%s/src/Renderer.php',
+            Pi::path('usr'),
+            $editor
+        );
         if (file_exists($editorFile)) {
             include $editorFile;
         }

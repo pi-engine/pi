@@ -10,35 +10,35 @@
 return array(
     'category' => array(
         array(
-            'title' => __('Social'),
+            'title' => __('Social networking'),
             'name' => 'social'
         ),
     ),
     'item' => array(
         // Social
         'social_gplus' => array(
-            'category' => 'social',
-            'title' => __('Show Google Plus'),
-            'description' => '',
-            'edit' => 'checkbox',
-            'filter' => 'number_int',
-            'value' => 1
+            'category'      => 'social',
+            'title'         => _t('Enable Google Plus'),
+            'description'   => '',
+            'edit'          => 'checkbox',
+            'filter'        => 'number_int',
+            'value'         => 0
         ),
         'social_facebook' => array(
-            'category' => 'social',
-            'title' => __('Show facebook'),
-            'description' => '',
-            'edit' => 'checkbox',
-            'filter' => 'number_int',
-            'value' => 1
+            'category'      => 'social',
+            'title'         => _t('Enable Facebook'),
+            'description'   => '',
+            'edit'          => 'checkbox',
+            'filter'        => 'number_int',
+            'value'         => 0
         ),
         'social_twitter' => array(
-            'category' => 'social',
-            'title' => __('Show twitter'),
-            'description' => '',
-            'edit' => 'checkbox',
-            'filter' => 'number_int',
-            'value' => 1
+            'category'      => 'social',
+            'title'         => __('Enable Twitter'),
+            'description'   => '',
+            'edit'          => 'checkbox',
+            'filter'        => 'number_int',
+            'value'         => 0
         ),
     ),
 );

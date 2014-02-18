@@ -4,7 +4,8 @@
     	<span class="text-info" style="margin-right: 10px;"><?php echo _a('Page content type:'); ?></span>
     	<a class="btn<?php if ('text' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="text" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'text')); ?>" title="<?php echo _a('Only plaintext content is allowed.'); ?>"><?php echo _a('Text'); ?></a>
     	<a class="btn<?php if ('html' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="html" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'html')); ?>" title="<?php echo _a('HTML tags allowed in content.'); ?>"><?php echo _a('HTML'); ?></a>
-    	<a class="btn<?php if ('markdown' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="markdown" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'markdown')); ?>" title="<?php echo _a('Markdown syntax allowed in content.'); ?>"><?php echo _a('Markdown'); ?></a>
+        <a class="btn<?php if ('markdown' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="markdown" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'markdown')); ?>" title="<?php echo _a('Markdown syntax allowed in content.'); ?>"><?php echo _a('Markdown'); ?></a>
+        <a class="btn<?php if ('phtml' == $markup) echo ' btn-primary'; ?>" rel="tooltip" data-name="phtml" href="<?php echo $this->url('', array('action' => 'add', 'type' => 'phtml')); ?>" title="<?php echo _a('PHTML template.'); ?>"><?php echo _a('PHTML'); ?></a>
 	</div>
 	<?php include $this->templateComponent('forms'); ?>
 </div>

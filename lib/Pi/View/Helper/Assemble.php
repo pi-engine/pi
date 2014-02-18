@@ -12,10 +12,9 @@ namespace Pi\View\Helper;
 
 use Pi;
 use Zend\View\Helper\AbstractHelper;
-use Zend\View\Renderer\RendererInterface as Renderer;
 
 /**
- * Helper for page element rendering assemble
+ * Helper for page element rendering assemble in theme
  *
  * Usage inside a theme phtml template:
  *
@@ -77,18 +76,24 @@ class Assemble extends AbstractHelper
         $configGeneral = Pi::config('', 'system', 'general');
 
         // Set Google Analytics scripts in case available
+        /*
         if ($configGeneral['ga_account']) {
-            $this->view->footScript()
-                ->appendScript($this->view->ga($configGeneral['ga_account']));
+            $this->view->headScript()->appendScript(
+                $this->view->ga($configGeneral['ga_account'])
+            );
         }
+        */
         // Set foot scripts in case available
         if ($configGeneral['foot_script']) {
             if (false !== stripos($configGeneral['foot_script'], '<script ')) {
-                $this->view->footScript()
-                    ->appendScript($configGeneral['foot_script'], 'raw');
+                $this->view->footScript()->appendScript(
+                    $configGeneral['foot_script'],
+                    'raw'
+                );
             } else {
-                $this->view->footScript()
-                    ->appendScript($configGeneral['foot_script']);
+                $this->view->footScript()->appendScript(
+                    $configGeneral['foot_script']
+                );
             }
         }
         unset($configGeneral['ga_account'], $configGeneral['foot_script']);

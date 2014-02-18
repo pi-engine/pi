@@ -28,7 +28,6 @@ class Wizard
     protected $pageIndex = null;
 
     protected $persist;
-    //protected $persistentData = array();
     protected $locale = '';
     protected $charset = 'UTF-8';
     protected $pages = array();

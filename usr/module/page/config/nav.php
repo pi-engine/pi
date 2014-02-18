@@ -25,14 +25,14 @@ return array(
 
                 'pages' => array(
                     'edit'   => array(
-                        'label' => _t('Edit page'),
+                        'label'         => _t('Edit page'),
                         'route'         => 'admin',
                         'controller'    => 'index',
                         'action'        => 'edit',
                         'visible'       => 0,
                     ),
                     'delete'   => array(
-                        'label' => _t('Delete page'),
+                        'label'         => _t('Delete page'),
                         'route'         => 'admin',
                         'controller'    => 'index',
                         'action'        => 'delete',
@@ -41,10 +41,16 @@ return array(
                 ),
             ),
             'add'   => array(
-                'label' => _t('Add a page'),
+                'label'         => _t('Add a page'),
                 'route'         => 'admin',
                 'controller'    => 'index',
                 'action'        => 'add',
+            ),
+            'template'  => array(
+                'label'         => _t('Template list'),
+                'route'         => 'admin',
+                'controller'    => 'template',
+                'action'        => 'index',
             ),
         ),
 

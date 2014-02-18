@@ -10,11 +10,11 @@
 /**
  * Meta for Pi Theme
  *
- * A strict HTML 5 theme inherited from Default Theme
+ * Theme inherited from Default Theme
  */
 return array(
     // Version
-    'version'       => '1.0.1',
+    'version'       => '1.1.0',
     // Type of layouts available in the theme
     'type'          => 'front',
 
@@ -31,7 +31,7 @@ return array(
     'license'       => 'Creative Common License'
                      . ' http://creativecommons.org/licenses/by/3.0/',
     // Optional description
-    'description'   => 'Strict HTML5 compliant theme.',
+    'description'   => 'Demo for theme inheritance and customization.',
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => 'default',
     // Supported browsers

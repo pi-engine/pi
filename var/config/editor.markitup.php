@@ -3,7 +3,7 @@
 
 return array(
     'options'   => array(
-        'skin'      => 'simple',
+        'skin'      => 'pi',
         'set'       => 'html',
         'sets'      => array(
             'markdown'  => array(

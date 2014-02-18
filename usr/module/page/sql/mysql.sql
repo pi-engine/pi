@@ -8,13 +8,16 @@ CREATE TABLE `{page}` (
   `time_created`    int(10)                 unsigned    NOT NULL default '0',
   `time_updated`    int(10)                 unsigned    NOT NULL default '0',
   `active`          tinyint(1)              NOT NULL default '1',
+  -- Page content, or template name for phtml type
   `content`         text,
+  -- Markup type: text, html, markdown, phtml
   `markup`          varchar(64)             NOT NULL default 'text',
+  -- SEO slug for URL
   `slug`            varchar(64)             default NULL,
   `clicks`          int(10)                 unsigned    NOT NULL default '0',
-  `seo_title`       varchar(255)            NOT NULL,
-  `seo_keywords`    varchar(255)            NOT NULL,
-  `seo_description` varchar(255)            NOT NULL,
+  `seo_title`       varchar(255)            NOT NULL default '',
+  `seo_keywords`    varchar(255)            NOT NULL default '',
+  `seo_description` varchar(255)            NOT NULL default '',
  
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`),

@@ -145,21 +145,19 @@ class IndexController extends ActionController
                 );
             });
 
-            $paginator = Paginator::factory(intval($count));
-            $paginator->setItemCountPerPage($limit);
-            $paginator->setCurrentPageNumber($page);
-            $paginator->setUrlOptions(array(
-                'page_param'    => 'p',
-                'router'        => $this->getEvent()->getRouter(),
-                'route'         => $this->getEvent()
-                                        ->getRouteMatch()
-                                        ->getMatchedRouteName(),
-                'params'        => array(
-                    'module'        => $this->getModule(),
-                    'controller'    => 'index',
-                    'action'        => 'index',
+            $paginator = Paginator::factory(intval($count), array(
+                'page'          => $page,
+                'limit'         => $limit,
+                'url_options'   => array(
+                    'page_param' => 'p',
+                    'params'        => array(
+                        'module'        => $this->getModule(),
+                        'controller'    => 'index',
+                        'action'        => 'index',
+                    ),
                 ),
             ));
+
             $this->view()->assign('paginator', $paginator);
             $this->view()->assign('uid', $userId);
         } else {

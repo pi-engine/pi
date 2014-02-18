@@ -28,8 +28,6 @@ return array(
         'www'       => '%www_uri%',
         // URI to access uploads directory
         'upload'    => '%upload_uri%',
-        // URI to access assets directory
-        'asset'     => '%asset_uri%',
         // URI to access static files directory
         'static'    => '%static_uri%',
     ),
@@ -58,8 +56,6 @@ return array(
         // Application specific paths
         // Path to uploads directory
         'upload'    => '%upload_path%',
-        // Path to assets directory
-        'asset'     => '%asset_path%',
         // User data directory
         'var'       => '%var_path%',
 
@@ -74,9 +70,9 @@ return array(
 
     // Paths dependent on upper paths
     'directory' => array(
-        'public'    => array(
+        'asset'     => array(
             'parent'    => 'www',
-            'folder'    => 'public',
+            'folder'    => 'asset',
         ),
     ),
 );

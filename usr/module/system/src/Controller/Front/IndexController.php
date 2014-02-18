@@ -52,45 +52,6 @@ class IndexController extends ActionController
     }
 
     /**
-     * For page transition jump
-     */
-    public function ____jumpAction()
-    {
-        $this->view()->setTemplate('jump')->setLayout('layout-simple');
-        //$params = Pi::service('session')->jump->params;
-        $params = array();
-        if (isset($_SESSION['PI_JUMP'])) {
-            $params = $_SESSION['PI_JUMP'];
-            unset($_SESSION['PI_JUMP']);
-        }
-        if (empty($params['time'])) {
-            $params['time'] = 3;
-        }
-        if (empty($params['url'])) {
-            $params['url'] = Pi::url('www');
-        }
-        //vd($params);
-        $this->view()->assign($params);
-    }
-
-    /**
-     * Generate sitemap
-     */
-    public function sitemapAction()
-    {
-        // Disable debugger message
-        Pi::service('log')->mute();
-
-        $this->view()->setTemplate(false)->setLayout('layout-content');
-        $sitemapConfig = Pi::registry('navigation')->read('sitemap')
-            ?: Pi::registry('navigation')->read('front');
-        $sitemap = $this->view()->navigation($sitemapConfig)->sitemap();
-        $content = $sitemap->setFormatOutput(true)->render();
-
-        return $content;
-    }
-
-    /**
      * Get user data
      */
     public function userAction()

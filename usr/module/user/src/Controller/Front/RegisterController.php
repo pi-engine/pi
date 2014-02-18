@@ -492,15 +492,15 @@ class RegisterController extends ActionController
             'link'      => $link,
         );
         // Load from HTML template
-        $template = Pi::service('mail')->template('activation-html', $params);
-        $subject = $template['subject'];
-        $body = $template['body'];
-        $type = $template['format'];
+        $template   = Pi::service('mail')->template('activation-html', $params);
+        $subject    = $template['subject'];
+        $body       = $template['body'];
+        $type       = $template['format'];
 
         // Send email
-        $message = Pi::service('mail')->message($subject, $body, $type);
+        $message    = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($data['email']);
-        $transport = Pi::service('mail')->transport();
+        $transport  = Pi::service('mail')->transport();
         try {
             $transport->send($message);
             $result = true;

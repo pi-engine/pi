@@ -87,24 +87,6 @@ class ApplicationController extends ActionController
         $totalCount = $model->count($where);
 
         // Paginator
-        /*
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-            ->setCurrentPageNumber($page)
-            ->setUrlOptions(array(
-                'page_param' => 'p',
-                'router'     => $this->getEvent()->getRouter(),
-                'route'      => $this->getEvent()
-                    ->getRouteMatch()
-                    ->getMatchedRouteName(),
-                'params'     => array_filter(array(
-                    'module'        => $module,
-                    'controller'    => 'application',
-                    'action'        => 'list',
-                    'name'          => $name,
-                )),
-            ));
-        */
         $paginator = Paginator::factory($totalCount, array(
             'page'          => $page,
             'url_options'   => array(

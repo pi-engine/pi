@@ -14,12 +14,18 @@ use Pi;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Helper for load Google analytics code
+ * Helper for register/render Google analytics code
  *
  * Usage inside a phtml template
  *
  * ```
- *  $this->ga('UA-XXXXX-X');
+ *  // Specific mode
+ *  $this->ga('UA-XXXXX-X', 'pi-engine.tld');
+ *
+ *  // Or specific mode
+ *  $this->ga('UA-XXXXX-X; pi-engine.tld');
+ *
+ *  // Default mode
  *  $this->ga();
  * ```
  *
@@ -30,33 +36,41 @@ class Ga extends AbstractHelper
     /**
      * Load GA scripts
      *
-     * @param   string  $account
-     * @return  string
+     * @param   string  $trackingId
+     * @param   string  $host
+     *
+     * @return  $this
      */
-    public function __invoke($account = '')
+    public function __invoke($trackingId = '', $host = '')
     {
-        $gaScripts = <<<'EOT'
-    // GA account ID
-    var userAccount = '%s';
+        if (!$trackingId) {
+            $trackingId   = Pi::config('ga_account');
+        }
+        $hostConfig = '';
+        if (false !== ($pos = strpos($trackingId, ';'))) {
+            $hostConfig = trim(substr($trackingId, $pos + 1));
+            $trackingId = trim(substr($trackingId, 0, $pos));
+        }
+        if (!$trackingId) {
+            return '';
+        }
+        if (!$host) {
+            $host = $hostConfig ?: $_SERVER['HTTP_HOST'];
+        }
 
-    // Google Analytics for Pi Engine, don't change below
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', userAccount]);
-    _gaq.push(['_trackPageview']);
+        $gaScripts =<<<'EOT'
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    (function() {
-        var ga = document.createElement('script');
-        ga.type = 'text/javascript';
-        ga.async = true;
-        ga.src = ('https:' == document.location.protocol
-            ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ga, s);
-    })();
+  ga('create', '%s', '%s');
+  ga('send', 'pageview');
 EOT;
-        $account = $account ?: Pi::config('ga_account');
-        $scripts = sprintf($gaScripts, $account);
 
-        return $scripts;
+        $scripts = sprintf($gaScripts, $trackingId, $host);
+        $this->view->headScript()->appendScript($scripts);
+
+        return $this;
     }
 }
