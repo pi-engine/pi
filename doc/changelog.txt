@@ -7,10 +7,18 @@ Jan 1st, 2014
 * Added built-in support for module custom with build metadata versioning
 * Added built-in support for module and theme custom asset
 * Simplified config API with `Pi::config()`
-* Moved custom static to `public` folder and entry scripts to `script` folder for better deployment
+* Merged module `asset` and `public`, located in `www/asset`; independent asset deployment dropped off
+* Moved custom static to `asset/custom` folder for better deployment
 * Moved system abstract API classes to sub namespace `Api` located in `lib/Pi/Application/Api`
-* Moved `bootstrap` from `asset` to `public` and added support for custom bootstrap in themes
+* Added support for custom bootstrap in themes
 
+* Added config folders/files:
+  - var/config/event.listener.php
+
+* Modified config files:
+  - var/config/engine.php
+  - var/config/host.php
+  - var/config/hosts.php
 
 Pi 2.3.0
 Dec 3rd, 2013
@@ -52,7 +60,7 @@ Dec 3rd, 2013
 * Pi Engine GitHub repository welcomes its 2,000th commit on November 8th, 2013 from @sexnothing for asset compress build #9fa21de4fa5205faec97e643529a5b307dacd9c2
 * New Pi powered applications from various teams
 
-* Adde config folders/files:
+* Added config folders/files:
   - var/config/custom/
   - var/config/saml/
   - var/config/authentication.local.php

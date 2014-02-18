@@ -95,12 +95,12 @@ EOT;
         );
         $this->content .= $content;
 
-        $this->footContent .=<<<"SCRIPT"
+        $footContent =<<<'SCRIPT'
 <script>
 $(document).ready(function() {
     $('input[type=radio][name=language]').change(function() {
         $.ajax({
-            url: "{$_SERVER['PHP_SELF']}",
+            url: "%s",
             data: { page: "presetting", language: this.value, action: "submit" },
             success: function (data) { window.location.reload(true); }
         });
@@ -108,29 +108,32 @@ $(document).ready(function() {
 });
 </script>
 SCRIPT;
+        $this->footContent .= sprintf($footContent, $_SERVER['PHP_SELF']);
 
     }
 
     protected function loadRequirementForm()
     {
         $this->verifyRequirement();
+        $title = _s('Sever setting detection');
         if ($this->status < 0) {
             $content = '<h2><span class="failure">'
-                     . _s('Sever setting detection')
+                     . $title
                      . '</span> <a href="javascript:void(0);"'
                      . ' id="advanced-label">'
                      . '<span style="display: none;">[+]</span>'
                      . '<span>[-]</span></a></h2>';
         } else {
             $content = '<h2><span class="success">'
-                     . _s('Sever setting detection')
+                     . $title
                      . '</span> <a href="javascript:void(0);"'
                      . ' id="advanced-label">'
                      . '<span>[+]</span><span style="display: none;">'
                      . '[-]</span></a></h2>';
         }
+        $caption = _s('Validate server settings and extensions');
         $content .= '<p class="caption">'
-                  . _s('Check server settings and extensions')
+                  . $caption
                   . '</p><div class="install-form advanced-form well"'
                   . ' id="advanced-form"><h3 class="section">'
                   . _s('System requirements')
@@ -172,7 +175,6 @@ SCRIPT;
                   . '</p>';
         foreach ($this->result['extension'] as $item => $result) {
             $value = $result['value'];
-            $style = 'success';
             switch ($result['status']) {
                 case -1:
                     $style = 'failure';
