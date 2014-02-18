@@ -96,6 +96,13 @@ class Article extends Standard
                 $controller = 'category';
                 $action     = 'list';
                 $category   = $this->decode($category);
+                if (preg_match('/^sort-/', $urlParams[1])) {
+                    list($ignored, $sort) = explode(
+                        $this->keyValueDelimiter, 
+                        $urlParams[1],
+                        2
+                    );
+                }
             } elseif (preg_match('/^tag-/', $urlParams[0])) {
                 list($ignored, $tag) = explode(
                     $this->keyValueDelimiter, 
@@ -135,7 +142,8 @@ class Article extends Standard
             }
         }
         $matches  = compact(
-            'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic'
+            'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic',
+            'sort'
         );
         
         $params   = array_filter(explode(self::COMBINE_DELIMITER, $parameter));
@@ -220,6 +228,13 @@ class Article extends Standard
                  . $this->keyValueDelimiter 
                  . $this->encode($mergedParams['category']);
             unset($mergedParams['category']);
+            if (isset($mergedParams['sort'])) {
+                $url .= $this->structureDelimiter
+                     . 'sort'
+                     . $this->keyValueDelimiter
+                     . $mergedParams['sort'];
+                unset($mergedParams['sort']);
+            }
         } elseif (isset($mergedParams['tag'])) {
             $url .= 'tag' 
                  . $this->keyValueDelimiter 
