@@ -30,6 +30,7 @@ class ListController extends ActionController
         $page     = $this->params('p', 1);
         $sort     = $this->params('sort', 'new');
 
+        $params = array('sort' => $sort);
         $where  = array(
             'status'           => Article::FIELD_STATUS_PUBLISHED,
             'active'           => 1,
@@ -37,6 +38,7 @@ class ListController extends ActionController
         );
         
         $category = $this->params('category', 0);
+        $params['category'] = $category;
         if (!empty($category) && 'all' != $category) {
             $modelCategory = $this->getModel('category');
             if (!is_numeric($category)) {
@@ -108,11 +110,13 @@ class ListController extends ActionController
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
-                'params'        => array(
-                    'module'        => $this->getModule(),
-                    'controller'    => 'list',
-                    'action'        => 'all',
-                    'list'          => 'all',
+                'params'        => array_merge(
+                    array(
+                        'module'        => $this->getModule(),
+                        'controller'    => 'list',
+                        'action'        => 'all',
+                    ),
+                    $params
                 ),
             ),
         ));
