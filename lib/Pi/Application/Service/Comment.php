@@ -86,7 +86,7 @@ class Comment extends AbstractService
                 'controller'    => 'index',
                 'action'        => 'load',
             ));
-            $content =<<<"EOT"
+            $content =<<<EOT
 <div id="pi-comment-lead" style="display: none;"></div>
 <script>
     $.getJSON("{$callback}", {

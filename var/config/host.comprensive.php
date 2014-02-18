@@ -28,8 +28,6 @@ return array(
         'www'       => 'http://pi.tld',
         // URI to access uploads directory
         'upload'    => 'http://upload.pi.tld',
-        // URI to access assets directory
-        //'asset'     => 'http://asset.pi.tld',
         // URI to access static files directory
         'static'    => 'http://static.pi.tld',
     ),

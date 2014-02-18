@@ -360,7 +360,7 @@ class Admin extends AbstractController
 </style>
 STYLE;
 
-        $this->footContent .=<<<"SCRIPT"
+        $this->footContent .=<<<SCRIPT
 <script type='text/javascript'>
 var url='$_SERVER[PHP_SELF]';
 $(document).ready(function(){

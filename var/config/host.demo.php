@@ -41,8 +41,6 @@ return array(
 
         // Path to uploads directory
         'upload'    => '/path/to/pi-demo/upload',
-        // Path to assets directory
-        //'asset'     => '/path/to/pi-demo/asset',
         // Path to static files directory
         'static'    => '/path/to/pi-demo/static',
 

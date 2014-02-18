@@ -61,7 +61,7 @@ class IndexController extends ActionController
 
         if (!$isAuthenticated) {
             $checkUrl = $this->url('', array('action' => 'check'));
-            $load =<<<"EOT"
+            $load =<<<EOT
 document.write(
     "<iframe id=\'check-sso\' src=\'{$checkUrl}' border=\'0\' frameborder=\'0\' width=\'0\' height=\'0\' style=\'position:absolute;\'></iframe>"
 );

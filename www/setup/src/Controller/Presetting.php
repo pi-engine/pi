@@ -9,8 +9,6 @@
 
 namespace Pi\Setup\Controller;
 
-//use Locale;
-
 /**
  * Presetting controller
  *
@@ -56,7 +54,7 @@ class Presetting extends AbstractController
         $locale = $this->wizard->getLocale();
         $languageList = $this->wizard->getLanguages();
 
-        $listPattern =<<<'EOT'
+        $listPattern =<<<EOT
 <li class="list-group-item language-picker">
     <input type="radio" name="language" value="%s"%s>
     <img src="%s" alt="%s" title="%s" style="padding: 0 5px;" />
@@ -80,7 +78,7 @@ EOT;
 
         $title      = _s('Language Selection');
         $caption    = _s('Choose the language for the installation and website.');
-        $groupPattern =<<<'EOT'
+        $groupPattern =<<<EOT
 <div class="well">
     <h2>%s</h2>
     <p class="caption">%s</p>
@@ -95,7 +93,7 @@ EOT;
         );
         $this->content .= $content;
 
-        $footContent =<<<'SCRIPT'
+        $footContent =<<<SCRIPT
 <script>
 $(document).ready(function() {
     $('input[type=radio][name=language]').change(function() {

@@ -347,7 +347,7 @@ class Directive extends AbstractController
 
         $this->content .= $content;
 
-        $this->footContent .=<<<"SCRIPT"
+        $this->footContent .=<<<SCRIPT
 <script type='text/javascript'>
 $('input[name=persist]').click(function() {
     $.ajax({
@@ -423,7 +423,7 @@ SCRIPT;
         $controller = $this->host;
         // Anonymous function to create form elements for an item
         $displayItem = function ($item) use ($controller, $pathInfo) {
-            $content =<<<"HTML"
+            $content =<<<HTML
 <div class='item'>
     <label for='$item'>{$pathInfo[$item][0]}</label>
     <p class='caption'>{$pathInfo[$item][1]}</p>
@@ -447,7 +447,7 @@ HTML;
         }
         // URI of www
         $item = 'url_www';
-        $content .=<<<"HTML"
+        $content .=<<<HTML
 <div class='item'>
     <label for='$item'>{$pathInfo[$item][0]}</label>
     <p class='caption'>{$pathInfo[$item][1]}</p>
@@ -510,7 +510,7 @@ HTML;
         $this->content .= $content;
 
         // Add cascade style sheet and JavaScript to HTML head
-        $this->headContent .=<<<"SCRIPT"
+        $this->headContent .=<<<SCRIPT
 <style type='text/css' media='screen'>
     #paths .item {
         margin-top: 20px;
@@ -605,7 +605,7 @@ function urlIsAbsolute(path) {
 SCRIPT;
 
         // Add JavaScript to bottom of HTML content
-        $this->footContent .=<<<'SCRIPT'
+        $this->footContent .=<<<SCRIPT
 <script type='text/javascript'>
 $(document).ready(function(){
     // Check if path available, URI accessible

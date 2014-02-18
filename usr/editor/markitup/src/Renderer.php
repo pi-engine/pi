@@ -74,7 +74,7 @@ class Renderer extends AbstractRenderer
                 $parserpath = sprintf('~/sets/%s/preview.php', $set);
             }
         }
-        $scriptJs =<<<"EOT"
+        $scriptJs =<<<EOT
 $(document).ready(function()	{
     mySettings.previewParserPath = '{$parserpath}';
     mySettings.previewParserVar = 'preview';
