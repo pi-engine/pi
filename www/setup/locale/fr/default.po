@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-02-18 12:14+0800\n"
-"PO-Revision-Date: 2014-02-18 12:15+0800\n"
+"POT-Creation-Date: 2014-02-18 15:18+0800\n"
+"PO-Revision-Date: 2014-02-18 15:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -459,30 +459,46 @@ msgstr "Presettings data"
 msgid "Path and URL settings"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:95
-#, php-format
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:137
+msgid "Congratulations!"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:138
+msgid "The system is set up successfully."
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:139
+msgid "Click to visit your website!"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:140
+msgid "Security advisory"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:141
 msgid ""
-"\n"
-"<div class=\"well\">\n"
-"<h3>Congratulations!</h3>\n"
-"<p>The system is set up successfully. <a href=\"../index.php?"
-"redirect=0\">Click to visit your website!</a></p>\n"
-"</div>\n"
-"<div class=\"well\">\n"
-"<h3>Security advisory</h3>\n"
-"<p>For security considerations please make sure the following operations are "
-"done:</p>\n"
-"<ol>\n"
-"    <li>Remove the installation folder <strong>{www}/setup/</strong> from "
-"your server manually.</li>\n"
-"    <li>Set configuration directories and files to readonly: %s</li>\n"
-"</ol>\n"
-"</div>\n"
-"<div class=\"well\">\n"
-"<h3>Support</h3>\n"
-"<p>Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine "
-"Development Site</a> in case you need any help.</p>\n"
-"</div>\n"
+"For security considerations please make sure the following operations are "
+"done:"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:142
+msgid ""
+"Remove the installation folder <strong>{www}/setup/</strong> from your "
+"server manually."
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:143
+msgid "Set configuration directories and files to readonly: "
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:145
+msgid "Support"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:146
+msgid ""
+"Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
+"Site</a> in case you need any help."
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:79
@@ -534,8 +550,9 @@ msgid "Extensions recommended for better functionality or performance"
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:301
+#, fuzzy
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:319
 msgid ""

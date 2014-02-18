@@ -1,44 +1,39 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Pi Engine Setup\n"
-"POT-Creation-Date: 2014-02-18 12:15+0800\n"
-"PO-Revision-Date: 2014-02-18 12:15+0800\n"
+"Project-Id-Version: Pi-setup\n"
+"POT-Creation-Date: 2014-02-18 15:17+0800\n"
+"PO-Revision-Date: 2014-02-18 15:24+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
-"Language-Team: \n"
+"Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _s\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\Code\\pi\\www\\setup\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\www\\setup\n"
 
-#: C:\Code\pi\www\setup/include/config.php:15
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/config.php:15
 msgid "Web server"
 msgstr "服务器"
 
-#: C:\Code\pi\www\setup/include/config.php:16
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/config.php:16
 msgid "PHP"
 msgstr "PHP语言"
 
-#: C:\Code\pi\www\setup/include/config.php:17
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/config.php:17
 msgid "Persist options"
-msgstr "持久数据参数"
+msgstr "持久存储选项"
 
-#: C:\Code\pi\www\setup/include/config.php:18
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/config.php:18
 msgid "PDO drivers"
 msgstr "PDO "
 
-#: C:\Code\pi\www\setup/include/config.php:24
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/config.php:24
 msgid "APC"
 msgstr "APC"
 
-#: C:\Code\pi\www\setup/include/config.php:25
+#: c:\Code\pi\\www\setup/include/config.php:25
 msgid ""
 "The Alternative PHP Cache (APC) is highly recommended for high-performance "
 "scenario. Refer to <a href=\"http://www.php.net/manual/en/intro.apc.php\" "
@@ -46,22 +41,22 @@ msgid ""
 "details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:28
+#: c:\Code\pi\\www\setup/include/config.php:28
 msgid "Redis"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:29
+#: c:\Code\pi\\www\setup/include/config.php:29
 msgid ""
 "The extension is highly recommended for performance scenario and advanced "
 "data structure. Refer to <a href=\"http://redis.io\" target=\"_blank\" title="
 "\"Redis\">Redis page</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:32
+#: c:\Code\pi\\www\setup/include/config.php:32
 msgid "Memcached"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:33
+#: c:\Code\pi\\www\setup/include/config.php:33
 msgid ""
 "Memcached is highly recommended for high-performance yet robust distributed "
 "scenario. However it is not suitable for shared-hosting usage since tag is "
@@ -70,11 +65,11 @@ msgid ""
 "introduction</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:36
+#: c:\Code\pi\\www\setup/include/config.php:36
 msgid "Memcache"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:37
+#: c:\Code\pi\\www\setup/include/config.php:37
 msgid ""
 "Memcache a widely used cache engine. However it is not suitable for shared-"
 "hosting usage since tag is not supported. Refer to <a href=\"http://www.php."
@@ -82,11 +77,11 @@ msgid ""
 "introduction\">Memcache introduction</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:40
+#: c:\Code\pi\\www\setup/include/config.php:40
 msgid "cURL"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:41
+#: c:\Code\pi\\www\setup/include/config.php:41
 msgid ""
 "The extension allows to connect and communicate to different types of "
 "servers with different types of protocols, check <a href=\"http://www.php."
@@ -94,11 +89,11 @@ msgid ""
 "details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:44
+#: c:\Code\pi\\www\setup/include/config.php:44
 msgid "Intl"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:45
+#: c:\Code\pi\\www\setup/include/config.php:45
 msgid ""
 "Internationalization extension enables collation and date/time/number/"
 "currency formatting, check <a href=\"http://www.php.net/manual/en/book.intl."
@@ -106,11 +101,11 @@ msgid ""
 "\">Internationalization extension</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:48
+#: c:\Code\pi\\www\setup/include/config.php:48
 msgid "Markdown"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:49
+#: c:\Code\pi\\www\setup/include/config.php:49
 msgid ""
 "The extension is suggested for text parser, check <a href=\"http://"
 "daringfireball.net/projects/markdown/\" title=\"Markdown project\" target="
@@ -119,479 +114,445 @@ msgid ""
 "page</a>."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:52
+#: c:\Code\pi\\www\setup/include/config.php:52
 msgid "Mbstring"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/config.php:53
+#: c:\Code\pi\\www\setup/include/config.php:53
 msgid ""
 "The extension is required for multibyte string processing, check <a href="
 "\"http://www.php.net/manual/en/book.mbstring.php\" title=\"Multibyte String"
 "\" target=\"_blank\">Multibyte String</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/page.php:13
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:13
 msgid "Presettings"
-msgstr "Presettings data"
+msgstr "系统配置"
 
-#: C:\Code\pi\www\setup/include/page.php:14
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:14
 msgid "Presettings and server configuration detection"
 msgstr "系统需求及服务器配置检测"
 
-#: C:\Code\pi\www\setup/include/page.php:17
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:17
 msgid "Directives"
 msgstr "路径设置"
 
-#: C:\Code\pi\www\setup/include/page.php:18
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:18
 msgid "Directive settings for website"
 msgstr "网站路径及URL设置"
 
-#: C:\Code\pi\www\setup/include/page.php:21
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:21
 msgid "Database"
 msgstr "数据库"
 
-#: C:\Code\pi\www\setup/include/page.php:22
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:22
 msgid "Database settings"
 msgstr "数据库设置及生成"
 
-#: C:\Code\pi\www\setup/include/page.php:25
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:25
 msgid "Administrator"
 msgstr "管理员"
 
-#: C:\Code\pi\www\setup/include/page.php:26
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:26
 msgid "Administrator account creation"
 msgstr "管理员账号建立"
 
-#: C:\Code\pi\www\setup/include/page.php:29
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:29
 msgid "Finish"
 msgstr "完成"
 
-#: C:\Code\pi\www\setup/include/page.php:30
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/page.php:30
 msgid "Finishing installation process"
 msgstr "安装完成及处理"
 
-#: C:\Code\pi\www\setup/src/Wizard.php:335
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Wizard.php:335
 msgid "Pi Engine Setup Wizard"
 msgstr "Pi Engine 安装助手"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:31
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:31
 msgid "Database connection is failed."
 msgstr "数据库连接失败。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:42
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:42
 msgid "PiAdmin"
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:83
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:83
 msgid "System module uninstallation is failed. Please continue to try again."
-msgstr ""
+msgstr "系统模块卸载失败，请继续重试。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:114
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:119
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:129
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:114
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:119
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:129
 msgid "Information is required."
 msgstr "必需信息。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:121
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:179
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:121
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:179
 msgid "Invalid Email."
 msgstr "无效邮箱。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:131
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:182
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:131
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:182
 msgid "The two passwords do not match"
-msgstr ""
+msgstr "两个密码不匹配"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:147
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:147
 msgid "System module installation is failed. Please continue to try again."
-msgstr ""
+msgstr "系统模块安装失败，请继续重试。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:167
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:167
 msgid "Username is required."
 msgstr "用户名必填。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:170
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:170
 msgid "Name is required."
 msgstr "昵称必填。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:173
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:173
 msgid "Email is required."
 msgstr "邮箱必填。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:176
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:176
 msgid "Password is required."
 msgstr "密码必填。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:287
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:287
 msgid "Deprecated tables exist in the database. Please continue to re-install."
-msgstr ""
+msgstr "有无用数据表存在，请继续重装。"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:304
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:304
 msgid "Admin email"
 msgstr "管理员邮箱"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:305
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:305
 msgid "Admin username"
 msgstr "管理员用户名"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:306
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:306
 msgid "Admin name"
 msgstr "管理员昵称"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:307
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:307
 msgid "Admin password"
 msgstr "管理员密码"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:308
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:308
 msgid "Confirm password"
 msgstr "确认密码"
 
-#: C:\Code\pi\www\setup/src/Controller/Admin.php:324
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:324
 msgid "Administrator account"
 msgstr "管理员账号"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:160
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:245
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:160
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:245
 msgid "Configuration file write error"
 msgstr "写配置文件错误"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:163
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:250
-#, fuzzy, php-format
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:163
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:250
+#, php-format
 msgid "The configuration file \"%s\" is not written correctly."
 msgstr "配置文件 %s 无法正确保存。"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:185
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:185
 msgid "Server hostname"
 msgstr "服务器"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:186
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:186
 msgid ""
 "Hostname (and port, delimited by \":\") or Unix socket of the database "
 "server. If you are unsure, \"localhost\" works in most cases, or "
 "\"127.0.0.1\""
 msgstr ""
+"数据库的Hostname（如果有端口号，用\":\"分隔）或者Unix socket。如果不确定，通"
+"常情况下用  \"localhost\" 或 \"127.0.0.1\""
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:189
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:189
 msgid "User name"
-msgstr "用户ID或用户名"
+msgstr "数据库用户名"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:190
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:190
 msgid ""
 "Name of the user account that will be used to connect to the database server"
-msgstr ""
+msgstr "用于连接数据库的账号"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:193
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:193
 msgid "Password"
 msgstr "密码"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:194
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:194
 msgid "Password of your database user account"
 msgstr "请输入数据库密码。"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:197
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:197
 msgid "Database name"
 msgstr "数据库名"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:198
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:198
 msgid ""
 "The name of database on the host. The database must be already available."
-msgstr ""
+msgstr "数据库名称。该数据库必须已建好。"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:201
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:201
 msgid "Table prefix"
 msgstr "数据表前缀"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:202
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:202
 msgid ""
 "This prefix will be added to all new tables created to avoid name conflicts "
 "in the database. If you are unsure, just keep the default."
-msgstr ""
+msgstr "该前缀用于生成数据表名，以防止表名冲突。如果不确定，请保持缺省值。"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:237
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:237
 msgid "Database setup"
 msgstr "数据库设置"
 
-#: C:\Code\pi\www\setup/src/Controller/Database.php:238
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:238
 msgid "Settings for database"
 msgstr "数据库设置"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:128
-#, fuzzy, php-format
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:128
+#, php-format
 msgid "%s is NOT writable."
 msgstr "%s不可写。"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:260
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:260
 msgid "Configuration file copy error"
 msgstr "配置文件拷贝错误"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:262
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:262
 msgid ""
 "The configuration files are not copied correctly or not readable, please "
 "create and/or set read permissions for the files manually."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:334
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:334
 msgid "File system"
 msgstr "文件系统"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:336
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:336
 msgid "Caching storage with files on disks specified in following steps."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:340
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:340
 msgid "Persistent data container"
-msgstr "系统持久数据"
+msgstr "持久数据"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:344
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:344
 msgid "Choose the proper backend container for persistent data"
-msgstr ""
+msgstr "持久化系统数据的存储方式"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:386
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:386
 msgid "Documents root physical path"
-msgstr ""
+msgstr "文档目录根路径"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:387
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:387
 msgid ""
 "Physical path to the documents (served) directory without trailing slash; "
 "PHP executable."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:390
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:390
 msgid "Website location (URL)"
-msgstr "ID 或 URL"
+msgstr "网站地址(URL)"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:391
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:391
 msgid "Main URL that will be used to access your Pi Engine"
-msgstr ""
+msgstr "访问你的网站的网址"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:394
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:394
 msgid "Upload directory"
-msgstr "上传头像"
+msgstr "上传路径"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:395
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:395
 msgid ""
 "Physical path to upload directory without trailing slash. A relative path "
 "will be allocated in PI root directory; PHP disabled."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:398
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:398
 msgid "URL of upload root"
-msgstr "ID 或 URL"
+msgstr "上传文件的根URL"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:399
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:399
 msgid ""
 "URL that will be used to access upload directory. PI root URL will be "
 "prepended if relative URL is used."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:402
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:402
 msgid "Static file directory"
-msgstr "最大文件尺寸"
+msgstr "静态文件路径"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:403
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:403
 msgid ""
 "Physical path to static file directory without trailing slash; PHP disabled."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:406
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:406
 msgid "URL of static file root directory"
-msgstr ""
+msgstr "静态文件根URL"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:407
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:407
 msgid ""
 "URL that will be used to access static files. Upload URL will be used if "
 "static directory is not set explicitly."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:410
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:410
 msgid "Library directory"
-msgstr "目录未指定。"
+msgstr "类库文件路径"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:411
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:411
 msgid ""
 "Physical path to library directory without trailing slash. Locate the folder "
 "out of web directory to make it secure; PHP executable"
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:414
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:414
 msgid "Data file directory"
-msgstr "最大文件尺寸"
+msgstr "数据文件路径"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:415
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:415
 msgid ""
 "Physical path to the data files (writable) directory WITHOUT trailing slash. "
 "Locate the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:418
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:418
 msgid "Root directory for user applications"
-msgstr ""
+msgstr "应用程序根路径"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:419
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:419
 msgid ""
 "Physical path to user contributed directory WITHOUT trailing slash.. Locate "
 "the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:462
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:462
 msgid "Basic settings"
-msgstr "修改您的账号信息"
+msgstr "基本设置"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:467
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:467
 msgid "Settings required by system"
-msgstr ""
+msgstr "系统必需的配置"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:487
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:487
 msgid "Advanced settings"
-msgstr "数据库设置及生成"
+msgstr "高级设置"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:492
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:492
 msgid ""
 "Settings that can help improve security, deployment flexibility, etc. If you "
 "are unsure about it, leave as it is."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:500
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:500
 msgid "Path settings"
-msgstr "数据库设置及生成"
+msgstr "路径设置"
 
-#: C:\Code\pi\www\setup/src/Controller/Directive.php:504
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:504
 msgid "Path and URL settings"
-msgstr "数据库设置及生成"
+msgstr "路径和URL设置"
 
-#: C:\Code\pi\www\setup/src/Controller/Finish.php:95
-#, php-format
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:137
+msgid "Congratulations!"
+msgstr "祝贺！"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:138
+msgid "The system is set up successfully."
+msgstr "系统已成功安装。"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:139
+msgid "Click to visit your website!"
+msgstr "请点击访问你的网站！"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:140
+msgid "Security advisory"
+msgstr "安全建议"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:141
 msgid ""
-"\n"
-"<div class=\"well\">\n"
-"<h3>Congratulations!</h3>\n"
-"<p>The system is set up successfully. <a href=\"../index.php?"
-"redirect=0\">Click to visit your website!</a></p>\n"
-"</div>\n"
-"<div class=\"well\">\n"
-"<h3>Security advisory</h3>\n"
-"<p>For security considerations please make sure the following operations are "
-"done:</p>\n"
-"<ol>\n"
-"    <li>Remove the installation folder <strong>{www}/setup/</strong> from "
-"your server manually.</li>\n"
-"    <li>Set configuration directories and files to readonly: %s</li>\n"
-"</ol>\n"
-"</div>\n"
-"<div class=\"well\">\n"
-"<h3>Support</h3>\n"
-"<p>Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine "
-"Development Site</a> in case you need any help.</p>\n"
-"</div>\n"
-msgstr ""
+"For security considerations please make sure the following operations are "
+"done:"
+msgstr "为了安全考虑，请确认以下操作："
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:79
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:142
+msgid ""
+"Remove the installation folder <strong>{www}/setup/</strong> from your "
+"server manually."
+msgstr "手动从服务器删除安装目录<strong>{www}/setup/</strong>。"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:143
+msgid "Set configuration directories and files to readonly: "
+msgstr "将以下目录或文件设为只读："
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:145
+msgid "Support"
+msgstr "技术支持"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:146
+msgid ""
+"Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
+"Site</a> in case you need any help."
+msgstr ""
+"欢迎访问 <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine 开发站</"
+"a> 进行技术交流。"
+
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:79
 msgid "Language Selection"
 msgstr "语言选择"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:80
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:80
 msgid "Choose the language for the installation and website."
 msgstr "选择安装及网站所用语言"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:116
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:116
 msgid "Sever setting detection"
-msgstr "没有可用的隐私设置"
+msgstr "服务器配置检测"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:132
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:132
 msgid "Validate server settings and extensions"
-msgstr ""
+msgstr "验证服务器配置和扩展"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:137
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:137
 msgid "System requirements"
-msgstr "文件系统"
+msgstr "系统需求"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:139
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:139
 msgid "Server settings and system extensions required by Pi Engine"
-msgstr ""
+msgstr "Pi Engine 必需的服务器配置或系统扩展"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:146
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:179
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:146
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:179
 msgid "Invalid"
-msgstr "邮箱错误"
+msgstr "无效"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:150
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:183
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:150
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:183
 msgid "Not available"
-msgstr "可用主题"
+msgstr "不可用"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:155
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:188
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:155
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:188
 msgid "Valid"
-msgstr ""
+msgstr "有效"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:170
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:170
 msgid "System extension recommendations"
-msgstr "无效的文件格式"
+msgstr "系统扩展推荐"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:172
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:172
 msgid "Extensions recommended for better functionality or performance"
-msgstr ""
+msgstr "满足更好功能或更高性能的扩展"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:301
-#, fuzzy
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:301
 msgid "Unknown"
 msgstr "未知"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:319
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:319
 msgid ""
 "Make sure that configurations have been set up correctly for nginx. Refer to "
 "<a href=\"http://nginx.net\" title=\"nginx\" target=\"_blank\">nginx</a> and "
@@ -599,14 +560,14 @@ msgid ""
 "\">Pi Engine Dev</a> for instructions."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:342
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:342
 msgid ""
 "Apache \"mod_rewrite\" module is required, however it is not detected. Check "
 "<a href=\"http://httpd.apache.org/docs/current/mod/mod_rewrite.html\" title="
 "\"mod_rewrite\" target=\"_blank\">mod_rewrite</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:346
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:346
 msgid ""
 "The webserver is currently not supported, please use <a href=\"http://nginx."
 "net\" title=\"nginx\" target=\"_blank\">nginx</a> or <a href=\"http://www."
@@ -614,36 +575,33 @@ msgid ""
 "\">Apache</a>."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:366
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:366
 msgid "Version 5.3.0 or higher is required."
-msgstr ""
+msgstr "要求 5.3.0 或更高版本。"
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:392
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:392
 msgid ""
 "PHP Data Objects (PDO) extension with MySQL driver is required for regular "
 "Pi Engine instances, check <a href=\"http://www.php.net/manual/en/book.pdo."
 "php\" title=\"PDO\" target=\"_blank\">PDO manual</a> for details."
 msgstr ""
 
-#: C:\Code\pi\www\setup/src/Controller/Presetting.php:421
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:421
 #, php-format
 msgid ""
 "There is no recommended persist engine available. One of the following "
 "extensions is recommended: %s"
 msgstr ""
 
-#: C:\Code\pi\www\setup/include/template.phtml:65
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/template.phtml:65
 msgid "Previous"
 msgstr "上一步"
 
-#: C:\Code\pi\www\setup/include/template.phtml:70
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/template.phtml:70
 msgid "Reload"
 msgstr "重新载入"
 
-#: C:\Code\pi\www\setup/include/template.phtml:79
-#: C:\Code\pi\www\setup/include/template.phtml:84
-#, fuzzy
+#: c:\Code\pi\\www\setup/include/template.phtml:79
+#: c:\Code\pi\\www\setup/include/template.phtml:84
 msgid "Next"
 msgstr "下一步"

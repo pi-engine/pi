@@ -92,6 +92,7 @@ class Finish extends AbstractController
         }
         $readPaths .= '</ul>';
 
+        /*
         $message = _s('
 <div class="well">
 <h3>Congratulations!</h3>
@@ -110,7 +111,40 @@ class Finish extends AbstractController
 <p>Visit <a href="http://pialog.org/" rel="external">Pi Engine Development Site</a> in case you need any help.</p>
 </div>
 ');
-        $this->content = sprintf($message, $readPaths);
+        */
+
+        $messagePattern =<<<EOT
+<div class="well">
+<h3>%s</h3>
+<p>%s <a href="../index.php?redirect=0">%s</a></p>
+</div>
+<div class="well">
+<h3>%s</h3>
+<p>%s</p>
+<ol>
+    <li>%s</li>
+    <li>%s%s</li>
+</ol>
+</div>
+<div class="well">
+<h3>%s</h3>
+<p>%s</p>
+</div>
+
+EOT;
+        $this->content = sprintf(
+            $messagePattern,
+            _s('Congratulations!'),
+            _s('The system is set up successfully.'),
+            _s('Click to visit your website!'),
+            _s('Security advisory'),
+            _s('For security considerations please make sure the following operations are done:'),
+            _s('Remove the installation folder <strong>{www}/setup/</strong> from your server manually.'),
+            _s('Set configuration directories and files to readonly: '),
+            $readPaths,
+            _s('Support'),
+            _s('Visit <a href="http://pialog.org/" rel="external">Pi Engine Development Site</a> in case you need any help.')
+        );
 
         $path = Pi::path('cache');
         $objects = new RecursiveIteratorIterator(

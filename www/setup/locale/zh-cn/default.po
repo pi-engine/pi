@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-02-18 12:15+0800\n"
-"PO-Revision-Date: 2014-02-18 12:15+0800\n"
+"POT-Creation-Date: 2014-02-18 15:17+0800\n"
+"PO-Revision-Date: 2014-02-18 15:24+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "PHP语言"
 
 #: c:\Code\pi\\www\setup/include/config.php:17
 msgid "Persist options"
-msgstr "持久数据参数"
+msgstr "持久存储选项"
 
 #: c:\Code\pi\\www\setup/include/config.php:18
 msgid "PDO drivers"
@@ -179,7 +179,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:83
 msgid "System module uninstallation is failed. Please continue to try again."
-msgstr ""
+msgstr "系统模块卸载失败，请继续重试。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:114
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:119
@@ -195,11 +195,11 @@ msgstr "无效邮箱。"
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:131
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:182
 msgid "The two passwords do not match"
-msgstr ""
+msgstr "两个密码不匹配"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:147
 msgid "System module installation is failed. Please continue to try again."
-msgstr ""
+msgstr "系统模块安装失败，请继续重试。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:167
 msgid "Username is required."
@@ -219,7 +219,7 @@ msgstr "密码必填。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:287
 msgid "Deprecated tables exist in the database. Please continue to re-install."
-msgstr ""
+msgstr "有无用数据表存在，请继续重装。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Admin.php:304
 msgid "Admin email"
@@ -266,15 +266,17 @@ msgid ""
 "server. If you are unsure, \"localhost\" works in most cases, or "
 "\"127.0.0.1\""
 msgstr ""
+"数据库的Hostname（如果有端口号，用\":\"分隔）或者Unix socket。如果不确定，通"
+"常情况下用  \"localhost\" 或 \"127.0.0.1\""
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:189
 msgid "User name"
-msgstr "用户ID或用户名"
+msgstr "数据库用户名"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:190
 msgid ""
 "Name of the user account that will be used to connect to the database server"
-msgstr ""
+msgstr "用于连接数据库的账号"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:193
 msgid "Password"
@@ -291,7 +293,7 @@ msgstr "数据库名"
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:198
 msgid ""
 "The name of database on the host. The database must be already available."
-msgstr ""
+msgstr "数据库名称。该数据库必须已建好。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:201
 msgid "Table prefix"
@@ -301,7 +303,7 @@ msgstr "数据表前缀"
 msgid ""
 "This prefix will be added to all new tables created to avoid name conflicts "
 "in the database. If you are unsure, just keep the default."
-msgstr ""
+msgstr "该前缀用于生成数据表名，以防止表名冲突。如果不确定，请保持缺省值。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Database.php:237
 msgid "Database setup"
@@ -336,15 +338,15 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:340
 msgid "Persistent data container"
-msgstr "系统持久数据"
+msgstr "持久数据"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:344
 msgid "Choose the proper backend container for persistent data"
-msgstr ""
+msgstr "持久化系统数据的存储方式"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:386
 msgid "Documents root physical path"
-msgstr ""
+msgstr "文档目录根路径"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:387
 msgid ""
@@ -353,18 +355,16 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:390
-#, fuzzy
 msgid "Website location (URL)"
-msgstr "ID 或 URL"
+msgstr "网站地址(URL)"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:391
 msgid "Main URL that will be used to access your Pi Engine"
-msgstr ""
+msgstr "访问你的网站的网址"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:394
-#, fuzzy
 msgid "Upload directory"
-msgstr "上传头像"
+msgstr "上传路径"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:395
 msgid ""
@@ -373,9 +373,8 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:398
-#, fuzzy
 msgid "URL of upload root"
-msgstr "ID 或 URL"
+msgstr "上传文件的根URL"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:399
 msgid ""
@@ -384,9 +383,8 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:402
-#, fuzzy
 msgid "Static file directory"
-msgstr "最大文件尺寸"
+msgstr "静态文件路径"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:403
 msgid ""
@@ -395,7 +393,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:406
 msgid "URL of static file root directory"
-msgstr ""
+msgstr "静态文件根URL"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:407
 msgid ""
@@ -404,9 +402,8 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:410
-#, fuzzy
 msgid "Library directory"
-msgstr "目录未指定。"
+msgstr "类库文件路径"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:411
 msgid ""
@@ -415,9 +412,8 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:414
-#, fuzzy
 msgid "Data file directory"
-msgstr "最大文件尺寸"
+msgstr "数据文件路径"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:415
 msgid ""
@@ -427,7 +423,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:418
 msgid "Root directory for user applications"
-msgstr ""
+msgstr "应用程序根路径"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:419
 msgid ""
@@ -436,18 +432,16 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:462
-#, fuzzy
 msgid "Basic settings"
-msgstr "修改您的账号信息"
+msgstr "基本设置"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:467
 msgid "Settings required by system"
-msgstr ""
+msgstr "系统必需的配置"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:487
-#, fuzzy
 msgid "Advanced settings"
-msgstr "数据库设置及生成"
+msgstr "高级设置"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:492
 msgid ""
@@ -456,40 +450,56 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:500
-#, fuzzy
 msgid "Path settings"
-msgstr "数据库设置及生成"
+msgstr "路径设置"
 
 #: c:\Code\pi\\www\setup/src/Controller/Directive.php:504
-#, fuzzy
 msgid "Path and URL settings"
-msgstr "数据库设置及生成"
+msgstr "路径和URL设置"
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:95
-#, php-format
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:137
+msgid "Congratulations!"
+msgstr "祝贺！"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:138
+msgid "The system is set up successfully."
+msgstr "系统已成功安装。"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:139
+msgid "Click to visit your website!"
+msgstr "请点击访问你的网站！"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:140
+msgid "Security advisory"
+msgstr "安全建议"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:141
 msgid ""
-"\n"
-"<div class=\"well\">\n"
-"<h3>Congratulations!</h3>\n"
-"<p>The system is set up successfully. <a href=\"../index.php?"
-"redirect=0\">Click to visit your website!</a></p>\n"
-"</div>\n"
-"<div class=\"well\">\n"
-"<h3>Security advisory</h3>\n"
-"<p>For security considerations please make sure the following operations are "
-"done:</p>\n"
-"<ol>\n"
-"    <li>Remove the installation folder <strong>{www}/setup/</strong> from "
-"your server manually.</li>\n"
-"    <li>Set configuration directories and files to readonly: %s</li>\n"
-"</ol>\n"
-"</div>\n"
-"<div class=\"well\">\n"
-"<h3>Support</h3>\n"
-"<p>Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine "
-"Development Site</a> in case you need any help.</p>\n"
-"</div>\n"
+"For security considerations please make sure the following operations are "
+"done:"
+msgstr "为了安全考虑，请确认以下操作："
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:142
+msgid ""
+"Remove the installation folder <strong>{www}/setup/</strong> from your "
+"server manually."
+msgstr "手动从服务器删除安装目录<strong>{www}/setup/</strong>。"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:143
+msgid "Set configuration directories and files to readonly: "
+msgstr "将以下目录或文件设为只读："
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:145
+msgid "Support"
+msgstr "技术支持"
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:146
+msgid ""
+"Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
+"Site</a> in case you need any help."
 msgstr ""
+"欢迎访问 <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine 开发站</"
+"a> 进行技术交流。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:79
 msgid "Language Selection"
@@ -500,51 +510,45 @@ msgid "Choose the language for the installation and website."
 msgstr "选择安装及网站所用语言"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:116
-#, fuzzy
 msgid "Sever setting detection"
-msgstr "没有可用的隐私设置"
+msgstr "服务器配置检测"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:132
 msgid "Validate server settings and extensions"
-msgstr ""
+msgstr "验证服务器配置和扩展"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:137
-#, fuzzy
 msgid "System requirements"
-msgstr "文件系统"
+msgstr "系统需求"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:139
 msgid "Server settings and system extensions required by Pi Engine"
-msgstr ""
+msgstr "Pi Engine 必需的服务器配置或系统扩展"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:146
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:179
-#, fuzzy
 msgid "Invalid"
-msgstr "邮箱错误"
+msgstr "无效"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:150
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:183
-#, fuzzy
 msgid "Not available"
-msgstr "可用主题"
+msgstr "不可用"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:155
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:188
 msgid "Valid"
-msgstr ""
+msgstr "有效"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:170
-#, fuzzy
 msgid "System extension recommendations"
-msgstr "无效的文件格式"
+msgstr "系统扩展推荐"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:172
 msgid "Extensions recommended for better functionality or performance"
-msgstr ""
+msgstr "满足更好功能或更高性能的扩展"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:301
-#, fuzzy
 msgid "Unknown"
 msgstr "未知"
 
@@ -573,7 +577,7 @@ msgstr ""
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:366
 msgid "Version 5.3.0 or higher is required."
-msgstr ""
+msgstr "要求 5.3.0 或更高版本。"
 
 #: c:\Code\pi\\www\setup/src/Controller/Presetting.php:392
 msgid ""
