@@ -33,7 +33,6 @@ return array(
             'uri'       => array(
                 'www'       => 'http://pi-engine.org',
                 'upload'    => 'http://pi-engine.org/upload',
-                //'asset'     => 'http://pi-engine.org/asset',
                 'static'    => 'http://pi-engine.org/static',
             ),
             // Paths to resources
@@ -45,7 +44,6 @@ return array(
                 'custom'    => '/path/to/pi/usr/custom',
 
                 'upload'    => '/path/to/pi/upload',
-                //'asset'     => '/path/to/pi/asset',
                 'static'    => '/path/to/pi/static',
 
                 'vendor'    => '/path/to/pi/vendor',

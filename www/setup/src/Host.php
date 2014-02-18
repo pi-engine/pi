@@ -36,7 +36,6 @@ class Host
         'lib'       => '',
         'var'       => '',
         'usr'       => '',
-        //'asset'     => '',
         'static'    => '',
         'upload'    => '',
     );
@@ -50,7 +49,6 @@ class Host
         'var'       => -1,
         'lib'       => -1,
         'usr'       => -1,
-        //'asset'     => -1,
         'static'    => 0,
         'upload'    => -1,
     );
@@ -60,7 +58,6 @@ class Host
      * @var array
      */
     protected $validUrl = array(
-        //'asset'     => -1,
         'static'    => -1,
         'upload'    => -1,
     );
@@ -398,7 +395,7 @@ class Host
      * URI to be formulated:
      *
      *  - '://': already a complete URI, return directly;
-     *  - with leading slash '/': prepend protocal and host;
+     *  - with leading slash '/': prepend protocol and host;
      *  - w/o leading slash '/': prepend Pi Engine 'www' URI
      *
      * @param string $url

@@ -11,7 +11,7 @@ return array(
         'height'       => 500,
         //'language'     => 'zh-cn',
         'uiColor'      => '#EFF4F8',
-        'extraPlugins' =>"articlepagebreak",
+        'extraPlugins' => "articlepagebreak",
         'contentsCss'  => $url,
         'toolbar'      => array(
             array(

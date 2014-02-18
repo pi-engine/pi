@@ -58,8 +58,6 @@ return array(
         // Application specific paths
         // Path to uploads directory
         'upload'    => '/path/to/pi-application/upload',
-        // Path to assets directory
-        //'asset'     => '/path/to/pi-application/asset',
         // User data directory
         'var'       => '/path/to/pi-application/var',
 
@@ -77,10 +75,6 @@ return array(
         'asset'     => array(
             'parent'    => 'www',
             'folder'    => 'asset',
-        ),
-        'public'    => array(
-            'parent'    => 'www',
-            'folder'    => 'public',
         ),
     ),
 );

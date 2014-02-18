@@ -23,8 +23,6 @@ return array(
         'www'       => 'http://pi-demo.org',
         // URI to access uploads directory
         'upload'    => 'http://upload.pi-demo.org',
-        // URI to access assets directory
-        //'asset'     => 'http://asset.pi-demo.org',
         // URI to access static files directory
         'static'    => 'http://static.pi-demo.org',
     ),

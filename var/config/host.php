@@ -28,8 +28,6 @@ return array(
         'www'       => 'http://pi.tld',
         // URI to access uploads directory
         'upload'    => 'http://pi.tld/upload',
-        // URI to access assets directory
-        //'asset'     => 'http://pi.tld/asset',
         // URI to access static files directory
         'static'    => 'http://pi.tld/static',
     ),
@@ -58,8 +56,6 @@ return array(
         // Application specific paths
         // Path to uploads directory
         'upload'    => 'path/to/pi-application/www/upload',
-        // Path to assets directory
-        'asset'     => 'path/to/pi-application/www/asset',
         // User data directory
         'var'       => 'path/to/pi-application/var',
 
@@ -77,10 +73,6 @@ return array(
         'asset'     => array(
             'parent'    => 'www',
             'folder'    => 'asset',
-        ),
-        'public'    => array(
-            'parent'    => 'www',
-            'folder'    => 'public',
         ),
     ),
 );
