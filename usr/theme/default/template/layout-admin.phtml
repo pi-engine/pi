@@ -21,11 +21,8 @@ $this->bootstrap(array(
     'font-awesome/css/font-awesome.min.css'
 ));
 
-// Load front.css/print.css
-$this->css(array(
-    $this->assetTheme('css/admin.css'),
-    $this->assetTheme('css/print.css') => array('media' => "print")
-));
+// Load admin.css
+$this->css($this->assetTheme('css/admin.css'));
 
 // Explicitly load favicon
 // @see http://en.wikipedia.org/wiki/Favicon

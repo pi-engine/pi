@@ -21,11 +21,8 @@ $this->bootstrap(array(
     'font-awesome/css/font-awesome.min.css'
 ));
 
-// Load front.css/print.css
-$this->css(array(
-    $this->assetTheme('css/front.css'),
-    $this->assetTheme('css/print.css') => array('media' => "print")
-));
+// Load front.css
+$this->css($this->assetTheme('css/front.css'));
 
 // Apple icons
 // Apple icon for iphone
