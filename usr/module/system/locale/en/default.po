@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-10 19:01+0800\n"
-"PO-Revision-Date: 2014-02-10 19:01+0800\n"
+"POT-Creation-Date: 2014-02-19 11:14+0800\n"
+"PO-Revision-Date: 2014-02-19 11:14+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,56 +12,6 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:31
-#, php-format
-msgid "Module %s installed"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:32
-#, php-format
-msgid "The module %s is installed successfully."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:49
-#, php-format
-msgid "Module %s uninstalled"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:50
-#, php-format
-msgid "The module %s is uninstalled successfully."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:67
-#, fuzzy, php-format
-msgid "Module %s updated"
-msgstr "主题更新成功。"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:68
-#, php-format
-msgid "The module %s is updated successfully."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:85
-#, php-format
-msgid "Module %s activated"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:86
-#, php-format
-msgid "The module %s is activated successfully."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:103
-#, php-format
-msgid "Module %s deactivated"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Event.php:104
-#, php-format
-msgid "The module %s is deactivated successfully."
-msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Menu.php:240
 msgid "Uncategorized"
@@ -81,6 +31,56 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Navigation.php:229
 msgid "Setup page"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:31
+#, fuzzy, php-format
+msgid "Module `%s` installed"
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:33
+#, php-format
+msgid "The module `%s` is installed successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:51
+#, fuzzy, php-format
+msgid "Module `%s` uninstalled"
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:53
+#, php-format
+msgid "The module `%s` is uninstalled successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:71
+#, fuzzy, php-format
+msgid "Module `%s` updated"
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:73
+#, php-format
+msgid "The module `%s` is updated successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:91
+#, fuzzy, php-format
+msgid "Module `%s` activated"
+msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:93
+#, php-format
+msgid "The module `%s` is activated successfully."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:111
+#, php-format
+msgid "Module %s deactivated"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:113
+#, php-format
+msgid "The module %s is deactivated successfully."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
@@ -126,10 +126,6 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:237
 msgid "You logged out successfully."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:292
-msgid "You have already logged in."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
@@ -193,23 +189,19 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:35
-msgid "Registration is disabled. Please come back later."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:66
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:49
 msgid "User account register"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:76
 msgid "Invalid input, please try again."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:114
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:125
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:106
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\system/template/front/login.phtml:17
 #: c:\Code\pi\usr\module\system/template/front/password-find.phtml:9
@@ -489,7 +481,7 @@ msgid "Admin"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
-#: c:\Code\pi\usr\module\system/template/component/form.phtml:66
+#: c:\Code\pi\usr\module\system/template/component/form.phtml:68
 msgid "Cancel"
 msgstr ""
 
@@ -536,6 +528,14 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/front/password-find.phtml:4
 msgid "Coming soon ..."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/front/register-disabled.phtml:2
+msgid "User account registration"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/front/register-success.phtml:10

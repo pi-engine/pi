@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-02-10 19:48+0800\n"
-"PO-Revision-Date: 2014-02-10 19:50+0800\n"
+"POT-Creation-Date: 2014-02-19 11:15+0800\n"
+"PO-Revision-Date: 2014-02-19 11:15+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -156,8 +156,10 @@ msgid "GA account"
 msgstr "谷歌分析账号"
 
 #: c:\Code\pi\usr\module\system/config/config.php:103
-msgid "Google Analytics account. Or use following custom foot scripts."
-msgstr "谷歌分析账号，或者使用下面的定制页脚代码。"
+msgid ""
+"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
+"to the code `UA-XXXXXXXX-X; XXXX.tld`."
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:108
 msgid "Foot scripts"
@@ -182,7 +184,8 @@ msgid "Run environment"
 msgstr "运行环境"
 
 #: c:\Code\pi\usr\module\system/config/config.php:130
-msgid "Only applicable if not set in `var/config/engine.php`."
+#, fuzzy
+msgid "Will override setting in `var/config/engine.php`."
 msgstr "只有当 `var/config/engine.php`中没有设置才会生效。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:135
@@ -197,409 +200,410 @@ msgstr "开发模式"
 msgid "QA test"
 msgstr "QA测试"
 
-#: c:\Code\pi\usr\module\system/config/config.php:150
+#: c:\Code\pi\usr\module\system/config/config.php:148
 msgid "Username format"
 msgstr "用户名规则"
 
-#: c:\Code\pi\usr\module\system/config/config.php:151
+#: c:\Code\pi\usr\module\system/config/config.php:149
 msgid "Format of username for registration."
 msgstr "用户名规则。"
 
-#: c:\Code\pi\usr\module\system/config/config.php:156
+#: c:\Code\pi\usr\module\system/config/config.php:154
 msgid "Strict: alphabet or number only"
 msgstr "严格模式：只接受数字和字母"
 
-#: c:\Code\pi\usr\module\system/config/config.php:157
+#: c:\Code\pi\usr\module\system/config/config.php:155
 msgid "Medium: ASCII characters"
 msgstr "普通模式：允许ASCII码字符"
 
-#: c:\Code\pi\usr\module\system/config/config.php:158
+#: c:\Code\pi\usr\module\system/config/config.php:156
 msgid "Loose: multi-byte characters"
 msgstr "宽松模式：允许多字节字符"
 
-#: c:\Code\pi\usr\module\system/config/config.php:168
+#: c:\Code\pi\usr\module\system/config/config.php:166
 msgid "Minimum username"
 msgstr "用户名最小长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:169
+#: c:\Code\pi\usr\module\system/config/config.php:167
 msgid "Minimum length of username for user registration"
 msgstr "用户注册的用户名最小长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:176
+#: c:\Code\pi\usr\module\system/config/config.php:174
 msgid "Maximum username"
 msgstr "用户名最大长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:177
+#: c:\Code\pi\usr\module\system/config/config.php:175
 msgid "Maximum length of username for user registration"
 msgstr "用户注册时用户名最大长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:184
+#: c:\Code\pi\usr\module\system/config/config.php:182
 msgid "Minimum password"
 msgstr "密码最小长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:185
+#: c:\Code\pi\usr\module\system/config/config.php:183
 msgid "Minimum length of password for user registration"
 msgstr "用户注册密码最小长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:192
+#: c:\Code\pi\usr\module\system/config/config.php:190
 msgid "Maximum password"
 msgstr "密码最大长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:193
+#: c:\Code\pi\usr\module\system/config/config.php:191
 msgid "Maximum length of password for user registration"
 msgstr "用户注册密码最大长度"
 
-#: c:\Code\pi\usr\module\system/config/config.php:200
+#: c:\Code\pi\usr\module\system/config/config.php:198
 msgid "Username backlist"
 msgstr "用户名黑名单"
 
-#: c:\Code\pi\usr\module\system/config/config.php:201
+#: c:\Code\pi\usr\module\system/config/config.php:199
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:208
+#: c:\Code\pi\usr\module\system/config/config.php:206
 msgid "Email backlist"
 msgstr "邮箱黑名单"
 
-#: c:\Code\pi\usr\module\system/config/config.php:209
+#: c:\Code\pi\usr\module\system/config/config.php:207
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:216
-#: c:\Code\pi\usr\module\system/config/config.php:298
+#: c:\Code\pi\usr\module\system/config/config.php:214
+#: c:\Code\pi\usr\module\system/config/config.php:296
 msgid "Remember me"
 msgstr "记住登录"
 
-#: c:\Code\pi\usr\module\system/config/config.php:217
-#: c:\Code\pi\usr\module\system/config/config.php:299
+#: c:\Code\pi\usr\module\system/config/config.php:215
+#: c:\Code\pi\usr\module\system/config/config.php:297
 msgid "Days to remember login, 0 for disable."
 msgstr "登录状态保持时间，0为不保持。"
 
-#: c:\Code\pi\usr\module\system/config/config.php:224
-#: c:\Code\pi\usr\module\system/config/config.php:306
+#: c:\Code\pi\usr\module\system/config/config.php:222
+#: c:\Code\pi\usr\module\system/config/config.php:304
 msgid "Login field"
 msgstr "登录失败"
 
-#: c:\Code\pi\usr\module\system/config/config.php:225
+#: c:\Code\pi\usr\module\system/config/config.php:223
+#, fuzzy
 msgid "Identity field(s) for authentication."
-msgstr ""
+msgstr "用于认证的字段。"
 
-#: c:\Code\pi\usr\module\system/config/config.php:233
-#: c:\Code\pi\usr\module\system/config/config.php:315
+#: c:\Code\pi\usr\module\system/config/config.php:231
+#: c:\Code\pi\usr\module\system/config/config.php:313
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:23
 msgid "Username"
 msgstr "用户名"
 
-#: c:\Code\pi\usr\module\system/config/config.php:234
-#: c:\Code\pi\usr\module\system/config/config.php:316
+#: c:\Code\pi\usr\module\system/config/config.php:232
+#: c:\Code\pi\usr\module\system/config/config.php:314
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:25
 msgid "Email"
 msgstr "邮箱"
 
-#: c:\Code\pi\usr\module\system/config/config.php:244
-#: c:\Code\pi\usr\module\system/config/config.php:290
+#: c:\Code\pi\usr\module\system/config/config.php:242
+#: c:\Code\pi\usr\module\system/config/config.php:288
 msgid "Maximum attempts"
 msgstr "登录尝试最大允许次数"
 
-#: c:\Code\pi\usr\module\system/config/config.php:245
+#: c:\Code\pi\usr\module\system/config/config.php:243
 #, fuzzy
 msgid "Maximum attempts allowed to try for user login"
 msgstr "用户登录时的最大尝试次数"
 
-#: c:\Code\pi\usr\module\system/config/config.php:252
-#: c:\Code\pi\usr\module\system/config/config.php:326
+#: c:\Code\pi\usr\module\system/config/config.php:250
+#: c:\Code\pi\usr\module\system/config/config.php:324
 msgid "Login disable"
 msgstr "登录关闭"
 
-#: c:\Code\pi\usr\module\system/config/config.php:253
+#: c:\Code\pi\usr\module\system/config/config.php:251
 msgid "Disable user login"
 msgstr "禁止用户登录"
 
-#: c:\Code\pi\usr\module\system/config/config.php:261
+#: c:\Code\pi\usr\module\system/config/config.php:259
 msgid "Register disable"
 msgstr "注册关闭"
 
-#: c:\Code\pi\usr\module\system/config/config.php:262
+#: c:\Code\pi\usr\module\system/config/config.php:260
 msgid "Disable user registration"
 msgstr "禁止用户注册"
 
-#: c:\Code\pi\usr\module\system/config/config.php:270
-#: c:\Code\pi\usr\module\system/config/config.php:335
+#: c:\Code\pi\usr\module\system/config/config.php:268
+#: c:\Code\pi\usr\module\system/config/config.php:333
 msgid "Login CAPTCHA"
 msgstr "登录验证码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:271
+#: c:\Code\pi\usr\module\system/config/config.php:269
 msgid "Enable CAPTCHA for user login"
 msgstr "用户登录时启用验证码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:279
+#: c:\Code\pi\usr\module\system/config/config.php:277
 msgid "Register CAPTCHA"
 msgstr "注册验证码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:280
+#: c:\Code\pi\usr\module\system/config/config.php:278
 msgid "Enable CAPTCHA for user registration"
 msgstr "用户注册时启用验证码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:291
+#: c:\Code\pi\usr\module\system/config/config.php:289
 #, fuzzy
 msgid "Maximum attempts allowed to try for admin login"
 msgstr "用户登录时的最大尝试次数"
 
-#: c:\Code\pi\usr\module\system/config/config.php:307
+#: c:\Code\pi\usr\module\system/config/config.php:305
 msgid "Identity field(s) for admin authentication."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:327
+#: c:\Code\pi\usr\module\system/config/config.php:325
 msgid "Disable admin login"
 msgstr "禁止管理区登录"
 
-#: c:\Code\pi\usr\module\system/config/config.php:336
+#: c:\Code\pi\usr\module\system/config/config.php:334
 msgid "Enable CAPTCHA for admin login"
 msgstr "管理区登录时启用验证码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:347
+#: c:\Code\pi\usr\module\system/config/config.php:345
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
 "webmaster, company name or URL."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:355
+#: c:\Code\pi\usr\module\system/config/config.php:353
 msgid "Generator of the document being read."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:363
+#: c:\Code\pi\usr\module\system/config/config.php:361
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:371
+#: c:\Code\pi\usr\module\system/config/config.php:369
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:380
+#: c:\Code\pi\usr\module\system/config/config.php:378
 msgid "Default number style"
 msgstr "缺省数字格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:381
+#: c:\Code\pi\usr\module\system/config/config.php:379
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:386
+#: c:\Code\pi\usr\module\system/config/config.php:384
 msgid "Default format for the locale"
 msgstr "当前语言的缺省格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:387
+#: c:\Code\pi\usr\module\system/config/config.php:385
 msgid "Decimal format defined by pattern"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:388
+#: c:\Code\pi\usr\module\system/config/config.php:386
 msgid "Decimal format"
 msgstr "小数点格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:389
+#: c:\Code\pi\usr\module\system/config/config.php:387
 msgid "Percent format"
 msgstr "百分号格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:390
+#: c:\Code\pi\usr\module\system/config/config.php:388
 msgid "Scientific format"
 msgstr "科学计数法格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:391
+#: c:\Code\pi\usr\module\system/config/config.php:389
 msgid "Spellout rule-based format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:392
+#: c:\Code\pi\usr\module\system/config/config.php:390
 msgid "Ordinal rule-based format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:393
+#: c:\Code\pi\usr\module\system/config/config.php:391
 msgid "Duration rule-based format"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:394
+#: c:\Code\pi\usr\module\system/config/config.php:392
 msgid "Rule-based format defined by pattern"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:403
+#: c:\Code\pi\usr\module\system/config/config.php:401
 msgid "Default pattern for selected number style"
 msgstr "选定数字格式的缺省模式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:404
+#: c:\Code\pi\usr\module\system/config/config.php:402
 msgid "Only if required by style"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:411
+#: c:\Code\pi\usr\module\system/config/config.php:409
 msgid "Default currency type"
 msgstr "缺省货币格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:412
+#: c:\Code\pi\usr\module\system/config/config.php:410
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:419
+#: c:\Code\pi\usr\module\system/config/config.php:417
 msgid "Default calendar for the locale"
 msgstr "当前语言的缺省日历"
 
-#: c:\Code\pi\usr\module\system/config/config.php:420
+#: c:\Code\pi\usr\module\system/config/config.php:418
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:427
+#: c:\Code\pi\usr\module\system/config/config.php:425
 msgid "Default date type"
 msgstr "缺省日期格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:428
-#: c:\Code\pi\usr\module\system/config/config.php:447
+#: c:\Code\pi\usr\module\system/config/config.php:426
+#: c:\Code\pi\usr\module\system/config/config.php:445
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:433
-#: c:\Code\pi\usr\module\system/config/config.php:452
+#: c:\Code\pi\usr\module\system/config/config.php:431
+#: c:\Code\pi\usr\module\system/config/config.php:450
 msgid "Do not include this element"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:434
-#: c:\Code\pi\usr\module\system/config/config.php:453
+#: c:\Code\pi\usr\module\system/config/config.php:432
+#: c:\Code\pi\usr\module\system/config/config.php:451
 msgid ""
 "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:435
-#: c:\Code\pi\usr\module\system/config/config.php:454
+#: c:\Code\pi\usr\module\system/config/config.php:433
+#: c:\Code\pi\usr\module\system/config/config.php:452
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:436
-#: c:\Code\pi\usr\module\system/config/config.php:455
+#: c:\Code\pi\usr\module\system/config/config.php:434
+#: c:\Code\pi\usr\module\system/config/config.php:453
 msgid "Medium style (Jan 12, 1952)"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:437
-#: c:\Code\pi\usr\module\system/config/config.php:456
+#: c:\Code\pi\usr\module\system/config/config.php:435
+#: c:\Code\pi\usr\module\system/config/config.php:454
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:446
+#: c:\Code\pi\usr\module\system/config/config.php:444
 msgid "Default time type"
 msgstr "缺省时间格式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:465
+#: c:\Code\pi\usr\module\system/config/config.php:463
 msgid "Default formatting pattern for date-time"
 msgstr "日期时间的格式化缺省模式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:466
+#: c:\Code\pi\usr\module\system/config/config.php:464
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:473
+#: c:\Code\pi\usr\module\system/config/config.php:471
 msgid "Default format for legacy date function"
 msgstr "旧日期函数的缺省模式"
 
-#: c:\Code\pi\usr\module\system/config/config.php:474
+#: c:\Code\pi\usr\module\system/config/config.php:472
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:483
+#: c:\Code\pi\usr\module\system/config/config.php:481
 msgid "Admin email"
 msgstr "管理员邮箱"
 
-#: c:\Code\pi\usr\module\system/config/config.php:484
+#: c:\Code\pi\usr\module\system/config/config.php:482
 msgid "Admin email address for contact."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:490
+#: c:\Code\pi\usr\module\system/config/config.php:488
 msgid "Admin name"
 msgstr "管理员昵称"
 
-#: c:\Code\pi\usr\module\system/config/config.php:491
+#: c:\Code\pi\usr\module\system/config/config.php:489
 msgid "User name used to send emails"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:496
+#: c:\Code\pi\usr\module\system/config/config.php:494
 msgid "Email encoding"
 msgstr "邮件内容编码"
 
-#: c:\Code\pi\usr\module\system/config/config.php:497
+#: c:\Code\pi\usr\module\system/config/config.php:495
 #, fuzzy
 msgid "Encoding for email contents"
 msgstr "无效Gravatar邮箱"
 
-#: c:\Code\pi\usr\module\system/config/config.php:505
+#: c:\Code\pi\usr\module\system/config/config.php:503
 msgid "Text editor"
 msgstr "编辑器"
 
-#: c:\Code\pi\usr\module\system/config/config.php:506
+#: c:\Code\pi\usr\module\system/config/config.php:504
 msgid "Default editor for text processing"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:511
+#: c:\Code\pi\usr\module\system/config/config.php:509
 msgid "Enable word censoring"
 msgstr "启用敏感词审查"
 
-#: c:\Code\pi\usr\module\system/config/config.php:512
+#: c:\Code\pi\usr\module\system/config/config.php:510
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:520
+#: c:\Code\pi\usr\module\system/config/config.php:518
 msgid "Words to censor"
 msgstr "敏感词内容"
 
-#: c:\Code\pi\usr\module\system/config/config.php:521
+#: c:\Code\pi\usr\module\system/config/config.php:519
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:528
+#: c:\Code\pi\usr\module\system/config/config.php:526
 msgid "Word to replace censored words"
 msgstr "替换词语"
 
-#: c:\Code\pi\usr\module\system/config/config.php:529
+#: c:\Code\pi\usr\module\system/config/config.php:527
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr "用于替换敏感词的词语"
 
-#: c:\Code\pi\usr\module\system/config/config.php:536
+#: c:\Code\pi\usr\module\system/config/config.php:534
 msgid "Module themes"
 msgstr "模块主题"
 
-#: c:\Code\pi\usr\module\system/config/config.php:537
+#: c:\Code\pi\usr\module\system/config/config.php:535
 msgid "Themes for modules."
 msgstr "模块主题"
 
-#: c:\Code\pi\usr\module\system/config/config.php:545
+#: c:\Code\pi\usr\module\system/config/config.php:543
 #: c:\Code\pi\usr\module\system/config/nav.php:21
 msgid "Front navigation"
 msgstr "前台导航"
 
-#: c:\Code\pi\usr\module\system/config/config.php:546
+#: c:\Code\pi\usr\module\system/config/config.php:544
 msgid "Global navigation for front end."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/config/config.php:553
+#: c:\Code\pi\usr\module\system/config/config.php:551
 #: c:\Code\pi\usr\module\system/config/nav.php:27
 msgid "Admin navigation"
 msgstr "后台导航"
 
-#: c:\Code\pi\usr\module\system/config/config.php:554
+#: c:\Code\pi\usr\module\system/config/config.php:552
 msgid "Global navigation for admin."
 msgstr "管理区全局导航"
 
@@ -770,7 +774,7 @@ msgstr "密码"
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:16
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:22
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:36
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:18
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:17
 msgid "Admin"
 msgstr "后台"
 
@@ -1011,7 +1015,7 @@ msgstr "页面缓存清空成功。"
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:15
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:35
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:13
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr "前台"
 
@@ -1164,114 +1168,114 @@ msgstr ""
 msgid "Module \"%s\" is installed successfully."
 msgstr "模块 `%s` 安装成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:392
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:395
 #, php-format
 msgid "Module \"%s\" is not installed."
 msgstr "模块%s未安装。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:396
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:399
 msgid "Module is not installed."
 msgstr "模块未安装。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:400
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:454
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:403
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:457
 msgid "Module installation"
 msgstr "模块安装"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:474
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:566
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:625
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:476
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:574
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:635
 msgid "Module is not specified."
 msgstr "模块未指定。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:483
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:575
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:634
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:715
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:485
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:583
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:644
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:737
 msgid "Module is not found."
 msgstr "模块不存在。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:485
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:487
 msgid "System module is protected."
 msgstr "系统模块受保护。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:493
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:496
 #, php-format
 msgid "Module \"%s\" is uninstalled successfully."
 msgstr "模块 `%s` 卸载成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:498
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:501
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:503
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:508
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
 msgstr "模块%s未卸载。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:504
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:512
 msgid "Module is not uninstalled."
 msgstr "模块未卸载。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:508
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:516
 msgid "Module uninstallation"
 msgstr "模块卸载"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:543
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:551
 msgid "Module updates"
 msgstr "模块更新"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:583
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:592
 #, php-format
 msgid "Module \"%s\" is updated successfully."
 msgstr "模块 `%s` 更新成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:589
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:591
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:599
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:601
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr "模块%s未更新。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:594
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:604
 msgid "Module is not updated."
 msgstr "模块未更新。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:598
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:608
 msgid "Module update"
 msgstr "模块更新"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:647
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:658
 #, php-format
 msgid "Module \"%s\" is enabled successfully."
 msgstr "模块 `%s` 激活成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:652
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:655
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:665
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:670
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr "模块%s未激活。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:658
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:674
 msgid "Module is not enabled."
 msgstr "模块未激活。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:662
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:679
 #, php-format
 msgid "Module \"%s\" is disabled successfully."
 msgstr "模块 `%s` 禁用成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:667
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:670
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:686
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:691
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr "模块%s未禁用。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:673
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:695
 msgid "Module is not disabled."
 msgstr "模块未禁用。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:678
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:700
 msgid "Module activation"
 msgstr "模块激活"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:701
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:723
 msgid "Title is required."
 msgstr "标题为必需信息。"
 
@@ -1530,8 +1534,9 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:51
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:78
+#, fuzzy
 msgid "Order"
-msgstr ""
+msgstr "排序"
 
 #: c:\Code\pi\usr\module\system/src/Installer/Action/Install.php:87
 msgid "Default taxonomy"
@@ -1632,9 +1637,9 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:19
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:11
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:11
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:28
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:27
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:55
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:34
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "简介"
 
@@ -1881,17 +1886,17 @@ msgstr "图标"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:10
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:10
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:23
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:53
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:30
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "版本"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:34
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:38
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:18
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:50
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "详情"
 
@@ -1901,7 +1906,7 @@ msgid "Directory:"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:57
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:19
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:17
 msgid "Install"
 msgstr "安装"
 
@@ -1942,7 +1947,7 @@ msgid "Author"
 msgstr "作者"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:61
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:27
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:26
 msgid "Update"
 msgstr "更新"
 
@@ -1955,7 +1960,7 @@ msgid "Are you sure to uninstall this module?"
 msgstr "请确认是否删除该模块。"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:65
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:23
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:20
 msgid "Uninstall"
 msgstr "卸载"
 
@@ -2162,8 +2167,8 @@ msgid "Required"
 msgstr "必需"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:34
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:26
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:32
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:31
 msgid "Type"
 msgstr "类型"
 
@@ -2184,29 +2189,30 @@ msgid "Users"
 msgstr "用户"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:42
+#, fuzzy
 msgid "First"
-msgstr ""
+msgstr "名"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:43
 msgid "Add user"
 msgstr "添加用户"
 
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:11
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:10
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:44
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:14
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "点击预览"
 
-#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:21
-#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:20
+#: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:24
 msgid "Check"
 msgstr "检查"
 
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:23
 msgid "Theme in use"
 msgstr "当前主题"
 
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:37
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:36
 msgid "Themes available to use"
 msgstr "可用主题"
 
@@ -2221,6 +2227,9 @@ msgstr "主题更新成功。"
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "请确认是否删除该主题。"
+
+#~ msgid "Google Analytics account. Or use following custom foot scripts."
+#~ msgstr "谷歌分析账号，或者使用下面的定制页脚代码。"
 
 #~ msgid "There are errors with: %s."
 #~ msgstr "错误：%s。"

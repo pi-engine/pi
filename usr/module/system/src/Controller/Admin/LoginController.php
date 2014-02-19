@@ -84,4 +84,28 @@ class LoginController extends ActionController
 
         return $result;
     }
+
+    /**
+     * Check access
+     *
+     * @return bool
+     */
+    protected function checkAccess()
+    {
+        // If login disabled
+        $loginDisable = $this->getConfig('admin_disable');
+        if ($loginDisable) {
+            $this->view()->setTemplate('login-disabled', '', 'front');
+            $this->view()->setLayout('layout-simple');
+            return false;
+        }
+
+        // If already logged in
+        if (Pi::service('user')->hasIdentity()) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
+            return false;
+        }
+
+        return true;
+    }
 }
