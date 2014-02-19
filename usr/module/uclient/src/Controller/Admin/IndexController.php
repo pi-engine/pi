@@ -432,7 +432,7 @@ class IndexController extends ActionController
                     $row = $model->createRow(array(
                         'id'             => $uid,
                         'identity'       => $user['identity'],
-                        //'active'         => 1,
+                        'active'         => 1,
                         //'time_activated' => time(),
                         //'time_created'   => time(),
                         'credential'     => md5(uniqid(mt_rand(), true)),
