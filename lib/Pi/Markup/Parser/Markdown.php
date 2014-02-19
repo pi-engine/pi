@@ -27,6 +27,7 @@ class Markdown extends AbstractParser
     public function parse($value)
     {
         if (!class_exists('MarkdownDocument')) {
+            $value = nl2br($value);
             return $value;
         }
         $markdown = MarkdownDocument::createFromString($value);
