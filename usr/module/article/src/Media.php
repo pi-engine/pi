@@ -98,11 +98,12 @@ class Media
         // Fetching submitter
         $submitter = array();
         if (!empty($submitterIds)) {
-            $model  = Pi::model('user_account');
-            $rowset = $model->select(array('id' => $submitterIds));
+            $rowset = Pi::user()
+                ->get($submitterIds, array('id', 'name'));
             foreach ($rowset as $row) {
-                $submitter[$row->id] = $row->name;
+                $submitter[$row['id']] = $row['name'];
             }
+            unset($rowset);
         }
         
         foreach ($mediaSet as &$set) {
