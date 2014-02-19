@@ -30,16 +30,6 @@ class RegisterController extends ActionController
             return;
         }
 
-        if (Pi::user()->getId()) {
-            return $this->redirect(
-                '',
-                array(
-                    'controller'    => 'profile',
-                    'action'        => 'index'
-                )
-            );
-        }
-
         $result = array(
             'status'  => 0,
         );
@@ -535,9 +525,15 @@ class RegisterController extends ActionController
      */
     protected function checkAccess()
     {
+        // If disabled
         $registerDisable = $this->config('register_disable');
         if ($registerDisable) {
             $this->view()->setTemplate('register-disabled');
+            return false;
+        }
+
+        if (Pi::service('user')->hasIdentity()) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
             return false;
         }
 
