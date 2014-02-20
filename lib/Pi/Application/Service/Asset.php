@@ -375,22 +375,20 @@ class Asset extends AbstractService
 
         $result = true;
         $target = $target ?: $component;
-        //foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-            // Publish original assets
-            $sourceFolder   = $this->getSourcePath($component);
-            $targetFolder   = $this->getPath($target);
-            $disableSymlink = !empty($hasCustom) ? true : false;
-            $status         = $this->publishFile(
-                $sourceFolder,
-                $targetFolder,
-                $iterator,
-                $disableSymlink
-            );
-            if (!$status) {
-                $result = $status;
-                //break;
-            }
-        //}
+        // Publish original assets
+        $sourceFolder   = $this->getSourcePath($component);
+        $targetFolder   = $this->getPath($target);
+        $disableSymlink = !empty($hasCustom) ? true : false;
+        $status         = $this->publishFile(
+            $sourceFolder,
+            $targetFolder,
+            $iterator,
+            $disableSymlink
+        );
+        if (!$status) {
+            $result = $status;
+            //break;
+        }
 
         return $result;
     }
@@ -456,8 +454,9 @@ class Asset extends AbstractService
         if (!empty($target) || !empty($config['parent'])) {
             $hasCustom = true;
         } else {
-            $hasCustom  = $this->hasCustom($component);
-            $hasCustom  = $this->hasModule($component, $hasCustom);
+            $hasCustom = $this->hasCustom($component)
+                || $this->hasOnline($component)
+                || $this->hasModule($component);
         }
 
         $targetTheme = $target ? 'theme/' . $target : '';
@@ -474,6 +473,13 @@ class Asset extends AbstractService
         if (!$status) {
             $result = $status;
         }
+
+        // Publish online custom assets
+        $status = $this->publishOnline($component);
+        if (!$status) {
+            $result = $status;
+        }
+
         // Publish module assets for this theme
         $status = $this->publishThemeModule($theme);
         if (!$status) {
@@ -505,9 +511,9 @@ class Asset extends AbstractService
 
         $result = true;
         try {
-            $copyOnWindows = true;
-            $override = (false === $this->getOption('override')) ? false : true;
-            $useSymlink = $this->getOption('use_symlink');
+            $copyOnWindows  = true;
+            $override       = (false === $this->getOption('override')) ? false : true;
+            $useSymlink     = $this->getOption('use_symlink');
             if ($disableSymlink) {
                 $useSymlink = false;
             }
@@ -523,7 +529,7 @@ class Asset extends AbstractService
                     )
                 );
 
-                // Use symlink for performance consideration
+            // Use symlink for performance consideration
             } else {
                 Pi::service('file')->symlink(
                     $sourceFile,
@@ -549,10 +555,11 @@ class Asset extends AbstractService
      *
      * @param string $component     Component name
      * @param string $target        Target component
+     * @param string $source        Source path
      *
      * @return bool
      */
-    protected function publishCustom($component, $target = '')
+    protected function publishCustom($component, $target = '', $source = '')
     {
         $result     = true;
         $iterator   = function ($folder) {
@@ -564,10 +571,8 @@ class Asset extends AbstractService
                 RecursiveIteratorIterator::LEAVES_ONLY
             );
         };
-        $target     = $target ?: $component;
-        $component  = 'custom/' . $component;
-        //foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-        $sourceFolder   = $this->getSourcePath($component);
+        $target         = $target ?: $component;
+        $sourceFolder   = $source ?: $this->getSourcePath('custom/' . $component);
         if (is_dir($sourceFolder)) {
             $targetFolder   = $this->getPath($target);
             $status         = $this->publishFile(
@@ -580,6 +585,22 @@ class Asset extends AbstractService
                 $result = $status;
             }
         }
+
+        return $result;
+    }
+
+    /**
+     * Publishes online custom assets
+     *
+     * @param string $component     Component name
+     * @param string $target        Target component
+     *
+     * @return bool
+     */
+    protected function publishOnline($component, $target = '')
+    {
+        $sourceFolder = Pi::path('asset') . '/custom/' . $component;
+        $result = $this->publishCustom($component, $target, $sourceFolder);
 
         return $result;
     }
@@ -607,8 +628,7 @@ class Asset extends AbstractService
                 RecursiveIteratorIterator::LEAVES_ONLY
             );
         };
-        $component = 'theme/' . $theme;
-        $directoryIterator = new DirectoryIterator($path);
+        $directoryIterator  = new DirectoryIterator($path);
         foreach ($directoryIterator as $fileinfo) {
             if (!$fileinfo->isDir() && !$fileinfo->isLink()
                 || $fileinfo->isDot()
@@ -620,26 +640,24 @@ class Asset extends AbstractService
                 continue;
             }
 
-            //foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-                $sourceFolder = $path . '/' . $module . '/' . static::DIR_ASSET;
-                if (!is_dir($sourceFolder)) {
-                    continue;
-                }
-                $targetFolder = sprintf(
-                    '%s/module/%s',
-                    $this->getPath($component),
-                    $module
-                );
-                $status = $this->publishFile(
-                    $sourceFolder,
-                    $targetFolder,
-                    $iterator($sourceFolder),
-                    true
-                );
-                if (!$status) {
-                    $result = $status;
-                }
-            //}
+            $sourceFolder = $path . '/' . $module . '/' . static::DIR_ASSET;
+            if (!is_dir($sourceFolder)) {
+                continue;
+            }
+            $targetFolder = sprintf(
+                '%s/module/%s',
+                $this->getPath('theme/' . $theme),
+                $module
+            );
+            $status = $this->publishFile(
+                $sourceFolder,
+                $targetFolder,
+                $iterator($sourceFolder),
+                true
+            );
+            if (!$status) {
+                $result = $status;
+            }
         }
 
         return $result;
@@ -654,14 +672,29 @@ class Asset extends AbstractService
      */
     protected function hasCustom($component)
     {
-        $result     = false;
-        $component  = 'custom/' . $component;
-        //foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-            $sourceFolder   = $this->getSourcePath($component);
-            if (is_dir($sourceFolder)) {
-                $result = true;
-            }
-        //}
+        $result         = false;
+        $sourceFolder   = $this->getSourcePath('custom/' . $component);
+        if (is_dir($sourceFolder)) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Check if online custom assets available
+     *
+     * @param string $component     Component name
+     *
+     * @return bool
+     */
+    protected function hasOnline($component)
+    {
+        $result         = false;
+        $sourceFolder   = Pi::path('asset') . '/custom/' . $component;
+        if (is_dir($sourceFolder)) {
+            $result = true;
+        }
 
         return $result;
     }
@@ -670,13 +703,13 @@ class Asset extends AbstractService
      * Check if module assets available
      *
      * @param string $theme
-     * @param bool $result
      *
      * @return bool
      */
-    protected function hasModule($theme, $result = false)
+    protected function hasModule($theme)
     {
-        $path = Pi::path('theme') . '/' . $theme . '/module';
+        $result = false;
+        $path   = Pi::path('theme') . '/' . $theme . '/module';
         if (!is_dir($path)) {
             return $result;
         }
@@ -692,12 +725,10 @@ class Asset extends AbstractService
                 continue;
             }
 
-            //foreach (array(static::DIR_ASSET, static::DIR_PUBLIC) as $type) {
-                $sourceFolder = $path . '/' . $module . '/' . static::DIR_ASSET;
-                if (is_dir($sourceFolder)) {
-                    $result = true;
-                }
-            //}
+            $sourceFolder = $path . '/' . $module . '/' . static::DIR_ASSET;
+            if (is_dir($sourceFolder)) {
+                $result = true;
+            }
         }
 
         return $result;
