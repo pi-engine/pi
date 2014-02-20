@@ -1,0 +1,24 @@
+<?php
+$this->angular(array(
+  'angular-route.js',
+  'angular-sanitize.js',
+  'pi.js'
+));
+?>
+<script>
+angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
+.constant('config', {
+    urlRoot: '<?php echo $this->url('', array('controller' => 'theme')); ?>',
+    assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+    data: {
+      vars: <?php echo json_encode($vars); ?>,
+      name: '<?php echo $name; ?>',
+    },
+    t: {
+      
+    }
+})
+</script>
+<script src="<?php echo $this->assetModule('admin/bootstrap-less.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/theme-edit.js'); ?>"></script>
+

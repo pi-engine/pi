@@ -132,6 +132,7 @@ class ThemeController extends ActionController
         $themes = array();
         $themesInstalled = Pi::registry('themelist')->read();
         $iterator = new \DirectoryIterator(Pi::path('theme'));
+
         foreach ($iterator as $fileinfo) {
             if (!$fileinfo->isDir() || $fileinfo->isDot()) {
                 continue;
@@ -248,5 +249,33 @@ class ThemeController extends ActionController
         );
 
         return $result;
+    }
+
+    public function editAction() {
+        //http://leafo.net/lessphp/
+        //require "lessc.inc.php";
+
+        //$less = new Lessc;
+
+        //d($less->compile(".block { padding: 3 + 4px }"));
+
+        $name = $this->params('name');
+        $config = file_get_contents(Pi::url('public/vendor/bootstrap/config.json'));
+        $config = json_decode($config, true);
+
+        $this->view()->assign(array(
+            'name' => $name,
+            'vars'  => $config['vars']
+        ));
+    }
+
+    public function compileAction() {
+        $lessStr = _post('less');
+
+        return array(
+            'status' => 1,
+            'less'  =>  $lessStr,
+            'message' => __('Compile successfully')
+        );
     }
 }

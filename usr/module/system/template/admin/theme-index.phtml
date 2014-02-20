@@ -2,6 +2,7 @@
 $this->css($this->assetModule('admin/admin.css'));
 $this->jQuery();
 $this->backbone();
+d($theme);
 ?>
 <div class="page-header">
     <h2><?php echo $title; ?></h2>
@@ -29,6 +30,7 @@ $this->backbone();
                 <p style="margin-bottom:15px;">
                     <?php echo _escape($theme['description']); ?>
                 </p>
+                <a href="<?php echo $this->url('', array('action' => 'edit', 'name' => $theme['name'])); ?>"><?php _e('Edit'); ?></a>
             </div>
         </div>
     </fieldset>
