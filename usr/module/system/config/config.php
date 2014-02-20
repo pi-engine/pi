@@ -493,7 +493,7 @@ $config['item'] = array(
     'mail_encoding'       => array(
         'title'         => _t('Email encoding'),
         'description'   => _t('Encoding for email contents'),
-        'value'         => '',
+        'value'         => 'UTF-8',
         'category'      => 'mail',
     ),
 
