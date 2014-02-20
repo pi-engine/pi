@@ -28,7 +28,7 @@ namespace Pi\Debug
      *      b();
      *  ```
      *
-     * Contitional display of a var
+     * Conditional display of a var
      *
      *  ```
      *      $var = 'something ...';
@@ -93,7 +93,7 @@ namespace Pi\Debug
         }
 
         /**
-         * Syntatic sugar for displaying debugger information
+         * Syntactic sugar for displaying debugger information
          *
          * @param mixed $data
          * @return void
@@ -106,7 +106,7 @@ namespace Pi\Debug
         }
 
         /**
-         * Syntatic sugar for render()
+         * Syntactic sugar for render()
          *
          * @param mixed $data
          * @return string
@@ -309,7 +309,7 @@ namespace Pi\Debug
  *      b();
  *  ```
  *
- * Contitional display of a var
+ * Conditional display of a var
  *
  *  ```
  *      $var = 'something ...';
@@ -322,7 +322,7 @@ namespace Pi\Debug
  *      // ...
  *      denable(false);
  *      // ..
- *      dc($var);   // No putput
+ *      dc($var);   // No output
  *  ```
  */
 namespace
