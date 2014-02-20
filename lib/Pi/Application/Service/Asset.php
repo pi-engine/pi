@@ -450,6 +450,7 @@ class Asset extends AbstractService
 
         // Publish original assets
         $component  = 'theme/' . $theme;
+        $result = $this->hasOnline($component);
         // Disable symbolic link for inherited assets
         if (!empty($target) || !empty($config['parent'])) {
             $hasCustom = true;
@@ -664,6 +665,35 @@ class Asset extends AbstractService
     }
 
     /**
+     * Check if there are files in a path
+     *
+     * @param string $path
+     *
+     * @return bool
+     */
+    private function hasFile($path)
+    {
+        $result = false;
+        if (is_dir($path)) {
+            $iterator = new RecursiveIteratorIterator(
+                new RecursiveDirectoryIterator(
+                    $path,
+                    FilesystemIterator::SKIP_DOTS
+                ),
+                RecursiveIteratorIterator::LEAVES_ONLY
+            );
+            foreach ($iterator as $fileinfo) {
+                if ($fileinfo->isFile()) {
+                    $result = true;
+                    break;
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Check if custom assets available
      *
      * @param string $component     Component name
@@ -672,11 +702,8 @@ class Asset extends AbstractService
      */
     protected function hasCustom($component)
     {
-        $result         = false;
         $sourceFolder   = $this->getSourcePath('custom/' . $component);
-        if (is_dir($sourceFolder)) {
-            $result = true;
-        }
+        $result         = $this->hasFile($sourceFolder);
 
         return $result;
     }
@@ -690,11 +717,8 @@ class Asset extends AbstractService
      */
     protected function hasOnline($component)
     {
-        $result         = false;
         $sourceFolder   = Pi::path('asset') . '/custom/' . $component;
-        if (is_dir($sourceFolder)) {
-            $result = true;
-        }
+        $result         = $this->hasFile($sourceFolder);
 
         return $result;
     }
@@ -726,8 +750,9 @@ class Asset extends AbstractService
             }
 
             $sourceFolder = $path . '/' . $module . '/' . static::DIR_ASSET;
-            if (is_dir($sourceFolder)) {
-                $result = true;
+            $result       = $this->hasFile($sourceFolder);
+            if ($result) {
+                break;
             }
         }
 
