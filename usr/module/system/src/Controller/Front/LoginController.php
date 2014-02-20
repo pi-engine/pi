@@ -277,6 +277,13 @@ class LoginController extends ActionController
      */
     protected function checkAccess()
     {
+        if (Pi::service('module')->isActive('user')
+            && 'user' != $this->getModule()
+        ) {
+            $this->redirect()->toUrl(Pi::authentication()->getUrl('login'));
+            return false;
+        }
+
         // If login disabled
         $loginDisable = $this->getConfig('login_disable');
         if ($loginDisable) {
@@ -287,10 +294,7 @@ class LoginController extends ActionController
 
         // If already logged in
         if (Pi::service('user')->hasIdentity()) {
-            $this->jump(
-                Pi::service('url')->assemble('home'),
-                __('You have already logged in.')
-            );
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
             return false;
         }
 

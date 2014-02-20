@@ -11,7 +11,6 @@ namespace Module\System\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Pi\Acl\Acl;
 use Module\System\Form\RegisterForm;
 use Module\System\Form\RegisterFilter;
 
@@ -29,23 +28,7 @@ class RegisterController extends ActionController
      */
     public function indexAction()
     {
-        if (Pi::service('user')->config('register_disable')) {
-            $this->jump(
-                array('route' => 'home'),
-                __('Registration is disabled. Please come back later.'),
-                'error'
-            );
-
-            return;
-        }
-
-        // If already logged in
-        if (Pi::service('authentication')->hasIdentity()) {
-            $this->redirect()->toRoute(
-                'sysuser',
-                array('controller' => 'account')
-            );
-
+        if (!$this->checkAccess()) {
             return;
         }
 
@@ -74,9 +57,7 @@ class RegisterController extends ActionController
      */
     public function processAction()
     {
-        if (Pi::user()->config('register_disable')) {
-            $this->redirect()->toRoute('home');
-
+        if (!$this->checkAccess()) {
             return;
         }
 
@@ -139,5 +120,32 @@ class RegisterController extends ActionController
         );
 
         return $form;
+    }
+
+    /**
+     * Check access
+     *
+     * @return bool
+     */
+    protected function checkAccess()
+    {
+        if (Pi::service('module')->isActive('user')) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('register'));
+            return false;
+        }
+
+        // If disabled
+        $registerDisable = $this->config('register_disable');
+        if ($registerDisable) {
+            $this->view()->setTemplate('register-disabled');
+            return false;
+        }
+
+        if (Pi::service('user')->hasIdentity()) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
+            return false;
+        }
+
+        return true;
     }
 }

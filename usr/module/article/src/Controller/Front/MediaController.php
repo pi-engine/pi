@@ -498,7 +498,7 @@ class MediaController extends ActionController
                 if ($pathInfo['extension']) {
                     $data['type'] = strtolower($pathInfo['extension']);
                 }
-                $data['size'] = filesize($uploadInfo['tmp_name']);
+                $data['size'] = filesize(Pi::path($uploadInfo['tmp_name']));
                 
                 // Meta
                 $metaColumns = array('w', 'h');

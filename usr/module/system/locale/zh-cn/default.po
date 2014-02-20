@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-09 11:28+0800\n"
-"PO-Revision-Date: 2014-02-09 11:30+0800\n"
+"POT-Creation-Date: 2014-02-19 11:15+0800\n"
+"PO-Revision-Date: 2014-02-19 11:17+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,57 +13,7 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
 
-#: c:\Code\pi\usr\module\system/src/Event.php:31
-#, php-format
-msgid "Module %s installed"
-msgstr "成功安装 %s 模块"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:32
-#, php-format
-msgid "The module %s is installed successfully."
-msgstr "成功安装%s模块"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:49
-#, php-format
-msgid "Module %s uninstalled"
-msgstr "成功卸载 %s 模块"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:50
-#, php-format
-msgid "The module %s is uninstalled successfully."
-msgstr "成功卸载%s模块"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:67
-#, php-format
-msgid "Module %s updated"
-msgstr "%s模块已更新"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:68
-#, php-format
-msgid "The module %s is updated successfully."
-msgstr "成功更新%s模块"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:85
-#, php-format
-msgid "Module %s activated"
-msgstr "%s模块已激活"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:86
-#, php-format
-msgid "The module %s is activated successfully."
-msgstr "成功激活%s模块"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:103
-#, php-format
-msgid "Module %s deactivated"
-msgstr "%s模块已禁用"
-
-#: c:\Code\pi\usr\module\system/src/Event.php:104
-#, php-format
-msgid "The module %s is deactivated successfully."
-msgstr "成功禁用%s模块"
-
-#: c:\Code\pi\usr\module\system/src/Menu.php:228
+#: c:\Code\pi\usr\module\system/src/Menu.php:240
 msgid "Uncategorized"
 msgstr "未分类"
 
@@ -82,6 +32,56 @@ msgstr "区块布局"
 #: c:\Code\pi\usr\module\system/src/Navigation.php:229
 msgid "Setup page"
 msgstr "设置新页面"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:31
+#, php-format
+msgid "Module `%s` installed"
+msgstr "模块 %s 已安装"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:33
+#, php-format
+msgid "The module `%s` is installed successfully."
+msgstr "成功安装%s模块。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:51
+#, php-format
+msgid "Module `%s` uninstalled"
+msgstr "模块 %s 已卸载"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:53
+#, php-format
+msgid "The module `%s` is uninstalled successfully."
+msgstr "成功卸载%s模块。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:71
+#, php-format
+msgid "Module `%s` updated"
+msgstr "模块 %s 已更新"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:73
+#, php-format
+msgid "The module `%s` is updated successfully."
+msgstr "成功更新%s模块。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:91
+#, php-format
+msgid "Module `%s` activated"
+msgstr "模块 %s 已启用"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:93
+#, php-format
+msgid "The module `%s` is activated successfully."
+msgstr "成功启用 %s 模块。"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:111
+#, php-format
+msgid "Module %s deactivated"
+msgstr "%s模块已禁用"
+
+#: c:\Code\pi\usr\module\system/src/Api/Event.php:113
+#, php-format
+msgid "The module %s is deactivated successfully."
+msgstr "成功禁用%s模块"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
 msgid "What's new"
@@ -127,10 +127,6 @@ msgstr "成功登录"
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:237
 msgid "You logged out successfully."
 msgstr "成功退出。"
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:292
-msgid "You have already logged in."
-msgstr "你已在登录状态。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
 msgid "Password changed successfully."
@@ -191,23 +187,19 @@ msgstr "密码"
 msgid "User profile"
 msgstr "用户资料"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:35
-msgid "Registration is disabled. Please come back later."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:66
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:49
 msgid "User account register"
 msgstr "账号注册"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:76
 msgid "Invalid input, please try again."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:114
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:125
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:106
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\system/template/front/login.phtml:17
 #: c:\Code\pi\usr\module\system/template/front/password-find.phtml:9
@@ -422,7 +414,7 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:76
 msgid "Open target"
-msgstr ""
+msgstr "打开方式"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:78
 #: c:\Code\pi\usr\module\system/src/Form/Element/Controller.php:53
@@ -435,7 +427,7 @@ msgstr "当前窗口"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:80
 msgid "Open a new window"
-msgstr ""
+msgstr "新窗口打开"
 
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:88
 msgid "Permission resource"
@@ -482,13 +474,13 @@ msgid "Admin"
 msgstr "后台"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
-#: c:\Code\pi\usr\module\system/template/component/form.phtml:66
+#: c:\Code\pi\usr\module\system/template/component/form.phtml:68
 msgid "Cancel"
 msgstr "取消"
 
 #: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
-msgstr ""
+msgstr "抱歉，现在禁止登录。请稍后尝试。"
 
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:8
 #: c:\Code\pi\usr\module\system/template/front/login-success.phtml:8
@@ -531,6 +523,14 @@ msgstr "您已经成功登录，即将去往%s。"
 msgid "Coming soon ..."
 msgstr ""
 
+#: c:\Code\pi\usr\module\system/template/front/register-disabled.phtml:2
+msgid "User account registration"
+msgstr "用户注册"
+
+#: c:\Code\pi\usr\module\system/template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr "抱歉，现在禁止注册。请稍后尝试。"
+
 #: c:\Code\pi\usr\module\system/template/front/register-success.phtml:10
 msgid "login"
 msgstr "登录"
@@ -539,6 +539,9 @@ msgstr "登录"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "您已注册成功，请前往%s或%s。"
+
+#~ msgid "You have already logged in."
+#~ msgstr "你已在登录状态。"
 
 #~ msgid "You logged out successfully. Now go back to homepage."
 #~ msgstr "退出成功，现在回到主页。"
