@@ -29,7 +29,7 @@ $this->backbone();
                 <p style="margin-bottom:15px;">
                     <?php echo _escape($theme['description']); ?>
                 </p>
-                <a href="<?php echo $this->url('', array('action' => 'edit', 'name' => $theme['name'])); ?>"><?php _e('Edit'); ?></a>
+                <a href="<?php echo $this->url('', array('action' => 'customize', 'name' => $theme['name'])); ?>"><?php _e('Customize'); ?></a>
             </div>
         </div>
     </fieldset>

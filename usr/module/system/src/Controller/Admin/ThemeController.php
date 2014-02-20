@@ -251,7 +251,11 @@ class ThemeController extends ActionController
         return $result;
     }
 
-    public function editAction() {
+    /**
+     * Bootstrap customization for a theme
+     */
+    public function customizeAction()
+    {
         //http://leafo.net/lessphp/
         //require "lessc.inc.php";
 
@@ -259,23 +263,42 @@ class ThemeController extends ActionController
 
         //d($less->compile(".block { padding: 3 + 4px }"));
 
-        $name = $this->params('name');
-        $config = file_get_contents(Pi::url('public/vendor/bootstrap/config.json'));
-        $config = json_decode($config, true);
+        // Theme name to customize
+        $name = $this->params('name') ?: Pi::theme()->current();
+
+        // Lookup theme specific bootstrap config.json
+        $configFile = Pi::service('asset')->getAssetPath(
+            'theme/' . $name,
+            'vendor/bootstrap/config.json'
+        );
+        // Lookup default bootstrap config.json
+        if (!is_readable($configFile)) {
+            $configFile = Pi::service('asset')->getPublicPath(
+                'vendor/bootstrap/config.json'
+            );
+        }
+
+        // Read bootstrap configs
+        $config = json_decode(file_get_contents($configFile), true);
 
         $this->view()->assign(array(
-            'name' => $name,
+            'name'  => $name,
             'vars'  => $config['vars']
         ));
     }
 
-    public function compileAction() {
+    /**
+     * Compile bootstrap for a theme
+     */
+    public function compileAction()
+    {
+        // Compiled bootstrap.min.css
         $lessStr = _post('less');
 
         return array(
-            'status' => 1,
-            'less'  =>  $lessStr,
-            'message' => __('Compile successfully')
+            'status'    => 1,
+            'less'      =>  $lessStr,
+            'message'   => __('Bootstrap compiled successfully.'),
         );
     }
 }

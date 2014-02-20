@@ -6,7 +6,7 @@ angular.module('system')
     }
 
     $routeProvider.otherwise({
-      templateUrl: tpl('theme-edit'),
+      templateUrl: tpl('theme-customize'),
       controller: 'themeEditCtrl'
     });
     piProvider.addTranslations(config.t);
