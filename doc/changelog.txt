@@ -10,7 +10,8 @@ Jan 1st, 2014
 * Merged module `asset` and `public`, located in `www/asset`; independent asset deployment dropped off
 * Moved custom static to `asset/custom` folder for better deployment
 * Moved system abstract API classes to sub namespace `Api` located in `lib/Pi/Application/Api`
-* Added support for custom bootstrap in themes
+* Added support for custom bootstrap and online custom bootstrap in themes
+
 
 * Added config folders/files:
   - var/config/event.listener.php

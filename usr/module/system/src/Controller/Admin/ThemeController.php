@@ -266,11 +266,21 @@ class ThemeController extends ActionController
         // Theme name to customize
         $name = $this->params('name') ?: Pi::theme()->current();
 
-        // Lookup theme specific bootstrap config.json
-        $configFile = Pi::service('asset')->getAssetPath(
-            'theme/' . $name,
-            'vendor/bootstrap/config.json'
+        // Lookup theme online custom bootstrap config.json
+        $configFile = sprintf(
+            '%s/custom/theme/%s/asset/vendor/bootstrap/config.json',
+            Pi::path('asset'),
+            $name
         );
+
+        // Lookup theme specific bootstrap config.json
+        if (!is_readable($configFile)) {
+            $configFile = Pi::service('asset')->getAssetPath(
+                'theme/' . $name,
+                'vendor/bootstrap/config.json'
+            );
+        }
+
         // Lookup default bootstrap config.json
         if (!is_readable($configFile)) {
             $configFile = Pi::service('asset')->getPublicPath(
@@ -292,13 +302,77 @@ class ThemeController extends ActionController
      */
     public function compileAction()
     {
-        // Compiled bootstrap.min.css
-        $lessStr = _post('less');
+        // Theme name
+        $name       = _post('name') ?: Pi::theme()->current();
+
+        // Compiled boostrap.min.css, string
+        $bsString   = _post('less');
+
+        // Config JSON string
+        $cfgString  = _post('config');
+
+        // Write bootstrap scripts to online custom theme folder
+        $path = sprintf(
+            '%s/custom/theme/%s/asset/vendor/bootstrap/css',
+            Pi::path('asset'),
+            $name
+        );
+        Pi::service('file')->mkdir($path);
+        file_put_contents($path . '/bootstrap.min.css', $bsString);
+        file_put_contents(dirname($path) . '/config.json', $cfgString);
+
+        // Republish the theme
+        Pi::service('asset')->publishTheme($name);
 
         return array(
             'status'    => 1,
-            'less'      =>  $lessStr,
+            'less'      =>  $bsString,
             'message'   => __('Bootstrap compiled successfully.'),
+        );
+    }
+
+    /**
+     * Reset bootstrap custom for a theme
+     */
+    public function resetAction()
+    {
+        // Theme name
+        $name = _post('name') ?: Pi::theme()->current();
+
+        // Write bootstrap scripts to online custom theme folder
+        $path = sprintf(
+            '%s/custom/theme/%s/asset/vendor/bootstrap',
+            Pi::path('asset'),
+            $name
+        );
+        if (is_dir($path)) {
+            Pi::service('file')->remove($path);
+        }
+
+        // Republish the theme
+        Pi::service('asset')->publishTheme($name);
+
+        // Lookup theme specific bootstrap config.json
+        $configFile = Pi::service('asset')->getAssetPath(
+            'theme/' . $name,
+            'vendor/bootstrap/config.json'
+        );
+
+        // Lookup default bootstrap config.json
+        if (!is_readable($configFile)) {
+            $configFile = Pi::service('asset')->getPublicPath(
+                'vendor/bootstrap/config.json'
+            );
+        }
+
+        // Read bootstrap configs
+        $config = json_decode(file_get_contents($configFile), true);
+
+        return array(
+            'status'    => 1,
+            'message'   => __('Bootstrap reset successfully.'),
+            'name'      => $name,
+            'vars'      => $config['vars']
         );
     }
 }

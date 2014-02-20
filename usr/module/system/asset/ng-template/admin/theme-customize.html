@@ -1,3 +1,8 @@
+<div class="btn-group">
+    <button class="btn btn-primary" ng-click="compileAction()">{{'COMPILE' | translate}}</button>
+    <button class="btn btn-primary" ng-click="resetAction()">{{'RESET' | translate}}</button>
+</div>
+
 <div ng-repeat="section in sections" style="margin-bottom: 20px;">
   <h2>{{section.heading}}</h2>
   <div ng-bind-html="section.docstring.html"></div>
@@ -12,5 +17,9 @@
     </div>
   </div>
 </div>
-<button class="btn btn-success btn-block" ng-click="compileAction()">{{'COMPILE' | translate}}</button>
+
+<div class="btn-group">
+    <button class="btn btn-primary" ng-click="compileAction()">{{'COMPILE' | translate}}</button>
+    <button class="btn btn-primary" ng-click="resetAction()">{{'RESET' | translate}}</button>
+</div>
 
