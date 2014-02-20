@@ -95,14 +95,23 @@ angular.module('system')
         return ret;
       },
       compile: function(varsConfig) {
-        var less = [generateCustomCSS(this.sections, varsConfig)];
+        var lessResult = [generateCustomCSS(this.sections, varsConfig)];
         var imports = includedLessFilenames();
+        var parser = new less.Parser;
+
         angular.forEach(imports, function(item) {
-          less.push(__less[item]);
+          lessResult.push(__less[item]);
+        });
+        lessResult = lessResult.join('\n');
+        parser.parse(lessResult, function(err, tree) {
+          if (err) {
+            return console.error(err);
+          }
+          lessResult = tree.toCSS();
         });
 
         return $http.post(urlRoot + 'compile', {
-          less: less.join('\n'),
+          less: lessResult,
           config: configData(varsConfig)
         });
       }
