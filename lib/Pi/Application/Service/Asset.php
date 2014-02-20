@@ -450,7 +450,6 @@ class Asset extends AbstractService
 
         // Publish original assets
         $component  = 'theme/' . $theme;
-        $result = $this->hasOnline($component);
         // Disable symbolic link for inherited assets
         if (!empty($target) || !empty($config['parent'])) {
             $hasCustom = true;
