@@ -35,6 +35,13 @@ class Presetting extends AbstractController
 
     public function indexAction()
     {
+        // Destroy persistent data but keep language and charset
+        $language = $this->wizard->getLocale();
+        $charset = $this->wizard->getCharset();
+        $this->wizard->destroyPersist();
+        $this->wizard->setLocale($language);
+        $this->wizard->setCharset($charset);
+
         $this->loadContent();
     }
 

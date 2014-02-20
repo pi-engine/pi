@@ -36,6 +36,7 @@ class Directive extends AbstractController
     protected function loadForm()
     {
         $this->hasForm = true;
+        $this->loadEngineForm();
         $this->loadHostForm();
         $this->loadPersistForm();
     }
@@ -74,6 +75,23 @@ class Directive extends AbstractController
         $this->loadForm();
     }
 
+    /**
+     * Save engine data
+     */
+    public function engineAction()
+    {
+        $var = $this->request->getParam('var');
+        $val = $this->request->getParam('val');
+        $vars = $this->wizard->getPersist('engine-settings');
+        $vars[$var] = $val;
+        $this->wizard->setPersist('engine-settings', $vars);
+
+        echo '1';
+    }
+
+    /**
+     * Save persistent data
+     */
     public function persistAction()
     {
         $persist = $this->request->getParam('persist');
@@ -152,13 +170,14 @@ class Directive extends AbstractController
         $wizard->setPersist('paths', $vars);
 
         // List of engine configs
-        $configEngine = array(
+        $configEngine = $wizard->getPersist('engine-settings');
+        $configEngine = array_merge(array(
             'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
             'salt'          => md5(uniqid(mt_rand(), true)),
             'storage'       => $wizard->getPersist('persist'),
             'namespace'     => substr(md5($vars['www']['url']), 0, 4),
             'environment'   => '',
-        );
+        ), $configEngine);
 
         // config/host.php
         $file = $vars['config']['path'] . '/host.php';
@@ -271,6 +290,103 @@ class Directive extends AbstractController
         $this->content .= $content;
     }
 
+    /**
+     * Creates form for engine settings
+     */
+    protected function loadEngineForm()
+    {
+        $vars = (array) $this->wizard->getPersist('engine-settings');
+        $vars = array_merge(array(
+            'identifier'    => 'pi' . substr(md5(mt_rand()), 0, 4),
+            'sitename'      => 'Pi Engine',
+            'slogan'        => _s('Power your web and mobile applications.'),
+        ), $vars);
+
+        $this->wizard->setPersist('engine-settings', $vars);
+        $vars = $this->wizard->getPersist('engine-settings');
+
+        // Title and description for each item
+        $engineInfo = array(
+            'identifier'  => array(
+                _s('Identifier'),
+                _s('Unique identifier to distinguish this website. If there are multiple sites installed, make sure the identifier is unique.'),
+            ),
+            'sitename'  => array(
+                _s('Name'),
+                _s('Name for the website.'),
+            ),
+            'slogan'  => array(
+                _s('Slogan'),
+                _s('Website slogan.'),
+            ),
+        );
+
+        // Anonymous function to create form elements for an item
+        $displayItem = function ($item) use ($vars, $engineInfo) {
+            $content =<<<HTML
+<div class='item'>
+    <label for='$item'>{$engineInfo[$item][0]}</label>
+    <p class='caption'>{$engineInfo[$item][1]}</p>
+    <input type='text' name='$item' id='$item' value='{$vars[$item]}' />
+    </div>
+HTML;
+
+            return $content;
+        };
+        $content = '';
+        foreach (array_keys($engineInfo) as $item) {
+            $content .= $displayItem($item);
+        }
+        $content = '<h2> <span class="success">'
+            . _s('Primary settings')
+            . '</span> <a href="javascript:void(0);" id="engine-label">'
+            . '<span>[+]</span><span style="display: none;">[-]</span></a>'
+            . '</h2><p class="caption">'
+            . _s('Primary settings for your website.')
+            . '</p><div class="install-form advanced-form well"'
+            . ' id="advanced-engine">' . $content . '</div>';
+
+        $this->content .= $content;
+
+        // Add cascade style sheet and JavaScript to HTML head
+        $this->headContent .=<<<SCRIPT
+<style type='text/css' media='screen'>
+    #advanced-engine .item {
+        margin-top: 20px;
+    }
+    #advanced-engine p.caption, #paths label {
+        margin: 0px;
+    }
+</style>
+SCRIPT;
+        // Add JavaScript to bottom of HTML content
+        $this->footContent .=<<<SCRIPT
+<script type='text/javascript'>
+$(document).ready(function(){
+    // Check if path available, URI accessible
+    $('#advanced-engine input[type=text]').each(function(index) {
+        $(this).bind('change', function() {
+            $.ajax({
+                url: '$_SERVER[PHP_SELF]',
+                data: {page: 'directive', var: $(this).attr('id'), val: $(this).val(), action: 'engine'},
+            });
+        });
+    });
+});
+
+
+$('#engine-label').click(function() {
+    $('#advanced-engine').slideToggle();
+    $('#engine-label span').toggle();
+});
+
+</script>
+SCRIPT;
+    }
+
+    /**
+     * Creates form for persistent storage
+     */
     protected function loadPersistForm()
     {
         $persist = $this->wizard->getPersist('persist');

@@ -92,27 +92,6 @@ class Finish extends AbstractController
         }
         $readPaths .= '</ul>';
 
-        /*
-        $message = _s('
-<div class="well">
-<h3>Congratulations!</h3>
-<p>The system is set up successfully. <a href="../index.php?redirect=0">Click to visit your website!</a></p>
-</div>
-<div class="well">
-<h3>Security advisory</h3>
-<p>For security considerations please make sure the following operations are done:</p>
-<ol>
-    <li>Remove the installation folder <strong>{www}/setup/</strong> from your server manually.</li>
-    <li>Set configuration directories and files to readonly: %s</li>
-</ol>
-</div>
-<div class="well">
-<h3>Support</h3>
-<p>Visit <a href="http://pialog.org/" rel="external">Pi Engine Development Site</a> in case you need any help.</p>
-</div>
-');
-        */
-
         $messagePattern =<<<EOT
 <div class="well">
 <h3>%s</h3>
@@ -157,6 +136,7 @@ EOT;
             }
         }
 
+        $this->wizard->destroyPersist();
         Pi::persist()->flush();
     }
 }

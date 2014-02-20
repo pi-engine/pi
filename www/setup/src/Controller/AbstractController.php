@@ -49,7 +49,11 @@ abstract class AbstractController
             define('PI_PATH_LIB', $vars['lib']['path']);
             /**#@-*/
 
-            include PI_PATH_LIB . '/Pi.php';
+            $pi = PI_PATH_LIB . '/Pi.php';
+            if (!is_readable($pi)) {
+                $this->wizard->gotoPage();
+            }
+            include $pi;
 
 
             $locale = $this->wizard->getLocale();

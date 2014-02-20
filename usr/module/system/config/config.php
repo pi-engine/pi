@@ -72,14 +72,14 @@ $config['item'] = array(
         'title'         => _t('Locale'),
         'description'   => _t('Locale for application content.'),
         'edit'          => 'locale',
-        'value'         => Pi::config('locale'),
+        'value'         => 'en',
         'category'      => 'general',
     ),
 
     'charset'       => array(
         'title'         => _t('Charset'),
         'description'   => _t('Charset for page display.'),
-        'value'         => Pi::config('charset'),
+        'value'         => 'utf-8',
         'category'      => 'general',
     ),
 
@@ -138,7 +138,7 @@ $config['item'] = array(
                 ),
             ),
         ),
-        'value'         => Pi::environment(),
+        'value'         => 'development',
         'category'      => 'general',
     ),
 

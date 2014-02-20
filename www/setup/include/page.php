@@ -14,8 +14,8 @@ $pages = array(
         'desc'  => _s('Presettings and server configuration detection')
     ),
     'directive'     => array(
-        'title' => _s('Directives'),
-        'desc'  => _s('Directive settings for website')
+        'title' => _s('Basic'),
+        'desc'  => _s('Basic settings for website')
     ),
     'database'      => array(
         'title' => _s('Database'),
@@ -23,7 +23,7 @@ $pages = array(
     ),
     'admin'         => array(
         'title' => _s('Administrator'),
-        'desc'  => _s('Administrator account creation')
+        'desc'  => _s('System and administrator account creation')
     ),
     'finish'        => array(
         'title' => _s('Finish'),

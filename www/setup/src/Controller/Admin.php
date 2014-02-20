@@ -38,17 +38,10 @@ class Admin extends AbstractController
 
         $vars = $this->wizard->getPersist('siteconfig');
         if (empty($vars)) {
-            $vars['adminusername'] = 'admin';
-            $vars['adminname'] = _s('PiAdmin');
-            /*
-            $hostname = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
-            if (false === strpos($hostname, '.')) {
-                $hostname .= '.com';
-            }
-            $vars['adminmail'] = $vars['adminname'] . '@' . $hostname;
-            */
-            $vars['adminmail'] = '';
-            $vars['adminpass'] = $vars['adminpass2'] = '';
+            $vars['adminusername']  = 'admin';
+            $vars['adminname']      = _s('PiAdmin');
+            $vars['adminmail']      = '';
+            $vars['adminpass']      = $vars['adminpass2'] = '';
             $this->wizard->setPersist('siteconfig', $vars);
         }
         $this->vars = $vars;
@@ -182,7 +175,7 @@ class Admin extends AbstractController
             $error['pass'][] = _s('The two passwords do not match');
         }
         if (!$error) {
-            // Update global contact email
+            // Update site generic settings
             $configModel = Pi::model('config');
             $configModel->update(
                 array('value' => $vars['adminmail']),
@@ -192,6 +185,39 @@ class Admin extends AbstractController
                 array('value' => $vars['adminname']),
                 array('name' => 'adminname')
             );
+            $config = $this->wizard->getPersist('engine-settings');
+            if (!empty($config['sitename'])) {
+                $configModel->update(
+                    array('value' => $config['sitename']),
+                    array('name' => 'sitename')
+                );
+            }
+            if (!empty($config['slogan'])) {
+                $configModel->update(
+                    array('value' => $config['slogan']),
+                    array('name' => 'slogan')
+                );
+            }
+            if (!empty($config['environment'])) {
+                $configModel->update(
+                    array('value' => $config['environment']),
+                    array('name' => 'environment')
+                );
+            }
+            $locale = $this->wizard->getLocale();
+            if ($locale) {
+                $configModel->update(
+                    array('value' => $locale),
+                    array('name' => 'locale')
+                );
+            }
+            $charset = $this->wizard->getCharset();
+            if ($charset) {
+                $configModel->update(
+                    array('value' => $charset),
+                    array('name' => 'charset')
+                );
+            }
 
             // Create root admin user
             $adminData = array(
