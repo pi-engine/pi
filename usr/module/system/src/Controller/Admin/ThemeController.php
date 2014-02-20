@@ -292,8 +292,8 @@ class ThemeController extends ActionController
         $config = json_decode(file_get_contents($configFile), true);
 
         $this->view()->assign(array(
-            'name'  => $name,
-            'vars'  => $config['vars']
+            'name'    => $name,
+            'config'  => $config
         ));
     }
 
@@ -317,17 +317,18 @@ class ThemeController extends ActionController
             Pi::path('asset'),
             $name
         );
+
         Pi::service('file')->mkdir($path);
         file_put_contents($path . '/bootstrap.min.css', $bsString);
-        file_put_contents(dirname($path) . '/config.json', $cfgString);
+        file_put_contents(dirname($path) . '/config.json', json_encode($cfgString));
 
         // Republish the theme
         Pi::service('asset')->publishTheme($name);
 
         return array(
             'status'    => 1,
-            'less'      =>  $bsString,
             'message'   => __('Bootstrap compiled successfully.'),
+            'path'      => $path
         );
     }
 
