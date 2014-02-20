@@ -11,7 +11,7 @@ angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
     urlRoot: '<?php echo $this->url('', array('controller' => 'theme')); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
     data: {
-      vars: <?php echo json_encode($vars); ?>,
+      config: <?php echo json_encode($config); ?>,
       name: '<?php echo $name; ?>',
     },
     t: {
