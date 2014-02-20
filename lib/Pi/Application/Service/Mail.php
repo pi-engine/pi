@@ -471,10 +471,23 @@ class Mail extends AbstractService
     public function mimePart($content, $type = null)
     {
         $part = new Mime\Part($content);
-        if (!is_array($type)) {
-            $type = $type ?: 'text';
-            $type = array('type'  => $type);
+
+        // Canonize type
+        if (!$type) {
+            $type = array();
+        } elseif (is_string($type)) {
+            $type = array('type' => $type);
         }
+        if (!isset($type['type'])) {
+            $type['type'] = 'text';
+        }
+        if (!isset($type['language'])) {
+            $type['language'] = Pi::config('locale');
+        }
+        if (!isset($type['charset'])) {
+            $type['charset'] = Pi::config('charset');
+        }
+
         foreach ($type as $key => $val) {
             switch ($key) {
                 case 'id':
