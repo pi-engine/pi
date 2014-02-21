@@ -713,6 +713,9 @@ abstract class AbstractUser extends AbstractApi
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'password';
                 }
+                if (!isset($params['action'])) {
+                    $params['action'] = 'find';
+                }
                 if (isset($params['route'])) {
                     $route = $params['route'];
                     unset($params['route']);

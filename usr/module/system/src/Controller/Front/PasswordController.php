@@ -19,7 +19,7 @@ use Module\System\Form\PasswordFilter;
  *
  * Feature list:
  *
- * 1. Change passwrod
+ * 1. Change password
  * 2. Find password
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -33,6 +33,9 @@ class PasswordController extends ActionController
      */
     public function indexAction()
     {
+        if (!$this->checkAccess()) {
+            return;
+        }
         Pi::service('authentication')->requireLogin();
         $identity = Pi::service('user')->getIdentity();
 
@@ -84,5 +87,20 @@ class PasswordController extends ActionController
             'title' => $title,
         ));
         $this->view()->setTemplate('password-find');
+    }
+
+    /**
+     * Check access
+     *
+     * @return bool
+     */
+    protected function checkAccess()
+    {
+        if (Pi::service('module')->isActive('user')) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('password'));
+            return false;
+        }
+
+        return true;
     }
 }

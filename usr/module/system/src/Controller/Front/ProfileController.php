@@ -26,6 +26,9 @@ class ProfileController extends ActionController
      */
     public function indexAction()
     {
+        if (!$this->checkAccess()) {
+            return;
+        }
         Pi::service('authentication')->requireLogin();
 
         $userRow = Pi::user()->getUser();
@@ -80,5 +83,20 @@ class ProfileController extends ActionController
     public function viewAction()
     {
         $this->redirect('', array('action' => 'index'));
+    }
+
+    /**
+     * Check access
+     *
+     * @return bool
+     */
+    protected function checkAccess()
+    {
+        if (Pi::service('module')->isActive('user')) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
+            return false;
+        }
+
+        return true;
     }
 }
