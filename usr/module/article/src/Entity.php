@@ -12,7 +12,6 @@ namespace Module\Article;
 use Pi;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
-use Module\Article\Cache;
 use Module\Article\Compiled;
 use Module\Article\Stats;
 use Module\Article\Draft;
@@ -193,8 +192,12 @@ class Entity
             null, 
             $module
         );
+        
+        foreach ($articles as $id => &$article) {
+            $article = array_merge($article, $result[$id]);
+        }
 
-        return $result;
+        return $articles;
     }
 
     /**
