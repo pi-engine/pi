@@ -42,7 +42,7 @@
             <div class="col-md-2 one-item">
                 <div class="list-item" data-id="<?php echo $this->escape($media['id']); ?>">
                     <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one hide">
-                    <i class="item-delete glyphicon glyphicon-remove hide"></i>
+                    <span type="button" class="item-delete close hide">&times;</span>
                     <img class="<?php echo $media['active'] ? '' : 'gray-image' ?>" src="<?php echo $media['url'] ? Pi::url($media['url']) : $defaultImage; ?>" style="vertical-align: bottom; max-height: 100%; width: 100%; margin-bottom: 2px">
                     <div class="list-operation hide"></div>
                     <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('controller' => 'media', 'action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></button>
@@ -138,7 +138,7 @@
         },
         displayElement  : function(el) {
             el.find('input[type="checkbox"]').removeClass('hide');
-            el.find('i.item-delete').removeClass('hide');
+            el.find('.item-delete').removeClass('hide');
             el.find('.list-operation').removeClass('hide');
             el.find('button.btn-small').removeClass('hide');
             el.find('.item-detail').removeClass('hide');
@@ -147,7 +147,7 @@
         },
         hideElement     : function(el) {
             el.find('input[type="checkbox"]').addClass('hide');
-            el.find('i.item-delete').addClass('hide');
+            el.find('.item-delete').addClass('hide');
             el.find('.list-operation').addClass('hide');
             el.find('button.btn-small').addClass('hide');
             el.find('.item-detail').addClass('hide');

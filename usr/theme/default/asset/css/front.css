@@ -43,6 +43,10 @@ html {
   float: left;
 }
 
+.navbar-inverse .navbar-brand {
+  height: auto;
+}
+
 .pi-navbar-nav ul {
   display: none;
 }
