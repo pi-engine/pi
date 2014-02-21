@@ -38,25 +38,24 @@ $carouselId = uniqid('carousel');
 	}
 	?>
 	</ol>
-	<div style="<?php if ($options['height']) { echo 'height:' . $options['height'] . 'px'; } ?>"
-		 class="carousel-inner">
+	<div class="carousel-inner">
 	<?php
 	foreach ($block['items'] as $key => $item) {
 		if ($item['link']) {
-			$title = sprintf('<a href="%s">%s</a>', $item['link'], $item['caption']);
-			$image = sprintf('<a href="%s"><img class="img-responsive center-block" src="%s"></a>', 
+			$title = sprintf('<a href="%s" title="%s">%s</a>', $item['link'], $item['caption'], $item['caption']);
+			$image = sprintf('<a href="%s"><img class="img-responsive" src="%s"></a>', 
 				             $item['link'], $item['image']);
 		} else {
 			$title = $item['caption'];
-			$image = sprintf('<img class="img-responsive center-block" src="%s">', $item['image']);
+			$image = sprintf('<img class="img-responsive" src="%s">', $item['image']);
 		}
 		echo sprintf('
 			<div class="item%s">
 				<div class="row">
 					<div class="col-sm-7">%s</div>
 					<div class="col-sm-5">
-						<h4>%s</h4>
-						<p>%s
+						<h4 class="pi-ellipsis pi-ellipsis-2">%s</h4>
+						<p class="pi-ellipsis pi-ellipsis-4">%s
 					</div>
 				</div>
 			</div>',

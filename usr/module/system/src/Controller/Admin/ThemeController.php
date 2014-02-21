@@ -12,6 +12,7 @@ namespace Module\System\Controller\Admin;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Application\Installer\Theme as ThemeInstaller;
+use Zend\Json\Json;
 
 /**
  * Theme controller
@@ -317,10 +318,13 @@ class ThemeController extends ActionController
             Pi::path('asset'),
             $name
         );
+        $configJson = Json::prettyPrint(json_encode($cfgString), array(
+            'indent' => '  '
+        ));
 
         Pi::service('file')->mkdir($path);
         file_put_contents($path . '/bootstrap.min.css', $bsString);
-        file_put_contents(dirname($path) . '/config.json', json_encode($cfgString));
+        file_put_contents(dirname($path) . '/config.json', $configJson);
 
         // Republish the theme
         Pi::service('asset')->publishTheme($name);
@@ -372,8 +376,7 @@ class ThemeController extends ActionController
         return array(
             'status'    => 1,
             'message'   => __('Bootstrap reset successfully.'),
-            'name'      => $name,
-            'vars'      => $config['vars']
+            'config'    => $config
         );
     }
 }
