@@ -36,21 +36,23 @@
             </ul>
         </div>
         <?php } else { ?>
-        <?php if (Pi::user()->getId() == $uid) { ?>
-        <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
-            <i class="fa fa-eye"></i>
-            <?php _e('Back to view of own'); ?>
-        </a>
-        <button class="btn btn-default">
-            <i class="fa fa-envelope"></i>
-            <?php _e('Send message'); ?>
-        </button>
-        <?php } else { ?>
-        <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
-            <i class="fa fa-envelope"></i>
-            <?php _e('Send message'); ?>
-        </a>
-        <?php } ?>
+            <?php if (Pi::user()->getId() == $uid) { ?>
+            <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
+                <i class="fa fa-eye"></i>
+                <?php _e('Back to view of own'); ?>
+            </a>
+            <?php } ?>
+            <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
+            <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                <i class="fa fa-envelope"></i>
+                <?php _e('Send message'); ?>
+            </a>
+            <?php } else { ?>
+                <a class="btn btn-default disabled">
+                    <i class="fa fa-envelope"></i>
+                    <?php _e('Send message'); ?>
+                </a>
+            <?php } ?>
         <?php } ?>
     </div>
     <div class="inline user-info-left">
