@@ -352,15 +352,15 @@ $this->Backbone();
                             <div class="time-control-item">
                                 <input type="text" class="input-small text-hour form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
-                                    <span class="glyphicon glyphicon-chevron-up hour-sort" data-action="1"></span>
-                                    <span class="glyphicon glyphicon-chevron-down hour-sort"></span>
+                                    <span class="fa fa-chevron-up hour-sort" data-action="1"></span>
+                                    <span class="fa fa-chevron-down hour-sort"></span>
                                 </div>   
                             </div>     
                             <div class="time-control-item" style="margin-left: 10px">
                                 <input type="text" class="input-small text-minute form-control" maxlength="2">
                                 <div class="text-muted" style="padding: 0 5px; width: 9px; font-size: 12px">
-                                    <span class="glyphicon glyphicon-chevron-up minute-sort" data-action="1"></span>
-                                    <span class="glyphicon glyphicon-chevron-down minute-sort"></span>
+                                    <span class="fa fa-chevron-up minute-sort" data-action="1"></span>
+                                    <span class="fa fa-chevron-down minute-sort"></span>
                                 </div>   
                             </div>    
                         </div>  
@@ -440,8 +440,8 @@ $this->Backbone();
         </div>
         <div class="widget" id="jsGallery">
             <div class="widget-header" style="cursor: pointer;" title="<?php _e('Click toggle show'); ?>">
-                <i class="icon-caret-up glyphicon glyphicon-chevron-up"></i>
-                <i class="icon-caret-down glyphicon glyphicon-chevron-down"></i>
+                <i class="icon-caret-up fa fa-chevron-up"></i>
+                <i class="icon-caret-down fa fa-chevron-down"></i>
                 <strong><?php _e('Image gallery'); ?></strong>
             </div>
             <div class="widget-body" style="padding-right: 0;">
@@ -480,8 +480,8 @@ $this->Backbone();
             ) { ?>
         <div class="widget" id="jsSeo">
             <div class="widget-header active" style="cursor: pointer;">
-                <i class="icon-caret-up glyphicon glyphicon-chevron-up"></i>
-                <i class="icon-caret-down glyphicon glyphicon-chevron-down"></i>
+                <i class="icon-caret-up fa fa-chevron-up"></i>
+                <i class="icon-caret-down fa fa-chevron-down"></i>
                 <strong><?php _e('SEO'); ?></strong>
             </div>
             <div class="widget-body" style="overflow: hidden">
@@ -537,7 +537,7 @@ $this->Backbone();
                     <div class="modal-dialog modal-lg" style="width: 750px">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <i class="glyphicon glyphicon-remove icon-remove a-close"></i>
+                                <button type="button" class="close icon-remove a-close">&times;</button>
                                 <strong><?php _e('Manage related articles'); ?></strong>
                             </div>
                             <div class="modal-body">
@@ -655,7 +655,7 @@ $this->Backbone();
 <script id="temp-feature" type="text/template">
     <% if (data.preview_url) { %>
     <div class="black-bg">
-        <i class="pull-right glyphicon glyphicon-remove" style="margin-right:5px;"></i>
+        <button type="button" class="close js-feature-close">&times;</button>
         <span style="inline;"><?php echo $width . '*' . $height; ?></span>
     </div>
     <img src="<%= data.preview_url %>">
@@ -670,7 +670,7 @@ $this->Backbone();
     <div class="upload-image-wrap" data-id="<%= data.id %>" data-preview="<%= data.preview_url %>" data-download="<%= data.downloadUrl %>">
         <div class="black-bg ">
             <span class="ellipsis"><%= data.title %></span>
-            <i class="glyphicon glyphicon-remove"></i>
+            <button type="button" class="close js-gallery-close">&times;</button>
         </div>
         <% if (data.preview_url) { %>
         <img src="<%= data.preview_url %>" style="width: 120px; height: 90px;">
@@ -1095,12 +1095,12 @@ var ReleaseProcess = Backbone.View.extend({
             prev.each(function() {
                 var e = $(this);
                 e.removeClass("icon-arrow-left");
-                e.addClass("glyphicon glyphicon-chevron-left");
+                e.addClass("fa fa-chevron-left");
             });
             next.each(function() {
                 var e = $(this);
                 e.removeClass("icon-arrow-right");
-                e.addClass("glyphicon glyphicon-chevron-right");
+                e.addClass("fa fa-chevron-right");
             });
     },
     saveTime    : function() {
@@ -1506,11 +1506,11 @@ var AttachmentListView = Backbone.View.extend({
 
 // STARTING PROCESSING FEATURE IMAGE
 var FeatureView = Backbone.View.extend({
-    template        : _.template('<div class="black-bg"><i class="feature glyphicon glyphicon-remove"></i></div>'
+    template        : _.template('<div class="black-bg"><button type="button" class="close js-feature-close">&times;</button></div>'
                       + '<img src="<%=preview_url %>">'),
     events          : {
-        "click .feature.glyphicon-remove"   : "remove",
-        "click .media.glyphicon-remove"     : "removeUpload",
+        "click .js-feature-close"   : "remove",
+        "click .js-media-close"     : "removeUpload",
         "click #media-search"               : "searchMedia",
         "click .media-insert a"             : "insertMedia",
         "click .media-remove.close"         : "removeMedia",
@@ -1809,7 +1809,7 @@ var GalleryListView = Backbone.View.extend({
         "click .gallery-remove"     : "removeMedia",
         "click #gallery-process"    : "processMedia",
         "click #gallery-cancel"     : "cancelMedia",
-        "click .glyphicon-remove"   : "removeFile",
+        "click .js-gallery-close"   : "removeFile",
         "click img"                 : "insertEditor",
         "click .prev-page"          : "searchMedia",
         "click .next-page"          : "searchMedia"

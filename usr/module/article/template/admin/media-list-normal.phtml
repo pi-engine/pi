@@ -4,8 +4,8 @@
         <button class="btn btn-default remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
         <div class="pull-right btn-toolbar" style="margin-top: 0">
             <div class="btn-group">
-                <a class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-th-large"></span></a>
-                <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-th-list"></span></a>
+                <a class="btn btn-default" disabled="disabled"><span class="fa fa-th-large"></span></a>
+                <a class="btn btn-default" href="#"><span class="fa fa-th-list"></span></a>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
             <div class="col-md-2 one-item">
                 <div class="list-item" data-id="<?php echo $this->escape($media['id']); ?>">
                     <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one hide">
-                    <i class="item-delete glyphicon glyphicon-remove hide"></i>
+                    <span type="button" class="close item-delete hide">&times;</span>
                     <img src="<?php echo Pi::url($media['url']); ?>" style="vertical-align: bottom; width: 100%; max-height: 100%; margin-bottom: 2px">
                     <div class="list-operation hide"></div>
                     <button class="btn btn-small hide" data-url="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></button>
@@ -58,12 +58,12 @@
             this.$(".remove-checked").click(this.removeChecked);
             this.$(".item-delete").click(this.removeOne);
             this.$(".list-item button.btn-small").click(this.edit);
-            this.$(".glyphicon-th-list").click(this.toggleList);
+            this.$(".fa-th-list").click(this.toggleList);
             this.$(".list-item").click(this.selectOne);
         },
         displayElement  : function(el) {
             el.find('input[type="checkbox"]').removeClass('hide');
-            el.find('i.item-delete').removeClass('hide');
+            el.find('.item-delete').removeClass('hide');
             el.find('.list-operation').removeClass('hide');
             el.find('button.btn-small').removeClass('hide');
             el.find('.item-detail').removeClass('hide');
@@ -72,7 +72,7 @@
         },
         hideElement     : function(el) {
             el.find('input[type="checkbox"]').addClass('hide');
-            el.find('i.item-delete').addClass('hide');
+            el.find('.item-delete').addClass('hide');
             el.find('.list-operation').addClass('hide');
             el.find('button.btn-small').addClass('hide');
             el.find('.item-detail').addClass('hide');

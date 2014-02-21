@@ -16,10 +16,10 @@
             <div id="topic-image" class="upload-image-bg">
                 <?php $src = $form->get('image')->getValue(); ?>
                 <?php if ($src) { ?>
-                    <div class="black-bg"><span class="topic glyphicon glyphicon-remove"></span></div>    
+                    <div class="black-bg"><button type="button" class="close js-topic-close">&times;</button></div>    
                     <img src="<?php echo Pi::url($src); ?>">
                     <?php } else { ?>    
-                    <span class="glyphicon glyphicon-book"></span>
+                    <span class="fa fa-book"></span>
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -65,13 +65,13 @@
 
 <script id="template-chevron-left" type="text/template">
     <div class="view-previous" style="text-align: right" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a href="javascript:void(0)"><span class="fa fa-chevron-left"></span></a>
     </div>
 </script>
 
 <script id="template-chevron-right" type="text/template">
     <div class="view-next" data-page="<%= p %>">
-        <a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a href="javascript:void(0)"><span class="fa fa-chevron-right"></span></a>
     </div>
 </script>
 
@@ -91,11 +91,11 @@ var page = {
 };
 
 var UploadView = Backbone.View.extend({
-    template        : _.template('<div class="black-bg"><span class="topic glyphicon glyphicon-remove"></span></div>'
+    template        : _.template('<div class="black-bg"><button type="button" class="close js-topic-close">&times;</button></span></div>'
                     + '<img src="<%=preview_url %>">'),
     events          : {
-        "click .topic.glyphicon-remove" :"remove",
-        "click .media.glyphicon-remove" : "removeUpload",
+        "click .js-topic-close" :"remove",
+        "click .js-media-close" : "removeUpload",
         "click #media-search"           : "searchMedia",
         "click .media-insert a"         : "insertMedia",
         "click .media-remove.close"     : "removeMedia",
@@ -251,7 +251,7 @@ var UploadView = Backbone.View.extend({
             )
         ); ?>' + page.id()).done(function() {
             page.$("[name=image]").val('');
-            self.$("#topic-image").html('<span class="glyphicon glyphicon-book"></span>');
+            self.$("#topic-image").html('<span class="fa fa-book"></span>');
         });  
     },
     render          : function(obj) {
