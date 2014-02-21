@@ -92,3 +92,8 @@ May 15th, Liao Wei
 Nov 29th, Liao Wei
 
 1. Update bootstrap to version v3.0.2
+
+Feb 21th, Liao wei
+
+1. Update bootstap to version v3.1.1.
+2. Remove Glyphicons component, Choose font-awesome replace with it.
