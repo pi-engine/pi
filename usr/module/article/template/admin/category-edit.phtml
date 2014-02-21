@@ -14,10 +14,12 @@
             <div id="category-image" class="upload-image-bg">
                 <?php $src = $form->get('image')->getValue(); ?>
                 <?php if ($src) { ?>
-                    <div class="black-bg"><span class="category glyphicon glyphicon-remove"></span></div>    
+                    <div class="black-bg">
+                        <button type="button" class="close js-category-close">&times;</button>
+                    </div>    
                     <img src="<?php echo Pi::url($src); ?>">
                     <?php } else { ?>    
-                    <span class="glyphicon glyphicon-th-list"></span>
+                    <span class="fa fa-th-list"></span>
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -46,12 +48,12 @@ var page = {
 
 var UploadView = Backbone.View.extend({
     template        : _.template('<div class="black-bg">'
-                    + '<span class="category glyphicon glyphicon-remove"></span></div>'
+                    + '<button type="button" class="close js-category-close">&times;</button></div>'
                     + '<img src="<%=preview_url %>">'
     ),
     events          : {
-        "click .category.glyphicon-remove" :"remove",
-        "click .media.glyphicon-remove" : "removeUpload",
+        "click .js-category-close" :"remove",
+        "click .js-media-close" : "removeUpload",
         "click #media-search"           : "searchMedia",
         "click .media-insert a"         : "insertMedia",
         "click .media-remove.close"     : "removeMedia",
@@ -198,7 +200,7 @@ var UploadView = Backbone.View.extend({
             )
         ); ?>' + page.id()).done(function() {
             page.$('[name=image]').val('');
-            self.$("#category-image").html('<span class="glyphicon glyphicon-th-list"></span>');
+            self.$("#category-image").html('<span class="fa fa-th-list"></span>');
         });  
     },
     render          : function(obj) {

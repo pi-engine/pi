@@ -23,10 +23,12 @@
             <div id="author-image" class="upload-image-bg">
                 <?php $src = $form->get('photo')->getValue(); ?>
                 <?php if ($src) { ?>
-                    <div class="black-bg"><span class="author glyphicon glyphicon-remove"></span></div>    
+                    <div class="black-bg">
+                        <button type="button" class="close js-close">&times;</button>
+                    </div>    
                     <img src="<?php echo Pi::url($src); ?>">
                 <?php } else { ?>    
-                    <span class="glyphicon glyphicon-user"></span>
+                    <span class="fa fa-user"></span>
                 <?php } ?>
             </div>
             <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
@@ -59,7 +61,7 @@
                         <div class="preview-desc"><?php echo _a('Please make sure your photo is clearly.'); ?></div>
                         <div class="article-preview-photo" style="width: <?php echo $this->escape($configs['author_size']); ?>px; height: <?php echo $this->escape($configs['author_size']); ?>px">
                             <img src="<?php echo $src ? Pi::url($src) : ''; ?>" class="<?php echo $src ? '' : 'hide'; ?>" style="max-width: none">
-                            <span class="glyphicon glyphicon-user<?php echo $src ? ' hide' : ''; ?>"></span>
+                            <span class="fa fa-user<?php echo $src ? ' hide' : ''; ?>"></span>
                         </div>
                         <div class="preview-desc-size muted"><?php echo _a('Size: ') . $this->escape($configs['author_size']) . '×' . $this->escape($configs['author_size']) . 'px'; ?></div>
                     </div>
@@ -97,7 +99,7 @@
             return data;
         },
         template : _.template('<div class="black-bg">'
-                        + '<span class="author glyphicon glyphicon-remove"></span></div>'
+                        + '<button type="button" class="author close js-close">&times;</button></div>'
                         + '<img src="<%=preview_url %>">'
         ),
         events  : function() {
@@ -111,7 +113,7 @@
                 .find(".js-form-element")
                 .html($("#template-upload").html());
             
-            $('.glyphicon-remove').click(this.removePhoto.bind(this));
+            $('.js-close').click(this.removePhoto.bind(this));
             this.ajaxUpload();
         },
         ajaxUpload: function() {
@@ -284,7 +286,7 @@
             ); ?>' + page.id()).done(function() {
                 page.$('[name=image]').val('');
                 page.savedPhoto = '';
-                self.$("#author-image").html('<span class="glyphicon glyphicon-user"></span>');
+                self.$("#author-image").html('<span class="fa fa-user"></span>');
                 preImg.attr('style', '');
                 preImg.attr('src', '');
                 preImg.addClass('hide');
