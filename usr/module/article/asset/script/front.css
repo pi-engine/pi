@@ -611,13 +611,9 @@ div.a-related-modal {
     width: 100%;
     line-height: 20px;
 }
-.black-bg .glyphicon-remove {
-    vertical-align: middle;
-    cursor: pointer;
-    margin: 3px 5px 0 0;
-    float: right;
-    font-size: 14px;
-    height: 20px;
+.black-bg .close {
+    color: #fff;
+    opacity: 1;
 }
 .black-bg span {
     margin-left: 6px;

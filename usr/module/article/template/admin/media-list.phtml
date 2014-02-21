@@ -85,8 +85,8 @@
                 <button class="btn btn-default remove-checked" style="margin-left: 10px"><?php echo _a('Delete'); ?></button>
                 <div class="pull-right btn-toolbar" style="margin-top: 0">
                     <div class="btn-group">
-                        <a class="btn btn-default" href="#"><i class="glyphicon glyphicon-th-large"></i></a>
-                        <a class="btn btn-default" disabled="disabled"><i class="glyphicon glyphicon-th-list"></i></a>
+                        <a class="btn btn-default" href="#"><i class="fa fa-th-large"></i></a>
+                        <a class="btn btn-default" disabled="disabled"><i class="fa fa-th-list"></i></a>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                     <?php
                         } else {
                     ?>
-                        <div class="list-image"><span class="glyphicon glyphicon-file"></span></div>
+                        <div class="list-image"><span class="fa fa-file"></span></div>
                     <?php
                         }
                     ?>
@@ -188,7 +188,7 @@
             this.$(".bulk-operation").change(this.bulk);
             this.$(".check-one").click(this.clickOne);
             this.$(".one-action").click(this.oneAction);
-            this.$(".glyphicon-th-large").click(this.toggleList);
+            this.$(".fa-th-large").click(this.toggleList);
             this.$(".remove-checked").click(this.removeChecked);
         },
         toggleList      : function() {

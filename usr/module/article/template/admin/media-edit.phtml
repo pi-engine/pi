@@ -35,7 +35,7 @@
                 ) {
         ?>
                 <div class="upload-image-bg">
-                    <div class="black-bg"><span class="glyphicon glyphicon-remove"></span></div>    
+                    <div class="black-bg"><button type="button" class="close js-close">&times;</button></div>    
                     <img src="<?php echo Pi::url($src); ?>">
                 </div>
             <?php } else { ?>
@@ -69,12 +69,12 @@
 
     var UploadView = Backbone.View.extend({
         template: _.template('<div class="upload-image-bg"><div class="black-bg">'
-            + '<span class="glyphicon glyphicon-remove"></span></div>'
+            + '<button type="button" class="close js-close">&times;</button></div>'
             + '<img style="<% if (w/h > 1) { %>width: 100px; <% } else { %>height: 100px <% } %>"'
             + 'src="<%= preview_url %>"></div>'
         ),
         events: {
-            "click .glyphicon-remove" : "remove",
+            "click .js-close" : "remove",
             "click button.close"      : "remove"
         },
         initialize: function() {

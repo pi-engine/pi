@@ -107,7 +107,7 @@
 
 <!-- Template used to show uploaded image -->
 <script id="media-uploaded-image" type="text/template">
-    <div class="black-bg"><i class="media glyphicon glyphicon-remove"></i></div>
+    <div class="black-bg"><button type="button" class="close js-media-close">&times;</button></div>
     <img style="<% if (h / w > 0.75) { %>height: 238px; <% } else { %> width: 318px <% } %>" src="<%= preview_url %>">
 </script>
 
