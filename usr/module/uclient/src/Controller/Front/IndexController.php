@@ -21,6 +21,8 @@ class IndexController extends ActionController
 {
     public function indexAction()
     {
+        return $this->redirect()->toUrl(Pi::user()->getUrl('profile'));
+
         $list = Pi::service('avatar')->getList(array(3, 1, 2));
         foreach ($list as $uid => $avatar) {
             //echo '<p>' . $uid . '<br />';
