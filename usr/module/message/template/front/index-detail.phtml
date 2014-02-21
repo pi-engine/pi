@@ -51,9 +51,9 @@ if (!empty($message)) { ?>
                     <?php echo $message['content']; ?>
                 </p>
                 <div class="message-detail-hidden">
-                    <p class="message-hidden pull-right">
+                    <p class="pull-right">
                         <span>
-                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>" data-confirm="Once you delete this message, it cannot be undone.">
+                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>" class="js-delete">
                                 <?php _e('Delete'); ?></a>
                         </span>
                     </p>
@@ -86,12 +86,12 @@ if (!empty($message)) { ?>
     ?>
 </div>
 <?php } ?>
-<?php include '_confirm-modal.phtml' ?>
 <script src="<?php echo $this->assetModule('script/index-detail.js'); ?>"></script>
     
 <script>
 messageIndex({
     p: '<?php echo isset($paginator) ? $paginator->getCurrentPageNumber() : ''; ?>',
-    host: '<?php echo $this->url('', array('module' => 'message')); ?>'
+    host: '<?php echo $this->url('', array('module' => 'message')); ?>',
+    confirm: '<?php _e('Once you delete this message, it cannot be undone.'); ?>'
 });
 </script>  
