@@ -13,8 +13,8 @@ angular.module('system')
     piProvider.addAjaxInterceptors();
   }
 ])
-.factory('service', ['$http', 'config',
-  function($http, config) {
+.factory('service', ['$http', '$rootScope', 'config',
+  function($http, $rootScope, config) {
     // Returns an Array of @import'd filenames in the order
     // in which they appear in the file.
     function includedLessFilenames() {
@@ -105,15 +105,31 @@ angular.module('system')
         lessResult = lessResult.join('\n');
         parser.parse(lessResult, function(err, tree) {
           if (err) {
+            $rootScope.alert = {
+              status: 0,
+              message: err.message
+            }
             return console.error(err);
           }
           lessResult = tree.toCSS();
+          if (less.env == 'production') {
+            lessResult = lessResult
+                          .replace(/\n/g, '')
+                          .replace(/(;)\s*/g, '$1')
+                          .replace(/\s*({)\s*/g, '$1')
+                          .replace(/\s*(})\s*/g, '$1')
+                          .replace(/\s*(>)\s*/g, '$1')
+                          .replace(/(:)\s*/g, '$1');
+          }
         });
 
         return $http.post(urlRoot + 'compile', {
           less: lessResult,
           config: configData(varsConfig)
         });
+      },
+      reset: function() {
+        return $http.post(urlRoot + 'reset');
       }
     }
   }
@@ -133,6 +149,12 @@ angular.module('system')
         });
       });
       service.compile(config);
+    }
+
+    $scope.resetAction = function() {
+      /*service.reset().success(function() {
+
+      });*/
     }
   }
 ]);

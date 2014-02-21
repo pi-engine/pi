@@ -17,12 +17,13 @@ angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
     t: {
       
     }
-})
+});
 less = {
     env: '<?php echo Pi::environment(); ?>'
 };
 </script>
 <script src="<?php echo Pi::url('static/js/less.min.js');?>"></script>
+<script src="<?php echo Pi::url('static/js/markdown.min.js');?>"></script>
 <script src="<?php echo $this->assetModule('admin/bootstrap-less.js'); ?>"></script>
 <script src="<?php echo $this->assetModule('admin/theme-customize.js'); ?>"></script>
 
