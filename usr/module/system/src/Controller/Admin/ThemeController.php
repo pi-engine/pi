@@ -268,33 +268,33 @@ class ThemeController extends ActionController
         $name = $this->params('name') ?: Pi::theme()->current();
 
         // Lookup theme online custom bootstrap config.json
-        $configFile = sprintf(
+        $customFile = sprintf(
             '%s/custom/theme/%s/asset/vendor/bootstrap/config.json',
             Pi::path('asset'),
             $name
         );
 
         // Lookup theme specific bootstrap config.json
-        if (!is_readable($configFile)) {
-            $configFile = Pi::service('asset')->getAssetPath(
+        if (!is_readable($customFile)) {
+            $customFile = Pi::service('asset')->getAssetPath(
                 'theme/' . $name,
                 'vendor/bootstrap/config.json'
             );
         }
 
         // Lookup default bootstrap config.json
-        if (!is_readable($configFile)) {
-            $configFile = Pi::service('asset')->getPublicPath(
+        if (!is_readable($customFile)) {
+            $customFile = Pi::service('asset')->getPublicPath(
                 'vendor/bootstrap/config.json'
             );
         }
 
         // Read bootstrap configs
-        $config = json_decode(file_get_contents($configFile), true);
+        $custom = json_decode(file_get_contents($customFile), true);
 
         $this->view()->assign(array(
             'name'    => $name,
-            'config'  => $config
+            'custom'  => $custom
         ));
     }
 
@@ -310,7 +310,7 @@ class ThemeController extends ActionController
         $bsString   = _post('less');
 
         // Config JSON string
-        $cfgString  = _post('config');
+        $cfgString  = _post('custom');
 
         // Write bootstrap scripts to online custom theme folder
         $path = sprintf(
@@ -331,8 +331,7 @@ class ThemeController extends ActionController
 
         return array(
             'status'    => 1,
-            'message'   => __('Bootstrap compiled successfully.'),
-            'path'      => $path
+            'message'   => __('Bootstrap compiled successfully.')
         );
     }
 
@@ -358,25 +357,25 @@ class ThemeController extends ActionController
         Pi::service('asset')->publishTheme($name);
 
         // Lookup theme specific bootstrap config.json
-        $configFile = Pi::service('asset')->getAssetPath(
+        $customFile = Pi::service('asset')->getAssetPath(
             'theme/' . $name,
             'vendor/bootstrap/config.json'
         );
 
         // Lookup default bootstrap config.json
-        if (!is_readable($configFile)) {
-            $configFile = Pi::service('asset')->getPublicPath(
+        if (!is_readable($customFile)) {
+            $customFile = Pi::service('asset')->getPublicPath(
                 'vendor/bootstrap/config.json'
             );
         }
 
         // Read bootstrap configs
-        $config = json_decode(file_get_contents($configFile), true);
+        $config = json_decode(file_get_contents($customFile), true);
 
         return array(
             'status'    => 1,
             'message'   => __('Bootstrap reset successfully.'),
-            'config'    => $config
+            'custom'    => $config
         );
     }
 }

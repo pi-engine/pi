@@ -1,23 +1,20 @@
 <?php
 // Options: interval, pause, height
 $options = (array) $block['options'];
-$class = 'carousel';
-if (isset($options['class'])) {
-    $class .= ' ' . $options['class'];
-    unset($options['class']);
-} else {
-    $class .= ' slide';
-}
 $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
-
 $_this = $this;
-$render = function ($item) use ($_this)
+$width = $options['width'];
+$height = $options['height'];
+$render = function ($item) use ($_this, $width, $height)
 {
     $caption = $_this->escape($item['caption']);
     $description = $_this->escape($item['desc']);
-    $image = '<img class="center-block" src="' . $item['image'] . '" alt="' . $caption . '" />';
+    $image = sprintf('<img src="%s" style="%s%s">',
+                      $item['image'],
+                      $width ? 'width: '  . $width  . 'px;' : '',
+                      $height ? 'height: '  . $height . 'px;' : '');
 
     $content = '';
     if (!empty($item['link'])) {
@@ -30,16 +27,9 @@ $render = function ($item) use ($_this)
     }
     return $content;
 };
-
 $carouselId = uniqid('carousel');
-$style = ".carousel-control .fa-chevron-left,
-.carousel-control .fa-chevron-right {
-    position: absolute;
-    top: 50%;
-}";
-$this->headStyle()->appendStyle($style);
 ?>
-<div id="<?php echo $carouselId; ?>" class="<?php echo $class; ?>">
+<div id="<?php echo $carouselId; ?>" class="carousel slide">
     <ol class="carousel-indicators">
         <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
         <?php for ($i = 1; $i <= $count; $i++) { ?>
@@ -48,7 +38,7 @@ $this->headStyle()->appendStyle($style);
     </ol>
 
     <!-- Carousel items -->
-    <div <?php if ($options['height']) { echo 'style="height: ' . $options['height'] . 'px;"'; } ?> class="carousel-inner">
+    <div class="carousel-inner">
         <div class="active item">
             <?php echo $render($activeItem); ?>
         </div>
@@ -61,10 +51,10 @@ $this->headStyle()->appendStyle($style);
 
     <!-- Carousel nav -->
     <a class="left carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
-        <span class="fa fa-chevron-left"></span>
+        <span class="icon-prev fa fa-chevron-left"></span>
     </a>
     <a class="right carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
-        <span class="fa fa-chevron-right"></span>
+        <span class="icon-next fa fa-chevron-right"></span>
     </a>
 </div>
 <?php
