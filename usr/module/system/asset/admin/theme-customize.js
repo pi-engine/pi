@@ -7,76 +7,94 @@ angular.module('system')
 
     $routeProvider.otherwise({
       templateUrl: tpl('theme-customize'),
-      controller: 'themeEditCtrl'
+      controller: 'themeEditCtrl',
+      resolve: {
+        variablesLess: ['$q', '$route', '$rootScope', 'admin',
+          function($q, $route, $rootScope, admin) {
+            var deferred = $q.defer();
+            $rootScope.alert = 2;
+            admin.getLess('variables.less').success(function(res) {
+              admin.variablesLess = res;
+              deferred.resolve();
+              $rootScope.alert = '';
+            });
+            return deferred.promise;
+          }]
+      }
     });
     piProvider.addTranslations(config.t);
     piProvider.addAjaxInterceptors();
   }
 ])
-.factory('service', ['$http', '$rootScope', 'config',
+.factory('admin', ['$http', '$rootScope', 'config',
   function($http, $rootScope, config) {
     // Returns an Array of @import'd filenames in the order
     // in which they appear in the file.
-    function includedLessFilenames() {
-      var IMPORT_REGEX = /^@import \"(.*?)\";$/
-      var lessLines = __less['bootstrap.less'].split('\n');
+    function includedLessFilenames(bootstrapLess) {
+      var IMPORT_REGEX = /^@import\s*\"(.*?)\";\s*$/
+      var lessLines = bootstrapLess.split('\n');
+      var imports = [];
 
-      for (var i = 0, imports = []; i < lessLines.length; i++) {
+      for (var i = 0; i < lessLines.length; i++) {
         var match = IMPORT_REGEX.exec(lessLines[i]);
         var isNeed = match && match[1] != 'variables.less' && match[1] != 'glyphicons.less';
-        if (isNeed) imports.push(match[1])
+        if (isNeed) { imports.push(match[1]);  }
       }
 
       return imports;
     }
 
-    function configData(varsConfig) {
-      var originConfig = config.data.config;
-      var data;
-      if (!angular.isObject(originConfig)) {
-        data = { vars: {}, css: [], js: [] };
-      } else {
-        data = angular.copy(originConfig);
-      }
+    //Conver less to css
+    function lessParseCss(str) {
+      var parser = new less.Parser;
+      var css;
 
-      if (varsConfig) {
-        data.vars = varsConfig;
-      }
+      parser.parse(str, function(err, tree) {
+          if (err) {
+            return console.error(err);
+          }
+          try {
+            css = tree.toCSS();
+          } catch (event) {
+            $rootScope.alert = { status: 0, message: event.message };
+            css = '';
+            console.error(event);
+          }
 
-      return data;
-    }
-
-    function generateCustomCSS(sections, varsConfig) {
-      var ret = [];
-      var value;
-
-      angular.forEach(sections, function(section) {
-        angular.forEach(section.subsections, function(subsection) {
-          angular.forEach(subsection.variables, function(variable) {
-            if (angular.isDefined(varsConfig[variable.name])) {
-              value = varsConfig[variable.name];
-            } else {
-              value = variable.defaultValue;
-            }
-            ret.push(variable.name + ': ' + value);
-          });
-        });
+          if (less.env == 'production') {
+            css = css
+                    .replace(/\n/g, '')
+                    .replace(/(;)\s*/g, '$1')
+                    .replace(/\s*({)\s*/g, '$1')
+                    .replace(/\s*(})\s*/g, '$1')
+                    .replace(/\s*(>)\s*/g, '$1')
+                    .replace(/(:)\s*/g, '$1');
+          }
       });
-      //Fixed @badge-line-height bug
-      ret.unshift('@badge-line-height: 1');
 
-      return ret.join(';\n') + ';\n';
+      return css;
     }
 
     var urlRoot = config.urlRoot;
+    var custom;
+
+    if (!angular.isObject(config.data.custom)) {
+      custom = { vars: {}, css: [], js: [] };
+    } else {
+      custom = config.data.custom;
+    }
 
     return {
+      //Get bootstrap less files
+      getLess: function(name) {
+        return $http.get(config.bootstrapLessUrl + name, {
+          cache: true
+        });
+      },
       //Parse less str to array
-      sections: new LessParser(__less["variables.less"]).parseFile(),
-      generateCustomData: function() {
-        var sections = this.sections;
+      generateSections: function() {
+        var sections = new LessParser(this.variablesLess).parseFile();
         var ret = [];
-        var data = configData().vars;
 
         angular.forEach(sections, function(section) {
           if (section.customizable) {
@@ -86,47 +104,70 @@ angular.module('system')
         angular.forEach(ret, function(section) {
           angular.forEach(section.subsections, function(subsection) {
             angular.forEach(subsection.variables, function(variable) {
-              if (angular.isDefined(data[variable.name])) {
-                variable.defaultValue = data[variable.name];
+              if (angular.isDefined(custom[variable.name])) {
+                variable.defaultValue = custom[variable.name];
               }
             });
           });
         });
         return ret;
       },
-      compile: function(varsConfig) {
-        var lessResult = [generateCustomCSS(this.sections, varsConfig)];
-        var imports = includedLessFilenames();
-        var parser = new less.Parser;
+      generateCustomLess: function(custom) {
+        var sections = new LessParser(this.variablesLess).parseFile();
+        var customLess = [];
 
-        angular.forEach(imports, function(item) {
-          lessResult.push(__less[item]);
+        angular.forEach(sections, function(section) {
+          angular.forEach(section.subsections, function(subsection) {
+            angular.forEach(subsection.variables, function(variable) {
+              var value = angular.isDefined(custom[variable.name]) ? 
+                            custom[variable.name] : variable.defaultValue;
+              customLess.push(variable.name + ': ' + value);
+            });
+          });
         });
-        lessResult = lessResult.join('\n');
-        parser.parse(lessResult, function(err, tree) {
-          if (err) {
-            $rootScope.alert = {
-              status: 0,
-              message: err.message
-            }
-            return console.error(err);
+        //Fixed @badge-line-height bug
+        customLess.unshift('@badge-line-height: 1');
+
+        return customLess.join(';\n') + ';\n';
+      },
+      compile: function(custom) {
+        var getLess = this.getLess;
+        var customLess = this.generateCustomLess(custom);
+
+        //In process of compile
+        $rootScope.alert = { status: 2, message: config.t.Compiling };
+        getLess('bootstrap.less').success(function(res) {
+          var imports = includedLessFilenames(res);
+          var length = imports.length;
+          var lessResult = [customLess];
+          var collection = {};
+          var count = 0;
+          var done = function() {
+            if (count < length) return;
+            var parser = new less.Parser;
+
+            angular.forEach(imports, function(item) {
+              lessResult.push(collection[item]);
+            });
+            lessResult = lessParseCss(lessResult.join('\n'));
+            if (!lessResult) return;
+
+            $http.post(urlRoot + 'compile', {
+              less: lessResult,
+              custom: custom
+            });
           }
-          lessResult = tree.toCSS();
-          if (less.env == 'production') {
-            lessResult = lessResult
-                          .replace(/\n/g, '')
-                          .replace(/(;)\s*/g, '$1')
-                          .replace(/\s*({)\s*/g, '$1')
-                          .replace(/\s*(})\s*/g, '$1')
-                          .replace(/\s*(>)\s*/g, '$1')
-                          .replace(/(:)\s*/g, '$1');
-          }
+
+          angular.forEach(imports, function(item) {
+            getLess(item).success(function(result) {
+              collection[item] = result;
+              count++;
+              done();
+            });
+          });
         });
 
-        return $http.post(urlRoot + 'compile', {
-          less: lessResult,
-          config: configData(varsConfig)
-        });
+    
       },
       reset: function() {
         return $http.post(urlRoot + 'reset');
@@ -134,25 +175,25 @@ angular.module('system')
     }
   }
 ])
-.controller('themeEditCtrl', ['$scope', 'service',
-  function($scope, service) {
-    $scope.sections = service.generateCustomData();
+.controller('themeEditCtrl', ['$scope', 'admin',
+  function($scope, admin) {
+    $scope.sections = admin.generateSections();
 
     $scope.compileAction = function() {
-      var vars = [];
-      var config = {};
+      var custom = {};
+
       angular.forEach($scope.sections, function(section) {
         angular.forEach(section.subsections, function(subsection) {
           angular.forEach(subsection.variables, function(variable) {
-            config[variable.name] = variable.defaultValue;
+            custom[variable.name] = variable.defaultValue;
           });
         });
       });
-      service.compile(config);
+      admin.compile(custom);
     }
 
     $scope.resetAction = function() {
-      /*service.reset().success(function() {
+      /*admin.reset().success(function() {
 
       });*/
     }

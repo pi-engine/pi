@@ -9,13 +9,14 @@ $this->angular(array(
 angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
 .constant('config', {
     urlRoot: '<?php echo $this->url('', array('controller' => 'theme')); ?>',
+    bootstrapLessUrl: '<?php echo Pi::url('public/vendor/bootstrap/less/'); ?>',
     assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
     data: {
-      config: <?php echo json_encode($config); ?>,
+      custom: <?php echo json_encode($custom); ?>,
       name: '<?php echo $name; ?>',
     },
     t: {
-      
+      Compiling: '<?php _e('In process of compile'); ?>'
     }
 });
 less = {
@@ -24,6 +25,6 @@ less = {
 </script>
 <script src="<?php echo Pi::url('static/js/less.min.js');?>"></script>
 <script src="<?php echo Pi::url('static/js/markdown.min.js');?>"></script>
-<script src="<?php echo $this->assetModule('admin/bootstrap-less.js'); ?>"></script>
+<script src="<?php echo Pi::url('static/js/bs-lessdoc-parser.js');?>"></script>
 <script src="<?php echo $this->assetModule('admin/theme-customize.js'); ?>"></script>
 
