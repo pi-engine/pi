@@ -6,6 +6,14 @@ $hiddenMessages = $form->getHiddenMessages();
 if ($hiddenMessages) {
 ?>
     <div class="alert alert-danger">
+        <?php
+        if (!empty($hiddenMessages['security'])) {
+            foreach ($hiddenMessages['security'] as $elMessage) {
+                echo '<p>' . $elMessage . '</p>';
+            }
+            unset($hiddenMessages['security']);
+        }
+        ?>
         <?php foreach ($hiddenMessages as $elName => $elMessages) { ?>
             <dl>
                 <dt><?php echo $elName; ?></dt>
