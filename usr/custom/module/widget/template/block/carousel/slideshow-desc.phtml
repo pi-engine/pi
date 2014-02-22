@@ -4,6 +4,8 @@ $options = (array) $block['options'];
 
 $length = count($block['items']);
 $carouselId = uniqid('carousel');
+$width = $options['width'];
+$height = $options['height'];
 ?>
 <style>
 .pi-carousel-indicators {
@@ -41,13 +43,16 @@ $carouselId = uniqid('carousel');
 	<div class="carousel-inner">
 	<?php
 	foreach ($block['items'] as $key => $item) {
+		$image = sprintf('<img class="img-responsive" src="%s" style="%s%s">',
+						          $item['image'],
+											$width ? 'width: '  . $width  . 'px;' : '',
+											$height ? 'height: '  . $height . 'px;' : '');
 		if ($item['link']) {
 			$title = sprintf('<a href="%s" title="%s">%s</a>', $item['link'], $item['caption'], $item['caption']);
-			$image = sprintf('<a href="%s"><img class="img-responsive" src="%s"></a>', 
-				             $item['link'], $item['image']);
+			$image = sprintf('<a href="%s">%s</a>', 
+				             $item['link'], $image);
 		} else {
 			$title = $item['caption'];
-			$image = sprintf('<img class="img-responsive" src="%s">', $item['image']);
 		}
 		echo sprintf('
 			<div class="item%s">

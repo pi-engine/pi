@@ -49,8 +49,13 @@ class Update extends BasicUpdate
         $rowset = Pi::model('block_root')->select(array('type' => 'carousel'));
         foreach ($rowset as $row) {
             $row->config = array(
+                'width'     => array(
+                    'title'         => _a('Image width'),
+                    'edit'          => 'text',
+                    'filter'        => 'number_int',
+                ),
                 'height'    => array(
-                    'title'         => _a('Block frame height'),
+                    'title'         => _a('Image height'),
                     'edit'          => 'text',
                     'filter'        => 'number_int',
                 ),

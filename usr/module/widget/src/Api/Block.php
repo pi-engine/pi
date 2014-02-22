@@ -37,8 +37,13 @@ class Block extends AbstractApi
         switch ($type) {
             case 'carousel':
                 $block['config'] = array(
+                    'width'     => array(
+                        'title'         => _a('Image width'),
+                        'edit'          => 'text',
+                        'filter'        => 'number_int',
+                    ),
                     'height'    => array(
-                        'title'         => _a('Block frame height'),
+                        'title'         => _a('Image height'),
                         'edit'          => 'text',
                         'filter'        => 'number_int',
                     ),
