@@ -1,21 +1,10 @@
 <?php
 /**
- * User name validator
+ * Pi Engine (http://pialog.org)
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Copyright (c) Pi Engine http://www.xoopsengine.org
- * @license         http://www.xoopsengine.org/license New BSD License
- * @author          Liu Chuang <liuchuang@eefocus.com>
- * @since           3.0
- * @package         Module\User
- * @subpackage      Validator
- * @version         $Id$
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
  */
 
 namespace Module\User\Validator;
@@ -39,25 +28,6 @@ class Username extends AbstractValidator
     protected $messageTemplates;
     protected $formatMessage;
 
-    public function __construct()
-    {
-        $this->messageTemplates = array(
-            self::INVALID   => __('Invalid user name: %formatHint%'),
-            self::RESERVED  => __('User name is reserved'),
-            self::TAKEN     => __('User name is already taken'),
-            self::TOO_SHORT => __('User name is less than %min% characters long'),
-            self::TOO_LONG  => __('User name is more than %max% characters long')
-        );
-
-        $this->formatMessage = array(
-            'strict'    => __('Only alphabetic and digits are allowed with leading alphabetic'),
-            'medium'    => __('Only ASCII characters are allowed'),
-            'loose'     => __('Multibyte characters are allowed'),
-        );
-
-        parent::__construct();
-    }
-
     protected $messageVariables = array(
         'formatHint' => 'formatHint',
         'max'        => 'max',
@@ -79,6 +49,25 @@ class Username extends AbstractValidator
         'backlist'          => array(),
         'checkDuplication'  => true,
     );
+
+    public function __construct()
+    {
+        $this->messageTemplates = array(
+            self::INVALID   => __('Invalid user name: %formatHint%'),
+            self::RESERVED  => __('User name is reserved'),
+            self::TAKEN     => __('User name is already taken'),
+            self::TOO_SHORT => __('User name is less than %min% characters long'),
+            self::TOO_LONG  => __('User name is more than %max% characters long')
+        );
+
+        $this->formatMessage = array(
+            'strict'    => __('Only alphabetic and digits are allowed with leading alphabetic'),
+            'medium'    => __('Only ASCII characters are allowed'),
+            'loose'     => __('Multibyte characters are allowed'),
+        );
+
+        parent::__construct();
+    }
 
     /**
      * User name validate

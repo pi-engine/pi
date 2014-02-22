@@ -15,6 +15,8 @@ use Zend\Validator\AbstractValidator;
 /**
  * Validator for telephone
  *
+ * @TODO Phone number format should be configurable
+ *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
 

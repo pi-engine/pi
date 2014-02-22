@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-19 11:15+0800\n"
-"PO-Revision-Date: 2014-02-19 11:17+0800\n"
+"POT-Creation-Date: 2014-02-22 12:26+0800\n"
+"PO-Revision-Date: 2014-02-22 12:28+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,6 +83,14 @@ msgstr "%s模块已禁用"
 msgid "The module %s is deactivated successfully."
 msgstr "成功禁用%s模块"
 
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:334
+msgid "Bootstrap compiled successfully."
+msgstr "Bootstrap 编译成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:378
+msgid "Bootstrap reset successfully."
+msgstr "Bootstrap 重置成功。"
+
 #: c:\Code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
 msgid "What's new"
 msgstr "最近更新"
@@ -128,62 +136,82 @@ msgstr "成功登录"
 msgid "You logged out successfully."
 msgstr "成功退出。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:53
 msgid "Password changed successfully."
 msgstr "修改密码成功"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:58
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:58
 msgid "Password not changed."
 msgstr "密码未修改。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:61
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:61
 msgid "Invalid data, please check and re-submit."
 msgstr "无效数据，请检查后重新提交。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:68
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:44
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:68
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:47
 msgid "Change password"
 msgstr "修改密码"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:82
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:82
+#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:51
 #: c:\Code\pi\usr\module\system/template/front/login.phtml:14
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:2
 #: c:\Code\pi\usr\module\system/template/front/register.phtml:9
 msgid "Find password"
 msgstr "找回密码"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:51
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
+msgid "Find password failed."
+msgstr "找回密码失败。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:118
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改密码。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:139
+msgid "Invalid token for password reset."
+msgstr "密码重置信息无效。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:193
+msgid "Password reset successfully."
+msgstr "重置密码成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:63
 msgid "Logout"
 msgstr "退出"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
 msgid "ID"
 msgstr "ID"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:55
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
 msgid "Username"
 msgstr "用户名"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:56
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
+#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:26
 msgid "Email"
 msgstr "邮箱"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:44
 msgid "Name"
 msgstr "姓名"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:61
 msgid "Role"
 msgstr "角色"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:62
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:58
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:62
 msgid "Password"
 msgstr "密码"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:64
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:67
 msgid "User profile"
 msgstr "用户资料"
 
@@ -202,7 +230,6 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:106
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\system/template/front/login.phtml:17
-#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:9
 msgid "Register"
 msgstr "注册"
 
@@ -246,6 +273,7 @@ msgstr "生日"
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:74
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:84
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:100
+#: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:73
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:115
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:49
 msgid "Submit"
@@ -336,6 +364,10 @@ msgstr "缓存标准"
 msgid "Configs"
 msgstr "配置参数"
 
+#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:36
+msgid "Please type the word"
+msgstr "验证码"
+
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:70
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:64
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:84
@@ -349,7 +381,6 @@ msgstr "记住登录"
 
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:109
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:17
-#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:8
 #: c:\Code\pi\usr\module\system/template/front/register.phtml:10
 msgid "Login"
 msgstr "登录"
@@ -361,12 +392,14 @@ msgstr "Email地址"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:93
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:42
+#: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:42
 msgid "New password"
 msgstr "新密码"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:101
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:52
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:72
+#: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:52
 msgid "Confirm password"
 msgstr "确认密码"
 
@@ -473,10 +506,22 @@ msgstr "前台"
 msgid "Admin"
 msgstr "后台"
 
+#: c:\Code\pi\usr\module\system/src/Validator/Password.php:50
+msgid "Password is less than %min% characters long"
+msgstr "密码不得少于%min%个字符"
+
+#: c:\Code\pi\usr\module\system/src/Validator/Password.php:51
+msgid "Password is more than %max% characters long"
+msgstr "密码不得多于%max%个字符"
+
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
 #: c:\Code\pi\usr\module\system/template/component/form.phtml:68
 msgid "Cancel"
 msgstr "取消"
+
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:32
+msgid "Customize"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
@@ -498,7 +543,6 @@ msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "您已成功退出，请前往%s或%s。"
 
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:16
-#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:7
 #: c:\Code\pi\usr\module\system/template/front/register.phtml:8
 msgid "Choose: "
 msgstr "选择："
@@ -519,9 +563,25 @@ msgstr "您已使用账号<strong>%s</strong>登录，请%s重新登录。"
 msgid "You have logged in successfully, please go to %s."
 msgstr "您已经成功登录，即将去往%s。"
 
-#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:4
-msgid "Coming soon ..."
-msgstr ""
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr "重置密码"
+
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:7
+msgid "Try to find password again"
+msgstr "请尝试重新找回密码"
+
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:12
+msgid "Congratulations!"
+msgstr "恭喜！"
+
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:13
+msgid "Your new password has worked"
+msgstr "新密码已生效"
+
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:14
+msgid "Please login"
+msgstr "请登录"
 
 #: c:\Code\pi\usr\module\system/template/front/register-disabled.phtml:2
 msgid "User account registration"
@@ -558,9 +618,6 @@ msgstr "您已注册成功，请前往%s或%s。"
 #~ msgid ""
 #~ "The page will redirected in %d seconds. Or you can click %s directly."
 #~ msgstr "页面将在%d秒后跳转，或者直接点击%s跳转。"
-
-#~ msgid "Please log in."
-#~ msgstr "请登录"
 
 #~ msgid "The user does not exists."
 #~ msgstr "用户不存在"

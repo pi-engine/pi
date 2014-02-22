@@ -7,15 +7,15 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User\Validator;
+namespace Pi\Validator;
 
-use Pi;
-use Zend\Validator\AbstractValidator;
+/**
+ * Placeholder for validator i18n
+ *
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ */
 
-class Birthdate extends AbstractValidator
-{
-    public function isValid($value, $context = null)
-    {
 
-    }
-}
+    _("Empty captcha value");
+    _("Captcha ID field is missing");
+    _("Captcha value is wrong");

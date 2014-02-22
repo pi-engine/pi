@@ -7,9 +7,8 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Uclient\Form;
+namespace Module\System\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -46,11 +45,10 @@ class FindPasswordForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'       => 'submit',
-            'attributes' => array(
-                'type'  => 'submit',
+            'name'  => 'submit',
+            'type'  => 'submit',
+            'attributes'    => array(
                 'value' => __('Find password'),
-                'class' => 'btn',
             ),
         ));
     }
