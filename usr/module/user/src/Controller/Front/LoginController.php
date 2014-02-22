@@ -9,6 +9,7 @@
 
 namespace Module\User\Controller\Front;
 
+use Pi;
 use Module\System\Controller\Front\LoginController as ActionController;
 use Module\User\Form\LoginForm;
 use Module\User\Form\LoginFilter;
@@ -18,6 +19,16 @@ use Module\User\Form\LoginFilter;
  */
 class LoginController extends ActionController
 {
+    /**
+     * Load system translations
+     * {@inheritDoc}
+     */
+    protected function preAction($e)
+    {
+        Pi::service('i18n')->loadModule('default', 'system');
+        return true;
+    }
+
     /**
      * Load login form
      *
