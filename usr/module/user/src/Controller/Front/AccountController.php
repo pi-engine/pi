@@ -290,7 +290,7 @@ class AccountController extends ActionController
     }
 
     /**
-     * Send confirmation email for email change request
+     * Send confirmation for email change request
      *
      * @param int $uid
      * @param string $username
@@ -344,7 +344,7 @@ class AccountController extends ActionController
 
         // Sending
         $message = Pi::service('mail')->message($subject, $body, $type);
-        $message->addTo($curEmail);
+        $message->addTo($newEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
         $result = 1;
@@ -361,7 +361,7 @@ class AccountController extends ActionController
     }
 
     /**
-     * Send confirmation of email change success
+     * Send notification of email change success
      *
      * @param string $username
      * @param string $oldEmail
@@ -385,7 +385,7 @@ class AccountController extends ActionController
         $body    = $data['body'];
         $type    = $data['format'];
         $message = Pi::service('mail')->message($subject, $body, $type);
-        $message->addTo($newEmail);
+        $message->addTo($oldEmail);
         $transport = Pi::service('mail')->transport();
         $transport->send($message);
     }

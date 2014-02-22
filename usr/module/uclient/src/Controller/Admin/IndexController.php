@@ -10,7 +10,6 @@
 namespace Module\Uclient\Controller\Admin;
 
 use Pi;
-use Pi\User\Model\Client as UserModel;
 use Pi\Mvc\Controller\ActionController;
 use Zend\Db\Sql\Predicate;
 

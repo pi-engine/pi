@@ -10,11 +10,11 @@
 <?php include $this->templateComponent('form'); ?>
 <div class="row" style="margin: 40px -15px;">
     <div class="col-md-offset-2 col-md-10">
-        <a href="<?php echo $this->url('', array('controller' => 'password', 'action' => 'find')); ?>"
+        <a href="<?php echo Pi::service('user')->getUrl('password'); ?>"
            style="margin-right: 10px;">
             <?php _e('Find password'); ?>
         </a>
-        <a href="<?php echo $this->url('', array('controller' => 'register')); ?>">
+        <a href="<?php echo Pi::service('user')->getUrl('register'); ?>">
             <?php _e('Register'); ?>
         </a>
     </div>

@@ -31,10 +31,10 @@ class ProfileController extends ActionController
         }
         Pi::service('authentication')->requireLogin();
 
-        $userRow = Pi::user()->getUser();
-        $roles   = $userRow->role();
-        $roleList = Pi::registry('role')->read();
-        $userRole = array();
+        $userRow    = Pi::user()->getUser();
+        $roles      = $userRow->role();
+        $roleList   = Pi::registry('role')->read();
+        $userRole   = array();
         foreach ($roles as $role) {
             $userRole[] = $roleList[$role]['title'];
         }

@@ -7,11 +7,9 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\Uclient\Form;
+namespace Module\System\Form;
 
-use Pi;
 use Zend\InputFilter\InputFilter;
-use Module\User\Validator\CredentialVerify;
 
 /**
  * Class for verifying and filtering form
@@ -32,7 +30,7 @@ class ResetPasswordFilter extends InputFilter
             ),
             'validators'    => array(
                 array(
-                    'name'      => 'Module\Uclient\Validator\Password',
+                    'name'      => 'Module\System\Validator\Password',
                 ),
             ),
         ));
@@ -54,6 +52,11 @@ class ResetPasswordFilter extends InputFilter
                     ),
                 ),
             ),
+        ));
+
+        $this->add(array(
+            'name'          => 'token',
+            'required'      => true,
         ));
     }
 }

@@ -15,20 +15,13 @@ use Pi\Mvc\Controller\ActionController;
 /**
  * Placeholder controller
  *
- * @author Taiwen Jiang
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class IndexController extends ActionController
 {
     public function indexAction()
     {
         return $this->redirect()->toUrl(Pi::user()->getUrl('profile'));
-
-        $list = Pi::service('avatar')->getList(array(3, 1, 2));
-        foreach ($list as $uid => $avatar) {
-            //echo '<p>' . $uid . '<br />';
-            echo $avatar;
-        }
-        //var_dump($list);
     }
 
 }

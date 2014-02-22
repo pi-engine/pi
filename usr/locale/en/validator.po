@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-02-06 14:30+0800\n"
-"PO-Revision-Date: 2014-02-06 14:30+0800\n"
+"POT-Creation-Date: 2014-02-22 13:02+0800\n"
+"PO-Revision-Date: 2014-02-22 13:02+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,18 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Callback.php:19
 msgid "An exception has been raised within the callback"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:19
+msgid "Empty captcha value"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:20
+msgid "Captcha ID field is missing"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:21
+msgid "Captcha value is wrong"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:18

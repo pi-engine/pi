@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-02-06 14:20+0800\n"
-"PO-Revision-Date: 2014-02-06 14:23+0800\n"
+"POT-Creation-Date: 2014-02-22 13:01+0800\n"
+"PO-Revision-Date: 2014-02-22 13:02+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
@@ -50,12 +50,26 @@ msgid "The input is not strictly between '%min%' and '%max%'"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Callback.php:18
+#, fuzzy
 msgid "The input is not valid"
-msgstr ""
+msgstr "输入不是六位数字"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Callback.php:19
 msgid "An exception has been raised within the callback"
 msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:19
+#, fuzzy
+msgid "Empty captcha value"
+msgstr "标题不能为空"
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:20
+msgid "Captcha ID field is missing"
+msgstr "验证码ID丢失"
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:21
+msgid "Captcha value is wrong"
+msgstr "验证码错误"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/CreditCard.php:18
 msgid "The input seems to contain an invalid checksum"
@@ -84,7 +98,7 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Csrf.php:19
 msgid "The form submitted did not originate from the expected site"
-msgstr ""
+msgstr "提交的内容疑似不是从本网站的表单生成。"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Date.php:18
 msgid "Invalid type given. String, integer, array or DateTime expected"
@@ -100,12 +114,14 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/DateStep.php:18
 #: c:\Code\pi\\usr\locale\_source\Validator/Step.php:19
+#, fuzzy
 msgid "The input is not a valid step"
-msgstr ""
+msgstr "输入不是7-20位数字"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:19
+#, fuzzy
 msgid "The input is an empty string"
-msgstr ""
+msgstr "输入不是六位数字"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:20
 #: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:18
@@ -260,8 +276,9 @@ msgid "The input is not a valid ISBN number"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/IsInstanceOf.php:18
+#, fuzzy
 msgid "The input is not an instance of '%className%'"
-msgstr ""
+msgstr "输入不是7-20位数字"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:18
 msgid "The input is not less than '%max%'"
@@ -292,12 +309,14 @@ msgid "Invalid value given. Scalar expected"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:19
+#, fuzzy
 msgid "The input is less than %min% characters long"
-msgstr ""
+msgstr "密码不得少于%min%个字符"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:20
+#, fuzzy
 msgid "The input is more than %max% characters long"
-msgstr ""
+msgstr "密码不得多于%max%个字符"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:19
 msgid "The input does not appear to be a valid Uri"
@@ -348,8 +367,9 @@ msgid "File has an incorrect extension"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/Exists.php:18
+#, fuzzy
 msgid "File does not exist"
-msgstr ""
+msgstr "图片不存在。"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/FilesSize.php:18
 msgid ""
@@ -469,8 +489,9 @@ msgid "No temporary directory was found for file '%value%'"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:23
+#, fuzzy
 msgid "File '%value%' can't be written"
-msgstr ""
+msgstr "不能为空"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:24
 msgid "A PHP extension returned an error while uploading the file '%value%'"
@@ -481,8 +502,9 @@ msgid "File '%value%' was illegally uploaded. This could be a possible attack"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:26
+#, fuzzy
 msgid "File '%value%' was not found"
-msgstr ""
+msgstr "请求的Action未找到。"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/Upload.php:27
 msgid "Unknown error while uploading file '%value%'"
@@ -509,8 +531,9 @@ msgid "No temporary directory was found for file"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:23
+#, fuzzy
 msgid "File can't be written"
-msgstr ""
+msgstr "无法创建图片文件"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/UploadFile.php:24
 msgid "A PHP extension returned an error while uploading the file"

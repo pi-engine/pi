@@ -18,7 +18,7 @@
  * @version         $Id$
  */
 
-namespace Module\Uclient\Validator;
+namespace Module\System\Validator;
 
 use Pi;
 use Zend\Validator\AbstractValidator;
@@ -26,7 +26,7 @@ use Zend\Validator\AbstractValidator;
 /**
  * Validator for username
  *
- * @author Liu Chuang <liuchuangww@gmail.com>
+ * @author Liu Chuang <liuchuang@eefocus.com>
  */
 
 class Password extends AbstractValidator
@@ -34,13 +34,7 @@ class Password extends AbstractValidator
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
-    /**
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::TOO_SHORT => 'Password is less than %min% characters long',
-        self::TOO_LONG  => 'Password is more than %max% characters long'
-    );
+    protected $messageTemplates;
 
     protected $messageVariables = array(
         'max'        => 'max',
@@ -50,27 +44,37 @@ class Password extends AbstractValidator
     protected $max;
     protected $min;
 
+    public function __construct()
+    {
+        $this->messageTemplates = array(
+            self::TOO_SHORT => __('Password is less than %min% characters long'),
+            self::TOO_LONG  => __('Password is more than %max% characters long'),
+        );
+
+        parent::__construct();
+    }
+
     public function isValid($value)
     {
         $this->setValue($value);
         $this->setConfigOption();
 
-        if ($this->options['max']) {
-            if ($this->options['max'] < strlen($value)) {
-                $this->max = $this->options['max'];
-                $this->error(static::TOO_LONG);
-                return false;
-            }
+        if (!empty($this->options['max'])
+            && $this->options['max'] < strlen($value)
+        ) {
+            $this->max = $this->options['max'];
+            $this->error(static::TOO_LONG);
+            return false;
         }
-        if ($this->options['min']) {
-            if ($this->options['min'] > strlen($value)) {
-                $this->min = $this->options['min'];
-                $this->error(static::TOO_SHORT);
-                return false;
-            }
+        if (!empty($this->options['min'])
+            && $this->options['min'] > strlen($value)
+        ) {
+            $this->min = $this->options['min'];
+            $this->error(static::TOO_SHORT);
+            return false;
         }
 
-        return ture;
+        return true;
     }
 
     /**
@@ -81,8 +85,8 @@ class Password extends AbstractValidator
     public function setConfigOption()
     {
         $this->options = array(
-            'min'       => 3,
-            'max'       => 24,
+            'min'       => Pi::user()->config('password_min'),
+            'max'       => Pi::user()->config('password_max'),
         );
 
         return $this;

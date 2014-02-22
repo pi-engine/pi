@@ -15,6 +15,8 @@ use Zend\Validator\AbstractValidator;
 /**
  * Validator for postcode
  *
+ * @TODO Postcode length should not configurable
+ *
  * @author Liu Chuang <liuchuangww@gmail.com>
  */
 
