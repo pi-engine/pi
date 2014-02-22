@@ -104,8 +104,9 @@ class PasswordController extends ActionController
             if ($form->isValid()) {
                 $value = $form->getData();
 
-                // Check email is  exist
-                $userRow = $this->getModel('account')->find($value['email'], 'email');
+                // Check if email exists
+                //$userRow = $this->getModel('account')->find($value['email'], 'email');
+                $userRow = Pi::service('user')->getUser($value['email'], 'email');
                 if (!$userRow) {
                     $this->view()->assign(array(
                         'form'   => $form,
