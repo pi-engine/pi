@@ -19,9 +19,6 @@ use Pi;
  */
 class Local extends System
 {
-    /** @var string Route for user URLs */
-    //protected $route = 'user';
-
     /**#@+
      * Meta operations
      */

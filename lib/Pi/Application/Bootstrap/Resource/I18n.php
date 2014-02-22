@@ -86,7 +86,7 @@ class I18n extends AbstractResource
      */
     public function loadTranslator(MvcEvent $e)
     {
-        $module = Pi::service('module')->current();
+        //$module = Pi::service('module')->current();
         foreach ((array) $this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
             //Pi::service('i18n')->load('custom/' . $module . ':' . $domain);

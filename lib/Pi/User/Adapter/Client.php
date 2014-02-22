@@ -18,9 +18,6 @@ use Pi;
  */
 class Client extends System
 {
-    /** @var string Route for user URLs */
-    //protected $route = 'uclient';
-
     /**#@+
      * Meta operations
      */
