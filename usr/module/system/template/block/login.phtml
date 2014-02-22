@@ -38,7 +38,12 @@ if ($form->has('captcha')) {
     ?>
     <div class="form-group">
         <?php
-        $captcha = $form->get('captcha');
+        $captcha    = $form->get('captcha');
+        $label      = $captcha->getLabel();
+        $captcha->setAttributes(array(
+            'placeholder'   => $label,
+            'class'         => 'form-control'
+        ));
         echo $this->formCaptcha($captcha);
         ?>
     </div>
