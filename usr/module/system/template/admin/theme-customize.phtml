@@ -16,7 +16,9 @@ angular.module('system', ['ngRoute', 'ngSanitize', 'pi'])
       name: '<?php echo $name; ?>',
     },
     t: {
-      Compiling: '<?php _e('In process of compile'); ?>'
+        COMPILING: '<?php _e('In process of compiling'); ?>',
+        COMPILE: '<?php _e('Compile'); ?>',
+        RESET: '<?php _e('Rebuild'); ?>'
     }
 });
 less = {
