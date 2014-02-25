@@ -15,7 +15,6 @@ if ('js' == $block['type']) {
 <ul class="nav navbar-nav navbar-right" id="user-bar-member" style="display: none;">
     <li>
         <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">
-
         </a>
     <li>
          <a id="member-message" href="#" title="<?php echo _b('Message'); ?>">
@@ -34,9 +33,8 @@ if ('js' == $block['type']) {
         if (user.uid > 0) {
             ela.hide();
             elm.show();
-            $('#member-avatar').html(user.avatar);
             $('#member-message').attr('href', user.message);
-            $('#member-profile').attr('href', user.profile).html(user.name);
+            $('#member-profile').attr('href', user.profile).html(user.avatar + ' ' + user.name);
         } else {
             ela.show();
             elm.hide();
