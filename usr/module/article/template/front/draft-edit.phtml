@@ -137,6 +137,7 @@ $this->Backbone();
                         <?php 
                             $element = $form->get('subject');
                             $element->setAttribute("class", "form-control control-word");
+                            $element->setAttribute("style", "width: 100%");
                             echo $this->formElement($element);
                         ?>
                     </div>
@@ -171,6 +172,7 @@ $this->Backbone();
                         <?php 
                             $element = $form->get('subtitle');
                             $element->setAttribute("class", "form-control control-word");
+                            $element->setAttribute("style", "width: 100%");
                             echo $this->formElement($element);
                         ?>
                     </div>
@@ -248,6 +250,7 @@ $this->Backbone();
                             $element = $form->get('summary');
                             $element->setAttributes(array(
                                 "class" => "form-control control-word",
+                                "style" => "width: 100%",
                                 "rows"  => "4",
                             ));
                             echo $this->formElement($element); ?>
@@ -646,7 +649,7 @@ $this->Backbone();
         <td>
             <a href="<%= data.downloadUrl %>" class="attachment-name"><%= data.title %></a>
         </td>
-        <td>
+        <td style="padding: 2px">
             <a href="javascript:void(0)" class="insert btn btn-info btn-sm"><?php _e('Insert'); ?></a>&nbsp;&nbsp;
             <a href="javascript:void(0)" class="delete"><?php _e('Delete'); ?></a>
         </td>
