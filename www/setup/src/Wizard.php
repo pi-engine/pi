@@ -400,7 +400,7 @@ class Wizard
         return;
     }
 
-    public function savePersist()
+    public function savePersist($close = true)
     {
         $this->persist()->save();
 
@@ -419,6 +419,7 @@ class Wizard
     {
         //$this->persistentData[$key] = $value;
         $this->persist()->set($key, $value);
+        $this->savePersist(false);
 
         return $this;
     }

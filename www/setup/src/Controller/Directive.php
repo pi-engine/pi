@@ -170,7 +170,7 @@ class Directive extends AbstractController
         $wizard->setPersist('paths', $vars);
 
         // List of engine configs
-        $configEngine = $wizard->getPersist('engine-settings');
+        $configEngine = (array) $wizard->getPersist('engine-settings');
         $configEngine = array_merge(array(
             'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
             'salt'          => md5(uniqid(mt_rand(), true)),

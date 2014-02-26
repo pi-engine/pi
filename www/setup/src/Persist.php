@@ -33,10 +33,11 @@ class Persist
      *
      * @param string $method
      * @param array|null $data
+     * @param bool $flag
      *
      * @return mixed
      */
-    protected function storage($method, $data = null)
+    protected function storage($method, $data = null, $flag = true)
     {
         $result = null;
         $_this = $this;
@@ -84,7 +85,9 @@ class Persist
                         break;
                     case 'save':
                         $_SESSION[static::PERSIST_IDENTIFIER] = $data;
-                        session_write_close();
+                        if ($flag) {
+                            session_write_close();
+                        }
                         break;
                     case 'destroy':
                         if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
@@ -110,11 +113,12 @@ class Persist
      * Save container to storage
      *
      * @param array $container
+     * @param bool $flag
      */
-    public function save($container = null)
+    public function save($container = null, $flag = true)
     {
         $data = (null === $container) ? $this->container : $container;
-        $this->storage('save', $data);
+        $this->storage('save', $data, $flag);
 
         return;
     }
