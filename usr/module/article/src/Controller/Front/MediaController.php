@@ -421,6 +421,7 @@ class MediaController extends ActionController
         $id     = $this->params('id', 0);
         $fakeId = $this->params('fake_id', 0);
         $source = $this->params('source', 'outside');
+        $uid    = $this->params('uid', 0);
         $result = array();
         if (empty($fakeId) and empty($id)) {
             $result = array(
@@ -440,6 +441,7 @@ class MediaController extends ActionController
                     'title' => 'File ' . $fakeId . ' from ' . $source,
                 );
             }
+            $data['uid'] = $uid;
             $mediaId = $this->saveMedia($data);
             if (empty($mediaId)) {
                 $result = array(
@@ -475,7 +477,7 @@ class MediaController extends ActionController
     {
         $module = $this->getModule();
         $model  = $this->getModel('media');
-        $fakeId = $image = null;
+        $image  = null;
 
         if (isset($data['id'])) {
             $id = $data['id'];
@@ -516,7 +518,9 @@ class MediaController extends ActionController
         }
         
         // Getting user ID
-        $data['uid'] = Pi::user()->getId() ?: 0;
+        if (!isset($data['uid']) || !$data['uid']) {
+            $data['uid'] = Pi::user()->getId();
+        }
         
         if (empty($id)) {
             $data['time_upload'] = time();
