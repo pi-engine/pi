@@ -16,6 +16,8 @@ $this->bootstrap(array(
 
 $this->css($this->assetModule('script/front.css'));
 $this->Backbone();
+
+$uid = Pi::user()->getId();
 ?>
 
 <style>
@@ -1454,6 +1456,7 @@ var AttachmentListView = Backbone.View.extend({
                     var url = '<?php echo $this->url('default', array(
                         'controller' => 'media',
                         'action'     => 'save',
+                        'uid'        => $uid,
                         'source'     => 'attachment',
                         'fake_id'    => 'placeholder',
                     )); ?>'.replace(/placeholder$/, id);
@@ -1605,6 +1608,7 @@ var FeatureView = Backbone.View.extend({
         var url = '<?php echo $this->url('default', array(
             'controller' => 'media',
             'action'     => 'save',
+            'uid'        => $uid,
             'source'     => 'feature',
         )); ?>/' + id;
         var self = this;
@@ -1998,6 +2002,7 @@ var GalleryListView = Backbone.View.extend({
                     var url = '<?php echo $this->url('default', array(
                         'controller' => 'media',
                         'action'     => 'save',
+                        'uid'        => $uid,
                         'source'     => 'gallery',
                         'fake_id'    => 'placeholder',
                     )); ?>'.replace(/placeholder$/, id);
