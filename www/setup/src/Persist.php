@@ -16,7 +16,7 @@ namespace Pi\Setup;
  */
 class Persist
 {
-    /** @var string Identifier for conatiner */
+    /** @var string Identifier for container */
     const PERSIST_IDENTIFIER = 'PI-SETUP.tmp';
 
     /** @var string Storage for persistent data */
@@ -29,12 +29,27 @@ class Persist
     protected $container = array();
 
     /**
+     * Constructor
+     *
+     * @param string $storage
+     * @param string $dir
+     */
+    public function __construct($storage = '', $dir = '')
+    {
+        $this->storage  = $storage ?: 'session';
+        if ($dir) {
+            $this->setTmpDir($dir);
+        }
+    }
+
+    /**
      * Storage methods
      *
-     * @param string $method
+     * @param string     $method
      * @param array|null $data
-     * @param bool $flag
+     * @param bool       $flag
      *
+     * @throws \Exception
      * @return mixed
      */
     protected function storage($method, $data = null, $flag = true)
@@ -51,22 +66,23 @@ class Persist
                     case 'load':
                         $file = $fileLookup();
                         if (file_exists($file)) {
-                            $content = file_get_contents($file);
-                            $result = json_decode($content, true);
+                            $content    = file_get_contents($file);
+                            $result     = json_decode($content, true);
                         } else {
                             $result = array();
                         }
                         break;
                     case 'save':
                         $file = $fileLookup();
-                        if ($file) {
-                            file_put_contents($file, json_encode($data));
-                        }
+                        file_put_contents($file, json_encode($data));
                         break;
                     case 'destroy':
                         $file = $fileLookup();
-                        if ($file) {
-                            @unlink($file);
+                        if (file_exists($file)) {
+                            $status = @unlink($file);
+                            if (!$status) {
+                                throw new \Exception('Temp persistent data file was not destroyed: ' . $file);
+                            }
                         }
                         break;
                 }
@@ -146,6 +162,9 @@ class Persist
      */
     public function set($key, $value)
     {
+        if (!is_array($this->container)) {
+            $this->container = array();
+        }
         $this->container[$key] = $value;
 
         return $this;
@@ -168,10 +187,14 @@ class Persist
      *
      * @param string $tmpDir
      *
+     * @throws \Exception
      * @return $this
      */
     public function setTmpDir($tmpDir)
     {
+        if (!is_writable($tmpDir)) {
+            throw new \Exception('`tmp` directory is not writable.');
+        }
         $this->tmpDir = $tmpDir;
 
         return $this;
@@ -184,7 +207,7 @@ class Persist
      * @return string
      * @see \Zend\File\Transfer\Adapter\AbstractAdapter::getTmpDir
      */
-    protected function getTmpDir()
+    public function getTmpDir()
     {
         if (null === $this->tmpDir) {
             $tmpdir = array();

@@ -19,32 +19,33 @@ use Locale;
  */
 class Wizard
 {
-    const BASE_NAMESPACE = 'Pi\Setup';
-    const DIR_CLASS = 'src';
+    const BASE_NAMESPACE    = 'Pi\Setup';
+    const DIR_CLASS         = 'src';
     protected static $root;
 
     protected $request;
     protected $controller;
-    protected $pageIndex = null;
+    protected $pageIndex;
 
     protected $persist;
-    protected $locale = '';
-    protected $charset = 'UTF-8';
-    protected $pages = array();
-    protected $configs = array();
-    protected $languages = array();
+    protected $locale       = '';
+    protected $charset      = 'UTF-8';
+    protected $pages        = array();
+    protected $configs      = array();
+    protected $languages    = array();
+    protected $tmpDir       = '';
 
     public $support = array(
         'url'   => 'http://pialog.org',
         'title' => 'Pi Engine',
     );
 
-    public function __construct()
+    public function __construct($tmpDir = '')
     {
         $pwd = dirname($_SERVER["SCRIPT_FILENAME"]);
         static::$root = str_replace('\\', '/', $pwd);
         spl_autoload_register('static::autoload');
-        //$this->request = new Request();
+        $this->tmpDir = $tmpDir;
     }
 
     public static function autoload($class)
@@ -65,16 +66,20 @@ class Wizard
     public function init()
     {
         // Load persistent data
-        $this->loadPersist();
+        try {
+            $this->loadPersist();
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
 
         // Load the main language file
         $this->initLocale();
 
         // Setup pages
-        $this->pages = include static::$root . '/include/page.php';
+        $this->pages = include $this->getRoot() . '/include/page.php';
 
         // Load default configs
-        $this->configs = include static::$root . '/include/config.php';
+        $this->configs = include $this->getRoot() . '/include/config.php';
 
         if (!$this->checkAccess()) {
             return false;
@@ -152,7 +157,7 @@ class Wizard
             $this->persist()->set('locale', $this->locale);
         }
         $this->charset = $this->persist()->get('charset') ?: $this->charset;
-        Translator::setPath(static::$root . '/locale');
+        Translator::setPath($this->getRoot() . '/locale');
         Translator::setLocale($this->locale);
         Translator::loadDomain('default');
     }
@@ -353,7 +358,7 @@ class Wizard
             'nextUrl', 'pageHasForm', 'content', 'headContent', 'footContent'
         );
         ob_start();
-        include static::$root . '/include/template.phtml';
+        include $this->getRoot() . '/include/template.phtml';
         $content = ob_get_contents();
         ob_end_clean();
 
@@ -387,7 +392,11 @@ class Wizard
     public function persist()
     {
         if (!$this->persist instanceof Persist) {
-            $this->persist = new Persist;
+            if ($this->tmpDir) {
+                $this->persist = new Persist('file', $this->getRoot() . '/' . $this->tmpDir);
+            } else {
+                $this->persist = new Persist;
+            }
         }
 
         return $this->persist;
@@ -402,15 +411,18 @@ class Wizard
 
     public function savePersist($close = true)
     {
-        $this->persist()->save();
+        $this->persist()->save(null, $close);
 
         return;
     }
 
     public function destroyPersist()
     {
-        //$this->persistentData = array();
-        $this->persist()->destroy();
+        try {
+            $this->persist()->destroy();
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
 
         return true;
     }

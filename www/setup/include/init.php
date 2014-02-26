@@ -19,8 +19,11 @@ if (!ini_get('date.timezone')) {
 
 
 $wizard = new Setup\Wizard();
-if (!$wizard->init()) {
-    die('Pi Engine setup wizard initialization failed.');
+try {
+    $wizard->init();
+} catch (\Exception $e) {
+    $message = $e->getMessage();
+    die('Pi Engine setup wizard initialization failed: ' . $e->getMessage());
 }
 
 // Translation function
