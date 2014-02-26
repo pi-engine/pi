@@ -82,7 +82,7 @@ class Install extends BasicInstall
                 'name'      => 'feed',
                 'slug'      => 'feed',
                 'markup'    => 'phtml',
-                'title'     => _a('Feed'),
+                'title'     => _a('RSS Feed'),
                 'content'   => 'page-feed',
             ),
             array(
@@ -94,11 +94,11 @@ class Install extends BasicInstall
             ),
 
             array(
-                'name'      => 'sitemap-feed',
-                'slug'      => 'sitemap-feed',
+                'name'      => 'xml-sitemap',
+                'slug'      => 'xml-sitemap',
                 'markup'    => 'phtml',
-                'title'     => _a('Sitemap feed'),
-                'content'   => 'page-sitemap-feed',
+                'title'     => _a('XML Sitemap'),
+                'content'   => 'page-xml-sitemap',
             ),
 
         );

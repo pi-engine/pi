@@ -54,7 +54,7 @@ return array(
                 'section'   => 'admin',
             ),
             'feed'     => array(
-                'label'     => _a('Feed'),
+                'label'     => _a('RSS Feed'),
                 'route'     => 'feed',
                 'section'   => 'feed',
             ),
