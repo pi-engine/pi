@@ -19,26 +19,26 @@ use Module\Page\Form\PageFilter;
  */
 class IndexController extends ActionController
 {
-    /*
-    protected $pageColumns = array(
-        'name', 'title', 'slug', 'content', 'markup', 'active',
-        'user', 'time_created', 'seo_title', 'seo_keywords', 'seo_description'
-    );
-    */
     /**
      * List of custom pages
      */
     public function indexAction()
     {
         $model  = $this->getModel('page');
-        $select = $model->select()->order(array('active DESC', 'id DESC'));
+        $select = $model->select()->order(array('active DESC', 'nav_order ASC', 'id DESC'));
         $rowset = $model->selectWith($select);
         $pages  = array();
+        $menu   = array();
         foreach ($rowset as $row) {
             $page           = $row->toArray();
             $page['url']    = $this->url($this->getModule() . '-page', $page);
-            $pages[]        = $page;
+            if ($page['nav_order'] && $page['active']) {
+                $menu[] = $page;
+            } else {
+                $pages[] = $page;
+            }
         }
+        $pages = array_merge($menu, $pages);
 
         $this->view()->assign('pages', $pages);
         $this->view()->assign('title', _a('Page list'));
@@ -241,7 +241,9 @@ class IndexController extends ActionController
         if ($row) {
             $row->delete();
             Pi::registry('page')->clear($this->getModule());
+            Pi::registry('nav', $this->getModule())->flush();
         }
+
         return $this->jump(
             array('action' => 'index'),
             _a('Page deleted successfully.')
@@ -261,9 +263,33 @@ class IndexController extends ActionController
             $row->save();
             Pi::registry('page')->clear($this->getModule());
         }
+        Pi::registry('nav', $this->getModule())->flush();
+
         return $this->jump(
             array('action' => 'index'),
             _a('Page updated successfully.')
+        );
+    }
+
+    /**
+     * Add pages to navigation menu
+     *
+     */
+    public function menuAction()
+    {
+        $orders = $this->params('order');
+        $model = $this->getModel('page');
+        foreach ($orders as $id => $value) {
+            $model->update(
+                array('nav_order' => (int) $value),
+                array('id' => (int) $id)
+            );
+        }
+        Pi::registry('nav', $this->getModule())->flush();
+
+        return $this->jump(
+            array('action' => 'index'),
+            _a('Page navigation menu updated successfully.')
         );
     }
 

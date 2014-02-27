@@ -18,11 +18,14 @@ CREATE TABLE `{page}` (
   `seo_title`       varchar(255)            NOT NULL default '',
   `seo_keywords`    varchar(255)            NOT NULL default '',
   `seo_description` varchar(255)            NOT NULL default '',
+  -- Order in navigation, '0' for not navigated
+  `nav_order`       smallint(5)             unsigned    NOT NULL default '0',
  
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `slug` (`slug`)
 );
+
 
 # NOT used yet. Solely for demonstration, will be dropped
 CREATE TABLE `{stats}` (

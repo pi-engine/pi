@@ -1,4 +1,18 @@
 <div class="page">
+    <?php if (!empty($nav)) { ?>
+    <div class="col-md-2">
+        <ul class="nav nav-pills">
+        <?php foreach ($nav as $id => $item) { ?>
+            <li<?php if (!empty($item['active'])) { echo ' class="active"'; } ?>>
+                <a href="<?php echo $item['url']; ?>"><?php echo _escape($item['title']); ?></a>
+            </li>
+        <?php } ?>
+        </ul>
+    </div>
+    <div class="col-md-10">
+    <?php } else { ?>
+        <div class="col-md-12">
+    <?php } ?>
 	<h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
 	<div class="article-body">
 		<?php
@@ -14,4 +28,5 @@
 		<?php if ($config['social_twitter']) { echo $this->twitter(); } ?>
 		<?php if ($config['social_gplus']) { echo $this->plusone(); } ?>
 	</div>
+    </div>
 </div>
