@@ -208,10 +208,11 @@ legend {
 }
 
 .pi-footer-links {
-    padding-top: 10px;
     padding-left: 0;
     color: #333;
+    margin-bottom: 0;
 }
+
 .pi-footer-links li {
     display: inline;
     padding: 0 2px;
