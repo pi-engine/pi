@@ -34,22 +34,7 @@ class ProfileController extends ActionController
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-                return;
-            }
-        }
-        */
+
         // Get user information
         $user = $this->getUser($uid);
 
@@ -148,22 +133,6 @@ class ProfileController extends ActionController
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-                return;
-            }
-        }
-        */
 
         $groupId   = $this->params('group', '');
         $result = array(
@@ -256,22 +225,6 @@ class ProfileController extends ActionController
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-                return;
-            }
-        }
-        */
 
         $groupId = $this->params('group', '');
         // Get compound name
@@ -291,7 +244,7 @@ class ProfileController extends ActionController
 
         // Get compound element for edit
         $compoundElements = Pi::api('form', 'user')->getCompoundElement($compound);
-        $compoundFilters  = Pi::api('form', 'user')->getCompoundFilter($compound);
+        //$compoundFilters  = Pi::api('form', 'user')->getCompoundFilter($compound);
         $form = new CompoundForm('new-compound', $compoundElements);
         $form->setData(array('group' => $groupId));
 
