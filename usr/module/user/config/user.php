@@ -107,6 +107,7 @@ return array(
             'edit'  => array(
                 'element'       => 'date_select',
                 'options'       => array(
+                    'create_empty_option'   => true,
                     'year_attributes' => array(
                         'class' => 'input-small',
                     ),

@@ -132,7 +132,7 @@ class FormDateSelect extends ZendFormDateSelect
     protected function getYearsOptions($minYear, $maxYear)
     {
         $result = parent::getYearsOptions($minYear, $maxYear);
-        $result = array('invalid' => __('Year')) + $result;
+        //$result = array('' => __('Year')) + $result;
 
         return $result;
     }
@@ -149,7 +149,7 @@ class FormDateSelect extends ZendFormDateSelect
         */
 
         $result = array(
-            'invalid' => __('Month'),
+            //'' => __('Month'),
         );
         for ($month = 1; $month <= 12; $month++) {
             if ($pattern) {
@@ -175,7 +175,7 @@ class FormDateSelect extends ZendFormDateSelect
         */
 
         $result = array(
-            'invalid' => __('Day'),
+            //'' => __('Day'),
         );
         for ($day = 1; $day <= 31; $day++) {
             if ($pattern) {
