@@ -49,7 +49,8 @@
         <?php } ?>
         </div>
         <span class="btn btn-default upload fileinput-button">
-            <?php echo _a('Upload'); ?> <input type="file" name="upload">
+            <span><?php echo _a('Upload'); ?></span>
+            <input type="file" name="upload">
         </span>
     </div>
 </script>
@@ -103,6 +104,10 @@
                         'source'     => 'media'
                     )
                 ); ?>/' + page.id(),
+                start: function(e) {
+                    self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
+                    self.$(".fileinput-button").attr("disabled", "disabled");
+                },
                 done: function(e, data) {
                     var d = $.parseJSON(data.result);
                     if (d.status == 1) {
@@ -128,6 +133,8 @@
                     } else {
                         alert(d.message);
                     }
+                    self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
+                    self.$(".fileinput-button").removeAttr("disabled");
                 }
             });  
         },

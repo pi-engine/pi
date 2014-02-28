@@ -22,9 +22,9 @@
                     <span class="fa fa-book"></span>
                 <?php } ?>
             </div>
-            <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
+            <span class="btn btn-default upload fileinput-button" data-toggle="modal" href="#upload-box">
                 <?php echo _a('Upload'); ?>
-            </button>
+            </span>
             <div class="topic-image-desc muted">
                 <p><?php echo _a('Feature image for topic'); ?></p>
                 <p><?php echo _a('Required size: ') . $this->escape($configs['topic_width']) . '×' . $this->escape($configs['topic_height']) . 'px'; ?></p>
@@ -137,6 +137,10 @@ var UploadView = Backbone.View.extend({
                 return [];
             },
             url         : url,
+            start       : function(e) {
+                self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
+                self.$(".fileinput-button").attr("disabled", "disabled");
+            },
             done        : function(e, data) {
                 var d = $.parseJSON(data.result);
                 if (d.status == 1) {
@@ -147,6 +151,8 @@ var UploadView = Backbone.View.extend({
                 } else {
                     alert(d.message);
                 }
+                self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
+                self.$(".fileinput-button").removeAttr("disabled");
             }
         }).bind('fileuploadsend', function(e, data) {
             data.url = '<?php echo $this->url('', array(
