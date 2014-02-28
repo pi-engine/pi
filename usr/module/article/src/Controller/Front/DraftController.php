@@ -763,7 +763,8 @@ class DraftController extends ActionController
             array(
                 'time'    => date('Ymd', time()),
                 'id'      => $id,
-                'preview' => 1
+                'slug'    => $data['slug'],
+                'preview' => 1,
             )
         );
         $result['message'] = __('Draft saved successfully.');

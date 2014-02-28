@@ -589,19 +589,23 @@ $uid = Pi::user()->getId();
         <?php } ?>
     </div>
 </form>
-<div id="jsUploadModel" class="modal hide">
+<div id="jsUploadModel" class="modal">
 </div>    
 <script id="temp-upload-model" type="text/template">
-    <div class="modal-header">
-        <button aria-hidden="true" data-dismiss="modal" class="close close-all" type="button">×</button>
-        <strong><?php _e('Error'); ?></strong>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close close-all" type="button">×</button>
+                <strong><?php _e('Error'); ?></strong>
+            </div>
+            <div class="modal-body">
+                <p class="text-error"><span style="margin-right:10px;">"<%= fileName%>"</span><%= message %></p>
+            </div>
+            <div class="modal-footer">
+                <span class="close-all btn btn-primary"><?php _e('Done'); ?></span>
+            </div>
+        </div>
     </div>
-    <div class="modal-body">
-        <p class="text-error"><span style="margin-right:10px;">"<%= fileName%>"</span><%= message %></p>
-    </div>
-    <div class="modal-footer">
-        <span class="close-all btn btn-primary"><?php _e('Done'); ?></span>
-    </div>        
 </script>
        
 <script id="temp-validate" type="text/template">
@@ -632,7 +636,7 @@ $uid = Pi::user()->getId();
         <a href="<%= data.download_url %>" class="uploaded-media-name"><%= data.originalName %></a>
         <div class="attachment-action">
             <% if (data.progress) { %>
-            <a href="javascript:void(0)" style="margin-right:120px;" class="pull-right cancel"><?php _e('Cancel'); ?></a>
+            <a href="javascript:void(0)" class="pull-right cancel"><?php _e('Cancel'); ?></a>
             <% } else { %>
             <a href="javascript:void(0)" class="delete visible-hide" style="margin-right: 20px;"><?php _e('Delete'); ?></a>
             <a href="javascript:void(0)" class="insert"><?php _e('Insert'); ?></a>
@@ -672,7 +676,7 @@ $uid = Pi::user()->getId();
     <% } %>
 </script>
 <script id="temp-gallery" type="text/template">
-    <div class="upload-image-wrap" data-id="<%= data.id %>" data-preview="<%= data.preview_url %>" data-download="<%= data.downloadUrl %>">
+    <div class="upload-image-wrap" data-id="<%= data.id %>" data-preview="<%= data.preview_url %>" data-download="<%= data.downloadUrl %>" data-title="<%= data.title %>">
         <div class="black-bg ">
             <span class="ellipsis"><%= data.title %></span>
             <button type="button" class="close js-gallery-close">&times;</button>
@@ -1161,10 +1165,11 @@ function fileupload(name,url,formate,size,collection) {
             var f  = data.files[0],
                 fm = f.name.replace(/.*\.(.+)$/, "$1"),
                 fn = function(message) {
-                    page.showUploadModel({
+                    /*page.showUploadModel({
                         message     : message,
                         fileName    : f.name
-                    });
+                    });*/
+                    alert(f.name + " " + message);
                     return false;
                 };
             if (formate && _.indexOf(formate,fm.toLowerCase()) == -1 ) {
@@ -1552,6 +1557,10 @@ var FeatureView = Backbone.View.extend({
                 return [];
             },
             url         : url,
+            start       : function(e) {
+                self.$(".fileinput-button").find("span").html("<?php echo __("In processing ..."); ?>");
+                self.$(".fileinput-button").attr("disabled", "disabled");
+            },
             done        : function(e, data) {
                 var d = $.parseJSON(data.result);
                 if (d.status == 1) {
@@ -1562,6 +1571,8 @@ var FeatureView = Backbone.View.extend({
                 } else {
                     alert(d.message);
                 }
+                self.$(".fileinput-button").find("span").html("<?php echo __("Upload"); ?>");
+                self.$(".fileinput-button").removeAttr("disabled");
             }
         }).bind('fileuploadsend', function(e, data) {
             data.url = '<?php echo $this->url('default', array(
@@ -1880,9 +1891,10 @@ var GalleryListView = Backbone.View.extend({
     },
     insertEditor: function (e) {
         var el = $(e.target).parents('.upload-image-wrap');
+        var title = el.data('title');
         var previewUrl = el.data('preview');
         var downloadUrl = el.data('download');
-        var html = '<a href="' + downloadUrl + '" target="_blank"><img src="' + previewUrl + '"></a>';
+        var html = '<a href="' + downloadUrl + '" target="_blank"><img alt="' + title + '" src="' + previewUrl + '"></a>';
         page.editor.insertHtml(html);
         page.editor.focus();
     },

@@ -126,12 +126,11 @@ class MediaController extends ActionController
                  ->setSize($mediaSize);
         
         // Get raw file name
+        $rawName = null;
         if (empty($rawInfo)) {
             $content = $this->request->getContent();
             preg_match('/filename="(.+)"/', $content, $matches);
             $rawName = $matches[1];
-        } else {
-            $rawName = null;
         }
         
         // Checking whether uploaded file is valid
@@ -143,6 +142,7 @@ class MediaController extends ActionController
 
         $uploader->receive();
         $fileName = $destination . '/' . $rename;
+        $rawName  = $rawName ?: substr($rawInfo['name'], 0, strrpos($rawInfo['name'], '.'));
         
         // Resolve allowed image extension
         $imageExt = explode(',', $config['image_extension']);
@@ -152,6 +152,7 @@ class MediaController extends ActionController
         
         // Scale image if file is image file
         $uploadInfo['tmp_name'] = $fileName;
+        $uploadInfo['raw_name'] = $rawName;
         $imageSize              = array();
         if (in_array($ext, $imageExt)) {
             $scaleImageSize = $this->scaleImageSize(
@@ -435,10 +436,21 @@ class MediaController extends ActionController
             if ($id) {
                 $data['id'] = $id;
             } else {
+                $title      = null;
+                $session    = Media::getUploadSession($module, 'media');
+                if (isset($session->$id)
+                    || ($fakeId && isset($session->$fakeId))) {
+                    $uploadInfo = isset($session->$id)
+                        ? $session->$id : $session->$fakeId;
+                    if (isset($uploadInfo['raw_name'])) {
+                        $title = $uploadInfo['raw_name'];
+                    }
+                }
+                $title = $title ?: 'File ' . $fakeId . ' from ' . $source;
                 $data = array(
                     'id'    => 0,
                     'name'  => $fakeId,
-                    'title' => 'File ' . $fakeId . ' from ' . $source,
+                    'title' => $title,
                 );
             }
             $data['uid'] = $uid;
