@@ -12,6 +12,7 @@ namespace Pi\Form\Element;
 
 //use Pi;
 use Zend\Form\Element\DateSelect as ZendDateSelect;
+use Pi\Validator\Date as DateValidator;
 
 /**
  * Date select element
@@ -53,10 +54,40 @@ class DateSelect extends ZendDateSelect
     /**
      * {@inheritDoc}
      */
+    public function getInputSpecification()
+    {
+        $spec = parent::getInputSpecification();
+        $spec['filters'] = array(
+            array(
+                'name'    => 'Callback',
+                'options' => array(
+                    'callback' => function ($date) {
+                            // Convert the date to a specific format
+                            if (is_array($date)) {
+                                $date = array_filter($date);
+                                if ($date) {
+                                    $date = $date['year'] . '-' . $date['month'] . '-' . $date['day'];
+                                } else {
+                                    $date = '';
+                                }
+                            }
+
+                            return $date;
+                        }
+                )
+            )
+        );
+
+        return $spec;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     protected function getValidator()
     {
-        if (class_exists('\\DateTime')) {
-            return parent::getValidator();
+        if (null === $this->validator) {
+            $this->validator = new DateValidator(array('format' => 'Y-m-d'));
         }
 
         return $this->validator;
