@@ -251,7 +251,12 @@ class Article extends Standard
                  . $this->keyValueDelimiter 
                  . $this->encode($mergedParams['list']);
             unset($mergedParams['list']);
-        } elseif (isset($mergedParams['category'])) {
+        } elseif (isset($mergedParams['category'])
+            || 'list' == $controller
+        ) {
+            if ('all' == $action) {
+                $mergedParams['category'] = 'all';
+            }
             $url .= 'list' 
                  . $this->keyValueDelimiter 
                  . $this->encode($mergedParams['category']);
