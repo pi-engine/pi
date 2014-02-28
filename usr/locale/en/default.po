@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-02-10 14:45+0800\n"
-"PO-Revision-Date: 2014-02-10 14:45+0800\n"
+"POT-Creation-Date: 2014-02-28 20:05+0800\n"
+"PO-Revision-Date: 2014-02-28 20:05+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -34,6 +34,10 @@ msgstr "主题升级成功。"
 #, fuzzy
 msgid "Theme asset publish failed."
 msgstr "主题更新失败。"
+
+#: c:\Code\pi\lib/Pi/Application/Service/Comment.php:548
+msgid "Posted a new comment."
+msgstr ""
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
@@ -77,13 +81,13 @@ msgstr ""
 msgid "Authentication successful."
 msgstr "身份验证成功。"
 
-#: c:\Code\pi\lib/Pi/Editor/Factory.php:76
+#: c:\Code\pi\lib/Pi/Editor/Factory.php:77
 msgid "Pi Default Editor"
 msgstr ""
 
-#: c:\Code\pi\lib/Pi/Feed/Model.php:199
+#: c:\Code\pi\lib/Pi/Feed/Model.php:203
 #, php-format
-msgid "Feed of %s - %s"
+msgid "Feed of %s"
 msgstr ""
 
 #: c:\Code\pi\lib/Pi/Filter/Gender.php:39
@@ -188,7 +192,7 @@ msgstr "1月"
 msgid "Cache expiration"
 msgstr "无缓存"
 
-#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:35
 msgid "Text editor"
 msgstr ""
 
@@ -248,6 +252,20 @@ msgstr "主题更新成功。"
 msgid "Timezone"
 msgstr ""
 
+#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:135
+msgid "Year"
+msgstr ""
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:152
+#, fuzzy
+msgid "Month"
+msgstr "1月"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:173
+#, fuzzy
+msgid "Day"
+msgstr "1天"
+
 #: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
 msgstr ""
@@ -270,24 +288,24 @@ msgstr ""
 msgid "Tags: "
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:217
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:242
 msgid "Manager"
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:224
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
 msgid "Moderator"
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:231
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
 #, fuzzy
 msgid "Editor"
 msgstr "编辑"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:238
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:263
 msgid "Staff"
 msgstr ""
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:245
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:270
 #, fuzzy
 msgid "Member"
 msgstr "成员"

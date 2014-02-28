@@ -118,6 +118,7 @@ return array(
                     ),
                 ),
             ),
+            'filter'    => 'Module\User\Filter\Birthdate',
         ),
         // Account: avatar
         'avatar'    => array(
@@ -206,24 +207,26 @@ return array(
         'homepage'  => array(
             'name'  => 'homepage',
             'title' => _a('Personal website'),
+                /*
+            'edit'  => array(
+                'element'       => 'url',
+            ),
+            */
         ),
         // Profile: bio
         'bio'  => array(
             'name'  => 'bio',
             'title' => _a('Short bio'),
             'edit'  => array(
-                'element' => 'textarea',
-                'attributes' => array(
-                    'rows'    => 4,
-                ),
-            )
+                'element'       => 'textarea',
+            ),
         ),
         // Profile: signature
         'signature'  => array(
             'name'  => 'signature',
             'title' => _a('Signature'),
             'edit'  => array(
-                'element'       => 'textarea',
+                'element'   => 'textarea',
             ),
         ),
 

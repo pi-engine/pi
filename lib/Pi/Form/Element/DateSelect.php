@@ -10,7 +10,7 @@
 
 namespace Pi\Form\Element;
 
-use Pi;
+//use Pi;
 use Zend\Form\Element\DateSelect as ZendDateSelect;
 
 /**
@@ -37,11 +37,11 @@ class DateSelect extends ZendDateSelect
             $value = date('Y-m-d', (int) $value);
         }
         if (is_string($value)) {
-            list($year, $month, $day) = explode('-', $value);
+            $data = $value ? explode('-', $value) : array(0, 0, 0);
             $value = array(
-                'year'  => $year,
-                'month' => $month,
-                'day'   => $day,
+                'year'  => $data[0],
+                'month' => $data[1],
+                'day'   => $data[2],
             );
         }
 
