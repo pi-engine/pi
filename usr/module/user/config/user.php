@@ -207,11 +207,9 @@ return array(
         'homepage'  => array(
             'name'  => 'homepage',
             'title' => _a('Personal website'),
-                /*
             'edit'  => array(
                 'element'       => 'url',
             ),
-            */
         ),
         // Profile: bio
         'bio'  => array(
