@@ -200,7 +200,9 @@ class Article extends Standard
                      . $this->structureDelimiter 
                      . $this->encode($mergedParams['slug']);
                 unset($mergedParams['slug']);
-                unset($mergedParams['id']);
+                if (!isset($mergedParams['preview'])) {
+                    unset($mergedParams['id']);
+                }
             } elseif (isset($mergedParams['id']) 
                       and !empty($mergedParams['id']) 
                       and is_numeric($mergedParams['id'])
@@ -208,7 +210,9 @@ class Article extends Standard
                 $url .= $mergedParams['time'] 
                      . $this->structureDelimiter 
                      . $mergedParams['id'];
-                unset($mergedParams['id']);
+                if (!isset($mergedParams['preview'])) {
+                    unset($mergedParams['id']);
+                }
             }
             unset($mergedParams['time']);
         } elseif (isset($mergedParams['list']) 
