@@ -400,7 +400,7 @@ CREATE TABLE `{core.user_account}` (
   -- Avatar image src
   `avatar`          varchar(255)    NOT NULL default '',
   -- Gender
-  `gender`          enum('male', 'female', 'unknown') NOT NULL,
+  `gender`          enum('male', 'female', 'unknown') default 'unknown',
   -- Birth date with format 'YYYY-mm-dd'
   `birthdate`       varchar(10)     NOT NULL default '',
 

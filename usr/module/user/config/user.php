@@ -95,16 +95,7 @@ return array(
             'name'      => 'gender',
             'title'     => _a('Gender'),
             'edit'      => array(
-                'element'  =>  'radio',
-                'options'       => array(
-                    'value_options' => array(
-                         'male' => __('Male'),
-                         'female' => __('Female'),
-                     ),
-                    'label_attributes' => array(
-                        'class' => 'radio-inline'
-                    ),
-                ),
+                'element'  =>  'Module\User\Form\Element\Gender',
             ),
             'filter'    => 'Gender',
         ),
