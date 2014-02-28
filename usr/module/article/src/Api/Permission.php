@@ -9,7 +9,7 @@
 
 namespace Module\Article\Api;
 
-use Pi\Application\Api\Api\AbstractApi;
+use Pi\Application\Api\AbstractApi;
 use Pi;
 
 /**
