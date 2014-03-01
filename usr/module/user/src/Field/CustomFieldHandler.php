@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User;
+namespace Module\User\Field;
 
 use Pi;
 use Pi\Application\Installer\SqlSchema;

@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User;
+namespace Module\User\Field;
 
 use Pi;
 use Pi\Application\Installer\SqlSchema;
@@ -23,4 +23,6 @@ use Zend\InputFilter\InputFilter;
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 abstract class CustomCompoundHandler extends AbstractCustomHandler
-{}
+{
+
+}

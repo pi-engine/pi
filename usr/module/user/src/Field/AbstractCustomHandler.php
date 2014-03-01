@@ -7,7 +7,7 @@
  * @license         http://pialog.org/license.txt New BSD License
  */
 
-namespace Module\User;
+namespace Module\User\Field;
 
 use Pi;
 use Pi\Application\Installer\SqlSchema;
@@ -26,7 +26,7 @@ use Zend\InputFilter\InputFilter;
  * - Handler: usr/custom/module/user/src/Field/<FieldName>.php
  * - Form/Filter: usr/custom/module/user/src/Form/FieldNameForm.php
  * - schema: usr/custom/module/user/sql/<field>.sql
- * - locale: usr/custom/module/user/locale/en/main.csv
+ * - locale: usr/custom/module/user/locale/en/default.mo
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

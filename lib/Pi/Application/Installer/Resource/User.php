@@ -10,7 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Module\User\AbstractCustomHandler;
+use Module\User\Field\AbstractCustomHandler;
 
 /**
  * User meta setup
