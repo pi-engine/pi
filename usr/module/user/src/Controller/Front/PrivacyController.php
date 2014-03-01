@@ -30,23 +30,6 @@ class PrivacyController extends ActionController
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-
-                return;
-            }
-        }
-        */
 
         $fields = Pi::registry('field', 'user')->read('', 'display');
         $forcedPrivacy = Pi::registry('privacy', 'user')->read(true);
@@ -104,16 +87,14 @@ class PrivacyController extends ActionController
             array(),
             true
         );
-        d($privacy);
-        d($levels);
-        $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
+        //$user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
+        //$groups = Pi::api('group', 'user')->getList();
         $this->view()->assign(array(
             'privacy' => $privacy,
-            'groups'  => $groups,
+            //'groups'  => $groups,
             'levels'  => $levels,
-            'user'    => $user,
+            //'user'    => $user,
         ));
     }
 }

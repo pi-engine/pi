@@ -26,11 +26,11 @@ class ActivityController extends ActionController
      */
     public function indexAction()
     {
-        $name     = _get('name');
-        $uid      = _get('uid');
-        $ownerUid = Pi::user()->getId();
-        $limit  = Pi::config('list_limit', 'user');
-        $isOwner  = 0;
+        $name       = _get('name');
+        $uid        = _get('uid');
+        $ownerUid   = Pi::user()->getId();
+        $limit      = Pi::config('list_limit', 'user');
+        //$isOwner    = 0;
 
         if (!$uid && !$ownerUid) {
             $this->jump(
@@ -45,7 +45,7 @@ class ActivityController extends ActionController
 
         // Check is owner
         if (!$uid) {
-            $isOwner = 1;
+            //$isOwner = 1;
             $uid     = $ownerUid;
         }
         if (!$name) {
@@ -59,6 +59,7 @@ class ActivityController extends ActionController
             );
         }
 
+        /*
         // Get user base info
         $user = Pi::api('user', 'user')->get(
             $uid,
@@ -89,6 +90,7 @@ class ActivityController extends ActionController
             $user,
             'user'
         );
+        */
 
         // Get activity list for nav display
         $activityList = Pi::api('activity', 'user')->getList();
@@ -96,25 +98,27 @@ class ActivityController extends ActionController
         // Get current activity data
         $data = Pi::api('activity', 'user')->get($uid, $name, $limit);
 
+        /*
         // Get nav
         if ($isOwner) {
             $nav = Pi::api('nav', 'user')->getList($name);
         } else {
             $nav = Pi::api('nav', 'user')->getList($name, $uid);
         }
+        */
 
         // Get quick link
-        $quicklink = Pi::api('quicklink', 'user')->getList();
+        //$quicklink = Pi::api('quicklink', 'user')->getList();
 
         $this->view()->assign(array(
             'list'      => $activityList,
-            'current'   => $name,
+            'name'      => $name,
             'data'      => $data,
-            'user'      => $user,
-            'nav'       => $nav,
+            //'user'      => $user,
+            //'nav'       => $nav,
             'uid'       => $uid,
-            'quicklink' => $quicklink,
-            'is_owner'  => $isOwner,
+            //'quicklink' => $quicklink,
+            //'owner'     => $isOwner,
         ));
 
     }

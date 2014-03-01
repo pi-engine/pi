@@ -245,6 +245,9 @@ return array(
             'name'  => 'tool',
             'title' => _a('Social tools'),
 
+            // Custom handler
+            'handler'   => 'Module\User\Field\Tool',
+
             'field' => array(
                 'title'         => array(
                     'title' => _a('Tool name'),

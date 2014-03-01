@@ -41,7 +41,7 @@ class AccountController extends ActionController
         );
 
         // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
+        //$groups = Pi::api('group', 'user')->getList();
 
         // Generate form
         $form           = new AccountForm('account');
@@ -129,15 +129,17 @@ class AccountController extends ActionController
             }
         }
 
+        /*
+        $user = array();
         $user['name']       = $data['name'];
         $user['identity']   = $data['identity'];
         $user['id']         = $uid;
-
+        */
         $this->view()->assign(array(
             'form'      => $form,
-            'groups'    => $groups,
-            'cur_group' => 'account',
-            'user'      => $user
+            //'groups'    => $groups,
+            //'cur_group' => 'account',
+            //'user'      => $user
         ));
     }
 

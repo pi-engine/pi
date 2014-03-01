@@ -17,7 +17,7 @@ use Zend\Form\Element;
 use Zend\InputFilter\InputFilter;
 
 /**
- * Abstract class for custom field handling
+ * Abstract class for scalar custom field handling
  *
  * {@inheritDoc}
  *

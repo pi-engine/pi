@@ -24,7 +24,7 @@ class Nav extends AbstractApi
      */
     protected $module = 'user';
 
-    public function getList($cur, $uid = '')
+    public function getList($cur, $uid = 0)
     {
         $result = array(
             'cur'   => $cur,

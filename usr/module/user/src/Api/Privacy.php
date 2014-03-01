@@ -168,13 +168,17 @@ class Privacy extends AbstractApi
         if ($type == 'group') {
             foreach ($rawData as $group) {
                 if ($group['compound']) {
-                    if ($privacy >= $userSetting[$group['compound']]) {
+                    if (!isset($userSetting[$group['compound']])
+                        || $privacy >= $userSetting[$group['compound']]
+                    ) {
                         $result[] = $group;
                     }
                 } else {
                     $data = $group;
                     foreach (array_keys($group['fields'][0]) as $field) {
-                        if ($privacy < $userSetting[$field]) {
+                        if (isset($userSetting[$field])
+                            && $privacy < $userSetting[$field]
+                        ) {
                             unset($data['fields'][0][$field]);
                         }
                     }
@@ -189,7 +193,9 @@ class Privacy extends AbstractApi
             unset($rawData['id']);
             foreach ($rawData as $key => $value) {
                 // Allowed
-                if ($privacy >= $userSetting[$key]) {
+                if (!isset($userSetting[$key])
+                    || $privacy >= $userSetting[$key]
+                ) {
                     $result[$key] = $value;
                 }
             }

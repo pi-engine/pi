@@ -1,7 +1,37 @@
-<?php $isOwner = _get('uid') ? false : true; ?>
+<?php
+$owner = _get('uid') ? false : true;
+
+// Get user base info
+$user = Pi::api('user', 'user')->get(
+    $uid,
+    array('name', 'gender', 'birthdate'),
+    true,
+    true
+);
+if (!$user) {
+    Pi::service('url')->redirect(Pi::user()->getUrl('profile'));
+    return;
+}
+
+if ($owner) {
+    $nav = Pi::api('nav', 'user')->getList($name);
+} else {
+    $nav = Pi::api('nav', 'user')->getList($name, $uid);
+
+    $requestId  = $uid == Pi::user()->getId() ? 0 : null;
+    $level      = Pi::api('privacy', 'user')->getLevel($uid, $requestId);
+    $user       = Pi::api('privacy', 'user')->filterProfile(
+        $uid,
+        $level,
+        $user,
+        'user'
+    );
+}
+$quicklink = Pi::api('quicklink', 'user')->getList();
+?>
 <div class="clearfix user-avatar-header">
     <div class="user-info-right">
-        <?php if ($isOwner) { ?>
+        <?php if ($owner) { ?>
         <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
             <i class="fa fa-eye"></i>
             <?php _e('Switch to public'); ?>
@@ -61,7 +91,7 @@
         <div class="pull-left">
             <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
         </div>
-        <?php if ($isOwner) { ?>
+        <?php if ($owner) { ?>
         <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
             <?php _e('Change avatar'); ?>
         </a>
@@ -69,11 +99,13 @@
     </div>
     <div class="inline user-info-center">
         <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
+        <?php if (isset($user['gender'])) { ?>
         <div style="margin-top: 10px;">
             <?php _e('Gender:'); ?>
             <?php echo _escape($user['gender']); ?>
         </div>
-        <?php if($user['birthdate']) { ?>
+        <?php } ?>
+        <?php if (isset($user['birthdate'])) { ?>
         <div style="margin-top: 5px;">
             <?php _e('Birthdate:'); ?>
             <?php echo _escape($user['birthdate']); ?> 

@@ -3,7 +3,7 @@ $this->css($this->assetModule('front/front.css'));
 ?>
 <?php include '_user-media.phtml'; ?>
 <div class="user-min-body">
-    <?php foreach ($profile_group as $group) {?>
+    <?php foreach ($groups as $group) {?>
         <div class="clearfix user-legend">
             <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
             <div class="user-legend-linea"></div>
@@ -26,9 +26,7 @@ $this->css($this->assetModule('front/front.css'));
             </div>
         <?php } else { ?>
         <div class="well text-center">
-            <?php 
-            echo sprintf(__('%s does not have any %s.'), _escape($user['name']), $group['title']);
-            ?>
+            <?php _e('No data available.'); ?>
         </div>
         <?php } ?>
     <?php } ?>

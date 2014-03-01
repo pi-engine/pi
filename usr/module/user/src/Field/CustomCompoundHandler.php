@@ -24,5 +24,49 @@ use Zend\InputFilter\InputFilter;
  */
 abstract class CustomCompoundHandler extends AbstractCustomHandler
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function get($uid, $filter = false)
+    {
+        $result = array();
+        if ($this->isMultiple) {
+            $select = $this->getModel()->select();
+            $select->order('order ASC');
+            $select->where(array('uid' => $uid));
+            $rowset = $this->getModel()->selectWith($select);
+            foreach ($rowset as $row) {
+                $result[] = $row->toArray();
+            }
+        } else {
+            $row = $this->getModel()->find($uid, 'uid');
+            $result = $row ? $row->toArray() : array();
+        }
 
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function mget($uids, $filter = false)
+    {
+        $result = array();
+        $select = $this->getModel()->select();
+        $select->where(array('uid' => $uids));
+        if ($this->isMultiple) {
+            $select->order('order ASC');
+            $rowset = $this->getModel()->selectWith($select);
+            foreach ($rowset as $row) {
+                $result[(int) $row['uid']][] = $row->toArray();
+            }
+        } else {
+            $rowset = $this->getModel()->selectWith($select);
+            foreach ($rowset as $row) {
+                $result[(int) $row['uid']] = $row->toArray();
+            }
+        }
+
+        return $result;
+    }
 }

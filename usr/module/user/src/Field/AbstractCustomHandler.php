@@ -17,7 +17,7 @@ use Zend\Form\Element;
 use Zend\InputFilter\InputFilter;
 
 /**
- * Abstract class for custom field handling
+ * Abstract class for custom field handling: with standalone table
  *
  *
  * Skeleton
@@ -140,7 +140,14 @@ abstract class AbstractCustomHandler
                     $this->getName()
                 );
                 if (!file_exists($file)) {
-                    $file = '';
+                    $file = sprintf(
+                        '%s/user/sql/%s.sql',
+                        Pi::path('module'),
+                        $this->getName()
+                    );
+                    if (!file_exists($file)) {
+                        $file = '';
+                    }
                 }
             }
             if ($file) {
@@ -159,11 +166,11 @@ abstract class AbstractCustomHandler
      */
     public function uninstall()
     {
-        $sql = sprintf(
-            'DROP TABLE IF EXISTS %s',
-            $this->getTable()
-        );
-        Pi::db()->query($sql);
+        $table = $this->getTable();
+        if ($table) {
+            $sql = sprintf('DROP TABLE IF EXISTS %s', $table);
+            Pi::db()->query($sql);
+        }
 
         return true;
     }
@@ -300,24 +307,7 @@ abstract class AbstractCustomHandler
      *
      * @return array
      */
-    public function get($uid, $filter = false)
-    {
-        $result = array();
-        if ($this->isMultiple) {
-            $select = $this->getModel()->select();
-            $select->order('order ASC');
-            $select->where(array('uid' => $uid));
-            $rowset = $this->getModel()->selectWith($select);
-            foreach ($rowset as $row) {
-                $result[] = $row->toArray();
-            }
-        } else {
-            $row = $this->getModel()->find($uid, 'uid');
-            $result = $row ? $row->toArray() : array();
-        }
-
-        return $result;
-    }
+    abstract public function get($uid, $filter = false);
 
     /**
      * Get multiple user custom compound fields
@@ -327,26 +317,7 @@ abstract class AbstractCustomHandler
      *
      * @return array
      */
-    public function mget($uids, $filter = false)
-    {
-        $result = array();
-        $select = $this->getModel()->select();
-        $select->where(array('uid' => $uids));
-        if ($this->isMultiple) {
-            $select->order('order ASC');
-            $rowset = $this->getModel()->selectWith($select);
-            foreach ($rowset as $row) {
-                $result[(int) $row['uid']][] = $row->toArray();
-            }
-        } else {
-            $rowset = $this->getModel()->selectWith($select);
-            foreach ($rowset as $row) {
-                $result[(int) $row['uid']] = $row->toArray();
-            }
-        }
-
-        return $result;
-    }
+    abstract public function mget($uids, $filter = false);
 
     /**
      * Get form for the compound

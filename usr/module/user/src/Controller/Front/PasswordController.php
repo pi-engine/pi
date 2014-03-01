@@ -73,14 +73,14 @@ class PasswordController extends ActionController
         }
 
         // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
-        $user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
+        //$groups = Pi::api('group', 'user')->getList();
+        //$user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
 
         $this->view()->assign(array(
             'form'      => $form,
-            'groups'    => $groups,
-            'cur_group' => 'password',
-            'user'      => $user,
+            //'groups'    => $groups,
+            //'cur_group' => 'password',
+            //'user'      => $user,
         ));
     }
 
