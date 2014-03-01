@@ -1,10 +1,10 @@
-<?php $is_owner = _get('uid') ? false : true; ?>
+<?php $isOwner = _get('uid') ? false : true; ?>
 <div class="clearfix user-avatar-header">
     <div class="user-info-right">
-        <?php if ($is_owner) { ?>
+        <?php if ($isOwner) { ?>
         <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
             <i class="fa fa-eye"></i>
-            <?php _e('Switch to view of others'); ?>
+            <?php _e('Switch to public'); ?>
         </a>
         <div class="dropdown inline">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -14,10 +14,12 @@
             <ul class="dropdown-menu">
                 <li>
                     <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
-                        <?php _e('Setting'); ?>
+                        <?php _e('Settings'); ?>
                     </a>
                 </li>
+                <?php if ($quicklink) { ?>
                 <li class="divider" style="margin: 1px;"></li>
+                <?php } ?>
                 <?php foreach ($quicklink as $item) { ?>
                 <li>
                     <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
@@ -39,7 +41,7 @@
             <?php if (Pi::user()->getId() == $uid) { ?>
             <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
                 <i class="fa fa-eye"></i>
-                <?php _e('Back to view of own'); ?>
+                <?php _e('Switch to own'); ?>
             </a>
             <?php } ?>
             <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
@@ -59,7 +61,7 @@
         <div class="pull-left">
             <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
         </div>
-        <?php if ($is_owner) { ?>
+        <?php if ($isOwner) { ?>
         <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
             <?php _e('Change avatar'); ?>
         </a>
@@ -67,10 +69,12 @@
     </div>
     <div class="inline user-info-center">
         <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
-        <p style="margin-bottom: 5px;">
+        <div style="margin-top: 10px;">
+            <?php _e('Gender:'); ?>
             <?php echo _escape($user['gender']); ?>
+        </div>
         <?php if($user['birthdate']) { ?>
-        <div>
+        <div style="margin-top: 5px;">
             <?php _e('Birthdate:'); ?>
             <?php echo _escape($user['birthdate']); ?> 
         </div>

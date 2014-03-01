@@ -27,12 +27,7 @@ $this->css($this->assetModule('front/front.css'));
         <?php } else { ?>
         <div class="well text-center">
             <?php 
-            echo sprintf(
-                '%s %s %s',
-                _escape($user['name']),
-                __('does not have any'),
-                $group['title']
-            );
+            echo sprintf(__('%s does not have any %s.'), _escape($user['name']), $group['title']);
             ?>
         </div>
         <?php } ?>
