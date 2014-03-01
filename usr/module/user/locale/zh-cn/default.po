@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-01 12:29+0800\n"
-"PO-Revision-Date: 2014-03-01 12:32+0800\n"
+"POT-Creation-Date: 2014-03-01 12:40+0800\n"
+"PO-Revision-Date: 2014-03-01 12:41+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -599,7 +599,6 @@ msgid "Input password to verify your identity for account changes."
 msgstr "在保存账号数据前请输入密码验证身份。"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:30
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 msgid "Password"
 msgstr "密码"
 
@@ -666,6 +665,7 @@ msgstr "系统默认"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:41
 #: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:66
+#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
 msgid "Change avatar"
 msgstr "修改头像"
 
@@ -778,6 +778,7 @@ msgid "You have logged in successfully, please go to %s."
 msgstr "您已登录成功，请前往 %s。"
 
 #: c:\Code\pi\usr\module\user/template/front/password-index.phtml:8
+#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 msgid "Change password"
 msgstr "修改密码"
 
@@ -965,9 +966,8 @@ msgstr "更多"
 msgid "View my profile"
 msgstr "查看我的资料"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
-msgid "Avatar"
-msgstr "修改头像"
+#~ msgid "Avatar"
+#~ msgstr "修改头像"
 
 #~ msgid "Switch to view of others"
 #~ msgstr "切换他人视角"

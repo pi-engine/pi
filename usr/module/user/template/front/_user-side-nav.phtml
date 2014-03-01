@@ -18,11 +18,11 @@
         </a>
         <a href="<?php echo $this->url('', array('controller' => 'password')); ?>"
            class="list-group-item<?php if($controller == 'password') { echo ' active'; } ?>">
-            <?php _e('Password');?>
+            <?php _e('Change password');?>
         </a>
         <a href="<?php echo $this->url('', array('controller' => 'avatar')); ?>"
            class="list-group-item<?php if($controller == 'avatar') { echo ' active'; } ?>">
-            <?php _e('Avatar');?>
+            <?php _e('Change avatar');?>
         </a>
         <?php  foreach ($groups as $key => $group) { ?>
         <a href="<?php echo $group['link']; ?>"

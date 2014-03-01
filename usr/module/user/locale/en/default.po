@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-01 12:32+0800\n"
-"PO-Revision-Date: 2014-03-01 12:32+0800\n"
+"POT-Creation-Date: 2014-03-01 12:41+0800\n"
+"PO-Revision-Date: 2014-03-01 12:41+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -624,7 +624,6 @@ msgid "Input password to verify your identity for account changes."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:30
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 msgid "Password"
 msgstr ""
 
@@ -693,6 +692,7 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:41
 #: C:\code\pi\usr\module\user/template/front/_user-media.phtml:66
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
 msgid "Change avatar"
 msgstr ""
 
@@ -804,6 +804,7 @@ msgid "You have logged in successfully, please go to %s."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/password-index.phtml:8
+#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 msgid "Change password"
 msgstr ""
 
@@ -992,10 +993,6 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:10
 msgid "View my profile"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
-msgid "Avatar"
 msgstr ""
 
 #, fuzzy
