@@ -24,13 +24,13 @@
         <?php if ($group['fields']) { ?>
         <div class="user-field">
         <?php
-            foreach ($group['fields'] as $key => $field) {
+            foreach ($group['fields'] as $set => $fields) {
                 echo '<dl class="dl-horizontal user-field-dl">';
-                foreach ($field as $value) {
+                foreach ($fields as $field) {
                     echo sprintf(
-                        '<dt>%s<dd>%s', 
-                        $value['title'],
-                        $value['value'] ? _escape($value['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
+                        '<dt>%s<dd>%s',
+                        $field['title'],
+                        $field['value'] ? _escape($field['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
                     );
                 }
                 echo '</dl>';

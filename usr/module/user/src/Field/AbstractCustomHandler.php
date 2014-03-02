@@ -17,7 +17,7 @@ use Zend\Form\Element;
 use Zend\InputFilter\InputFilter;
 
 /**
- * Abstract class for custom field handling: with standalone table
+ * Abstract class for custom compound/field handling: with standalone table
  *
  *
  * Skeleton
@@ -60,9 +60,8 @@ abstract class AbstractCustomHandler
      */
     public function __construct($name = '')
     {
-        if ($name) {
-            $this->name = $name;
-        }
+        $name = $name ?: $this->getName();
+        $this->name = $name;
     }
 
     /**
@@ -241,7 +240,7 @@ abstract class AbstractCustomHandler
     }
 
     /**
-     * Add user custom compound
+     * Add user custom compound/field
      *
      * @param int   $uid
      * @param mixed $data
@@ -267,7 +266,7 @@ abstract class AbstractCustomHandler
     }
 
     /**
-     * Update user custom compound
+     * Update user custom compound/field
      *
      * @param int   $uid
      * @param mixed $data
@@ -286,7 +285,7 @@ abstract class AbstractCustomHandler
     }
 
     /**
-     * Delete user custom compound
+     * Delete user custom compound/field
      *
      * @param int   $uid
      *
@@ -300,7 +299,7 @@ abstract class AbstractCustomHandler
     }
 
     /**
-     * Get user custom compound
+     * Get user custom compound/field
      *
      * @param int   $uid
      * @param bool  $filter     To filter for display
@@ -312,7 +311,7 @@ abstract class AbstractCustomHandler
     /**
      * Get multiple user custom compound fields
      *
-     * @param int[]   $uids
+     * @param int[] $uids
      * @param bool  $filter     To filter for display
      *
      * @return array
@@ -320,7 +319,17 @@ abstract class AbstractCustomHandler
     abstract public function mget($uids, $filter = false);
 
     /**
-     * Get form for the compound
+     * Get user custom compound/field read for display
+     *
+     * @param int|int[]   $uid
+     * @param array|null $data
+     *
+     * @return array
+     */
+    abstract public function display($uid, $data = null);
+
+    /**
+     * Get form for the compound/field
      *
      * @param string $name
      * @param string $action
@@ -370,7 +379,7 @@ abstract class AbstractCustomHandler
     }
 
     /**
-     * Get form filter for the compound
+     * Get form filter for the compound/field
      *
      * @return InputFilter
      */

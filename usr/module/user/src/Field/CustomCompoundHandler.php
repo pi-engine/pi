@@ -40,7 +40,7 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
             }
         } else {
             $row = $this->getModel()->find($uid, 'uid');
-            $result = $row ? $row->toArray() : array();
+            $result[] = $row ? $row->toArray() : array();
         }
 
         return $result;
@@ -56,15 +56,80 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
         $select->where(array('uid' => $uids));
         if ($this->isMultiple) {
             $select->order('order ASC');
-            $rowset = $this->getModel()->selectWith($select);
-            foreach ($rowset as $row) {
-                $result[(int) $row['uid']][] = $row->toArray();
+        }
+        $rowset = $this->getModel()->selectWith($select);
+        foreach ($rowset as $row) {
+            $result[(int) $row['uid']][] = $row->toArray();
+        }
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function display($uid, $data = null)
+    {
+        $result = array();
+
+        $meta = Pi::registry('compound_field', 'user')->read($this->name);
+        if (!$meta) {
+            return $result;
+        }
+
+        if (is_scalar($uid)) {
+            $uids = (array) $uid;
+            if (null !== $data) {
+                $data = array($uid => $data);
             }
         } else {
-            $rowset = $this->getModel()->selectWith($select);
-            foreach ($rowset as $row) {
-                $result[(int) $row['uid']] = $row->toArray();
+            $uids = $uid;
+        }
+        if (null === $data) {
+            $data = $this->mget($uids, true);
+        }
+
+        $_this = $this;
+        array_walk($data, function (&$list) use ($meta, $_this) {
+            $list = $_this->displayFields($list, $meta);
+        });
+
+        if (is_scalar($uid)) {
+            $data = isset($data[$uid]) ? $data[$uid] : array();
+        }
+
+        return $data;
+    }
+
+    /**
+     * Canonize fields for display
+     *
+     * @param array $fields
+     * @param array $meta
+     *
+     * @return array
+     */
+    protected function displayFields($fields, array $meta = array())
+    {
+        $result = array();
+        if (!$meta) {
+            $meta = Pi::registry('compound_field', 'user')->read($this->name);
+            if (!$meta) {
+                return $result;
             }
+        }
+        foreach ($fields as $item) {
+            $record = array();
+            foreach ($meta as $name => $field) {
+                if (!isset($item[$name])) {
+                    continue;
+                }
+                $record[$name] = array(
+                    'title' => $field['title'],
+                    'value' => $item[$name],
+                );
+            }
+            $result[] = $record;
         }
 
         return $result;

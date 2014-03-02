@@ -96,4 +96,33 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
 
         return $result;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function display($uid, $data = null)
+    {
+        if (is_scalar($uid)) {
+            $uids = (array) $uid;
+            $data = array($uid => $data);
+        } else {
+            $uids = $uid;
+        }
+        if (null === $data) {
+            $data = $this->mget($uids, true);
+        }
+
+        $_this = $this;
+        array_walk($data, function (&$item) use ($_this) {
+            if ($_this->isMultiple) {
+                $item = implode(' | ', $item);
+            }
+        });
+
+        if (is_scalar($uid)) {
+            $data = isset($data[$uid]) ? $data[$uid] : array();
+        }
+
+        return $data;
+    }
 }

@@ -471,16 +471,8 @@ class User extends AbstractUseApi
         $result = array();
         $uids   = (array) $uid;
         $fields = $field
-            ? (array) $field : array_keys($this->getMeta('', 'display'));
-
-        /*
-        $activeMarked = false;
-        if ($activeOnly && !in_array('active', $fields)) {
-            $fields[] = 'active';
-            $activeMarked = true;
-        }
-        */
-
+            ? (array) $field
+            : array_keys($this->getMeta('', 'display'));
         $meta   = $this->canonizeField($fields);
         if ($activeOnly) {
             $activeMarked = false;
@@ -488,7 +480,13 @@ class User extends AbstractUseApi
                 $meta['account'] = array('active');
                 $activeMarked = true;
             }
-            $fields = $this->getFields($uids, 'account', $meta['account'], $filter, $activeOnly);
+            $fields = $this->getFields(
+                $uids,
+                'account',
+                $meta['account'],
+                $filter,
+                $activeOnly
+            );
             $uids = array();
             foreach ($fields as $id => $data) {
                 if ($activeMarked) {
@@ -511,18 +509,6 @@ class User extends AbstractUseApi
                 }
             }
         }
-
-        /*
-        if ($activeOnly) {
-            foreach (array_keys($result) as $id) {
-                if (empty($result[$id]['active'])) {
-                    unset($result[$id]);
-                } elseif ($activeMarked) {
-                    unset($result[$id]['active']);
-                }
-            }
-        }
-        */
 
         if (is_scalar($uid)) {
             $result = isset($result[$uid]) ? $result[$uid] : array();
@@ -551,8 +537,8 @@ class User extends AbstractUseApi
      */
     public function mget(
         array $uids,
-        $field = array(),
-        $filter = false,
+        $field      = array(),
+        $filter     = false,
         $activeOnly = false
     ) {
         $result = $this->get($uids, $field, $filter, $activeOnly);
@@ -1139,8 +1125,8 @@ class User extends AbstractUseApi
     public function getFields(
         $uid,
         $type,
-        $fields = array(),
-        $filter = false,
+        $fields     = array(),
+        $filter     = false,
         $activeOnly = false
     ) {
         if (!$uid) {
@@ -1210,41 +1196,10 @@ class User extends AbstractUseApi
                 }
             }
         } elseif ('compound' == $type) {
-            $meta = $this->getMeta($type);
-            $compound = array();
             foreach ($fields as $field) {
-                if (!isset($meta[$field])
-                    || empty($meta[$field]['handler'])
-                ) {
-                    $compound[] = $field;
-                    continue;
-                }
-                $handler = new $meta[$field]['handler']($field);
-                $data  = $handler->mget($uids, $filter);
+                $data = Pi::api('compound', 'user')->mget($uids, $field, $filter);
                 foreach ($data as $id => $user) {
                     $result[$id][$field] = $user;
-                }
-            }
-
-            if ($compound) {
-                $model = Pi::model($type, 'user');
-                $select = $model->select();
-                $select->order('set ASC')->where(array(
-                    'uid'       => $uids,
-                    'compound'  => $compound,
-                ));
-                $rowset = $model->selectWith($select);
-                foreach ($rowset as $row) {
-                    if ($filter) {
-                        $value = $row->filter();
-                    } else {
-                        $value = $row['value'];
-                    }
-                    $id         = (int) $row['uid'];
-                    $field      = $row['compound'];
-                    $set        = (int) $row['set'];
-                    $var        = $row['field'];
-                    $result[$id][$field][$set][$var] = $value;
                 }
             }
         }

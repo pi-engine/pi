@@ -29,34 +29,20 @@ class Tool extends CustomCompoundHandler
     /** @var string Form filter class */
     protected $filter = '';
 
-
     /**
      * {@inheritDoc}
      */
-    public function get($uid, $filter = false)
+    protected function displayFields($fields, array $meta = array())
     {
-        $result = parent::get($uid);
-        if ($filter) {
-            $data = array();
-            foreach ($result as $item) {
-                $data[] = array(
-                    'title' => $item['title'],
-                    'value' => $item['identifier'],
-                );
-            }
+        $record = array();
+        foreach ($fields as $item) {
+            $record[$item['id']] = array(
+                'title' => $item['title'],
+                'value' => $item['identifier'],
+            );
         }
+        $result = array($record);
 
         return $result;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function mget($uids, $filter = false)
-    {
-        $result = parent::mget($uids);
-
-        return $result;
-    }
-
 }

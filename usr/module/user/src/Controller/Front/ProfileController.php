@@ -512,60 +512,29 @@ class ProfileController extends ActionController
      */
     protected function getProfile($uid)
     {
-        $result = array();
+        $filter     = true;
 
-        $filter = true;
-        //$fields = Pi::registry('display_field', 'user')->read();
-        //$data = Pi::user()->get($uid, $fields, $filter);
-        //d($fields);
-        //d($data);
-
-        // Get account or profile meta
-        $fieldMeta = Pi::api('user', 'user')->getMeta('', 'display');
-        $groups    = Pi::registry('display_group', 'user')->read();
-
-        foreach ($groups as $groupId => $group) {
-            $result[$groupId] = $group;
-            $result[$groupId]['fields'] = array();
-            $fields = Pi::registry('display_field', 'user')->read($groupId);
-
-            if ($group['compound']) {
-                // Compound meta
-                $compoundMeta = Pi::registry('compound_field', 'user')->read(
-                    $group['compound'],
-                    true
-                );
-
-                // Compound value
-                $compound     = Pi::api('user', 'user')->get(
-                    $uid, $group['compound'], $filter
-                );
-                //d($compound);
-                // Generate Result
-                foreach ($compound as $set => $item) {
-                    // Compound value
-                    $compoundValue = array();
-                    foreach ($fields as $field) {
-                        $compoundValue[] = array(
-                            'title' => $compoundMeta[$field]['title'],
-                            'value' => $item[$field],
-                        );
-                    }
-                    $result[$groupId]['fields'][$set] = $compoundValue;
-                }
-            } else {
-                // Profile
+        $groups     = Pi::registry('display_group', 'user')->read();
+        $meta       = Pi::api('user', 'user')->getMeta('', 'display');
+        $fields     = Pi::registry('display_field', 'user')->read();
+        $profile    = Pi::user()->get($uid, $fields, $filter);
+        array_walk($groups, function (&$group, $gid) use ($profile, $meta, $uid) {
+            if (!$group['compound']) {
+                $fields = Pi::registry('display_field', 'user')->read($gid);
+                $list   = array();
                 foreach ($fields as $field) {
-                    $result[$groupId]['fields'][0][$field] = array(
-                        'title' => $fieldMeta[$field]['title'],
-                        'value' => Pi::api('user', 'user')->get($uid, $field, $filter),
+                    $list[$field] = array(
+                        'title' => $meta[$field]['title'],
+                        'value' => $profile[$field],
                     );
                 }
+                $group['fields'] = array($list);
+            } else {
+                $group['fields'] = Pi::api('compound', 'user')->display($uid, $group['compound']);
             }
-        }
+        });
 
-        return $result;
-
+        return $groups;
     }
 
     /**
@@ -612,10 +581,7 @@ class ProfileController extends ActionController
         $compound   = Pi::api('user', 'user')->get(
             $uid, $group['compound'], $filter
         );
-        $compoundMeta = Pi::registry('compound_field', 'user')->read(
-            $group['compound'],
-            true
-        );
+        $compoundMeta = Pi::registry('compound_field', 'user')->read($group['compound']);
         foreach ($compound as $set => $item) {
             $compoundValue = array();
             foreach ($fields as $field) {

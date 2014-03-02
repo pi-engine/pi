@@ -513,6 +513,8 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         if (!$force && $this->skipUpgrade()) {
             return;
@@ -663,6 +665,8 @@ class User extends AbstractResource
         }
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         $fields         = array();
         $compounds      = array();
@@ -722,6 +726,8 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -744,6 +750,8 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -798,7 +806,6 @@ class User extends AbstractResource
      */
     protected function dropFields(array $fields)
     {
-        //$meta = Pi::registry('field', 'user')->read('profile');
         $table = Pi::model('profile', 'user')->getTable();
         $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' DROP `%s`';
