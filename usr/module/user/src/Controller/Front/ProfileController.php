@@ -37,10 +37,10 @@ class ProfileController extends ActionController
         $uid = Pi::user()->getId();
 
         // Get display group
-        $profileGroup = $this->getProfile($uid, 0, true);
+        $groups = $this->getProfile($uid);
 
         $this->view()->assign(array(
-            'groups'        => $profileGroup,
+            'groups'        => $groups,
             'name'          => 'profile',
             'uid'           => $uid,
             'owner'         => true,
@@ -56,23 +56,21 @@ class ProfileController extends ActionController
     public function viewAction()
     {
         $uid    = $this->params('uid', '');
-
-        // Get display group
-        $profileGroup = $this->getProfile($uid, 0, true);
+        $groups = $this->getProfile($uid);
 
         // Get viewer level: everyone, member, follower, following, owner
         $requestId = $uid == Pi::user()->getId() ? 0 : null;
         $level = Pi::api('privacy', 'user')->getLevel($uid, $requestId);
 
         // Filter field according to privacy setting
-        $profileGroup = Pi::api('privacy', 'user')->filterProfile(
+        $groups = Pi::api('privacy', 'user')->filterProfile(
             $uid,
             $level,
-            $profileGroup,
+            $groups,
             'group'
         );
         $this->view()->assign(array(
-            'groups'        => $profileGroup,
+            'groups'        => $groups,
             'name'          => 'profile',
             'uid'           => $uid,
             'owner'         => false,
@@ -96,21 +94,16 @@ class ProfileController extends ActionController
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
 
-        $groupId   = $this->params('group', '');
-        $result = array(
+        $groupId    = $this->params('group', '');
+        $result     = array(
             'status'  => 0,
             'message' => '',
         );
-        // Error hand
         if (!$groupId) {
-            $this->jump(
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                ),
-                __('Profile group ID is invalid.'),
-                'error'
-            );
+            return $this->jump(array(
+                'controller' => 'profile',
+                'action'     => 'index'
+            ), __('Profile group ID is invalid.'), 'error');
         }
 
         // Get fields and filters for edit
@@ -182,14 +175,10 @@ class ProfileController extends ActionController
         $compound = $group ? $group['compound'] : '';
 
         if (!$groupId || !$compound) {
-            $this->jump(
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                ),
-                __('Profile group ID is invalid.'),
-                'error'
-            );
+            return $this->jump(array(
+                'controller' => 'profile',
+                'action'     => 'index'
+            ), __('Profile group ID is invalid.'), 'error');
         }
 
         // Get compound element for edit
@@ -232,14 +221,10 @@ class ProfileController extends ActionController
         $compound = $group ? $group['compound'] : '';
 
         if (!$groupId || !$compound) {
-            $this->jump(
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                ),
-                __('Profile group ID is invalid.'),
-                'error'
-            );
+            return $this->jump(array(
+                'controller' => 'profile',
+                'action'     => 'index'
+            ), __('Profile group ID is invalid.'), 'error');
         }
 
         $compoundElements   = Pi::api('form', 'user')->getCompoundElement($compound);
@@ -522,15 +507,14 @@ class ProfileController extends ActionController
      * Group and group items title and value
      *
      * @param int $uid User id
-     * @param int $gid Group ID
-     * @param bool $filter
      *
      * @return array
      */
-    protected function getProfile($uid, $gid = 0, $filter = true)
+    protected function getProfile($uid)
     {
         $result = array();
 
+        $filter = true;
         //$fields = Pi::registry('display_field', 'user')->read();
         //$data = Pi::user()->get($uid, $fields, $filter);
         //d($fields);
@@ -578,9 +562,6 @@ class ProfileController extends ActionController
                     );
                 }
             }
-        }
-        if ($gid) {
-            $result = isset($result[$gid]) ? $result[$gid] : array();
         }
 
         return $result;
