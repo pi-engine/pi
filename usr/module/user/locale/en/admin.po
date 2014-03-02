@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-01 12:32+0800\n"
-"PO-Revision-Date: 2014-03-01 12:33+0800\n"
+"POT-Creation-Date: 2014-03-02 17:44+0800\n"
+"PO-Revision-Date: 2014-03-02 17:44+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -558,19 +558,19 @@ msgstr "Application Execution Time"
 msgid "Social tools"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:250
+#: C:\code\pi\usr\module\user/config/user.php:253
 msgid "Tool name"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:253
+#: C:\code\pi\usr\module\user/config/user.php:256
 msgid "ID or URL"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:263
+#: C:\code\pi\usr\module\user/config/user.php:266
 msgid "User action"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:275
+#: C:\code\pi\usr\module\user/config/user.php:278
 msgid "Logout"
 msgstr ""
 
@@ -687,23 +687,23 @@ msgstr "主题更新失败。"
 msgid "Clear all deleted user successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:195
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:198
 msgid "Profile dress-up data saved successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:319
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:322
 msgid "Privacy set up failed: invalid field."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:324
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:327
 msgid "Privacy set up failed: invalid privacy."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:346
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:349
 msgid "Privacy set up failed: update error."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:361
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:364
 msgid "Privacy set up successfully."
 msgstr ""
 

@@ -191,6 +191,9 @@ class ProfileController extends ActionController
             $groupOrder++;
         }
 
+        Pi::registry('display_group', 'user')->flush();
+        Pi::registry('display_field', 'user')->flush();
+
         $result['status'] = 1;
         $result['message'] = _a('Profile dress-up data saved successfully.');
 

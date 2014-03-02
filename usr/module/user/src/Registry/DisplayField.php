@@ -29,11 +29,19 @@ class DisplayField extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $list = array();
-
-        $where = array();
+        $gids = array();
         if (!empty($options['group'])) {
-            $where = array('group' => $options['group']);
+            $gids = $options['group'];
+        } else {
+            $groups = Pi::registry('display_group', $this->module)->read();
+            array_walk($groups, function ($group, $gid) use (&$gids) {
+                if (!$group['compound']) {
+                    $gids[] = $gid;
+                }
+            });
         }
+        $where = array('group' => $gids);
+
         $model  = Pi::model('display_field', $this->module);
         $select = $model->select()->where($where);
         $select->order('order ASC');

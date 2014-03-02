@@ -460,8 +460,8 @@ class User extends AbstractUseApi
      */
     public function get(
         $uid,
-        $field = array(),
-        $filter = false,
+        $field      = array(),
+        $filter     = false,
         $activeOnly = false
     ) {
         if (!$uid) {
