@@ -1,8 +1,13 @@
+User-agent: Mediapartners-Google
+Allow: /
 User-agent: *
 Disallow: /cgi-bin/
 Disallow: /tmp/
 Disallow: /asset/
+Disallow: /module/
+Disallow: /public/
 Disallow: /script/
+Disallow: /setup/
 Disallow: /static/
 Disallow: /upload/
 
@@ -14,6 +19,7 @@ Allow: /
  
 User-agent: Googlebot-Image
 Allow: /
+Allow: /upload/
  
 User-agent: Googlebot-Mobile
 Allow: / 
