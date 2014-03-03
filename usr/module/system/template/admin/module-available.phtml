@@ -75,7 +75,13 @@ $this->css($this->assetModule('admin/admin.css'));
 (function($) {
     var page = {
         el: $('#js-module'),
-        installUrl: '<?php echo $this->url('', array('action' => 'install', 'from' => 'available')); ?>',
+        installUrl: '<?php echo $this->url('', array(
+                'action'    => 'install',
+                'from'      => 'available',
+                'name'      => '__NAME__',
+                'directory' => '__DIRECTORY__',
+                'title'     => '__TITLE__',
+            )); ?>',
         $: function(selector) {
             return this.el.find(selector);
         },
@@ -99,8 +105,14 @@ $this->css($this->assetModule('admin/admin.css'));
 
             var fn = function(res) {
                 var d = res.data;
+                /*
                 location.href = page.installUrl + '/name/' + d.name + '/directory/' 
                     + d.directory + '/title/' + d.title;
+                */
+                location.href = page.installUrl
+                    .replace('__NAME__', d.name)
+                    .replace('__DIRECTORY__', d.directory)
+                    .replace('__TITLE__', d.title);
             };
 
             if (typeof formModule != 'undefined') {
