@@ -74,7 +74,43 @@ class FormDateSelect extends ZendFormDateSelect
             $this->setDateType($dateFormat);
         }
 
-        return parent::render($element);
+        //$name = $element->getName();
+
+        $selectHelper = $this->getSelectElementHelper();
+        $pattern      = $this->parsePattern($element->shouldRenderDelimiters());
+
+        $daysOptions   = $this->getDaysOptions($pattern['day']);
+        $monthsOptions = $this->getMonthsOptions($pattern['month']);
+        $yearOptions   = $this->getYearsOptions($element->getMinYear(), $element->getMaxYear());
+
+        $dayElement   = $element->getDayElement()->setValueOptions($daysOptions);
+        $monthElement = $element->getMonthElement()->setValueOptions($monthsOptions);
+        $yearElement  = $element->getYearElement()->setValueOptions($yearOptions);
+
+        if ($element->shouldCreateEmptyOption()) {
+            $dayElement->setEmptyOption(__('Day'));
+            $yearElement->setEmptyOption(__('Year'));
+            $monthElement->setEmptyOption(__('Month'));
+        }
+
+        $data = array();
+        $data[$pattern['day']]   = $selectHelper->render($dayElement);
+        $data[$pattern['month']] = $selectHelper->render($monthElement);
+        $data[$pattern['year']]  = $selectHelper->render($yearElement);
+
+        $markup = '';
+        foreach ($pattern as $key => $value) {
+            // Delimiter
+            if (is_numeric($key)) {
+                $markup .= $value;
+            } else {
+                $markup .= $data[$value];
+            }
+        }
+
+        return $markup;
+
+        //return parent::render($element);
     }
 
     /**
