@@ -92,22 +92,28 @@ $this->css($this->assetModule('admin/admin.css'));
 
     $('#js-module-form').on('show.bs.modal', function(e) {
         var btn = $(e.relatedTarget);
-        var fn = function(res) {
-                var d = res.data;
-                location.href = page.installUrl + 'name/' + d.name + '/directory/' 
-                    + d.directory + '/title/' + d.title;
-        };
+        var modal = $(this);
 
-        if (typeof formModule != 'undefined') {
-            formModule.success = fn;
-        } else {
-            checked = setInterval(function() {
-                if (typeof formModule != 'undefined') {
-                    formModule.success = fn;
-                    clearInterval(checked);
-                }
-            }, 10);
-        }
+        $.get(btn.attr('href')).done(function(res) {
+            modal.html(res);
+
+            var fn = function(res) {
+                var d = res.data;
+                location.href = page.installUrl + '/name/' + d.name + '/directory/' 
+                    + d.directory + '/title/' + d.title;
+            };
+
+            if (typeof formModule != 'undefined') {
+                formModule.success = fn;
+            } else {
+                checked = setInterval(function() {
+                    if (typeof formModule != 'undefined') {
+                        formModule.success = fn;
+                        clearInterval(checked);
+                    }
+                }, 10);
+            }
+        });
     });
 })(jQuery)
 </script>
