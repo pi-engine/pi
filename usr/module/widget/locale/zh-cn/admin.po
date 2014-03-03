@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2013-11-26 14:47+0800\n"
-"PO-Revision-Date: 2013-11-26 14:47+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-03-03 14:05+0800\n"
+"PO-Revision-Date: 2014-03-03 14:18+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,284 +11,346 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\GitHub\\deploy\\usr\\module\\widget\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\widget\n"
 
-#: D:\GitHub\deploy\usr\module\widget/config/module.php:14
+#: c:\code\pi\usr\module\widget/config/module.php:14
 msgid "Widget"
-msgstr ""
+msgstr "Widget"
 
-#: D:\GitHub\deploy\usr\module\widget/config/module.php:16
+#: c:\code\pi\usr\module\widget/config/module.php:16
 msgid "Management of custom blocks/widgets."
-msgstr ""
+msgstr "定制区块管理"
 
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:15
-#: D:\GitHub\deploy\usr\module\widget/config/permission.php:13
+#: c:\code\pi\usr\module\widget/config/nav.php:15
+#: c:\code\pi\usr\module\widget/config/permission.php:13
 msgid "Script widgets"
-msgstr ""
+msgstr "代码区块"
 
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:24
-#: D:\GitHub\deploy\usr\module\widget/config/permission.php:16
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:60
+#: c:\code\pi\usr\module\widget/config/nav.php:24
+#: c:\code\pi\usr\module\widget/config/permission.php:16
 msgid "Static widgets"
-msgstr ""
+msgstr "静态区块"
 
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:34
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:60
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:86
-msgid "Add"
-msgstr ""
+#: c:\code\pi\usr\module\widget/config/nav.php:33
+msgid "Static list"
+msgstr "静态区块列表"
 
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:41
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:67
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:93
-#: D:\GitHub\deploy\usr\module\widget/template/admin/common-list.phtml:14
+#: c:\code\pi\usr\module\widget/config/nav.php:40
+#: c:\code\pi\usr\module\widget/config/nav.php:94
+#: c:\code\pi\usr\module\widget/config/nav.php:128
+#: c:\code\pi\usr\module\widget/template/admin/common-list.phtml:14
+#: c:\code\pi\usr\module\widget/template/admin/ng.phtml:21
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:50
-#: D:\GitHub\deploy\usr\module\widget/config/permission.php:19
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/CarouselController.php:89
+#: c:\code\pi\usr\module\widget/config/nav.php:49
+msgid "Add HTML"
+msgstr "添加HTML"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:58
+msgid "Add text"
+msgstr "添加文本"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:67
+msgid "Add markdown"
+msgstr "添加Markdown"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:78
+#: c:\code\pi\usr\module\widget/config/permission.php:19
 msgid "Carousel widgets"
-msgstr ""
+msgstr "轮播区块"
 
-#: D:\GitHub\deploy\usr\module\widget/config/nav.php:76
-#: D:\GitHub\deploy\usr\module\widget/config/permission.php:22
+#: c:\code\pi\usr\module\widget/config/nav.php:87
+msgid "Carousel list"
+msgstr "轮播区块列表"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:103
+msgid "Add new"
+msgstr "添加"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:112
+#: c:\code\pi\usr\module\widget/config/permission.php:22
 msgid "Compound tabs"
-msgstr ""
+msgstr "组合区块"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:11
+#: c:\code\pi\usr\module\widget/config/nav.php:121
+msgid "Tab list"
+msgstr "组合区块列表"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:137
+msgid "Add"
+msgstr "添加"
+
+#: c:\code\pi\usr\module\widget/meta/navigation.php:11
 msgid "Navigation"
-msgstr ""
+msgstr "导航"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:12
+#: c:\code\pi\usr\module\widget/meta/navigation.php:12
 msgid "Block to display navigation menu and breadcrumbs"
-msgstr ""
+msgstr "显示导航和面包屑的区块"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:16
+#: c:\code\pi\usr\module\widget/meta/navigation.php:16
 msgid "Navigation name"
-msgstr ""
+msgstr "导航名称"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:22
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:48
+#: c:\code\pi\usr\module\widget/meta/navigation.php:22
+#: c:\code\pi\usr\module\widget/meta/navigation.php:48
 msgid "Display menu"
-msgstr ""
+msgstr "显示菜单"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:28
+#: c:\code\pi\usr\module\widget/meta/navigation.php:28
 msgid "ul class for menu"
-msgstr ""
+msgstr "菜单的`ul`类名"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:29
+#: c:\code\pi\usr\module\widget/meta/navigation.php:29
 msgid "Separate classes with space"
-msgstr ""
+msgstr "用空格分隔多个类名"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:35
+#: c:\code\pi\usr\module\widget/meta/navigation.php:35
 msgid "Minimum depth for menu"
-msgstr ""
+msgstr "菜单结构的最小深度"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:41
+#: c:\code\pi\usr\module\widget/meta/navigation.php:41
 msgid "Maximum depth for menu"
-msgstr ""
+msgstr "菜单结构的最大深度"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:54
+#: c:\code\pi\usr\module\widget/meta/navigation.php:54
 msgid "Separator for breadcrumb"
-msgstr ""
+msgstr "面包屑分割符"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:60
+#: c:\code\pi\usr\module\widget/meta/navigation.php:60
 msgid "Minimum depth for breadcrumb"
-msgstr ""
+msgstr "面包屑结构的最小深度"
 
-#: D:\GitHub\deploy\usr\module\widget/meta/navigation.php:66
+#: c:\code\pi\usr\module\widget/meta/navigation.php:66
 msgid "Add link to last page"
-msgstr ""
+msgstr "最后一个元素添加链接"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/CarouselController.php:187
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:76
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:41
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:53
+msgid "Image width"
+msgstr "图片宽度"
+
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:46
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:58
+msgid "Image height"
+msgstr "图片高度"
+
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:51
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:63
 msgid "Time interval (ms)"
-msgstr ""
+msgstr "轮播间隔时间(ms)"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/CarouselController.php:193
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:82
-msgid "Mouse event to pause cycle"
-msgstr ""
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:57
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:69
+msgid "Mouse event"
+msgstr "鼠标事件"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/IndexController.php:76
-msgid "Widget list"
-msgstr ""
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:58
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:70
+msgid "Event to pause cycle"
+msgstr "停止轮播的事件"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/IndexController.php:131
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/IndexController.php:130
 #, php-format
 msgid "The widget \"%s\" is installed."
-msgstr ""
+msgstr "区块 %s 已安装。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/IndexController.php:133
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/IndexController.php:132
 #, php-format
 msgid "The widget \"%s\" is not installed."
-msgstr ""
+msgstr "区块 %s 未安装。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:30
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:30
 msgid "HTML"
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:31
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:31
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:32
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:32
 msgid "Markdown"
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:97
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:183
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:219
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:97
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:183
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:219
 msgid "Block data saved successfully."
-msgstr ""
+msgstr "区块数据保存成功。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:102
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:191
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:227
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:102
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:191
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:227
 msgid "Block data not saved."
-msgstr ""
+msgstr "区块数据未保存。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:104
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:195
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:229
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/StaticController.php:104
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:195
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:229
 msgid "Invalid data, please check and re-submit."
-msgstr ""
+msgstr "无效数据，请检查后重新提交。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/StaticController.php:116
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:244
-msgid "Block edit"
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/TabController.php:40
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/TabController.php:40
 msgid "Custom blocks"
-msgstr ""
+msgstr "定制区块"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/TabController.php:52
-msgid "Compound tab widgets"
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:92
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:92
 msgid "The widget does not exist."
-msgstr ""
+msgstr "区块不存在。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:100
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:100
 #, php-format
 msgid "The widget \"%s\" is uninstalled."
-msgstr ""
+msgstr "区块 %s 已卸载。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:105
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:105
 #, php-format
 msgid "The widget \"%s\" is not uninstalled."
-msgstr ""
+msgstr "区块 %s 未卸载。"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Controller/Admin/WidgetController.php:207
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:207
 msgid "Add a block"
-msgstr ""
+msgstr "添加区块"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:69
+#: c:\code\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:244
+msgid "Block edit"
+msgstr "编辑区块"
+
+#: c:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:109
+msgid ""
+"Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `"
+"%slogan%` - site slogan"
+msgstr ""
+"支持如下Tag：`%sitename%` - 网站名； `%siteurl%` - 网站根URL； `%slogan%` - "
+"网站口号"
+
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:69
 msgid "Pi Highlights"
-msgstr ""
+msgstr "Pi Engine 特性"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:70
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:70
 msgid "Introduction to Pi Engine with carousel."
-msgstr ""
+msgstr "基于轮播图的Pi Engine简介"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:96
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:76
 msgid "Sustainable ecosystem"
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:97
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:77
 msgid ""
 "A sustainable ecosystem built upon open standard, open source code, open "
 "development and open management on Github."
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:102
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:82
 msgid "Engineered development"
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:103
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:83
 msgid ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
 "API and strict starndards."
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:108
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:88
 msgid "Visualization of application management"
-msgstr ""
+msgstr "可视化应用管理"
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:109
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:89
 msgid ""
 "Easy and responsive application and content management based on visualized "
 "mangement tools and interface with page and widget mechanism."
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:114
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:94
 msgid "Agile compliant development workflow"
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/src/Installer/Action/Install.php:115
+#: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:95
 msgid ""
 "Role oriented architecture and deployment skeleton supports managable agile "
 "development workflow."
 msgstr ""
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/common-list.phtml:16
+#: c:\code\pi\usr\module\widget/template/admin/common-list.phtml:16
 msgid "Are you sure delete this widget?"
-msgstr ""
+msgstr "确认删除该区块？"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/common-list.phtml:16
+#: c:\code\pi\usr\module\widget/template/admin/common-list.phtml:16
+#: c:\code\pi\usr\module\widget/template/admin/ng.phtml:22
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-carousel.phtml:2
-msgid "Add a carousel"
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-script.phtml:8
+#: c:\code\pi\usr\module\widget/template/admin/list-script.phtml:8
+#: c:\code\pi\usr\module\widget/template/admin/ng.phtml:17
 msgid "Installed widgets"
-msgstr ""
+msgstr "已安装区块"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-script.phtml:20
+#: c:\code\pi\usr\module\widget/template/admin/list-script.phtml:20
+#: c:\code\pi\usr\module\widget/template/admin/ng.phtml:18
 msgid "Available widgets"
-msgstr ""
+msgstr "可用区块"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:2
-msgid "Add a static block :"
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:4
-msgid "HTML tags allowed in content."
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:5
-msgid "Only plaintext content is allowed."
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-static.phtml:6
-msgid "Markdown syntax allowed in content."
-msgstr ""
-
-#: D:\GitHub\deploy\usr\module\widget/template/admin/list-tab.phtml:2
+#: c:\code\pi\usr\module\widget/template/admin/list-tab.phtml:2
 msgid "Add a compound"
-msgstr ""
+msgstr "添加区块组合"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-carousel.phtml:66
-#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-tab.phtml:64
+#: c:\code\pi\usr\module\widget/template/admin/ng.phtml:19
+msgid "Install"
+msgstr "安装"
+
+#: c:\code\pi\usr\module\widget/template/admin/ng.phtml:20
+msgid "Uninstall"
+msgstr "卸载"
+
+#: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:12
+msgid "Images"
+msgstr "图片"
+
+#: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:33
+#: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:43
 msgid "Caption"
-msgstr ""
+msgstr "标题"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-carousel.phtml:72
-#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-tab.phtml:70
+#: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:36
+#: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:49
 msgid "Link"
-msgstr ""
+msgstr "链接"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-carousel.phtml:78
+#: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:39
 msgid "Desc"
-msgstr ""
+msgstr "描述"
 
-#: D:\GitHub\deploy\usr\module\widget/template/admin/widget-tab.phtml:149
+#: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:129
 msgid "No Blocks"
-msgstr ""
+msgstr "无区块"
+
+#, fuzzy
+#~ msgid "Widget list"
+#~ msgstr "登录次数"
+
+#, fuzzy
+#~ msgid "Compound tab widgets"
+#~ msgstr "组合字段用于显示一组字段。"
+
+#, fuzzy
+#~ msgid "Add a carousel"
+#~ msgstr "添加组"
+
+#, fuzzy
+#~ msgid "Add a static block :"
+#~ msgstr "登录区块"
+
+#, fuzzy
+#~ msgid "HTML tags allowed in content."
+#~ msgstr "允许HTML语法。"
+
+#, fuzzy
+#~ msgid "Only plaintext content is allowed."
+#~ msgstr "只允许文本内容。"
+
+#, fuzzy
+#~ msgid "Markdown syntax allowed in content."
+#~ msgstr "允许Markdown语法。"

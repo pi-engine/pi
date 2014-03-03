@@ -106,6 +106,7 @@ class BlockStaticForm extends BaseForm
             'attributes'    => array(
                 'type'          => 'editor',
                 'class'         => 'span6',
+                'description'   => _a('Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `%slogan%` - site slogan'),
             )
         ));
 
