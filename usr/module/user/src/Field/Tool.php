@@ -20,15 +20,6 @@ class Tool extends CustomCompoundHandler
     /** @var string Field name and table name */
     protected $name = 'tool';
 
-    /** @var string Form class */
-    protected $form = '';
-
-    /** @var string File to form template */
-    protected $template = '';
-
-    /** @var string Form filter class */
-    protected $filter = '';
-
     /**
      * {@inheritDoc}
      */

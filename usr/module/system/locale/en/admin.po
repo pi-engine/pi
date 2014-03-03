@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-03-01 12:26+0800\n"
-"PO-Revision-Date: 2014-03-01 12:26+0800\n"
+"POT-Creation-Date: 2014-03-03 13:17+0800\n"
+"PO-Revision-Date: 2014-03-03 13:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -991,8 +991,8 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:162
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:246
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:147
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:258
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:169
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
@@ -1036,12 +1036,19 @@ msgstr ""
 msgid "Action data"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:151
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:89
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:156
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:87
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:418
 msgid "Module wide"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:168
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:166
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:97
+#, fuzzy
+msgid "Module home"
+msgstr "无缓存"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:199
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
 #, fuzzy
 msgid "Cache list"
@@ -1363,46 +1370,46 @@ msgstr ""
 msgid "Only custom navigations are allowed to manipulate."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:106
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:128
 msgid "Pages list"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:132
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:192
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:256
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:304
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:154
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:278
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:326
 msgid "Page data saved successfully."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:144
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:166
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:236
 msgid "Page data not saved."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:181
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:9
 msgid "Setup a page"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:272
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:294
 msgid "Pages edit"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:348
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:524
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:370
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:551
 msgid "Page is not found."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:353
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:375
 msgid "Page is deleted."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:466
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:491
 #, php-format
 msgid "%s blocks"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:549
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
 msgstr ""
 

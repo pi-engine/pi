@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-02-16 16:02+0800\n"
-"PO-Revision-Date: 2014-02-16 16:02+0800\n"
+"POT-Creation-Date: 2014-03-03 13:32+0800\n"
+"PO-Revision-Date: 2014-03-03 13:32+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,10 +88,6 @@ msgstr ""
 msgid "Pi Engine"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/config/page.php:15
-msgid "Homepage"
-msgstr ""
-
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:106
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:209
 msgid "Page data saved successfully."
@@ -110,18 +106,23 @@ msgstr ""
 msgid "Page edit"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:247
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:249
 #, fuzzy
 msgid "Page deleted successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:266
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:270
 #, fuzzy
 msgid "Page updated successfully."
 msgstr "主题更新成功。"
 
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:292
+#, fuzzy
+msgid "Page navigation menu updated successfully."
+msgstr "主题更新成功。"
+
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:45
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:8
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:9
 msgid "Page title"
 msgstr ""
 
@@ -187,7 +188,7 @@ msgid "Demo for PHTML page"
 msgstr ""
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:85
-msgid "Feed"
+msgid "RSS Feed"
 msgstr ""
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:92
@@ -195,7 +196,7 @@ msgid "Sitemap"
 msgstr ""
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:100
-msgid "Sitemap feed"
+msgid "XML Sitemap"
 msgstr ""
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:111
@@ -250,53 +251,53 @@ msgstr ""
 msgid "PHTML"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:9
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:10
 msgid "Name"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:10
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:11
 msgid "Slug"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:11
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
 msgid "Type"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:13
 #, fuzzy
 msgid "Time published"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:13
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:14
 #, fuzzy
 msgid "Last Update"
 msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:14
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:15
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:11
 msgid "Action"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:40
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:28
-msgid "View"
-msgstr ""
-
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:41
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:44
 msgid "Edit"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:42
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:45
 msgid "Delete"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:44
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:47
 msgid "Disable"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:46
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:49
 msgid "Enable"
 msgstr ""
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:61
+#, fuzzy
+msgid "Add to menu"
+msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:9
 #, fuzzy
@@ -305,6 +306,10 @@ msgstr "Application Execution Time"
 
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:10
 msgid "Filesize"
+msgstr ""
+
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:28
+msgid "View"
 msgstr ""
 
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:29

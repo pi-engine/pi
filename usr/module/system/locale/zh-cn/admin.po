@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-03-01 12:25+0800\n"
-"PO-Revision-Date: 2014-03-01 12:26+0800\n"
+"POT-Creation-Date: 2014-03-03 13:17+0800\n"
+"PO-Revision-Date: 2014-03-03 13:17+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -986,8 +986,8 @@ msgstr "区块数据未保存。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:162
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:246
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:147
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:258
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:169
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
 msgstr "无效数据，请检查后重新提交。"
 
@@ -1031,12 +1031,18 @@ msgstr "全页面缓存"
 msgid "Action data"
 msgstr "当前请求逻辑缓存"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:151
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:89
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:156
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:87
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:418
 msgid "Module wide"
 msgstr "模块范围"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:168
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:166
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:97
+msgid "Module home"
+msgstr "模块首页"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:199
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
 msgstr "缓存列表"
@@ -1344,46 +1350,46 @@ msgstr "导航未找到。"
 msgid "Only custom navigations are allowed to manipulate."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:106
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:128
 msgid "Pages list"
 msgstr "页面列表"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:132
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:192
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:256
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:304
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:154
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:278
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:326
 msgid "Page data saved successfully."
 msgstr "页面数据保存成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:144
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:166
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:236
 msgid "Page data not saved."
 msgstr "页面数据未保存。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:181
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:9
 msgid "Setup a page"
 msgstr "设置新页面"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:272
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:294
 msgid "Pages edit"
 msgstr "页面编辑"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:348
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:524
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:370
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:551
 msgid "Page is not found."
 msgstr "页面不存在。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:353
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:375
 msgid "Page is deleted."
 msgstr "页面删除成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:466
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:491
 #, php-format
 msgid "%s blocks"
 msgstr "%s 区块"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:549
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
 msgstr ""
 
@@ -1616,7 +1622,7 @@ msgstr "IP"
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:24
 #, fuzzy
 msgid "Message"
-msgstr "发送私信"
+msgstr "私信"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:25
 msgid "extra"
