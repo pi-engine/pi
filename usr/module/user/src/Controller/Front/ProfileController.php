@@ -538,32 +538,6 @@ class ProfileController extends ActionController
     }
 
     /**
-     * Get user group profile data
-     *
-     * @param int $uid User id
-     * @param int $gid Group ID
-     * @param bool $filter
-     *
-     * @return array
-     */
-    protected function getGroup($uid, $gid, $filter = false)
-    {
-        $result     = array();
-        $fields     = Pi::registry('display_field', 'user')->read($gid);
-        $fieldMeta  = Pi::api('user', 'user')->getMeta('', 'display');
-        $data       = Pi::user()->get($uid, $fields, $filter);
-        foreach ($data as $field => $val) {
-            $result[$field] = array(
-                'title' => $fieldMeta[$field]['title'],
-                'value' => $val,
-            );
-        }
-
-        return $result;
-
-    }
-
-    /**
      * Get user compound profile data
      *
      * @param int $uid User id
@@ -578,10 +552,9 @@ class ProfileController extends ActionController
 
         $group      = Pi::registry('display_group', 'user')->read($gid);
         $fields     = Pi::registry('display_field', 'user')->read($gid);
-        $compound   = Pi::api('user', 'user')->get(
-            $uid, $group['compound'], $filter
-        );
-        $compoundMeta = Pi::registry('compound_field', 'user')->read($group['compound']);
+        $name       = $group['compound'];
+        $compound   = Pi::api('user', 'user')->get($uid, $name, $filter);
+        $compoundMeta = Pi::registry('compound_field', 'user')->read($name);
         foreach ($compound as $set => $item) {
             $compoundValue = array();
             foreach ($fields as $field) {
