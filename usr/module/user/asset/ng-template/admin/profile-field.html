@@ -12,6 +12,7 @@
       <th width="8%">{{'DISPLAY' | translate}}
       <th width="8%">{{'SEARCH' | translate}}
       <th width="8%">{{'EDITABLE' | translate}}
+      <th width="8%">{{'REQUIRED' | translate}}
       <th>{{'FORM_MODULE' | translate}}
   <tbody>
     <tr ng-repeat="item in profile">
@@ -24,6 +25,8 @@
         <i class="fa fa-check fa-lg text-success" ng-if="item.is_search"></i>
       <td>
         <i class="fa fa-check fa-lg text-success" ng-if="item.is_edit"></i>
+      <td>
+        <input type="checkbox" ng-if="item.is_edit">
       <td>{{item.module}}
 </table>
 <div class="page-header">

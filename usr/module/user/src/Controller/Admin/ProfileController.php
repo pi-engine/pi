@@ -30,22 +30,23 @@ class ProfileController extends ActionController
         foreach ($fields as $field) {
             if ($field['type'] == 'compound'/* || $field['type'] == 'custom'*/) {
                 $compounds[$field['name']] = array(
-                    'name'   => $field['name'],
-                    'title'      => $field['title'],
-                    'module'     => $field['module'],
-                    'is_edit'    => $field['is_edit'],
-                    'is_search'  => $field['is_search'],
-                    'is_display' => $field['is_display'],
-
+                    'name'          => $field['name'],
+                    'title'         => $field['title'],
+                    'module'        => $field['module'],
+                    'is_edit'       => $field['is_edit'],
+                    'is_search'     => $field['is_search'],
+                    'is_display'    => $field['is_display'],
+                    'is_required'   => $field['is_required'],
                 );
             } else {
                 $profile[$field['name']] = array(
-                    'name'       => $field['name'],
-                    'title'      => $field['title'],
-                    'module'     => $field['module'],
-                    'is_edit'    => $field['is_edit'],
-                    'is_search'  => $field['is_search'],
-                    'is_display' => $field['is_display'],
+                    'name'          => $field['name'],
+                    'title'         => $field['title'],
+                    'module'        => $field['module'],
+                    'is_edit'       => $field['is_edit'],
+                    'is_search'     => $field['is_search'],
+                    'is_display'    => $field['is_display'],
+                    'is_required'   => $field['is_required'],
                 );
             }
         }
@@ -55,8 +56,9 @@ class ProfileController extends ActionController
             $compoundMeta = Pi::registry('compound_field', 'user')->read($name);
             foreach ($compoundMeta as $meta) {
                 $compound['fields'][] = array(
-                    'name'  => $meta['name'],
-                    'title' => $meta['title'],
+                    'name'          => $meta['name'],
+                    'title'         => $meta['title'],
+                    'is_required'   => $meta['is_required'],
                 );
             }
         }
@@ -68,6 +70,37 @@ class ProfileController extends ActionController
             'profile'   => $profile,
             'compounds' => $compounds,
         );
+    }
+
+    /**
+     * Set `required` attribute for a field
+     *
+     * @return int
+     */
+    public function requiredAction()
+    {
+        $required   = _post('required') ? 1 : 0;
+        $field      = _post('field') ?: '';
+        $compound   = _post('compound') ?: '';
+
+        $result = $required;
+        $row    = null;
+        if (!$compound) {
+            $row = Pi::model('field', 'user')->find($field, 'field');
+        } else {
+            $rowset = Pi::model('compound_field', 'user')->select(array(
+                'compound'  => $compound,
+                'field'     => $field,
+            ));
+            $row = $rowset->current();
+        }
+        if ($row) {
+            $row['is_required'] = $required;
+            $row->save();
+            $result = $row['is_required'];
+        }
+
+        return $result;
     }
 
     /**
@@ -91,7 +124,6 @@ class ProfileController extends ActionController
                     'name'   => $field['name'],
                     'module' => $field['module'],
                     'title'  => $field['title'],
-
                 );
             }
         }
@@ -130,7 +162,7 @@ class ProfileController extends ActionController
         return array(
             'profile'   => array_values($profile),
             'compounds' => array_values($compounds),
-            'displays'   => $displays,
+            'displays'  => $displays,
         );
     }
 
