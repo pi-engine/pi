@@ -48,6 +48,10 @@ class RegisterController extends ActionController
 
         $this->view()->assign('title', __('User account register'));
         $this->view()->assign('form', $form);
+
+        $this->view()->headTitle(__('Register'));
+        $this->view()->headdescription(__('User account register'), 'set');
+        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
     }
 
     /**

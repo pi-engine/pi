@@ -117,3 +117,10 @@ echo sprintf(
     );
 echo $this->form()->closeTag();
 ?>
+
+<script>
+    $('input[required="required"]')
+        .closest(".form-group")
+        .children("label")
+        .prepend('<i class="text-danger">* <i>');
+</script>

@@ -557,6 +557,10 @@ class User extends AbstractResource
                     if (isset($items[$key]['value'])) {
                         unset($items[$key]['value']);
                     }
+                    // field/compound_field required attribute is set by admin
+                    if (isset($items[$key]['is_required'])) {
+                        unset($items[$key]['is_required']);
+                    }
 
                     $row->assign($items[$key]);
                     $row->save();
@@ -724,11 +728,12 @@ class User extends AbstractResource
      */
     public function activateAction()
     {
-        /*
-        if (!$this->isActive()) {
+        $module = $this->getModule();
+        // Skip for active user module, or other modules w/o user installed
+        if (!$this->isActive() || ($this->isActive() && 'user' == $module)) {
             return;
         }
-        */
+
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();

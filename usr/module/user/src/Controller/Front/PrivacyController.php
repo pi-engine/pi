@@ -96,5 +96,12 @@ class PrivacyController extends ActionController
             'levels'  => $levels,
             //'user'    => $user,
         ));
+
+        $this->view()->headTitle(__('Privacy Settings'));
+        $this->view()->headdescription(__('Set profile field privacy.'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'), 
+            'set'
+        );
     }
 }

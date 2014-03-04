@@ -181,6 +181,13 @@ class AvatarController extends ActionController
             'uid'      => $uid,
             //'user'     => $user,
         ));
+
+        $this->view()->headTitle(__('Change avatar'));
+        $this->view()->headdescription(__('Customize your avatar anyway you like'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'), 
+            'set'
+        );
     }
     
     /**

@@ -82,6 +82,13 @@ class RegisterController extends ActionController
             'activation'    => $this->config('register_activation'),
         ));
         $this->view()->setTemplate('register-index');
+
+        $this->view()->headTitle(__('Register'));
+        $this->view()->headdescription(__('Account registration'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**

@@ -89,6 +89,10 @@ class LoginController extends ActionController
             'message'    => $message,
             'form'       => $form
         ));
+
+        $this->view()->headTitle(__('Login'));
+        $this->view()->headdescription(__('User login'), 'set');
+        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
     }
 
     /**
