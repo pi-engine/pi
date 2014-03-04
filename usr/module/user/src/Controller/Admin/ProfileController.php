@@ -99,6 +99,11 @@ class ProfileController extends ActionController
             $row->save();
             $result = $row['is_required'];
         }
+        if ($compound) {
+            Pi::registry('compound_field', 'user')->flush();
+        } else {
+            Pi::registry('field', 'user')->flush();
+        }
 
         return $result;
     }
