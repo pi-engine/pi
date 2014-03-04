@@ -110,3 +110,10 @@ var formModule = (function($) {
 })(jQuery)
 </script>
 
+
+<script>
+    $('input[required="required"]')
+        .closest(".form-group")
+        .children("label")
+        .prepend('<i class="text-danger">* <i>');
+</script>
