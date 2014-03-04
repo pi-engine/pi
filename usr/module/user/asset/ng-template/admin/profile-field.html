@@ -26,7 +26,8 @@
       <td>
         <i class="fa fa-check fa-lg text-success" ng-if="item.is_edit"></i>
       <td>
-        <input type="checkbox" ng-if="item.is_edit">
+          <input type="checkbox" ng-if="item.is_edit" ng-change="requiredAction(item)"
+                 ng-model="item.is_required">
       <td>{{item.module}}
 </table>
 <div class="page-header">
@@ -37,12 +38,16 @@
 </div>
 <table class="table table-condensed" ng-repeat="compound in compounds">
   <thead>
-    <th width="40%">{{compound.title}}
+    <th width="30%">{{compound.title}}
+    <th width="30%">{{'REQUIRED' | translate}}
     <th>{{compound.module}}
   <tbody>
     <tr ng-repeat="item in compound.fields">
       <td style="padding-left: 20px;">
         <div pi-hover-input="item" text="item.title"></div>
+      <td>
+          <input type="checkbox" ng-change="requiredAction(item)" 
+                 ng-model="item.is_required">
       <td>
     </tr>
 </table>
