@@ -241,7 +241,7 @@ class Form extends AbstractApi
             $element['attributes'] = $data['edit']['attributes'];
         }
         if (isset($data['is_required'])) {
-            $element['required'] = $data['is_required'];
+            $element['attributes']['required']= $data['is_required'];
         }
 
         return $element;

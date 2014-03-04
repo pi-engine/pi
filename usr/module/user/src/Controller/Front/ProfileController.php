@@ -76,20 +76,10 @@ class ProfileController extends ActionController
             $groups,
             'group'
         );
-
-        // Get user info
-        $user = Pi::api('user', 'user')->get(
-            $uid,
-            array('name', 'gender', 'birthdate'),
-            true,
-            true
-        );
-
         $this->view()->assign(array(
             'groups'        => $groups,
             'name'          => 'profile',
             'uid'           => $uid,
-            'user'          => $user,
             'owner'         => false,
         ));
 

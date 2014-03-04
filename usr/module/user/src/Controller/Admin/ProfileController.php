@@ -79,14 +79,17 @@ class ProfileController extends ActionController
      */
     public function requiredAction()
     {
-        $required   = _post('required') ? 1 : 0;
-        $field      = _post('field') ?: '';
-        $compound   = _post('compound') ?: '';
+        $required   = $this->params('required') ? 1 : 0;
+        $field      = $this->params('field') ?: '';
+        $compound   = $this->params('compound') ?: '';
 
+        if (!$field) {
+            return 0;
+        }
         $result = $required;
         $row    = null;
         if (!$compound) {
-            $row = Pi::model('field', 'user')->find($field, 'field');
+            $row = Pi::model('field', 'user')->find($field, 'name');
         } else {
             $rowset = Pi::model('compound_field', 'user')->select(array(
                 'compound'  => $compound,
@@ -97,8 +100,9 @@ class ProfileController extends ActionController
         if ($row) {
             $row['is_required'] = $required;
             $row->save();
-            $result = $row['is_required'];
+            $result = (int) $row['is_required'];
         }
+
         if ($compound) {
             Pi::registry('compound_field', 'user')->flush();
         } else {
