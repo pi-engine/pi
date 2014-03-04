@@ -93,7 +93,7 @@ class ProfileController extends ActionController
         } else {
             $rowset = Pi::model('compound_field', 'user')->select(array(
                 'compound'  => $compound,
-                'field'     => $field,
+                'name'      => $field,
             ));
             $row = $rowset->current();
         }
