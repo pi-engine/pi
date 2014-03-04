@@ -39,7 +39,10 @@
 <table class="table table-condensed" ng-repeat="compound in compounds">
   <thead>
     <th width="30%">{{compound.title}}
-    <th width="30%">{{'REQUIRED' | translate}}
+    <th width="30%">
+      <input type="checkbox" ng-change="requiredAction(compound)" 
+             ng-model="compound.is_required" ng-true-value="1" ng-false-value="0">
+      {{'REQUIRED' | translate}}
     <th>{{compound.module}}
   <tbody>
     <tr ng-repeat="item in compound.fields">

@@ -96,7 +96,7 @@
       });
     }
 
-    this.required = function(field) {
+    this.toggleRequired = function(field) {
       return $http.post(urlRoot + 'required', {
         required: field.is_required,
         field: field.name,
@@ -114,7 +114,7 @@
     });
 
     $scope.requiredAction = function(field) {
-      server.required(field);
+      server.toggleRequired(field);
     };
   }
 ])
