@@ -124,6 +124,11 @@ class FormDateSelect extends ZendFormDateSelect
         }
         */
 
+        $result = array(
+            'year'  => 'Y',
+            'month' => 'm',
+            'day'   => 'd',
+        );
         $patternMap = array(
             'y' => 'year',
             'm' => 'month',
@@ -135,12 +140,6 @@ class FormDateSelect extends ZendFormDateSelect
             foreach ($matches[1] as $pattern) {
                 $result[$patternMap[strtolower($pattern[0])]] = $pattern;
             }
-        } else {
-            $result = array(
-                'year'  => 'Y',
-                'month' => 'm',
-                'day'   => 'd',
-            );
         }
 
         return $result;
