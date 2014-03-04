@@ -141,6 +141,13 @@ class AccountController extends ActionController
             //'cur_group' => 'account',
             //'user'      => $user
         ));
+
+        $this->view()->headTitle(__('Account settings'));
+        $this->view()->headdescription(__('Basic settings'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
