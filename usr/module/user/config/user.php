@@ -95,7 +95,7 @@ return array(
             'name'      => 'gender',
             'title'     => _a('Gender'),
             'edit'      => array(
-                'element'  =>  'Module\User\Form\Element\Gender',
+                'element'   =>  'Module\User\Form\Element\Gender',
             ),
             'filter'    => 'Gender',
         ),
@@ -118,8 +118,14 @@ return array(
                         'class' => 'input-small',
                     ),
                 ),
+                'filters'   => array(array(
+                    'name'  => 'Pi\Filter\DateSelect',
+                )),
+                'validators'   => array(array(
+                    'name'  => 'Pi\Validator\DateSelect',
+                )),
             ),
-            'filter'    => 'Module\User\Filter\Birthdate',
+            'filter'   => 'Module\User\Filter\Birthdate',
         ),
         // Account: avatar
         'avatar'    => array(

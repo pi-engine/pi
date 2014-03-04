@@ -240,10 +240,19 @@ class Form extends AbstractApi
         if (isset($data['edit']['attributes'])) {
             $element['attributes'] = $data['edit']['attributes'];
         }
+        /*
         if (isset($data['is_required'])
             && (empty($element['type']) || 'multi_checkbox' != $element['type'])
         ) {
             $element['attributes']['required']= $data['is_required'];
+        }
+        */
+        if (isset($data['is_required'])) {
+            if (empty($element['type']) || 'multi_checkbox' != $element['type']) {
+                $element['attributes']['required'] = $data['is_required'];
+            } else {
+                //$element['options']['label_attributes']['required'] = $data['is_required'];
+            }
         }
 
         return $element;
@@ -258,22 +267,22 @@ class Form extends AbstractApi
     protected function canonizeFilter($data)
     {
         $result = array();
-        if (isset($data['edit']['filters']) ||
-            isset($data['edit']['validators']) ||
-            isset($data['is_required'])
+        if (!empty($data['edit']['filters']) ||
+            !empty($data['edit']['validators']) ||
+            !empty($data['is_required'])
         ) {
             $result = array(
                 'name'  => $data['name'],
             );
-            if (isset($data['is_required'])) {
+            if (!empty($data['is_required'])) {
                 $result['required'] = $data['is_required'];
             }
         }
 
-        if (isset($data['edit']['filters'])) {
+        if (!empty($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];
         }
-        if (isset($data['edit']['validators'])) {
+        if (!empty($data['edit']['validators'])) {
             $result['validators'] = $data['edit']['validators'];
         }
 

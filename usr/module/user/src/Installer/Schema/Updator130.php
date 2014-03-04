@@ -54,7 +54,7 @@ EOT;
             $status = $this->queryTable($sql);
 
             foreach (array('field', 'compound_field') as $table) {
-                $rowset = Pi::model('field')->select();
+                $rowset = Pi::model($table)->select();
                 foreach ($rowset as $row) {
                     if (isset($row['edit']['required'])) {
                         $row['is_required'] = $row['edit']['required'] ? 1 : 0;
