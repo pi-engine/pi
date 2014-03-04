@@ -136,7 +136,6 @@ class FormDateSelect extends ZendFormDateSelect
         );
         preg_match_all('/(y+|m+|d+)/i', $this->dateType, $matches);
         if ($matches) {
-            $result = array();
             foreach ($matches[1] as $pattern) {
                 $result[$patternMap[strtolower($pattern[0])]] = $pattern;
             }
