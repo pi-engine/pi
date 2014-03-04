@@ -18,7 +18,7 @@ namespace Module\User\Field;
 class Social extends CustomCompoundHandler
 {
     /** @var string Field name and table name */
-    protected $name = 'tool';
+    protected $name = 'social';
 
     /**
      * {@inheritDoc}

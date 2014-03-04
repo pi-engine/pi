@@ -240,19 +240,12 @@ class Form extends AbstractApi
         if (isset($data['edit']['attributes'])) {
             $element['attributes'] = $data['edit']['attributes'];
         }
-        /*
-        if (isset($data['is_required'])
-            && (empty($element['type']) || 'multi_checkbox' != $element['type'])
-        ) {
+
+        if (isset($data['is_required'])) {
             $element['attributes']['required']= $data['is_required'];
         }
-        */
-        if (isset($data['is_required'])) {
-            if (empty($element['type']) || 'multi_checkbox' != $element['type']) {
-                $element['attributes']['required'] = $data['is_required'];
-            } else {
-                //$element['options']['label_attributes']['required'] = $data['is_required'];
-            }
+        if (!empty($element['type']) && 'multi_checkbox' == $element['type']) {
+            $element['attributes']['required']= 0;
         }
 
         return $element;
@@ -267,23 +260,22 @@ class Form extends AbstractApi
     protected function canonizeFilter($data)
     {
         $result = array();
-        if (!empty($data['edit']['filters']) ||
-            !empty($data['edit']['validators']) ||
-            !empty($data['is_required'])
-        ) {
-            $result = array(
-                'name'  => $data['name'],
-            );
-            if (!empty($data['is_required'])) {
-                $result['required'] = $data['is_required'];
-            }
-        }
-
         if (!empty($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];
         }
         if (!empty($data['edit']['validators'])) {
             $result['validators'] = $data['edit']['validators'];
+        }
+        if (!empty($data['is_required'])) {
+            $result['required']= $data['is_required'];
+        }
+        if (!empty($data['edit']['element']['type'])
+            && 'multi_checkbox' == $data['edit']['element']['type']
+        ) {
+            $result['required']= empty($data['is_required']) ? 0 : 1;
+        }
+        if ($result) {
+            $result['name'] = $data['name'];
         }
 
         return $result;
