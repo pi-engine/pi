@@ -48,8 +48,8 @@ class ProfileController extends ActionController
 
         $this->view()->setTemplate('profile-index');
 
-        $this->view()->headTitle(__('Your profile'));
-        $this->view()->headdescription(__('view your profile'), 'set');
+        $this->view()->headTitle(__('User profile'));
+        $this->view()->headdescription(__('view profile'), 'set');
         $this->view()->headkeywords(
             __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
             'set'
@@ -85,8 +85,8 @@ class ProfileController extends ActionController
 
         $this->view()->setTemplate('profile-view');
 
-        $this->view()->headTitle(sprintf(__('%s profile'), $user['name']));
-        $this->view()->headdescription(sprintf(__('view %s profile'), $user['name']), 'set');
+        $this->view()->headTitle(__('User profile'));
+        $this->view()->headdescription(__('view profile'), 'set');
         $this->view()->headkeywords(
             __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
             'set'
@@ -172,8 +172,8 @@ class ProfileController extends ActionController
         ));
         $this->view()->setTemplate('profile-edit');
 
-        $this->view()->headTitle(__('Basic profile'));
-        $this->view()->headdescription(__('Update Basic profile'), 'set');
+        $this->view()->headTitle(__('Edit profile'));
+        $this->view()->headdescription(__('Edit profile data.'), 'set');
         $this->view()->headkeywords(
             __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
             'set'
@@ -223,8 +223,8 @@ class ProfileController extends ActionController
 
         $this->view()->setTemplate('profile-edit-compound');
 
-        $this->view()->headTitle(__('Social tools'));
-        $this->view()->headdescription(__('Update Social tools'), 'set');
+        $this->view()->headTitle(__('Edit profile'));
+        $this->view()->headdescription(__('Edit profile data.'), 'set');
         $this->view()->headkeywords(
             __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
             'set'
