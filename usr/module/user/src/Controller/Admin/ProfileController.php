@@ -109,7 +109,7 @@ class ProfileController extends ActionController
             Pi::registry('field', 'user')->flush();
         }
 
-        return $result;
+        return array('is_required' => $result);
     }
 
     /**
