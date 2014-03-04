@@ -123,6 +123,10 @@ class PasswordController extends ActionController
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('password-find');
+
+        $this->view()->headTitle(__('Find password'));
+        $this->view()->headdescription(__('Find password'), 'set');
+        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
     }
 
     /**
