@@ -26,8 +26,8 @@
       <td>
         <i class="fa fa-check fa-lg text-success" ng-if="item.is_edit"></i>
       <td>
-          <input type="checkbox" ng-if="item.is_edit" ng-change="requiredAction(item)"
-                 ng-model="item.is_required">
+        <input type="checkbox" ng-if="item.is_edit" ng-change="requiredAction(item)"
+               ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
       <td>{{item.module}}
 </table>
 <div class="page-header">
@@ -46,8 +46,8 @@
       <td style="padding-left: 20px;">
         <div pi-hover-input="item" text="item.title"></div>
       <td>
-          <input type="checkbox" ng-change="requiredAction(item)" 
-                 ng-model="item.is_required">
+        <input type="checkbox" ng-change="requiredAction(item)" 
+               ng-model="item.is_required" ng-true-value="1" ng-false-value="0">
       <td>
     </tr>
 </table>
