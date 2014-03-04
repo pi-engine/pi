@@ -247,12 +247,12 @@ return array(
 
         // Compound fields
         // Compound: Social networking tools
-        'tool'      => array(
-            'name'  => 'tool',
+        'social'      => array(
+            'name'  => 'social',
             'title' => _a('Social tools'),
 
             // Custom handler
-            'handler'   => 'Module\User\Field\Tool',
+            'handler'   => 'Module\User\Field\Social',
 
             'field' => array(
                 'title'         => array(
