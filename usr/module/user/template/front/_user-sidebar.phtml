@@ -1,14 +1,6 @@
 <?php
 $uid = Pi::user()->getId();
 $userName = Pi::user()->get($uid, 'name');
-/*
-$user = Pi::api('user', 'user')->get(
-    $uid,
-    array('name', 'gender', 'birthdate'),
-    true,
-    true
-);
-*/
 $groups = Pi::registry('display_group', 'user')->read();
 array_walk($groups, function (&$group, $gid) {
     $action = $group['compound'] ? 'edit.compound' : 'edit.profile';

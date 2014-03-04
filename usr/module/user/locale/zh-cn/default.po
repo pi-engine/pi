@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-02 17:44+0800\n"
-"PO-Revision-Date: 2014-03-02 17:46+0800\n"
+"POT-Creation-Date: 2014-03-04 13:15+0800\n"
+"PO-Revision-Date: 2014-03-04 13:15+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -279,30 +279,30 @@ msgstr "重置密码成功。"
 msgid "Privacy settings saved successfully."
 msgstr "隐私数据保存成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:111
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:190
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:240
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:381
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:106
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:182
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:228
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:367
 msgid "Profile group ID is invalid."
 msgstr "资料组ID无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:146
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:140
 msgid "Profile updated successfully."
 msgstr "资料数据更新成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:148
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:142
 msgid "Profile update failed."
 msgstr "资料数据更新失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:399
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:385
 msgid "Profile compound requires at least one set of data."
 msgstr "资料组要求至少有一套数据。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:404
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:390
 msgid "Profile compound data was not deleted."
 msgstr "资料组数据删除失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:425
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:411
 msgid "User ID or Profile group ID is invalid."
 msgstr "用户ID或资料组ID无效。"
 
@@ -586,7 +586,7 @@ msgid "User name is already taken"
 msgstr "用户名已被占用"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:8
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:32
 msgid "Account settings"
 msgstr "账号信息"
 
@@ -670,8 +670,8 @@ msgid "Default"
 msgstr "系统默认"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:41
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:96
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:48
+#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:96
 msgid "Change avatar"
 msgstr "修改头像"
 
@@ -780,7 +780,7 @@ msgid "You have logged in successfully, please go to %s."
 msgstr "您已登录成功，请前往 %s。"
 
 #: c:\Code\pi\usr\module\user/template/front/password-index.phtml:8
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:44
+#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:36
 msgid "Change password"
 msgstr "修改密码"
 
@@ -805,7 +805,7 @@ msgid "Please login"
 msgstr "请登录"
 
 #: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:10
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:60
+#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:52
 msgid "Privacy"
 msgstr "隐私设置"
 
@@ -922,42 +922,42 @@ msgstr "邮件已发送"
 msgid "Resend activation email"
 msgstr "重新发送激活邮件"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:37
+#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:25
+msgid "View my profile"
+msgstr "查看我的资料"
+
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:37
 msgid "Switch to public"
 msgstr "以自己视角"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:41
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:41
 msgid "Quicklinks"
 msgstr "快捷链接"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:47
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:47
 msgid "Settings"
 msgstr "设置"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:74
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:74
 msgid "Switch to own"
 msgstr "以个人视角"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:80
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:85
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:80
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:85
 msgid "Send message"
 msgstr "发送私信"
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:104
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:104
 msgid "Gender:"
 msgstr "性别："
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:110
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:110
 msgid "Birthdate:"
 msgstr "出生日期："
 
-#: c:\Code\pi\usr\module\user/template/front/_user-media.phtml:194
+#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:194
 msgid "More"
 msgstr "更多"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-side-nav.phtml:33
-msgid "View my profile"
-msgstr "查看我的资料"
 
 #~ msgid "Data saved failed"
 #~ msgstr "数据保存失败"

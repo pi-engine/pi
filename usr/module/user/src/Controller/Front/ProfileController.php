@@ -115,6 +115,7 @@ class ProfileController extends ActionController
                 'value' => $groupId,
             ),
         );
+        //d($filters);
         $form = new ProfileEditForm('profile', $fields);
         $form->setAttributes(array(
             'action' => $this->url('', array(
@@ -525,7 +526,7 @@ class ProfileController extends ActionController
                 foreach ($fields as $field) {
                     $list[$field] = array(
                         'title' => $meta[$field]['title'],
-                        'value' => $profile[$field],
+                        'value' => isset($profile[$field]) ? $profile[$field] : '',
                     );
                 }
                 $group['fields'] = array($list);

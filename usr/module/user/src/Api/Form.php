@@ -240,6 +240,9 @@ class Form extends AbstractApi
         if (isset($data['edit']['attributes'])) {
             $element['attributes'] = $data['edit']['attributes'];
         }
+        if (isset($data['is_required'])) {
+            $element['required'] = $data['is_required'];
+        }
 
         return $element;
     }
@@ -255,16 +258,15 @@ class Form extends AbstractApi
         $result = array();
         if (isset($data['edit']['filters']) ||
             isset($data['edit']['validators']) ||
-            isset($data['edit']['required'])
+            isset($data['is_required'])
         ) {
             $result = array(
                 'name'  => $data['name'],
             );
-            if (isset($data['edit']['required'])) {
-                $result['required'] = $data['edit']['required'];
+            if (isset($data['is_required'])) {
+                $result['required'] = $data['is_required'];
             }
         }
-
 
         if (isset($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];

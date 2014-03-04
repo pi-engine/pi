@@ -365,6 +365,10 @@ class User extends AbstractResource
 
         if (isset($spec['edit'])) {
             $spec['edit'] = $this->canonizeFieldEdit($spec['edit']);
+            if (isset($spec['edit']['required'])) {
+                $spec['is_required'] = $spec['edit']['required'] ? 1 : 0;
+                unset($spec['edit']['required']);
+            }
         }
 
         if (isset($spec['filter'])) {
@@ -398,19 +402,21 @@ class User extends AbstractResource
             if (!isset($data['module'])) {
                 $data['module'] = $compound['module'];
             }
-            //if ('compound' == $compound['type']) {
-                if (!isset($data['edit'])) {
-                    $data['edit'] = 'text';
+            if (!isset($data['edit'])) {
+                $data['edit'] = 'text';
+            }
+            $data['edit'] = $this->canonizeFieldEdit($data['edit']);
+            if (isset($data['filter'])) {
+                if (empty($data['filter'])) {
+                    $data['filter'] = array();
+                } else {
+                    $data['filter'] = (array) $data['filter'];
                 }
-                $data['edit'] = $this->canonizeFieldEdit($data['edit']);
-                if (isset($data['filter'])) {
-                    if (empty($data['filter'])) {
-                        $data['filter'] = array();
-                    } else {
-                        $data['filter'] = (array) $data['filter'];
-                    }
-                }
-            //}
+            }
+            if (isset($data['edit']['required'])) {
+                $data['is_required'] = $data['edit']['required'] ? 1 : 0;
+                unset($data['edit']['required']);
+            }
 
             $fields[$compound['name'] . '-' . $key] = $data;
         }
