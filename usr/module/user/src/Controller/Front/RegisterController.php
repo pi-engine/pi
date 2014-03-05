@@ -452,6 +452,7 @@ class RegisterController extends ActionController
         // Set user role
         Pi::api('user', 'user')->setRole($uid, 'member');
 
+        $status = 1;
         // Process activation
         $activationMode = $this->config('register_activation');
         // Automatically activated
