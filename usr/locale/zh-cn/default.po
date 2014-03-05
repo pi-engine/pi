@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-03-03 15:47+0800\n"
-"PO-Revision-Date: 2014-03-03 15:47+0800\n"
+"POT-Creation-Date: 2014-03-05 20:32+0800\n"
+"PO-Revision-Date: 2014-03-05 20:33+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -239,6 +239,14 @@ msgstr "年"
 #: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:93
 msgid "Month"
 msgstr "月"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
+msgid "CAPTCHA image"
+msgstr "验证码图片"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:61
+msgid "Click to refresh CAPTCHA"
+msgstr "点击刷新验证码"
 
 #: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."

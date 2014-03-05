@@ -13,6 +13,7 @@ namespace Pi\Form\View\Helper\Captcha;
 use Zend\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
 use Zend\Captcha\Image as CaptchaAdapter;
 use Zend\Form\ElementInterface;
+use Zend\Form\Exception;
 
 /**
  * CAPTCHA image helper
@@ -23,10 +24,7 @@ use Zend\Form\ElementInterface;
 class Image extends ZendHelperCaptchaImage
 {
     /**
-     * Render the captcha
-     *
-     * @param  ElementInterface $element
-     * @return string
+     * {@inheritDoc}
      */
     public function render(ElementInterface $element)
     {
@@ -46,7 +44,7 @@ class Image extends ZendHelperCaptchaImage
         $imgAttributes = array(
             'width'  => $captcha->getWidth(),
             'height' => $captcha->getHeight(),
-            'alt'    => $captcha->getImgAlt(),
+            //'alt'    => $captcha->getImgAlt(),
             //'src'    => $captcha->getImgUrl() . $captcha->getId()
             //. $captcha->getSuffix(),
 
@@ -59,6 +57,8 @@ class Image extends ZendHelperCaptchaImage
                 $imgSrc
             ),
             'style'     => 'cursor: pointer; vertical-align: middle;',
+            'alt'       => __('CAPTCHA image'),
+            'title'     => __('Click to refresh CAPTCHA'),
         );
 
         if ($element->hasAttribute('id')) {
