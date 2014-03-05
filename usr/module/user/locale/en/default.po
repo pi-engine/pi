@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-04 15:25+0800\n"
-"PO-Revision-Date: 2014-03-04 15:25+0800\n"
+"POT-Creation-Date: 2014-03-05 12:23+0800\n"
+"PO-Revision-Date: 2014-03-05 12:23+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -171,7 +171,7 @@ msgstr ""
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:178
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:229
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:89
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
 msgid ""
 "account,social,tools,privacy,settings,profile,user,login,register,password,"
 "avatar"
@@ -412,73 +412,73 @@ msgstr ""
 msgid "User ID or Profile group ID is invalid."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:86
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:93
 #: C:\code\pi\usr\module\user/template/front/login-logout.phtml:18
 #: C:\code\pi\usr\module\user/template/front/login.phtml:18
 #: C:\code\pi\usr\module\user/template/front/register-disabled.phtml:2
 msgid "Register"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:87
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:94
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:1
 msgid "Account registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:161
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:165
 #, fuzzy
 msgid "Activation token is invalid."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:186
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:190
 #, fuzzy
 msgid "Activation link is expired."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:221
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:228
 #, fuzzy
 msgid "Account Activated successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:237
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:248
 #, fuzzy
 msgid "Activation email sent failed."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:271
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:282
 msgid "Resend activation mail successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:299
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:310
 msgid "Email was not found."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:304
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:315
 msgid "Account already activated."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:315
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:326
 msgid "Activation mail sent successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:320
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
 msgid "Activation mail was not sent."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:328
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:339
 msgid "Invalid input."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:427
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:438
 msgid "User account was not saved."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:442
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:461
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:452
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:471
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 
@@ -744,7 +744,7 @@ msgstr ""
 #: C:\code\pi\usr\module\user/template/front/password-process.phtml:12
 #: C:\code\pi\usr\module\user/template/front/register-activate.phtml:5
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:19
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:39
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:48
 msgid "Congratulations!"
 msgstr ""
 
@@ -937,11 +937,17 @@ msgstr ""
 msgid "Your account has been activated."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:12
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:28
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:20
 msgid "Sorry, account activation is failed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:22
 msgid "Resend activation email."
 msgstr ""
 
@@ -949,49 +955,49 @@ msgstr ""
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:21
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:23
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
 "a> with your account."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:30
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:46
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:39
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:55
 msgid "Registration was not completed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:40
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:49
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:55
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:64
 msgid "An email with activation link has been sent to your."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:56
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:65
 msgid "Please check it to finish the registration."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:59
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:68
 msgid "If you do not receive the activation email:"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:61
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:70
 msgid "Wait a few minutes and check again."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:62
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:71
 msgid "Check your email spam box."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:63
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:72
 msgid "Request to resend activation email"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:98
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:107
 msgid "Already sent"
 msgstr ""
 

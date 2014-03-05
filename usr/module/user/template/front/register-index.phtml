@@ -17,10 +17,19 @@ if (!empty($form)) {
 ?>
     <div class="panel panel-default">
         <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
-        <div class="panel-body"><?php echo sprintf(
+        <div class="panel-body">
+            <?php
+            echo '<p>' . sprintf(
                 __('Your account has been registered successfully. Please <a href="%s">login</a> with your account.'),
-                Pi::service('authentication')->getUrl('login')
-            ); ?>
+                Pi::service('authentication')->getUrl('login', $redirect)
+            ) . '</p>';
+            if ($redirect) {
+                echo '<p>' . sprintf(
+                        __('Or go back to <a href="%s">the requested page</a> directly.'),
+                        $redirect
+                    ) . '</p>';
+            }
+            ?>
         </div>
     </div>
 <?php

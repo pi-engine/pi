@@ -40,6 +40,7 @@ class RegisterController extends ActionController
             'action' => $this->url('', array('action' => 'index')),
         ));
 
+        // Handling register data
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->loadInputFilter();
@@ -74,11 +75,13 @@ class RegisterController extends ActionController
             }
             $this->view()->assign(array(
                 'result'    => $result,
+                'redirect'  => !empty($post['redirect']) ? urldecode($post['redirect']) : '',
             ));
-        } else {
-            if ($form->get('redirect')) {
-                $form->get('redirect')->setValue($_SERVER['HTTP_REFERER']);
-            }
+
+        // Set redirect of register source
+        } elseif ($form->get('redirect')) {
+            $redirect = $this->params('redirect', $_SERVER['HTTP_REFERER']);
+            $form->get('redirect')->setValue(rawurlencode($redirect));
         }
 
         $this->view()->assign(array(
@@ -109,13 +112,10 @@ class RegisterController extends ActionController
         if (!$this->config('require_register_complete') ||
             !$this->request->isPost()
         ) {
-            $this->redirect(
-                '',
-                array(
-                    'controller'    => 'register',
-                    'action'        => 'index'
-                )
-            );
+            $this->redirect('', array(
+                'controller'    => 'register',
+                'action'        => 'index'
+            ));
         }
 
         $result = array(
@@ -221,7 +221,7 @@ class RegisterController extends ActionController
         Pi::service('event')->trigger('user_activate', $uid);
         
         // Get redirect url
-        $redirect = Pi::user()->data()->get($uid, 'register_redirect');
+        $redirect = Pi::user()->data()->get($uid, 'register_redirect') ?: '';
         
         $result = array(
             'status'    => 1,
@@ -445,13 +445,14 @@ class RegisterController extends ActionController
         Pi::user()->data()->set(
             $uid,
             'register_redirect',
-            $values['redirect'],
+            urldecode($values['redirect']),
             $this->getModule()
         );
 
         // Set user role
         Pi::api('user', 'user')->setRole($uid, 'member');
 
+        $status = 1;
         // Process activation
         $activationMode = $this->config('register_activation');
         // Automatically activated

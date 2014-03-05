@@ -4,10 +4,18 @@
 <?php if (!empty($result['status'])) { ?>
     <p><?php _e('Congratulations!'); ?></p>
     <p><?php _e('Your account has been activated.'); ?></p>
-    <p><a href="<?php echo Pi::service('authentication')->getUrl('login', ''); ?>">
+    <p><a href="<?php echo Pi::service('authentication')->getUrl('login', $redirect); ?>">
         <?php _e('Login right now.'); ?>
         </a>
     </p>
+    <?php
+    if ($redirect) {
+        echo '<p>' . sprintf(
+                __('Or go back to <a href="%s">the requested page</a> directly.'),
+                $redirect
+            ) . '</p>';
+    }
+    ?>
 <?php } else { ?>
     <p><?php _e('Sorry, account activation is failed.'); ?></p>
     <p>
