@@ -711,6 +711,7 @@ class User extends AbstractUseApi
         // Append redirect with query
         // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
         if ($redirect) {
+            $redirect = Pi::url($redirect, true);
             if (false == strpos($url, '?')) {
                 $url .= '?redirect=' . rawurlencode($redirect);
             } else {

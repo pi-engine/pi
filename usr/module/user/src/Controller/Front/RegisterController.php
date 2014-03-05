@@ -75,7 +75,7 @@ class RegisterController extends ActionController
             }
             $this->view()->assign(array(
                 'result'    => $result,
-                'redirect'  => !empty($post['redirect']) ? $post['redirect'] : '',
+                'redirect'  => !empty($post['redirect']) ? urldecode($post['redirect']) : '',
             ));
 
         // Set redirect of register source
@@ -445,7 +445,7 @@ class RegisterController extends ActionController
         Pi::user()->data()->set(
             $uid,
             'register_redirect',
-            $values['redirect'],
+            urldecode($values['redirect']),
             $this->getModule()
         );
 
