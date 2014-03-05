@@ -131,7 +131,7 @@ abstract class ActionController extends AbstractActionController
      *
      * @return bool
      */
-    protected function preAction(MvcEvent $e)
+    protected function preAction($e)
     {
         return true;
     }
