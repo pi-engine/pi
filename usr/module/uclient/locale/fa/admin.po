@@ -1,0 +1,268 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-uclient\n"
+"POT-Creation-Date: 2013-11-10 14:08+0800\n"
+"PO-Revision-Date: 2013-11-10 14:08+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\uclient\n"
+
+#: C:\wamp\www\master\usr\module\uclient/config/module.php:17
+msgid "User Client"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/module.php:18
+msgid "Client for user services."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/nav.php:21
+msgid "User"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/nav.php:31
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:26
+msgid "Role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/nav.php:40
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:30
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:34
+msgid "Front role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/nav.php:49
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:31
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:35
+msgid "Admin role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/permission.php:18
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:33
+msgid "Users"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/permission.php:24
+msgid "Roles"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/config/permission.php:30
+msgid "Maintenance"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:168
+msgid "Assign role failed: invalid parameters."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:174
+msgid "Assign role failed: invalid user ids."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:179
+msgid "Assign role failed: invalid operation."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:188
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:199
+msgid "Assign role failed."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/IndexController.php:211
+msgid "Assign role successfully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:108
+msgid "User removed from the role."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:112
+msgid "User not in the role."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:121
+msgid "User added to the role."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:132
+msgid "User already in the role."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:141
+msgid "User not found."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Admin/RoleController.php:179
+#, php-format
+msgid "Users of role %s"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:5
+msgid "Added a user"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:8
+msgid "Add"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:23
+msgid "Profile"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:26
+msgid "Remove"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role-user.phtml:41
+msgid "No users available yet."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:19
+msgid "Admin roles"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:20
+msgid "Front roles"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:21
+msgid "Name"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:22
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:25
+msgid "Title"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:23
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:31
+msgid "Users in role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:24
+msgid "Action"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:26
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:36
+msgid "Submit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:27
+msgid "Required"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:28
+msgid "Type"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:29
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:43
+msgid "Front"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:30
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:44
+msgid "Admin"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:32
+msgid "User id or name"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:34
+msgid "First"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:35
+msgid "User id"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:36
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:24
+msgid "Username"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:37
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:25
+msgid "Display name"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:38
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:29
+msgid "Email"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:39
+msgid "Add user"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/role.phtml:40
+msgid "None user in this role."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:20
+msgid "Select roles"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:21
+msgid "Any"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:22
+msgid "None"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:23
+msgid "Apply"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:27
+#, fuzzy
+msgid "Register time"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:28
+msgid "Back to users list"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:32
+msgid "Assign role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:33
+msgid "Remove role"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:37
+msgid "required"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:38
+#, fuzzy
+msgid "Register IP"
+msgstr "Application Execution Time"
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:39
+msgid "User ID"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:40
+msgid "No user matched your request."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:41
+msgid "From"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:42
+msgid "To"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/admin/user.phtml:45
+msgid "Choose at least one item before submission."
+msgstr ""

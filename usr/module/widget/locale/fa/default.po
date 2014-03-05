@@ -1,0 +1,255 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-widget\n"
+"POT-Creation-Date: 2014-03-05 15:49+0330\n"
+"PO-Revision-Date: 2014-03-05 15:49+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __;_e;_t\n"
+"X-Poedit-Basepath: /var/www/html/local/pi/pi-develop/usr/module/widget\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-develop/usr/module/widget/"
+"config\n"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:13
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:15
+msgid "Script widgets"
+msgstr "ویجت های اسکریپت"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:16
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:24
+msgid "Static widgets"
+msgstr "ویجت های استاتیک"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:19
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:78
+msgid "Carousel widgets"
+msgstr "ویجت های اسلاید"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:22
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:112
+msgid "Compound tabs"
+msgstr "تب های ترکیبی"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:33
+msgid "Static list"
+msgstr "فهرست ویجت های استاتیک"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:40
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:94
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:128
+msgid "Edit"
+msgstr "ویرایش"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:49
+msgid "Add HTML"
+msgstr "HTML جدید"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:58
+msgid "Add text"
+msgstr "متن جدید"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:67
+msgid "Add markdown"
+msgstr "markdown جدید"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:87
+msgid "Carousel list"
+msgstr "فهرست اسلاید"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:103
+msgid "Add new"
+msgstr "جدید"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:121
+msgid "Tab list"
+msgstr "فهرست بت ها"
+
+#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:137
+msgid "Add"
+msgstr "جدید"
+
+#~ msgid "Widget"
+#~ msgstr "ویجت"
+
+#~ msgid "Management of custom blocks/widgets."
+#~ msgstr "مدیریت بلاک ها ویجت های اختصاصی"
+
+#~ msgid "Navigation"
+#~ msgstr "ناوبری"
+
+#~ msgid "Block to display navigation menu and breadcrumbs"
+#~ msgstr "بلاک برای نمایش منو ناوبری و مکان نما (breadcrumb)"
+
+#~ msgid "Time interval (ms)"
+#~ msgstr "زمان توقف ( میلی ثانیه )"
+
+#~ msgid "Mouse event to pause cycle"
+#~ msgstr "رویداد کلیک موس برای توقف چرخه"
+
+#~ msgid "Widget list"
+#~ msgstr "فهرست ویجت ها"
+
+#~ msgid "The widget \"%s\" is installed."
+#~ msgstr "ویجت \"%s\" نصب شده است"
+
+#~ msgid "The widget \"%s\" is not installed."
+#~ msgstr "ویجت \"%s\" نصب نشده است"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Block data saved successfully."
+#~ msgstr "اطلاعات بلاک به موفقیت ذخیره شد"
+
+#~ msgid "Block data not saved."
+#~ msgstr "اطلاعات بلاک ذخیره نشد"
+
+#~ msgid "Invalid data, please check and re-submit."
+#~ msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
+
+#~ msgid "Block edit"
+#~ msgstr "ویرایش بلاک"
+
+#~ msgid "Custom blocks"
+#~ msgstr "بلاک دست ساز"
+
+#~ msgid "Compound tab widgets"
+#~ msgstr "ویجت تب های ترکیبی"
+
+#~ msgid "The widget does not exist."
+#~ msgstr "ویجت موجود نیست"
+
+#~ msgid "The widget \"%s\" is uninstalled."
+#~ msgstr "ویجت \"%s\" از نصب خارج شد"
+
+#~ msgid "The widget \"%s\" is not uninstalled."
+#~ msgstr "ویجت \"%s\" از نصب خارج نشد"
+
+#~ msgid "Add a block"
+#~ msgstr "بلاک جدید"
+
+#~ msgid "Title"
+#~ msgstr "عنوان"
+
+#~ msgid "Unique name"
+#~ msgstr "نام یکتا"
+
+#~ msgid "Description"
+#~ msgstr "توضیحات"
+
+#~ msgid "Template"
+#~ msgstr "الگو"
+
+#~ msgid "Submit"
+#~ msgstr "ارسال"
+
+#~ msgid "Content"
+#~ msgstr "متن"
+
+#~ msgid "Bootstrap slide"
+#~ msgstr "اسلاید Bootstrap"
+
+#~ msgid "jCarousel riding Carousel"
+#~ msgstr "اسلاید jCarousel"
+
+#~ msgid "Parallax Content Slider"
+#~ msgstr "اسلاید متنی Parallax"
+
+#~ msgid "Pi Highlights"
+#~ msgstr "نماد های پای"
+
+#~ msgid "Introduction to Pi Engine with carousel."
+#~ msgstr "معرفی پای انجین با اسلاید"
+
+#~ msgid "Sustainable ecosystem"
+#~ msgstr "Sustainable ecosystem"
+
+#~ msgid ""
+#~ "A sustainable ecosystem built upon open standard, open source code, open "
+#~ "development and open management on Github."
+#~ msgstr ""
+#~ "A sustainable ecosystem built upon open standard, open source code, open "
+#~ "development and open management on Github."
+
+#~ msgid "Engineered development"
+#~ msgstr "Engineered development"
+
+#~ msgid ""
+#~ "Quality ensured engineering development with short learning curve, low "
+#~ "skill requirements with clean MVC architecture, semantic templating, "
+#~ "sophisticated API and strict starndards."
+#~ msgstr ""
+#~ "Quality ensured engineering development with short learning curve, low "
+#~ "skill requirements with clean MVC architecture, semantic templating, "
+#~ "sophisticated API and strict starndards."
+
+#~ msgid "Visualization of application management"
+#~ msgstr "Visualization of application management"
+
+#~ msgid ""
+#~ "Easy and responsive application and content management based on "
+#~ "visualized mangement tools and interface with page and widget mechanism."
+#~ msgstr ""
+#~ "Easy and responsive application and content management based on "
+#~ "visualized mangement tools and interface with page and widget mechanism."
+
+#~ msgid "Agile compliant development workflow"
+#~ msgstr "Agile compliant development workflow"
+
+#~ msgid ""
+#~ "Role oriented architecture and deployment skeleton supports managable "
+#~ "agile development workflow."
+#~ msgstr ""
+#~ "Role oriented architecture and deployment skeleton supports managable "
+#~ "agile development workflow."
+
+#~ msgid "Are you sure delete this widget?"
+#~ msgstr "آیا اطمینان دارید که میخواهید این ویجت را حذف کنید؟"
+
+#~ msgid "Delete"
+#~ msgstr "حذف"
+
+#~ msgid "Add a carousel"
+#~ msgstr "اسلاید جدید"
+
+#~ msgid "Installed widgets"
+#~ msgstr "ویجت های نصب شده"
+
+#~ msgid "Available widgets"
+#~ msgstr "ویجت های در دسترس"
+
+#~ msgid "Add a static block :"
+#~ msgstr "اضافه کردن بلاک دست ساز"
+
+#~ msgid "HTML tags allowed in content."
+#~ msgstr "تگ های HTML در متن مجاز است"
+
+#~ msgid "Only plaintext content is allowed."
+#~ msgstr "تنها متن ساده مجاز است"
+
+#~ msgid "Markdown syntax allowed in content."
+#~ msgstr "استفاده از روش Markdown در صفحه مجاز است"
+
+#~ msgid "Add a compound"
+#~ msgstr "ترکیب جدید"
+
+#~ msgid "Caption"
+#~ msgstr "عنوان"
+
+#~ msgid "Link"
+#~ msgstr "لینک"
+
+#~ msgid "Desc"
+#~ msgstr "توضیحات"
+
+#~ msgid "No Blocks"
+#~ msgstr "بدون بلاک"
+
+#~ msgid "More"
+#~ msgstr "ادامه"

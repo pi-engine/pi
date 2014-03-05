@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2014-03-05 15:50+0330\n"
+"PO-Revision-Date: 2014-03-05 15:50+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-develop/usr/module/user\n"
+
+#, fuzzy
+#~ msgid "Register template file name"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register disable"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register CAPTCHA"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activation time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Disabled time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Deleted time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register IP"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register form"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activation"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Disabled"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Deleted users"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register num"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activated num"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "View log"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Register ip"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activated time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Last login time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Created time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activity"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activities"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Field title"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "All"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Active State"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Delete"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Activation state"
+#~ msgstr "Application Execution Time"

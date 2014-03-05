@@ -1,0 +1,20 @@
+[comment]Pi user account activation email[/comment]
+
+[format]html[/format]
+
+[subject]فعال سازی حساب کاربری در %site_name%[/subject]
+
+[body]
+<p style="margin-bottom: 5px"><strong>%username%</strong> عزیز:</p>
+
+<p style="margin-top: 5px">حساب کاربری شما در وب سایت %site_adminname% با این آدرس ایمیل ساخته شده است</p>
+<p style="margin-top: 5px">برای فعال سازی آن بر روی لینک زیر کلیک نمایید<br>
+<a href="%link%">%link%</a>
+</p>
+
+<p style="margin-top: 5px">اگر این حساب کاربری توسط شما ساخته نشده است این ایمیل را نادیده بگیرید</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+[/body]

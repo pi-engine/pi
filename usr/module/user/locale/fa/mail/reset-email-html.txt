@@ -1,0 +1,20 @@
+[comment]Pi user system change email confirmation[/comment]
+
+[format]html[/format]
+
+[subject]تایید تغییر ایمیل در وب سایت %site_name%[/subject]
+
+[body]
+<p style="margin-bottom: 5px"><strong>%username%</strong> عزیز:</p>
+
+<p style="margin-top: 5px">درخواست برای تغییر آدرس ایمیل شما در وب سایت %site_name% از آدرس %old_email% به %new_email% دریافت شد.</p>
+<p style="margin-top: 5px">برای تکمیل این درخواست در طی مدت %expiration% ساعت بر روی این لینک کلیک نمایید تا درخواست شما انجام پذیرد<br>
+<a href="%change_email_link%">%change_email_link%</a>
+</p>
+
+<p style="margin-top: 5px">اگر این درخواست توسط شما ارسال نشده است این ایمیل را نادیده بگیرید</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+[/body]
