@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-04 15:23+0800\n"
-"PO-Revision-Date: 2014-03-04 15:24+0800\n"
+"POT-Creation-Date: 2014-03-05 12:22+0800\n"
+"PO-Revision-Date: 2014-03-05 12:22+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "修改您的账号信息"
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:178
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:229
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:89
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
 msgid ""
 "account,social,tools,privacy,settings,profile,user,login,register,password,"
 "avatar"
@@ -392,69 +392,69 @@ msgstr "资料组数据删除失败。"
 msgid "User ID or Profile group ID is invalid."
 msgstr "用户ID或资料组ID无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:86
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:93
 #: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\user/template/front/login.phtml:18
 #: c:\Code\pi\usr\module\user/template/front/register-disabled.phtml:2
 msgid "Register"
 msgstr "注册"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:87
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:94
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:1
 msgid "Account registration"
 msgstr "账号注册"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:161
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:165
 msgid "Activation token is invalid."
 msgstr "激活密钥无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:186
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:190
 msgid "Activation link is expired."
 msgstr "激活链接已过期。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:221
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:228
 msgid "Account Activated successfully."
 msgstr "账号激活成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:237
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:248
 msgid "Activation email sent failed."
 msgstr "激活邮件发送失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:271
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:282
 msgid "Resend activation mail successfully."
 msgstr "激活邮件重新发送成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:299
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:310
 msgid "Email was not found."
 msgstr "邮箱不存在。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:304
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:315
 msgid "Account already activated."
 msgstr "账号早已激活。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:315
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:326
 msgid "Activation mail sent successfully."
 msgstr "激活邮件发送成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:320
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
 msgid "Activation mail was not sent."
 msgstr "激活邮件未能发出。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:328
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:339
 msgid "Invalid input."
 msgstr "无效输入。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:427
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:438
 msgid "User account was not saved."
 msgstr "账号保存失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:442
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:461
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
 msgstr "账号注册成功，但是激活失败。请联系管理员。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:452
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:471
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "激活邮件发送失败，请联系管理员。"
 
@@ -717,7 +717,7 @@ msgstr "修改邮箱"
 #: c:\Code\pi\usr\module\user/template/front/password-process.phtml:12
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:5
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:19
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:39
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:48
 msgid "Congratulations!"
 msgstr "恭喜！"
 
@@ -910,11 +910,17 @@ msgstr "激活帐号"
 msgid "Your account has been activated."
 msgstr "您的账号已激活。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:12
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:28
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr "或直接点击返回<a href=\"%s\">原来访问的页面</a>。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:20
 msgid "Sorry, account activation is failed."
 msgstr "抱歉，账号激活失败。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:22
 msgid "Resend activation email."
 msgstr "重新发送激活邮件"
 
@@ -922,49 +928,49 @@ msgstr "重新发送激活邮件"
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr "抱歉，现在禁止注册。请稍后尝试。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:21
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:23
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
 "a> with your account."
 msgstr "账号已注册成功，请点击<a href=\"%s\">登录</a>。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:30
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:46
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:39
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:55
 msgid "Registration was not completed."
 msgstr "注册未完成。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:49
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
 msgstr "账号已注册成功，但是需要管理员激活。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:55
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:64
 msgid "An email with activation link has been sent to your."
 msgstr "激活链接已经发送到您的邮箱。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:56
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:65
 msgid "Please check it to finish the registration."
 msgstr "请查收邮件点击激活链接完成注册。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:59
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:68
 msgid "If you do not receive the activation email:"
 msgstr "如果你未收到激活邮件："
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:61
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:70
 msgid "Wait a few minutes and check again."
 msgstr "稍等几分钟再查收。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:62
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:71
 msgid "Check your email spam box."
 msgstr "检查邮件垃圾箱。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:63
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:72
 msgid "Request to resend activation email"
 msgstr "请求重新发送激活邮件。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:98
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:107
 msgid "Already sent"
 msgstr "邮件已发送"
 

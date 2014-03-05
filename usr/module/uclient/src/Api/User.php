@@ -11,7 +11,6 @@ namespace Module\Uclient\Api;
 
 use Pi;
 use Module\System\Api\AbstractUser as AbstractUseApi;
-use Pi\Db\Sql\Where;
 use Pi\User\Model\Client as UserModel;
 use Pi\User\Resource\AbstractResource;
 
@@ -649,6 +648,19 @@ class User extends AbstractUseApi
                 break;
 
             case 'register':
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $redirect = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $redirect = Pi::service('url')->getRequestUri();
+                }
                 $url = $this->config('url', 'register');
                 break;
 
