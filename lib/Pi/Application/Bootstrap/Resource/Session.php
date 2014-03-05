@@ -23,6 +23,8 @@ class Session extends AbstractResource
      */
     public function boot()
     {
+        $this->engine->bootResource('database');
+
         // Set options for session service
         if (!empty($this->options['service'])) {
             Pi::service('session')->setOptions($this->options['service']);

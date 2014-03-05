@@ -11,7 +11,7 @@ namespace Module\System\Controller;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Zend\Mvc\MvcEvent;
+//use Zend\Mvc\MvcEvent;
 
 /**
  * System admin component controller
@@ -41,7 +41,7 @@ class ComponentController extends ActionController
     /**
      * {@inheritDoc}
      */
-    protected function preAction(MvcEvent $e)
+    protected function preAction($e)
     {
         $routeMatch = $e->getRouteMatch();
         $name       = $routeMatch->getParam('name');
