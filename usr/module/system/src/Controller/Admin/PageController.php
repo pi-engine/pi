@@ -77,22 +77,37 @@ class PageController extends ComponentController
         );
 
         // Organized pages by section
+        $pageModule = array();
+        $pageHome   = array();
         foreach ($rowset as $row) {
             //$sections[$row->section]['pages'][] = $row->toArray();
-            if ($row->controller) {
-                $key = $row->module;
-                $key .= $row->controller ? '-' . $row->controller : '';
-                $key .= $row->action ? '-' . $row->action : '';
-                $title = $row->title ?: $key;
-            } else {
-                $key = $row->module;
-                $title = _a('Module wide');
+            if (!$row->controller) {
+                $pageModule = array(
+                    'id'        => $row->id,
+                    'title'     => _a('Module wide'),
+                    'key'       => $row->module,
+                    'section'   => $row->section,
+                    'custom'    => $row->custom,
+                    'block'     => 1, //$row->block,
+                );
+                continue;
+            } elseif ('index' == $row->controller && 'index' == $row->action) {
+                $pageHome = array(
+                    'id'        => $row->id,
+                    'title'     => _a('Module home'),
+                    'key'       => $row->module . 'index-index',
+                    'section'   => $row->section,
+                    'custom'    => $row->custom,
+                    'block'     => $row->block,
+                );
+                continue;
             }
 
-            //$title = $row->title ?: ($key ?: _a('Module wide'));
+            $key = $row->module . '-' . $row->controller;
+            $key .= $row->action ? '-' . $row->action : '';
             $sections[$row->section]['pages'][] = array(
                 'id'        => $row->id,
-                'title'     => $title,
+                'title'     => $row->title ?: $key,
                 'key'       => $key,
                 'section'   => $row->section,
                 'custom'    => $row->custom,
@@ -100,6 +115,13 @@ class PageController extends ComponentController
                 //'link'      => '',
             );
         }
+        if ($pageHome) {
+            array_unshift($sections['front']['pages'], $pageHome);
+        }
+        if ($pageModule) {
+            array_unshift($sections['front']['pages'], $pageModule);
+        }
+
 
         $this->view()->assign('pagesBySection', $sections);
         $this->view()->assign('name', $name);
@@ -282,7 +304,7 @@ class PageController extends ComponentController
     public function editsaveAction()
     {
         $status     = 1;
-        $message    = '';
+        //$message    = '';
         $page       = array();
 
         $form = new EditForm('page-edit');
@@ -391,10 +413,13 @@ class PageController extends ComponentController
             if ($row->action) {
                 $pageName .= '-' . $row->action;
             }
+            $title = $row->title;
+        } else {
+            $title = _a('Module wide');
         }
         $pageData = array(
             'id'    => $row->id,
-            'title' => $row->title,
+            'title' => $title,
             'name'  => $pageName,
         );
 
@@ -462,8 +487,10 @@ class PageController extends ComponentController
         $this->view()->assign('modules', $modules);
         $this->view()->assign('name', $name);
         $this->view()->assign('pageZone', $this->getZoneTemplate());
-        $this->view()->assign('title',
-                              sprintf(_a('%s blocks'), $pageData['title']));
+        $this->view()->assign('title', sprintf(
+            _a('%s blocks'),
+            $pageData['title']
+        ));
         $this->view()->setTemplate('page-block');
     }
 
@@ -553,7 +580,7 @@ class PageController extends ComponentController
     }
 
     /**
-     * AJAX methdod for getting all active themes
+     * AJAX method for fetching all active themes
      *
      * @return array
      */
@@ -574,7 +601,7 @@ class PageController extends ComponentController
     }
 
     /**
-     * AJAX methdod for getting action list of a controller
+     * AJAX method for getting action list of a controller
      *
      * @return array
      */
@@ -584,7 +611,7 @@ class PageController extends ComponentController
         $controller = $this->params('ctrl');
         $class = sprintf(
             'Module\\%s\Controller\Front\\%sController',
-            ucfirst(Pi::service('module')->directory($module)),
+            ucfirst(Pi::service('module')->directory($name)),
             ucfirst($controller)
         );
         $methods = get_class_methods($class);
@@ -600,7 +627,7 @@ class PageController extends ComponentController
     }
 
     /**
-     * AJAX methdod for getting theme block zone template
+     * AJAX method for getting theme block zone template
      *
      * @return string
      */

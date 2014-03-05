@@ -60,37 +60,19 @@ class AvatarController extends ActionController
     {
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
-        $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-
-                return;
-            }
-        }
-        */
-
-        $config = $this->config();
-        $filename = Pi::user()->get($uid, 'avatar');
-        $source = Pi::service('avatar')->getType($filename);
+        $uid        = Pi::user()->getId();
+        $config     = $this->config();
+        $filename   = Pi::user()->get($uid, 'avatar');
+        $source     = Pi::service('avatar')->getType($filename);
 
         // Get required sizes from configuration
-        $form    = $this->getAvatarForm('avatar');
+        $form       = $this->getAvatarForm('avatar');
 
         // Available size list
-        $sizeList = array();
+        $sizeList   = array();
 
         // Get allowed adapter
-        $adapters = (array) Pi::avatar()->getOption('adapter');
+        $adapters   = (array) Pi::avatar()->getOption('adapter');
         $adapters[] = 'local';
 
         // Get upload photo
@@ -182,8 +164,8 @@ class AvatarController extends ActionController
         $email  = 'gravatar' == $source ? $filename : Pi::user()->get($uid, 'email');
 
         // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
-        $user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
+        //$groups = Pi::api('group', 'user')->getList();
+        //$user = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
         
         $this->view()->assign(array(
             'title'    => __('Avatar Settings'),
@@ -195,10 +177,17 @@ class AvatarController extends ActionController
             'filename' => $filename,
             'adapters' => $adapters,
             'local'    => $local,
-            'groups'   => $groups,
+            //'groups'   => $groups,
             'uid'      => $uid,
-            'user'     => $user,
+            //'user'     => $user,
         ));
+
+        $this->view()->headTitle(__('Change avatar'));
+        $this->view()->headdescription(__('Customize your avatar anyway you like'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'), 
+            'set'
+        );
     }
     
     /**

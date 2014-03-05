@@ -118,9 +118,10 @@ class Page extends AbstractResource
      */
     protected function canonize($config)
     {
-        $moduleTitle = $this->event->getParam('title');
+        //$moduleTitle = $this->event->getParam('title');
         $pageEntry = array(
-            'title' => $moduleTitle . ' *',
+            'title' => 'Module wide',
+            'block' => 1,
         );
         /*
         // Set module exception for admin

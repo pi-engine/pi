@@ -123,6 +123,17 @@ var UploadView = Backbone.View.extend({
         this.$("#media-button").html($("#media-upload-button").html());
         this.input = $('input[name="upload"]');
         this.fileupload();
+        
+        // Init searched media
+        var url = '<?php echo $this->url(
+            'admin', 
+            array(
+                'controller' => 'media',
+                'action'     => 'search',
+                'type'       => 'image',
+            )
+        ); ?>';
+        this.getSearchedMedia(url);
     },
     // Fetching image by upload
     fileupload      : function() {
@@ -277,34 +288,51 @@ var UploadView = Backbone.View.extend({
                     'controller' => 'media',
                     'action'     => 'search',
                     'type'       => 'image',
-                    'title'      => '',
+                    'title'      => 'placeholder',
                 )
-            ); ?>' + title;
+            ); ?>'.replace(/placeholder$/, title);
         } else {
             url = el.attr('data-url');
         }
+        this.getSearchedMedia(url);
+    },
+    getSearchedMedia    : function(url) {
         if (url.length) {
             $.get(url, function(result) {
-                $('#media-lists').find('tbody').html('');
                 var result = $.parseJSON(result);
-                var lists  = result.data;
-                for (i in lists) {
-                    $('#media-lists')
-                    .find('tbody')
-                    .append(_.template($('#media-searched-item').html(), lists[i]));
-                }
-                if (result.prev_url.length || result.next_url.length) {
-                    $('.media-page').removeClass('hide');
-                    $('.prev-page').removeClass('disabled');
-                    $('.next-page').removeClass('disabled');
-                    if (0 == result.prev_url.length) {
-                        $('.prev-page').addClass('disabled');
+                if (!(result.data instanceof Array) && result.data) {
+                    var tableHeader = '<tr>'
+                                    + '<th><?php echo _a('Image'); ?></th>'
+                                    + '<th><?php echo _a('Title'); ?></th>'
+                                    + '<th><?php echo _a('Size'); ?></th>'
+                                    + '<th><?php echo _a('Select'); ?></th>'
+                                    + '</tr>';
+                    $('#media-lists').find('tbody').html(tableHeader);
+                    var lists  = result.data;
+                    for (i in lists) {
+                        $('#media-lists')
+                        .find('tbody')
+                        .append(_.template($('#media-searched-item').html(), lists[i]));
                     }
-                    if (0 == result.next_url.length) {
-                        $('.next-page').addClass('disabled');
+                    if (result.prev_url.length || result.next_url.length) {
+                        $('.media-page').removeClass('hide');
+                        $('.prev-page').removeClass('disabled');
+                        $('.next-page').removeClass('disabled');
+                        if (0 == result.prev_url.length) {
+                            $('.prev-page').addClass('disabled');
+                        }
+                        if (0 == result.next_url.length) {
+                            $('.next-page').addClass('disabled');
+                        }
+                        $('.prev-page').attr('data-url', result.prev_url);
+                        $('.next-page').attr('data-url', result.next_url);
                     }
-                    $('.prev-page').attr('data-url', result.prev_url);
-                    $('.next-page').attr('data-url', result.next_url);
+                } else {
+                    var content = '<div class="alert alert-info">'
+                                + '<?php echo __('No media available yet.'); ?>'
+                                + '</div>';
+                    $('#media-lists').find('tbody').html(content);
+                    $('.media-page').addClass('hide');
                 }
             });
         }

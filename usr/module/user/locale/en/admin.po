@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-16 19:22+0800\n"
-"PO-Revision-Date: 2014-02-16 19:22+0800\n"
+"POT-Creation-Date: 2014-03-02 17:44+0800\n"
+"PO-Revision-Date: 2014-03-02 17:44+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgid "Account"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:37
-#: C:\code\pi\usr\module\user/config/user.php:135
+#: C:\code\pi\usr\module\user/config/user.php:128
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:331
 msgid "Avatar"
 msgstr ""
@@ -44,65 +44,73 @@ msgid "Number of items on list page."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:51
+msgid "Birthdate format"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:52
+msgid "Format for birthdate display."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:57
 #, fuzzy
 msgid "Email expiration"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:52
+#: C:\code\pi\usr\module\user/config/config.php:58
 msgid "Expiration time for email/password reset (in hours)."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:58
+#: C:\code\pi\usr\module\user/config/config.php:64
 msgid "Email confirmation"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:59
+#: C:\code\pi\usr\module\user/config/config.php:65
 msgid "Email confirmation with token is required for email change."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:66
+#: C:\code\pi\usr\module\user/config/config.php:72
 msgid "Profile complete"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:67
+#: C:\code\pi\usr\module\user/config/config.php:73
 #, fuzzy
 msgid "Require user to complete profile data."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:75
+#: C:\code\pi\usr\module\user/config/config.php:81
 msgid "Login disable"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:76
+#: C:\code\pi\usr\module\user/config/config.php:82
 msgid "Disable user login"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:84
+#: C:\code\pi\usr\module\user/config/config.php:90
 msgid "Login CAPTCHA"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:85
+#: C:\code\pi\usr\module\user/config/config.php:91
 msgid "Enable CAPTCHA for user login"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:93
+#: C:\code\pi\usr\module\user/config/config.php:99
 msgid "Remember me"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:94
+#: C:\code\pi\usr\module\user/config/config.php:100
 msgid "Days to remember login, 0 for disable."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:101
+#: C:\code\pi\usr\module\user/config/config.php:107
 #, fuzzy
 msgid "Login field"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:102
+#: C:\code\pi\usr\module\user/config/config.php:108
 msgid "Identity field(s) for authentication."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:110
+#: C:\code\pi\usr\module\user/config/config.php:116
 #: C:\code\pi\usr\module\user/config/user.php:26
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:17
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:30
@@ -113,7 +121,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:111
+#: C:\code\pi\usr\module\user/config/config.php:117
 #: C:\code\pi\usr\module\user/config/user.php:58
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:18
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:47
@@ -123,209 +131,209 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:121
+#: C:\code\pi\usr\module\user/config/config.php:127
 msgid "Maximum attempts"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:122
+#: C:\code\pi\usr\module\user/config/config.php:128
 msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:130
+#: C:\code\pi\usr\module\user/config/config.php:136
 #, fuzzy
 msgid "Register disable"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:131
+#: C:\code\pi\usr\module\user/config/config.php:137
 msgid "Disable user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:139
+#: C:\code\pi\usr\module\user/config/config.php:145
 #, fuzzy
 msgid "Register CAPTCHA"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:140
+#: C:\code\pi\usr\module\user/config/config.php:146
 msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:148
+#: C:\code\pi\usr\module\user/config/config.php:154
 #, fuzzy
 msgid "Register complete"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:149
+#: C:\code\pi\usr\module\user/config/config.php:155
 msgid "Require user to complete register data in an extra form."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:157
+#: C:\code\pi\usr\module\user/config/config.php:163
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:19
 #, fuzzy
 msgid "Activation"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:158
+#: C:\code\pi\usr\module\user/config/config.php:164
 msgid "Activation mode for user accounts"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:163
+#: C:\code\pi\usr\module\user/config/config.php:169
 msgid "Automatically activated"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:164
+#: C:\code\pi\usr\module\user/config/config.php:170
 #, fuzzy
 msgid "Activated by user email"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:165
+#: C:\code\pi\usr\module\user/config/config.php:171
 msgid "Activated by admin approval"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:175
+#: C:\code\pi\usr\module\user/config/config.php:181
 #, fuzzy
 msgid "Activation expiration"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/config.php:176
+#: C:\code\pi\usr\module\user/config/config.php:182
 msgid "Expiration time for activation email (in hours)."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:184
+#: C:\code\pi\usr\module\user/config/config.php:190
 msgid "Username format"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:185
+#: C:\code\pi\usr\module\user/config/config.php:191
 msgid "Format of username for registration."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:190
-#: C:\code\pi\usr\module\user/config/config.php:223
+#: C:\code\pi\usr\module\user/config/config.php:196
+#: C:\code\pi\usr\module\user/config/config.php:229
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:191
-#: C:\code\pi\usr\module\user/config/config.php:224
+#: C:\code\pi\usr\module\user/config/config.php:197
+#: C:\code\pi\usr\module\user/config/config.php:230
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:192
-#: C:\code\pi\usr\module\user/config/config.php:225
+#: C:\code\pi\usr\module\user/config/config.php:198
+#: C:\code\pi\usr\module\user/config/config.php:231
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:202
+#: C:\code\pi\usr\module\user/config/config.php:208
 msgid "Minimum username"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:203
+#: C:\code\pi\usr\module\user/config/config.php:209
 msgid "Minimum length of username for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:210
+#: C:\code\pi\usr\module\user/config/config.php:216
 msgid "Maximum username"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:211
+#: C:\code\pi\usr\module\user/config/config.php:217
 msgid "Maximum length of username for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:217
+#: C:\code\pi\usr\module\user/config/config.php:223
 msgid "Display name format"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:218
+#: C:\code\pi\usr\module\user/config/config.php:224
 msgid "Format of display name for registration."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:235
+#: C:\code\pi\usr\module\user/config/config.php:241
 msgid "Minmum display name"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:236
+#: C:\code\pi\usr\module\user/config/config.php:242
 msgid "Minmum length of display name for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:243
+#: C:\code\pi\usr\module\user/config/config.php:249
 msgid "Maximum display name"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:244
+#: C:\code\pi\usr\module\user/config/config.php:250
 msgid "Maximum length of display name for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:251
+#: C:\code\pi\usr\module\user/config/config.php:257
 msgid "Minimum password"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:252
+#: C:\code\pi\usr\module\user/config/config.php:258
 msgid "Minimum length of password for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:259
+#: C:\code\pi\usr\module\user/config/config.php:265
 msgid "Maximum password"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:260
+#: C:\code\pi\usr\module\user/config/config.php:266
 msgid "Maximum length of password for user registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:267
+#: C:\code\pi\usr\module\user/config/config.php:273
 msgid "Username backlist"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:268
+#: C:\code\pi\usr\module\user/config/config.php:274
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:275
+#: C:\code\pi\usr\module\user/config/config.php:281
 msgid "Display backlist"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:276
+#: C:\code\pi\usr\module\user/config/config.php:282
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:283
+#: C:\code\pi\usr\module\user/config/config.php:289
 msgid "Email backlist"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:284
+#: C:\code\pi\usr\module\user/config/config.php:290
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:293
+#: C:\code\pi\usr\module\user/config/config.php:299
 msgid "Max Avatar Width"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:294
+#: C:\code\pi\usr\module\user/config/config.php:300
 msgid "Allowed image width, 0 for no limit"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:300
+#: C:\code\pi\usr\module\user/config/config.php:306
 msgid "Max Avatar Height"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:301
+#: C:\code\pi\usr\module\user/config/config.php:307
 msgid "Allowed image height, 0 for no limit"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:307
+#: C:\code\pi\usr\module\user/config/config.php:313
 msgid "Max File Size"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:308
+#: C:\code\pi\usr\module\user/config/config.php:314
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:323
+#: C:\code\pi\usr\module\user/config/config.php:329
 msgid "Temporary Path"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:324
+#: C:\code\pi\usr\module\user/config/config.php:330
 msgid "For temporary storage of avatar"
 msgstr ""
 
@@ -482,18 +490,18 @@ msgstr ""
 msgid "Gender"
 msgstr "未知"
 
-#: C:\code\pi\usr\module\user/config/user.php:115
+#: C:\code\pi\usr\module\user/config/user.php:106
 msgid "Birthdate"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:146
+#: C:\code\pi\usr\module\user/config/user.php:139
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:50
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:26
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:48
 msgid "Active"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:156
+#: C:\code\pi\usr\module\user/config/user.php:149
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:31
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:44
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:30
@@ -501,68 +509,68 @@ msgstr ""
 msgid "Register time"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/user.php:166
+#: C:\code\pi\usr\module\user/config/user.php:159
 #, fuzzy
 msgid "Activation time"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/user.php:176
+#: C:\code\pi\usr\module\user/config/user.php:169
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:53
 #, fuzzy
 msgid "Disabled time"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/user.php:187
+#: C:\code\pi\usr\module\user/config/user.php:180
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:41
 #, fuzzy
 msgid "Deleted time"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/user.php:200
+#: C:\code\pi\usr\module\user/config/user.php:193
 msgid "Level"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:209
+#: C:\code\pi\usr\module\user/config/user.php:202
 #, fuzzy
 msgid "Last modified"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/user.php:217
+#: C:\code\pi\usr\module\user/config/user.php:210
 msgid "Personal website"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:222
+#: C:\code\pi\usr\module\user/config/user.php:218
 msgid "Short bio"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:233
+#: C:\code\pi\usr\module\user/config/user.php:226
 msgid "Signature"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:242
+#: C:\code\pi\usr\module\user/config/user.php:235
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:78
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:83
 #, fuzzy
 msgid "Register IP"
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/config/user.php:253
+#: C:\code\pi\usr\module\user/config/user.php:246
 msgid "Social tools"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:257
+#: C:\code\pi\usr\module\user/config/user.php:253
 msgid "Tool name"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:260
+#: C:\code\pi\usr\module\user/config/user.php:256
 msgid "ID or URL"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:270
+#: C:\code\pi\usr\module\user/config/user.php:266
 msgid "User action"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/user.php:282
+#: C:\code\pi\usr\module\user/config/user.php:278
 msgid "Logout"
 msgstr ""
 
@@ -679,23 +687,23 @@ msgstr "主题更新失败。"
 msgid "Clear all deleted user successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:195
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:198
 msgid "Profile dress-up data saved successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:319
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:322
 msgid "Privacy set up failed: invalid field."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:324
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:327
 msgid "Privacy set up failed: invalid privacy."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:346
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:349
 msgid "Privacy set up failed: update error."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:361
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:364
 msgid "Privacy set up successfully."
 msgstr ""
 

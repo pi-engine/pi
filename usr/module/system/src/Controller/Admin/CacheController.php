@@ -144,23 +144,54 @@ class CacheController extends ComponentController
         };
 
         // Organized pages by section
+        $pageModule = array();
+        $pageHome   = array();
         foreach ($rowset as $row) {
             $id         = $row->id;
-            $isModule   = false;
+            //$isModule   = false;
+
+            if (!$row->controller) {
+                $pageModule = array(
+                    'id'        => $row->id,
+                    'title'     => _a('Module wide'),
+                    'type'      => $cacheType($id, $row['cache_type']),
+                    'ttl'       => $cacheTtl($id, $row['cache_ttl']),
+                    'level'     => $cacheLevel($id, $row['cache_level']),
+                    'is_module' => true,
+                );
+                continue;
+            } elseif ('index' == $row->controller && 'index' == $row->action) {
+                $pageHome = array(
+                    'id'        => $row->id,
+                    'title'     => _a('Module home'),
+                    'type'      => $cacheType($id, $row['cache_type']),
+                    'ttl'       => $cacheTtl($id, $row['cache_ttl']),
+                    'level'     => $cacheLevel($id, $row['cache_level']),
+                );
+                continue;
+            }
+            /*
             if (!$row->controller) {
                 $title      = _a('Module wide');
                 $isModule   = true;
             } else {
                 $title      = $row->title;
             }
+            */
             $sections[$row->section]['pages'][] = array(
-                'id'        => $id,
-                'title'     => $title,
+                'id'        => $row->id,
+                'title'     => $row->title,
                 'type'      => $cacheType($id, $row['cache_type']),
                 'ttl'       => $cacheTtl($id, $row['cache_ttl']),
                 'level'     => $cacheLevel($id, $row['cache_level']),
-                'is_module' => $isModule,
+                //'is_module' => $isModule,
             );
+        }
+        if ($pageHome) {
+            array_unshift($sections['front']['pages'], $pageHome);
+        }
+        if ($pageModule) {
+            array_unshift($sections['front']['pages'], $pageModule);
         }
 
         $this->view()->assign('pagesBySection', $sections);

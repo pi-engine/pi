@@ -38,6 +38,16 @@ class Update extends BasicUpdate
         $table          = $model->getTable();
         $adapter        = $model->getAdapter();
 
+        // Drop homepage for blocks
+        if (version_compare($moduleVersion, '1.2.0', '<=')) {
+            Pi::model('page')->delete(array(
+                'section'       => 'front',
+                'module'        => $this->module,
+                'controller'    => 'index',
+                'action'        => 'index',
+            ));
+        }
+
         // Check for version 1.0.0-beta.2
         if (version_compare($moduleVersion, '1.0.0-beta.2', '<')) {
 

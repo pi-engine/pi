@@ -56,7 +56,7 @@ CREATE TABLE `{field}` (
   `is_search`       tinyint(1)      unsigned NOT NULL default '0',
   -- Available for display
   `is_display`      tinyint(1)      unsigned NOT NULL default '0',
-  -- Required by profile
+  -- Required by profile edit
   `is_required`     tinyint(1)      unsigned NOT NULL default '0',
 
   -- Available, usually set by module activation/deactivation
@@ -76,6 +76,9 @@ CREATE TABLE `{compound_field}` (
 
   `edit`            text,
   `filter`          text,
+
+  -- Required by profile edit
+  `is_required`     tinyint(1)      unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY  `name` (`compound`, `name`)
@@ -191,7 +194,6 @@ CREATE TABLE `{privacy_user}` (
   `field`     varchar(64)         NOT NULL default '',
   -- Access level: 0 - everyone/public; 1 - member; 2 - follower; 4 - following; 255 - owner
   `value`     smallint(5)         unsigned NOT NULL default '0',
-  #`is_forced` tinyint(1)          NOT NULL default '0',
 
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_field` (`uid`, `field`)

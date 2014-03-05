@@ -10,7 +10,7 @@
 namespace Pi\Application\Installer\Resource;
 
 use Pi;
-use Module\User\AbstractCustomHandler;
+use Module\User\Field\AbstractCustomHandler;
 
 /**
  * User meta setup
@@ -365,6 +365,10 @@ class User extends AbstractResource
 
         if (isset($spec['edit'])) {
             $spec['edit'] = $this->canonizeFieldEdit($spec['edit']);
+            if (isset($spec['edit']['required'])) {
+                $spec['is_required'] = $spec['edit']['required'] ? 1 : 0;
+                unset($spec['edit']['required']);
+            }
         }
 
         if (isset($spec['filter'])) {
@@ -398,19 +402,21 @@ class User extends AbstractResource
             if (!isset($data['module'])) {
                 $data['module'] = $compound['module'];
             }
-            //if ('compound' == $compound['type']) {
-                if (!isset($data['edit'])) {
-                    $data['edit'] = 'text';
+            if (!isset($data['edit'])) {
+                $data['edit'] = 'text';
+            }
+            $data['edit'] = $this->canonizeFieldEdit($data['edit']);
+            if (isset($data['filter'])) {
+                if (empty($data['filter'])) {
+                    $data['filter'] = array();
+                } else {
+                    $data['filter'] = (array) $data['filter'];
                 }
-                $data['edit'] = $this->canonizeFieldEdit($data['edit']);
-                if (isset($data['filter'])) {
-                    if (empty($data['filter'])) {
-                        $data['filter'] = array();
-                    } else {
-                        $data['filter'] = (array) $data['filter'];
-                    }
-                }
-            //}
+            }
+            if (isset($data['edit']['required'])) {
+                $data['is_required'] = $data['edit']['required'] ? 1 : 0;
+                unset($data['edit']['required']);
+            }
 
             $fields[$compound['name'] . '-' . $key] = $data;
         }
@@ -513,6 +519,8 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         if (!$force && $this->skipUpgrade()) {
             return;
@@ -548,6 +556,10 @@ class User extends AbstractResource
                     unset($items[$key]['active']);
                     if (isset($items[$key]['value'])) {
                         unset($items[$key]['value']);
+                    }
+                    // field/compound_field required attribute is set by admin
+                    if (isset($items[$key]['is_required'])) {
+                        unset($items[$key]['is_required']);
                     }
 
                     $row->assign($items[$key]);
@@ -663,6 +675,8 @@ class User extends AbstractResource
         }
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         $fields         = array();
         $compounds      = array();
@@ -714,14 +728,17 @@ class User extends AbstractResource
      */
     public function activateAction()
     {
-        /*
-        if (!$this->isActive()) {
+        $module = $this->getModule();
+        // Skip for active user module, or other modules w/o user installed
+        if (!$this->isActive() || ($this->isActive() && 'user' == $module)) {
             return;
         }
-        */
+
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -744,6 +761,8 @@ class User extends AbstractResource
         $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
+        Pi::registry('display_group', 'user')->clear();
+        Pi::registry('display_field', 'user')->clear();
 
         foreach (array('field', 'timeline', 'activity', 'quicklink')
             as $op
@@ -798,7 +817,6 @@ class User extends AbstractResource
      */
     protected function dropFields(array $fields)
     {
-        //$meta = Pi::registry('field', 'user')->read('profile');
         $table = Pi::model('profile', 'user')->getTable();
         $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' DROP `%s`';

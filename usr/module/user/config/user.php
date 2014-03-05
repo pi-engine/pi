@@ -95,7 +95,7 @@ return array(
             'name'      => 'gender',
             'title'     => _a('Gender'),
             'edit'      => array(
-                'element'  =>  'Module\User\Form\Element\Gender',
+                'element'   =>  'Module\User\Form\Element\Gender',
             ),
             'filter'    => 'Gender',
         ),
@@ -107,6 +107,7 @@ return array(
             'edit'  => array(
                 'element'       => 'date_select',
                 'options'       => array(
+                    'create_empty_option'   => true,
                     'year_attributes' => array(
                         'class' => 'input-small',
                     ),
@@ -117,7 +118,14 @@ return array(
                         'class' => 'input-small',
                     ),
                 ),
+                'filters'   => array(array(
+                    'name'  => 'Pi\Filter\DateSelect',
+                )),
+                'validators'   => array(array(
+                    'name'  => 'Pi\Validator\DateSelect',
+                )),
             ),
+            'filter'   => 'Module\User\Filter\Birthdate',
         ),
         // Account: avatar
         'avatar'    => array(
@@ -206,24 +214,24 @@ return array(
         'homepage'  => array(
             'name'  => 'homepage',
             'title' => _a('Personal website'),
+            'edit'  => array(
+                'element'       => 'url',
+            ),
         ),
         // Profile: bio
         'bio'  => array(
             'name'  => 'bio',
             'title' => _a('Short bio'),
             'edit'  => array(
-                'element' => 'textarea',
-                'attributes' => array(
-                    'rows'    => 4,
-                ),
-            )
+                'element'       => 'textarea',
+            ),
         ),
         // Profile: signature
         'signature'  => array(
             'name'  => 'signature',
             'title' => _a('Signature'),
             'edit'  => array(
-                'element'       => 'textarea',
+                'element'   => 'textarea',
             ),
         ),
 
@@ -239,9 +247,12 @@ return array(
 
         // Compound fields
         // Compound: Social networking tools
-        'tool'      => array(
-            'name'  => 'tool',
+        'social'      => array(
+            'name'  => 'social',
             'title' => _a('Social tools'),
+
+            // Custom handler
+            'handler'   => 'Module\User\Field\Social',
 
             'field' => array(
                 'title'         => array(

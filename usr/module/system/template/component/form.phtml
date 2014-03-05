@@ -80,3 +80,10 @@ if (!empty($elements['submit'])) {
 
 echo $this->form()->closeTag();
 ?>
+
+<script>
+    $('[required="required"]')
+        .closest(".form-group")
+        .children("label")
+        .prepend('<i class="text-danger">* <i>');
+</script>

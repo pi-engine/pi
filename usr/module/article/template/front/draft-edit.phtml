@@ -1316,6 +1316,17 @@ var AttachmentListView = Backbone.View.extend({
             );
             $('.attachment-list').append(content);
         }
+        
+        // Init searched media
+        var url = '<?php echo $this->url(
+            'admin', 
+            array(
+                'controller' => 'media',
+                'action'     => 'search',
+                'type'       => $attachmentExtension,
+            )
+        ); ?>';
+        this.getSearchedMedia(url);
     },
     addOne: function (model) {
         this.attachmentList.append(new MediaItemView({
@@ -1369,42 +1380,54 @@ var AttachmentListView = Backbone.View.extend({
         } else {
             url = el.attr('data-url');
         }
+        this.getSearchedMedia(url);
+    },
+    getSearchedMedia : function(url) {
         if (url.length) {
+            var self = this;
             $.get(url, function(result) {
                 var result = $.parseJSON(result);
-                var lists = result.data;
-                var content = '<table class="table table-bordered">'
-                            + '<tbody><tr>'
-                            + '<th>' + '<?php echo _e('Title'); ?>' + '</th>'
-                            + '<th>' + '<?php echo _e('Size'); ?>' + '</th>'
-                            + '<th>' + '<?php echo _e('Select'); ?>' + '</th></tr>';
-                for (i in lists) {
-                    content += '<tr>'
-                            + '<td>' + lists[i].title + '</td>'
-                            + '<td>' + lists[i].size + '</td>'
-                            + '<td><a class="media-insert" href="#"'
-                                + ' data-id="' + lists[i].id + '"'
-                                + ' data-url="' + lists[i].url + '"'
-                                + ' data-title="' + lists[i].title + '"'
-                                + '>' 
-                                + '<?php _e('Insert'); ?>' + '</a></td>'
-                            + '</tr>';
-                }
-                content += '</tbody></table>';
-                self.$('#attachment-search-result').html(content);
-                
-                if (result.prev_url.length || result.next_url.length) {
-                    self.$('.media-page').removeClass('hide');
-                    self.$('.prev-page').removeClass('disabled');
-                    self.$('.next-page').removeClass('disabled');
-                    if (0 == result.prev_url.length) {
-                        self.$('.prev-page').addClass('disabled');
+                if (!(result.data instanceof Array) && result.data) {
+                    var lists = result.data;
+                    var content = '<table class="table table-bordered">'
+                                + '<tbody><tr>'
+                                + '<th>' + '<?php echo _e('Title'); ?>' + '</th>'
+                                + '<th>' + '<?php echo _e('Size'); ?>' + '</th>'
+                                + '<th>' + '<?php echo _e('Select'); ?>' + '</th></tr>';
+                    for (i in lists) {
+                        content += '<tr>'
+                                + '<td>' + lists[i].title + '</td>'
+                                + '<td>' + lists[i].size + '</td>'
+                                + '<td><a class="media-insert" href="#"'
+                                    + ' data-id="' + lists[i].id + '"'
+                                    + ' data-url="' + lists[i].url + '"'
+                                    + ' data-title="' + lists[i].title + '"'
+                                    + '>' 
+                                    + '<?php _e('Insert'); ?>' + '</a></td>'
+                                + '</tr>';
                     }
-                    if (0 == result.next_url.length) {
-                        self.$('.next-page').addClass('disabled');
+                    content += '</tbody></table>';
+                    self.$('#attachment-search-result').html(content);
+
+                    if (result.prev_url.length || result.next_url.length) {
+                        self.$('.media-page').removeClass('hide');
+                        self.$('.prev-page').removeClass('disabled');
+                        self.$('.next-page').removeClass('disabled');
+                        if (0 == result.prev_url.length) {
+                            self.$('.prev-page').addClass('disabled');
+                        }
+                        if (0 == result.next_url.length) {
+                            self.$('.next-page').addClass('disabled');
+                        }
+                        self.$('.prev-page').attr('data-url', result.prev_url);
+                        self.$('.next-page').attr('data-url', result.next_url);
                     }
-                    self.$('.prev-page').attr('data-url', result.prev_url);
-                    self.$('.next-page').attr('data-url', result.next_url);
+                } else {
+                    var content = '<div class="alert alert-info">'
+                                + '<?php echo __('No media available yet.'); ?>'
+                                + '</div>';
+                    $('#attachment-search-result').html(content);
+                    self.$('.media-page').addClass('hide');
                 }
             });
         }
@@ -1541,6 +1564,17 @@ var FeatureView = Backbone.View.extend({
         this.$("#media-button").html($("#media-upload-button").html());
         this.input = $('input[name="upload"]');
         this.fileupload();
+        
+        // Init searched media
+        var url = '<?php echo $this->url(
+            'admin', 
+            array(
+                'controller' => 'media',
+                'action'     => 'search',
+                'type'       => 'image',
+            )
+        ); ?>';
+        this.getSearchedMedia(url);
     },
     // Fetching image by upload
     fileupload      : function() {
@@ -1701,28 +1735,46 @@ var FeatureView = Backbone.View.extend({
         } else {
             url = el.attr('data-url');
         }
+        this.getSearchedMedia(url);
+    },
+    getSearchedMedia    : function(url) {
         if (url.length) {
+            var self = this;
             $.get(url, function(result) {
-                $('#media-lists').find('tbody').html('');
                 var result = $.parseJSON(result);
-                var lists = result.data;
-                for (i in lists) {
-                    $('#media-lists')
-                    .find('tbody')
-                    .append(_.template($('#media-searched-item').html(), lists[i]));
-                }
-                if (result.prev_url.length || result.next_url.length) {
-                    self.$('.media-page').removeClass('hide');
-                    self.$('.prev-page').removeClass('disabled');
-                    self.$('.next-page').removeClass('disabled');
-                    if (0 == result.prev_url.length) {
-                        self.$('.prev-page').addClass('disabled');
+                if (!(result.data instanceof Array) && result.data) {
+                    var tableHeader = '<tr>'
+                                    + '<th><?php echo _a('Image'); ?></th>'
+                                    + '<th><?php echo _a('Title'); ?></th>'
+                                    + '<th><?php echo _a('Size'); ?></th>'
+                                    + '<th><?php echo _a('Select'); ?></th>'
+                                    + '</tr>';
+                    self.$('#media-lists').find('tbody').html(tableHeader);
+                    var lists  = result.data;
+                    for (i in lists) {
+                        self.$('#media-lists')
+                        .find('tbody')
+                        .append(_.template($('#media-searched-item').html(), lists[i]));
                     }
-                    if (0 == result.next_url.length) {
-                        self.$('.next-page').addClass('disabled');
+                    if (result.prev_url.length || result.next_url.length) {
+                        self.$('.media-page').removeClass('hide');
+                        self.$('.prev-page').removeClass('disabled');
+                        self.$('.next-page').removeClass('disabled');
+                        if (0 == result.prev_url.length) {
+                            self.$('.prev-page').addClass('disabled');
+                        }
+                        if (0 == result.next_url.length) {
+                            self.$('.next-page').addClass('disabled');
+                        }
+                        self.$('.prev-page').attr('data-url', result.prev_url);
+                        self.$('.next-page').attr('data-url', result.next_url);
                     }
-                    self.$('.prev-page').attr('data-url', result.prev_url);
-                    self.$('.next-page').attr('data-url', result.next_url);
+                } else {
+                    var content = '<div class="alert alert-info">'
+                                + '<?php echo __('No media available yet.'); ?>'
+                                + '</div>';
+                    self.$('#media-lists').find('tbody').html(content);
+                    self.$('.media-page').addClass('hide');
                 }
             });
         }
@@ -1858,6 +1910,17 @@ var GalleryListView = Backbone.View.extend({
             );
             this.galleryList.append(content);
         }
+        
+        // Init searched media
+        var url = '<?php echo $this->url(
+            'admin', 
+            array(
+                'controller' => 'media',
+                'action'     => 'search',
+                'type'       => 'image',
+            )
+        ); ?>';
+        this.getSearchedMedia(url);
     },
     addOne: function (model) {
         this.uploadedMediaList.append(new GalleryItemView({
@@ -1917,44 +1980,54 @@ var GalleryListView = Backbone.View.extend({
         } else {
             url = el.attr('data-url');
         }
+        this.getSearchedMedia(url);
+    },
+    getSearchedMedia : function(url) {
         if (url.length) {
+            var self = this;
             $.get(url, function(result) {
                 var result = $.parseJSON(result);
-                var lists = result.data;
-                var content = '<table class="table table-bordered">'
-                            + '<tbody><tr>'
-                            + '<th>' + '<?php echo _e('Image'); ?>' + '</th>'
-                            + '<th>' + '<?php echo _e('Title'); ?>' + '</th>'
-                            + '<th>' + '<?php echo _e('Size'); ?>' + '</th>'
-                            + '<th>' + '<?php echo _e('Select'); ?>' + '</th></tr>'
-                for (i in lists) {
-                    content += '<tr>'
-                            + '<td><img style="width: 40px; height: 40px" src="' + lists[i].url + '" /></td>'
-                            + '<td>' + lists[i].title + '</td>'
-                            + '<td>' + lists[i].size + '</td>'
-                            + '<td><a class="media-insert" href="#"'
-                                + ' data-id="' + lists[i].id + '"'
-                                + ' data-url="' + lists[i].url + '"'
-                                + ' data-title="' + lists[i].title + '"'
-                                + '>' 
-                                + '<?php _e('Insert'); ?>' + '</a></td>'
-                            + '</tr>';
-                }
-                content += '</tbody></table>';
-                $('#gallery-search-result').html(content);
-                
-                if (result.prev_url.length || result.next_url.length) {
-                    self.$('.media-page').removeClass('hide');
-                    self.$('.prev-page').removeClass('disabled');
-                    self.$('.next-page').removeClass('disabled');
-                    if (0 == result.prev_url.length) {
-                        self.$('.prev-page').addClass('disabled');
+                if (!(result.data instanceof Array) && result.data) {
+                    var lists = result.data;
+                    var content = '<table class="table table-bordered">'
+                                + '<tbody><tr>'
+                                + '<th>' + '<?php echo _e('Title'); ?>' + '</th>'
+                                + '<th>' + '<?php echo _e('Size'); ?>' + '</th>'
+                                + '<th>' + '<?php echo _e('Select'); ?>' + '</th></tr>';
+                    for (i in lists) {
+                        content += '<tr>'
+                                + '<td>' + lists[i].title + '</td>'
+                                + '<td>' + lists[i].size + '</td>'
+                                + '<td><a class="media-insert" href="#"'
+                                    + ' data-id="' + lists[i].id + '"'
+                                    + ' data-url="' + lists[i].url + '"'
+                                    + ' data-title="' + lists[i].title + '"'
+                                    + '>' 
+                                    + '<?php _e('Insert'); ?>' + '</a></td>'
+                                + '</tr>';
                     }
-                    if (0 == result.next_url.length) {
-                        self.$('.next-page').addClass('disabled');
+                    content += '</tbody></table>';
+                    self.$('#gallery-search-result').html(content);
+
+                    if (result.prev_url.length || result.next_url.length) {
+                        self.$('.media-page').removeClass('hide');
+                        self.$('.prev-page').removeClass('disabled');
+                        self.$('.next-page').removeClass('disabled');
+                        if (0 == result.prev_url.length) {
+                            self.$('.prev-page').addClass('disabled');
+                        }
+                        if (0 == result.next_url.length) {
+                            self.$('.next-page').addClass('disabled');
+                        }
+                        self.$('.prev-page').attr('data-url', result.prev_url);
+                        self.$('.next-page').attr('data-url', result.next_url);
                     }
-                    self.$('.prev-page').attr('data-url', result.prev_url);
-                    self.$('.next-page').attr('data-url', result.next_url);
+                } else {
+                    var content = '<div class="alert alert-info">'
+                                + '<?php echo __('No media available yet.'); ?>'
+                                + '</div>';
+                    self.$('#gallery-search-result').html(content);
+                    self.$('.media-page').addClass('hide');
                 }
             });
         }

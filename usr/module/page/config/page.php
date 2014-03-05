@@ -8,6 +8,7 @@
  */
 
 return array(
+    /*
     // Front section
     'front' => array(
         // homepage
@@ -19,4 +20,5 @@ return array(
             'block'         => 1,
         ),
     ),
+    */
 );

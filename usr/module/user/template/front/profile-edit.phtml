@@ -2,12 +2,12 @@
     $this->css($this->assetModule('front/front.css'));
 ?>
 <div class="row">
-    <?php include '_user-side-nav.phtml' ?>
+    <?php include '_user-sidebar.phtml' ?>
     <div class="col-md-9">
         <div class="user-page-header">
             <h3><?php echo $title; ?></h3>
             <div class="text-muted">
-                <?php echo sprintf(__('Change your %s info'), $title); ?>
+                <?php echo sprintf(__('Update %s'), $title); ?>
             </div>
         </div>
         <?php

@@ -95,6 +95,14 @@
         displays: displays
       });
     }
+
+    this.toggleRequired = function(field) {
+      return $http.post(urlRoot + 'required', {
+        required: field.is_required,
+        field: field.name,
+        compound: field.compound
+      });
+    }
   }
 ])
 .controller('fieldCtrl', ['$scope', 'server', 'data',
@@ -104,6 +112,10 @@
     $scope.$on('piHoverInputSave', function(event, data) {
       server.updateTitle(data);
     });
+
+    $scope.requiredAction = function(field) {
+      server.toggleRequired(field);
+    };
   }
 ])
 .controller('dressCtrl', ['$scope', '$route', '$timeout', 'config', 'server', 'data', 

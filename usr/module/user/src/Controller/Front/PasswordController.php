@@ -73,15 +73,22 @@ class PasswordController extends ActionController
         }
 
         // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
-        $user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
+        //$groups = Pi::api('group', 'user')->getList();
+        //$user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
 
         $this->view()->assign(array(
             'form'      => $form,
-            'groups'    => $groups,
-            'cur_group' => 'password',
-            'user'      => $user,
+            //'groups'    => $groups,
+            //'cur_group' => 'password',
+            //'user'      => $user,
         ));
+
+        $this->view()->headTitle(__('Change password'));
+        $this->view()->headdescription(__('To ensure your account security, complex password is required.'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
@@ -171,6 +178,13 @@ class PasswordController extends ActionController
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('password-find');
+
+        $this->view()->headTitle(__('Find password'));
+        $this->view()->headdescription(__('Find password'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**

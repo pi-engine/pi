@@ -17,7 +17,7 @@ use Pi\Application\Installer\Schema\AbstractUpdator;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Updator120 extends AbstractUpdator
+class Updator130 extends AbstractUpdator
 {
     /**
      * Update system table schema
@@ -43,6 +43,28 @@ class Updator120 extends AbstractUpdator
     protected function from110($version)
     {
         $status = true;
+
+        if (version_compare($version, '1.3.2', '<')) {
+            $table = Pi::db()->prefix('compound_field', 'user');
+            $sql =<<<'EOT'
+ALTER TABLE %s
+ADD `is_required` tinyint(1) unsigned NOT NULL default '0';
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+
+            foreach (array('field', 'compound_field') as $table) {
+                $rowset = Pi::model($table, 'user')->select(array());
+                foreach ($rowset as $row) {
+                    if (isset($row['edit']['required'])) {
+                        $row['is_required'] = $row['edit']['required'] ? 1 : 0;
+                        unset($row['edit']['required']);
+                        $row->save();
+                    }
+                }
+            }
+        }
+
         if (version_compare($version, '1.2.0', '<')) {
 
             Pi::model('field', 'user')->update(

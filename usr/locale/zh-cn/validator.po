@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-02-22 13:01+0800\n"
-"PO-Revision-Date: 2014-02-22 13:02+0800\n"
+"POT-Creation-Date: 2014-02-28 15:48+0800\n"
+"PO-Revision-Date: 2014-02-28 21:01+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
@@ -39,7 +39,7 @@ msgstr ""
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Lastmod.php:19
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Loc.php:19
 msgid "Invalid type given. String expected"
-msgstr ""
+msgstr "无效类型，应为字符串。"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Between.php:18
 msgid "The input is not between '%min%' and '%max%', inclusively"
@@ -61,7 +61,7 @@ msgstr ""
 #: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:19
 #, fuzzy
 msgid "Empty captcha value"
-msgstr "标题不能为空"
+msgstr "验证码错误"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Captcha.php:20
 msgid "Captcha ID field is missing"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Date.php:19
 msgid "The input does not appear to be a valid date"
-msgstr ""
+msgstr "输入为无效日期格式"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Date.php:20
 msgid "The input does not fit the date format '%format%'"
@@ -320,7 +320,7 @@ msgstr "密码不得多于%max%个字符"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:19
 msgid "The input does not appear to be a valid Uri"
-msgstr ""
+msgstr "输入为无效Uri格式"
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:18
 msgid "No record matching the input was found"

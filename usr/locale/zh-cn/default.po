@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-02-09 22:54+0800\n"
-"PO-Revision-Date: 2014-02-09 22:55+0800\n"
+"POT-Creation-Date: 2014-03-03 15:47+0800\n"
+"PO-Revision-Date: 2014-03-03 15:47+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,10 @@ msgstr "主题升级成功。"
 #: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:362
 msgid "Theme asset publish failed."
 msgstr "主题资源发布失败"
+
+#: c:\Code\pi\lib/Pi/Application/Service/Comment.php:548
+msgid "Posted a new comment."
+msgstr "发表新评论。"
 
 #: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
@@ -72,14 +76,14 @@ msgstr "密码错误。"
 msgid "Authentication successful."
 msgstr "身份验证成功。"
 
-#: c:\Code\pi\lib/Pi/Editor/Factory.php:76
+#: c:\Code\pi\lib/Pi/Editor/Factory.php:77
 msgid "Pi Default Editor"
 msgstr "缺省编辑器"
 
-#: c:\Code\pi\lib/Pi/Feed/Model.php:199
+#: c:\Code\pi\lib/Pi/Feed/Model.php:203
 #, php-format
-msgid "Feed of %s - %s"
-msgstr "%s - %s Feed"
+msgid "Feed of %s"
+msgstr "%s Feed"
 
 #: c:\Code\pi\lib/Pi/Filter/Gender.php:39
 msgid "Male"
@@ -167,7 +171,7 @@ msgstr "1月"
 msgid "Cache expiration"
 msgstr "缓存有效期"
 
-#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:37
+#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:35
 msgid "Text editor"
 msgstr "编辑器"
 
@@ -224,6 +228,18 @@ msgstr "主题"
 msgid "Timezone"
 msgstr "时区"
 
+#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:91
+msgid "Day"
+msgstr "日"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:92
+msgid "Year"
+msgstr "年"
+
+#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:93
+msgid "Month"
+msgstr "月"
+
 #: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
 msgstr "请求的Action未找到。"
@@ -245,23 +261,23 @@ msgstr "游客"
 msgid "Tags: "
 msgstr "标签："
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:217
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:242
 msgid "Manager"
 msgstr "管理员"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:224
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
 msgid "Moderator"
 msgstr "版主"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:231
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
 msgid "Editor"
 msgstr "编辑"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:238
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:263
 msgid "Staff"
 msgstr "员工"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:245
+#: c:\Code\pi\www/setup/src/Controller/Admin.php:270
 msgid "Member"
 msgstr "成员"
 
@@ -285,6 +301,3 @@ msgstr "成员"
 
 #~ msgid "Setting"
 #~ msgstr "设置"
-
-#~ msgid "Posted a new comment."
-#~ msgstr "发表新评论。"

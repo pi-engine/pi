@@ -64,7 +64,7 @@ class StaticController extends WidgetController
     }
 
     /**
-     * Add a block and default ACL rules
+     * Add a block
      */
     public function addAction()
     {

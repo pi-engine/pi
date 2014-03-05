@@ -47,6 +47,12 @@ $config = array(
         'filter'        => 'int',
     ),
 
+    'birthdate_format'  => array(
+        'title'         => _t('Birthdate format'),
+        'description'   => _t('Format for birthdate display.'),
+        'value'         => 'Y-m-d',
+    ),
+
     'email_expiration' => array(
         'title'         => _t('Email expiration'),
         'description'   => _t('Expiration time for email/password reset (in hours).'),

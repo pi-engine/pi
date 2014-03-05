@@ -1,0 +1,215 @@
+<?php
+$owner = _get('uid') ? false : true;
+
+// Get user base info
+$user = Pi::api('user', 'user')->get(
+    $uid,
+    array('name', 'gender', 'birthdate'),
+    true,
+    true
+);
+if (!$user) {
+    Pi::service('url')->redirect(Pi::user()->getUrl('profile'));
+    return;
+}
+
+if ($owner) {
+    $nav = Pi::api('nav', 'user')->getList($name);
+} else {
+    $nav = Pi::api('nav', 'user')->getList($name, $uid);
+
+    $requestId  = $uid == Pi::user()->getId() ? 0 : null;
+    $level      = Pi::api('privacy', 'user')->getLevel($uid, $requestId);
+    $user       = Pi::api('privacy', 'user')->filterProfile(
+        $uid,
+        $level,
+        $user,
+        'user'
+    );
+}
+$quicklink = Pi::api('quicklink', 'user')->getList();
+?>
+<div class="clearfix user-avatar-header">
+    <div class="user-info-right">
+        <?php if ($owner) { ?>
+        <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
+            <i class="fa fa-eye"></i>
+            <?php _e('Switch to public'); ?>
+        </a>
+        <div class="dropdown inline">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <?php _e('Quicklinks'); ?>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>">
+                        <?php _e('Settings'); ?>
+                    </a>
+                </li>
+                <?php if ($quicklink) { ?>
+                <li class="divider" style="margin: 1px;"></li>
+                <?php } ?>
+                <?php foreach ($quicklink as $item) { ?>
+                <li>
+                    <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
+                        <?php 
+                        if ($item['icon']) {
+                            echo sprintf(
+                                '<i class="%s"></i>',
+                                $item['icon']
+                            );
+                        }
+                        ?>
+                        <?php echo $item['title']; ?>
+                    </a>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <?php } else { ?>
+            <?php if (Pi::user()->getId() == $uid) { ?>
+            <a class="btn btn-default" href="<?php echo $this->url('', array('controller' => 'profile', 'action' => 'index')); ?>">
+                <i class="fa fa-eye"></i>
+                <?php _e('Switch to own'); ?>
+            </a>
+            <?php } ?>
+            <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
+            <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                <i class="fa fa-envelope"></i>
+                <?php _e('Send message'); ?>
+            </a>
+            <?php } else { ?>
+                <a class="btn btn-default disabled">
+                    <i class="fa fa-envelope"></i>
+                    <?php _e('Send message'); ?>
+                </a>
+            <?php } ?>
+        <?php } ?>
+    </div>
+    <div class="inline user-info-left">
+        <div class="pull-left">
+            <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
+        </div>
+        <?php if ($owner) { ?>
+        <a class="user-avatar-upload" href="<?php echo $this->url('', array('controller' => 'avatar', 'action' => 'index')); ?>">
+            <?php _e('Change avatar'); ?>
+        </a>
+        <?php } ?>
+    </div>
+    <div class="inline user-info-center">
+        <h2 class="user-name"><?php echo _escape($user['name']); ?></h2>
+        <?php if (isset($user['gender'])) { ?>
+        <div style="margin-top: 10px;">
+            <?php _e('Gender:'); ?>
+            <?php echo _escape($user['gender']); ?>
+        </div>
+        <?php } ?>
+        <?php if (isset($user['birthdate'])) { ?>
+        <div style="margin-top: 5px;">
+            <?php _e('Birthdate:'); ?>
+            <?php echo _escape($user['birthdate']); ?> 
+        </div>
+        <?php } ?>
+    </div>
+</div>
+<ul class="nav nav-tabs">
+    <?php
+        $items = $nav['items'];
+        $length = count($items);
+        $isOverflow = $length > 7 ? true : false;
+
+        if (!$isOverflow) {
+            /* Nav items length = < 7 */
+            foreach ($items  as $item) { ?>
+                <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
+                    <a href="<?php echo $item['url']; ?>">
+                        <?php 
+                        if ($item['icon']) {
+                            echo '<i class="' . $item['icon'] . '"></i> ';
+                        }
+                        echo $item['title'];
+                        ?>
+                    </a>
+                </li>
+            <?php }
+        } else {
+            /* Nav length > 7 */
+            $isNeedMoveCur = false;
+            for ($i = 0; $i < $length; $i++) { 
+                $item = $items[$i];
+                if ($item['name'] == $nav['cur']) {
+                    if ($i > 5) {
+                        $isNeedMoveCur = true;
+                        $curNum = $i;
+                    }
+                    break;
+                }
+            }
+
+            if (!$isNeedMoveCur) {
+                /* Cur nav item order < 6 */
+                for ($i = 0; $i < 6; $i++) { 
+                    $item = $items[$i]; ?>
+                    <li class="<?php echo $item['name'] == $nav['cur'] ? 'active' : ''; ?>">
+                        <a href="<?php echo $item['url']; ?>">
+                            <?php 
+                            if ($item['icon']) {
+                                echo '<i class="' . $item['icon'] . '"></i> ';
+                            }
+                            echo $item['title'];
+                            ?>
+                        </a>
+                    </li>
+                <?php }
+            } else {
+                /* Cur nav item order > 6 */
+                for ($i = 0; $i < 5; $i++) {
+                    $item = $items[$i]; ?>
+                    <li>
+                        <a href="<?php echo $item['url']; ?>">
+                           <?php 
+                            if ($item['icon']) {
+                                echo '<i class="' . $item['icon'] . '"></i> ';
+                            }
+                            echo $item['title'];
+                            ?>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <li class="active">
+                    <a href="<?php echo $items[$curNum]['url']; ?>">
+                        <?php 
+                        if ($item['icon']) {
+                            echo '<i class="' . $item['icon'] . '"></i> ';
+                        }
+                        echo $item['title'];
+                        ?>
+                    </a>
+                </li>
+            <?php } ?>
+            <li class="dropdown">
+                <a data-toggle="dropdown" href="#">
+                    <?php _e('More'); ?>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <?php for (; $i < $length; $i++) {
+                        if ($isNeedMoveCur && $curNum == $i) continue;
+                        $item = $items[$i]; ?>
+                        <li>
+                            <a href="<?php echo $item['url']; ?>">
+                                <?php 
+                                if ($item['icon']) {
+                                    echo '<i class="' . $item['icon'] . '"></i> ';
+                                }
+                                echo $item['title'];
+                                ?>
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </li>
+    <?php } ?>
+</ul>

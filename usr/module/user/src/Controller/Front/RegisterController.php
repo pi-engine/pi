@@ -75,6 +75,10 @@ class RegisterController extends ActionController
             $this->view()->assign(array(
                 'result'    => $result,
             ));
+        } else {
+            if ($form->get('redirect')) {
+                $form->get('redirect')->setValue($_SERVER['HTTP_REFERER']);
+            }
         }
 
         $this->view()->assign(array(
@@ -82,6 +86,13 @@ class RegisterController extends ActionController
             'activation'    => $this->config('register_activation'),
         ));
         $this->view()->setTemplate('register-index');
+
+        $this->view()->headTitle(__('Register'));
+        $this->view()->headdescription(__('Account registration'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
@@ -208,13 +219,20 @@ class RegisterController extends ActionController
 
         // Target activate user event
         Pi::service('event')->trigger('user_activate', $uid);
-
+        
+        // Get redirect url
+        $redirect = Pi::user()->data()->get($uid, 'register_redirect');
+        
         $result = array(
             'status'    => 1,
             'message'   => __('Account Activated successfully.'),
         );
 
-        $this->view()->assign('result', $result);
+        $this->view()->assign(array(
+            'result'   => $result,
+            'uid'      => $uid,
+            'redirect' => $redirect,
+        ));
     }
 
     /**
@@ -422,6 +440,14 @@ class RegisterController extends ActionController
             return $result;
         }
         $result['uid'] = $uid;
+        
+        // Save url of register source page
+        Pi::user()->data()->set(
+            $uid,
+            'register_redirect',
+            $values['redirect'],
+            $this->getModule()
+        );
 
         // Set user role
         Pi::api('user', 'user')->setRole($uid, 'member');
