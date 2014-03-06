@@ -30,6 +30,11 @@ class Saml extends AbstractStrategy
     /**
      * {@inheritDoc}
      */
+    protected $name = 'saml';
+
+    /**
+     * {@inheritDoc}
+     */
     protected $identityField = 'identity';
 
     /** @var  SimpleSAML_Auth_Simple SimpleSAMLphp handler */

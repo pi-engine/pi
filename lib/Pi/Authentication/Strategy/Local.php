@@ -27,6 +27,11 @@ class Local extends AbstractStrategy
     protected $fileIdentifier = 'local';
 
     /**
+     * {@inheritDoc}
+     */
+    protected $name = 'local';
+
+    /**
      * Adapter handler
      *
      * @var AdapterInterface

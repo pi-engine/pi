@@ -22,6 +22,11 @@ class Client extends Local
     /**
      * {@inheritDoc}
      */
+    protected $name = 'client';
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUrl($type, $params = null)
     {
         switch ($type) {
