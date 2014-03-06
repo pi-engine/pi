@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-uclient\n"
+"POT-Creation-Date: 2013-11-10 14:08+0800\n"
+"PO-Revision-Date: 2013-11-10 14:08+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\uclient\n"
+
+#, fuzzy
+#~ msgid "Register time"
+#~ msgstr "Application Execution Time"
+
+#, fuzzy
+#~ msgid "Register IP"
+#~ msgstr "Application Execution Time"

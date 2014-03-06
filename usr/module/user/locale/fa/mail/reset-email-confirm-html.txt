@@ -1,0 +1,16 @@
+[comment]Pi user system change email success confirmation[/comment]
+
+[format]html[/format]
+
+[subject]تاییده تغییر ایمیل در %site_name%[/subject]
+
+[body]
+<p style="margin-bottom: 5px"><strong>%username%</strong> عزیز:</p>
+
+<p style="margin-top: 5px">آدرس ایمیل شما در وب سایت %site_name% با موفقیت تغییر از %old_email% به %new_email% تغییر یافت</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+
+[/body]

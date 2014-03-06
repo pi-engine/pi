@@ -1,0 +1,97 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-uclient\n"
+"POT-Creation-Date: 2013-11-10 14:07+0800\n"
+"PO-Revision-Date: 2013-11-10 14:07+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\uclient\n"
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:40
+msgid "Find password failed"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:88
+msgid "Send email successfully. check email and reset password."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:114
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:121
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:129
+msgid "Invalid information provided."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:138
+msgid "Verification link is invalid: time out."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Controller/Front/PasswordController.php:160
+msgid "Reset password successfully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Form/FindPasswordForm.php:27
+msgid "Email"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Form/FindPasswordForm.php:52
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-find.phtml:1
+msgid "Find password"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Form/ResetPasswordForm.php:52
+msgid "Confirm password"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/src/Form/ResetPasswordForm.php:68
+msgid "Submit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-find.phtml:11
+msgid "A reset link has been sent to your email."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-find.phtml:12
+msgid "Please check it to reset your password in 24 hours."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:6
+msgid "Sorry, the link is expired."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:7
+msgid "Try to find password again"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:12
+msgid "Congratulations!"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:13
+msgid "Your new password has worked"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\uclient/template/front/password-process.phtml:15
+msgid "Please login"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Register time"
+#~ msgstr "Application Execution Time"
