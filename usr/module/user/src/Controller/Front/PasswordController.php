@@ -142,8 +142,8 @@ class PasswordController extends ActionController
                 $link = Pi::url($url, true);
 
                 $params = array(
-                    'username'              => $userRow->identity,
-                    'find_password_link'    => $link,
+                    'username'          => $userRow->identity,
+                    'find_password_url' => $link,
                     'expiration'        => $this->config('email_expiration'),
                 );
 

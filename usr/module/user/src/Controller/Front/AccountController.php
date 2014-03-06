@@ -329,16 +329,15 @@ class AccountController extends ActionController
 
         // Send verify email
         $url = $this->url('', array(
-                'action'    => 'reset.email',
-                'token'     => $token,
-                'email'     => $newEmail,
-            )
-        );
+            'action'    => 'reset.email',
+            'token'     => $token,
+            'email'     => $newEmail,
+        ));
         $link = Pi::url($url, true);
 
         $params = array(
             'username'          => $username,
-            'change_email_link' => $link,
+            'change_email_url'  => $link,
             'new_email'         => $newEmail,
             'old_email'         => $curEmail,
             'expiration'        => $this->config('email_expiration'),

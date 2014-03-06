@@ -159,6 +159,15 @@ $config = array(
         'category'      => 'register',
     ),
 
+    'register_notification' => array(
+        'title'         => _t('Email notification'),
+        'description'   => _t('Send email notification for register success.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
     'register_activation'  => array(
         'title'         => _t('Activation'),
         'description'   => _t('Activation mode for user accounts'),

@@ -44,6 +44,13 @@ class Updator130 extends AbstractUpdator
     {
         $status = true;
 
+        if (version_compare($version, '1.3.3', '<')) {
+            Pi::model('user_data')->update(
+                array('name' => 'register_activation'),
+                array('module' => 'user', 'name' => 'register-activation')
+            );
+        }
+
         if (version_compare($version, '1.3.2', '<')) {
             $table = Pi::db()->prefix('compound_field', 'user');
             $sql =<<<'EOT'

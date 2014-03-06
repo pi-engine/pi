@@ -9,7 +9,7 @@
 
 <p style="margin-top: 5px">A request was received to change email address at %site_name% from %old_email% to %new_email%.</p>
 <p style="margin-top: 5px">Please click the following link in %expiration% hours to complete the request.<br>
-<a href="%change_email_link%">%change_email_link%</a>
+<a href="%change_email_url%">%change_email_url%</a>
 </p>
 
 <p style="margin-top: 5px">If this request was not sent by you, please just ignore this email.</p>

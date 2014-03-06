@@ -9,7 +9,7 @@
 
 <p style="margin-top: 5px">An account has been created at %site_adminname% with this email address.</p>
 <p style="margin-top: 5px">Please click the following link to activate.<br>
-<a href="%link%">%link%</a>
+<a href="%activation_url%">%activation_url%</a>
 </p>
 
 <p style="margin-top: 5px">If this account was not registered by you, please just ignore this email.</p>
