@@ -110,10 +110,15 @@ var formModule = (function($) {
 })(jQuery)
 </script>
 
-
 <script>
-    $('[required="required"]')
-        .closest(".form-group")
-        .children("label")
-        .prepend('<i class="text-danger">* <i>');
+    $('[required="required"]').each(function() {
+        var $this = $(this);
+        var group = $this.parents('.form-group');
+        var star = '<i class="text-danger" style="margin-right: 5px;">*</i>';
+
+        if (!group.find('i.text-danger').length) {
+            group.find('.control-label')
+                .prepend(star);
+        }
+    });
 </script>
