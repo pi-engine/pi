@@ -26,7 +26,7 @@ Pi::engine()->bootResource('session');
 $id = empty($_GET['id']) ? '' : htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');
 $image = null;
 if (!empty($id)) {
-    // Load CAPTCA adapter
+    // Load CAPTCHA adapter
     $captcha = Pi::captcha()->load();
     $refresh = empty($_GET['refresh']) ? false : true;
     // Generate CAPTCHA image
