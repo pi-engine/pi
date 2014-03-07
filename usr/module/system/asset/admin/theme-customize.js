@@ -76,6 +76,7 @@ angular.module('system')
     }
 
     var urlRoot = config.urlRoot;
+    var themeName = config.data.name;
     var custom;
 
     if (!angular.isObject(config.data.custom)) {
@@ -154,7 +155,8 @@ angular.module('system')
 
             $http.post(urlRoot + 'compile', {
               less: lessResult,
-              custom: custom
+              custom: custom,
+              name: themeName
             });
           }
 
@@ -170,7 +172,9 @@ angular.module('system')
     
       },
       reset: function() {
-        return $http.post(urlRoot + 'reset');
+        return $http.post(urlRoot + 'reset', {
+          name: themeName
+        });
       }
     }
   }
