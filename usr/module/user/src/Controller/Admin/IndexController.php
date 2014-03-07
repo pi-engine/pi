@@ -982,7 +982,7 @@ class IndexController extends ActionController
             $body       = $template['body'];
             $type       = $template['format'];
 
-            Pi::user()->data()->set($id, 'noti-email', $template); continue;
+            //Pi::user()->data()->set($id, 'noti-email', $template); continue;
 
             // Send email
             $message    = Pi::service('mail')->message($subject, $body, $type);
