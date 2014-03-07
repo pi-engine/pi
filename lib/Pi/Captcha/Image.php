@@ -56,42 +56,6 @@ class Image extends ZendImage
     /**
      * {@inheritDoc}
      */
-    public function getSession()
-    {
-        if (!isset($this->session) || (null === $this->session)) {
-            $id = $this->getId();
-            $this->session = Pi::service('session')->container(
-                'Pi_Captcha_' . $id
-            );
-            // Skip session reset
-            //$this->session->setExpirationHops(1);
-            //$this->session->setExpirationSeconds($this->getTimeout());
-        }
-
-        return $this->session;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function setWord($word)
-    {
-        $session       = $this->getSession();
-        /**#@+
-         * Set word value to session container
-         */
-        $session->setExpirationHops(1);
-        $session->setExpirationSeconds($this->getTimeout());
-        /**#@-*/
-        $session->word = $word;
-        $this->word    = $word;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function generate()
     {
         if (!$this->keepSession) {
