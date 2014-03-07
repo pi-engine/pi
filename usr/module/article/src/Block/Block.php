@@ -222,7 +222,7 @@ class Block
         }
         $limit    = ($options['list-count'] <= 0) ? 10 : $options['list-count'];
         $page     = 1;
-        $order    = 'time_publish DESC';
+        $order    = 'time_update DESC, time_publish DESC';
         $columns  = array('subject', 'summary', 'time_publish', 'image');
         $where    = array();
         if (!empty($category)) {
