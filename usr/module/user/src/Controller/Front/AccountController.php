@@ -40,9 +40,6 @@ class AccountController extends ActionController
             array('identity', 'email', 'name')
         );
 
-        // Get side nav items
-        //$groups = Pi::api('group', 'user')->getList();
-
         // Generate form
         $form           = new AccountForm('account');
         $data['uid']    = $uid;
@@ -129,17 +126,8 @@ class AccountController extends ActionController
             }
         }
 
-        /*
-        $user = array();
-        $user['name']       = $data['name'];
-        $user['identity']   = $data['identity'];
-        $user['id']         = $uid;
-        */
         $this->view()->assign(array(
             'form'      => $form,
-            //'groups'    => $groups,
-            //'cur_group' => 'account',
-            //'user'      => $user
         ));
 
         $this->view()->headTitle(__('Account settings'));
@@ -164,7 +152,7 @@ class AccountController extends ActionController
             'message' => __('Invalid data provided for email change.'),
         );
         $token   = _get('token');
-        $email   = _get('email');
+        //$email   = _get('email');
 
         $view = $this->view();
         $fallback = function () use ($view, $result) {
@@ -172,16 +160,15 @@ class AccountController extends ActionController
         };
 
         // Check link
-        if (!$token || !$email) {
+        if (!$token) {
             return $fallback();
         }
 
         // Get user data
         $userData = Pi::user()->data()->find(array(
-            'value'     => $token,
             'name'      => 'change-email',
+            'value'     => $token,
         ));
-        // Check user data
         if (!$userData) {
             return $fallback();
         }
@@ -193,6 +180,15 @@ class AccountController extends ActionController
                 return $fallback();
             }
         }
+
+        // Get user email data
+        $emailData = Pi::user()->data()->find(array(
+            'name'      => 'email-' . $token,
+        ));
+        if (!$emailData) {
+            return $fallback();
+        }
+        $email = $emailData['value'];
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid'], 'id');
@@ -210,6 +206,7 @@ class AccountController extends ActionController
             )
         );
         Pi::user()->data()->delete($userData['uid'], 'change-email');
+        Pi::user()->data()->delete($userData['uid'], 'email-' . $token);
         $args = array(
             'uid'       => $userData['uid'],
             'old_email' => $oldEmail,
@@ -260,7 +257,6 @@ class AccountController extends ActionController
         }
 
         return $result;
-
     }
 
     /**
@@ -322,6 +318,14 @@ class AccountController extends ActionController
             $uid,
             'change-email',
             $token
+        );
+        if (!$userData) {
+            return $result;
+        }
+        $userData = Pi::user()->data()->set(
+            $uid,
+            'email-' . $token,
+            $newEmail
         );
         if (!$userData) {
             return $result;

@@ -209,6 +209,7 @@ class PasswordController extends ActionController
         }
 
         $userData = Pi::user()->data()->find(array(
+            'name'  => 'find-password',
             'value' => $token
         ));
         if (!$userData) {
