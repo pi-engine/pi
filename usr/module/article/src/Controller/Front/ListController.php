@@ -64,7 +64,7 @@ class ListController extends ActionController
             );
             $order = 'st.visits DESC';
         } else {
-            $order = 'time_publish DESC';
+            $order = 'time_update DESC, time_publish DESC';
         }
         $select->order($order)->offset($offset)->limit($limit);
         
