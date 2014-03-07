@@ -29,7 +29,7 @@ class Event extends AbstractApi
         d("Called by {$this->module} through " . __METHOD__);
     }
 
-    public function moduleupdate($data, $module)
+    public function moduleupdate($data)
     {
         Pi::service('log')->log(
             "Called by {$this->module} through " . __METHOD__

@@ -29,6 +29,7 @@ class Update extends BasicUpdate
         $events = $this->events;
         $events->attach('update.pre', array($this, 'updateSchema'));
         $events->attach('update.post', array($this, 'updateLog'));
+        $events->attach('update.post', array($this, 'updateUserData'));
         parent::attachDefaultListeners();
 
         return $this;
@@ -49,6 +50,16 @@ class Update extends BasicUpdate
             'time'      => time(),
         );
         $model->insert($data);
+    }
+
+    /**
+     * Flush user data
+     *
+     * @param Event $e
+     */
+    public function updateUserData(Event $e)
+    {
+        Pi::user()->data()->gc();
     }
 
     /**

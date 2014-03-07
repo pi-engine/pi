@@ -433,6 +433,7 @@ CREATE TABLE `{core.user_data}` (
   `module`          varchar(64)     NOT NULL    default '',
   `name`            varchar(64)     NOT NULL,
   `time`            int(10)         unsigned    NOT NULL default '0',
+  `expire`          int(10)         unsigned    NOT NULL default '0',
   `value`           text            default NULL,
   `value_int`       int(10)         default NULL,
   `value_multi`     text            default NULL,

@@ -172,23 +172,12 @@ class AccountController extends ActionController
         if (!$userData) {
             return $fallback();
         }
-        // Check link expire time
-        $expire = $this->config('email_expiration');
-        if ($expire) {
-            $expire  = $userData['time'] + $expire * 3600;
-            if (time() > $expire) {
-                return $fallback();
-            }
-        }
 
         // Get user email data
-        $emailData = Pi::user()->data()->find(array(
-            'name'      => 'email-' . $token,
-        ));
-        if (!$emailData) {
+        $email = Pi::user()->data()->get($userData['uid'], 'email-' . $token);
+        if (!$email) {
             return $fallback();
         }
-        $email = $emailData['value'];
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid'], 'id');
@@ -317,7 +306,9 @@ class AccountController extends ActionController
         $userData = Pi::user()->data()->set(
             $uid,
             'change-email',
-            $token
+            $token,
+            'user',
+            $this->config('email_expiration') * 3600
         );
         if (!$userData) {
             return $result;
@@ -325,7 +316,9 @@ class AccountController extends ActionController
         $userData = Pi::user()->data()->set(
             $uid,
             'email-' . $token,
-            $newEmail
+            $newEmail,
+            'user',
+            $this->config('email_expiration') * 3600
         );
         if (!$userData) {
             return $result;
@@ -365,7 +358,9 @@ class AccountController extends ActionController
         Pi::user()->data()->set(
             $uid,
             'change-email-body',
-            $data['body']
+            $data['body'],
+            'user',
+            $this->config('email_expiration') * 3600
         );
 
         return $result;

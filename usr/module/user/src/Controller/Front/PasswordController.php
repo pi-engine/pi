@@ -129,7 +129,9 @@ class PasswordController extends ActionController
                 Pi::user()->data()->set(
                     $uid,
                     'find-password',
-                    $token
+                    $token,
+                    'user',
+                    $this->config('email_expiration') * 3600
                 );
 
                 // Send verify email
@@ -216,6 +218,7 @@ class PasswordController extends ActionController
             return $fallback();
         }
 
+        /*
         // Check link expire time
         $expire = $this->config('email_expiration');
         if ($expire) {
@@ -224,6 +227,7 @@ class PasswordController extends ActionController
                 return $fallback();
             }
         }
+        */
 
         $uid = (int) $userData['uid'];
         $userRow = $this->getModel('account')->find($uid, 'id');

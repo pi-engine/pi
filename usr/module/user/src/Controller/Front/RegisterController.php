@@ -178,17 +178,20 @@ class RegisterController extends ActionController
 
         // Search user data
         $userData = Pi::user()->data()->find(array(
-            'name'  => 'register_activation',
-            'value' => $token,
+            'module'    => 'user',
+            'name'      => 'register_activation',
+            'value'     => $token,
         ));
         if (!$userData) {
             return $fallback();
         }
+        /*
         // Check expiration
         $expiration  = $userData['time'] + $this->config('activation_expiration') * 3600;
         if (time() > $expiration) {
             return $fallback(__('Activation link is expired.'));
         }
+        */
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid']);
@@ -532,7 +535,8 @@ class RegisterController extends ActionController
                         $data['uid'],
                         'register_activation',
                         $token,
-                        $this->getModule()
+                        'user',
+                        $this->config('activation_expiration') * 3600
                     );
                     $url = Pi::url($this->url('', array(
                         'action' => 'activate',
