@@ -11,6 +11,7 @@ Jan 1st, 2014
 * Moved custom static to `asset/custom` folder for better deployment
 * Moved system abstract API classes to sub namespace `Api` located in `lib/Pi/Application/Api`
 * Added support for custom bootstrap and online custom bootstrap in themes
+* Added service of `string` for multi-byte string handling
 
 
 * Added config folders/files:
