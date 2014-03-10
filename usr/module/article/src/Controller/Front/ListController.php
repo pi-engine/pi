@@ -45,6 +45,9 @@ class ListController extends ActionController
                 $category = $modelCategory->slugToId($category);
             }
             $children = $modelCategory->getDescendantIds($category);
+            if (empty($children)) {
+                return $this->jumpTo404(__('Invalid category id'));
+            }
             $where['category'] = $children;
         }
         
