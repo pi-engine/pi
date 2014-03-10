@@ -31,6 +31,8 @@ class DateSelect extends AbstractFilter
             } else {
                 $date = '';
             }
+        } else {
+            $date = $value;
         }
 
         return $date;
