@@ -130,7 +130,7 @@ class Article extends Standard
                     2
                 );
                 $id   = is_numeric($uniqueVal) ? $uniqueVal : 0;
-                $slug = !is_numeric($uniqueVal) ? $uniqueVal : '';
+                $slug = !is_numeric($uniqueVal) ? $this->decode($uniqueVal) : '';
                 $controller = 'article';
                 $action     = 'detail';
             } elseif ('topic' == $urlParams[0]) {
@@ -213,7 +213,7 @@ class Article extends Standard
         ) {
             $url .= 'id'
                  . $this->keyValueDelimiter 
-                 . $mergedParams['slug'];
+                 . $this->encode($mergedParams['slug']);
             if (!isset($mergedParams['preview'])) {
                 unset($mergedParams['id']);
             }
