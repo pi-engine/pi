@@ -420,17 +420,21 @@ class IndexController extends ActionController
         if ($newIds) {
             $users  = Pi::service('user')->mget(
                 $newIds,
-                array('id', 'identity')
+                array('id', 'identity', 'email')
             );
             $model = Pi::model('user_account');
             foreach ($users as $uid => $user) {
                 $row = $model->find($uid);
                 if ($row) {
-                    $row->assign(array('identity' => $user['identity']));
+                    $row->assign(array(
+                        'identity' => $user['identity'],
+                        'email'    => $user['email'],
+                    ));
                 } else {
                     $row = $model->createRow(array(
                         'id'             => $uid,
                         'identity'       => $user['identity'],
+                        'email'          => $user['email'],
                         'active'         => 1,
                         //'time_activated' => time(),
                         //'time_created'   => time(),
