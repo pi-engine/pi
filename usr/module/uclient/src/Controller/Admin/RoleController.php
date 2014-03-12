@@ -235,6 +235,7 @@ class RoleController extends ActionController
             $row = $model->createRow(array(
                 'id'             => $uid,
                 'identity'       => $user->get('identity'),
+                'email'          => $user->get('email'),
                 'active'         => 1,
                 //'time_activated' => time(),
                 //'time_created'   => time(),
