@@ -5,8 +5,8 @@ $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
 $_this = $this;
-$width = $options['width'];
-$height = $options['height'];
+$width = empty($options['width']) ? 0 : $options['width'];
+$height = empty($options['height']) ? 0 : $options['height'];
 $render = function ($item) use ($_this, $width, $height)
 {
     $caption = $_this->escape($item['caption']);
