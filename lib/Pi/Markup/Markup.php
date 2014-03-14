@@ -187,7 +187,7 @@ class Markup
      */
     public static function render(
         $content,
-        $renderer,
+        $renderer = null,
         $parser = null,
         $options = array()
     ) {
