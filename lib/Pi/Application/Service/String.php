@@ -25,6 +25,8 @@ use Zend\Stdlib\StringWrapper\StringWrapperInterface;
  *  $findme = Pi::string()->strpos($text, 'in');
  *  $toGbk = Pi::string()->convert($text, 'gbk');
  *  $toUTF = Pi::string()->convert($text, 'utf-8', 'gbk');
+ *
+ *  $isUTF = Pi::string()->isValidUtf8($text);
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -131,6 +133,8 @@ class String extends AbstractService
         $wrapper = $this->getWrapper();
         if (is_callable(array($wrapper, $method))) {
             $result = call_user_func_array(array($wrapper, $method), $args);
+        } elseif (is_callable(array('Zend\Stdlib\StringUtils', $method))) {
+            $result = call_user_func_array(array('Zend\Stdlib\StringUtils', $method), $args);
         } else {
             $result = false;
         }
