@@ -19,6 +19,12 @@ use Pi\Setup\Wizard;
  */
 abstract class AbstractController
 {
+    /** Persistent data groups */
+    const PERSIST_ENGINE = 'engine-settings';
+    const PERSIST_HOST = 'host-settings';
+    const PERSIST_DB = 'db-settings';
+    const PERSIST_SITE = 'site-settings';
+
     protected $content = '';
     protected $headContent = '';
     protected $footContent = '';
@@ -34,7 +40,7 @@ abstract class AbstractController
         $this->wizard = $wizard;
         if ($this->hasBootstrap) {
 
-            $vars = $wizard->getPersist('paths');
+            $vars = $wizard->getPersist(static::PERSIST_HOST);
 
             // Physical path to host configuration file
             // For performance consideration it is recommended to be specified
@@ -62,9 +68,9 @@ abstract class AbstractController
             Pi::config()->set('charset', $charset);
 
             Pi::service('i18n')->setLocale($locale);
-            \setlocale(\LC_ALL, $locale);
-
+            setlocale(\LC_ALL, $locale);
         }
+
         $this->request = $wizard->getRequest();
         $this->init();
     }
@@ -72,6 +78,18 @@ abstract class AbstractController
     protected function init()
     {
         return;
+    }
+
+    public function setPersist($key, $value)
+    {
+        $this->wizard->setPersist($key, $value);
+
+        return $this;
+    }
+
+    public function getPersist($key)
+    {
+        return $this->wizard->getPersist($key);
     }
 
     public function headContent()

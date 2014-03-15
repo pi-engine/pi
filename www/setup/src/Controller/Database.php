@@ -25,7 +25,7 @@ class Database extends AbstractController
 
     public function init()
     {
-        $vars = $this->wizard->getPersist('db-settings');
+        $vars = $this->getPersist(static::PERSIST_DB);
         if (empty($vars)) {
             $vars = array(
                     'DB_HOST'       => 'localhost',
@@ -34,7 +34,7 @@ class Database extends AbstractController
                     'DB_DBNAME'     => 'pi',
                     'DB_PREFIX'     => 'p' . substr(md5(time()), 0, 3),
             );
-            $this->wizard->setPersist('db-settings', $vars);
+            $this->setPersist(static::PERSIST_DB, $vars);
         }
 
         $this->vars = $vars;
@@ -115,7 +115,7 @@ class Database extends AbstractController
         $var = $this->request->getParam('var');
         $val = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
-        $this->wizard->setPersist('db-settings', $this->vars);
+        $this->setPersist(static::PERSIST_DB, $this->vars);
 
         echo '1';
     }
@@ -126,7 +126,7 @@ class Database extends AbstractController
         foreach (array_keys($vars) as $name) {
             $vars[$name] = $this->request->getPost($name);
         }
-        $this->wizard->setPersist('db-settings', $vars);
+        $this->setPersist(static::PERSIST_DB, $vars);
         $params = $this->normalizeParameters($vars);
         $dbConfig = $this->wizard->getConfig('database');
         $params = array_merge($params, $dbConfig);

@@ -36,13 +36,13 @@ class Admin extends AbstractController
         }
         Pi::entity('db', Pi::service('database')->db());
 
-        $vars = $this->wizard->getPersist('siteconfig');
+        $vars = $this->getPersist(static::PERSIST_SITE);
         if (empty($vars)) {
             $vars['adminusername']  = 'admin';
             $vars['adminname']      = _s('PiAdmin');
             $vars['adminmail']      = '';
             $vars['adminpass']      = $vars['adminpass2'] = '';
-            $this->wizard->setPersist('siteconfig', $vars);
+            $this->setPersist(static::PERSIST_SITE, $vars);
         }
         $this->vars = $vars;
 
@@ -91,7 +91,7 @@ class Admin extends AbstractController
         $var = $this->request->getParam('var');
         $val = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
-        $this->wizard->setPersist('siteconfig', $this->vars);
+        $this->setPersist(static::PERSIST_SITE, $this->vars);
 
         echo 1;
     }
@@ -153,7 +153,7 @@ class Admin extends AbstractController
         $vars['adminpass'] = $this->request->getPost('adminpass');
         $vars['adminpass2'] = $this->request->getPost('adminpass2');
         $vars['adminname'] = $this->request->getPost('adminname');
-        $this->wizard->setPersist('siteconfig', $vars);
+        $this->setPersist(static::PERSIST_SITE, $vars);
 
         $error = array();
         if (empty($vars['adminusername'])) {
@@ -185,7 +185,7 @@ class Admin extends AbstractController
                 array('value' => $vars['adminname']),
                 array('name' => 'adminname')
             );
-            $config = $this->wizard->getPersist('engine-settings');
+            $config = $this->getPersist(static::PERSIST_ENGINE);
             if (!empty($config['sitename'])) {
                 $configModel->update(
                     array('value' => $config['sitename']),
@@ -324,7 +324,7 @@ class Admin extends AbstractController
     {
         $this->hasForm = true;
         $vars = $this->vars;
-        $this->wizard->setPersist('siteconfig', $vars);
+        $this->setPersist(static::PERSIST_SITE, $vars);
 
         $elementInfo = array(
             'adminmail'     => _s('Admin email'),

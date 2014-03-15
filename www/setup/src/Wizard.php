@@ -21,6 +21,9 @@ class Wizard
 {
     const BASE_NAMESPACE    = 'Pi\Setup';
     const DIR_CLASS         = 'src';
+    const PERSIST_LOCALE    = 'locale';
+    const PERSIST_CHARSET   = 'charset';
+
     protected static $root;
 
     protected $request;
@@ -119,7 +122,7 @@ class Wizard
     {
         if (empty($locale)) {
             // Load from persist
-            if ($locale = $this->persist()->get('locale')) {
+            if ($locale = $this->getPersist(static::PERSIST_LOCALE)) {
                 $this->locale = $locale;
             // Detect via browser
             } elseif (!$this->locale) {
@@ -154,9 +157,9 @@ class Wizard
             }
         } else {
             $this->locale = $locale;
-            $this->persist()->set('locale', $this->locale);
+            $this->setPersist(static::PERSIST_LOCALE, $this->locale);
         }
-        $this->charset = $this->persist()->get('charset') ?: $this->charset;
+        $this->charset = $this->getPersist(static::PERSIST_CHARSET) ?: $this->charset;
         Translator::setPath($this->getRoot() . '/locale');
         Translator::setLocale($this->locale);
         Translator::loadDomain('default');
@@ -167,7 +170,7 @@ class Wizard
         $languages = $this->getLanguages();
         if (isset($languages[$locale])) {
             $this->locale = $locale;
-            $this->persist()->set('locale', $this->locale);
+            $this->setPersist(static::PERSIST_LOCALE, $this->locale);
 
             return true;
         }
@@ -257,7 +260,7 @@ class Wizard
     public function setCharset($charset)
     {
         $this->charset = $charset;
-        $this->persist()->set('charset', $this->charset);
+        $this->setPersist(static::PERSIST_CHARSET, $this->charset);
     }
 
     public function getCharset()

@@ -30,7 +30,7 @@ class Finish extends AbstractController
     public function indexAction()
     {
         $wizard = $this->wizard;
-        $vars = $wizard->getPersist('paths');
+        $vars = $wizard->getPersist(static::PERSIST_HOST);
         $configs = array();
 
         // `www/boot.php`

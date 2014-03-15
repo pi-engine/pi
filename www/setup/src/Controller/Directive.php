@@ -82,20 +82,9 @@ class Directive extends AbstractController
     {
         $var = $this->request->getParam('var');
         $val = $this->request->getParam('val');
-        $vars = $this->wizard->getPersist('engine-settings');
+        $vars = $this->getPersist(static::PERSIST_ENGINE);
         $vars[$var] = $val;
-        $this->wizard->setPersist('engine-settings', $vars);
-
-        echo '1';
-    }
-
-    /**
-     * Save persistent data
-     */
-    public function persistAction()
-    {
-        $persist = $this->request->getParam('persist');
-        $this->wizard->setPersist('persist', $persist);
+        $this->setPersist(static::PERSIST_ENGINE, $vars);
 
         echo '1';
     }
@@ -105,7 +94,7 @@ class Directive extends AbstractController
      */
     public function pathAction()
     {
-        $this->host = new Host($this->wizard);
+        $this->host = new Host($this->wizard, static::PERSIST_HOST);
         $this->host->init();
 
         $path = $this->request->getParam('var');
@@ -127,7 +116,7 @@ class Directive extends AbstractController
      */
     public function messageAction()
     {
-        $this->host = new Host($this->wizard);
+        $this->host = new Host($this->wizard, static::PERSIST_HOST);
         $this->host->init();
 
         $path = $this->request->getParam('var');
@@ -159,25 +148,32 @@ class Directive extends AbstractController
     public function submitAction()
     {
         $wizard = $this->wizard;
-        $this->host = new Host($wizard);
+        $this->host = new Host($wizard, static::PERSIST_HOST);
         $this->host->init();
         $errorsSave = array();
         $errorsConfig = array();
         $configs = array();
 
-        $vars = $wizard->getPersist('paths');
+        $vars = $wizard->getPersist(static::PERSIST_HOST);
         $this->normalizeHost($vars);
-        $wizard->setPersist('paths', $vars);
+        $wizard->setPersist(static::PERSIST_HOST, $vars);
 
         // List of engine configs
-        $configEngine = (array) $wizard->getPersist('engine-settings');
+        $configEngine = (array) $wizard->getPersist(static::PERSIST_ENGINE);
         $configEngine = array_merge(array(
             'identifier'    => 'pi' . substr(md5($vars['www']['url']), 0, 4),
             'salt'          => md5(uniqid(mt_rand(), true)),
-            'storage'       => $wizard->getPersist('persist'),
-            'namespace'     => substr(md5($vars['www']['url']), 0, 4),
             'environment'   => '',
+            'storage'       => 'filesystem',
+            'namespace'     => substr(md5($vars['www']['url']), 0, 4),
         ), $configEngine);
+        $configMap = array();
+        array_walk($configEngine, function ($val, $var) use (&$configMap) {
+            if (null !== $val) {
+                $configMap['var'][] = '%' . $var . '%';
+                $configMap['val'][] = $val;
+            }
+        });
 
         // config/host.php
         $file = $vars['config']['path'] . '/host.php';
@@ -199,18 +195,24 @@ class Directive extends AbstractController
                 );
             }
         }
+        $content = str_replace($configMap['var'], $configMap['val'], $content);
+        /*
         foreach ($configEngine as $var => $val) {
             $content = str_replace('%' . $var . '%', $val, $content);
         }
+        */
         $configs[] = array('file' => $file, 'content' => $content);
 
         // config/engine.php
         $file = $vars['config']['path'] . '/engine.php';
         $file_dist = $wizard->getRoot() . '/dist/engine.php.dist';
         $content = file_get_contents($file_dist);
+        /*
         foreach ($configEngine as $var => $val) {
             $content = str_replace('%' . $var . '%', $val, $content);
         }
+        */
+        $content = str_replace($configMap['var'], $configMap['val'], $content);
         $configs[] = array('file' => $file, 'content' => $content);
 
         // Write content to files and record errors in case occurred
@@ -295,15 +297,15 @@ class Directive extends AbstractController
      */
     protected function loadEngineForm()
     {
-        $vars = (array) $this->wizard->getPersist('engine-settings');
+        $vars = (array) $this->getPersist(static::PERSIST_ENGINE);
         $vars = array_merge(array(
             'identifier'    => 'pi' . substr(md5(mt_rand()), 0, 4),
             'sitename'      => 'Pi Engine',
             'slogan'        => _s('Power your web and mobile applications.'),
         ), $vars);
 
-        $this->wizard->setPersist('engine-settings', $vars);
-        $vars = $this->wizard->getPersist('engine-settings');
+        $this->setPersist(static::PERSIST_ENGINE, $vars);
+        $vars = $this->getPersist(static::PERSIST_ENGINE);
 
         // Title and description for each item
         $engineInfo = array(
@@ -389,7 +391,8 @@ SCRIPT;
      */
     protected function loadPersistForm()
     {
-        $persist = $this->wizard->getPersist('persist');
+        $vars = (array) $this->getPersist(static::PERSIST_ENGINE);
+        $persist = empty($vars['storage']) ? '' : $vars['storage'];
         $config = $this->wizard->getConfig('extension');
         $content = '';
 
@@ -401,7 +404,7 @@ SCRIPT;
         } else {
             $checkedString = 'disabled';
         }
-        $content .= '<label class="radio"><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="storage"'
                   . ' value="apc" ' . $checkedString . ' />'
                   . $config['apc']['title'] . '</label>'
                   . '<p class="caption">' . $config['apc']['message']
@@ -411,7 +414,7 @@ SCRIPT;
             $persist = $persist ?: 'redis';
             //$valid = true;
             $checkedString = ($persist == 'redis') ? 'checked' : '';
-            $content .= '<label class="radio"><input type="radio" name="persist"'
+            $content .= '<label class="radio"><input type="radio" name="storage"'
                       . ' value="redis" ' . $checkedString . ' />'
                       . $config['redis']['title'] . '</label>'
                       . '<p class="caption">' . $config['redis']['message']
@@ -425,7 +428,7 @@ SCRIPT;
         } else {
             $checkedString = ' disabled';
         }
-        $content .= '<label class="radio"><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="storage"'
                   . ' value="memcached" ' . $checkedString . ' />'
                   . $config['memcached']['title'] . '</label>'
                   . '<p class="caption">' . $config['memcached']['message']
@@ -438,14 +441,14 @@ SCRIPT;
         } else {
             $checkedString = ' disabled';
         }
-        $content .= '<label class="radio"><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="storage"'
                   . ' value="memcache" ' . $checkedString . ' />'
                   . $config['memcache']['title'] . '</label>'
                   . '<p class="caption">' . $config['memcache']['message']
                   . '</p>';
 
         $checkedString = ($persist == 'filesystem') ? 'checked' : '';
-        $content .= '<label class="radio"><input type="radio" name="persist"'
+        $content .= '<label class="radio"><input type="radio" name="storage"'
                   . ' value="filesystem" ' . $checkedString . ' />'
                   . _s('File system') . '</label>'
                   . '<p class="caption">'
@@ -465,10 +468,10 @@ SCRIPT;
 
         $this->footContent .=<<<SCRIPT
 <script type='text/javascript'>
-$('input[name=persist]').click(function() {
+$('input[name=storage]').click(function() {
     $.ajax({
         url: '$_SERVER[PHP_SELF]',
-        data: {page: 'directive', persist: $(this).val(), action: 'persist'},
+        data: {page: 'directive', var: 'storage', val: $(this).val(), action: 'engine'},
     });
 });
 
@@ -479,8 +482,8 @@ $('#persist-label').click(function() {
 </script>
 SCRIPT;
 
-        $persist = $persist ?: 'filesystem';
-        $this->wizard->setPersist('persist', $persist);
+        $vars['storage'] = $persist ?: 'filesystem';
+        $this->setPersist(static::PERSIST_ENGINE, $vars);
     }
 
     /**
@@ -493,7 +496,7 @@ SCRIPT;
      */
     protected function loadHostForm()
     {
-        $this->host = new Host($this->wizard);
+        $this->host = new Host($this->wizard, static::PERSIST_HOST);
         $this->host->init(true);
 
         // Title and description for each item
