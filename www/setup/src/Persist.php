@@ -106,9 +106,8 @@ class Persist
                         }
                         break;
                     case 'destroy':
-                        if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
-                            unset($_SESSION[static::PERSIST_IDENTIFIER]);
-                        }
+                        session_destroy();
+                        session_regenerate_id();
                         break;
                 }
                 break;

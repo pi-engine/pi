@@ -333,11 +333,11 @@ class Admin extends AbstractController
             'adminpass'     => _s('Admin password'),
             'adminpass2'    => _s('Confirm password'),
         );
-        $displayItem = function ($item) use ($vars, $elementInfo) {
+        $displayItem = function ($item, $type = 'text') use ($vars, $elementInfo) {
             $content = '<div class="item">'
                      . '<label for="' . $item . '">' . $elementInfo[$item]
                      . '</label><p class="caption"></p>'
-                     . '<input type="text" name="' . $item . '" id="'
+                     . '<input type="' . $type . '" name="' . $item . '" id="'
                      . $item . '" value="' . $vars[$item] . '" />'
                      . '<em id="' . $item . '-status" class="">&nbsp;</em>'
                      . '<p id="' . $item . '-message" class="alert alert-danger">&nbsp;'
