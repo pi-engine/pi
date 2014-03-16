@@ -88,9 +88,9 @@ class Database extends AbstractController
     {
         try {
             $this->connection();
-            $result = 1;
+            $result = '1';
         } catch (\Exception $e) {
-            $result = 0;
+            $result = '0';
         }
 
         echo $result;
@@ -156,7 +156,6 @@ class Database extends AbstractController
                 $error = $e->getMessage();
             }
         }
-        $content = '';
         if ($error) {
             $this->status = -1;
             $content = '<div class="alert alert-danger">'

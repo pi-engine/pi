@@ -17,7 +17,6 @@ if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
 }
 
-
 $wizard = new Setup\Wizard();
 try {
     $wizard->init();

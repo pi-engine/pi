@@ -17,7 +17,7 @@ namespace Pi\Setup;
 class Persist
 {
     /** @var string Identifier for container */
-    const PERSIST_IDENTIFIER = 'PI-SETUP.tmp';
+    const PERSIST_IDENTIFIER = 'PI-SETUP-TMP';
 
     /** @var string Storage for persistent data */
     protected $storage = 'session'; //or 'file';
@@ -26,7 +26,7 @@ class Persist
     protected $tmpDir;
 
     /** @var array Container for persistent data */
-    protected $container = array();
+    protected static $container;
 
     /**
      * Constructor
@@ -47,12 +47,11 @@ class Persist
      *
      * @param string     $method
      * @param array|null $data
-     * @param bool       $flag
      *
      * @throws \Exception
      * @return mixed
      */
-    protected function storage($method, $data = null, $flag = true)
+    protected function storage($method, $data = null)
     {
         $result = null;
         $_this = $this;
@@ -66,11 +65,15 @@ class Persist
                     case 'load':
                         $file = $fileLookup();
                         if (file_exists($file)) {
-                            $content    = file_get_contents($file);
-                            $result     = json_decode($content, true);
+                            $content = file_get_contents($file);
+                            if ($content) {
+                                $result = (array) json_decode($content, true);
+                            }
                         } else {
                             $result = array();
                         }
+                        break;
+                    case 'set':
                         break;
                     case 'save':
                         $file = $fileLookup();
@@ -79,10 +82,7 @@ class Persist
                     case 'destroy':
                         $file = $fileLookup();
                         if (file_exists($file)) {
-                            $status = @unlink($file);
-                            if (!$status) {
-                                throw new \Exception('Temp persistent data file was not destroyed: ' . $file);
-                            }
+                            file_put_contents($file, '');
                         }
                         break;
                 }
@@ -93,21 +93,24 @@ class Persist
                 switch ($method) {
                     case 'load':
                         session_start();
-                        if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
-                            $result = $_SESSION[static::PERSIST_IDENTIFIER];
-                        } else {
-                            $result = array();
-                        }
+                        $result = empty($_SESSION) ? array() : (array) $_SESSION;
+                        session_write_close();
                         break;
                     case 'save':
-                        $_SESSION[static::PERSIST_IDENTIFIER] = $data;
-                        if ($flag) {
-                            session_write_close();
+                        session_start();
+                        $_SESSION = $data;
+                        session_write_close();
+                        break;
+                    case 'set':
+                        if (isset($_SESSION)) {
+                            $_SESSION = $data;
                         }
                         break;
                     case 'destroy':
-                        session_destroy();
-                        session_regenerate_id();
+                        session_start();
+                        $_SESSION = null;
+                        session_regenerate_id(true);
+                        session_write_close();
                         break;
                 }
                 break;
@@ -121,19 +124,18 @@ class Persist
      */
     public function load()
     {
-        $this->container = $this->storage('load');
+        static::$container = $this->storage('load');
     }
 
     /**
      * Save container to storage
-     *
-     * @param array $container
-     * @param bool $flag
      */
-    public function save($container = null, $flag = true)
+    public function save()
     {
-        $data = (null === $container) ? $this->container : $container;
-        $this->storage('save', $data, $flag);
+        if (null === static::$container) {
+            throw new \Exception('Persist not initialized');
+        }
+        $this->storage('save', static::$container);
 
         return;
     }
@@ -145,7 +147,7 @@ class Persist
      */
     public function destroy()
     {
-        $this->container = array();
+        static::$container = null;
         $this->storage('destroy');
 
         return true;
@@ -154,17 +156,26 @@ class Persist
     /**
      * Set a param
      *
-     * @param string $key
-     * @param mixed $value
+     * @param string|array $key
+     * @param mixed  $value
      *
+     * @throws \Exception
      * @return $this
      */
-    public function set($key, $value)
+    public function set($key, $value = null)
     {
-        if (!is_array($this->container)) {
-            $this->container = array();
+        if (null === static::$container) {
+            throw new \Exception('Persist not initialized');
         }
-        $this->container[$key] = $value;
+        if (!$key) {
+            throw new \Exception('Missing parameter name');
+        }
+        if (is_array($key)) {
+            static::$container = $key;
+        } else {
+            static::$container[$key] = $value;
+        }
+        $this->storage('set', static::$container);
 
         return $this;
     }
@@ -174,11 +185,21 @@ class Persist
      *
      * @param string $key
      *
+     * @throws \Exception
      * @return mixed
      */
-    public function get($key)
+    public function get($key = '')
     {
-        return isset($this->container[$key]) ? $this->container[$key] : null;
+        if (null === static::$container) {
+            throw new \Exception('Persist not initialized');
+        }
+        if (!$key) {
+            $result = static::$container;
+        } else {
+            $result = isset(static::$container[$key]) ? static::$container[$key] : null;
+        }
+
+        return $result;
     }
 
     /**
