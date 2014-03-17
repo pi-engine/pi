@@ -348,12 +348,21 @@ class Wizard
                . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
         $desc = $currentPage['desc'];
 
+        $previousUrl = $nextUrl = '';
+        // For non-first page
         if ($pageIndex > 0) {
             $previousUrl = $this->url('-1', array('r' => 1));
         }
+        // For non-last page
         if ($status > -1 && $pageIndex < count($pages) - 1) {
             $nextUrl = $this->url('+1');
         }
+
+        // For finish page explicitly
+        if ($pageIndex == count($pages) - 1) {
+            $currentPage['url'] = $previousUrl = $nextUrl = '';
+        }
+
         $pageHasForm = $this->controller->hasForm();
         $headContent = $this->controller->headContent();
         $footContent = $this->controller->footContent();
