@@ -4,10 +4,12 @@
     <meta charset="<?php echo $data['charset']; ?>" />
     <title><?php echo $data['title']; ?></title>
     <meta name='generator' content='Pi Engine' />
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-    <link rel="stylesheet" href="./asset/css/bootstrap.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+
+    <link rel="stylesheet" href="../public/vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="./asset/css/style.css" />
     <script src="./asset/js/jquery.min.js"></script>
+
     <?php
         if (!empty($data['headContent'])) {
             echo $data['headContent'];

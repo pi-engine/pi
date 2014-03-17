@@ -387,7 +387,7 @@ class Admin extends AbstractController
 STYLE;
 
         $this->footContent .=<<<SCRIPT
-<script type='text/javascript'>
+<script>
 var url='$_SERVER[PHP_SELF]';
 $(document).ready(function(){
     $('input[type=text]').each(function(index) {

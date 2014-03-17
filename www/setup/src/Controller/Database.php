@@ -283,7 +283,7 @@ class Database extends AbstractController
 STYLE;
 
         $this->footContent .=<<<SCRIPT
-<script type="text/javascript">
+<script>
 var url="$_SERVER[PHP_SELF]";
 $(document).ready(function(){
     $("input[type=text], input[type=password]").each(function(index) {

@@ -28,51 +28,12 @@ class Directive extends AbstractController
 
     protected $host;
 
-    public function init()
-    {
-        //@set_time_limit(0);
-    }
-
-    protected function loadForm()
+    public function indexAction()
     {
         $this->hasForm = true;
         $this->loadEngineForm();
         $this->loadHostForm();
         $this->loadPersistForm();
-    }
-
-    /**
-     * Normalize specified paths
-     * @param array $vars
-     */
-    protected function normalizeHost(&$vars)
-    {
-        $vars['module']['path'] = !empty($vars['module']['path'])
-            ? $vars['module']['path']
-            : $vars['usr']['path'] . '/' . static::DIR_MODULE;
-        $vars['custom']['path'] = !empty($vars['custom']['path'])
-            ? $vars['custom']['path']
-            : $vars['usr']['path'] . '/' . static::DIR_CUSTOM;
-        $vars['theme']['path']  = !empty($vars['theme']['path'])
-            ? $vars['theme']['path']
-            : $vars['usr']['path'] . '/' . static::DIR_THEME;
-        $vars['config']['path'] = !empty($vars['config']['path'])
-            ? $vars['config']['path']
-            : $vars['var']['path'] . '/' . static::DIR_CONFIG;
-        $vars['cache']['path']  = !empty($vars['cache']['path'])
-            ? $vars['cache']['path']
-            : $vars['var']['path'] . '/' . static::DIR_CACHE;
-        $vars['log']['path']    = !empty($vars['log']['path'])
-            ? $vars['log']['path']
-            : $vars['var']['path'] . '/' . static::DIR_LOG;
-        $vars['vendor']['path'] = !empty($vars['vendor']['path'])
-            ? $vars['vendor']['path']
-            : $vars['lib']['path'] . '/' . static::DIR_VENDOR;
-    }
-
-    public function indexAction()
-    {
-        $this->loadForm();
     }
 
     /**
@@ -293,6 +254,35 @@ class Directive extends AbstractController
     }
 
     /**
+     * Normalize specified paths
+     * @param array $vars
+     */
+    protected function normalizeHost(&$vars)
+    {
+        $vars['module']['path'] = !empty($vars['module']['path'])
+            ? $vars['module']['path']
+            : $vars['usr']['path'] . '/' . static::DIR_MODULE;
+        $vars['custom']['path'] = !empty($vars['custom']['path'])
+            ? $vars['custom']['path']
+            : $vars['usr']['path'] . '/' . static::DIR_CUSTOM;
+        $vars['theme']['path']  = !empty($vars['theme']['path'])
+            ? $vars['theme']['path']
+            : $vars['usr']['path'] . '/' . static::DIR_THEME;
+        $vars['config']['path'] = !empty($vars['config']['path'])
+            ? $vars['config']['path']
+            : $vars['var']['path'] . '/' . static::DIR_CONFIG;
+        $vars['cache']['path']  = !empty($vars['cache']['path'])
+            ? $vars['cache']['path']
+            : $vars['var']['path'] . '/' . static::DIR_CACHE;
+        $vars['log']['path']    = !empty($vars['log']['path'])
+            ? $vars['log']['path']
+            : $vars['var']['path'] . '/' . static::DIR_LOG;
+        $vars['vendor']['path'] = !empty($vars['vendor']['path'])
+            ? $vars['vendor']['path']
+            : $vars['lib']['path'] . '/' . static::DIR_VENDOR;
+    }
+
+    /**
      * Creates form for engine settings
      */
     protected function loadEngineForm()
@@ -363,7 +353,7 @@ HTML;
 SCRIPT;
         // Add JavaScript to bottom of HTML content
         $this->footContent .=<<<SCRIPT
-<script type='text/javascript'>
+<script>
 $(document).ready(function(){
     // Check if path available, URI accessible
     $('#advanced-engine input[type=text]').each(function(index) {
@@ -467,7 +457,7 @@ SCRIPT;
         $this->content .= $content;
 
         $this->footContent .=<<<SCRIPT
-<script type='text/javascript'>
+<script>
 $('input[name=storage]').click(function() {
     $.ajax({
         url: '$_SERVER[PHP_SELF]',
@@ -556,7 +546,7 @@ HTML;
             return $content;
         };
 
-        $status = $statusBasic = $statusAdvanced = '';
+        $status = $statusBasic = $statusAdvanced = 'loading';
         $content = '';
 
         // pth of www
@@ -576,10 +566,10 @@ HTML;
 HTML;
 
         // Assemble basic section which is composed of www path and URI
-        $contentBasic = '<h3 class="section"><span id="path-basic-label"'
-                     . ' class="' . $statusBasic . '">'
+        $contentBasic = '<h3 class="section"><span id="path-basic-label" class="' . $statusBasic . '">'
                      . _s('Basic settings')
-                     . '</span><a href="javascript:void(0);"'
+                     . '</span>'
+                     . '<a href="javascript:void(0);"'
                      . ' id="path-basic-toggle"><span>[+]</span>'
                      . '<span style="display: none;">[-]</span></a></h3>'
                      . '<p class="caption">'
@@ -592,7 +582,6 @@ HTML;
         // Advanced item elements
         $itemList = array(
             'path_lib', 'path_var', 'path_usr',
-            //'path_asset', 'url_asset',
             'path_upload', 'url_upload', 'path_static', 'url_static'
         );
         foreach ($itemList as $item) {
@@ -601,9 +590,7 @@ HTML;
 
         // Assemble advanced section by including the advanced items
         $contentAdvanced = '<h3 class="section">'
-                         . '<span id="path-advanced-label" class="'
-                         . $statusAdvanced
-                         . '">' . _s('Advanced settings') . '</span>'
+                         . '<span id="path-advanced-label" class="' . $statusAdvanced . '">' . _s('Advanced settings') . '</span>'
                          . '<a href="javascript:void(0);"'
                          . ' id="path-advanced-toggle">'
                          . '<span>[+]</span><span style="display: none;">[-]'
@@ -615,13 +602,13 @@ HTML;
                          . $content . '</div>';
 
         // Assemble content by combining basic and advanced sections
-        $content = '<h2><span id="paths-label" class="' . $status . '">'
-                 . _s('Path settings') . '</span>'
+        $content = '<h2>'
+                 . '<span id="paths-label" class="' . $status . '">' . _s('Path settings') . '</span>'
                  . '<a href="javascript:void(0);" id="paths-toggle">'
                  . '<span>[+]</span><span style="display: none;">[-]</span>'
-                 . '</a></h2><p class="caption">'
-                 . _s('Path and URL settings')
-                 . '</p>'
+                 . '</a>'
+                 . '</h2>'
+                 . '<p class="caption">' . _s('Path and URL settings') . '</p>'
                  . '<div class="install-form advanced-form item-container"'
                  . ' id="paths">' . $contentBasic . $contentAdvanced
                  . '</div>';
@@ -639,7 +626,7 @@ HTML;
     }
 </style>
 
-<script type='text/javascript'>
+<script>
 function update(id) {
     verifyPath(id);
     checkPath(id);
@@ -669,6 +656,9 @@ function checkPath(id) {
         }
     }
 
+    // Set parents status to 'loading'
+    triggerParentsIndicator(id, 'loading');
+
     var url='$_SERVER[PHP_SELF]';
     // Display messages
     $.get(url,
@@ -679,7 +669,7 @@ function checkPath(id) {
         } else {
             $('#'+id+'-message').html(data);
             $('#'+id+'-message').css('display', 'block');
-            triggerParents(id);
+            triggerParentsToggle(id);
         }
     });
 
@@ -692,17 +682,47 @@ function checkPath(id) {
         }
         if (data == -1) {
             statusClass = 'failure';
-            triggerParents(id);
+            triggerParentsToggle(id);
         }
         $('#'+id+'-status').attr('class', statusClass);
+        triggerParentsIndicator(id, statusClass);
     });
 }
 
-// Change parent element status in case necessary
-function triggerParents(id) {
+// Change parent element toggle in case necessary
+function triggerParentsToggle(id) {
     $('#' + id).parents('.item-container').each(function(index) {
         $(this).slideDown();
         $('#' + $(this).attr('id') + '-toggle span').css('display', 'none').next().css('display', 'inline');
+    });
+}
+
+// Update parent element indicator: loading, success, failure, warning
+function triggerParentsIndicator(id, status) {
+    $('#' + id).parents('.item-container').each(function(index) {
+        $(this).data(id, status);
+        //alert(JSON.stringify($(this).data(), null, 4));
+
+        var statusClass = 'success';
+        if (status == 'loading') {
+            statusClass = 'loading';
+        } else {
+            $.each($(this).data(), function (index, value) {
+                if (value == 'loading') {
+                    statusClass = 'loading';
+                    return false;
+                }
+                if (value == 'failure') {
+                    statusClass = 'failure';
+                    return false;
+                }
+                if (value == 'warning') {
+                    statusClass = 'warning';
+                    return false;
+                }
+            });
+        }
+        $('#' + $(this).attr('id') + '-label').attr("class", statusClass);
     });
 }
 
@@ -720,12 +740,13 @@ function urlIsAbsolute(path) {
     return false;
 }
 
+
 </script>
 SCRIPT;
 
         // Add JavaScript to bottom of HTML content
         $this->footContent .=<<<SCRIPT
-<script type='text/javascript'>
+<script>
 $(document).ready(function(){
     // Check if path available, URI accessible
     $('#paths input[type=text][name!=url_www]').each(function(index) {
