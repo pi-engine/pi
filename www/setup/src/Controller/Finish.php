@@ -22,11 +22,6 @@ class Finish extends AbstractController
 {
     protected $hasBootstrap = true;
 
-    public function init()
-    {
-        //$this->wizard->destroyPersist();
-    }
-
     public function indexAction()
     {
         $wizard = $this->wizard;
@@ -59,7 +54,7 @@ class Finish extends AbstractController
         $content = file_get_contents($file_dist);
         $configs[] = array('file' => $file, 'content' => $content);
 
-        // Write content to files and record errors in case occured
+        // Write content to files and record errors in case occurred
         foreach ($configs as $config) {
             //$error = false;
             if (!$file = fopen($config['file'], 'w')) {
@@ -85,7 +80,7 @@ class Finish extends AbstractController
                         RecursiveIteratorIterator::CHILD_FIRST
                     );
                     foreach ($objects as $object) {
-                        @chmod($file, 0644);
+                        @chmod($object, 0644);
                     }
                 }
             }
@@ -93,21 +88,21 @@ class Finish extends AbstractController
         $readPaths .= '</ul>';
 
         $messagePattern =<<<EOT
-<div class="well">
+<div class="well alert alert-success">
 <h3>%s</h3>
 <p>%s <a href="../index.php?redirect=0">%s</a></p>
+
+<h3>%s</h3>
+<p>%s</p>
 </div>
-<div class="well">
+
+<div class="well alert alert-warning">
 <h3>%s</h3>
 <p>%s</p>
 <ol>
     <li>%s</li>
     <li>%s%s</li>
 </ol>
-</div>
-<div class="well">
-<h3>%s</h3>
-<p>%s</p>
 </div>
 
 EOT;
@@ -116,13 +111,13 @@ EOT;
             _s('Congratulations!'),
             _s('The system is set up successfully.'),
             _s('Click to visit your website!'),
+            _s('Support'),
+            _s('Visit <a href="http://pialog.org/" rel="external">Pi Engine Development Site</a> in case you need any help.'),
             _s('Security advisory'),
             _s('For security considerations please make sure the following operations are done:'),
             _s('Remove the installation folder <strong>{www}/setup/</strong> from your server manually.'),
             _s('Set configuration directories and files to readonly: '),
-            $readPaths,
-            _s('Support'),
-            _s('Visit <a href="http://pialog.org/" rel="external">Pi Engine Development Site</a> in case you need any help.')
+            $readPaths
         );
 
         $path = Pi::path('cache');
@@ -136,7 +131,9 @@ EOT;
             }
         }
 
+        // Clear setup persistent data
         $this->wizard->destroyPersist();
+        // Clear system persistent data
         Pi::persist()->flush();
     }
 }

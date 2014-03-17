@@ -40,7 +40,7 @@ class Admin extends AbstractController
         if (empty($vars)) {
             $vars['adminusername']  = 'admin';
             $vars['adminname']      = _s('PiAdmin');
-            $vars['adminmail']      = '';
+            $vars['adminmail']      = isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : '';
             $vars['adminpass']      = $vars['adminpass2'] = '';
             $this->setPersist(static::PERSIST_SITE, $vars);
         }

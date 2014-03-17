@@ -84,7 +84,7 @@ class Host
     /**
      * Initialize path information
      *
-     * @param bool $initPath Wether initialize path URI based on config data
+     * @param bool $initPath Whether initialize path URI based on config data
      * @return void
      */
     public function init($initPath = false)
@@ -147,7 +147,7 @@ class Host
                         }
                     }
                     $this->paths[$key]['url'] = $init;
-                    if (0 <= $this->checkUrl($key)) break;
+                    //if (0 <= $this->checkUrl($key)) break;
                 }
             }
 
