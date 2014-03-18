@@ -13,6 +13,7 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\ResendActivationForm;
 use Module\User\Form\ResendActivationFilter;
+use Module\User\Api\Profile;
 
 /**
  * Register controller
@@ -630,12 +631,21 @@ class RegisterController extends ActionController
         
         $uid = $uid ?: Pi::service('user')->getId();
         $file = sprintf(
-            '%s/module/%s/config/profile-complete-rule.php',
+            '%s/module/%s/config/%s.php',
             Pi::path('custom'),
-            $this->getModule()
+            $this->getModule(),
+            Profile::RULE_FILE
         );
         if (!file_exists($file)) {
-            return $result;
+            $file = sprintf(
+                '%s/%s/config/%s.php',
+                Pi::path('module'),
+                $this->getModule(),
+                Profile::RULE_FILE
+            );
+            if (!file_exists($file)) {
+                return $result;
+            }
         }
         $data = include $file;
         
