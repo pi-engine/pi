@@ -85,18 +85,21 @@ class Form extends AbstractApi
         $config     = $this->loadConfig($name);
         $meta       = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
-            if (!$value) {
+            if (!$value || empty($value['element'])) {
                 if (isset($meta[$name]) &&
                     $meta[$name]['type'] == 'compound'
                 ) {
-                    $compoundElements = $this->getCompoundElement($name);
+                    if (is_array($value)) {
+                        $fields = $value;
+                    }
+                    $compoundElements = $this->getCompoundElement($name, $fields);
                     foreach ($compoundElements as $element) {
                         if ($element) {
                             $elements[] = $element;
                         }
                     }
                     if ($withFilter) {
-                        $compoundFilters = $this->getCompoundFilter($name);
+                        $compoundFilters = $this->getCompoundFilter($name, $fields);
                         foreach ($compoundFilters as $filter) {
                             if ($filter) {
                                 $filters[] = $filter;
@@ -355,8 +358,14 @@ class Form extends AbstractApi
         $result = array();
         $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
-            if (isset($elements[$field])) {
-                $result = $this->canonizeFilter($elements[$field]);
+            $fields = (array) $field;
+            foreach ($fields as $name) {
+                if (isset($elements[$name])) {
+                    $result[$name] = $this->canonizeFilter($elements[$name]);
+                }
+            }
+            if (is_scalar($field)) {
+                $result = $result[$field];
             }
         } else {
             foreach ($elements as $key => $element) {
