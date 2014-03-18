@@ -44,7 +44,7 @@ angular.module('system')
       return imports;
     }
 
-    //Conver less to css
+    //Convert less to css
     function lessParseCss(str) {
       var parser = new less.Parser;
       var css;
@@ -76,6 +76,7 @@ angular.module('system')
     }
 
     var urlRoot = config.urlRoot;
+    var themeName = config.data.name;
     var custom;
 
     if (!angular.isObject(config.data.custom)) {
@@ -135,7 +136,7 @@ angular.module('system')
         var customLess = this.generateCustomLess(custom);
 
         //In process of compile
-        $rootScope.alert = { status: 2, message: config.t.Compiling };
+        $rootScope.alert = { status: 2, message: config.t.COMPILING };
         getLess('bootstrap.less').success(function(res) {
           var imports = includedLessFilenames(res);
           var length = imports.length;
@@ -154,7 +155,8 @@ angular.module('system')
 
             $http.post(urlRoot + 'compile', {
               less: lessResult,
-              custom: custom
+              custom: custom,
+              name: themeName
             });
           }
 
@@ -170,7 +172,9 @@ angular.module('system')
     
       },
       reset: function() {
-        return $http.post(urlRoot + 'reset');
+        return $http.post(urlRoot + 'reset', {
+          name: themeName
+        });
       }
     }
   }
@@ -193,9 +197,9 @@ angular.module('system')
     }
 
     $scope.resetAction = function() {
-      /*admin.reset().success(function() {
+      admin.reset().success(function() {
 
-      });*/
+      });
     }
   }
 ]);

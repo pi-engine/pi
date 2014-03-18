@@ -209,9 +209,7 @@ SCRIPT;
         $content .= '</div>';
         $this->content .= $content;
 
-        $this->footContent .= '<script type="text/javascript">'
-                            . PHP_EOL
-                            . '$(function() {';
+        $this->footContent .= '<script>' . PHP_EOL . '$(function() {';
         if ($this->status < 0) {
             $this->footContent .= '
                 $("#advanced-form").slideToggle();

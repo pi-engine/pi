@@ -30,7 +30,7 @@ class Captcha extends ZendCaptcha
     public function getCaptcha()
     {
         if (!$this->captcha instanceof CaptchaAdapter) {
-            $captcha = Pi::service('captcha')->load();
+            $captcha = Pi::captcha()->load();
             $this->setCaptcha($captcha);
         }
 

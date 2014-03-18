@@ -107,7 +107,28 @@ class Api extends AbstractApi
 
             $pattern = '\\' . implode('\\', $delimiters);
             // Split string into terms by delimiters: whitespace, comma, line break
-            $tags = preg_split('#[' . $pattern . ']+#', $string, 0, PREG_SPLIT_NO_EMPTY);
+            $tags = null;
+            // Split with mbstring functions
+            if (extension_loaded('mbstring')) {
+                $encoding = Pi::config('charset');
+                $encodingRegex = mb_regex_encoding();
+                if (mb_regex_encoding($encoding)) {
+                    $encodingInternal = mb_internal_encoding();
+                    if (mb_internal_encoding($encoding)) {
+                        $tags = mb_split('[' . $pattern . ']', $string);
+                        if ($encodingInternal != $encoding) {
+                            mb_internal_encoding($encodingInternal);
+                        }
+                    }
+                    if ($encodingRegex != $encoding) {
+                        mb_regex_encoding($encodingRegex);
+                    }
+                }
+            }
+            // No multi-byte string functions available
+            if (null === $tags) {
+                $tags = preg_split('#[' . $pattern . ']+#', $string, 0, PREG_SPLIT_NO_EMPTY);
+            }
 
             // Collect
             $tags = array_merge($terms, $tags);

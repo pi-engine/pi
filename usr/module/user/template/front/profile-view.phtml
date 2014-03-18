@@ -1,9 +1,9 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
 ?>
-<?php include '_user-media.phtml'; ?>
+<?php include '_user-topbar.phtml'; ?>
 <div class="user-min-body">
-    <?php foreach ($profile_group as $group) {?>
+    <?php foreach ($groups as $group) {?>
         <div class="clearfix user-legend">
             <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
             <div class="user-legend-linea"></div>
@@ -11,13 +11,13 @@ $this->css($this->assetModule('front/front.css'));
         <?php if ($group['fields']) { ?>
             <div class="user-field">
                 <?php
-                foreach ($group['fields'] as $key => $field) {
+                foreach ($group['fields'] as $set => $fields) {
                     echo '<dl class="dl-horizontal user-field-dl">';
-                    foreach ($field as $value) {
+                    foreach ($fields as $field) {
                         echo sprintf(
                             '<dt>%s<dd>%s',
-                            $value['title'],
-                            $value['value'] ? _escape($value['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
+                            $field['title'],
+                            $field['value'] ? _escape($field['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
                         );
                     }
                     echo '</dl>';
@@ -26,14 +26,7 @@ $this->css($this->assetModule('front/front.css'));
             </div>
         <?php } else { ?>
         <div class="well text-center">
-            <?php 
-            echo sprintf(
-                '%s %s %s',
-                _escape($user['name']),
-                __('does not have any'),
-                $group['title']
-            );
-            ?>
+            <?php _e('No data available.'); ?>
         </div>
         <?php } ?>
     <?php } ?>

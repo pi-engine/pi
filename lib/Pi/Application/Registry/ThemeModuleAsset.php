@@ -31,7 +31,7 @@ class ThemeModuleAsset extends AbstractRegistry
         $files = array();
         $appendVersion = isset($options['v']) ? $options['v'] : null;
         $theme = $options['theme'];
-        $type = $options['type'];
+        //$type = $options['type'];
         //$path = Pi::service('asset')->getSourcePath('theme/' . $theme . '/', $type) . '/module';
         $path = Pi::path('theme/' . $theme . '/module');
         $component = 'theme/' . $theme . '/module';

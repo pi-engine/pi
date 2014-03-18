@@ -16,8 +16,8 @@ namespace Pi\Setup;
  */
 class Persist
 {
-    /** @var string Identifier for conatiner */
-    const PERSIST_IDENTIFIER = 'PI-SETUP.tmp';
+    /** @var string Identifier for container */
+    const PERSIST_IDENTIFIER = 'PI-SETUP-TMP';
 
     /** @var string Storage for persistent data */
     protected $storage = 'session'; //or 'file';
@@ -26,14 +26,29 @@ class Persist
     protected $tmpDir;
 
     /** @var array Container for persistent data */
-    protected $container = array();
+    protected static $container;
+
+    /**
+     * Constructor
+     *
+     * @param string $storage
+     * @param string $dir
+     */
+    public function __construct($storage = '', $dir = '')
+    {
+        $this->storage  = $storage ?: 'session';
+        if ($dir) {
+            $this->setTmpDir($dir);
+        }
+    }
 
     /**
      * Storage methods
      *
-     * @param string $method
+     * @param string     $method
      * @param array|null $data
      *
+     * @throws \Exception
      * @return mixed
      */
     protected function storage($method, $data = null)
@@ -51,21 +66,23 @@ class Persist
                         $file = $fileLookup();
                         if (file_exists($file)) {
                             $content = file_get_contents($file);
-                            $result = json_decode($content, true);
+                            if ($content) {
+                                $result = (array) json_decode($content, true);
+                            }
                         } else {
                             $result = array();
                         }
                         break;
+                    case 'set':
+                        break;
                     case 'save':
                         $file = $fileLookup();
-                        if ($file) {
-                            file_put_contents($file, json_encode($data));
-                        }
+                        file_put_contents($file, json_encode($data));
                         break;
                     case 'destroy':
                         $file = $fileLookup();
-                        if ($file) {
-                            @unlink($file);
+                        if (file_exists($file)) {
+                            file_put_contents($file, '');
                         }
                         break;
                 }
@@ -76,20 +93,24 @@ class Persist
                 switch ($method) {
                     case 'load':
                         session_start();
-                        if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
-                            $result = $_SESSION[static::PERSIST_IDENTIFIER];
-                        } else {
-                            $result = array();
-                        }
-                        break;
-                    case 'save':
-                        $_SESSION[static::PERSIST_IDENTIFIER] = $data;
+                        $result = empty($_SESSION) ? array() : (array) $_SESSION;
                         session_write_close();
                         break;
-                    case 'destroy':
-                        if (isset($_SESSION[static::PERSIST_IDENTIFIER])) {
-                            unset($_SESSION[static::PERSIST_IDENTIFIER]);
+                    case 'save':
+                        session_start();
+                        $_SESSION = $data;
+                        session_write_close();
+                        break;
+                    case 'set':
+                        if (isset($_SESSION)) {
+                            $_SESSION = $data;
                         }
+                        break;
+                    case 'destroy':
+                        session_start();
+                        $_SESSION = null;
+                        session_regenerate_id(true);
+                        session_write_close();
                         break;
                 }
                 break;
@@ -103,18 +124,18 @@ class Persist
      */
     public function load()
     {
-        $this->container = $this->storage('load');
+        static::$container = $this->storage('load');
     }
 
     /**
      * Save container to storage
-     *
-     * @param array $container
      */
-    public function save($container = null)
+    public function save()
     {
-        $data = (null === $container) ? $this->container : $container;
-        $this->storage('save', $data);
+        if (null === static::$container) {
+            throw new \Exception('Persist not initialized');
+        }
+        $this->storage('save', static::$container);
 
         return;
     }
@@ -126,7 +147,7 @@ class Persist
      */
     public function destroy()
     {
-        $this->container = array();
+        static::$container = null;
         $this->storage('destroy');
 
         return true;
@@ -135,14 +156,26 @@ class Persist
     /**
      * Set a param
      *
-     * @param string $key
-     * @param mixed $value
+     * @param string|array $key
+     * @param mixed  $value
      *
+     * @throws \Exception
      * @return $this
      */
-    public function set($key, $value)
+    public function set($key, $value = null)
     {
-        $this->container[$key] = $value;
+        if (null === static::$container) {
+            throw new \Exception('Persist not initialized');
+        }
+        if (!$key) {
+            throw new \Exception('Missing parameter name');
+        }
+        if (is_array($key)) {
+            static::$container = $key;
+        } else {
+            static::$container[$key] = $value;
+        }
+        $this->storage('set', static::$container);
 
         return $this;
     }
@@ -152,11 +185,21 @@ class Persist
      *
      * @param string $key
      *
+     * @throws \Exception
      * @return mixed
      */
-    public function get($key)
+    public function get($key = '')
     {
-        return isset($this->container[$key]) ? $this->container[$key] : null;
+        if (null === static::$container) {
+            throw new \Exception('Persist not initialized');
+        }
+        if (!$key) {
+            $result = static::$container;
+        } else {
+            $result = isset(static::$container[$key]) ? static::$container[$key] : null;
+        }
+
+        return $result;
     }
 
     /**
@@ -164,10 +207,14 @@ class Persist
      *
      * @param string $tmpDir
      *
+     * @throws \Exception
      * @return $this
      */
     public function setTmpDir($tmpDir)
     {
+        if (!is_writable($tmpDir)) {
+            throw new \Exception('`tmp` directory is not writable.');
+        }
         $this->tmpDir = $tmpDir;
 
         return $this;
@@ -180,7 +227,7 @@ class Persist
      * @return string
      * @see \Zend\File\Transfer\Adapter\AbstractAdapter::getTmpDir
      */
-    protected function getTmpDir()
+    public function getTmpDir()
     {
         if (null === $this->tmpDir) {
             $tmpdir = array();

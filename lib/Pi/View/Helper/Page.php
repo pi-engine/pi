@@ -26,6 +26,9 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  *  // Display `about-us` link with customized hover title
  *  echo $this->page('about-us', __('About us),, array('target' => '_blank', 'title' => __('About the team')));
+ *
+ *  // Display `about-us` link with customized hover title and display blocks assigned to `corporate` type pages
+ *  echo $this->page('about-us', __('About us),, array('target' => '_blank', 'title' => __('About the team'), 'type' => 'corporate'));
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -47,9 +50,18 @@ class Page extends AbstractHtmlElement
         if (!isset($attributes['title'])) {
             $attributes['title'] = $title;
         }
+        $type = '';
+        if (isset($attributes['type'])) {
+            $type = $attributes['type'];
+            unset($attributes['type']);
+        }
         $attribs    = $this->htmlAttribs($attributes);
         try {
-            $href   = $this->view->url('page-page', array('name' => $name));
+            $params = array('name' => $name);
+            if ($type) {
+                $params['type'] = $type;
+            }
+            $href   = $this->view->url('page-page', $params);
         } catch (\Exception $e) {
             $href   = '#';
         }

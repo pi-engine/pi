@@ -35,14 +35,21 @@ class Page extends Standard
     {
         $name = '';
         if ($path) {
-            if (false !== ($pos = strpos($this->paramDelimiter, $path))) {
+            if (false !== ($pos = strpos($path, $this->paramDelimiter))) {
                 list($name, $path) = explode($this->paramDelimiter, $path, 2);
+                d($path);
             } else {
                 $name = $path;
                 $path = '';
             }
         }
-        $matches = parent::parse($path);
+        $params  = $path
+            ? explode($this->paramDelimiter,
+                trim($path, $this->paramDelimiter))
+            : array();
+        $params = parent::parseParams($params);
+        $matches = array_merge($this->defaults, $params);
+
         // Set id or name
         if (is_numeric($name)) {
             $matches['id'] = (int) $name;

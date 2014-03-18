@@ -42,11 +42,7 @@ class FormCaptcha extends AbstractHelper
     }
 
     /**
-     * Render the captcha
-     *
-     * @param  ElementInterface $element
-     * @param  array $options
-     * @return string
+     * {@inheritDoc}
      */
     public function render(ElementInterface $element, $options = array())
     {
@@ -60,9 +56,8 @@ class FormCaptcha extends AbstractHelper
             ));
         }
 
-        $helper  = $captcha->getHelperName();
-
-        $renderer = $this->getView();
+        $helper     = $captcha->getHelperName();
+        $renderer   = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
             throw new \DomainException(sprintf(
                 '%s requires that the renderer implements plugin();'

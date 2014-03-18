@@ -1,7 +1,8 @@
 Pi Engine Changelog
 
+
 Pi 2.4.0
-Jan 1st, 2014
+March 8th, 2014
 ============
 * Refactored API calls to be compatible with registry and model calls: changed `Pi::api(<module>)` and `Pi::api(<module>, <api>)` to `Pi::api(<api>, <module>)`
 * Added built-in support for module custom with build metadata versioning
@@ -11,7 +12,8 @@ Jan 1st, 2014
 * Moved custom static to `asset/custom` folder for better deployment
 * Moved system abstract API classes to sub namespace `Api` located in `lib/Pi/Application/Api`
 * Added support for custom bootstrap and online custom bootstrap in themes
-
+* Added service of `string` for multi-byte string handling
+* Upgraded Zend Framework to 2.2.6 final
 
 * Added config folders/files:
   - var/config/event.listener.php
@@ -20,6 +22,7 @@ Jan 1st, 2014
   - var/config/engine.php
   - var/config/host.php
   - var/config/hosts.php
+
 
 Pi 2.3.0
 Dec 3rd, 2013

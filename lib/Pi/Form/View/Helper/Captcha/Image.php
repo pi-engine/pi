@@ -13,6 +13,7 @@ namespace Pi\Form\View\Helper\Captcha;
 use Zend\Form\View\Helper\Captcha\Image as ZendHelperCaptchaImage;
 use Zend\Captcha\Image as CaptchaAdapter;
 use Zend\Form\ElementInterface;
+use Zend\Form\Exception;
 
 /**
  * CAPTCHA image helper
@@ -23,10 +24,7 @@ use Zend\Form\ElementInterface;
 class Image extends ZendHelperCaptchaImage
 {
     /**
-     * Render the captcha
-     *
-     * @param  ElementInterface $element
-     * @return string
+     * {@inheritDoc}
      */
     public function render(ElementInterface $element)
     {
@@ -40,29 +38,32 @@ class Image extends ZendHelperCaptchaImage
             ));
         }
 
+        // Generates ID, but NOT word and image
         $captcha->generate();
 
+        // Generates URL to access image, and image won't be generated until the URL is accessed
         $imgSrc = $captcha->getImgUrl() . '?id=' . $captcha->getId();
+
         $imgAttributes = array(
             'width'  => $captcha->getWidth(),
             'height' => $captcha->getHeight(),
-            'alt'    => $captcha->getImgAlt(),
-            //'src'    => $captcha->getImgUrl() . $captcha->getId()
-            //. $captcha->getSuffix(),
+            //'alt'    => $captcha->getImgAlt(),
+            //'src'    => $captcha->getImgUrl() . $captcha->getId() . $captcha->getSuffix(),
 
-            'src'    => $imgSrc,
-            // For "click to refresh":
-            // <img src="$src"
-            //  onclick="this.src='$src&refresh='+Math.random()">
+            'src'       => $imgSrc,
             'onclick'   => sprintf(
                 'this.src=\'%s&refresh=\'+Math.random()',
                 $imgSrc
             ),
             'style'     => 'cursor: pointer; vertical-align: middle;',
+            'alt'       => __('CAPTCHA image'),
+            'title'     => __('Click to refresh CAPTCHA'),
         );
 
         if ($element->hasAttribute('id')) {
             $imgAttributes['id'] = $element->getAttribute('id') . '-image';
+        } else {
+            $imgAttributes['id'] = $captcha->getId() . '-image';
         }
 
         $closingBracket = $this->getInlineClosingBracket();

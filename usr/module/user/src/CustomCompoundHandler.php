@@ -9,18 +9,10 @@
 
 namespace Module\User;
 
-use Pi;
-use Pi\Application\Installer\SqlSchema;
-use Pi\Db\Table\AbstractTableGateway;
-use Pi\Form\Form;
-use Zend\Form\Element;
-use Zend\InputFilter\InputFilter;
+use Module\User\Field\CustomCompoundHandler as PiCustomCompoundHandler;
 
 /**
- * Abstract class for custom compound handling
- *
- * {@inheritDoc}
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @deprecated
  */
-abstract class CustomCompoundHandler extends AbstractCustomHandler
+abstract class CustomCompoundHandler extends PiCustomCompoundHandler
 {}

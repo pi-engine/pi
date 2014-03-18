@@ -85,18 +85,21 @@ class Form extends AbstractApi
         $config     = $this->loadConfig($name);
         $meta       = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
-            if (!$value) {
+            if (!$value || empty($value['element'])) {
                 if (isset($meta[$name]) &&
                     $meta[$name]['type'] == 'compound'
                 ) {
-                    $compoundElements = $this->getCompoundElement($name);
+                    if (is_array($value)) {
+                        $fields = $value;
+                    }
+                    $compoundElements = $this->getCompoundElement($name, $fields);
                     foreach ($compoundElements as $element) {
                         if ($element) {
                             $elements[] = $element;
                         }
                     }
                     if ($withFilter) {
-                        $compoundFilters = $this->getCompoundFilter($name);
+                        $compoundFilters = $this->getCompoundFilter($name, $fields);
                         foreach ($compoundFilters as $filter) {
                             if ($filter) {
                                 $filters[] = $filter;
@@ -241,6 +244,13 @@ class Form extends AbstractApi
             $element['attributes'] = $data['edit']['attributes'];
         }
 
+        if (isset($data['is_required'])) {
+            $element['attributes']['required']= $data['is_required'];
+        }
+        if (!empty($element['type']) && 'multi_checkbox' == $element['type']) {
+            $element['attributes']['required']= 0;
+        }
+
         return $element;
     }
 
@@ -253,24 +263,22 @@ class Form extends AbstractApi
     protected function canonizeFilter($data)
     {
         $result = array();
-        if (isset($data['edit']['filters']) ||
-            isset($data['edit']['validators']) ||
-            isset($data['edit']['required'])
-        ) {
-            $result = array(
-                'name'  => $data['name'],
-            );
-            if (isset($data['edit']['required'])) {
-                $result['required'] = $data['edit']['required'];
-            }
-        }
-
-
-        if (isset($data['edit']['filters'])) {
+        if (!empty($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];
         }
-        if (isset($data['edit']['validators'])) {
+        if (!empty($data['edit']['validators'])) {
             $result['validators'] = $data['edit']['validators'];
+        }
+        if (!empty($data['is_required'])) {
+            $result['required']= $data['is_required'];
+        }
+        if (!empty($data['edit']['element']['type'])
+            && 'multi_checkbox' == $data['edit']['element']['type']
+        ) {
+            $result['required']= empty($data['is_required']) ? 0 : 1;
+        }
+        if ($result) {
+            $result['name'] = $data['name'];
         }
 
         return $result;
@@ -350,8 +358,14 @@ class Form extends AbstractApi
         $result = array();
         $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
-            if (isset($elements[$field])) {
-                $result = $this->canonizeFilter($elements[$field]);
+            $fields = (array) $field;
+            foreach ($fields as $name) {
+                if (isset($elements[$name])) {
+                    $result[$name] = $this->canonizeFilter($elements[$name]);
+                }
+            }
+            if (is_scalar($field)) {
+                $result = $result[$field];
             }
         } else {
             foreach ($elements as $key => $element) {

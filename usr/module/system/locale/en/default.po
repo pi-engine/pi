@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-02-22 12:26+0800\n"
-"PO-Revision-Date: 2014-02-22 12:26+0800\n"
+"POT-Creation-Date: 2014-03-03 13:18+0800\n"
+"PO-Revision-Date: 2014-03-03 13:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr ""
 msgid "Bootstrap compiled successfully."
 msgstr "主题更新成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:378
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:377
 #, fuzzy
 msgid "Bootstrap reset successfully."
 msgstr "主题更新成功。"
@@ -138,32 +138,6 @@ msgstr ""
 msgid "You logged out successfully."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:53
-#, fuzzy
-msgid "Password changed successfully."
-msgstr "主题更新成功。"
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:58
-msgid "Password not changed."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:61
-msgid "Invalid data, please check and re-submit."
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:68
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:47
-msgid "Change password"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController-bak.php:82
-#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:51
-#: c:\Code\pi\usr\module\system/template/front/login.phtml:14
-#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:2
-#: c:\Code\pi\usr\module\system/template/front/register.phtml:9
-msgid "Find password"
-msgstr ""
-
 #: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
 #, fuzzy
 msgid "Find password failed."
@@ -182,6 +156,10 @@ msgstr ""
 #, fuzzy
 msgid "Password reset successfully."
 msgstr "主题更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:47
+msgid "Change password"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
 #: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:63
@@ -376,6 +354,13 @@ msgstr ""
 msgid "Please type the word"
 msgstr ""
 
+#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:51
+#: c:\Code\pi\usr\module\system/template/front/login.phtml:14
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:2
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:9
+msgid "Find password"
+msgstr ""
+
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:70
 #: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:64
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:84
@@ -526,8 +511,20 @@ msgid "Password is more than %max% characters long"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
-#: c:\Code\pi\usr\module\system/template/component/form.phtml:68
+#: c:\Code\pi\usr\module\system/template/component/form.phtml:77
 msgid "Cancel"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/theme-customize.phtml:19
+msgid "In process of compiling"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/theme-customize.phtml:20
+msgid "Compile"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/template/admin/theme-customize.phtml:21
+msgid "Rebuild"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:32
@@ -578,19 +575,19 @@ msgstr ""
 msgid "Reset password"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:7
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:8
 msgid "Try to find password again"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:12
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:13
 msgid "Congratulations!"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:13
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:14
 msgid "Your new password has worked"
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:14
+#: c:\Code\pi\usr\module\system/template/front/password-process.phtml:16
 msgid "Please login"
 msgstr ""
 
@@ -602,15 +599,19 @@ msgstr ""
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:10
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:11
 #, fuzzy
 msgid "login"
 msgstr "登录"
 
-#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:11
+#: c:\Code\pi\usr\module\system/template/front/register-success.phtml:12
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr ""
+
+#, fuzzy
+#~ msgid "Password changed successfully."
+#~ msgstr "主题更新成功。"
 
 #, fuzzy
 #~ msgid "time"

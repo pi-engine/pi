@@ -697,7 +697,20 @@ abstract class AbstractUser extends AbstractApi
                 break;
 
             case 'register':
-                $params = (array) $var;
+                $options = array();
+                if (is_string($var)) {
+                    $params = array(
+                        'redirect' => $var,
+                    );
+                } else {
+                    $params = (array) $var;
+                }
+                if (isset($params['redirect'])) {
+                    $options['query']['redirect'] = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'register';
                 }
@@ -705,7 +718,7 @@ abstract class AbstractUser extends AbstractApi
                     $route = $params['route'];
                     unset($params['route']);
                 }
-                $url = Pi::service('url')->assemble($route, $params);
+                $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
             case 'password':

@@ -73,15 +73,22 @@ class PasswordController extends ActionController
         }
 
         // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
-        $user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
+        //$groups = Pi::api('group', 'user')->getList();
+        //$user   = Pi::api('user', 'user')->get($uid, array('uid', 'name'));
 
         $this->view()->assign(array(
             'form'      => $form,
-            'groups'    => $groups,
-            'cur_group' => 'password',
-            'user'      => $user,
+            //'groups'    => $groups,
+            //'cur_group' => 'password',
+            //'user'      => $user,
         ));
+
+        $this->view()->headTitle(__('Change password'));
+        $this->view()->headdescription(__('To ensure your account security, complex password is required.'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
@@ -122,7 +129,9 @@ class PasswordController extends ActionController
                 Pi::user()->data()->set(
                     $uid,
                     'find-password',
-                    $token
+                    $token,
+                    'user',
+                    $this->config('email_expiration') * 3600
                 );
 
                 // Send verify email
@@ -135,8 +144,8 @@ class PasswordController extends ActionController
                 $link = Pi::url($url, true);
 
                 $params = array(
-                    'username'              => $userRow->identity,
-                    'find_password_link'    => $link,
+                    'username'          => $userRow->identity,
+                    'find_password_url' => $link,
                     'expiration'        => $this->config('email_expiration'),
                 );
 
@@ -171,6 +180,13 @@ class PasswordController extends ActionController
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('password-find');
+
+        $this->view()->headTitle(__('Find password'));
+        $this->view()->headdescription(__('Find password'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
@@ -195,12 +211,14 @@ class PasswordController extends ActionController
         }
 
         $userData = Pi::user()->data()->find(array(
+            'name'  => 'find-password',
             'value' => $token
         ));
         if (!$userData) {
             return $fallback();
         }
 
+        /*
         // Check link expire time
         $expire = $this->config('email_expiration');
         if ($expire) {
@@ -209,6 +227,7 @@ class PasswordController extends ActionController
                 return $fallback();
             }
         }
+        */
 
         $uid = (int) $userData['uid'];
         $userRow = $this->getModel('account')->find($uid, 'id');

@@ -10,8 +10,9 @@
 
 namespace Pi\Form\View\Helper;
 
-use IntlDateFormatter;
-use Zend\Form\View\Helper\FormDateSelect as ZendFormElement;
+use Pi;
+//use IntlDateFormatter;
+use Zend\Form\View\Helper\FormDateSelect as ZendFormDateSelect;
 use Zend\Form\ElementInterface;
 
 /**
@@ -20,7 +21,7 @@ use Zend\Form\ElementInterface;
  * {@inheritDoc}
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class FormDateSelect extends ZendFormElement
+class FormDateSelect extends ZendFormDateSelect
 {
     /**
      * Constructor
@@ -33,19 +34,12 @@ class FormDateSelect extends ZendFormElement
             return;
         }
 
-        $this->dateType = 'Y-m-d';
+        $this->dateType = Pi::config('date_format'); //'Y-m-d';
         $this->pattern = '';
     }
 
     /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface $element
-     * @param  string|int|null  $dateType
-     * @param  null|string      $locale
-     * @return FormDateSelect
+     * {@inheritDoc}
      */
     public function __invoke(ElementInterface $element = null, $dateType = null, $locale = null)
     {
@@ -59,7 +53,9 @@ class FormDateSelect extends ZendFormElement
         }
         */
 
-        $this->setDateType($dateType);
+        if ($dateType) {
+            $this->setDateType($dateType);
+        }
 
         if ($locale !== null) {
             $this->setLocale($locale);
@@ -67,11 +63,58 @@ class FormDateSelect extends ZendFormElement
 
         return $this->render($element);
     }
+
     /**
-     * Parse the pattern
-     *
-     * @param  bool $renderDelimiters
-     * @return array
+     * {@inheritDoc}
+     */
+    public function render(ElementInterface $element)
+    {
+        $dateFormat = $element->getOption('date_format');
+        if ($dateFormat) {
+            $this->setDateType($dateFormat);
+        }
+
+        //$name = $element->getName();
+
+        $selectHelper = $this->getSelectElementHelper();
+        $pattern      = $this->parsePattern($element->shouldRenderDelimiters());
+
+        $daysOptions   = $this->getDaysOptions($pattern['day']);
+        $monthsOptions = $this->getMonthsOptions($pattern['month']);
+        $yearOptions   = $this->getYearsOptions($element->getMinYear(), $element->getMaxYear());
+
+        $dayElement   = $element->getDayElement()->setValueOptions($daysOptions);
+        $monthElement = $element->getMonthElement()->setValueOptions($monthsOptions);
+        $yearElement  = $element->getYearElement()->setValueOptions($yearOptions);
+
+        if ($element->shouldCreateEmptyOption()) {
+            $dayElement->setEmptyOption(__('Day'));
+            $yearElement->setEmptyOption(__('Year'));
+            $monthElement->setEmptyOption(__('Month'));
+        }
+
+        $data = array();
+        $data[$pattern['day']]   = $selectHelper->render($dayElement);
+        $data[$pattern['month']] = $selectHelper->render($monthElement);
+        $data[$pattern['year']]  = $selectHelper->render($yearElement);
+
+        $markup = '';
+        foreach ($pattern as $key => $value) {
+            // Delimiter
+            if (is_numeric($key)) {
+                $markup .= $value;
+            } else {
+                $markup .= $data[$value];
+            }
+        }
+
+        return $markup;
+
+        //return parent::render($element);
+    }
+
+    /**
+     * {@inheritDoc}
      */
     protected function parsePattern($renderDelimiters = true)
     {
@@ -81,20 +124,31 @@ class FormDateSelect extends ZendFormElement
         }
         */
 
-        $result = array(
-            'year'  => 'year',
-            'month' => 'month',
-            'day'   => 'day',
+        $result = array();
+        $patternMap = array(
+            'y' => 'year',
+            'm' => 'month',
+            'd' => 'day',
         );
+        preg_match_all('/(y+|m+|d+)/i', $this->dateType, $matches);
+        if ($matches) {
+            foreach ($matches[1] as $pattern) {
+                $result[$patternMap[strtolower($pattern[0])]] = $pattern;
+            }
+        }
+        if (!$result) {
+            $result = array(
+                'year'  => 'Y',
+                'month' => 'm',
+                'day'   => 'd',
+            );
+        }
 
         return $result;
     }
 
     /**
-     * Set date formatter
-     *
-     * @param  int $dateType
-     * @return FormDateSelect
+     * {@inheritDoc}
      */
     public function setDateType($dateType)
     {
@@ -110,10 +164,18 @@ class FormDateSelect extends ZendFormElement
     }
 
     /**
-     * Create a key => value options for months
-     *
-     * @param string $pattern Pattern to use for months
-     * @return array
+     * {@inheritDoc}
+     */
+    protected function getYearsOptions($minYear, $maxYear)
+    {
+        $result = parent::getYearsOptions($minYear, $maxYear);
+        //$result = array('' => __('Year')) + $result;
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     protected function getMonthsOptions($pattern)
     {
@@ -123,19 +185,23 @@ class FormDateSelect extends ZendFormElement
         }
         */
 
-        $result = array();
+        $result = array(
+            //'' => __('Month'),
+        );
         for ($month = 1; $month <= 12; $month++) {
-            $result[$month] = str_pad($month, 2, '0', STR_PAD_LEFT);
+            if ($pattern) {
+                $time = mktime(0, 0, 0, $month, 1, 1970);
+                $result[$month] = date($pattern, $time);
+            } else {
+                $result[$month] = str_pad($month, 2, '0', STR_PAD_LEFT);
+            }
         }
 
         return $result;
     }
 
     /**
-     * Create a key => value options for days
-     *
-     * @param  string $pattern Pattern to use for days
-     * @return array
+     * {@inheritDoc}
      */
     protected function getDaysOptions($pattern)
     {
@@ -145,9 +211,16 @@ class FormDateSelect extends ZendFormElement
         }
         */
 
-        $result = array();
+        $result = array(
+            //'' => __('Day'),
+        );
         for ($day = 1; $day <= 31; $day++) {
-            $result[$day] = str_pad($day, 2, '0', STR_PAD_LEFT);
+            if ($pattern) {
+                $time = mktime(0, 0, 0, 1, $day, 1970);
+                $result[$day] = date($pattern, $time);
+            } else {
+                $result[$day] = str_pad($day, 2, '0', STR_PAD_LEFT);
+            }
         }
 
         return $result;

@@ -40,9 +40,6 @@ class AccountController extends ActionController
             array('identity', 'email', 'name')
         );
 
-        // Get side nav items
-        $groups = Pi::api('group', 'user')->getList();
-
         // Generate form
         $form           = new AccountForm('account');
         $data['uid']    = $uid;
@@ -129,16 +126,16 @@ class AccountController extends ActionController
             }
         }
 
-        $user['name']       = $data['name'];
-        $user['identity']   = $data['identity'];
-        $user['id']         = $uid;
-
         $this->view()->assign(array(
             'form'      => $form,
-            'groups'    => $groups,
-            'cur_group' => 'account',
-            'user'      => $user
         ));
+
+        $this->view()->headTitle(__('Account settings'));
+        $this->view()->headdescription(__('Basic settings'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
@@ -155,7 +152,7 @@ class AccountController extends ActionController
             'message' => __('Invalid data provided for email change.'),
         );
         $token   = _get('token');
-        $email   = _get('email');
+        //$email   = _get('email');
 
         $view = $this->view();
         $fallback = function () use ($view, $result) {
@@ -163,26 +160,23 @@ class AccountController extends ActionController
         };
 
         // Check link
-        if (!$token || !$email) {
+        if (!$token) {
             return $fallback();
         }
 
         // Get user data
         $userData = Pi::user()->data()->find(array(
-            'value'     => $token,
             'name'      => 'change-email',
+            'value'     => $token,
         ));
-        // Check user data
         if (!$userData) {
             return $fallback();
         }
-        // Check link expire time
-        $expire = $this->config('email_expiration');
-        if ($expire) {
-            $expire  = $userData['time'] + $expire * 3600;
-            if (time() > $expire) {
-                return $fallback();
-            }
+
+        // Get user email data
+        $email = Pi::user()->data()->get($userData['uid'], 'email-' . $token);
+        if (!$email) {
+            return $fallback();
         }
 
         // Check uid
@@ -201,6 +195,7 @@ class AccountController extends ActionController
             )
         );
         Pi::user()->data()->delete($userData['uid'], 'change-email');
+        Pi::user()->data()->delete($userData['uid'], 'email-' . $token);
         $args = array(
             'uid'       => $userData['uid'],
             'old_email' => $oldEmail,
@@ -251,7 +246,6 @@ class AccountController extends ActionController
         }
 
         return $result;
-
     }
 
     /**
@@ -312,7 +306,19 @@ class AccountController extends ActionController
         $userData = Pi::user()->data()->set(
             $uid,
             'change-email',
-            $token
+            $token,
+            'user',
+            $this->config('email_expiration') * 3600
+        );
+        if (!$userData) {
+            return $result;
+        }
+        $userData = Pi::user()->data()->set(
+            $uid,
+            'email-' . $token,
+            $newEmail,
+            'user',
+            $this->config('email_expiration') * 3600
         );
         if (!$userData) {
             return $result;
@@ -320,16 +326,15 @@ class AccountController extends ActionController
 
         // Send verify email
         $url = $this->url('', array(
-                'action'    => 'reset.email',
-                'token'     => $token,
-                'email'     => $newEmail,
-            )
-        );
+            'action'    => 'reset.email',
+            'token'     => $token,
+            'email'     => $newEmail,
+        ));
         $link = Pi::url($url, true);
 
         $params = array(
             'username'          => $username,
-            'change_email_link' => $link,
+            'change_email_url'  => $link,
             'new_email'         => $newEmail,
             'old_email'         => $curEmail,
             'expiration'        => $this->config('email_expiration'),
@@ -353,7 +358,9 @@ class AccountController extends ActionController
         Pi::user()->data()->set(
             $uid,
             'change-email-body',
-            $data['body']
+            $data['body'],
+            'user',
+            $this->config('email_expiration') * 3600
         );
 
         return $result;

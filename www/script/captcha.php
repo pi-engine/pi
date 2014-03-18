@@ -23,13 +23,14 @@ Pi::service('log')->mute();
 Pi::engine()->bootResource('session');
 
 // Retrieve id generated CAPTCHA
-$id = htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');
+$id = empty($_GET['id']) ? '' : htmlspecialchars($_GET['id'], ENT_QUOTES, 'UTF-8');
 $image = null;
 if (!empty($id)) {
-    // Load CAPTCA adapter
-    $captcha = Pi::service('captcha')->load();
+    // Load CAPTCHA adapter
+    $captcha = Pi::captcha()->load();
+    $refresh = empty($_GET['refresh']) ? false : true;
     // Generate CAPTCHA image
-    $image = $captcha->createImage($id);
+    $image = $captcha->createImage($id, $refresh);
     // Close session
     //session_write_close();
     //Pi::service('session')->manager()->writeClose();

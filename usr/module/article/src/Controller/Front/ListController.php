@@ -45,6 +45,9 @@ class ListController extends ActionController
                 $category = $modelCategory->slugToId($category);
             }
             $children = $modelCategory->getDescendantIds($category);
+            if (empty($children)) {
+                return $this->jumpTo404(__('Invalid category id'));
+            }
             $where['category'] = $children;
         }
         
@@ -64,7 +67,7 @@ class ListController extends ActionController
             );
             $order = 'st.visits DESC';
         } else {
-            $order = 'time_publish DESC';
+            $order = 'time_update DESC, time_publish DESC';
         }
         $select->order($order)->offset($offset)->limit($limit);
         
@@ -121,7 +124,6 @@ class ListController extends ActionController
             ),
         ));
 
-        $module = $this->getModule();
         $config = Pi::config('', $module);
         
         // Get category nav

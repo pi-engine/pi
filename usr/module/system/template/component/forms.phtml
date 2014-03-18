@@ -117,3 +117,16 @@ echo sprintf(
     );
 echo $this->form()->closeTag();
 ?>
+
+<script>
+    $('[required="required"]').each(function() {
+        var $this = $(this);
+        var group = $this.parents('.form-group');
+        var star = '<i class="text-danger" style="margin-right: 5px;">*</i>';
+
+        if (!group.find('i.text-danger').length) {
+            group.find('.control-label')
+                .prepend(star);
+        }
+    });
+</script>

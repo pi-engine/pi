@@ -5,16 +5,30 @@ $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
 $_this = $this;
-$width = $options['width'];
-$height = $options['height'];
+$width = empty($options['width']) ? 0 : $options['width'];
+$height = empty($options['height']) ? 0 : $options['height'];
 $render = function ($item) use ($_this, $width, $height)
 {
     $caption = $_this->escape($item['caption']);
     $description = $_this->escape($item['desc']);
-    $image = sprintf('<img src="%s" style="%s%s">',
+    
+    $width = $width ? 'width: '  . $width  . 'px;' : '';
+    $height = $height ? 'height: '  . $height . 'px;' : '';
+
+    if (empty($width) && empty($height)) {
+        $image = sprintf('<img src="%s" alt="%s" />',
                       $item['image'],
-                      $width ? 'width: '  . $width  . 'px;' : '',
-                      $height ? 'height: '  . $height . 'px;' : '');
+                      $caption
+                      );
+    } else {
+        $image = sprintf('<img src="%s" alt="%s" style="%s%s" />',
+                      $item['image'],
+                      $caption,
+                      $width,
+                      $height
+                      );
+    }
+
 
     $content = '';
     if (!empty($item['link'])) {

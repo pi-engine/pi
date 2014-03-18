@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-02-16 19:22+0800\n"
-"PO-Revision-Date: 2014-02-16 19:22+0800\n"
+"POT-Creation-Date: 2014-03-05 12:23+0800\n"
+"PO-Revision-Date: 2014-03-05 12:23+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,73 +14,61 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\user\n"
 
 #: C:\code\pi\usr\module\user/config/event.php:21
-msgid "User registered"
+msgid "User logged in"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/event.php:27
-msgid "User activated"
+msgid "User logged out"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/event.php:33
-msgid "User enabled"
+msgid "User registered"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/event.php:39
-msgid "User disabled"
+msgid "User activated"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/event.php:45
-msgid "User deleted"
+msgid "User enabled"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/event.php:51
+msgid "User disabled"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:57
+msgid "User deleted"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/event.php:63
 #, fuzzy
 msgid "User profile updated"
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/config/event.php:57
+#: C:\code\pi\usr\module\user/config/event.php:69
 msgid "Display name changed"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/event.php:63
+#: C:\code\pi\usr\module\user/config/event.php:75
 msgid "Email changed"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/event.php:69
+#: C:\code\pi\usr\module\user/config/event.php:81
 msgid "Avatar changed"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/event.php:75
+#: C:\code\pi\usr\module\user/config/event.php:87
 msgid "Password changed"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/event.php:81
+#: C:\code\pi\usr\module\user/config/event.php:93
 msgid "Role assigned"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/event.php:87
+#: C:\code\pi\usr\module\user/config/event.php:99
 msgid "Role removed"
 msgstr ""
-
-#: C:\code\pi\usr\module\user/config/event.php:93
-msgid "User logged in"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/config/event.php:99
-msgid "User logged out"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/config/user.php:101
-#: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:30
-#, fuzzy
-msgid "Male"
-msgstr "男"
-
-#: C:\code\pi\usr\module\user/config/user.php:102
-#: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:31
-#, fuzzy
-msgid "Female"
-msgstr "女"
 
 #: C:\code\pi\usr\module\user/src/Api/Nav.php:46
 msgid "Profile"
@@ -163,115 +151,147 @@ msgstr "主题更新成功。"
 msgid "It was failed to save new name. Please try later."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:155
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:145
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:8
+#: C:\code\pi\usr\module\user/template/front/_user-sidebar.phtml:32
+msgid "Account settings"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:146
+#: C:\code\pi\usr\module\user/template/front/account-index.phtml:9
+msgid "Basic settings"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:148
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:188
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:89
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:185
+#: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:103
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:54
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:178
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:229
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
+msgid ""
+"account,social,tools,privacy,settings,profile,user,login,register,password,"
+"avatar"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:164
 msgid "Invalid data provided for email change."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:219
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:228
 #, fuzzy
 msgid "Email changed successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:233
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:242
 msgid "Incorrect password."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:249
+#: C:\code\pi\usr\module\user/src/Controller/Front/AccountController.php:258
 #, fuzzy
 msgid "Password verified."
 msgstr "主题更新失败。"
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:41
-#: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:75
-#: C:\code\pi\usr\module\user/src/Controller/Front/HomeController.php:116
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:92
 msgid "User was not found."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/ActivityController.php:57
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:180
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:287
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:341
 msgid "An error occurred."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:103
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:85
 msgid "Allowed extensions:"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:108
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:90
 msgid "Max files ize:"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:114
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:96
 msgid "Max image size:"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:189
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:171
 msgid "Avatar Settings"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:218
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:185
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:41
+#: C:\code\pi\usr\module\user/template/front/_user-sidebar.phtml:40
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:96
+msgid "Change avatar"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:186
+#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:42
+msgid "Customize your avatar anyway you like"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:207
 msgid "Invalid token!"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:322
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:311
 msgid "Invalid email for gravatar."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:333
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:322
 #, fuzzy
 msgid "Successful"
 msgstr "身份验证成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:350
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:339
 msgid "No image selected!"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:366
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:355
 #, fuzzy
 msgid "Successful."
 msgstr "身份验证成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:384
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:373
 #, php-format
 msgid "Invalid source %s."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:395
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:384
 msgid "Not image selected."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:404
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:393
 msgid "Image is missing."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:410
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:399
 msgid "Image does not exist."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:420
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:409
 msgid "Image width or height is missing."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:447
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:436
 msgid "Email address is missing."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:456
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:445
 msgid "Invalid image set name."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:491
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:480
 #, fuzzy
 msgid "Avatar set successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:506
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:495
 msgid "Image is not removed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:521
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:510
 #, fuzzy
 msgid "Image removed successfully."
 msgstr "主题更新成功。"
@@ -290,104 +310,175 @@ msgstr "主题更新成功。"
 msgid "Invalid password."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:97
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:86
+#: C:\code\pi\usr\module\user/template/front/password-index.phtml:8
+#: C:\code\pi\usr\module\user/template/front/_user-sidebar.phtml:36
+msgid "Change password"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:87
+#: C:\code\pi\usr\module\user/template/front/password-index.phtml:9
+msgid "To ensure your account security, complex password is required."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:104
 #, fuzzy
 msgid "Find password failed."
 msgstr "主题更新失败。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:165
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:173
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:182
 #: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:183
+#: C:\code\pi\usr\module\user/src/Form/FindPasswordForm.php:52
+#: C:\code\pi\usr\module\user/template/front/login.phtml:15
+#: C:\code\pi\usr\module\user/template/front/password-find.phtml:2
+msgid "Find password"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:198
 msgid "Invalid token for password reset."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:237
+#: C:\code\pi\usr\module\user/src/Controller/Front/PasswordController.php:252
 #, fuzzy
 msgid "Password reset successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:78
+#: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:61
 msgid "Privacy settings saved successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:216
-#, fuzzy
-msgid "Update successfully"
-msgstr "主题更新成功。"
-
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:218
-#, fuzzy
-msgid "Data saved failed"
-msgstr "主题更新失败。"
-
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:478
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:502
-#, fuzzy
-msgid "Delete failed."
-msgstr "主题更新失败。"
-
-#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:497
-msgid "Cannot delete the last one."
+#: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:100
+msgid "Privacy Settings"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:164
+#: C:\code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:101
+#: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:11
+msgid "Set profile field privacy."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:51
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:88
+#, fuzzy
+msgid "User profile"
+msgstr "主题更新成功。"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:52
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:89
+msgid "view profile"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:119
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:202
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:255
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:394
+msgid "Profile group ID is invalid."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:153
+#, fuzzy
+msgid "Profile updated successfully."
+msgstr "主题更新成功。"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:155
+#, fuzzy
+msgid "Profile update failed."
+msgstr "主题更新失败。"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:175
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:226
+msgid "Edit profile"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:176
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:227
+#, fuzzy
+msgid "Edit profile data."
+msgstr "主题更新成功。"
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:412
+msgid "Profile compound requires at least one set of data."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:417
+msgid "Profile compound data was not deleted."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:438
+msgid "User ID or Profile group ID is invalid."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:93
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:18
+#: C:\code\pi\usr\module\user/template/front/login.phtml:18
+#: C:\code\pi\usr\module\user/template/front/register-disabled.phtml:2
+msgid "Register"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:94
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:1
+msgid "Account registration"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:165
 #, fuzzy
 msgid "Activation token is invalid."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:189
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:190
 #, fuzzy
 msgid "Activation link is expired."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:224
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:228
 #, fuzzy
 msgid "Account Activated successfully."
 msgstr "主题更新成功。"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:240
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:248
 #, fuzzy
 msgid "Activation email sent failed."
 msgstr "Application Execution Time"
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:274
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:282
 msgid "Resend activation mail successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:302
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:310
 msgid "Email was not found."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:307
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:315
 msgid "Account already activated."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:326
 msgid "Activation mail sent successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:323
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
 msgid "Activation mail was not sent."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:339
 msgid "Invalid input."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:430
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:438
 msgid "User account was not saved."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:445
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:461
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:455
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:471
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 
@@ -436,12 +527,6 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Form/FindPasswordForm.php:37
 msgid "Please type the word"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/src/Form/FindPasswordForm.php:52
-#: C:\code\pi\usr\module\user/template/front/login.phtml:15
-#: C:\code\pi\usr\module\user/template/front/password-find.phtml:2
-msgid "Find password"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Form/MemberForm.php:57
@@ -545,76 +630,77 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:36
+#, fuzzy
+msgid "Male"
+msgstr "男"
+
+#: C:\code\pi\usr\module\user/src/Form/Element/Gender.php:37
+#, fuzzy
+msgid "Female"
+msgstr "女"
+
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:44
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:45
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:56
 msgid "Invalid user name: %formatHint%"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:45
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:46
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:57
 msgid "User name is reserved"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:46
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:48
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:59
 msgid "User name is less than %min% characters long"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:47
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:49
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:60
 msgid "User name is more than %max% characters long"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:51
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:53
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:64
 msgid "Only alphabetic and digits are allowed with leading alphabetic"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:52
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:54
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:65
 msgid "Only ASCII characters are allowed"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Validator/Name.php:53
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:55
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:66
 msgid "Multibyte characters are allowed"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/Password.php:42
+#: C:\code\pi\usr\module\user/src/Validator/Password.php:40
 msgid "Password is less than %min% characters long"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/Password.php:43
+#: C:\code\pi\usr\module\user/src/Validator/Password.php:41
 msgid "Password is more than %max% characters long"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/Postcode.php:30
+#: C:\code\pi\usr\module\user/src/Validator/Postcode.php:32
 msgid "The input is not 6 numeric"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/Telephone.php:30
+#: C:\code\pi\usr\module\user/src/Validator/Telephone.php:32
 msgid "The input is not 7-20 numeric"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:41
+#: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:30
 msgid "User email is reserved"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:42
+#: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:31
 msgid "User email is already used"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/Username.php:47
+#: C:\code\pi\usr\module\user/src/Validator/Username.php:58
 msgid "User name is already taken"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:8
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:17
-msgid "Account settings"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/account-index.phtml:9
-msgid "Basic settings"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:22
@@ -626,7 +712,6 @@ msgid "Input password to verify your identity for account changes."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/account-index.phtml:30
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:21
 msgid "Password"
 msgstr ""
 
@@ -659,7 +744,7 @@ msgstr ""
 #: C:\code\pi\usr\module\user/template/front/password-process.phtml:12
 #: C:\code\pi\usr\module\user/template/front/register-activate.phtml:5
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:19
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:39
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:48
 msgid "Congratulations!"
 msgstr ""
 
@@ -674,7 +759,9 @@ msgid "View all"
 msgstr "All Categories"
 
 #: C:\code\pi\usr\module\user/template/front/activity-index.phtml:32
-msgid "None blogs"
+#: C:\code\pi\usr\module\user/template/front/home-index.phtml:37
+#: C:\code\pi\usr\module\user/template/front/profile-view.phtml:29
+msgid "No data available."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:13
@@ -691,15 +778,6 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:28
 msgid "Default"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:41
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:62
-msgid "Change avatar"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:42
-msgid "Customize your avatar anyway you like"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:45
@@ -748,10 +826,6 @@ msgstr ""
 msgid "Uploading"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/home-index.phtml:37
-msgid "Does not have any data"
-msgstr ""
-
 #: C:\code\pi\usr\module\user/template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr ""
@@ -765,29 +839,23 @@ msgstr ""
 msgid "homepage"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:9
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:10
 msgid "re-login"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:10
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:15
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:16
 msgid "Choose: "
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:16
+#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:17
 #, fuzzy
 msgid "Login"
 msgstr "登录"
-
-#: C:\code\pi\usr\module\user/template/front/login-logout.phtml:17
-#: C:\code\pi\usr\module\user/template/front/login.phtml:18
-#: C:\code\pi\usr\module\user/template/front/register-disabled.phtml:2
-msgid "Register"
-msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/login-message.phtml:7
 msgid "logout"
@@ -803,14 +871,6 @@ msgstr ""
 #: C:\code\pi\usr\module\user/template/front/login-success.phtml:8
 #, php-format
 msgid "You have logged in successfully, please go to %s."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/password-index.phtml:8
-msgid "Change password"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/password-index.phtml:9
-msgid "To ensure your account security, complex password is required."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/password-process.phtml:1
@@ -830,12 +890,8 @@ msgid "Please login"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:10
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:35
+#: C:\code\pi\usr\module\user/template/front/_user-sidebar.phtml:52
 msgid "Privacy"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:11
-msgid "Set profile field privacy."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/privacy-index.phtml:16
@@ -843,8 +899,9 @@ msgid "No available privacy setting"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
+#: C:\code\pi\usr\module\user/template/front/profile-edit.phtml:10
 #, php-format
-msgid "Change your %s"
+msgid "Update %s"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:13
@@ -864,21 +921,12 @@ msgid "Unfiled"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/profile-edit-compound.phtml:53
-msgid "Are you sure delete this one"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/profile-edit.phtml:10
-#, php-format
-msgid "Change your %s info"
+msgid "Are you sure to delete this record?"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/profile-index.phtml:42
 #, php-format
 msgid "Add %s"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/profile-view.phtml:33
-msgid "does not have any"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/register-activate.phtml:2
@@ -889,11 +937,17 @@ msgstr ""
 msgid "Your account has been activated."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:12
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:28
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:20
 msgid "Sorry, account activation is failed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: C:\code\pi\usr\module\user/template/front/register-activate.phtml:22
 msgid "Resend activation email."
 msgstr ""
 
@@ -901,53 +955,49 @@ msgstr ""
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:1
-msgid "Account registration"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:21
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:23
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
 "a> with your account."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:30
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:46
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:39
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:55
 msgid "Registration was not completed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:40
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:49
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:55
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:64
 msgid "An email with activation link has been sent to your."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:56
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:65
 msgid "Please check it to finish the registration."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:59
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:68
 msgid "If you do not receive the activation email:"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:61
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:70
 msgid "Wait a few minutes and check again."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:62
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:71
 msgid "Check your email spam box."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:63
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:72
 msgid "Request to resend activation email"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/register-index.phtml:98
+#: C:\code\pi\usr\module\user/template/front/register-index.phtml:107
 msgid "Already sent"
 msgstr ""
 
@@ -955,42 +1005,53 @@ msgstr ""
 msgid "Resend activation email"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:7
-msgid "Switch to view of others"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:11
-msgid "Quicklinks"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:17
-msgid "Setting"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:42
-msgid "Back to view of own"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:46
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:51
-msgid "Send message"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:72
-msgid "Birthdate:"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-media.phtml:156
-msgid "More"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:10
+#: C:\code\pi\usr\module\user/template/front/_user-sidebar.phtml:25
 msgid "View my profile"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/front/_user-side-nav.phtml:25
-msgid "Avatar"
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:37
+#, fuzzy
+msgid "Switch to public"
+msgstr "主题更新失败。"
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:41
+msgid "Quicklinks"
 msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:47
+msgid "Settings"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:74
+#, fuzzy
+msgid "Switch to own"
+msgstr "主题更新失败。"
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:80
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:85
+msgid "Send message"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:104
+#, fuzzy
+msgid "Gender:"
+msgstr "未知"
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:110
+msgid "Birthdate:"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/template/front/_user-topbar.phtml:194
+msgid "More"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Data saved failed"
+#~ msgstr "主题更新失败。"
+
+#, fuzzy
+#~ msgid "Delete failed."
+#~ msgstr "主题更新失败。"
 
 #, fuzzy
 #~ msgid "Reset email successfully"

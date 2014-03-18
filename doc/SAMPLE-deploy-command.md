@@ -75,6 +75,7 @@ chown -Rf www-data:www-data /home/pi/deploy/pi-demo/
 ```
 chmod -f 0777 /home/pi/deploy/pi-demo/www/.htaccess
 chmod -f 0777 /home/pi/deploy/pi-demo/www/boot.php
+chmod -Rf 0777 /home/pi/deploy/pi-demo/www/setup/tmp/
 chmod -Rf 0777 /home/pi/deploy/pi-demo/www/asset/
 chmod -Rf 0777 /home/pi/deploy/pi-demo/var/
 chmod -Rf 0777 /home/pi/deploy/pi-demo/upload/

@@ -47,6 +47,12 @@ $config = array(
         'filter'        => 'int',
     ),
 
+    'birthdate_format'  => array(
+        'title'         => _t('Birthdate format'),
+        'description'   => _t('Format for birthdate display.'),
+        'value'         => 'Y-m-d',
+    ),
+
     'email_expiration' => array(
         'title'         => _t('Email expiration'),
         'description'   => _t('Expiration time for email/password reset (in hours).'),
@@ -153,6 +159,15 @@ $config = array(
         'category'      => 'register',
     ),
 
+    'register_notification' => array(
+        'title'         => _t('Email notification'),
+        'description'   => _t('Send email notification for register success.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+
     'register_activation'  => array(
         'title'         => _t('Activation'),
         'description'   => _t('Activation mode for user accounts'),
@@ -176,6 +191,14 @@ $config = array(
         'description'   => _t('Expiration time for activation email (in hours).'),
         'value'         => 24,
         'filter'        => 'number_int',
+        'category'      => 'register',
+    ),
+    
+    'area_match_api'    => array(
+        'title'         => _t('IP match area API'),
+        'description'   => _t('API address to match user current area according to its IP'),
+        'value'         => 'http://ip.taobao.com/service/getIpInfo.php?ip=%s',
+        'filter'        => 'string',
         'category'      => 'register',
     ),
 

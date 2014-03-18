@@ -32,12 +32,15 @@ class Breadcrumbs extends AbstractBreadcrumbs
         $module = $this->module;
         $moduleData = Pi::registry('module')->read($module);
         $route  = Pi::api('api', $module)->getRouteName();
+        $home   = Pi::service('module')->config('default_homepage', $module);
+        $home   = $home ? Pi::url($home) : Pi::service('url')->assemble(
+            'default',
+            array('module' => $module)
+        );
         $result = array(
             array(
                 'label' => $moduleData['title'],
-                'href'  => Pi::service('url')->assemble('default', array(
-                    'module' => $module,
-                )),
+                'href'  => $home,
             ),
         );
         
@@ -59,7 +62,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
                 'href'  => Pi::service('url')->assemble($route, array(
                     'module'     => $module,
                     'controller' => 'list',
-                    'action'     => 'all',
+                    //'action'     => 'all',
                     'category'   => $category->slug ?: $category->id,
                 )),
             );

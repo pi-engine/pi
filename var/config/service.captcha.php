@@ -11,6 +11,5 @@ return array(
     'font'              => Pi::path('static') . '/font/Vera.ttf',
     'fsize'             => 24,
     'imgUrl'            => Pi::url('script') . '/captcha.php',
-    //'imgAlt'            => __('Click to refresh'),
     'useNumbers'        => true,
 );

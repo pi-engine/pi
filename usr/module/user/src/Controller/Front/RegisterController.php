@@ -40,6 +40,7 @@ class RegisterController extends ActionController
             'action' => $this->url('', array('action' => 'index')),
         ));
 
+        // Handling register data
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->loadInputFilter();
@@ -74,7 +75,13 @@ class RegisterController extends ActionController
             }
             $this->view()->assign(array(
                 'result'    => $result,
+                'redirect'  => !empty($post['redirect']) ? urldecode($post['redirect']) : '',
             ));
+
+        // Set redirect of register source
+        } elseif ($form->get('redirect')) {
+            $redirect = $this->params('redirect', $_SERVER['HTTP_REFERER']);
+            $form->get('redirect')->setValue(rawurlencode($redirect));
         }
 
         $this->view()->assign(array(
@@ -82,6 +89,13 @@ class RegisterController extends ActionController
             'activation'    => $this->config('register_activation'),
         ));
         $this->view()->setTemplate('register-index');
+
+        $this->view()->headTitle(__('Register'));
+        $this->view()->headdescription(__('Account registration'), 'set');
+        $this->view()->headkeywords(
+            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+            'set'
+        );
     }
 
     /**
@@ -98,13 +112,10 @@ class RegisterController extends ActionController
         if (!$this->config('require_register_complete') ||
             !$this->request->isPost()
         ) {
-            $this->redirect(
-                '',
-                array(
-                    'controller'    => 'register',
-                    'action'        => 'index'
-                )
-            );
+            $this->redirect('', array(
+                'controller'    => 'register',
+                'action'        => 'index'
+            ));
         }
 
         $result = array(
@@ -167,17 +178,20 @@ class RegisterController extends ActionController
 
         // Search user data
         $userData = Pi::user()->data()->find(array(
-            'name'  => 'register-activation',
-            'value' => $token,
+            'module'    => 'user',
+            'name'      => 'register_activation',
+            'value'     => $token,
         ));
         if (!$userData) {
             return $fallback();
         }
+        /*
         // Check expiration
         $expiration  = $userData['time'] + $this->config('activation_expiration') * 3600;
         if (time() > $expiration) {
             return $fallback(__('Activation link is expired.'));
         }
+        */
 
         // Check uid
         $userRow = $this->getModel('account')->find($userData['uid']);
@@ -203,18 +217,25 @@ class RegisterController extends ActionController
         // Delete user data
         Pi::user()->data()->delete(
             $userData['uid'],
-            'register-activation'
+            'register_activation'
         );
 
         // Target activate user event
         Pi::service('event')->trigger('user_activate', $uid);
-
+        
+        // Get redirect url
+        $redirect = Pi::user()->data()->get($uid, 'register_redirect') ?: '';
+        
         $result = array(
             'status'    => 1,
             'message'   => __('Account Activated successfully.'),
         );
 
-        $this->view()->assign('result', $result);
+        $this->view()->assign(array(
+            'result'   => $result,
+            'uid'      => $uid,
+            'redirect' => $redirect,
+        ));
     }
 
     /**
@@ -247,13 +268,13 @@ class RegisterController extends ActionController
         $userData = Pi::user()->data()->find(array(
             'uid'    => $uid,
             'module' => $this->getModule(),
-            'name'   => 'register-activation'
+            'name'   => 'register_activation'
         ));
         if (!$userData) {
             return $result;
         }
 
-        $status = $this->sendActivation(array(
+        $status = $this->sendNotification('activation', array(
             'email'     => $user['email'],
             'uid'       => $user['id'],
             'identity'  => $user['identity'],
@@ -297,7 +318,7 @@ class RegisterController extends ActionController
                         'message'   => __('Account already activated.'),
                     );
                 } else {
-                    $status = $this->sendActivation(array(
+                    $status = $this->sendNotification('activation', array(
                         'email'     => $values['email'],
                         'uid'       => (int) $row['id'],
                         'identity'  => $row['identity'],
@@ -352,7 +373,8 @@ class RegisterController extends ActionController
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
 
-        $form = Pi::api('form', 'user')->loadForm('profile-complete');
+        $file = $this->getFormFile($uid);
+        $form = Pi::api('form', 'user')->loadForm($file);
         $form->setAttributes(array(
             'action'    => $this->url('', array('action' => 'profile.complete')),
         ));
@@ -422,10 +444,19 @@ class RegisterController extends ActionController
             return $result;
         }
         $result['uid'] = $uid;
+        
+        // Save url of register source page
+        Pi::user()->data()->set(
+            $uid,
+            'register_redirect',
+            urldecode($values['redirect']),
+            $this->getModule()
+        );
 
         // Set user role
         Pi::api('user', 'user')->setRole($uid, 'member');
 
+        $status = 1;
         // Process activation
         $activationMode = $this->config('register_activation');
         // Automatically activated
@@ -434,9 +465,25 @@ class RegisterController extends ActionController
             if (!$status) {
                 $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
             }
-            // Activated by email
+            if (Pi::user()->config('register_notification')) {
+                $this->sendNotification('success', array(
+                    'email'     => $values['email'],
+                    'uid'       => $uid,
+                    'identity'  => $values['identity'],
+                ));
+            }
+        // Activated by admin
+        } elseif ('admin' == $activationMode) {
+            if (Pi::user()->config('register_notification')) {
+                $this->sendNotification('success', array(
+                    'email'     => $values['email'],
+                    'uid'       => $uid,
+                    'identity'  => $values['identity'],
+                ));
+            }
+        // Activated by email
         } elseif ('email' == $activationMode) {
-            $status = $this->sendActivation(array(
+            $status = $this->sendNotification('activation', array(
                 'email'     => $values['email'],
                 'uid'       => $uid,
                 'identity'  => $values['identity'],
@@ -451,38 +498,67 @@ class RegisterController extends ActionController
     }
 
     /**
-     * Send activation email
+     * Send notification email
      *
+     * @param string $type
      * @param array $data   Data: email, uid, identity
      *
      * @return bool
      */
-    protected function sendActivation(array $data)
+    protected function sendNotification($type, array $data)
     {
-        $token = $this->createToken($data);
-        if (!$token) {
+        if (!Pi::user()->config('register_notification')) {
+            return true;
+        }
+        $params = array();
+        $template = '';
+        switch ($type) {
+            case 'success':
+                $template = 'register-success-html';
+                $redirect = Pi::user()->data()->get($data['uid'], 'register_redirect');
+                $url = Pi::url(Pi::service('authentication')->getUrl('login', $redirect), true);
+                $params = array(
+                    'username'  => $data['identity'],
+                    'login_url' => $url,
+                );
+                break;
+            case 'admin':
+                $template = 'register-success-html';
+                $params = array(
+                    'username'  => $data['identity'],
+                );
+                break;
+            case 'activation':
+                $token = $this->createToken($data);
+                if ($token) {
+                    $template = 'register-activation-html';
+                    Pi::user()->data()->set(
+                        $data['uid'],
+                        'register_activation',
+                        $token,
+                        'user',
+                        $this->config('activation_expiration') * 3600
+                    );
+                    $url = Pi::url($this->url('', array(
+                        'action' => 'activate',
+                        'uid'    => md5($data['uid']),
+                        'token'  => $token
+                    )), true);
+                    $params = array(
+                        'username'          => $data['identity'],
+                        'activation_url'    => $url,
+                    );
+                }
+                break;
+            default:
+                break;
+        }
+        if (!$template) {
             return false;
         }
 
-        Pi::user()->data()->set(
-            $data['uid'],
-            'register-activation',
-            $token,
-            $this->getModule()
-        );
-
-        $url = $this->url('', array(
-            'action' => 'activate',
-            'uid'    => md5($data['uid']),
-            'token'  => $token
-        ));
-        $link = Pi::url($url, true);
-        $params = array(
-            'username'  => $data['identity'],
-            'link'      => $link,
-        );
         // Load from HTML template
-        $template   = Pi::service('mail')->template('activation-html', $params);
+        $template   = Pi::service('mail')->template($template, $params);
         $subject    = $template['subject'];
         $body       = $template['body'];
         $type       = $template['format'];
@@ -499,6 +575,7 @@ class RegisterController extends ActionController
         }
 
         return $result;
+
     }
 
     /**
@@ -538,5 +615,63 @@ class RegisterController extends ActionController
         }
 
         return true;
+    }
+    
+    /**
+     * Get file name include form elements require user to complete according to rule
+     * 
+     * @param int $uid
+     * @return string
+     */
+    protected function getFormFile($uid = 0)
+    {
+        // Default register complete file
+        $result = 'register-complete';
+        
+        $uid = $uid ?: Pi::service('user')->getId();
+        $file = sprintf(
+            '%s/module/%s/config/profile-complete-rule.php',
+            Pi::path('custom'),
+            $this->getModule()
+        );
+        if (!file_exists($file)) {
+            return $result;
+        }
+        $data = include $file;
+        
+        // Check if condition field is exists
+        if (empty($data) || !isset($data['rule_field'])) {
+            return $result;
+        }
+        
+        // Get condition value
+        if (empty($data['rule_field'])) {
+            $key = 'all';
+        } else {
+            $fields = explode('&', $data['rule_field']);
+            $values = Pi::api('user', $this->module)->get($uid, $fields);
+            foreach ($values as $key => &$value) {
+                if (!in_array($key, $fields)) {
+                    unset($values[$key]);
+                }
+                $value = $value ?: 'default';
+            }
+            $key = implode('&', $values);
+        }
+        
+        if (
+            !isset($data['items'])
+            || !isset($data['items'][$key])
+            || empty($data['items'][$key])
+        ) {
+            return $result;
+        }
+        
+        $item = $data['items'][$key];
+        if (isset($item['form_file']) && !empty($item['form_file'])) {
+            $result = $data['items'][$key]['form_file'];
+        }
+        
+        return $result;
     }
 }

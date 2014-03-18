@@ -39,7 +39,8 @@ class IndexController extends ActionController
             // update clicks
             $model = $this->getModel('page');
             $model->increment('clicks', array('id' => $row->id));
-            // Module config 
+
+            // Module config
             $config = Pi::config('', $this->getModule());
             // Set view
             $this->view()->headTitle($row->seo_title);
@@ -75,6 +76,17 @@ class IndexController extends ActionController
                 $row = $this->getModel('page')->find($name, 'name');
             }
         }
+        if ($row->active) {
+            $nav = Pi::registry('nav', $this->getModule())->read();
+            if (isset($nav[$row->id])) {
+                $nav[$row->id]['active'] = 1;
+            } else {
+                $nav = array();
+            }
+        } else {
+            $nav = array();
+        }
+        $this->view()->assign('nav', $nav);
 
         $this->render($row);
     }

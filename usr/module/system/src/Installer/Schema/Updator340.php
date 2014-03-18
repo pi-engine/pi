@@ -50,6 +50,35 @@ class Updator340 extends AbstractUpdator
     protected function from330($version)
     {
         $status = true;
+
+        if (version_compare($version, '3.4.2', '<')) {
+
+            $table = Pi::db()->prefix('user_data');
+            $sql =<<<'EOT'
+ALTER TABLE %s
+ADD `expire`          int(10)         unsigned    NOT NULL default '0' AFTER `time`;
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+        }
+
+        if (version_compare($version, '3.4.1', '<')) {
+
+            Pi::model('page')->update(array('block' => 1), array(
+                'section'   => 'front',
+                'controller'    => '',
+                'action'        => '',
+            ));
+
+            $table = Pi::db()->prefix('user_account');
+            $sql =<<<'EOT'
+ALTER TABLE %s
+MODIFY `gender` enum('male', 'female', 'unknown') default 'unknown';
+EOT;
+            $sql = sprintf($sql, $table);
+            $status = $this->queryTable($sql);
+        }
+
         if (version_compare($version, '3.4.0', '<')) {
 
             $table = Pi::db()->prefix('user_account');

@@ -36,57 +36,21 @@ class Image extends ZendImage
      * Create image for the CAPTCHA
      *
      * @param string $id
+     * @param bool $refresh
+     *
      * @return resource
      */
-    public function createImage($id = null)
+    public function createImage($id, $refresh = true)
     {
-        if ($id) {
-            $this->setId($id);
-        } else {
-            $id = $this->getId();
+        $this->setId($id);
+        if ($refresh) {
+            $word = $this->generateWord();
+            $this->setWord($word);
         }
-        $word = $this->generateWord();
-        $this->setWord($word);
-        //$word = $this->getWord();
+        $word = $this->getWord();
         $image = $this->generateImage($id, $word);
 
         return $image;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getSession()
-    {
-        if (!isset($this->session) || (null === $this->session)) {
-            $id = $this->getId();
-            $this->session = Pi::service('session')->container(
-                'Pi_Captcha_' . $id
-            );
-            // Skip session reset
-            //$this->session->setExpirationHops(1);
-            //$this->session->setExpirationSeconds($this->getTimeout());
-        }
-
-        return $this->session;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function setWord($word)
-    {
-        $session       = $this->getSession();
-        /**#@+
-         * Set word value to session container
-         */
-        $session->setExpirationHops(1);
-        $session->setExpirationSeconds($this->getTimeout());
-        /**#@-*/
-        $session->word = $word;
-        $this->word    = $word;
-
-        return $this;
     }
 
     /**
@@ -99,8 +63,8 @@ class Image extends ZendImage
         }
         $id = $this->generateRandomId();
         $this->setId($id);
-        //$word = $this->generateWord();
-        //$this->setWord($word);
+        $word = $this->generateWord();
+        $this->setWord($word);
 
         return $id;
     }

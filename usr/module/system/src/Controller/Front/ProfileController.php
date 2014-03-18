@@ -71,6 +71,10 @@ class ProfileController extends ActionController
             'avatar'    => $avatar,
         ));
         $this->view()->setTemplate('profile');
+
+        $this->view()->headTitle(__('User profile'));
+        $this->view()->headdescription(__('User profile'), 'set');
+        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
     }
 
     /**

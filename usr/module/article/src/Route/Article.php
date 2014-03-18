@@ -130,7 +130,7 @@ class Article extends Standard
                     2
                 );
                 $id   = is_numeric($uniqueVal) ? $uniqueVal : 0;
-                $slug = !is_numeric($uniqueVal) ? $uniqueVal : '';
+                $slug = !is_numeric($uniqueVal) ? $this->decode($uniqueVal) : '';
                 $controller = 'article';
                 $action     = 'detail';
             } elseif ('topic' == $urlParams[0]) {
@@ -162,6 +162,7 @@ class Article extends Standard
             'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic',
             'sort'
         );
+        $matches = array_filter($matches);
         
         $params   = array_filter(explode(self::COMBINE_DELIMITER, $parameter));
         foreach ($params as $param) {
@@ -212,8 +213,10 @@ class Article extends Standard
         ) {
             $url .= 'id'
                  . $this->keyValueDelimiter 
-                 . $mergedParams['slug'];
-            unset($mergedParams['id']);
+                 . $this->encode($mergedParams['slug']);
+            if (!isset($mergedParams['preview'])) {
+                unset($mergedParams['id']);
+            }
             unset($mergedParams['slug']);
             unset($mergedParams['time']);
         } elseif (isset($mergedParams['id'])
@@ -223,7 +226,9 @@ class Article extends Standard
             $url .= 'id'
                  . $this->keyValueDelimiter 
                  . $mergedParams['id'];
-            unset($mergedParams['id']);
+            if (!isset($mergedParams['preview'])) {
+                unset($mergedParams['id']);
+            }
             unset($mergedParams['slug']);
             unset($mergedParams['time']);
         } elseif (isset($mergedParams['topic'])) {
@@ -246,7 +251,10 @@ class Article extends Standard
                  . $this->keyValueDelimiter 
                  . $this->encode($mergedParams['list']);
             unset($mergedParams['list']);
-        } elseif (isset($mergedParams['category'])) {
+        } elseif (isset($mergedParams['category'])
+            || 'list' == $controller
+        ) {
+            $mergedParams['category'] = $mergedParams['category'] ?: 'all';
             $url .= 'list' 
                  . $this->keyValueDelimiter 
                  . $this->encode($mergedParams['category']);

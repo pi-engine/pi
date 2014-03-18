@@ -162,49 +162,6 @@ class IndexController extends ActionController
         $enable     = (int) _post('enable');
         $roles      = _post('roles');
 
-        /*
-        $configs = Pi::config('', 'user');
-        // Check username
-        if (strlen($identity) > $configs['uname_max'] ||
-            strlen($identity) < $configs['uname_min']
-        ) {
-
-            $result['message'] = _a(sprintf(
-                'Add user failed: username should between %s to %s.',
-                $configs['uname_min'],
-                $configs['uname_max']
-            ));
-
-            return $result;
-        }
-
-        // Check name
-        if (strlen($name) > $configs['name_max'] ||
-            strlen($name) < $configs['name_min']
-        ) {
-            $result['message'] = _a(sprintf(
-                'Add user failed: name should between %s to %s.',
-                $configs['name_min'],
-                $configs['name_max']
-            ));
-
-            return $result;
-        }
-
-        // Check credential
-        if (strlen($credential) > $configs['password_max'] ||
-            strlen($credential) < $configs['password_min]']
-        ) {
-            $result['message'] = _a(sprintf(
-                'Add user failed: password should between %s to %s',
-                $configs['password_min]'],
-                $configs['password_max']
-            ));
-
-            return $result;
-        }
-        */
-
         // Check duplication
         $where = array(
             'identity' => $identity,
@@ -240,6 +197,7 @@ class IndexController extends ActionController
         // Activate
         if ($activated == 1) {
             Pi::api('user', 'user')->activateUser($uid);
+            $this->sendNotification($uid);
         }
 
         // Enable
@@ -516,6 +474,7 @@ class IndexController extends ActionController
         }
         if ($activateUids) {
             Pi::service('event')->trigger('user_activate', $activateUids);
+            $this->sendNotification($activateUids);
         }
 
         $usersStatus = $this->getUserStatus($uids);
@@ -987,5 +946,57 @@ class IndexController extends ActionController
         }
 
         return $status;
+    }
+
+    /**
+     * Send notification email
+     *
+     * @param int|int[] $uid
+     *
+     * @return bool
+     */
+    protected function sendNotification($uid)
+    {
+        if (!Pi::user()->config('register_notification')) {
+            return true;
+        }
+        $uids   = (array) $uid;
+        $users  = Pi::user()->get($uids, array('identity', 'email'));
+        $template = 'register-success-html';
+        $failedUsers = array();
+        foreach ($users as $id => $data) {
+            $redirect = Pi::user()->data()->get($id, 'register_redirect') ?: '';
+            $url = Pi::api('user', 'user')->getUrl('login', array(
+                'redirect'  => $redirect,
+                'section'   => 'front',
+            ));
+            $url = Pi::url($url, true);
+            $params = array(
+                'username'  => $data['identity'],
+                'login_url' => $url,
+            );
+
+            // Load from HTML template
+            $template   = Pi::service('mail')->template($template, $params);
+            $subject    = $template['subject'];
+            $body       = $template['body'];
+            $type       = $template['format'];
+
+            //Pi::user()->data()->set($id, 'noti-email', $template); continue;
+
+            // Send email
+            $message    = Pi::service('mail')->message($subject, $body, $type);
+            $message->addTo($data['email']);
+            $transport  = Pi::service('mail')->transport();
+            try {
+                $transport->send($message);
+            } catch (\Exception $e) {
+                $failedUsers[] = $id;
+            }
+        }
+        $result = $failedUsers ? false : true;
+
+        return $result;
+
     }
 }

@@ -17,6 +17,7 @@ namespace Pi\Setup;
 class Host
 {
     protected $wizard;
+    protected $persist = '';
 
     /**
      * Detector file for detecting a path or URL
@@ -72,16 +73,18 @@ class Host
      * Constructor
      *
      * @param Wizard $wizard
+     * @param string $persist Persistent data variable name
      */
-    public function __construct(Wizard $wizard = null)
+    public function __construct(Wizard $wizard = null, $persist = '')
     {
         $this->wizard = $wizard;
+        $this->persist = $persist;
     }
 
     /**
      * Initialize path information
      *
-     * @param bool $initPath Wether initialize path URI based on config data
+     * @param bool $initPath Whether initialize path URI based on config data
      * @return void
      */
     public function init($initPath = false)
@@ -91,7 +94,7 @@ class Host
         foreach (array_keys($writablePaths) as $key) {
             $this->permErrors[$key] = false;
         }
-        $paths = $this->wizard->getPersist('paths');
+        $paths = $this->wizard->getPersist($this->persist);
         // Load from persistent
         if ($paths) {
             foreach ($this->paths as $key => &$path) {
@@ -144,11 +147,11 @@ class Host
                         }
                     }
                     $this->paths[$key]['url'] = $init;
-                    if (0 <= $this->checkUrl($key)) break;
+                    //if (0 <= $this->checkUrl($key)) break;
                 }
             }
 
-            $this->wizard->setPersist('paths', $this->paths);
+            $this->wizard->setPersist($this->persist, $this->paths);
         }
     }
 
@@ -160,7 +163,7 @@ class Host
     protected function setRequest()
     {
         $request = $this->wizard->getRequest();
-        $paths = $this->wizard->getPersist('paths');
+        $paths = $this->wizard->getPersist($this->persist);
         foreach ($this->paths as $key => &$path) {
             $reqKey = 'path_' . $key;
             if (null !== $request->getPost($reqKey)) {
@@ -181,7 +184,7 @@ class Host
                 $paths[$key]['url'] = rtrim($req, '/');
             }
         }
-        $this->wizard->setPersist('paths', $paths);
+        $this->wizard->setPersist($this->persist, $paths);
     }
 
     /**
@@ -593,6 +596,6 @@ class Host
     {
         list($type, $key) = explode('_', $name, 2);
         $this->paths[$key][$type] = $value;
-        $this->wizard->setPersist('paths', $this->paths);
+        $this->wizard->setPersist($this->persist, $this->paths);
     }
 }

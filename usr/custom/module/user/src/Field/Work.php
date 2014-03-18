@@ -10,7 +10,7 @@
 namespace Custom\User\Field;
 
 use Pi;
-use Module\User\CustomCompoundHandler;
+use Module\User\Field\CustomCompoundHandler;
 
 /**
  * Custom work handler

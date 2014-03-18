@@ -24,6 +24,9 @@ abstract class AbstractStrategy
     /** @var string Identifier for file name of config data */
     protected $fileIdentifier = '';
 
+    /** @var string Identifier for strategy */
+    protected $name = '';
+
     /** @var array Options */
     protected $options = array();
 
@@ -152,6 +155,16 @@ abstract class AbstractStrategy
         }
 
         return $identity;
+    }
+
+    /**
+     * Get strategy name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**

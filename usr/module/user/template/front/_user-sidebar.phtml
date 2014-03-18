@@ -1,0 +1,55 @@
+<?php
+$uid = Pi::user()->getId();
+$userName = Pi::user()->get($uid, 'name');
+$groups = Pi::registry('display_group', 'user')->read();
+array_walk($groups, function (&$group, $gid) {
+    $action = $group['compound'] ? 'edit.compound' : 'edit.profile';
+    $group['url'] = Pi::service('url')->assemble('user', array(
+        'module'     => 'user',
+        'controller' => 'profile',
+        'action'     => $action,
+        'group'      => $gid,
+    ));
+});
+
+?>
+<div class="col-md-3">
+    <a class="thumbnail user-thumbnail" href="<?php echo $this->url('', array('controller' => 'profile')); ?>"
+       style="padding: 10px;">
+        <div class="media">
+            <div class="pull-left">
+                <?php echo Pi::avatar()->get($uid, 'medium'); ?>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading"><?php echo _escape($userName); ?></h4>
+                <span class="text-muted"><?php _e('View my profile'); ?></span>
+            </div>
+        </div>
+    </a>
+    <div class="list-group">
+        <a href="<?php echo $this->url('', array('controller' => 'account'));?>"
+           class="list-group-item<?php if($controller == 'account') { echo ' active'; } ?>">
+            <?php _e('Account settings')?>
+        </a>
+        <a href="<?php echo $this->url('', array('controller' => 'password')); ?>"
+           class="list-group-item<?php if($controller == 'password') { echo ' active'; } ?>">
+            <?php _e('Change password');?>
+        </a>
+        <a href="<?php echo $this->url('', array('controller' => 'avatar')); ?>"
+           class="list-group-item<?php if($controller == 'avatar') { echo ' active'; } ?>">
+            <?php _e('Change avatar');?>
+        </a>
+        <?php
+            foreach ($groups as $key => $group) {
+        ?>
+        <a href="<?php echo $group['url']; ?>"
+           class="list-group-item<?php if (isset($group_id)) { echo $group_id == $key ? ' active' : ''; } ?>">
+            <?php echo _escape($group['title']); ?>
+        </a>
+        <?php } ?>
+        <a href="<?php echo $this->url('', array('controller' => 'privacy')); ?>"
+           class="list-group-item<?php if($controller == 'privacy') { echo ' active'; } ?>">
+            <?php _e('Privacy'); ?>
+        </a>
+    </div>
+</div>

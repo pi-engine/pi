@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-02-16 16:02+0800\n"
-"PO-Revision-Date: 2014-02-16 16:03+0800\n"
+"POT-Creation-Date: 2014-03-03 13:18+0800\n"
+"PO-Revision-Date: 2014-03-03 13:31+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,260 +14,220 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\page\n"
 
 #: C:\code\pi\usr\module\page/config/config.php:21
-#, fuzzy
 msgid "Enable Google Plus"
-msgstr "%d 激活用户成功"
+msgstr "启用Google+"
 
 #: C:\code\pi\usr\module\page/config/config.php:29
-#, fuzzy
 msgid "Enable Facebook"
-msgstr "启用状态"
+msgstr "启用Facebook"
 
 #: C:\code\pi\usr\module\page/config/module.php:14
-#, fuzzy
 msgid "Page"
-msgstr "页面缓存 [%s]"
+msgstr "页面"
 
 #: C:\code\pi\usr\module\page/config/module.php:16
 msgid "Single page for direct content display."
-msgstr ""
+msgstr "用于简单内容的单页面直接显示。"
 
 #: C:\code\pi\usr\module\page/config/nav.php:13
-#, fuzzy
 msgid "Custom site navigation"
-msgstr "添加自定义导航"
+msgstr "自定义导航"
 
 #: C:\code\pi\usr\module\page/config/nav.php:21
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:44
-#, fuzzy
 msgid "Page list"
-msgstr "登录次数"
+msgstr "页面列表"
 
 #: C:\code\pi\usr\module\page/config/nav.php:28
-#, fuzzy
 msgid "Edit page"
-msgstr "页面缓存 [%s]"
+msgstr "编辑页面"
 
 #: C:\code\pi\usr\module\page/config/nav.php:35
-#, fuzzy
 msgid "Delete page"
-msgstr "页面缓存 [%s]"
+msgstr "删除页面"
 
 #: C:\code\pi\usr\module\page/config/nav.php:44
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:134
-#, fuzzy
 msgid "Add a page"
-msgstr "页面缓存 [%s]"
+msgstr "添加页面"
 
 #: C:\code\pi\usr\module\page/config/nav.php:50
 #: C:\code\pi\usr\module\page/src/Controller/Admin/TemplateController.php:48
-#, fuzzy
 msgid "Template list"
-msgstr "登录次数"
+msgstr "模板列表"
 
 #: C:\code\pi\usr\module\page/config/nav.php:60
-#, fuzzy
 msgid "Home"
 msgstr "首页"
 
 #: C:\code\pi\usr\module\page/config/nav.php:64
-#, fuzzy
 msgid "About us"
 msgstr "关于我们"
 
 #: C:\code\pi\usr\module\page/config/nav.php:69
-#, fuzzy
 msgid "Contact us"
 msgstr "联系我们"
 
 #: C:\code\pi\usr\module\page/config/nav.php:74
-#, fuzzy
 msgid "Terms of use"
 msgstr "服务条款"
 
 #: C:\code\pi\usr\module\page/config/nav.php:79
-#, fuzzy
 msgid "Privacy guidelines"
-msgstr "字段隐私"
+msgstr "字段条款"
 
 #: C:\code\pi\usr\module\page/config/nav.php:84
-#, fuzzy
 msgid "Join us"
-msgstr "关于我们"
+msgstr "加入我们"
 
 #: C:\code\pi\usr\module\page/config/nav.php:88
 msgid "Applications"
-msgstr ""
+msgstr "应用"
 
 #: C:\code\pi\usr\module\page/config/nav.php:93
-#, fuzzy
 msgid "Pi Engine"
-msgstr "Pi Engine 安装助手"
-
-#: C:\code\pi\usr\module\page/config/page.php:15
-#, fuzzy
-msgid "Homepage"
-msgstr "首页"
+msgstr "Pi Engine"
 
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:106
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:209
-#, fuzzy
 msgid "Page data saved successfully."
 msgstr "页面数据保存成功。"
 
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:109
-#, fuzzy
 msgid "Page data not saved."
 msgstr "页面数据未保存。"
 
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:112
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:212
-#, fuzzy
 msgid "Invalid data, please check and re-submit."
 msgstr "无效数据，请检查后重新提交。"
 
 #: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:228
-#, fuzzy
 msgid "Page edit"
-msgstr "编辑用户："
+msgstr "页面编辑"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:247
-#, fuzzy
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:249
 msgid "Page deleted successfully."
-msgstr "分类删除成功。"
+msgstr "页面删除成功。"
 
-#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:266
-#, fuzzy
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:270
 msgid "Page updated successfully."
-msgstr "页面缓存清空成功。"
+msgstr "页面更新成功。"
+
+#: C:\code\pi\usr\module\page/src/Controller/Admin/IndexController.php:292
+msgid "Page navigation menu updated successfully."
+msgstr "页面导航菜单成功。"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:45
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:8
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:9
 msgid "Page title"
-msgstr "隐藏标题"
+msgstr "页面标题"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:55
-#, fuzzy
 msgid "Unique name"
-msgstr "名称"
+msgstr "唯一名称"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:59
 msgid "Only alphabet, number and underscore allowed."
-msgstr ""
+msgstr "只允许字母、数字和下划线。"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:66
-#, fuzzy
 msgid "SEO slug"
-msgstr "SEO标题"
+msgstr "SEO 关键词"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:70
 msgid "Unique slug for SEO URL."
-msgstr ""
+msgstr "用于URL的SEO，唯一字符串。"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:78
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:8
-#, fuzzy
 msgid "Template name"
-msgstr "昵称"
+msgstr "模板名称"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:81
 msgid ""
 "Select a template from `usr/custom/module/page/template/front/` w/o "
 "extension."
 msgstr ""
+"模板文件需要已存在`usr/custom/module/page/template/front/`，不加文件扩展名。"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:104
-#, fuzzy
 msgid "Content"
-msgstr "详情"
+msgstr "内部"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:119
-#, fuzzy
 msgid "SEO settings"
-msgstr "数据库设置及生成"
+msgstr "SEO 设置"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:127
-#, fuzzy
 msgid "SEO Title"
-msgstr "SEO标题"
+msgstr "SEO 标题"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:131
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:143
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:155
 msgid "To be used for HTML head meta."
-msgstr ""
+msgstr "将被添加到HTML的meta数据中。"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:139
-#, fuzzy
 msgid "SEO Keywords"
 msgstr "SEO 关键词"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:151
-#, fuzzy
 msgid "SEO Description"
 msgstr "SEO 描述"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:164
-#, fuzzy
 msgid "Active"
-msgstr "激活"
+msgstr "启用"
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:78
-#, fuzzy
 msgid "Demo for PHTML page"
-msgstr "页面编码"
+msgstr "PHTML 示例"
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:85
-#, fuzzy
-msgid "Feed"
-msgstr "Feed"
+msgid "RSS Feed"
+msgstr "RSS Feed"
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:92
-#, fuzzy
 msgid "Sitemap"
 msgstr "网站地图"
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:100
-msgid "Sitemap feed"
-msgstr ""
+msgid "XML Sitemap"
+msgstr "网站地图（XML）"
 
 #: C:\code\pi\usr\module\page/src/Installer/Action/Install.php:111
-#, fuzzy
 msgid "Pages added."
-msgstr "管理：pages"
+msgstr "页面已添加。"
 
 #: C:\code\pi\usr\module\page/src/Validator/PageNameDuplicate.php:14
-#, fuzzy
 msgid "Page name already exists."
-msgstr "添加用户失败：该用户已存在。"
+msgstr "页面名称已存在。"
 
 #: C:\code\pi\usr\module\page/src/Validator/PageSlugDuplicate.php:14
-#, fuzzy
 msgid "Page slug already exists."
-msgstr "添加用户失败：该用户已存在。"
+msgstr "页面关键词已存在。"
 
 #: C:\code\pi\usr\module\page/src/Validator/PageTemplateAvailable.php:14
 msgid "Template file is not available."
-msgstr ""
+msgstr "模板文件不存在。"
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:4
-#, fuzzy
 msgid "Page content type:"
-msgstr "请发表评论……"
+msgstr "内容格式："
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:5
 msgid "Only plaintext content is allowed."
-msgstr ""
+msgstr "只允许文本内容。"
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:5
-#, fuzzy
 msgid "Text"
-msgstr "内容处理"
+msgstr "文本"
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:6
 msgid "HTML tags allowed in content."
-msgstr ""
+msgstr "允许HTML语法。"
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:6
 msgid "HTML"
@@ -275,88 +235,81 @@ msgstr ""
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:7
 msgid "Markdown syntax allowed in content."
-msgstr ""
+msgstr "允许Markdown语法。"
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:7
 msgid "Markdown"
 msgstr ""
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:8
-#, fuzzy
 msgid "PHTML template."
-msgstr "为专题选择模板"
+msgstr "PHTML 模板"
 
 #: C:\code\pi\usr\module\page/template/admin/page-add.phtml:8
 msgid "PHTML"
 msgstr ""
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:9
-#, fuzzy
-msgid "Name"
-msgstr "姓名"
-
 #: C:\code\pi\usr\module\page/template/admin/page-list.phtml:10
-#, fuzzy
-msgid "Slug"
-msgstr "Slug"
+msgid "Name"
+msgstr "名称"
 
 #: C:\code\pi\usr\module\page/template/admin/page-list.phtml:11
-#, fuzzy
+msgid "Slug"
+msgstr "关键词"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
 msgid "Type"
 msgstr "类型"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:13
 msgid "Time published"
 msgstr "发布时间"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:13
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:14
 msgid "Last Update"
 msgstr "最近更新"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:14
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:15
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:11
-#, fuzzy
 msgid "Action"
-msgstr "动作"
+msgstr "操作"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:40
-#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:28
-#, fuzzy
-msgid "View"
-msgstr "预览"
-
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:41
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:44
 msgid "Edit"
 msgstr "编辑"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:42
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:45
 msgid "Delete"
 msgstr "删除"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:44
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:47
 msgid "Disable"
-msgstr "关闭"
+msgstr "禁用"
 
-#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:46
-#, fuzzy
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:49
 msgid "Enable"
-msgstr "打开"
+msgstr "启用"
+
+#: C:\code\pi\usr\module\page/template/admin/page-list.phtml:61
+msgid "Add to menu"
+msgstr "添加到菜单"
 
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:9
-#, fuzzy
 msgid "Time modified"
 msgstr "修改时间"
 
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:10
 msgid "Filesize"
-msgstr ""
+msgstr "文件大小"
+
+#: C:\code\pi\usr\module\page/template/admin/template-list.phtml:28
+msgid "View"
+msgstr "预览"
 
 #: C:\code\pi\usr\module\page/template/admin/template-list.phtml:29
-#, fuzzy
 msgid "Add to page"
-msgstr "添加到菜单"
+msgstr "添加页面"
+
+#, fuzzy
+#~ msgid "Homepage"
+#~ msgstr "首页"

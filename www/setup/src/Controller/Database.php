@@ -25,7 +25,7 @@ class Database extends AbstractController
 
     public function init()
     {
-        $vars = $this->wizard->getPersist('db-settings');
+        $vars = $this->getPersist(static::PERSIST_DB);
         if (empty($vars)) {
             $vars = array(
                     'DB_HOST'       => 'localhost',
@@ -34,7 +34,7 @@ class Database extends AbstractController
                     'DB_DBNAME'     => 'pi',
                     'DB_PREFIX'     => 'p' . substr(md5(time()), 0, 3),
             );
-            $this->wizard->setPersist('db-settings', $vars);
+            $this->setPersist(static::PERSIST_DB, $vars);
         }
 
         $this->vars = $vars;
@@ -76,38 +76,24 @@ class Database extends AbstractController
             ),
             PDO::ATTR_PERSISTENT            => false,
         );
-        try {
-            $this->dbLink = new PDO(
-                $vars['dsn'],
-                $vars['username'],
-                $vars['password'],
-                $options
-            );
-            /*
-            // Create database if not exist
-            $sql = sprintf(
-                'CREATE DATABASE IF NOT EXISTS `%s`',
-                $vars['schema']
-            );
-            $this->dbLink->exec($sql);
-            */
-            $sql = sprintf(
-                'ALTER DATABASE `%s` DEFAULT CHARACTER SET %s COLLATE %s',
-                $vars['schema'],
-                $dbConfig['charset'],
-                $dbConfig['collate']
-            );
-            $this->dbLink->exec($sql);
-        } catch (\PDOexception $e) {
-            echo $e->getMessage();
-        }
+        $this->dbLink = new PDO(
+            $vars['dsn'],
+            $vars['username'],
+            $vars['password'],
+            $options
+        );
     }
 
     public function connectAction()
     {
-        $this->connection();
+        try {
+            $this->connection();
+            $result = '1';
+        } catch (\Exception $e) {
+            $result = '0';
+        }
 
-        echo ($this->dbLink) ? 1 : 0;
+        echo $result;
     }
 
     public function setAction()
@@ -115,7 +101,7 @@ class Database extends AbstractController
         $var = $this->request->getParam('var');
         $val = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
-        $this->wizard->setPersist('db-settings', $this->vars);
+        $this->setPersist(static::PERSIST_DB, $this->vars);
 
         echo '1';
     }
@@ -126,46 +112,92 @@ class Database extends AbstractController
         foreach (array_keys($vars) as $name) {
             $vars[$name] = $this->request->getPost($name);
         }
-        $this->wizard->setPersist('db-settings', $vars);
+        $this->setPersist(static::PERSIST_DB, $vars);
         $params = $this->normalizeParameters($vars);
         $dbConfig = $this->wizard->getConfig('database');
         $params = array_merge($params, $dbConfig);
 
-        $file = Pi::path('config') . '/service.database.php';
-        $file_dist = $this->wizard->getRoot()
-                   . '/dist/service.database.php.dist';
-        $content = file_get_contents($file_dist);
-        foreach ($params as $var => $val) {
-            $content = str_replace('%' . $var . '%', $val, $content);
+        $error = '';
+        try {
+            $this->connection();
+        } catch (\Exception $e) {
+            $error = $e->getMessage();
         }
-
-        $error_dsn = false;
-        if (!$file = fopen($file, 'w')) {
-            $error_dsn = true;
-        } else {
-            $result = fwrite($file, $content);
-            if ($result == false || $result < 1) {
-                $error_dsn = true;
+        if (!$error) {
+            try {
+                // Create database if not exist
+                $sql = sprintf(
+                    'CREATE DATABASE IF NOT EXISTS `%s`',
+                    $params['schema']
+                );
+                $result = $this->dbLink->exec($sql);
+                if (!$result) {
+                    $errorInfo = $this->dbLink->errorInfo();
+                    $error = $errorInfo[1] . ':' . $errorInfo[2];
+                }
+            } catch (\Exception $e) {
+                $error = $e->getMessage();
             }
-            fclose($file);
         }
-        if (empty($error_dsn)) {
-            $this->status = 1;
+        if (!$error) {
+            try {
+                $sql = sprintf(
+                    'ALTER DATABASE `%s` DEFAULT CHARACTER SET %s COLLATE %s',
+                    $params['schema'],
+                    $params['charset'],
+                    $params['collate']
+                );
+                $result = $this->dbLink->exec($sql);
+                if (!$result) {
+                    $errorInfo = $this->dbLink->errorInfo();
+                    $error = $errorInfo[1] . ':' . $errorInfo[2];
+                }
+            } catch (\Exception $e) {
+                $error = $e->getMessage();
+            }
+        }
+        if ($error) {
+            $this->status = -1;
+            $content = '<div class="alert alert-danger">'
+                . '<h1>' . _s('Database validation is failed.') . '</h1>'
+                . '<p>' . $error . '</p>'
+                . '</div>';
         } else {
-            $errorDsn = array('file' => $file, 'content' => $content);
-        }
+            $file = Pi::path('config') . '/service.database.php';
+            $file_dist = $this->wizard->getRoot()
+                . '/dist/service.database.php.dist';
+            $content = file_get_contents($file_dist);
+            foreach ($params as $var => $val) {
+                $content = str_replace('%' . $var . '%', $val, $content);
+            }
 
-        $content = '';
-        if (!empty($errorDsn)) {
-            $content .= '<h3>' . _s('Configuration file write error') . '</h3>'
-                      . '<p class="caption" style="margin-top: 10px;">'
-                      . sprintf(
-                          _s('The configuration file "%s" is not written correctly.'),
-                          $errorDsn['file']
-                        )
-                      . '</p><textarea cols="80" rows="10" class="span12">'
-                      . $errorDsn['content']
-                      . '</textarea>';
+            $error_dsn = false;
+            if (!$file = fopen($file, 'w')) {
+                $error_dsn = true;
+            } else {
+                $result = fwrite($file, $content);
+                if ($result == false || $result < 1) {
+                    $error_dsn = true;
+                }
+                fclose($file);
+            }
+            if (empty($error_dsn)) {
+                $this->status = 1;
+            } else {
+                $errorDsn = array('file' => $file, 'content' => $content);
+            }
+
+            if (!empty($errorDsn)) {
+                $content .= '<h3>' . _s('Configuration file write error') . '</h3>'
+                    . '<p class="caption" style="margin-top: 10px;">'
+                    . sprintf(
+                        _s('The configuration file "%s" is not written correctly.'),
+                        $errorDsn['file']
+                    )
+                    . '</p><textarea cols="80" rows="10" class="span12">'
+                    . $errorDsn['content']
+                    . '</textarea>';
+            }
         }
         $this->content .= $content;
     }
@@ -251,7 +283,7 @@ class Database extends AbstractController
 STYLE;
 
         $this->footContent .=<<<SCRIPT
-<script type="text/javascript">
+<script>
 var url="$_SERVER[PHP_SELF]";
 $(document).ready(function(){
     $("input[type=text], input[type=password]").each(function(index) {

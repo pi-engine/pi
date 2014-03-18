@@ -225,8 +225,7 @@ class BuildController extends ActionController
                 $uid,
                 'last_login',
                 '',
-                'user',
-                time() - 3600 * (int) $uid
+                'user'
             );
 
             Pi::user()->data()->set(
@@ -406,8 +405,7 @@ class BuildController extends ActionController
                 $uid,
                 'last_login',
                 '',
-                'user',
-                time() - 3600 * (int) $uid
+                'user'
             );
 
             Pi::user()->data()->set(

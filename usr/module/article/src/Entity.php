@@ -350,6 +350,12 @@ class Entity
                 }
             }
             
+            // Default extended columns
+            $extendedColumns = array_merge(
+                $extendedColumns,
+                array('slug', 'seo_title', 'seo_keywords', 'seo_description')
+            );
+            $extendedColumns = array_unique($extendedColumns);
             // Getting extended data
             $templateExtended = array();
             if (!empty($extendedColumns)) {

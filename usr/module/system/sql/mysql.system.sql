@@ -400,7 +400,7 @@ CREATE TABLE `{core.user_account}` (
   -- Avatar image src
   `avatar`          varchar(255)    NOT NULL default '',
   -- Gender
-  `gender`          enum('male', 'female', 'unknown') NOT NULL,
+  `gender`          enum('male', 'female', 'unknown') default 'unknown',
   -- Birth date with format 'YYYY-mm-dd'
   `birthdate`       varchar(10)     NOT NULL default '',
 
@@ -433,6 +433,7 @@ CREATE TABLE `{core.user_data}` (
   `module`          varchar(64)     NOT NULL    default '',
   `name`            varchar(64)     NOT NULL,
   `time`            int(10)         unsigned    NOT NULL default '0',
+  `expire`          int(10)         unsigned    NOT NULL default '0',
   `value`           text            default NULL,
   `value_int`       int(10)         default NULL,
   `value_multi`     text            default NULL,

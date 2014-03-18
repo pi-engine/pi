@@ -20,20 +20,24 @@ use Zend\Form\Element\Radio;
 class Gender extends Radio
 {
     /**
-     * Get value options for Radio
-     *
-     * @return array
+     * {@inheritDoc}
+     */
+    protected $labelAttributes = array(
+        'class' => 'radio-inline',
+    );
+
+    /**
+     * {@inheritDoc}
      */
     public function getValueOptions()
     {
-        $options = array(
-            'male'   => __('Male'),
-            'female' => __('Female'),
-        );
+        if (!$this->valueOptions) {
+            $this->valueOptions = array(
+                'male'      => __('Male'),
+                'female'    => __('Female'),
+            );
+        }
 
-        $this->valueOptions = $options;
-        $this->labelAttributes = 'radio-inline';
-        
         return $this->valueOptions;
     }
 }
