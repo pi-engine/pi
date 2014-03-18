@@ -193,6 +193,14 @@ $config = array(
         'filter'        => 'number_int',
         'category'      => 'register',
     ),
+    
+    'area_match_api'    => array(
+        'title'         => _t('IP match area API'),
+        'description'   => _t('API address to match user current area according to its IP'),
+        'value'         => 'http://ip.taobao.com/service/getIpInfo.php?ip=%s',
+        'filter'        => 'string',
+        'category'      => 'register',
+    ),
 
     // User account
     'uname_format'  => array(

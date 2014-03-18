@@ -373,7 +373,8 @@ class RegisterController extends ActionController
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
 
-        $form = Pi::api('form', 'user')->loadForm('profile-complete');
+        $file = $this->getFormFile($uid);
+        $form = Pi::api('form', 'user')->loadForm($file);
         $form->setAttributes(array(
             'action'    => $this->url('', array('action' => 'profile.complete')),
         ));
@@ -614,5 +615,63 @@ class RegisterController extends ActionController
         }
 
         return true;
+    }
+    
+    /**
+     * Get file name include form elements require user to complete according to rule
+     * 
+     * @param int $uid
+     * @return string
+     */
+    protected function getFormFile($uid = 0)
+    {
+        // Default register complete file
+        $result = 'register-complete';
+        
+        $uid = $uid ?: Pi::service('user')->getId();
+        $file = sprintf(
+            '%s/module/%s/config/profile-complete-rule.php',
+            Pi::path('custom'),
+            $this->getModule()
+        );
+        if (!file_exists($file)) {
+            return $result;
+        }
+        $data = include $file;
+        
+        // Check if condition field is exists
+        if (empty($data) || !isset($data['rule_field'])) {
+            return $result;
+        }
+        
+        // Get condition value
+        if (empty($data['rule_field'])) {
+            $key = 'all';
+        } else {
+            $fields = explode('&', $data['rule_field']);
+            $values = Pi::api('user', $this->module)->get($uid, $fields);
+            foreach ($values as $key => &$value) {
+                if (!in_array($key, $fields)) {
+                    unset($values[$key]);
+                }
+                $value = $value ?: 'default';
+            }
+            $key = implode('&', $values);
+        }
+        
+        if (
+            !isset($data['items'])
+            || !isset($data['items'][$key])
+            || empty($data['items'][$key])
+        ) {
+            return $result;
+        }
+        
+        $item = $data['items'][$key];
+        if (isset($item['form_file']) && !empty($item['form_file'])) {
+            $result = $data['items'][$key]['form_file'];
+        }
+        
+        return $result;
     }
 }
