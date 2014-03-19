@@ -19,6 +19,9 @@ use Pi\Application\Api\AbstractApi;
  */
 class Profile extends AbstractApi
 {
+    // Rule file name
+    const RULE_FILE = 'profile-complete-rule';
+    
     /**
      * @{inheritDoc}
      */
@@ -92,12 +95,21 @@ class Profile extends AbstractApi
         // Read rule list
         $uid = $uid ?: Pi::service('user')->getId();
         $file = sprintf(
-            '%s/module/%s/config/profile-complete-rule.php',
+            '%s/module/%s/config/%s.php',
             Pi::path('custom'),
-            $this->getModule()
+            $this->getModule(),
+            self::RULE_FILE
         );
         if (!file_exists($file)) {
-            return false;
+            $file = sprintf(
+                '%s/%s/config/%s.php',
+                Pi::path('module'),
+                $this->getModule(),
+                self::RULE_FILE
+            );
+            if (!file_exists($file)) {
+                return false;
+            }
         }
         $data = include $file;
         
