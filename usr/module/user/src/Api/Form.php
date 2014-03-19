@@ -228,10 +228,14 @@ class Form extends AbstractApi
      * @param array $data
      * @return array
      */
-    protected function canonizeElement($data)
+    protected function canonizeElement($data, $compound = '')
     {
         $element = $data['edit']['element'];
-        $element['name'] = $data['name'];
+        if ($compound) {
+            $element['name'] = sprintf('%s-%s', $compound, $data['name']);
+        } else {
+            $element['name'] = $data['name'];
+        }
         if (isset($data['edit']['options']) &&
             $data['edit']['options']
         ) {
@@ -260,7 +264,7 @@ class Form extends AbstractApi
      * @param array $data
      * @return array
      */
-    protected function canonizeFilter($data)
+    protected function canonizeFilter($data, $compound = '')
     {
         $result = array();
         if (!empty($data['edit']['filters'])) {
@@ -278,7 +282,11 @@ class Form extends AbstractApi
             $result['required']= empty($data['is_required']) ? 0 : 1;
         }
         if ($result) {
-            $result['name'] = $data['name'];
+            if ($compound) {
+                $result['name'] = sprintf('%s-%s', $compound, $data['name']);
+            } else {
+                $result['name'] = $data['name'];
+            }
         }
 
         return $result;
@@ -334,11 +342,11 @@ class Form extends AbstractApi
         $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
             if (isset($elements[$field])) {
-                $result = $this->canonizeElement($elements[$field]);
+                $result = $this->canonizeElement($elements[$field], $compound);
             }
         } else {
             foreach ($elements as $key => $element) {
-                $result[$key] = $this->canonizeElement($element);
+                $result[$key] = $this->canonizeElement($element, $compound);
             }
         }
 
@@ -361,7 +369,7 @@ class Form extends AbstractApi
             $fields = (array) $field;
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
-                    $result[$name] = $this->canonizeFilter($elements[$name]);
+                    $result[$name] = $this->canonizeFilter($elements[$name], $compound);
                 }
             }
             if (is_scalar($field)) {
@@ -369,7 +377,7 @@ class Form extends AbstractApi
             }
         } else {
             foreach ($elements as $key => $element) {
-                $result[$key] = $this->canonizeFilter($element);
+                $result[$key] = $this->canonizeFilter($element, $compound);
             }
         }
 
