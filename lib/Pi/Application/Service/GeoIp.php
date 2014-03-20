@@ -152,7 +152,7 @@ class GeoIp extends AbstractService
         }
 
         if ($attr) {
-            $result = $result[$attribute];
+            $result = $result[$attr];
         }
 
         return $result;
