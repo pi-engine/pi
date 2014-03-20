@@ -16,7 +16,10 @@ use GeoIp2\Database\Reader;
 /*
  * Geo IP location lookup
  *
+ * To enable the service, dedicated database is required, available at http://geolite.maxmind.com
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @see var/config/geoip/README.md
  * @see https://github.com/maxmind/GeoIP2-php
  * @see http://www.php.net/manual/en/book.geoip.php
  */
