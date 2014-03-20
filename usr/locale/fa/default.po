@@ -1,283 +1,296 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-03-03 15:48+0800\n"
-"PO-Revision-Date: 2014-03-05 15:37+0330\n"
+"POT-Creation-Date: 2014-03-20 08:19+0330\n"
+"PO-Revision-Date: 2014-03-20 08:21+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: .\n"
-"Language: fa\n"
-"X-Poedit-SearchPath-0: c:\\Code\\pi\\lib\n"
-"X-Poedit-SearchPath-1: c:\\Code\\pi\\www\n"
-"X-Poedit-SearchPath-2: c:\\Code\\pi\\usr\\editor\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/www\n"
+"X-Poedit-SearchPath-1: /var/www/html/local/pi/pi/usr/editor\n"
+"X-Poedit-SearchPath-2: /var/www/html/local/pi/pi/lib/Pi\n"
 
-#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:348
-msgid "Theme updated successfully."
-msgstr "به روز رسانی قالب موفقیت آمیز بود"
+#: /var/www/html/local/pi/pi/www/setup/src/Controller/Admin.php:242
+msgid "Manager"
+msgstr "مدیریت"
 
-#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:355
-msgid "Theme failed to update."
-msgstr "خطا در به روز رسانی قالب"
+#: /var/www/html/local/pi/pi/www/setup/src/Controller/Admin.php:249
+msgid "Moderator"
+msgstr "مدیر"
 
-#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:357
-msgid "Theme upgraded successfully."
-msgstr "به روز رسانی قابل موفقیت آمیز بود"
+#: /var/www/html/local/pi/pi/www/setup/src/Controller/Admin.php:256
+msgid "Editor"
+msgstr "ویرایشگر"
 
-#: c:\Code\pi\lib/Pi/Application/Installer/Theme.php:362
-msgid "Theme asset publish failed."
-msgstr "خطا در انتشار asse قالب"
+#: /var/www/html/local/pi/pi/www/setup/src/Controller/Admin.php:263
+msgid "Staff"
+msgstr "کارمند"
 
-#: c:\Code\pi\lib/Pi/Application/Service/Comment.php:548
-msgid "Posted a new comment."
-msgstr "ارسال نظر جدید"
+#: /var/www/html/local/pi/pi/www/setup/src/Controller/Admin.php:270
+msgid "Member"
+msgstr "کاربر"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
-msgid "A table must be supplied for the DbTable authentication adapter."
-msgstr ""
+#: /var/www/html/local/pi/pi/lib/Pi/Filter/YesNo.php:40
+msgid "No"
+msgstr "خیر"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
-msgid ""
-"An identity column must be supplied for the DbTable authentication adapter."
-msgstr ""
+#: /var/www/html/local/pi/pi/lib/Pi/Filter/YesNo.php:43
+msgid "Yes"
+msgstr "بله"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
-msgid ""
-"A credential column must be supplied for the DbTable authentication adapter."
-msgstr ""
+#: /var/www/html/local/pi/pi/lib/Pi/Filter/Gender.php:39
+msgid "Male"
+msgstr "مرد"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
-msgid ""
-"A value for the identity was not provided prior to authentication with "
-"DbTable."
-msgstr ""
+#: /var/www/html/local/pi/pi/lib/Pi/Filter/Gender.php:43
+msgid "Female"
+msgstr "زن"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
-msgid ""
-"A credential value was not provided prior to authentication with DbTable."
-msgstr ""
+#: /var/www/html/local/pi/pi/lib/Pi/Filter/Gender.php:48
+msgid "Unknown gender"
+msgstr "جنسیت نا مشخص"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
-msgid "A record with the supplied identity could not be found."
-msgstr ""
+#: /var/www/html/local/pi/pi/lib/Pi/User/Model/AbstractModel.php:239
+msgid "Guest"
+msgstr "مهمان"
 
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
-msgid "More than one record matches the supplied identity."
-msgstr ""
-
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
-msgid "Supplied credential is invalid."
-msgstr "اعتبار عرضه شده نامعتبر است."
-
-#: c:\Code\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
-msgid "Authentication successful."
-msgstr "تایید سندیت موفقیت آمیز بود"
-
-#: c:\Code\pi\lib/Pi/Editor/Factory.php:77
-msgid "Pi Default Editor"
-msgstr "ادیتور پیشفرض پای"
-
-#: c:\Code\pi\lib/Pi/Feed/Model.php:203
+#: /var/www/html/local/pi/pi/lib/Pi/Feed/Model.php:203
 #, php-format
 msgid "Feed of %s"
 msgstr "خوراک  %s"
 
-#: c:\Code\pi\lib/Pi/Filter/Gender.php:39
-msgid "Male"
-msgstr "مرد"
+#: /var/www/html/local/pi/pi/lib/Pi/View/Helper/Tag.php:92
+msgid "Tags: "
+msgstr "برچسب ها :"
 
-#: c:\Code\pi\lib/Pi/Filter/Gender.php:43
-msgid "Female"
-msgstr "زن"
+#: /var/www/html/local/pi/pi/lib/Pi/Application/Service/Comment.php:548
+msgid "Posted a new comment."
+msgstr "ارسال نظر جدید"
 
-#: c:\Code\pi\lib/Pi/Filter/Gender.php:48
-msgid "Unknown gender"
-msgstr "جنسیت نا مشخص"
+#: /var/www/html/local/pi/pi/lib/Pi/Application/Installer/Theme.php:348
+msgid "Theme updated successfully."
+msgstr "به روز رسانی قالب موفقیت آمیز بود"
 
-#: c:\Code\pi\lib/Pi/Filter/YesNo.php:40
-msgid "No"
-msgstr "خیر"
+#: /var/www/html/local/pi/pi/lib/Pi/Application/Installer/Theme.php:355
+msgid "Theme failed to update."
+msgstr "خطا در به روز رسانی قالب"
 
-#: c:\Code\pi\lib/Pi/Filter/YesNo.php:43
-msgid "Yes"
-msgstr "بله"
+#: /var/www/html/local/pi/pi/lib/Pi/Application/Installer/Theme.php:357
+msgid "Theme upgraded successfully."
+msgstr "به روز رسانی قابل موفقیت آمیز بود"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:32
+#: /var/www/html/local/pi/pi/lib/Pi/Application/Installer/Theme.php:362
+msgid "Theme asset publish failed."
+msgstr "خطا در انتشار asse قالب"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheLevel.php:32
 msgid "No level"
 msgstr "بدون مرحله"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:33
-#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:68
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheLevel.php:33
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Locale.php:68
 msgid "Language"
 msgstr "زبان"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:34
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheLevel.php:34
 msgid "Authenticated or not"
 msgstr "تایید سندیت یا خیر"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:35
-#: c:\Code\pi\lib/Pi/Form/Element/Role.php:55
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheLevel.php:35
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Role.php:55
 msgid "Role"
 msgstr "نقش"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheLevel.php:49
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheLevel.php:49
 msgid "Cache level"
 msgstr "سطح کش"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:32
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Locale.php:33
+msgid "Auto-detection"
+msgstr "خودکار"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Submit.php:38
+msgid "Submit"
+msgstr "ارسال"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/LoginField.php:36
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/LoginField.php:78
+msgid "Username"
+msgstr "نام کاربری"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/LoginField.php:37
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/LoginField.php:81
+msgid "Email"
+msgstr "ایمیل"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/LoginField.php:84
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/LoginField.php:88
+msgid "Identity"
+msgstr "هویت"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/RoleCheckbox.php:52
+msgid "Roles"
+msgstr "نقش ها"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Theme.php:48
+msgid "Theme"
+msgstr "قالب"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/RoleUser.php:35
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/RoleAdmin.php:35
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Role.php:37
+msgid "None"
+msgstr "هیچ"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Navigation.php:50
+msgid "Navigation"
+msgstr "منو"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/RoleAdmin.php:52
+msgid "Admin role"
+msgstr "نقش مدیریت"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Timezone.php:78
+msgid "Timezone"
+msgstr "منطقه زمانی"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Editor.php:35
+msgid "Text editor"
+msgstr "ادیتور متنی"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:32
 msgid "No cache"
 msgstr "بدون کش"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:33
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:33
 #, php-format
 msgid "%d seconds"
 msgstr "%d ثانیه"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:34
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:34
 msgid "1 minute"
 msgstr "۱ دقیقه"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:35
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:36
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:35
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:36
 #, php-format
 msgid "%d minutes"
 msgstr "%d دقیقه"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:37
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:37
 msgid "1 hour"
 msgstr "۱ ساعت"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:38
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:38
 #, php-format
 msgid "%d hours"
 msgstr "%d ساعت"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:39
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:39
 msgid "1 day"
 msgstr "۱ روز"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:40
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:40
 msgid "1 week"
 msgstr "۱ هفته"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:41
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:41
 msgid "1 month"
 msgstr "۱ ماه‍"
 
-#: c:\Code\pi\lib/Pi/Form/Element/CacheTtl.php:54
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/CacheTtl.php:54
 msgid "Cache expiration"
 msgstr "زمان باطل شدن کش"
 
-#: c:\Code\pi\lib/Pi/Form/Element/Editor.php:35
-msgid "Text editor"
-msgstr "ادیتور متنی"
-
-#: c:\Code\pi\lib/Pi/Form/Element/Locale.php:33
-msgid "Auto-detection"
-msgstr "خودکار"
-
-#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:36
-#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:78
-msgid "Username"
-msgstr "نام کاربری"
-
-#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:37
-#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:81
-msgid "Email"
-msgstr "ایمیل"
-
-#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:84
-#: c:\Code\pi\lib/Pi/Form/Element/LoginField.php:88
-msgid "Identity"
-msgstr "هویت"
-
-#: c:\Code\pi\lib/Pi/Form/Element/Navigation.php:50
-msgid "Navigation"
-msgstr "منو"
-
-#: c:\Code\pi\lib/Pi/Form/Element/Role.php:37
-#: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:35
-#: c:\Code\pi\lib/Pi/Form/Element/RoleUser.php:35
-msgid "None"
-msgstr "هیچ"
-
-#: c:\Code\pi\lib/Pi/Form/Element/RoleAdmin.php:52
-msgid "Admin role"
-msgstr "نقش مدیریت"
-
-#: c:\Code\pi\lib/Pi/Form/Element/RoleCheckbox.php:52
-msgid "Roles"
-msgstr "نقش ها"
-
-#: c:\Code\pi\lib/Pi/Form/Element/Submit.php:38
-msgid "Submit"
-msgstr "ارسال"
-
-#: c:\Code\pi\lib/Pi/Form/Element/Tag.php:116
+#: /var/www/html/local/pi/pi/lib/Pi/Form/Element/Tag.php:116
 msgid "Tags"
 msgstr "برچسب ها"
 
-#: c:\Code\pi\lib/Pi/Form/Element/Theme.php:48
-msgid "Theme"
-msgstr "قالب"
-
-#: c:\Code\pi\lib/Pi/Form/Element/Timezone.php:78
-msgid "Timezone"
-msgstr "منطقه زمانی"
-
-#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:91
+#: /var/www/html/local/pi/pi/lib/Pi/Form/View/Helper/FormDateSelect.php:91
 msgid "Day"
 msgstr "روز"
 
-#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:92
+#: /var/www/html/local/pi/pi/lib/Pi/Form/View/Helper/FormDateSelect.php:92
 msgid "Year"
 msgstr "سال"
 
-#: c:\Code\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:93
+#: /var/www/html/local/pi/pi/lib/Pi/Form/View/Helper/FormDateSelect.php:93
 msgid "Month"
 msgstr "ماه"
 
-#: c:\Code\pi\lib/Pi/Mvc/Controller/ActionController.php:98
+#: /var/www/html/local/pi/pi/lib/Pi/Form/View/Helper/Captcha/Image.php:59
+msgid "CAPTCHA image"
+msgstr "تصویر کپچا"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Form/View/Helper/Captcha/Image.php:60
+msgid "Click to refresh CAPTCHA"
+msgstr "برای تغییر تصویر کلیک کنید"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Mvc/Controller/ActionController.php:98
 msgid "The requested action was not found."
 msgstr "اکشن مورد نظر یافت نشد"
 
-#: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
+#: /var/www/html/local/pi/pi/lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
 msgid "Login"
 msgstr "ورود"
 
-#: c:\Code\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
+#: /var/www/html/local/pi/pi/lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
 #, php-format
 msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
 msgstr "لطفا <a href=\"%s\" title=\"\">وارد شوید</a> و سپس به اینجا برگردید."
 
-#: c:\Code\pi\lib/Pi/User/Model/AbstractModel.php:239
-msgid "Guest"
-msgstr "مهمان"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
+msgid "A table must be supplied for the DbTable authentication adapter."
+msgstr "A table must be supplied for the DbTable authentication adapter."
 
-#: c:\Code\pi\lib/Pi/View/Helper/Tag.php:92
-msgid "Tags: "
-msgstr "برچسب ها :"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
+msgid ""
+"An identity column must be supplied for the DbTable authentication adapter."
+msgstr ""
+"An identity column must be supplied for the DbTable authentication adapter."
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:242
-msgid "Manager"
-msgstr "مدیریت"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
+msgid ""
+"A credential column must be supplied for the DbTable authentication adapter."
+msgstr ""
+"A credential column must be supplied for the DbTable authentication adapter."
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:249
-msgid "Moderator"
-msgstr "مدیر"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
+msgid ""
+"A value for the identity was not provided prior to authentication with "
+"DbTable."
+msgstr ""
+"A value for the identity was not provided prior to authentication with "
+"DbTable."
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:256
-msgid "Editor"
-msgstr "ویرایشگر"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
+msgid ""
+"A credential value was not provided prior to authentication with DbTable."
+msgstr ""
+"A credential value was not provided prior to authentication with DbTable."
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:263
-msgid "Staff"
-msgstr "کارمند"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
+msgid "A record with the supplied identity could not be found."
+msgstr "هیچ رکوردی برای هویت انتخاب شده یافت نشد"
 
-#: c:\Code\pi\www/setup/src/Controller/Admin.php:270
-msgid "Member"
-msgstr "کاربر"
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
+msgid "More than one record matches the supplied identity."
+msgstr "بیش از یک رکورد برای هویت انتخاب شده موجود دارد."
+
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+msgid "Supplied credential is invalid."
+msgstr "اعتبار عرضه شده نامعتبر است."
+
+#: /var/www/html/local/pi/pi/lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+msgid "Authentication successful."
+msgstr "تایید سندیت موفقیت آمیز بود"
+
+#: /var/www/html/local/pi/pi/lib/Pi/Editor/Factory.php:77
+msgid "Pi Default Editor"
+msgstr "ادیتور پیشفرض پای"
