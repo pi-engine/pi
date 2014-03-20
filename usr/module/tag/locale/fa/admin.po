@@ -1,224 +1,172 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2014-01-22 10:31+0800\n"
-"PO-Revision-Date: 2014-01-22 10:31+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-03-20 09:39+0330\n"
+"PO-Revision-Date: 2014-03-20 09:50+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: en\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\tag\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/tag\n"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:23
+#: /var/www/html/local/pi/pi/usr/module/tag/config/navigation.php:14
+msgid "Top tags"
+msgstr "برچسب های برتر"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/navigation.php:20
+msgid "New tags"
+msgstr "برچسب های جدید"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/navigation.php:26
+msgid "Tagged items"
+msgstr "آیتم های برچسب گذاری شده"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:13
 msgid "Top tag list"
-msgstr ""
+msgstr "فهرست برچسب های برتر"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:24
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:14
 msgid "Top 10 tag block"
-msgstr ""
+msgstr "بلاک ۱۰ برچسب برتر"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:29
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:45
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:90
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:19
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:35
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:80
 msgid "Limit"
-msgstr ""
+msgstr "محدودیت"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:30
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:46
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:91
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:20
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:36
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:81
 msgid "Block display item count"
-msgstr ""
+msgstr "نمایش تعداد آیتم ها"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:39
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:29
 msgid "Tag Cloud"
-msgstr ""
+msgstr "ابر برچسب"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:40
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:30
 msgid "Top tag cloud block"
-msgstr ""
+msgstr "بلاک ابر برچسب"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:52
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:42
 msgid "Color"
-msgstr ""
+msgstr "رنگ"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:53
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:43
 msgid "Set tag cloud color"
-msgstr ""
+msgstr "تنظیم رنگ ابر برچسب"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:67
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:57
 msgid "Max font size"
-msgstr ""
+msgstr "بیشترین اندازه فونت"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:68
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:58
 msgid "Set max font size"
-msgstr ""
+msgstr "تنظیم بیشترین اندازه فونت"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:74
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:64
 msgid "Min font size"
-msgstr ""
+msgstr "کمترین اندازه فونت"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:75
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:65
 msgid "Set min font size"
-msgstr ""
+msgstr "تنظیم کمترین اندازه فونت"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:84
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:85
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:74
+#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:75
 msgid "The latest tag"
-msgstr ""
+msgstr "آخرین برچسب ها"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:24
-msgid "General"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:33
-msgid "Item per page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:34
-msgid "Number of items on tag list page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:51
-msgid "Detail per page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:52
-msgid "Number of items on tag detail page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:69
-msgid "Link per page"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:70
-msgid "Number of items on one relationships page."
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/config/module.php:18
-#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:26
+#: /var/www/html/local/pi/pi/usr/module/tag/config/module.php:18
 msgid "Tags"
-msgstr ""
+msgstr "برچسب ها"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/module.php:20
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:11
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:46
+#: /var/www/html/local/pi/pi/usr/module/tag/config/module.php:20
 msgid "Tag"
-msgstr ""
+msgstr "برچسب"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:32
-msgid "Relationships"
-msgstr ""
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:13
+msgid "Tag delimiter"
+msgstr "جدا کننده برچسب"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:38
-msgid "Statistics"
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:14
+msgid ""
+"Delimiter(s) to separate tag terms, use `s` for space and separate "
+"delimiters with `|`."
 msgstr ""
+"جدا کننده های برچسب برای جدا کردن کلمات از هم. جدا کننده ها را به شکل `s` "
+"وارد کنید و با استفاده از `|` از هم جدا کنید."
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list.phtml:7
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:19
+msgid "Enable quote"
+msgstr "فعال سازی نقل قول"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:20
+msgid "Use double quotes to identify multi-term tag."
+msgstr "استفاده از علامت نقل قول دوتایی برای هویت دادن به کلمات چند بخشی"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:27
+msgid "Minimum length"
+msgstr "کمترین طول"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:28
+msgid "Minimum length for valid tag terms."
+msgstr "کمترین طول برای پذیرش واژه برچسب"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:35
+msgid "Item per page"
+msgstr "تعداد در هر صفحه"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:36
+msgid "Number of items on tag list page."
+msgstr "تعداد آیتم ها در فهرست برچسب در هر صفحه"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:52
+msgid "Detail per page"
+msgstr "جزییات در صفحه"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:53
+msgid "Number of items on tag detail page."
+msgstr "تعداد آیتم ها در صفحه جزییات برچسب"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:69
+msgid "Link per page"
+msgstr "لینک در هر صفحه"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:70
+msgid "Number of items on one relationships page."
+msgstr "تعداد آیتم ها پر هر صفحه ارتباطی"
+
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:7
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:7
 msgid "All"
-msgstr ""
+msgstr "همه"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list.phtml:53
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:17
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:11
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:33
-msgid "Tag Name"
-msgstr ""
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:31
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:31
+msgid "Tag name"
+msgstr "نام برچسب"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list.phtml:54
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:18
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:12
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:47
-msgid "Count"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list.phtml:55
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:19
-msgid "Operator"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list.phtml:69
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:30
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:27
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:57
-msgid "Delete"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:7
-msgid "Search"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:8
-msgid "Search result"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/search.phtml:12
-msgid "is not found Try some other words"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:6
-msgid "Global Top tags"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:10
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:32
-msgid "No"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:28
-msgid "Latest tags"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/stats.phtml:34
-msgid "Link time"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:5
-msgid "Verifydas"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:6
-msgid "Invalid links"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:10
-msgid "Item"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:12
-msgid "Module"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:13
-msgid "Type"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:14
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:32
 msgid "Time"
-msgstr ""
+msgstr "زمان"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:15
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:48
-msgid "Operation"
-msgstr ""
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:33
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:33
+msgid "Action"
+msgstr "عملکرد"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:37
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:67
-msgid "Congratulations"
-msgstr ""
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:38
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:38
+msgid "Delete"
+msgstr "حذف"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:38
-msgid "No invalid link found"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:42
-msgid "Invalid tags"
-msgstr ""
-
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/verify.phtml:68
-msgid "No invalid tag found"
-msgstr ""
+#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:32
+msgid "Count"
+msgstr "تعداد"
