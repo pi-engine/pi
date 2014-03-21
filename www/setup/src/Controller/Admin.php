@@ -218,6 +218,13 @@ class Admin extends AbstractController
                     array('name' => 'charset')
                 );
             }
+            $location = Pi::service('geo_ip')->get($_SERVER['REMOTE_ADDR'], 'location');
+            if ($location && !empty($location['timezone'])) {
+                $configModel->update(
+                    array('value' => $location['timezone']),
+                    array('name' => 'timezone')
+                );
+            }
 
             // Create root admin user
             $adminData = array(

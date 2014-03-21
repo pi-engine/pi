@@ -19,9 +19,10 @@ use Zend\View\Helper\AbstractHelper;
  * Usage inside a phtml template
  *
  * ```
- *  $this->i18nTheme('main');
- *  $this->i18nTheme('main', 'default');
- *  $this->i18nTheme('main', null, 'en');
+ *  $this->i18nTheme();
+ *  $this->i18nTheme('default');
+ *  $this->i18nTheme('default', 'default');
+ *  $this->i18nTheme('default', null, 'en');
  * ```
  *
  * @see Pi\Application\Service\I18n
@@ -38,7 +39,7 @@ class I18nTheme extends AbstractHelper
      * @param   string|null  $locale
      * @return  self
      */
-    public function __invoke($domain, $theme = null, $locale = null)
+    public function __invoke($domain = 'default', $theme = null, $locale = null)
     {
         Pi::service('i18n')->loadTheme($domain, $theme, $locale);
 

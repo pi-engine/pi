@@ -1,9 +1,8 @@
 {
     "name": "pi/pi",
-    "description": "Pi Engine",
+    "description": "Pi Engine is a role oriented application development engine with support for multitenancy SaaS and SSO/OAuth, developed upon Zend Framework, jQuery, Bootstrap, Angular.",
     "type": "composer",
     "keywords": [
-        "framework",
         "pi",
         "zendframework",
         "angular",
@@ -18,8 +17,8 @@
     "require-dev": {
     },
     "suggest": {
-        "ext-intl": "ext/intl for i18n features (included in default builds of PHP)",
-        "ext-curl": "ext/curl"
+        "ext-intl": "ext/intl for i18n features",
+        "ext-curl": "ext/curl for remote services"
     },
     "autoload": {
         "psr-0": {
