@@ -74,28 +74,6 @@ class DetailController extends ActionController
     }
     
     /**
-     * Check access
-     *
-     * @return bool
-     */
-    protected function checkAccess()
-    {
-        // If disabled
-        $registerDisable = $this->config('register_disable');
-        if ($registerDisable) {
-            $this->view()->setTemplate('register-disabled');
-            return false;
-        }
-
-        if (Pi::service('user')->hasIdentity()) {
-            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
-            return false;
-        }
-
-        return true;
-    }
-    
-    /**
      * Get file name include form elements require user to complete according to rule.
      * If rule file not exist or rule is valid, return false to skip
      * 
