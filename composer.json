@@ -1,0 +1,37 @@
+{
+    "name": "pi/pi",
+    "description": "Pi Engine",
+    "type": "composer",
+    "keywords": [
+        "framework",
+        "pi",
+        "zendframework",
+        "angular",
+        "bootstrap",
+        "jquery"
+    ],
+    "homepage": "http://pialog.org/",
+    "license": "New BSD",
+    "require": {
+        "php": ">=5.3.23"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+        "ext-intl": "ext/intl for i18n features (included in default builds of PHP)",
+        "ext-curl": "ext/curl"
+    },
+    "autoload": {
+        "psr-0": {
+            "Pi\\": "lib/",
+            "Zend\\": "lib/",
+            "GeoIp2\\": "vendor/",
+            "Imagine\\": "vendor/",
+            "MaxMind\\": "vendor/",
+            "RandomLib\\": "vendor/",
+            "SecurityLib\\": "vendor/"
+        }
+    },
+    "replace": {
+   }
+}
