@@ -341,8 +341,14 @@ class Form extends AbstractApi
         $result = array();
         $elements = Pi::registry('compound_field', $this->module)->read($compound);
         if ($field) {
-            if (isset($elements[$field])) {
-                $result = $this->canonizeElement($elements[$field], $compound);
+            $fields = (array) $field;
+            foreach ($fields as $name) {
+                if (isset($elements[$name])) {
+                    $result[$name] = $this->canonizeElement($elements[$name], $compound);
+                }
+            }
+            if (is_scalar($field)) {
+                $result = $result[$field];
             }
         } else {
             foreach ($elements as $key => $element) {
