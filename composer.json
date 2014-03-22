@@ -1,6 +1,6 @@
 {
     "name": "pi/pi",
-    "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth."
+    "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.",
     "type": "composer",
     "keywords": [
         "Pi",
