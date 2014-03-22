@@ -1,13 +1,13 @@
 {
     "name": "pi/pi",
-    "description": "Pi Engine is a role oriented application development engine with support for multitenancy SaaS and SSO/OAuth, developed upon Zend Framework, jQuery, Bootstrap, Angular.",
+    "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth."
     "type": "composer",
     "keywords": [
-        "pi",
-        "zendframework",
-        "angular",
-        "bootstrap",
-        "jquery"
+        "Pi",
+        "ZendFramework",
+        "Multi-Tenant",
+        "SaaS",
+        "PHP"
     ],
     "homepage": "http://pialog.org/",
     "license": "New BSD",
