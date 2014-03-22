@@ -21,6 +21,9 @@ class Wizard
 {
     const BASE_NAMESPACE    = 'Pi\Setup';
     const DIR_CLASS         = 'src';
+    const PERSIST_LOCALE    = 'locale';
+    const PERSIST_CHARSET   = 'charset';
+
     protected static $root;
 
     protected $request;
@@ -115,48 +118,47 @@ class Wizard
         return static::$root;
     }
 
-    public function initLocale($locale = null)
+    public function initLocale()
     {
-        if (empty($locale)) {
-            // Load from persist
-            if ($locale = $this->persist()->get('locale')) {
-                $this->locale = $locale;
-            // Detect via browser
-            } elseif (!$this->locale) {
-                $auto   = 'en';
-                $acceptedLanguage = isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])
-                    ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
-                $matched = preg_match_all(
-                    '/([a-z]{2,8}(-[a-z]{2,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',
-                    $acceptedLanguage,
-                    $matches
-                );
-                if ($matched) {
-                    $languageList = $this->getLanguages();
-                    foreach ($matches[1] as $language) {
-                        $canonized = strtolower($language);
-                        if (isset($languageList[$canonized])) {
-                            $auto = $canonized;
-                            break;
-                        } else {
-                            $pos = strpos($language, '-');
-                            if (false !== $pos) {
-                                $canonized = substr($language, 0, $pos);
-                                if (isset($languageList[$canonized])) {
-                                    $auto = $canonized;
-                                    break;
-                                }
+        // Load from persist
+        $locale = $this->getPersist(static::PERSIST_LOCALE);
+        if ($locale) {
+            $this->locale = $locale;
+        // Detect via browser
+        } elseif (!$this->locale) {
+            $auto   = 'en';
+            $acceptedLanguage = isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])
+                ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
+            $matched = preg_match_all(
+                '/([a-z]{2,8}(-[a-z]{2,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',
+                $acceptedLanguage,
+                $matches
+            );
+            if ($matched) {
+                $languageList = $this->getLanguages();
+                foreach ($matches[1] as $language) {
+                    $canonized = strtolower($language);
+                    if (isset($languageList[$canonized])) {
+                        $auto = $canonized;
+                        break;
+                    } else {
+                        $pos = strpos($language, '-');
+                        if (false !== $pos) {
+                            $canonized = substr($language, 0, $pos);
+                            if (isset($languageList[$canonized])) {
+                                $auto = $canonized;
+                                break;
                             }
                         }
                     }
                 }
-                $this->setLocale($auto);
             }
-        } else {
-            $this->locale = $locale;
-            $this->persist()->set('locale', $this->locale);
+            $this->setLocale($auto);
         }
-        $this->charset = $this->persist()->get('charset') ?: $this->charset;
+        $charset = $this->getPersist(static::PERSIST_CHARSET);
+        if ($charset) {
+            $this->charset = $charset;
+        }
         Translator::setPath($this->getRoot() . '/locale');
         Translator::setLocale($this->locale);
         Translator::loadDomain('default');
@@ -167,7 +169,7 @@ class Wizard
         $languages = $this->getLanguages();
         if (isset($languages[$locale])) {
             $this->locale = $locale;
-            $this->persist()->set('locale', $this->locale);
+            $this->setPersist(static::PERSIST_LOCALE, $this->locale);
 
             return true;
         }
@@ -257,7 +259,7 @@ class Wizard
     public function setCharset($charset)
     {
         $this->charset = $charset;
-        $this->persist()->set('charset', $this->charset);
+        $this->setPersist(static::PERSIST_CHARSET, $this->charset);
     }
 
     public function getCharset()
@@ -303,11 +305,16 @@ class Wizard
 
     public function render()
     {
-        $this->savePersist();
         $status = $this->controller->getStatus();
         if ($status > 0 /*&& !$this->getRequest()->getParam('r')*/) {
             $this->gotoPage('+1');
+            exit;
         }
+
+        // Prevent client caching
+        header('Cache-Control: no-store, no-cache, must-revalidate', false);
+        header('Pragma: no-cache');
+
         $content = $this->controller->getContent();
         if ($this->getRequest()->isXmlHttpRequest()) {
             if ($this->controller->hasBootstrap()
@@ -318,7 +325,7 @@ class Wizard
                 error_reporting(0);
             }
             echo $content;
-            return;
+            exit;
         }
 
         $pages = $this->pages;
@@ -341,12 +348,21 @@ class Wizard
                . '(' . ($this->pageIndex + 1) . '/' . count($this->pages) . ')';
         $desc = $currentPage['desc'];
 
+        $previousUrl = $nextUrl = '';
+        // For non-first page
         if ($pageIndex > 0) {
             $previousUrl = $this->url('-1', array('r' => 1));
         }
+        // For non-last page
         if ($status > -1 && $pageIndex < count($pages) - 1) {
             $nextUrl = $this->url('+1');
         }
+
+        // For finish page explicitly
+        if ($pageIndex == count($pages) - 1) {
+            $currentPage['url'] = $previousUrl = $nextUrl = '';
+        }
+
         $pageHasForm = $this->controller->hasForm();
         $headContent = $this->controller->headContent();
         $footContent = $this->controller->footContent();
@@ -357,15 +373,10 @@ class Wizard
             'baseUrl', 'navPages', 'pageIndex', 'currentPage', 'previousUrl',
             'nextUrl', 'pageHasForm', 'content', 'headContent', 'footContent'
         );
-        ob_start();
-        include $this->getRoot() . '/include/template.phtml';
-        $content = ob_get_contents();
-        ob_end_clean();
 
-        // Prevent client caching
-        header('Cache-Control: no-store, no-cache, must-revalidate', false);
-        header('Pragma: no-cache');
-        echo  $content;
+        include $this->getRoot() . '/include/template.phtml';
+
+        exit;
     }
 
     public function url($page = '', $params = array())
@@ -383,13 +394,14 @@ class Wizard
     public function gotoPage($page = '', $params = array())
     {
         $url = $this->url($page, $params);
+
         header('Location: ' . $this->getRequest()->getScheme() . '://'
                . $this->getRequest()->getHttpHost() . $url);
 
         exit();
     }
 
-    public function persist()
+    protected function persist()
     {
         if (!$this->persist instanceof Persist) {
             if ($this->tmpDir) {
@@ -402,16 +414,16 @@ class Wizard
         return $this->persist;
     }
 
-    public function loadPersist()
+    protected function loadPersist()
     {
         $this->persist()->load();
 
         return;
     }
 
-    public function savePersist($close = true)
+    public function savePersist()
     {
-        $this->persist()->save(null, $close);
+        $this->persist->save();
 
         return;
     }
@@ -419,34 +431,30 @@ class Wizard
     public function destroyPersist()
     {
         try {
-            $this->persist()->destroy();
+            $this->persist->destroy();
         } catch (\Exception $e) {
             die($e->getMessage());
         }
+        $this->persist()->load();
 
         return true;
     }
 
-    public function setPersist($key, $value)
+    public function setPersist($key, $value = null)
     {
-        //$this->persistentData[$key] = $value;
-        $this->persist()->set($key, $value);
-        $this->savePersist(false);
+        $this->persist->set($key, $value);
+        $this->savePersist();
 
         return $this;
     }
 
-    public function getPersist($key)
+    public function getPersist($key = null)
     {
-        return $this->persist()->get($key);
+        return $this->persist->get($key);
     }
 
     public function shutdown()
     {
         return;
-
-        $this->destroyPersist();
-
-        return true;
     }
 }

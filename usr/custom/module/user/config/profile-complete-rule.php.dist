@@ -1,0 +1,80 @@
+<?php
+/**
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt New BSD License
+ */
+
+/**
+ * Customized whether to redirect to complete profile page by given condtion,
+ * customized the info want user to insert.
+ * 
+ * Customized redirect condition
+ * <code>
+ * return array(
+ *     'rule_field' => 'registered_source&uid,
+ *     'items'      => array(
+ *         '{value of `registered_source` field}&{value of `uid` field}' => array(
+ *             // Enable redirect to complete profile page
+ *             'active'    => 1,
+ *             'form_file' => 'file1-profile-complete',
+ *         ),
+ *     ),
+ * );
+ * </code>
+ * 
+ * If all users use same rule:
+ * <code>
+ * return array(
+ *     // Set value to empty string
+ *     'rule_field' => '',
+ *     'items'      => array(
+ *         // Set key to `all`
+ *         'all' => array(
+ *             // Enable redirect to complete profile page
+ *             'active' => 1,
+ *             ...
+ *         ),
+ *     ),
+ * );
+ * </code>
+ * 
+ * Added a default item to redirect to default profile complete page
+ * <code>
+ * return array(
+ *     'rule_field' => 'registered_source',
+ *     'items'      => array(
+ *         // If the value of `registered_source` field is empty, the `default` item is used
+ *         'default'   => array(
+ *             'active'    => 1,
+ *             'form_file' => 'profile-complete',
+ *         ),
+ *         ...
+ *     ),
+ * );
+ * </code>
+ * 
+ * @author Zongshu Lin <lin40553024@163.com>
+ */
+return array(
+    'rule_field' => '',
+    'items'      => array(
+        // This list is needed and cannot be changed
+        'default'   => array(
+            'active'    => 1,
+            'form_file' => 'profile-complete',
+        ),
+        // All user use the same form if `rule_field` set to empty string
+         'all'      => array(
+            'active'    => 1,
+            'form_file' => 'profile-complete',
+        ),
+        // Custom lists
+        'pi50fi'    => array(
+            'active'    => 1,
+            'form_file' => 'demo-profile-complete',
+        ),
+    ),
+);

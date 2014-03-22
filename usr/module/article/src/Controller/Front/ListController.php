@@ -124,7 +124,6 @@ class ListController extends ActionController
             ),
         ));
 
-        $module = $this->getModule();
         $config = Pi::config('', $module);
         
         // Get category nav

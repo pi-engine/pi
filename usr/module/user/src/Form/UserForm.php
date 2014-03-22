@@ -12,7 +12,7 @@ namespace Module\User\Form;
 use Pi;
 use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter as UserInputFilter;
-
+use Zend\Form\FormInterface;
 
 /**
  * User form with support for predefined user profile fields
@@ -106,5 +106,24 @@ class UserForm extends BaseForm
         }
 
         return $inputFilter;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function getData($flags = FormInterface::VALUES_NORMALIZED)
+    {
+        $data = parent::getData($flags);
+        
+        foreach ($data as $key => $value) {
+            if (preg_match('/-/', $key)) {
+                list($compound, $field) = explode('-', $key);
+                $compoundData[$compound][0][$field] = $value;
+                unset($data[$key]);
+            }
+        }
+        $data = array_merge($data, $compoundData);
+        
+        return $data;
     }
 }

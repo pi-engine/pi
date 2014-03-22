@@ -25,26 +25,72 @@ use Zend\Stdlib\StringWrapper\StringWrapperInterface;
  *  $findme = Pi::string()->strpos($text, 'in');
  *  $toGbk = Pi::string()->convert($text, 'gbk');
  *  $toUTF = Pi::string()->convert($text, 'utf-8', 'gbk');
+ *
+ *  $isUTF = Pi::string()->isValidUtf8($text);
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class String extends AbstractService
 {
-    protected $stringWrapper;
+    /**
+     * @var array of StringWrapperInterface
+     */
+    protected $stringWrapper = array();
 
     /**
      * Get string wrapper
      *
+     * @param string $encoding
+     *
      * @return StringWrapperInterface
      */
-    public function getWrapper()
+    public function getWrapper($encoding = '')
     {
-        if (!$this->stringWrapper) {
-            $this->stringWrapper = StringUtils::getWrapper(Pi::config('charset'));
+        $encoding = strtoupper($encoding ?: Pi::config('charset'));
+        if (!isset($this->stringWrapper[$encoding])) {
+            try {
+                $stringWrapper = StringUtils::getWrapper(Pi::config('charset'));
+            } catch (\Exception $e) {
+                $stringWrapper = false;
+            }
+            $this->stringWrapper[$encoding] = $stringWrapper;
         }
 
-        return $this->stringWrapper;
+        return $this->stringWrapper[$encoding];
+    }
+
+    /**
+     * Check if the given character encoding is supported by this wrapper
+     * and the character encoding to convert to is also supported.
+     *
+     * @param  string      $encoding
+     * @param  string|null $convertEncoding
+     *
+     * @return bool
+     */
+    public function isSupported($encoding, $convertEncoding = null)
+    {
+        $result = call_user_func_array(
+            array($this->getWrapper(), 'isSupported'),
+            array($encoding, $convertEncoding)
+        );
+
+        return $result;
+    }
+
+    /**
+     * Get a list of supported character encodings
+     *
+     * @return string[]
+     */
+    public function getSupportedEncodings()
+    {
+        $result = call_user_func(
+            array($this->getWrapper(), 'getSupportedEncodings')
+        );
+
+        return $result;
     }
 
     /**
@@ -87,6 +133,8 @@ class String extends AbstractService
         $wrapper = $this->getWrapper();
         if (is_callable(array($wrapper, $method))) {
             $result = call_user_func_array(array($wrapper, $method), $args);
+        } elseif (is_callable(array('Zend\Stdlib\StringUtils', $method))) {
+            $result = call_user_func_array(array('Zend\Stdlib\StringUtils', $method), $args);
         } else {
             $result = false;
         }

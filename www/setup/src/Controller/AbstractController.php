@@ -19,6 +19,12 @@ use Pi\Setup\Wizard;
  */
 abstract class AbstractController
 {
+    /** Persistent data groups */
+    const PERSIST_ENGINE    = 'engine';
+    const PERSIST_HOST      = 'host';
+    const PERSIST_DB        = 'db';
+    const PERSIST_SITE      = 'site';
+
     protected $content = '';
     protected $headContent = '';
     protected $footContent = '';
@@ -34,37 +40,28 @@ abstract class AbstractController
         $this->wizard = $wizard;
         if ($this->hasBootstrap) {
 
-            $vars = $wizard->getPersist('paths');
+            $vars = $wizard->getPersist(static::PERSIST_HOST);
 
-            // Physical path to host configuration file
-            // For performance consideration it is recommended to be specified
-            // if there is only one host; Otherwise it will be automatically
-            // looked up in central host specifications
             define('PI_PATH_HOST', $vars['config']['path'] . '/host.php');
-
-            // Physical path to www directory WITHOUT trailing slash
             define('PI_PATH_WWW', $vars['www']['path']);
-
-            // Physical path to default lib directory WITHOUT trailing slash
             define('PI_PATH_LIB', $vars['lib']['path']);
-            /**#@-*/
 
             $pi = PI_PATH_LIB . '/Pi.php';
-            if (!is_readable($pi)) {
+            if (is_readable($pi)) {
+                include $pi;
+
+                $locale = $this->wizard->getLocale();
+                $charset = $this->wizard->getCharset();
+                Pi::config()->set('locale', $locale);
+                Pi::config()->set('charset', $charset);
+
+                Pi::service('i18n')->setLocale($locale);
+                setlocale(\LC_ALL, $locale);
+            } else {
                 $this->wizard->gotoPage();
             }
-            include $pi;
-
-
-            $locale = $this->wizard->getLocale();
-            $charset = $this->wizard->getCharset();
-            Pi::config()->set('locale', $locale);
-            Pi::config()->set('charset', $charset);
-
-            Pi::service('i18n')->setLocale($locale);
-            \setlocale(\LC_ALL, $locale);
-
         }
+
         $this->request = $wizard->getRequest();
         $this->init();
     }
@@ -72,6 +69,18 @@ abstract class AbstractController
     protected function init()
     {
         return;
+    }
+
+    public function setPersist($key, $value)
+    {
+        $this->wizard->setPersist($key, $value);
+
+        return $this;
+    }
+
+    public function getPersist($key)
+    {
+        return $this->wizard->getPersist($key);
     }
 
     public function headContent()
@@ -89,10 +98,12 @@ abstract class AbstractController
         return $this->content;
     }
 
+    /*
     public function hasHelp()
     {
         return $this->hasHelp ? true : false;
     }
+    */
 
     public function hasForm()
     {
@@ -104,10 +115,12 @@ abstract class AbstractController
         return $this->hasBootstrap ? true : false;
     }
 
+    /*
     public function hasAjax()
     {
         return $this->hasAjax ? true : false;
     }
+    */
 
     public function getStatus()
     {

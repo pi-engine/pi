@@ -103,7 +103,7 @@ class Markup extends AbstractService
      */
     public function render(
         $content,
-        $renderer,
+        $renderer = null,
         $parser = null,
         $options = array()
     ) {

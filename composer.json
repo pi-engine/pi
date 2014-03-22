@@ -1,0 +1,36 @@
+{
+    "name": "pi/pi",
+    "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.",
+    "type": "composer",
+    "keywords": [
+        "Pi",
+        "ZendFramework",
+        "Multi-Tenant",
+        "SaaS",
+        "PHP"
+    ],
+    "homepage": "http://pialog.org/",
+    "license": "New BSD",
+    "require": {
+        "php": ">=5.3.23"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+        "ext-intl": "ext/intl for i18n features",
+        "ext-curl": "ext/curl for remote services"
+    },
+    "autoload": {
+        "psr-0": {
+            "Pi\\": "lib/",
+            "Zend\\": "lib/",
+            "GeoIp2\\": "vendor/",
+            "Imagine\\": "vendor/",
+            "MaxMind\\": "vendor/",
+            "RandomLib\\": "vendor/",
+            "SecurityLib\\": "vendor/"
+        }
+    },
+    "replace": {
+   }
+}

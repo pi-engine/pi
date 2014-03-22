@@ -29,7 +29,7 @@ class Birthdate extends AbstractFilter
      */
     public function filter($value)
     {
-        //$value = $value ?: 0;
+        $value = $value ?: 0;
         $replace = array();
         if (!is_numeric($value)) {
             list($year, $month, $day) = explode('-', $value);

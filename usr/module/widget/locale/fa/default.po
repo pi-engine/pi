@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-05 15:49+0330\n"
-"PO-Revision-Date: 2014-03-05 15:49+0330\n"
+"POT-Creation-Date: 2014-03-20 09:36+0330\n"
+"PO-Revision-Date: 2014-03-20 09:37+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -11,66 +11,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_e;_t\n"
-"X-Poedit-Basepath: /var/www/html/local/pi/pi-develop/usr/module/widget\n"
+"X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-develop/usr/module/widget/"
-"config\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/widget\n"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:13
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:15
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:41
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:42
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:55
+msgid "Title"
+msgstr "عنوان"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:52
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:53
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:66
+msgid "Unique name"
+msgstr "نام یکتا"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:63
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:64
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:77
+msgid "Description"
+msgstr "توضیحات"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:99
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:109
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:135
+msgid "Submit"
+msgstr "ارسال"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:74
+msgid "Template"
+msgstr "الگو"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:102
+msgid "Content"
+msgstr "متن"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:20
+msgid "Bootstrap slide"
+msgstr "اسلاید Bootstrap"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:21
+msgid "jCarousel riding Carousel"
+msgstr "اسلاید jCarousel"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:22
+msgid "Parallax Content Slider"
+msgstr "اسلاید متنی Parallax"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:43
+msgid "Custom: "
+msgstr "بلاک دست ساز:"
+
+#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:13
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:15
 msgid "Script widgets"
 msgstr "ویجت های اسکریپت"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:16
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:24
+#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:16
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:24
 msgid "Static widgets"
 msgstr "ویجت های استاتیک"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:19
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:78
+#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:19
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:78
 msgid "Carousel widgets"
 msgstr "ویجت های اسلاید"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/permission.php:22
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:112
+#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:22
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:112
 msgid "Compound tabs"
 msgstr "تب های ترکیبی"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:33
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:33
 msgid "Static list"
 msgstr "فهرست ویجت های استاتیک"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:40
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:94
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:128
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:40
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:94
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:128
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:49
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:49
 msgid "Add HTML"
 msgstr "HTML جدید"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:58
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:58
 msgid "Add text"
 msgstr "متن جدید"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:67
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:67
 msgid "Add markdown"
 msgstr "markdown جدید"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:87
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:87
 msgid "Carousel list"
 msgstr "فهرست اسلاید"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:103
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:103
 msgid "Add new"
 msgstr "جدید"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:121
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:121
 msgid "Tab list"
 msgstr "فهرست بت ها"
 
-#: /var/www/html/local/pi/pi-develop/usr/module/widget/config/nav.php:137
+#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:137
 msgid "Add"
 msgstr "جدید"
 
@@ -116,9 +163,6 @@ msgstr "جدید"
 #~ msgid "Block edit"
 #~ msgstr "ویرایش بلاک"
 
-#~ msgid "Custom blocks"
-#~ msgstr "بلاک دست ساز"
-
 #~ msgid "Compound tab widgets"
 #~ msgstr "ویجت تب های ترکیبی"
 
@@ -133,33 +177,6 @@ msgstr "جدید"
 
 #~ msgid "Add a block"
 #~ msgstr "بلاک جدید"
-
-#~ msgid "Title"
-#~ msgstr "عنوان"
-
-#~ msgid "Unique name"
-#~ msgstr "نام یکتا"
-
-#~ msgid "Description"
-#~ msgstr "توضیحات"
-
-#~ msgid "Template"
-#~ msgstr "الگو"
-
-#~ msgid "Submit"
-#~ msgstr "ارسال"
-
-#~ msgid "Content"
-#~ msgstr "متن"
-
-#~ msgid "Bootstrap slide"
-#~ msgstr "اسلاید Bootstrap"
-
-#~ msgid "jCarousel riding Carousel"
-#~ msgstr "اسلاید jCarousel"
-
-#~ msgid "Parallax Content Slider"
-#~ msgstr "اسلاید متنی Parallax"
 
 #~ msgid "Pi Highlights"
 #~ msgstr "نماد های پای"

@@ -36,13 +36,13 @@ class Admin extends AbstractController
         }
         Pi::entity('db', Pi::service('database')->db());
 
-        $vars = $this->wizard->getPersist('siteconfig');
+        $vars = $this->getPersist(static::PERSIST_SITE);
         if (empty($vars)) {
             $vars['adminusername']  = 'admin';
             $vars['adminname']      = _s('PiAdmin');
-            $vars['adminmail']      = '';
+            $vars['adminmail']      = isset($_SERVER['SERVER_ADMIN']) ? $_SERVER['SERVER_ADMIN'] : '';
             $vars['adminpass']      = $vars['adminpass2'] = '';
-            $this->wizard->setPersist('siteconfig', $vars);
+            $this->setPersist(static::PERSIST_SITE, $vars);
         }
         $this->vars = $vars;
 
@@ -91,7 +91,7 @@ class Admin extends AbstractController
         $var = $this->request->getParam('var');
         $val = $this->request->getParam('val', '');
         $this->vars[$var] = $val;
-        $this->wizard->setPersist('siteconfig', $this->vars);
+        $this->setPersist(static::PERSIST_SITE, $this->vars);
 
         echo 1;
     }
@@ -153,7 +153,7 @@ class Admin extends AbstractController
         $vars['adminpass'] = $this->request->getPost('adminpass');
         $vars['adminpass2'] = $this->request->getPost('adminpass2');
         $vars['adminname'] = $this->request->getPost('adminname');
-        $this->wizard->setPersist('siteconfig', $vars);
+        $this->setPersist(static::PERSIST_SITE, $vars);
 
         $error = array();
         if (empty($vars['adminusername'])) {
@@ -185,7 +185,7 @@ class Admin extends AbstractController
                 array('value' => $vars['adminname']),
                 array('name' => 'adminname')
             );
-            $config = $this->wizard->getPersist('engine-settings');
+            $config = $this->getPersist(static::PERSIST_ENGINE);
             if (!empty($config['sitename'])) {
                 $configModel->update(
                     array('value' => $config['sitename']),
@@ -216,6 +216,13 @@ class Admin extends AbstractController
                 $configModel->update(
                     array('value' => $charset),
                     array('name' => 'charset')
+                );
+            }
+            $location = Pi::service('geo_ip')->get($_SERVER['REMOTE_ADDR'], 'location');
+            if ($location && !empty($location['timezone'])) {
+                $configModel->update(
+                    array('value' => $location['timezone']),
+                    array('name' => 'timezone')
                 );
             }
 
@@ -324,7 +331,7 @@ class Admin extends AbstractController
     {
         $this->hasForm = true;
         $vars = $this->vars;
-        $this->wizard->setPersist('siteconfig', $vars);
+        $this->setPersist(static::PERSIST_SITE, $vars);
 
         $elementInfo = array(
             'adminmail'     => _s('Admin email'),
@@ -333,11 +340,11 @@ class Admin extends AbstractController
             'adminpass'     => _s('Admin password'),
             'adminpass2'    => _s('Confirm password'),
         );
-        $displayItem = function ($item) use ($vars, $elementInfo) {
+        $displayItem = function ($item, $type = 'text') use ($vars, $elementInfo) {
             $content = '<div class="item">'
                      . '<label for="' . $item . '">' . $elementInfo[$item]
                      . '</label><p class="caption"></p>'
-                     . '<input type="text" name="' . $item . '" id="'
+                     . '<input type="' . $type . '" name="' . $item . '" id="'
                      . $item . '" value="' . $vars[$item] . '" />'
                      . '<em id="' . $item . '-status" class="">&nbsp;</em>'
                      . '<p id="' . $item . '-message" class="alert alert-danger">&nbsp;'
@@ -387,7 +394,7 @@ class Admin extends AbstractController
 STYLE;
 
         $this->footContent .=<<<SCRIPT
-<script type='text/javascript'>
+<script>
 var url='$_SERVER[PHP_SELF]';
 $(document).ready(function(){
     $('input[type=text]').each(function(index) {

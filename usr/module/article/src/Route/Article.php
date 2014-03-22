@@ -254,9 +254,7 @@ class Article extends Standard
         } elseif (isset($mergedParams['category'])
             || 'list' == $controller
         ) {
-            if ('all' == $action) {
-                $mergedParams['category'] = 'all';
-            }
+            $mergedParams['category'] = $mergedParams['category'] ?: 'all';
             $url .= 'list' 
                  . $this->keyValueDelimiter 
                  . $this->encode($mergedParams['category']);
