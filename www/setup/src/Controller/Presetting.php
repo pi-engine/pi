@@ -383,7 +383,6 @@ SCRIPT;
     protected function checkSystemPdo()
     {
         $status = 1;
-        $value = '';
         $message = '';
         if (!extension_loaded('pdo')) {
             $status = 0;

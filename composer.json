@@ -13,10 +13,10 @@
     "license": "New BSD",
     "require": {
         "php": ">=5.3.23",
-        "ext-gd": "ext/gd for image manipulation",
-        "ext-mbstring": "ext/mbstring for multibyte string processing",
-        "ext-pdo": "ext/pdo for MySQL connection",
-        "lib-curl": "lib/curl for remote services"
+        "ext-gd": "*",
+        "ext-mbstring": "*",
+        "ext-pdo": "*",
+        "lib-curl": "*"
     },
     "require-dev": {
     },
