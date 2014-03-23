@@ -28,11 +28,12 @@ Working with forked repo
   * Merge specific commits after A to B: `git cherry-pick A..B`
   * Merge specific commits from A through B: `git cherry-pick A^..B`
   * Quit merges: `git quit --merge`
+  * Stash (Hide changes temporarily): `git stash`
 * Working with branches
   * Check local branches: `git branch`
   * Create a local branch: `git branch -a <new-branch>`
   * Push a local branch to your repo: `git push`
-  * Swtich to a branch: `git checkout <another-branch>`
+  * Switch to a branch: `git checkout <another-branch>`
   * Merge code from another branch: `git merge <another-branch>`
   * Delete a local branch: `git branch -d <old-branch>`
   * Delete a branch from your repo: `git push origin :<old-branch>`
@@ -66,16 +67,16 @@ Pi Engine Core
 Pi Engine Module
 ----------------
 * [pi-module](https://github.com/pi-module): repos for modules
-* Eeach module has its own repo, for instance [pi-module/tag](https://github.com/pi-module/tag) for module tag
+* Each module has its own repo, for instance [pi-module/tag](https://github.com/pi-module/tag) for module tag
 
 Pi Engine Theme
 ---------------
 * [pi-theme](https://github.com/pi-theme): repos for themes
-* Each theme has its ownrepo, for instance [pi-theme/pi](https://github.com/pi-theme/pi) for theme pi
+* Each theme has its own repo, for instance [pi-theme/pi](https://github.com/pi-theme/pi) for theme pi
 
 Pi Engine Asset
 ---------------
-* [pi-asset](https://github.com/pi-asset): repos for assets: [images](https://github.com/pi-asset/image), [pdfs/files](https://github.com/pi-asset/file), videos, etc.
+* [pi-asset](https://github.com/pi-asset): repos for assets: [images](https://github.com/pi-asset/image), [PDF/files](https://github.com/pi-asset/file), videos, etc.
  
 Pi Engine Extras
 ----------------
