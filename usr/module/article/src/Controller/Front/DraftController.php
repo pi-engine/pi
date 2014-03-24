@@ -464,6 +464,7 @@ class DraftController extends ActionController
         foreach ($columns as $column) {
             $extended[$column] = $rowDraft->$column;
         }
+        $extended['article'] = $articleId;
         $rowExtended   = $modelExtended->find($articleId, 'article');
         if (!$rowExtended) {
             $rowExtended = $modelExtended->createRow($extended);
