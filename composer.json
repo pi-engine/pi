@@ -12,7 +12,7 @@
     "homepage": "http://pialog.org/",
     "license": "New BSD",
     "require": {
-        "php": ">=5.3.23",
+        "php": ">=5.3.3",
         "ext-gd": "*",
         "ext-mbstring": "*",
         "ext-pdo": "*",
