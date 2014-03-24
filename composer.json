@@ -13,9 +13,13 @@
     "license": "New BSD",
     "require": {
         "php": ">=5.3.3",
+        "ext-ctype": "*",
+        "ext-fileinfo": "*",
         "ext-gd": "*",
         "ext-mbstring": "*",
+        "ext-json": "*",
         "ext-pdo": "*",
+        "ext-spl": "*",
         "lib-curl": "*"
     },
     "require-dev": {
