@@ -21,9 +21,9 @@
     "require-dev": {
     },
     "suggest": {
-        "ext-apc": "ext/apc for opcode cache and system persistent data",
-        "ext-discount": "ext/discount for Markdown text parsing",
-        "ext-intl": "ext/intl for i18n features"
+        "ext-apc": "for opcode cache and system persistent data",
+        "ext-discount": "for Markdown text parsing",
+        "ext-intl": "for i18n features"
     },
     "replace": {
    }
