@@ -5,9 +5,8 @@
     "keywords": [
         "Pi",
         "ZendFramework",
-        "Multi-Tenant",
-        "SaaS",
-        "PHP"
+        "MultiTenant",
+        "SaaS"
     ],
     "homepage": "http://pialog.org",
     "license": "BSD-3-Clause",
