@@ -115,6 +115,7 @@ class UserForm extends BaseForm
     {
         $data = parent::getData($flags);
         
+        $compoundData = array();
         foreach ($data as $key => $value) {
             if (preg_match('/-/', $key)) {
                 list($compound, $field) = explode('-', $key);
