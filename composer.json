@@ -9,8 +9,18 @@
         "SaaS",
         "PHP"
     ],
-    "homepage": "http://pialog.org/",
-    "license": "New BSD",
+    "homepage": "http://pialog.org",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Taiwen Jiang",
+            "email": "taiwen@me.com"
+        },
+        {
+            "name": "Pi Team",
+            "homepage": "https://github.com/pi-engine/pi/graphs/contributors"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "ext-ctype": "*",
@@ -29,6 +39,5 @@
         "ext-discount": "for Markdown text parsing",
         "ext-intl": "for i18n features"
     },
-    "replace": {
-   }
+    "minimum-stability": "dev"
 }

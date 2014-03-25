@@ -47,10 +47,10 @@ You may contribute to Pi Engine by [working on Pi code](https://github.com/pi-en
 Copyright and License
 ---------------------
 
-The Engine is released under a [New BSD License](https://github.com/pi-engine/pi/blob/master/doc/license.txt).
+The Engine is released under a [BSD 3-Clause License](https://github.com/pi-engine/pi/blob/master/doc/license.txt).
 
 
-Demos
+Demo
 -----
 Demo sites with shared deployment: 
 * Pi Dialogue ([pialog.org](http://pialog.org) | [pialogue.org](http://pialogue.org))
