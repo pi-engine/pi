@@ -117,8 +117,8 @@ class UserForm extends BaseForm
         
         $compoundData = array();
         foreach ($data as $key => $value) {
-            if (preg_match('/-/', $key)) {
-                list($compound, $field) = explode('-', $key);
+            if (preg_match('/\\/', $key)) {
+                list($compound, $field) = explode('\\', $key);
                 $compoundData[$compound][0][$field] = $value;
                 unset($data[$key]);
             }
