@@ -158,11 +158,14 @@ class Form extends AbstractApi
         $config     = $this->loadConfig($name);
         $meta       = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
-            if (!$value) {
+            if (!$value || empty($value['element'])) {
                 if (isset($meta[$name]) &&
                     $meta[$name]['type'] == 'compound'
                 ) {
-                    $compoundFilters = $this->getCompoundFilter($name);
+                    if (is_array($value)) {
+                        $fields = $value;
+                    }
+                    $compoundFilters = $this->getCompoundFilter($name, $fields);
                     foreach ($compoundFilters as $filter) {
                         if ($filter) {
                             $filters[] = $filter;

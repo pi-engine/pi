@@ -116,11 +116,14 @@ class UserForm extends BaseForm
         $data = parent::getData($flags);
         
         $compoundData = array();
+        $meta = Pi::registry('field', 'user')->read();
         foreach ($data as $key => $value) {
-            if (preg_match('/\\/', $key)) {
-                list($compound, $field) = explode('\\', $key);
-                $compoundData[$compound][0][$field] = $value;
-                unset($data[$key]);
+            if (preg_match('/-/', $key)) {
+                list($compound, $field) = explode('-', $key);
+                if ('compound' == $meta[$compound]['type']) {
+                    $compoundData[$compound][0][$field] = $value;
+                    unset($data[$key]);
+                }
             }
         }
         $data = array_merge($data, $compoundData);
