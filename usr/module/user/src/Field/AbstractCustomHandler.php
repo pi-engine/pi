@@ -233,6 +233,9 @@ abstract class AbstractCustomHandler
             if (!isset($meta[$key]) ) {
                 unset($data[$key]);
             }
+            if ($data[$key] === null) {
+                $data[$key] = '';
+            }
         }
         $data['uid'] = $uid;
 
