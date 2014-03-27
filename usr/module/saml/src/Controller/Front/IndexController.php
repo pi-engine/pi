@@ -57,6 +57,8 @@ class IndexController extends ActionController
 
     public function initAction()
     {
+        Pi::service('log')->mute();
+        
         $isAuthenticated  = Pi::service('authentication')->getData();
 
         if (!$isAuthenticated) {
