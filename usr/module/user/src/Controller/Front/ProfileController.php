@@ -258,7 +258,7 @@ class ProfileController extends ActionController
         $compoundElements   = Pi::api('form', 'user')->getCompoundElement($compound);
         $compoundFilters    = Pi::api('form', 'user')->getCompoundFilter($compound);
         $compoundData       = Pi::api('user', 'user')->get($uid, $compound);
-
+        
         $form = new CompoundForm('new-compound', $compoundElements);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -271,11 +271,16 @@ class ProfileController extends ActionController
                 $values['uid'] = $uid;
 
                 // Canonize column function
-                $canonizeColumn = function ($data, $meta) {
+                $canonizeColumn = function ($data, $meta, $compound) {
                     $result = array();
                     foreach ($data as $col => $val) {
-                        if (in_array($col, $meta)) {
-                            $result[$col] = $val;
+                        if (preg_match('/^' . $compound . '-/', $col)) {
+                            list($prefix, $field) = explode('-', $col);
+                        } else {
+                            $field = $col;
+                        }
+                        if (in_array($field, $meta)) {
+                            $result[$field] = $val;
                         }
                     }
 
@@ -288,7 +293,8 @@ class ProfileController extends ActionController
                     if ($key == $values['set']) {
                         $newCompoundData[$key] = $canonizeColumn(
                             $values,
-                            array_keys($item)
+                            array_keys($item),
+                            $compound
                         );
                     }
                 }
@@ -317,7 +323,11 @@ class ProfileController extends ActionController
         if (isset($compoundData[$set])) {
             $compoundData[$set]['set']   = $set;
             $compoundData[$set]['group'] = $groupId;
-            $form->setData($compoundData[$set]);
+            $result = array();
+            foreach ($compoundData[$set] as $key => $value) {
+                $result[$compound . '-' . $key] = $value;
+            }
+            $form->setData($result);
         }
 
         $this->view()->assign(array(
@@ -463,8 +473,13 @@ class ProfileController extends ActionController
 
                 $newCompoundItem = array();
                 foreach ($values as $col => $val) {
-                    if (isset($compoundMeta[$col])) {
-                        $newCompoundItem[$col] = $val;
+                    if (preg_match('/^' . $compound . '-/', $col)) {
+                        list($prefix, $field) = explode('-', $col);
+                    } else {
+                        $field = $col;
+                    }
+                    if (isset($compoundMeta[$field])) {
+                        $newCompoundItem[$field] = $val;
                     }
                 }
 
