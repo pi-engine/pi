@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-03-06 19:53+0800\n"
-"PO-Revision-Date: 2014-03-06 19:53+0800\n"
+"PO-Revision-Date: 2014-04-01 22:45+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -657,7 +657,7 @@ msgstr "设置角色失败。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:566
 msgid "Role assignment succeeded."
-msgstr "设置角色失败。"
+msgstr "设置角色成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:208
 msgid "Clear failed."
