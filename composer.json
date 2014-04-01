@@ -38,5 +38,11 @@
         "ext-discount": "for Markdown text parsing",
         "ext-intl": "for i18n features"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.4-dev",
+            "dev-develop": "2.5-dev"
+        }
+    },
     "minimum-stability": "dev"
 }

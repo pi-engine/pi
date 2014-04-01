@@ -15,7 +15,7 @@ Highlights
 -------------
 1. **Sustainable ecosystem:** A sustainable ecosystem built upon open standard, open source code, open development and open management on Github.
 2. **Engineered development:** Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.
-3. **Visualized management:** Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism.
+3. **Visualized management:** Easy and responsive application and content management based on visualized management tools and interface with page and widget mechanism.
 4. **Agile workflow:** Role oriented architecture and deployment skeleton supports manageable agile development workflow.
 
 
