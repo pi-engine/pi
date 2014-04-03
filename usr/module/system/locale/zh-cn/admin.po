@@ -2,15 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-03-03 13:17+0800\n"
-"PO-Revision-Date: 2014-03-03 13:17+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"PO-Revision-Date: 2014-04-03 09:26+0800\n"
+"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
+"Language: zh_CN\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
 
 #: c:\Code\pi\usr\module\system/config/block.php:18
@@ -184,9 +185,8 @@ msgid "Run environment"
 msgstr "运行环境"
 
 #: c:\Code\pi\usr\module\system/config/config.php:130
-#, fuzzy
 msgid "Will override setting in `var/config/engine.php`."
-msgstr "只有当 `var/config/engine.php`中没有设置才会生效。"
+msgstr "将覆盖 `var/config/engine.php`中的设置。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:135
 msgid "Production"
@@ -206,7 +206,7 @@ msgstr "用户名规则"
 
 #: c:\Code\pi\usr\module\system/config/config.php:149
 msgid "Format of username for registration."
-msgstr "用户名规则。"
+msgstr "注册用户名规则。"
 
 #: c:\Code\pi\usr\module\system/config/config.php:154
 msgid "Strict: alphabet or number only"
@@ -288,7 +288,6 @@ msgid "Login field"
 msgstr "登录失败"
 
 #: c:\Code\pi\usr\module\system/config/config.php:223
-#, fuzzy
 msgid "Identity field(s) for authentication."
 msgstr "用于认证的字段。"
 
@@ -310,9 +309,8 @@ msgid "Maximum attempts"
 msgstr "登录尝试最大允许次数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:243
-#, fuzzy
 msgid "Maximum attempts allowed to try for user login"
-msgstr "用户登录时的最大尝试次数"
+msgstr "用户登录前台时的最大尝试次数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:250
 #: c:\Code\pi\usr\module\system/config/config.php:324
@@ -349,9 +347,8 @@ msgid "Enable CAPTCHA for user registration"
 msgstr "用户注册时启用验证码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:289
-#, fuzzy
 msgid "Maximum attempts allowed to try for admin login"
-msgstr "用户登录时的最大尝试次数"
+msgstr "用户登录后台时的最大尝试次数"
 
 #: c:\Code\pi\usr\module\system/config/config.php:305
 msgid "Identity field(s) for admin authentication."
@@ -540,9 +537,8 @@ msgid "Email encoding"
 msgstr "邮件内容编码"
 
 #: c:\Code\pi\usr\module\system/config/config.php:495
-#, fuzzy
 msgid "Encoding for email contents"
-msgstr "无效Gravatar邮箱"
+msgstr "邮件编码格式"
 
 #: c:\Code\pi\usr\module\system/config/config.php:503
 msgid "Text editor"
@@ -779,9 +775,8 @@ msgid "Admin"
 msgstr "后台"
 
 #: c:\Code\pi\usr\module\system/config/nav.front.php:57
-#, fuzzy
 msgid "RSS Feed"
-msgstr "Feed"
+msgstr "RSS Feed"
 
 #: c:\Code\pi\usr\module\system/config/nav.php:33
 msgid "Managed components"
@@ -1007,7 +1002,7 @@ msgstr "区块编辑：%s"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:77
 msgid "Page cache updated successfully."
-msgstr "页面缓存清空成功。"
+msgstr "页面缓存设置更新成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:64
@@ -1544,7 +1539,6 @@ msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:51
 #: c:\Code\pi\usr\module\system/template/admin/module-category.phtml:78
-#, fuzzy
 msgid "Order"
 msgstr "排序"
 
@@ -1611,7 +1605,6 @@ msgid "time"
 msgstr "时间"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:17
-#, fuzzy
 msgid "User ID"
 msgstr "用户 ID"
 
@@ -1620,7 +1613,6 @@ msgid "IP"
 msgstr "IP"
 
 #: c:\Code\pi\usr\module\system/template/admin/audit-index.phtml:24
-#, fuzzy
 msgid "Message"
 msgstr "私信"
 
@@ -1745,7 +1737,6 @@ msgstr "作者信息"
 
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-module.phtml:45
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:28
-#, fuzzy
 msgid "Summary"
 msgstr "摘要"
 
@@ -1809,7 +1800,6 @@ msgstr "无事件定义。"
 
 #: c:\Code\pi\usr\module\system/template/admin/event.phtml:23
 #: c:\Code\pi\usr\module\system/template/admin/perm.phtml:20
-#, fuzzy
 msgid "Error, please try again later."
 msgstr "无效输入，请重试。"
 
@@ -1913,9 +1903,8 @@ msgstr "详情"
 
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:37
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:42
-#, fuzzy
 msgid "Directory:"
-msgstr "上传路径"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:57
 #: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:17
@@ -2032,9 +2021,8 @@ msgid "Click to toggle edit"
 msgstr "点击编辑"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:53
-#, fuzzy
 msgid "Label"
-msgstr "标题"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:59
 msgid "Url"
@@ -2045,7 +2033,6 @@ msgid "Page link by url or by the after of route"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:65
-#, fuzzy
 msgid "Target"
 msgstr "打开方式"
 
@@ -2066,12 +2053,10 @@ msgid "Page link by route"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:92
-#, fuzzy
 msgid "Route"
 msgstr "路由"
 
 #: c:\Code\pi\usr\module\system/template/admin/nav-data.phtml:98
-#, fuzzy
 msgid "Controller"
 msgstr "Controller"
 

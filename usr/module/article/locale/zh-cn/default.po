@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
 "POT-Creation-Date: 2014-02-10 19:38+0800\n"
-"PO-Revision-Date: 2014-02-12 10:04+0800\n"
+"PO-Revision-Date: 2014-03-14 10:16+0800\n"
 "Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
 "Language-Team: Pi Engine\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
@@ -94,7 +94,7 @@ msgstr "EEFOCUS的所有文章"
 
 #: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:37
 msgid "EEFOCUS"
-msgstr "与非网"
+msgstr ""
 
 #: c:\code\pi\usr\module\article/src/Controller/Front/AjaxController.php:129
 #: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:598
