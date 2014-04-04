@@ -21,7 +21,7 @@ return array(
         'description'   =>
             _a('For administration of core functions of the site.'),
         // Version number, required
-        'version'       => '3.4.2',
+        'version'       => '3.4.3',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -31,7 +31,7 @@ return array(
         // Direct download link, available for wget, optional
         //'download'      => 'http://dl.xoopsengine.org/core',
         // Demo site link, optional
-        'demo'          => 'http://pialog',
+        'demo'          => 'http://pialog.org',
 
         // Module is ready for clone? Default as false
         'clonable'      => false,

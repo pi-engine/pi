@@ -98,6 +98,13 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
+    'footer'        => array(
+        'title'         => _t('Footer'),
+        'description'   => _t('Content to be displayed on footer of front pages, HTML tags allowed.'),
+        'edit'          => 'textarea',
+        'category'      => 'general',
+    ),
+
     'ga_account'   => array(
         'title'         => _t('GA account'),
         'description'   => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
