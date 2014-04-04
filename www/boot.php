@@ -24,11 +24,8 @@ if (!defined('PI_IN_SETUP')) {
             break;
         }
     } while ($script);
-    $redirect = sprintf(
-        '%s://%s/%s',
-        $_SERVER['REQUEST_SCHEME'],
-        $_SERVER['HTTP_HOST'],
-        ltrim($redirect, '/')
-    );
+    $redirect = $_SERVER['HTTP_HOST'] . '/' . ltrim($redirect, '/');
+    $scheme = empty($_SERVER['REQUEST_SCHEME']) ? 'http' : $_SERVER['REQUEST_SCHEME']; 
+    $redirect = sprintf('%s://%s', $scheme, $redirect);
     header('location: ' . $redirect);
 }
