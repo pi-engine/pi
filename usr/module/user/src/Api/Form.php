@@ -162,10 +162,7 @@ class Form extends AbstractApi
                 if (isset($meta[$name]) &&
                     $meta[$name]['type'] == 'compound'
                 ) {
-                    if (is_array($value)) {
-                        $fields = $value;
-                    }
-                    $compoundFilters = $this->getCompoundFilter($name, $fields);
+                    $compoundFilters = $this->getCompoundFilter($name);
                     foreach ($compoundFilters as $filter) {
                         if ($filter) {
                             $filters[] = $filter;
@@ -231,14 +228,10 @@ class Form extends AbstractApi
      * @param array $data
      * @return array
      */
-    protected function canonizeElement($data, $compound = '')
+    protected function canonizeElement($data)
     {
         $element = $data['edit']['element'];
-        if ($compound) {
-            $element['name'] = sprintf('%s-%s', $compound, $data['name']);
-        } else {
-            $element['name'] = $data['name'];
-        }
+        $element['name'] = $data['name'];
         if (isset($data['edit']['options']) &&
             $data['edit']['options']
         ) {
@@ -267,7 +260,7 @@ class Form extends AbstractApi
      * @param array $data
      * @return array
      */
-    protected function canonizeFilter($data, $compound = '')
+    protected function canonizeFilter($data)
     {
         $result = array();
         if (!empty($data['edit']['filters'])) {
@@ -285,11 +278,7 @@ class Form extends AbstractApi
             $result['required']= empty($data['is_required']) ? 0 : 1;
         }
         if ($result) {
-            if ($compound) {
-                $result['name'] = sprintf('%s-%s', $compound, $data['name']);
-            } else {
-                $result['name'] = $data['name'];
-            }
+            $result['name'] = $data['name'];
         }
 
         return $result;
@@ -347,15 +336,19 @@ class Form extends AbstractApi
             $fields = (array) $field;
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
-                    $result[$name] = $this->canonizeElement($elements[$name], $compound);
+                    $element = $this->canonizeElement($elements[$name]);
+                    $element['name'] = $compound . '-' . $element['name'];
+                    $result[$name] = $element;
                 }
             }
             if (is_scalar($field)) {
                 $result = $result[$field];
             }
         } else {
-            foreach ($elements as $key => $element) {
-                $result[$key] = $this->canonizeElement($element, $compound);
+            foreach ($elements as $name => $element) {
+                $element = $this->canonizeElement($element);
+                $element['name'] = $compound . '-' . $element['name'];
+                $result[$name] = $element;
             }
         }
 
@@ -378,15 +371,19 @@ class Form extends AbstractApi
             $fields = (array) $field;
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
-                    $result[$name] = $this->canonizeFilter($elements[$name], $compound);
+                    $filter = $this->canonizeFilter($elements[$name]);
+                    $filter['name'] = $compound . '-' . $filter['name'];
+                    $result[$name] = $filter;
                 }
             }
             if (is_scalar($field)) {
                 $result = $result[$field];
             }
         } else {
-            foreach ($elements as $key => $element) {
-                $result[$key] = $this->canonizeFilter($element, $compound);
+            foreach ($elements as $name => $element) {
+                $filter = $this->canonizeFilter($element);
+                $filter['name'] = $compound . '-' . $filter['name'];
+                $result[$name] = $filter;
             }
         }
 
