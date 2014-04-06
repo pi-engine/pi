@@ -258,7 +258,7 @@ class ProfileController extends ActionController
         $compoundElements   = Pi::api('form', 'user')->getCompoundElement($compound);
         $compoundFilters    = Pi::api('form', 'user')->getCompoundFilter($compound);
         $compoundData       = Pi::api('user', 'user')->get($uid, $compound);
-        
+
         $form = new CompoundForm('new-compound', $compoundElements);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
