@@ -135,7 +135,7 @@ class IndexController extends ActionController
             }
             if ($terms) {
                 $limit  = $this->config('list_limit');
-                $offset = $limit * ($page -1);
+                $offset = $limit * ($page - 1);
                 $result = $this->query($terms, $limit, $offset, $module);
                 $total  = $result ? $result->getTotal() : 0;
             }
@@ -339,7 +339,7 @@ class IndexController extends ActionController
                 ),
                 array(
                     'query' => array (
-                        'q' => urlencode($query),
+                        'q' => $query,
                     ),
                 )
             );

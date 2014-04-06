@@ -38,7 +38,7 @@ class IndexController extends ActionController
             ),
             array(
                 'query'      => array(
-                    'redirect'   => rawurlencode($urlRedirect),
+                    'redirect'   => $urlRedirect,
                 ),
             )
         );
@@ -57,13 +57,15 @@ class IndexController extends ActionController
 
     public function initAction()
     {
+        Pi::service('log')->mute();
+        
         $isAuthenticated  = Pi::service('authentication')->getData();
 
         if (!$isAuthenticated) {
             $checkUrl = $this->url('', array('action' => 'check'));
             $load =<<<EOT
 document.write(
-    "<iframe id=\'check-sso\' src=\'{$checkUrl}' border=\'0\' frameborder=\'0\' width=\'0\' height=\'0\' style=\'position:absolute;\'></iframe>"
+    "<iframe id='check-sso' src='{$checkUrl}' border='0' frameborder='0' width='0' height='0' style='position:absolute;'></iframe>"
 );
 EOT;
             echo $load;

@@ -270,7 +270,7 @@ class Block extends AbstractHelper
                     );
                     $result = $this->transliterateGlobals($result);
                     break;
-                // static mardown
+                // static markdown
                 case 'markdown':
                     $result = Pi::service('markup')->render(
                         $block['content'],

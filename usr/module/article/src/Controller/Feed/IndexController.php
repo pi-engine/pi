@@ -30,13 +30,14 @@ class IndexController extends FeedController
         $limit = $this->params('limit', 100);
         $limit = $limit > 500 ? 500 : $limit;
         $timestamp = time();
+        $sitename = Pi::config('sitename');
 
         $feed = $this->getDataModel(array(
-            'title' => __('All Articles of EEFOCUS'),
-            'description' => __('All articles of EEFOCUS.'),
-            'copyright' => __('EEFOCUS'),
-            'date_created' => $timestamp,
-            'entries' => array(),
+            'title'         => sprintf(__('All Articles of %s'), $sitename),
+            'description'   => sprintf(__('All Articles of %s'), $sitename),
+            'copyright'     => $sitename,
+            'date_created'  => $timestamp,
+            'entries'       => array(),
         ));
 
         $columns = array('id', 'subject', 'time_publish', 'category', 'content');
@@ -56,11 +57,14 @@ class IndexController extends FeedController
                 'date_modified' => (int) $row['time_publish'],
                 'channel'       => $row['channel_title'],
                 'category'      => $row['category_title'] ?: '&nbsp;',
+                /*
                 'link'          => sprintf(
                     'http://%s/%s',
                     $_SERVER['HTTP_HOST'],
                     ltrim($row['url'], '/')
                 ),
+                */
+                'link'          => Pi::url($row['url'], true),
                 'description'   => $row['content'] ?: '&nbsp;',
             );
 

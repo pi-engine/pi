@@ -51,8 +51,10 @@ class EndTime extends AbstractHelper
         $id = md5(uniqid());
         $maxYear = date('Y');
 
+        $required = $element->getAttribute('required');
+        
         $html = <<<'EOT'
-        <div class="form-inline" id="%s"></div>
+        <div class="form-inline" id="%s" %s></div>
         <script>
         new eefocus.EndTime("%s", %s, "%s", "%s", "%s");
         </script>
@@ -61,6 +63,7 @@ EOT;
         return sprintf(
             $html,
             $id,
+            $required ? 'required="required"' : '',
             $id,
             $maxYear,
             $element->getName(),

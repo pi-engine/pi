@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-use Pi;
+//use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -19,7 +19,10 @@ use Pi\Form\Form as BaseForm;
  */
 class EditUserForm extends BaseForm
 {
+    /** @var array List of user fields */
     protected $fields;
+
+    /** @var string Form name */
     protected $name;
 
     public function __construct($name, $fields)

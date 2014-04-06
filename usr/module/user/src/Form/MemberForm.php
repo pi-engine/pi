@@ -9,9 +9,9 @@
 
 namespace Module\User\Form;
 
-use Pi;
+//use Pi;
 use Pi\Form\Form as BaseForm;
-use Pi\Application\Db\User\RowGateway\Account;
+//use Pi\Application\Db\User\RowGateway\Account;
 
 /**
  * Class for initializing form of member

@@ -12,7 +12,7 @@ namespace Module\User\Form;
 use Pi;
 use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter as UserInputFilter;
-
+use Zend\Form\FormInterface;
 
 /**
  * User form with support for predefined user profile fields
@@ -106,5 +106,53 @@ class UserForm extends BaseForm
         }
 
         return $inputFilter;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Canonize compound data
+     */
+    public function setData($data)
+    {
+        $data = (array) $data;
+        $compounds = Pi::registry('field', 'user')->read('compound');
+
+        $result = array();
+        foreach ($data as $key => $value) {
+            if (is_array($value) && isset($compounds[$key])) {
+                foreach ($value as $fName => $fValue) {
+                    $fieldName = Pi::api('form', 'user')->assembleCompoundFieldName($key, $fName);
+                    $result[$fieldName] = $fValue;
+                }
+            } else {
+                $result[$key] = $value;
+            }
+        }
+        parent::setData($result);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Canonize compound data
+     */
+    public function getData($flags = FormInterface::VALUES_NORMALIZED)
+    {
+        $data = parent::getData($flags);
+        $result = array();
+        foreach ($data as $key => $value) {
+            $tmp = Pi::api('form', 'user')->parseCompoundFieldName($key);
+            if ($tmp) {
+                $result[$tmp[0]][0][$tmp[1]] = $value;
+                //$result[$tmp[0]][$tmp[1]] = $value;
+            } else {
+                $result[$key] = $value;
+            }
+        }
+
+        return $data;
     }
 }

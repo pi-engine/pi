@@ -13,6 +13,7 @@
 define('PI_IN_SETUP_BOOT', true);
 
 if (!defined('PI_IN_SETUP')) {
+    // Look up setup entrance
     $script = $_SERVER['SCRIPT_NAME'];
     $filename = $_SERVER['SCRIPT_FILENAME'];
     $redirect = '';
@@ -24,10 +25,41 @@ if (!defined('PI_IN_SETUP')) {
             break;
         }
     } while ($script);
+
+    // URI scheme
+    $ssl = false;
+    if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+    ) {
+        $scheme = 'https';
+        $ssl    = true;
+    } else {
+        $scheme = 'http';
+    }
+
+    // URI host
+    if (!empty($_SERVER['HTTP_HOST'])) {
+        $host = $_SERVER['HTTP_HOST'];
+    } else {
+        $host = $_SERVER['SERVER_NAME'];
+    }
+
+    // URI port
+    $port = '';
+    if (!empty($_SERVER['SERVER_PORT'])) {
+        $portNum = (int) $_SERVER['SERVER_PORT'];
+        if (($ssl && 443 != $portNum)
+            || (!$ssl && 80 != $portNum)) {
+            $port = ':' . $portNum;
+        }
+    }
+
+    // Assemble redirect URI
     $redirect = sprintf(
-        '%s://%s/%s',
-        $_SERVER['REQUEST_SCHEME'],
-        $_SERVER['HTTP_HOST'],
+        '%s://%s%s/%s',
+        $scheme,
+        $host,
+        $port,
         ltrim($redirect, '/')
     );
     header('location: ' . $redirect);

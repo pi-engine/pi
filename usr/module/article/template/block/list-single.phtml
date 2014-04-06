@@ -1,7 +1,11 @@
 <?php
 //Only show title 
 if (empty($elements)) {
-    $render = '<ol class="pi-order-list">';
+    if ($disorder == 1) {
+        $render = '<ol class="pi-list">';
+    } else {
+        $render = '<ol class="pi-order-list">';
+    }
     foreach($items as $item) {
         $render .= sprintf(
             '<li><a href="%s" title="%s">%s</a>',

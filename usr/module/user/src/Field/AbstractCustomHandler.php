@@ -230,6 +230,9 @@ abstract class AbstractCustomHandler
     {
         $meta = $this->getMeta();
         foreach (array_keys($data) as $key) {
+            if ($data[$key] === null) {
+                $data[$key] = '';
+            }
             if (!isset($meta[$key]) ) {
                 unset($data[$key]);
             }

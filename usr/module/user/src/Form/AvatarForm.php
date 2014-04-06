@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-use Pi;
+//use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -20,7 +20,7 @@ use Pi\Form\Form as BaseForm;
 class AvatarForm extends BaseForm
 {
     /**
-     * Initalizing form 
+     * Initializing form
      */
     public function init()
     {
