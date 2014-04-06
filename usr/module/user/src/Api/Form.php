@@ -74,14 +74,6 @@ class Form extends AbstractApi
     {
         $elements   = array();
         $filters    = array();
-        /*
-        $filePath   = sprintf('user/config/form.%s.php', $name);
-        $file       = Pi::path('custom/module') . '/' . $filePath;
-        if (!file_exists($file)) {
-            $file = Pi::path('module') . '/' . $filePath;
-        }
-        $config     = include $file;
-        */
         $config     = $this->loadConfig($name);
         $meta       = Pi::registry('field', $this->module)->read();
         foreach ($config as $name => $value) {
@@ -95,6 +87,7 @@ class Form extends AbstractApi
                     $compoundElements = $this->getCompoundElement($name, $fields);
                     foreach ($compoundElements as $element) {
                         if ($element) {
+                            $element['name'] = $this->assembleCompoundFieldName($name, $element['name']);
                             $elements[] = $element;
                         }
                     }
@@ -102,6 +95,7 @@ class Form extends AbstractApi
                         $compoundFilters = $this->getCompoundFilter($name, $fields);
                         foreach ($compoundFilters as $filter) {
                             if ($filter) {
+                                $filter['name'] = $this->assembleCompoundFieldName($name, $filter['name']);
                                 $filters[] = $filter;
                             }
                         }
@@ -165,6 +159,7 @@ class Form extends AbstractApi
                     $compoundFilters = $this->getCompoundFilter($name);
                     foreach ($compoundFilters as $filter) {
                         if ($filter) {
+                            $filter['name'] = $this->assembleCompoundFieldName($name, $filter['name']);
                             $filters[] = $filter;
                         }
                     }
@@ -337,7 +332,7 @@ class Form extends AbstractApi
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
                     $element = $this->canonizeElement($elements[$name]);
-                    $element['name'] = $compound . '-' . $element['name'];
+                    //$element['name'] = $compound . '-' . $element['name'];
                     $result[$name] = $element;
                 }
             }
@@ -347,7 +342,7 @@ class Form extends AbstractApi
         } else {
             foreach ($elements as $name => $element) {
                 $element = $this->canonizeElement($element);
-                $element['name'] = $compound . '-' . $element['name'];
+                //$element['name'] = $compound . '-' . $element['name'];
                 $result[$name] = $element;
             }
         }
@@ -372,7 +367,7 @@ class Form extends AbstractApi
             foreach ($fields as $name) {
                 if (isset($elements[$name])) {
                     $filter = $this->canonizeFilter($elements[$name]);
-                    $filter['name'] = $compound . '-' . $filter['name'];
+                    //$filter['name'] = $compound . '-' . $filter['name'];
                     $result[$name] = $filter;
                 }
             }
@@ -382,11 +377,48 @@ class Form extends AbstractApi
         } else {
             foreach ($elements as $name => $element) {
                 $filter = $this->canonizeFilter($element);
-                $filter['name'] = $compound . '-' . $filter['name'];
+                //$filter['name'] = $compound . '-' . $filter['name'];
                 $result[$name] = $filter;
             }
         }
 
         return $result;
+    }
+
+    /**
+     * Assemble a compound field name by prepending compound name
+     *
+     * @param string $compound
+     * @param string $field
+     *
+     * @return string
+     */
+    protected function assembleCompoundFieldName($compound, $field)
+    {
+        return $compound . '-' . $field;
+    }
+
+    /**
+     * Parse compound field name
+     *
+     * @param string $name
+     *
+     * @return string[]|bool
+     */
+    protected function parseCompoundFieldName($name)
+    {
+        $compounds = array_keys(Pi::registry('field', 'user')->read('compound'));
+        $lookup = function ($name, $compounds) {
+            $result = false;
+            foreach ($compounds as $cName) {
+                if (0 === strpos($name, $cName . '-')) {
+                    $result = explode('-', 2);
+                    break;
+                }
+            }
+            return $result;
+        };
+
+        return $lookup($name, $compounds);
     }
 }

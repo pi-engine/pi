@@ -107,27 +107,52 @@ class UserForm extends BaseForm
 
         return $inputFilter;
     }
-    
+
     /**
      * {@inheritDoc}
+     *
+     * Canonize compound data
+     */
+    public function setData($data)
+    {
+        $data = (array) $data;
+        $compounds = Pi::registry('field', 'user')->read('compound');
+
+        $result = array();
+        foreach ($data as $key => $value) {
+            if (is_array($value) && isset($compounds[$key])) {
+                foreach ($value as $fName => $fValue) {
+                    $fieldName = Pi::api('form', 'user')->assembleCompoundFieldName($key, $fName);
+                    $result[$fieldName] = $fValue;
+                }
+            } else {
+                $result[$key] = $value;
+            }
+        }
+        parent::setData($result);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Canonize compound data
      */
     public function getData($flags = FormInterface::VALUES_NORMALIZED)
     {
         $data = parent::getData($flags);
-        
-        $compoundData = array();
-        $meta = Pi::registry('field', 'user')->read();
+        $result = array();
         foreach ($data as $key => $value) {
-            if (preg_match('/-/', $key)) {
-                list($compound, $field) = explode('-', $key);
-                if ('compound' == $meta[$compound]['type']) {
-                    $compoundData[$compound][0][$field] = $value;
-                    unset($data[$key]);
-                }
+            $tmp = Pi::api('form', 'user')->parseCompoundFieldName($key);
+            if ($tmp) {
+                $result[$tmp[0]][0][$tmp[1]] = $value;
+                //$result[$tmp[0]][$tmp[1]] = $value;
+            } else {
+                $result[$key] = $value;
             }
         }
-        $data = array_merge($data, $compoundData);
-        
+
         return $data;
     }
 }

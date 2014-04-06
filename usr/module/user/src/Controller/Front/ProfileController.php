@@ -271,16 +271,11 @@ class ProfileController extends ActionController
                 $values['uid'] = $uid;
 
                 // Canonize column function
-                $canonizeColumn = function ($data, $meta, $compound) {
+                $canonizeColumn = function ($data, $meta) {
                     $result = array();
                     foreach ($data as $col => $val) {
-                        if (preg_match('/^' . $compound . '-/', $col)) {
-                            list($prefix, $field) = explode('-', $col);
-                        } else {
-                            $field = $col;
-                        }
-                        if (in_array($field, $meta)) {
-                            $result[$field] = $val;
+                        if (in_array($col, $meta)) {
+                            $result[$col] = $val;
                         }
                     }
 
@@ -293,8 +288,7 @@ class ProfileController extends ActionController
                     if ($key == $values['set']) {
                         $newCompoundData[$key] = $canonizeColumn(
                             $values,
-                            array_keys($item),
-                            $compound
+                            array_keys($item)
                         );
                     }
                 }
@@ -323,11 +317,7 @@ class ProfileController extends ActionController
         if (isset($compoundData[$set])) {
             $compoundData[$set]['set']   = $set;
             $compoundData[$set]['group'] = $groupId;
-            $result = array();
-            foreach ($compoundData[$set] as $key => $value) {
-                $result[$compound . '-' . $key] = $value;
-            }
-            $form->setData($result);
+            $form->setData($compoundData[$set]);
         }
 
         $this->view()->assign(array(
@@ -473,13 +463,8 @@ class ProfileController extends ActionController
 
                 $newCompoundItem = array();
                 foreach ($values as $col => $val) {
-                    if (preg_match('/^' . $compound . '-/', $col)) {
-                        list($prefix, $field) = explode('-', $col);
-                    } else {
-                        $field = $col;
-                    }
-                    if (isset($compoundMeta[$field])) {
-                        $newCompoundItem[$field] = $val;
+                    if (isset($compoundMeta[$col])) {
+                        $newCompoundItem[$col] = $val;
                     }
                 }
 
