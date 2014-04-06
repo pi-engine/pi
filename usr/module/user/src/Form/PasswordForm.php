@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-use Pi;
+//use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -25,7 +25,7 @@ class PasswordForm extends BaseForm
      * Constructor
      *
      * @param null|string|int $name Optional name for the element
-     * @param Account $user User account row
+     * @param string $type
      */
     public function __construct($name = null, $type = null)
     {

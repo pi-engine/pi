@@ -9,9 +9,9 @@
 
 namespace Module\User\Form;
 
-use Pi;
+//use Pi;
 use Zend\InputFilter\InputFilter;
-use Module\User\Validator\CredentialVerify;
+//use Module\User\Validator\CredentialVerify;
 
 /**
  * Class for verifying and filtering form
