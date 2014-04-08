@@ -10,11 +10,10 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
 use Zend\View\Helper\AbstractHelper;
 
 /**
- * Helper for render Geo tags
+ * Helper for rendering Geo tags
  *
  * Usage inside a phtml template
  *
@@ -31,46 +30,33 @@ class GeoTag extends AbstractHelper
     /**
      * Set head Geo-Tags
      *
-     * @param string        $latitude      Head geo.position
-     * @param string        $longitude     Head geo.position
-     * @param string|null   $placename     Head geo.placename
-     * @param string|null   $region        Head geo.region
+     * @param string    $latitude      Head geo.position
+     * @param string    $longitude     Head geo.position
+     * @param string    $placename     Head geo.placename
+     * @param string    $region        Head geo.region
      * @return $this
      */
     public function __invoke(
     	$latitude,
     	$longitude,
-    	$placename = null,
-    	$region = null
-    ) {     
-
+    	$placename = '',
+    	$region = ''
+    ) {
         // Set geo.position
         if (!empty($latitude) && !empty($longitude)) {
             $position = sprintf('%s; %s', $latitude, $longitude);
-            $this->view->headMeta()->__invoke(
-                $position,
-                'ICBM'
-            );
-            $this->view->headMeta()->__invoke(
-                $position,
-                'geo.position'
-            );  
+            $this->view->headMeta($position, 'ICBM');
+            $this->view->headMeta($position, 'geo.position');
         }
 
         // Set geo.placename
-        if (isset($placename) && !empty($placename)) {
-            $this->view->headMeta()->__invoke(
-                $placename,
-                'geo.placename'
-            );
+        if (!empty($placename)) {
+            $this->view->headMeta($placename, 'geo.placename');
         }
 
         // Set geo.region
-        if (isset($region) && !empty($region)) {
-            $this->view->headMeta()->__invoke(
-                $region,
-                'geo.region'
-            );
+        if (!empty($region)) {
+            $this->view->headMeta($region, 'geo.region');
         }   
 
     	return $this;
