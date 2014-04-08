@@ -24,6 +24,7 @@ use Zend\View\Helper\AbstractHelper;
  * ```
  *
  * @author Hossein Azizabadi <azizabadi@faragostaresh.com>
+ * @see https://en.wikipedia.org/wiki/Geotagging
  */
 class GeoTag extends AbstractHelper
 {
