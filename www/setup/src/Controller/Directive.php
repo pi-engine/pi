@@ -493,7 +493,7 @@ SCRIPT;
         $pathInfo = array(
             'path_www'  => array(
                 _s('Documents root physical path'),
-                _s('Physical path to the documents (served) directory without trailing slash; PHP executable.'),
+                _s('Physical path to the documents (served) directory without trailing slash.'),
             ),
             'url_www'   => array(
                 _s('Website location (URL)'),
