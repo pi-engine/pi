@@ -12,7 +12,7 @@ server {
     # Change the server_name according to your applications
     server_name pi-demo.org www.pi-demo.org;
     # Change the root according to your applications
-    root /home/pi/deploy/pi-demo/www;
+    root /apps/pi-demo/www;
     index index.html index.php index.htm;
 
     # Usually you don't need to change the following settings
@@ -53,35 +53,21 @@ server {
 
     # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
     location ~ \.php$ {
+        # For FastCGI mode
         #fastcgi_pass   127.0.0.1:9000;
-        fastcgi_pass   [unix:/usr/path-to-conf/php-fpm.sock];
+        # For php-fpm mode
+        fastcgi_pass   unix:/var/run/php5-fpm.sock;
         fastcgi_index  index.php;
         include  fastcgi_params;
     }
 
-    # Static files
+    # Static files.
     # Set expire headers, Turn off access log
-    location ~* \.(jpg|jpeg|gif|png|ico|css|js|html|htm)$ {
+    location ~* \.(jpg|jpeg|gif|png|ico|css|js|html|htm|ttf|otf|eot|woff)$ {
         access_log off;
         expires max;
         add_header Cache-Control public;
     }
-}
-```
-
-## pi-demo asset
-```
-server {
-    listen 80;
-    # Change the server_name according to your applications
-    server_name asset.pi-demo.org;
-    # Change the root according to your applications
-    root /home/pi/deploy/pi-demo/asset;
-    index index.html index.htm;
-
-    access_log off;
-    expires max;
-    add_header Cache-Control public;
 }
 ```
 
@@ -92,20 +78,12 @@ server {
     # Change the server_name according to your applications
     server_name static.pi-demo.org;
     # Change the root according to your applications
-    root /home/pi/deploy/pi-demo/static;
+    root /apps/pi-demo/static;
     index index.html index.htm;
 
     access_log off;
     expires max;
     add_header Cache-Control public;
-
-    # Font files
-    # Set Access-Control-Allow-Origin
-    location ~* \.(ttf|otf|eot|woff)$ {
-        access_log off;
-        expires max;
-        add_header Access-Control-Allow-Origin [http://www.pialog.org][*];
-    }
 }
 ```
 
@@ -116,7 +94,7 @@ server {
     # Change the server_name according to your applications
     server_name upload.pi-demo.org;
     # Change the root according to your applications
-    root /home/pi/deploy/pi-demo/upload;
+    root /apps/pi-demo/upload;
     index index.html index.htm;
 
     access_log off;

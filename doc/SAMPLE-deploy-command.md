@@ -2,90 +2,89 @@
 # Deployment of Pi Engine with nginx
 
 ## Shared common files
-- common code root: `/home/pi/common/code/deploy/`
-- the common code is symlink'ed from a source code path, for instance `/home/pi/code/pi-release-2.4.0`
+- common code root: `/apps/pi/deploy/`
+- the common code is symlink'ed from a source code path, for instance `/apps/pi/source/pi-develop`
 
 ## pi-demo.org skeleton
-- web root: `/home/pi/deploy/pi-demo/www`
-- data directory: `/home/pi/deploy/pi-demo/var`
-- upload directory: `/home/pi/deploy/pi-demo/upload`
-- lib, symlink from common root: `/home/pi/deploy/pi-demo/lib`
-- usr, symlink from common root: `/home/pi/deploy/pi-demo/usr`
-- static, symlink from common root: `/home/pi/deploy/pi-demo/static`
+- web root: `/apps/pi-demo/www`
+- data directory: `/apps/pi-demo/var`
+- upload directory: `/apps/pi-demo/upload`
+- lib, symlink from common root: `/apps/pi-demo/lib`
+- usr, symlink from common root: `/apps/pi-demo/usr`
+- static, symlink from common root: `/apps/pi-demo/static`
 
 ## Deployment command, for installation and update
 
-### Fetch code package and unzip to `/home/pi/common/code/pi-develop`
+### Fetch code package and unzip to `/apps/pi/source/pi-develop`
 ```
-rm -f tmp.zip && wget -qO- -O tmp.zip https://github.com/pi-engine/pi/archive/develop.zip && rm -Rf /home/pi/common/code/pi-develop && unzip -qo tmp.zip -d /home/pi/common/code && rm tmp.zip
-rm -f /home/pi/common/code/deploy && ln -sf /home/pi/common/code/pi-develop /home/pi/common/code/deploy
-chown -Rf www-data:www-data /home/pi/common/code/deploy/
+rm -f tmp.zip && wget -qO- -O tmp.zip https://github.com/pi-engine/pi/archive/develop.zip && rm -Rf /apps/pi/source/pi-develop && unzip -qo tmp.zip -d /apps/pi/source && rm tmp.zip
+rm -f /apps/pi/deploy && ln -sf /apps/pi/source/pi-develop /apps/pi/deploy
+chown -Rf www-data:www-data /apps/pi/deploy/
 ```
 
 ## Installation command, for first deployment only
 
-### Prepare for www `/home/pi/deploy/pi-demo/www`
+### Prepare for www `/apps/pi-demo/www`
 ```
-rm -Rf /home/pi/deploy/pi-demo/www && mkdir /home/pi/deploy/pi-demo/www
-```
-
-### Copy folders/files to `/home/pi/deploy/pi-demo/www`
-```
-rm -Rf /home/pi/deploy/pi-demo/www/setup && cp -R /home/pi/common/code/deploy/www/setup /home/pi/deploy/pi-demo/www/
-rm -Rf /home/pi/deploy/pi-demo/www/asset/ && cp -R /home/pi/common/code/deploy/www/asset /home/pi/deploy/pi-demo/www/
-rm -f /home/pi/deploy/pi-demo/www/.htaccess && cp /home/pi/common/code/deploy/www/.htaccess /home/pi/deploy/pi-demo/www/.htaccess
-rm -f /home/pi/deploy/pi-demo/www/boot.php && cp /home/pi/common/code/deploy/www/boot.php /home/pi/deploy/pi-demo/www/boot.php
+rm -Rf /apps/pi-demo/www && mkdir /apps/pi-demo/www
 ```
 
-### Symlink files to `/home/pi/deploy/pi-demo/www`
+### Copy folders/files to `/apps/pi-demo/www`
 ```
-rm -Rf /home/pi/deploy/pi-demo/www/public && ln -sf /home/pi/common/code/deploy/www/public /home/pi/deploy/pi-demo/www/public
-rm -Rf /home/pi/deploy/pi-demo/www/script && ln -sf /home/pi/common/code/deploy/www/script /home/pi/deploy/pi-demo/www/script
-rm -Rf /home/pi/deploy/pi-demo/www/module && ln -sf /home/pi/common/code/deploy/www/module /home/pi/deploy/pi-demo/www/module
-rm -f /home/pi/deploy/pi-demo/www/index.php && ln -sf /home/pi/common/code/deploy/www/index.php /home/pi/deploy/pi-demo/www/index.php
-rm -f /home/pi/deploy/pi-demo/www/favicon.ico && ln -sf /home/pi/common/code/deploy/www/favicon.ico /home/pi/deploy/pi-demo/www/favicon.ico
-rm -f /home/pi/deploy/pi-demo/www/robots.txt && ln -sf /home/pi/common/code/deploy/www/robots.txt /home/pi/deploy/pi-demo/www/robots.txt
-
-rm -f /home/pi/deploy/pi-demo/www/admin.php && ln -sf /home/pi/common/code/deploy/www/admin.php /home/pi/deploy/pi-demo/www/admin.php
-rm -f /home/pi/deploy/pi-demo/www/api.php && ln -sf /home/pi/common/code/deploy/www/api.php /home/pi/deploy/pi-demo/www/api.php
-rm -f /home/pi/deploy/pi-demo/www/app.php && ln -sf /home/pi/common/code/deploy/www/app.php /home/pi/deploy/pi-demo/www/app.php
-rm -f /home/pi/deploy/pi-demo/www/feed.php && ln -sf /home/pi/common/code/deploy/www/feed.php /home/pi/deploy/pi-demo/www/feed.php
+rm -Rf /apps/pi-demo/www/setup && cp -R /apps/pi/deploy/www/setup /apps/pi-demo/www/
+rm -Rf /apps/pi-demo/www/asset/ && cp -R /apps/pi/deploy/www/asset /apps/pi-demo/www/
+rm -f /apps/pi-demo/www/.htaccess && cp /apps/pi/deploy/www/.htaccess /apps/pi-demo/www/.htaccess
+rm -f /apps/pi-demo/www/boot.php && cp /apps/pi/deploy/www/boot.php /apps/pi-demo/www/boot.php
 ```
 
+### Symlink files to `/apps/pi-demo/www`
+```
+rm -Rf /apps/pi-demo/www/public && ln -sf /apps/pi/deploy/www/public /apps/pi-demo/www/public
+rm -Rf /apps/pi-demo/www/script && ln -sf /apps/pi/deploy/www/script /apps/pi-demo/www/script
+rm -Rf /apps/pi-demo/www/module && ln -sf /apps/pi/deploy/www/module /apps/pi-demo/www/module
+
+rm -f /apps/pi-demo/www/index.php && ln -sf /apps/pi/deploy/www/index.php /apps/pi-demo/www/index.php
+rm -f /apps/pi-demo/www/favicon.ico && ln -sf /apps/pi/deploy/www/favicon.ico /apps/pi-demo/www/favicon.ico
+rm -f /apps/pi-demo/www/robots.txt && ln -sf /apps/pi/deploy/www/robots.txt /apps/pi-demo/www/robots.txt
+
+rm -f /apps/pi-demo/www/admin.php && ln -sf /apps/pi/deploy/www/admin.php /apps/pi-demo/www/admin.php
+rm -f /apps/pi-demo/www/api.php && ln -sf /apps/pi/deploy/www/api.php /apps/pi-demo/www/api.php
+rm -f /apps/pi-demo/www/app.php && ln -sf /apps/pi/deploy/www/app.php /apps/pi-demo/www/app.php
+rm -f /apps/pi-demo/www/feed.php && ln -sf /apps/pi/deploy/www/feed.php /apps/pi-demo/www/feed.php
+```
 
 ### Symlink paths
 ```
-rm -f /home/pi/deploy/pi-demo/lib && ln -sf /home/pi/common/code/deploy/lib /home/pi/deploy/pi-demo/lib
-rm -f /home/pi/deploy/pi-demo/usr && ln -sf /home/pi/common/code/deploy/usr /home/pi/deploy/pi-demo/usr
-rm -f /home/pi/deploy/pi-demo/static && ln -sf /home/pi/common/code/deploy/www/static /home/pi/deploy/pi-demo/static
+rm -f /apps/pi-demo/lib && ln -sf /apps/pi/deploy/lib /apps/pi-demo/lib
+rm -f /apps/pi-demo/usr && ln -sf /apps/pi/deploy/usr /apps/pi-demo/usr
+rm -f /apps/pi-demo/static && ln -sf /apps/pi/deploy/www/static /apps/pi-demo/static
 ```
 
 ### Copy folders
 ```
-rm -Rf /home/pi/deploy/pi-demo/var && cp -R /home/pi/common/code/deploy/var /home/pi/deploy/pi-demo
-rm -Rf /home/pi/deploy/pi-demo/upload && cp -R /home/pi/common/code/deploy/www/upload /home/pi/deploy/pi-demo
+rm -Rf /apps/pi-demo/var && cp -R /apps/pi/deploy/var /apps/pi-demo
+rm -Rf /apps/pi-demo/upload && cp -R /apps/pi/deploy/www/upload /apps/pi-demo
 ```
 
 ### Change owner/group
 ```
-chown -Rf www-data:www-data /home/pi/deploy/pi-demo/
+chown -Rf www-data:www-data /apps/pi-demo/
 ```
 
 ### Write mode
 ```
-chmod -f 0777 /home/pi/deploy/pi-demo/www/.htaccess
-chmod -f 0777 /home/pi/deploy/pi-demo/www/boot.php
-chmod -Rf 0777 /home/pi/deploy/pi-demo/www/setup/tmp/
-chmod -Rf 0777 /home/pi/deploy/pi-demo/www/asset/
-chmod -Rf 0777 /home/pi/deploy/pi-demo/var/
-chmod -Rf 0777 /home/pi/deploy/pi-demo/upload/
+chmod -f 0777 /apps/pi-demo/www/.htaccess
+chmod -f 0777 /apps/pi-demo/www/boot.php
+chmod -Rf 0777 /apps/pi-demo/www/asset/
+chmod -Rf 0777 /apps/pi-demo/var/
+chmod -Rf 0777 /apps/pi-demo/upload/
 ````
 
 ### Clear folders/files after installation
 ```
-chmod -f 0444 /home/pi/deploy/pi-demo/www/.htaccess
-chmod -f 0444 /home/pi/deploy/pi-demo/www/boot.php
-rm -Rf /home/pi/deploy/pi-demo/www/setup
+chmod -f 0444 /apps/pi-demo/www/.htaccess
+chmod -f 0444 /apps/pi-demo/www/boot.php
+rm -Rf /apps/pi-demo/www/setup
 ````
 
 
