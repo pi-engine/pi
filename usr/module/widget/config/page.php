@@ -23,6 +23,10 @@ return array(
             'permission'    => 'carousel',
         ),
         array(
+            'controller'    => 'list',
+            'permission'    => 'list',
+        ),
+        array(
             'controller'    => 'tab',
             'permission'    => 'tab',
         ),

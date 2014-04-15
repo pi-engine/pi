@@ -108,6 +108,39 @@ return array(
                    
                 ),
             ),
+            'list'         => array(
+                'label'         => _t('List widgets'),
+                'route'         => 'admin',
+                'controller'    => 'list',
+                'permission'    => array(
+                    'resource'  => 'list',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('List block list'),
+                        'route'         => 'admin',
+                        'controller'    => 'list',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'list',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Add new'),
+                        'route'         => 'admin',
+                        'controller'    => 'list',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
             'tab'     => array(
                 'label'         => _t('Compound tabs'),
                 'route'         => 'admin',

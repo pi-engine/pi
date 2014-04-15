@@ -10,7 +10,8 @@
 	font-size: 30px;
 }
 
-.widget-carousel-upload img {
+.widget-carousel-upload img,
+.widget-upload-image img {
 	display: block;
 	width: 100%;
 	height: 100px;

@@ -195,7 +195,7 @@ abstract class WidgetController extends ActionController
                     ?: _a('Invalid data, please check and re-submit.');
             }
             $content = $this->request->getPost('content');
-            $content = $content ? json_decode($content, true) : array();
+            //$content = $content ? json_decode($content, true) : array();
         } else {
             $content = '';
             $message = '';

@@ -18,6 +18,9 @@ return array(
         'carousel'  => array(
             'title'         => _t('Carousel widgets'),
         ),
+        'list'      => array(
+            'title'         => _t('List widgets'),
+        ),
         'tab'       => array(
             'title'         => _t('Compound tabs'),
         ),
