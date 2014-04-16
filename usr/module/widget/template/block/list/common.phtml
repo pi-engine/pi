@@ -1,0 +1,19 @@
+<?php
+// Options: interval, pause, height
+$options = (array) $block['options'];
+$items   = $block['items'];
+$target  = empty($options['target']) ? '_blank' : $options['target'];
+?>
+
+<ul>
+<?php foreach($items as $item) { ?>
+    <li class="">
+        <a href="<?php echo _escape($item['link']); ?>" 
+           title="<?php echo _escape($item['caption']); ?>"
+           class="pi-ellipsis pi-ellipsis-1"
+           target="<?php echo _escape($target); ?>">
+            <?php echo _escape($item['caption']); ?>
+        </a>
+    </li>
+<?php } ?>
+</ul>
