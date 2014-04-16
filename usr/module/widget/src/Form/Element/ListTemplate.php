@@ -27,7 +27,7 @@ class ListTemplate extends Select
     protected function getStyles()
     {
         $styles = array(
-            'list/title'    => __('Title only'),
+            'list/common'   => __('Title only'),
             'list/featured' => __('All with feature image'),
             'list/summary'  => __('All with summary'),
             'list/compound' => __('Compound'),
