@@ -1,0 +1,36 @@
+<?php
+// Options: interval, pause, height
+$options = (array) $block['options'];
+$items   = $block['items'];
+$target  = empty($options['target']) ? '_blank' : $options['target'];
+$rows    = empty($options['max_summary_row']) ? 2 : $options['max_summary_row'];
+?>
+
+<?php foreach($items as $item) { ?>
+<div class="media">
+    <div class="media-body">
+        <h4 class="media-heading">
+            <a href="<?php echo _escape($item['link']); ?>" 
+               title="<?php echo _escape($item['caption']); ?>"
+               class="pi-ellipsis pi-ellipsis-1"
+               target="<?php echo _escape($target); ?>">
+                <?php echo _escape($item['caption']); ?>
+            </a>
+        </h4>
+        <?php
+            echo sprintf(
+                '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
+                $rows,
+                $item['desc']
+            );
+            if (!empty($item['detail'])) {
+                echo sprintf(
+                    '<span class="pull-right"><a href="%s">%s</a></span>',
+                    $item['detail'],
+                    __('Detail')
+                );
+            }
+        ?>
+    </div>
+</div>
+<?php } ?>
