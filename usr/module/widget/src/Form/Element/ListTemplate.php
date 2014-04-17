@@ -37,21 +37,23 @@ class ListTemplate extends Select
             '%s/module/widget/template/block/list',
             Pi::path('custom')
         );
-        $iterator = new \DirectoryIterator($customPath);
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isFile()) {
-                continue;
+        if (is_dir($customPath)) {
+            $iterator = new \DirectoryIterator($customPath);
+            foreach ($iterator as $fileinfo) {
+                if (!$fileinfo->isFile()) {
+                    continue;
+                }
+                $filename = $fileinfo->getFilename();
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                if ('phtml' != $extension) {
+                    continue;
+                }
+                $name = pathinfo($filename, PATHINFO_FILENAME);
+                if (preg_match('/[^a-z0-9_\-]/', $name)) {
+                    continue;
+                }
+                $styles['list/' . $name] = __('Custom: ') . $name;
             }
-            $filename = $fileinfo->getFilename();
-            $extension = pathinfo($filename, PATHINFO_EXTENSION);
-            if ('phtml' != $extension) {
-                continue;
-            }
-            $name = pathinfo($filename, PATHINFO_FILENAME);
-            if (preg_match('/[^a-z0-9_\-]/', $name)) {
-                continue;
-            }
-            $styles['list/' . $name] = __('Custom: ') . $name;
         }
 
         return $styles;
