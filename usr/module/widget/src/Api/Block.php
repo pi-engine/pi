@@ -47,16 +47,6 @@ class Block extends AbstractApi
                         'edit'          => 'text',
                         'filter'        => 'number_int',
                     ),
-                    'title_length'   => array(
-                        'title'         => _a('Title length'),
-                        'edit'          => 'text',
-                        'filter'        => 'number_int',
-                    ),
-                    'summary_length' => array(
-                        'title'         => _a('Summary length'),
-                        'edit'          => 'text',
-                        'filter'        => 'number_int',
-                    ),
                 );
                 break;
             case 'carousel':
