@@ -247,6 +247,8 @@ class Block extends AbstractHelper
         // Custom block, return string
         } elseif ($isCustom) {
             switch ($block['type']) {
+                // list
+                case 'list':
                 // carousel
                 case 'carousel':
                     $items = empty($block['content'])

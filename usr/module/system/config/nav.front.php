@@ -52,11 +52,13 @@ return array(
                 'label'     => _a('Admin'),
                 'route'     => 'home',
                 'section'   => 'admin',
+                'target'    => '_blank',
             ),
             'feed'     => array(
                 'label'     => _a('RSS Feed'),
                 'route'     => 'feed',
                 'section'   => 'feed',
+                'target'    => '_blank',
             ),
         ),
     ),

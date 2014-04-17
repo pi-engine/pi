@@ -86,6 +86,38 @@ class Breadcrumbs extends AbstractBreadcrumbs
             $result[] = array(
                 'label' => $title,
             );
+        } else if ('topic' == $params['controller']
+            && 'all-topic' == $params['action']
+        ) {
+            $result[] = array(
+                'label' => __('Topic'),
+            );
+        } else if ('topic' == $params['controller']
+            && ('index' == $params['action'] || 'list' == $params['action'])
+        ) {
+            $result[] = array(
+                'label' => __('Topic'),
+                'href'  => Pi::service('url')->assemble('default', array(
+                    'module'     => $module,
+                    'controller' => 'topic',
+                )),
+            );
+            if ('index' == $params['action']) {
+                $result[] = array(
+                    'label' => $params['topic'],
+                );
+            } elseif ('list' == $params['action']) {
+                $result[] = array(
+                    'label' => $params['topic'],
+                    'href'  => Pi::service('url')->assemble($route, array(
+                        'module'     => $module,
+                        'topic'      => $params['topic'],
+                    )),
+                );
+                $result[] = array(
+                    'label' => __('All'),
+                );
+            }
         }
         
         return $result;

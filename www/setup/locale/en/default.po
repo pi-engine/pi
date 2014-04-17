@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-02-20 20:00+0800\n"
-"PO-Revision-Date: 2014-02-20 20:00+0800\n"
+"POT-Creation-Date: 2014-04-14 19:18+0800\n"
+"PO-Revision-Date: 2014-04-14 19:18+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr ""
 msgid "Finishing installation process"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Wizard.php:335
+#: c:\Code\pi\\www\setup/src/Wizard.php:347
 msgid "Pi Engine Setup Wizard"
 msgstr ""
 
@@ -219,382 +219,385 @@ msgstr ""
 msgid "Password is required."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:313
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:320
 msgid "Deprecated tables exist in the database. Please continue to re-install."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:330
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:337
 msgid "Admin email"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:331
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:338
 msgid "Admin username"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:332
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:339
 msgid "Admin name"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:333
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:340
 msgid "Admin password"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:334
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:341
 msgid "Confirm password"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Admin.php:350
+#: c:\Code\pi\\www\setup/src/Controller/Admin.php:357
 msgid "Administrator account"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:160
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:264
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:162
+msgid "Database validation is failed."
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:191
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:227
 msgid "Configuration file write error"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:163
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:269
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:194
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:232
 #, php-format
 msgid "The configuration file \"%s\" is not written correctly."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:185
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:217
 msgid "Server hostname"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:186
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:218
 msgid ""
 "Hostname (and port, delimited by \":\") or Unix socket of the database "
 "server. If you are unsure, \"localhost\" works in most cases, or "
 "\"127.0.0.1\""
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:189
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:221
 msgid "User name"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:190
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:222
 msgid ""
 "Name of the user account that will be used to connect to the database server"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:193
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:225
 msgid "Password"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:194
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:226
 msgid "Password of your database user account"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:197
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:229
 msgid "Database name"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:198
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:230
 msgid ""
 "The name of database on the host. The database must be already available."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:201
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:233
 msgid "Table prefix"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:202
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:234
 msgid ""
 "This prefix will be added to all new tables created to avoid name conflicts "
 "in the database. If you are unsure, just keep the default."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:237
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:269
 msgid "Database setup"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Database.php:238
+#: c:\Code\pi\\www\setup/src/Controller/Database.php:270
 msgid "Settings for database"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:146
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:96
 #, php-format
 msgid "%s is NOT writable."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:279
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:242
 msgid "Configuration file copy error"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:281
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:244
 msgid ""
 "The configuration files are not copied correctly or not readable, please "
 "create and/or set read permissions for the files manually."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:302
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:294
 msgid "Power your web and mobile applications."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:311
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:303
 msgid "Identifier"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:312
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:304
 msgid ""
 "Unique identifier to distinguish this website. If there are multiple sites "
 "installed, make sure the identifier is unique."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:315
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:307
 msgid "Name"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:316
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:308
 msgid "Name for the website."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:319
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:311
 msgid "Slogan"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:320
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:312
 msgid "Website slogan."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:341
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:333
 #, fuzzy
 msgid "Primary settings"
 msgstr "Presettings data"
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:345
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:337
 msgid "Primary settings for your website."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:450
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:443
 msgid "File system"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:452
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:445
 msgid "Caching storage with files on disks specified in following steps."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:456
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:449
 msgid "Persistent data container"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:460
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:453
 msgid "Choose the proper backend container for persistent data"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:502
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:495
 msgid "Documents root physical path"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:503
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:496
 msgid ""
-"Physical path to the documents (served) directory without trailing slash; "
-"PHP executable."
+"Physical path to the documents (served) directory without trailing slash."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:506
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:499
 msgid "Website location (URL)"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:507
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:500
 msgid "Main URL that will be used to access your Pi Engine"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:510
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:503
 msgid "Upload directory"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:511
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:504
 msgid ""
 "Physical path to upload directory without trailing slash. A relative path "
 "will be allocated in PI root directory; PHP disabled."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:514
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:507
 msgid "URL of upload root"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:515
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:508
 msgid ""
 "URL that will be used to access upload directory. PI root URL will be "
 "prepended if relative URL is used."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:518
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:511
 msgid "Static file directory"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:519
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:512
 msgid ""
 "Physical path to static file directory without trailing slash; PHP disabled."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:522
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:515
 msgid "URL of static file root directory"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:523
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:516
 msgid ""
 "URL that will be used to access static files. Upload URL will be used if "
 "static directory is not set explicitly."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:526
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:519
 msgid "Library directory"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:527
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:520
 msgid ""
 "Physical path to library directory without trailing slash. Locate the folder "
 "out of web directory to make it secure; PHP executable"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:530
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:523
 msgid "Data file directory"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:531
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:524
 msgid ""
 "Physical path to the data files (writable) directory WITHOUT trailing slash. "
 "Locate the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:534
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:527
 msgid "Root directory for user applications"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:535
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:528
 msgid ""
 "Physical path to user contributed directory WITHOUT trailing slash.. Locate "
 "the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:578
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:570
 #, fuzzy
 msgid "Basic settings"
 msgstr "Presettings data"
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:583
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:576
 msgid "Settings required by system"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:603
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:593
 #, fuzzy
 msgid "Advanced settings"
 msgstr "Presettings data"
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:608
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:598
 msgid ""
 "Settings that can help improve security, deployment flexibility, etc. If you "
 "are unsure about it, leave as it is."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:616
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:606
 #, fuzzy
 msgid "Path settings"
 msgstr "Presettings data"
 
-#: c:\Code\pi\\www\setup/src/Controller/Directive.php:620
+#: c:\Code\pi\\www\setup/src/Controller/Directive.php:611
 msgid "Path and URL settings"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:116
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:111
 msgid "Congratulations!"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:117
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:112
 msgid "The system is set up successfully."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:118
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:113
 msgid "Click to visit your website!"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:119
-msgid "Security advisory"
-msgstr ""
-
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:120
-msgid ""
-"For security considerations please make sure the following operations are "
-"done:"
-msgstr ""
-
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:121
-msgid ""
-"Remove the installation folder <strong>{www}/setup/</strong> from your "
-"server manually."
-msgstr ""
-
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:122
-msgid "Set configuration directories and files to readonly: "
-msgstr ""
-
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:124
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:114
 msgid "Support"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Finish.php:125
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:115
 msgid ""
 "Visit <a href=\"http://pialog.org/\" rel=\"external\">Pi Engine Development "
 "Site</a> in case you need any help."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:79
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:116
+msgid "Security advisory"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:117
+msgid ""
+"For security considerations please make sure the following operations are "
+"done:"
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:118
+msgid ""
+"Remove the installation folder <strong>{www}/setup/</strong> from your "
+"server manually."
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Finish.php:119
+msgid "Set configuration directories and files to readonly: "
+msgstr ""
+
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:86
 #, fuzzy
 msgid "Language Selection"
 msgstr "语言选择"
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:80
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:87
 msgid "Choose the language for the installation and website."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:116
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:123
 msgid "Sever setting detection"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:132
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:139
 msgid "Validate server settings and extensions"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:137
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:144
 msgid "System requirements"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:139
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:146
 msgid "Server settings and system extensions required by Pi Engine"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:146
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:179
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:153
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:186
 msgid "Invalid"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:150
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:183
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:157
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:190
 msgid "Not available"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:155
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:188
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:162
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:195
 msgid "Valid"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:170
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:177
 msgid "System extension recommendations"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:172
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:179
 msgid "Extensions recommended for better functionality or performance"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:301
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:306
 #, fuzzy
 msgid "Unknown"
 msgstr "未知"
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:319
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:324
 msgid ""
 "Make sure that configurations have been set up correctly for nginx. Refer to "
 "<a href=\"http://nginx.net\" title=\"nginx\" target=\"_blank\">nginx</a> and "
@@ -602,14 +605,14 @@ msgid ""
 "\">Pi Engine Dev</a> for instructions."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:342
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:347
 msgid ""
 "Apache \"mod_rewrite\" module is required, however it is not detected. Check "
 "<a href=\"http://httpd.apache.org/docs/current/mod/mod_rewrite.html\" title="
 "\"mod_rewrite\" target=\"_blank\">mod_rewrite</a> for details."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:346
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:351
 msgid ""
 "The webserver is currently not supported, please use <a href=\"http://nginx."
 "net\" title=\"nginx\" target=\"_blank\">nginx</a> or <a href=\"http://www."
@@ -617,33 +620,33 @@ msgid ""
 "\">Apache</a>."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:366
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:371
 msgid "Version 5.3.0 or higher is required."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:392
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:396
 msgid ""
 "PHP Data Objects (PDO) extension with MySQL driver is required for regular "
 "Pi Engine instances, check <a href=\"http://www.php.net/manual/en/book.pdo."
 "php\" title=\"PDO\" target=\"_blank\">PDO manual</a> for details."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:421
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:425
 #, php-format
 msgid ""
 "There is no recommended persist engine available. One of the following "
 "extensions is recommended: %s"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/include/template.phtml:65
+#: c:\Code\pi\\www\setup/include/template.phtml:66
 msgid "Previous"
 msgstr ""
 
-#: c:\Code\pi\\www\setup/include/template.phtml:70
+#: c:\Code\pi\\www\setup/include/template.phtml:71
 msgid "Reload"
 msgstr ""
 
 #: c:\Code\pi\\www\setup/include/template.phtml:79
-#: c:\Code\pi\\www\setup/include/template.phtml:84
+#: c:\Code\pi\\www\setup/include/template.phtml:83
 msgid "Next"
 msgstr ""

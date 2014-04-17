@@ -90,7 +90,7 @@ class Finish extends AbstractController
         $messagePattern =<<<EOT
 <div class="well alert alert-success">
 <h3>%s</h3>
-<p>%s <a href="../index.php?redirect=0">%s</a></p>
+<p>%s <a href="../index.php">%s</a></p>
 
 <h3>%s</h3>
 <p>%s</p>
