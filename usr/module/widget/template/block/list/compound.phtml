@@ -6,56 +6,56 @@ $width      = empty($options['width']) ? 120 : $options['width'];
 $height     = empty($options['height']) ? 90 : $options['height'];
 $target     = empty($options['target']) ? '_blank' : $options['target'];
 ?>
-
-<div class="media" style="margin-bottom: 10px">
-    <?php
-        echo sprintf(
-            '<a href="%s" class="pull-left" style="width: %spx; height: %spx" target="%s">
-                <img src="%s" class="img-responsive">
-            </a>',
-            $activeItem['link'],
-            $width,
-            $height,
-            $target,
-            $activeItem['image']
-        );
-    ?>
-    <div class="media-body">
-        <h4 class="media-heading">
-            <a href="<?php echo _escape($activeItem['link']); ?>" 
-               title="<?php echo _escape($activeItem['caption']); ?>"
-               class="pi-ellipsis pi-ellipsis-1"
-               target="<?php echo _escape($target); ?>">
-                <?php echo _escape($activeItem['caption']); ?>
-            </a>
-        </h4>
+<div class="widget-list">
+    <div class="media">
         <?php
-            $htmlDetail = '';
-            if (!empty($activeItem['detail'])) {
-                $htmlDetail = sprintf(
-                    '<span class="pull-right"><a href="%s" target="%s">%s</a></span>',
-                    $activeItem['detail'],
-                    $target,
-                    __('Detail')
-                );
-            }
             echo sprintf(
-                '<div class="pi-ellipsis text-muted">%s%s</div>',
-                $activeItem['desc'],
-                $htmlDetail
+                '<a href="%s" title="%s" class="pull-left" width="%s" height="%s">
+                    <img src="%s" class="img-responsive" alt="%s">
+                </a>',
+                $activeItem['link'],
+                $activeItem['caption'],
+                $width,
+                $height,
+                $activeItem['image'],
+                $activeItem['caption'],
             );
         ?>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="<?php echo _escape($activeItem['link']); ?>" 
+                    title="<?php echo _escape($activeItem['caption']); ?>"
+                    class="pi-ellipsis pi-ellipsis-1"
+                    target="<?php echo _escape($target); ?>">
+                    <?php echo _escape($activeItem['caption']); ?>
+                </a>
+            </h4>
+            <?php
+                echo sprintf(
+                    '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
+                    $rows,
+                    $activeItem['desc']
+                );
+                if (!empty($activeItem['detail'])) {
+                    echo sprintf(
+                        '<span class="pull-right"><a href="%s">%s</a></span>',
+                        $activeItem['detail'],
+                        __('Detail')
+                    );
+                }
+            ?>
+        </div>
     </div>
+    <ul>
+    <?php foreach($items as $item) { ?>
+        <li>
+            <a href="<?php echo _escape($item['link']); ?>" 
+                title="<?php echo _escape($item['caption']); ?>"
+                class="pi-ellipsis pi-ellipsis-1"
+                target="<?php echo _escape($target); ?>">
+                <?php echo _escape($item['caption']); ?>
+            </a>
+        </li>
+    <?php } ?>
+    </ul>
 </div>
-<ul>
-<?php foreach($items as $item) { ?>
-    <li class="">
-        <a href="<?php echo _escape($item['link']); ?>" 
-           title="<?php echo _escape($item['caption']); ?>"
-           class="pi-ellipsis pi-ellipsis-1"
-           target="<?php echo _escape($target); ?>">
-            <?php echo _escape($item['caption']); ?>
-        </a>
-    </li>
-<?php } ?>
-</ul>
