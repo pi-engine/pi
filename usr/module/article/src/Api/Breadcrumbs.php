@@ -106,7 +106,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
                 $result[] = array(
                     'label' => $params['topic'],
                 );
-            } else if ('list' == $params['action']) {
+            } elseif ('list' == $params['action']) {
                 $result[] = array(
                     'label' => $params['topic'],
                     'href'  => Pi::service('url')->assemble($route, array(

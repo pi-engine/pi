@@ -1,5 +1,58 @@
 Changelog
 
+
+Feb 21th, Liao wei
+=========================
+1. Update bootstap to version v3.1.1.
+2. Remove Glyphicons component, Choose font-awesome replace with it.
+
+Nov 29th, Liao Wei
+=========================
+1. Update bootstrap to version v3.0.2
+
+
+Nov 19th, Liao Wei
+========================
+ 1. fixed ie8 style with bootstrap.css and bootstrap.min.css files
+    note this code (101 line):
+    img {
+        /*width: auto\9;
+        height: auto;
+        max-width: 100%;*/
+        vertical-align: middle;
+        border: 0;
+        -ms-interpolation-mode: bicubic;
+    }
+
+
+
+May 15th, Liao Wei
+========================
+1. Update FontAwesome (Version 3.1.1)
+        medthods:
+            1. add font-awesome-ie7.css font-awesome-ie7.min.css to 'bootstrap/css' folder
+            2. replace font-awesome.css font-awesome.min.css with newest file to 'bootstrap/css' folder
+            3. replace font with newest file to 'bootstrap/font' folder
+
+
+April 2th, Liao Wei
+========================
+1. Update bootstrap (Version 2.3.1)
+        methods:
+            1. replace bootstrap-responsive.css bootstrap-responsive.min.css bootstrap.css bootstrap.min.css with newest file into 'bootstrap/css' folder
+            2. replace bootstrap.js bootstrap.min.js with newest file into 'bootstrap/js' folder
+
+Jan 14th, Liao Wei
+========================
+1. Update Font-Awesome
+		methods:
+			1. Copy the Font Awesome font directory into 'bootstrap/font/' .
+			2. Copy the font-awesome.css and font-awesome.min.css into 'bootstrap/css/' .
+				<code>
+					<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+					<link rel="stylesheet" href="bootstrap/css/font-awesome.css">
+				</code>
+
 November 2nd, Liao Wei
 =========================
 1. Upgraded to 2.2.1
@@ -40,60 +93,4 @@ Oct 18th, Liao Wei
             </code>
 
 
-			
-			
-			
-Jan 14th, Liao Wei
-
-========================
-
-1. Update Font-Awesome
-		methods:
-			1. Copy the Font Awesome font directory into 'bootstrap/font/' .
-			2. Copy the font-awesome.css and font-awesome.min.css into 'bootstrap/css/' .
-				<code>
-					<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-					<link rel="stylesheet" href="bootstrap/css/font-awesome.css">
-				</code>
-
-April 2th, Liao Wei
-
-========================
-1. Update bootstrap (Version 2.3.1)
-        methods:
-            1. replace bootstrap-responsive.css bootstrap-responsive.min.css bootstrap.css bootstrap.min.css with newest file into 'bootstrap/css' folder
-            2. replace bootstrap.js bootstrap.min.js with newest file into 'bootstrap/js' folder
-
-May 15th, Liao Wei
-
-========================
-
-1. Update Font Awesome (Version 3.1.1)
-        medthods:
-            1. add font-awesome-ie7.css font-awesome-ie7.min.css to 'bootstrap/css' folder
-            2. replace font-awesome.css font-awesome.min.css with newest file to 'bootstrap/css' folder
-            3. replace font with newest file to 'bootstrap/font' folder
- 
-
- Nov 19th, Liao Wei
-
- 1. fixed ie8 style with bootstrap.css and bootstrap.min.css files
-    note this code (101 line):
-    img {
-        /*width: auto\9;
-        height: auto;
-        max-width: 100%;*/
-        vertical-align: middle;
-        border: 0;
-        -ms-interpolation-mode: bicubic;
-    }
-
-
-Nov 29th, Liao Wei
-
-1. Update bootstrap to version v3.0.2
-
-Feb 21th, Liao wei
-
-1. Update bootstap to version v3.1.1.
-2. Remove Glyphicons component, Choose font-awesome replace with it.
+By @sexnothing
