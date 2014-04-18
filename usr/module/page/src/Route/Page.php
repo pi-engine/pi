@@ -54,7 +54,7 @@ class Page extends Standard
         if (is_numeric($name)) {
             $matches['id'] = (int) $name;
         } else {
-            $matches['name'] = $name;
+            $matches['name'] = $this->decode($name);
         }
         // Set action
         if (!empty($matches['type'])) {
