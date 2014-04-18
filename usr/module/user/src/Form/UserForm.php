@@ -147,12 +147,11 @@ class UserForm extends BaseForm
             $tmp = Pi::api('form', 'user')->parseCompoundFieldName($key);
             if ($tmp) {
                 $result[$tmp[0]][0][$tmp[1]] = $value;
-                //$result[$tmp[0]][$tmp[1]] = $value;
             } else {
                 $result[$key] = $value;
             }
         }
 
-        return $data;
+        return $result;
     }
 }

@@ -393,7 +393,7 @@ class Form extends AbstractApi
      *
      * @return string
      */
-    protected function assembleCompoundFieldName($compound, $field)
+    public function assembleCompoundFieldName($compound, $field)
     {
         return $compound . '-' . $field;
     }
@@ -405,14 +405,14 @@ class Form extends AbstractApi
      *
      * @return string[]|bool
      */
-    protected function parseCompoundFieldName($name)
+    public function parseCompoundFieldName($name)
     {
         $compounds = array_keys(Pi::registry('field', 'user')->read('compound'));
         $lookup = function ($name, $compounds) {
             $result = false;
             foreach ($compounds as $cName) {
                 if (0 === strpos($name, $cName . '-')) {
-                    $result = explode('-', 2);
+                    $result = explode('-', $name, 2);
                     break;
                 }
             }
