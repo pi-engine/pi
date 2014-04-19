@@ -21,9 +21,18 @@ use Zend\View\Helper\AbstractHelper;
  * ```
  *  // Load a template from a specific module
  *  include $this->template('module/demo:admin/public_index.phtml');
+ *  // Or
+ *  include $this->template('public_index.phtml', 'admin', 'demo');
  *
- *  // Load a template from a current module
+ *  // Load a template from current module
  *  include $this->template('admin/public_index.phtml');
+ *  // Or
+ *  include $this->template('public_index.phtml', 'admin');
+ *
+ *  // Load a template from current module of current section
+ *  include $this->template('./public_index.phtml');
+ *  // Or
+ *  include $this->template('public_index.phtml', '');
  *
  *  // Load a component template
  *  include $this->template('lib/Pi/Captcha/Image:form.phtml');
@@ -47,6 +56,20 @@ class Template extends AbstractHelper
      */
     public function __invoke($template)
     {
+        if (func_num_args() > 1) {
+            $args = func_get_args();
+            $template = $args[0];
+            $section = $args[1] ?: Pi::engine()->application()->getSection();
+            if (!empty($args[2])) {
+                $module = $args[2];
+            } else {
+                $module = Pi::service('module')->current();
+            }
+            $template = sprintf('module/%s:%s/%s', $module, $section, $template);
+        } elseif ('./' == substr($template, 0, 2)) {
+            $section = Pi::engine()->application()->getSection();
+            $template = $section . substr($template, 1);
+        }
         return $this->getView()->resolver($template);
     }
 }

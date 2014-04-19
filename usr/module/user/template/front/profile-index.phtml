@@ -1,7 +1,7 @@
 <?php
     $this->css($this->assetModule('front/front.css'));
 ?>
-<?php include '_user-topbar.phtml'; ?>
+<?php include $this->template('./profile-topbar.phtml'); ?>
 <div class="user-min-body user-profile-list">
     <?php foreach ($groups as $group) {?>
     <div class="user-profile-item">
