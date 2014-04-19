@@ -19,7 +19,7 @@
 .user-avatar-header {
   padding: 15px 20px;
   background-color: #565656;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   color: #fff;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7f7f7f', endColorstr='#4d4d4d', GradientType=0);
   background-image: -moz-linear-gradient(top, #7f7f7f, #4d4d4d);
@@ -74,8 +74,8 @@
 }
 
 .user-info-right {
-  float: right;
-  margin-top: 90px;
+  /* float: right;
+  margin-top: 90px; */
 }
 
 /* Profile */
