@@ -392,6 +392,80 @@ class CategoryController extends ActionController
     }
     
     /**
+     * Order category
+     * 
+     * @return ViewModel 
+     */
+    public function orderAction()
+    {
+        $from = $this->params('from', 0);
+        if (empty($from)) {
+            return $this->redirect()->toRoute('', array('action' => 'list'));
+        }
+        
+        $model  = $this->getModel('category');
+        $parent = $model->getParentNode($from);
+        $rowset = $model->getChildren($parent['id']);
+        $children = array();
+        foreach ($rowset as $row) {
+            $children[$row->id] = $row->title;
+        }
+        unset($children[$parent['id']]);
+        $form = $this->getOrderForm($from, $children);
+        $this->view()->assign(array(
+            'title' => _a('Order Category'),
+            'form'  => $form,
+        ));
+        
+        if ($this->request->isPost()) {
+            $post = $this->request->getPost();
+            $form->setData($post);
+            if (!$form->isValid()) {
+                return $this->renderForm(
+                    $form,
+                    _a('Can not order category!')
+                );
+            }
+                
+            $data = $form->getData();
+            $model = $this->getModel('category');
+
+            // Deny to move item to other category
+            if (!empty($data['to']) 
+                && !in_array($data['to'], array_keys($children))
+            ) {
+                return $this->renderForm(
+                    $form,
+                    _a('Category cannot be moved to another category!')
+                );
+            }
+
+            // Order category
+            if (empty($data['to'])) {
+                $model->move($data['from'], $parent['id'], 'firstOf');
+            } else {
+                $model->move($data['from'], $data['to'], 'nextTo');
+            }
+            
+            // Clear cache
+            $module = $this->getModule();
+            Pi::service('registry')
+                ->handler('category', $module)
+                ->clear($module);
+
+            // Go to list page
+            return $this->redirect()->toRoute('', array(
+                'action' => 'list'
+            ));
+        }
+        
+        $to   = $this->params('to', 0);
+        if ($to) {
+            $form->get('to')->setAttribute('value', $to);
+        }
+    }
+    
+    /**
      * Save image by AJAX, but do not save data into database.
      * If the image is fetched by upload, try to receive image by Upload class,
      * if the it comes from media, copy the image from media to category path.
@@ -647,5 +721,60 @@ class CategoryController extends ActionController
         }
 
         return $id;
+    }
+    
+    /**
+     * Get order form instance
+     * 
+     * @param array $from
+     * @return \Pi\Form\Form
+     */
+    public function getOrderForm($from, $brother)
+    {
+        $name = $brother[$from];
+        unset($brother[$from]);
+        $form = new \Pi\Form\Form;
+        $elements = array(
+            array(
+                'name'       => 'from',
+                'options'    => array(
+                    'label'     => __('From'),
+                ),
+                'attributes' => array(
+                    'class'     => 'form-control',
+                    'options'   => array(
+                        $from         => $name,
+                    ),
+                ),
+                'type'       => 'select',
+            ),
+            array(
+                'name'       => 'to',
+                'options'    => array(
+                    'label'     => __('To'),
+                ),
+                'attributes' => array(
+                    'class'     => 'form-control',
+                    'options'   => array(0 => __('First of')) + $brother,
+                ),
+                'type'       => 'select',
+            ),
+            array(
+                'name'       => 'security',
+                'type'       => 'csrf',
+            ),
+            array(
+                'name'       => 'submit',
+                'attributes' => array(              
+                    'value'     => __('Submit'),
+                ),
+                'type'       => 'submit',
+            ),
+        );
+        foreach ($elements as $element) {
+            $form->add($element);
+        }
+        
+        return $form;
     }
 }
