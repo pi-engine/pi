@@ -25,39 +25,25 @@ class Adapter extends ZendAdapter
      */
     public function query(
         $sql,
-        $parametersOrQueryMode = self::QUERY_MODE_PREPARE
+        $parametersOrQueryMode = self::QUERY_MODE_PREPARE,
+        ResultSet\ResultSetInterface $resultPrototype = null
     ) {
-        if (is_string($parametersOrQueryMode)
-            && in_array(
-                $parametersOrQueryMode,
-                array(self::QUERY_MODE_PREPARE, self::QUERY_MODE_EXECUTE)
-              )
-        ) {
+        if (is_string($parametersOrQueryMode) && in_array($parametersOrQueryMode, array(self::QUERY_MODE_PREPARE, self::QUERY_MODE_EXECUTE))) {
             $mode = $parametersOrQueryMode;
             $parameters = null;
-        } elseif (is_array($parametersOrQueryMode)
-            || $parametersOrQueryMode instanceof ParameterContainer
-        ) {
+        } elseif (is_array($parametersOrQueryMode) || $parametersOrQueryMode instanceof ParameterContainer) {
             $mode = self::QUERY_MODE_PREPARE;
             $parameters = $parametersOrQueryMode;
         } else {
-            throw new Exception\InvalidArgumentException(
-                'Parameter 2 to this method must be a flag,'
-                . ' an array, or ParameterContainer'
-            );
+            throw new Exception\InvalidArgumentException('Parameter 2 to this method must be a flag, an array, or ParameterContainer');
         }
 
         if ($mode == self::QUERY_MODE_PREPARE) {
             $this->lastPreparedStatement = null;
-            $this->lastPreparedStatement =
-                $this->driver->createStatement($sql);
+            $this->lastPreparedStatement = $this->driver->createStatement($sql);
             $this->lastPreparedStatement->prepare();
-            if (is_array($parameters)
-                || $parameters instanceof ParameterContainer
-            ) {
-                $this->lastPreparedStatement
-                    ->setParameterContainer((is_array($parameters))
-                        ? new ParameterContainer($parameters) : $parameters);
+            if (is_array($parameters) || $parameters instanceof ParameterContainer) {
+                $this->lastPreparedStatement->setParameterContainer((is_array($parameters)) ? new ParameterContainer($parameters) : $parameters);
                 $result = $this->lastPreparedStatement->execute();
             } else {
                 return $this->lastPreparedStatement;
@@ -76,10 +62,8 @@ class Adapter extends ZendAdapter
             /**#@-*/
         }
 
-        if ($result instanceof Driver\ResultInterface
-            && $result->isQueryResult()
-        ) {
-            $resultSet = clone $this->queryResultSetPrototype;
+        if ($result instanceof Driver\ResultInterface && $result->isQueryResult()) {
+            $resultSet = clone ($resultPrototype ?: $this->queryResultSetPrototype);
             $resultSet->initialize($result);
             return $resultSet;
         }
