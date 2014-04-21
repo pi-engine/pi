@@ -10,6 +10,7 @@
 namespace Module\Article\Controller\Admin;
 
 use Pi;
+use Pi\Form\Form;
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\CategoryEditForm;
 use Module\Article\Form\CategoryEditFilter;
@@ -78,25 +79,25 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryEditFilter);
             $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('There are some error occured!')
                 );
+                return;
             }
             
             $data = $form->getData();
             $id   = $this->saveCategory($data);
             if (!$id) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Can not save data!')
                 );
+                return;
             }
             
             // Clear cache
-            Pi::service('registry')
-                ->handler('category', $module)
-                ->clear($module);
+            Pi::registry('category', $module)->clear($module);
             
             return $this->redirect()->toRoute('',array(
                 'action' => 'list'
@@ -132,10 +133,11 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryEditFilter($options));
             $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Can not update data!')
                 );
+                return;
             }
             $data = $form->getData();
             $id   = $this->saveCategory($data);
@@ -144,9 +146,7 @@ class CategoryController extends ActionController
             }
             
             // Clear cache
-            Pi::service('registry')
-                ->handler('category', $module)
-                ->clear($module);
+            Pi::registry('category', $module)->clear($module);
 
             return $this->redirect()->toRoute('', array(
                 'action' => 'list'
@@ -216,9 +216,7 @@ class CategoryController extends ActionController
             
             // Clear cache
             $module = $this->getModule();
-            Pi::service('registry')
-                ->handler('category', $module)
-                ->clear($module);
+            Pi::registry('category', $module)->clear($module);
 
             // Go to list page
             return $this->redirect()->toRoute('', array('action' => 'list'));
@@ -259,10 +257,11 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryMergeFilter);
         
             if (!$form->isValid()) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Can not merge category!')
                 );
+                return;
             }
             $data = $form->getData();
 
@@ -271,28 +270,32 @@ class CategoryController extends ActionController
             // Deny to be merged to self or a child
             $descendant = $model->getDescendantIds($data['from']);
             if (array_search($data['to'], $descendant) !== false) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Category cannot be moved to self or a child!')
                 );
+                return;
             }
 
             // From node cannot be default
             if ($this->config('default_category') == $data['from']) {
-               return $this->renderForm(
-                   $form,
-                   _a('Cannot merge default category')
-               );
+                $this->renderForm(
+                    $form,
+                    _a('Cannot merge default category')
+                );
+
+                return;
             }
 
             // Move children node
             $children = $model->getChildrenIds($data['from']);
             foreach ($children as $objective) {
                 if (!$model->move($objective, $data['to'])) {
-                    return $this->renderForm(
+                    $this->renderForm(
                         $form,
                         _a('Move children error.')
                     );
+                    return;
                 }
             }
 
@@ -307,9 +310,7 @@ class CategoryController extends ActionController
             
             // Clear cache
             $module = $this->getModule();
-            Pi::service('registry')
-                ->handler('category', $module)
-                ->clear($module);
+            Pi::registry('category', $module)->clear($module);
 
             // Go to list page
             return $this->redirect()->toRoute('', array(
@@ -347,10 +348,11 @@ class CategoryController extends ActionController
             $form->setInputFilter(new CategoryMoveFilter);
 
             if (!$form->isValid()) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Can not move category!')
                 );
+                return;
             }
                 
             $data = $form->getData();
@@ -359,10 +361,11 @@ class CategoryController extends ActionController
             // Deny to be moved to self or a child
             $children = $model->getDescendantIds($data['from']);
             if (array_search($data['to'], $children) !== false) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Category cannot be moved to self or a child!')
                 );
+                return;
             }
 
             // Move category
@@ -370,9 +373,7 @@ class CategoryController extends ActionController
             
             // Clear cache
             $module = $this->getModule();
-            Pi::service('registry')
-                ->handler('category', $module)
-                ->clear($module);
+            Pi::registry('category', $module)->clear($module);
 
             // Go to list page
             return $this->redirect()->toRoute('', array(
@@ -421,10 +422,11 @@ class CategoryController extends ActionController
             $post = $this->request->getPost();
             $form->setData($post);
             if (!$form->isValid()) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Can not order category!')
                 );
+                return;
             }
                 
             $data = $form->getData();
@@ -434,10 +436,11 @@ class CategoryController extends ActionController
             if (!empty($data['to']) 
                 && !in_array($data['to'], array_keys($children))
             ) {
-                return $this->renderForm(
+                $this->renderForm(
                     $form,
                     _a('Category cannot be moved to another category!')
                 );
+                return;
             }
 
             // Order category
@@ -449,9 +452,7 @@ class CategoryController extends ActionController
             
             // Clear cache
             $module = $this->getModule();
-            Pi::service('registry')
-                ->handler('category', $module)
-                ->clear($module);
+            Pi::registry('category', $module)->clear($module);
 
             // Go to list page
             return $this->redirect()->toRoute('', array(
@@ -613,7 +614,7 @@ class CategoryController extends ActionController
      * Get category form object
      * 
      * @param string $action  Form name
-     * @return \Module\Article\Form\CategoryEditForm 
+     * @return CategoryEditForm
      */
     protected function getCategoryForm($action = 'add')
     {
@@ -626,11 +627,11 @@ class CategoryController extends ActionController
     /**
      * Render form
      * 
-     * @param Zend\Form\Form $form     Form instance
-     * @param string         $message  Message assign to template
-     * @param bool           $error    Whether is error message
+     * @param Form      $form     Form instance
+     * @param string    $message  Message assign to template
+     * @param bool      $error    Whether is error message
      */
-    public function renderForm($form, $message = null, $error = true)
+    public function renderForm(Form $form, $message = null, $error = true)
     {
         $params = compact('form', 'message', 'error');
         $this->view()->assign($params);
@@ -726,14 +727,16 @@ class CategoryController extends ActionController
     /**
      * Get order form instance
      * 
-     * @param array $from
-     * @return \Pi\Form\Form
+     * @param int $from
+     * @param array $brother
+     *
+     * @return Form
      */
-    public function getOrderForm($from, $brother)
+    public function getOrderForm($from, array $brother)
     {
         $name = $brother[$from];
         unset($brother[$from]);
-        $form = new \Pi\Form\Form;
+        $form = new Form;
         $elements = array(
             array(
                 'name'       => 'from',
