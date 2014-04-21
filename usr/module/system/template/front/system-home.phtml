@@ -1,3 +1,26 @@
-<!--
-Placeholder for system homepage by Pi Engine.
--->
+<?php
+/**
+ * Placeholder for system homepage by Pi Engine.
+ *
+ * Use guide:
+ * - step 1: copy this file to `custom/module/system/template/front/system-home.phtml`
+ * - step 2: modify the above file as following
+ */
+
+// Use case 1: redirect to a specified module or URI
+/*
+$uri = $this->url('default', array('module' => 'user'));
+// Redirect with head meta, potentially for page cache
+$this->headMeta('0; url=' . $uri, 'refresh', 'http-equiv');
+// Immediate redirect
+header('location: ' . $uri, true, 301);
+exit;
+*/
+
+// Use case 2: display contents
+/*
+$content =<<<'EOT'
+<p class="alert alert-success">Pi Engine custom homepage demonstration.</p>
+EOT;
+echo $content;
+*/
