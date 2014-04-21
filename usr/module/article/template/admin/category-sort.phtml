@@ -1,8 +1,8 @@
-<?php include 'message-box.phtml'; ?>
+<?php include $this->template('./message-box.phtml'); ?>
 
 <?php
     $form->setAttributes(array(
-        'action'  => $this->url('', array('action' => 'order')),
+        'action'  => $this->url('', array('action' => 'sort')),
         'method'  => 'post',
         'class'   => 'form-horizontal',
     ));

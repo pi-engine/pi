@@ -412,9 +412,9 @@ class CategoryController extends ActionController
             $children[$row->id] = $row->title;
         }
         unset($children[$parent['id']]);
-        $form = $this->getOrderForm($from, $children);
+        $form = $this->getSortForm($from, $children);
         $this->view()->assign(array(
-            'title' => _a('Order Category'),
+            'title' => _a('Sort Category'),
             'form'  => $form,
         ));
         
@@ -424,7 +424,7 @@ class CategoryController extends ActionController
             if (!$form->isValid()) {
                 $this->renderForm(
                     $form,
-                    _a('Can not order category!')
+                    _a('Can not sort category!')
                 );
                 return;
             }
@@ -443,7 +443,7 @@ class CategoryController extends ActionController
                 return;
             }
 
-            // Order category
+            // Sort category
             if (empty($data['to'])) {
                 $model->move($data['from'], $parent['id'], 'firstOf');
             } else {
@@ -725,14 +725,14 @@ class CategoryController extends ActionController
     }
     
     /**
-     * Get order form instance
+     * Get sort form instance
      * 
      * @param int $from
      * @param array $sibling
      *
      * @return Form
      */
-    public function getOrderForm($from, array $sibling)
+    protected function getSortForm($from, array $sibling)
     {
         $name = $sibling[$from];
         unset($sibling[$from]);
