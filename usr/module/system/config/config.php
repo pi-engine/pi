@@ -132,6 +132,7 @@ $config['item'] = array(
         'visible'       => 0,
     ),
 
+    /*
     'environment'    => array(
         'title'         => _t('Run environment'),
         'description'   => _t('Will override setting in `var/config/engine.php`.'),
@@ -148,6 +149,7 @@ $config['item'] = array(
         'value'         => 'development',
         'category'      => 'general',
     ),
+    */
 
     // User account
 
