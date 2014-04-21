@@ -393,11 +393,11 @@ class CategoryController extends ActionController
     }
     
     /**
-     * Order category
+     * Sort category
      * 
      * @return ViewModel 
      */
-    public function orderAction()
+    public function sortAction()
     {
         $from = $this->params('from', 0);
         if (empty($from)) {
@@ -728,14 +728,14 @@ class CategoryController extends ActionController
      * Get order form instance
      * 
      * @param int $from
-     * @param array $brother
+     * @param array $sibling
      *
      * @return Form
      */
-    public function getOrderForm($from, array $brother)
+    public function getOrderForm($from, array $sibling)
     {
-        $name = $brother[$from];
-        unset($brother[$from]);
+        $name = $sibling[$from];
+        unset($sibling[$from]);
         $form = new Form;
         $elements = array(
             array(
@@ -758,7 +758,7 @@ class CategoryController extends ActionController
                 ),
                 'attributes' => array(
                     'class'     => 'form-control',
-                    'options'   => array(0 => __('First of')) + $brother,
+                    'options'   => array(0 => __('First of')) + $sibling,
                 ),
                 'type'       => 'select',
             ),
