@@ -194,7 +194,7 @@ class ProfileController extends ActionController
         $displayFieldModel->delete(array());
 
         $groupOrder = 1;
-	    foreach ($displays as $group) {
+	foreach ($displays as $group) {
             $groupData = array(
             	'title'    => $group['title'],
                 'order'    => $groupOrder,
@@ -212,7 +212,10 @@ class ProfileController extends ActionController
             $groupId = (int) $row['id'];
             $fieldOrder = 1;
             // Save display field
-            foreach ($group['fields'] as $field )  {
+            foreach ($group['fields'] as $field)  {
+                if (empty($field['name'])) {
+                    continue;
+                }
                 $fieldData = array(
                     'field'  => $field['name'],
                     'group'  => $groupId,
