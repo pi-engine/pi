@@ -26,7 +26,7 @@ $config['resource']['permission'] = array(
     // Default access perm in case not defined: true for allowed, false for denied
     //'default_allow' => false,
     // Whether to check `site_close` for maintenance, default as true
-    //'check_close'   => false,
+    'check_close'   => false,
     // If check page access
     'check_page'    => true,
     // Managed components
