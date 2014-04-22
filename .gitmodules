@@ -1,0 +1,3 @@
+[submodule "usr/module/uclient"]
+	path = usr/module/uclient
+	url = https://github.com/pi-module/uclient
