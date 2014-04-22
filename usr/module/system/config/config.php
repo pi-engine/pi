@@ -175,7 +175,7 @@ $config['item'] = array(
         'title'         => _t('Minimum username'),
         'description'   => _t('Minimum length of username for user registration'),
         'value'         => 3,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -183,7 +183,7 @@ $config['item'] = array(
         'title'         => _t('Maximum username'),
         'description'   => _t('Maximum length of username for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -191,7 +191,7 @@ $config['item'] = array(
         'title'         => _t('Minimum password'),
         'description'   => _t('Minimum length of password for user registration'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -199,7 +199,7 @@ $config['item'] = array(
         'title'         => _t('Maximum password'),
         'description'   => _t('Maximum length of password for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -223,7 +223,7 @@ $config['item'] = array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -251,7 +251,7 @@ $config['item'] = array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -260,7 +260,7 @@ $config['item'] = array(
         'description'   => _t('Disable user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -269,7 +269,7 @@ $config['item'] = array(
         'description'   => _t('Disable user registration'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -278,7 +278,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -287,7 +287,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for user registration'),
         'edit'          => 'checkbox',
         'value'         => 1,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -297,7 +297,7 @@ $config['item'] = array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for admin login'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -305,7 +305,7 @@ $config['item'] = array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -334,7 +334,7 @@ $config['item'] = array(
         'description'   => _t('Disable admin login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -343,7 +343,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for admin login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -519,7 +519,7 @@ $config['item'] = array(
         'description'   => _t('Words will be censored if this option is enabled. This option may be turned off for enhanced site speed.'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'text',
     ),
 

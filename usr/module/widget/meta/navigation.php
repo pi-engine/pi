@@ -15,13 +15,12 @@ return array(
         'navigation'    => array(
             'title'         => _a('Navigation name'),
             'edit'          => 'navigation',
-            //'filter'        => 'number_int',
             'value'         => '',
         ),
         'menu_show'    => array(
             'title'         => _a('Display menu'),
             'edit'          => 'checkbox',
-            //'filter'        => 'number_int',
+            //'filter'        => 'int',
             'value'         => '1',
         ),
         'menu_ul_class' => array(
@@ -34,20 +33,20 @@ return array(
         'menu_min_depth' => array(
             'title'         => _a('Minimum depth for menu'),
             'edit'          => 'text',
-            'filter'        => 'number_int',
+            'filter'        => 'int',
             'value'         => 1,
         ),
         'menu_max_depth' => array(
             'title'         => _a('Maximum depth for menu'),
             'description'   => '0 for no limit',
             'edit'          => 'text',
-            'filter'        => 'number_int',
+            'filter'        => 'int',
             'value'         => 0,
         ),
         'breadcrumb_show'    => array(
             'title'         => _a('Display menu'),
             'edit'          => 'checkbox',
-            //'filter'        => 'number_int',
+            //'filter'        => 'int',
             'value'         => '0',
         ),
         'breadcrumb_separator' => array(
@@ -59,13 +58,13 @@ return array(
         'breadcrumb_min_depth' => array(
             'title'         => _a('Minimum depth for breadcrumb'),
             'edit'          => 'text',
-            'filter'        => 'number_int',
+            'filter'        => 'int',
             'value'         => 1,
         ),
         'breadcrumb_link_last'    => array(
             'title'         => _a('Add link to last page'),
             'edit'          => 'checkbox',
-            //'filter'        => 'number_int',
+            //'filter'        => 'int',
             'value'         => '0',
         ),
     ),

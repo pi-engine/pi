@@ -57,7 +57,7 @@ $config = array(
         'title'         => _t('Email expiration'),
         'description'   => _t('Expiration time for email/password reset (in hours).'),
         'value'         => 24,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
     ),
 
     'email_confirm'     => array(
@@ -65,7 +65,7 @@ $config = array(
         'description'   => _t('Email confirmation with token is required for email change.'),
         'edit'          => 'checkbox',
         'value'         => 1,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
     ),
 
     'require_profile_complete' => array(
@@ -73,7 +73,7 @@ $config = array(
         'description'   => _t('Require user to complete profile data.'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
     ),
 
     // Login
@@ -82,7 +82,7 @@ $config = array(
         'description'   => _t('Disable user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'login',
     ),
 
@@ -91,7 +91,7 @@ $config = array(
         'description'   => _t('Enable CAPTCHA for user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'login',
     ),
 
@@ -99,7 +99,7 @@ $config = array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'login',
     ),
 
@@ -127,7 +127,7 @@ $config = array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'login',
     ),
 
@@ -137,7 +137,7 @@ $config = array(
         'description'   => _t('Disable user registration'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'register',
     ),
 
@@ -146,7 +146,7 @@ $config = array(
         'description'   => _t('Enable CAPTCHA for user registration'),
         'edit'          => 'checkbox',
         'value'         => 1,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'register',
     ),
 
@@ -155,7 +155,7 @@ $config = array(
         'description'   => _t('Require user to complete register data in an extra form.'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'register',
     ),
 
@@ -164,7 +164,7 @@ $config = array(
         'description'   => _t('Send email notification for register success.'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'register',
     ),
 
@@ -190,7 +190,7 @@ $config = array(
         'title'         => _t('Activation expiration'),
         'description'   => _t('Expiration time for activation email (in hours).'),
         'value'         => 24,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'register',
     ),
 
@@ -217,7 +217,7 @@ $config = array(
         'title'         => _t('Minimum username'),
         'description'   => _t('Minimum length of username for user registration'),
         'value'         => 3,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'account',
     ),
 
@@ -225,7 +225,7 @@ $config = array(
         'title'         => _t('Maximum username'),
         'description'   => _t('Maximum length of username for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'account',
     ),
     'name_format'  => array(
@@ -250,7 +250,7 @@ $config = array(
         'title'         => _t('Minmum display name'),
         'description'   => _t('Minmum length of display name for user registration'),
         'value'         => 3,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'account',
     ),
 
@@ -258,7 +258,7 @@ $config = array(
         'title'         => _t('Maximum display name'),
         'description'   => _t('Maximum length of display name for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'account',
     ),
 
@@ -266,7 +266,7 @@ $config = array(
         'title'         => _t('Minimum password'),
         'description'   => _t('Minimum length of password for user registration'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'account',
     ),
 
@@ -274,7 +274,7 @@ $config = array(
         'title'         => _t('Maximum password'),
         'description'   => _t('Maximum length of password for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'account',
     ),
 
@@ -308,6 +308,7 @@ $config = array(
         'title'         => _t('Max Avatar Width'),
         'description'   => _t('Allowed image width, 0 for no limit'),
         'value'         => 2048,
+        'filter'        => 'int',
         'category'      => 'avatar',
     ),
     // Allowed height of avatar image, 0 for no limit
@@ -315,6 +316,7 @@ $config = array(
         'title'         => _t('Max Avatar Height'),
         'description'   => _t('Allowed image height, 0 for no limit'),
         'value'         => 2048,
+        'filter'        => 'int',
         'category'      => 'avatar',
     ),
     // Allowed width of avatar image file size, 0 for no limit
@@ -322,6 +324,7 @@ $config = array(
         'title'         => _t('Max File Size'),
         'description'   => _t('Allowed avatar file to upload (in KB), 0 for no limit'),
         'value'         => 1024,
+        'filter'        => 'int',
         'category'      => 'avatar',
     ),
 

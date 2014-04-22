@@ -26,6 +26,7 @@ return array(
             'title'         => _t('Item per page'),
             'description'   => _t('Number of items on one page.'),
             'value'         => 10,
+            'filter'        => 'int',
             'edit'          => array(
                 'type'      => 'select',
                 'options'   => array(

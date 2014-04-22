@@ -190,12 +190,12 @@ class CarouselController extends WidgetController
                 'height'    => array(
                     'title'         => _a('Block frame height'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                 ),
                 'interval' => array(
                     'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                     'value'         => 2000,
                 ),
                 'pause' => array(

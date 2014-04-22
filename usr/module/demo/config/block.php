@@ -28,7 +28,7 @@ return array(
                 'title'         => _a('Yes or No'),
                 'description'   => _a('Demo for Yes-No'),
                 'edit'          => 'checkbox',
-                'filter'        => 'number_int',
+                'filter'        => 'int',
                 'value'         => 0
             ),
             // Number
@@ -36,7 +36,7 @@ return array(
                 'title'         => _a('Input some figure'),
                 'description'   => _a('Demo for number'),
                 'edit'          => 'text',
-                //'filter'        => 'number_int',
+                //'filter'        => 'int',
                 'value'         => 10,
             ),
         ),
