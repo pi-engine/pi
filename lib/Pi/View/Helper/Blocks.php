@@ -146,8 +146,13 @@ class Blocks extends AbstractHelper
                         // Render block
                         $widget = $blockHelper->render($blockRows[$id]);
                         if ($widget) {
-                            $layoutBlocks[$this->zoneMap[$zoneKey]][] =
-                                $widget;
+                            if (isset($this->zoneMap[$zoneKey])) {
+                                $layoutBlocks[$this->zoneMap[$zoneKey]][] =
+                                    $widget;
+                            } else {
+                                $layoutBlocks[$zoneKey][] =
+                                    $widget;
+                            }
                         }
                     }
                 }
