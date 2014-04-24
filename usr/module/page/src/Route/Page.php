@@ -54,13 +54,13 @@ class Page extends Standard
         if (is_numeric($name)) {
             $matches['id'] = (int) $name;
         } else {
-            $matches['name'] = $this->decode($name);
+            $matches['action'] = $this->decode($name);
         }
         // Set action
-        if (!empty($matches['type'])) {
-            $matches['action'] = $matches['type'];
-            unset($matches['type']);
-        }
+        //if (!empty($matches['type'])) {
+        //    $matches['action'] = $matches['type'];
+        //    unset($matches['type']);
+        //}
 
         return $matches;
     }
@@ -72,10 +72,10 @@ class Page extends Standard
     {
         $mergedParams = array_merge($this->defaults, $params);
         $url = '';
-        if (!empty($mergedParams['slug'])) {
-            $url = $this->encode($mergedParams['slug']);
-        } elseif (!empty($mergedParams['name'])) {
+        if (!empty($mergedParams['name'])) {
             $url = $this->encode($mergedParams['name']);
+        } elseif (!empty($mergedParams['slug'])) {
+            $url = $this->encode($mergedParams['slug']);
         } elseif (!empty($mergedParams['id'])) {
             $url = (int) $mergedParams['id'];
         }

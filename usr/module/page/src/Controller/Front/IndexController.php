@@ -65,15 +65,16 @@ class IndexController extends ActionController
     public function indexAction()
     {
         $id     = $this->params('id');
-        $name   = $this->params('name');
+        //$name   = $this->params('name');
+        $name   = $this->params('action');
 
         $row = null;
         if ($id) {
             $row = $this->getModel('page')->find($id);
         } elseif ($name) {
-            $row = $this->getModel('page')->find($name, 'slug');
+            $row = $this->getModel('page')->find($name, 'name');
             if (!$row) {
-                $row = $this->getModel('page')->find($name, 'name');
+                $row = $this->getModel('page')->find($name, 'slug');
             }
         }
         if ($row->active) {

@@ -3,6 +3,8 @@ Page module changelog
 v1.2.0 February 27th, 2014
 =============================
 1. Add support for menu
+2. Fix remove system page
+3. Fix dressup single page
 
 
 v1.1.0 January 10th, 2014
