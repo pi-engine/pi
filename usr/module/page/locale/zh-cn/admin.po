@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
 "POT-Creation-Date: 2014-03-03 13:18+0800\n"
-"PO-Revision-Date: 2014-03-03 13:31+0800\n"
+"PO-Revision-Date: 2014-04-24 15:42+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr "只允许字母、数字和下划线。"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:66
 msgid "SEO slug"
-msgstr "SEO 关键词"
+msgstr "SEO 短词"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:70
 msgid "Unique slug for SEO URL."
@@ -153,7 +153,7 @@ msgstr ""
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:104
 msgid "Content"
-msgstr "内部"
+msgstr "内容"
 
 #: C:\code\pi\usr\module\page/src/Form/PageForm.php:119
 msgid "SEO settings"
