@@ -1,6 +1,6 @@
 <?php
 $options = (array) $block['options'];
-$items   = $block['items'];
+$items   = (array) $block['items'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
 ?>
 <div class="widget-list">

@@ -1,6 +1,6 @@
 <?php
 $options = (array) $block['options'];
-$items   = $block['items'];
+$items   = (array) $block['items'];
 $width   = empty($options['width']) ? 100 : $options['width'];
 $height  = empty($options['height']) ? 100 : $options['height'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
@@ -13,10 +13,10 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                 '<a href="%s" title="%s" class="pull-left">
                     <img src="%s" class="img-responsive" alt="%s" style="width:%spx; height:%spx">
                 </a>',
-                $activeItem['link'],
-                $activeItem['caption'],
-                $activeItem['image'],
-                $activeItem['caption'],
+                $item['link'],
+                $item['caption'],
+                $item['image'],
+                $item['caption'],
                 $width,
                 $height
             );
@@ -40,8 +40,7 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                     );    
                 }
                 echo sprintf(
-                    '<div class="pi-ellipsis pi-ellipsis-%s">%s%s</div>',
-                    $rows,
+                    '<div class="pi-ellipsis">%s%s</div>',
                     $item['desc'],
                     $htmlDetail
                 );
