@@ -158,6 +158,9 @@ class Form extends AbstractApi
                 ) {
                     $compoundFilters = $this->getCompoundFilter($name);
                     foreach ($compoundFilters as $filter) {
+                        if ($value && !in_array($filter['name'], $value)) {
+                            continue;
+                        }
                         if ($filter) {
                             $filter['name'] = $this->assembleCompoundFieldName($name, $filter['name']);
                             $filters[] = $filter;
