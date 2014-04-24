@@ -239,6 +239,9 @@ class IndexController extends ActionController
         $id = $this->params('id');
         $row = $this->getModel('page')->find($id);
         if ($row) {
+            if ($row->name) {
+                $this->removePage($row->name);
+            }
             $row->delete();
             Pi::registry('page')->clear($this->getModule());
             Pi::registry('nav', $this->getModule())->flush();
