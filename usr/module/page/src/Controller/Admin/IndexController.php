@@ -86,6 +86,7 @@ class IndexController extends ActionController
                 $values['user'] = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
                 unset($values['id']);
+
                 // Set seo_title
                 $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
                 $values['seo_title'] = Pi::api('text', 'page')->title($title);
@@ -95,6 +96,7 @@ class IndexController extends ActionController
                 // Set seo_description
                 $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
                 $values['seo_description'] = Pi::api('text', 'page')->description($description);
+
                 // Save
                 $row = $this->getModel('page')->createRow($values);
                 $row->save();
@@ -173,15 +175,14 @@ class IndexController extends ActionController
                 if (empty($values['slug'])) {
                     $values['slug'] = null;
                 }
-                $pageSet = array();
-                if ($row->name != $values['name']) {
-                    $pageSet = array(
-                        'remove'    => $row->name,
-                        'set'       => array($values['name'],
-                                             $values['title']),
-                    );
+                if (!$values['name'] || $row->name != $values['name']) {
+                    $this->removePage($row->name);
+                }
+                if ($values['name']) {
+                    $this->setPage($values['name'], $values['title']);
                 }
                 $values['time_updated'] = time();
+
                 // Set seo_title
                 $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
                 $values['seo_title'] = Pi::api('text', 'page')->title($title);
@@ -191,20 +192,10 @@ class IndexController extends ActionController
                 // Set seo_description
                 $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
                 $values['seo_description'] = Pi::api('text', 'page')->description($description);
+
                 // Save
                 $row->assign($values);
                 $row->save();
-                if ($pageSet) {
-                    if (!empty($pageSet['set'])) {
-                        $this->setPage(
-                            $pageSet['set']['name'],
-                            $pageSet['set']['title']
-                        );
-                    }
-                    if (!empty($pageSet['remove'])) {
-                        $this->removePage($pageSet['remove']);
-                    }
-                }
                 Pi::registry('page')->clear($this->getModule());
                 $message = _a('Page data saved successfully.');
                 return $this->jump(array('action' => 'index'), $message);
@@ -244,6 +235,7 @@ class IndexController extends ActionController
             }
             $row->delete();
             Pi::registry('page')->clear($this->getModule());
+            Pi::registry('page', $this->getModule())->flush();
             Pi::registry('nav', $this->getModule())->flush();
         }
 
@@ -266,6 +258,7 @@ class IndexController extends ActionController
             $row->save();
             Pi::registry('page')->clear($this->getModule());
         }
+        Pi::registry('page', $this->getModule())->flush();
         Pi::registry('nav', $this->getModule())->flush();
 
         return $this->jump(
@@ -305,17 +298,32 @@ class IndexController extends ActionController
      */
     protected function setPage($name, $title)
     {
+        if (!$name) {
+            return;
+        }
         $page = array(
             'section'       => 'front',
             'module'        => $this->getModule(),
             'controller'    => 'index',
             'action'        => $name,
-            'title'         => $title,
-            'block'         => 1,
-            'custom'        => 0,
         );
-        $row = Pi::model('page')->createRow($page);
+        $row = Pi::model('page')->select($page)->current();
+        if ($row) {
+            $row->title = $title;
+        } else {
+            $page = array(
+                'section'       => 'front',
+                'module'        => $this->getModule(),
+                'controller'    => 'index',
+                'action'        => $name,
+                'title'         => $title,
+                'block'         => 1,
+                'custom'        => 0,
+            );
+            $row = Pi::model('page')->createRow($page);
+        }
         $row->save();
+        Pi::registry('page', $this->getModule())->flush();
 
         return $row->id;
     }

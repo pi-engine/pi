@@ -66,15 +66,15 @@ class IndexController extends ActionController
     {
         $id     = $this->params('id');
         $name   = $this->params('name');
+        $slug   = $this->params('slug');
 
         $row = null;
         if ($id) {
             $row = $this->getModel('page')->find($id);
         } elseif ($name) {
+            $row = $this->getModel('page')->find($name, 'name');
+        } elseif ($slug) {
             $row = $this->getModel('page')->find($name, 'slug');
-            if (!$row) {
-                $row = $this->getModel('page')->find($name, 'name');
-            }
         }
         if ($row->active) {
             $nav = Pi::registry('nav', $this->getModule())->read();
