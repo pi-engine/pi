@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
 "POT-Creation-Date: 2014-03-03 13:18+0800\n"
-"PO-Revision-Date: 2014-04-24 15:42+0800\n"
+"PO-Revision-Date: 2014-04-24 15:54+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -255,7 +255,7 @@ msgstr "名称"
 
 #: C:\code\pi\usr\module\page/template/admin/page-list.phtml:11
 msgid "Slug"
-msgstr "关键词"
+msgstr "Slug"
 
 #: C:\code\pi\usr\module\page/template/admin/page-list.phtml:12
 msgid "Type"
