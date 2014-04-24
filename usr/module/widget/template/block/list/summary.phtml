@@ -16,18 +16,20 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                 </a>
             </h4>
             <?php
-                echo sprintf(
-                    '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
-                    $rows,
-                    $item['desc']
-                );
+                $htmlDetail = '';
                 if (!empty($item['detail'])) {
-                    echo sprintf(
+                    $htmlDetail = sprintf(
                         '<span class="pull-right"><a href="%s">%s</a></span>',
                         $item['detail'],
                         __('Detail')
                     );
                 }
+                echo sprintf(
+                    '<div class="pi-ellipsis pi-ellipsis-%s">%s%s</div>',
+                    $rows,
+                    $item['desc'],
+                    $htmlDetail
+                );
             ?>
         </div>
     </div>
