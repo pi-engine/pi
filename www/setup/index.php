@@ -8,9 +8,9 @@
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
-// PHP 5.3+ is required for Pi Engine
-if (version_compare(PHP_VERSION, '5.3.0') < 0) {
-    die('PHP 5.3+ is required by Pi Engine.');
+// PHP 5.4+ is required for Pi Engine
+if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50400) {
+    die('PHP 5.4+ is required by Pi Engine.');
 }
 
 // Security check

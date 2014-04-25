@@ -364,11 +364,10 @@ SCRIPT;
     {
         $status = 1;
         $value = PHP_VERSION;
-        //$value = '5.2';
         $message = '';
-        if (version_compare($value, '5.3.0') < 0) {
+        if (!defined('PHP_VERSION_ID') || PHP_VERSION_ID < 50400) {
             $status = -1;
-            $message = _s('Version 5.3.0 or higher is required.');
+            $message = _s('Version 5.4.0 or higher is required.');
         }
 
         $result = array(
