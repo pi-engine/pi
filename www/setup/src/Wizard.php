@@ -187,10 +187,9 @@ class Wizard
         if (!$this->languages) {
             $languageList = array();
 
-            $_this = $this;
-            $lookupIcon = function ($name) use ($_this) {
+            $lookupIcon = function ($name) {
                 $icon       = '';
-                $root       = $_this->getRoot();
+                $root       = $this->getRoot();
                 $pathLocale = sprintf('%s/locale/%s', $root, $name);
                 $pathIcon   = sprintf('%s/asset/image/country', $root);
                 $iconFile   = $pathLocale  . '/icon.gif';
@@ -218,7 +217,7 @@ class Wizard
                 }
                 if ($icon) {
                     // Get root URI
-                    $request = $_this->getRequest();
+                    $request = $this->getRequest();
                     $baseUrl = '//' . $request->getHttpHost() . $request->getBaseUrl();
 
                     // Assemble icon URI

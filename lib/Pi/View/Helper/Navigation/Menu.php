@@ -95,10 +95,7 @@ class Menu extends ZendMenu
             $foundDepth = null;
         }
 
-        $_this = $this;
-        //$_eol = static::EOL;
         $render = function ($container, $options, $limitDepth, &$return) use (
-            $_this,
             $foundPage,
             $foundDepth
         ) {
@@ -128,7 +125,7 @@ class Menu extends ZendMenu
                     continue;
                 }
                 $isActive = $page->isActive(true);
-                if ($depth < $minDepth || !$_this->accept($page)) {
+                if ($depth < $minDepth || !$this->accept($page)) {
                     // page is below minDepth or not accepted by acl/visibility
                     continue;
                 } elseif (is_int($maxDepth) && $depth == $maxDepth) {
@@ -211,7 +208,7 @@ class Menu extends ZendMenu
 
                     $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
                         . $myIndent . '        '
-                        . $_this->htmlify($page, $escapeLabels) . PHP_EOL;
+                        . $this->htmlify($page, $escapeLabels) . PHP_EOL;
                }
 
                 // store as previous depth for next iteration

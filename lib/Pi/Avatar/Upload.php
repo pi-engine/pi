@@ -171,12 +171,11 @@ class Upload extends AbstractAvatar
         }
 
         $source = $this->hashSource($uid, $source);
-        $_this = $this;
-        $getMeta = function ($size) use ($_this, $source, $uid) {
+        $getMeta = function ($size) use ($source, $uid) {
             $meta = array(
-                'src'   => $_this->build($source, $size, $uid),
-                'path'  => $_this->buildPath($source, $size, $uid),
-                'size'  => $_this->canonizeSize($size)
+                'src'   => $this->build($source, $size, $uid),
+                'path'  => $this->buildPath($source, $size, $uid),
+                'size'  => $this->canonizeSize($size)
             );
 
             return $meta;

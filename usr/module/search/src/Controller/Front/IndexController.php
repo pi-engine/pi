@@ -380,9 +380,8 @@ class IndexController extends ActionController
 
             return $link;
         };
-        $_this = $this;
-        $baiduQuery = function ($query) use ($home, $_this) {
-            $code = $_this->config('baidu_code');
+        $baiduQuery = function ($query) use ($home) {
+            $code = $this->config('baidu_code');
             if ($code) {
                 $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
                 $link = sprintf($pattern, urlencode($code), urlencode($query));

@@ -389,10 +389,9 @@ class PageController extends ComponentController
         // Page ID
         $page = $this->params('page', 0);
 
-        $_this = clone $this;
-        $fallback = function () use ($_this) {
-            $_this->view()->setTemplate(false);
-            $_this->redirect()->toRoute('', array('action' => 'index'));
+        $fallback = function () {
+            $this->view()->setTemplate(false);
+            $this->redirect()->toRoute('', array('action' => 'index'));
         };
 
         // Get the page
