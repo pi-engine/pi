@@ -94,8 +94,8 @@ var UploadView = Backbone.View.extend({
     template        : _.template('<div class="black-bg"><button type="button" class="close js-topic-close">&times;</button></span></div>'
                     + '<img src="<%=preview_url %>">'),
     events          : {
-        "click .js-topic-close" :"remove",
-        "click .js-media-close" : "removeUpload",
+        "click .js-topic-close"         :"remove",
+        "click .js-media-close"         : "removeUpload",
         "click #media-search"           : "searchMedia",
         "click .media-insert a"         : "insertMedia",
         "click .media-remove.close"     : "removeMedia",
@@ -117,7 +117,8 @@ var UploadView = Backbone.View.extend({
             .find(".js-form-element")
             .html($("#temp-upload").html());
         page.$("[name=template-placeholder]")
-            .parents(".col-md-4")
+            .parents(".form-group:first")
+            .find(".js-form-element")
             .html($("#template-template").html());
         this.$el   = $("#pi-js-upload");
         this.$("#media-button").html($("#media-upload-button").html());

@@ -52,17 +52,17 @@ class Update extends BasicUpdate
                 'width'     => array(
                     'title'         => _a('Image width'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                 ),
                 'height'    => array(
                     'title'         => _a('Image height'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                 ),
                 'interval' => array(
                     'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                     'value'         => 4000,
                 ),
                 'pause' => array(

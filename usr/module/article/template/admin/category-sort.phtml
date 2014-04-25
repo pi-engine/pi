@@ -1,0 +1,61 @@
+<?php include $this->template('./message-box.phtml'); ?>
+
+<?php
+    $form->setAttributes(array(
+        'action'  => $this->url('', array('action' => 'sort')),
+        'method'  => 'post',
+        'class'   => 'form-horizontal',
+    ));
+    echo $this->form()->openTag($form);
+?>
+
+<div class="">
+    <div class="col-md-12 alert alert-info">
+        <?php echo _a('Move a category after the target category'); ?>
+    </div>
+
+    <div class="col-md-12">
+        <div class="">
+            <div class="col-md-5">
+                <h3><?php echo _a('Source Category'); ?></h3>
+                <br/>
+                <?php
+                    $element = $form->get('from');
+                    echo $this->formElement($element);
+                ?>
+                <p class="help-block">
+                </p>
+            </div>
+            <div class="col-md-2">
+                <h3>&nbsp;</h3>
+                <br/>
+                <p class="help-block">
+                    <?php echo _a('move after'); ?>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <h3><?php echo _a('Target Category'); ?></h3>
+                <br/>
+                <?php
+                    $element = $form->get('to');
+                    echo $this->formElement($element);
+                ?>
+                <p class="help-block">
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <?php 
+            $elements = $form->elementList();
+            foreach ($elements['hidden'] as $element) {
+                echo $this->formElement($element);
+            }
+        ?>
+    </div>
+</div>
+<div class="form-actions" style="margin: 30px">
+    <button type="submit" class="btn btn-primary"><?php echo $elements['submit']->getValue(); ?></button>
+</div>
+<?php echo $this->form()->closeTag(); ?>

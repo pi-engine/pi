@@ -11,10 +11,11 @@ namespace Pi\Db\Table;
 
 use ArrayObject;
 use Pi;
-use Zend\Db\RowGateway\AbstractRowGateway;
+use Pi\Db\Sql\Sql;
+//use Zend\Db\RowGateway\AbstractRowGateway;
 use Zend\Db\TableGateway\AbstractTableGateway as ZendAbstractTableGateway;
 use Zend\Db\TableGateway\Feature;
-use Zend\Db\Sql\Sql;
+//use Zend\Db\Sql\Sql;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\Metadata\Metadata;
 use Pi\Db\Sql\Where;

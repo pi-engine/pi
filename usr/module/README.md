@@ -72,6 +72,7 @@ Folder and file skeleton
     ),
 ```
 * `README.md`: optional readme for a module
+* `composer.json`: required, for dependency management, refer to `https://github.com/pi-module/demo/blob/master/composer.json`
 
 * `asset/`: optional, for web assets, could have separate URLs or domains different from root URL
   * `image/`: optional, images used by a module, it's recommended to add a logo.png file as module logo
@@ -95,14 +96,14 @@ Folder and file skeleton
     * `Search.php`: module search API
   * `Controller/`: required, controller classes used by a module
     * `Admin/`: optional, backend controllers
-	* `Front/`: optional, front-end controllers
-	* `Api/`: optional, API controllers for webservices
-	* `Feed/`: optional, feed controllers
+    * `Front/`: optional, front-end controllers
+    * `Api/`: optional, API controllers for webservices
+    * `Feed/`: optional, feed controllers
   * `Form/`: optional, form classes used by a module
   * `Installer/`: optional, custom setup classes used by a module
     * `Action/`: optional, custom module setup
-	* `Resource/`: optional, custom resources setup
-	* `Schema/`: optional, database schema handlers
+    * `Resource/`: optional, custom resources setup
+    * `Schema/`: optional, database schema handlers
   * `Model/`: optional, extend database model used by a module
   * `Route/`: optional, custom route used by a module
   * `Registry/`: optional, custom registry used by a module
@@ -115,7 +116,6 @@ Folder and file skeleton
   * `changelog.md`: module changelog, as clear as possible
   * `releasenote.md`: module release note
   * `manifest.md`: development design of the module, please reference this: [Module Workflow](https://github.com/pi-engine/pi/wiki/Dev.Module-Workflow)
-* `README.md`
 
 
 Resources

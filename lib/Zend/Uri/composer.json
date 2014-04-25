@@ -13,14 +13,14 @@
     },
     "target-dir": "Zend/Uri",
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.3.23",
         "zendframework/zend-escaper": "self.version",
         "zendframework/zend-validator": "self.version"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.2-dev",
-            "dev-develop": "2.3-dev"
+            "dev-master": "2.3-dev",
+            "dev-develop": "2.4-dev"
         }
     }
 }

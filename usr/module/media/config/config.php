@@ -31,7 +31,7 @@ return array(
             'title'       => _t('List page limit'),
             'description' => _t('Maximum count of media resources on a list page.'),
             'value'       => 20,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
             /*
         'default_image'   => array(
@@ -54,21 +54,21 @@ return array(
             'title'       => _t('Max file size'),
             'description' => _t('Maximum size for files allowed to upload (in KB).'),
             'value'       => 2048,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'image_width'     => array(
             'category'    => 'validator',
             'title'       => _t('Image width'),
             'description' => _t('Maximum image width for image files allowed to upload.'),
             'value'       => 1000,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'image_height'    => array(
             'category'    => 'validator',
             'title'       => _t('Image height'),
             'description' => _t('Maximum image height for image files allowed to upload.'),
             'value'       => 1000,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
     ),
 );

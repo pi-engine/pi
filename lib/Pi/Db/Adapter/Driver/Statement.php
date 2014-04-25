@@ -52,6 +52,8 @@ class Statement extends PDOStatement
      * Execute query with args and log query information
      *
      * @param array|null $args
+     *
+     * @throws \Exception
      * @return bool
      */
     public function execute($args = null)

@@ -25,10 +25,10 @@ use Zend\View\Helper\AbstractHtmlElement;
  *  echo $this->page('about-us', __('About us), array('target' => '_blank'));
  *
  *  // Display `about-us` link with customized hover title
- *  echo $this->page('about-us', __('About us),, array('target' => '_blank', 'title' => __('About the team')));
+ *  echo $this->page('about-us', __('About us), array('target' => '_blank', 'title' => __('About the team')));
  *
  *  // Display `about-us` link with customized hover title and display blocks assigned to `corporate` type pages
- *  echo $this->page('about-us', __('About us),, array('target' => '_blank', 'title' => __('About the team'), 'type' => 'corporate'));
+ *  echo $this->page('about-us', __('About us), array('target' => '_blank', 'title' => __('About the team'), 'type' => 'corporate'));
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
