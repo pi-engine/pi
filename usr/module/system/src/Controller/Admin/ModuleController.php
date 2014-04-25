@@ -133,7 +133,7 @@ class ModuleController extends ActionController
                     . sprintf('module/%s/asset/%s', $directory, $meta['logo'])
                 : Pi::url('static/image/module.png');
             */
-            $meta['icon'] = $meta['icon'] ?: 'fa-th';
+            $meta['icon'] = !empty($meta['icon']) ? $meta['icon'] : 'fa-th';
             $modules[$directory] = array(
                 'meta'      => $meta,
                 'author'    => $author,
