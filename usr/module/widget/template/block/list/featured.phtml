@@ -1,6 +1,6 @@
 <?php
 $options = (array) $block['options'];
-$items   = $block['items'];
+$items   = (array) $block['items'];
 $width   = empty($options['width']) ? 100 : $options['width'];
 $height  = empty($options['height']) ? 100 : $options['height'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
@@ -10,15 +10,15 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
     <div class="media">
         <?php
             echo sprintf(
-                '<a href="%s" title="%s" class="pull-left" width="%s" height="%s">
-                    <img src="%s" class="img-responsive" alt="%s">
+                '<a href="%s" title="%s" class="pull-left">
+                    <img src="%s" class="img-responsive" alt="%s" style="width:%spx; height:%spx">
                 </a>',
-                $activeItem['link'],
-                $activeItem['caption'],
+                $item['link'],
+                $item['caption'],
+                $item['image'],
+                $item['caption'],
                 $width,
-                $height,
-                $activeItem['image'],
-                $activeItem['caption'],
+                $height
             );
         ?>
         <div class="media-body">
@@ -31,18 +31,19 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                 </a>
             </h4>
             <?php
-                echo sprintf(
-                    '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
-                    $rows,
-                    $item['desc']
-                );
+                $htmlDetail = '';
                 if (!empty($item['detail'])) {
-                    echo sprintf(
+                    $htmlDetail = sprintf(
                         '<span class="pull-right"><a href="%s">%s</a></span>',
                         $item['detail'],
                     __('Detail')
                     );    
                 }
+                echo sprintf(
+                    '<div class="pi-ellipsis">%s%s</div>',
+                    $item['desc'],
+                    $htmlDetail
+                );
             ?>
         </div>
     </div>

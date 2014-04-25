@@ -1,24 +1,24 @@
 <?php
 $options    = (array) $block['options'];
-$items      = $block['items'];
+$items      = (array) $block['items'];
 $activeItem = array_shift($items);
 $width      = empty($options['width']) ? 120 : $options['width'];
 $height     = empty($options['height']) ? 90 : $options['height'];
 $target     = empty($options['target']) ? '_blank' : $options['target'];
 ?>
 <div class="widget-list">
-    <div class="media">
+    <div class="media" style="margin-bottom: 10px">
         <?php
             echo sprintf(
-                '<a href="%s" title="%s" class="pull-left" width="%s" height="%s">
-                    <img src="%s" class="img-responsive" alt="%s">
+                '<a href="%s" title="%s" class="pull-left">
+                    <img src="%s" class="img-responsive" alt="%s" style="width:%spx; height:%spx">
                 </a>',
                 $activeItem['link'],
                 $activeItem['caption'],
-                $width,
-                $height,
                 $activeItem['image'],
                 $activeItem['caption'],
+                $width,
+                $height
             );
         ?>
         <div class="media-body">
@@ -31,18 +31,19 @@ $target     = empty($options['target']) ? '_blank' : $options['target'];
                 </a>
             </h4>
             <?php
-                echo sprintf(
-                    '<div class="pi-ellipsis pi-ellipsis-%s">%s</div>',
-                    $rows,
-                    $activeItem['desc']
-                );
+                $htmlDetail = '';
                 if (!empty($activeItem['detail'])) {
-                    echo sprintf(
+                    $htmlDetail = sprintf(
                         '<span class="pull-right"><a href="%s">%s</a></span>',
                         $activeItem['detail'],
                         __('Detail')
                     );
                 }
+                echo sprintf(
+                    '<div class="pi-ellipsis">%s%s</div>',
+                    $activeItem['desc'],
+                    $htmlDetail
+                );
             ?>
         </div>
     </div>
