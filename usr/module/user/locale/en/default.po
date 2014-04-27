@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-04-27 15:53+0800\n"
-"PO-Revision-Date: 2014-04-27 15:59+0800\n"
+"PO-Revision-Date: 2014-04-27 18:56+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1018,39 +1018,3 @@ msgstr ""
 #: C:\code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
 msgid "Resend activation email"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Activation link is expired."
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Data saved failed"
-#~ msgstr "主题更新失败。"
-
-#, fuzzy
-#~ msgid "Delete failed."
-#~ msgstr "主题更新失败。"
-
-#, fuzzy
-#~ msgid "Reset email successfully"
-#~ msgstr "主题更新成功。"
-
-#, fuzzy
-#~ msgid "Register time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Disabled time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Activated time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Created time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "All"
-#~ msgstr "All Categories"

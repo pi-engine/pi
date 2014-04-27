@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-04-04 15:28+0800\n"
-"PO-Revision-Date: 2014-04-04 15:28+0800\n"
+"PO-Revision-Date: 2014-04-27 19:02+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2268,11 +2268,3 @@ msgstr "主题更新成功。"
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr ""
-
-#, fuzzy
-#~ msgid "Editor"
-#~ msgstr "编辑"
-
-#, fuzzy
-#~ msgid "Toggle all"
-#~ msgstr "All Categories"
