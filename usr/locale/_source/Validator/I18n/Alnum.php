@@ -7,6 +7,6 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-_("File does not match the given crc32 hashes");
-_("A crc32 hash could not be evaluated for the given file");
-_("File is not readable or does not exist");
+_("Invalid type given. String, integer or float expected");
+_("The input contains characters which are non alphabetic and no digits");
+_("The input is an empty string");

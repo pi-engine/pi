@@ -7,14 +7,6 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Validator;
-
-/**
- * Placeholder for validator i18n
- *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- */
-
-        _("Too many words, maximum '%max%' are allowed but '%count%' were counted");
-        _("Too few words, minimum '%min%' are expected but '%count%' were counted");
-        _("File is not readable or does not exist");
+_("Too many words, maximum '%max%' are allowed but '%count%' were counted");
+_("Too few words, minimum '%min%' are expected but '%count%' were counted");
+_("File is not readable or does not exist");

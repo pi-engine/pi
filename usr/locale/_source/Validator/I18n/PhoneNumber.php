@@ -7,6 +7,6 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-_("File does not match the given crc32 hashes");
-_("A crc32 hash could not be evaluated for the given file");
-_("File is not readable or does not exist");
+_('The input does not match a phone number format');
+_('The country provided is currently unsupported');
+_('Invalid type given. String expected');
