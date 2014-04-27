@@ -9,15 +9,25 @@
 
 namespace Module\User\Validator;
 
-use Module\System\Validator\CredentialVerify as SystemCredentialVerify;
+use Pi;
+use Zend\Validator\AbstractValidator;
 
 /**
  * User credential verification
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class CredentialVerify extends SystemCredentialVerify
+class CredentialVerify extends AbstractValidator
 {
+    /** @var string */
+    const INVALID = 'credentialInvalid';
+
+    /**
+     * Message templates
+     * @var array
+     */
+    protected $messageTemplates = array();
+
     public function __construct()
     {
         $this->messageTemplates = array(
@@ -25,5 +35,30 @@ class CredentialVerify extends SystemCredentialVerify
         );
 
         parent::__construct();
+    }
+
+    /**
+     * Credential validate
+     *
+     * @param  mixed $value
+     * @param  array $context
+     * @return bool
+     */
+    public function isValid($value, $context = null)
+    {
+        $this->setValue($value);
+
+        $identity = $context['identity'];
+        $credential = $value;
+
+        $userRow = Pi::model('user')->find($identity, 'identity');
+        if ($userRow->transformCredential($credential)
+            != $userRow->getCredential()
+        ) {
+            $this->error(static::INVALID);
+            return false;
+        }
+
+        return true;
     }
 }
