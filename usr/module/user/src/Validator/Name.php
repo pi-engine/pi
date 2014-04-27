@@ -38,6 +38,18 @@ class Name extends AbstractValidator
     protected $max;
     protected $min;
 
+    protected $formatPattern = array(
+        'strict'    => '/^[^a-zA-Z]|[^a-zA-Z0-9]/',
+        'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
+        'loose'     => '/[\000-\040]/',
+    );
+
+    protected $options = array(
+        'format'            => 'loose',
+        'backlist'          => array(),
+        'checkDuplication'  => true,
+    );
+
     public function __construct()
     {
         $this->messageTemplates = array(
@@ -55,18 +67,6 @@ class Name extends AbstractValidator
 
         parent::__construct();
     }
-
-    protected $formatPattern = array(
-        'strict'    => '/^[^a-zA-Z]|[^a-zA-Z0-9]/',
-        'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
-        'loose'     => '/[\000-\040]/',
-    );
-
-    protected $options = array(
-        'format'            => 'loose',
-        'backlist'          => array(),
-        'checkDuplication'  => true,
-    );
 
     /**
      * Name validate

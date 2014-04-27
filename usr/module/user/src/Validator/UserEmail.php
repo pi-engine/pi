@@ -24,6 +24,10 @@ class UserEmail extends AbstractValidator
 
     protected $messageTemplates;
 
+    protected $options = array(
+        'checkDuplication' => true,
+    );
+
     public function __construct()
     {
         $this->messageTemplates = array(
@@ -33,10 +37,6 @@ class UserEmail extends AbstractValidator
 
         parent::__construct();
     }
-
-    protected $options = array(
-        'checkDuplication' => true,
-    );
 
     /**
      * User name validate
