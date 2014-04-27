@@ -34,10 +34,9 @@
  * @author Zongshu Lin <lin40553024@163.com>
  */
 return array(
-    // Use user module field
     'gender',
     'birthdate',
+    'mobile',
     'address',
-    'work',
-    'subscription'
+    'work'
 );
