@@ -10,23 +10,18 @@
 namespace Module\User\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+use Module\System\Validator\Username as SystemUsername;
 
 /**
  * Validator for username
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Username extends AbstractValidator
+class Username extends SystemUsername
 {
-    const INVALID   = 'userNameInvalid';
-    const RESERVED  = 'userNameReserved';
-    const TAKEN     = 'userNameTaken';
-    const TOO_SHORT = 'stringLengthTooShort';
-    const TOO_LONG  = 'stringLengthTooLong';
-
-    protected $messageTemplates;
-    protected $formatMessage;
+    const TOOSHORT = 'stringLengthTooShort';
+    const TOOLONG  = 'stringLengthTooLong';
 
     protected $messageVariables = array(
         'formatHint' => 'formatHint',
@@ -38,26 +33,14 @@ class Username extends AbstractValidator
     protected $max;
     protected $min;
 
-    protected $formatPattern = array(
-        'strict'    => '/^[^a-zA-Z]|[^a-zA-Z0-9]/',
-        'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
-        'loose'     => '/[\000-\040]/',
-    );
-
-    protected $options = array(
-        'format'            => 'strict',
-        'backlist'          => array(),
-        'checkDuplication'  => true,
-    );
-
     public function __construct()
     {
         $this->messageTemplates = array(
             self::INVALID   => __('Invalid user name: %formatHint%'),
-            self::RESERVED  => __('User name is reserved'),
-            self::TAKEN     => __('User name is already taken'),
-            self::TOO_SHORT => __('User name is less than %min% characters long'),
-            self::TOO_LONG  => __('User name is more than %max% characters long')
+            self::RESERVED  => __('Username is reserved'),
+            self::TAKEN     => __('Username is already taken'),
+            self::TOO_SHORT => __('Username is less than %min% characters long'),
+            self::TOO_LONG  => __('Username is more than %max% characters long')
         );
 
         $this->formatMessage = array(
@@ -78,50 +61,27 @@ class Username extends AbstractValidator
      */
     public function isValid($value, $context = null)
     {
-        $this->setValue($value);
         $this->setConfigOption();
+        $this->setValue($value);
 
-        $format = empty($this->options['format']) ? 'strict' : $this->options['format'];
-        if (preg_match($this->formatPattern[$format], $value)) {
-            $this->formatHint = $this->formatMessage[$format];
-            $this->error(static::INVALID);
-            return false;
-        }
-        if (!empty($this->options['backlist'])) {
-            $pattern = is_array($this->options['backlist']) ? implode('|', $this->options['backlist']) : $this->options['backlist'];
-            if (preg_match('/(' . $pattern . ')/', $value)) {
-                $this->error(static::RESERVED);
-                return false;
-            }
-        }
         if ($this->options['max']) {
             if ($this->options['max'] < strlen($value)) {
                 $this->max = $this->options['max'];
-                $this->error(static::TOO_LONG);
+                $this->error(static::TOOLONG);
                 return false;
             }
         }
         if ($this->options['min']) {
             if ($this->options['min'] > strlen($value)) {
                 $this->min = $this->options['min'];
-                $this->error(static::TOO_SHORT);
-                return false;
-            }
-        }
-        if ($this->options['checkDuplication']) {
-            $where = array('identity' => $value);
-            if (!empty($context['uid'])) {
-                $where['id <> ?'] = $context['uid'];
-            }
-            //$rowset = Pi::model('account', 'user')->select($where);
-            $count = Pi::model('account', 'user')->count($where);
-            if ($count) {
-                $this->error(static::TAKEN);
+                $this->error(static::TOOSHORT);
                 return false;
             }
         }
 
-        return true;
+        $result = parent::isValid($value, $context);
+
+        return $result;
     }
 
     /**
