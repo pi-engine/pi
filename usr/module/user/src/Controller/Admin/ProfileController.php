@@ -194,7 +194,7 @@ class ProfileController extends ActionController
         $displayFieldModel->delete(array());
 
         $groupOrder = 1;
-	foreach ($displays as $group) {
+	    foreach ($displays as $group) {
             $groupData = array(
             	'title'    => $group['title'],
                 'order'    => $groupOrder,

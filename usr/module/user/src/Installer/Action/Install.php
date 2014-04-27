@@ -141,7 +141,6 @@ class Install extends BasicAction
             ),
         );
         $fieldList  = array();
-        $compounds  = array();
         $fields     = Pi::registry('field', 'user')->read('', 'display');
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
@@ -180,6 +179,9 @@ class Install extends BasicAction
                 $row->save();
             }
         }
+
+        Pi::registry('display_group', 'user')->flush();
+        Pi::registry('display_field', 'user')->flush();
 
         return $result;
     }
