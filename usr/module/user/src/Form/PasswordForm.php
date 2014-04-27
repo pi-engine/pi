@@ -9,7 +9,7 @@
 
 namespace Module\User\Form;
 
-//use Pi;
+use Pi;
 use Pi\Form\Form as BaseForm;
 
 /**
@@ -70,6 +70,14 @@ class PasswordForm extends BaseForm
         $this->add(array(
             'name'  => 'security',
             'type'  => 'csrf',
+        ));
+
+        $this->add(array(
+            'name'  => 'identity',
+            'type'  => 'hidden',
+            'attributes'    => array(
+                'value'  => Pi::user()->getIdentity(),
+            )
         ));
 
         $this->add(array(

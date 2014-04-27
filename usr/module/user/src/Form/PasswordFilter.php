@@ -17,6 +17,7 @@ use Zend\InputFilter\InputFilter;
  * Class for verifying and filtering form
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class PasswordFilter extends InputFilter
 {
@@ -28,6 +29,11 @@ class PasswordFilter extends InputFilter
             'filters'       => array(
                 array(
                     'name'  => 'StringTrim',
+                ),
+            ),
+            'validators'    => array(
+                array(
+                    'name'      => 'Module\User\Validator\CredentialVerify',
                 ),
             ),
         ));

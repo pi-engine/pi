@@ -14,7 +14,7 @@ use Zend\InputFilter\InputFilter;
 use Module\System\Validator\CredentialVerify;
 
 /**
- * Password change form fitler
+ * Password change form filter
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

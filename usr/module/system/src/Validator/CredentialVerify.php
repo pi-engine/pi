@@ -31,7 +31,7 @@ class CredentialVerify extends AbstractValidator
     );
 
     /**
-     * Crenditial validate
+     * Credential validate
      *
      * @param  mixed $value
      * @param  array $context
