@@ -82,7 +82,7 @@ class EventController extends ComponentController
                                        $row->event_module, $row->event_name),
             );
         }
-	
+
         $this->view()->assign(array(
             'events'     => $events,
             'listeners'  => $listeners,

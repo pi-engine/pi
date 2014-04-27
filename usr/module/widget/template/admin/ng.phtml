@@ -10,17 +10,17 @@ $js = $controller == 'index' ? 'index' : 'widgets';
 angular
     .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
     .constant('config', {
-    	urlRoot: '<?php echo $this->url('', array('module' => $module)) . $controller . '/'; ?>',
-    	assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+        urlRoot: '<?php echo $this->url('', array('module' => $module)) . $controller . '/'; ?>',
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
         data: <?php echo json_encode($data); ?>,
-    	t: {
+        t: {
             INSTALLED_WIDGETS: '<?php echo _a('Installed widgets'); ?>',
             AVAILABLE_WIDGETS: '<?php echo _a('Available widgets'); ?>',
             INSTALL: '<?php echo _a('Install'); ?>',
             UNINSTALL: '<?php echo _a('Uninstall'); ?>',
             EDIT: '<?php echo _a('Edit'); ?>',
             DELETE: '<?php echo _a('Delete'); ?>'
-    	}
+        }
     });
 </script>
 <link rel="stylesheet" href="<?php echo $this->assetModule('admin/admin.css'); ?>">

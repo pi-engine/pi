@@ -82,7 +82,7 @@ var formModule = (function($) {
         imgWait=form.find("img.hide");
     var items = form.find(".form-group").removeClass("has-error").find(".help-block").html("").end();
     form.submit(function(e) {
-    	imgWait.removeClass("hide");
+        imgWait.removeClass("hide");
         e.preventDefault();
         $.post(form.attr("action"), form.serialize()).done(function(result) {
             result = $.parseJSON(result);
