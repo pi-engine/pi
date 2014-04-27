@@ -31,6 +31,7 @@ class Name extends Username
             self::TOO_SHORT => __('User name is less than %min% characters long'),
             self::TOO_LONG  => __('User name is more than %max% characters long')
         );
+        $this->setConfigOption();
     }
 
     /**

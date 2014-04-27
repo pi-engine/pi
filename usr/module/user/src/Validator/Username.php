@@ -29,12 +29,13 @@ class Username extends SystemUsername
         'min'        => 'min',
     );
 
-    protected $formatHint;
     protected $max;
     protected $min;
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->messageTemplates = array(
             self::INVALID   => __('Invalid user name: %formatHint%'),
             self::RESERVED  => __('Username is reserved'),
@@ -49,19 +50,14 @@ class Username extends SystemUsername
             'loose'     => __('Multibyte characters are allowed'),
         );
 
-        parent::__construct();
+        $this->setConfigOption();
     }
 
     /**
-     * User name validate
-     *
-     * @param  mixed $value
-     * @param  array $context
-     * @return boolean
+     * {@inheritDoc}
      */
     public function isValid($value, $context = null)
     {
-        $this->setConfigOption();
         $this->setValue($value);
 
         if ($this->options['max']) {
