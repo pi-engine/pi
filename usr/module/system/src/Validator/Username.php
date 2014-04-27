@@ -111,17 +111,34 @@ class Username extends AbstractValidator
         }
 
         if ($this->options['checkDuplication']) {
-            $where = array('identity' => $value);
-            if (!empty($context['id'])) {
-                $where['id <> ?'] = $context['id'];
-            }
-            $count = Pi::model('user_account')->count($where);
-            if ($count) {
+            $isDuplicated = $this->isDuplicated($value, $context);
+            if ($isDuplicated) {
                 $this->error(static::TAKEN);
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * Check for duplication
+     *
+     * @param  mixed $value
+     * @param  array $context
+     * @return bool
+     */
+    protected function isDuplicated($value, $context)
+    {
+        $where = array('identity' => $value);
+        if (!empty($context['id'])) {
+            $where['id <> ?'] = $context['id'];
+        }
+        $count = Pi::model('user_account')->count($where);
+        if ($count) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -20,8 +20,8 @@ use Module\System\Validator\Username as SystemUsername;
  */
 class Username extends SystemUsername
 {
-    const TOOSHORT = 'stringLengthTooShort';
-    const TOOLONG  = 'stringLengthTooLong';
+    const TOO_SHORT = 'stringLengthTooShort';
+    const TOO_LONG  = 'stringLengthTooLong';
 
     protected $messageVariables = array(
         'formatHint' => 'formatHint',
@@ -67,14 +67,14 @@ class Username extends SystemUsername
         if ($this->options['max']) {
             if ($this->options['max'] < strlen($value)) {
                 $this->max = $this->options['max'];
-                $this->error(static::TOOLONG);
+                $this->error(static::TOO_LONG);
                 return false;
             }
         }
         if ($this->options['min']) {
             if ($this->options['min'] > strlen($value)) {
                 $this->min = $this->options['min'];
-                $this->error(static::TOOSHORT);
+                $this->error(static::TOO_SHORT);
                 return false;
             }
         }
@@ -94,7 +94,6 @@ class Username extends SystemUsername
         $this->options = array(
             'min'       => Pi::user()->config('uname_min'),
             'max'       => Pi::user()->config('uname_max'),
-            'format'    => Pi::user()->config('uname_format'),
             'backlist'  => Pi::user()->config('uname_backlist'),
             'format'    => Pi::user()->config('uname_format'),
             'checkDuplication' => true,
