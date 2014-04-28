@@ -1,10 +1,15 @@
 <?php
-/*
- * Message at form top
+/**
+ * Renders a one-column horizontal form
  */
+$isSingle = true;
+include __DIR__ . '/forms.phtml'; return;
+
+/*
+// Message at form top
 $hiddenMessages = $form->getHiddenMessages();
 if ($hiddenMessages) {
-    ?>
+?>
     <div class="alert alert-danger">
         <?php
         if (!empty($hiddenMessages['security'])) {
@@ -29,12 +34,15 @@ if ($hiddenMessages) {
 <?php
 }
 
-$emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
-$form->setAttribute('class', 'form-horizontal');
 $form->prepare();
-$this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
-$elements = $form->elementList();
+$form->setAttribute('class', 'form-horizontal');
 echo $this->form()->openTag($form);
+
+$this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
+
+$elements = $form->elementList();
+$emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
+$markRequired = '<i class="text-danger" style="margin-right: 5px;">*</i>';
 foreach ($elements['active'] as $element) {
     $type = $element->getAttribute('type') ? : 'text';
     $isEmptyControl = in_array($type, $emptyControl);
@@ -46,11 +54,14 @@ foreach ($elements['active'] as $element) {
         $attrClass  = 'form-control' . ($class ? ' ' . $class : '');
         $element->setAttribute('class', $attrClass);
     }
+
     $rendered = sprintf(
-        '<div class="form-group%s"><label class="col-sm-3 col-lg-2 control-label">%s</label>',
+        '<div class="form-group%s"><label class="col-sm-3 col-lg-2 control-label">%s%s</label>',
         $element->getMessages() ? ' has-error' : '',
+        $element->getAttribute('required') ? $markRequired : '',
         $isCheckbox ?  '' : $element->getLabel()
     );
+
     if ($type == 'multi_checkbox') {
         $rendered .= sprintf(
             '<div class="col-sm-9">%s<div class="help-block">%s</div></div></div>',
@@ -71,10 +82,12 @@ foreach ($elements['hidden'] as $element) {
     echo $this->formElement($element);
 }
 if (!empty($elements['submit'])) {
+    $submit = $this->formElement($elements['submit']);
+    $cancel = !empty($elements['cancel']) ? $this->formElement($elements['cancel']) : '';
     echo sprintf(
         '<div class="form-group"><div class="col-sm-offset-3 col-lg-offset-2 col-md-4">%s%s</div></div>',
-        $this->formElement($elements['submit']),
-        empty($ResetShow) ? '' : '<input type="reset" value="' . __('Cancel') . '" class="btn btn-link js-cancel">'
+        $submit,
+        $cancel
     );
 }
 
@@ -93,3 +106,4 @@ $('[required="required"]').each(function() {
     }
 });
 </script>
+*/
