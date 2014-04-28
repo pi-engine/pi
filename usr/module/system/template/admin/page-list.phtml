@@ -58,7 +58,10 @@
         },
         showEditModal: function(e) {
             var self = this;
-            $.get('<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>' + this.getId($(e.target))).done(function(res) {
+            var urlEdit = '<?php echo $this->url('', array('action' => 'edit', 'id' => '__PAGEID__')); ?>';
+            urlEdit = urlEdit.replace('__PAGEID__', this.getId($(e.target)));
+            //$.get('<?php echo $this->url('', array('action' => 'edit', 'id' => '')); ?>' + this.getId($(e.target))).done(function(res) {
+            $.get(urlEdit).done(function(res) {
                 self.modal.html(res);
                 self.modal.modal('show');
                 formModule.success =  function() {
@@ -81,7 +84,10 @@
             var tar = $(e.target),
                 p = tar.parents('tr');
             if (confirm('<?php echo _a("Are you sure to delete the page?") ?>')) {
-                $.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
+                var urlDelete = '<?php echo $this->url('', array('action' => 'delete', 'id' => '__PAGEID__')); ?>';
+                urlDelete = urlDelete.replace('__PAGEID__', this.getId(tar));
+                //$.get('<?php echo $this->url('', array('action' => 'delete', 'id' => '')); ?>' + this.getId(tar)).done(function(res) {
+                $.get(urlDelete).done(function(res) {
                     if (res == 1) {
                         p.fadeOut(150, function() {
                             p.remove();
