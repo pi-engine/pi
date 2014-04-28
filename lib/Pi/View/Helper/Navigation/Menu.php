@@ -70,6 +70,7 @@ class Menu extends ZendMenu
      *           maxDepth - maximum depth for sub menu;
      *           escapeLabels - to escape labels for sub menu;
      *           addClassToListItem - to add page class to list
+     *           liActiveClass - CSS class for active LI
      *
      * @return array()  array of parent menu and sub menu
      */
@@ -106,6 +107,7 @@ class Menu extends ZendMenu
             $ulClass            = $options['ulClass'];
             $escapeLabels       = $options['escapeLabels'];
             $addClassToListItem = $options['addClassToListItem'];
+            $liActiveClass      = $options['liActiveClass'];
 
             $html = '';
             // create iterator
@@ -131,7 +133,6 @@ class Menu extends ZendMenu
                 } elseif (is_int($maxDepth) && $depth == $maxDepth) {
                     // page is in the deepest branch
                     $accept = true;
-                    dc($depth);
                 } elseif ($depth > $minDepth && $onlyActiveBranch
                     && !$isActive
                 ) {
@@ -168,7 +169,9 @@ class Menu extends ZendMenu
                 if ($depth > $prevDepth) {
                     // start new ul tag
                     if ($ulClass && $depth ==  0) {
-                        $ulClass = ' class="' . $ulClass . '"';
+                        /* @var $escaper \Zend\View\Helper\EscapeHtmlAttr */
+                        $escaper = $this->view->plugin('escapeHtmlAttr');
+                        $ulClass = ' class="' . $escaper($ulClass) . '"';
                     } else {
                         $ulClass = '';
                     }
@@ -197,7 +200,7 @@ class Menu extends ZendMenu
                     $liClasses = array();
                     // Is page active?
                     if ($isActive) {
-                        $liClasses[] = 'active';
+                        $liClasses[] = $liActiveClass;
                     }
                     // Add CSS class from page to <li>
                     if ($addClassToListItem && $page->getClass()) {
@@ -262,7 +265,8 @@ class Menu extends ZendMenu
         $minDepth,
         $maxDepth,
         $escapeLabels,
-        $addClassToListItem
+        $addClassToListItem,
+        $liActiveClass
     ) {
         if (!$active =
             $this->findActive($container, $minDepth - 1, $maxDepth)) {
@@ -271,10 +275,10 @@ class Menu extends ZendMenu
 
         // special case if active page is one below minDepth
         if ($active['depth'] < $minDepth) {
-            if (!$active['page']->hasPages()) {
+            if (!$active['page']->hasPages(!$this->renderInvisible)) {
                 return '';
             }
-        } elseif (!$active['page']->hasPages()) {
+        } elseif (!$active['page']->hasPages(!$this->renderInvisible)) {
             // found pages has no children; render siblings
             $active['page'] = $active['page']->getParent();
         } elseif (is_int($maxDepth) && $active['depth'] +1 > $maxDepth) {
@@ -282,7 +286,9 @@ class Menu extends ZendMenu
             $active['page'] = $active['page']->getParent();
         }
 
-        $ulClass = $ulClass ? ' class="' . $ulClass . '"' : '';
+        /* @var $escaper \Zend\View\Helper\EscapeHtmlAttr */
+        $escaper = $this->view->plugin('escapeHtmlAttr');
+        $ulClass = $ulClass ? ' class="' . $escaper($ulClass) . '"' : '';
         $html = $indent . '<ul' . $ulClass . '>' . PHP_EOL;
 
         foreach ($active['page'] as $subPage) {
@@ -304,19 +310,16 @@ class Menu extends ZendMenu
             $liClasses = array();
             // Is page active?
             if ($subPage->isActive(true)) {
-                $liClasses[] = 'active';
+                $liClasses[] = $liActiveClass;
             }
             // Add CSS class from page to <li>
             if ($addClassToListItem && $subPage->getClass()) {
                 $liClasses[] = $subPage->getClass();
             }
-            $liClass = empty($liClasses)
-                ? '' : ' class="' . implode(' ', $liClasses) . '"';
+            $liClass = empty($liClasses) ? '' : ' class="' . $escaper(implode(' ', $liClasses)) . '"';
 
             $html .= $indent . '    <li' . $liClass . '>' . PHP_EOL;
-            $html .= $indent . '        '
-                   . $this->htmlify($subPage, $escapeLabels, $addClassToListItem)
-                   . PHP_EOL;
+            $html .= $indent . '        ' . $this->htmlify($subPage, $escapeLabels, $addClassToListItem) . PHP_EOL;
             $html .= $indent . '    </li>' . PHP_EOL;
         }
 
@@ -336,12 +339,16 @@ class Menu extends ZendMenu
         $maxDepth,
         $onlyActive,
         $escapeLabels,
-        $addClassToListItem
+        $addClassToListItem,
+        $liActiveClass
     ) {
         $html = '';
 
         // find deepest active
         $found = $this->findActive($container, $minDepth, $maxDepth);
+        /* @var $escaper \Zend\View\Helper\EscapeHtmlAttr */
+        $escaper = $this->view->plugin('escapeHtmlAttr');
+
         if ($found) {
             $foundPage  = $found['page'];
             $foundDepth = $found['depth'];
@@ -375,7 +382,7 @@ class Menu extends ZendMenu
                         $accept = true;
                     } elseif ($foundPage->getParent()->hasPage($page)) {
                         // page is a sibling of the active page...
-                        if (!$foundPage->hasPages()
+                        if (!$foundPage->hasPages(!$this->renderInvisible)
                             || is_int($maxDepth)
                             && $foundDepth + 1 > $maxDepth
                         ) {
@@ -433,14 +440,13 @@ class Menu extends ZendMenu
             $liClasses = array();
             // Is page active?
             if ($isActive) {
-                $liClasses[] = 'active';
+                $liClasses[] = $liActiveClass;
             }
             // Add CSS class from page to <li>
             if ($addClassToListItem && $page->getClass()) {
                 $liClasses[] = $page->getClass();
             }
-            $liClass = empty($liClasses)
-                ? '' : ' class="' . implode(' ', $liClasses) . '"';
+            $liClass = empty($liClasses) ? '' : ' class="' . $escaper(implode(' ', $liClasses)) . '"';
 
             $html .= $myIndent . '    <li' . $liClass . '>' . PHP_EOL
                    . $myIndent . '        '

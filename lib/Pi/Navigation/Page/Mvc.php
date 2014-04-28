@@ -318,8 +318,8 @@ class Mvc extends ZendMvcPage
         }
 
         switch (true) {
-            case ($this->getRoute() !== null):
-                $name = $this->getRoute();
+            case ($this->getRoute() !== null || static::getDefaultRoute() !== null):
+                $name = ($this->getRoute() !== null) ? $this->getRoute() : static::getDefaultRoute();
                 break;
             case ($this->getRouteMatch() !== null):
                 $name = $this->getRouteMatch()->getMatchedRouteName();
