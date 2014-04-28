@@ -366,13 +366,13 @@ class PageController extends ComponentController
             $row->delete();
             Pi::registry('page')->clear($row->module);
             $result = array(
-                'status'    => 0,
-                'message'   => _a('Page is not found.'),
+                'status'    => 1,
+                'message'   => _a('Page is deleted.'),
             );
         } else {
             $result = array(
-                'status'    => 1,
-                'message'   => _a('Page is deleted.'),
+                'status'    => 0,
+                'message'   => _a('Page is not found.'),
             );
         }
 
