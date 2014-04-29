@@ -89,7 +89,8 @@ class Block extends AbstractApi
         }
         foreach ($block['config'] as $name => $data) {
             $config[$name] = is_scalar($data)
-                ? $data : (isset($data['value']) ? $data['value'] : '');
+                ? $data
+                : (isset($data['value']) ? $data['value'] : $data);
         }
         $block['config'] = $config;
 
