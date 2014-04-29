@@ -19,8 +19,9 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                 $htmlDetail = '';
                 if (!empty($item['detail'])) {
                     $htmlDetail = sprintf(
-                        '<span class="pull-right"><a href="%s">%s</a></span>',
+                        '<span class="pull-right"><a href="%s" target="%s">%s</a></span>',
                         $item['detail'],
+                        $target,
                         __('Detail')
                     );
                 }
