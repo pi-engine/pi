@@ -9,9 +9,9 @@
 
 namespace Pi\Navigation\Page;
 
-use Pi;
 use Zend\Navigation\Page as ZendPage;
 use Zend\Navigation\Page\Uri as ZendUriPage;
+use Zend\Http\Request;
 use Zend\Navigation\Exception;
 
 /**
@@ -83,20 +83,38 @@ class Uri extends ZendUriPage
         /**#@+
          * Modified by Taiwen Jiang
          */
-        //if (!$this->active && $recursive) {
-        if (null === $this->active && $recursive) {
+        if (null === $this->active) {
+            if ($this->getRequest() instanceof Request) {
+                if ($this->getRequest()->getUri()->getPath() == $this->getUri()) {
+                    $this->active = true;
+                    return true;
+                } else {
+                    $this->active = false;
+                }
+            }
+        }
+        if (!$this->active && $recursive) {
             foreach ($this->pages as $page) {
                 if ($page->isActive(true)) {
+                    return true;
+                }
+            }
+        }
+
+        return $this->active;
+        /**#@-*/
+
+        if (!$this->active) {
+            if ($this->getRequest() instanceof Request) {
+                if ($this->getRequest()->getUri()->getPath() == $this->getUri()) {
                     $this->active = true;
                     return true;
                 }
             }
-            $this->active = false;
-            return false;
         }
-        /**#@-*/
 
-        return $this->active;
+        return parent::isActive($recursive);
+
     }
 
 }

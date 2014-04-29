@@ -7,13 +7,5 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Validator;
-
-/**
- * Placeholder for validator i18n
- *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- */
-
-        _("Too many files, maximum '%max%' are allowed but '%count%' are given");
-        _("Too few files, minimum '%min%' are expected but '%count%' are given");
+_("Too many files, maximum '%max%' are allowed but '%count%' are given");
+_("Too few files, minimum '%min%' are expected but '%count%' are given");

@@ -112,9 +112,8 @@ abstract class CustomFieldHandler extends AbstractCustomHandler
             $data = $this->mget($uids, true);
         }
 
-        $_this = $this;
-        array_walk($data, function (&$item) use ($_this) {
-            if ($_this->isMultiple) {
+        array_walk($data, function (&$item) {
+            if ($this->isMultiple) {
                 $item = implode(' | ', $item);
             }
         });

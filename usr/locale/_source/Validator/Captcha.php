@@ -7,15 +7,7 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Validator;
 
-/**
- * Placeholder for validator i18n
- *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- */
-
-
-    _("Empty captcha value");
-    _("Captcha ID field is missing");
-    _("Captcha value is wrong");
+_("Empty captcha value");
+_("Captcha ID field is missing");
+_("Captcha value is wrong");

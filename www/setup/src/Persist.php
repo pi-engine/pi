@@ -54,8 +54,7 @@ class Persist
     protected function storage($method, $data = null)
     {
         $result = null;
-        $_this = $this;
-        $fileLookup = function() use ($_this) {
+        $fileLookup = function() {
             return $this->getTmpDir() . '/' . static::PERSIST_IDENTIFIER;
         };
 

@@ -7,13 +7,5 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Validator;
-
-/**
- * Placeholder for validator i18n
- *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- */
-
-        _("Invalid type given. String expected");
-        _("The input does not appear to be a valid IP address");
+_("Invalid type given. String expected");
+_("The input does not appear to be a valid IP address");

@@ -189,14 +189,14 @@ class ProfileController extends ActionController
         $displayGroupModel = $this->getModel('display_group');
         $displayFieldModel = $this->getModel('display_field');
 
-	    // Flush
+        // Flush
         $displayGroupModel->delete(array());
         $displayFieldModel->delete(array());
 
         $groupOrder = 1;
-	foreach ($displays as $group) {
+        foreach ($displays as $group) {
             $groupData = array(
-            	'title'    => $group['title'],
+                'title'    => $group['title'],
                 'order'    => $groupOrder,
                 'compound' => $group['name'],
             );
@@ -230,7 +230,7 @@ class ProfileController extends ActionController
                     return $result;
                 }
                 $fieldOrder++;
-	        }
+            }
 
             $groupOrder++;
         }

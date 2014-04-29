@@ -261,23 +261,30 @@ class Form extends AbstractApi
     protected function canonizeFilter($data)
     {
         $result = array();
+        if (!empty($data['name'])) {
+            $result['name'] = $data['name'];
+        }
         if (!empty($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];
         }
         if (!empty($data['edit']['validators'])) {
             $result['validators'] = $data['edit']['validators'];
         }
+        if (!empty($data['allow_empty'])) {
+            $result['allow_empty'] = $data['allow_empty'];
+        }
         if (!empty($data['is_required'])) {
             $result['required']= $data['is_required'];
+        } else {
+            $result['required']= 0;
         }
+        /*
         if (!empty($data['edit']['element']['type'])
             && 'multi_checkbox' == $data['edit']['element']['type']
         ) {
             $result['required']= empty($data['is_required']) ? 0 : 1;
         }
-        if ($result) {
-            $result['name'] = $data['name'];
-        }
+        */
 
         return $result;
     }

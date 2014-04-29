@@ -17,25 +17,25 @@ use Zend\Validator\AbstractValidator;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class UserName extends AbstractValidator
+class Username extends AbstractValidator
 {
     /** @var string */
-    const INVALID   = 'userNameInvalid';
+    const INVALID   = 'usernameInvalid';
 
     /** @var string */
-    const RESERVED  = 'userNameReserved';
+    const RESERVED  = 'usernameReserved';
 
     /** @var string */
-    const TAKEN     = 'userNameTaken';
+    const TAKEN     = 'usernameTaken';
 
     /**
      * Message templates
      * @var array
      */
     protected $messageTemplates = array(
-        self::INVALID   => 'Invalid user name: %formatHint%',
-        self::RESERVED  => 'User name is reserved',
-        self::TAKEN     => 'User name is already taken',
+        self::INVALID   => 'Invalid username: %formatHint%',
+        self::RESERVED  => 'Username is reserved',
+        self::TAKEN     => 'Username is already taken',
     );
 
     /**
@@ -57,8 +57,7 @@ class UserName extends AbstractValidator
      * @var array
      */
     protected $formatMessage = array(
-        'strict'    =>
-            'Only alphabetic and digits are allowed with leading alphabetic',
+        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
         'medium'    => 'Only ASCII characters are allowed',
         'loose'     => 'Multibyte characters are allowed',
     );
@@ -112,18 +111,34 @@ class UserName extends AbstractValidator
         }
 
         if ($this->options['checkDuplication']) {
-            $where = array('identity' => $value);
-            if (!empty($context['id'])) {
-                $where['id <> ?'] = $context['id'];
-            }
-            //$rowset = Pi::model('user_account')->select($where);
-            $count = Pi::model('user_account')->count($where);
-            if ($count) {
+            $isDuplicated = $this->isDuplicated($value, $context);
+            if ($isDuplicated) {
                 $this->error(static::TAKEN);
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * Check for duplication
+     *
+     * @param  mixed $value
+     * @param  array $context
+     * @return bool
+     */
+    protected function isDuplicated($value, $context)
+    {
+        $where = array('identity' => $value);
+        if (!empty($context['id'])) {
+            $where['id <> ?'] = $context['id'];
+        }
+        $count = Pi::model('user_account')->count($where);
+        if ($count) {
+            return true;
+        }
+
+        return false;
     }
 }

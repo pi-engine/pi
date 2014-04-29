@@ -71,9 +71,8 @@ class Media extends AbstractService
      */
     public function getAdapter($name = '')
     {
-        $_this = $this;
-        $loadAdapter = function ($name) use ($_this) {
-            $configs = $_this->getOption($name);
+        $loadAdapter = function ($name) {
+            $configs = $this->getOption($name);
             $options = $configs['options'];
             $class = 'Pi\Media\Adapter\\' . ucfirst($name);
             if (!class_exists($class)) {

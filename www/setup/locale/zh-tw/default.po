@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-04-14 19:18+0800\n"
-"PO-Revision-Date: 2014-04-14 19:20+0800\n"
+"POT-Creation-Date: 2014-04-27 19:05+0800\n"
+"PO-Revision-Date: 2014-04-27 19:05+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "完成"
 msgid "Finishing installation process"
 msgstr "安装完成及处理"
 
-#: c:\Code\pi\\www\setup/src/Wizard.php:347
+#: c:\Code\pi\\www\setup/src/Wizard.php:346
 msgid "Pi Engine Setup Wizard"
 msgstr "Pi Engine 安装助手"
 
@@ -617,18 +617,19 @@ msgid ""
 "\">Apache</a>."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:371
-msgid "Version 5.3.0 or higher is required."
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:370
+#, fuzzy
+msgid "Version 5.4.0 or higher is required."
 msgstr "要求 5.3.0 或更高版本。"
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:396
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:395
 msgid ""
 "PHP Data Objects (PDO) extension with MySQL driver is required for regular "
 "Pi Engine instances, check <a href=\"http://www.php.net/manual/en/book.pdo."
 "php\" title=\"PDO\" target=\"_blank\">PDO manual</a> for details."
 msgstr ""
 
-#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:425
+#: c:\Code\pi\\www\setup/src/Controller/Presetting.php:424
 #, php-format
 msgid ""
 "There is no recommended persist engine available. One of the following "
@@ -647,6 +648,3 @@ msgstr "重新载入"
 #: c:\Code\pi\\www\setup/include/template.phtml:83
 msgid "Next"
 msgstr "下一步"
-
-#~ msgid "Directives"
-#~ msgstr "路径设置"

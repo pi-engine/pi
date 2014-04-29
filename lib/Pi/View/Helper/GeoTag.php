@@ -38,10 +38,10 @@ class GeoTag extends AbstractHelper
      * @return $this
      */
     public function __invoke(
-    	$latitude,
-    	$longitude,
-    	$placename = '',
-    	$region = ''
+        $latitude,
+        $longitude,
+        $placename = '',
+        $region = ''
     ) {
         // Set geo.position
         if (!empty($latitude) && !empty($longitude)) {
@@ -60,6 +60,6 @@ class GeoTag extends AbstractHelper
             $this->view->headMeta($region, 'geo.region');
         }   
 
-    	return $this;
+        return $this;
     }
 }

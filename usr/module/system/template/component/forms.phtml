@@ -1,4 +1,8 @@
 <?php
+/**
+ * Renders a horizontal form with side columns
+ */
+$isMultiple = empty($isSingle) ? true : false;
 /*
  * Message at form top
  */
@@ -14,20 +18,23 @@ if ($hiddenMessages) {
             unset($hiddenMessages['security']);
         }
         ?>
+
         <?php foreach ($hiddenMessages as $elName => $elMessages) { ?>
-            <dl>
-                <dt><?php echo $elName; ?></dt>
-                <?php foreach ($elMessages as $elMessage) { ?>
-                    <dd><?php echo $message; ?></dd>
-                <?php } ?>
-            </dl>
-         <?php } ?>
+            <h4><?php echo $elName; ?></h4>
+            <ol>
+                <?php
+                foreach ($elMessages as $elMessage) {
+                    echo '<li>' . $elMessage;
+                }
+                ?>
+            </ol>
+        <?php } ?>
     </div>
 <?php
 }
-
+$formClass = 'form-horizontal';
 $form->prepare();
-$form->setAttribute('class', 'form-horizontal');
+$form->setAttribute('class', $formClass);
 echo $this->form()->openTag($form);
 
 /**#@+
@@ -42,10 +49,9 @@ $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
 /**#@++
  * Temporary function for element display
  */
-$_this = $this;
-$renderElement = function ($element) use ($_this)
-{
-    $emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
+$emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
+$markRequired = '<i class="text-danger" style="margin-right: 5px;">*</i>';
+$renderElement = function ($element) use ($markRequired, $emptyControl, $isMultiple) {
     $type = $element->getAttribute('type') ? : 'text';
     $isEmptyControl = in_array($type, $emptyControl);
     $isCheckbox = $type == 'checkbox';
@@ -57,25 +63,45 @@ $renderElement = function ($element) use ($_this)
         $element->setAttribute('class', $attrClass);
     }
 
+    $labelClass = $isMultiple ? 'col-md-2' : 'col-sm-3 col-lg-2';
     $rendered = sprintf(
-        '<div class="form-group%s"><label class="col-md-2 control-label">%s</label>',
+        '<div class="form-group%s"><label class="%s control-label">%s%s</label>',
         $element->getMessages() ? ' has-error' : '',
+        $labelClass,
+        $element->getAttribute('required') ? $markRequired : '',
         $isCheckbox ?  '' : $element->getLabel()
     );
 
-    $rendered .= sprintf(
-        '<div class="col-md-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
-        $_this->formElement($element),
-        $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
-        $_this->formElementErrors($element)
-    );
+    if ($isMultiple) {
+        $rendered .= sprintf(
+            '<div class="col-md-4">%s%s</div><div class="col-md-4 help-block">%s</div></div>',
+            $this->formElement($element),
+            $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
+            $this->formElementErrors($element)
+        );
+    } else {
+        if ($type == 'multi_checkbox') {
+            $rendered .= sprintf(
+                '<div class="col-sm-9">%s<div class="help-block">%s</div></div></div>',
+                $this->formElement($element),
+                $this->formElementErrors($element)
+            );
+        } else {
+            $rendered .= sprintf(
+                '<div class="col-sm-5 js-form-element">%s%s</div><div class="col-sm-4 help-block">%s</div></div>',
+                $this->formElement($element),
+                $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
+                $this->formElementErrors($element)
+            );
+        }
+    }
+
     echo $rendered;
 };
 
-$renderRow = function ($element) use ($_this, $validate, $renderElement)
-{
+$renderRow = function ($element) use ($validate, $renderElement) {
     if (method_exists($element, 'getElements')) {
-        echo '<legend>' .  $_this->formLabel($element) . '</legend>';
+        echo '<legend>' .  $this->formLabel($element) . '</legend>';
 
         $eles = $element->elementList();
         foreach ($eles['active'] as $ele) {
@@ -111,11 +137,20 @@ foreach ($elements['hidden'] as $element) {
 }
 /**#@-**/
 
-echo sprintf(
-        '<div class="form-group"><div class="col-md-offset-2 col-md-10">%s</div></div>', 
-        $this->formElement($elements['submit'])
+if (!empty($elements['submit'])) {
+    $submit = $this->formElement($elements['submit']);
+    $cancel = !empty($elements['cancel']) ? $this->formElement($elements['cancel']) : '';
+    $submitClass = $isMultiple ? 'col-md-offset-2 col-md-10' : 'col-sm-offset-3 col-lg-offset-2 col-md-4';
+    echo sprintf(
+        '<div class="form-group"><div class="%s">%s%s</div></div>',
+        $submitClass,
+        $submit,
+        $cancel
     );
+}
+
 echo $this->form()->closeTag();
+/*
 ?>
 
 <script>
@@ -130,3 +165,4 @@ echo $this->form()->closeTag();
         }
     });
 </script>
+*/

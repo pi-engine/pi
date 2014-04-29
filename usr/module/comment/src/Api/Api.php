@@ -576,14 +576,12 @@ class Api extends AbstractApi
 
             $level      = isset($op['level']) ? $op['level'] : 'author';
             $isAdmin    = Pi::service('permission')->isAdmin('comment', $uid);
-            $_this      = $this;
             $setOperations = function ($post) use (
                 $list,
                 $uid,
                 $isAdmin,
                 $level,
-                $section,
-                $_this
+                $section
             ) {
                 if ('admin' == $level && $isAdmin) {
                     $opList = array('edit', 'approve', 'delete', 'reply');
@@ -614,7 +612,7 @@ class Api extends AbstractApi
                                     )
                                 );
                             } else {
-                                $url = $_this->getUrl($op, array(
+                                $url = $this->getUrl($op, array(
                                     'post' => $post['id']
                                 ));
                             }
@@ -640,7 +638,7 @@ class Api extends AbstractApi
                                     )
                                 );
                             } else {
-                                $url = $_this->getUrl($op, array(
+                                $url = $this->getUrl($op, array(
                                     'post'  => $post['id'],
                                     'flag'  => $flag,
                                 ));
@@ -649,7 +647,7 @@ class Api extends AbstractApi
                         case 'reply':
                             if ('admin' == $section) {
                             } else {
-                                $url = $_this->getUrl($op, array(
+                                $url = $this->getUrl($op, array(
                                     'post' => $post['id']
                                 ));
                             }
@@ -696,10 +694,9 @@ class Api extends AbstractApi
             $ops['targets'] = $targets;
         }
 
-        $_this = $this;
-        array_walk($posts, function (&$post) use ($ops, $_this) {
-            $post['content'] = $_this->renderPost($post);
-            $post['url'] = $_this->getUrl('post', array(
+        array_walk($posts, function (&$post) use ($ops) {
+            $post['content'] = $this->renderPost($post);
+            $post['url'] = $this->getUrl('post', array(
                 'post'  => $post['id']
             ));
             if (!empty($ops['users'])) {

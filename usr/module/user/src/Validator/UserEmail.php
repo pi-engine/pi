@@ -10,67 +10,26 @@
 namespace Module\User\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+use Module\System\Validator\UserEmail as SystemUserEmail;
 
 /**
  * Validator user email
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class UserEmail extends AbstractValidator
+class UserEmail extends SystemUserEmail
 {
-    const RESERVED  = 'userEmailReserved';
-    const USED      = 'userEmailUsed';
-
-    protected $messageTemplates;
-
     public function __construct()
     {
+        parent::__construct();
+
         $this->messageTemplates = array(
             self::RESERVED  => __('User email is reserved'),
             self::USED      => __('User email is already used'),
         );
 
-        parent::__construct();
-    }
-
-    protected $options = array(
-        'checkDuplication' => true,
-    );
-
-    /**
-     * User name validate
-     *
-     * @param  mixed $value
-     * @param  array $context
-     * @return boolean
-     */
-    public function isValid($value, $context = null)
-    {
-        $this->setValue($value);
         $this->setConfigOption();
-        if (!empty($this->options['backlist'])) {
-            $pattern = is_array($this->options['backlist']) ? implode('|', $this->options['backlist']) : $this->options['backlist'];
-            if (preg_match('/(' . $pattern . ')/', $value)) {
-                $this->error(static::RESERVED);
-                return false;
-            }
-        }
-
-        if ($this->options['checkDuplication']) {
-            $where = array('email' => $value);
-            if (!empty($context['uid'])) {
-                $where['id <> ?'] = $context['uid'];
-            }
-
-            $count = Pi::model('account', 'user')->count($where);
-            if ($count) {
-                $this->error(static::USED);
-                return false;
-            }
-        }
-
-        return true;
     }
 
     /**

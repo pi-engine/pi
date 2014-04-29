@@ -303,10 +303,16 @@ class Factory
             if (isset($inputFilterSpecification['count'])) {
                 $inputFilter->setCount($inputFilterSpecification['count']);
             }
+            if (isset($inputFilterSpecification['required'])) {
+                $inputFilter->setIsRequired($inputFilterSpecification['required']);
+            }
             return $inputFilter;
         }
 
         foreach ($inputFilterSpecification as $key => $value) {
+            if (null === $value) {
+                continue;
+            }
 
             if (($value instanceof InputInterface)
                 || ($value instanceof InputFilterInterface)

@@ -75,7 +75,7 @@ class Renderer extends AbstractRenderer
             }
         }
         $scriptJs =<<<EOT
-$(document).ready(function()	{
+$(document).ready(function()    {
     mySettings.previewParserPath = '{$parserpath}';
     mySettings.previewParserVar = 'preview';
     $('#%s').markItUp(mySettings);

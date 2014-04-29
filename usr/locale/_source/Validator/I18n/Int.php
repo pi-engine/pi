@@ -7,15 +7,5 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Module\User\Validator;
-
-use Pi;
-use Zend\Validator\AbstractValidator;
-
-class Birthdate extends AbstractValidator
-{
-    public function isValid($value, $context = null)
-    {
-
-    }
-}
+_("Invalid type given. String or integer expected");
+_("The input does not appear to be an integer");

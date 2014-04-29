@@ -71,6 +71,14 @@ abstract class AbstractPage extends ZendAbstractPage
             }
         }
 
+        if (static::$factories) {
+            foreach (static::$factories as $factoryCallBack) {
+                if (($page = call_user_func($factoryCallBack, $options))) {
+                    return $page;
+                }
+            }
+        }
+
         /**#@+
          * Modified by Taiwen Jiang
          */

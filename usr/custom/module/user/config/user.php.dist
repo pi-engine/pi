@@ -31,20 +31,6 @@ $customConfig = array(
             'title' => _a('Last Name'),
         ),
 
-        // Account: mobile phone number
-        'mobile'      => array(
-            'name'      => 'mobile',
-            'title'     => _a('Mobile phone number'),
-            // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Module\User\Validator\Telephone',
-                    ),
-                ),
-            ),
-        ),
-
         // Profile: Language
         'language'  => array(
             'name'  => 'language',
@@ -52,12 +38,40 @@ $customConfig = array(
             'edit'  => 'locale',
         ),
 
+        // Profile: mobile phone number
+        'mobile'      => array(
+            'name'      => 'mobile',
+            'title'     => _a('Mobile phone'),
+            // Edit element specs
+            'edit'      => array(
+                'validators'    => array(
+                    array(
+                        'name'      => 'Zend\I18n\Validator\PhoneNumber',
+                        'options'   => array(
+                            'country'       => 'cn',
+                            'allowed_types' => array('mobile'),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+
         // Profile: phone
         'phone'  => array(
             'name'  => 'phone',
-            'title' => _a('Phone'),
-            'is_display'    => false,
-            'is_edit'       => false,
+            'title' => _a('Telephone'),
+            // Edit element specs
+            'edit'      => array(
+                'validators'    => array(
+                    array(
+                        'name'      => 'Zend\I18n\Validator\PhoneNumber',
+                        'options'   => array(
+                            'country'       => 'cn',
+                            'allowed_types' => array('general'),
+                        ),
+                    ),
+                ),
+            ),
         ),
 
 
@@ -99,11 +113,12 @@ $customConfig = array(
                 ),
                 'start'    => array(
                     'title' => _a('Start time'),
-                    'edit'  => 'Custom\User\Form\Element\StartTime',
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'end'    => array(
                     'title' => _a('End time'),
-                    'edit'  => 'Custom\User\Form\Element\EndTime',
                 ),
                 'description'   => array(
                     'title' => _a('Description'),
@@ -143,30 +158,11 @@ $customConfig = array(
                 'industry'    => array(
                     'title' => _a('Industry'),
                     'edit' => array(
-                        'element'  => 'Custom\User\Form\Element\Industry',
                         'required' => true,
                     ),
                 ),
                 'sector'    => array(
                     'title' => _a('Sector'),
-                    'edit'  => 'hidden',
-                ),
-                'position'    => array(
-                    'title' => _a('Job Position'),
-                    'edit'  => array(
-                        'element'    => 'select',
-                        'attributes' => array(
-                            'options' => array(
-                                ''                  => _a('Select'),
-                                _a('R&D')           => _a('R&D'),
-                                _a('Management')    => _a('Management'),
-                                _a('Measurement')   => _a('Measurement'),
-                                _a('QA')            => _a('QA'),
-                                _a('Market')        => _a('Market'),
-                                _a('Student')       => _a('Student'),
-                            ),
-                        ),
-                    ),
                 ),
                 'title'    => array(
                     'title' => _a('Job title'),
@@ -186,11 +182,12 @@ $customConfig = array(
                 ),
                 'start'    => array(
                     'title' => _a('Start time'),
-                    'edit'  => 'Custom\User\Form\Element\StartTime',
+                    'edit' => array(
+                        'required' => true,
+                    ),
                 ),
                 'end'    => array(
                     'title' => _a('End time'),
-                    'edit'  => 'Custom\User\Form\Element\EndTime',
                 ),
             ),
         ),

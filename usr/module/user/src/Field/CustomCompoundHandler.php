@@ -89,9 +89,8 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
             $data = $this->mget($uids, true);
         }
 
-        $_this = $this;
-        array_walk($data, function (&$list) use ($meta, $_this) {
-            $list = $_this->displayFields($list, $meta);
+        array_walk($data, function (&$list) use ($meta) {
+            $list = $this->displayFields($list, $meta);
         });
 
         if (is_scalar($uid)) {

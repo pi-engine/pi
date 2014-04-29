@@ -43,7 +43,7 @@ class MemberFilter extends InputFilter
                         'max'       => $config['uname_max'],
                     ),
                 ),
-                new \Module\System\Validator\UserName(array(
+                new \Module\System\Validator\Username(array(
                     'format'            => $config['uname_format'],
                     'backlist'          => $config['uname_backlist'],
                     'checkDuplication'  => true,

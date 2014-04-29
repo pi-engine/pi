@@ -18,4 +18,15 @@ class DateSelect extends DateValidator
      * {@inheritDoc}
      */
     protected $format = 'Y-m-d';
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isValid($value)
+    {
+        if (!$value) {
+            return true;
+        }
+        return parent::isValid($value);
+    }
 }
