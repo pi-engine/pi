@@ -10,11 +10,12 @@ $target     = empty($options['target']) ? '_blank' : $options['target'];
     <div class="media" style="margin-bottom: 10px">
         <?php
             echo sprintf(
-                '<a href="%s" title="%s" class="pull-left">
+                '<a href="%s" title="%s" class="pull-left" target="%s">
                     <img src="%s" class="img-responsive" alt="%s" style="width:%spx; height:%spx">
                 </a>',
                 $activeItem['link'],
                 $activeItem['caption'],
+                $target,
                 $activeItem['image'],
                 $activeItem['caption'],
                 $width,
@@ -34,8 +35,9 @@ $target     = empty($options['target']) ? '_blank' : $options['target'];
                 $htmlDetail = '';
                 if (!empty($activeItem['detail'])) {
                     $htmlDetail = sprintf(
-                        '<span class="pull-right"><a href="%s">%s</a></span>',
+                        '<span class="pull-right"><a href="%s" target="%s">%s</a></span>',
                         $activeItem['detail'],
+                        $target,
                         __('Detail')
                     );
                 }
