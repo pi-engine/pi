@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-04-27 19:03+0800\n"
-"PO-Revision-Date: 2014-04-27 19:03+0800\n"
+"PO-Revision-Date: 2014-04-29 10:28+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -1401,9 +1401,8 @@ msgstr "无更新数据。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:69
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RepoController.php:93
-#, fuzzy
 msgid "Error occurred, check later."
-msgstr "无效输入，请重试。"
+msgstr "发生错误，请稍后重试。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:156
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/RoleController.php:210
