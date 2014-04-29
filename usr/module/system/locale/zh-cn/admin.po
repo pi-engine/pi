@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-04-27 19:03+0800\n"
-"PO-Revision-Date: 2014-04-29 10:28+0800\n"
+"POT-Creation-Date: 2014-04-29 10:55+0800\n"
+"PO-Revision-Date: 2014-04-29 10:55+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -988,6 +988,10 @@ msgstr "区块不存在。"
 msgid "Block edit: %s"
 msgstr "区块编辑：%s"
 
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:287
+msgid "Block is deleted."
+msgstr "区块删除成功。"
+
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:77
 msgid "Page cache updated successfully."
 msgstr "页面缓存设置更新成功。"
@@ -1359,13 +1363,13 @@ msgid "Pages edit"
 msgstr "页面编辑"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:370
+msgid "Page is deleted."
+msgstr "页面删除成功。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:375
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:550
 msgid "Page is not found."
 msgstr "页面不存在。"
-
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:375
-msgid "Page is deleted."
-msgstr "页面删除成功。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:490
 #, php-format
@@ -2094,7 +2098,7 @@ msgstr "可用主题"
 msgid "Dress up"
 msgstr "装扮"
 
-#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:83
+#: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:86
 msgid "Are you sure to delete the page?"
 msgstr "请确认是否删除页面。"
 
