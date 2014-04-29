@@ -21,6 +21,7 @@
 
     angular.forEach(config.data.blocks, function(item) {
       item.editUrl = root + 'edit/id/' + item.id + '/name/' + item.module;
+      item.deleteUrl = root + 'delete/id/' + item.id + '/name/' + item.module;
       item.cloneUrl = root + 'clone/root/' + item.root + '/name/' + item.module;
       blocks.push(item);
     });

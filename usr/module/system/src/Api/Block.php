@@ -20,8 +20,8 @@ use Pi\Db\RowGateway\RowGateway;
  */
 class Block extends AbstractApi
 {
-    /** @var string Seperator for module block names */
-    protected $moduleSeperator = '-';
+    /** @var string Separator for module block names */
+    protected $moduleSeparator = '-';
 
     /** @var string Module name */
     protected $module = 'system';
@@ -80,7 +80,7 @@ class Block extends AbstractApi
 
             // Create block view
             $block['name'] = $block['name']
-                ? $module . $this->moduleSeperator . $block['name'] : null;
+                ? $module . $this->moduleSeparator . $block['name'] : null;
         }
 
         $config = array();
@@ -89,7 +89,8 @@ class Block extends AbstractApi
         }
         foreach ($block['config'] as $name => $data) {
             $config[$name] = is_scalar($data)
-                ? $data : (isset($data['value']) ? $data['value'] : '');
+                ? $data
+                : (isset($data['value']) ? $data['value'] : $data);
         }
         $block['config'] = $config;
 

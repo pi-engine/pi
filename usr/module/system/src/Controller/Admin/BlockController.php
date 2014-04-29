@@ -275,8 +275,7 @@ class BlockController extends ComponentController
     }
 
     /**
-     * AJAX for deleting a block and remove its page-block links
-     * and corresponding ACL rules
+     * Delete a block and remove its page-block links
      *
      * @return int
      */
@@ -284,8 +283,9 @@ class BlockController extends ComponentController
     {
         $id = $this->params('id');
         $result = Pi::api('block', 'system')->delete($id, false);
-        extract($result);
-        return $status;
+
+        $message = _a('Block is deleted.');
+        $this->jump(array('action' => 'index'), $message);
     }
 
     /**
