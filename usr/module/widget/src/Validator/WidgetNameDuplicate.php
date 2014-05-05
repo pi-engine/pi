@@ -19,9 +19,17 @@ class WidgetNameDuplicate extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Widget name already exists',
-    );
+    protected $messageTemplates = array();
+
+
+    public function __construct()
+    {
+        $this->messageTemplates = array(
+            self::TAKEN => _a('Widget name already exists'),
+        );
+
+        parent::__construct();
+    }
 
     /**
      * Block name validate
