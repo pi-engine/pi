@@ -20,6 +20,7 @@ return array(
                     'resource'  => 'script',
                 ),
             ),
+
             'static'     => array(
                 'label'         => _t('Static widgets'),
                 'route'         => 'admin',
@@ -30,7 +31,7 @@ return array(
 
                 'pages'         => array(
                     'list'   => array(
-                        'label'         => _t('Static list'),
+                        'label'         => _t('Widget list'),
                         'route'         => 'admin',
                         'controller'    => 'static',
                         'action'        => 'index',
@@ -74,42 +75,9 @@ return array(
                     ),
                 ),
             ),
-            'carousel'     => array(
-                'label'         => _t('Carousel widgets'),
-                'route'         => 'admin',
-                'controller'    => 'carousel',
-                'permission'    => array(
-                    'resource'  => 'carousel',
-                ),
 
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Carousel list'),
-                        'route'         => 'admin',
-                        'controller'    => 'carousel',
-                        'action'        => 'index',
-
-                        'pages'         => array(
-                            'edit'   => array(
-                                'label'         => _t('Edit'),
-                                'route'         => 'admin',
-                                'controller'    => 'carousel',
-                                'action'        => 'edit',
-                                'visible'       => 0,
-                            ),
-                        )
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Add new'),
-                        'route'         => 'admin',
-                        'controller'    => 'carousel',
-                        'action'        => 'add',
-                    ),
-                   
-                ),
-            ),
             'list'         => array(
-                'label'         => _t('List widgets'),
+                'label'         => _t('List group'),
                 'route'         => 'admin',
                 'controller'    => 'list',
                 'permission'    => array(
@@ -118,7 +86,7 @@ return array(
 
                 'pages'         => array(
                     'list'   => array(
-                        'label'         => _t('List block list'),
+                        'label'         => _t('Widget list'),
                         'route'         => 'admin',
                         'controller'    => 'list',
                         'action'        => 'index',
@@ -141,6 +109,109 @@ return array(
                     ),
                 ),
             ),
+
+            'media'         => array(
+                'label'         => _t('Media list'),
+                'route'         => 'admin',
+                'controller'    => 'media',
+                'permission'    => array(
+                    'resource'  => 'media',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Widget list'),
+                        'route'         => 'admin',
+                        'controller'    => 'media',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'media',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Add new'),
+                        'route'         => 'admin',
+                        'controller'    => 'media',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
+
+            'carousel'     => array(
+                'label'         => _t('Carousel'),
+                'route'         => 'admin',
+                'controller'    => 'carousel',
+                'permission'    => array(
+                    'resource'  => 'carousel',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Widget list'),
+                        'route'         => 'admin',
+                        'controller'    => 'carousel',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'carousel',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Add new'),
+                        'route'         => 'admin',
+                        'controller'    => 'carousel',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
+
+            'spotlight'     => array(
+                'label'         => _t('Spotlight'),
+                'route'         => 'admin',
+                'controller'    => 'spotlight',
+                'permission'    => array(
+                    'resource'  => 'spotlight',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Widget list'),
+                        'route'         => 'admin',
+                        'controller'    => 'spotlight',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'spotlight',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Add new'),
+                        'route'         => 'admin',
+                        'controller'    => 'spotlight',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
+
             'tab'     => array(
                 'label'         => _t('Compound tabs'),
                 'route'         => 'admin',
@@ -151,7 +222,7 @@ return array(
 
                 'pages'         => array(
                     'list'   => array(
-                        'label'         => _t('Tab list'),
+                        'label'         => _t('Widget list'),
                         'route'         => 'admin',
                         'controller'    => 'tab',
                         'action'        => 'index',
@@ -167,7 +238,7 @@ return array(
                         )
                     ),
                     'add'   => array(
-                        'label'         => _t('Add'),
+                        'label'         => _t('Add new'),
                         'route'         => 'admin',
                         'controller'    => 'tab',
                         'action'        => 'add',

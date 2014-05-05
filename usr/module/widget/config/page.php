@@ -19,12 +19,20 @@ return array(
             'permission'    => 'static',
         ),
         array(
+            'controller'    => 'list',
+            'permission'    => 'list',
+        ),
+        array(
+            'controller'    => 'media',
+            'permission'    => 'media',
+        ),
+        array(
             'controller'    => 'carousel',
             'permission'    => 'carousel',
         ),
         array(
-            'controller'    => 'list',
-            'permission'    => 'list',
+            'controller'    => 'spotlight',
+            'permission'    => 'spotlight',
         ),
         array(
             'controller'    => 'tab',

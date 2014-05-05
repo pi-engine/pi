@@ -4,15 +4,12 @@ $options = (array) $block['options'];
 $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
-$width = empty($options['width']) ? 0 : $options['width'];
-$height = empty($options['height']) ? 0 : $options['height'];
+$width = empty($options['width']) ? '' : 'width: '  . $options['width']  . 'px;';
+$height = empty($options['height']) ? '' : 'height: '  . $options['height'] . 'px;';
 
 $render = function ($item) use ($width, $height) {
     $caption = $this->escape($item['caption']);
     $description = $this->escape($item['desc']);
-    
-    $width = $width ? 'width: '  . $width  . 'px;' : '';
-    $height = $height ? 'height: '  . $height . 'px;' : '';
 
     if (empty($width) && empty($height)) {
         $image = sprintf(
@@ -29,7 +26,6 @@ $render = function ($item) use ($width, $height) {
             $height
         );
     }
-
 
     $content = '';
     if (!empty($item['link'])) {
@@ -76,8 +72,8 @@ $carouselId = uniqid('carousel');
 </div>
 <?php
 $script = sprintf('$("#%s").carousel(%s);',
-        $carouselId,
-        json_encode($block['options'])
-    );
+    $carouselId,
+    json_encode($block['options'])
+);
 $this->footScript()->appendScript($script);
 ?>

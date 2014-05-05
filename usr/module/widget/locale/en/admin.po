@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-03 14:20+0800\n"
-"PO-Revision-Date: 2014-03-03 14:20+0800\n"
+"POT-Creation-Date: 2014-05-05 12:47+0800\n"
+"PO-Revision-Date: 2014-05-05 12:47+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,7 @@ msgstr ""
 #: C:\code\pi\usr\module\widget/config/nav.php:40
 #: C:\code\pi\usr\module\widget/config/nav.php:94
 #: C:\code\pi\usr\module\widget/config/nav.php:128
+#: C:\code\pi\usr\module\widget/config/nav.php:161
 #: C:\code\pi\usr\module\widget/template/admin/common-list.phtml:14
 #: C:\code\pi\usr\module\widget/template/admin/ng.phtml:21
 msgid "Edit"
@@ -65,19 +66,29 @@ msgid "Carousel list"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/config/nav.php:103
+#: C:\code\pi\usr\module\widget/config/nav.php:137
 msgid "Add new"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/config/nav.php:112
 #: C:\code\pi\usr\module\widget/config/permission.php:22
-msgid "Compound tabs"
+msgid "List widgets"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/config/nav.php:121
+msgid "List block list"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/config/nav.php:145
+#: C:\code\pi\usr\module\widget/config/permission.php:25
+msgid "Compound tabs"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/config/nav.php:154
 msgid "Tab list"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/config/nav.php:137
+#: C:\code\pi\usr\module\widget/config/nav.php:170
 msgid "Add"
 msgstr ""
 
@@ -93,60 +104,62 @@ msgstr ""
 msgid "Navigation name"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:22
-#: C:\code\pi\usr\module\widget/meta/navigation.php:48
+#: C:\code\pi\usr\module\widget/meta/navigation.php:21
+#: C:\code\pi\usr\module\widget/meta/navigation.php:47
 msgid "Display menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:28
+#: C:\code\pi\usr\module\widget/meta/navigation.php:27
 msgid "ul class for menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:29
+#: C:\code\pi\usr\module\widget/meta/navigation.php:28
 msgid "Separate classes with space"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:35
+#: C:\code\pi\usr\module\widget/meta/navigation.php:34
 msgid "Minimum depth for menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:41
+#: C:\code\pi\usr\module\widget/meta/navigation.php:40
 msgid "Maximum depth for menu"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:54
+#: C:\code\pi\usr\module\widget/meta/navigation.php:53
 msgid "Separator for breadcrumb"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:60
+#: C:\code\pi\usr\module\widget/meta/navigation.php:59
 msgid "Minimum depth for breadcrumb"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/meta/navigation.php:66
+#: C:\code\pi\usr\module\widget/meta/navigation.php:65
 msgid "Add link to last page"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Api/Block.php:41
+#: C:\code\pi\usr\module\widget/src/Api/Block.php:55
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:53
 msgid "Image width"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Api/Block.php:46
+#: C:\code\pi\usr\module\widget/src/Api/Block.php:60
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:58
 msgid "Image height"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:51
+#: C:\code\pi\usr\module\widget/src/Api/Block.php:65
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:63
 msgid "Time interval (ms)"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:57
+#: C:\code\pi\usr\module\widget/src/Api/Block.php:71
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:69
 msgid "Mouse event"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Api/Block.php:58
+#: C:\code\pi\usr\module\widget/src/Api/Block.php:72
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Update.php:70
 msgid "Event to pause cycle"
 msgstr ""
@@ -272,6 +285,10 @@ msgid ""
 "development workflow."
 msgstr ""
 
+#: C:\code\pi\usr\module\widget/src/Validator/WidgetNameDuplicate.php:28
+msgid "Widget name already exists"
+msgstr ""
+
 #: C:\code\pi\usr\module\widget/template/admin/common-list.phtml:16
 msgid "Are you sure delete this widget?"
 msgstr ""
@@ -304,21 +321,29 @@ msgid "Uninstall"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:12
+#: C:\code\pi\usr\module\widget/template/admin/widget-list.phtml:24
 msgid "Images"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:33
+#: C:\code\pi\usr\module\widget/template/admin/widget-list.phtml:57
 #: C:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:43
 msgid "Caption"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:36
+#: C:\code\pi\usr\module\widget/template/admin/widget-list.phtml:60
 #: C:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:49
 msgid "Link"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:39
+#: C:\code\pi\usr\module\widget/template/admin/widget-list.phtml:63
 msgid "Desc"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/template/admin/widget-list.phtml:66
+msgid "More detail"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:129

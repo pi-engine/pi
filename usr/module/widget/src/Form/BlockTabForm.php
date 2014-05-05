@@ -38,7 +38,7 @@ class BlockTabForm extends BaseForm
         $this->add(array(
             'name'          => 'title',
             'options'       => array(
-                'label' => __('Title'),
+                'label' =>  _a('Title'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
@@ -49,7 +49,7 @@ class BlockTabForm extends BaseForm
         $this->add(array(
             'name'          => 'name',
             'options'       => array(
-                'label' => __('Unique name'),
+                'label' =>  _a('Unique name'),
             ),
             'attributes'    => array(
                 'type'          => 'text',
@@ -60,7 +60,7 @@ class BlockTabForm extends BaseForm
         $this->add(array(
             'name'          => 'description',
             'options'       => array(
-                'label' => __('Description'),
+                'label' =>  _a('Description'),
             ),
             'attributes'    => array(
                 'type'          => 'text',
@@ -96,7 +96,7 @@ class BlockTabForm extends BaseForm
             'name'          => 'submit',
             'type'          => 'submit',
             'attributes'    => array(
-                'value' => __('Submit'),
+                'value' =>  _a('Submit'),
             )
         ));
     }

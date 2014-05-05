@@ -9,26 +9,15 @@
 
 namespace Module\Widget\Controller\Admin;
 
-use Module\Widget\Form\BlockListForm as BlockForm;
+use Module\Widget\Form\BlockSpotlightForm as BlockForm;
 
 /**
- * For list block
- * 
- * @author Zongshu Lin <lin40553024@163.com>
+ * For spotlight block
  */
-class ListController extends CarouselController
+class SpotlightController extends MediaController
 {
-    /**
-     * Widget type
-     * @var string 
-     */
-    protected $type = 'list';
+    protected $type = 'spotlight';
 
-    /**
-     * Get form instance
-     * 
-     * @return BlockForm
-     */
     protected function getForm()
     {
         $this->form = $this->form ?: new BlockForm('block');
@@ -37,27 +26,22 @@ class ListController extends CarouselController
     }
 
     /**
-     * Add a list block and default ACL rules
+     * Add a spotlight block and default ACL rules
      */
     public function addAction()
     {
         parent::addAction();
 
-        $this->view()->setTemplate('widget-list');
+        $this->view()->setTemplate('widget-spotlight');
     }
 
     /**
-     * Edit a list-group block
+     * Edit a spotlight block
      */
     public function editAction()
     {
         parent::editAction();
 
-        $this->view()->setTemplate('widget-list');
-    }
-
-    protected function canonizePost($values)
-    {
-        return $values;
+        $this->view()->setTemplate('widget-spotlight');
     }
 }

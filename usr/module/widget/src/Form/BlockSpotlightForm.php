@@ -9,25 +9,17 @@
 
 namespace Module\Widget\Form;
 
-/**
- * Form class for block has list content
- * 
- * @author Zongshu Lin <lin40553024@163.com>
- */
-class BlockListForm extends BlockCarouselForm
+class BlockSpotlightForm extends BlockCarouselForm
 {
-    /**
-     * {@inheritDoc}
-     */
     public function init()
     {
         $this->add(array(
             'name'          => 'title',
             'options'       => array(
-                'label'     =>  _a('Title'),
+                'label' =>  _a('Title'),
             ),
             'attributes'    => array(
-                'type'      => 'text',
+                'type'  => 'text',
                 'required'  => true,
             )
         ));
@@ -35,10 +27,10 @@ class BlockListForm extends BlockCarouselForm
         $this->add(array(
             'name'          => 'name',
             'options'       => array(
-                'label'     =>  _a('Unique name'),
+                'label' =>  _a('Unique name'),
             ),
             'attributes'    => array(
-                'type'      => 'text',
+                'type'          => 'text',
                 'required'  => true,
             )
         ));
@@ -46,25 +38,21 @@ class BlockListForm extends BlockCarouselForm
         $this->add(array(
             'name'          => 'description',
             'options'       => array(
-                'label'     =>  _a('Description'),
+                'label' =>  _a('Description'),
             ),
             'attributes'    => array(
-                'type'      => 'text',
+                'type'          => 'text',
             )
         ));
 
         $this->add(array(
             'name'          => 'template',
             'options'       => array(
-                'label'     => _a('Template'),
+                'label' =>  _a('Template'),
             ),
-            'type'          =>  'select',
+            'type'          =>  'Module\Widget\Form\Element\SpotlightTemplate',
             'attributes'    => array(
                 'required'  => true,
-                'options'   => array(
-                    'list-title'    => _a('Title only'),
-                    'list-summary'  => _a('Title and summary'),
-                ),
             )
         ));
 
@@ -87,7 +75,7 @@ class BlockListForm extends BlockCarouselForm
             'name'  => 'title_hidden',
             'type'  => 'hidden',
             'attributes'    => array(
-                'value'     => 1,
+                'value' => '1',
             ),
         ));
 
@@ -95,7 +83,7 @@ class BlockListForm extends BlockCarouselForm
             'name'          => 'submit',
             'type'          => 'submit',
             'attributes'    => array(
-                'value'     =>  _a('Submit'),
+                'value' =>  _a('Submit'),
             )
         ));
     }
