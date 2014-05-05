@@ -66,7 +66,7 @@ class TabController extends WidgetController
     }
 
     /**
-     * AJAX methdod for getting blocks of a module
+     * AJAX method for getting blocks of a module
      *
      * @return array
      */

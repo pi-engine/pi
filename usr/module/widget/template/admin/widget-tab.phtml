@@ -84,7 +84,7 @@ echo $this->form()->closeTag();
         className: "widget-tab-item form-horizontal clearfix",
         template: _.template($("#temp-block").html()),
         events: {
-            "click .close": "removeEl",
+            "click .close": "removeEl"
         },
         initialize: function() {
            this.model.on("destroy", this.remove, this);

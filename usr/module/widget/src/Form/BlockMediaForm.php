@@ -9,27 +9,12 @@
 
 namespace Module\Widget\Form;
 
-use Pi;
 use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter;
 use Module\Widget\Validator\WidgetNameDuplicate;
 
-class BlockStaticForm extends BaseForm
+class BlockMediaForm extends BaseForm
 {
-    protected $contentType;
-
-    /**
-     * Constructor
-     *
-     * @param null|string|int $name Optional name for the element
-     * @param string $type Block type: clone, text, html, compound
-     */
-    public function __construct($name = null, $type = null)
-    {
-        $this->contentType = $type;
-        parent::__construct($name);
-    }
-
     /**
      * Retrieve input filter used by this form.
      *
@@ -81,41 +66,15 @@ class BlockStaticForm extends BaseForm
             )
         ));
 
-        $set = '';
-        switch ($this->contentType) {
-            case 'html':
-                $editor         = 'html';
-                break;
-            case 'markdown':
-                $editor         = 'markitup';
-                $set            = 'markdown';
-                break;
-            case 'text':
-            default:
-                $editor         = 'textarea';
-                break;
-        }
-
         $this->add(array(
-            'name'          => 'content',
+            'name'          => 'template',
             'options'       => array(
-                'label'     =>  _a('Content'),
-                'editor'    => $editor,
-                'set'       => $set,
+                'label' =>  _a('Template'),
             ),
             'attributes'    => array(
-                'type'          => 'editor',
-                'class'         => 'span6',
-                'description'   => _a('Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `%slogan%` - site slogan'),
+                'required'  => true,
+                'value'     => 'media-list',
             )
-        ));
-
-        $this->add(array(
-            'name'  => 'type',
-            'type'  => 'hidden',
-            'attributes'    => array(
-                'value' => $this->contentType,
-            ),
         ));
 
         $this->add(array(
@@ -126,6 +85,19 @@ class BlockStaticForm extends BaseForm
         $this->add(array(
             'name'  => 'id',
             'type'  => 'hidden',
+        ));
+
+        $this->add(array(
+            'name'  => 'content',
+            'type'  => 'hidden',
+        ));
+
+        $this->add(array(
+            'name'  => 'title_hidden',
+            'type'  => 'hidden',
+            'attributes'    => array(
+                'value' => '1',
+            ),
         ));
 
         $this->add(array(
@@ -174,6 +146,15 @@ class BlockStaticForm extends BaseForm
         ));
 
         $inputFilter->add(array(
+            'name'          => 'template',
+            'filters'       => array(
+                array(
+                    'name'  => 'StringTrim',
+                ),
+            ),
+        ));
+
+        $inputFilter->add(array(
             'name'          => 'id',
             'required'      => true,
             'allow_empty'   => true,
@@ -182,11 +163,11 @@ class BlockStaticForm extends BaseForm
         $inputFilter->add(array(
             'name'          => 'content',
             'required'      => true,
-            'allow_empty'   => false,
+            'allow_empty'   => true,
         ));
 
         $inputFilter->add(array(
-            'name'          => 'type',
+            'name'          => 'title_hidden',
             'required'      => true,
             'allow_empty'   => true,
         ));

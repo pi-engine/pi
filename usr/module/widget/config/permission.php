@@ -15,11 +15,17 @@ return array(
         'static'    => array(
             'title'         => _t('Static widgets'),
         ),
+        'list'      => array(
+            'title'         => _t('List group'),
+        ),
+        'media'      => array(
+            'title'         => _t('Media list'),
+        ),
         'carousel'  => array(
             'title'         => _t('Carousel widgets'),
         ),
-        'list'      => array(
-            'title'         => _t('List widgets'),
+        'spotlight'      => array(
+            'title'         => _t('Spotlight widgets'),
         ),
         'tab'       => array(
             'title'         => _t('Compound tabs'),

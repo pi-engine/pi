@@ -15,9 +15,9 @@ return array(
         // Description, for admin, optional
         'description'   => _a('Management of custom blocks/widgets.'),
         // Version number, required
-        'version'       => '1.1.1',
+        'version'       => '2.0.0',
         // Distribution license, required
-        'license'       => 'New BSD',
+        'license'       => 'BSD 3-Clause',
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
         // Demo site link, optional

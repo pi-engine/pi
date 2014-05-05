@@ -1,27 +1,11 @@
 <?php
 $options = (array) $block['options'];
 $items   = (array) $block['items'];
-$width   = empty($options['width']) ? 100 : $options['width'];
-$height  = empty($options['height']) ? 100 : $options['height'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
 ?>
-<div class="widget-list widget-list-feature">
+<div class="widget-media-list">
     <?php foreach($items as $item) { ?>
     <div class="media">
-        <?php
-            echo sprintf(
-                '<a href="%s" title="%s" class="pull-left" target="%s">
-                    <img src="%s" class="img-responsive" alt="%s" style="width:%spx; height:%spx">
-                </a>',
-                $item['link'],
-                $item['caption'],
-                $target,
-                $item['image'],
-                $item['caption'],
-                $width,
-                $height
-            );
-        ?>
         <div class="media-body">
             <h4 class="media-heading">
                 <a href="<?php echo _escape($item['link']); ?>" 
@@ -37,8 +21,9 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                     $htmlDetail = sprintf(
                         '<span class="pull-right"><a href="%s" target="%s">%s</a></span>',
                         $item['detail'],
-                    __('Detail')
-                    );    
+                        $target,
+                        __('Detail')
+                    );
                 }
                 echo sprintf(
                     '<div class="pi-ellipsis">%s%s</div>',
@@ -48,5 +33,5 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
             ?>
         </div>
     </div>
-    <?php } ?>
+<?php } ?>
 </div>

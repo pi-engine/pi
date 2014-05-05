@@ -12,18 +12,17 @@ namespace Module\Widget\Form\Element;
 use Pi;
 use Zend\Form\Element\Select;
 
-class CarouselTemplate extends Select
+class SpotlightTemplate extends Select
 {
     protected function getStyles()
     {
         $styles = array(
-            'carousel/bootstrap'    =>  _a('Bootstrap slide') . ' (bootstrap)',
-            'carousel/jcarousel'    =>  _a('jQuery riding Carousel') . ' (jcarousel)',
-            'carousel/parallax'     =>  _a('Parallax Content Slider') . ' (parallax)',
+            'spotlight/top-bottom'  =>  _a('Top-bottom layout'),
+            'spotlight/left-right'  =>  _a('Left-right layout'),
         );
         // Load custom templates
         $customPath = sprintf(
-            '%s/module/widget/template/block/carousel',
+            '%s/module/widget/template/block/spotlight',
             Pi::path('custom')
         );
         $iterator = new \DirectoryIterator($customPath);
@@ -40,7 +39,7 @@ class CarouselTemplate extends Select
             if (preg_match('/[^a-z0-9_\-]/', $name)) {
                 continue;
             }
-            $styles['carousel/' . $name] =  _a('Custom: ') . $name;
+            $styles['spotlight/' . $name] =  _a('Custom: ') . $name;
         }
 
         return $styles;

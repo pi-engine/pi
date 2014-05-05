@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-03 14:21+0800\n"
-"PO-Revision-Date: 2014-03-03 14:21+0800\n"
+"POT-Creation-Date: 2014-05-05 12:49+0800\n"
+"PO-Revision-Date: 2014-05-05 12:49+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,28 +14,33 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\widget\n"
 
 #: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:42
+#: C:\code\pi\usr\module\widget/src/Form/BlockListForm.php:49
 #: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:55
 #: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:41
 msgid "Title"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:53
+#: C:\code\pi\usr\module\widget/src/Form/BlockListForm.php:60
 #: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:66
 #: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:52
 msgid "Unique name"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:64
+#: C:\code\pi\usr\module\widget/src/Form/BlockListForm.php:71
 #: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:77
 #: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:63
 msgid "Description"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:74
+#: C:\code\pi\usr\module\widget/src/Form/BlockListForm.php:81
 msgid "Template"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:109
+#: C:\code\pi\usr\module\widget/src/Form/BlockListForm.php:116
 #: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:135
 #: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:99
 msgid "Submit"
@@ -58,5 +63,32 @@ msgid "Parallax Content Slider"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:43
+#: C:\code\pi\usr\module\widget/src/Form/Element/ListTemplate.php:55
 msgid "Custom: "
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/src/Form/Element/ListTemplate.php:30
+msgid "Title only"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/src/Form/Element/ListTemplate.php:31
+msgid "All with feature image"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/src/Form/Element/ListTemplate.php:32
+msgid "All with summary"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/src/Form/Element/ListTemplate.php:33
+msgid "Compound"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/template/admin/widget-list.phtml:28
+msgid "Add"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/template/block/list/compound.phtml:39
+#: C:\code\pi\usr\module\widget/template/block/list/featured.phtml:39
+#: C:\code\pi\usr\module\widget/template/block/list/summary.phtml:24
+msgid "Detail"
 msgstr ""

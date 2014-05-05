@@ -247,8 +247,12 @@ class Block extends AbstractHelper
         // Custom block, return string
         } elseif ($isCustom) {
             switch ($block['type']) {
-                // list
+                // spotlight
+                case 'spotlight':
+                // list group
                 case 'list':
+                // media object
+                case 'media':
                 // carousel
                 case 'carousel':
                     $items = empty($block['content'])
