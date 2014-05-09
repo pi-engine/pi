@@ -78,19 +78,6 @@ class MediaController extends WidgetController
         return $status;
     }
 
-
-    /**
-     * List of widgets
-     */
-    public function indexAction()
-    {
-        $data = array(
-            'widgets' => array_values($this->widgetList())
-        );
-        $this->view()->assign('data', $data);
-        $this->view()->setTemplate('ng');
-    }
-
     /**
      * Add a new block
      */

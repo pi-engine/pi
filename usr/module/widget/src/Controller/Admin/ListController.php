@@ -16,7 +16,7 @@ use Module\Widget\Form\BlockListForm as BlockForm;
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class ListController extends CarouselController
+class ListController extends WidgetController
 {
     /**
      * Widget type

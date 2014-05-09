@@ -24,6 +24,13 @@ class IndexController extends WidgetController
      */
     public function indexAction()
     {
+        $widgets = $this->widgetList();
+        $installed = array();
+        foreach ($widgets as $key => $block) {
+            $installed[$block['name']] = 1;
+        }
+
+        /*
         $model = $this->getModel('widget');
         $rowset = $model->select(array('type' => $this->type));
         $widgets = array();
@@ -39,6 +46,7 @@ class IndexController extends WidgetController
                 $widgets[$block['id']]['block'] = $block;
             }
         }
+        */
 
         $available = array();
         $paths = array(
@@ -68,7 +76,7 @@ class IndexController extends WidgetController
             }
         }
         $list = array(
-            'active'    => array_values($widgets),
+            'active'    => array_values($this->widgetList()),
             'available' => array_values($available),
         );
 
@@ -111,8 +119,11 @@ class IndexController extends WidgetController
                                  . $block['render'][1];
                 $class = $block['render'][0];
                 $method = $block['render'][1];
-            } else {
+            } elseif (strpos('::', $block['render'])) {
                 list($class, $method) = explode('::', $block['render'], 2);
+            } else {
+                $class = $block['render'];
+                $method = 'render';
             }
             $renderClass = 'Custom\Widget\Render\\' . ucfirst($class);
             if (!class_exists($renderClass)) {
