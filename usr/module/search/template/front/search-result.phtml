@@ -41,7 +41,7 @@ foreach ($result as $name => $data) {
             <span class="pull-right text-muted">
                 <?php  echo sprintf(__('%d found.'), $total); ?>
             </span>
-            <?php if($total > Pi::config('leading_limit', 'search')) {  ?>
+            <?php if ($total > Pi::config('leading_limit', 'search')) {  ?>
                 <a href="<?php echo $modules[$name]['url']; ?>">
                     <?php echo __('All result &raquo;'); ?>
                 </a>
