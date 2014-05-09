@@ -31,28 +31,10 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
     </div>
 </div>
 
-<script id="upload-template" type="text/template">
-    <div class="widget-upload-btn">
-        <div class="thumbnail text-center upload-list-add">
-         <i class="fa fa-plus fa-3x text-muted fileinput-button">
-            <input type="file" name="image" multiple style="width: 100%;" class="hide">
-        </i>
-       </div>
-    </div>
-</script>
-
-<script id="image-template" type="text/template">
-    <button type="button" class="close remove-image">&times;</button>
-    <img src="<%= image %>">
-</script>
-
 <script id="list-template" type="text/template">
 <div class="col-sm-6 col-md-3 widget-block">
     <button type="button" class="remove-block close">&times;</button>
     <div class="thumbnail">
-        <div class="widget-upload-image">
-            <%= image %>
-        </div>
         <p>
             <label><?php echo _a('Caption'); ?></label>
             <input type="text" value="<%= caption %>" name="caption" class="form-control">

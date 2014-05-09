@@ -19,6 +19,18 @@ abstract class WidgetController extends ActionController
 {
     protected $type;
 
+    /**
+     * List of widgets
+     */
+    public function indexAction()
+    {
+        $data = array(
+            'widgets' => array_values($this->widgetList())
+        );
+        $this->view()->assign('data', $data);
+        $this->view()->setTemplate('ng');
+    }
+
     protected function getForm()
     {}
 

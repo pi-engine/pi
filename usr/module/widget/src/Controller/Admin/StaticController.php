@@ -36,12 +36,12 @@ class StaticController extends WidgetController
     }
 
     /**
-     * List of carousel widgets
+     * Widget list
      */
-    public function indexAction()
+    protected function widgetList()
     {
-        $contentTypes = $this->contentTypes();
         $model = $this->getModel('widget');
+        $contentTypes = $this->contentTypes();
         $rowset = $model->select(array('type' => array_keys($contentTypes)));
         $widgets = array();
         foreach ($rowset as $row) {
@@ -55,12 +55,7 @@ class StaticController extends WidgetController
             }
         }
 
-        $data = array(
-            'widgets'  => array_values($widgets)
-        );
-
-        $this->view()->assign('data', $data);
-        $this->view()->setTemplate('ng');
+        return $widgets;
     }
 
     /**
