@@ -939,7 +939,7 @@ namespace
      * Locale-dependent formatting/parsing of date-time
      * using pattern strings and/or canned patterns
      *
-     * @param int|null          $value
+     * @param int|string|null   $value
      * @param array|string|null $locale
      * @param string|null       $datetype
      *      Valid values: 'NULL', 'FULL', 'LONG', 'MEDIUM', 'SHORT'
@@ -965,7 +965,14 @@ namespace
         $pattern    = null,
         $format     = null
     ) {
-        $value = intval(null === $value ? time() : $value);
+        if (!$value) {
+            $value = time();
+        } elseif (is_numeric($value)) {
+            $value = (int) $value;
+        } else {
+            $value = strtotime($value);
+        }
+        //$value = intval(null === $value ? time() : $value);
         // Formatted using date() in case Intl is not available
         if (is_array($locale)) {
             extract($locale);
@@ -979,8 +986,12 @@ namespace
         }
 
         $formatter = Pi::service('i18n')->getDateFormatter(
-            $locale, $datetype,
-            $timetype, $timezone, $calendar, $pattern
+            $locale,
+            $datetype,
+            $timetype,
+            $timezone,
+            $calendar,
+            $pattern
         );
         $result = $formatter->format($value);
 
