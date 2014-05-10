@@ -34,6 +34,7 @@ class PiGithub
             'items'     => $items,
         );
 
+        d($items);
         //d($options);
         //d($block);
         return $block;
@@ -42,13 +43,13 @@ class PiGithub
     protected static function loadGithub($org, $repo = '', $limit = 0)
     {
         if ($repo) {
-            $repoApi    = sprintf(
+            $repoApi = sprintf(
                 'https://api.github.com/repos/%s/%s/events',
                 $org,
                 $repo
             );
         } else {
-            $repoApi    = sprintf(
+            $repoApi = sprintf(
                 'https://api.github.com/orgs/%s/events',
                 $org
             );
@@ -263,7 +264,7 @@ class PiGithub
         };
 
         $result = array();
-        $events = (array) Pi::service('remote')->get($repoApi);
+        $events = Pi::service('remote')->get($repoApi) ?: array();
         $count  = 0;
         foreach ($events as $event) {
             $result[] = $assembleEvent($event);
