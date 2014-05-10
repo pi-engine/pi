@@ -9,27 +9,25 @@
 
 namespace Module\Widget;
 
-use Pi;
-
 class Render
 {
     /**
      * Magic method to access custom widget renderer
      *
      * @param string $name  Custom widget name
-     * @param        array  block options
+     * @param array  $args  Block options
      *
      * @return mixed
      */
     public static function __callStatic($name, $args = null)
     {
         $options = array_shift($args);
-        //return $options;
-
         $module = array_shift($args);
-        $class = 'Custom\Widget\Render\\' . ucfirst($name);
+
+        $className = str_replace(' ', '', ucwords(str_replace(array('_', '-', '.'), ' ', strtolower($name))));
+        $class = 'Custom\Widget\Render\\' . $className;
         if (!class_exists($class)) {
-            $class = __NAMESPACE__ . '\Render\\' . ucfirst($name);
+            $class = 'Module\Widget\Render\\' . $className;
             if (!class_exists($class)) {
                 $class = '';
             }
