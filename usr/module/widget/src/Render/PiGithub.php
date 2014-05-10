@@ -34,9 +34,6 @@ class PiGithub
             'items'     => $items,
         );
 
-        d($items);
-        //d($options);
-        //d($block);
         return $block;
     }
 
