@@ -11,7 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Module\System\Controller\ComponentController;
-use Module\System\Form\BlockModuleForm as ModuleForm;
+use Module\System\Form\BlockModuleForm;
 use Zend\Db\Sql\Predicate\Expression;
 
 /**
@@ -134,7 +134,7 @@ class BlockController extends ComponentController
                 );
                 return;
             }
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
 
             $form->setData($data);
             if ($form->isValid()) {
@@ -173,7 +173,7 @@ class BlockController extends ComponentController
                 );
                 return;
             }
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
             // Fetch block root data
             $data = $rootRow->toArray();
             // Set root id
@@ -224,14 +224,14 @@ class BlockController extends ComponentController
             /*
             if ($blockRow->module) {
                 $rootRow = Pi::model('block_root')->find($blockRow->root);
-                $form = new ModuleForm('block-edit', $rootRow);
+                $form = new BlockModuleForm('block-edit', $rootRow);
             } else {
                 $form = new CustomForm('block-custom', $blockRow->type);
                 $form->setInputFilter(new CustomFilter);
             }
             */
             $rootRow = Pi::model('block_root')->find($blockRow->root);
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
@@ -254,7 +254,7 @@ class BlockController extends ComponentController
                 return;
             }
             $rootRow = Pi::model('block_root')->find($blockRow->root);
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
             $values = $blockRow->toArray();
             $form->setData($values);
             $form->setAttribute(

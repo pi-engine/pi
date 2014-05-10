@@ -226,18 +226,10 @@ class Block extends AbstractHelper
             $options = array_merge($options, $configs);
         }
 
-        // Module-generated block, return array
+        // Module-generated block or script widget, return array
         if (!empty($block['render'])) {
             // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
-
-            /*
-            // Merge run-time configs with system settings
-            $options = isset($block['config']) ? $block['config'] : array();
-            if (!empty($configs)) {
-                $options = array_merge($options, $configs);
-            }
-            */
 
             // Render contents
             $result = call_user_func_array(
@@ -257,17 +249,19 @@ class Block extends AbstractHelper
                 case 'carousel':
                     $items = empty($block['content'])
                         ? false : json_decode($block['content'], true);
-                    if ($items) {
+                    if ($items && is_array($items)) {
                         $result = array(
                             'items'     => $items,
                             'options'   => $options,
                         );
                     }
                     break;
+
                 // compound tab
                 case 'tab':
                     $result = $this->transliterateTabs($block['content']);
                     break;
+
                 // static HTML
                 case 'html':
                     $result = Pi::service('markup')->render(
