@@ -22,27 +22,27 @@ class TemplateController extends ActionController
      */
     public function indexAction()
     {
-        $templates  = array();
-        $path       = Pi::path('custom/module/page/template/front');
-        $iterator   = new \DirectoryIterator($path);
-        foreach ($iterator as $fileinfo) {
+        $filter = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
-                continue;
+                return false;
             }
             $name = $fileinfo->getFilename();
             $extension = pathinfo($name, PATHINFO_EXTENSION);
             if ('phtml' != $extension) {
-                continue;
+                return false;
             }
             $name = pathinfo($name, PATHINFO_FILENAME);
             $file = $fileinfo->getPathname();
-            $template = array(
+            return array(
                 'name'  => $name,
                 'time'  => filemtime($file),
                 'size'  => filesize($file),
             );
-            $templates[] = $template;
-        }
+        };
+        $templates = Pi::service('file')->getList(
+            'custom/module/page/template/front',
+            $filter
+        );
 
         $this->view()->assign('templates', $templates);
         $this->view()->assign('title', _a('Template list'));

@@ -34,21 +34,21 @@ class Controller extends Select
             );
             $controllerList = array();
             if (is_dir($controllerPath)) {
-                $iterator = new \DirectoryIterator($controllerPath);
-                foreach ($iterator as $fileinfo) {
-                    if (!$fileinfo->isFile() || $fileinfo->isDot()) {
-                        continue;
+                $filter = function ($fileinfo) use (&$controllerList) {
+                    if (!$fileinfo->isFile()) {
+                        return false;
                     }
                     $fileName = $fileinfo->getFilename();
                     if (!preg_match(
                         '/^[A-Z][a-z0-9_]+Controller\.php$/',
                         $fileName
                     )) {
-                        continue;
+                        return false;
                     }
                     $controllerName = strtolower(substr($fileName, 0, -14));
                     $controllerList[$controllerName] = $controllerName;
-                }
+                };
+                Pi::service('file')->getList($controllerPath, $filter);
             } else {
                 $controllerList[''] = __('None');
             }

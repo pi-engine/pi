@@ -10,9 +10,12 @@
 
 namespace Pi\Application\Service;
 
+use Pi;
+use ArrayObject;
+use Closure;
 use Exception;
 use Traversable;
-use ArrayObject;
+use DirectoryIterator;
 use FilesystemIterator;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
@@ -612,6 +615,8 @@ class File extends AbstractService
      */
     public function isAbsolutePath($file)
     {
+        //$result = preg_match('|^([a-zA-Z]:)?/|', $path);
+        $result = false;
         if (strspn($file, '/\\', 0, 1)
             || (strlen($file) > 3 && ctype_alpha($file[0])
                 && substr($file, 1, 1) === ':'
@@ -619,10 +624,10 @@ class File extends AbstractService
                )
             || null !== parse_url($file, PHP_URL_SCHEME)
         ) {
-            return true;
+            $result = true;
         }
 
-        return false;
+        return $result;
     }
 
     /**
@@ -639,5 +644,49 @@ class File extends AbstractService
         }
 
         return $files;
+    }
+
+    /**
+     * Get file list in a directory
+     *
+     * @param DirectoryIterator|string  $path
+     * @param Closure|null              $filter
+     * @param bool                      $recursive
+     *
+     * @return array
+     */
+    public function getList($path, $filter = null, $recursive = false)
+    {
+        $result = array();
+        if ($path instanceof DirectoryIterator) {
+            $iterator = $path;
+        } else {
+            $path = $this->isAbsolutePath($path) ? $path : Pi::path($path);
+            if ($recursive) {
+                $flags = FilesystemIterator::SKIP_DOTS
+                    | FilesystemIterator::FOLLOW_SYMLINKS
+                    | FilesystemIterator::UNIX_PATHS;
+                $iterator = new RecursiveIteratorIterator(
+                    new RecursiveDirectoryIterator($path, $flags)
+                );
+            } else {
+                $iterator = new DirectoryIterator($path);
+            }
+        }
+        $filter = $filter instanceof Closure ? $filter : function ($fileinfo) {
+            if (!$fileinfo->isFile()) {
+                return false;
+            }
+            return $fileinfo->getPathname();
+        };
+        foreach ($iterator as $fileinfo) {
+            $filedata = $filter($fileinfo);
+            if (!$filedata) {
+                continue;
+            }
+            $result[] = $filedata;
+        }
+
+        return $result;
     }
 }
