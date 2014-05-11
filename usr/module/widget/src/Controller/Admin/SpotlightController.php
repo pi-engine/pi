@@ -9,39 +9,25 @@
 
 namespace Module\Widget\Controller\Admin;
 
-use Module\Widget\Form\BlockSpotlightForm as BlockForm;
+//use Module\Widget\Form\BlockSpotlightForm as BlockForm;
 
 /**
  * For spotlight block
  */
 class SpotlightController extends MediaController
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $type = 'spotlight';
 
-    protected function getForm()
-    {
-        $this->form = $this->form ?: new BlockForm('block');
-
-        return $this->form;
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $editTemplate = 'widget-spotlight';
 
     /**
-     * Add a spotlight block and default ACL rules
+     * {@inheritDoc}
      */
-    public function addAction()
-    {
-        parent::addAction();
-
-        $this->view()->setTemplate('widget-spotlight');
-    }
-
-    /**
-     * Edit a spotlight block
-     */
-    public function editAction()
-    {
-        parent::editAction();
-
-        $this->view()->setTemplate('widget-spotlight');
-    }
+    protected $formClass = 'BlockSpotlightForm';
 }

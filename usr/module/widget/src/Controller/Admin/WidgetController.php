@@ -11,13 +11,21 @@ namespace Module\Widget\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Module\Widget\Form\AbstractBaseForm;
 
 /**
  * For static block
  */
 abstract class WidgetController extends ActionController
 {
-    protected $type;
+    /** @var  string Content type */
+    protected $type = '';
+
+    /** @var  string Template for `add` and `edit` action */
+    protected $editTemplate = '';
+
+    /** @var  string Form class */
+    protected $formClass = '';
 
     /**
      * List of widgets
@@ -31,9 +39,29 @@ abstract class WidgetController extends ActionController
         $this->view()->setTemplate('ng');
     }
 
+    /**
+     * Load content form
+     *
+     * @return AbstractBaseForm|null
+     */
     protected function getForm()
-    {}
+    {
+        $form = null;
+        if ($this->formClass) {
+            $formClass = 'Module\Widget\Form\\' . $this->formClass;
+            $form = new $formClass('block', $this->type);
+        }
 
+        return$form ;
+    }
+
+    /**
+     * Add a block
+     *
+     * @param array $block
+     *
+     * @return int
+     */
     protected function addBlock(array $block)
     {
         $status = 0;
@@ -67,7 +95,15 @@ abstract class WidgetController extends ActionController
         return $status;
     }
 
-    protected function updateBlock($widgetRow, $block)
+    /**
+     * Update a block
+     *
+     * @param Row $widgetRow
+     * @param array $block
+     *
+     * @return int
+     */
+    protected function updateBlock($widgetRow, array $block)
     {
         $widgetMeta = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
@@ -90,6 +126,11 @@ abstract class WidgetController extends ActionController
         return $status;
     }
 
+    /**
+     * Delete a block
+     *
+     * @return array
+     */
     protected function deleteBlock()
     {
         $id = $this->params('id');
@@ -126,7 +167,14 @@ abstract class WidgetController extends ActionController
         );
     }
 
-    protected function processPost($form)
+    /**
+     * Process POST data for a form
+     *
+     * @param AbstractBaseForm $form
+     *
+     * @return int
+     */
+    protected function processPost(AbstractBaseForm $form)
     {
         $status = 0;
         $data = $this->getRequest()->getPost();
@@ -162,7 +210,7 @@ abstract class WidgetController extends ActionController
     }
 
     /**
-     * Widget list
+     * Get widget list
      */
     protected function widgetList()
     {
@@ -217,6 +265,9 @@ abstract class WidgetController extends ActionController
         $this->view()->assign('content', $content);
         $this->view()->assign('message', $message);
         $this->view()->assign('title', _a('Add a block'));
+        if ($this->editTemplate) {
+            $this->view()->setTemplate($this->editTemplate);
+        }
     }
 
     /**
@@ -257,21 +308,48 @@ abstract class WidgetController extends ActionController
         $this->view()->assign('content', $content);
         $this->view()->assign('form', $form);
         $this->view()->assign('message', $message);
+        if ($this->editTemplate) {
+            $this->view()->setTemplate($this->editTemplate);
+        }
     }
 
+    /**
+     * Action to delete a block
+     */
     public function deleteAction()
     {}
 
-    protected function canonizePost($values)
+    /**
+     * Canonize POST data for block
+     *
+     * @param array $values
+     *
+     * @return array
+     */
+    protected function canonizePost(array $values)
     {
         return $values;
     }
 
+    /**
+     * Canonize block content
+     *
+     * @param string $content
+     *
+     * @return string
+     */
     protected function canonizeContent($content)
     {
         return $content;
     }
 
+    /**
+     * Prepare values for form
+     *
+     * @param Row $blockRow
+     *
+     * @return array
+     */
     protected function prepareFormValues($blockRow)
     {
         return $blockRow->toArray();

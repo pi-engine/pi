@@ -10,7 +10,7 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-use Module\Widget\Form\BlockMediaForm as BlockForm;
+//use Module\Widget\Form\BlockMediaForm as BlockForm;
 use Pi\File\Transfer\Upload;
 use Zend\Uri\Uri;
 
@@ -19,18 +19,35 @@ use Zend\Uri\Uri;
  */
 class MediaController extends WidgetController
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $type = 'media';
-    protected $form;
+
+    /** @var  BlockForm */
+    //protected $form;
+
+    /** @var  string Root URL */
     protected $urlRoot;
+
+    /** @var string Prefix for image files */
     protected $tmpPrefix = 'tmp.';
 
-    protected function getForm()
-    {
-        $this->form = $this->form ?: new BlockForm('block');
+    /**
+     * {@inheritDoc}
+     */
+    protected $editTemplate = 'widget-media';
 
-        return $this->form;
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $formClass = 'BlockMediaForm';
 
+    /**
+     * Get root URL
+     *
+     * @return string
+     */
     protected function urlRoot()
     {
         if (!$this->urlRoot) {
@@ -40,7 +57,10 @@ class MediaController extends WidgetController
         return $this->urlRoot;
     }
 
-    protected function updateBlock($widgetRow, $block)
+    /**
+     * {@inheritDoc}
+     */
+    protected function updateBlock($widgetRow, array $block)
     {
         $widgetMeta = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
@@ -79,27 +99,7 @@ class MediaController extends WidgetController
     }
 
     /**
-     * Add a new block
-     */
-    public function addAction()
-    {
-        parent::addAction();
-
-        $this->view()->setTemplate('widget-media');
-    }
-
-    /**
-     * Edit a block
-     */
-    public function editAction()
-    {
-        parent::editAction();
-
-        $this->view()->setTemplate('widget-media');
-    }
-
-    /**
-     * Delete a block
+     * {@inheritDoc}
      */
     public function deleteAction()
     {
@@ -120,6 +120,9 @@ class MediaController extends WidgetController
         $this->jump(array('action' => 'index'), $result['message']);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function uploadAction()
     {
         //Pi::service('log')->mute();
@@ -167,7 +170,10 @@ class MediaController extends WidgetController
         return $return;
     }
 
-    protected function canonizePost($values)
+    /**
+     * {@inheritDoc}
+     */
+    protected function canonizePost(array $values)
     {
         /*
         // Set block configs
@@ -205,6 +211,9 @@ class MediaController extends WidgetController
         return $values;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function canonizeContent($content)
     {
         $content = json_decode($content, true);
@@ -219,6 +228,13 @@ class MediaController extends WidgetController
         return json_encode($items);
     }
 
+    /**
+     * Canonize images
+     *
+     * @param string $content
+     *
+     * @return string
+     */
     protected function canonizeImage($content)
     {
         $pathRoot = Pi::path('upload') . '/' . $this->getModule();
@@ -241,7 +257,14 @@ class MediaController extends WidgetController
         return json_encode($items);
     }
 
-    protected function deleteImages($images)
+    /**
+     * Delete image files
+     *
+     * @param array $images
+     *
+     * @return void
+     */
+    protected function deleteImages(array $images)
     {
         $path = Pi::path('upload') . '/' . $this->getModule();
         foreach ($images as $image) {
@@ -255,6 +278,9 @@ class MediaController extends WidgetController
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     protected function prepareFormValues($blockRow)
     {
         $data = $blockRow->toArray();
@@ -269,6 +295,13 @@ class MediaController extends WidgetController
         return $data;
     }
 
+    /**
+     * Check if a link is absolute URL
+     *
+     * @param $link
+     *
+     * @return bool
+     */
     protected function isAbsoluteUrl($link)
     {
         $uri = new Uri($link);

@@ -10,7 +10,7 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-use Module\Widget\Form\BlockStaticForm as BlockForm;
+//use Module\Widget\Form\BlockStaticForm as BlockForm;
 
 /**
  * For static block
@@ -19,11 +19,21 @@ class StaticController extends WidgetController
 {
     protected $type = 'html';
 
-    protected function getForm()
-    {
-        return new BlockForm('block', $this->type);
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $editTemplate = 'system:component/form';
 
+    /**
+     * {@inheritDoc}
+     */
+    protected $formClass = 'BlockStaticForm';
+
+    /**
+     * Get content type list
+     *
+     * @return array
+     */
     protected function contentTypes()
     {
         $contentTypes = array(
@@ -36,7 +46,7 @@ class StaticController extends WidgetController
     }
 
     /**
-     * Widget list
+     * {@inheritDoc}
      */
     protected function widgetList()
     {
@@ -59,7 +69,7 @@ class StaticController extends WidgetController
     }
 
     /**
-     * Add a block
+     * {@inheritDoc}
      */
     public function addAction()
     {
@@ -69,11 +79,10 @@ class StaticController extends WidgetController
             $this->type = $this->params('type', 'html');
         }
         parent::addAction();
-        $this->view()->setTemplate('system:component/form');
     }
 
     /**
-     * Edit a block
+     * {@inheritDoc}
      */
     public function editAction()
     {
@@ -110,11 +119,11 @@ class StaticController extends WidgetController
 
         $this->view()->assign('form', $form);
         $this->view()->assign('message', $message);
-        $this->view()->setTemplate('system:component/form');
+        $this->view()->setTemplate($this->editTemplate);
     }
 
     /**
-     * Delete a block
+     * {@inheritDoc}
      */
     public function deleteAction()
     {
