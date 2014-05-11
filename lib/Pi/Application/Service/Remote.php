@@ -143,7 +143,7 @@ class Remote extends AbstractService
             $host   = $host->getHost();
         }
 
-        return $this->adapter()->connect($host, $port, $secure);
+        $this->adapter()->connect($host, $port, $secure);
     }
 
     /**
@@ -215,7 +215,7 @@ class Remote extends AbstractService
      */
     public function close()
     {
-        return $this->adapter()->close();
+        $this->adapter()->close();
     }
 
     /**
@@ -355,7 +355,7 @@ class Remote extends AbstractService
         array $options = array()
     ) {
         if ($params) {
-            // FIXME: Convert sub arrays to string
+            // @FIXME: Convert sub arrays to string
             array_walk($params, function (&$param) {
                 if (is_array($param)) {
                     $param = implode(',', $param);
@@ -422,7 +422,6 @@ class Remote extends AbstractService
             }
         }
         /**@-*/
-        //$uri = new Uri($url);
         $this->connect($uri);
 
         $headers = $this->canonizeHeaders($headers);
