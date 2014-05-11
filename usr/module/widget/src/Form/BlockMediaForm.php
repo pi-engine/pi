@@ -25,9 +25,9 @@ class BlockMediaForm extends AbstractBaseForm
             'options'       => array(
                 'label' =>  _a('Template'),
             ),
+            'type'          =>  'Module\Widget\Form\Element\MediaTemplate',
             'attributes'    => array(
                 'required'  => true,
-                'value'     => 'media-list',
             )
         );
     }

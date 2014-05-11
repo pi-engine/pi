@@ -9,7 +9,7 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
  include $this->templateComponent('form');
 ?>
 <div class="form-group" id="widget-js-carousel">
-    <label class="col-md-2 control-label"><?php echo _a('Images'); ?></label>
+    <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
     <div class="col-md-10">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-upload-btn">
@@ -36,7 +36,7 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
         <label><?php echo _a('Link'); ?></label>
         <input type="text" value="<%= link %>" name="link" class="form-control">
     <p>
-        <label><?php echo _a('Desc'); ?></label>
+        <label><?php echo _a('Summary'); ?></label>
         <textarea name="desc" class="form-control" rows="5"><%= desc %></textarea>
 </div>
 </script>

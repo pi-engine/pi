@@ -4,28 +4,32 @@ $options = (array) $block['options'];
 $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
+$imageAttributes = array();
+if (!empty($options['width'])) {
+    $imageAttributes[] = 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imageAttributes[] = 'height: '  . $options['height'] . 'px;';
+}
+if ($imageAttributes) {
+    $imageStyle = ' style="' . implode(' ', $imageAttributes) . '"';
+} else {
+    $imageStyle = '';
+}
+/*
 $width = empty($options['width']) ? '' : 'width: '  . $options['width']  . 'px;';
 $height = empty($options['height']) ? '' : 'height: '  . $options['height'] . 'px;';
+*/
 
-$render = function ($item) use ($width, $height) {
+$render = function ($item) use ($imageStyle) {
     $caption = $this->escape($item['caption']);
     $description = $this->escape($item['desc']);
-
-    if (empty($width) && empty($height)) {
-        $image = sprintf(
-            '<img src="%s" alt="%s" />',
-            $item['image'],
-            $caption
-        );
-    } else {
-        $image = sprintf(
-            '<img src="%s" alt="%s" style="%s%s" />',
-            $item['image'],
-            $caption,
-            $width,
-            $height
-        );
-    }
+    $image = sprintf(
+        '<img src="%s" alt="%s"%s />',
+        $item['image'],
+        $caption,
+        $imageStyle
+    );
 
     $content = '';
     if (!empty($item['link'])) {

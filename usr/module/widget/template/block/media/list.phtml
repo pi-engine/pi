@@ -2,35 +2,35 @@
 $options = (array) $block['options'];
 $items   = (array) $block['items'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
+$imageAttributes = array();
+if (!empty($options['width'])) {
+    $imageAttributes[] = 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imageAttributes[] = 'height: '  . $options['height'] . 'px;';
+}
+if ($imageAttributes) {
+    $imageStyle = ' style="' . implode(' ', $imageAttributes) . '"';
+} else {
+    $imageStyle = '';
+}
 ?>
 <div class="widget-media-list">
     <?php foreach($items as $item) { ?>
     <div class="media">
+        <a class="pull-left" href="<?php echo $item['link']; ?>">
+            <img class="media-object" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>"<?php echo $imageStyle; ?>>
+        </a>
         <div class="media-body">
             <h4 class="media-heading">
-                <a href="<?php echo _escape($item['link']); ?>" 
+                <a href="<?php echo $item['link']; ?>"
                    title="<?php echo _escape($item['caption']); ?>"
                    class="pi-ellipsis pi-ellipsis-1"
                    target="<?php echo _escape($target); ?>">
                     <?php echo _escape($item['caption']); ?>
                 </a>
             </h4>
-            <?php
-                $htmlDetail = '';
-                if (!empty($item['detail'])) {
-                    $htmlDetail = sprintf(
-                        '<span class="pull-right"><a href="%s" target="%s">%s</a></span>',
-                        $item['detail'],
-                        $target,
-                        __('Detail')
-                    );
-                }
-                echo sprintf(
-                    '<div class="pi-ellipsis">%s%s</div>',
-                    $item['desc'],
-                    $htmlDetail
-                );
-            ?>
+            <div class="pi-ellipsis"><?php echo $item['desc']; ?></div>
         </div>
     </div>
 <?php } ?>

@@ -21,7 +21,7 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
     }
 </style>
 <div class="form-group" id="widget-js-list">
-    <label class="col-md-2 control-label"><?php echo _a('Images'); ?></label>
+    <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
     <div class="col-md-10">
         <div class="row">
             <div class="btn btn-default col-sm-1 widget-block-add" style="margin-left: 15px">
@@ -42,10 +42,10 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
             <label><?php echo _a('Link'); ?></label>
             <input type="text" value="<%= link %>" name="link" class="form-control">
         <p>
-            <label><?php echo _a('Desc'); ?></label>
+            <label><?php echo _a('Summary'); ?></label>
             <textarea name="desc" class="form-control" rows="5"><%= desc %></textarea>
         <p>
-            <label><?php echo _a('More detail'); ?></label>
+            <label><?php echo _a('Link to detail'); ?></label>
             <input type="text" value="<%= detail %>" name="detail" class="form-control">
     </div>
 </div>

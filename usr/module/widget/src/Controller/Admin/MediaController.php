@@ -175,37 +175,6 @@ class MediaController extends WidgetController
      */
     protected function canonizePost(array $values)
     {
-        /*
-        // Set block configs
-        if (empty($values['id'])) {
-            $values['config'] = array(
-                'height'    => array(
-                    'title'         => _a('Block frame height'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                ),
-                'interval' => array(
-                    'title'         => _a('Time interval (ms)'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => 2000,
-                ),
-                'pause' => array(
-                    'title'         => _a('Mouse event'),
-                    'description'   => _a('Event to pause cycle'),
-                    'edit'          => array(
-                        'type'  =>  'select',
-                        'options'   => array(
-                            'options'   => array(
-                                'hover' => 'hover',
-                            ),
-                        ),
-                    ),
-                    'value'         => 'hover',
-                ),
-            );
-        }
-        */
         $values['content'] = $this->canonizeImage($values['content']);
 
         return $values;

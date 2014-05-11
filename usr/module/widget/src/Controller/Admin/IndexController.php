@@ -59,28 +59,6 @@ class IndexController extends WidgetController
                 $available[$name] = $config;
             };
             Pi::service('file')->getList($metaPath, $filter);
-            /*
-            $iterator = new \DirectoryIterator($metaPath);
-            foreach ($iterator as $fileinfo) {
-                if (!$fileinfo->isFile()) {
-                    continue;
-                }
-                $name = $fileinfo->getFilename();
-                $extension = pathinfo($name, PATHINFO_EXTENSION);
-                if ('php' != $extension) {
-                    continue;
-                }
-                $name = pathinfo($name, PATHINFO_FILENAME);
-                if (isset($installed[$name])
-                    || preg_match('/[^a-z0-9_\-]/', $name)
-                ) {
-                    continue;
-                }
-                $config = include $fileinfo->getPathname();
-                $config['name'] = $name;
-                $available[$name] = $config;
-            }
-            */
         }
         $list = array(
             'active'    => array_values($this->widgetList()),
