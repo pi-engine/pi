@@ -9,43 +9,14 @@
 
 namespace Module\Widget\Form;
 
-class BlockSpotlightForm extends BlockCarouselForm
+class BlockSpotlightForm extends BlockMediaForm
 {
-    public function init()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTemplateElement()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
-                'label' =>  _a('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'required'  => true,
-            )
-        ));
-
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
-                'label' =>  _a('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'required'  => true,
-            )
-        ));
-
-        $this->add(array(
-            'name'          => 'description',
-            'options'       => array(
-                'label' =>  _a('Description'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-            )
-        ));
-
-        $this->add(array(
+        return array(
             'name'          => 'template',
             'options'       => array(
                 'label' =>  _a('Template'),
@@ -54,37 +25,6 @@ class BlockSpotlightForm extends BlockCarouselForm
             'attributes'    => array(
                 'required'  => true,
             )
-        ));
-
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
-
-        $this->add(array(
-            'name'  => 'id',
-            'type'  => 'hidden',
-        ));
-
-        $this->add(array(
-            'name'  => 'content',
-            'type'  => 'hidden',
-        ));
-
-        $this->add(array(
-            'name'  => 'title_hidden',
-            'type'  => 'hidden',
-            'attributes'    => array(
-                'value' => '1',
-            ),
-        ));
-
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
-                'value' =>  _a('Submit'),
-            )
-        ));
+        );
     }
 }

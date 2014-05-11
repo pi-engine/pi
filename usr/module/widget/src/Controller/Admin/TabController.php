@@ -10,21 +10,31 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-use Module\Widget\Form\BlockTabForm as BlockForm;
-
+//use Module\Widget\Form\BlockTabForm as BlockForm;
 
 /**
  * For compound tabbed block
  */
 class TabController extends WidgetController
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $type = 'tab';
 
-    protected function getForm()
-    {
-        return new BlockForm('block');
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $editTemplate = 'widget-tab';
 
+    /**
+     * {@inheritDoc}
+     */
+    protected $formClass = 'BlockTabForm';
+
+    /**
+     * Load module list for block selection
+     */
     protected function assignModules()
     {
         $rowset = Pi::model('module')->select(array('active' => 1));
@@ -44,7 +54,7 @@ class TabController extends WidgetController
     }
 
     /**
-     * List of widgets
+     * {@inheritDoc}
      */
     public function indexAction()
     {
@@ -56,12 +66,11 @@ class TabController extends WidgetController
     }
 
     /**
-     * Add a block and default ACL rules
+     * {@inheritDoc}
      */
     public function addAction()
     {
         parent::addAction();
-        $this->view()->setTemplate('widget-tab');
         $this->assignModules();
     }
 
@@ -96,17 +105,16 @@ class TabController extends WidgetController
     }
 
     /**
-     * Edit a block
+     * {@inheritDoc}
      */
     public function editAction()
     {
         parent::editAction();
-        $this->view()->setTemplate('widget-tab');
         $this->assignModules();
     }
 
     /**
-     * Delete a block
+     * {@inheritDoc}
      */
     public function deleteAction()
     {

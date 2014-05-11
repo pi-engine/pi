@@ -17,10 +17,13 @@ use Pi\Mvc\Controller\ActionController;
  */
 class IndexController extends WidgetController
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $type = 'script';
 
     /**
-     * List of widgets
+     * {@inheritDoc}
      */
     public function indexAction()
     {
@@ -30,30 +33,33 @@ class IndexController extends WidgetController
             $installed[$block['name']] = 1;
         }
 
-        /*
-        $model = $this->getModel('widget');
-        $rowset = $model->select(array('type' => $this->type));
-        $widgets = array();
-        $installed = array();
-        foreach ($rowset as $row) {
-            $widgets[$row->block] = $row->toArray();
-            $installed[$row->name] = 1;
-        }
-        if ($widgets) {
-            $blocks = Pi::model('block_root')
-                ->select(array('id' => array_keys($widgets)))->toArray();
-            foreach ($blocks as $block) {
-                $widgets[$block['id']]['block'] = $block;
-            }
-        }
-        */
-
         $available = array();
         $paths = array(
             Pi::service('module')->path($this->getModule()) . '/meta',
             Pi::path('custom') . '/module/' . $this->getModule() . '/meta',
         );
         foreach ($paths as $metaPath) {
+            $filter = function ($fileinfo) use (&$available, $installed) {
+                if (!$fileinfo->isFile()) {
+                    return false;
+                }
+                $name = $fileinfo->getFilename();
+                $extension = pathinfo($name, PATHINFO_EXTENSION);
+                if ('php' != $extension) {
+                    return false;
+                }
+                $name = pathinfo($name, PATHINFO_FILENAME);
+                if (isset($installed[$name])
+                    || preg_match('/[^a-z0-9_\-]/', $name)
+                ) {
+                    return false;
+                }
+                $config = include $fileinfo->getPathname();
+                $config['name'] = $name;
+                $available[$name] = $config;
+            };
+            Pi::service('file')->getList($metaPath, $filter);
+            /*
             $iterator = new \DirectoryIterator($metaPath);
             foreach ($iterator as $fileinfo) {
                 if (!$fileinfo->isFile()) {
@@ -74,6 +80,7 @@ class IndexController extends WidgetController
                 $config['name'] = $name;
                 $available[$name] = $config;
             }
+            */
         }
         $list = array(
             'active'    => array_values($this->widgetList()),
@@ -85,7 +92,7 @@ class IndexController extends WidgetController
     }
 
     /**
-     * AJAX to install a widget
+     * {@inheritDoc}
      */
     public function addAction()
     {
@@ -115,8 +122,10 @@ class IndexController extends WidgetController
             $block['render'] = sprintf('Module\Widget\Render::%s', $name);
         } else {
             if (is_array($block['render'])) {
+                /*
                 $block['render'] = $block['render'][0] . '::'
                                  . $block['render'][1];
+                */
                 $class = $block['render'][0];
                 $method = $block['render'][1];
             } elseif (strpos('::', $block['render'])) {
@@ -150,7 +159,7 @@ class IndexController extends WidgetController
     }
 
     /**
-     * AJAX to uninstall a widget
+     * {@inheritDoc}
      */
     public function deleteAction()
     {

@@ -9,7 +9,7 @@
 
 namespace Module\Widget\Controller\Admin;
 
-use Module\Widget\Form\BlockListForm as BlockForm;
+//use Module\Widget\Form\BlockListForm as BlockForm;
 
 /**
  * For list block
@@ -19,44 +19,24 @@ use Module\Widget\Form\BlockListForm as BlockForm;
 class ListController extends WidgetController
 {
     /**
-     * Widget type
-     * @var string 
+     * {@inheritDoc}
      */
     protected $type = 'list';
 
     /**
-     * Get form instance
-     * 
-     * @return BlockForm
+     * {@inheritDoc}
      */
-    protected function getForm()
-    {
-        $this->form = $this->form ?: new BlockForm('block');
-
-        return $this->form;
-    }
+    protected $editTemplate = 'widget-list';
 
     /**
-     * Add a list block and default ACL rules
+     * {@inheritDoc}
      */
-    public function addAction()
-    {
-        parent::addAction();
-
-        $this->view()->setTemplate('widget-list');
-    }
+    protected $formClass = 'BlockListForm';
 
     /**
-     * Edit a list-group block
+     * {@inheritDoc}
      */
-    public function editAction()
-    {
-        parent::editAction();
-
-        $this->view()->setTemplate('widget-list');
-    }
-
-    protected function canonizePost($values)
+    protected function canonizePost(array $values)
     {
         return $values;
     }

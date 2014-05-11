@@ -9,78 +9,34 @@
 
 namespace Module\Widget\Form;
 
-use Pi;
-use Pi\Form\Form as BaseForm;
-use Zend\InputFilter\InputFilter;
-use Module\Widget\Validator\WidgetNameDuplicate;
+//use Pi;
+//use Pi\Form\Form as BaseForm;
+//use Zend\InputFilter\InputFilter;
+//use Module\Widget\Validator\WidgetNameDuplicate;
 
-class BlockStaticForm extends BaseForm
+class BlockStaticForm extends AbstractBaseForm
 {
-    protected $contentType;
-
     /**
-     * Constructor
-     *
-     * @param null|string|int $name Optional name for the element
-     * @param string $type Block type: clone, text, html, compound
+     * {@inheritDoc}
      */
-    public function __construct($name = null, $type = null)
+    protected function getTemplateElement()
     {
-        $this->contentType = $type;
-        parent::__construct($name);
+        return false;
     }
 
     /**
-     * Retrieve input filter used by this form.
-     *
-     * Attaches defaults from attached elements, if no corresponding input
-     * exists for the given element in the input filter.
-     *
-     * @return InputFilterInterface
+     * {@inheritDoc}
      */
-    public function getInputFilter()
+    protected function getTemplateFilter()
     {
-        if (!$this->filter) {
-            $this->filter = new InputFilter;
-        }
-
-        return $this->filter;
+        return false;
     }
 
-    public function init()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getContentElement()
     {
-        $this->add(array(
-            'name'          => 'title',
-            'options'       => array(
-                'label' =>  _a('Title'),
-            ),
-            'attributes'    => array(
-                'type'  => 'text',
-                'required'  => true,
-            )
-        ));
-
-        $this->add(array(
-            'name'          => 'name',
-            'options'       => array(
-                'label' =>  _a('Unique name'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-                'required'  => true,
-            )
-        ));
-
-        $this->add(array(
-            'name'          => 'description',
-            'options'       => array(
-                'label' =>  _a('Description'),
-            ),
-            'attributes'    => array(
-                'type'          => 'text',
-            )
-        ));
-
         $set = '';
         switch ($this->contentType) {
             case 'html':
@@ -96,101 +52,47 @@ class BlockStaticForm extends BaseForm
                 break;
         }
 
-        $this->add(array(
+        return array(
             'name'          => 'content',
             'options'       => array(
                 'label'     =>  _a('Content'),
                 'editor'    => $editor,
                 'set'       => $set,
             ),
+            'type'          => 'editor',
             'attributes'    => array(
-                'type'          => 'editor',
                 'class'         => 'span6',
                 'description'   => _a('Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `%slogan%` - site slogan'),
             )
-        ));
-
-        $this->add(array(
-            'name'  => 'type',
-            'type'  => 'hidden',
-            'attributes'    => array(
-                'value' => $this->contentType,
-            ),
-        ));
-
-        $this->add(array(
-            'name'  => 'security',
-            'type'  => 'csrf',
-        ));
-
-        $this->add(array(
-            'name'  => 'id',
-            'type'  => 'hidden',
-        ));
-
-        $this->add(array(
-            'name'          => 'submit',
-            'type'          => 'submit',
-            'attributes'    => array(
-                'value' =>  _a('Submit'),
-            )
-        ));
+        );
     }
 
-    public function isValid()
+    /**
+     * {@inheritDoc}
+     */
+    protected function getContentFilter()
     {
-        $inputFilter = $this->getInputFilter();
-
-        $inputFilter->add(array(
-            'name'          => 'title',
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
-
-        $inputFilter->add(array(
-            'name'          => 'name',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-            'validators'    => array(
-                new WidgetNameDuplicate,
-            ),
-        ));
-
-        $inputFilter->add(array(
-            'name'          => 'description',
-            'required'      => false,
-            'filters'       => array(
-                array(
-                    'name'  => 'StringTrim',
-                ),
-            ),
-        ));
-
-        $inputFilter->add(array(
-            'name'          => 'id',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
-
-        $inputFilter->add(array(
+        return array(
             'name'          => 'content',
             'required'      => true,
             'allow_empty'   => false,
-        ));
+        );
+    }
 
-        $inputFilter->add(array(
-            'name'          => 'type',
-            'required'      => true,
-            'allow_empty'   => true,
-        ));
-
-        return parent::isValid();
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTypeElement()
+    {
+        return array(
+            'name'  => 'type',
+            'options'       => array(
+                'label' =>  _a('Content type'),
+            ),
+            'attributes'    => array(
+                'readonly'  => true,
+                'value'     => $this->contentType,
+            ),
+        );
     }
 }

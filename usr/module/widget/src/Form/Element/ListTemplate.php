@@ -9,12 +9,12 @@
 
 namespace Module\Widget\Form\Element;
 
-class CarouselTemplate extends MediaTemplate
+class ListTemplate extends MediaTemplate
 {
     /**
      * {@inheritDoc}
      */
-    protected $templateDir = 'carousel';
+    protected $templateDir = 'list';
 
     /**
      * {@inheritDoc}
@@ -22,9 +22,8 @@ class CarouselTemplate extends MediaTemplate
     protected function getStyles()
     {
         $styles = array(
-            $this->templateDir . '/bootstrap'    =>  _a('Bootstrap slide') . ' (bootstrap)',
-            $this->templateDir . '/jcarousel'    =>  _a('jQuery riding Carousel') . ' (jcarousel)',
-            $this->templateDir . '/parallax'     =>  _a('Parallax Content Slider') . ' (parallax)',
+            $this->templateDir . '/title'   => _a('Title only'),
+            $this->templateDir . '/summary' => _a('Title and summary'),
         );
         $styles += $this->getList();
 

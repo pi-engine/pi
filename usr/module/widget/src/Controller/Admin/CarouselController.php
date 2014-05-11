@@ -9,44 +9,33 @@
 
 namespace Module\Widget\Controller\Admin;
 
-use Pi;
-use Module\Widget\Form\BlockCarouselForm as BlockForm;
+//use Pi;
+//use Module\Widget\Form\BlockCarouselForm as BlockForm;
 
 /**
  * For carousel block
  */
 class CarouselController extends MediaController
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $type = 'carousel';
 
-    protected function getForm()
-    {
-        $this->form = $this->form ?: new BlockForm('block');
-
-        return $this->form;
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $editTemplate = 'widget-carousel';
 
     /**
-     * Add a carousel block and default ACL rules
+     * {@inheritDoc}
      */
-    public function addAction()
-    {
-        parent::addAction();
-
-        $this->view()->setTemplate('widget-carousel');
-    }
+    protected $formClass = 'BlockCarouselForm';
 
     /**
-     * Edit a carousel block
+     * {@inheritDoc}
      */
-    public function editAction()
-    {
-        parent::editAction();
-
-        $this->view()->setTemplate('widget-carousel');
-    }
-
-    protected function canonizePost($values)
+    protected function canonizePost(array $values)
     {
         $values = parent::canonizePost($values);
         /**/
