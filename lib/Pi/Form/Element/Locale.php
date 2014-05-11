@@ -30,18 +30,15 @@ class Locale extends Select
     public function getValueOptions()
     {
         if (empty($this->valueOptions)) {
-            $this->valueOptions['auto'] = __('Auto-detection');
-            $iterator = new \DirectoryIterator(
-                Pi::service('i18n')->getPath('', '')
-            );
             Pi::service('i18n')->load('language');
-            foreach ($iterator as $fileinfo) {
-                if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                    continue;
+            $this->valueOptions['auto'] = __('Auto-detection');
+            $filter = function ($fileinfo) {
+                if (!$fileinfo->isDir()) {
+                    return false;
                 }
                 $directory = $fileinfo->getFilename();
                 if (!preg_match('/^[a-z]{2}([\-\_][a-z]+)?$/', $directory)) {
-                    continue;
+                    return false;
                 }
                 $label = __($directory) . ' (' . $directory . ')';
                 /*
@@ -53,7 +50,11 @@ class Locale extends Select
                 }
                 */
                 $this->valueOptions[$directory] = $label;
-            }
+            };
+            Pi::service('file')->getList(
+                Pi::service('i18n')->getPath('', ''),
+                $filter
+            );
         }
 
         return $this->valueOptions;
