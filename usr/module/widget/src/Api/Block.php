@@ -35,17 +35,34 @@ class Block extends AbstractApi
     {
         $type = $type ?: $block['type'];
         switch ($type) {
-            case 'list':
+            case 'media':
                 $block['config'] = array(
                     'width'          => array(
                         'title'         => _a('Image width'),
                         'edit'          => 'text',
                         'filter'        => 'int',
+                        'value'         => 150,
                     ),
                     'height'         => array(
                         'title'         => _a('Image height'),
                         'edit'          => 'text',
                         'filter'        => 'int',
+                    ),
+                );
+                break;
+            case 'spotlight':
+                $block['config'] = array(
+                    'width'          => array(
+                        'title'         => _a('Image width'),
+                        'edit'          => 'text',
+                        'filter'        => 'int',
+                        'value'         => 400,
+                    ),
+                    'height'         => array(
+                        'title'         => _a('Image height'),
+                        'edit'          => 'text',
+                        'filter'        => 'int',
+                        'value'         => 300,
                     ),
                 );
                 break;

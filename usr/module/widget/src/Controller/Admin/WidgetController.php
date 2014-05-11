@@ -197,7 +197,8 @@ abstract class WidgetController extends ActionController
                 $status = $this->updateBlock($row, $values);
             } else {
                 $values['type'] = !empty($values['type'])
-                    ? $values['type'] : $this->type;
+                    ? $values['type']
+                    : $this->type;
                 $status = $this->addBlock($values);
             }
 
@@ -234,7 +235,7 @@ abstract class WidgetController extends ActionController
     /**
      * Add a block and default ACL rules
      */
-    protected function addAction()
+    public function addAction()
     {
         $form = $this->getForm();
         if ($this->request->isPost()) {
@@ -255,7 +256,6 @@ abstract class WidgetController extends ActionController
                     ?: _a('Invalid data, please check and re-submit.');
             }
             $content = $this->request->getPost('content');
-            //$content = $content ? json_decode($content, true) : array();
         } else {
             $content = '';
             $message = '';
@@ -273,7 +273,7 @@ abstract class WidgetController extends ActionController
     /**
      * Edit a block
      */
-    protected function editAction()
+    public function editAction()
     {
         $form = $this->getForm();
         if ($this->request->isPost()) {
@@ -317,7 +317,10 @@ abstract class WidgetController extends ActionController
      * Action to delete a block
      */
     public function deleteAction()
-    {}
+    {
+        $result = $this->deleteBlock();
+        $this->jump(array('action' => 'index'), $result['message']);
+    }
 
     /**
      * Canonize POST data for block

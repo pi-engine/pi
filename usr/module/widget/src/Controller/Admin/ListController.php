@@ -9,10 +9,8 @@
 
 namespace Module\Widget\Controller\Admin;
 
-//use Module\Widget\Form\BlockListForm as BlockForm;
-
 /**
- * For list block
+ * For list group block
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
@@ -32,12 +30,4 @@ class ListController extends WidgetController
      * {@inheritDoc}
      */
     protected $formClass = 'BlockListForm';
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function canonizePost(array $values)
-    {
-        return $values;
-    }
 }
