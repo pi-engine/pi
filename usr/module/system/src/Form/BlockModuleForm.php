@@ -99,18 +99,7 @@ class BlockModuleForm extends BaseForm
             )
         ));
 
-        if ('carousel' == $this->root->type) {
-            $this->add(array(
-                'name'          => 'template',
-                'options'       => array(
-                    'label' => __('Template'),
-                ),
-                'type'          =>  'Module\Widget\Form\Element\CarouselTemplate',
-                'attributes'    => array(
-                    'value'         => $this->root->template,
-                )
-            ));
-        } else {
+        if ('widget' != $this->root->module) {
             $this->add(array(
                 'name'          => 'template',
                 'options'       => array(
@@ -285,7 +274,9 @@ class BlockModuleForm extends BaseForm
                 ),
             ),
             'validators'    => array(
-                new \Module\System\Validator\BlockNameDuplicate(),
+                array(
+                    'name'  => 'Module\System\Validator\BlockNameDuplicate',
+                ),
             ),
         ));
 
