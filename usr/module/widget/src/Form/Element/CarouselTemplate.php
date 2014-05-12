@@ -22,9 +22,10 @@ class CarouselTemplate extends MediaTemplate
     protected function getStyles()
     {
         $styles = array(
-            $this->templateDir . '/bootstrap'    =>  _a('Bootstrap slide') . ' (bootstrap)',
-            $this->templateDir . '/jcarousel'    =>  _a('jQuery riding Carousel') . ' (jcarousel)',
-            $this->templateDir . '/parallax'     =>  _a('Parallax Content Slider') . ' (parallax)',
+            $this->templateDir . '/bootstrap'           =>  _a('Bootstrap slide') . ' (bootstrap)',
+            $this->templateDir . '/bootstrap-twocol'    =>  _a('Bootstrap two columns') . ' (bootstrap-twocol)',
+            $this->templateDir . '/jcarousel'           =>  _a('jQuery riding Carousel') . ' (jcarousel)',
+            $this->templateDir . '/parallax'            =>  _a('Parallax Content Slider') . ' (parallax)',
         );
         $styles += $this->getList();
 
