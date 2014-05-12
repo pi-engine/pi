@@ -169,4 +169,33 @@ class Blocks extends AbstractHelper
 
         return $blocks;
     }
+
+    /**
+     * Get zone list
+     *
+     * @return array
+     */
+    public function getZones()
+    {
+        return $this->zoneMap;
+    }
+
+    /**
+     * Assign blocks
+     *
+     * @param array $blocks
+     * @param null|int $zone
+     *
+     * @return $this
+     */
+    public function assign($blocks, $zone = null)
+    {
+        if (null === $zone) {
+            $this->blocks = $blocks;
+        } else {
+            $this->blocks[(int) $zone] = $blocks;
+        }
+
+        return $this;
+    }
 }
