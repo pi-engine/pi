@@ -10,21 +10,4 @@
 namespace Module\Widget\Form;
 
 class BlockCarouselForm extends BlockMediaForm
-{
-    /**
-     * {@inheritDoc}
-     */
-    protected function getTemplateElement()
-    {
-        return array(
-            'name'          => 'template',
-            'options'       => array(
-                'label' =>  _a('Template'),
-            ),
-            'type'          =>  'Module\Widget\Form\Element\CarouselTemplate',
-            'attributes'    => array(
-                'required'  => true,
-            )
-        );
-    }
-}
+{}

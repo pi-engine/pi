@@ -99,18 +99,29 @@ class BlockModuleForm extends BaseForm
             )
         ));
 
-        if ('widget' != $this->root->module) {
-            $this->add(array(
+        $templateSpec = array(
+            'type'          => 'text',
+            'attributes'    => array(
+                'value'         => $this->root->template,
+                'description'   => __('PHTML rendering template, file extension is optional.'),
+            )
+        );
+        if ('widget' == $this->root->module) {
+            $spec = Pi::api('block', 'widget')->templateSpec($this->root->type);
+            if (false === $spec) {
+                $templateSpec = false;
+            } elseif ($spec) {
+                $templateSpec = array_replace($templateSpec, $spec);
+            }
+        }
+        if (false !== $templateSpec) {
+            $templateSpec = array_replace($templateSpec, array(
                 'name'          => 'template',
                 'options'       => array(
                     'label' => __('Template'),
-                ),
-                'attributes'    => array(
-                    'type'          => 'text',
-                    'value'         => $this->root->template,
-                    'description'   => __('PHTML rendering template, file extension is optional.'),
                 )
             ));
+            $this->add($templateSpec);
         }
 
         $this->add(array(

@@ -15,21 +15,4 @@ namespace Module\Widget\Form;
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class BlockListForm extends BlockMediaForm
-{
-    /**
-     * {@inheritDoc}
-     */
-    protected function getTemplateElement()
-    {
-        return array(
-            'name'          => 'template',
-            'options'       => array(
-                'label' =>  _a('Template'),
-            ),
-            'type'          =>  'Module\Widget\Form\Element\ListTemplate',
-            'attributes'    => array(
-                'required'  => true,
-            )
-        );
-    }
-}
+{}

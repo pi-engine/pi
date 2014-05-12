@@ -10,21 +10,4 @@
 namespace Module\Widget\Form;
 
 class BlockSpotlightForm extends BlockMediaForm
-{
-    /**
-     * {@inheritDoc}
-     */
-    protected function getTemplateElement()
-    {
-        return array(
-            'name'          => 'template',
-            'options'       => array(
-                'label' =>  _a('Template'),
-            ),
-            'type'          =>  'Module\Widget\Form\Element\SpotlightTemplate',
-            'attributes'    => array(
-                'required'  => true,
-            )
-        );
-    }
-}
+{}
