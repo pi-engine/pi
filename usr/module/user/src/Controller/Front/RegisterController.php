@@ -84,6 +84,9 @@ class RegisterController extends ActionController
             $form->get('redirect')->setValue(rawurlencode($redirect));
         }
 
+        // load admin language file
+        Pi::service('i18n')->load(array('module/user', 'admin'));
+
         $this->view()->assign(array(
             'form'          => $form,
             'activation'    => $this->config('register_activation'),
