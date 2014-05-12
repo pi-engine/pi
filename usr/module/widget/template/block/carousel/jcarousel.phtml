@@ -1,13 +1,18 @@
 <?php
-// Options: interval, pause, height
 $options    = (array) $block['options'];
 $items      = $block['items'];
 $class      = isset($block['class']) ? $block['class'] : 'jcarousel-skin';
 $target     = empty($options['target_new']) ? '' : '_blank';
+$imgStyle   = '';
+if (!empty($options['width'])) {
+    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+}
 $carouselId = uniqid('carousel-');
 
 $this->css($this->assetModule('script/jcarousel/jcarousel.css', 'widget'));
-//$this->jQuery();
 $this->js($this->assetModule('script/jcarousel/jcarousel-min.js', 'widget'));
 ?>
 <div id="<?php echo $carouselId; ?>" class="<?php echo $class; ?>">
@@ -17,7 +22,7 @@ $this->js($this->assetModule('script/jcarousel/jcarousel-min.js', 'widget'));
         ?>
         <li class="jcarousel-item">
             <a href="<?php echo $href; ?>" target="<?php echo $target; ?>">
-                <img src="<?php echo $item['image']; ?>" style="height: 114px; width: 152px;" >
+                <img src="<?php echo $item['image']; ?>" style="<?php echo $imgStyle; ?>" />
             </a>
             <div style="text-align: center; margin-top: 5px;">
                 <a href="<?php echo $href; ?>" target="<?php echo $target; ?>" title="<?php echo _escape($item['caption']); ?>" class="link"><?php echo _escape($item['caption']); ?></a>
