@@ -50,28 +50,28 @@ EOT;
 
         return $content;
     };
-?>
+    ?>
 
-<style>
-    .widget-carousel-bootstrap .carousel-indicators {
-        text-align: right;
-        margin: 0;
-        left: auto;
-        top: auto;
-        right: 15px;
-        bottom: 5px;
-    }
-    .widget-carousel-bootstrap .carousel-indicators .active {
-        background: #428bca;
-    }
-    .widget-carousel-bootstrap .carousel-indicators li {
-        background: #ccc;
-        border-radius: 0;
-        margin: 0 3px 0 0 !important;
-        width: 14px !important;
-        height: 14px !important;
-    }
-</style>
+    <style>
+        .widget-carousel-bootstrap .carousel-indicators {
+            text-align: right;
+            margin: 0;
+            left: auto;
+            top: auto;
+            right: 15px;
+            bottom: 5px;
+        }
+        .widget-carousel-bootstrap .carousel-indicators .active {
+            background: #428bca;
+        }
+        .widget-carousel-bootstrap .carousel-indicators li {
+            background: #ccc;
+            border-radius: 0;
+            margin: 0 3px 0 0 !important;
+            width: 14px !important;
+            height: 14px !important;
+        }
+    </style>
 
 <?php
 } else {
@@ -109,7 +109,7 @@ EOT;
         <ol class="carousel-indicators">
             <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
             <?php for ($i = 1; $i < $count; $i++) { ?>
-            <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
+                <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
             <?php } ?>
         </ol>
 
@@ -119,9 +119,9 @@ EOT;
                 <?php echo $render(array_shift($items)); ?>
             </div>
             <?php foreach ($items as $item) { ?>
-            <div class="item">
-                <?php echo $render($item); ?>
-            </div>
+                <div class="item">
+                    <?php echo $render($item); ?>
+                </div>
             <?php } ?>
         </div>
 

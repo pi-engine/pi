@@ -164,6 +164,7 @@ class Block extends AbstractApi
                     ),
                     'value'         => 'hover',
                 ),
+                /*
                 'two_col'    => array(
                     'title'         => _a('Two columns'),
                     'description'   => _a('Split image and text into two columns'),
@@ -171,6 +172,7 @@ class Block extends AbstractApi
                     'filter'        => 'int',
                     'value'         => 0,
                 ),
+                */
                 'target_new'    => array(
                     'title'         => _a('New window'),
                     'description'   => _a('Open link in a new window'),
