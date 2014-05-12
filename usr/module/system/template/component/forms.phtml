@@ -86,6 +86,12 @@ $renderElement = function ($element) use ($markRequired, $emptyControl, $isMulti
                 $this->formElement($element),
                 $this->formElementErrors($element)
             );
+        } elseif ($type == 'description') {
+            $rendered .= sprintf(
+                '<div class="col-sm-5 js-form-element">%s</div><div class="col-sm-4 help-block">%s</div></div>',
+                $this->formElement($element),
+                $this->formElementErrors($element)
+            );
         } else {
             $rendered .= sprintf(
                 '<div class="col-sm-5 js-form-element">%s%s</div><div class="col-sm-4 help-block">%s</div></div>',

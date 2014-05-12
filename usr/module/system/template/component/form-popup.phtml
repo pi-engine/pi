@@ -65,7 +65,7 @@ $markRequired = '<i class="text-danger" style="margin-right: 5px;">*</i>';
                     );
 
                     $desc = $element->getAttribute('description');
-                    if ($desc) {
+                    if ($desc && $element->getAttribute('type') != 'description') {
                         echo '<i class="icon-question-sign" data-original-title="' . _escape($desc) . '"></i>';
                     }
                 } else {
