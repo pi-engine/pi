@@ -9,11 +9,6 @@
 
 namespace Module\Widget\Form;
 
-//use Pi;
-//use Pi\Form\Form as BaseForm;
-//use Zend\InputFilter\InputFilter;
-//use Module\Widget\Validator\WidgetNameDuplicate;
-
 class BlockStaticForm extends AbstractBaseForm
 {
     /**

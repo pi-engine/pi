@@ -1,6 +1,6 @@
 <?php 
 // Load jQuerty
-$this->jQuery();
+//$this->jQuery();
 // Load css
 $this->css(array(
     $this->assetModule('script/parallax/style.css', 'widget'),
@@ -25,14 +25,15 @@ $this->HeadLink(array(
 ));
 
 // Options: interval, pause, height
-$options = (array) $block['options'];
+$options    = (array) $block['options'];
+$target     = empty($options['target_new']) ? '' : '_blank';
 ?>
 <div id="da-slider" class="da-slider">
     <?php foreach ($block['items'] as $item) { ?>
     <div class="da-slide">
         <h2><?php echo _escape($item['caption']); ?></h2>
-        <p><?php echo _escape($item['desc']); ?></p>
-        <a title="<?php echo _escape($item['caption']); ?>" href="<?php echo _escape($item['link']); ?>" class="da-link"><?php echo _b('More'); ?></a>
+        <p><?php echo $item['desc']; ?></p>
+        <a title="<?php echo _escape($item['caption']); ?>" href="<?php echo $item['link']; ?>" class="da-link" target="<?php echo $target; ?>"><?php echo _b('More'); ?></a>
         <div class="da-img"><img src="<?php echo _escape($item['image']); ?>" alt="<?php echo _escape($item['caption']); ?>" /></div>
     </div>
     <?php } ?>

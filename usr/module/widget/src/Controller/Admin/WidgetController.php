@@ -73,23 +73,11 @@ abstract class WidgetController extends ActionController
         }
         $widgetMeta = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
-
-        $result = Pi::api('block', $module)->add($block, $block['type']);
-        $id = $result['root'];
+        $block['type'] = $this->type;
+        $id = Pi::api('block', $module)->add($block);
         if ($id) {
-            $widget = array(
-                'block' => $id,
-                'name'  => $block['name'],
-                'meta'  => $widgetMeta,
-                'type'  => $this->type,
-                'time'  => time(),
-            );
-            $row = $this->getModel('widget')->createRow($widget);
-            $row->save();
-            if ($row->id) {
-                $status = 1;
-                Pi::registry('block')->clear($module);
-            }
+            $status = 1;
+            Pi::registry('block')->clear($module);
         }
 
         return $status;

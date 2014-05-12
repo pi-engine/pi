@@ -9,9 +9,7 @@
 
 namespace Module\Widget\Form;
 
-//use Pi\Form\Form as BaseForm;
-//use Zend\InputFilter\InputFilter;
-//use Module\Widget\Validator\WidgetNameDuplicate;
+use Pi;
 
 class BlockMediaForm extends AbstractBaseForm
 {
@@ -20,16 +18,18 @@ class BlockMediaForm extends AbstractBaseForm
      */
     protected function getTemplateElement()
     {
-        return array(
+        $tplSpec = Pi::api('block', 'widget')->templateSpec($this->contentType);
+        $spec = array_replace($tplSpec, array(
             'name'          => 'template',
             'options'       => array(
                 'label' =>  _a('Template'),
             ),
-            'type'          =>  'Module\Widget\Form\Element\MediaTemplate',
             'attributes'    => array(
                 'required'  => true,
             )
-        );
+        ));
+
+        return $spec;
     }
 
     /**
