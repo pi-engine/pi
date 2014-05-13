@@ -1,11 +1,11 @@
 (function($, _, Backbone) {
   var options;
   var page = {
-    form: $("#widget-js-form"),
+    form: $(".form-horizontal"),
     init: function() {
       this.form.submit(function() {
         var content = [];
-        page.form.find(".widget-carousel-upload").each(function() {
+        page.form.find(".widget-media-upload").each(function() {
           var el = $(this);
           var getVal = function(name) {
             return $.trim(el.find('[name=' + name + ']').val());
@@ -13,20 +13,20 @@
 
           content.push({
             "caption": getVal('caption'),
-            "image": el.find("img").attr("src"),
+            "image": el.find("img").attr("src").replace(options.imageRoot, ''),
             "link": getVal('link'),
             "desc": getVal('desc')
           });
         });
-        page.form.find("[name=content]").val(JSON.stringify(content));
+          page.form.find("[name=content]").val(JSON.stringify(content));
       });
     }
   }
-  var carouselItemView = Backbone.View.extend({
-    className: "widget-carousel-upload",
-    template: _.template($("#carousel-template").html()),
+  var mediaItemView = Backbone.View.extend({
+    className: "col-sm-6 col-md-3 widget-media-upload",
+    template: _.template($("#widget-media-template").html()),
     events: {
-      "click .icon-remove-sign": "cancel"
+      "click .close": "cancel"
     },
     initialize: function() {
       this.model.on("destroy", this.remove, this);
@@ -40,13 +40,14 @@
       this.model.destroy();
     }
   });
-  var carouselListView = Backbone.View.extend({
-    el: $("#widget-js-carousel"),
+  var mediaListView = Backbone.View.extend({
+    el: $("#widget-js-media"),
     events: {
       'click .widget-upload-btn': 'popup'
     },
     initialize: function() {
       this.$addBtn = this.$('.widget-upload-btn');
+      this.$el.insertBefore(page.form.find('.form-group:last'));
       this.collection.on("add", this.addOne, this);
       this.render();
     },
@@ -56,7 +57,7 @@
       this.sortable();
     },
     addOne: function(model) {
-      var item = new carouselItemView({
+      var item = new mediaItemView({
         model: model
       }).render();
       item.insertBefore(this.$addBtn);
@@ -72,10 +73,11 @@
           var res = $.parseJSON(data.jqXHR.responseText);
           if (res.status) {
             self.collection.add({
-              image: options.imageRoot + res.image,
-              caption: '',
-              link: '',
-              desc: ''
+                //image: options.imageRoot + res.image,
+                image: res.image,
+                caption: '',
+                link: '',
+                desc: ''
             });
           } else {
             alert(res.message);
@@ -85,7 +87,7 @@
     },
     sortable: function() {
       this.$el.sortable({
-        items: ".widget-carousel-upload",
+        items: ".widget-media-upload",
         tolerance: "pointer"
       });
     },
@@ -93,10 +95,10 @@
       this.$('[name=image]')[0].click();
     }
   });
-  this.widgetCarouselAction = function(opts) {
+  this.widgetMediaAction = function(opts) {
     options = opts;
-    new carouselListView({
-      collection: new Backbone.Collection(opts.imgs)
+    new mediaListView({
+      collection: new Backbone.Collection(opts.items)
     });
     page.init();
   }

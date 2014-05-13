@@ -184,14 +184,16 @@ class Block extends AbstractApi
         foreach ($blockList as $blockRow) {
             $blockRow->assign($update);
             // Update config
+            $blockConfig = (array) $blockRow->config;
             if ($configRemove) {
                 foreach ($configRemove as $name) {
-                    unset($blockRow->config[$name]);
+                    unset($blockConfig[$name]);
                 }
             }
             if ($configAdd) {
-                $blockRow->config = array_merge($configAdd, $blockRow->config);
+                $blockConfig = array_merge($configAdd, $blockConfig);
             }
+            $blockRow->config = $blockConfig;
             try {
                 $blockRow->save();
                 $status = true;

@@ -30,4 +30,14 @@ class ListController extends WidgetController
      * {@inheritDoc}
      */
     protected $formClass = 'BlockListForm';
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function canonizePost(array $values)
+    {
+        $values['content'] = json_decode($values['content'], true);
+
+        return $values;
+    }
 }
