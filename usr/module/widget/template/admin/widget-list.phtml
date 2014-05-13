@@ -1,8 +1,9 @@
 <?php
+$this->css($this->assetModule('admin/admin.css'));
 $this->jQuery('ui/jquery-ui.custom.min.js');
 $this->jQuery('extension/fileupload-min.js');
 $this->Backbone();
-$imageRoot = Pi::url('upload') . '/' . $module . '/';
+//$imageRoot = Pi::url('upload') . '/' . $module . '/';
 /**
  * $content: model collection of 'caption', 'desc', 'image', 'link', 'detail'
  */
@@ -16,9 +17,6 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
         right: 8px;
         top: -15px;
     }
-    .widget-upload-image {
-        margin-top: 10px;
-    }
 </style>
 <div class="form-group" id="widget-js-list">
     <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
@@ -31,8 +29,8 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
     </div>
 </div>
 
-<script id="list-template" type="text/template">
-<div class="col-sm-6 col-md-3 widget-block">
+<script id="widget-list-template" type="text/template">
+<div class="col-sm-6 col-md-3 widget-list-item">
     <button type="button" class="remove-block close">&times;</button>
     <div class="thumbnail">
         <p>
@@ -50,12 +48,11 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
     </div>
 </div>
 </script>
-<link rel="stylesheet" href="<?php echo $this->assetModule('admin/admin.css'); ?>">
 <script src="<?php echo $this->assetModule('admin/widget-list.js'); ?>"></script>
 <script>
 widgetListAction({
-    imageRoot: '<?php echo $imageRoot; ?>',
-    imgs: <?php echo $content ?: '[]'; ?>,
-    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>'
+    //imageRoot: '<?php echo $imageRoot; ?>',
+    //uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
+    items: <?php echo $content ? json_encode($content): json_encode(array()); ?>
 });
 </script>

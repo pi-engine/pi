@@ -1,10 +1,6 @@
 <?php
-$this->angular(array(
-    'angular-route.js',
-    'pi.js',
-));
-$js = $controller == 'index' ? 'index' : 'widgets';
-//d($data);
+$this->angular(array('angular-route.js', 'pi.js'));
+$js = ($controller == 'index') ? 'list-script' : 'list-misc';
 ?>
 <script>
 angular

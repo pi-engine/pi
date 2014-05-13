@@ -71,7 +71,7 @@ abstract class WidgetController extends ActionController
         if (!isset($block['content'])) {
             $block['content'] = '';
         }
-        $widgetMeta = $block['content'];
+        $block['meta'] = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
         $block['type'] = $this->type;
         $id = Pi::api('block', $module)->add($block);
@@ -93,12 +93,13 @@ abstract class WidgetController extends ActionController
      */
     protected function updateBlock($widgetRow, array $block)
     {
-        $widgetMeta = $block['content'];
+        $block['meta'] = $block['content'];
         $block['content'] = $this->canonizeContent($block['content']);
         if (isset($block['type'])) {
             unset($block['type']);
         }
 
+        $block['content'] = json_encode($block['content']);
         $result = Pi::api('block', 'system')->update(
             $widgetRow->block,
             $block
@@ -106,7 +107,7 @@ abstract class WidgetController extends ActionController
         $status = $result['status'];
         if ($status) {
             $widgetRow->name = $block['name'];
-            $widgetRow->meta = $widgetMeta;
+            $widgetRow->meta = $block['meta'];
             $widgetRow->time = time();
             $widgetRow->save();
         }
@@ -133,17 +134,18 @@ abstract class WidgetController extends ActionController
             $message = _a('The widget does not exist.');
         } else {
             $result = Pi::api('block', 'system')->delete($row->block, true);
-            extract($result);
-            if ($status) {
+            if (!empty($result['status'])) {
                 $row->delete();
                 Pi::registry('block')->clear($this->getModule());
+                $status = 1;
                 $message = sprintf(
-                    _a('The widget "%s" is uninstalled.'),
+                    _a('The widget "%s" is removed.'),
                     $row->name
                 );
             } else {
+                $status = 0;
                 $message = sprintf(
-                    _a('The widget "%s" is not uninstalled.'),
+                    _a('The widget "%s" is not removed.'),
                     $row->name
                 );
             }
@@ -325,7 +327,7 @@ abstract class WidgetController extends ActionController
     /**
      * Canonize block content
      *
-     * @param string $content
+     * @param string|string $content
      *
      * @return string
      */

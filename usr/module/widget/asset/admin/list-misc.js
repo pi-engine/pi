@@ -7,7 +7,7 @@ angular.module('widget')
     }
 
 		$routeProvider.otherwise({
-			templateUrl: tpl('widgets'),
+			templateUrl: tpl('list-misc'),
 			controller: 'listCtrl'
 		});
 

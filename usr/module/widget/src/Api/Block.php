@@ -11,7 +11,7 @@ namespace Module\Widget\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Pi\Db\RowGateway\RowGateway;
+use Pi\View\Helper\Block as RenderHelper;
 
 /**
  * Block manipulation APIs
@@ -39,7 +39,9 @@ class Block extends AbstractApi
             $widget = array(
                 'block' => $result['root'],
                 'name'  => $block['name'],
-                'meta'  => $block['content'],
+                'meta'  => isset($block['meta'])
+                        ? $block['meta']
+                        : $block['content'],
                 'type'  => $type ?: $block['type'],
                 'time'  => time(),
             );
@@ -65,6 +67,9 @@ class Block extends AbstractApi
         $config = $this->getConfig($type);
         if ($config) {
             $block['config'] = $config;
+        }
+        if (is_array($block['content'])) {
+            $block['content'] = json_encode($block['content']);
         }
         $result = Pi::api('block', 'system')->add($block);
 
@@ -231,5 +236,112 @@ class Block extends AbstractApi
         }
 
         return $config;
+    }
+
+    /**
+     * Render a widget
+     *
+     * @param RenderHelper  $helper
+     * @param array         $block
+     * @param array         $options
+     *
+     * @return array|string
+     */
+    public function render(
+        RenderHelper $helper,
+        array $block,
+        array $options = array()
+    ) {
+        $transliterateGlobals = function($content) {
+            $globalsMap = array(
+                'sitename'  => Pi::config('sitename'),
+                'slogan'    => Pi::config('slogan'),
+                'siteurl'   => Pi::url('www'),
+            );
+            foreach ($globalsMap as $var => $val) {
+                $content = str_replace('%' . $var . '%', $val, $content);
+            }
+
+            return $content;
+        };
+
+        switch ($block['type']) {
+            // Scripting widgets
+            case 'script':
+                $result = call_user_func($block['render'], $options);
+                break;
+
+            // spotlight
+            case 'spotlight':
+                // list group
+            case 'list':
+                // media object
+            case 'media':
+                // carousel
+            case 'carousel':
+                $items = empty($block['content'])
+                    ? false : json_decode($block['content'], true);
+                if ($items && is_array($items)) {
+                    $result = array(
+                        'items'     => $items,
+                        'options'   => $options,
+                    );
+                } else {
+                    $result = array();
+                }
+                break;
+
+            // compound tab
+            case 'tab':
+                $result = array();
+                $list = json_decode($block['content'], true);
+                foreach ($list as $tab) {
+                    $entity = isset($tab['name']) ? $tab['name'] : intval($tab['id']);
+                    $row = Pi::model('block')->find($entity);
+                    if (!$row || !$row->active) {
+                        continue;
+                    }
+                    $data = $helper->renderBlock($row);
+                    if (empty($data['content'])) {
+                        continue;
+                    }
+                    $result[] = array(
+                        'caption'   => !empty($tab['caption'])
+                                ? $tab['caption'] : $data['title'],
+                        'link'      => !empty($tab['link']) ? $tab['link'] : '',
+                        'content'   => $data['content'],
+                    );
+                }
+                break;
+
+            // static HTML
+            case 'html':
+                $result = Pi::service('markup')->render(
+                    $block['content'],
+                    'html'
+                );
+                $result = $transliterateGlobals($result);
+                break;
+            // static markdown
+            case 'markdown':
+                $result = Pi::service('markup')->render(
+                    $block['content'],
+                    'html',
+                    'markdown'
+                );
+                $result = $transliterateGlobals($result);
+                break;
+            // static text
+            case 'text':
+            default:
+                $result = Pi::service('markup')->render(
+                    $block['content'],
+                    'text'
+                );
+                $result = $transliterateGlobals($result);
+                break;
+        }
+
+        return $result;
     }
 }

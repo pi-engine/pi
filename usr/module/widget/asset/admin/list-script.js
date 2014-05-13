@@ -2,12 +2,12 @@ angular.module('widget')
 .config(['$routeProvider', 'piProvider', 'config',
 	function ($routeProvider, piProvider, config) {
 		//Get template url
-    function tpl(name) {
-      return config.assetRoot + name + '.html';
-    }
+        function tpl(name) {
+          return config.assetRoot + name + '.html';
+        }
 
 		$routeProvider.otherwise({
-			templateUrl: tpl('index'),
+			templateUrl: tpl('list-script'),
 			controller: 'indexCtrl'
 		});
 

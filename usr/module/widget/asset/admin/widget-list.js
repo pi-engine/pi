@@ -5,7 +5,7 @@
         init: function() {
             this.form.submit(function() {
                 var content = [];
-                page.form.find(".widget-block").each(function() {
+                page.form.find(".widget-list-item").each(function() {
                     var el = $(this);
                     var getVal = function(name) {
                         return $.trim(el.find('[name=' + name + ']').val());
@@ -23,7 +23,7 @@
         }
     };
     var listItemView = Backbone.View.extend({
-        template: _.template($("#list-template").html()),
+        template: _.template($("#widget-list-template").html()),
         events: {
             "click .remove-block"   : "cancel"
         },
@@ -77,7 +77,7 @@
         },
         sortable: function() {
             this.$el.sortable({
-                items: ".widget-list-upload",
+                items: ".widget-list-item",
                 tolerance: "pointer"
             });
         },
@@ -93,7 +93,7 @@
     this.widgetListAction = function(opts) {
         options = opts;
         new allListView({
-            collection: new Backbone.Collection(opts.imgs)
+            collection: new Backbone.Collection(opts.items)
         });
         page.init();
     };

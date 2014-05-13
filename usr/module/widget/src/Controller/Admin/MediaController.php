@@ -24,12 +24,6 @@ class MediaController extends WidgetController
      */
     protected $type = 'media';
 
-    /** @var  BlockForm */
-    //protected $form;
-
-    /** @var  string Root URL */
-    protected $urlRoot;
-
     /** @var string Prefix for image files */
     protected $tmpPrefix = 'tmp.';
 
@@ -50,11 +44,17 @@ class MediaController extends WidgetController
      */
     protected function urlRoot()
     {
-        if (!$this->urlRoot) {
-            $this->urlRoot = Pi::url('upload') . '/' . $this->getModule();
-        }
+        return Pi::url('upload') . '/' . $this->getModule();
+    }
 
-        return $this->urlRoot;
+    /**
+     * Get root path for upload
+     *
+     * @return string
+     */
+    protected function pathRoot()
+    {
+        return Pi::path('upload') . '/' . $this->getModule();
     }
 
     /**
@@ -62,27 +62,18 @@ class MediaController extends WidgetController
      */
     protected function updateBlock($widgetRow, array $block)
     {
-        $widgetMeta = $block['content'];
-        $block['content'] = $this->canonizeContent($block['content']);
-        if (isset($block['type'])) {
-            unset($block['type']);
-        }
+        // Old items
+        //$items = json_decode($widgetRow->meta, true);
+        $items = $widgetRow->meta;
 
-        $result = Pi::api('block', 'system')->update(
-            $widgetRow->block,
-            $block
-        );
-        $status = $result['status'];
+        // Regular update
+        $status = parent::updateBlock($widgetRow, $block);
+
+        // Handling images
         if ($status) {
-            $items = json_decode($widgetRow->meta, true);
-
-            $widgetRow->name = $block['name'];
-            $widgetRow->meta = $widgetMeta;
-            $widgetRow->time = time();
-            $widgetRow->save();
-
-            $itemsNew = json_decode($widgetRow->meta, true);
-            $imagesNew = array();
+            //$itemsNew   = json_decode($widgetRow->meta, true);
+            $itemsNew   = $widgetRow->meta;
+            $imagesNew  = array();
             foreach ($itemsNew as $item) {
                 $imagesNew[] = $item['image'];
             }
@@ -92,7 +83,6 @@ class MediaController extends WidgetController
             }
             $imageList = array_diff($images, $imagesNew);
             $this->deleteImages($imageList);
-
         }
 
         return $status;
@@ -107,7 +97,8 @@ class MediaController extends WidgetController
         $id = $this->params('id');
         if ($id) {
             $row = $this->getModel('widget')->find($id);
-            $items = json_decode($row->meta, true);
+            //$items = json_decode($row->meta, true);
+            $items = $row->meta;
             $images = array();
             foreach ($items as $item) {
                 $images[] = $item['image'];
@@ -125,36 +116,15 @@ class MediaController extends WidgetController
      */
     public function uploadAction()
     {
-        //Pi::service('log')->mute();
         $return = array(
             'status'    => 1,
             'message'   => '',
             'image'     => '',
         );
         $rename = $this->tmpPrefix . '%random%';
-        /**#@+
-         * Just for demo for anonymous callback
-         */
-        /*
-        $rename = function ($name)
-        {
-            $pos = strrpos($name, '.');
-            if (false !== $pos) {
-                $extension = substr($name, $pos);
-                $name = substr($name, 0, $pos);
-            } else {
-                $extension = '';
-            }
-            $newName = $name . '.random-' .uniqid() . '.' . $extension;
-            return $newName;
-        };
-        */
-        /**#@-*/
 
         $uploader = new Upload(array('rename' => $rename));
-        $uploader->setExtension('jpg,png,gif');
-        //->setRename('tmp.%random%');
-        //->setImageSize(array('maxWidth' => 600, 'maxHeight' => 500));
+        $uploader->setDestination($this->pathRoot())->setExtension('jpg,png,gif');
         if ($uploader->isValid()) {
             $uploader->receive();
             $file = $uploader->getUploaded('image');
@@ -175,6 +145,7 @@ class MediaController extends WidgetController
      */
     protected function canonizePost(array $values)
     {
+        $values['content'] = json_decode($values['content'], true);
         $values['content'] = $this->canonizeImage($values['content']);
 
         return $values;
@@ -185,7 +156,7 @@ class MediaController extends WidgetController
      */
     protected function canonizeContent($content)
     {
-        $content = json_decode($content, true);
+        //$content = json_decode($content, true);
         $items = array();
         foreach ($content as $item) {
             if (!$this->isAbsoluteUrl($item['image'])) {
@@ -194,27 +165,28 @@ class MediaController extends WidgetController
             $items[] = $item;
         }
 
-        return json_encode($items);
+        //return json_encode($items);
+        return $items;
     }
 
     /**
      * Canonize images
      *
-     * @param string $content
+     * @param array $content
      *
-     * @return string
+     * @return array
      */
-    protected function canonizeImage($content)
+    protected function canonizeImage(array $content)
     {
         $pathRoot = Pi::path('upload') . '/' . $this->getModule();
         $prefixLength = strlen($this->tmpPrefix);
-        $content = json_decode($content, true);
+        //$content = json_decode($content, true);
+        //$content = $content;
         $items = array();
         foreach ($content as $item) {
             if ($this->tmpPrefix == substr($item['image'], 0, $prefixLength)) {
                 $newName = substr($item['image'], $prefixLength);
-                $renamed = rename($pathRoot . '/' . $item['image'],
-                                  $pathRoot . '/' . $newName);
+                $renamed = rename($pathRoot . '/' . $item['image'], $pathRoot . '/' . $newName);
                 if ($renamed) {
                     $item['image'] = $newName;
                 }
@@ -223,7 +195,8 @@ class MediaController extends WidgetController
             $items[] = $item;
         }
 
-        return json_encode($items);
+        //return json_encode($items);
+        return $items;
     }
 
     /**
@@ -235,7 +208,7 @@ class MediaController extends WidgetController
      */
     protected function deleteImages(array $images)
     {
-        $path = Pi::path('upload') . '/' . $this->getModule();
+        $path = $this->pathRoot();
         foreach ($images as $image) {
             if ($this->isAbsoluteUrl($image)) {
                 continue;
@@ -245,23 +218,6 @@ class MediaController extends WidgetController
                 unlink($file);
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function prepareFormValues($blockRow)
-    {
-        $data = $blockRow->toArray();
-        //$values = array();
-        foreach ($data['content'] as &$item) {
-            if (!$this->isAbsoluteUrl($item['image'])) {
-                $item['image'] = $this->urlRoot() . '/' . $item['image'];
-            }
-            //$values[] = $item;
-        }
-
-        return $data;
     }
 
     /**

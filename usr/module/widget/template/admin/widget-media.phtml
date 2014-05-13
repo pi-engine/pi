@@ -1,19 +1,21 @@
 <?php
+$this->css($this->assetModule('admin/admin.css'));
 $this->jQuery('ui/jquery-ui.custom.min.js');
 $this->jQuery('extension/fileupload-min.js');
 $this->Backbone();
+
 $imageRoot = Pi::url('upload') . '/' . $module . '/';
 /**
  * $content: model collection of 'caption', 'desc', 'image', 'link'
  */
  include $this->templateComponent('form');
 ?>
-<div class="form-group" id="widget-js-carousel">
+<div class="form-group" id="widget-js-media">
     <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
     <div class="col-md-10">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-upload-btn">
-               <div class="thumbnail text-center upload-carousel-add">
+               <div class="thumbnail text-center upload-media-add">
                  <i class="fa fa-plus fa-3x text-muted fileinput-button">
                     <input type="file" name="image" multiple style="width: 100%;" class="hide">
                 </i>
@@ -23,12 +25,12 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
     </div>
 </div>
 
-<script id="carousel-template" type="text/template">
+<script id="widget-media-template" type="text/template">
 <div class="thumbnail">
     <button type="button" class="close">
         &times;
     </button>
-    <img src="<%= image %>">
+    <img src="<?php echo $imageRoot; ?><%= image %>">
     <p>
         <label><?php echo _a('Caption'); ?></label>
         <input type="text" value="<%= caption %>" name="caption" class="form-control">
@@ -40,12 +42,11 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
         <textarea name="desc" class="form-control" rows="5"><%= desc %></textarea>
 </div>
 </script>
-<link rel="stylesheet" href="<?php echo $this->assetModule('admin/admin.css'); ?>">
-<script src="<?php echo $this->assetModule('admin/widget-carousel.js'); ?>"></script>
+<script src="<?php echo $this->assetModule('admin/widget-media.js'); ?>"></script>
 <script>
-widgetCarouselAction({
+widgetMediaAction({
     imageRoot: '<?php echo $imageRoot; ?>',
-    imgs: <?php echo $content ?: '[]'; ?>,
-    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>'
+    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
+    items: <?php echo $content ? json_encode($content): json_encode(array()); ?>
 });
 </script>
