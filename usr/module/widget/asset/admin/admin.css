@@ -36,13 +36,13 @@
     text-align: center;
 }
 
-.fileinput-button {
+.widget-file-button {
     overflow: hidden;
     cursor: pointer;
     position: relative;
 }
 
-.fileinput-button input {
+.widget-file-button input {
     opacity: 0;
     position: absolute;
     top: 10px;
@@ -80,7 +80,7 @@
     display: block;
     height: 180px !important;
     margin: 0 auto 5px;
-    cursor: move;
+    cursor: pointer;
     border: 1px solid #ccc;
 }
 

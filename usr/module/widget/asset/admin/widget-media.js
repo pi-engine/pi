@@ -12,7 +12,7 @@
           };
 
           content.push({
-              "image": el.find("img").attr("src"),
+            "image": el.find("img").attr("src"),
             "caption": getVal('caption'),
             "link": getVal('link'),
             "desc": getVal('desc')
@@ -77,6 +77,16 @@
                 link: '',
                 desc: ''
             });
+
+              /* Add magnific popup to uploaded image */
+              $('.image-popup').magnificPopup({
+                  type: 'image',
+                  closeOnContentClick: true,
+                  image: {
+                      verticalFit: false
+                  }
+              });
+
           } else {
             alert(res.message);
           }
