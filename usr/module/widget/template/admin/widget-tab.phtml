@@ -23,7 +23,7 @@ foreach ($elements['hidden'] as $element) {
   <div class="widget-tab-module">
       <ul class="list-unstyled">
           <?php foreach($modules as $module) { ?>
-           <li class="widget-module-item" data-name="<?php echo $module['name']; ?>">
+           <li class="widget-tab-module-item" data-name="<?php echo $module['name']; ?>">
                <div class="widget-module-div" style="cursor:pointer;">
                    <i class="icon-caret-right"></i>
                    <i class="icon-caret-down"></i>
@@ -112,7 +112,7 @@ echo $this->form()->closeTag();
            BlocksCollection.on("add", this.addOne, this);
        },
        loadBlock: function(e) {
-           var tar = $(e.currentTarget).parent(".widget-module-item");
+           var tar = $(e.currentTarget).parent(".widget-tab-module-item");
            var ul = tar.find("ul");
            var url = '<?php echo $this->url('', array('action' => 'blocklist', 'name' => '__NAME__')); ?>';
            if (!tar.attr("load")) {

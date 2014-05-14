@@ -10,7 +10,6 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-//use Module\Widget\Form\BlockTabForm as BlockForm;
 
 /**
  * For compound tabbed block
@@ -45,24 +44,8 @@ class TabController extends WidgetController
                 'title' => $row->title,
             );
         }
-        $modules[0] = array(
-            'name'  => '',
-            'title' => _a('Custom blocks'),
-        );
 
         $this->view()->assign('modules', array_values($modules));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function indexAction()
-    {
-        $data = array(
-            'widgets' => array_values($this->widgetList())
-        );
-        $this->view()->assign('data', $data);
-        $this->view()->setTemplate('ng');
     }
 
     /**
@@ -111,14 +94,5 @@ class TabController extends WidgetController
     {
         parent::editAction();
         $this->assignModules();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function deleteAction()
-    {
-        $result = $this->deleteBlock();
-        $this->jump(array('action' => 'index'), $result['message']);
     }
 }

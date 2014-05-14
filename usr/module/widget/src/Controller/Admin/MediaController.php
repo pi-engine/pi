@@ -10,9 +10,7 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-//use Module\Widget\Form\BlockMediaForm as BlockForm;
 use Pi\File\Transfer\Upload;
-use Zend\Uri\Uri;
 
 /**
  * For media list block
@@ -25,7 +23,7 @@ class MediaController extends WidgetController
     protected $type = 'media';
 
     /** @var string Prefix for image files */
-    protected $tmpPrefix = 'tmp.';
+    protected $tmpPrefix = 'widget.';
 
     /**
      * {@inheritDoc}
@@ -60,55 +58,52 @@ class MediaController extends WidgetController
     /**
      * {@inheritDoc}
      */
-    protected function updateBlock($widgetRow, array $block)
+    protected function updateWidget($id, array $block)
     {
-        // Old items
-        //$items = json_decode($widgetRow->meta, true);
-        $items = $widgetRow->meta;
-
-        // Regular update
-        $status = parent::updateBlock($widgetRow, $block);
-
-        // Handling images
-        if ($status) {
-            //$itemsNew   = json_decode($widgetRow->meta, true);
-            $itemsNew   = $widgetRow->meta;
-            $imagesNew  = array();
-            foreach ($itemsNew as $item) {
-                $imagesNew[] = $item['image'];
+        $row = $this->getModel('widget')->find($id);
+        if (!$row) {
+            $result = 0;
+        } else {
+            $items = $row->meta ? json_decode($row->meta, true) : array();
+            $itemsNew = $block['content'] ? json_decode($block['content'], true) : array();
+            $result = parent::updateWidget($id, $block);
+            if ($result) {
+                $images     = array();
+                $imagesNew  = array();
+                foreach ($items as $item) {
+                    $images[] = $item['image'];
+                }
+                foreach ($itemsNew as $item) {
+                    $imagesNew[] = $item['image'];
+                }
+                $imageList = array_diff($images, $imagesNew);
+                $this->deleteImages($imageList);
             }
-            $images = array();
-            foreach ($items as $item) {
-                $images[] = $item['image'];
-            }
-            $imageList = array_diff($images, $imagesNew);
-            $this->deleteImages($imageList);
         }
 
-        return $status;
+        return $result;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function deleteAction()
+    protected function deleteWidget($id)
     {
-        $images = array();
-        $id = $this->params('id');
-        if ($id) {
-            $row = $this->getModel('widget')->find($id);
-            //$items = json_decode($row->meta, true);
-            $items = $row->meta;
-            $images = array();
+        $row = $this->getModel('widget')->find($id);
+        if (!$row) {
+            $result = 0;
+        } else {
+            $items = $row->meta ? json_decode($row->meta, true) : array();
             foreach ($items as $item) {
                 $images[] = $item['image'];
             }
+            $result = parent::deleteWidget($id);
+            if ($result) {
+                $this->deleteImages($images);
+            }
         }
-        $result = $this->deleteBlock();
-        if ($result['status'] && $images) {
-            $this->deleteImages($images);
-        }
-        $this->jump(array('action' => 'index'), $result['message']);
+
+        return $result;
     }
 
     /**
@@ -128,7 +123,7 @@ class MediaController extends WidgetController
         if ($uploader->isValid()) {
             $uploader->receive();
             $file = $uploader->getUploaded('image');
-            $return['image'] = $file;
+            $return['image'] = $this->urlRoot() . '/' . $file;
         } else {
             $messages = $uploader->getMessages();
             $return = array(
@@ -141,65 +136,6 @@ class MediaController extends WidgetController
     }
 
     /**
-     * {@inheritDoc}
-     */
-    protected function canonizePost(array $values)
-    {
-        $values['content'] = json_decode($values['content'], true);
-        $values['content'] = $this->canonizeImage($values['content']);
-
-        return $values;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    protected function canonizeContent($content)
-    {
-        //$content = json_decode($content, true);
-        $items = array();
-        foreach ($content as $item) {
-            if (!$this->isAbsoluteUrl($item['image'])) {
-                $item['image'] = $this->urlRoot() . '/' . $item['image'];
-            }
-            $items[] = $item;
-        }
-
-        //return json_encode($items);
-        return $items;
-    }
-
-    /**
-     * Canonize images
-     *
-     * @param array $content
-     *
-     * @return array
-     */
-    protected function canonizeImage(array $content)
-    {
-        $pathRoot = Pi::path('upload') . '/' . $this->getModule();
-        $prefixLength = strlen($this->tmpPrefix);
-        //$content = json_decode($content, true);
-        //$content = $content;
-        $items = array();
-        foreach ($content as $item) {
-            if ($this->tmpPrefix == substr($item['image'], 0, $prefixLength)) {
-                $newName = substr($item['image'], $prefixLength);
-                $renamed = rename($pathRoot . '/' . $item['image'], $pathRoot . '/' . $newName);
-                if ($renamed) {
-                    $item['image'] = $newName;
-                }
-            }
-
-            $items[] = $item;
-        }
-
-        //return json_encode($items);
-        return $items;
-    }
-
-    /**
      * Delete image files
      *
      * @param array $images
@@ -208,29 +144,13 @@ class MediaController extends WidgetController
      */
     protected function deleteImages(array $images)
     {
-        $path = $this->pathRoot();
+        $path   = $this->pathRoot();
+        $url    = $this->urlRoot();
         foreach ($images as $image) {
-            if ($this->isAbsoluteUrl($image)) {
-                continue;
-            }
-            $file = $path . '/' . $image;
+            $file = preg_replace('|^' . $url . '|', $path, $image);
             if (is_file($file)) {
                 unlink($file);
             }
         }
-    }
-
-    /**
-     * Check if a link is absolute URL
-     *
-     * @param $link
-     *
-     * @return bool
-     */
-    protected function isAbsoluteUrl($link)
-    {
-        $uri = new Uri($link);
-
-        return $uri->isAbsolute();
     }
 }

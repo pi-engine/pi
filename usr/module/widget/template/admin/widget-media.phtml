@@ -4,18 +4,14 @@ $this->jQuery('ui/jquery-ui.custom.min.js');
 $this->jQuery('extension/fileupload-min.js');
 $this->Backbone();
 
-$imageRoot = Pi::url('upload') . '/' . $module . '/';
-/**
- * $content: model collection of 'caption', 'desc', 'image', 'link'
- */
- include $this->templateComponent('form');
+include $this->templateComponent('form');
 ?>
-<div class="form-group" id="widget-js-media">
+<div class="form-group" id="widget-items">
     <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
     <div class="col-md-10">
         <div class="row">
-            <div class="col-sm-6 col-md-3 widget-upload-btn">
-               <div class="thumbnail text-center upload-media-add">
+            <div class="col-sm-6 col-md-3 widget-item-add">
+               <div class="thumbnail widget-item-add-mark">
                  <i class="fa fa-plus fa-3x text-muted fileinput-button">
                     <input type="file" name="image" multiple style="width: 100%;" class="hide">
                 </i>
@@ -25,28 +21,27 @@ $imageRoot = Pi::url('upload') . '/' . $module . '/';
     </div>
 </div>
 
-<script id="widget-media-template" type="text/template">
-<div class="thumbnail">
-    <button type="button" class="close">
-        &times;
-    </button>
-    <img src="<?php echo $imageRoot; ?><%= image %>">
-    <p>
-        <label><?php echo _a('Caption'); ?></label>
-        <input type="text" value="<%= caption %>" name="caption" class="form-control">
-    <p>
-        <label><?php echo _a('Link'); ?></label>
-        <input type="text" value="<%= link %>" name="link" class="form-control">
-    <p>
-        <label><?php echo _a('Summary'); ?></label>
-        <textarea name="desc" class="form-control" rows="5"><%= desc %></textarea>
+<script id="widget-item-template" type="text/template">
+<div class="col-sm-6 col-md-3 widget-item">
+    <div class="thumbnail">
+        <button type="button" class="close">&times;</button>
+        <img src="<%= image %>">
+        <p>
+            <label><?php echo _a('Caption'); ?></label>
+            <input type="text" value="<%= caption %>" name="caption" class="form-control">
+        <p>
+            <label><?php echo _a('Link'); ?></label>
+            <input type="text" value="<%= link %>" name="link" class="form-control">
+        <p>
+            <label><?php echo _a('Summary'); ?></label>
+            <textarea name="desc" class="form-control" rows="5"><%= desc %></textarea>
+    </div>
 </div>
 </script>
 <script src="<?php echo $this->assetModule('admin/widget-media.js'); ?>"></script>
 <script>
-widgetMediaAction({
-    imageRoot: '<?php echo $imageRoot; ?>',
+widgetAction({
     uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
-    items: <?php echo $content ? json_encode($content): json_encode(array()); ?>
+    items: <?php echo $content ?: json_encode(array()); ?>
 });
 </script>

@@ -5,7 +5,7 @@
         init: function() {
             this.form.submit(function() {
                 var content = [];
-                page.form.find(".widget-list-item").each(function() {
+                page.form.find(".widget-item").each(function() {
                     var el = $(this);
                     var getVal = function(name) {
                         return $.trim(el.find('[name=' + name + ']').val());
@@ -14,18 +14,17 @@
                     content.push({
                         "caption"   : getVal('caption'),
                         "link"      : getVal('link'),
-                        "desc"      : getVal('desc'),
-                        "detail"    : getVal('detail')
+                        "desc"      : getVal('desc')
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
             });
         }
     };
-    var listItemView = Backbone.View.extend({
-        template: _.template($("#widget-list-template").html()),
+    var itemView = Backbone.View.extend({
+        template: _.template($("#widget-item-template").html()),
         events: {
-            "click .remove-block"   : "cancel"
+            "click .close"   : "cancel"
         },
         initialize: function() {
             this.model.on("destroy", this.remove, this);
@@ -40,13 +39,13 @@
             this.model.destroy();
         }
     });
-    var allListView = Backbone.View.extend({
-        el: $("#widget-js-list"),
+    var allView = Backbone.View.extend({
+        el: $("#widget-items"),
         events: {
-            'click .widget-block-add' : 'add'
+            'click .widget-item-add' : 'add'
         },
         initialize: function() {
-            this.$addBtn = this.$('.widget-block-add');
+            this.$addBtn = this.$('.widget-item-add');
             this.$el.insertBefore(page.form.find('.form-group:last'));
             this.collection.on("add", this.addOne, this);
             this.list = new Array();
@@ -69,7 +68,7 @@
             this.index++;
             var template = '<div id="' + id + '"></div>';
             this.$(".row").prepend(template);
-            var item = new listItemView({
+            var item = new itemView({
                 el    : $("#" + id),
                 model : model
             }).render();
@@ -77,7 +76,7 @@
         },
         sortable: function() {
             this.$el.sortable({
-                items: ".widget-list-item",
+                items: ".widget-item",
                 tolerance: "pointer"
             });
         },
@@ -85,14 +84,13 @@
             this.collection.add({
                 caption : '',
                 link    : '',
-                desc    : '',
-                detail  : ''
+                desc    : ''
             });
         }
     });
-    this.widgetListAction = function(opts) {
+    this.widgetAction = function(opts) {
         options = opts;
-        new allListView({
+        new allView({
             collection: new Backbone.Collection(opts.items)
         });
         page.init();

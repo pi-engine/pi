@@ -56,24 +56,21 @@ abstract class WidgetController extends ActionController
     }
 
     /**
-     * Add a block
+     * Add a widget
      *
      * @param array $block
      *
      * @return int
      */
-    protected function addBlock(array $block)
+    protected function add(array $block)
     {
         $status = 0;
         $module = $this->getModule();
         $block['module'] = $module;
 
-        if (!isset($block['content'])) {
-            $block['content'] = '';
+        if (empty($block['type'])) {
+            $block['type'] = $this->type;
         }
-        $block['meta'] = $block['content'];
-        $block['content'] = $this->canonizeContent($block['content']);
-        $block['type'] = $this->type;
         $id = Pi::api('block', $module)->add($block);
         if ($id) {
             $status = 1;
@@ -84,77 +81,116 @@ abstract class WidgetController extends ActionController
     }
 
     /**
-     * Update a block
+     * Update a widget and affiliated blocks
      *
-     * @param Row $widgetRow
+     * @param int   $id
      * @param array $block
      *
-     * @return int
+     * @return bool
      */
-    protected function updateBlock($widgetRow, array $block)
+    protected function update($id, array $block)
     {
-        $block['meta'] = $block['content'];
-        $block['content'] = $this->canonizeContent($block['content']);
+        $status = false;
         if (isset($block['type'])) {
             unset($block['type']);
         }
-
-        $block['content'] = json_encode($block['content']);
-        $result = Pi::api('block', 'system')->update(
-            $widgetRow->block,
-            $block
-        );
-        $status = $result['status'];
-        if ($status) {
-            $widgetRow->name = $block['name'];
-            $widgetRow->meta = $block['meta'];
-            $widgetRow->time = time();
-            $widgetRow->save();
+        $blockId = $this->updateWidget($id, $block);
+        if (!$blockId) {
+            return $status;
         }
+        $result = $this->updateBlock($blockId, $block);
+        $status = $result['status'];
 
         return $status;
     }
 
     /**
-     * Delete a block
+     * Update a widget
+     *
+     * @param int   $id
+     * @param array $block
+     *
+     * @return int
+     */
+    protected function updateWidget($id, array $block)
+    {
+        $result = 0;
+        $row = $this->getModel('widget')->find($id);
+        if (!$row) {
+            return $result;
+        }
+        $row->name = $block['name'];
+        $row->meta = isset($block['meta'])
+            ? $block['meta']
+            : $block['content'];
+        $row->time = time();
+        $result = $row->save() ? $row->block : 0;
+
+        return $result;
+    }
+
+    /**
+     * Update a block
+     *
+     * @param int $id
+     * @param array $block
      *
      * @return array
      */
-    protected function deleteBlock()
+    protected function updateBlock($id, array $block)
     {
-        $id = $this->params('id');
-        if ($id) {
-            $row = $this->getModel('widget')->find($id);
-        } else {
-            $name = $this->params('name');
-            $row = $this->getModel('widget')->find($name, 'name');
-        }
-        if (empty($row)) {
-            $status = 0;
-            $message = _a('The widget does not exist.');
-        } else {
-            $result = Pi::api('block', 'system')->delete($row->block, true);
-            if (!empty($result['status'])) {
-                $row->delete();
-                Pi::registry('block')->clear($this->getModule());
-                $status = 1;
-                $message = sprintf(
-                    _a('The widget "%s" is removed.'),
-                    $row->name
-                );
-            } else {
-                $status = 0;
-                $message = sprintf(
-                    _a('The widget "%s" is not removed.'),
-                    $row->name
-                );
-            }
-        }
+        return Pi::api('block', 'system')->update($id, $block);
+    }
 
-        return array(
-            'status'    => $status,
-            'message'   => $message,
-        );
+    /**
+     * Delete a widget and affiliated blocks
+     *
+     * @param int   $id
+     *
+     * @return bool
+     */
+    protected function delete($id)
+    {
+        $status = false;
+        $blockId = $this->deleteWidget($id);
+        if (!$blockId) {
+            return $status;
+        }
+        $result = $this->deleteBlock($blockId);
+        $status = $result['status'];
+
+        return $status;
+    }
+
+    /**
+     * Delete a widget
+     *
+     * @param int $id
+     *
+     * @return int
+     */
+    protected function deleteWidget($id)
+    {
+        $result = 0;
+        $row = $this->getModel('widget')->find($id);
+        if (!$row) {
+            return $result;
+        }
+        $result = $row->delete() ? $row->block : 0;
+
+        return $result;
+    }
+
+    /**
+     * Delete a block
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    protected function deleteBlock($id)
+    {
+        return Pi::api('block', 'system')->delete($id, true);
     }
 
     /**
@@ -183,13 +219,12 @@ abstract class WidgetController extends ActionController
             }
 
             if ($id) {
-                $row = $this->getModel('widget')->find($id);
-                $status = $this->updateBlock($row, $values);
+                $status = $this->update($id, $values);
             } else {
                 $values['type'] = !empty($values['type'])
                     ? $values['type']
                     : $this->type;
-                $status = $this->addBlock($values);
+                $status = $this->add($values);
             }
 
             if (!$status) {
@@ -289,6 +324,7 @@ abstract class WidgetController extends ActionController
 
             $blockRow = Pi::model('block_root')->find($row->block);
             $values = $this->prepareFormValues($blockRow);
+            $values['content'] = $content;
             $values['id'] = $id;
             $form->setData($values);
             $message = '';
@@ -308,8 +344,16 @@ abstract class WidgetController extends ActionController
      */
     public function deleteAction()
     {
-        $result = $this->deleteBlock();
-        $this->jump(array('action' => 'index'), $result['message']);
+        $id = $this->params('id');
+        $result = $this->delete($id);
+        if ($result) {
+            $message = _a('The widget is removed.');
+            Pi::registry('block')->clear($this->getModule());
+        } else {
+            $message =  _a('The widget is not removed.');
+        }
+
+        $this->jump(array('action' => 'index'), $message);
     }
 
     /**
@@ -322,18 +366,6 @@ abstract class WidgetController extends ActionController
     protected function canonizePost(array $values)
     {
         return $values;
-    }
-
-    /**
-     * Canonize block content
-     *
-     * @param string|string $content
-     *
-     * @return string
-     */
-    protected function canonizeContent($content)
-    {
-        return $content;
     }
 
     /**
