@@ -10,7 +10,6 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-//use Module\Widget\Form\BlockStaticForm as BlockForm;
 
 /**
  * For static block
@@ -93,41 +92,6 @@ class StaticController extends WidgetController
         }
         $widget = $this->getModel('widget')->find($id);
         $this->type = $widget->type;
-
-        $form = $this->getForm();
-        if ($this->request->isPost()) {
-            $status = $this->processPost($form);
-            if ($status > 0) {
-                $message = _a('Block data saved successfully.');
-                $this->jump(array('action' => 'index', 'name' => ''), $message);
-
-                return;
-            } elseif ($status < 0) {
-                $message = _a('Block data not saved.');
-            } else {
-                $message = _a('Invalid data, please check and re-submit.');
-            }
-        } else {
-            $blockRow = Pi::model('block_root')->find($widget->block);
-
-            $values = $blockRow->toArray();
-            $values['id'] = $id;
-            $values['content'] = $widget->meta;
-            $form->setData($values);
-            $message = '';
-        }
-
-        $this->view()->assign('form', $form);
-        $this->view()->assign('message', $message);
-        $this->view()->setTemplate($this->editTemplate);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function deleteAction()
-    {
-        $result = $this->deleteBlock();
-        $this->jump(array('action' => 'index'), $result['message']);
+        parent::editAction();
     }
 }
