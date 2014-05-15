@@ -53,5 +53,6 @@ return array(
         'page'          => 'page.php',
         // Navigation definition
         'navigation'    => 'nav.php',
+        'config'        => 'config.php',
     ),
 );

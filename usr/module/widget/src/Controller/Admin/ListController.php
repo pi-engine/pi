@@ -9,6 +9,8 @@
 
 namespace Module\Widget\Controller\Admin;
 
+use Pi;
+
 /**
  * For list group block
  * 
@@ -30,4 +32,39 @@ class ListController extends WidgetController
      * {@inheritDoc}
      */
     protected $formClass = 'BlockListForm';
+
+    /**
+     * {@inheritDoc}
+     *
+     * Canonize link URLs
+     */
+    protected function canonizePost(array $values)
+    {
+        $content = json_decode($values['content'], true);
+        $items = $this->canonizeUrls($content);
+        $values['content'] = json_encode($items);
+        $values = parent::canonizePost($values);
+
+        return $values;
+    }
+
+    /**
+     * Canonize item URLs
+     *
+     * @param array $list
+     *
+     * @return array
+     */
+    protected function canonizeUrls(array $list)
+    {
+        array_walk($list, function (&$item) {
+            if (!empty($item['link'])) {
+                if (!preg_match('|^http[s]?://|i', $item['link'])) {
+                    $item['link'] = Pi::url('www') . '/' . ltrim($item['link'], '/');
+                }
+            }
+        });
+
+        return $list;
+    }
 }

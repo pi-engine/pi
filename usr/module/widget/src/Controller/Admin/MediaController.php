@@ -15,7 +15,7 @@ use Pi\File\Transfer\Upload;
 /**
  * For media list block
  */
-class MediaController extends WidgetController
+class MediaController extends ListController
 {
     /**
      * {@inheritDoc}
@@ -120,12 +120,33 @@ class MediaController extends WidgetController
             'image'     => '',
         );
         $rename         = '%random%';
-        $extensions     = 'jpg,png,gif';
         $destination    = $this->pathRoot() . '/' . $this->tmpDir;
         $uploadUrl      = $this->urlRoot() . '/' . $this->tmpDir;
 
+        $config = $this->config();
+        if ($config['image_extension']) {
+            $exts = explode(',', $config['image_extension']);
+            $exts = array_filter(array_walk($exts, 'trim'));
+            $extensions = implode(',', $exts);
+        }
+        $extensions = $extensions ?: 'jpg,png,gif';
+        $maxFile        = (int) $config['file_max_size']  * 1024;
+        $maxSize        = array();
+        if ($config['image_max_width']) {
+            $maxSize['width'] = (int) $config['image_max_width'];
+        }
+        if ($config['image_max_height']) {
+            $maxSize['height'] = (int) $config['image_max_height'];
+        }
+
         $uploader = new Upload(array('rename' => $rename));
         $uploader->setDestination($destination)->setExtension($extensions);
+        if ($maxFile) {
+            $uploader->setSize($maxFile);
+        }
+        if ($maxSize) {
+            $uploader->setImageSize($maxSize);
+        }
         if ($uploader->isValid()) {
             $uploader->receive();
             $file = $uploader->getUploaded('image');
