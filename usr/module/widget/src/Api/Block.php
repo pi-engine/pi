@@ -85,13 +85,14 @@ class Block extends AbstractApi
      */
     public function getConfig($type = null)
     {
+        $config = Pi::config('', 'widget');
         $configs = array(
             'list' => array(
                 'target_new'    => array(
                     'title'         => _a('Open link in new window'),
                     'edit'          => 'checkbox',
                     'filter'        => 'int',
-                    'value'         => 0,
+                    'value'         => $config['target_new'],
                 ),
             ),
             'media' => array(
@@ -99,44 +100,39 @@ class Block extends AbstractApi
                     'title'         => _a('Image width'),
                     'edit'          => 'text',
                     'filter'        => 'int',
-                    'value'         => 150,
+                    'value'         => $config['image_width_media'],
                 ),
                 'height'         => array(
                     'title'         => _a('Image height'),
                     'edit'          => 'text',
                     'filter'        => 'int',
+                    'value'         => $config['image_height_media'],
                 ),
                 'target_new'    => array(
                     'title'         => _a('Open link in new window'),
                     'edit'          => 'checkbox',
                     'filter'        => 'int',
-                    'value'         => 0,
+                    'value'         => $config['target_new'],
                 ),
             ),
             'spotlight' => array(
-                'target_new'    => array(
-                    'title'         => _a('Open link in new window'),
-                    'edit'          => 'checkbox',
-                    'filter'        => 'int',
-                    'value'         => 0,
-                ),
                 'width'          => array(
                     'title'         => _a('Image width'),
                     'edit'          => 'text',
                     'filter'        => 'int',
-                    'value'         => 400,
+                    'value'         => $config['image_width_spotlight'],
                 ),
                 'height'         => array(
                     'title'         => _a('Image height'),
                     'edit'          => 'text',
                     'filter'        => 'int',
-                    'value'         => 300,
+                    'value'         => $config['image_height_spotlight'],
                 ),
                 'target_new'    => array(
                     'title'         => _a('Open link in new window'),
                     'edit'          => 'checkbox',
                     'filter'        => 'int',
-                    'value'         => 0,
+                    'value'         => $config['target_new'],
                 ),
             ),
             'carousel' => array(
@@ -144,11 +140,13 @@ class Block extends AbstractApi
                     'title'         => _a('Image width'),
                     'edit'          => 'text',
                     'filter'        => 'int',
+                    'value'         => $config['image_width_carousel'],
                 ),
                 'height'    => array(
                     'title'         => _a('Image height'),
                     'edit'          => 'text',
                     'filter'        => 'int',
+                    'value'         => $config['image_height_carousel'],
                 ),
                 'interval' => array(
                     'title'         => _a('Time interval (ms)'),
@@ -183,7 +181,7 @@ class Block extends AbstractApi
                     'description'   => _a('Open link in a new window'),
                     'edit'          => 'checkbox',
                     'filter'        => 'int',
-                    'value'         => 0,
+                    'value'         => $config['target_new'],
                 )
             ),
         );
