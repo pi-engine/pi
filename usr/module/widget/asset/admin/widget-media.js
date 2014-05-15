@@ -12,10 +12,12 @@
           };
 
           content.push({
-            "image": el.find("img").attr("src"),
-            "caption": getVal('caption'),
-            "link": getVal('link'),
-            "desc": getVal('desc')
+
+            "image":    el.find("img").attr("src"),
+
+            "caption":  getVal('caption'),
+            "link":     getVal('link'),
+            "summary":  getVal('summary')
           });
         });
           page.form.find("[name=content]").val(JSON.stringify(content));
@@ -72,10 +74,10 @@
           var res = $.parseJSON(data.jqXHR.responseText);
           if (res.status) {
             self.collection.add({
-                image: res.image,
-                caption: '',
-                link: '',
-                desc: ''
+                image:      res.image,
+                caption:    '',
+                link:       '',
+                summary:    ''
             });
 
               /* Add magnific popup to uploaded image */
