@@ -9,8 +9,8 @@ $target     = empty($options['target_new']) ? '' : '_blank';
         <li>
             <a href="<?php echo $item['link']; ?>"
                 title="<?php echo _escape($item['caption']); ?>" 
-                class="pi-ellipsis pi-ellipsis-1" 
-                target="<?php echo $target; ?>">
+                target="<?php echo $target; ?>"
+            >
                 <?php echo _escape($item['caption']); ?>
             </a>
         </li>

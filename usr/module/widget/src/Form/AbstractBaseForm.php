@@ -116,6 +116,7 @@ abstract class AbstractBaseForm extends Form
             'type'          => 'submit',
             'attributes'    => array(
                 'value' =>  _a('Submit'),
+                'class' => 'btn btn-primary',
             )
         ));
     }

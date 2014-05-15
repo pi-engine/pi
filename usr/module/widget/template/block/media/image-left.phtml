@@ -1,33 +1,29 @@
 <?php
 $options    = (array) $block['options'];
 $items      = (array) $block['items'];
-$imgRight   = empty($options['image_right']) ? false : true;
 $target     = empty($options['target_new']) ? '' : '_blank';
-$imageAttributes = array();
+$imgStyle   = '';
 if (!empty($options['width'])) {
-    $imageAttributes[] = 'width: '  . $options['width'] . 'px;';
+    $imgStyle .= 'width: '  . $options['width'] . 'px;';
 }
 if (!empty($options['height'])) {
-    $imageAttributes[] = 'height: '  . $options['height'] . 'px;';
+    $imgStyle .= 'height: '  . $options['height'] . 'px;';
 }
-if ($imageAttributes) {
-    $imageStyle = ' style="' . implode(' ', $imageAttributes) . '"';
-} else {
-    $imageStyle = '';
-}
+$imgRight   = empty($options['image_right']) ? false : true;
 ?>
 <div class="widget-media-list">
     <?php foreach($items as $item) { ?>
     <div class="media">
         <a class="<?php echo $imgRight ? 'pull-right' : 'pull-left'; ?>" href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>">
-            <img class="media-object" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>"<?php echo $imageStyle; ?>>
+            <img class="media-object" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>" style="<?php echo $imgStyle; ?>">
         </a>
         <div class="media-body">
             <h4 class="media-heading">
                 <a href="<?php echo $item['link']; ?>"
                    title="<?php echo _escape($item['caption']); ?>"
                    class="pi-ellipsis pi-ellipsis-1"
-                   target="<?php echo $target; ?>">
+                   target="<?php echo $target; ?>"
+                >
                     <?php echo _escape($item['caption']); ?>
                 </a>
             </h4>
