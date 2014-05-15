@@ -27,22 +27,22 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.post', array($this, 'updateBlockConfig'));
+        $events->attach('update.post', array($this, 'updateBlock'));
         parent::attachDefaultListeners();
 
         return $this;
     }
 
     /**
-     * Update block config specs
+     * Update block config specs and content meta
      *
      * @param Event $e
      * @return bool
      */
-    public function updateBlockConfig(Event $e)
+    public function updateBlock(Event $e)
     {
         $version = $e->getParam('version');
-        if (version_compare($version, '2.0.0', '>')) {
+        if (version_compare($version, '2.0.0', '>=')) {
             return true;
         }
 
@@ -55,6 +55,31 @@ class Update extends BasicUpdate
             $row->config = Pi::api('block', 'widget')->getConfig($type);
             $row->save();
         }
+
+        $update = array(
+            'content'   => Pi::db()->expression(sprintf(
+                    'REPLACE(content, %s, %s)',
+                    '\'","desc":"\'',
+                    '\'","summary":"\''
+                )),
+        );
+        $where = array(
+            'module'    => 'widget',
+            'type'      => array('list', 'media', 'carousel'),
+        );
+        Pi::model('block')->update($update, $where);
+
+        $update = array(
+            'meta'   => Pi::db()->expression(sprintf(
+                    'REPLACE(meta, %s, %s)',
+                    '\'","desc":"\'',
+                    '\'","summary":"\''
+                )),
+        );
+        $where = array(
+            'type'      => array('list', 'media', 'carousel'),
+        );
+        Pi::model('widget', 'widget')->update($update, $where);
 
         return true;
     }

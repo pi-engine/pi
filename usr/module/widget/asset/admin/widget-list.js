@@ -14,7 +14,7 @@
                     content.push({
                         "caption"   : getVal('caption'),
                         "link"      : getVal('link'),
-                        "desc"      : getVal('desc')
+                        "summary"   : getVal('summary')
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
@@ -84,7 +84,7 @@
             this.collection.add({
                 caption : '',
                 link    : '',
-                desc    : ''
+                summary : ''
             });
         }
     });
