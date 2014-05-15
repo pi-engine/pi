@@ -22,8 +22,8 @@ class SpotlightTemplate extends MediaTemplate
     protected function getStyles()
     {
         $styles = array(
-            $this->templateDir . '/top-bottom'  =>  _a('Top-bottom layout'),
-            $this->templateDir . '/left-right'  =>  _a('Left-right layout'),
+            $this->templateDir . '/spot-top'    =>  _a('Spot on top'),
+            $this->templateDir . '/spot-left'   =>  _a('Spot on left'),
         );
         $styles += $this->getList();
 

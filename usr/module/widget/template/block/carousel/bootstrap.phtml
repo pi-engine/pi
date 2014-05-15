@@ -2,7 +2,6 @@
 $options    = (array) $block['options'];
 $items      = $block['items'] ?: array();
 $count      = count($items);
-$towcols    = empty($options['two_col']) ? false : true;
 $target     = empty($options['target_new']) ? '' : '_blank';
 $imgStyle   = '';
 if (!empty($options['width'])) {
@@ -11,9 +10,10 @@ if (!empty($options['width'])) {
 if (!empty($options['height'])) {
     $imgStyle .= 'height: '  . $options['height'] . 'px;';
 }
-unset($options['width'], $options['height'], $options['two_col']);
 
+$towcols    = empty($options['two_col']) ? false : true;
 $carouselId = uniqid('carousel');
+unset($options['width'], $options['height'], $options['two_col']);
 ?>
 
 <?php
