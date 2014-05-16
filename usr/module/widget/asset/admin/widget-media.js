@@ -1,14 +1,14 @@
 (function($, _, Backbone) {
   var options;
   var page = {
-    form: $(".form-horizontal"),
+    form: $("form#block"),
     init: function() {
       this.form.submit(function() {
         var content = [];
         page.form.find(".widget-item").each(function() {
           var el = $(this);
           var getVal = function(name) {
-            return $.trim(el.find('[name=' + name + ']').val());
+            return $.trim(el.find('[name=' + options.prefix + name + ']').val());
           };
 
           content.push({
@@ -34,8 +34,10 @@
       this.model.on("change", this.render, this);
     },
     render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
-      return this.$el;
+        var data = this.model.clone();
+        data.set('prefix', options.prefix);
+        this.$el.html(this.template(data.toJSON()));
+        return this.$el;
     },
     cancel: function() {
       this.model.destroy();

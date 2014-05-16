@@ -40,8 +40,8 @@ class ListController extends WidgetController
      */
     protected function canonizePost(array $values)
     {
-        $content = json_decode($values['content'], true);
-        $items = $this->canonizeUrls($content);
+        $items = json_decode($values['content'], true);
+        $items = $this->canonizeUrls($items);
         $values['content'] = json_encode($items);
         $values = parent::canonizePost($values);
 
@@ -66,5 +66,18 @@ class ListController extends WidgetController
         });
 
         return $list;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function prepareContent($content)
+    {
+        $items = $content ? json_decode($content, true) : array();
+        $items = array_filter($items);
+        $content = json_encode($items);
+
+        d($items);
+        return $content;
     }
 }

@@ -1,90 +1,86 @@
 <?php
-    $this->css($this->assetModule('admin/admin.css'));
-    $this->jQuery('ui/jquery-ui.custom.min.js');
-    $this->Backbone();
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery('ui/jquery-ui.custom.min.js');
+$this->Backbone();
+
+include $this->templateComponent('form');
 ?>
-<?php
-$form->prepare();
-echo $this->form()->openTag($form);
 
-echo $this->formRow($form->get('title'));
-echo $this->formRow($form->get('name'));
-echo $this->formRow($form->get('description'));
+<div id="widget-items">
+<div class="form-group">
+    <label class="col-sm-3 col-lg-2 control-label"><?php echo _a('Items'); ?></label>
+    <div class="col-md-10" style="min-height: 100px;">
+        <div class="row widget-item-add">
+        </div>
+    </div>
+</div>
 
-$elements = $form->elementList();
-foreach ($elements['hidden'] as $element) {
-    echo $this->formElement($element);
-}
-?>
-<div class="widget-tab-box" id="js-tab-form">
-  <div class="widget-tab-form">
-
-  </div>
-  <div class="widget-tab-module">
+<div class="form-group">
+    <label class="col-sm-3 col-lg-2 control-label"><?php echo _a('Module blocks'); ?></label>
+    <div class="col-sm-6 widget-tab-module">
       <ul class="list-unstyled">
-          <?php foreach($modules as $module) { ?>
+      <?php foreach($modules as $module) { ?>
            <li class="widget-tab-module-item" data-name="<?php echo $module['name']; ?>">
                <div class="widget-module-div" style="cursor:pointer;">
-                   <i class="icon-caret-right"></i>
-                   <i class="icon-caret-down"></i>
+                   <i class="fa fa-caret-right"></i>
+                   <i class="fa fa-caret-down"></i>
                    <?php echo $module['title']; ?>
                </div>
                <ul>
                </ul>
-          <?php } ?>
+           </li>
+      <?php } ?>
       </ul>
-  </div>
-</div>
-<script id="temp-block" type="text/template">
-    <button type="button" class="close">
-        &times;
-    </button>
-    <div class="control-group">
-        <label class="control-label"><?php echo _a('Caption'); ?></label>
-        <div class="controls">
-            <input type="text"   value="<%= caption %>" name="caption">
-        </div>
     </div>
-    <div class="control-group">
-        <label class="control-label"><?php echo _a('Link'); ?></label>
-        <div class="controls">
-            <input type="text"  value="<%= link %>" name="link">
+</div>
+</div>
+
+<script id="widget-item-template" type="text/template">
+    <div class="col-sm-6 col-md-3 widget-item">
+        <button type="button" class="close">&times;</button>
+        <div class="thumbnail">
+            <p>
+                <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
+            </p>
+            <p>
+                <input type="text" value="<%= link %>" name="<%= prefix %>link" placeholder="http://" class="form-control">
+            </p>
+            <input type="hidden" value="<%= id %>" name="<%= prefix %>id">
         </div>
     </div>
 </script>
 
-<?php
-echo $this->formRow($form->get('submit'));
-echo $this->form()->closeTag();
-?>
 <script>
+    var prefix = "block-";
     var page = {
         form: $("form#block"),
         init: function() {
             this.form.submit(function(e) {
                 var content = [];
-                page.form.find(".widget-tab-item").each(function() {
+                page.form.find(".widget-item").each(function() {
                     var el = $(this);
+                    var getVal = function(name) {
+                        return $.trim(el.find('[name=' + prefix + name + ']').val());
+                    };
                     content.push({
-                        caption: $.trim(el.find("[name=caption]").val()),
-                        link: $.trim(el.find("[name=link]").val()),
-                        id: el.attr("data-id")
+                        "caption":  getVal('caption'),
+                        "link":     getVal('link'),
+                        "id":       getVal('id')
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
             });
-            this.form.find(".widget-tab-form").sortable({
+            this.form.find(".widget-item-add").sortable({
                 revert: 300,
                 tolerance: "pointer"
             });
         }
     }
-    var BlocksCollection = new Backbone.Collection(<?php echo $content ?: '[]'; ?>);
-    var SelectedItemView = Backbone.View.extend({
-        className: "widget-tab-item form-horizontal clearfix",
-        template: _.template($("#temp-block").html()),
+    var BlocksCollection = new Backbone.Collection(<?php echo $content; ?>);
+    var itemView = Backbone.View.extend({
+        template: _.template($("#widget-item-template").html()),
         events: {
-            "click .close": "removeEl"
+            "click .close": "cancel"
         },
         initialize: function() {
            this.model.on("destroy", this.remove, this);
@@ -95,19 +91,23 @@ echo $this->form()->closeTag();
             this.$el.html(this.template(this.model.toJSON()));
             return this.el;
         },
-        removeEl: function() {
+        cancel: function() {
             this.model.destroy();
             tabView.$("[data-id=" + this.model.get("id") + "]").removeClass("selected");
         }
     });
-    var TabView = Backbone.View.extend({
-       el: $("#js-tab-form"),
+    var allView = Backbone.View.extend({
+       el: $("#widget-items"),
+       //md: $("#widget-modules"),
        events: {
            "click .widget-module-div": "loadBlock",
            "click [data-id]": "addClick"
        },
        initialize: function() {
-           this.box = this.$(".widget-tab-form");
+           this.$el.insertBefore(page.form.find('.form-group:last'));
+           //this.md.insertBefore(page.form.find('.form-group:last'));
+           this.box = this.$(".widget-item-add");
+           //this.$addBtn = this.$('.widget-item-add');
            this.render();
            BlocksCollection.on("add", this.addOne, this);
        },
@@ -126,7 +126,7 @@ echo $this->form()->closeTag();
                                 ul.find("[data-id=" + m.get("id") + "]").addClass("selected");
                             });
                         } else {
-                            ul.html('<span class="label label-info"><?php echo _a('No Blocks'); ?></span>');
+                            ul.html('<span class="label label-info"><?php echo _a('No Block'); ?></span>');
                         }
                     }
                });
@@ -136,10 +136,11 @@ echo $this->form()->closeTag();
        addClick: function(e) {
             var tar = $(e.currentTarget);
             if (tar.hasClass("selected")) {
-               BlocksCollection.remove(tar.attr("data-id"));
-               tar.removeClass("selected");
+               //BlocksCollection.remove(tar.attr("data-id"));
+               //tar.removeClass("selected");
             } else {
                BlocksCollection.add({
+                   prefix: prefix,
                    caption: $.trim(tar.text()),
                    id: tar.attr("data-id"),
                    link: ""
@@ -154,11 +155,18 @@ echo $this->form()->closeTag();
             }
        },
        addOne: function(m) {
-           this.box.append(new SelectedItemView({
-               model: m
-           }).render());
+           var item = new itemView({
+               model : m
+           }).render();
+
+           /*
+           alert(item);
+           alert(this.$addBtn);
+           item.insertBefore(this.$addBtn);
+           */
+           this.box.append(item);
        }
     });
-    tabView = new TabView;
+    tabView = new allView;
     page.init();
 </script>

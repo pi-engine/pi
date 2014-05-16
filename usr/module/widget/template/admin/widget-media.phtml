@@ -34,15 +34,15 @@ include $this->templateComponent('form');
         </a>
         <p>
             <label><?php echo _a('Caption'); ?></label>
-            <input type="text" value="<%= caption %>" name="caption" class="form-control">
+            <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
         </p>
         <p>
             <label><?php echo _a('Link'); ?></label>
-            <input type="text" value="<%= link %>" name="link" class="form-control">
+            <input type="text" value="<%= link %>" name="<%= prefix %>link" class="form-control">
         </p>
         <p>
             <label><?php echo _a('Summary'); ?></label>
-            <textarea name="summary" class="form-control" rows="5"><%= summary %></textarea>
+            <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
         </p>
     </div>
 </div>
@@ -50,6 +50,7 @@ include $this->templateComponent('form');
 <script src="<?php echo $this->assetModule('admin/widget-media.js'); ?>"></script>
 <script>
 widgetAction({
+    prefix: "block-",
     uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
     items: <?php echo $content ?: json_encode(array()); ?>
 });

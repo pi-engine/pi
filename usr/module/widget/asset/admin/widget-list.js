@@ -1,20 +1,20 @@
 (function($, _, Backbone) {
     var options;
     var page = {
-        form: $(".form-horizontal"),
+        form: $("form#block"),
         init: function() {
             this.form.submit(function() {
                 var content = [];
                 page.form.find(".widget-item").each(function() {
                     var el = $(this);
                     var getVal = function(name) {
-                        return $.trim(el.find('[name=' + name + ']').val());
+                        return $.trim(el.find('[name=' + options.prefix + name + ']').val());
                     };
 
                     content.push({
-                        "caption"   : getVal('caption'),
-                        "link"      : getVal('link'),
-                        "summary"   : getVal('summary')
+                        "caption":  getVal('caption'),
+                        "link":     getVal('link'),
+                        "summary":  getVal('summary')
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
@@ -32,6 +32,7 @@
         },
         render: function() {
             var data = this.model.clone();
+            data.set('prefix', options.prefix);
             this.$el.html(this.template(data.toJSON()));
             return this.$el;
         },
