@@ -14,7 +14,7 @@ use Pi;
 /**
  * For compound tabbed block
  */
-class TabController extends WidgetController
+class TabController extends ListController
 {
     /**
      * {@inheritDoc}
@@ -94,5 +94,24 @@ class TabController extends WidgetController
     {
         parent::editAction();
         $this->assignModules();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function prepareContent($content)
+    {
+        $items = $content ? json_decode($content, true) : array();
+        $items = array_filter($items);
+        foreach ($items as &$item) {
+            $item = array_merge(array(
+                'id'        => 0,
+                'caption'   => '',
+                'link'      => '',
+            ), $item);
+        }
+        $content = json_encode($items);
+
+        return $content;
     }
 }

@@ -21,13 +21,9 @@
 
 /*media*/
 .widget-item,
-.widget-item-add,
 .widget-tab-module-item li {
     display: inline-block;
     vertical-align: top;
-}
-
-.widget-item-add {
 }
 
 .widget-item-add-mark {
@@ -60,19 +56,12 @@
     cursor: move;
 }
 
-.widget-item .form-horizontal .control-label,
-.widget-tab-item.form-horizontal .control-label {
+.widget-item .form-horizontal .control-label {
     width: 50px;
     font-size: 12px;
 }
 
-.widget-item .form-horizontal .controls,
-.widget-tab-item.form-horizontal .controls {
-    margin-left: 55px;
-}
-
-.widget-item .form-horizontal .control-group,
-.widget-tab-item.form-horizontal .control-group {
+.widget-item .form-horizontal .control-group {
     margin-bottom: 8px;
 }
 
@@ -91,10 +80,6 @@
     font-size: 30px;
 }
 
-/*admin widget tab*/
-.widget-tab-box {
-    position: relative;
-}
 
 .widget-tab-form {
     width: 400px;
@@ -104,27 +89,10 @@
     padding-top: 10px;
 }
 
-.widget-tab-item {
-    padding: 5px 10px 0;
-    margin: 0 20px 10px;
-    line-height: 18px;
-    border-radius: 3px;
-    background: #ECECEC;
-    cursor: move;
-}
-
-.widget-tab-item .btn {
-    padding: 0 9px;
-    height: 18px;
-}
-
 .widget-tab-module {
-    position: absolute;
-    width: 420px;
     background: #ECECEC;
     border: 1px solid #ccc;
     top: 0;
-    left: 410px;
     padding-top: 10px;
 }
 
@@ -132,15 +100,15 @@
     margin-bottom: 4px;
 }
 
-.widget-tab-module-item .icon-caret-down {
+.widget-tab-module-item .fa-caret-down {
     display: none;
 }
 
-.active .icon-caret-down {
+.active .fa-caret-down {
     display: inline-block;
 }
 
-.active .icon-caret-right {
+.active .fa-caret-right {
     display: none;
 }
 
@@ -166,7 +134,7 @@
     text-shadow: 0 1px 0 rgba(0,0,0,.3);
 }
 
-/*widget-lsit*/
+/*widget-list*/
 .widget-list {
     min-height: 30px;
     margin-left: 0;

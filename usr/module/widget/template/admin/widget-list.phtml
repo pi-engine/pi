@@ -1,14 +1,13 @@
 <?php
 $this->css($this->assetModule('admin/admin.css'));
 $this->jQuery('ui/jquery-ui.custom.min.js');
-$this->jQuery('extension/fileupload-min.js');
 $this->Backbone();
 
 include $this->templateComponent('form');
 ?>
 
 <div class="form-group" id="widget-items">
-    <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
+    <label class="col-sm-3 col-lg-2 control-label"><?php echo _a('Items'); ?></label>
     <div class="col-md-10">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-item-add">
@@ -26,22 +25,24 @@ include $this->templateComponent('form');
     <div class="thumbnail">
         <p>
             <label><?php echo _a('Caption'); ?></label>
-            <input type="text" value="<%= caption %>" name="caption" class="form-control">
+            <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
         </p>
         <p>
             <label><?php echo _a('Link'); ?></label>
-            <input type="text" value="<%= link %>" name="link" class="form-control">
+            <input type="text" value="<%= link %>" name="<%= prefix %>link" class="form-control">
         </p>
         <p>
             <label><?php echo _a('Summary'); ?></label>
-            <textarea name="summary" class="form-control" rows="5"><%= summary %></textarea>
+            <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
         </p>
     </div>
 </div>
 </script>
+
 <script src="<?php echo $this->assetModule('admin/widget-list.js'); ?>"></script>
 <script>
 widgetAction({
+    prefix: "block-",
     items: <?php echo $content ?: json_encode(array()); ?>
 });
 </script>

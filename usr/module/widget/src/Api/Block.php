@@ -304,8 +304,7 @@ class Block extends AbstractApi
                         continue;
                     }
                     $result[] = array(
-                        'caption'   => !empty($tab['caption'])
-                                ? $tab['caption'] : $data['title'],
+                        'caption'   => !empty($tab['caption']) ? $tab['caption'] : $data['title'],
                         'link'      => !empty($tab['link']) ? $tab['link'] : '',
                         'content'   => $data['content'],
                     );

@@ -320,7 +320,7 @@ abstract class WidgetController extends ActionController
         } else {
             $id = $this->params('id');
             $row = $this->getModel('widget')->find($id);
-            $content = $row->meta;
+            $content = $this->prepareContent($row->meta);
 
             $blockRow = Pi::model('block_root')->find($row->block);
             $values = $this->prepareFormValues($blockRow);
@@ -378,5 +378,17 @@ abstract class WidgetController extends ActionController
     protected function prepareFormValues($blockRow)
     {
         return $blockRow->toArray();
+    }
+
+    /**
+     * Prepare content for edit
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    protected function prepareContent($content)
+    {
+        return $content;
     }
 }
