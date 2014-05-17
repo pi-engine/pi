@@ -36,16 +36,37 @@ class TabController extends ListController
      */
     protected function assignModules()
     {
-        $rowset = Pi::model('module')->select(array('active' => 1));
-        $modules = array();
+        // Get block counts per module
+        $model = Pi::model('block');
+        $select = $model->select()->group('module')
+            ->columns(array('count' => Pi::db()->expression('count(*)'), 'module'));
+        $rowset = $model->selectWith($select);
+        $blockCounts = array();
         foreach ($rowset as $row) {
-            $modules[$row->id] = array(
-                'name'  => $row->name,
-                'title' => $row->title,
-            );
+            $blockCounts[$row->module] = $row->count;
         }
 
-        $this->view()->assign('modules', array_values($modules));
+        // Get module list
+        $modules = array();
+        $moduleSet = Pi::model('module')->select(array('active' => 1));
+        $widgetModule = array();
+        foreach ($moduleSet as $row) {
+            if ('widget' == $row->name) {
+                $count = empty($blockCounts['widget']) ? '0' : $blockCounts['widget'];
+                $widgetModule = array(
+                    'name'  => $row->name,
+                    'title' => $row->title . ' (' . $count . ')',
+                );
+            } elseif (!empty($blockCounts[$row->name])) {
+                $modules[] = array(
+                    'name'  => $row->name,
+                    'title' => $row->title . ' (' . $blockCounts[$row->name] . ')',
+                );
+            }
+        }
+        array_unshift($modules, $widgetModule);
+
+        $this->view()->assign('modules', $modules);
     }
 
     /**
