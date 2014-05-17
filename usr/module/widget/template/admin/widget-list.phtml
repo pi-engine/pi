@@ -11,7 +11,7 @@ include $this->templateComponent('form');
     <div class="col-md-10">
         <div class="row">
             <div class="col-sm-6 col-md-3 widget-item-add">
-                <div class="thumbnail widget-item-add-mark">
+                <div class="thumbnail widget-item-add-mark" title="<?php echo _a('Click to add new item.'); ?>">
                     <i class="fa fa-plus fa-3x text-muted"></i>
                 </div>
             </div>
@@ -21,7 +21,7 @@ include $this->templateComponent('form');
 
 <script id="widget-item-template" type="text/template">
 <div class="col-sm-6 col-md-3 widget-item">
-    <button type="button" class="close">&times;</button>
+    <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
     <div class="thumbnail">
         <p>
             <label><?php echo _a('Caption'); ?></label>
