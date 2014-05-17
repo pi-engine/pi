@@ -47,6 +47,11 @@ class Block extends AbstractApi
                         'edit'          => 'text',
                         'filter'        => 'int',
                     ),
+                    'max_rows'       => array(
+                        'title'         => _a('Max rows'),
+                        'edit'          => 'text',
+                        'filter'        => 'int',
+                    ),
                 );
                 break;
             case 'carousel':
