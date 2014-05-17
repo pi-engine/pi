@@ -9,19 +9,26 @@ include $this->templateComponent('form');
 <div id="widget-items">
 <div class="form-group">
     <label class="col-sm-3 col-lg-2 control-label"><?php echo _a('Items'); ?></label>
-    <div class="col-md-10" style="min-height: 100px;">
-        <div class="row widget-item-add">
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-sm-6 col-md-3 widget-item-add">
+                <div class="thumbnail widget-item-add-mark" style="cursor: help;"
+                     title="<?php echo _a('Select from below available module blocks to add.'); ?>"
+                >
+                    <i class="fa fa-plus fa-3x text-muted"></i>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="form-group">
     <label class="col-sm-3 col-lg-2 control-label"><?php echo _a('Module blocks'); ?></label>
-    <div class="col-sm-6 widget-tab-module">
+    <div class="col-sm-6 widget-tab-module" style="max-height: 300px; overflow-Y: scroll;">
       <ul class="list-unstyled">
       <?php foreach($modules as $module) { ?>
            <li class="widget-tab-module-item" data-name="<?php echo $module['name']; ?>">
-               <div class="widget-module-div" style="cursor:pointer;">
+               <div class="widget-module-block" style="cursor:pointer;">
                    <i class="fa fa-caret-right"></i>
                    <i class="fa fa-caret-down"></i>
                    <?php echo $module['title']; ?>
@@ -37,7 +44,7 @@ include $this->templateComponent('form');
 
 <script id="widget-item-template" type="text/template">
     <div class="col-sm-6 col-md-3 widget-item">
-        <button type="button" class="close">&times;</button>
+        <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
         <div class="thumbnail">
             <p>
                 <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
@@ -50,123 +57,12 @@ include $this->templateComponent('form');
     </div>
 </script>
 
-<script>
-    var prefix = "block-";
-    var page = {
-        form: $("form#block"),
-        init: function() {
-            this.form.submit(function(e) {
-                var content = [];
-                page.form.find(".widget-item").each(function() {
-                    var el = $(this);
-                    var getVal = function(name) {
-                        return $.trim(el.find('[name=' + prefix + name + ']').val());
-                    };
-                    content.push({
-                        "caption":  getVal('caption'),
-                        "link":     getVal('link'),
-                        "id":       getVal('id')
-                    });
-                });
-                page.form.find("[name=content]").val(JSON.stringify(content));
-            });
-            this.form.find(".widget-item-add").sortable({
-                revert: 300,
-                tolerance: "pointer"
-            });
-        }
-    }
-    var BlocksCollection = new Backbone.Collection(<?php echo $content; ?>);
-    var itemView = Backbone.View.extend({
-        template: _.template($("#widget-item-template").html()),
-        events: {
-            "click .close": "cancel"
-        },
-        initialize: function() {
-           this.model.on("destroy", this.remove, this);
-           this.$el.attr("data-id", this.model.get("id"));
-        },
-        render: function() {
-            this.model.id = null;
-            this.$el.html(this.template(this.model.toJSON()));
-            return this.el;
-        },
-        cancel: function() {
-            this.model.destroy();
-            tabView.$("[data-id=" + this.model.get("id") + "]").removeClass("selected");
-        }
-    });
-    var allView = Backbone.View.extend({
-       el: $("#widget-items"),
-       //md: $("#widget-modules"),
-       events: {
-           "click .widget-module-div": "loadBlock",
-           "click [data-id]": "addClick"
-       },
-       initialize: function() {
-           this.$el.insertBefore(page.form.find('.form-group:last'));
-           //this.md.insertBefore(page.form.find('.form-group:last'));
-           this.box = this.$(".widget-item-add");
-           //this.$addBtn = this.$('.widget-item-add');
-           this.render();
-           BlocksCollection.on("add", this.addOne, this);
-       },
-       loadBlock: function(e) {
-           var tar = $(e.currentTarget).parent(".widget-tab-module-item");
-           var ul = tar.find("ul");
-           var url = '<?php echo $this->url('', array('action' => 'blocklist', 'name' => '__NAME__')); ?>';
-           if (!tar.attr("load")) {
-               $.getJSON(url.replace('__NAME__', tar.attr("data-name"))).done(function(result) {
-                    tar.attr("load",1);
-                    if (result.status == 1) {
-                        var t = '<% _.each(data,function(item) { %><li data-id="<%= item.id %>"><%= item.caption %></li><% }); %>';
-                        if (result.data.length) {
-                            ul.html(_.template(t, result.data, {variable: "data"}));
-                            BlocksCollection.each(function(m) {
-                                ul.find("[data-id=" + m.get("id") + "]").addClass("selected");
-                            });
-                        } else {
-                            ul.html('<span class="label label-info"><?php echo _a('No Block'); ?></span>');
-                        }
-                    }
-               });
-           }
-           tar.toggleClass("active");
-       },
-       addClick: function(e) {
-            var tar = $(e.currentTarget);
-            if (tar.hasClass("selected")) {
-               //BlocksCollection.remove(tar.attr("data-id"));
-               //tar.removeClass("selected");
-            } else {
-               BlocksCollection.add({
-                   prefix: prefix,
-                   caption: $.trim(tar.text()),
-                   id: tar.attr("data-id"),
-                   link: ""
-               });
-               tar.addClass("selected");
-            }
-       },
-       render: function () {
-        var m = BlocksCollection.models;
-            for (var i = 0, l = m.length; i < l; i++) {
-                this.addOne(m[i]);
-            }
-       },
-       addOne: function(m) {
-           var item = new itemView({
-               model : m
-           }).render();
 
-           /*
-           alert(item);
-           alert(this.$addBtn);
-           item.insertBefore(this.$addBtn);
-           */
-           this.box.append(item);
-       }
+<script src="<?php echo $this->assetModule('admin/widget-tab.js'); ?>"></script>
+<script>
+    widgetAction({
+        prefix: "block-",
+        loadUrl: "<?php echo $this->url('', array('action' => 'blocklist', 'name' => '__NAME__')); ?>",
+        items: <?php echo $content ?: json_encode(array()); ?>
     });
-    tabView = new allView;
-    page.init();
 </script>

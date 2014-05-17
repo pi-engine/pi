@@ -1,5 +1,6 @@
 (function($, _, Backbone) {
     var options;
+
     var page = {
         form: $("form#block"),
         init: function() {
@@ -15,16 +16,18 @@
                         "caption":  getVal('caption'),
                         "link":     getVal('link'),
                         "summary":  getVal('summary')
+
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
             });
         }
     };
+
     var itemView = Backbone.View.extend({
         template: _.template($("#widget-item-template").html()),
         events: {
-            "click .close"   : "cancel"
+            "click .close": "cancel"
         },
         initialize: function() {
             this.model.on("destroy", this.remove, this);
@@ -37,40 +40,27 @@
             return this.$el;
         },
         cancel: function() {
-            this.model.destroy();
+            this.remove();
         }
     });
+
     var allView = Backbone.View.extend({
         el: $("#widget-items"),
         events: {
-            'click .widget-item-add' : 'add'
+            'click .widget-item-add' : 'addItem'
         },
         initialize: function() {
             this.$addBtn = this.$('.widget-item-add');
             this.$el.insertBefore(page.form.find('.form-group:last'));
             this.collection.on("add", this.addOne, this);
-            this.list = new Array();
-            this.index = 0;
             this.render();
-        },
-        uniqid : function(prefix) {
-            var uid = new Date().getTime().toString(16);
-            uid += Math.floor((1 + Math.random()) * Math.pow(16, (16 - uid.length))).toString(16).substr(1);
-            
-            return (prefix || '') + uid;
         },
         render: function() {
             this.collection.forEach(this.addOne, this);
             this.sortable();
         },
         addOne: function(model) {
-            var id = this.uniqid('widget');
-            this.list[this.index] = id;
-            this.index++;
-            var template = '<div id="' + id + '"></div>';
-            this.$(".row").prepend(template);
             var item = new itemView({
-                el    : $("#" + id),
                 model : model
             }).render();
             item.insertBefore(this.$addBtn);
@@ -81,7 +71,7 @@
                 tolerance: "pointer"
             });
         },
-        add: function() {
+        addItem: function() {
             this.collection.add({
                 caption : '',
                 link    : '',
@@ -89,6 +79,7 @@
             });
         }
     });
+
     this.widgetAction = function(opts) {
         options = opts;
         new allView({

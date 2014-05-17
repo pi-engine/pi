@@ -15,31 +15,35 @@
                     content.push({
                         "caption":  getVal('caption'),
                         "link":     getVal('link'),
-                        "summary":  getVal('summary'),
-                        "image":    el.find("img").attr("src")
+                        "id":       getVal('id')
+
                     });
                 });
                 page.form.find("[name=content]").val(JSON.stringify(content));
             });
         }
-    }
+    };
 
     var itemView = Backbone.View.extend({
         template: _.template($("#widget-item-template").html()),
         events: {
-            "click .close": "cancel"
+            "click .close"   : "cancel"
         },
         initialize: function() {
             this.model.on("destroy", this.remove, this);
             this.model.on("change", this.render, this);
+            //this.$el.attr("data-id", this.model.get("id"));
         },
         render: function() {
             var data = this.model.clone();
             data.set('prefix', options.prefix);
+            //data.set('url', '');
             this.$el.html(this.template(data.toJSON()));
             return this.$el;
         },
         cancel: function() {
+            tabView.$("[data-id=" + this.model.get("id") + "]").removeClass("selected");
+            //this.model.destroy();
             this.remove();
         }
     });
@@ -47,7 +51,8 @@
     var allView = Backbone.View.extend({
         el: $("#widget-items"),
         events: {
-            'click .widget-item-add': 'popup'
+            "click .widget-module-block": "loadBlock",
+            "click [data-id]": "addItem"
         },
         initialize: function() {
             this.$addBtn = this.$('.widget-item-add');
@@ -57,12 +62,11 @@
         },
         render: function() {
             this.collection.forEach(this.addOne, this);
-            this.upload();
             this.sortable();
         },
         addOne: function(model) {
             var item = new itemView({
-                model: model
+                model : model
             }).render();
             item.insertBefore(this.$addBtn);
         },
@@ -72,48 +76,49 @@
                 tolerance: "pointer"
             });
         },
-        upload: function() {
-            var self = this;
-            this.$("[name=image]").fileupload({
-                url: options.uploadUrl,
-                formData: function() {
-                    return [];
-                },
-                done: function(e, data) {
-                    var res = $.parseJSON(data.jqXHR.responseText);
-                    if (res.status) {
-                        self.collection.add({
-                            image:      res.image,
-                            caption:    '',
-                            link:       '',
-                            summary:    ''
-                        });
-
-                        /* Add Magnific Popup to uploaded image */
-                        self.$('.image-popup').magnificPopup({
-                            type: 'image',
-                            closeOnContentClick: true,
-                            image: {
-                                verticalFit: false
-                            }
-                        });
-
-                    } else {
-                        alert(res.message);
-                    }
-                }
-            });
+        addItem: function(e) {
+            var target = $(e.currentTarget);
+            if (target.hasClass("selected")) {
+            } else {
+                this.collection.add({
+                    caption:    $.trim(target.text()),
+                    id:         target.attr("data-id"),
+                    link:       ""
+                });
+                target.addClass("selected");
+            }
         },
-        popup: function(e) {
-            this.$('[name=image]')[0].click();
+        loadBlock: function(e) {
+            var self = this;
+            var target = $(e.currentTarget).parent(".widget-tab-module-item");
+            var ul = target.find("ul");
+            var url = options.loadUrl.replace('__NAME__', target.attr("data-name"));
+            var blockCollection = this.collection;
+            if (!target.attr("load")) {
+                $.getJSON(url).done(function(result) {
+                    target.attr("load", 1);
+                    if (result.status == 1) {
+                        var t = '<% _.each(data,function(item) { %><li data-id="<%= item.id %>"><%= item.caption %></li><% }); %>';
+                        if (result.data.length) {
+                            ul.html(_.template(t, result.data, {variable: "data"}));
+                            self.collection.each(function(m) {
+                                ul.find("[data-id=" + m.get("id") + "]").addClass("selected");
+                            });
+                        } else {
+                            ul.html('<span class="text-muted">N/A</span>');
+                        }
+                    }
+                });
+            }
+            target.toggleClass("active");
         }
     });
 
     this.widgetAction = function(opts) {
         options = opts;
-        new allView({
+        tabView = new allView({
             collection: new Backbone.Collection(opts.items)
         });
         page.init();
-    }
+    };
 })(jQuery, _, Backbone);
