@@ -9,8 +9,6 @@
 
 namespace Module\Widget\Controller\Admin;
 
-use Pi;
-
 /**
  * For static block
  */
@@ -47,24 +45,17 @@ class StaticController extends WidgetController
     /**
      * {@inheritDoc}
      */
-    protected function widgetList()
+    protected function widgetList($widgets = null)
     {
         $model = $this->getModel('widget');
-        $contentTypes = $this->contentTypes();
-        $rowset = $model->select(array('type' => array_keys($contentTypes)));
+        $rowset = $model->select(array(
+            'type' => array_keys($this->contentTypes())
+        ));
         $widgets = array();
         foreach ($rowset as $row) {
             $widgets[$row->block] = $row->toArray();
         }
-        if ($widgets) {
-            $blocks = Pi::model('block_root')
-                ->select(array('id' => array_keys($widgets)))->toArray();
-            foreach ($blocks as $block) {
-                $widgets[$block['id']]['block'] = $block;
-            }
-        }
-
-        return $widgets;
+        return parent::widgetList($widgets);
     }
 
     /**
