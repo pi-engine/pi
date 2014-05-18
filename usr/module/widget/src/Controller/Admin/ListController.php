@@ -77,7 +77,6 @@ class ListController extends WidgetController
         $items = array_filter($items);
         $content = json_encode($items);
 
-        d($items);
         return $content;
     }
 }

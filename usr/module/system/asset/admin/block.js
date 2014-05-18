@@ -19,6 +19,7 @@
     var root = config.urlRoot;
     var blocks = [];
 
+    /*
     angular.forEach(config.data.blocks, function(item) {
         item.previewUrl = config.previewRoot + '?block=' + item.id;
         item.editUrl = root + 'edit/id/' + item.id + '/name/' + item.module;
@@ -26,9 +27,10 @@
         item.cloneUrl = root + 'clone/root/' + item.root + '/name/' + item.module;
         blocks.push(item);
     });
+    */
 
     this.data = {
-      blocks: blocks
+      blocks: config.data.blocks
     }
 
     this.blockPages = function (id) {
