@@ -1,13 +1,12 @@
 angular.module('widget')
 .config(['$routeProvider', 'piProvider', 'config',
 	function ($routeProvider, piProvider, config) {
-		//Get template url
-    function tpl(name) {
-      return config.assetRoot + name + '.html';
-    }
+        function tpl(name) {
+          return config.assetRoot + name + '.html';
+        }
 
 		$routeProvider.otherwise({
-			templateUrl: tpl('list-misc'),
+			templateUrl: tpl('list-widgets'),
 			controller: 'listCtrl'
 		});
 
@@ -16,10 +15,6 @@ angular.module('widget')
 ])
 .controller('listCtrl', ['$scope', 'config',
 	function($scope, config) {
-		angular.forEach(config.data.widgets, function(item) {
-			item.editUrl = config.urlRoot + 'edit/id/' + item.id;
-			item.deleteUrl = config.urlRoot + 'delete/id/' + item.id;
-		});
 		angular.extend($scope, config.data);
 	}
 ]);

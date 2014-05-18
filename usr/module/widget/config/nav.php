@@ -14,10 +14,25 @@ return array(
             'script'     => array(
                 'label'         => _t('Script widgets'),
                 'route'         => 'admin',
-                'controller'    => 'index',
+                'controller'    => 'script',
                 'action'        => 'index',
                 'permission'    => array(
                     'resource'  => 'script',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Widget list'),
+                        'route'         => 'admin',
+                        'controller'    => 'script',
+                        'action'        => 'index',
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Add new'),
+                        'route'         => 'admin',
+                        'controller'    => 'script',
+                        'action'        => 'add',
+                    ),
                 ),
             ),
 

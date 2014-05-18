@@ -33,7 +33,7 @@ abstract class WidgetController extends ActionController
     public function indexAction()
     {
         $data = array(
-            'widgets' => array_values($this->widgetList())
+            'widgets' => $this->widgetList()
         );
         $this->view()->assign('data', $data);
         $this->view()->setTemplate('ng');
@@ -237,24 +237,44 @@ abstract class WidgetController extends ActionController
 
     /**
      * Get widget list
+     *
+     * @param array|null $widgets
+     *
+     * @return array
      */
-    protected function widgetList()
+    protected function widgetList($widgets = null)
     {
-        $model = $this->getModel('widget');
-        $rowset = $model->select(array('type' => $this->type));
-        $widgets = array();
-        foreach ($rowset as $row) {
-            $widgets[$row->block] = $row->toArray();
-        }
-        if ($widgets) {
-            $blocks = Pi::model('block_root')
-                ->select(array('id' => array_keys($widgets)))->toArray();
-            foreach ($blocks as $block) {
-                $widgets[$block['id']]['block'] = $block;
+        if (null === $widgets) {
+            $model = $this->getModel('widget');
+            $rowset = $model->select(array('type' => $this->type));
+            $widgets = array();
+            foreach ($rowset as $row) {
+                $widgets[$row->block] = $row->toArray();
             }
         }
+        $list = array();
+        if ($widgets) {
+            $blocks = Pi::model('block_root')->select(
+                array('id' => array_keys($widgets))
+            )->toArray();
+            foreach ($blocks as $block) {
+                $item = $widgets[$block['id']];
+                $item['block'] = $block;
+                $list[] = $item;
+            }
+        }
+        array_walk($list, function (&$item) {
+            $item['editUrl'] = $this->url('', array(
+                'action'    => 'edit',
+                'id'        => $item['id']
+            ));
+            $item['deleteUrl'] = $this->url('', array(
+                'action'    => 'delete',
+                'id'        => $item['id']
+            ));
+        });
 
-        return $widgets;
+        return $list;
     }
 
     /**
