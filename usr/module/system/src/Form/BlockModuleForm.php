@@ -24,15 +24,20 @@ class BlockModuleForm extends BaseForm
     /** @var BlockRow Root block model */
     protected $root;
 
+    /** @var bool Is for clone */
+    protected $isClone = false;
+
     /**
      * Constructor
      *
      * @param null|string|int $name Optional name for the element
-     * @param BlockRow $root Root block to be cloned
+     * @param BlockRow        $root Root block to be cloned
+     * @param bool            $isClone
      */
-    public function __construct($name = null, $root = null)
+    public function __construct($name = null, $root = null, $isClone = false)
     {
         $this->root = $root;
+        $this->isClone = $isClone;
         parent::__construct($name);
     }
 
@@ -121,6 +126,12 @@ class BlockModuleForm extends BaseForm
                     'label' => __('Template'),
                 )
             ));
+
+            // Only cloned blocks are allowed to change template
+            if (!$this->isClone) {
+                $templateSpec['type'] = 'text';
+                $templateSpec['attributes']['readonly'] = 'readonly';
+            }
             $this->add($templateSpec);
         }
 
@@ -180,6 +191,7 @@ class BlockModuleForm extends BaseForm
             'type'  => 'csrf',
         ));
 
+        /*
         $this->add(array(
             'name'  => 'root',
             'type'  => 'hidden',
@@ -187,6 +199,7 @@ class BlockModuleForm extends BaseForm
                 'value' => $this->root->id,
             ),
         ));
+        */
 
         $this->add(array(
             'name'  => 'id',
@@ -333,15 +346,17 @@ class BlockModuleForm extends BaseForm
 
         $inputFilter->add(array(
             'name'          => 'id',
-            //'required'      => true,
-            'allow_empty'   => true,
+            'required'      => true,
+            //'allow_empty'   => true,
         ));
 
+        /*
         $inputFilter->add(array(
             'name'          => 'root',
             'required'      => true,
             'allow_empty'   => true,
         ));
+        */
 
         $inputFilter->add(array(
             'name'          => 'title_hidden',

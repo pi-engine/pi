@@ -182,15 +182,11 @@ class Block extends AbstractHelper
                     $block['module'],
                     $block['template']
                 );
-                /**#@+
-                    * Preset variables
-                    */
                 // The block's module
                 $viewModel->setVariable('module', $block['module']);
                 // Matched route
                 $routeMatch = Pi::engine()->application()->getRouteMatch();
                 $viewModel->setVariable('route', $routeMatch);
-                /**#@-*/
             }
             $viewModel->setTemplate($template)->terminate(true);
             $viewModel->setVariable('block', $blockData);

@@ -142,9 +142,6 @@ class Block extends AbstractResource
                                 ? $block['config'] : array(),
             'cache_level'   => isset($block['cache_level'])
                                 ? $block['cache_level'] : '',
-
-            //'link'          => isset($block['link']) ? $block['link'] : '',
-            //'class'         => isset($block['class']) ? $block['class'] : '',
         );
 
         return $data;

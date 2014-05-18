@@ -10,7 +10,6 @@ angular
     .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
     .constant('config', {
         urlRoot: '<?php echo $this->url('', array('controller' => 'block')); ?>',
-        previewRoot: '<?php echo $this->url('default', array('module' => 'widget')); ?>',
         assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
         data: {
             blocks: <?php echo json_encode($blocks); ?>

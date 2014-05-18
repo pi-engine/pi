@@ -74,7 +74,6 @@ CREATE TABLE `{core.block_root}` (
   `cache_level`     varchar(64)     NOT NULL default '',            # content cache level type
   `type`            varchar(64)     NOT NULL default '',            # Content type: "" - module generated; carousel - Carousel; tab - block compound; text - static text; html - static HTML; markdown - static Markdown syntax compliant
 
-
   PRIMARY KEY  (`id`),
   UNIQUE KEY `module_name` (`module`, `name`)
 );
