@@ -3,6 +3,9 @@ $options    = (array) $block['options'];
 $items      = $block['items'] ?: array();
 $count      = count($items);
 $target     = empty($options['target_new']) ? '' : '_blank';
+$ellipsis   = empty($options['max_rows'])
+            ? 'pi-ellipsis'
+            : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
 $imgStyle   = '';
 if (!empty($options['width'])) {
     $imgStyle .= 'width: '  . $options['width'] . 'px;';
@@ -19,15 +22,15 @@ unset($options['width'], $options['height'], $options['two_col']);
 <?php
 if ($towcols) {
 
-    $render = function ($item) use ($imgStyle, $target) {
+    $render = function ($item) use ($imgStyle, $ellipsis, $target) {
         $itemPattern =<<<EOT
             <div class="row">
                 <div class="col-sm-7">
                     <a href="%s" target="%s" title="%s"><img class="img-responsive" src="%s" alt="%s" style="%s"></a>
                 </div>
                 <div class="col-sm-5">
-                    <h4 class="pi-ellipsis pi-ellipsis-2"><a href="%s" title="%s" target="%s">%s</a></h4>
-                    <p class="pi-ellipsis pi-ellipsis-4">%s</p>
+                    <h4 class="pi-ellipsis"><a href="%s" title="%s" target="%s">%s</a></h4>
+                    <p class="%s">%s</p>
                 </div>
             </div>
 EOT;
@@ -45,6 +48,7 @@ EOT;
             $caption,
             $target,
             $caption,
+            $ellipsis,
             $item['summary']
         );
 
@@ -76,14 +80,14 @@ EOT;
 <?php
 } else {
 
-    $render = function ($item) use ($imgStyle, $target) {
+    $render = function ($item) use ($imgStyle, $ellipsis, $target) {
         $itemPattern =<<<EOT
             <a href="%s" target="%s" title="%s">
                 <img src="%s" alt="%s" class="img-responsive" style="%s" />
             </a>
             <div class="carousel-caption">
                 <h4>%s</h4>
-                <p>%s</p>
+                <p class="%s">%s</p>
             </div>
 EOT;
         $link       = $item['link'] ?: '#';
@@ -97,6 +101,7 @@ EOT;
             $caption,
             $imgStyle,
             $caption,
+            $ellipsis,
             $item['summary']
         );
 

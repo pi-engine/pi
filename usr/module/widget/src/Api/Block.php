@@ -86,75 +86,73 @@ class Block extends AbstractApi
     public function getConfig($type = null)
     {
         $config = Pi::config('', 'widget');
+        $imgWidth = function ($value) {
+            return array(
+                'title'         => _a('Image width'),
+                'edit'          => 'text',
+                'filter'        => 'int',
+                'value'         => $value,
+            );
+        };
+        $imgHeight = function ($value) {
+            return array(
+                'title'         => _a('Image height'),
+                'edit'          => 'text',
+                'filter'        => 'int',
+                'value'         => $value,
+            );
+        };
+        $maxRows = array(
+            'title'         => _a('Max rows to display'),
+            'edit'          => array(
+                'type'      => 'select',
+                'options'   => array(
+                    'options'   => array(
+                        0   => _a('No limit'),
+                        1   => _a('1 row'),
+                        2   => sprintf(_a('%d rows'), 2),
+                        3   => sprintf(_a('%d rows'), 3),
+                        4   => sprintf(_a('%d rows'), 4),
+                        5   => sprintf(_a('%d rows'), 5),
+                        6   => sprintf(_a('%d rows'), 6),
+                    ),
+                ),
+            ),
+            'filter'        => 'int',
+        );
+        $targetNew = array(
+            'title'     => _a('Open link in new window'),
+            'edit'      => 'checkbox',
+            'filter'    => 'int',
+            'value'     => $config['target_new'],
+        );
         $configs = array(
             'list' => array(
-                'target_new'    => array(
-                    'title'         => _a('Open link in new window'),
-                    'edit'          => 'checkbox',
-                    'filter'        => 'int',
-                    'value'         => $config['target_new'],
-                ),
+                'max_rows'      => $maxRows,
+                'target_new'    => $targetNew,
             ),
             'media' => array(
-                'width'          => array(
-                    'title'         => _a('Image width'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => $config['image_width_media'],
-                ),
-                'height'         => array(
-                    'title'         => _a('Image height'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => $config['image_height_media'],
-                ),
-                'target_new'    => array(
-                    'title'         => _a('Open link in new window'),
-                    'edit'          => 'checkbox',
-                    'filter'        => 'int',
-                    'value'         => $config['target_new'],
-                ),
+                'width'         => $imgWidth($config['image_width_media']),
+                'height'        => $imgHeight($config['image_height_media']),
+                'max_rows'      => $maxRows,
+                'target_new'    => $targetNew,
             ),
             'spotlight' => array(
-                'width'          => array(
-                    'title'         => _a('Image width'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => $config['image_width_spotlight'],
-                ),
-                'height'         => array(
-                    'title'         => _a('Image height'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => $config['image_height_spotlight'],
-                ),
-                'target_new'    => array(
-                    'title'         => _a('Open link in new window'),
-                    'edit'          => 'checkbox',
-                    'filter'        => 'int',
-                    'value'         => $config['target_new'],
-                ),
+                'width'         => $imgWidth($config['image_width_spotlight']),
+                'height'        => $imgHeight($config['image_height_spotlight']),
+                'max_rows'      => $maxRows,
+                'target_new'    => $targetNew,
             ),
             'carousel' => array(
-                'width'     => array(
-                    'title'         => _a('Image width'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => $config['image_width_carousel'],
-                ),
-                'height'    => array(
-                    'title'         => _a('Image height'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => $config['image_height_carousel'],
-                ),
-                'interval' => array(
+                'width'     => $imgWidth($config['image_width_carousel']),
+                'height'    => $imgHeight($config['image_height_carousel']),
+                'interval'  => array(
                     'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
                     'filter'        => 'int',
                     'value'         => 4000,
                 ),
-                'pause' => array(
+                'pause'     => array(
                     'title'         => _a('Mouse event'),
                     'description'   => _a('Event to pause cycle'),
                     'edit'          => array(
@@ -167,22 +165,8 @@ class Block extends AbstractApi
                     ),
                     'value'         => 'hover',
                 ),
-                /*
-                'two_col'    => array(
-                    'title'         => _a('Two columns'),
-                    'description'   => _a('Split image and text into two columns'),
-                    'edit'          => 'checkbox',
-                    'filter'        => 'int',
-                    'value'         => 0,
-                ),
-                */
-                'target_new'    => array(
-                    'title'         => _a('New window'),
-                    'description'   => _a('Open link in a new window'),
-                    'edit'          => 'checkbox',
-                    'filter'        => 'int',
-                    'value'         => $config['target_new'],
-                )
+                'max_rows'      => $maxRows,
+                'target_new'    => $targetNew,
             ),
         );
 
