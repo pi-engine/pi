@@ -1,0 +1,2109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Timezone\n"
+"POT-Creation-Date: 2014-05-18 22:42+0100\n"
+"PO-Revision-Date: 2014-05-18 22:45+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\locale\\_source\\Timezone\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:16
+msgid "Africa"
+msgstr "Afrique/Accra"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:17
+msgid "Africa/Abidjan"
+msgstr "Afrique/Abidjan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:18
+msgid "Africa/Accra"
+msgstr "Afrique/Accra"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:19
+msgid "Africa/Addis_Ababa"
+msgstr "Afrique/Addis_Ababa"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:20
+msgid "Africa/Algiers"
+msgstr "Afrique/Algiers"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:21
+msgid "Africa/Asmara"
+msgstr "Afrique/Asmara"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:22
+msgid "Africa/Bamako"
+msgstr "Afrique/Bamako"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:23
+msgid "Africa/Bangui"
+msgstr "Afrique/Bangui"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:24
+msgid "Africa/Banjul"
+msgstr "Afrique/Banjul"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:25
+msgid "Africa/Bissau"
+msgstr "Afrique/Bissau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:26
+msgid "Africa/Blantyre"
+msgstr "Afrique/Blantyre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:27
+msgid "Africa/Brazzaville"
+msgstr "Afrique/Brazzaville"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:28
+msgid "Africa/Bujumbura"
+msgstr "Afrique/Bujumbura"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:29
+msgid "Africa/Cairo"
+msgstr "Afrique/Cairo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:30
+msgid "Africa/Casablanca"
+msgstr "Afrique/Casablanca"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:31
+msgid "Africa/Ceuta"
+msgstr "Afrique/Ceuta"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:32
+msgid "Africa/Conakry"
+msgstr "Afrique/Conakry"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:33
+msgid "Africa/Dakar"
+msgstr "Afrique/Dakar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:34
+msgid "Africa/Dar_es_Salaam"
+msgstr "Afrique/Dar_es_Salaam"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:35
+msgid "Africa/Djibouti"
+msgstr "Afrique/Djibouti"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:36
+msgid "Africa/Douala"
+msgstr "Afrique/Douala"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:37
+msgid "Africa/El_Aaiun"
+msgstr "Afrique/El_Aaiun"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:38
+msgid "Africa/Freetown"
+msgstr "Afrique/Freetown"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:39
+msgid "Africa/Gaborone"
+msgstr "Afrique/Gaborone"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:40
+msgid "Africa/Harare"
+msgstr "Afrique/Harare"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:41
+msgid "Africa/Johannesburg"
+msgstr "Afrique/Johannesburg"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:42
+msgid "Africa/Kampala"
+msgstr "Afrique/Kampala"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:43
+msgid "Africa/Khartoum"
+msgstr "Afrique/Khartoum"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:44
+msgid "Africa/Kigali"
+msgstr "Afrique/Kigali"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:45
+msgid "Africa/Kinshasa"
+msgstr "Afrique/Kinshasa"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:46
+msgid "Africa/Lagos"
+msgstr "Afrique/Lagos"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:47
+msgid "Africa/Libreville"
+msgstr "Afrique/Libreville"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:48
+msgid "Africa/Lome"
+msgstr "Afrique/Lome"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:49
+msgid "Africa/Luanda"
+msgstr "Afrique/Luanda"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:50
+msgid "Africa/Lubumbashi"
+msgstr "Afrique/Lubumbashi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:51
+msgid "Africa/Lusaka"
+msgstr "Afrique/Lusaka"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:52
+msgid "Africa/Malabo"
+msgstr "Afrique/Malabo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:53
+msgid "Africa/Maputo"
+msgstr "Afrique/Maputo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:54
+msgid "Africa/Maseru"
+msgstr "Afrique/Maseru"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:55
+msgid "Africa/Mbabane"
+msgstr "Afrique/Mbabane"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:56
+msgid "Africa/Mogadishu"
+msgstr "Afrique/Mogadishu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:57
+msgid "Africa/Monrovia"
+msgstr "Afrique/Monrovia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:58
+msgid "Africa/Nairobi"
+msgstr "Afrique/Nairobi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:59
+msgid "Africa/Ndjamena"
+msgstr "Afrique/Ndjamena"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:60
+msgid "Africa/Niamey"
+msgstr "Afrique/Niamey"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:61
+msgid "Africa/Nouakchott"
+msgstr "Afrique/Nouakchott"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:62
+msgid "Africa/Ouagadougou"
+msgstr "Afrique/Ouagadougou"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:63
+msgid "Africa/Porto-Novo-Novo"
+msgstr "Afrique/Porto-Novo-Novo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:64
+msgid "Africa/Sao_Tome"
+msgstr "Afrique/Sao_Tome"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:65
+msgid "Africa/Tripoli"
+msgstr "Afrique/Tripoli"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:66
+msgid "Africa/Tunis"
+msgstr "Afrique/Tunis"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:67
+msgid "Africa/Windhoek"
+msgstr "Afrique/Windhoek"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:69
+msgid "America"
+msgstr "Amériques"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:70
+msgid "America/Adak"
+msgstr "Amériques/Adak"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:71
+msgid "America/Anchorage"
+msgstr "Amériques/Anchorage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:72
+msgid "America/Anguilla"
+msgstr "Amériques/Anguilla"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:73
+msgid "America/Antigua"
+msgstr "Amériques/Antigua"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:74
+msgid "America/Araguaina"
+msgstr "Amériques/Araguaina"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:75
+msgid "America/Argentina/Buenos_Aires"
+msgstr "Amériques/Argentina/Buenos_Aires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:76
+msgid "America/Argentina/Catamarca"
+msgstr "Amériques/Argentina/Catamarca"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:77
+msgid "America/Argentina/Cordoba"
+msgstr "Amériques/Argentina/Cordoba"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:78
+msgid "America/Argentina/Jujuy"
+msgstr "Amériques/Argentina/Jujuy"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:79
+msgid "America/Argentina/La_Rioja"
+msgstr "Amériques/Argentina/La_Rioja"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:80
+msgid "America/Argentina/Mendoza"
+msgstr "Amériques/Argentina/Mendoza"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:81
+msgid "America/Argentina/Rio_Gallegos"
+msgstr "Amériques/Argentina/Rio_Gallegos"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:82
+msgid "America/Argentina/Salta"
+msgstr "Amériques/Argentina/Salta"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:83
+msgid "America/Argentina/San_Juan"
+msgstr "Amériques/Argentina/San_Juan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:84
+msgid "America/Argentina/San_Luis"
+msgstr "Amériques/Argentina/San_Luis"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:85
+msgid "America/Argentina/Tucuman"
+msgstr "Amériques/Argentina/Tucuman"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:86
+msgid "America/Argentina/Ushuaia"
+msgstr "Amériques/Argentina/Ushuaia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:87
+msgid "America/Aruba"
+msgstr "Amériques/Aruba"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:88
+msgid "America/Asuncion"
+msgstr "Amériques/Asuncion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:89
+msgid "America/Atikokan"
+msgstr "Amériques/Atikokan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:90
+msgid "America/Bahia"
+msgstr "Amériques/Bahia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:91
+msgid "America/Bahia_Banderas"
+msgstr "Amériques/Bahia_Banderas"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:92
+msgid "America/Barbados"
+msgstr "Amériques/Barbados"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:93
+msgid "America/Belem"
+msgstr "Amériques/Belem"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:94
+msgid "America/Belize"
+msgstr "Amériques/Belize"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:95
+msgid "America/Blanc-Sablon-Sablon"
+msgstr "Amériques/Blanc-Sablon-Sablon"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:96
+msgid "America/Boa_Vista"
+msgstr "Amériques/Boa_Vista"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:97
+msgid "America/Bogota"
+msgstr "Amériques/Bogota"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:98
+msgid "America/Boise"
+msgstr "Amériques/Boise"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:99
+msgid "America/Cambridge_Bay"
+msgstr "Amériques/Cambridge_Bay"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:100
+msgid "America/Campo_Grande"
+msgstr "Amériques/Campo_Grande"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:101
+msgid "America/Cancun"
+msgstr "Amériques/Cancun"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:102
+msgid "America/Caracas"
+msgstr "Amériques/Caracas"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:103
+msgid "America/Cayenne"
+msgstr "Amériques/Cayenne"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:104
+msgid "America/Cayman"
+msgstr "Amériques/Cayman"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:105
+msgid "America/Chicago"
+msgstr "Amériques/Chicago"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:106
+msgid "America/Chihuahua"
+msgstr "Amériques/Chihuahua"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:107
+msgid "America/Costa_Rica"
+msgstr "Amériques/Costa_Rica"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:108
+msgid "America/Cuiaba"
+msgstr "Amériques/Cuiaba"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:109
+msgid "America/Curacao"
+msgstr "Amériques/Curacao"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:110
+msgid "America/Danmarkshavn"
+msgstr "Amériques/Danmarkshavn"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:111
+msgid "America/Dawson"
+msgstr "Amériques/Dawson"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:112
+msgid "America/Dawson_Creek"
+msgstr "Amériques/Dawson_Creek"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:113
+msgid "America/Denver"
+msgstr "Amériques/Denver"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:114
+msgid "America/Detroit"
+msgstr "Amériques/Detroit"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:115
+msgid "America/Dominica"
+msgstr "Amériques/Dominica"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:116
+msgid "America/Edmonton"
+msgstr "Amériques/Edmonton"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:117
+msgid "America/Eirunepe"
+msgstr "Amériques/Eirunepe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:118
+msgid "America/El_Salvador"
+msgstr "Amériques/El_Salvador"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:119
+msgid "America/Fortaleza"
+msgstr "Amériques/Fortaleza"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:120
+msgid "America/Glace_Bay"
+msgstr "Amériques/Glace_Bay"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:121
+msgid "America/Godthab"
+msgstr "Amériques/Godthab"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:122
+msgid "America/Goose_Bay"
+msgstr "Amériques/Goose_Bay"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:123
+msgid "America/Grand_Turk"
+msgstr "Amériques/Grand_Turk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:124
+msgid "America/Grenada"
+msgstr "Amériques/Grenada"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:125
+msgid "America/Guadeloupe"
+msgstr "Amériques/Guadeloupe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:126
+msgid "America/Guatemala"
+msgstr "Amériques/Guatemala"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:127
+msgid "America/Guayaquil"
+msgstr "Amériques/Guayaquil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:128
+msgid "America/Guyana"
+msgstr "Amériques/Guyana"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:129
+msgid "America/Halifax"
+msgstr "Amériques/Halifax"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:130
+msgid "America/Havana"
+msgstr "Amériques/Havana"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:131
+msgid "America/Hermosillo"
+msgstr "Amériques/Hermosillo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:132
+msgid "America/Indiana/Indianapolis"
+msgstr "Amériques/Indea/Indeapolis"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:133
+msgid "America/Indiana/Knox"
+msgstr "Amériques/Indea/Knox"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:134
+msgid "America/Indiana/Marengo"
+msgstr "Amériques/Indea/Marengo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:135
+msgid "America/Indiana/Petersburg"
+msgstr "Amériques/Indea/Petersburg"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:136
+msgid "America/Indiana/Tell_City"
+msgstr "Amériques/Indea/Tell_City"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:137
+msgid "America/Indiana/Vevay"
+msgstr "Amériques/Indea/Vevay"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:138
+msgid "America/Indiana/Vincennes"
+msgstr "Amériques/Indea/Vincennes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:139
+msgid "America/Indiana/Winamac"
+msgstr "Amériques/Indea/Winamac"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:140
+msgid "America/Inuvik"
+msgstr "Amériques/Inuvik"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:141
+msgid "America/Iqaluit"
+msgstr "Amériques/Iqaluit"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:142
+msgid "America/Jamaica"
+msgstr "Amériques/Jamaica"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:143
+msgid "America/Juneau"
+msgstr "Amériques/Juneau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:144
+msgid "America/Kentucky/Louisville"
+msgstr "Amériques/Kentucky/Louisville"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:145
+msgid "America/Kentucky/Monticello"
+msgstr "Amériques/Kentucky/Monticello"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:146
+msgid "America/La_Paz"
+msgstr "Amériques/La_Paz"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:147
+msgid "America/Lima"
+msgstr "Amériques/Lima"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:148
+msgid "America/Los_Angeles"
+msgstr "Amériques/Los_Angeles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:149
+msgid "America/Maceio"
+msgstr "Amériques/Maceio"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:150
+msgid "America/Managua"
+msgstr "Amériques/Managua"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:151
+msgid "America/Manaus"
+msgstr "Amériques/Manaus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:152
+msgid "America/Marigot"
+msgstr "Amériques/Marigot"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:153
+msgid "America/Martinique"
+msgstr "Amériques/Martinique"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:154
+msgid "America/Matamoros"
+msgstr "Amériques/Matamoros"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:155
+msgid "America/Mazatlan"
+msgstr "Amériques/Mazatlan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:156
+msgid "America/Menominee"
+msgstr "Amériques/Menominee"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:157
+msgid "America/Merida"
+msgstr "Amériques/Merida"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:158
+msgid "America/Mexico_City"
+msgstr "Amériques/Mexico_City"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:159
+msgid "America/Miquelon"
+msgstr "Amériques/Miquelon"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:160
+msgid "America/Moncton"
+msgstr "Amériques/Moncton"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:161
+msgid "America/Monterrey"
+msgstr "Amériques/Monterrey"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:162
+msgid "America/Montevideo"
+msgstr "Amériques/Montevideo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:163
+msgid "America/Montreal"
+msgstr "Amériques/Montreal"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:164
+msgid "America/Montserrat"
+msgstr "Amériques/Montserrat"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:165
+msgid "America/Nassau"
+msgstr "Amériques/Nassau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:166
+msgid "America/New_York"
+msgstr "Amériques/New_York"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:167
+msgid "America/Nipigon"
+msgstr "Amériques/Nipigon"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:168
+msgid "America/Nome"
+msgstr "Amériques/Nome"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:169
+msgid "America/Noronha"
+msgstr "Amériques/Noronha"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:170
+msgid "America/North_Dakota/Center"
+msgstr "Amériques/North_Dakota/Center"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:171
+msgid "America/North_Dakota/New_Salem"
+msgstr "Amériques/North_Dakota/New_Salem"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:172
+msgid "America/Ojinaga"
+msgstr "Amériques/Ojinaga"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:173
+msgid "America/Panama"
+msgstr "Amériques/Panama"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:174
+msgid "America/Pangnirtung"
+msgstr "Amériques/Pangnirtung"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:175
+msgid "America/Paramaribo"
+msgstr "Amériques/Paramaribo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:176
+msgid "America/Phoenix"
+msgstr "Amériques/Phoenix"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:177
+msgid "America/Port-au-Prince-au-Prince"
+msgstr "Amériques/Port-au-Prince-au-Prince"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:178
+msgid "America/Port_of_Spain"
+msgstr "Amériques/Port_of_Spain"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:179
+msgid "America/Porto_Velho"
+msgstr "Amériques/Porto_Velho"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:180
+msgid "America/Puerto_Rico"
+msgstr "Amériques/Puerto_Rico"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:181
+msgid "America/Rainy_River"
+msgstr "Amériques/Rainy_River"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:182
+msgid "America/Rankin_Inlet"
+msgstr "Amériques/Rankin_Inlet"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:183
+msgid "America/Recife"
+msgstr "Amériques/Recife"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:184
+msgid "America/Regina"
+msgstr "Amériques/Regina"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:185
+msgid "America/Resolute"
+msgstr "Amériques/Resolute"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:186
+msgid "America/Rio_Branco"
+msgstr "Amériques/Rio_Branco"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:187
+msgid "America/Santa_Isabel"
+msgstr "Amériques/Santa_Isabel"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:188
+msgid "America/Santarem"
+msgstr "Amériques/Santarem"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:189
+msgid "America/Santiago"
+msgstr "Amériques/Santiago"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:190
+msgid "America/Santo_Domingo"
+msgstr "Amériques/Santo_Domingo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:191
+msgid "America/Sao_Paulo"
+msgstr "Amériques/Sao_Paulo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:192
+msgid "America/Scoresbysund"
+msgstr "Amériques/Scoresbysund"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:193
+msgid "America/Shiprock"
+msgstr "Amériques/Shiprock"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:194
+msgid "America/St_Barthelemy"
+msgstr "Amériques/St_Barthelemy"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:195
+msgid "America/St_Johns"
+msgstr "Amériques/St_Johns"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:196
+msgid "America/St_Kitts"
+msgstr "Amériques/St_Kitts"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:197
+msgid "America/St_Lucia"
+msgstr "Amériques/St_Lucia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:198
+msgid "America/St_Thomas"
+msgstr "Amériques/St_Thomas"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:199
+msgid "America/St_Vincent"
+msgstr "Amériques/St_Vincent"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:200
+msgid "America/Swift_Current"
+msgstr "Amériques/Swift_Current"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:201
+msgid "America/Tegucigalpa"
+msgstr "Amériques/Tegucigalpa"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:202
+msgid "America/Thule"
+msgstr "Amériques/Thule"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:203
+msgid "America/Thunder_Bay"
+msgstr "Amériques/Thunder_Bay"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:204
+msgid "America/Tijuana"
+msgstr "Amériques/Tijuana"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:205
+msgid "America/Toronto"
+msgstr "Amériques/Toronto"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:206
+msgid "America/Tortola"
+msgstr "Amériques/Tortola"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:207
+msgid "America/Vancouver"
+msgstr "Amériques/Vancouver"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:208
+msgid "America/Whitehorse"
+msgstr "Amériques/Whitehorse"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:209
+msgid "America/Winnipeg"
+msgstr "Amériques/Winnipeg"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:210
+msgid "America/Yakutat"
+msgstr "Amériques/Yakutat"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:211
+msgid "America/Yellowknife"
+msgstr "Amériques/Yellowknife"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:213
+msgid "Antarctica"
+msgstr "Antarctica"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:214
+msgid "Antarctica/Casey"
+msgstr "Antarctica/Casey"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:215
+msgid "Antarctica/Davis"
+msgstr "Antarctica/Davis"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:216
+msgid "Antarctica/DumontDUrville"
+msgstr "Antarctica/DumontDUrville"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:217
+msgid "Antarctica/Macquarie"
+msgstr "Antarctica/Macquarie"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:218
+msgid "Antarctica/Mawson"
+msgstr "Antarctica/Mawson"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:219
+msgid "Antarctica/McMurdo"
+msgstr "Antarctica/McMurdo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:220
+msgid "Antarctica/Palmer"
+msgstr "Antarctica/Palmer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:221
+msgid "Antarctica/Rothera"
+msgstr "Antarctica/Rothera"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:222
+msgid "Antarctica/South_Pole"
+msgstr "Antarctica/South_Pole"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:223
+msgid "Antarctica/Syowa"
+msgstr "Antarctica/Syowa"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:224
+msgid "Antarctica/Vostok"
+msgstr "Antarctica/Vostok"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:225
+msgid "Arctic/Longyearbyen"
+msgstr "Arctic/Longyearbyen"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:227
+msgid "Asia"
+msgstr "Asie"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:228
+msgid "Asia/Aden"
+msgstr "Asie/Aden"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:229
+msgid "Asia/Almaty"
+msgstr "Asie/Almaty"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:230
+msgid "Asia/Amman"
+msgstr "Asie/Amman"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:231
+msgid "Asia/Anadyr"
+msgstr "Asie/Anadyr"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:232
+msgid "Asia/Aqtau"
+msgstr "Asie/Aqtau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:233
+msgid "Asia/Aqtobe"
+msgstr "Asie/Aqtobe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:234
+msgid "Asia/Ashgabat"
+msgstr "Asie/Ashgabat"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:235
+msgid "Asia/Baghdad"
+msgstr "Asie/Baghdad"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:236
+msgid "Asia/Bahrain"
+msgstr "Asie/Bahrain"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:237
+msgid "Asia/Baku"
+msgstr "Asie/Baku"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:238
+msgid "Asia/Bangkok"
+msgstr "Asie/Bangkok"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:239
+msgid "Asia/Beirut"
+msgstr "Asie/Beirut"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:240
+msgid "Asia/Bishkek"
+msgstr "Asie/Bishkek"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:241
+msgid "Asia/Brunei"
+msgstr "Asie/Brunei"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:242
+msgid "Asia/Choibalsan"
+msgstr "Asie/Choibalsan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:243
+msgid "Asia/Chongqing"
+msgstr "Asie/Chongqing"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:244
+msgid "Asia/Colombo"
+msgstr "Asie/Colombo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:245
+msgid "Asia/Damascus"
+msgstr "Asie/Damascus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:246
+msgid "Asia/Dhaka"
+msgstr "Asie/Dhaka"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:247
+msgid "Asia/Dili"
+msgstr "Asie/Dili"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:248
+msgid "Asia/Dubai"
+msgstr "Asie/Dubai"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:249
+msgid "Asia/Dushanbe"
+msgstr "Asie/Dushanbe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:250
+msgid "Asia/Gaza"
+msgstr "Asie/Gaza"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:251
+msgid "Asia/Harbin"
+msgstr "Asie/Harbin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:252
+msgid "Asia/Ho_Chi_Minh"
+msgstr "Asie/Ho_Chi_Minh"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:253
+msgid "Asia/Hong_Kong"
+msgstr "Asie/Hong_Kong"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:254
+msgid "Asia/Hovd"
+msgstr "Asie/Hovd"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:255
+msgid "Asia/Irkutsk"
+msgstr "Asie/Irkutsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:256
+msgid "Asia/Jakarta"
+msgstr "Asie/Jakarta"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:257
+msgid "Asia/Jayapura"
+msgstr "Asie/Jayapura"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:258
+msgid "Asia/Jerusalem"
+msgstr "Asie/Jerusalem"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:259
+msgid "Asia/Kabul"
+msgstr "Asie/Kabul"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:260
+msgid "Asia/Kamchatka"
+msgstr "Asie/Kamchatka"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:261
+msgid "Asia/Karachi"
+msgstr "Asie/Karachi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:262
+msgid "Asia/Kashgar"
+msgstr "Asie/Kashgar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:263
+msgid "Asia/Kathmandu"
+msgstr "Asie/Kathmandu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:264
+msgid "Asia/Kolkata"
+msgstr "Asie/Kolkata"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:265
+msgid "Asia/Krasnoyarsk"
+msgstr "Asie/Krasnoyarsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:266
+msgid "Asia/Kuala_Lumpur"
+msgstr "Asie/Kuala_Lumpur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:267
+msgid "Asia/Kuching"
+msgstr "Asie/Kuching"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:268
+msgid "Asia/Kuwait"
+msgstr "Asie/Kuwait"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:269
+msgid "Asia/Macau"
+msgstr "Asie/Macau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:270
+msgid "Asia/Magadan"
+msgstr "Asie/Magadan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:271
+msgid "Asia/Makassar"
+msgstr "Asie/Makassar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:272
+msgid "Asia/Manila"
+msgstr "Asie/Manila"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:273
+msgid "Asia/Muscat"
+msgstr "Asie/Muscat"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:274
+msgid "Asia/Nicosia"
+msgstr "Asie/Nicosia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:275
+msgid "Asia/Novokuznetsk"
+msgstr "Asie/Novokuznetsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:276
+msgid "Asia/Novosibirsk"
+msgstr "Asie/Novosibirsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:277
+msgid "Asia/Omsk"
+msgstr "Asie/Omsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:278
+msgid "Asia/Oral"
+msgstr "Asie/Oral"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:279
+msgid "Asia/Phnom_Penh"
+msgstr "Asie/Phnom_Penh"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:280
+msgid "Asia/Pontianak"
+msgstr "Asie/Pontianak"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:281
+msgid "Asia/Pyongyang"
+msgstr "Asie/Pyongyang"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:282
+msgid "Asia/Qatar"
+msgstr "Asie/Qatar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:283
+msgid "Asia/Qyzylorda"
+msgstr "Asie/Qyzylorda"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:284
+msgid "Asia/Rangoon"
+msgstr "Asie/Rangoon"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:285
+msgid "Asia/Riyadh"
+msgstr "Asie/Riyadh"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:286
+msgid "Asia/Sakhalin"
+msgstr "Asie/Sakhalin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:287
+msgid "Asia/Samarkand"
+msgstr "Asie/Samarkand"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:288
+msgid "Asia/Seoul"
+msgstr "Asie/Seoul"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:289
+msgid "Asia/Shanghai"
+msgstr "Asie/Shanghai"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:290
+msgid "Asia/Singapore"
+msgstr "Asie/Singapore"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:291
+msgid "Asia/Taipei"
+msgstr "Asie/Taipei"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:292
+msgid "Asia/Tashkent"
+msgstr "Asie/Tashkent"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:293
+msgid "Asia/Tbilisi"
+msgstr "Asie/Tbilisi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:294
+msgid "Asia/Tehran"
+msgstr "Asie/Tehran"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:295
+msgid "Asia/Thimphu"
+msgstr "Asie/Thimphu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:296
+msgid "Asia/Tokyo"
+msgstr "Asie/Tokyo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:297
+msgid "Asia/Ulaanbaatar"
+msgstr "Asie/Ulaanbaatar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:298
+msgid "Asia/Urumqi"
+msgstr "Asie/Urumqi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:299
+msgid "Asia/Vientiane"
+msgstr "Asie/Vientiane"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:300
+msgid "Asia/Vladivostok"
+msgstr "Asie/Vladivostok"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:301
+msgid "Asia/Yakutsk"
+msgstr "Asie/Yakutsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:302
+msgid "Asia/Yekaterinburg"
+msgstr "Asie/Yekaterinburg"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:303
+msgid "Asia/Yerevan"
+msgstr "Asie/Yerevan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:305
+msgid "Atlantic"
+msgstr "Atlantique"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:306
+msgid "Atlantic/Azores"
+msgstr "Atlantique/Azores"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:307
+msgid "Atlantic/Bermuda"
+msgstr "Atlantique/Bermuda"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:308
+msgid "Atlantic/Canary"
+msgstr "Atlantique/Canary"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:309
+msgid "Atlantic/Cape_Verde"
+msgstr "Atlantique/Cape_Verde"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:310
+msgid "Atlantic/Faroe"
+msgstr "Atlantique/Faroe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:311
+msgid "Atlantic/Madeira"
+msgstr "Atlantique/Madeira"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:312
+msgid "Atlantic/Reykjavik"
+msgstr "Atlantique/Reykjavik"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:313
+msgid "Atlantic/South_Georgia"
+msgstr "Atlantique/South_Georgia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:314
+msgid "Atlantic/St_Helena"
+msgstr "Atlantique/St_Helena"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:315
+msgid "Atlantic/Stanley"
+msgstr "Atlantique/Stanley"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:316
+msgid "Australia/Adelaide"
+msgstr "Australie/Adelaide"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:317
+msgid "Australia/Brisbane"
+msgstr "Australie/Brisbane"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:318
+msgid "Australia/Broken_Hill"
+msgstr "Australie/Broken_Hill"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:319
+msgid "Australia/Currie"
+msgstr "Australie/Currie"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:320
+msgid "Australia/Darwin"
+msgstr "Australie/Darwin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:321
+msgid "Australia/Eucla"
+msgstr "Australie/Eucla"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:322
+msgid "Australia/Hobart"
+msgstr "Australie/Hobart"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:323
+msgid "Australia/Lindeman"
+msgstr "Australie/Lindeman"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:324
+msgid "Australia/Lord_Howe"
+msgstr "Australie/Lord_Howe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:325
+msgid "Australia/Melbourne"
+msgstr "Australie/Melbourne"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:326
+msgid "Australia/Perth"
+msgstr "Australie/Perth"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:327
+msgid "Australia/Sydney"
+msgstr "Australie/Sydney"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:329
+msgid "Europe"
+msgstr "Europe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:330
+msgid "Europe/Amsterdam"
+msgstr "Europe/Amsterdam"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:331
+msgid "Europe/Andorra"
+msgstr "Europe/Andorra"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:332
+msgid "Europe/Athens"
+msgstr "Europe/Athens"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:333
+msgid "Europe/Belgrade"
+msgstr "Europe/Belgrade"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:334
+msgid "Europe/Berlin"
+msgstr "Europe/Berlin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:335
+msgid "Europe/Bratislava"
+msgstr "Europe/Bratislava"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:336
+msgid "Europe/Brussels"
+msgstr "Europe/Brussels"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:337
+msgid "Europe/Bucharest"
+msgstr "Europe/Bucharest"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:338
+msgid "Europe/Budapest"
+msgstr "Europe/Budapest"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:339
+msgid "Europe/Chisinau"
+msgstr "Europe/Chisinau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:340
+msgid "Europe/Copenhagen"
+msgstr "Europe/Copenhagen"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:341
+msgid "Europe/Dublin"
+msgstr "Europe/Dublin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:342
+msgid "Europe/Gibraltar"
+msgstr "Europe/Gibraltar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:343
+msgid "Europe/Guernsey"
+msgstr "Europe/Guernsey"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:344
+msgid "Europe/Helsinki"
+msgstr "Europe/Helsinki"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:345
+msgid "Europe/Isle_of_Man"
+msgstr "Europe/Isle_of_Man"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:346
+msgid "Europe/Istanbul"
+msgstr "Europe/Istanbul"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:347
+msgid "Europe/Jersey"
+msgstr "Europe/Jersey"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:348
+msgid "Europe/Kaliningrad"
+msgstr "Europe/Kaliningrad"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:349
+msgid "Europe/Kiev"
+msgstr "Europe/Kiev"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:350
+msgid "Europe/Lisbon"
+msgstr "Europe/Lisbon"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:351
+msgid "Europe/Ljubljana"
+msgstr "Europe/Ljubljana"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:352
+msgid "Europe/London"
+msgstr "Europe/London"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:353
+msgid "Europe/Luxembourg"
+msgstr "Europe/Luxembourg"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:354
+msgid "Europe/Madrid"
+msgstr "Europe/Madrid"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:355
+msgid "Europe/Malta"
+msgstr "Europe/Malta"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:356
+msgid "Europe/Mariehamn"
+msgstr "Europe/Mariehamn"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:357
+msgid "Europe/Minsk"
+msgstr "Europe/Minsk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:358
+msgid "Europe/Monaco"
+msgstr "Europe/Monaco"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:359
+msgid "Europe/Moscow"
+msgstr "Europe/Moscow"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:360
+msgid "Europe/Oslo"
+msgstr "Europe/Oslo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:361
+msgid "Europe/Paris"
+msgstr "Europe/Paris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:362
+msgid "Europe/Podgorica"
+msgstr "Europe/Podgorica"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:363
+msgid "Europe/Prague"
+msgstr "Europe/Prague"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:364
+msgid "Europe/Riga"
+msgstr "Europe/Riga"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:365
+msgid "Europe/Rome"
+msgstr "Europe/Rome"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:366
+msgid "Europe/Samara"
+msgstr "Europe/Samara"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:367
+msgid "Europe/San_Marino"
+msgstr "Europe/San_Marino"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:368
+msgid "Europe/Sarajevo"
+msgstr "Europe/Sarajevo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:369
+msgid "Europe/Simferopol"
+msgstr "Europe/Simferopol"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:370
+msgid "Europe/Skopje"
+msgstr "Europe/Skopje"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:371
+msgid "Europe/Sofia"
+msgstr "Europe/Sofia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:372
+msgid "Europe/Stockholm"
+msgstr "Europe/Stockholm"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:373
+msgid "Europe/Tallinn"
+msgstr "Europe/Tallinn"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:374
+msgid "Europe/Tirane"
+msgstr "Europe/Tirane"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:375
+msgid "Europe/Uzhgorod"
+msgstr "Europe/Uzhgorod"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:376
+msgid "Europe/Vaduz"
+msgstr "Europe/Vaduz"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:377
+msgid "Europe/Vatican"
+msgstr "Europe/Vatican"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:378
+msgid "Europe/Vienna"
+msgstr "Europe/Vienna"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:379
+msgid "Europe/Vilnius"
+msgstr "Europe/Vilnius"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:380
+msgid "Europe/Volgograd"
+msgstr "Europe/Volgograd"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:381
+msgid "Europe/Warsaw"
+msgstr "Europe/Warsaw"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:382
+msgid "Europe/Zagreb"
+msgstr "Europe/Zagreb"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:383
+msgid "Europe/Zaporozhye"
+msgstr "Europe/Zaporozhye"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:384
+msgid "Europe/Zurich"
+msgstr "Europe/Zurich"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:386
+msgid "Indian"
+msgstr "Inde"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:387
+msgid "Indian/Antananarivo"
+msgstr "Inde/Antananarivo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:388
+msgid "Indian/Chagos"
+msgstr "Inde/Chagos"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:389
+msgid "Indian/Christmas"
+msgstr "Inde/Christmas"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:390
+msgid "Indian/Cocos"
+msgstr "Inde/Cocos"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:391
+msgid "Indian/Comoro"
+msgstr "Inde/Comoro"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:392
+msgid "Indian/Kerguelen"
+msgstr "Inde/Kerguelen"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:393
+msgid "Indian/Mahe"
+msgstr "Inde/Mahe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:394
+msgid "Indian/Maldives"
+msgstr "Inde/Maldives"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:395
+msgid "Indian/Mauritius"
+msgstr "Inde/Mauritius"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:396
+msgid "Indian/Mayotte"
+msgstr "Inde/Mayotte"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:397
+msgid "Indian/Reunion"
+msgstr "Inde/Reunion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:399
+msgid "Pacific"
+msgstr "Pacifique"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:400
+msgid "Pacific/Apia"
+msgstr "Pacifique/Apia"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:401
+msgid "Pacific/Auckland"
+msgstr "Pacifique/Auckland"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:402
+msgid "Pacific/Chatham"
+msgstr "Pacifique/Chatham"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:403
+msgid "Pacific/Chuuk"
+msgstr "Pacifique/Chuuk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:404
+msgid "Pacific/Easter"
+msgstr "Pacifique/Easter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:405
+msgid "Pacific/Efate"
+msgstr "Pacifique/Efate"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:406
+msgid "Pacific/Enderbury"
+msgstr "Pacifique/Enderbury"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:407
+msgid "Pacific/Fakaofo"
+msgstr "Pacifique/Fakaofo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:408
+msgid "Pacific/Fiji"
+msgstr "Pacifique/Fiji"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:409
+msgid "Pacific/Funafuti"
+msgstr "Pacifique/Funafuti"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:410
+msgid "Pacific/Galapagos"
+msgstr "Pacifique/Galapagos"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:411
+msgid "Pacific/Gambier"
+msgstr "Pacifique/Gambier"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:412
+msgid "Pacific/Guadalcanal"
+msgstr "Pacifique/Guadalcanal"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:413
+msgid "Pacific/Guam"
+msgstr "Pacifique/Guam"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:414
+msgid "Pacific/Honolulu"
+msgstr "Pacifique/Honolulu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:415
+msgid "Pacific/Johnston"
+msgstr "Pacifique/Johnston"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:416
+msgid "Pacific/Kiritimati"
+msgstr "Pacifique/Kiritimati"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:417
+msgid "Pacific/Kosrae"
+msgstr "Pacifique/Kosrae"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:418
+msgid "Pacific/Kwajalein"
+msgstr "Pacifique/Kwajalein"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:419
+msgid "Pacific/Majuro"
+msgstr "Pacifique/Majuro"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:420
+msgid "Pacific/Marquesas"
+msgstr "Pacifique/Marquesas"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:421
+msgid "Pacific/Midway"
+msgstr "Pacifique/Midway"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:422
+msgid "Pacific/Nauru"
+msgstr "Pacifique/Nauru"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:423
+msgid "Pacific/Niue"
+msgstr "Pacifique/Niue"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:424
+msgid "Pacific/Norfolk"
+msgstr "Pacifique/Norfolk"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:425
+msgid "Pacific/Noumea"
+msgstr "Pacifique/Noumea"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:426
+msgid "Pacific/Pago_Pago"
+msgstr "Pacifique/Pago_Pago"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:427
+msgid "Pacific/Palau"
+msgstr "Pacifique/Palau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:428
+msgid "Pacific/Pitcairn"
+msgstr "Pacifique/Pitcairn"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:429
+msgid "Pacific/Pohnpei"
+msgstr "Pacifique/Pohnpei"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:430
+msgid "Pacific/Port_Moresby"
+msgstr "Pacifique/Port_Moresby"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:431
+msgid "Pacific/Rarotonga"
+msgstr "Pacifique/Rarotonga"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:432
+msgid "Pacific/Saipan"
+msgstr "Pacifique/Saipan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:433
+msgid "Pacific/Tahiti"
+msgstr "Pacifique/Tahiti"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:434
+msgid "Pacific/Tarawa"
+msgstr "Pacifique/Tarawa"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:435
+msgid "Pacific/Tongatapu"
+msgstr "Pacifique/Tongatapu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:436
+msgid "Pacific/Wake"
+msgstr "Pacifique/Wake"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:437
+msgid "Pacific/Wallis"
+msgstr "Pacifique/Wallis"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Timezone/Timezone.php:439
+msgid "UTC"
+msgstr "UTC"
+
+#~ msgid "Afrique"
+#~ msgstr "Afrique"
+
+#~ msgid "Amériques"
+#~ msgstr "Amériques"
+
+#~ msgid "Asie"
+#~ msgstr "Asie"
+
+#~ msgid "Inde"
+#~ msgstr "Inde"
