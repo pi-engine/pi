@@ -180,6 +180,13 @@ return array(
             'value'       => 1,
             'filter'      => 'int',
         ),
+        'head_title'      => array(
+            'category'    => 'general',
+            'title'       => _t('Head Title Format'),
+            'description' => _t('Head title in article detail page, site name, category name and article title are allowed'),
+            'value'       => '%site%-%category%-%title%',
+            'filter'      => 'string',
+        ),
 
         // Autosave
         'autosave_interval' => array(
