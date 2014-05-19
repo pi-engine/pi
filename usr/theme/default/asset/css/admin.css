@@ -1,3 +1,5 @@
+@import url('style.css');
+
 html {
   min-height: 100%;
   position: relative;
@@ -22,12 +24,6 @@ legend {
 
 
 /* Util */
-.pi-ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  display: block;
-  text-overflow: ellipsis;
-}
 
 /* navbar custom */
 .navbar {

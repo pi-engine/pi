@@ -592,7 +592,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()
             ->get('ViewRenderer');
-        $viewRenderer->assemble()->initStrategy();
+        $viewRenderer->themeAssemble()->initStrategy();
     }
 
     /**
@@ -610,7 +610,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()
             ->get('ViewRenderer');
-        $viewRenderer->assemble()->renderStrategy();
+        $viewRenderer->themeAssemble()->renderStrategy();
     }
 
     /**
@@ -628,16 +628,17 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Set response headers for language and charset
         $response = $e->getResponse();
         $response->getHeaders()->addHeaders(array(
-            'content-type'      => sprintf('text/html; charset=%s',
-                Pi::service('i18n')->charset),
+            'content-type'      => sprintf(
+                'text/html; charset=%s',
+                Pi::service('i18n')->charset
+            ),
             'content-language'  => Pi::service('i18n')->locale,
         ));
 
         // Get ViewRenderer
-        $viewRenderer = $e->getApplication()->getServiceManager()
-            ->get('ViewRenderer');
+        $viewRenderer = $e->getApplication()->getServiceManager()->get('ViewRenderer');
         $content = $response->getContent();
-        $content = $viewRenderer->assemble()->completeStrategy($content);
+        $content = $viewRenderer->themeAssemble()->completeStrategy($content);
         $response->setContent($content);
     }
 

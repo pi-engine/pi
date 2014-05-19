@@ -43,6 +43,34 @@ form .icon-question-sign {
     margin-left: 140px;
 }
 
+/* ellipsis with rows/lines : line height is fixed */
+.pi-ellipsis {
+    overflow: hidden;
+    display: block;
+    line-height: 1.5;
+}
+
+/* Max 1 row/line */
+.pi-ellipsis-1 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Max 2 rows/lines */
+.pi-ellipsis-2 {
+    max-height: 3em;
+}
+
+/* Max 3 rows/lines */
+.pi-ellipsis-3 {
+    max-height: 4.5em;
+}
+
+/* Max 4 rows/lines */
+.pi-ellipsis-4 {
+    max-height: 6em;
+}
+
 /* Components */
 .pi-divider {
     font-family: serif,sans-serif;
