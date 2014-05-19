@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Timezone\n"
+"POT-Creation-Date: 2014-05-18 22:46+0100\n"
+"PO-Revision-Date: 2014-05-18 22:46+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desroussaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\locale\\_source\\Country\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\locale\_source\Country/Country.php:16
+msgid "China"
+msgstr "Chine"
