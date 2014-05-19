@@ -37,7 +37,7 @@ class ModuleCategoryForm extends BaseForm
         $this->add(array(
             'name'          => 'icon',
             'options'       => array(
-                'label' => _a('Font-awsome icon'),
+                'label' => _a('Font-awesome icon'),
             ),
             'attributes'    => array(
                 'type'  => 'text',
