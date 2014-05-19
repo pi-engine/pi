@@ -24,7 +24,7 @@ use Zend\View\Helper\AbstractHelper;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Assemble extends AbstractHelper
+class ThemeAssemble extends AbstractHelper
 {
     /**
      * Section labels
@@ -48,8 +48,11 @@ class Assemble extends AbstractHelper
         if (null !== $indent) {
             $helper->setIndent($indent);
         }
-        $label = '<' . $section
-               . ' id="' . md5(Pi::config('salt') . $section) . '" />';
+        $label = sprintf(
+            '<%s id="%s" />',
+            $section,
+            md5(Pi::config('salt') . $section)
+        );
         $this->sectionLabel[$section] = $label;
 
         return $label;
