@@ -76,7 +76,7 @@ $active = $comment['active'];
                             }
                     ?>
                         <span class="operation">
-                            <a class="muted" href="<?php echo $value['url']; ?>"<?php echo 'delete' == $op ? sprintf(' onclick="return confirm(\'%s\')"', __('Are sure want to delete this comment?')) : ''; ?>>
+                            <a class="muted" href="<?php echo $value['url']; ?>"<?php echo 'delete' == $op ? sprintf(' onclick="return confirm(\'%s\')"', __('Are you sure to delete this comment?')) : ''; ?>>
                                 <i class="<?php echo $class; ?>" style="text-decoration: none"></i>
                                     <?php echo _escape($value['title']); ?>
                             </a>
