@@ -1,6 +1,7 @@
 <?php
 $options = (array) $block['options'];
 $items   = (array) $block['items'];
+$rows    = empty($options['max_rows']) ? 2 : $options['max_rows'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
 ?>
 <div class="widget-list widget-list-summary">
@@ -26,7 +27,8 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                     );
                 }
                 echo sprintf(
-                    '<div class="pi-ellipsis">%s%s</div>',
+                    '<div class="pi-ellipsis pi-ellipsis-%s">%s%s</div>',
+                    $rows,
                     $item['desc'],
                     $htmlDetail
                 );
