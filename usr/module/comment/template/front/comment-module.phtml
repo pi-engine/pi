@@ -50,7 +50,7 @@ $paginator = $comment['paginator'];
                     foreach ($post['operations'] as $operation => $optData) {
                 ?>
                     <span class="operation muted">
-                        <a href="<?php echo $optData['url']; ?>"<?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are sure want to delete this comment?')) : ''; ?>>
+                        <a href="<?php echo $optData['url']; ?>"<?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are you sure to delete this comment?')) : ''; ?>>
                             <?php echo _escape($optData['title']); ?>
                         </a>
                     </span>

@@ -221,7 +221,7 @@ class PostController extends ActionController
             $status = Pi::api('api', 'comment')->approve($id, $flag);
         }
         $message = $status
-            ? _a('Operation succeeded.') : _a('Operation failed');
+            ? _a('Operation succeeded.') : _a('Operation failed.');
 
         if (0 < $status && $id) {
             if (null === $flag || $flag) {
@@ -302,7 +302,7 @@ class PostController extends ActionController
         } else {
             $status         = Pi::api('api', 'comment')->deletePost($id);
             $message        = $status
-                ? __('Operation succeeded.') : __('Operation failed');
+                ? __('Operation succeeded.') : __('Operation failed.');
         }
         if (0 < $status && $id) {
             Pi::service('event')->trigger('post_delete', $post['root']);
