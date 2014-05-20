@@ -184,7 +184,7 @@ return array(
             'category'    => 'general',
             'title'       => _t('Head Title Format'),
             'description' => _t('Head title in article detail page, site name, category name and article title are allowed'),
-            'value'       => '%site%-%category%-%title%',
+            'value'       => '%title%-%category%-%site%',
             'filter'      => 'string',
         ),
 
