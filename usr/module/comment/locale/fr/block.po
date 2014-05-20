@@ -1,0 +1,41 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-comment\n"
+"POT-Creation-Date: 2013-11-10 13:53+0800\n"
+"PO-Revision-Date: 2014-05-19 21:29+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-Basepath: .\n"
+"Language: fr\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\comment\n"
+
+#, fuzzy
+#~ msgid "All"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "All Posts"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "All comments "
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "All comments"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Comment categories"
+#~ msgstr "All Categories"

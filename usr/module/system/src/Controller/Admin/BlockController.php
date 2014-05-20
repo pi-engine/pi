@@ -4,14 +4,14 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
 
 use Pi;
 use Module\System\Controller\ComponentController;
-use Module\System\Form\BlockModuleForm as ModuleForm;
+use Module\System\Form\BlockModuleForm;
 use Zend\Db\Sql\Predicate\Expression;
 
 /**
@@ -134,7 +134,7 @@ class BlockController extends ComponentController
                 );
                 return;
             }
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
 
             $form->setData($data);
             if ($form->isValid()) {
@@ -173,7 +173,7 @@ class BlockController extends ComponentController
                 );
                 return;
             }
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
             // Fetch block root data
             $data = $rootRow->toArray();
             // Set root id
@@ -224,14 +224,14 @@ class BlockController extends ComponentController
             /*
             if ($blockRow->module) {
                 $rootRow = Pi::model('block_root')->find($blockRow->root);
-                $form = new ModuleForm('block-edit', $rootRow);
+                $form = new BlockModuleForm('block-edit', $rootRow);
             } else {
                 $form = new CustomForm('block-custom', $blockRow->type);
                 $form->setInputFilter(new CustomFilter);
             }
             */
             $rootRow = Pi::model('block_root')->find($blockRow->root);
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
@@ -254,7 +254,7 @@ class BlockController extends ComponentController
                 return;
             }
             $rootRow = Pi::model('block_root')->find($blockRow->root);
-            $form = new ModuleForm('block-edit', $rootRow);
+            $form = new BlockModuleForm('block-edit', $rootRow);
             $values = $blockRow->toArray();
             $form->setData($values);
             $form->setAttribute(
@@ -275,8 +275,7 @@ class BlockController extends ComponentController
     }
 
     /**
-     * AJAX for deleting a block and remove its page-block links
-     * and corresponding ACL rules
+     * Delete a block and remove its page-block links
      *
      * @return int
      */
@@ -284,8 +283,9 @@ class BlockController extends ComponentController
     {
         $id = $this->params('id');
         $result = Pi::api('block', 'system')->delete($id, false);
-        extract($result);
-        return $status;
+
+        $message = _a('Block is deleted.');
+        $this->jump(array('action' => 'index'), $message);
     }
 
     /**

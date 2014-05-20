@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
@@ -17,7 +17,7 @@ use Module\System\Form\NavPageFilter;
 use Module\System\Form\NavPageForm;
 
 /**
- * Navigaiton controller
+ * Navigation controller
  *
  * Feature list:
  *
@@ -55,7 +55,7 @@ class NavController extends ActionController
     );
 
     /**
-     * Set up front/admin global navigations
+     * Set up front/admin global navigation
      */
     public function indexAction()
     {
@@ -82,7 +82,7 @@ class NavController extends ActionController
     }
 
     /**
-     * List of navigations to manage
+     * List of navigation to manage
      */
     public function listAction()
     {
@@ -129,7 +129,7 @@ class NavController extends ActionController
     }
 
     /**
-     * AJAX to apply navigations
+     * AJAX to apply navigation
      *
      * @return array Result pair of status and message
      */
@@ -168,8 +168,6 @@ class NavController extends ActionController
     public function addAction()
     {
         if ($this->request->isPost()) {
-            $status = 1;
-            $nav = array();
             $data = $this->request->getPost();
             $form = new NavForm('nav');
             $form->setInputFilter(new NavFilter);
@@ -557,7 +555,7 @@ class NavController extends ActionController
             }
         } while ($keys);
 
-        // Fetch formuated nodes
+        // Fetch formulated nodes
         $list = array();
         foreach ($temp as $key => $node) {
             if (!empty($node['pid'])) {

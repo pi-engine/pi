@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -25,10 +25,10 @@ use Zend\View\Helper\AbstractHtmlElement;
  *  echo $this->page('about-us', __('About us), array('target' => '_blank'));
  *
  *  // Display `about-us` link with customized hover title
- *  echo $this->page('about-us', __('About us),, array('target' => '_blank', 'title' => __('About the team')));
+ *  echo $this->page('about-us', __('About us), array('target' => '_blank', 'title' => __('About the team')));
  *
  *  // Display `about-us` link with customized hover title and display blocks assigned to `corporate` type pages
- *  echo $this->page('about-us', __('About us),, array('target' => '_blank', 'title' => __('About the team'), 'type' => 'corporate'));
+ *  echo $this->page('about-us', __('About us), array('target' => '_blank', 'title' => __('About the team'), 'type' => 'corporate'));
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>

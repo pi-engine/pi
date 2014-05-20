@@ -1,6 +1,13 @@
 Pi Engine Changelog
 
 
+Pi 2.5.0
+March 20th, 2014
+============
+* Added `GeoIp` service for IP geolocation support
+* Added jQuery `Magnific Popup` extension
+
+
 Pi 2.4.0
 March 8th, 2014
 ============

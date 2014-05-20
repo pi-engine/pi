@@ -61,7 +61,7 @@ $uid = Pi::user()->getId();
                     echo sprintf(
                         '<a href="%s#comments" onclick="return confirm(\'%s\')">%s</a>',
                         $this->url('', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
-                        __('Are sure want to delete this comment?'),
+                        __('Are you sure to delete this comment?'),
                         __('Delete')
                     );
                 }

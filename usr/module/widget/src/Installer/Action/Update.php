@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace   Module\Widget\Installer\Action;
@@ -52,17 +52,17 @@ class Update extends BasicUpdate
                 'width'     => array(
                     'title'         => _a('Image width'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                 ),
                 'height'    => array(
                     'title'         => _a('Image height'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                 ),
                 'interval' => array(
                     'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                     'value'         => 4000,
                 ),
                 'pause' => array(

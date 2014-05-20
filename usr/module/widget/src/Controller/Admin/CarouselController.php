@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Widget\Controller\Admin;
@@ -190,12 +190,12 @@ class CarouselController extends WidgetController
                 'height'    => array(
                     'title'         => _a('Block frame height'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                 ),
                 'interval' => array(
                     'title'         => _a('Time interval (ms)'),
                     'edit'          => 'text',
-                    'filter'        => 'number_int',
+                    'filter'        => 'int',
                     'value'         => 2000,
                 ),
                 'pause' => array(

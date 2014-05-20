@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Service;
@@ -71,9 +71,8 @@ class Media extends AbstractService
      */
     public function getAdapter($name = '')
     {
-        $_this = $this;
-        $loadAdapter = function ($name) use ($_this) {
-            $configs = $_this->getOption($name);
+        $loadAdapter = function ($name) {
+            $configs = $this->getOption($name);
             $options = $configs['options'];
             $class = 'Pi\Media\Adapter\\' . ucfirst($name);
             if (!class_exists($class)) {

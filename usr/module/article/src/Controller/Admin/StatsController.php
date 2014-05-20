@@ -4,7 +4,7 @@
  *
  * @link         http://code.pialog.org for the Pi Engine source repository
  * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt New BSD License
+ * @license      http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Controller\Admin;
@@ -42,8 +42,8 @@ class StatsController extends ActionController
         $topSubmitters7    = Stats::getSubmittersRecently(7, 10);
         $topSubmitters30   = Stats::getSubmittersRecently(30, 10);
 
-        if ($this->config('enable_tag')) {
-            $topTags = Pi::api('api', 'tag')->top(10, $this->getModule(), null);
+        if ($this->config('enable_tag') && Pi::service('tag')->active()) {
+            $topTags = Pi::service('tag')->top(10, $this->getModule(), null);
             $this->view()->assign('topTags', $topTags);
         }
 

@@ -4,7 +4,7 @@
  *
  * @link         http://code.pialog.org for the Pi Engine source repository
  * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt New BSD License
+ * @license      http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Article\Controller\Front;
@@ -299,7 +299,7 @@ class DraftController extends ActionController
             'active'       => 1,
             'time_submit'  => $row->time_submit,
             'time_publish' => $row->time_publish ?: $timestamp,
-            'time_update'  => $row->time_update ?: 0,
+            'time_update'  => $row->time_update ?: $timestamp,
             'image'        => $row->image ?: '',
         );
         $rowArticle = $modelArticle->createRow($article);
@@ -464,8 +464,13 @@ class DraftController extends ActionController
         foreach ($columns as $column) {
             $extended[$column] = $rowDraft->$column;
         }
+        $extended['article'] = $articleId;
         $rowExtended   = $modelExtended->find($articleId, 'article');
-        $rowExtended->assign($extended);
+        if (!$rowExtended) {
+            $rowExtended = $modelExtended->createRow($extended);
+        } else {
+            $rowExtended->assign($extended);
+        }
         $rowExtended->save();
 
         // Move feature image

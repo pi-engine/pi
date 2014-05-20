@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Editor;
@@ -75,26 +75,32 @@ class Factory
     public static function getList()
     {
         $list = array('pi' => __('Pi Default Editor'));
-        $iterator = new \DirectoryIterator(Pi::path('usr') . '/editor');
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
+
+        $filter = function ($fileinfo) use (&$list) {
+            if (!$fileinfo->isDir()) {
+                return false;
             }
             $name = $fileinfo->getFilename();
             if (preg_match('/[^a-z0-9_]/i', $name)) {
-                continue;
+                return false;
             }
             $configFile = $fileinfo->getPathname() . '/config.php';
             if (!file_exists($configFile)) {
                 $list[$name] = $name;
-                continue;
+                return;
             }
             $info = include $configFile;
-            if (!empty($info['disable'])) continue;
+            if (!empty($info['disable'])) {
+                return;
+            }
             if (!empty($info['name'])) {
                 $list[$name] = $info['name'];
             }
-        }
+        };
+        Pi::service('file')->getList(
+            'usr/editor',
+            $filter
+        );
 
         return $list;
     }

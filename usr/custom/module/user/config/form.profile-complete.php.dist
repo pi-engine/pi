@@ -1,0 +1,42 @@
+<?php
+/**
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
+ */
+
+/**
+ * Customized fields of each rule
+ * 
+ * <code>
+ * return array(
+ *     // Fields from profile table
+ *     'gender',
+ *     'address',
+ *     ...
+ *     // Fields from work, education or interest table
+ *     'work' => array(
+ *     // Fields needed
+ *         'company',
+ *         'industry',
+ *         ...
+ *     ),
+ *     // All education fields
+ *     'education',
+ *     ...
+ * );
+ * </code>
+ * 
+ * Then a DemoProfileCompleteForm class is needed in Form folder
+ * 
+ * @author Zongshu Lin <lin40553024@163.com>
+ */
+return array(
+    'gender',
+    'birthdate',
+    'mobile',
+    'address',
+    'work'
+);

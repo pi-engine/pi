@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup\Controller;
@@ -90,7 +90,7 @@ class Finish extends AbstractController
         $messagePattern =<<<EOT
 <div class="well alert alert-success">
 <h3>%s</h3>
-<p>%s <a href="../index.php?redirect=0">%s</a></p>
+<p>%s <a href="../index.php">%s</a></p>
 
 <h3>%s</h3>
 <p>%s</p>

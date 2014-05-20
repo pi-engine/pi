@@ -4,11 +4,12 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Debug
 {
+    use Closure;
     use Pi;
 
     /**
@@ -150,10 +151,14 @@ namespace Pi\Debug
 
             if (PHP_SAPI === 'cli') {
                 $result = PHP_EOL;
-                if (is_array($data) || is_object($data)) {
+                if (!is_scalar($data)) {
                     $result .= $location;
                     $result .= PHP_EOL;
-                    $result .= print_r($data, true);
+                    if ($data instanceof Closure) {
+                        $result .= var_export($data, true);
+                    } else {
+                        $result .= print_r($data, true);
+                    }
                     $result .= PHP_EOL;
                 } else {
                     $result .= $data;
@@ -163,10 +168,14 @@ namespace Pi\Debug
             } else {
                 $result = '<div style="padding: .8em;'
                         . ' margin-bottom: 1em; border: 2px solid #ddd;">';
-                if (is_array($data) || is_object($data)) {
+                if (!is_scalar($data)) {
                     $result .= $location;
                     $result .= '<div><pre>';
-                    $result .= print_r($data, true);
+                    if ($data instanceof Closure) {
+                        $result .= var_export($data, true);
+                    } else {
+                        $result .= print_r($data, true);
+                    }
                     $result .= '</pre></div>';
                 } else {
                     $result .= sprintf(

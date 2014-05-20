@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -35,16 +35,16 @@ class Text extends AbstractApi
      * @param  number
      * @return string
      */
-	public function keywords($keywords, $number = '6') 
-	{
-		$keywords = _strip($keywords);
-		$keywords = strtolower(trim($keywords));
-		$keywords = array_unique(array_filter(explode(' ', $keywords)));
-		$keywords = array_slice($keywords, 0, $number);
-		$keywords = implode(',', $keywords);
-		return $keywords;
-	}	
-	 
+    public function keywords($keywords, $number = '6')
+    {
+        $keywords = _strip($keywords);
+        $keywords = strtolower(trim($keywords));
+        $keywords = array_unique(array_filter(explode(' ', $keywords)));
+        $keywords = array_slice($keywords, 0, $number);
+        $keywords = implode(',', $keywords);
+        return $keywords;
+    }
+
     /**
      * Invoke as a functor
      *
@@ -76,8 +76,8 @@ class Text extends AbstractApi
         $title = preg_replace('/[\s]+/', ' ', $title);
         return $title;
     }   
-	
-	/**
+
+    /**
      * Returns the slug
      *
      * @return boolean

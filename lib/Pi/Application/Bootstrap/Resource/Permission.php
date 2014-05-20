@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Bootstrap\Resource;
@@ -54,10 +54,14 @@ class Permission extends AbstractResource
             return;
         }
 
-        // Deny all access to front for close/maintenance
-        if (Pi::config('site_close')) {
-            $this->denyAccess($e);
-            return;
+        // Deny all access for close/maintenance
+        if (!isset($this->options['check_close'])
+            || false !== $this->options['check_close']
+        ) {
+            if (Pi::config('site_close')) {
+                $this->denyAccess($e);
+                return;
+            }
         }
 
         // Grant permission for admin

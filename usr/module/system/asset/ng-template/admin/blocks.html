@@ -39,7 +39,7 @@
     				<a class="btn btn-link" ng-href="{{block.editUrl}}">
               {{'Edit' | translate}}
     				</a>
-            <a ng-if="block.cloned">
+            <a ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
               {{'Delete' | translate}}
             </a>
             <a class="btn btn-link" ng-if="block.clonable" 

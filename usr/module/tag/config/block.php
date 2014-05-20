@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 return array(
@@ -19,7 +19,7 @@ return array(
                 'title'         => _a('Limit'),
                 'description'   => _a('Block display item count'),
                 'edit'          => 'text',
-                'filter'        => 'number_int',
+                'filter'        => 'int',
                 'value'         => 10,
             ),
         ),
@@ -35,7 +35,7 @@ return array(
                 'title'          => _a('Limit'),
                 'description'    => _a('Block display item count'),
                 'edit'           => 'text',
-                'filter'         => 'number_int',
+                'filter'         => 'int',
                 'value'          => 20,
             ),
             'color'    => array(
@@ -57,14 +57,14 @@ return array(
                 'title'        => _a('Max font size'),
                 'description'  => _a('Set max font size'),
                 'edit'         => 'text',
-                'filter'       => 'number_int',
+                'filter'       => 'int',
                 'value'        => 22,
             ),
             'min_font_size' => array(
                 'title'        => _a('Min font size'),
                 'description'  => _a('Set min font size'),
                 'edit'         => 'text',
-                'filter'       => 'number_int',
+                'filter'       => 'int',
                 'value'        => 13
             ),
         ),
@@ -80,7 +80,7 @@ return array(
                 'title'         => _a('Limit'),
                 'description'   => _a('Block display item count'),
                 'edit'          => 'text',
-                'filter'        => 'number_int',
+                'filter'        => 'int',
                 'value'         => 10,
             ),
         ),

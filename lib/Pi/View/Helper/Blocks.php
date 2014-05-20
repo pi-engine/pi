@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -146,8 +146,13 @@ class Blocks extends AbstractHelper
                         // Render block
                         $widget = $blockHelper->render($blockRows[$id]);
                         if ($widget) {
-                            $layoutBlocks[$this->zoneMap[$zoneKey]][] =
-                                $widget;
+                            if (isset($this->zoneMap[$zoneKey])) {
+                                $layoutBlocks[$this->zoneMap[$zoneKey]][] =
+                                    $widget;
+                            } else {
+                                $layoutBlocks[$zoneKey][] =
+                                    $widget;
+                            }
                         }
                     }
                 }

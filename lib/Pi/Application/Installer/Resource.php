@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Installer;
@@ -111,26 +111,26 @@ class Resource implements ListenerAggregateInterface
      */
     protected function resourceList()
     {
-        $resourceList = array();
-        $iterator = new \DirectoryIterator(__DIR__ . '/Resource');
-        foreach ($iterator as $fileinfo) {
+        $filter = function ($fileinfo) {
             if (!$fileinfo->isFile()) {
-                continue;
+                return false;
             }
             $fileName = $fileinfo->getFilename();
             if (!preg_match('/^([^\.]+)\.php$/', $fileName, $matches)) {
-                continue;
+                return false;
             }
             $resource = $matches[1];
             if ($resource == 'Config' || $resource == 'AbstractResource') {
-                continue;
+                return false;
             }
             $resourceName = strtolower(implode(
                 '_',
                 array_filter(preg_split('/(?=[A-Z])/', $resource))
             ));
-            $resourceList[] = $resourceName;
-        }
+	    
+            return $resourceName;
+        };
+        $resourceList = Pi::service('file')->getList(__DIR__ . '/Resource', $filter);
         $resourceList[] = 'config';
 
         $config = $this->event->getParam('config');

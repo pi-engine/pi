@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -52,11 +52,13 @@ return array(
                 'label'     => _a('Admin'),
                 'route'     => 'home',
                 'section'   => 'admin',
+                'target'    => '_blank',
             ),
             'feed'     => array(
                 'label'     => _a('RSS Feed'),
                 'route'     => 'feed',
                 'section'   => 'feed',
+                'target'    => '_blank',
             ),
         ),
     ),

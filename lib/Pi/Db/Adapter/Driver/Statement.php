@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db\Adapter\Driver;
@@ -52,6 +52,8 @@ class Statement extends PDOStatement
      * Execute query with args and log query information
      *
      * @param array|null $args
+     *
+     * @throws \Exception
      * @return bool
      */
     public function execute($args = null)

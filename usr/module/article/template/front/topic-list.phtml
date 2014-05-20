@@ -5,24 +5,19 @@
 ?>
 
 <div class="">
-    <div class="clearfix" style="padding-bottom: 20px; border-bottom: 2px inset #000">
-        <div class="col-md-12 row">
-            <span class="pi-block-title pull-left" style="margin-left: 0"><?php echo $this->escape($title); ?></span>
-            <span class="text-muted col-md-2" style="margin-top: 5px">
-                (<?php echo $this->escape($count) . __(' articles'); ?>)
-            </span>
-        </div>
-        <div class="text-muted row col-md-12" style="font-size: 12px">
-            <span><?php echo sprintf(__('Created at %s', _date($topic['time_create']))); ?></span>
-            <span style="margin-left: 10px">
-                <?php echo $lastAdded
-                    ? sprintf(__('Last added at %s', _date($lastAdded)))
-                    : ''; ?>
-            </span>
+    <div class="clearfix">
+        <h3 class="pi-block-title"><?php echo $this->escape($title); ?></h3>
+        <div class="text-muted">
+            <span style="padding-right: 10px"><?php echo $this->escape($count) . __(' articles'); ?></span>
+            <span style="padding-right: 10px"><?php echo sprintf(__('Created at ') . _date($topic['time_create'])); ?></span>
+            <span style="padding-right: 10px"><?php echo $lastAdded
+                ? sprintf(__('Last added at ') . _date($lastAdded))
+                : ''; ?></span>
         </div>
     </div>
-    <div class="topic-article-list" style="padding: 10px 10px 10px; border-bottom: 1px inset #000">
-        <ul class="list list14" style="margin-left: 5px;">
+    <hr>
+    <div class="topic-article-list">
+        <ul class="list pi-list" style="margin-left: 5px;">
             <?php $index = 0 ?>
             <?php foreach ($articles as $row) { ?>
                 <li class="text-muted">
@@ -37,7 +32,7 @@
                     </div>
                 </li>
                 <?php if (!(++$index % 5)) { ?>
-                    <li class="dashed"></li>    
+                    <hr>
                 <?php } ?>    
             <?php } ?>   
         </ul>

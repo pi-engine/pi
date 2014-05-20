@@ -4,7 +4,7 @@
  *
  * @link         http://code.pialog.org for the Pi Engine source repository
  * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt New BSD License
+ * @license      http://pialog.org/license.txt BSD 3-Clause License
  */
 return array(
     'search'    => array(
@@ -14,8 +14,8 @@ return array(
         'render'        => array('block', 'search'),
         'template'      => 'search',
         'config'        => array(
-        	'target' => array(
-        		'title'         => _a('Target'),
+            'target' => array(
+                'title'         => _a('Target'),
                 'edit'          => array(
                     'type'          => 'select',
                     'options'    => array(
@@ -26,7 +26,7 @@ return array(
                     ),
                 ),
                 'value'         => '_self', 
-        	)
+            )
         )
     ),
 );

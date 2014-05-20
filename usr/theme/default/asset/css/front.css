@@ -1,3 +1,5 @@
+@import url('style.css');
+
 /* Base */
 html {
   min-height: 100%;
@@ -130,7 +132,10 @@ html {
 .panel-body >:last-child {
   margin-bottom: 0;
 }
-
+.panel-body ul,
+.panel-body ol {
+    margin-left: -20px;
+}
 
 /* Footer */
 .pi-footer {
@@ -155,30 +160,6 @@ html {
 #pi-logger-output {
   position: relative;
   top: -60px;
-}
-
-/* ellipsis */
-.pi-ellipsis {
-  overflow: hidden;
-  display: block;
-  line-height: 1.5;
-}
-
-.pi-ellipsis-1 {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.pi-ellipsis-2 {
-  max-height: 3em;
-}
-
-.pi-ellipsis-3 {
-  max-height: 4.5em;
-}
-
-.pi-ellipsis-4 {
-  max-height: 6em;
 }
 
 /* list or order list */

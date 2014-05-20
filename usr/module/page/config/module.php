@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 return array(
@@ -15,7 +15,7 @@ return array(
         // Description, for admin, optional
         'description'   => _a('Single page for direct content display.'),
         // Version number, required
-        'version'       => '1.2.0',
+        'version'       => '1.2.1',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -24,9 +24,6 @@ return array(
         'demo'          => 'http://demo.pialog.org/demo',
 
         'icon'          => 'fa-file-text-o',
-
-        // Module is ready for clone? Default as false
-        'clonable'      => true,
     ),
     // Author information
     'author'    => array(
@@ -36,7 +33,7 @@ return array(
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
         'Website'   => 'http://pialog.org',
-        // Credits and aknowledgement, optional
+        // Credits and acknowledgement, optional
         'Credits'   => 'Pi Engine Team'
     ),
 

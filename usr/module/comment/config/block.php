@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 return array(
@@ -26,7 +26,7 @@ return array(
             // Module
             'module'    => array(
                 'title'         => _a('Module'),
-                'description'   => _a('Select module for articles'),
+                'description'   => _a('Select module for articles.'),
                 'edit'          => 'module_select',
                 'value'         => ''
             ),

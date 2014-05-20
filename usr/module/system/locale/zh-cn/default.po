@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-03-03 13:17+0800\n"
-"PO-Revision-Date: 2014-03-03 13:17+0800\n"
+"POT-Creation-Date: 2014-04-27 19:03+0800\n"
+"PO-Revision-Date: 2014-04-29 10:29+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -114,27 +114,42 @@ msgid "You have %d times to try."
 msgstr "还有%d次尝试机会"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:88
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:94
 #: c:\Code\pi\usr\module\system/template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "用户登录"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:108
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:93
+#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:109
+#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:17
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:10
+msgid "Login"
+msgstr "登录"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:95
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:129
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:77
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:54
+msgid "login,register,find,password,user,account"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:112
 msgid "Invalid request."
 msgstr "无效请求。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:152
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:156
 msgid "You have tried too many times. Please try later."
 msgstr "尝试次数太多，请稍后重试。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:176
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:180
 msgid "Invalid credentials provided, please try again."
 msgstr "密码错误，请重试。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:218
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:222
 msgid "You have logged in successfully."
 msgstr "成功登录"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:237
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:241
 msgid "You logged out successfully."
 msgstr "成功退出。"
 
@@ -147,11 +162,20 @@ msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改密码。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:139
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:127
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:128
+#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:51
+#: c:\Code\pi\usr\module\system/template/front/login.phtml:14
+#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:2
+#: c:\Code\pi\usr\module\system/template/front/register.phtml:9
+msgid "Find password"
+msgstr "找回密码"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:143
 msgid "Invalid token for password reset."
 msgstr "密码重置信息无效。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:193
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:197
 msgid "Password reset successfully."
 msgstr "重置密码成功。"
 
@@ -193,26 +217,30 @@ msgid "Password"
 msgstr "密码"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:67
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:75
+#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:76
 msgid "User profile"
 msgstr "用户资料"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:49
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:53
 msgid "User account register"
 msgstr "账号注册"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:76
-msgid "Invalid input, please try again."
-msgstr "无效输入，请重试。"
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:95
-msgid "The account is not created in database, please try again."
-msgstr "该账号未能保存到数据库，请重试。"
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:106
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:52
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:110
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\system/template/front/login.phtml:17
 msgid "Register"
 msgstr "注册"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:80
+msgid "Invalid input, please try again."
+msgstr "无效输入，请重试。"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:99
+msgid "The account is not created in database, please try again."
+msgstr "该账号未能保存到数据库，请重试。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/TestController.php:46
 msgid "site name"
@@ -252,7 +280,6 @@ msgstr "生日"
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:131
 #: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:126
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:74
-#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:84
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:100
 #: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:73
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:115
@@ -286,7 +313,7 @@ msgstr "全福尺寸"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:87
 msgid "Display block body in full-size w/o padding."
-msgstr "显示时全福显示区块主体，不保留边界。"
+msgstr "显示时全幅显示区块主体，不保留边界。"
 
 #: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:94
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:30
@@ -349,15 +376,7 @@ msgstr "配置参数"
 msgid "Please type the word"
 msgstr "验证码"
 
-#: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:51
-#: c:\Code\pi\usr\module\system/template/front/login.phtml:14
-#: c:\Code\pi\usr\module\system/template/front/password-find.phtml:2
-#: c:\Code\pi\usr\module\system/template/front/register.phtml:9
-msgid "Find password"
-msgstr "找回密码"
-
 #: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:70
-#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:64
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:84
 msgid "Please type the word."
 msgstr "验证码"
@@ -367,25 +386,17 @@ msgstr "验证码"
 msgid "Remember me"
 msgstr "记住登录"
 
-#: c:\Code\pi\usr\module\system/src/Form/LoginForm.php:109
-#: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:17
-#: c:\Code\pi\usr\module\system/template/front/register.phtml:10
-msgid "Login"
-msgstr "登录"
-
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:81
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:52
 msgid "Email address"
 msgstr "Email地址"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:93
-#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:42
 #: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:42
 msgid "New password"
 msgstr "新密码"
 
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:101
-#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:52
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:72
 #: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:52
 msgid "Confirm password"
@@ -477,10 +488,6 @@ msgstr "全页面缓存"
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:36
 msgid "Action data"
 msgstr "当前请求逻辑缓存"
-
-#: c:\Code\pi\usr\module\system/src/Form/PasswordForm.php:32
-msgid "Current password"
-msgstr "当前密码"
 
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:65
 msgid "Section"
@@ -599,46 +606,3 @@ msgstr "登录"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "您已注册成功，请前往%s或%s。"
-
-#~ msgid "Password changed successfully."
-#~ msgstr "修改密码成功"
-
-#~ msgid "Password not changed."
-#~ msgstr "密码未修改。"
-
-#~ msgid "Invalid data, please check and re-submit."
-#~ msgstr "无效数据，请检查后重新提交。"
-
-#~ msgid "You have already logged in."
-#~ msgstr "你已在登录状态。"
-
-#~ msgid "You logged out successfully. Now go back to homepage."
-#~ msgstr "退出成功，现在回到主页。"
-
-#~ msgid "Never updated."
-#~ msgstr "从未更新"
-
-#~ msgid "Keep me logged in."
-#~ msgstr "记住登录"
-
-#~ msgid "the link"
-#~ msgstr "这里"
-
-#~ msgid ""
-#~ "The page will redirected in %d seconds. Or you can click %s directly."
-#~ msgstr "页面将在%d秒后跳转，或者直接点击%s跳转。"
-
-#~ msgid "The user does not exists."
-#~ msgstr "用户不存在"
-
-#, fuzzy
-#~ msgid "time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Flush all"
-#~ msgstr "All Categories"
-
-#, fuzzy
-#~ msgid "Toggle all"
-#~ msgstr "All Categories"

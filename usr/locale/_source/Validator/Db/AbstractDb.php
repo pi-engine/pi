@@ -4,16 +4,8 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Validator;
-
-/**
- * Placeholder for validator i18n
- *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
- */
-
-        _("No record matching the input was found");
-        _("A record matching the input was found");
+_("No record matching the input was found");
+_("A record matching the input was found");

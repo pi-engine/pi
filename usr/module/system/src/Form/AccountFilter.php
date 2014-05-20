@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Form;
@@ -43,7 +43,7 @@ class AccountFilter extends InputFilter
                         'max'       => $config['uname_max'],
                     ),
                 ),
-                new \Module\System\Validator\UserName(array(
+                new \Module\System\Validator\Username(array(
                     'format'            => $config['uname_format'],
                     'backlist'          => $config['uname_backlist'],
                     'checkDuplication'  => true,

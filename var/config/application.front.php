@@ -6,7 +6,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @author          Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 
@@ -51,11 +51,13 @@ return array(
         'session'   => array(),
         // Load authentication configs from resource.authentication.php and instantiate authentication service
         'authentication'    => array(),
-
+        // Permission check
         'permission'    => array(
             // Default access perm in case not defined: true for allowed, false for denied
             //'default_allow' => true,
-            // If check page access
+            // Whether to check `site_close` for maintenance, default as true
+            //'check_close'   => true,
+            // Whether to check page access
             'check_page'    => false,
         ),
 

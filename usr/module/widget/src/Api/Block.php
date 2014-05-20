@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Widget\Api;
@@ -35,22 +35,36 @@ class Block extends AbstractApi
     {
         $type = $type ?: $block['type'];
         switch ($type) {
+            case 'list':
+                $block['config'] = array(
+                    'width'          => array(
+                        'title'         => _a('Image width'),
+                        'edit'          => 'text',
+                        'filter'        => 'int',
+                    ),
+                    'height'         => array(
+                        'title'         => _a('Image height'),
+                        'edit'          => 'text',
+                        'filter'        => 'int',
+                    ),
+                );
+                break;
             case 'carousel':
                 $block['config'] = array(
                     'width'     => array(
                         'title'         => _a('Image width'),
                         'edit'          => 'text',
-                        'filter'        => 'number_int',
+                        'filter'        => 'int',
                     ),
                     'height'    => array(
                         'title'         => _a('Image height'),
                         'edit'          => 'text',
-                        'filter'        => 'number_int',
+                        'filter'        => 'int',
                     ),
                     'interval' => array(
                         'title'         => _a('Time interval (ms)'),
                         'edit'          => 'text',
-                        'filter'        => 'number_int',
+                        'filter'        => 'int',
                         'value'         => 4000,
                     ),
                     'pause' => array(

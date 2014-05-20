@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
@@ -366,13 +366,13 @@ class PageController extends ComponentController
             $row->delete();
             Pi::registry('page')->clear($row->module);
             $result = array(
-                'status'    => 0,
-                'message'   => _a('Page is not found.'),
+                'status'    => 1,
+                'message'   => _a('Page is deleted.'),
             );
         } else {
             $result = array(
-                'status'    => 1,
-                'message'   => _a('Page is deleted.'),
+                'status'    => 0,
+                'message'   => _a('Page is not found.'),
             );
         }
 
@@ -389,10 +389,9 @@ class PageController extends ComponentController
         // Page ID
         $page = $this->params('page', 0);
 
-        $_this = clone $this;
-        $fallback = function () use ($_this) {
-            $_this->view()->setTemplate(false);
-            $_this->redirect()->toRoute('', array('action' => 'index'));
+        $fallback = function () {
+            $this->view()->setTemplate(false);
+            $this->redirect()->toRoute('', array('action' => 'index'));
         };
 
         // Get the page

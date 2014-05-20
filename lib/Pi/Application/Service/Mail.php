@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -433,13 +433,12 @@ class Mail extends AbstractService
      */
     public function mimeMessage($data, $type = null)
     {
-        $_this = $this;
-        $createPart = function ($content) use ($_this) {
+        $createPart = function ($content) {
             if (is_string($content)) {
                 $content = new Mime\Part($content);
             } elseif (is_array($content)) {
                 list($data, $type) = $content;
-                $content = $_this->mimePart($data, $type);
+                $content = $this->mimePart($data, $type);
             }
             return $content;
         };

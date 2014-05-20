@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-03-06 19:53+0800\n"
-"PO-Revision-Date: 2014-03-06 19:53+0800\n"
+"PO-Revision-Date: 2014-04-27 18:55+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,6 +11,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
+"Language: zh_CN\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\user\n"
 
 #: c:\Code\pi\usr\module\user/config/config.php:25
@@ -70,7 +71,7 @@ msgstr "资料完善"
 
 #: c:\Code\pi\usr\module\user/config/config.php:73
 msgid "Require user to complete profile data."
-msgstr "要求用户完善个人资料数据。"
+msgstr "注册成功后，要求用户完善个人资料数据"
 
 #: c:\Code\pi\usr\module\user/config/config.php:81
 msgid "Login disable"
@@ -155,7 +156,7 @@ msgstr "注册数据完善"
 
 #: c:\Code\pi\usr\module\user/config/config.php:155
 msgid "Require user to complete register data in an extra form."
-msgstr "要求用户注册后提供必需资料。"
+msgstr "要求用户注册时补充个人信息"
 
 #: c:\Code\pi\usr\module\user/config/config.php:163
 msgid "Email notification"
@@ -163,7 +164,7 @@ msgstr "邮件通知"
 
 #: c:\Code\pi\usr\module\user/config/config.php:164
 msgid "Send email notification for register success."
-msgstr "注册成功时发送邮件通知。"
+msgstr "注册成功后发送激活邮件"
 
 #: c:\Code\pi\usr\module\user/config/config.php:172
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:19
@@ -657,7 +658,7 @@ msgstr "设置角色失败。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/IndexController.php:566
 msgid "Role assignment succeeded."
-msgstr "设置角色失败。"
+msgstr "设置角色成功。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:208
 msgid "Clear failed."
@@ -1268,43 +1269,3 @@ msgstr "重置为默认头像。"
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:89
 msgid "Are you sure to delete this group?"
 msgstr "请确认是否删除该组？"
-
-#, fuzzy
-#~ msgid "First"
-#~ msgstr "名"
-
-#~ msgid "Role assignment failed"
-#~ msgstr "设置角色失败。"
-
-#~ msgid "Add new"
-#~ msgstr "添加"
-
-#~ msgid "Set it only if necessary."
-#~ msgstr "仅在必要时设置。"
-
-#~ msgid "Homepage"
-#~ msgstr "首页"
-
-#~ msgid "User data import failed: "
-#~ msgstr "数据导入失败："
-
-#~ msgid "%d enable user successfully"
-#~ msgstr "启用 %d 用户成功"
-
-#~ msgid "%d activated user successfully"
-#~ msgstr "激活 %d 用户成功"
-
-#~ msgid "Assign role successfully"
-#~ msgstr "分配角色成功"
-
-#~ msgid "Set privacy failed: invalid value."
-#~ msgstr "隐私设置失败：值错误。"
-
-#~ msgid "Click to select a group added in"
-#~ msgstr "点击选择已有组添加"
-
-#~ msgid "From"
-#~ msgstr "从"
-
-#~ msgid "To"
-#~ msgstr "到"

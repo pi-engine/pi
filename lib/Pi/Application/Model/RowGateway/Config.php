@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Application\Model\RowGateway;
@@ -76,11 +76,11 @@ class Config extends RowGateway
         switch ($filter) {
             case 'int':
             case 'number_int':
-                $filter = 'number_int';
+                $filter = 'int';
                 break;
             case 'float':
             case 'number_float':
-                $filter = 'number_float';
+                $filter = 'float';
                 break;
             case 'array':
             case 'decode':
@@ -114,11 +114,11 @@ class Config extends RowGateway
         switch ($filter) {
             case 'int':
             case 'number_int':
-                $filter = 'number_int';
+                $filter = 'int';
                 break;
             case 'float':
             case 'number_float':
-                $filter = 'number_float';
+                $filter = 'float';
                 break;
             case 'array':
             case 'encode':
@@ -151,7 +151,7 @@ class Config extends RowGateway
         if (!$filter && !$filterId) {
             return $value;
         }
-        if (null === $filterId) {
+        if (null === $filterId && is_string($filter)) {
             $filterId = is_string($filter) ? filter_id($filter) : null;
         }
         if ($filterId) {

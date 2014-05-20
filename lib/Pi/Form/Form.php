@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @package         Form
  */
 
@@ -198,8 +198,8 @@ class Form extends ZendForm
     {
         $messages = $this->getMessages();
         $list = array();
-        foreach ($messages as $name => $messages) {
-            if (!$messages) {
+        foreach ($messages as $name => $msgs) {
+            if (!$msgs) {
                 continue;
             }
             if ($OnlyHidden
@@ -207,7 +207,7 @@ class Form extends ZendForm
             ) {
                 continue;
             }
-            $list[] = implode($delimiter, array_values($messages));
+            $list[] = implode($delimiter, array_values($msgs));
         }
 
         return implode($delimiter, $list);

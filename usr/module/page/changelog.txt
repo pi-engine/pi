@@ -1,5 +1,9 @@
 Page module changelog
 
+v1.2.1 April 24th, 2014
+=============================
+1. Fix for page specific dress-up
+
 v1.2.0 February 27th, 2014
 =============================
 1. Add support for menu

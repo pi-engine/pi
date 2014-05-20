@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Api;
@@ -37,11 +37,8 @@ class Profile extends AbstractApi
         $config = Pi::user()->config('require_profile_complete');
         if ($config) {
             $uid = $uid ?: Pi::service('user')->getId();
-            $status = $this->requireVerify($uid);
-            if ($status) {
-                $level = Pi::api('user', $this->module)->get($uid, 'level');
-                $result = $level ? true : false;
-            }
+            $level = Pi::api('user', $this->module)->get($uid, 'level');
+            $result = $level ? true : false;
         }
 
         return $result;
@@ -76,65 +73,5 @@ class Profile extends AbstractApi
             ),
             $redirect
         );
-    }
-    
-    /**
-     * Read the profile-complete-rule file in custom folder to check whether
-     * need this user to complete profile
-     * 
-     * @param int $uid
-     * @return boolean
-     */
-    protected function requireVerify($uid = 0)
-    {
-        $result = true;
-        
-        // Read rule list
-        $uid = $uid ?: Pi::service('user')->getId();
-        $file = sprintf(
-            '%s/module/%s/config/profile-complete-rule.php',
-            Pi::path('custom'),
-            $this->getModule()
-        );
-        if (!file_exists($file)) {
-            return false;
-        }
-        $data = include $file;
-        
-        // Check if condition field is exists
-        if (empty($data) || !isset($data['rule_field'])) {
-            return false;
-        }
-        
-        // Get condition value, and assemble key value
-        if (empty($data['rule_field'])) {
-            $key = 'all';
-        } else {
-            $fields = explode('&', $data['rule_field']);
-            $values = Pi::api('user', $this->module)->get($uid, $fields);
-            foreach ($values as $key => &$value) {
-                if (!in_array($key, $fields)) {
-                    unset($values[$key]);
-                }
-                $value = $value ?: 'default';
-            }
-            $key = implode('&', $values);
-        }
-        
-        // Not verify if no rule list acquired
-        if (
-            !isset($data['items'])
-            || !isset($data['items'][$key])
-            || empty($data['items'][$key])
-        ) {
-            return false;
-        }
-        
-        // Not verify if rule is deactivate
-        if (isset($data['items'][$key]['active'])) {
-            $result = (bool) $data['items'][$key]['active'];
-        }
-        
-        return $result;
     }
 }

@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup\Controller;
@@ -216,6 +216,13 @@ class Admin extends AbstractController
                 $configModel->update(
                     array('value' => $charset),
                     array('name' => 'charset')
+                );
+            }
+            $location = Pi::service('geo_ip')->get($_SERVER['REMOTE_ADDR'], 'location');
+            if ($location && !empty($location['timezone'])) {
+                $configModel->update(
+                    array('value' => $location['timezone']),
+                    array('name' => 'timezone')
                 );
             }
 

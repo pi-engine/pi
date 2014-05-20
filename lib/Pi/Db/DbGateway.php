@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db;
@@ -12,6 +12,7 @@ namespace Pi\Db;
 use PDO;
 use Pi;
 use Pi\Db\Sql\Where;
+use Pi\Db\Sql\Select;
 use Pi\Db\Adapter\Adapter;
 use Pi\Db\Table\AbstractTableGateway;
 use Pi\Log\DbProfiler;
@@ -19,7 +20,6 @@ use Zend\Db\Metadata\Metadata;
 use Zend\Db\Sql\Expression;
 use Zend\Db\Sql\Predicate;
 use Zend\Db\Sql\Sql;
-use Zend\Db\Sql\Select;
 use Zend\Db\Sql\Insert;
 use Zend\Db\Sql\Delete;
 use Zend\Db\Sql\Update;
@@ -235,7 +235,7 @@ class DbGateway
     /**
      * Create adapter with configs
      *
-     * Configs are canonized to avoid violiation of `driver_options`
+     * Configs are canonized to avoid violation of `driver_options`
      * in {@link \Zend\Db\Adapter\Driver\Pdo\Connection::connect()}
      *
      * @param array                                 $config

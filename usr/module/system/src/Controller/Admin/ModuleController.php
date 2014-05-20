@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
@@ -105,40 +105,31 @@ class ModuleController extends ActionController
     public function availableAction()
     {
         $modules = array();
-        //$modulesInstalled = $this->installedModules();
-        $iterator = new \DirectoryIterator(Pi::path('module'));
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
+        $filter = function ($fileinfo) use (&$modules) {
+            if (!$fileinfo->isDir()) {
+                return false;
             }
             $directory = $fileinfo->getFilename();
             if (preg_match('/[^a-z0-9_]/i', $directory)) {
-                continue;
+                return false;
             }
             $meta = Pi::service('module')->loadMeta($directory, 'meta');
             if (empty($meta)) {
-                continue;
+                return false;
             }
             $author = Pi::service('module')->loadMeta($directory, 'author');
-            //$clonable = isset($meta['clonable']) ? $meta['clonable'] : false;
-            //$meta['installed'] = in_array($directory, $modulesInstalled);
             $meta['installed'] = Pi::registry('module')
-                    ->read($directory) ? true : false;
+                ->read($directory) ? true : false;
             if (empty($meta['clonable']) && $meta['installed']) {
-                continue;
+                return false;
             }
-            /*
-            $meta['logo'] = !empty($meta['logo'])
-                ? Pi::url('script/browse.php') . '?'
-                    . sprintf('module/%s/asset/%s', $directory, $meta['logo'])
-                : Pi::url('static/image/module.png');
-            */
-            $meta['icon'] = $meta['icon'] ?: 'fa-th';
+            $meta['icon'] = !empty($meta['icon']) ? $meta['icon'] : 'fa-th';
             $modules[$directory] = array(
                 'meta'      => $meta,
                 'author'    => $author,
             );
-        }
+        };
+        Pi::service('file')->getList('module', $filter);
 
         $this->view()->assign('modules', $modules);
         $this->view()->assign('title', _a('Modules ready for installation'));

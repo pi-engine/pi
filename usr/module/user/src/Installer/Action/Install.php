@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Installer\Action;
@@ -141,7 +141,6 @@ class Install extends BasicAction
             ),
         );
         $fieldList  = array();
-        $compounds  = array();
         $fields     = Pi::registry('field', 'user')->read('', 'display');
         foreach ($fields as $field) {
             if ($field['type'] == 'compound') {
@@ -180,6 +179,9 @@ class Install extends BasicAction
                 $row->save();
             }
         }
+
+        Pi::registry('display_group', 'user')->flush();
+        Pi::registry('display_field', 'user')->flush();
 
         return $result;
     }

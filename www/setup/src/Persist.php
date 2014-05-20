@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup;
@@ -54,8 +54,7 @@ class Persist
     protected function storage($method, $data = null)
     {
         $result = null;
-        $_this = $this;
-        $fileLookup = function() use ($_this) {
+        $fileLookup = function() {
             return $this->getTmpDir() . '/' . static::PERSIST_IDENTIFIER;
         };
 

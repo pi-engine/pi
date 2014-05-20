@@ -4,7 +4,7 @@
  *
  * @link         http://code.pialog.org for the Pi Engine source repository
  * @copyright    Copyright (c) Pi Engine http://pialog.org
- * @license      http://pialog.org/license.txt New BSD License
+ * @license      http://pialog.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -43,35 +43,35 @@ return array(
             'title'       => _t('Article List Page Limit'),
             'description' => _t('Maximum count of articles in a front page.'),
             'value'       => 40,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'page_limit_topic' => array(
             'category'    => 'general',
             'title'       => _t('Topic Article List Page Limit'),
             'description' => _t('Maximum count of topic articles in a front page.'),
             'value'       => 5,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'page_limit_management' => array(
             'category'    => 'general',
             'title'       => _t('Article Management Page Limit'),
             'description' => _t('Maximum count of articles in a management page.'),
             'value'       => 40,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'author_limit'    => array(
             'category'    => 'general',
             'title'       => _t('Author Limit'),
             'description' => _t('Maximum count of author in management page.'),
             'value'       => 20,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'category_limit'  => array(
             'category'    => 'general',
             'title'       => _t('Category Limit'),
             'description' => _t('Maximum count of category in management page.'),
             'value'       => 20,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'enable_tag'      => array(
             'category'    => 'general',
@@ -79,7 +79,7 @@ return array(
             'description' => _t('Enable tag (Tag module must be installed)'),
             'edit'        => 'checkbox',
             'value'       => 1,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_source'  => array(
             'category'    => 'general',
@@ -93,14 +93,14 @@ return array(
             'description' => _t('Can not be deleted.'),
             'edit'        => 'Module\Article\Form\Element\Category',
             'value'       => 2,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'max_related'     => array(
             'category'    => 'general',
             'title'       => _t('Max Related Articles'),
             'description' => _t('Maximum related articles to fetch.'),
             'value'       => 5,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'markup'          => array(
             'category'    => 'general',
@@ -163,7 +163,7 @@ return array(
             'description' => _t('Whether to enable category nav in list page'),
             'edit'        => 'checkbox',
             'value'       => 1,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_homepage' => array(
             'category'    => 'general',
@@ -178,7 +178,7 @@ return array(
             'description' => _t('Whether to allow user compose and manage list in front-end'),
             'edit'        => 'checkbox',
             'value'       => 1,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
 
         // Autosave
@@ -187,7 +187,7 @@ return array(
             'title'       => _t('Interval'),
             'description' => _t('How many minutes to save draft once again, there will not autosave if it set to 0.'),
             'value'       => 5,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         
         // Summary
@@ -197,28 +197,28 @@ return array(
             'description' => _t('Enable summary'),
             'edit'        => 'checkbox',
             'value'       => 1,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'max_summary_length' => array(
             'category'    => 'summary',
             'title'       => _t('Max Summary Length'),
             'description' => _t('Not more than 255'),
             'value'       => 255,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'max_subject_length' => array(
             'category'    => 'summary',
             'title'       => _t('Max Subject Length'),
             'description' => _t('Not more than 255'),
             'value'       => 60,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'max_subtitle_length' => array(
             'category'    => 'summary',
             'title'       => _t('Max Subtitle Length'),
             'description' => _t('Not more than 255'),
             'value'       => 40,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
 
         // Media
@@ -263,7 +263,7 @@ return array(
             'title'       => _t('Max Media Size'),
             'description' => _t('Max media size, unit is Byte'),
             'value'       => 2097152,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_media_image' => array(
             'category'    => 'media',
@@ -300,7 +300,7 @@ return array(
             'title'       => _t('Max Image Size'),
             'description' => _t('Max image size allowed, unit is Byte'),
             'value'       => 2097152,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'path_author'  => array(
             'category'    => 'media',
@@ -347,7 +347,7 @@ return array(
             'title'       => _t('Author Photo Size'),
             'description' => _t('Author photo width and height'),
             'value'       => 110,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_author_photo' => array(
             'category'    => 'media',
@@ -360,14 +360,14 @@ return array(
             'title'       => _t('Category Image Width'),
             'description' => _t('Category image width'),
             'value'       => 40,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'category_height' => array(
             'category'    => 'media',
             'title'       => _t('Category Image Height'),
             'description' => _t('Category image height'),
             'value'       => 40,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_category_image' => array(
             'category'    => 'media',
@@ -380,28 +380,28 @@ return array(
             'title'       => _t('Topic Image Width'),
             'description' => _t('Topic image width'),
             'value'       => 320,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'topic_height'    => array(
             'category'    => 'media',
             'title'       => _t('Topic Image Height'),
             'description' => _t('Topic image height'),
             'value'       => 240,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'topic_thumb_width' => array(
             'category'    => 'media',
             'title'       => _t('Topic thumb width'),
             'description' => '',
             'value'       => 80,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'topic_thumb_height' => array(
             'category'    => 'media',
             'title'       => _t('Topic thumb height'),
             'description' => '',
             'value'       => 60,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_topic_thumb' => array(
             'category'    => 'media',
@@ -420,14 +420,14 @@ return array(
             'title'       => _t('Feature Image Width'),
             'description' => _t('Feature image width'),
             'value'       => 440,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'feature_height'  => array(
             'category'    => 'media',
             'title'       => _t('Feature Image Height'),
             'description' => _t('Feature image height'),
             'value'       => 300,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_feature_image' => array(
             'category'    => 'media',
@@ -440,14 +440,14 @@ return array(
             'title'       => _t('Feature thumb width'),
             'description' => '',
             'value'       => 80,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'feature_thumb_height' => array(
             'category'    => 'media',
             'title'       => _t('Feature thumb height'),
             'description' => '',
             'value'       => 60,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'default_feature_thumb' => array(
             'category'    => 'media',
@@ -460,14 +460,14 @@ return array(
             'title'       => _t('Content thumb width'),
             'description' => '',
             'value'       => 640,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
         'content_thumb_height' => array(
             'category'    => 'media',
             'title'       => _t('Content thumb height'),
             'description' => '',
             'value'       => 360,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
         ),
 
         // SEO
@@ -476,7 +476,7 @@ return array(
             'title'       => _t('Keywords'),
             'description' => _t('Setup head keywords.'),
             'value'       => 0,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
             'edit'        => array(
                 'type'    => 'select',
                 'options' => array(
@@ -493,7 +493,7 @@ return array(
             'title'       => _t('Description'),
             'description' => _t('Setup head description.'),
             'value'       => 0,
-            'filter'      => 'number_int',
+            'filter'      => 'int',
             'edit'        => array(
                 'type'    => 'select',
                 'options' => array(

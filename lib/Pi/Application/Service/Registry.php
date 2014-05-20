@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @package         Service
  */
 
@@ -185,25 +185,26 @@ class Registry extends AbstractService
      */
     public function getList()
     {
-        $registryList = array();
-        $iterator = new \DirectoryIterator(
-            Pi::path('lib/Pi/Application/Registry')
-        );
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isFile() || $fileinfo->isDot()) {
-                continue;
+        $filter = function ($fileinfo) {
+            if (!$fileinfo->isFile()) {
+                return false;
             }
             $directory = $fileinfo->getFilename();
             if ('AbstractRegistry.php' == $directory
                 || !preg_match('/^[a-z0-9]+\.php/i', $directory)
             ) {
-                continue;
+                return false;
             }
             $name = basename($directory, '.php');
             $words = preg_split('/(?=[A-Z])/', $name, -1, PREG_SPLIT_NO_EMPTY);
             $registry = strtolower(implode('_', $words));
-            $registryList[] = $registry;
-        }
+
+            return $registry;
+        };
+        $registryList = Pi::service('file')->getList(
+            'lib/Pi/Application/Registry',
+            $filter
+        );
 
         return $registryList;
     }

@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Front;
@@ -49,6 +49,7 @@ class PasswordController extends ActionController
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
+                /*
                 // Verify password
                 $row = Pi::model('user_account')->find($uid, 'id');
                 if ($row['credential'] == $row->transformCredential($values['credential'])) {
@@ -67,6 +68,18 @@ class PasswordController extends ActionController
                 } else {
                     $result['message'] = __('Invalid password.');
                 }
+                */
+                // Update password
+                Pi::api('user', 'user')->updateAccount(
+                    $uid,
+                    array(
+                        'credential' => $values['credential-new']
+                    )
+                );
+                Pi::service('event')->trigger('password_change', $uid);
+
+                $result['status'] = 1;
+                $result['message'] = __('Reset password successfully.');
             }
 
             $this->view()->assign('result', $result);

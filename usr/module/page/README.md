@@ -11,7 +11,6 @@
 
 ## Dress-up
   * Module-wide
-  * Type-wide
   * Single page
 
 ## Navigation

@@ -4,27 +4,20 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Page\Route;
 
+use Pi;
 use Pi\Mvc\Router\Http\Standard;
-use Zend\Mvc\Router\Http\RouteMatch;
-use Zend\Stdlib\RequestInterface as Request;
 
 /**
  * Route for pages
  *
  *  1. ID: /url/page/123
  *  2. Slug: /url/page/my-slug
- *  3. Name: /url/page/name
- *
- * Route for pages with page setup, for instance blocks and cache
- *  1. ID: /url/page/123/type/<type>
- *  2. Slug: /url/page/my-slug/type/<type>
- *  3. Name: /url/page/name/type/<type>
- *
+ *  3. Name: /url/page/myname
  */
 class Page extends Standard
 {
@@ -37,7 +30,6 @@ class Page extends Standard
         if ($path) {
             if (false !== ($pos = strpos($path, $this->paramDelimiter))) {
                 list($name, $path) = explode($this->paramDelimiter, $path, 2);
-                d($path);
             } else {
                 $name = $path;
                 $path = '';
@@ -50,16 +42,42 @@ class Page extends Standard
         $params = parent::parseParams($params);
         $matches = array_merge($this->defaults, $params);
 
-        // Set id or name
+        // Set id
         if (is_numeric($name)) {
             $matches['id'] = (int) $name;
+            $name = '';
+        // Set name
         } else {
-            $matches['name'] = $name;
+            $name = $this->decode($name);
         }
+
         // Set action
-        if (!empty($matches['type'])) {
-            $matches['action'] = $matches['type'];
-            unset($matches['type']);
+        $action = '';
+        $pageList = Pi::registry('page', 'page')->read();
+        if (!empty($matches['id'])) {
+            if (isset($pageList[$matches['id']])) {
+                $action = $pageList[$matches['id']]['name'];
+            }
+        } else {
+            $pName = empty($matches['name']) ? $name : $matches['name'];
+            $pSlug = empty($matches['slug']) ? $name : $matches['slug'];
+            if ($pName || $pSlug) {
+                foreach ($pageList as $id => $page) {
+                    if ($pName && $pName == $page['name']) {
+                        $action = $page['name'];
+                        $matches['id'] = $id;
+                        break;
+                    }
+                    if ($pSlug && $pSlug == $page['slug']) {
+                        $action = $page['name'];
+                        $matches['id'] = $id;
+                        break;
+                    }
+                }
+            }
+        }
+        if ($action) {
+            $matches['action'] = $action;
         }
 
         return $matches;
@@ -82,12 +100,7 @@ class Page extends Standard
         if (empty($url)) {
             return $this->prefix;
         }
-        // Keep type
-        if (!empty($params['type'])) {
-            $params = array('type' => $params['type']);
-        } else {
-            $params = array();
-        }
+        $params = array();
         $prefix = $this->prefix;
         $this->prefix .= $this->paramDelimiter . $url;
         $url = parent::assemble($params, $options);

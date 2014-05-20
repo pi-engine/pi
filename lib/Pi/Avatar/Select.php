@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Avatar;
@@ -127,19 +127,18 @@ class Select extends AbstractAvatar
                 $root = Pi::path('static/avatar/select');
             }
         }
-        $result = array();
-        $iterator = new \DirectoryIterator($root);
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
+        $filter = function ($fileinfo) use (&$result, $size) {
+            if (!$fileinfo->isDir()) {
+                return false;
             }
             $directory = $fileinfo->getFilename();
             if ('select' != Pi::service('avatar')->getType($directory)) {
-                continue;
+                return false;
             }
             $result[$directory] = $this->build($directory, $size);
-        }
-
+        };
+        $result = array();
+        Pi::service('file')->getList($root, $filter);
         return $result;
     }
 }

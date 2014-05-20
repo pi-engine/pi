@@ -4,29 +4,30 @@ $options = (array) $block['options'];
 $items = $block['items'];
 $activeItem = array_shift($items);
 $count = count($items);
-$_this = $this;
 $width = empty($options['width']) ? 0 : $options['width'];
 $height = empty($options['height']) ? 0 : $options['height'];
-$render = function ($item) use ($_this, $width, $height)
-{
-    $caption = $_this->escape($item['caption']);
-    $description = $_this->escape($item['desc']);
+
+$render = function ($item) use ($width, $height) {
+    $caption = $this->escape($item['caption']);
+    $description = $this->escape($item['desc']);
     
     $width = $width ? 'width: '  . $width  . 'px;' : '';
     $height = $height ? 'height: '  . $height . 'px;' : '';
 
     if (empty($width) && empty($height)) {
-        $image = sprintf('<img src="%s" alt="%s" />',
-                      $item['image'],
-                      $caption
-                      );
+        $image = sprintf(
+            '<img src="%s" alt="%s" />',
+            $item['image'],
+            $caption
+        );
     } else {
-        $image = sprintf('<img src="%s" alt="%s" style="%s%s" />',
-                      $item['image'],
-                      $caption,
-                      $width,
-                      $height
-                      );
+        $image = sprintf(
+            '<img src="%s" alt="%s" style="%s%s" />',
+            $item['image'],
+            $caption,
+            $width,
+            $height
+        );
     }
 
 
@@ -43,33 +44,35 @@ $render = function ($item) use ($_this, $width, $height)
 };
 $carouselId = uniqid('carousel');
 ?>
-<div id="<?php echo $carouselId; ?>" class="carousel slide">
-    <ol class="carousel-indicators">
-        <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
-        <?php for ($i = 1; $i <= $count; $i++) { ?>
-        <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
-        <?php } ?>
-    </ol>
+<div class="widget-carousel-bootstrap">
+    <div id="<?php echo $carouselId; ?>" class="carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
+            <?php for ($i = 1; $i <= $count; $i++) { ?>
+            <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
+            <?php } ?>
+        </ol>
 
-    <!-- Carousel items -->
-    <div class="carousel-inner">
-        <div class="active item">
-            <?php echo $render($activeItem); ?>
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item">
+                <?php echo $render($activeItem); ?>
+            </div>
+            <?php foreach ($items as $item) { ?>
+            <div class="item">
+                <?php echo $render($item); ?>
+            </div>
+            <?php } ?>
         </div>
-        <?php foreach ($items as $item) { ?>
-        <div class="item">
-            <?php echo $render($item); ?>
-        </div>
-        <?php } ?>
+
+        <!-- Carousel nav -->
+        <a class="left carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
+            <span class="icon-prev fa fa-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
+            <span class="icon-next fa fa-chevron-right"></span>
+        </a>
     </div>
-
-    <!-- Carousel nav -->
-    <a class="left carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
-        <span class="icon-prev fa fa-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#<?php echo $carouselId; ?>" data-slide="next">
-        <span class="icon-next fa fa-chevron-right"></span>
-    </a>
 </div>
 <?php
 $script = sprintf('$("#%s").carousel(%s);',

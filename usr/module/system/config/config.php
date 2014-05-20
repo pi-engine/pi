@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 /**
@@ -98,6 +98,13 @@ $config['item'] = array(
         'category'      => 'general',
     ),
 
+    'footer'        => array(
+        'title'         => _t('Footer'),
+        'description'   => _t('Content to be displayed on footer of front pages, HTML tags allowed.'),
+        'edit'          => 'textarea',
+        'category'      => 'general',
+    ),
+
     'ga_account'   => array(
         'title'         => _t('GA account'),
         'description'   => _t('Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to the code `UA-XXXXXXXX-X; XXXX.tld`.'),
@@ -125,6 +132,7 @@ $config['item'] = array(
         'visible'       => 0,
     ),
 
+    /*
     'environment'    => array(
         'title'         => _t('Run environment'),
         'description'   => _t('Will override setting in `var/config/engine.php`.'),
@@ -141,6 +149,7 @@ $config['item'] = array(
         'value'         => 'development',
         'category'      => 'general',
     ),
+    */
 
     // User account
 
@@ -166,7 +175,7 @@ $config['item'] = array(
         'title'         => _t('Minimum username'),
         'description'   => _t('Minimum length of username for user registration'),
         'value'         => 3,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -174,7 +183,7 @@ $config['item'] = array(
         'title'         => _t('Maximum username'),
         'description'   => _t('Maximum length of username for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -182,7 +191,7 @@ $config['item'] = array(
         'title'         => _t('Minimum password'),
         'description'   => _t('Minimum length of password for user registration'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -190,7 +199,7 @@ $config['item'] = array(
         'title'         => _t('Maximum password'),
         'description'   => _t('Maximum length of password for user registration'),
         'value'         => 32,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -214,7 +223,7 @@ $config['item'] = array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -242,7 +251,7 @@ $config['item'] = array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for user login'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -251,7 +260,7 @@ $config['item'] = array(
         'description'   => _t('Disable user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -260,7 +269,7 @@ $config['item'] = array(
         'description'   => _t('Disable user registration'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -269,7 +278,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for user login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -278,7 +287,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for user registration'),
         'edit'          => 'checkbox',
         'value'         => 1,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'user',
     ),
 
@@ -288,7 +297,7 @@ $config['item'] = array(
         'title'         => _t('Maximum attempts'),
         'description'   => _t('Maximum attempts allowed to try for admin login'),
         'value'         => 5,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -296,7 +305,7 @@ $config['item'] = array(
         'title'         => _t('Remember me'),
         'description'   => _t('Days to remember login, 0 for disable.'),
         'value'         => 14,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -325,7 +334,7 @@ $config['item'] = array(
         'description'   => _t('Disable admin login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -334,7 +343,7 @@ $config['item'] = array(
         'description'   => _t('Enable CAPTCHA for admin login'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'admin',
     ),
 
@@ -510,7 +519,7 @@ $config['item'] = array(
         'description'   => _t('Words will be censored if this option is enabled. This option may be turned off for enhanced site speed.'),
         'edit'          => 'checkbox',
         'value'         => 0,
-        'filter'        => 'number_int',
+        'filter'        => 'int',
         'category'      => 'text',
     ),
 

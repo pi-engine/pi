@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Db\Sql;
@@ -34,10 +34,10 @@ class Where extends ZendWhere
         $predicates = null,
         $defaultCombination = self::COMBINED_BY_AND
     ) {
+        parent::__construct(null, $defaultCombination);
         if ($predicates) {
-            $predicates = $this->canonize($predicates);
+            $this->addPredicates($predicates);
         }
-        parent::__construct($predicates, $defaultCombination);
     }
 
     /**
@@ -49,6 +49,7 @@ class Where extends ZendWhere
      *
      * @throws Exception\InvalidArgumentException
      * @return array
+     * @deprecated
      */
     public function canonize($predicate)
     {
@@ -135,8 +136,10 @@ class Where extends ZendWhere
     public function create($predicate, $combination = null)
     {
         $combination = $combination ? strtoupper($combination) : null;
-        $predicates = $this->canonize($predicate);
-        $result = new Predicate\Predicate($predicates, $combination);
+        //$predicates = $this->canonize($predicate);
+        //$result = new Predicate\Predicate($predicates, $combination);
+        $result = new Predicate\Predicate;
+        $result->addPredicates($predicate, $combination);
 
         return $result;
     }
@@ -151,27 +154,6 @@ class Where extends ZendWhere
     public function add($predicate, $combination = null)
     {
         $this->addPredicate($this->create($predicate, $combination));
-
-        return $this;
-    }
-
-
-    /**
-     * Create "noIn" predicate
-     *
-     * Utilizes NotIn predicate
-     *
-     * @param  string $identifier
-     * @param  array|\Zend\Db\Sql\Select $valueSet
-     * @return $this
-     */
-    public function notIn($identifier, $valueSet = null)
-    {
-        $this->addPredicate(
-            new NotIn($identifier, $valueSet),
-            ($this->nextPredicateCombineOperator) ?: $this->defaultCombination
-        );
-        $this->nextPredicateCombineOperator = null;
 
         return $this;
     }

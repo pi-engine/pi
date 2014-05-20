@@ -17,7 +17,7 @@
     }
 </style>
 <div class="row pi-article-module block-nopadding" style="padding: 10px; background-color: #eeeeee">
-    <div style="float: left; margin: 0 10px 10px 0">
+    <div style="float: left; margin: 0 20px 20px 20px">
         <img src="<?php echo $this->escape($image); ?>">
     </div>
     <div>
@@ -38,28 +38,29 @@
                 </a>
             </span>
         </div>
-        <div style="margin-top: 10px"><?php echo $content ?></div>
+        <div style="margin-top: 10px; font-size: 12px"><?php echo $content ?></div>
     </div>
 </div>
 
 <div>
-    <div class="article-list-content">
+    <div class="article-list-content" style="margin-top: 10px">
         <?php foreach ($articles as $row) { ?>
-            <div class="" style="margin-bottom: 20px">
+            <div class="">
                 <a class="topic-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"
-                    title="<?php echo $this->escape($row['subject']); ?>" style="color: #333333">
+                    title="<?php echo $this->escape($row['subject']); ?>" style="font-weight: bold">
                         <?php echo $this->escape($row['subject']); ?>
                 </a>
                 <div class="text-muted" style="font-size: 12px">
-                    <span><?php echo sprintf(__('Created at %s', _date($row['time_published']))); ?></span>
+                    <span><?php echo sprintf(__('Created at ') . _date($row['time_published'])); ?></span>
                     <span style="margin-left: 10px">
-                        <?php echo sprintf(__('Last added at %s', _date($pullTime[$row['id']]))); ?>
+                        <?php echo sprintf(__('Last added at ') . _date($pullTime[$row['id']])); ?>
                     </span>
                 </div>
                 <div style="margin-top: 5px; color: #333333" class="article-size12">
                     <p><?php echo $this->escape($row['summary']); ?></p>
                 </div>
             </div>
+            <hr>
         <?php 
             }
         ?>

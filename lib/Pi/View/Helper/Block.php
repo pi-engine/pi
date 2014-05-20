@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  * @package         View
  */
 
@@ -226,18 +226,10 @@ class Block extends AbstractHelper
             $options = array_merge($options, $configs);
         }
 
-        // Module-generated block, return array
+        // Module-generated block or script widget, return array
         if (!empty($block['render'])) {
             // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
-
-            /*
-            // Merge run-time configs with system settings
-            $options = isset($block['config']) ? $block['config'] : array();
-            if (!empty($configs)) {
-                $options = array_merge($options, $configs);
-            }
-            */
 
             // Render contents
             $result = call_user_func_array(
@@ -247,21 +239,29 @@ class Block extends AbstractHelper
         // Custom block, return string
         } elseif ($isCustom) {
             switch ($block['type']) {
+                // spotlight
+                case 'spotlight':
+                // list group
+                case 'list':
+                // media object
+                case 'media':
                 // carousel
                 case 'carousel':
                     $items = empty($block['content'])
                         ? false : json_decode($block['content'], true);
-                    if ($items) {
+                    if ($items && is_array($items)) {
                         $result = array(
                             'items'     => $items,
                             'options'   => $options,
                         );
                     }
                     break;
+
                 // compound tab
                 case 'tab':
                     $result = $this->transliterateTabs($block['content']);
                     break;
+
                 // static HTML
                 case 'html':
                     $result = Pi::service('markup')->render(
@@ -270,7 +270,7 @@ class Block extends AbstractHelper
                     );
                     $result = $this->transliterateGlobals($result);
                     break;
-                // static mardown
+                // static markdown
                 case 'markdown':
                     $result = Pi::service('markup')->render(
                         $block['content'],

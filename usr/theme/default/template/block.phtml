@@ -79,7 +79,7 @@ if ($isTab) {
     $heading .= '</ul>';
     $body .= '</div>';
 } else {
-    if ($block['subline']) {
+    if (!empty($block['subline'])) {
         $heading = sprintf(
             '<div class="pi-panel-subline">%s</div>%s',
             $block['subline'],
@@ -96,10 +96,10 @@ if ($isTab) {
 }
 ?>
 <div class="panel panel-default<?php echo $class; ?>">
-    <?php 
+<?php
     if (!$isHiddenTitle) {
         echo sprintf('<div class="panel-heading">%s</div>', $heading);
     }
     echo $body;
-    ?>
+?>
 </div>

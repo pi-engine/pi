@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Widget\Controller\Admin;
@@ -195,7 +195,7 @@ abstract class WidgetController extends ActionController
                     ?: _a('Invalid data, please check and re-submit.');
             }
             $content = $this->request->getPost('content');
-            $content = $content ? json_decode($content, true) : array();
+            //$content = $content ? json_decode($content, true) : array();
         } else {
             $content = '';
             $message = '';

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-05 12:22+0800\n"
-"PO-Revision-Date: 2014-03-05 12:22+0800\n"
+"POT-Creation-Date: 2014-04-27 15:54+0800\n"
+"PO-Revision-Date: 2014-04-27 18:55+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -119,47 +119,47 @@ msgstr "时间线发布失败。"
 msgid "Timeline added successfully."
 msgstr "时间线发布成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:75
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:72
 msgid ""
 "A confirmation email has been sent to you. Please check your email and "
 "confirm."
 msgstr "确认邮件已经发送。请检查邮件并确认。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:78
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:75
 msgid "It was failed to send you confirmation email. Please try later."
 msgstr "确认邮件发送失败，请稍后重试"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:90
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:87
 msgid "Email has been changed successfully."
 msgstr "Email地址已修改。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:93
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:90
 msgid "It was failed to save new email. Please try later."
 msgstr "新邮箱地址保存失败，请稍后重试"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:109
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:106
 msgid "Name has been changed successfully."
 msgstr "昵称已修改。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:112
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:109
 msgid "It was failed to save new name. Please try later."
 msgstr "新昵称保存失败，请稍后重试"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:145
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:133
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:8
-#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:32
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:32
 msgid "Account settings"
 msgstr "账号信息"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:146
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:134
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:9
 msgid "Basic settings"
 msgstr "修改您的账号信息"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:148
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:136
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:188
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:89
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:185
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:102
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:200
 #: c:\Code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:103
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:54
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
@@ -171,19 +171,19 @@ msgid ""
 "avatar"
 msgstr ""
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:164
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:152
 msgid "Invalid data provided for email change."
 msgstr "邮箱修改提供的信息无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:228
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:214
 msgid "Email changed successfully."
 msgstr "修改Email成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:242
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:228
 msgid "Incorrect password."
 msgstr "密码错误"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:258
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:244
 msgid "Password verified."
 msgstr "密码验证通过。"
 
@@ -213,8 +213,8 @@ msgstr "头像设置"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:185
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:41
-#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:40
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:96
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:115
 msgid "Change avatar"
 msgstr "修改头像"
 
@@ -288,47 +288,43 @@ msgstr "图片已删除。"
 msgid "Reset password failed."
 msgstr "重置密码失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:66
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:82
 msgid "Reset password successfully."
 msgstr "重置密码成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:68
-msgid "Invalid password."
-msgstr "无效密码。"
-
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:86
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:99
 #: c:\Code\pi\usr\module\user/template/front/password-index.phtml:8
-#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:36
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:36
 msgid "Change password"
 msgstr "修改密码"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:87
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:100
 #: c:\Code\pi\usr\module\user/template/front/password-index.phtml:9
 msgid "To ensure your account security, complex password is required."
 msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:104
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:117
 msgid "Find password failed."
 msgstr "找回密码失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:173
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:188
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改密码。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:182
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:183
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:197
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:198
 #: c:\Code\pi\usr\module\user/src/Form/FindPasswordForm.php:52
 #: c:\Code\pi\usr\module\user/template/front/login.phtml:15
 #: c:\Code\pi\usr\module\user/template/front/password-find.phtml:2
 msgid "Find password"
 msgstr "找回密码"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:198
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:213
 msgid "Invalid token for password reset."
 msgstr "密码重置信息无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:252
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:270
 msgid "Password reset successfully."
 msgstr "重置密码成功。"
 
@@ -408,53 +404,49 @@ msgstr "账号注册"
 msgid "Activation token is invalid."
 msgstr "激活密钥无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:190
-msgid "Activation link is expired."
-msgstr "激活链接已过期。"
-
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:228
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:231
 msgid "Account Activated successfully."
 msgstr "账号激活成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:248
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:251
 msgid "Activation email sent failed."
 msgstr "激活邮件发送失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:282
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:285
 msgid "Resend activation mail successfully."
 msgstr "激活邮件重新发送成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:310
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:313
 msgid "Email was not found."
 msgstr "邮箱不存在。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:315
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
 msgid "Account already activated."
 msgstr "账号早已激活。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:326
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:329
 msgid "Activation mail sent successfully."
 msgstr "激活邮件发送成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:331
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:334
 msgid "Activation mail was not sent."
 msgstr "激活邮件未能发出。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:339
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:342
 msgid "Invalid input."
 msgstr "无效输入。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:438
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:441
 msgid "User account was not saved."
 msgstr "账号保存失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:461
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
 msgstr "账号注册成功，但是激活失败。请联系管理员。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:471
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:491
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "激活邮件发送失败，请联系管理员。"
 
@@ -479,10 +471,10 @@ msgstr "昵称"
 
 #: c:\Code\pi\usr\module\user/src/Form/AccountForm.php:65
 #: c:\Code\pi\usr\module\user/src/Form/CompoundForm.php:58
-#: c:\Code\pi\usr\module\user/src/Form/EditUserForm.php:42
+#: c:\Code\pi\usr\module\user/src/Form/EditUserForm.php:45
 #: c:\Code\pi\usr\module\user/src/Form/EmailForm.php:58
 #: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:122
-#: c:\Code\pi\usr\module\user/src/Form/PasswordForm.php:79
+#: c:\Code\pi\usr\module\user/src/Form/PasswordForm.php:87
 #: c:\Code\pi\usr\module\user/src/Form/ProfileEditForm.php:42
 #: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:47
 #: c:\Code\pi\usr\module\user/src/Form/ResetPasswordForm.php:73
@@ -614,40 +606,30 @@ msgstr "男"
 msgid "Female"
 msgstr "女"
 
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:44
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:56
+#: c:\Code\pi\usr\module\user/src/Validator/CredentialVerify.php:34
+msgid "Invalid password."
+msgstr "无效密码。"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:28
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:40
 msgid "Invalid user name: %formatHint%"
-msgstr "用户名不正确：%formatHint%"
+msgstr "用户姓名格式不正确：%formatHint%"
 
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:45
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:57
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:29
 msgid "User name is reserved"
-msgstr "用户名已被占用"
+msgstr "用户姓名为保留字"
 
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:46
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:59
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:30
+msgid "User name is already taken"
+msgstr "用户姓名已被占用"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:31
 msgid "User name is less than %min% characters long"
-msgstr "用户名不得少于%min%个字符"
+msgstr "用户姓名不得少于%min%个字符"
 
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:47
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:60
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:32
 msgid "User name is more than %max% characters long"
-msgstr "用户名不得多于%max%个字符"
-
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:51
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:64
-msgid "Only alphabetic and digits are allowed with leading alphabetic"
-msgstr "字母开头，支持字母和数字"
-
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:52
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:65
-msgid "Only ASCII characters are allowed"
-msgstr "只允许输入ASCII字符"
-
-#: c:\Code\pi\usr\module\user/src/Validator/Name.php:53
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:66
-msgid "Multibyte characters are allowed"
-msgstr "允许使用多字节字符"
+msgstr "用户姓名不得多于%max%个字符"
 
 #: c:\Code\pi\usr\module\user/src/Validator/Password.php:40
 msgid "Password is less than %min% characters long"
@@ -665,17 +647,41 @@ msgstr "输入不是六位数字"
 msgid "The input is not 7-20 numeric"
 msgstr "输入不是7-20位数字"
 
-#: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:30
+#: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:28
 msgid "User email is reserved"
 msgstr "邮箱已被占用"
 
-#: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:31
+#: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:29
 msgid "User email is already used"
 msgstr "邮箱已被占用"
 
-#: c:\Code\pi\usr\module\user/src/Validator/Username.php:58
-msgid "User name is already taken"
-msgstr "用户名已被占用"
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:41
+msgid "Username is reserved"
+msgstr "该用户名是保留字"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:42
+msgid "Username is already taken"
+msgstr "用户名已存在"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:43
+msgid "Username is less than %min% characters long"
+msgstr "用户名不得少于%min%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:44
+msgid "Username is more than %max% characters long"
+msgstr "用户名不得多于%max%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:48
+msgid "Only alphabetic and digits are allowed with leading alphabetic"
+msgstr "字母开头，支持字母和数字"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:49
+msgid "Only ASCII characters are allowed"
+msgstr "只允许输入ASCII字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:50
+msgid "Multibyte characters are allowed"
+msgstr "允许使用多字节字符"
 
 #: c:\Code\pi\usr\module\user/template/front/account-index.phtml:22
 msgid "Verify identity"
@@ -858,12 +864,12 @@ msgstr "请尝试重新找回密码"
 msgid "Your new password has worked"
 msgstr "新密码已生效"
 
-#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:14
+#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:16
 msgid "Please login"
 msgstr "请登录"
 
 #: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:10
-#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:52
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:52
 msgid "Privacy"
 msgstr "隐私设置"
 
@@ -901,6 +907,43 @@ msgstr "确认删除该数据？"
 #, php-format
 msgid "Add %s"
 msgstr "新增%s"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:25
+msgid "View my profile"
+msgstr "查看我的资料"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:56
+msgid "Switch to public"
+msgstr "以他人视角"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:60
+msgid "Quicklinks"
+msgstr "快捷链接"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:66
+msgid "Settings"
+msgstr "设置"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:93
+msgid "Switch to own"
+msgstr "以自己视角"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:99
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:104
+msgid "Send message"
+msgstr "发送私信"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:123
+msgid "Gender:"
+msgstr "性别："
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:129
+msgid "Birthdate:"
+msgstr "出生日期："
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:185
+msgid "More"
+msgstr "更多"
 
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:2
 msgid "Activate account"
@@ -977,240 +1020,3 @@ msgstr "邮件已发送"
 #: c:\Code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
 msgid "Resend activation email"
 msgstr "重新发送激活邮件"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-sidebar.phtml:25
-msgid "View my profile"
-msgstr "查看我的资料"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:37
-msgid "Switch to public"
-msgstr "以他人视角"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:41
-msgid "Quicklinks"
-msgstr "快捷链接"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:47
-msgid "Settings"
-msgstr "设置"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:74
-msgid "Switch to own"
-msgstr "以自己视角"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:80
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:85
-msgid "Send message"
-msgstr "发送私信"
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:104
-msgid "Gender:"
-msgstr "性别："
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:110
-msgid "Birthdate:"
-msgstr "出生日期："
-
-#: c:\Code\pi\usr\module\user/template/front/_user-topbar.phtml:194
-msgid "More"
-msgstr "更多"
-
-#, fuzzy
-#~ msgid "Your profile"
-#~ msgstr "用户信息"
-
-#, fuzzy
-#~ msgid "view your profile"
-#~ msgstr "查看我的资料"
-
-#, fuzzy
-#~ msgid "Basic profile"
-#~ msgstr "基本信息"
-
-#, fuzzy
-#~ msgid "Update Basic profile"
-#~ msgstr "资料数据更新失败。"
-
-#, fuzzy
-#~ msgid "Social tools"
-#~ msgstr "社交工具"
-
-#, fuzzy
-#~ msgid "Update Social tools"
-#~ msgstr "无更新数据。"
-
-#~ msgid "Data saved failed"
-#~ msgstr "数据保存失败"
-
-#~ msgid "Delete failed."
-#~ msgstr "删除失败。"
-
-#~ msgid "Cannot delete the last one."
-#~ msgstr "最后一条不能删除"
-
-#~ msgid "None blogs"
-#~ msgstr "尚无博客"
-
-#~ msgid "Does not have any data"
-#~ msgstr "暂无动态"
-
-#~ msgid "Change your %s"
-#~ msgstr "修改您的%s"
-
-#~ msgid "Change your %s info"
-#~ msgstr "修改您的%s"
-
-#~ msgid "%s does not have any %s."
-#~ msgstr "%s没有%s数据。"
-
-#~ msgid "Avatar"
-#~ msgstr "修改头像"
-
-#~ msgid "Switch to view of others"
-#~ msgstr "切换他人视角"
-
-#~ msgid "Back to view of own"
-#~ msgstr "返回自己视角"
-
-#~ msgid "Input password error"
-#~ msgstr "密码输入错误"
-
-#~ msgid "Verify link invalid"
-#~ msgstr "验证链接无效"
-
-#~ msgid "A reset link has been sent to your email."
-#~ msgstr "重置链接已发送到您的邮箱。"
-
-#~ msgid "Please check to reset your password in 24 hours."
-#~ msgstr "请在24小时内重新设置密码。"
-
-#~ msgid "Sorry, your link has expired."
-#~ msgstr "对不起，链接已过期。"
-
-#~ msgid "Save account changes"
-#~ msgstr "保存账号修改"
-
-#~ msgid "Sorry, email change failed. Try it later."
-#~ msgstr "修改邮箱失败，请稍后再试。"
-
-#~ msgid "Display name change saved."
-#~ msgstr "昵称修改已保存。"
-
-#~ msgid "Sorry, display name change failed. Try it later."
-#~ msgstr "抱歉，昵称修改失败。请重试。"
-
-#~ msgid "That\\'s you !"
-#~ msgstr "就是你！"
-
-#~ msgid "Reset email successfully"
-#~ msgstr "重设邮箱成功"
-
-#~ msgid "Correct password"
-#~ msgstr "密码正确"
-
-#~ msgid "A message has been sent to you"
-#~ msgstr "修改邮箱确认邮件已发送到您的新邮箱"
-
-#~ msgid ""
-#~ "to confirm your new email address. Check the email in 24 hours. The new "
-#~ "email will not work until your confirm."
-#~ msgstr "请24小时内验证新邮箱。新注册邮箱将在验证后生效。"
-
-#~ msgid "Your email has been changed."
-#~ msgstr "您的邮箱已修改。"
-
-#~ msgid "<a href=\"%s\">Login right now</a>"
-#~ msgstr "<a href=\"%s\">立即登录</a>"
-
-#~ msgid "Sorry, the link has expired, or maybe your email has been changed."
-#~ msgstr "对不起，链接已过期，或您的邮箱已经修改成功"
-
-#~ msgid "You have %d times to try."
-#~ msgstr "还有%d次尝试机会"
-
-#~ msgid "You logged out successfully. Now go back to homepage."
-#~ msgstr "成功退出"
-
-#~ msgid "Invalid input, please try again."
-#~ msgstr "无效输入，请重试。"
-
-#~ msgid "You have logged in successfully."
-#~ msgstr "您已经成功登录。"
-
-#~ msgid "Set privacy successfully"
-#~ msgstr "隐私设置成功。"
-
-#~ msgid "Email not exist"
-#~ msgstr "邮箱不存在"
-
-#~ msgid "Input error"
-#~ msgstr "输入错误"
-
-#~ msgid "Remember me"
-#~ msgstr "记住登录状态"
-
-#~ msgid "Forget password"
-#~ msgstr "忘记密码"
-
-#~ msgid "Change your privacy settings."
-#~ msgstr "设置您个人资料对谁可见，保障您的隐私权"
-
-#~ msgid "Warning!"
-#~ msgstr "提示："
-
-#~ msgid "Sorry, the link has expired."
-#~ msgstr "抱歉，连接已过期"
-
-#~ msgid "resend active mail"
-#~ msgstr "重新发送激活邮件"
-
-#~ msgid "Input invalid"
-#~ msgstr "无效输入"
-
-#~ msgid "Resend a email"
-#~ msgstr "重新发送激活邮件"
-
-#~ msgid "Invalid user ID!"
-#~ msgstr "无效用户ID"
-
-#~ msgid "Add"
-#~ msgstr "添加"
-
-#~ msgid "Unknown"
-#~ msgstr "未知"
-
-#~ msgid " info."
-#~ msgstr " "
-
-#~ msgid "<em class=\"muted\">Unfiled</em>"
-#~ msgstr "<em class=\"muted\">尚未填写</em>"
-
-#~ msgid "Homepage"
-#~ msgstr "主页"
-
-#~ msgid "Need login"
-#~ msgstr "需要登录"
-
-#, fuzzy
-#~ msgid "Register time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Activation time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Disabled time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Activated time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "Created time"
-#~ msgstr "Application Execution Time"
-
-#, fuzzy
-#~ msgid "All"
-#~ msgstr "All Categories"

@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
@@ -132,21 +132,19 @@ class ThemeController extends ActionController
     {
         $themes = array();
         $themesInstalled = Pi::registry('themelist')->read();
-        $iterator = new \DirectoryIterator(Pi::path('theme'));
-
-        foreach ($iterator as $fileinfo) {
-            if (!$fileinfo->isDir() || $fileinfo->isDot()) {
-                continue;
+        $filter = function ($fileinfo) use (&$themes, $themesInstalled) {
+            if (!$fileinfo->isDir()) {
+                return false;
             }
             $directory = $fileinfo->getFilename();
             if (isset($themesInstalled[$directory]) || 'default' == $directory
                 || preg_match('/[^a-z0-9_]/i', $directory)
             ) {
-                continue;
+                return false;
             }
             $meta = Pi::service('theme')->loadConfig($directory);
             if (empty($meta)) {
-                continue;
+                return false;
             }
             $meta['name'] = $directory;
             $meta['screenshot'] = !empty($meta['screenshot'])
@@ -157,7 +155,8 @@ class ThemeController extends ActionController
                 )
                 : Pi::url('static/image/theme.png');
             $themes[$directory] = $meta;
-        }
+        };
+        Pi::service('file')->getList('theme', $filter);
 
         $this->view()->assign('themes', $themes);
         $this->view()->assign(

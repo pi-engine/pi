@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup\Controller;
@@ -493,7 +493,7 @@ SCRIPT;
         $pathInfo = array(
             'path_www'  => array(
                 _s('Documents root physical path'),
-                _s('Physical path to the documents (served) directory without trailing slash; PHP executable.'),
+                _s('Physical path to the documents (served) directory without trailing slash.'),
             ),
             'url_www'   => array(
                 _s('Website location (URL)'),

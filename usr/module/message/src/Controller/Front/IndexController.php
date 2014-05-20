@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Message\Controller\Front;
@@ -199,7 +199,7 @@ class IndexController extends ActionController
      */
     public function sendAction()
     {
-    	Pi::service('authentication')->requireLogin();
+        Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
         $toUserId = _get('uid');
         $name     = Pi::user()->get($toUserId, 'name');
@@ -334,7 +334,7 @@ class IndexController extends ActionController
      */
     public function detailAction()
     {
-    	Pi::service('authentication')->requireLogin();
+        Pi::service('authentication')->requireLogin();
         $messageId = _get('mid', 'int');
         $messageId = $messageId ?: 0;
         //current user id
@@ -399,7 +399,7 @@ class IndexController extends ActionController
      */
     protected function showDetail($messageId)
     {
-    	Pi::service('authentication')->requireLogin();
+        Pi::service('authentication')->requireLogin();
         //current user id
         $userId = Pi::user()->getUser()->id;
 
@@ -555,7 +555,7 @@ class IndexController extends ActionController
      */
     public function archiveAction()
     {
-    	Pi::service('authentication')->requireLogin();
+        Pi::service('authentication')->requireLogin();
         $this->renderNav();
     }
 }

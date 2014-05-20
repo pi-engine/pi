@@ -1,6 +1,6 @@
 <?php
 // Load translation data
-$this->i18nTheme('default');
+$this->i18nTheme();
 
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
@@ -237,6 +237,13 @@ $module = Pi::service('module')->current();
     <!-- Footer: sitelink -->
     <div class="pi-footer text-center">
         <div class="container">
+            <?php
+            $footer = Pi::config('footer');
+            if ($footer) {
+                echo $footer;
+            } else {
+            ?>
+
             <ul class="pi-footer-links muted">
                 <li>
                     <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
@@ -258,6 +265,7 @@ $module = Pi::service('module')->current();
                 <li>·</li>
                 <li><a title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"><i class="fa fa-spinner fa-spin"></i></a></li>      
             </ul>
+            <?php } ?>
         </div>    
     </div>
     <?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>

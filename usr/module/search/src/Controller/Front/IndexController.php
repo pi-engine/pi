@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\Search\Controller\Front;
@@ -135,7 +135,7 @@ class IndexController extends ActionController
             }
             if ($terms) {
                 $limit  = $this->config('list_limit');
-                $offset = $limit * ($page -1);
+                $offset = $limit * ($page - 1);
                 $result = $this->query($terms, $limit, $offset, $module);
                 $total  = $result ? $result->getTotal() : 0;
             }
@@ -339,7 +339,7 @@ class IndexController extends ActionController
                 ),
                 array(
                     'query' => array (
-                        'q' => urlencode($query),
+                        'q' => $query,
                     ),
                 )
             );
@@ -380,9 +380,8 @@ class IndexController extends ActionController
 
             return $link;
         };
-        $_this = $this;
-        $baiduQuery = function ($query) use ($home, $_this) {
-            $code = $_this->config('baidu_code');
+        $baiduQuery = function ($query) use ($home) {
+            $code = $this->config('baidu_code');
             if ($code) {
                 $pattern = 'http://zhannei.baidu.com/cse/search?s=%s&q=%s';
                 $link = sprintf($pattern, urlencode($code), urlencode($query));

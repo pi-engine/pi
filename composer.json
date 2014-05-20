@@ -1,0 +1,48 @@
+{
+    "name": "pi/pi",
+    "description": "Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.",
+    "type": "project",
+    "keywords": [
+        "Pi",
+        "ZendFramework",
+        "MultiTenant",
+        "SaaS"
+    ],
+    "homepage": "http://pialog.org",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Taiwen Jiang",
+            "email": "taiwen@me.com"
+        },
+        {
+            "name": "Pi Team",
+            "homepage": "https://github.com/pi-engine/pi/graphs/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "ext-ctype": "*",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
+        "ext-mbstring": "*",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "ext-spl": "*",
+        "lib-curl": "*"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+        "ext-apc": "for opcode cache and system persistent data",
+        "ext-discount": "for Markdown text parsing",
+        "ext-intl": "for i18n features"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.4-dev",
+            "dev-develop": "2.5-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

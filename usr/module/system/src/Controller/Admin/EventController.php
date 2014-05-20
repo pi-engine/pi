@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\System\Controller\Admin;
@@ -82,7 +82,7 @@ class EventController extends ComponentController
                                        $row->event_module, $row->event_name),
             );
         }
-	
+
         $this->view()->assign(array(
             'events'     => $events,
             'listeners'  => $listeners,

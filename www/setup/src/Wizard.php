@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Pi\Setup;
@@ -187,10 +187,9 @@ class Wizard
         if (!$this->languages) {
             $languageList = array();
 
-            $_this = $this;
-            $lookupIcon = function ($name) use ($_this) {
+            $lookupIcon = function ($name) {
                 $icon       = '';
-                $root       = $_this->getRoot();
+                $root       = $this->getRoot();
                 $pathLocale = sprintf('%s/locale/%s', $root, $name);
                 $pathIcon   = sprintf('%s/asset/image/country', $root);
                 $iconFile   = $pathLocale  . '/icon.gif';
@@ -218,7 +217,7 @@ class Wizard
                 }
                 if ($icon) {
                     // Get root URI
-                    $request = $_this->getRequest();
+                    $request = $this->getRequest();
                     $baseUrl = '//' . $request->getHttpHost() . $request->getBaseUrl();
 
                     // Assemble icon URI

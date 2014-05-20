@@ -29,6 +29,11 @@ switch ($namespace) {
     case 'error':
         $type = 'danger';
         break;
+    case 'warning':
+        $type = 'warning';
+        break;
+    case 'info':
+    case 'default':
     default:
         $type = 'info';
         break;
