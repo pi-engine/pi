@@ -545,7 +545,6 @@ class Entity
             'attachment'    => array(),
             'tag'           => '',
             'related'       => array(),
-            'category'      => $row->category,
         );
 
         // Get author
@@ -562,11 +561,6 @@ class Entity
                         );
                 }
             }
-        }
-        
-        if ($row->category) {
-            $categories = Pi::api('api', $module)->getCategoryList();
-            $result['category_title'] = $categories[$row->category]['title'];
         }
 
         // Get attachments

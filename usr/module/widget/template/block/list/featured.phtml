@@ -3,7 +3,6 @@ $options = (array) $block['options'];
 $items   = (array) $block['items'];
 $width   = empty($options['width']) ? 100 : $options['width'];
 $height  = empty($options['height']) ? 100 : $options['height'];
-$rows    = empty($options['max_rows']) ? 2 : $options['max_rows'];
 $target  = empty($options['target']) ? '_blank' : $options['target'];
 ?>
 <div class="widget-list widget-list-feature">
@@ -38,13 +37,11 @@ $target  = empty($options['target']) ? '_blank' : $options['target'];
                     $htmlDetail = sprintf(
                         '<span class="pull-right"><a href="%s" target="%s">%s</a></span>',
                         $item['detail'],
-                        $target,
-                        __('Detail')
-                    );
+                    __('Detail')
+                    );    
                 }
                 echo sprintf(
-                    '<div class="pi-ellipsis pi-ellipsis-%s">%s%s</div>',
-                    $rows,
+                    '<div class="pi-ellipsis">%s%s</div>',
                     $item['desc'],
                     $htmlDetail
                 );

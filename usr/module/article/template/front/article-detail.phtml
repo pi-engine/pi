@@ -10,12 +10,6 @@ if (!empty($details['seo'])) {
         $this->headMeta()->setName('description', $details['seo']['description']);
     }
 }
-
-$siteName = Pi::config('sitename');
-$headTitle = str_replace('%site%', $siteName, $config['head_title']);
-$headTitle = str_replace('%category%', $details['category_title'], $headTitle);
-$headTitle = str_replace('%title%', $details['title'], $headTitle);
-$this->headTitle($headTitle, 'SET');
 ?>
 
 <div class="pi-article-module">
