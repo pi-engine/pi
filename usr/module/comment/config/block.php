@@ -26,7 +26,7 @@ return array(
             // Module
             'module'    => array(
                 'title'         => _a('Module'),
-                'description'   => _a('Select module for articles'),
+                'description'   => _a('Select module for articles.'),
                 'edit'          => 'module_select',
                 'value'         => ''
             ),
