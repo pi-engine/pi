@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-03 14:05+0800\n"
-"PO-Revision-Date: 2014-03-03 14:18+0800\n"
+"POT-Creation-Date: 2014-05-05 12:47+0800\n"
+"PO-Revision-Date: 2014-05-05 12:48+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,7 @@ msgstr "静态区块列表"
 #: c:\code\pi\usr\module\widget/config/nav.php:40
 #: c:\code\pi\usr\module\widget/config/nav.php:94
 #: c:\code\pi\usr\module\widget/config/nav.php:128
+#: c:\code\pi\usr\module\widget/config/nav.php:161
 #: c:\code\pi\usr\module\widget/template/admin/common-list.phtml:14
 #: c:\code\pi\usr\module\widget/template/admin/ng.phtml:21
 msgid "Edit"
@@ -65,19 +66,29 @@ msgid "Carousel list"
 msgstr "轮播区块列表"
 
 #: c:\code\pi\usr\module\widget/config/nav.php:103
+#: c:\code\pi\usr\module\widget/config/nav.php:137
 msgid "Add new"
 msgstr "添加"
 
 #: c:\code\pi\usr\module\widget/config/nav.php:112
 #: c:\code\pi\usr\module\widget/config/permission.php:22
+msgid "List widgets"
+msgstr ""
+
+#: c:\code\pi\usr\module\widget/config/nav.php:121
+msgid "List block list"
+msgstr ""
+
+#: c:\code\pi\usr\module\widget/config/nav.php:145
+#: c:\code\pi\usr\module\widget/config/permission.php:25
 msgid "Compound tabs"
 msgstr "组合区块"
 
-#: c:\code\pi\usr\module\widget/config/nav.php:121
+#: c:\code\pi\usr\module\widget/config/nav.php:154
 msgid "Tab list"
 msgstr "组合区块列表"
 
-#: c:\code\pi\usr\module\widget/config/nav.php:137
+#: c:\code\pi\usr\module\widget/config/nav.php:170
 msgid "Add"
 msgstr "添加"
 
@@ -93,60 +104,62 @@ msgstr "显示导航和面包屑的区块"
 msgid "Navigation name"
 msgstr "导航名称"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:22
-#: c:\code\pi\usr\module\widget/meta/navigation.php:48
+#: c:\code\pi\usr\module\widget/meta/navigation.php:21
+#: c:\code\pi\usr\module\widget/meta/navigation.php:47
 msgid "Display menu"
 msgstr "显示菜单"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:28
+#: c:\code\pi\usr\module\widget/meta/navigation.php:27
 msgid "ul class for menu"
 msgstr "菜单的`ul`类名"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:29
+#: c:\code\pi\usr\module\widget/meta/navigation.php:28
 msgid "Separate classes with space"
 msgstr "用空格分隔多个类名"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:35
+#: c:\code\pi\usr\module\widget/meta/navigation.php:34
 msgid "Minimum depth for menu"
 msgstr "菜单结构的最小深度"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:41
+#: c:\code\pi\usr\module\widget/meta/navigation.php:40
 msgid "Maximum depth for menu"
 msgstr "菜单结构的最大深度"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:54
+#: c:\code\pi\usr\module\widget/meta/navigation.php:53
 msgid "Separator for breadcrumb"
 msgstr "面包屑分割符"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:60
+#: c:\code\pi\usr\module\widget/meta/navigation.php:59
 msgid "Minimum depth for breadcrumb"
 msgstr "面包屑结构的最小深度"
 
-#: c:\code\pi\usr\module\widget/meta/navigation.php:66
+#: c:\code\pi\usr\module\widget/meta/navigation.php:65
 msgid "Add link to last page"
 msgstr "最后一个元素添加链接"
 
 #: c:\code\pi\usr\module\widget/src/Api/Block.php:41
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:55
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:53
 msgid "Image width"
 msgstr "图片宽度"
 
 #: c:\code\pi\usr\module\widget/src/Api/Block.php:46
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:60
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:58
 msgid "Image height"
 msgstr "图片高度"
 
-#: c:\code\pi\usr\module\widget/src/Api/Block.php:51
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:65
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:63
 msgid "Time interval (ms)"
 msgstr "轮播间隔时间(ms)"
 
-#: c:\code\pi\usr\module\widget/src/Api/Block.php:57
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:71
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:69
 msgid "Mouse event"
 msgstr "鼠标事件"
 
-#: c:\code\pi\usr\module\widget/src/Api/Block.php:58
+#: c:\code\pi\usr\module\widget/src/Api/Block.php:72
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Update.php:70
 msgid "Event to pause cycle"
 msgstr "停止轮播的事件"
@@ -274,6 +287,10 @@ msgid ""
 "development workflow."
 msgstr ""
 
+#: c:\code\pi\usr\module\widget/src/Validator/WidgetNameDuplicate.php:28
+msgid "Widget name already exists"
+msgstr ""
+
 #: c:\code\pi\usr\module\widget/template/admin/common-list.phtml:16
 msgid "Are you sure delete this widget?"
 msgstr "确认删除该区块？"
@@ -306,22 +323,30 @@ msgid "Uninstall"
 msgstr "卸载"
 
 #: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:12
+#: c:\code\pi\usr\module\widget/template/admin/widget-list.phtml:24
 msgid "Images"
 msgstr "图片"
 
 #: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:33
+#: c:\code\pi\usr\module\widget/template/admin/widget-list.phtml:57
 #: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:43
 msgid "Caption"
 msgstr "标题"
 
 #: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:36
+#: c:\code\pi\usr\module\widget/template/admin/widget-list.phtml:60
 #: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:49
 msgid "Link"
 msgstr "链接"
 
 #: c:\code\pi\usr\module\widget/template/admin/widget-carousel.phtml:39
+#: c:\code\pi\usr\module\widget/template/admin/widget-list.phtml:63
 msgid "Desc"
 msgstr "描述"
+
+#: c:\code\pi\usr\module\widget/template/admin/widget-list.phtml:66
+msgid "More detail"
+msgstr ""
 
 #: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:129
 msgid "No Blocks"

@@ -169,14 +169,8 @@ class Block extends AbstractApi
 
         $update = array(
             'render'        => isset($block['render']) ? $block['render'] : '',
-            /*
-            'template'      => isset($block['template'])
-                ? $block['template'] : '',
-            */
-            'cache_level'   => isset($block['cache_level'])
-                ? $block['cache_level'] : '',
-            'content'       => isset($block['content'])
-                ? $block['content'] : '',
+            'cache_level'   => isset($block['cache_level']) ? $block['cache_level'] : '',
+            //'content'       => isset($block['content']) ? $block['content'] : '',
         );
 
         // Update cloned blocks
@@ -184,20 +178,37 @@ class Block extends AbstractApi
         foreach ($blockList as $blockRow) {
             $blockRow->assign($update);
             // Update config
+            $blockConfig = (array) $blockRow->config;
             if ($configRemove) {
                 foreach ($configRemove as $name) {
-                    unset($blockRow->config[$name]);
+                    unset($blockConfig[$name]);
                 }
             }
             if ($configAdd) {
-                $blockRow->config = array_merge($configAdd, $blockRow->config);
+                $blockConfig = array_merge($configAdd, $blockConfig);
             }
+            $blockRow->config = $blockConfig;
             try {
                 $blockRow->save();
                 $status = true;
             } catch (\Exception $e) {
                 $status = false;
             }
+        }
+
+        // Update template and content for non-cloned blocks
+        $updates = array();
+        if (isset($block['template'])) {
+            $updates['template'] = $block['template'];
+        }
+        if (isset($block['content'])) {
+            $updates['content'] = $block['content'];
+        }
+        if ($updates) {
+            $modelBlock->update($updates, array(
+                'root'      => $rootRow->id,
+                'cloned'    => 0,
+            ));
         }
 
         return array(
@@ -239,8 +250,7 @@ class Block extends AbstractApi
             try {
                 $status = $modelRoot->delete(array('id' => $rootId));
             } catch (\Exception $e) {
-                $return['message'] = 'Block root is not deleted: '
-                                   . $e->getMessage();
+                $return['message'] = 'Block root is not deleted: ' . $e->getMessage();
                 return $return;
             }
 
@@ -266,8 +276,7 @@ class Block extends AbstractApi
                     array('resource' => 'block-' . $blockRow->id, 'section' => 'front')
                 );
             } catch (\Exception $e) {
-                $return['message'] = 'Permission rules are not deleted: '
-                                   . $e->getMessage();
+                $return['message'] = 'Permission rules are not deleted: ' . $e->getMessage();
                 return $return;
             }
 
@@ -281,8 +290,7 @@ class Block extends AbstractApi
                 try {
                     $status = $row->delete();
                 } catch (\Exception $e) {
-                    $return['message'] = 'Page-block link is not deleted: '
-                                       . $e->getMessage();
+                    $return['message'] = 'Page-block link is not deleted: ' . $e->getMessage();
                     return $return;
                 }
             }
@@ -296,7 +304,6 @@ class Block extends AbstractApi
                     $modules[$row->module] = 1;
                 }
                 foreach (array_keys($modules) as $mod) {
-                    //if ($module == $mod) continue;
                     Pi::registry('block')->flush($mod);
                 }
             }

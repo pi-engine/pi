@@ -103,19 +103,12 @@ class Block extends AbstractHelper
      * @param   array $options
      * @return  array
      */
-    protected function renderBlock(BlockRow $blockRow, $options = array())
+    public function renderBlock(BlockRow $blockRow, $options = array())
     {
         if (!$blockRow->active) {
             return false;
         }
         $block = $blockRow->toArray();
-
-        /*
-        // Load translations for non-tab block
-        if ('tab' != $block['type']) {
-            Pi::service('i18n')->loadModule('block', $block['module']);
-        }
-        */
 
         // Override with instant options
         foreach (array(
@@ -136,9 +129,9 @@ class Block extends AbstractHelper
         }
 
         $renderCache = null;
-        //$cacheOptions = null;
         $blockData = null;
         if ('tab' != $block['type'] && $block['cache_ttl']) {
+        //if ($block['cache_ttl']) {
             $cacheKey = empty($options)
                 ? md5($block['id']) : md5($block['id'] . serialize($options));
             $renderCache = Pi::service('render_cache')->setType('block');
@@ -174,9 +167,11 @@ class Block extends AbstractHelper
             }
         }
 
+
         if ('tab' == $block['type']) {
             $content = $blockData;
         } else {
+
             $viewModel = new ViewModel;
             // Assemble template
             if (!$block['template']) {
@@ -187,15 +182,11 @@ class Block extends AbstractHelper
                     $block['module'],
                     $block['template']
                 );
-                /**#@+
-                    * Preset variables
-                    */
                 // The block's module
                 $viewModel->setVariable('module', $block['module']);
                 // Matched route
                 $routeMatch = Pi::engine()->application()->getRouteMatch();
                 $viewModel->setVariable('route', $routeMatch);
-                /**#@-*/
             }
             $viewModel->setTemplate($template)->terminate(true);
             $viewModel->setVariable('block', $blockData);
@@ -216,9 +207,7 @@ class Block extends AbstractHelper
      */
     public function buildBlock(BlockRow $blockRow, $configs = array())
     {
-        $result = false;
         $block = $blockRow->toArray();
-        $isCustom = $block['type'] ? true : false;
 
         // Merge run-time configs with system settings
         $options = isset($block['config']) ? $block['config'] : array();
@@ -226,8 +215,11 @@ class Block extends AbstractHelper
             $options = array_merge($options, $configs);
         }
 
-        // Module-generated block or script widget, return array
-        if (!empty($block['render'])) {
+        // Render blocks from `widget` module
+        if ('widget' == $block['module']) {
+            $result = Pi::api('block', 'widget')->render($this, $block, $options);
+        // Render block from regular modules
+        } else {
             // Load translations for corresponding module block
             Pi::service('i18n')->loadModule('block', $block['module']);
 
@@ -236,116 +228,8 @@ class Block extends AbstractHelper
                 $block['render'],
                 array($options, $block['module'])
             );
-        // Custom block, return string
-        } elseif ($isCustom) {
-            switch ($block['type']) {
-                // spotlight
-                case 'spotlight':
-                // list group
-                case 'list':
-                // media object
-                case 'media':
-                // carousel
-                case 'carousel':
-                    $items = empty($block['content'])
-                        ? false : json_decode($block['content'], true);
-                    if ($items && is_array($items)) {
-                        $result = array(
-                            'items'     => $items,
-                            'options'   => $options,
-                        );
-                    }
-                    break;
-
-                // compound tab
-                case 'tab':
-                    $result = $this->transliterateTabs($block['content']);
-                    break;
-
-                // static HTML
-                case 'html':
-                    $result = Pi::service('markup')->render(
-                        $block['content'],
-                        'html'
-                    );
-                    $result = $this->transliterateGlobals($result);
-                    break;
-                // static markdown
-                case 'markdown':
-                    $result = Pi::service('markup')->render(
-                        $block['content'],
-                        'html',
-                        'markdown'
-                    );
-                    $result = $this->transliterateGlobals($result);
-                    break;
-                // static text
-                case 'text':
-                default:
-                    $result = Pi::service('markup')->render(
-                        $block['content'],
-                        'text'
-                    );
-                    $result = $this->transliterateGlobals($result);
-                    break;
-            }
         }
 
         return $result;
-    }
-
-    /**
-     * Transliterate compound into tabs
-     *
-     * @param string $content
-     * @return array
-     */
-    protected function transliterateTabs($content)
-    {
-        $result = array();
-        $list = json_decode($content, true);
-
-        // Build blocks content
-        foreach ($list as $tab) {
-            $entity = isset($tab['name']) ? $tab['name'] : intval($tab['id']);
-            $row = $this->load($entity);
-            if (!$row || !$row->active) {
-                continue;
-            }
-            $data = $this->renderBlock($row);
-            if (empty($data['content'])) {
-                continue;
-            }
-            $result[] = array(
-                'caption'   => !empty($tab['caption'])
-                               ? $tab['caption'] : $data['title'],
-                'link'      => !empty($tab['link']) ? $tab['link'] : '',
-                'content'   => $data['content'],
-            );
-        }
-
-        return $result;
-    }
-
-
-    /**
-     * Transliterate global variables, allowed tags:
-     * %sitename%, %slogan%, %siteurl%
-     *
-     * @param string $content
-     * @return string
-     */
-    protected function transliterateGlobals($content)
-    {
-        $globalsMap = array(
-            'sitename'  => Pi::config('sitename'),
-            'slogan'    => Pi::config('slogan'),
-            'siteurl'   => Pi::url('www'),
-        );
-        foreach ($globalsMap as $var => $val) {
-            $content = str_replace('%' . $var . '%', $val, $content);
-        }
-
-        return $content;
     }
 }

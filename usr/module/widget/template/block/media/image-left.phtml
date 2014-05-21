@@ -1,0 +1,37 @@
+<?php
+$options    = (array) $block['options'];
+$items      = (array) $block['items'];
+$target     = empty($options['target_new']) ? '' : '_blank';
+$ellipsis   = empty($options['max_rows'])
+            ? 'pi-ellipsis'
+            : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
+$imgStyle   = '';
+if (!empty($options['width'])) {
+    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+}
+$imgRight   = empty($options['image_right']) ? false : true;
+?>
+<div class="widget-media-list">
+    <?php foreach($items as $item) { ?>
+    <div class="media">
+        <a class="<?php echo $imgRight ? 'pull-right' : 'pull-left'; ?>" href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>">
+            <img class="media-object" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>" style="<?php echo $imgStyle; ?>">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="<?php echo $item['link']; ?>"
+                   title="<?php echo _escape($item['caption']); ?>"
+                   class="pi-ellipsis pi-ellipsis-1"
+                   target="<?php echo $target; ?>"
+                >
+                    <?php echo _escape($item['caption']); ?>
+                </a>
+            </h4>
+            <div class="<?php echo $ellipsis; ?>"><?php echo $item['summary']; ?></div>
+        </div>
+    </div>
+<?php } ?>
+</div>
