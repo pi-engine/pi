@@ -214,7 +214,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => _a('Inactive Posts') . " ({$inactiveCount})",
+                'label'     => _a('Inactive posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'user',
                     'uid'       => $uid,
@@ -393,7 +393,7 @@ class ListController extends ActionController
             ),
             array(
                 'active'    => 0 === $active,
-                'label'     => _a('Inactive Posts') . " ({$inactiveCount})",
+                'label'     => _a('Inactive posts') . " ({$inactiveCount})",
                 'href'      => $this->url('', array(
                     'action'    => 'module',
                     'name'      => $module,
