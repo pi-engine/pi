@@ -142,18 +142,22 @@ class Block extends AbstractApi
 
         $configRemove = array();
         $configAdd = array();
-        if (!isset($block['config'])) {
-            $block['config'] = array();
-        }
-        if ($rootRow->config) {
-            foreach ($rootRow->config as $name => $data) {
-                if (!isset($block['config'][$name])) {
-                    $configRemove[] = $name;
-                }
+        if (isset($block['config'])) {
+            /*
+            if (!isset($block['config'])) {
+                $block['config'] = array();
             }
-            foreach ($block['config'] as $name => $data) {
-                if (!isset($rootRow->config[$name])) {
-                    $configAdd[$name] = $data['value'];
+            */
+            if ($rootRow->config) {
+                foreach ($rootRow->config as $name => $data) {
+                    if (!isset($block['config'][$name])) {
+                        $configRemove[] = $name;
+                    }
+                }
+                foreach ($block['config'] as $name => $data) {
+                    if (!isset($rootRow->config[$name])) {
+                        $configAdd[$name] = $data['value'];
+                    }
                 }
             }
         }
@@ -177,17 +181,21 @@ class Block extends AbstractApi
         $blockList = $modelBlock->select(array('root' => $rootRow->id));
         foreach ($blockList as $blockRow) {
             $blockRow->assign($update);
+
             // Update config
-            $blockConfig = (array) $blockRow->config;
-            if ($configRemove) {
-                foreach ($configRemove as $name) {
-                    unset($blockConfig[$name]);
+            if (isset($block['config'])) {
+                $blockConfig = (array) $blockRow->config;
+                if ($configRemove) {
+                    foreach ($configRemove as $name) {
+                        unset($blockConfig[$name]);
+                    }
                 }
+                if ($configAdd) {
+                    $blockConfig = array_merge($configAdd, $blockConfig);
+                }
+                $blockRow->config = $blockConfig;
             }
-            if ($configAdd) {
-                $blockConfig = array_merge($configAdd, $blockConfig);
-            }
-            $blockRow->config = $blockConfig;
+
             try {
                 $blockRow->save();
                 $status = true;
