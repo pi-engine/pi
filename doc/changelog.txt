@@ -8,8 +8,8 @@ March 20th, 2014
 * Added jQuery `Magnific Popup` extension
 
 * Modified language fiels:
-  - module/system/locale/
-  - module/comment/locale/
+  - module/system/locale/en/admin.po, block.po, default.po
+  - module/comment/locale/en/admin.po, default.po
 
 
 Pi 2.4.0
