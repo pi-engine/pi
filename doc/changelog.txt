@@ -6,7 +6,10 @@ March 20th, 2014
 ============
 * Added `GeoIp` service for IP geolocation support
 * Added jQuery `Magnific Popup` extension
-* Improve gettext values to fix typo/close values (modules : system, comment)
+
+* Modified language fiels:
+  - module/system/locale/
+  - module/comment/locale/
 
 
 Pi 2.4.0
