@@ -10,7 +10,7 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper;
+//use Zend\Form\View\Helper\AbstractHelper;
 use Zend\Form\ElementInterface;
 
 /**
@@ -54,33 +54,11 @@ class FormDescription extends AbstractHelper
     }
 
     /**
-     * Generate a form element description
-     *
-     * @param  ElementInterface $element
-     * @param  array $attributes
-     * @return string|self
-     */
-    public function __invoke(
-        ElementInterface $element = null,
-        array $attributes = array()
-    ) {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element, $attributes);
-    }
-
-    /**
-     * Utility form helper that renders a description
-     *
-     * @param  ElementInterface $element
-     * @param  array $attributes
-     * @return string
+     * {@inheritDoc}
      */
     public function render(
         ElementInterface $element,
-        array $attributes = array()
+        $attributes = array()
      ) {
         $message = $element->getAttribute('description');
         if (!$message) {

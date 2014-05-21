@@ -10,7 +10,7 @@
 
 namespace Pi\Form\View\Helper;
 
-use Zend\Form\View\Helper\AbstractHelper;
+//use Zend\Form\View\Helper\AbstractHelper;
 use Zend\Form\ElementInterface;
 
 /**
@@ -20,26 +20,6 @@ use Zend\Form\ElementInterface;
  */
 class FormHtml extends AbstractHelper
 {
-    /**
-     * Invoke helper as functor
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  null|ElementInterface $element
-     * @param  array $options
-     * @return string|self
-     */
-    public function __invoke(
-        ElementInterface $element = null,
-        $options = array()
-    ) {
-        if (null === $element) {
-            return $this;
-        }
-
-        return $this->render($element, $options);
-    }
-
     /**
      * {@inheritDoc}
      */

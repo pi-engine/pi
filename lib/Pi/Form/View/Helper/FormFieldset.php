@@ -13,7 +13,7 @@ namespace Pi\Form\View\Helper;
 use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
-use Zend\Form\View\Helper\AbstractHelper;
+//use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Fieldset helper
@@ -31,26 +31,6 @@ class FormFieldset extends AbstractHelper
      * @var bool
      */
     protected $shouldWrap = true;
-
-    /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @param  bool $wrap
-     * @return string|self
-     */
-    public function __invoke(ElementInterface $element = null, $wrap = true)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        $this->setShouldWrap($wrap);
-
-        return $this->render($element);
-    }
 
     /**
      * If set to true, collections are automatically wrapped around a fieldset
@@ -94,17 +74,23 @@ class FormFieldset extends AbstractHelper
     }
 
     /**
-     * Render a fieldset by iterating through all fieldsets and elements
-     *
-     * @param  ElementInterface $element
-     * @return string
+     * {@inheritDoc}
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element, $options = array())
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
             // Bail early if renderer is not pluggable
             return '';
+        }
+        $wrap = null;
+        if (is_bool($options)) {
+            $wrap = $options;
+        } elseif (is_array($options) && isset($options['wrap'])) {
+            $wrap = (bool) $options['wrap'];
+        }
+        if (null !== $wrap) {
+            $this->setShouldWrap($wrap);
         }
 
         $markup = '';
