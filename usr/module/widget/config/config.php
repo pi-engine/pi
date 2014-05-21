@@ -11,7 +11,7 @@ return array(
 
     'file_max_size'     => array(
         'title'         => _t('Max file size'),
-        'description'   => _t('Allowed avatar file to upload (in KB), 0 for no limit'),
+        'description'   => _t('Allowed image file to upload (in KB), 0 for no limit'),
         'value'         => 1024,
         'filter'        => 'int',
     ),

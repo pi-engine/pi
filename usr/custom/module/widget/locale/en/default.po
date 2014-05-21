@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-custom-widget\n"
-"POT-Creation-Date: 2013-11-10 15:03+0800\n"
-"PO-Revision-Date: 2013-11-28 00:57+0800\n"
+"POT-Creation-Date: 2014-05-21 13:16+0800\n"
+"PO-Revision-Date: 2014-05-21 13:16+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -11,16 +11,13 @@ msgstr ""
 "X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: __;_t;_e;_a;_b\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\custom\\widget\n"
+"X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\custom\\module\\widget\n"
 
-#: C:\wamp\www\master\usr\custom\widget/meta/pi-content.php:11
-msgid "Pi Engine top contents"
+#: C:\code\pi\usr\custom\module\widget/meta/pi-module.php:11
+#: C:\code\pi\usr\custom\module\widget/meta/pi-module.php:22
+msgid "Pi Module Updates"
 msgstr ""
 
-#: C:\wamp\www\master\usr\custom\widget/meta/pi-content.php:12
-msgid "Block to display Pi Engine top and hot contents"
-msgstr ""
-
-#: C:\wamp\www\master\usr\custom\widget/meta/pi-content.php:22
-msgid "Enjoy creating and sharing"
+#: C:\code\pi\usr\custom\module\widget/meta/pi-module.php:12
+msgid "Block to display Pi module new updates on GitHub"
 msgstr ""
