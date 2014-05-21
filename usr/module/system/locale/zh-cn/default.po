@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-04-27 19:03+0800\n"
-"PO-Revision-Date: 2014-04-29 10:29+0800\n"
+"POT-Creation-Date: 2014-05-21 12:49+0800\n"
+"PO-Revision-Date: 2014-05-21 12:49+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -83,11 +83,11 @@ msgstr "%s模块已禁用"
 msgid "The module %s is deactivated successfully."
 msgstr "成功禁用%s模块"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:334
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:333
 msgid "Bootstrap compiled successfully."
 msgstr "Bootstrap 编译成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:377
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:376
 msgid "Bootstrap reset successfully."
 msgstr "Bootstrap 重置成功。"
 
@@ -272,7 +272,7 @@ msgid "Birthdate"
 msgstr "生日"
 
 #: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:93
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:200
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:213
 #: c:\Code\pi\usr\module\system/src/Form/ConfigForm.php:58
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:157
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:58
@@ -287,7 +287,7 @@ msgstr "生日"
 msgid "Submit"
 msgstr "提交"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:61
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:66
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:40
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:40
 #: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:45
@@ -295,80 +295,79 @@ msgstr "提交"
 msgid "Title"
 msgstr "标题"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:65
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:70
 msgid "Block label for display."
 msgstr "区块标题。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:73
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:78
 msgid "Hide title"
 msgstr "隐藏标题"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:76
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:81
 msgid "Hide block title from display."
 msgstr "显示区块时隐藏区块标题。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:84
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:89
 msgid "Full-size body"
 msgstr "全福尺寸"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:87
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:92
 msgid "Display block body in full-size w/o padding."
 msgstr "显示时全幅显示区块主体，不保留边界。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:94
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:99
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:30
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr "唯一名称"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:98
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:103
 msgid "A unique name to be called as widget."
 msgstr "用于调用该区块的唯一标识符。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:106
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:117
-msgid "Template"
-msgstr "模板"
-
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:122
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:111
 msgid "PHTML rendering template, file extension is optional."
 msgstr "PHTML渲染模板，可不写扩展名。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:130
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:126
+msgid "Template"
+msgstr "模板"
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
 msgid "Description"
 msgstr "简介"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:134
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
 msgid "Set a hint to distinguish the block."
 msgstr "识别该区块的描述。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
 msgid "Subline"
 msgstr "副标题"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
 msgid "Header subline. HTML is allowed."
 msgstr "子标题，允许HTML语法。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:163
 msgid "Style class"
 msgstr "样式类名"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:167
 msgid "Specified block container CSS class."
 msgstr "区块风格的CSS类名。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:164
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:175
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:46
 msgid "Cache TTL"
 msgstr "缓存有效期"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:172
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:183
 #: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:54
 msgid "Cache level"
 msgstr "缓存标准"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:220
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:233
 msgid "Configs"
 msgstr "配置参数"
 
@@ -510,7 +509,6 @@ msgid "Password is more than %max% characters long"
 msgstr "密码不得多于%max%个字符"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
-#: c:\Code\pi\usr\module\system/template/component/form.phtml:77
 msgid "Cancel"
 msgstr "取消"
 

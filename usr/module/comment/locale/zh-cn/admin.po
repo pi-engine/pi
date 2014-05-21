@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: comment\n"
-"POT-Creation-Date: 2014-02-10 19:53+0800\n"
-"PO-Revision-Date: 2014-02-10 19:53+0800\n"
+"POT-Creation-Date: 2014-05-21 12:40+0800\n"
+"PO-Revision-Date: 2014-05-21 12:41+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: eefocus\n"
 "MIME-Version: 1.0\n"
@@ -23,14 +23,12 @@ msgid "Recent active comment posts."
 msgstr "最新活跃评论"
 
 #: c:\code\pi\usr\module\comment/config/block.php:20
-#, fuzzy
 msgid "Post count"
-msgstr "登录次数"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:21
-#, fuzzy
 msgid "Number of posts to display."
-msgstr "在菜单中显示"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:28
 #: c:\code\pi\usr\module\comment/config/block.php:53
@@ -38,7 +36,8 @@ msgid "Module"
 msgstr "模块"
 
 #: c:\code\pi\usr\module\comment/config/block.php:29
-msgid "Select module for articles"
+#: c:\code\pi\usr\module\comment/config/block.php:54
+msgid "Select module for articles."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:38
@@ -48,21 +47,15 @@ msgid "Commented articles"
 msgstr "已评论文章"
 
 #: c:\code\pi\usr\module\comment/config/block.php:39
-#, fuzzy
 msgid "Articles being commented."
-msgstr "EEFOCUS的所有文章"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:45
 msgid "Article count"
 msgstr "文章数"
 
 #: c:\code\pi\usr\module\comment/config/block.php:46
-#, fuzzy
 msgid "Number of articles to display."
-msgstr "在菜单中显示"
-
-#: c:\code\pi\usr\module\comment/config/block.php:54
-msgid "Select module for articles."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:60
@@ -70,9 +63,8 @@ msgid "Sort order"
 msgstr "排序"
 
 #: c:\code\pi\usr\module\comment/config/block.php:61
-#, fuzzy
 msgid "Criteria to select articles."
-msgstr "将被选中的文章"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:66
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:90
@@ -97,33 +89,28 @@ msgid "Users with most posts"
 msgstr "最活跃用户"
 
 #: c:\code\pi\usr\module\comment/config/block.php:86
-#, fuzzy
 msgid "User count"
-msgstr "登录次数"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:87
-#, fuzzy
 msgid "Number of users to display."
-msgstr "在菜单中显示"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:94
-#, fuzzy
 msgid "Excluded user ids"
-msgstr "禁止用户登录"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:95
 msgid "Users to exclude, separated by \",\"."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:101
-#, fuzzy
 msgid "Excluded roles"
-msgstr "管理员组"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:102
-#, fuzzy
 msgid "Roles to exclude."
-msgstr "渲染模式"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/comment.php:18
 msgid "Article comments"
@@ -134,24 +121,20 @@ msgid "Custom comments"
 msgstr "定制评论"
 
 #: c:\code\pi\usr\module\comment/config/config.php:12
-#, fuzzy
 msgid "Leading page comment limit"
-msgstr "页面展示数。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:13
-#, fuzzy
 msgid "Number of comments on leading page."
-msgstr "页面展示数。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:19
-#, fuzzy
 msgid "List page comment limit"
-msgstr "页面展示数。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:20
-#, fuzzy
 msgid "Number of comments on list page."
-msgstr "页面展示数。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:26
 msgid "Display operation"
@@ -171,19 +154,16 @@ msgid "Disable"
 msgstr "禁用"
 
 #: c:\code\pi\usr\module\comment/config/config.php:34
-#, fuzzy
 msgid "For members"
-msgstr "选择%s主题"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:35
-#, fuzzy
 msgid "For authors"
-msgstr "选择%s主题"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:36
-#, fuzzy
 msgid "For administrators"
-msgstr "选择%s主题"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:43
 msgid "Auto approve submission"
@@ -226,6 +206,8 @@ msgstr "激活评论"
 
 #: c:\code\pi\usr\module\comment/config/nav.php:89
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:104
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:217
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:396
 msgid "Inactive posts"
 msgstr "已屏蔽评论"
 
@@ -246,14 +228,12 @@ msgid "By article"
 msgstr "通过文章查询"
 
 #: c:\code\pi\usr\module\comment/config/nav.php:128
-#, fuzzy
 msgid "Article with comments"
-msgstr "EEFOCUS的所有文章"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/nav.php:137
-#, fuzzy
 msgid "Article with active comments"
-msgstr "我的被评论文章"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/user.php:20
 msgid "Comment posts by me"
@@ -264,9 +244,9 @@ msgid "Comment posts on my articles"
 msgstr "我文章里面的评论"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:23
-#, fuzzy, php-format
+#, php-format
 msgid "Comment portal for %s"
-msgstr "选择%s主题"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:26
 msgid "Build comment data for demo articles"
@@ -278,49 +258,43 @@ msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:39
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:85
-#, fuzzy
 msgid "All comment posts"
-msgstr "%s 模块的评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:46
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:89
-#, fuzzy
 msgid "All active comment posts"
-msgstr "最新活跃评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:54
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:87
-#, fuzzy
 msgid "All inactive comment posts"
-msgstr "最新活跃评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:69
-#, fuzzy
 msgid "Comment posts by user"
-msgstr "我发表的评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:76
-#, fuzzy
 msgid "Comment posts by module"
-msgstr "分类下的激活评论数"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:87
 msgid "Total posts"
 msgstr "全部评论"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:277
-#, fuzzy, php-format
+#, php-format
 msgid "Demo comment %d."
-msgstr "评论缓存"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:128
 msgid "Comments by username or id"
 msgstr "根据用户名或ID搜索评论"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:167
-#, fuzzy
 msgid "Comment posts of user"
-msgstr "%s 模块的评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:200
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:377
@@ -332,21 +306,15 @@ msgstr "全部评论"
 msgid "Active Posts"
 msgstr "激活评论"
 
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:217
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:396
-msgid "Inactive Posts"
-msgstr "已屏蔽评论"
-
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:239
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:22
-#, fuzzy
 msgid "Comment types"
-msgstr "发表评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:334
-#, fuzzy, php-format
+#, php-format
 msgid "Comment posts of Module %s with type %s"
-msgstr "%s 模块 %s 分类的评论"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:340
 #, php-format
@@ -358,9 +326,8 @@ msgid "Guest"
 msgstr "访客"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:487
-#, fuzzy
 msgid "All commented articles"
-msgstr "EEFOCUS的所有文章"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:489
 msgid "All active commented articles"
@@ -404,22 +371,20 @@ msgid "Comment post saved successfully."
 msgstr "评论成功"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:178
-#, fuzzy
 msgid "Comment post not saved."
-msgstr "评论成功"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:182
-#, fuzzy
 msgid "Invalid data, please check and re-submit."
-msgstr "无效数据，请检查后重新提交。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:186
-#, fuzzy
 msgid "Invalid submission."
-msgstr "邮箱错误"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:224
-msgid "Operation failed"
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:105
+msgid "Operation failed."
 msgstr "操作失败"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:34
@@ -431,17 +396,12 @@ msgid "Disabled"
 msgstr "已禁用"
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:92
-#, fuzzy
 msgid "Type was not found."
-msgstr "用户不存在。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:96
 msgid "Invalid operation."
 msgstr "无效操作"
-
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:105
-msgid "Operation failed."
-msgstr "操作失败"
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:5
 msgid "Comment stats"
@@ -489,9 +449,8 @@ msgstr "屏蔽"
 #: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:107
 #: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:113
 #: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:114
-#, fuzzy
 msgid "No comments available yet."
-msgstr "无可操作内容。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:187
 #: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:193
@@ -518,9 +477,8 @@ msgid "View comments"
 msgstr "查看评论"
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:7
-#, fuzzy
 msgid "Enable type"
-msgstr "启用"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:23
 msgid "No"
@@ -543,6 +501,12 @@ msgstr "输入用户ID或用户名"
 #: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:19
 msgid "Submit"
 msgstr "提交"
+
+#~ msgid "Inactive Posts"
+#~ msgstr "已屏蔽评论"
+
+#~ msgid "Operation failed"
+#~ msgstr "操作失败"
 
 #~ msgid "Categories"
 #~ msgstr "分类"

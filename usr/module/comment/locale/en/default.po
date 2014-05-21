@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-02-10 19:55+0800\n"
-"PO-Revision-Date: 2014-02-10 19:55+0800\n"
+"POT-Creation-Date: 2014-05-21 12:39+0800\n"
+"PO-Revision-Date: 2014-05-21 12:39+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -22,9 +22,8 @@ msgid "Post published"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/event.php:27
-#, fuzzy
 msgid "Post updated"
-msgstr "主题更新成功。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/event.php:30
 msgid "Post enabled"
@@ -49,7 +48,7 @@ msgid "Edit"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Api/Api.php:571
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:629
+#: c:\code\pi\usr\module\comment/src/Api/Api.php:627
 msgid "Enable"
 msgstr ""
 
@@ -66,7 +65,7 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:626
+#: c:\code\pi\usr\module\comment/src/Api/Api.php:624
 msgid "Disable"
 msgstr ""
 
@@ -99,18 +98,15 @@ msgid "Operation succeeded."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:305
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:403
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:462
-#, fuzzy
-msgid "Operation failed"
-msgstr "主题更新失败。"
+msgid "Operation failed."
+msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/CustomController.php:35
+#: c:\code\pi\usr\module\comment/src/Controller/Front/CustomController.php:36
 #, php-format
 msgid "Demo custom article #%d"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/DemoController.php:35
+#: c:\code\pi\usr\module\comment/src/Controller/Front/DemoController.php:36
 #, php-format
 msgid "Demo article #%d"
 msgstr ""
@@ -184,9 +180,8 @@ msgid "Comment posts of user"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:304
-#, fuzzy
 msgid "All"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:329
 msgid "Comment posts of module"
@@ -213,9 +208,8 @@ msgid "Received comments"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:557
-#, fuzzy
 msgid "All Posts"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:565
 msgid "Active Posts"
@@ -282,6 +276,11 @@ msgstr ""
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
+#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:403
+#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:462
+msgid "Operation failed"
+msgstr ""
+
 #: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:453
 #: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:508
 msgid "Invalid parameters."
@@ -292,9 +291,8 @@ msgid "Forbidden."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:514
-#, fuzzy
 msgid "Login"
-msgstr "登录"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:539
 msgid "Enable/Disable"
@@ -319,6 +317,7 @@ msgstr ""
 #: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:79
 #: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:85
 #: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:86
+#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:35
 #: c:\code\pi\usr\module\comment/template/front/comment-list.phtml:50
 #: c:\code\pi\usr\module\comment/template/front/comment-module.phtml:53
 #: c:\code\pi\usr\module\comment/template/front/comment-my-post.phtml:61
@@ -327,7 +326,7 @@ msgstr ""
 #: c:\code\pi\usr\module\comment/template/front/comment-user-received.phtml:51
 #: c:\code\pi\usr\module\comment/template/front/comment-user.phtml:46
 #: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:55
-msgid "Are sure want to delete this comment?"
+msgid "Are you sure to delete this comment?"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-article.phtml:34
@@ -372,18 +371,12 @@ msgstr ""
 #: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:63
 #: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:92
 #: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:66
-#, fuzzy
 msgid "No content."
-msgstr "无缓存"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:3
 #: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:34
-#, fuzzy
 msgid "All comments "
-msgstr "All Categories"
-
-#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:35
-msgid "Are you sure to delete this comment?"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:45
@@ -425,9 +418,9 @@ msgid "Pending"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:50
-#, fuzzy, php-format
+#, php-format
 msgid "Comment reply to %s"
-msgstr "主题更新失败。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:20
 msgid "Item not found."
@@ -438,14 +431,12 @@ msgid "Comment detail"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:33
-#, fuzzy
 msgid "In reply to:"
-msgstr "主题更新失败。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:34
-#, fuzzy
 msgid "Click to open"
-msgstr "主题更新失败。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:35
 #, php-format
@@ -453,19 +444,10 @@ msgid "Comment #%d"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:37
-#, fuzzy
 msgid "Post comment"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:43
 #, php-format
 msgid "Please <a href=\"%s\">login</a> to leave comments."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Categories"
-#~ msgstr "All Categories"
-
-#, fuzzy
-#~ msgid "Comment categories"
-#~ msgstr "All Categories"
