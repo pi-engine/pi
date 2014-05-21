@@ -22,9 +22,6 @@ class MediaController extends ListController
      */
     protected $type = 'media';
 
-    /** @var string Temp dir for image uploads */
-    protected $tmpDir = 'tmp';
-
     /**
      * {@inheritDoc}
      */
@@ -40,7 +37,7 @@ class MediaController extends ListController
      *
      * @return string
      */
-    protected function urlRoot()
+    protected function rootUrl()
     {
         return Pi::url('upload') . '/' . $this->getModule();
     }
@@ -50,9 +47,29 @@ class MediaController extends ListController
      *
      * @return string
      */
-    protected function pathRoot()
+    protected function rootPath()
     {
         return Pi::path('upload') . '/' . $this->getModule();
+    }
+
+    /**
+     * Get tmp upload URL
+     *
+     * @return string
+     */
+    protected function tmpUrl()
+    {
+        return Pi::url('upload/_tmp');
+    }
+
+    /**
+     * Get tmp upload path
+     *
+     * @return string
+     */
+    protected function tmpPath()
+    {
+        return Pi::path('upload/_tmp');
     }
 
     /**
@@ -120,8 +137,8 @@ class MediaController extends ListController
             'image'     => '',
         );
         $rename         = '%random%';
-        $destination    = $this->pathRoot() . '/' . $this->tmpDir;
-        $uploadUrl      = $this->urlRoot() . '/' . $this->tmpDir;
+        $destination    = $this->tmpPath();
+        $uploadUrl      = $this->tmpUrl();
 
         $config = $this->config();
         if ($config['image_extension']) {
@@ -129,7 +146,7 @@ class MediaController extends ListController
             $exts = array_filter(array_walk($exts, 'trim'));
             $extensions = implode(',', $exts);
         }
-        $extensions = $extensions ?: 'jpg,png,gif';
+        $extensions     = $extensions ?: 'jpg,png,gif';
         $maxFile        = (int) $config['file_max_size']  * 1024;
         $maxSize        = array();
         if ($config['image_max_width']) {
@@ -188,22 +205,22 @@ class MediaController extends ListController
      */
     protected function moveImages(array $list)
     {
-        $pathRoot   = $this->pathRoot();
-        $urlRoot    = $this->urlRoot();
-        $pathUpload = $this->pathRoot() . '/' . $this->tmpDir;
-        $urlUpload  = $this->urlRoot() . '/' . $this->tmpDir . '/';
-        $prefixLen  = strlen($urlUpload);
+        $rootPath   = $this->rootPath();
+        $rootUrl    = $this->rootUrl();
+        $uploadPath = $this->tmpPath();
+        $uploadUrl  = $this->tmpUrl() . '/';
+        $prefixLen  = strlen($uploadUrl);
 
         $items = array();
         foreach ($list as $item) {
-            if ($urlUpload == substr($item['image'], 0, $prefixLen)) {
+            if ($uploadUrl == substr($item['image'], 0, $prefixLen)) {
                 $imgName = substr($item['image'], $prefixLen);
                 $renamed = rename(
-                    $pathUpload . '/' . $imgName,
-                    $pathRoot . '/' . $imgName
+                    $uploadPath . '/' . $imgName,
+                    $rootPath . '/' . $imgName
                 );
                 if ($renamed) {
-                    $item['image'] = $urlRoot . '/' . $imgName;
+                    $item['image'] = $rootUrl . '/' . $imgName;
                 }
             }
             $items[] = $item;
@@ -221,8 +238,8 @@ class MediaController extends ListController
      */
     protected function deleteImages(array $images)
     {
-        $path   = $this->pathRoot();
-        $url    = $this->urlRoot();
+        $path   = $this->rootPath();
+        $url    = $this->rootUrl();
         foreach ($images as $image) {
             $file = preg_replace('|^' . $url . '|', $path, $image);
             if (is_file($file)) {

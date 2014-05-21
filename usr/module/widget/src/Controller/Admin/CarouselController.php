@@ -9,9 +9,6 @@
 
 namespace Module\Widget\Controller\Admin;
 
-//use Pi;
-//use Module\Widget\Form\BlockCarouselForm as BlockForm;
-
 /**
  * For carousel block
  */

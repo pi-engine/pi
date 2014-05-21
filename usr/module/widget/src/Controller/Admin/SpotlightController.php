@@ -9,8 +9,6 @@
 
 namespace Module\Widget\Controller\Admin;
 
-//use Module\Widget\Form\BlockSpotlightForm as BlockForm;
-
 /**
  * For spotlight block
  */
