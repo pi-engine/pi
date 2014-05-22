@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
 "POT-Creation-Date: 2014-05-18 23:20+0100\n"
-"PO-Revision-Date: 2014-05-18 23:20+0100\n"
+"PO-Revision-Date: 2014-05-19 15:48+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -24,7 +24,7 @@ msgstr "Message"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\message/config/module.php:19
 msgid "A module to send message"
-msgstr "Un module pour envoyer des messages"
+msgstr "Module de messagerie"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\message/config/user.php:20
