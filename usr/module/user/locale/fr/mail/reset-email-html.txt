@@ -1,0 +1,20 @@
+[comment]Pi user system change email confirmation[/comment]
+
+[format]html[/format]
+
+[subject]%site_name% Change Email Confirmation[/subject]
+
+[body]
+<p style="margin-bottom: 5px">Dear <strong>%username%</strong>:</p>
+
+<p style="margin-top: 5px">A request was received to change email address at %site_name% from %old_email% to %new_email%.</p>
+<p style="margin-top: 5px">Please click the following link in %expiration% hours to complete the request.<br>
+<a href="%change_email_url%">%change_email_url%</a>
+</p>
+
+<p style="margin-top: 5px">If this request was not sent by you, please just ignore this email.</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+[/body]
