@@ -1,0 +1,16 @@
+[comment]Pi account register notification[/comment]
+
+[format]html[/format]
+
+[subject]%site_name% Account Register[/subject]
+
+[body]
+<p style="margin-bottom: 5px">Dear <strong>%username%</strong>:</p>
+
+<p style="margin-top: 5px">Your account has been successfully created at %site_adminname% with this email address.</p>
+<p style="margin-top: 5px">Please be patient to wait for activation by our admins.</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+[/body]

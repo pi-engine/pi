@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-05-20 18:07+0100\n"
-"PO-Revision-Date: 2014-05-20 18:15+0100\n"
+"PO-Revision-Date: 2014-05-22 14:28+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -103,7 +103,7 @@ msgstr "Général"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:25
 msgid "Head meta"
-msgstr "Balises Meta Head"
+msgstr "Balises Meta En-Tête"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:29
@@ -180,7 +180,7 @@ msgstr "Fuseau horaire pour le système applicatif"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:94
 msgid "List count"
-msgstr "Nbre Elements Listes"
+msgstr "Nbre Eléments Listes"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:95
@@ -304,9 +304,8 @@ msgstr "Longueur maximum du mot de passe pour s'inscrire"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:207
-#, fuzzy
 msgid "Username backlist"
-msgstr "BlackList Nom utilisateur"
+msgstr "Liste noire Nom utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:208
@@ -319,9 +318,8 @@ msgstr ""
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:215
-#, fuzzy
 msgid "Email backlist"
-msgstr "Blacklist email"
+msgstr "Liste noire email"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:216
@@ -329,7 +327,7 @@ msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
-"Liste de noms interdits. Séparer chaque valeur par <strong>|</strong>, la "
+"Liste des noms interdits. Séparer chaque valeur par <strong>|</strong>, la "
 "syntaxe regexp est autorisée."
 
 #: C:\Users\LAPTOP
@@ -885,7 +883,7 @@ msgstr "Ajouter un rôle"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:260
 msgid "Cache flush"
-msgstr "Vider le cache"
+msgstr "Purger le cache"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:270
@@ -931,7 +929,7 @@ msgstr "Cache"
 #: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:61
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:74
 msgid "Permission"
-msgstr "Permission"
+msgstr "Autorisations"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:72
@@ -1020,7 +1018,7 @@ msgstr "Event/listener"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:83
 msgid "Permissions"
-msgstr "Permissions"
+msgstr "Autorisations"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:110
@@ -1296,7 +1294,7 @@ msgstr "Accueil Module"
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:199
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
-msgstr "Liste de cahce"
+msgstr "Liste des caches"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ComponentController.php:74
@@ -1897,7 +1895,6 @@ msgstr "Nom"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleCategoryForm.php:40
-#, fuzzy
 msgid "Font-awesome icon"
 msgstr "Icône Font-awesome"
 
@@ -2085,12 +2082,12 @@ msgstr "Cloner"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:26
 msgid "No page uses this block yet."
-msgstr "Aucune page n'utilise ce bloc actuellement."
+msgstr "Aucune page n\\'utilise ce bloc actuellement."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:27
 msgid "Search in block title"
-msgstr "Rechercher dans le nom du bloc"
+msgstr "Rechercher sur le nom du bloc"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:15
@@ -2251,12 +2248,12 @@ msgstr "No events available"
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:23
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:20
 msgid "Error, please try again later."
-msgstr "Erreur, merci d'essayer plus tard."
+msgstr "Erreur, merci d\\'essayer plus tard."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:17
 msgid "Flush all"
-msgstr "Vider tout"
+msgstr "Purger tout"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:24
@@ -2264,7 +2261,7 @@ msgstr "Vider tout"
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:41
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:50
 msgid "Flush"
-msgstr "Vider"
+msgstr "Purger"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:39
@@ -2518,7 +2515,7 @@ msgstr "Cette navigation est disponible uniquement pour être visualisée"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:41
 msgid "Click to toggle edit"
-msgstr "Cliquer pour sélectionner modifier"
+msgstr "Cliquer pour sélectionner Modifier"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:53
@@ -2596,13 +2593,12 @@ msgstr "Relatif"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:20
 msgid "None to use"
-msgstr "Aucun à utiliser"
+msgstr "Désactiver tout"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:31
-#, fuzzy
 msgid "Set global"
-msgstr "Définir globalement"
+msgstr "Activer"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:43
@@ -2639,12 +2635,12 @@ msgstr "Etes-vous certains de vouloir supprimer cette page?"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:17
 msgid "Module Global permission"
-msgstr "Accès global Module"
+msgstr "Global"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:18
 msgid "Module resource"
-msgstr "Accès Module par Ressource"
+msgstr "Type de Ressource"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:19
