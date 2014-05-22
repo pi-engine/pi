@@ -204,7 +204,7 @@ $config['item'] = array(
     ),
 
     'uname_backlist'    => array(
-        'title'         => _t('Username backlist'),
+        'title'         => _t('Username blacklist'),
         'description'   => _t('Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
@@ -212,7 +212,7 @@ $config['item'] = array(
     ),
 
     'email_backlist'    => array(
-        'title'         => _t('Email backlist'),
+        'title'         => _t('Email blacklist'),
         'description'   => _t('Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',
