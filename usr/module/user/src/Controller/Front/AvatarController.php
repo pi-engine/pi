@@ -87,7 +87,7 @@ class AvatarController extends ActionController
             ));
             if (!empty($config['max_size'])) {
                 $limits[] = array(
-                    'label' => __('Max files ize:'),
+                    'label' => __('Max files size:'),
                     'text'  => $config['max_size'] . ' KB',
                 );
             }
@@ -319,7 +319,7 @@ class AvatarController extends ActionController
         $result = array(
             'status'        => true,
             'preview_url'   => $url,
-            'message'       => __('Successful'),
+            'message'       => __('Successful.'),
         );
 
         return $result;
@@ -442,7 +442,7 @@ class AvatarController extends ActionController
         } elseif ('select' == $source) {
             $name = $this->params('name', '');
             if (empty($name)) {
-                $result['message'] = __('Invalid image set name.');
+                $result['message'] = __('Image name is missing.');
 
                 return $result;
             }

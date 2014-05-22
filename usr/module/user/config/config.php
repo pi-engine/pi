@@ -247,8 +247,8 @@ $config = array(
     ),
 
     'name_min'     => array(
-        'title'         => _t('Minmum display name'),
-        'description'   => _t('Minmum length of display name for user registration'),
+        'title'         => _t('Minimum display name'),
+        'description'   => _t('Minimum length of display name for user registration'),
         'value'         => 3,
         'filter'        => 'int',
         'category'      => 'account',
@@ -279,7 +279,7 @@ $config = array(
     ),
 
     'uname_backlist'    => array(
-        'title'         => _t('Username backlist'),
+        'title'         => _t('Username blacklist'),
         'description'   => _t('Reserved and forbidden username list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
@@ -287,7 +287,7 @@ $config = array(
     ),
 
     'name_backlist'    => array(
-        'title'         => _t('Display backlist'),
+        'title'         => _t('Display blacklist'),
         'description'   => _t('Reserved and forbidden display name list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
@@ -295,7 +295,7 @@ $config = array(
     ),
 
     'email_backlist'    => array(
-        'title'         => _t('Email backlist'),
+        'title'         => _t('Email blacklist'),
         'description'   => _t('Forbidden email list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',
