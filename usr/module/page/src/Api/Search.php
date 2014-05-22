@@ -41,8 +41,8 @@ class Search extends AbstractSearch
     protected function buildLink(array $item)
     {
         $link = Pi::service('url')->assemble(
-            'page-page',
-            array('id' => $item['id'])
+            'page',
+            array('module' => $this->module, 'id' => $item['id'])
         );
 
         return $link;

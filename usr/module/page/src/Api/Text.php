@@ -12,36 +12,40 @@
  */
 namespace Module\Page\Api;
 
-use Pi;
 use Pi\Application\Api\AbstractApi;
 
-/*
+/**
+ * Usage
+ *
+ * ```
  * Pi::api('text', 'page')->keywords($keywords);
  * Pi::api('text', 'page')->description($description);
  * Pi::api('text', 'page')->title($title);
  * Pi::api('text', 'page')->slug($slug);
  * Pi::api('text', 'page')->name($name);
+ * ```
  */
 
 class Text extends AbstractApi
-{         
-   /**
+{
+    /**
      * Invoke as a functor
      *
      * Make meta keywords from phrase
      *
-     * @param  string $keywords
-     * @param  number
-     * @param  number
+     * @param string $keywords
+     * @param int $number
+     *
      * @return string
      */
-    public function keywords($keywords, $number = '6')
+    public function keywords($keywords, $number = 6)
     {
         $keywords = _strip($keywords);
         $keywords = strtolower(trim($keywords));
         $keywords = array_unique(array_filter(explode(' ', $keywords)));
         $keywords = array_slice($keywords, 0, $number);
         $keywords = implode(',', $keywords);
+
         return $keywords;
     }
 
@@ -58,6 +62,7 @@ class Text extends AbstractApi
         $description = _strip($description); 
         $description = strtolower(trim($description));
         $description = preg_replace('/[\s]+/', ' ', $description);
+
         return $description;
     }   
 
@@ -74,13 +79,16 @@ class Text extends AbstractApi
         $title = _strip($title); 
         $title = strtolower(trim($title));
         $title = preg_replace('/[\s]+/', ' ', $title);
+
         return $title;
-    }   
+    }
 
     /**
      * Returns the slug
      *
-     * @return boolean
+     * @param string $slug
+     *
+     * @return string
      */
     public function slug($slug)
     {
@@ -88,13 +96,16 @@ class Text extends AbstractApi
         $slug = strtolower(trim($slug));
         $slug = array_filter(explode(' ', $slug));
         $slug = implode('-', $slug);
+
         return $slug;
     }
 
     /**
      * Returns the name
      *
-     * @return boolean
+     * @param string $name
+     *
+     * @return string
      */
     public function name($name)
     {
@@ -102,6 +113,7 @@ class Text extends AbstractApi
         $name = strtolower(trim($name));
         $name = array_filter(explode(' ', $name));
         $name = implode('-', $name);
+
         return $name;
     }              
 }
