@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-05-22 22:16+0100\n"
-"PO-Revision-Date: 2014-05-22 22:16+0100\n"
+"PO-Revision-Date: 2014-05-23 10:52+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -434,7 +434,7 @@ msgstr "Merci d'entrer le mot."
 #: MARC\Documents\GitHub\pi\usr\module\user/config/module.php:17
 #: MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:21
 msgid "User"
-msgstr "Utilisateur"
+msgstr "User"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/module.php:18
@@ -571,7 +571,7 @@ msgstr "Mot de passe"
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:32
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:22
 msgid "Display name"
-msgstr "Afficher le nom"
+msgstr "Pseudo"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/user.php:96
 msgid "Gender"

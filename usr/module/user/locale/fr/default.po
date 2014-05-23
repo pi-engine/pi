@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-05-22 22:16+0100\n"
-"PO-Revision-Date: 2014-05-22 22:18+0100\n"
+"PO-Revision-Date: 2014-05-23 10:49+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -1229,12 +1229,12 @@ msgstr "Un email avec un lien de confirmation-activation vous été envoyé."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:65
 msgid "Please check it to finish the registration."
-msgstr "Merci de le lire pour terminer votre inscription."
+msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:68
 msgid "If you do not receive the activation email:"
-msgstr "Si vous ne recevez pas le mail de confirmation-activation :"
+msgstr "Si vous ne recevez pas le mail de confirmation :"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:70
@@ -1249,7 +1249,7 @@ msgstr "Vérifier le répertoire spam de votre boite mail."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:72
 msgid "Request to resend activation email"
-msgstr "Demander le renvoi du mail de confirmation-activation"
+msgstr "Demander le renvoi du mail d'activation"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:107
