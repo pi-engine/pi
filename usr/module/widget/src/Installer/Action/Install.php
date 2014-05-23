@@ -53,13 +53,13 @@ class Install extends BasicInstall
             ),
             array(
                 'caption'   => _a('Engineered development'),
-                'summary'   => _a('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict starndards.'),
+                'summary'   => _a('Quality ensured engineering development with short learning curve, low skill requirements with clean MVC architecture, semantic templating, sophisticated API and strict standards.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('static/image/pi-engineering.png'),
             ),
             array(
                 'caption'   => _a('Visualization of application management'),
-                'summary'   => _a('Easy and responsive application and content management based on visualized mangement tools and interface with page and widget mechanism.'),
+                'summary'   => _a('Easy and responsive application and content management based on visualized management tools and interface with page and widget mechanism.'),
                 'link'      => 'http://pialog.org',
                 'image'     => Pi::url('static/image/pi-visualization.png'),
             ),
