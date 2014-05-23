@@ -6,10 +6,12 @@ March 20th, 2014
 ============
 * Added `GeoIp` service for IP geolocation support
 * Added jQuery `Magnific Popup` extension
+* Update Font Awesome lib to 4.1.0
 
-* Modified language fiels:
+* Modified language fields:
   - module/system/locale/en/admin.po, block.po, default.po
   - module/comment/locale/en/admin.po, default.po
+  - module/user/locale/en/admin.po, default.po
 
 
 Pi 2.4.0
