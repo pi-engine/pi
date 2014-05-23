@@ -10,63 +10,76 @@
 namespace Module\Widget\Controller\Admin;
 
 use Pi;
-use Module\Widget\Form\BlockTabForm as BlockForm;
-
 
 /**
  * For compound tabbed block
  */
-class TabController extends WidgetController
+class TabController extends ListController
 {
+    /**
+     * {@inheritDoc}
+     */
     protected $type = 'tab';
 
-    protected function getForm()
-    {
-        return new BlockForm('block');
-    }
+    /**
+     * {@inheritDoc}
+     */
+    protected $editTemplate = 'widget-tab';
 
+    /**
+     * {@inheritDoc}
+     */
+    protected $formClass = 'BlockTabForm';
+
+    /**
+     * Load module list for block selection
+     */
     protected function assignModules()
     {
-        $rowset = Pi::model('module')->select(array('active' => 1));
-        $modules = array();
+        // Get block counts per module
+        $model = Pi::model('block');
+        $select = $model->select()->group('module')
+            ->columns(array('count' => Pi::db()->expression('count(*)'), 'module'));
+        $rowset = $model->selectWith($select);
+        $blockCounts = array();
         foreach ($rowset as $row) {
-            $modules[$row->id] = array(
-                'name'  => $row->name,
-                'title' => $row->title,
-            );
+            $blockCounts[$row->module] = $row->count;
         }
-        $modules[0] = array(
-            'name'  => '',
-            'title' => _a('Custom blocks'),
-        );
 
-        $this->view()->assign('modules', array_values($modules));
+        // Get module list
+        $modules = array();
+        $moduleSet = Pi::model('module')->select(array('active' => 1));
+        $widgetModule = array();
+        foreach ($moduleSet as $row) {
+            if ('widget' == $row->name) {
+                $count = empty($blockCounts['widget']) ? '0' : $blockCounts['widget'];
+                $widgetModule = array(
+                    'name'  => $row->name,
+                    'title' => $row->title . ' (' . $count . ')',
+                );
+            } elseif (!empty($blockCounts[$row->name])) {
+                $modules[] = array(
+                    'name'  => $row->name,
+                    'title' => $row->title . ' (' . $blockCounts[$row->name] . ')',
+                );
+            }
+        }
+        array_unshift($modules, $widgetModule);
+
+        $this->view()->assign('modules', $modules);
     }
 
     /**
-     * List of widgets
-     */
-    public function indexAction()
-    {
-        $data = array(
-            'widgets' => array_values($this->widgetList())
-        );
-        $this->view()->assign('data', $data);
-        $this->view()->setTemplate('ng');
-    }
-
-    /**
-     * Add a block and default ACL rules
+     * {@inheritDoc}
      */
     public function addAction()
     {
         parent::addAction();
-        $this->view()->setTemplate('widget-tab');
         $this->assignModules();
     }
 
     /**
-     * AJAX methdod for getting blocks of a module
+     * AJAX method for getting blocks of a module
      *
      * @return array
      */
@@ -96,21 +109,30 @@ class TabController extends WidgetController
     }
 
     /**
-     * Edit a block
+     * {@inheritDoc}
      */
     public function editAction()
     {
         parent::editAction();
-        $this->view()->setTemplate('widget-tab');
         $this->assignModules();
     }
 
     /**
-     * Delete a block
+     * {@inheritDoc}
      */
-    public function deleteAction()
+    protected function prepareContent($content)
     {
-        $result = $this->deleteBlock();
-        $this->jump(array('action' => 'index'), $result['message']);
+        $items = $content ? json_decode($content, true) : array();
+        $items = array_filter($items);
+        foreach ($items as &$item) {
+            $item = array_merge(array(
+                'id'        => 0,
+                'caption'   => '',
+                'link'      => '',
+            ), $item);
+        }
+        $content = json_encode($items);
+
+        return $content;
     }
 }

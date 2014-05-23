@@ -1,0 +1,635 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-comment\n"
+"POT-Creation-Date: 2014-05-20 17:46+0100\n"
+"PO-Revision-Date: 2014-05-20 17:46+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\comment\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:13
+msgid "Recent comments"
+msgstr "Commentaires récents"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:14
+msgid "Recent active comment posts."
+msgstr "Commentaires récents actifs."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:20
+msgid "Post count"
+msgstr "Nombre de commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:21
+msgid "Number of posts to display."
+msgstr "Nombre de commentaires à afficher"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:28
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:53
+msgid "Module"
+msgstr "Module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:29
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:54
+msgid "Select module for articles."
+msgstr "Sélectionner le module pour les articles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:38
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:20
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:62
+msgid "Commented articles"
+msgstr "Articles commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:39
+msgid "Articles being commented."
+msgstr "Articles en train d'être commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:45
+msgid "Article count"
+msgstr "Nombre d'articles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:46
+msgid "Number of articles to display."
+msgstr "Nombre d'articles à afficher."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:60
+msgid "Sort order"
+msgstr "Ordre de tri"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:61
+msgid "Criteria to select articles."
+msgstr "Critère pour sélectionner les articles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:66
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:90
+msgid "Most commented"
+msgstr "Les plus commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:67
+msgid "Last commented"
+msgstr "Le dernier commenté"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:68
+msgid "Last published"
+msgstr "Dernier publié"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:79
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:26
+msgid "Top posters"
+msgstr "Top auteurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:80
+msgid "Users with most posts"
+msgstr "Utilisateurs avec le plus grand nombre de commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:86
+msgid "User count"
+msgstr "Nombre utilisateurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:87
+msgid "Number of users to display."
+msgstr "Nombre d'utilisateurs à afficher"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:94
+msgid "Excluded user ids"
+msgstr "Numéro utilisateur exclus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:95
+msgid "Users to exclude, separated by \",\"."
+msgstr "Utilisateurs à exclure, séparés par \",\"."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:101
+msgid "Excluded roles"
+msgstr "Rôles exclus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/block.php:102
+msgid "Roles to exclude."
+msgstr "Rôle à exclure."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/comment.php:18
+msgid "Article comments"
+msgstr "Commentaires de l'article"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/comment.php:31
+msgid "Custom comments"
+msgstr "Commentaires personnalisés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:12
+msgid "Leading page comment limit"
+msgstr "Limite de commentaires page principale"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:13
+msgid "Number of comments on leading page."
+msgstr "Nombre de commentaires sur la page principale"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:19
+msgid "List page comment limit"
+msgstr "Limite commentaires par page"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:20
+msgid "Number of comments on list page."
+msgstr "Nombre de commentaires sur la page de liste"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:26
+msgid "Display operation"
+msgstr "Gestion de l'affichage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:27
+msgid "Level of operations on post list pages."
+msgstr "Niveau d'opération pour soumettre dans la page de liste"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:33
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:42
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:28
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:34
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:35
+msgid "Disable"
+msgstr "Désactiver"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:34
+msgid "For members"
+msgstr "Pour les membres"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:35
+msgid "For authors"
+msgstr "Pour les auteurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:36
+msgid "For administrators"
+msgstr "Pour les administrateurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/config.php:43
+msgid "Auto approve submission"
+msgstr "Auto-approuver les soumissions"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/module.php:17
+msgid "Comment"
+msgstr "Commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/module.php:18
+msgid "Comment management and services."
+msgstr "Gestion des commentaires et services associés."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:14
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:61
+msgid "All comments"
+msgstr "Tous les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:26
+msgid "My comments"
+msgstr "Mes commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:35
+msgid "My received"
+msgstr "Mes commentaires reçus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:44
+msgid "My articles"
+msgstr "Mes articles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:55
+msgid "Portal"
+msgstr "Portail"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:71
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:80
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:95
+msgid "Active posts"
+msgstr "Commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:89
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:104
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:217
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:396
+msgid "Inactive posts"
+msgstr "Commentaires inactifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:100
+msgid "Types"
+msgstr "Types"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:106
+msgid "By module"
+msgstr "Par module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:112
+msgid "By user"
+msgstr "Par utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:118
+msgid "By article"
+msgstr "Par article"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:128
+msgid "Article with comments"
+msgstr "Article avec commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/nav.php:137
+msgid "Article with active comments"
+msgstr "Articles avec commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/user.php:20
+msgid "Comment posts by me"
+msgstr "Mes commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/user.php:26
+msgid "Comment posts on my articles"
+msgstr "Commentaires sur mes articles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:23
+#, php-format
+msgid "Comment portal for %s"
+msgstr "Portail commentaire pour %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:26
+msgid "Build comment data for demo articles"
+msgstr "Données de commentaires crées pour les articles démo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:33
+msgid "Demo article with comments"
+msgstr "Article demo avec commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:39
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:85
+msgid "All comment posts"
+msgstr "Tous les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:46
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:89
+msgid "All active comment posts"
+msgstr "Tous les commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:54
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:87
+msgid "All inactive comment posts"
+msgstr "Tous les commentaires inactifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:69
+msgid "Comment posts by user"
+msgstr "Commentaires par utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:76
+msgid "Comment posts by module"
+msgstr "Commentaires par module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:87
+msgid "Total posts"
+msgstr "Nombre de commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/IndexController.php:277
+#, php-format
+msgid "Demo comment %d."
+msgstr "Commentaire Demo %d."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:128
+msgid "Comments by username or id"
+msgstr "Commentaires par nom utilisateur ou numéro"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:167
+msgid "Comment posts of user"
+msgstr "Commentaires de l'utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:200
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:377
+msgid "All Posts"
+msgstr "Tous les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:208
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:386
+msgid "Active Posts"
+msgstr "Commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:239
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:22
+msgid "Comment types"
+msgstr "Types de commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:334
+#, php-format
+msgid "Comment posts of Module %s with type %s"
+msgstr "Commentaires du module %s avec le type %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:340
+#, php-format
+msgid "Comment posts of Module %s"
+msgstr "Commentaires du module %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:448
+msgid "Guest"
+msgstr "Invité"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:487
+msgid "All commented articles"
+msgstr "Tous les articles commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:489
+msgid "All active commented articles"
+msgstr "Tous les articles actifs commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/ListController.php:561
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:224
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:102
+msgid "Operation succeeded."
+msgstr "L'opération a été un succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:44
+msgid "Edit"
+msgstr "Editer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:51
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:32
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:38
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:39
+msgid "Delete"
+msgstr "Supprimer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:58
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:42
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:23
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:29
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:30
+msgid "Enable"
+msgstr "Activer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:67
+msgid "Comment post"
+msgstr "Comemntaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:91
+msgid "Comment post edit"
+msgstr "Edition du commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:175
+msgid "Comment post saved successfully."
+msgstr "Enregistrement avec succès du commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:178
+msgid "Comment post not saved."
+msgstr "Commentaire non enregistré."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:182
+msgid "Invalid data, please check and re-submit."
+msgstr "Données non valides, merci de vérifer et de re-soumettre."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:186
+msgid "Invalid submission."
+msgstr "Soumission non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:224
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:105
+msgid "Operation failed."
+msgstr "L'opération a échoué."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:34
+msgid "Active"
+msgstr "Activé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:34
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:92
+msgid "Type was not found."
+msgstr "Le type n'a pas été trouvé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/TypeController.php:96
+msgid "Invalid operation."
+msgstr "Opération non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:5
+msgid "Comment stats"
+msgstr "Statistiques commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:10
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:53
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module-select.phtml:3
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:6
+msgid "Title"
+msgstr "Titre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:11
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:54
+msgid "Amounts"
+msgstr "Nombre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:30
+msgid "Submitters"
+msgstr "Auteurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:31
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:95
+msgid "Comments"
+msgstr "Commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:50
+msgid "Active comment posts by module"
+msgstr "Commentaires actifs par module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:77
+msgid "Links"
+msgstr "Liens"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-index.phtml:94
+msgid "Article title"
+msgstr "Titre de l'article"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:93
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:99
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:100
+msgid "Pending"
+msgstr "En attente"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:107
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:113
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:114
+msgid "No comments available yet."
+msgstr "Aucun commentaire disponible actuellement."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:187
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:193
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:194
+msgid "Are you sure delete these comments?"
+msgstr "Etes-vous sûr de vouloir supprimer ces commentaires?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:233
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:239
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:240
+msgid "Are you sure delete this article?"
+msgstr "Etes-vous sûr de vouloir supprimer cet article?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module-select.phtml:4
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:8
+msgid "Action"
+msgstr "Action"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module-select.phtml:11
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module-select.phtml:20
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:14
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:30
+msgid "View comments"
+msgstr "Voir les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:7
+msgid "Enable type"
+msgstr "Activer le type"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:23
+msgid "No"
+msgstr "Non"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-type.phtml:26
+msgid "Yes"
+msgstr "Oui"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user-select.phtml:2
+msgid "Filter comments by a specific user."
+msgstr "Filtrer les commentaires pour un utilisateur précis."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user-select.phtml:5
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:18
+msgid "Type user id or identity"
+msgstr "Type d'utilisateur, numéro ou identité"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user-select.phtml:6
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:19
+msgid "Submit"
+msgstr "Valider"
+
+#~ msgid "Inactive Posts"
+#~ msgstr "Commentaires inactifs"
+
+#~ msgid "Select module for articles"
+#~ msgstr "S"
+
+#, fuzzy
+#~ msgid "Operation failed"
+#~ msgstr "主题更新失败。"
+
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Comment categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "All"
+#~ msgstr "All Categories"

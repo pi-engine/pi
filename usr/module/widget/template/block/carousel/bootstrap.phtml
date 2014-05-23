@@ -1,67 +1,132 @@
 <?php
-// Options: interval, pause, height
-$options = (array) $block['options'];
-$items = $block['items'];
-$activeItem = array_shift($items);
-$count = count($items);
-$width = empty($options['width']) ? 0 : $options['width'];
-$height = empty($options['height']) ? 0 : $options['height'];
+$options    = (array) $block['options'];
+$items      = $block['items'] ?: array();
+$count      = count($items);
+$target     = empty($options['target_new']) ? '' : '_blank';
+$ellipsis   = empty($options['max_rows'])
+            ? 'pi-ellipsis'
+            : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
+$imgStyle   = '';
+if (!empty($options['width'])) {
+    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+}
 
-$render = function ($item) use ($width, $height) {
-    $caption = $this->escape($item['caption']);
-    $description = $this->escape($item['desc']);
-    
-    $width = $width ? 'width: '  . $width  . 'px;' : '';
-    $height = $height ? 'height: '  . $height . 'px;' : '';
+$towcols    = empty($options['two_col']) ? false : true;
+$carouselId = uniqid('carousel');
+unset($options['width'], $options['height'], $options['two_col']);
+?>
 
-    if (empty($width) && empty($height)) {
-        $image = sprintf(
-            '<img src="%s" alt="%s" />',
-            $item['image'],
-            $caption
-        );
-    } else {
-        $image = sprintf(
-            '<img src="%s" alt="%s" style="%s%s" />',
+<?php
+if ($towcols) {
+
+    $render = function ($item) use ($imgStyle, $ellipsis, $target) {
+        $itemPattern =<<<EOT
+            <div class="row">
+                <div class="col-sm-7">
+                    <a href="%s" target="%s" title="%s"><img class="img-responsive" src="%s" alt="%s" style="%s"></a>
+                </div>
+                <div class="col-sm-5">
+                    <h4 class="pi-ellipsis"><a href="%s" title="%s" target="%s">%s</a></h4>
+                    <p class="%s">%s</p>
+                </div>
+            </div>
+EOT;
+        $link       = $item['link'] ?: '#';
+        $caption    = _escape($item['caption']);
+        $content    = sprintf(
+            $itemPattern,
+            $link,
+            $target,
+            $caption,
             $item['image'],
             $caption,
-            $width,
-            $height
+            $imgStyle,
+            $link,
+            $caption,
+            $target,
+            $caption,
+            $ellipsis,
+            $item['summary']
         );
-    }
 
+        return $content;
+    };
+    ?>
 
-    $content = '';
-    if (!empty($item['link'])) {
-        $content .= '<a target="_blank" href="' . $item['link'] . '" title="' . $caption . '">' . $image . '</a>';
-    } else {
-        $content .= $image;
-    }
-    if ($caption || $description) {
-        $content .= '<div class="carousel-caption"><h4>' . $caption . '</h4><p>' . $description . '</p></div>';
-    }
-    return $content;
-};
-$carouselId = uniqid('carousel');
-?>
+    <style>
+        .widget-carousel-bootstrap .carousel-indicators {
+            text-align: right;
+            margin: 0;
+            left: auto;
+            top: auto;
+            right: 15px;
+            bottom: 5px;
+        }
+        .widget-carousel-bootstrap .carousel-indicators .active {
+            background: #428bca;
+        }
+        .widget-carousel-bootstrap .carousel-indicators li {
+            background: #ccc;
+            border-radius: 0;
+            margin: 0 3px 0 0 !important;
+            width: 14px !important;
+            height: 14px !important;
+        }
+    </style>
+
+<?php
+} else {
+
+    $render = function ($item) use ($imgStyle, $ellipsis, $target) {
+        $itemPattern =<<<EOT
+            <a href="%s" target="%s" title="%s">
+                <img src="%s" alt="%s" class="img-responsive" style="%s" />
+            </a>
+            <div class="carousel-caption">
+                <h4>%s</h4>
+                <p class="%s">%s</p>
+            </div>
+EOT;
+        $link       = $item['link'] ?: '#';
+        $caption    = _escape($item['caption']);
+        $content    = sprintf(
+            $itemPattern,
+            $link,
+            $target,
+            $caption,
+            $item['image'],
+            $caption,
+            $imgStyle,
+            $caption,
+            $ellipsis,
+            $item['summary']
+        );
+
+        return $content;
+    };
+
+}?>
 <div class="widget-carousel-bootstrap">
     <div id="<?php echo $carouselId; ?>" class="carousel slide">
         <ol class="carousel-indicators">
             <li data-target="#<?php echo $carouselId; ?>" data-slide-to="0" class="active"></li>
-            <?php for ($i = 1; $i <= $count; $i++) { ?>
-            <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
+            <?php for ($i = 1; $i < $count; $i++) { ?>
+                <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
             <?php } ?>
         </ol>
 
         <!-- Carousel items -->
         <div class="carousel-inner">
-            <div class="active item">
-                <?php echo $render($activeItem); ?>
+            <div class="item active">
+                <?php echo $render(array_shift($items)); ?>
             </div>
             <?php foreach ($items as $item) { ?>
-            <div class="item">
-                <?php echo $render($item); ?>
-            </div>
+                <div class="item">
+                    <?php echo $render($item); ?>
+                </div>
             <?php } ?>
         </div>
 
@@ -75,9 +140,6 @@ $carouselId = uniqid('carousel');
     </div>
 </div>
 <?php
-$script = sprintf('$("#%s").carousel(%s);',
-        $carouselId,
-        json_encode($block['options'])
-    );
+$script = sprintf('$("#%s").carousel(%s);', $carouselId, json_encode($options));
 $this->footScript()->appendScript($script);
 ?>

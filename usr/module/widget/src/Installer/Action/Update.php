@@ -27,60 +27,59 @@ class Update extends BasicUpdate
     protected function attachDefaultListeners()
     {
         $events = $this->events;
-        $events->attach('update.post', array($this, 'updateCarousel'));
+        $events->attach('update.post', array($this, 'updateBlock'));
         parent::attachDefaultListeners();
 
         return $this;
     }
 
     /**
-     * Update carousel blocks
+     * Update block config specs and content meta
      *
      * @param Event $e
      * @return bool
      */
-    public function updateCarousel(Event $e)
+    public function updateBlock(Event $e)
     {
         $version = $e->getParam('version');
-        if (version_compare($version, '1.1.0', '>')) {
+        if (version_compare($version, '2.0.0', '>=')) {
             return true;
         }
 
-        $rowset = Pi::model('block_root')->select(array('type' => 'carousel'));
+        $rowset = Pi::model('block_root')->select(array(
+            'module'    => 'widget',
+            'type <> ?' => 'script',
+        ));
         foreach ($rowset as $row) {
-            $row->config = array(
-                'width'     => array(
-                    'title'         => _a('Image width'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                ),
-                'height'    => array(
-                    'title'         => _a('Image height'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                ),
-                'interval' => array(
-                    'title'         => _a('Time interval (ms)'),
-                    'edit'          => 'text',
-                    'filter'        => 'int',
-                    'value'         => 4000,
-                ),
-                'pause' => array(
-                    'title'         => _a('Mouse event'),
-                    'description'   => _a('Event to pause cycle'),
-                    'edit'          => array(
-                        'type'  =>  'select',
-                        'options'   => array(
-                            'options'   => array(
-                                'hover' => 'hover',
-                            ),
-                        ),
-                    ),
-                    'value'         => 'hover',
-                ),
-            );
+            $type = $row->type ?: '';
+            $row->config = Pi::api('block', 'widget')->getConfig($type);
             $row->save();
         }
+
+        $update = array(
+            'content'   => Pi::db()->expression(sprintf(
+                    'REPLACE(content, %s, %s)',
+                    '\'","desc":"\'',
+                    '\'","summary":"\''
+                )),
+        );
+        $where = array(
+            'module'    => 'widget',
+            'type'      => array('list', 'media', 'carousel'),
+        );
+        Pi::model('block')->update($update, $where);
+
+        $update = array(
+            'meta'   => Pi::db()->expression(sprintf(
+                    'REPLACE(meta, %s, %s)',
+                    '\'","desc":"\'',
+                    '\'","summary":"\''
+                )),
+        );
+        $where = array(
+            'type'      => array('list', 'media', 'carousel'),
+        );
+        Pi::model('widget', 'widget')->update($update, $where);
 
         return true;
     }

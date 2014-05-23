@@ -1,0 +1,18 @@
+[comment]Demo for mail text template[/comment]
+
+[format]text[/format]
+
+[subject]Greetings from %site_name% in text[/subject]
+
+[body]
+Dear %username%:
+
+This is a greeting mail from %site_name%.
+
+Yours sincerely,
+
+%site_adminname%
+%site_adminmail%
+%site_name%: %site_url%
+(sn: %sn%)
+[/body]

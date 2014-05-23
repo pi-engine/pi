@@ -13,7 +13,7 @@ namespace Pi\Form\View\Helper;
 use Pi\Editor\Factory as EditorFactory;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
-use Zend\Form\View\Helper\AbstractHelper;
+//use Zend\Form\View\Helper\AbstractHelper;
 
 /**
  * Editor element helper
@@ -23,31 +23,9 @@ use Zend\Form\View\Helper\AbstractHelper;
 class FormEditor extends AbstractHelper
 {
     /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @return string|self
+     * {@inheritDoc}
      */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
-     * Render editor
-     *
-     * @param  ElementInterface $element
-     *
-     * @throws \Zend\Form\Exception\DomainException
-     * @return string
-     */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element, $options = array())
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -64,12 +42,7 @@ class FormEditor extends AbstractHelper
             ));
         }
 
-        $options = $element->getOptions();
-        /*
-        $attributes = $element->getAttributes();
-        $attributes['value'] = $element->getValue();
-        $options['attributes'] = $attributes;
-        */
+        $options = array_replace($element->getOptions(), $options);
         $editorType = $element->getOption('editor') ?: 'textarea';
         $editor = EditorFactory::load($editorType, $options);
 

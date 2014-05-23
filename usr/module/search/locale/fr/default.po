@@ -1,0 +1,103 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-search\n"
+"POT-Creation-Date: 2014-05-18 22:38+0100\n"
+"PO-Revision-Date: 2014-05-19 00:32+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\search\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/src/Controller/Front/IndexController.php:406
+msgid "Google"
+msgstr "Google"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/src/Controller/Front/IndexController.php:414
+msgid "Baidu"
+msgstr "Baidu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-form.phtml:5
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:42
+msgid "Go to home page"
+msgstr "Aller à la page d'accueil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-form.phtml:17
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-home.phtml:22
+msgid "Global"
+msgstr "Globale"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-form.phtml:33
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-home.phtml:38
+msgid "Keywords"
+msgstr "Mots-Clefs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-form.phtml:36
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-home.phtml:41
+msgid "Search"
+msgstr "Rechercher"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:88
+#, php-format
+msgid "Google search for %s"
+msgstr "Recherche Google pour %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:28
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:78
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:90
+msgid "Loading ..."
+msgstr "Chargement..."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-google.phtml:53
+msgid "Google search"
+msgstr "Recherche Google"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-module-result.phtml:30
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-result.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-result.phtml:42
+#, php-format
+msgid "%d found."
+msgstr "%d trouvé(s)."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-module-result.phtml:35
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-result.phtml:12
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-result.phtml:52
+msgid "No result found."
+msgstr "Aucun résultat trouvé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-result.phtml:10
+msgid "Submission flood detected, please wait for a while."
+msgstr "Un trop grand nombre de recherches détecté, merci d'attendre un peu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/template/front/search-result.phtml:46
+#, fuzzy
+msgid "All result &raquo;"
+msgstr "Tous les résultats &raquo;"
+
+#~ msgid "Bing"
+#~ msgstr "Bing"
+
+#~ msgid "Sogou"
+#~ msgstr "Sogou"

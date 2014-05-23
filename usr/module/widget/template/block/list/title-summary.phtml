@@ -1,0 +1,29 @@
+<?php
+$options    = (array) $block['options'];
+$items      = (array) $block['items'];
+$target     = empty($options['target_new']) ? '' : '_blank';
+$ellipsis   = empty($options['max_rows'])
+            ? 'pi-ellipsis'
+            : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
+?>
+<div class="widget-list widget-list-summary">
+    <?php foreach($items as $item) { ?>
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="<?php echo $item['link']; ?>"
+                   title="<?php echo _escape($item['caption']); ?>"
+                   class="pi-ellipsis pi-ellipsis-1"
+                   target="<?php echo $target; ?>"
+                >
+                    <?php echo _escape($item['caption']); ?>
+                </a>
+            </h4>
+            <div class="<?php echo $ellipsis; ?>">
+                <?php echo $item['summary']; ?>
+                <span class="pull-right"><a href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>"><?php echo _b('More'); ?></a></span>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+</div>

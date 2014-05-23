@@ -1,0 +1,352 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-Engine\n"
+"POT-Creation-Date: 2014-05-18 22:49+0100\n"
+"PO-Revision-Date: 2014-05-18 22:51+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_t;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\lib\n"
+"X-Poedit-SearchPath-1: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\www\n"
+"X-Poedit-SearchPath-2: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\editor\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Installer/Theme.php:348
+msgid "Theme updated successfully."
+msgstr "Thème mis à jour avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Installer/Theme.php:355
+msgid "Theme failed to update."
+msgstr "Le Thème n'a pas réussi à être mis à jour."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Installer/Theme.php:357
+msgid "Theme upgraded successfully."
+msgstr "Mise à niveau du Thème réussie."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Installer/Theme.php:362
+msgid "Theme asset publish failed."
+msgstr "La publication de la ressource Theme a échoué."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Comment.php:548
+msgid "Posted a new comment."
+msgstr "A publié un nouveau commentaire."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
+msgid "A table must be supplied for the DbTable authentication adapter."
+msgstr "Une table doit être fournie pour l'adapter d'authentification DbTable."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:162
+msgid ""
+"An identity column must be supplied for the DbTable authentication adapter."
+msgstr ""
+"Une colonne Identité doit être fournie pour l'adapter d'authentification "
+"DbTable."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:164
+msgid ""
+"A credential column must be supplied for the DbTable authentication adapter."
+msgstr ""
+"Une colonne credential doit être fournie pour l'adapter d'authentification "
+"DbTable."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:166
+msgid ""
+"A value for the identity was not provided prior to authentication with "
+"DbTable."
+msgstr ""
+"La valeur d'identitié n'a pas été fournie avant l'authentification avec "
+"DbTable."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:168
+msgid ""
+"A credential value was not provided prior to authentication with DbTable."
+msgstr ""
+"La valeur d'identitié n'a pas été fournie avant l'authentification avec "
+"DbTable."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:198
+msgid "A record with the supplied identity could not be found."
+msgstr "Aucun enregistrement n'a pu être trouvé avec l'identité fournie."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:206
+msgid "More than one record matches the supplied identity."
+msgstr "Plus d'un enregistement correspond à l'identité founie."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+msgid "Supplied credential is invalid."
+msgstr "Les identifiants founis sont non valides."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+msgid "Authentication successful."
+msgstr "Authentication réussie."
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Editor/Factory.php:77
+msgid "Pi Default Editor"
+msgstr "Editeur par défaut Pi"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Feed/Model.php:203
+#, php-format
+msgid "Feed of %s"
+msgstr "Flux de %s"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/Gender.php:39
+msgid "Male"
+msgstr "Homme"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/Gender.php:43
+msgid "Female"
+msgstr "Femme"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/Gender.php:48
+msgid "Unknown gender"
+msgstr "Genre inconnu"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/YesNo.php:40
+msgid "No"
+msgstr "Non"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/YesNo.php:43
+msgid "Yes"
+msgstr "Oui"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:32
+msgid "No level"
+msgstr "Aucun niveau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:33
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Locale.php:69
+msgid "Language"
+msgstr "Langage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:34
+msgid "Authenticated or not"
+msgstr "Authentifié ou pas"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:35
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Role.php:55
+msgid "Role"
+msgstr "Rôle"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:49
+msgid "Cache level"
+msgstr "Niveau de cache"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:32
+msgid "No cache"
+msgstr "Pas de cache"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:33
+#, php-format
+msgid "%d seconds"
+msgstr "%d secondes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:34
+msgid "1 minute"
+msgstr "1 minute"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:35
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:36
+#, php-format
+msgid "%d minutes"
+msgstr "%d minutes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:37
+msgid "1 hour"
+msgstr "1 heure"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:38
+#, php-format
+msgid "%d hours"
+msgstr "%d heures"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:39
+msgid "1 day"
+msgstr "1 jour"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:40
+msgid "1 week"
+msgstr "1 semaine"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:41
+msgid "1 month"
+msgstr "1 mois"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:54
+msgid "Cache expiration"
+msgstr "Expiration du cache"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Editor.php:35
+msgid "Text editor"
+msgstr "Editeur de Texte"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Locale.php:34
+msgid "Auto-detection"
+msgstr "Auto-détection"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:36
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:78
+msgid "Username"
+msgstr "Nom Utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:37
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:81
+msgid "Email"
+msgstr "Email"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:84
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:88
+msgid "Identity"
+msgstr "Identité"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Navigation.php:50
+msgid "Navigation"
+msgstr "Navigation"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Role.php:37
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/RoleAdmin.php:35
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/RoleUser.php:35
+msgid "None"
+msgstr "Aucun"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/RoleAdmin.php:52
+msgid "Admin role"
+msgstr "Rôle Admin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/RoleCheckbox.php:52
+msgid "Roles"
+msgstr "Rôles"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Submit.php:38
+msgid "Submit"
+msgstr "Soumettre"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Tag.php:116
+msgid "Tags"
+msgstr "Tags"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Theme.php:48
+msgid "Theme"
+msgstr "Thème"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Timezone.php:78
+msgid "Timezone"
+msgstr "Fuseau Horaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:59
+msgid "CAPTCHA image"
+msgstr "Image CAPTCHA"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
+msgid "Click to refresh CAPTCHA"
+msgstr "Cliquez pour rafraîchir le CAPTCHA"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:91
+msgid "Day"
+msgstr "Jour"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:92
+msgid "Year"
+msgstr "Année"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:93
+msgid "Month"
+msgstr "Mois"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Mvc/Controller/ActionController.php:98
+msgid "The requested action was not found."
+msgstr "L'action demandée n'a pas été trouvée."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
+msgid "Login"
+msgstr "Compte"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
+#, php-format
+msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
+msgstr ""
+"Merci de vous <a href=\"%s\" title=\"\">connecter</a> et de revenir ensuite."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/User/Model/AbstractModel.php:239
+msgid "Guest"
+msgstr "Invité"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/View/Helper/Tag.php:92
+msgid "Tags: "
+msgstr "Tags: "
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\www/setup/src/Controller/Admin.php:249
+msgid "Manager"
+msgstr "Manager"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\www/setup/src/Controller/Admin.php:256
+msgid "Moderator"
+msgstr "Modérateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\www/setup/src/Controller/Admin.php:263
+msgid "Editor"
+msgstr "Editeur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\www/setup/src/Controller/Admin.php:270
+msgid "Staff"
+msgstr "Equipe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\www/setup/src/Controller/Admin.php:277
+msgid "Member"
+msgstr "Membre"

@@ -1,0 +1,558 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-comment\n"
+"POT-Creation-Date: 2014-05-19 21:30+0100\n"
+"PO-Revision-Date: 2014-05-19 23:09+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\comment\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/event.php:21
+msgid "Post submitted"
+msgstr "Message envoyé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/event.php:24
+msgid "Post published"
+msgstr "Message publié"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/event.php:27
+msgid "Post updated"
+msgstr "Message mis à jour"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/event.php:30
+msgid "Post enabled"
+msgstr "Message activé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/event.php:33
+msgid "Post disabled"
+msgstr "Message désactivé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/config/event.php:36
+msgid "Post deleted"
+msgstr "Message supprimé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:528
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:398
+msgid "Guest"
+msgstr "Invité"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:570
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:518
+msgid "Edit"
+msgstr "Editer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:571
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:627
+msgid "Enable"
+msgstr "Activer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:572
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:525
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-lead.phtml:36
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-root.phtml:65
+msgid "Delete"
+msgstr "Supprimer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:573
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:532
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-reply.phtml:80
+msgid "Reply"
+msgstr "Répondre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Api.php:624
+msgid "Disable"
+msgstr "Désactiver"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Article.php:40
+#, php-format
+msgid "Demo article %d"
+msgstr "Article Demo %d"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Custom.php:41
+#, php-format
+msgid "Custom article %d"
+msgstr "Article personnalisé %d"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Api/Search.php:66
+#, php-format
+msgid "Comment by %s"
+msgstr "Commentaire de %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:301
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:139
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:192
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:331
+msgid "Invalid post parameter."
+msgstr "Paramètre de message non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:305
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:403
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:462
+msgid "Operation succeeded."
+msgstr "L'opération a été succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Admin/PostController.php:305
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:403
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:462
+msgid "Operation failed"
+msgstr "Echec de l'opération"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/CustomController.php:36
+#, php-format
+msgid "Demo custom article #%d"
+msgstr "Article personnalisé Demo n°%d"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/DemoController.php:36
+#, php-format
+msgid "Demo article #%d"
+msgstr "Article Demo n°%d"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:23
+#, php-format
+msgid "Comment portal for %s"
+msgstr "Portail commentaire pour %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:35
+msgid "Demo article with comments"
+msgstr "Article demo avec commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:49
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:71
+msgid "All active comment posts"
+msgstr "Tous les commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:63
+msgid "Commented articles"
+msgstr "Articles commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:70
+msgid "Comment posts for module \"Comment\""
+msgstr "Commentaires pour le module \"Comment\""
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:76
+msgid "Comment posts for module \"Comment\" with type \"Article\""
+msgstr "Commentaires pour le module \"Comment\" avec le type \"Article\""
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:84
+#, php-format
+msgid "Comment posts by %s"
+msgstr "Commentaires de %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:94
+msgid "Comment posts by me"
+msgstr "Mes commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/IndexController.php:100
+msgid "Commented articles by me"
+msgstr "Mes articles commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:67
+msgid "All comment posts"
+msgstr "Tous les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:69
+msgid "All inactive comment posts"
+msgstr "Tous les commentaires inactifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:128
+msgid "Comment posts of article"
+msgstr "Commentaires sur l'article"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:193
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:200
+msgid "My comments"
+msgstr "Mes commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:208
+msgid "My active comments"
+msgstr "Mes commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:217
+msgid "My pending comments"
+msgstr "Mes commentaires en attente"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:233
+msgid "Comment posts of user"
+msgstr "Commentaires de l'utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:304
+msgid "All"
+msgstr "Tout"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:329
+msgid "Comment posts of module"
+msgstr "Commentaires du module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:445
+msgid "All commented articles"
+msgstr "Tous les articles commentés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:447
+msgid "Articles with comments"
+msgstr "Articles avec commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:461
+msgid "My articles"
+msgstr "Mes articles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:469
+msgid "My articles with active comments"
+msgstr "Mes articles avec commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:550
+msgid "Received comments"
+msgstr "Commentaires reçus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:557
+msgid "All Posts"
+msgstr "Tous les messages"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:565
+msgid "Active Posts"
+msgstr "Commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:574
+msgid "Inactive Posts"
+msgstr "Commentaires inactifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/ListController.php:590
+msgid "Comment posts on user"
+msgstr "Commentaire de l'utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:50
+msgid "Permanent link"
+msgstr "Lien permanent"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:109
+msgid "Comment post not found."
+msgstr "Commentaire non trouvé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:112
+msgid "Comment post"
+msgstr "Commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:145
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:196
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:290
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:336
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:395
+msgid "Operation denied."
+msgstr "Opération interdite."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:157
+msgid "Comment post edit"
+msgstr "Editer un commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:209
+msgid "Comment post reply"
+msgstr "Réponse au commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:293
+msgid "Invalid submission."
+msgstr "Soumission non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:310
+msgid "Root not found."
+msgstr "Racine non trouvée."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:313
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/_post-form.phtml:3
+msgid "Comment is disabled."
+msgstr "Le commentaire est désactivé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:345
+msgid "Comment post saved successfully."
+msgstr "Le commentaire a été enregistré avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:348
+msgid "Comment post not saved."
+msgstr "Le commentaire n'a pas été enregistré."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:353
+msgid "Invalid data, please check and re-submit."
+msgstr "Données non valides, merci de vérifier et de re-soumettre."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:453
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:508
+msgid "Invalid parameters."
+msgstr "Paramètres non valides."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:458
+msgid "Forbidden."
+msgstr "Interdit."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:514
+msgid "Login"
+msgstr "Connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Controller/Front/PostController.php:539
+msgid "Enable/Disable"
+msgstr "Activer/Désactiver"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Form/PostForm.php:82
+msgid "Comment"
+msgstr "Commenter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Form/PostForm.php:88
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/_post-form.phtml:24
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/_post-form.phtml:28
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-edit.phtml:46
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-reply.phtml:78
+msgid "Type your content"
+msgstr "Saisir votre texte"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/src/Form/PostForm.php:98
+msgid "Submit"
+msgstr "Valider"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-list.phtml:79
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-module.phtml:85
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/admin/comment-user.phtml:86
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-list.phtml:50
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-module.phtml:53
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-post.phtml:61
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-received.phtml:64
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-root.phtml:64
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-user-received.phtml:51
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-user.phtml:46
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:55
+msgid "Are sure want to delete this comment?"
+msgstr "Etes-vous sûr de vouloir supprimer ce commentaire?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/_post-form.phtml:37
+msgid "Post comment"
+msgstr "Commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/_post-form.phtml:43
+#, php-format
+msgid "Please <a href=\"%s\">login</a> to leave comments."
+msgstr ""
+"Merci de vous <a href=\"%s\">connecter</a> pour laisser des commentaires."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-article.phtml:34
+#, php-format
+msgid "%s comments"
+msgstr "%s commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-article.phtml:49
+msgid "Last commented: "
+msgstr "Dernier commenté :"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-article.phtml:54
+#, php-format
+msgid " at %s"
+msgstr "à %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-article.phtml:69
+msgid "No data available yet."
+msgstr "Aucune donnée disponible actuellement."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-edit.phtml:21
+msgid "Comment edit"
+msgstr "Edition du commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-edit.phtml:39
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-list.phtml:37
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-post.phtml:44
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-reply.phtml:68
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-user.phtml:32
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:42
+msgid "Commented on "
+msgstr "Commenté sur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-edit.phtml:49
+msgid "Cancel"
+msgstr "Annuler"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-edit.phtml:50
+msgid "Save"
+msgstr "Enregistrer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-edit.phtml:63
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-reply.phtml:92
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:66
+msgid "No content."
+msgstr "Pas de contenu."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-lead.phtml:3
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-root.phtml:34
+msgid "All comments "
+msgstr "Tous les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-lead.phtml:35
+msgid "Are you sure to delete this comment?"
+msgstr "Etes-vous sûrs de vouloir supprimer ce commentaire?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-lead.phtml:45
+msgid "View all comments"
+msgstr "Voir tous les commentaires"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-lead.phtml:49
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-root.phtml:75
+msgid "No one has commented yet."
+msgstr "Personne n'a encore commenté actuellement."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-list.phtml:19
+msgid "All active comments "
+msgstr "Tous les commentaires actifs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-list.phtml:68
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-module.phtml:71
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-post.phtml:79
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-received.phtml:82
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-user-received.phtml:69
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-user.phtml:64
+msgid "No comments available yet."
+msgstr "Aucun commentaire disponible actuellement."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-module.phtml:19
+#, php-format
+msgid "Comments for %s module"
+msgstr "Commentaires pour le module %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-module.phtml:39
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-received.phtml:47
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-user-received.phtml:37
+msgid "commented on "
+msgstr "Commenté le"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-post.phtml:50
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-my-received.phtml:53
+msgid "Pending"
+msgstr "En attente"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-reply.phtml:50
+#, php-format
+msgid "Comment reply to %s"
+msgstr "Commentaire en réponse à %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-root.phtml:20
+msgid "Item not found."
+msgstr "Elément non trouvé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:17
+msgid "Comment detail"
+msgstr "Détail du commentaire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:33
+msgid "In reply to:"
+msgstr "En réponse à : "
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:34
+msgid "Click to open"
+msgstr "Cliquer pour ouvrir"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\comment/template/front/comment-view.phtml:35
+#, php-format
+msgid "Comment #%d"
+msgstr "Commentaire n°%d"
+
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Comment categories"
+#~ msgstr "All Categories"

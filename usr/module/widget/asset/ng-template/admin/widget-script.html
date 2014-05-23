@@ -1,0 +1,13 @@
+<div class="row">
+	<div ng-repeat="item in available" class="col-sm-6 col-md-3">
+		<div class="panel panel-default">
+            <div class="panel-heading">{{item.title}}</div>
+            <div class="panel-body">
+                <p class="widget-desc">{{item.description}}</p>
+                <a ng-if="item.installUrl" class="btn btn-link" ng-href="{{item.installUrl}}">
+                    {{'INSTALL' | translate}}
+                </a>
+            </div>
+		</div>
+	</div>
+</div>

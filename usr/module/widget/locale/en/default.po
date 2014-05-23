@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-03 14:21+0800\n"
-"PO-Revision-Date: 2014-03-03 14:21+0800\n"
+"POT-Creation-Date: 2014-05-21 12:58+0800\n"
+"PO-Revision-Date: 2014-05-21 12:58+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -13,50 +13,18 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\widget\n"
 
-#: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:42
-#: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:55
-#: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:41
-msgid "Title"
+#: C:\code\pi\usr\module\widget/src/Controller/Front/IndexController.php:33
+msgid "Block title"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:53
-#: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:66
-#: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:52
-msgid "Unique name"
+#: C:\code\pi\usr\module\widget/src/Controller/Front/IndexController.php:34
+msgid "Block content placeholder."
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:64
-#: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:77
-#: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:63
-msgid "Description"
+#: C:\code\pi\usr\module\widget/template/front/block-preview.phtml:6
+msgid "Block Preview"
 msgstr ""
 
-#: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:74
-msgid "Template"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:109
-#: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:135
-#: C:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:99
-msgid "Submit"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:102
-msgid "Content"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:20
-msgid "Bootstrap slide"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:21
-msgid "jCarousel riding Carousel"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:22
-msgid "Parallax Content Slider"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:43
-msgid "Custom: "
+#: C:\code\pi\usr\module\widget/template/front/block-preview.phtml:9
+msgid "Here is placeholder for module generated contents."
 msgstr ""

@@ -104,12 +104,12 @@ class EditController extends ActionController
             $status = Pi::user()->set($uid, 'avatar', '');
             $result = array(
                 'status'  => 0,
-                'message' => _a('Replace user avater failed')
+                'message' => _a('Replace user avatar failed')
             );
             if ($status) {
                 $result = array(
                     'status'  => 1,
-                    'message' => _a('Replace user avater successfully')
+                    'message' => _a('Replace user avatar successfully')
                 );
                 Pi::service('event')->trigger('user_update', $uid);
             }

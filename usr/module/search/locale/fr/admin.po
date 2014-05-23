@@ -1,0 +1,159 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-search\n"
+"POT-Creation-Date: 2014-05-18 22:36+0100\n"
+"PO-Revision-Date: 2014-05-19 15:49+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\search\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/block.php:18
+msgid "Target"
+msgstr "Target"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/block.php:23
+msgid "_self"
+msgstr "self"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/block.php:24
+msgid "_blank"
+msgstr "blank"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:12
+#, fuzzy
+msgid "Leading search result limit"
+msgstr "Limite de recherche sur la page de Résultats"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:13
+#, fuzzy
+msgid "Number of found items on leading page."
+msgstr "Nombre d'éléments trouvés affichés sur la page de résultats"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:19
+#, fuzzy
+msgid "List search result limit"
+msgstr "Limite pour la liste des résultats de recherche"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:20
+#, fuzzy
+msgid "Number of found items on list page."
+msgstr "Nombre d'éléments trouvés affichés sur la page de liste"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:26
+msgid "Minimum query"
+msgstr "Requête minimale"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:27
+msgid "Minimum length for query term."
+msgstr "Longueur minimum du terme recherché"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:33
+msgid "Search interval limit"
+msgstr "Intervalle limite de Recherche"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:34
+msgid "Limit for search time interval."
+msgstr "Intervalle entre 2 recherches"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:40
+msgid "Anonymous interval limit"
+msgstr "Intervalle entre 2 recherches pour les Anonymes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:41
+msgid "Limit for anonymous search time interval."
+msgstr "Intervalle de temps limite pour la recherche des Anonymes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:47
+msgid "Log search terms"
+msgstr "Enregistrer les termes recherchés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:54
+msgid "Search result cache"
+msgstr "Cache des Résultats de Recherche"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:60
+msgid "Hot search"
+msgstr "Recherche Fréquente"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:61
+msgid "Hot words for global auto-complete, separated by comma `,`."
+msgstr ""
+"Mots fréquents pour l'auto-complétion globale, séparés par une virgule ','"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:67
+msgid "Google local host"
+msgstr "Google local host"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:68
+msgid "Specify a google local host if it is not https://www.google.com"
+msgstr "Indiquer un google local host si ce n'est pas httts://www.google.com"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:73
+msgid "Google custom search code"
+msgstr "Code Google Custom Search"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:74
+msgid "Google CSE provided at https://www.google.com/cse/"
+msgstr "Google CSE fourni à https://www.google.com/cse/"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:79
+msgid "Baidu custom search code"
+msgstr "Code Baidu Custom Search"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:80
+msgid "Custom search provided by Baidu at http://zhanzhang.baidu.com/search/"
+msgstr "Custom Search fourni par Baidu à http://zhanzhang.baidu.com/search/"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:84
+msgid "Modules to search"
+msgstr "Module de recherche"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/config.php:85
+msgid "Only specified modules are allowed to search, separated by \",\"."
+msgstr ""
+"Seuls les modules spécifiés sont autorisés à rechercher, séparés par \",\"."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/module.php:12
+msgid "Search"
+msgstr "Rechercher"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\search/config/module.php:13
+msgid "Search service applications."
+msgstr "Module Moteur de Recherche"
