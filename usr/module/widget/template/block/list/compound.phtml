@@ -4,7 +4,6 @@ $items      = (array) $block['items'];
 $activeItem = array_shift($items);
 $width      = empty($options['width']) ? 120 : $options['width'];
 $height     = empty($options['height']) ? 90 : $options['height'];
-$rows       = empty($options['max_rows']) ? 2 : $options['max_rows'];
 $target     = empty($options['target']) ? '_blank' : $options['target'];
 ?>
 <div class="widget-list widget-list-compound">
@@ -43,8 +42,7 @@ $target     = empty($options['target']) ? '_blank' : $options['target'];
                     );
                 }
                 echo sprintf(
-                    '<div class="pi-ellipsis pi-ellipsis-%s">%s%s</div>',
-                    $rows,
+                    '<div class="pi-ellipsis">%s%s</div>',
                     $activeItem['desc'],
                     $htmlDetail
                 );
