@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-05-22 10:56+0100\n"
-"PO-Revision-Date: 2014-05-22 10:57+0100\n"
+"POT-Creation-Date: 2014-05-22 22:16+0100\n"
+"PO-Revision-Date: 2014-05-22 22:18+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -107,15 +107,13 @@ msgstr "Utilisateur connecté"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:95
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:63
-#, fuzzy
 msgid "Follower"
-msgstr "Follower"
+msgstr "Abonné"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:96
-#, fuzzy
 msgid "Followed"
-msgstr "Followed"
+msgstr "Suivi"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:97
@@ -135,9 +133,8 @@ msgstr "Membre"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:67
-#, fuzzy
 msgid "Following"
-msgstr "Following"
+msgstr "Suis"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Api/TimelineController.php:46

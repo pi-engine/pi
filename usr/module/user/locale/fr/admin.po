@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-05-22 14:47+0100\n"
-"PO-Revision-Date: 2014-05-22 15:50+0100\n"
+"POT-Creation-Date: 2014-05-22 22:16+0100\n"
+"PO-Revision-Date: 2014-05-22 22:16+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -687,12 +687,12 @@ msgstr "L'édition des informations utilisateurs a réussi"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:107
-msgid "Replace user avater failed"
+msgid "Replace user avatar failed"
 msgstr "Le changement d'avatar utilisateur a échoué"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:112
-msgid "Replace user avater successfully"
+msgid "Replace user avatar successfully"
 msgstr "Le changement d'avatar utilisateur a réussi"
 
 #: C:\Users\LAPTOP
