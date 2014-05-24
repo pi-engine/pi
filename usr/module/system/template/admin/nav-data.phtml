@@ -4,6 +4,9 @@
     $this->jQuery('ui/jquery-ui.custom.min.js');
     $this->backbone();
     $this->js($this->assetModule('script/system-msg.js'));
+    foreach ($pages as &$page) {
+        $page['class_name'] = $page['class'];
+    }
 ?>
 <div class="page-header">
     <h2><?php echo _escape($title); ?></h2>
@@ -77,6 +80,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-md-2 control-label"><?php echo _a('Class'); ?></label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" name="class" value="<%= class_name %>">
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-md-offset-2 col-md-6">
                     <label class="checkbox">
                         <input type="checkbox" name="visible" <% if (visible) { print('checked'); } %>><?php echo _a('To display in menu.'); ?>
@@ -135,6 +144,8 @@
             pid: 0,
             label: "",
             resource: "",
+            class: "",
+            class_name: "",
             uri: "",
             target: "",
             route: "",
@@ -208,6 +219,8 @@
                     'label': val('label'),
                     'visible': this.$('[name=visible]').attr('checked') ? 1 : 0,
                     'resource': val('resource'),
+                    'class': val('class'),
+                    'class_name': val('class'),
                     'target': val('target')
                 });
             } else {
