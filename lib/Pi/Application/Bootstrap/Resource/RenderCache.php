@@ -150,6 +150,7 @@ class RenderCache extends AbstractResource
                 $response = $e->getResponse()->setContent(
                     $renderCache->cachedContent()
                 );
+                $e->setResult($response);
                 return $response;
             }
         } else {
