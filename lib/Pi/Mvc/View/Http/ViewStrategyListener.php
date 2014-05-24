@@ -98,7 +98,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
             -89
         );
 
-        // Render head metas for theme
+        // Render head meta for theme
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_RENDER,
             array($this, 'renderThemeAssemble'),

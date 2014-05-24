@@ -8,7 +8,7 @@ March 20th, 2014
 * Added jQuery `Magnific Popup` extension
 * Update Font Awesome lib to 4.1.0
 
-* Modified language fields:
+* Modified language files:
   - module/system/locale/en/admin.po, block.po, default.po
   - module/comment/locale/en/admin.po, default.po
   - module/user/locale/en/admin.po, default.po
