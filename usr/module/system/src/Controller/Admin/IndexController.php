@@ -28,24 +28,27 @@ class IndexController extends ActionController
     {
         // Security check for setup folder
         if (is_dir(Pi::path('setup'))) {
-            $this->flashMessenger(_a('Security: `setup` folder is not removed!'), 'error');
+            $pattern = _a('Security: `setup` folder is not removed!');
+            $this->flashMessenger($pattern, 'warning');
         }
 
         // Security check for boot file
         $fileList = array('boot.php', '.htaccess');
-		foreach ($fileList as $file) {
+        $pattern = _a('Security: `%s` is writable!');
+        foreach ($fileList as $file) {
             $path = Pi::path($file);
             if (file_exists($path) && is_writable($path)) {
-                $this->flashMessenger(sprintf(_a('Security: `%s` is writable!'), $file), 'error');
+                $this->flashMessenger(sprintf($pattern, $file), 'error');
             }
         }
 
         // Write permission check
         $folderList = array('var', 'upload', 'asset', 'config', 'cache');
-        foreach ($folderList as $folder) {
-            $path = Pi::path($folder);
+        $pattern = _a('Permission: `%s` is not available for write!');
+        foreach ($folderList as $fodler) {
+            $path = Pi::path($fodler);
             if (!is_dir($path) || !is_writable($path)) {
-                $this->flashMessenger(sprintf(_a('Permission: `%s` is not available for write!'), $folder), 'error');
+                $this->flashMessenger(sprintf($pattern, $fodler), 'error');
             }
         }
 
