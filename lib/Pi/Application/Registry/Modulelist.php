@@ -16,7 +16,7 @@ use Pi\Acl\Acl as AclManager;
 /**
  * Module list of different types
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Modulelist extends AbstractRegistry
 {

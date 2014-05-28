@@ -279,10 +279,10 @@ CREATE TABLE `{core.route}` (
   `module`          varchar(64)     NOT NULL    default '',
   `data`            text,
   `active`          tinyint(1)      unsigned NOT NULL default '1',
-  `custom`          tinyint(1)      unsigned NOT NULL default '0',
+# `custom`          tinyint(1)      unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `name` (`module`, `name`)
 );
 
 # ------------------------------------------------------

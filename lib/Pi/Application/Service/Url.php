@@ -228,7 +228,11 @@ class Url extends AbstractService
         $uri = new HttpUri($url);
         $request = new Request();
         $request->setUri($uri);
-        $result = $this->getRouter()->match($request, $route);
+        if ($route) {
+            $result = $this->getRouter()->parse($request, $route);
+        } else {
+            $result = $this->getRouter()->match($request);
+        }
 
         return $result;
     }

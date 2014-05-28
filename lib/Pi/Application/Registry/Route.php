@@ -15,7 +15,7 @@ use Pi;
 /**
  * Route list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Route extends AbstractRegistry
 {
@@ -24,8 +24,9 @@ class Route extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $model = Pi::model('route');
-        $select = $model->select()->columns(array('name', 'data'))
+        $model  = Pi::model('route');
+        $select = $model->select()
+            ->columns(array('name', 'module', 'data'))
             ->order('priority ASC, id ASC');
         if (empty($options['exclude'])) {
             $select->where
@@ -45,8 +46,23 @@ class Route extends AbstractRegistry
 
         $configs = array();
         foreach ($rowset as $row) {
-            $configs[$row->name] = $row->data;
+            $spec = $row->data;
+            if (!isset($spec['options']['modules'])) {
+                $spec['options']['modules'] = array();
+            }
+            $spec['options']['modules'][] = $row->module;
+            $configs[$row->name] = $spec;
         }
+        /*
+        array_walk($configs, function (&$item) {
+            if (count($item['options']['modules']) < 2) {
+                unset($item['options']['modules']);
+            }
+            if (empty($item['options'])) {
+                unset($item['options']);
+            }
+        });
+        */
 
         return $configs;
     }

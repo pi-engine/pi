@@ -15,14 +15,14 @@ use Pi;
 /**
  * Module search callback list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Search extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
      * @param   array   $options    Potential values for type:
-     *      active, inactive, all
+     *          active, inactive, all
      * @return  array   Keys: dirname => callback, active
      */
     protected function loadDynamic($options = array())

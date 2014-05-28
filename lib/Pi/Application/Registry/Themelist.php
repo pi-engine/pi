@@ -15,7 +15,7 @@ use Pi;
 /**
  * Theme list with full meta
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Themelist extends AbstractRegistry
 {

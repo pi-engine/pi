@@ -15,7 +15,7 @@ use Pi;
 /**
  * Module list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Module extends AbstractRegistry
 {

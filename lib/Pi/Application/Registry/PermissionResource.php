@@ -15,7 +15,7 @@ use Pi;
 /**
  * Permission resource list
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class PermissionResource extends AbstractRegistry
 {

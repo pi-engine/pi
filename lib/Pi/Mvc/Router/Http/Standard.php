@@ -113,6 +113,7 @@ class Standard implements RouteInterface
      * Set options
      *
      * @param array $options
+     *
      * @return $this
      */
     public function setOptions(array $options = array())
@@ -120,6 +121,24 @@ class Standard implements RouteInterface
         $this->options = array_merge($this->options, $options);
 
         return $this;
+    }
+
+    /**
+     * Get options
+     *
+     * @param string $key
+     *
+     * @return array|mixed
+     */
+    public function getOptions($key = null)
+    {
+        if ($key) {
+            $result = isset($this->options[$key]) ? $this->options[$key] : null;
+        } else {
+            $result = $this->options;
+        }
+
+        return $result;
     }
 
     /**
@@ -275,11 +294,8 @@ class Standard implements RouteInterface
             array_shift($params);
         }
 
-        //vd($matches);
         $matches = array_merge($matches, $this->parseParams($params));
-        //vd($matches);
         $matches = array_merge($this->defaults, $matches);
-        //vd($matches);
 
         return $matches;
     }
@@ -436,5 +452,4 @@ class Standard implements RouteInterface
     {
         return $value ? rawurldecode($value) : $value;
     }
-
 }

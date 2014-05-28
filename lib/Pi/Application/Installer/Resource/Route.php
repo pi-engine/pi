@@ -88,13 +88,13 @@ class Route extends AbstractResource
                 'module'    => $module,
                 'priority'  => 0,
             );
-            if (isset($data['priority'])) {
-                $route['priority'] = $data['priority'];
-                unset($data['priority']);
-            }
             if (isset($data['section'])) {
                 $route['section'] = $data['section'];
                 unset($data['section']);
+            }
+            if (isset($data['priority'])) {
+                $route['priority'] = $data['priority'];
+                unset($data['priority']);
             }
             if (isset($data['route'])) {
                 $data['prefix'] = $data['route'];
@@ -104,39 +104,12 @@ class Route extends AbstractResource
                 $data['prefix'] = $module;
             }
             $data['defaults']['module'] = $module;
+
             $route['data'] = $data;
             $routes[$name] = $route;
         }
 
         return $routes;
-    }
-
-    /**
-     * Canonize route specifications
-     *
-     * @param array $data
-     * @return array
-     */
-    protected function ____canonizeRoute(array $data)
-    {
-        $module = $this->event->getParam('module');
-
-        $route = array(
-            'section'   => 'front',
-            'module'    => $module,
-            'priority'  => 0,
-        );
-        if (isset($data['priority'])) {
-            $route['priority'] = $data['priority'];
-            unset($data['priority']);
-        }
-        if (isset($data['section'])) {
-            $route['section'] = $data['section'];
-            unset($data['section']);
-        }
-        $route['data'] = $data;
-
-        return $route;
     }
 
     /**
