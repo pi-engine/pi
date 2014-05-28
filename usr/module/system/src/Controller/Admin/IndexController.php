@@ -29,7 +29,7 @@ class IndexController extends ActionController
         // Security check for setup folder
         if (is_dir(Pi::path('setup'))) {
             $pattern = _a('Security: `setup` folder is not removed!');
-            $this->flashMessenger($pattern, 'warning');
+            $this->flashMessenger($pattern, 'error');
         }
 
         // Security check for boot file
