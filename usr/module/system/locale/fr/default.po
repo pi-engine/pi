@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
 "POT-Creation-Date: 2014-05-20 18:08+0100\n"
-"PO-Revision-Date: 2014-05-20 18:08+0100\n"
+"PO-Revision-Date: 2014-05-22 14:07+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -696,7 +696,7 @@ msgstr ""
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:9
 #, php-format
 msgid "You have logged in successfully, please go to %s."
-msgstr "Vous vous êtes connectés avec succès, merci d'aller %s."
+msgstr "Vous vous êtes connectés avec succès, merci d'aller à %s."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-process.phtml:1
