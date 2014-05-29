@@ -51,5 +51,17 @@ array_walk($groups, function (&$group, $gid) {
            class="list-group-item<?php if($controller == 'privacy') { echo ' active'; } ?>">
             <?php _e('Privacy'); ?>
         </a>
+        <?php 
+            $module       = Pi::service('module')->current();
+            $enableInvite = Pi::config('enable_invite', $module);
+            if ($enableInvite) {
+        ?>
+        <a href="<?php echo $this->url('', array('controller' => 'invite')); ?>"
+           class="list-group-item<?php if($controller == 'invite') { echo ' active'; } ?>">
+            <?php _e('Invite Friends'); ?>
+        </a>
+        <?php
+            }
+        ?>
     </div>
 </div>

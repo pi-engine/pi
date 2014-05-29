@@ -33,8 +33,12 @@ $category = array(
         'title'     => _t('Account'),
     ),
     array(
-        'name'  => 'avatar',
-        'title' => _t('Avatar'),
+        'name'      => 'avatar',
+        'title'     => _t('Avatar'),
+    ),
+    array(
+        'name'      => 'invitation',
+        'title'     => _t('Invitation'),
     ),
 );
 
@@ -342,6 +346,39 @@ $config = array(
         'description'   => _t('For temporary storage of avatar'),
         'value'         => 'upload/user/tmp',
         'category'      => 'avatar',
+    ),
+    
+    // Invitation
+    'enable_invite'     => array(
+        'category'      => 'invitation',
+        'title'         => _t('Enable Invitation'),
+        'description'   => _t('Whether allows to use invitation feature.'),
+        'edit'          => 'checkbox',
+        'value'         => 1,
+        'filter'        => 'int',
+    ),
+    'invite_mode'       => array(
+        'category'      => 'invitation',
+        'title'         => __('Invitation Mode'),
+        'description'   => __('Invitation modes allow user to use.'),
+        'edit'          => array(
+            'type'         => 'Module\User\Form\Element\InviteMode',
+        ),
+        'filter'        => 'array',
+    ),
+    'invite_end_time'   => array(
+        'category'      => 'invitation',
+        'title'         => _t('Invitation Activity End Time'),
+        'description'   => _t('When to end invitation activity, the inviter will still be saved, but the record will be deactivate.'),
+        'value'         => 0,
+        'filter'        => 'string',
+    ),
+    'site_appkey'       => array(
+        'category'      => 'invitation',
+        'title'         => _t('Site Appkey'),
+        'description'   => _t('Appkey for generating invitation URL, site appkey in engine.php will used if it is not set.'),
+        'value'         => '',
+        'filter'        => 'string',
     ),
 );
 
