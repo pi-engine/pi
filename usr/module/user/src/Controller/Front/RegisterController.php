@@ -36,9 +36,10 @@ class RegisterController extends ActionController
 
         // Get register form
         $form = Pi::api('form', 'user')->loadForm('register');
-        $form->setAttributes(array(
-            'action' => $this->url('', array('action' => 'index')),
-        ));
+        //$form->setAttributes(array(
+        //    'action' => $this->url('', array('action' => 'index')),
+        //));
+        $form->setAttribute('action', Pi::service('url')->getRequestUri());
 
         // Handling register data
         if ($this->request->isPost()) {
@@ -51,12 +52,17 @@ class RegisterController extends ActionController
                     $form = Pi::api('form', 'user')->loadForm('register-complete');
                     unset($values['submit']);
                     $form->setData($values);
-                    $form->setAttributes(array(
-                        'action' => $this->url('', array(
-                                'action'     => 'complete',
-                            )
-                        ),
-                    ));
+                    $redirect = urldecode(_get('redirect'));
+                    $params   = Pi::service('url')->getRouteMatch()->getParams();
+                    $params['action'] = 'complete';
+                    $form->setAttribute(
+                        'action',
+                        $this->url(
+                            '', 
+                            $params, 
+                            array('query' => array('redirect' => $redirect))
+                        )
+                    );
 
                     $this->view()->assign(array(
                         'form'     => $form,
@@ -84,9 +90,6 @@ class RegisterController extends ActionController
             $form->get('redirect')->setValue(rawurlencode($redirect));
         }
 
-        // load admin language file
-        Pi::service('i18n')->load(array('module/user', 'admin'));
-
         $this->view()->assign(array(
             'form'          => $form,
             'activation'    => $this->config('register_activation'),
@@ -111,14 +114,20 @@ class RegisterController extends ActionController
         if (!$this->checkAccess()) {
             return;
         }
+        
+        // Fetch params post by get method
+        $redirect = urldecode(_get('redirect'));
+        $params   = Pi::service('url')->getRouteMatch()->getParams();
 
         if (!$this->config('require_register_complete') ||
             !$this->request->isPost()
         ) {
-            $this->redirect('', array(
-                'controller'    => 'register',
-                'action'        => 'index'
-            ));
+            $params['action'] = 'index';
+            $this->redirect(
+                '',
+                $params,
+                array('query' => array('redirect' => $redirect))
+            );
         }
 
         $result = array(
@@ -126,9 +135,15 @@ class RegisterController extends ActionController
         );
         $post = $this->request->getPost();
         $form = Pi::api('form', 'user')->loadForm('register-complete', true);
-        $form->setAttributes(array(
-            'action'    => $this->url('', array('action' => 'complete')),
-        ));
+        $params['action'] = 'complete';
+        $form->setAttribute(
+            'action',
+            $this->url(
+                '', 
+                $params, 
+                array('query' => array('redirect' => $redirect))
+            )
+        );
         $form->setData($post);
         if ($form->isValid()) {
             $values = $form->getData();
@@ -228,6 +243,19 @@ class RegisterController extends ActionController
         
         // Get redirect url
         $redirect = Pi::user()->data()->get($uid, 'register_redirect') ?: '';
+        
+        // Active inviter data
+        if ($this->config('enable_invite')) {
+            $endTime = $this->config('invite_end_time') 
+                ? strtotime($this->config('invite_end_time')) : time() + 3600;
+            if ($endTime >= time()) {
+                $row = $this->getModel('invite')->find($uid, 'uid');
+                if ($row) {
+                    $row->active = 1;
+                    $row->save();
+                }
+            }
+        }
         
         $result = array(
             'status'    => 1,
@@ -457,6 +485,36 @@ class RegisterController extends ActionController
 
         // Set user role
         Pi::api('user', 'user')->setRole($uid, 'member');
+        
+        // Set inviter
+        $iKey = $this->params('ikey', '');
+        if ($this->config('enable_invite') && $iKey) {
+            $mode = $this->params('mode', 'direct-link');
+            $name = ucwords(preg_replace('/[-_]/', ' ', $mode));
+            $name = str_replace(' ', '', $name);
+            $class = sprintf('Custom\User\Invite\%s', $name);
+            if (!class_exists($class)) {
+                $class = sprintf('Module\User\Invite\%s', $name);
+                if (!class_exists($class)) {
+                    $class = 'Module\User\Invite\DirectLink';
+                }
+            }
+            
+            $handle     = new $class;
+            $inviteInfo = $handle->resolve($iKey);
+            if (!empty($inviteInfo)) {
+                $data = array(
+                    'uid'          => $uid,
+                    'inviter'      => $inviteInfo['inviter'],
+                    'mode'         => $mode,
+                    'appkey'       => $inviteInfo['appkey'],
+                    'active'       => 0,
+                    'time_created' => time(),
+                );
+                $row = $this->getModel('invite')->createRow($data);
+                $row->save();
+            }
+        }
 
         $status = 1;
         // Process activation

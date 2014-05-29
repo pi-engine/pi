@@ -210,3 +210,19 @@ CREATE TABLE `{log}` (
   PRIMARY KEY (`id`),
   KEY (`uid`)
 );
+
+# User inviter info
+CREATE TABLE `{invite}` (
+  `id`              int(10)             unsigned NOT NULL auto_increment,
+  `uid`             int(10)             unsigned NOT NULL,
+  `inviter`         int(10)             unsigned NOT NULL,
+  `mode`            varchar(64)         NOT NULL default '',
+  `appkey`          varchar(32)         NOT NULL default '',
+  `active`          tinyint(1)          unsigned NOT NULL default '0',
+  `time_created`    int(10)             unsigned NOT NULL default '0',
+
+  PRIMARY KEY (`id`),
+  UNIQUE KEY  (`uid`),
+  KEY `user`  (`uid`, `appkey`, `active`),
+  KEY         (`mode`)
+);
