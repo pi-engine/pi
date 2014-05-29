@@ -52,16 +52,23 @@ class Updator350 extends AbstractUpdator
         $status = true;
 
         if (version_compare($version, '3.5.0', '<')) {
-
-            $table = Pi::db()->prefix('route');
-            $sql =<<<'EOT'
-ALTER TABLE %s
-DROP `custom`;
-DROP key `name`;
-ADD UNIQUE KEY `name` (`module`, `name`);
-EOT;
-            $sql = sprintf($sql, $table);
-            $status = $this->queryTable($sql);
+            $moduleList = Pi::registry('module')->read();
+            $modules = array();
+            foreach ($moduleList as $module => $data) {
+                if ($module == $data['directory']) {
+                    $modules[] = $module;
+                }
+            }
+            // trim module name from non-cloned module route names
+            if ($modules) {
+                $update = array(
+                    'name' => Pi::db()->expression("SUBSTR(name, LOCATE('-', name) + 1)"),
+                );
+                $where = array(
+                    'module'    => $modules,
+                );
+                Pi::model('route')->update($update, $where);
+            }
         }
 
         return $status;

@@ -101,8 +101,7 @@ class Standard implements RouteInterface
         $paramDelimiter = '/',
         array $defaults = array()
     ) {
-        $this->prefix               = (null !== $prefix)
-            ? $prefix : $this->prefix;
+        $this->prefix               = (null !== $prefix) ? $prefix : $this->prefix;
         $this->structureDelimiter   = $structureDelimiter;
         $this->keyValueDelimiter    = $keyValueDelimiter;
         $this->paramDelimiter       = $paramDelimiter;
@@ -215,9 +214,15 @@ class Standard implements RouteInterface
         $pathLength = strlen($path);
 
         if ($this->prefix) {
+            /*
             $prefix = rtrim($this->prefix, $this->paramDelimiter)
-                    . $this->paramDelimiter;
+                . $this->paramDelimiter;
             $path = rtrim($path, $this->paramDelimiter)
+                . $this->paramDelimiter;
+            */
+            $prefix = trim($this->prefix, $this->paramDelimiter)
+                    . $this->paramDelimiter;
+            $path = trim($path, $this->paramDelimiter)
                   . $this->paramDelimiter;
             $prefixLength = strlen($prefix);
             if ($prefix != substr($path, 0, $prefixLength)) {

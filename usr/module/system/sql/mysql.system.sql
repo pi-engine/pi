@@ -7,7 +7,7 @@
 # Audit
 # >>>>
 
-# Auditting of application operations
+# Auditing of application operations
 CREATE TABLE `{core.audit}` (
   `id`              int(10)         unsigned NOT NULL auto_increment,
   `user`            int(10)         unsigned NOT NULL    default '0',
@@ -282,7 +282,7 @@ CREATE TABLE `{core.route}` (
 # `custom`          tinyint(1)      unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `name` (`module`, `name`)
+  UNIQUE KEY `name` (`name`)
 );
 
 # ------------------------------------------------------

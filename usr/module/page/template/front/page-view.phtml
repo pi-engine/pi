@@ -32,13 +32,13 @@
             <div class="panel-footer">
                 <div class="social-list text-left">
                     <ul class="list-inline">
-                        <?php if($config['social_facebook']) { ?>
+                        <?php if(!empty($config['social_facebook'])) { ?>
                         <li class="social-facebook"><?php echo $this->facebook(); ?></li>
                         <?php } ?>
-                        <?php if($config['social_twitter']) { ?>
+                        <?php if(!empty($config['social_twitter'])) { ?>
                         <li class="social-twitter"><?php echo $this->twitter(); ?></li>
                         <?php } ?>
-                        <?php if($config['social_gplus']) { ?>
+                        <?php if(!empty($config['social_gplus'])) { ?>
                         <li class="social-gplus"><?php echo $this->plusone(); ?></li>
                         <?php } ?>
                     </ul>

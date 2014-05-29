@@ -24,6 +24,8 @@ return array(
         'demo'          => 'http://demo.pialog.org/demo',
 
         'icon'          => 'fa-file-text-o',
+
+        'clonable'      => true,
     ),
     // Author information
     'author'    => array(

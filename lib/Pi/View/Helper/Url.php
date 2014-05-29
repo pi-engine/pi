@@ -11,9 +11,8 @@
 namespace Pi\View\Helper;
 
 use Pi;
-//use Zend\View\Helper\AbstractHelper;
 use Zend\Mvc\Router\RouteStackInterface;
-use Pi\Mvc\Router\RouteMatch as RouteMatchHandler;
+use Pi\Mvc\Router\RouteMatch;
 use Zend\View\Helper\Url as ZendUrl;
 
 /**
@@ -47,7 +46,7 @@ class Url extends ZendUrl
     /**
      * RouteInterface match returned by the router.
      *
-     * @var RouteMatchHandler.
+     * @var RouteMatch.
      */
     protected $routeMatch;
 
@@ -91,7 +90,7 @@ class Url extends ZendUrl
     /**
      * Get route match returned by the router.
      *
-     * @return RouteMatchHandler
+     * @return RouteMatch
      */
     public function routeMatch()
     {

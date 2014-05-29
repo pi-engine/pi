@@ -19,16 +19,15 @@ use Zend\Mvc\Router\Http\RouteMatch;
 /**
  * Tree RouteStack
  *
- * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * Note:
+ * Route names for cloned modules are indexed by a string composed of module
+ * name and route name
+ *
+ * @see     Pi\Application\Registry\Route
+ * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class TreeRouteStack extends ZendTreeRouteStack
 {
-    /**
-     * Stack containing all extra routes, potentially for assemble()
-     * @var array
-     */
-    //protected $extraRoutes = null;
-
     /**
      * Create a new simple route stack.
      *
@@ -54,6 +53,57 @@ class TreeRouteStack extends ZendTreeRouteStack
     {
         $this->routes->setExtraRouteLoader(array($this, 'loadExtraRoutes'));
         $this->routePluginManager->setSubNamespace('Http');
+    }
+
+    /**
+     * {@inheritDoc}
+     * Canonize matched route name for cloned modules
+     */
+    public function match(
+        Request $request,
+        $pathOffset = null,
+        array $options = array()
+    ) {
+        $routeMatch = parent::match($request, $pathOffset, $options);
+        if ($routeMatch) {
+            $module = $routeMatch->getParam('module');
+            $directory = Pi::service('module')->directory($module);
+            if ($directory && $module != $directory) {
+                $name = $routeMatch->getMatchedRouteName();
+                // <module>-<name> => <name>
+                $routeList = Pi::registry('RouteList')->read($directory);
+                if ($routeList && isset($routeList[$name])) {
+                    // Remove prepended module name to route name for cloned modules
+                    $name = substr($name, strlen($module) + 1);
+                    $routeMatch->setMatchedRouteName($name);
+                }
+            }
+        }
+
+        return $routeMatch;
+    }
+
+    /**
+     * {@inheritDoc}
+     * Canonize route name for cloned modules
+     */
+    public function assemble(array $params = array(), array $options = array())
+    {
+        if (!empty($options['name']) && !empty($params['module'])) {
+            $module = $params['module'];
+            $directory = Pi::service('module')->directory($module);
+            if ($module != $directory) {
+                $routeList = Pi::registry('RouteList')->read($directory);
+                $names = explode('/', $options['name'], 2);
+                if ($routeList && isset($routeList[$names[0]])) {
+                    // Prepend module name to route name for cloned modules
+                    $options['name'] = $module . '-' . $options['name'];
+                }
+               // d($params);
+            }
+        }
+
+        return parent::assemble($params, $options);
     }
 
     /**

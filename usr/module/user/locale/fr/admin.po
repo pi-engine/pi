@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-05-22 22:16+0100\n"
-"PO-Revision-Date: 2014-05-23 18:15+0100\n"
+"PO-Revision-Date: 2014-05-23 10:52+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -468,7 +468,7 @@ msgstr "Recherche avancée"
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:81
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:29
 msgid "Role"
-msgstr "Rôles"
+msgstr "Role"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:91
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:26
@@ -991,17 +991,17 @@ msgstr "Historique"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:21
 msgid "Register num"
-msgstr "Nombre d\\'inscriptions"
+msgstr "Numéro d\\'inscription"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:22
 msgid "Activated num"
-msgstr "Nombre de confirmés"
+msgstr "Numéro confirmé"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:23
 msgid "Pending num"
-msgstr "Nombre en attente"
+msgstr "Numéro en attente"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:24
@@ -1310,7 +1310,7 @@ msgstr "Rôles admin"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:16
 msgid "Front roles"
-msgstr "Rôles côté Utilisateur"
+msgstr "Rôle côté utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:17
@@ -1368,7 +1368,7 @@ msgstr "Aucun utilisateur dans ce rôle."
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:17
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:65
 msgid "Active State"
-msgstr "Statut confirmation"
+msgstr "Statut Confirmation"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:18
@@ -1459,7 +1459,7 @@ msgstr "Désactiver"
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:51
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:61
 msgid "Front role"
-msgstr "Rôle côté Utilisateur"
+msgstr "Rôle côté utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:52

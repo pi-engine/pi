@@ -13,7 +13,7 @@ namespace Pi\Application\Registry;
 use Pi;
 
 /**
- * Routes
+ * Route List
  *
  * Note:
  * Route names for cloned modules are indexed by a string composed of module
@@ -22,30 +22,19 @@ use Pi;
  * @see     Pi\Mvc\Router\Http\TreeRouteStack
  * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Route extends AbstractRegistry
+class RouteList extends AbstractRegistry
 {
     /**
      * {@inheritDoc}
      */
     protected function loadDynamic($options = array())
     {
-        $model  = Pi::model('route');
-        $select = $model->select();
-        if (empty($options['exclude'])) {
-            $select->where
-                ->equalTo('active', 1)
-                ->NEST
-                    ->equalTo('section', $options['section'])
-                    ->OR
-                    ->equalTo('section', '')
-                ->UNNEST;
-        } else {
-            $select->where(array(
-                'active'        => 1,
-                'section <> ?'  => $options['section'],
-            ));
+        $where = array('module' => $options['module']);
+        if (!empty($options['section'])) {
+            $where['section'] = $options['section'];
         }
-        $rowset = $model->selectWith($select);
+        $model  = Pi::model('route');
+        $rowset = $model->select($where);
 
         $configs = array();
         foreach ($rowset as $row) {
@@ -67,12 +56,12 @@ class Route extends AbstractRegistry
 
     /**
      * {@inheritDoc}
+     * @param string    $module
      * @param string    $section
-     * @param bool      $exclude    To exclude the specified section
      */
-    public function read($section = 'front', $exclude = false)
+    public function read($module = '', $section = '')
     {
-        $options = compact('section', 'exclude');
+        $options = compact('module', 'section');
         $data = $this->loadData($options);
 
         return $data;
@@ -80,38 +69,14 @@ class Route extends AbstractRegistry
 
     /**
      * {@inheritDoc}
+     * @param string    $module
      * @param string    $section
-     * @param bool      $exclude    To exclude the specified section
      */
-    public function create($section = 'front', $exclude = false)
+    public function create($module = '', $section = '')
     {
-        $this->clear($section);
-        $this->read($section, $exclude);
+        $this->clear($module);
+        $this->read($module);
 
         return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNamespace($meta = '')
-    {
-        if (is_string($meta)) {
-            $namespace = $meta;
-        } else {
-            $namespace = $meta['section'];
-        }
-
-        return parent::setNamespace($namespace);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function flush()
-    {
-        $this->flushBySections();
-
-        return $this;
     }
 }

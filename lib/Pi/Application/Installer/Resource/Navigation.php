@@ -122,8 +122,8 @@ class Navigation extends AbstractResource
             // Canonize module relative route
             // @deprecated
             if ('.' == $page['route'][0]) {
-                $page['route'] = $page['module'] . '-'
-                               . substr($page['route'], 1);
+                //$page['route'] = $page['module'] . '-' . substr($page['route'], 1);
+                $page['route'] = substr($page['route'], 1);
             }
             if (isset($page['params']) && !is_array($page['params'])) {
                 $page['params'] = array();

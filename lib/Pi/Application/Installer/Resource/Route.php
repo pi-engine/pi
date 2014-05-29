@@ -14,14 +14,13 @@ use Pi;
 /**
  * Route setup
  *
- * If route name is not specified, route name is generated
- * by module name and route key as: `<module>-<route-key>`
+ * Route names are prepended with module name as: `<module>-<route>`
  *
  *
  * ```
  * array(
  *  // A specified route
- *  <route-eky>   => array(
+ *  <route-key>   => array(
  *      // Optional route name
  *      'name'  => <route-name>
  *      // section: front, admin, feed, etc.
@@ -71,7 +70,8 @@ class Route extends AbstractResource
      */
     protected function canonize(array $configs)
     {
-        $module = $this->event->getParam('module');
+        $module     = $this->event->getParam('module');
+        $directory  = $this->event->getParam('directory');
 
         $routes = array();
         foreach ($configs as $key => $data) {
@@ -79,8 +79,11 @@ class Route extends AbstractResource
                 $name = $data['name'];
                 unset($data['name']);
             } else {
-                //$name = $module . '-' . $key;
                 $name = $key;
+            }
+            // Prepend module for routes of cloned modules
+            if ($module != $directory) {
+                $name = $module . '-' . $name;
             }
             $route = array(
                 'name'      => $name,
@@ -96,14 +99,14 @@ class Route extends AbstractResource
                 $route['priority'] = $data['priority'];
                 unset($data['priority']);
             }
-            if (isset($data['route'])) {
-                $data['prefix'] = $data['route'];
-                unset($data['route']);
+            if (isset($data['options']['route'])) {
+                $data['options']['prefix'] = $data['options']['route'];
+                unset($data['options']['route']);
             }
-            if (!isset($data['prefix'])) {
-                $data['prefix'] = $module;
+            if (!isset($data['options']['prefix'])) {
+                $data['options']['prefix'] = $module;
             }
-            $data['defaults']['module'] = $module;
+            $data['options']['defaults']['module'] = $module;
 
             $route['data'] = $data;
             $routes[$name] = $route;

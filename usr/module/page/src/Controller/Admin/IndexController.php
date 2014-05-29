@@ -31,7 +31,7 @@ class IndexController extends ActionController
         $menu   = array();
         foreach ($rowset as $row) {
             $page           = $row->toArray();
-            $page['url']    = $this->url($this->getModule() . '-page', $page);
+            $page['url']    = $this->url('page', $page);
             if ($page['nav_order'] && $page['active']) {
                 $menu[] = $page;
             } else {

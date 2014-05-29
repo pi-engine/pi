@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-05-23 19:48+0100\n"
-"PO-Revision-Date: 2014-05-24 18:12+0100\n"
+"POT-Creation-Date: 2014-05-20 18:07+0100\n"
+"PO-Revision-Date: 2014-05-22 14:28+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -304,7 +304,7 @@ msgstr "Longueur maximum du mot de passe pour s'inscrire"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:207
-msgid "Username blacklist"
+msgid "Username backlist"
 msgstr "Liste noire Nom utilisateur"
 
 #: C:\Users\LAPTOP
@@ -318,7 +318,7 @@ msgstr ""
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:215
-msgid "Email blacklist"
+msgid "Email backlist"
 msgstr "Liste noire email"
 
 #: C:\Users\LAPTOP
@@ -998,7 +998,7 @@ msgstr "Error reporting"
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Module/DashboardController.php:374
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
-msgstr "Tableau de bord"
+msgstr "Panneau de contrôle"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:51
@@ -1195,60 +1195,54 @@ msgid "All assets published successfully."
 msgstr "Toutes les ressources ont été publiées avec succès."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:136
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:113
 msgid "Block list"
 msgstr "Liste des blocs"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:152
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:204
-msgid "Base block is not found."
-msgstr "Le bloc d'origine n'a pas été trouvé."
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:129
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:168
+msgid "The block is not allowed to clone."
+msgstr "Le bloc ne peut être cloné."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:188
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:286
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:152
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:239
 msgid "Block data saved successfully."
 msgstr "Les données du bloc ont été enregistrées."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:195
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:159
 msgid "Block data not saved."
 msgstr "Les données du bloc n'ont pas été enregistrées."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:198
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:293
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:162
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:246
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:169
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
 msgstr "Données invalides, merci de vérifier et de re-valider."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:229
-#, php-format
-msgid "%s clone"
-msgstr "Clone - %s"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:255
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:202
 #, php-format
 msgid "Block clone from: %s"
 msgstr "Clone du bloc à partir de : %s"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:299
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:252
 msgid "Block is not found."
 msgstr "Le bloc n'a pas été trouvé."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:314
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:267
 #, php-format
 msgid "Block edit: %s"
 msgstr "Edition du bloc : %s"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:334
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:287
 msgid "Block is deleted."
 msgstr "Le bloc a été supprimé"
 
@@ -1393,26 +1387,10 @@ msgid "Cache flush failed: %s"
 msgstr "Le vidage du cache a échoué : %s"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/IndexController.php:31
-msgid "Security: `setup` folder is not removed!"
-msgstr "Sécurité : le répertoire `setup` n'a pas été supprimé !"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/IndexController.php:39
-#, php-format
-msgid "Security: `%s` is writable!"
-msgstr "Sécurité : `%s` est ouvert en écriture !"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/IndexController.php:48
-#, php-format
-msgid "Permission: `%s` is not available for write!"
-msgstr "Permission : `%s` n'est pas disponible en écriture !"
-
-#: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/LoginController.php:44
+#, fuzzy
 msgid "Not privileged."
-msgstr "Sans privilège."
+msgstr "Non recommandé."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:99
@@ -1894,6 +1872,7 @@ msgstr "Le thème \"%s\" a été déinstallé."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Module/DashboardController.php:96
+#, fuzzy
 msgid "No permitted operation available."
 msgstr "Aucune opération autorisée disponible"
 
@@ -1932,15 +1911,16 @@ msgstr "Ordre"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:87
+#, fuzzy
 msgid "Default taxonomy"
-msgstr "Erreur de Taxonomie"
+msgstr "Taxonomie par défaut"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:89
+#, fuzzy
 msgid "Default global taxonomy domain. Not allowed to change."
 msgstr ""
-"Erreur du domaine par défaut pour la taxonomie. La modification n'est pas "
-"autorisée."
+"Taxonomie globale par défaut du domaine. La modification n'est pas autorisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:94
@@ -2064,7 +2044,7 @@ msgstr "50"
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:11
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:11
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:27
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:51
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:56
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "Description"
@@ -2076,11 +2056,6 @@ msgstr "Pages associées"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:23
-msgid "Preview"
-msgstr "Prévisualiser"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:24
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:21
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:35
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:48
@@ -2089,7 +2064,7 @@ msgid "Edit"
 msgstr "Editer"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:25
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:24
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:39
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:49
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:34
@@ -2098,19 +2073,19 @@ msgid "Delete"
 msgstr "Supprimer"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:26
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:25
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:62
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:45
 msgid "Clone"
 msgstr "Cloner"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:27
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:26
 msgid "No page uses this block yet."
 msgstr "Aucune page n\\'utilise ce bloc actuellement."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:28
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:27
 msgid "Search in block title"
 msgstr "Rechercher sur le nom du bloc"
 
@@ -2322,7 +2297,7 @@ msgstr "Admin Système"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/index.phtml:6
 msgid "Go back to system dashboard."
-msgstr "Retourner au tableau de bord Système"
+msgstr "Retourner au panneau de contrôle Système"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:6
@@ -2381,7 +2356,7 @@ msgstr "Icône"
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:10
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:10
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:23
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:49
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:54
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "Version"
@@ -2390,7 +2365,7 @@ msgstr "Version"
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:34
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:38
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:46
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:51
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "Détail"
@@ -2736,7 +2711,7 @@ msgstr "Type"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:37
-msgid "Role name is already taken"
+msgid "Role name is already token"
 msgstr "Ce nom de rôle est déja pris"
 
 #: C:\Users\LAPTOP
@@ -2746,7 +2721,7 @@ msgstr "Etes-vous certains de vouloir supprimer ce rôle?"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:40
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:45
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "Cliquer pour prévisualiser"
@@ -2763,7 +2738,12 @@ msgid "Theme in use"
 msgstr "Thème utilisé actuellement"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:45
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:37
+msgid "Themes available to use"
+msgstr "Thèmes disponibles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:50
 msgid "Apply"
 msgstr "Appliquer"
 
@@ -2776,9 +2756,3 @@ msgstr "Thème mis à jour avec succès."
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "Etes-vous certains de vouloir désinstaller ce thème?"
-
-#~ msgid "The block is not allowed to clone."
-#~ msgstr "Le bloc ne peut être cloné."
-
-#~ msgid "Themes available to use"
-#~ msgstr "Thèmes disponibles"
