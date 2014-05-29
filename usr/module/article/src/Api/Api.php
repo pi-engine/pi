@@ -161,6 +161,7 @@ class Api extends AbstractApi
      */
     public function getRouteName($module = '')
     {
+        return 'article';
         $module = $module ?: $this->getModule();
         $route = $module . '-article';
 
