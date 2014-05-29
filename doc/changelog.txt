@@ -6,7 +6,8 @@ March 20th, 2014
 ============
 * Added `GeoIp` service for IP geolocation support
 * Added jQuery `Magnific Popup` extension
-* Update Font Awesome lib to 4.1.0
+* Upgraded Font Awesome lib to 4.1.0
+* Improved route engine to support module clone
 
 * Modified language files:
   - module/system/locale/en/admin.po, block.po, default.po
