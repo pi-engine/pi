@@ -51,10 +51,12 @@ class FlashMessenger extends ZendFlashMessenger
      */
     public function load($namespace = '')
     {
+        $result = array();
         $this->getMessagesFromContainer();
         if ($namespace) {
             $result = $this->setNamespace($namespace)->getMessages();
         } elseif ($this->messages) {
+            /*
             $namespaces = array_keys($this->messages);
             $namespace = array_shift($namespaces);
             $messages = $this->messages[$namespace]->toArray();
@@ -62,8 +64,10 @@ class FlashMessenger extends ZendFlashMessenger
                 'namespace' => $namespace,
                 'messages'  => $messages,
             );
-        } else {
-            $result = array();
+            */
+            foreach ($this->messages as $namespace => $msgs) {
+                $result[$namespace] = $msgs->toArray();
+            }
         }
 
         return $result;
