@@ -21,6 +21,7 @@ use Zend\InputFilter\InputFilter;
  * - set: <uid>, <rule>, array(<field>)
  * - get: <uid>, <rule>, array(<data>)
  *
+ * @todo The controller has hard-coded customization and will be refactored. - By @taiwen
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class CompleteController extends ApiController
