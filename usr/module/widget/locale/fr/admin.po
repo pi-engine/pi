@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
 "POT-Creation-Date: 2014-05-24 18:14+0100\n"
-"PO-Revision-Date: 2014-05-24 18:16+0100\n"
+"PO-Revision-Date: 2014-05-28 16:32+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -201,7 +201,7 @@ msgstr "Spotlight"
 #: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:231
 #: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:31
 msgid "Compound tabs"
-msgstr "Composer les onglets"
+msgstr "A onglets composés"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:25

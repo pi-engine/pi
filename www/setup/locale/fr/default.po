@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
 "POT-Creation-Date: 2014-05-18 20:22+0100\n"
-"PO-Revision-Date: 2014-05-22 13:57+0100\n"
+"PO-Revision-Date: 2014-05-28 11:24+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr_FR\n"
@@ -173,7 +173,7 @@ msgstr "Détection et choix de la configuration serveur"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:17
 msgid "Basic"
-msgstr "Généraux"
+msgstr "Site"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:18
 msgid "Basic settings for website"
@@ -655,7 +655,7 @@ msgstr "Le système a été installé avec succès."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Finish.php:113
 msgid "Click to visit your website!"
-msgstr "Cliquez pour visiter votre site web !"
+msgstr "Cliquez ici pour visiter votre site web !"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Finish.php:114
@@ -708,7 +708,7 @@ msgstr "Sélection de la langue"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:87
 msgid "Choose the language for the installation and website."
-msgstr "Choisissez la langue d'installation  de fonctionnement du site web"
+msgstr "Choisissez la langue d'installation et de fonctionnement du site web"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:123

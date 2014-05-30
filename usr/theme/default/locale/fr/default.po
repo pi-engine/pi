@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
 "POT-Creation-Date: 2014-05-23 22:14+0100\n"
-"PO-Revision-Date: 2014-05-23 22:18+0100\n"
+"PO-Revision-Date: 2014-05-29 19:26+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -41,7 +41,7 @@ msgstr "Le contrôleur demandé a été incapable de dispatcher la demande."
 msgid ""
 "The requested controller could not be mapped to an existing controller class."
 msgstr ""
-"Le contrôleur demandé n'a pas pu être rapproché d'une classe contrôle "
+"Le contrôleur demandé n'a pas pu être rapproché d'une controller class "
 "existante."
 
 #: C:\Users\LAPTOP
@@ -52,7 +52,7 @@ msgstr "Le contrôleur demandé n'a pas pu être dispatché."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:32
 msgid "The requested URL could not be matched by routing."
-msgstr "L'URL demandée n'a pas pu être marchée avec une route."
+msgstr "L'URL demandée n'a pas pu être matchée avec une route."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:35
@@ -116,7 +116,7 @@ msgstr "Front"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-admin.phtml:120
 msgid "Execution time"
-msgstr "Application Execution Time"
+msgstr "Temps d'exécution"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-front.phtml:113

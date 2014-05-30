@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
 "POT-Creation-Date: 2014-05-20 18:08+0100\n"
-"PO-Revision-Date: 2014-05-22 14:07+0100\n"
+"PO-Revision-Date: 2014-05-28 17:48+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -154,12 +154,12 @@ msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:222
 msgid "You have logged in successfully."
-msgstr "Vous vous êtes connecté avec succès."
+msgstr "Vous vous êtes connectés avec succès."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:241
 msgid "You logged out successfully."
-msgstr "Vous vous êtes déconnecté avec succès."
+msgstr "Vous vous êtes déconnectés avec succès."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
@@ -182,7 +182,7 @@ msgstr ""
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-find.phtml:2
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:9
 msgid "Find password"
-msgstr "Rappeler mon mot de passe"
+msgstr "Rappel mot de passe"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:143
@@ -225,7 +225,7 @@ msgstr "Email"
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:44
 msgid "Name"
-msgstr "Nom"
+msgstr "Pseudo"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:61
@@ -269,7 +269,7 @@ msgstr "Donnée non valide, merci d'essayer de nouveau."
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:99
 msgid "The account is not created in database, please try again."
 msgstr ""
-"Le compte n'a pas été crée dans la base de donnée, merci d'essayer de "
+"Le compte n'a pas été créé dans la base de donnée, merci d'essayer de "
 "nouveau."
 
 #: C:\Users\LAPTOP
@@ -293,14 +293,14 @@ msgstr "Zone Admin"
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:59
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:32
 msgid "User account"
-msgstr "Compte utilisateur"
+msgstr "Nom utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:58
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:70
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:42
 msgid "Display name"
-msgstr "Afficher le nom"
+msgstr "Pseudo"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:69
@@ -322,7 +322,7 @@ msgstr "Date de naissance"
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:115
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:49
 msgid "Submit"
-msgstr "Soumettre"
+msgstr "Valider"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:61
@@ -437,13 +437,13 @@ msgstr "Aucun"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/FindPasswordForm.php:36
 msgid "Please type the word"
-msgstr "Merci de saisir le mot"
+msgstr "Merci de saisir les caractères affichés"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:70
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:84
 msgid "Please type the word."
-msgstr "Merci de saisir le mot."
+msgstr "Merci de saisir les caractères affichés."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:81
@@ -580,7 +580,7 @@ msgstr "Section"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:67
 msgid "Front"
-msgstr "Accueil"
+msgstr "Front"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:68
@@ -669,7 +669,7 @@ msgstr "se reconnecter"
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
-msgstr "Vous vous êtes déconnecté avec succès, merci d'aller %s ou %s."
+msgstr "Vous vous êtes déconnectés avec succès, merci d'aller %s ou de %s."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:16
@@ -689,8 +689,8 @@ msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr ""
-"Vous vous êtes connecté avec le compte <strong>%s</strong>, merci %s de vous "
-"reconnecter."
+"Vous vous êtes connectés avec le compte <strong>%s</strong>, merci %s de "
+"vous reconnecter."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:9
@@ -738,7 +738,7 @@ msgstr ""
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:11
 msgid "login"
-msgstr "se connecter"
+msgstr "vous connecter"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:12
