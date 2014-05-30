@@ -70,17 +70,8 @@ class CompleteController extends ApiController
         
         $module = $this->getModule();
         
-        // Get filename that include elements definition or fields elements
-        if (!empty($fields)) {
-            foreach ($fields as $key => $field) {
-                if (in_array($field['name'], $this->protectedFields)) {
-                    unset($fields[$key]);
-                }
-            }
-            $name = $fields;
-        } else {
-            $name = $this->getFormFile($uid, $rule);
-        }
+        // Get filename that include elements definition
+        $name = $this->getFormFile($uid, $rule);
         
         // Get form instance, and remove uneed form
         $form = Pi::api('form', $module)->loadForm($name);
@@ -156,22 +147,8 @@ class CompleteController extends ApiController
         
         $module = $this->getModule();
         
-        // Get filename that include elements definition or fields elements
-        if (!empty($fields)) {
-            foreach ($fields as $key => $val) {
-                if (in_array($val['name'], $this->protectedFields)) {
-                    unset($fields[$key]);
-                }
-                if (preg_match('/-/', $val)) {
-                    list($compound, $field) = explode('-', $val);
-                    $fields[$compound][] = $field;
-                    unset($fields[$key]);
-                }
-            }
-            $name = $fields;
-        } else {
-            $name = $this->getFormFile($uid, $rule);
-        }
+        // Get filename that include elements definition
+        $name = $this->getFormFile($uid, $rule);
         
         // Get form instance, and remove uneed form
         $form = Pi::api('form', $module)->loadForm($name);
