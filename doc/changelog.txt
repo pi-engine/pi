@@ -8,6 +8,10 @@ March 20th, 2014
 * Added jQuery `Magnific Popup` extension
 * Upgraded Font Awesome lib to 4.1.0
 * Improved route engine to support module clone
+* Implemented `ETag` for browser cache
+
+* Modified config files:
+  - var/config/application.front.php (resource::render_cache)
 
 * Modified language files:
   - module/system/locale/en/admin.po, block.po, default.po
