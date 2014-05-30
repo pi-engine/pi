@@ -54,7 +54,7 @@ return array(
 
         'type'      => 'Standard',
         'options'   => array(
-            'route'     => '/admin',
+            'prefix'     => '/admin',
         ),
     ),
 
@@ -66,7 +66,7 @@ return array(
 
         'type'      => 'Api',
         'options'   => array(
-            'route'     => '/api',
+            'prefix'     => '/api',
         ),
     ),
 
@@ -78,7 +78,7 @@ return array(
 
         'type'      => 'Feed',
         'options'   => array(
-            'route'     => '/feed',
+            'prefix'     => '/feed',
         ),
     ),
 
@@ -88,25 +88,7 @@ return array(
         'type'      => 'Module\System\Route\User',
         'priority'  => 5,
         'options'   => array(
-            'route'    => '/system/user',
+            'prefix'    => '/system/user',
         ),
     ),
-
-    /*
-    // Transition page jump route
-    'jump' => array(
-        'name'      => 'jump',
-        'priority'  => 5,
-
-        //'type'      => 'Literal',
-        'options'   => array(
-            'route'     => '/jump',
-            'defaults'  => array(
-                'module'        => 'system',
-                'controller'    => 'jump',
-                'action'        => 'index'
-            ),
-        ),
-    ),
-    */
 );
