@@ -22,12 +22,13 @@ return array(
              */
             'DispatchListener'          => 'Zend\Mvc\DispatchListener',
             'RouteListener'             => 'Zend\Mvc\RouteListener',
-            'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
+            //'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
             /**#@-*/
 
             /**#@+
              * Pi custom service
              */
+            'SendResponseListener'      => 'Pi\Mvc\SendResponseListener',
             'ViewHelperManager'         => 'Pi\Mvc\Service\ViewHelperManager',
             'Config'                    => 'Pi\Mvc\Service\Config',
             'ErrorStrategy'             => 'Pi\Mvc\View\Http\ErrorStrategy',
@@ -144,10 +145,21 @@ return array(
     // Response sender config
     'send_response' => array(
         // Compress for response
-        // @see Zend\Filter\Compress\Gz
+        // By enabling response compress, bandwidth and response time can be decreased but CPU utilization will be increased
+        // If compress is needed, it is highly recommended to enable it through web server
+        // @see https://gist.github.com/taiwen/c077ba2c8a33356d8815 for instruction
+
+        // Just in case response compress is not enabled by web server, specify following specs
+        // @see Zend\Filter\Compress\Gz for details
+        // PHP `zlib` extension is required
         'compress'  => array(
-            'mode'      => false,   // Valid modes: deflate, gzip; default as 'gzip', false for disable
+            // Compress mode
+            // Valid value: `'deflate'`, `'compress'`; default as `'compress'`, `false` for disable
+            'mode'      => false,
+
+            // Compress level, `9` as default
             'level'     => 6,
+
             //'archive'   => null,
         ),
     ),
