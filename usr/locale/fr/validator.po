@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
 "POT-Creation-Date: 2014-05-18 22:41+0100\n"
-"PO-Revision-Date: 2014-05-18 22:41+0100\n"
+"PO-Revision-Date: 2014-05-29 19:22+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -501,7 +501,7 @@ msgstr "Impossible d'écrire dans le fichier"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\locale\_source\Validator/File/UploadFile.php:16
 msgid "A PHP extension returned an error while uploading the file"
-msgstr "Une extension PHP retoure une erreur lors de l'upload du fichier"
+msgstr "Une extension PHP a retourné une erreur lors de l'upload du fichier"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\locale\_source\Validator/File/UploadFile.php:17
