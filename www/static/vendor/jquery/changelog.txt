@@ -1,0 +1,7 @@
+
+jQuery changelog
+
+
+May 31st, 2014
+=============
+Upgraded jQuery to 1.11.1
