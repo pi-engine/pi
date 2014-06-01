@@ -19,6 +19,15 @@ $customConfig = array(
 
         // Profile fields
 
+        // Profile: register source, could be used for register invitation
+        'register_source' => array(
+            'name'          => 'register_source',
+            'title'         => _a('Register source'),
+            'is_edit'       => false,
+            'is_display'    => false,
+            'is_search'     => false,
+        ),
+
         // Profile: first_name
         'first_name'  => array(
             'name'  => 'first_name',
