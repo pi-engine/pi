@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-04-27 15:54+0800\n"
-"PO-Revision-Date: 2014-04-27 18:55+0800\n"
+"POT-Creation-Date: 2014-06-01 18:26+0800\n"
+"PO-Revision-Date: 2014-06-01 18:26+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr "修改您的账号信息"
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:178
 #: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:229
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:99
 msgid ""
 "account,social,tools,privacy,settings,profile,user,login,register,password,"
 "avatar"
@@ -200,7 +200,7 @@ msgid "Allowed extensions:"
 msgstr "支持格式："
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:90
-msgid "Max files ize:"
+msgid "Max file size:"
 msgstr "最大文件尺寸："
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:96
@@ -232,16 +232,13 @@ msgid "Invalid email for gravatar."
 msgstr "无效Gravatar邮箱"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:322
-msgid "Successful"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:355
+msgid "Successful."
 msgstr "成功 "
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:339
 msgid "No image selected!"
 msgstr "没有选中图片"
-
-#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:355
-msgid "Successful."
-msgstr "成功 "
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:373
 #, php-format
@@ -269,8 +266,8 @@ msgid "Email address is missing."
 msgstr "邮箱地址丢失"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:445
-msgid "Invalid image set name."
-msgstr "无效图片名"
+msgid "Image name is missing."
+msgstr "图片名丢失。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:480
 msgid "Avatar set successfully."
@@ -388,65 +385,65 @@ msgstr "资料组数据删除失败。"
 msgid "User ID or Profile group ID is invalid."
 msgstr "用户ID或资料组ID无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:93
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
 #: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\user/template/front/login.phtml:18
 #: c:\Code\pi\usr\module\user/template/front/register-disabled.phtml:2
 msgid "Register"
 msgstr "注册"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:94
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:97
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:1
 msgid "Account registration"
 msgstr "账号注册"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:165
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:168
 msgid "Activation token is invalid."
 msgstr "激活密钥无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:231
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:234
 msgid "Account Activated successfully."
 msgstr "账号激活成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:251
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:254
 msgid "Activation email sent failed."
 msgstr "激活邮件发送失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:285
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:288
 msgid "Resend activation mail successfully."
 msgstr "激活邮件重新发送成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:313
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:316
 msgid "Email was not found."
 msgstr "邮箱不存在。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:321
 msgid "Account already activated."
 msgstr "账号早已激活。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:329
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:332
 msgid "Activation mail sent successfully."
 msgstr "激活邮件发送成功。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:334
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:337
 msgid "Activation mail was not sent."
 msgstr "激活邮件未能发出。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:342
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:345
 msgid "Invalid input."
 msgstr "无效输入。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:441
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:444
 msgid "User account was not saved."
 msgstr "账号保存失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:468
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
 msgstr "账号注册成功，但是激活失败。请联系管理员。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:491
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:494
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "激活邮件发送失败，请联系管理员。"
 
@@ -639,14 +636,6 @@ msgstr "密码不得少于%min%个字符"
 msgid "Password is more than %max% characters long"
 msgstr "密码不得多于%max%个字符"
 
-#: c:\Code\pi\usr\module\user/src/Validator/Postcode.php:32
-msgid "The input is not 6 numeric"
-msgstr "输入不是六位数字"
-
-#: c:\Code\pi\usr\module\user/src/Validator/Telephone.php:32
-msgid "The input is not 7-20 numeric"
-msgstr "输入不是7-20位数字"
-
 #: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:28
 msgid "User email is reserved"
 msgstr "邮箱已被占用"
@@ -747,8 +736,8 @@ msgid "Upload"
 msgstr "上传"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:18
-msgid "Gavatar"
-msgstr "Gavatar"
+msgid "Gravatar"
+msgstr ""
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:23
 msgid "Select"
@@ -764,11 +753,8 @@ msgstr "当前头像"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:49
 msgid ""
-"once switch source and saved,the avatar data from other source will be "
-"deleted."
-msgstr ""
-" 一旦切换头像来源并保存生效，其他来源的头像数据将被删除<br>如果头像没有即时生"
-"效请重新登录"
+"Once source type is switched and saved, the old avatar image will be deleted."
+msgstr " 一旦头像来源并切换保存，原来的头像数据将被删除。"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:71
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:186
@@ -783,8 +769,8 @@ msgid "Avatar previews"
 msgstr "头像预览"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:100
-msgid "Change from Gravatar"
-msgstr "去Gavatar修改"
+msgid "Configure at Gravatar"
+msgstr "设置Gravatar头像"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:104
 msgid "Gravatar email"
@@ -964,6 +950,7 @@ msgid "Sorry, account activation is failed."
 msgstr "抱歉，账号激活失败。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:22
+#: c:\Code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
 msgid "Resend activation email."
 msgstr "重新发送激活邮件"
 
@@ -990,7 +977,7 @@ msgid ""
 msgstr "账号已注册成功，但是需要管理员激活。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:64
-msgid "An email with activation link has been sent to your."
+msgid "An email with activation link has been sent to you."
 msgstr "激活链接已经发送到您的邮箱。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-index.phtml:65
@@ -1017,6 +1004,20 @@ msgstr "请求重新发送激活邮件。"
 msgid "Already sent"
 msgstr "邮件已发送"
 
-#: c:\Code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
-msgid "Resend activation email"
-msgstr "重新发送激活邮件"
+#~ msgid "Recovered from Gravatar"
+#~ msgstr "去Gavatar修改"
+
+#~ msgid "Successful"
+#~ msgstr "成功 "
+
+#~ msgid "Invalid image set name."
+#~ msgstr "无效图片名"
+
+#~ msgid "The input is not 6 numeric"
+#~ msgstr "输入不是六位数字"
+
+#~ msgid "The input is not 7-20 numeric"
+#~ msgstr "输入不是7-20位数字"
+
+#~ msgid "Resend activation email"
+#~ msgstr "重新发送激活邮件"

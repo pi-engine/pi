@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-05-21 12:48+0800\n"
-"PO-Revision-Date: 2014-05-21 12:48+0800\n"
+"POT-Creation-Date: 2014-06-01 18:44+0800\n"
+"PO-Revision-Date: 2014-06-01 18:45+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -241,7 +241,7 @@ msgid "Maximum length of password for user registration"
 msgstr "用户注册密码最大长度"
 
 #: c:\Code\pi\usr\module\system/config/config.php:207
-msgid "Username backlist"
+msgid "Username blacklist"
 msgstr "用户名黑名单"
 
 #: c:\Code\pi\usr\module\system/config/config.php:208
@@ -251,7 +251,7 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:215
-msgid "Email backlist"
+msgid "Email blacklist"
 msgstr "邮箱黑名单"
 
 #: c:\Code\pi\usr\module\system/config/config.php:216
@@ -1111,6 +1111,20 @@ msgstr "成功清除缓存"
 #, php-format
 msgid "Cache flush failed: %s"
 msgstr "缓存清除失败：%s"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/IndexController.php:31
+msgid "Security: `setup` folder is not removed!"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/IndexController.php:37
+#, php-format
+msgid "Security: `%s` is writable!"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/IndexController.php:47
+#, php-format
+msgid "Permission: `%s` is not available for write!"
+msgstr "权限：`%s` 不可写。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/LoginController.php:44
 msgid "Not privileged."

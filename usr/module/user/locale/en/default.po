@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-04-27 15:53+0800\n"
-"PO-Revision-Date: 2014-04-27 18:56+0800\n"
+"POT-Creation-Date: 2014-06-01 18:27+0800\n"
+"PO-Revision-Date: 2014-06-01 18:27+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -165,7 +165,7 @@ msgstr ""
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:178
 #: C:\code\pi\usr\module\user/src/Controller/Front/ProfileController.php:229
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:99
 msgid ""
 "account,social,tools,privacy,settings,profile,user,login,register,password,"
 "avatar"
@@ -200,7 +200,7 @@ msgid "Allowed extensions:"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:90
-msgid "Max files ize:"
+msgid "Max file size:"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:96
@@ -232,15 +232,12 @@ msgid "Invalid email for gravatar."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:322
-msgid "Successful"
+#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:355
+msgid "Successful."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:339
 msgid "No image selected!"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:355
-msgid "Successful."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:373
@@ -269,7 +266,7 @@ msgid "Email address is missing."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:445
-msgid "Invalid image set name."
+msgid "Image name is missing."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Front/AvatarController.php:480
@@ -388,65 +385,65 @@ msgstr ""
 msgid "User ID or Profile group ID is invalid."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:93
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
 #: C:\code\pi\usr\module\user/template/front/login-logout.phtml:18
 #: C:\code\pi\usr\module\user/template/front/login.phtml:18
 #: C:\code\pi\usr\module\user/template/front/register-disabled.phtml:2
 msgid "Register"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:94
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:97
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:1
 msgid "Account registration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:165
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:168
 msgid "Activation token is invalid."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:231
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:234
 msgid "Account Activated successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:251
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:254
 msgid "Activation email sent failed."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:285
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:288
 msgid "Resend activation mail successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:313
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:316
 msgid "Email was not found."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:321
 msgid "Account already activated."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:329
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:332
 msgid "Activation mail sent successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:334
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:337
 msgid "Activation mail was not sent."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:342
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:345
 msgid "Invalid input."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:441
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:444
 msgid "User account was not saved."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:468
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:491
+#: C:\code\pi\usr\module\user/src/Controller/Front/RegisterController.php:494
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 
@@ -639,14 +636,6 @@ msgstr ""
 msgid "Password is more than %max% characters long"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Validator/Postcode.php:32
-msgid "The input is not 6 numeric"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/src/Validator/Telephone.php:32
-msgid "The input is not 7-20 numeric"
-msgstr ""
-
 #: C:\code\pi\usr\module\user/src/Validator/UserEmail.php:28
 msgid "User email is reserved"
 msgstr ""
@@ -747,7 +736,7 @@ msgid "Upload"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:18
-msgid "Gavatar"
+msgid "Gravatar"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:23
@@ -764,8 +753,7 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:49
 msgid ""
-"once switch source and saved,the avatar data from other source will be "
-"deleted."
+"Once source type is switched and saved, the old avatar image will be deleted."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:71
@@ -781,7 +769,7 @@ msgid "Avatar previews"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:100
-msgid "Change from Gravatar"
+msgid "Configure at Gravatar"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/avatar-index.phtml:104
@@ -962,6 +950,7 @@ msgid "Sorry, account activation is failed."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/register-activate.phtml:22
+#: C:\code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
 msgid "Resend activation email."
 msgstr ""
 
@@ -988,7 +977,7 @@ msgid ""
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:64
-msgid "An email with activation link has been sent to your."
+msgid "An email with activation link has been sent to you."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:65
@@ -1013,8 +1002,4 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/front/register-index.phtml:107
 msgid "Already sent"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
-msgid "Resend activation email"
 msgstr ""

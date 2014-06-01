@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-06 19:53+0800\n"
-"PO-Revision-Date: 2014-04-27 18:56+0800\n"
+"POT-Creation-Date: 2014-06-01 18:26+0800\n"
+"PO-Revision-Date: 2014-06-01 18:27+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,14 +14,12 @@ msgstr ""
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\user\n"
 
 #: C:\code\pi\usr\module\user/config/config.php:25
-#, fuzzy
 msgid "Login"
-msgstr "登录"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:29
-#, fuzzy
 msgid "Registration"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:33
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:25
@@ -35,9 +33,8 @@ msgid "Avatar"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:44
-#, fuzzy
 msgid "List limit"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:45
 msgid "Number of items on list page."
@@ -52,9 +49,8 @@ msgid "Format for birthdate display."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:57
-#, fuzzy
 msgid "Email expiration"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:58
 msgid "Expiration time for email/password reset (in hours)."
@@ -73,9 +69,8 @@ msgid "Profile complete"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:73
-#, fuzzy
 msgid "Require user to complete profile data."
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:81
 msgid "Login disable"
@@ -102,9 +97,8 @@ msgid "Days to remember login, 0 for disable."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:107
-#, fuzzy
 msgid "Login field"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:108
 msgid "Identity field(s) for authentication."
@@ -140,36 +134,32 @@ msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:136
-#, fuzzy
 msgid "Register disable"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:137
 msgid "Disable user registration"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:145
-#, fuzzy
 msgid "Register CAPTCHA"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:146
 msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:154
-#, fuzzy
 msgid "Register complete"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:155
 msgid "Require user to complete register data in an extra form."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:163
-#, fuzzy
 msgid "Email notification"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:164
 msgid "Send email notification for register success."
@@ -177,9 +167,8 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:172
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:19
-#, fuzzy
 msgid "Activation"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:173
 msgid "Activation mode for user accounts"
@@ -190,18 +179,16 @@ msgid "Automatically activated"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:179
-#, fuzzy
 msgid "Activated by user email"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:180
 msgid "Activated by admin approval"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:190
-#, fuzzy
 msgid "Activation expiration"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:191
 msgid "Expiration time for activation email (in hours)."
@@ -255,11 +242,11 @@ msgid "Format of display name for registration."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:250
-msgid "Minmum display name"
+msgid "Minimum display name"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:251
-msgid "Minmum length of display name for user registration"
+msgid "Minimum length of display name for user registration"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:258
@@ -287,7 +274,7 @@ msgid "Maximum length of password for user registration"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:282
-msgid "Username backlist"
+msgid "Username blacklist"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:283
@@ -297,7 +284,7 @@ msgid ""
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:290
-msgid "Display backlist"
+msgid "Display blacklist"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:291
@@ -307,7 +294,7 @@ msgid ""
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:298
-msgid "Email backlist"
+msgid "Email blacklist"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:299
@@ -322,27 +309,27 @@ msgstr ""
 msgid "Allowed image width, 0 for no limit"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:315
+#: C:\code\pi\usr\module\user/config/config.php:316
 msgid "Max Avatar Height"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:316
+#: C:\code\pi\usr\module\user/config/config.php:317
 msgid "Allowed image height, 0 for no limit"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:322
+#: C:\code\pi\usr\module\user/config/config.php:324
 msgid "Max File Size"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:323
+#: C:\code\pi\usr\module\user/config/config.php:325
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:338
+#: C:\code\pi\usr\module\user/config/config.php:341
 msgid "Temporary Path"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:339
+#: C:\code\pi\usr\module\user/config/config.php:342
 msgid "For temporary storage of avatar"
 msgstr ""
 
@@ -364,14 +351,12 @@ msgid "User profile and services."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:38
-#, fuzzy
 msgid "All"
-msgstr "All Categories"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:46
-#, fuzzy
 msgid "Activated user"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:54
 msgid "Pending user"
@@ -391,9 +376,8 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:81
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:29
-#, fuzzy
 msgid "Role"
-msgstr "角色"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:91
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:26
@@ -426,9 +410,8 @@ msgid "Timeline"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:160
-#, fuzzy
 msgid "Activity"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:168
 msgid "Quicklink"
@@ -448,9 +431,8 @@ msgid "User log"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:206
-#, fuzzy
 msgid "Deleted users"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/nav.php:217
 #: C:\code\pi\usr\module\user/config/permission.php:75
@@ -495,9 +477,8 @@ msgid "Display name"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:96
-#, fuzzy
 msgid "Gender"
-msgstr "未知"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:106
 msgid "Birthdate"
@@ -514,35 +495,30 @@ msgstr ""
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:31
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:44
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:30
-#, fuzzy
 msgid "Register time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:165
-#, fuzzy
 msgid "Activation time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:175
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:53
-#, fuzzy
 msgid "Disabled time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:186
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:41
-#, fuzzy
 msgid "Deleted time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:199
 msgid "Level"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:208
-#, fuzzy
 msgid "Last modified"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:216
 msgid "Personal website"
@@ -557,11 +533,11 @@ msgid "Signature"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:241
+#: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:32
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:78
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:83
-#, fuzzy
 msgid "Register IP"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/config/user.php:252
 msgid "Social tools"
@@ -585,31 +561,31 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:47
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:173
-msgid "Edit user info failed"
+msgid "User data update failed."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:61
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:214
-msgid "Edit user info successfully"
+msgid "User data update successful."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:107
-msgid "Replace user avater failed"
+msgid "User avatar change failed."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:112
-msgid "Replace user avater successfully"
+msgid "User avatar change successful."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:264
-msgid "Delete this group successfully"
+msgid "Group deleted successfully."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:324
 msgid "Base info"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:372
+#: C:\code\pi\usr\module\user/src/Controller/Admin/EditController.php:376
 #: C:\code\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
 msgid "User was not found."
 msgstr ""
@@ -623,9 +599,8 @@ msgid "Add user failed: invalid operation."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:214
-#, fuzzy
 msgid "Add user successfully"
-msgstr "主题更新成功。"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:325
 msgid "Enable user failed: invalid uid."
@@ -641,18 +616,18 @@ msgid "Disable user failed: invalid uid."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:387
-#, fuzzy, php-format
+#, php-format
 msgid "%d disable user successfully"
-msgstr "主题更新成功。"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:407
 msgid "Delete user failed: invalid uid"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:436
-#, fuzzy, php-format
+#, php-format
 msgid "%d delete user successfully"
-msgstr "主题更新成功。"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:456
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:462
@@ -678,41 +653,39 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:529
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:547
-#, fuzzy
 msgid "Role assignment failed."
-msgstr "主题更新失败。"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/IndexController.php:566
 msgid "Role assignment succeeded."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:208
-#, fuzzy
 msgid "Clear failed."
-msgstr "主题更新失败。"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:218
 #: C:\code\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:235
 msgid "Clear all deleted user successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:239
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:242
 msgid "Profile dress-up data saved successfully."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:363
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:366
 msgid "Privacy set up failed: invalid field."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:368
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:371
 msgid "Privacy set up failed: invalid privacy."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:390
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:393
 msgid "Privacy set up failed: update error."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:405
+#: C:\code\pi\usr\module\user/src/Controller/Admin/ProfileController.php:408
 msgid "Privacy set up successfully."
 msgstr ""
 
@@ -750,7 +723,8 @@ msgid "Edit user: "
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/edit-user.phtml:34
-msgid "Replace with defalt avatar."
+#: C:\code\pi\usr\module\user/template/admin/user.phtml:88
+msgid "Replace with default avatar."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/edit-user.phtml:40
@@ -763,9 +737,8 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/form-profile-complete.phtml:4
 #: C:\code\pi\usr\module\user/template/admin/form-register.phtml:4
-#, fuzzy
 msgid "Register form"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/form-profile-complete.phtml:9
 #: C:\code\pi\usr\module\user/template/admin/form-register.phtml:9
@@ -805,15 +778,13 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:23
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:24
-#, fuzzy
 msgid "Disabled"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:24
 #: C:\code\pi\usr\module\user/template/admin/plugin.phtml:21
-#, fuzzy
 msgid "Yes"
-msgstr "是"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:28
 msgid "Unavailable"
@@ -839,14 +810,12 @@ msgid "History"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:21
-#, fuzzy
 msgid "Register num"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:22
-#, fuzzy
 msgid "Activated num"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:23
 msgid "Pending num"
@@ -857,9 +826,8 @@ msgid "Top 10 registered IP"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:25
-#, fuzzy
 msgid "None"
-msgstr "无"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:26
 msgid "Sort by key:"
@@ -876,28 +844,21 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:29
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:85
-#, fuzzy
 msgid "View log"
-msgstr "All Categories"
-
-#: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:32
-#, fuzzy
-msgid "Register ip"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:33
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:55
-#, fuzzy
 msgid "Activated time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:34
-#, fuzzy
 msgid "Last login time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:35
-msgid "Last loin ip"
+#: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:51
+msgid "Last login ip"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:36
@@ -914,6 +875,7 @@ msgid "Are you sure to delete this user?"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:39
+#: C:\code\pi\usr\module\user/template/admin/user.phtml:64
 msgid "Are you sure to delete these users?"
 msgstr ""
 
@@ -934,7 +896,7 @@ msgid "Clear the users"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:48
-msgid "CLear all deleted users"
+msgid "Clear all deleted users"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:49
@@ -942,20 +904,13 @@ msgstr ""
 msgid "No user matched your request."
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:51
-#, fuzzy
-msgid "Last login ip"
-msgstr "Application Execution Time"
-
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:52
-#, fuzzy
 msgid "Created time"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:54
-#, fuzzy
 msgid "Last login"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/maintenance.phtml:56
 msgid "Null"
@@ -980,14 +935,12 @@ msgid "Items displayed on the homepage timeline"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/plugin.phtml:22
-#, fuzzy
 msgid "No"
-msgstr "否"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/plugin.phtml:23
-#, fuzzy
 msgid "Activities"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/plugin.phtml:24
 msgid "Activities items repository"
@@ -1017,9 +970,8 @@ msgid "Field title can be edited for display."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/profile.phtml:20
-#, fuzzy
 msgid "Field"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/profile.phtml:21
 msgid "Default setting"
@@ -1030,9 +982,8 @@ msgid "Forced setting"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/profile.phtml:23
-#, fuzzy
 msgid "Field title"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/profile.phtml:25
 msgid "Search"
@@ -1157,9 +1108,8 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:17
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:65
-#, fuzzy
 msgid "Active State"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:18
 msgid "Enable State"
@@ -1182,19 +1132,16 @@ msgid "Pending"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:31
-#, fuzzy
 msgid "Register time from"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:32
-#, fuzzy
 msgid "Register time to"
-msgstr "主题更新失败。"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:35
-#, fuzzy
 msgid "Delete"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:37
 msgid "Passwords don\\'t match."
@@ -1262,16 +1209,12 @@ msgstr ""
 msgid "Remove role"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/template/admin/user.phtml:64
-msgid "Are you sure to delete this users?"
-msgstr ""
-
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:68
-msgid "Are you sure active this account, it can not be return"
+msgid "Are you sure to activate this account? It can not be reverted."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:69
-msgid "Are you sure active these account, it can not be return"
+msgid "Are you sure to activate these accounts? It can not be reverted."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:70
@@ -1291,9 +1234,8 @@ msgid "Invalid email."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:79
-#, fuzzy
 msgid "Activation state"
-msgstr "Application Execution Time"
+msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:80
 msgid "User ID"
@@ -1309,10 +1251,6 @@ msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:87
 msgid "Edit user"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/template/admin/user.phtml:88
-msgid "Replace with default avatar."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/template/admin/user.phtml:89

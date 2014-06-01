@@ -87,7 +87,7 @@ class AvatarController extends ActionController
             ));
             if (!empty($config['max_size'])) {
                 $limits[] = array(
-                    'label' => __('Max files size:'),
+                    'label' => __('Max file size:'),
                     'text'  => $config['max_size'] . ' KB',
                 );
             }
