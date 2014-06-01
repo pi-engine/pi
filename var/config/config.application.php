@@ -17,17 +17,13 @@ return array(
         'invokables' => array(
             'SharedEventManager'        => 'Zend\EventManager\SharedEventManager',
 
-            /**#@+
-             * From ServiceListenerFactory
-             */
+
+            // From ServiceListenerFactory
             'DispatchListener'          => 'Zend\Mvc\DispatchListener',
             'RouteListener'             => 'Zend\Mvc\RouteListener',
             //'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
-            /**#@-*/
 
-            /**#@+
-             * Pi custom service
-             */
+            // Pi custom service
             'SendResponseListener'      => 'Pi\Mvc\SendResponseListener',
             'ViewHelperManager'         => 'Pi\Mvc\Service\ViewHelperManager',
             'Config'                    => 'Pi\Mvc\Service\Config',
@@ -35,7 +31,6 @@ return array(
             'ViewStrategyListener'      => 'Pi\Mvc\View\Http\ViewStrategyListener',
             'FeedStrategyListener'      => 'Pi\Mvc\View\Http\FeedStrategyListener',
             'ApiStrategyListener'       => 'Pi\Mvc\View\Http\ApiStrategyListener',
-            /**#@-*/
         ),
 
         // Service factories
@@ -43,9 +38,7 @@ return array(
             'EventManager'              => 'Zend\Mvc\Service\EventManagerFactory',
             'ModuleManager'             => 'Zend\Mvc\Service\ModuleManagerFactory',
 
-            /**#@+
-             * From ServiceListenerFactory
-             */
+            // From ServiceListenerFactory
             'Application'                    => 'Zend\Mvc\Service\ApplicationFactory',
             //'Config'                         => 'Zend\Mvc\Service\ConfigFactory',
             //'ControllerLoader'               => 'Zend\Mvc\Service\ControllerLoaderFactory',
@@ -79,26 +72,20 @@ return array(
             'ViewResolver'                   => 'Zend\Mvc\Service\ViewResolverFactory',
             'ViewTemplateMapResolver'        => 'Zend\Mvc\Service\ViewTemplateMapResolverFactory',
             'ViewTemplatePathStack'          => 'Zend\Mvc\Service\ViewTemplatePathStackFactory',
-            /**#@-*/
 
-            /**#@+
-             * Pi custom service
-             */
+            // Pi custom service
             'Application'                   => 'Pi\Mvc\Service\ApplicationFactory',
             'ControllerLoader'              => 'Pi\Mvc\Service\ControllerLoaderFactory',
             'ControllerPluginManager'       => 'Pi\Mvc\Service\ControllerPluginManagerFactory',
             'MvcTranslator'                 => 'Pi\Mvc\Service\TranslatorServiceFactory',
             'ViewResolver'                  => 'Pi\Mvc\Service\ViewResolverFactory',
-            /**#@-*/
         ),
 
         // Aliases
         'aliases' => array(
             'Zend\EventManager\EventManagerInterface'   => 'EventManager',
 
-            /**#@+
-            * From ServiceListenerFactory
-            */
+            // From ServiceListenerFactory
             'Configuration'                          => 'Config',
             'Console'                                => 'ConsoleAdapter',
             'Di'                                     => 'DependencyInjector',
@@ -108,7 +95,6 @@ return array(
             'Zend\View\Resolver\TemplatePathStack'   => 'ViewTemplatePathStack',
             'Zend\View\Resolver\AggregateResolver'   => 'ViewResolver',
             'Zend\View\Resolver\ResolverInterface'   => 'ViewResolver',
-            /**#@-*/
         ),
 
     ),
@@ -144,23 +130,14 @@ return array(
 
     // Response sender config
     'send_response' => array(
-        // Compress for response
-        // By enabling response compress, bandwidth and response time can be decreased but CPU utilization will be increased
+        // Compression for response
+        // By enabling response compression, bandwidth and response time can be decreased but CPU utilization will be increased
         // If compress is needed, it is highly recommended to enable it through web server
+        // Or enable `zlib.output_compression` in php.ini
         // @see https://gist.github.com/taiwen/c077ba2c8a33356d8815 for instruction
 
-        // Just in case response compress is not enabled by web server, specify following specs
-        // @see Zend\Filter\Compress\Gz for details
-        // PHP `zlib` extension is required
-        'compress'  => array(
-            // Compress mode
-            // Valid value: `'deflate'`, `'compress'`; default as `'compress'`, `false` for disable
-            'mode'      => false,
-
-            // Compress level, `9` as default
-            'level'     => 6,
-
-            //'archive'   => null,
-        ),
+        // Just in case compression is not enabled by web server or by PHP, specify following specs
+        // @note PHP `zlib` extension is required
+        'compress'  => false,
     ),
 );

@@ -35,48 +35,15 @@ class HttpResponseSender extends ZendHttpResponseSender
             return $this;
         }
 
-        $terminate = false;
         $configs = Pi::engine()->application()->getConfig();
-        if (!empty($configs['send_response']['compress'])) {
-            $config = $configs['send_response']['compress'];
-            if (!isset($config['mode'])) {
-                $config['mode'] = 'compress';
+        if ($response->isOk()
+            && !empty($configs['send_response']['compress'])
+            && !ini_get('zlib.output_compression')
+        ) {
+            while (ob_get_level() > 0) {
+                ob_end_clean();
             }
-            if (false !== $config['mode']) {
-                switch ($config['mode']) {
-                    case 'deflate':
-                        $encoding = 'deflate';
-                        break;
-                    case 'compress':
-                    default:
-                        $encoding = 'gzip';
-                        $config['mode'] = 'compress';
-                        break;
-                }
-                $acceptEncoding = Pi::engine()->application()->getRequest()->getHeader('accept-encoding');
-                if (!$acceptEncoding || !$acceptEncoding->match($encoding)) {
-                    $terminate = true;
-                }
-                if (!$terminate) {
-                    try {
-                        $compress = new Gz($config);
-                    } catch (\Exception $e) {
-                        $compress = false;
-                    }
-                    if ($compress) {
-                        $content = $response->getContent();
-                        try {
-                            $content = $compress->compress($content);
-                        } catch (\Exception $e) {
-                            $content = false;
-                        }
-                        if (false !== $content) {
-                            $response->setContent($content);
-                        }
-                        $response->getHeaders()->addHeaderLine('content-encoding', $encoding);
-                    }
-                }
-            }
+            ob_start('ob_gzhandler');
         }
         parent::__invoke($event);
 

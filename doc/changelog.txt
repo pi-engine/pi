@@ -12,8 +12,11 @@ March 20th, 2014
 * Implemented custom response gzip in case not implemented by web server
 
 * Modified config files:
-  - var/config/application.front.php (resource::render_cache)
-  - var/config/config.application.php (service_manager::invokables::SendResponseListener)
+  - var/config/application.front.php
+    - resource::render_cache
+  - var/config/config.application.php
+    - service_manager::invokables::SendResponseListener
+    - send_response::compress
 
 * Modified language files:
   - module/system/locale/en/admin.po, block.po, default.po
