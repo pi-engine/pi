@@ -97,11 +97,11 @@ $viewPreview = '<li class="inline">
             <?php if (in_array('gravatar', $adapters)) { ?>
             <div class="tab-pane" id="fromGravatar">
                 <p>
-                    <a href="https://gravatar.com" target="_blank"><?php _e('Configure at Gravatar') ?></a>
+                    <a href="https://gravatar.com" target="_blank"><?php _e('Configure at Gravatar'); ?></a>
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-2 control-label">
-                            <?php _e('Gravatar email') ?>
+                            <?php _e('Gravatar email'); ?>
                         </label>
                         <div class="col-sm-4">
                             <input name="email" value="<?php echo $email; ?>" type="email" class="form-control">

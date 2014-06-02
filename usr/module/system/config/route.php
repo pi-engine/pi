@@ -21,6 +21,7 @@ return array(
 
         'type'      => 'Standard',
         'options'   =>array(
+            'prefix'                => '',
             'structure_delimiter'   => '/',
             'param_delimiter'       => '/',
             'key_value_delimiter'   => '-',
@@ -39,6 +40,7 @@ return array(
         'priority'  => 10000,
 
         'options'   =>array(
+            'prefix'                => '',
             'structure_delimiter'   => '-',
             'param_delimiter'       => '/',
             'key_value_delimiter'   => '-',
