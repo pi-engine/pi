@@ -28,7 +28,7 @@ return array(
                         'action'        => 'index',
                     ),
                     'add'   => array(
-                        'label'         => _t('Add new'),
+                        'label'         => _t('Activate'),
                         'route'         => 'admin',
                         'controller'    => 'script',
                         'action'        => 'add',
