@@ -50,7 +50,6 @@ return array(
     // admin route
     'admin' => array(
         'name'      => 'admin',
-        // section, default as 'front'
         'section'   => 'admin',
         'priority'  => 100,
 

@@ -150,7 +150,7 @@ class RenderCache extends AbstractResource
                 $content = $renderCache->cachedContent();
                 $response = $e->getResponse()->setContent($content);
 
-                // Check Etag for response
+                // Check ETag for response
                 if (!empty($this->options['enable_etag'])
                     && '1.1' == $response->getVersion()
                 ) {

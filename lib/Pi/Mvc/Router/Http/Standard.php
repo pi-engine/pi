@@ -339,7 +339,7 @@ class Standard implements RouteInterface
     {
         $url = '';
         foreach ($params as $key => $value) {
-            if (in_array($key, array('module', 'controller', 'action'))) {
+            if (in_array($key, array('section', 'module', 'controller', 'action'))) {
                 continue;
             }
             if (null === $value || '' === $value) {
