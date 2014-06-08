@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2014-05-23 22:14+0100\n"
-"PO-Revision-Date: 2014-05-29 19:26+0100\n"
+"POT-Creation-Date: 2014-06-07 13:34+0100\n"
+"PO-Revision-Date: 2014-06-07 13:34+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
-"Language-Team: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,14 +68,14 @@ msgstr "Accès refusé"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:14
 msgid "login"
-msgstr "connexion"
+msgstr "vous connecter"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:15
 #, php-format
 msgid "You are not allowed to access the page. Please %s and try again."
 msgstr ""
-"Vous n'êtes pas autorisé à accéder à la page. Merci %s et d'essayer de "
+"Vous n'êtes pas autorisé à accéder à la page. Merci de %s et d'essayer de "
 "nouveau."
 
 #: C:\Users\LAPTOP
