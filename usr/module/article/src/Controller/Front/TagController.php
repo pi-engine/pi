@@ -88,6 +88,7 @@ class TagController extends ActionController
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'        => array(
+                    'module'        => $module,
                     'tag'           => $tag,
                 ),
             ),

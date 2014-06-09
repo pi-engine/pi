@@ -36,8 +36,9 @@ class Comment extends AbstractComment
         $result = array();
         $items = (array) $item;
 
-        $route = Pi::api('api', $this->module)->getRouteName();
-        
+        //$route = Pi::api('api', $this->module)->getRouteName();
+        $route = 'article';
+
         // Get articles
         $where   = array('id' => $items);
         $columns = array('id', 'subject', 'time_publish', 'uid');
@@ -59,9 +60,10 @@ class Comment extends AbstractComment
                 'url'   => Pi::service('url')->assemble(
                     $route,
                     array(
-                        'id'   => $id,
-                        'slug' => $slugs[$id],
-                        'time' => $articles[$id]['time_publish'],
+                        'module'    => $this->module,
+                        'id'        => $id,
+                        'slug'      => $slugs[$id],
+                        'time'      => $articles[$id]['time_publish'],
                     )
                 ),
                 'uid'   => $articles[$id]['uid'],

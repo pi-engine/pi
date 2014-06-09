@@ -31,7 +31,8 @@ class Breadcrumbs extends AbstractBreadcrumbs
     {
         $module = $this->module;
         $moduleData = Pi::registry('module')->read($module);
-        $route  = Pi::api('api', $module)->getRouteName();
+        //$route = Pi::api('api', $this->module)->getRouteName();
+        $route = 'article';
         $home   = Pi::service('module')->config('default_homepage', $module);
         $home   = $home ? Pi::url($home) : Pi::service('url')->assemble(
             'default',

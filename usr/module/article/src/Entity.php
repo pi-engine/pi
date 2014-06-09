@@ -455,11 +455,13 @@ class Entity
                 */
 
                 if (empty($columns) || in_array('subject', $columns)) {
-                    $route      = Pi::api('api', $module)->getRouteName($module);
+                    //$route = Pi::api('api', $this->module)->getRouteName();
+                    $route = 'article';
                     $row['url'] = Pi::service('url')->assemble($route, array(
-                        'time'   => date('Ymd', $row['time_publish']),
-                        'id'     => $row['id'],
-                        'slug'   => $extended[$row['id']]['slug'],
+                        'module'    => $module,
+                        'time'      => date('Ymd', $row['time_publish']),
+                        'id'        => $row['id'],
+                        'slug'      => $extended[$row['id']]['slug'],
                     ));
                 }
                 

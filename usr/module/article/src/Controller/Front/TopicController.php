@@ -96,10 +96,11 @@ class TopicController extends ActionController
 
         // Get list page url
         $url = $this->url(
-            Pi::api('api', $module)->getRouteName($module),
+            'article',
             array(
-                'topic' => $row->slug ?: $row->id,
-                'list'  => 'all'
+                'module'    => $module,
+                'topic'     => $row->slug ?: $row->id,
+                'list'      => 'all'
             )
         );
         
@@ -179,14 +180,15 @@ class TopicController extends ActionController
         $totalCount = $modelTopic->getSearchRowsCount($where);
 
         // Pagination
-        $route     = Pi::api('api', $module)->getRouteName();
+        $route     = 'article';
         $paginator = Paginator::factory($totalCount, array(
             'limit'       => $limit,
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'        => array(
-                    'topic'      => 'all',
+                    'module'    => $module,
+                    'topic'     => 'all',
                 ),
             ),
         ));
@@ -274,8 +276,9 @@ class TopicController extends ActionController
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'     => array(
-                    'topic'      => $topic,
-                    'list'       => 'all',
+                    'module'    => $module,
+                    'topic'     => $topic,
+                    'list'      => 'all',
                 ),
             ),
         ));

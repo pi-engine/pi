@@ -45,7 +45,7 @@ class CategoryController extends ActionController
         $limit  = (int) $config['page_limit_all'] ?: 40;
         $where  = array();
         
-        $route  = Pi::api('api', $module)->getRouteName();
+        $route  = 'article';
 
         // Get category nav
         $rowset = Pi::model('category', $module)->enumerate(null, null);
@@ -68,11 +68,12 @@ class CategoryController extends ActionController
                 'title' => __('All articles'),
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    Pi::api('api', $module)->getRouteName($module),
+                    'article',
                     array(
-                        'controller' => 'list',
-                        'action'     => 'all',
-                        'list'       => 'all',
+                        'module'        => $module,
+                        'controller'    => 'list',
+                        'action'        => 'all',
+                        'list'          => 'all',
                     )
                 ),
             ),
@@ -83,6 +84,7 @@ class CategoryController extends ActionController
                 continue;
             }
             $url = Pi::service('url')->assemble('', array(
+                'module'        => $module,
                 'controller' => 'category',
                 'action'     => 'list',
                 'category'   => $row['id'],
@@ -163,6 +165,7 @@ class CategoryController extends ActionController
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'        => array(
+                    'module'        => $module,
                     'category'      => $category,
                 ),
             ),
