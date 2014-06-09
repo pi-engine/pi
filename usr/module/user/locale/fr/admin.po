@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2014-05-22 22:16+0100\n"
-"PO-Revision-Date: 2014-05-23 18:15+0100\n"
+"PO-Revision-Date: 2014-06-08 14:58+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
-"Language-Team: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -588,7 +588,7 @@ msgstr "Date de naissance"
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:26
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:48
 msgid "Active"
-msgstr "Activer"
+msgstr "Confirmer"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:155
@@ -1496,12 +1496,12 @@ msgstr "Supprimer le rôle"
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:68
 msgid "Are you sure active this account, it can not be return"
 msgstr ""
-"Etes-vous sûr de vouloir activer ce compte, cela ne peut pas être annulé"
+"Etes-vous sûr de vouloir confirmer ce compte, cela ne peut pas être annulé"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:69
 msgid "Are you sure active these accounts, it can not be return"
-msgstr "Etes-vous sûr de vouloir activer ce compte, cela ne peut être annulé"
+msgstr "Etes-vous sûr de vouloir confirmer ce compte, cela ne peut être annulé"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:70

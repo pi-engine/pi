@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-05-18 20:22+0100\n"
-"PO-Revision-Date: 2014-05-28 11:24+0100\n"
+"POT-Creation-Date: 2014-06-07 13:05+0100\n"
+"PO-Revision-Date: 2014-06-08 22:23+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
-"Language-Team: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -201,7 +201,7 @@ msgstr "Terminer"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:30
 msgid "Finishing installation process"
-msgstr "Installation en cours de finalisation"
+msgstr "Installation terminée"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Admin.php:31
@@ -468,13 +468,14 @@ msgstr "Paramètres fondamentaux de votre site web"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:443
 msgid "File system"
-msgstr "Système de fichier"
+msgstr "Système par fichier"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:445
 msgid "Caching storage with files on disks specified in following steps."
 msgstr ""
-"Méthode de cache par fichiers sur disques indiqué dans les étapes suivantes."
+"Méthode de cache par fichiers situés sur disques indiqué dans les étapes "
+"suivantes."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:449
@@ -506,7 +507,8 @@ msgstr "Adresse du site web (URL)"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:500
 msgid "Main URL that will be used to access your Pi Engine"
-msgstr "URL principale qui sera utilisée pour accéder à votre Pi Engine"
+msgstr ""
+"URL principale qui sera utilisée pour accéder à votre site sous Pi Engine"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:503
@@ -520,7 +522,7 @@ msgid ""
 "will be allocated in PI root directory; PHP disabled."
 msgstr ""
 "Chemin physique du répertoire d'upload, sans slash de fin. Un chemin relatif "
-"sera alloué dans votre répertoire PI racine: PHP désactivé."
+"sera alloué dans votre répertoire racine PI ; PHP désactivé."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:507
@@ -533,8 +535,8 @@ msgid ""
 "URL that will be used to access upload directory. PI root URL will be "
 "prepended if relative URL is used."
 msgstr ""
-"URL qui sera utilisée pour accéder au répertoire d'upload. l'URL racine PI "
-"sera ajouté devant si une URL relative est utilisée"
+"URL qui sera utilisée pour accéder au répertoire d'upload. L'URL racine PI "
+"sera ajoutée devant si une URL relative est utilisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:511
@@ -575,8 +577,8 @@ msgid ""
 "Physical path to library directory without trailing slash. Locate the folder "
 "out of web directory to make it secure; PHP executable"
 msgstr ""
-"Chemin physique du repertoire des Librairies sans slash de fin. Localisez le "
-"dossier en dehors du répertoire web pour le sécuriser; PHP y est exécutable"
+"Chemin physique du repertoire des Librairies sans slash de fin. Placez le "
+"dossier en dehors du répertoire web pour le sécuriser; PHP y est exécutable."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:523
@@ -590,8 +592,8 @@ msgid ""
 "Locate the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 "Chemin physique du répertoire des fichiers de données (ouvert en écriture) "
-"SANS slash de fin.  Localisez le dossier en dehors de répertoire web pour le "
-"sécuriser; PHP y est exécutable"
+"SANS slash de fin.  Placez le dossier en dehors du répertoire web pour le "
+"sécuriser; PHP y est exécutable."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:527
@@ -605,8 +607,8 @@ msgid ""
 "the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 "Chemin physique du répertoire des contributions utilisateur SANS slash de "
-"fin. Localisez le dossier en dehors de répertoire web pour sécuriser ; PHP y "
-"est exécutable"
+"fin. Placez le dossier en dehors du répertoire web pour sécuriser ; PHP y "
+"est exécutable."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:570
