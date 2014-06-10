@@ -93,7 +93,7 @@ class TreeRouteStack extends ZendTreeRouteStack
             $module = $params['module'];
             $directory = Pi::service('module')->directory($module);
             if ($module != $directory) {
-                $routeList = Pi::registry('RouteList')->read($directory);
+                $routeList = Pi::registry('route_list')->read($directory);
                 $names = explode('/', $options['name'], 2);
                 if ($routeList && isset($routeList[$names[0]])) {
                     // Prepend module name to route name for cloned modules

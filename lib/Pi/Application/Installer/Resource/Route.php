@@ -104,7 +104,7 @@ class Route extends AbstractResource
                 unset($data['options']['route']);
             }
             if (!isset($data['options']['prefix'])) {
-                $data['options']['prefix'] = $module;
+                $data['options']['prefix'] = '/' . $module;
             }
             $data['options']['defaults']['module'] = $module;
 

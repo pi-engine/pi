@@ -1144,7 +1144,7 @@ class DraftController extends ActionController
             'currentDelete'  => $currentDelete,
             'currentApprove' => $currentApprove,
         ));
-        
+
         $this->view()->setTemplate('draft-edit', $module, 'front');
     }
 
