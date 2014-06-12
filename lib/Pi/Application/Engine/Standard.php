@@ -17,7 +17,7 @@ use Pi\Mvc\Application;
  *
  * Tasks:
  *
- *  - load configs, default listeners, module manager, bootstrap, application;
+ * - load configs, default listeners, module manager, bootstrap, application;
  * - boot application;
  * - run application
  *
@@ -101,7 +101,7 @@ class Standard extends AbstractEngine
     }
 
     /**
-     * Bood Pi application services
+     * Boot Pi application services
      *
      * @return bool
      */

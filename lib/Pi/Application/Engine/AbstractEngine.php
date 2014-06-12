@@ -31,7 +31,7 @@ abstract class AbstractEngine
     /** @var string API section */
     const API       = 'api';
 
-    /** @var string Cront section */
+    /** @var string Cron section */
     const CRON      = 'cron';
 
     /** @var string Widget section */

@@ -95,6 +95,7 @@ return array(
             'Zend\View\Resolver\TemplatePathStack'   => 'ViewTemplatePathStack',
             'Zend\View\Resolver\AggregateResolver'   => 'ViewResolver',
             'Zend\View\Resolver\ResolverInterface'   => 'ViewResolver',
+            'ControllerManager'                      => 'ControllerLoader'
         ),
 
     ),
