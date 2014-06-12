@@ -31,12 +31,9 @@ class FlashMessenger extends ZendFlashMessenger
         if (!$message) {
             return $this;
         }
-        if ($namespace) {
-            $this->setNamespace($namespace);
-        }
         $messages = (array) $message;
         foreach ($messages as $msg) {
-            $this->addMessage($msg);
+            $this->addMessage($msg, $namespace);
         }
 
         return $this;
