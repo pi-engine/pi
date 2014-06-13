@@ -17,6 +17,8 @@ March 20th, 2014
   - var/config/config.application.php
     - service_manager::invokables::SendResponseListener
     - send_response::compress
+  - var/config/service.session.php
+  - var/config/service.session-admin.php
 
 * Modified language files:
   - module/system/locale/en/admin.po, block.po, default.po
