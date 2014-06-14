@@ -55,8 +55,7 @@ class Update extends AbstractAction
         $originalRow = clone $row;
         $config = $this->event->getParam('config');
         $meta = array('update' => time());
-        $moduleColumns = array('id', 'name', 'title', 'directory',
-                               'version', 'update', 'active');
+        $moduleColumns = array('directory', 'version');
         foreach ($config['meta'] as $key => $value) {
             if (in_array($key, $moduleColumns)) {
                 $meta[$key] = $value;
