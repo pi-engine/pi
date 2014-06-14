@@ -47,6 +47,12 @@ class IndexController extends ActionController
             $this->view()->headdescription($row->seo_description, 'set');
             $this->view()->headkeywords($row->seo_keywords, 'set');
             $this->view()->assign('config', $config);
+            if ($row->theme) {
+                $this->view()->setTheme($row->theme);
+            }
+            if ($row->layout) {
+                $this->view()->setLayout($row->layout);
+            }
         }
 
         $this->view()->assign(array(

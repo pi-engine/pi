@@ -38,6 +38,28 @@ class Update extends BasicUpdate
         $table          = $model->getTable();
         $adapter        = $model->getAdapter();
 
+        // Add `theme` `layout` fields
+        if (version_compare($moduleVersion, '1.2.1', '<=')) {
+            $sql =<<<'EOD'
+ALTER TABLE %s
+ADD  `theme`           varchar(64)             NOT NULL default '',
+ADD  `layout`          varchar(64)             NOT NULL default '';
+EOD;
+
+            $sql = sprintf($sql, $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
+
         // Drop homepage for blocks
         if (version_compare($moduleVersion, '1.2.0', '<=')) {
             Pi::model('page')->delete(array(

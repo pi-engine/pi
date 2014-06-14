@@ -197,6 +197,7 @@ class IndexController extends ActionController
                 $row->assign($values);
                 $row->save();
                 Pi::registry('page')->clear($this->getModule());
+                Pi::service('cache')->flush('module', $this->getModule());
                 $message = _a('Page data saved successfully.');
                 return $this->jump(array('action' => 'index'), $message);
             } else {
