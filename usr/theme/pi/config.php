@@ -37,4 +37,9 @@ return array(
     // Supported browsers
     'browser'       => 'Internet Explorer: 8+; Chrome: latest;'
                      . ' Firefox: latest; Safari: latest; Opera: latest;',
+
+    // List of custom front layouts, optional
+    'layout'        => array(
+        'layout-front'   => __('Custom layout')
+    ),
 );

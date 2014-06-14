@@ -78,4 +78,9 @@ return array(
     // Supported browsers
     'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+;'
                      . ' Safari: 5.1+; Opera: 9.8+;',
+
+    // List of custom front layouts, optional
+    'layout'        => array(
+        //'file-name'   => __('Layout name'),
+    ),
 );

@@ -196,6 +196,19 @@ class View extends AbstractPlugin
     }
 
     /**
+     * Set theme
+     *
+     * @param string $theme
+     * @return $this
+     */
+    public function setTheme($theme)
+    {
+        Pi::service('theme')->setTheme($theme);
+
+        return $this;
+    }
+
+    /**
      * Set template for root model
      *
      * @param string $template

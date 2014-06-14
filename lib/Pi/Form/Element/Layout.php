@@ -15,11 +15,11 @@ use Pi;
 use Zend\Form\Element\Select;
 
 /**
- * Theme select element
+ * Theme layout select element
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Theme extends Select
+class Layout extends Select
 {
     /**
      * Get options of value select
@@ -28,12 +28,8 @@ class Theme extends Select
      */
     public function getValueOptions()
     {
-        $type = $this->getOption('section');
-        $this->valueOptions = Pi::service('theme')->getThemes($type);
-        $allowAuto = $this->getOption('allow_auto');
-        if ($allowAuto) {
-            $this->valueOptions = array('' => __('Use system theme')) + $this->valueOptions;
-        }
+        $theme = $this->getOption('theme');
+        $this->valueOptions = Pi::service('theme')->getLayouts($theme);
 
         return $this->valueOptions;
     }
@@ -44,7 +40,7 @@ class Theme extends Select
     public function getLabel()
     {
         if (null === $this->label) {
-            $this->label = __('Theme');
+            $this->label = __('Layout');
         }
 
         return parent::getLabel();
