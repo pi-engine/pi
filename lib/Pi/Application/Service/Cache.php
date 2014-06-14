@@ -354,8 +354,8 @@ class Cache extends AbstractService
             $this->clearByNamespace();
         }
         if ('module' == $type || 'all' == $type) {
-            $modules = Pi::service('module')->meta();
-            foreach (array_keys($modules) as $module) {
+            $modules = $item ? (array) $item : array_keys(Pi::service('module')->meta());
+            foreach ($modules as $module) {
                 $this->clearByNamespace($module);
             }
         }
