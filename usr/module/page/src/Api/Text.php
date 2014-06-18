@@ -24,8 +24,9 @@ use Pi\Application\Api\AbstractApi;
  * Pi::api('text', 'page')->slug($slug);
  * Pi::api('text', 'page')->name($name);
  * ```
+ *
+ * @deprecated
  */
-
 class Text extends AbstractApi
 {
     /**

@@ -15,28 +15,35 @@ use Pi\Application\Api\AbstractApi;
 class Api extends AbstractApi
 {
     protected $module = 'page';
+    /*
     protected $pageColumns = array(
         'name', 'title', 'slug', 'content', 'markup', 'active',
         'user', 'time_created', 'seo_title', 'seo_keywords', 'seo_description'
     );
+    */
 
     /**
      * Add a new page and register to system page settings if name is available
      *
      * @param array $page
-     * @return boolean
+     *
+     * @return int  Page id
      */
     public function add($page)
     {
+        $id = 0;
+        /*
         foreach (array_keys($page) as $key) {
             if (!in_array($key, $this->pageColumns)) {
                 unset($page[$key]);
             }
         }
+        */
         // Set time_created
         if (!isset($page['time_created'])) {
             $page['time_created'] = time();
         }
+        /*
         // Set name
         $page['name'] = empty($page['name']) ? null : Pi::api('text', 'page')->name($page['name']);
         // Set slug
@@ -47,15 +54,17 @@ class Api extends AbstractApi
         $page['seo_keywords'] = Pi::api('text', 'page')->keywords($page['title']);
         // Set seo_description
         $page['seo_description'] = Pi::api('text', 'page')->description($page['title']);
+        */
         // Save
         $row = Pi::model('page', $this->getModule())->createRow($page);
         $row->save();
-        if (!$row->id) {
-            return false;
+        $id = (int) $row->id;
+        if (!$id) {
+            return $id;
         }
 
         if (!$row->name) {
-            return true;
+            return $id;
         }
         $page = array(
             'section'       => 'front',
@@ -71,7 +80,7 @@ class Api extends AbstractApi
 
         Pi::registry('page')->clear($this->getModule());
 
-        return $row->id ? true : false;
+        return $id;
     }
 
     /**
