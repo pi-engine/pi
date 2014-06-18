@@ -634,7 +634,7 @@ class Entity
 
         // Getting seo
         $modelExtended  = Pi::model('extended', $module);
-        $rowExtended    = $modelExtended->find($row->id, $module);
+        $rowExtended    = $modelExtended->find($row->id);
         if ($rowExtended) {
             $result['slug'] = $rowExtended->slug;
             $result['seo']  = array(
@@ -646,7 +646,7 @@ class Entity
         
         // Getting stats data
         $modelStatis    = Pi::model('stats', $module);
-        $rowStatis      = $modelStatis->find($row->id, $module);
+        $rowStatis      = $modelStatis->find($row->id);
         if ($rowStatis) {
             $result['visits'] = $rowStatis->visits;
         }
@@ -664,7 +664,7 @@ class Entity
      */
     public static function getSummary($from = 'my', $rules = array())
     {
-        // Processing user managment category
+        // Processing user management category
         $categories = array_keys($rules);
                     
         $module = Pi::service('module')->current();
