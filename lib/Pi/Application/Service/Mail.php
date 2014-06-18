@@ -131,7 +131,7 @@ class Mail extends AbstractService
      *
      * @param string $name
      * @param array $config
-     * @return MailHandler\Transport\TransportInterface
+     * @return MailHandler\Transport\TransportInterface|null
      */
     public function loadTransport($name = null, $config = null)
     {
@@ -139,19 +139,41 @@ class Mail extends AbstractService
         if (isset($this->options[$name])) {
             $config = array_merge($this->options[$name], (array) $config);
         }
+        $option     = null;
+        $exception  = null;
+        $transport  = null;
         switch ($name) {
             case 'smtp':
-                $smtpOptions = new MailHandler\Transport\SmtpOptions($config);
-                $transport = new MailHandler\Transport\Smtp($smtpOptions);
+                try {
+                    $option = new MailHandler\Transport\SmtpOptions($config);
+                    $transportClass = 'MailHandler\Transport\Smtp';
+                } catch (\Exception $exception) {
+                    $transportClass = '';
+                }
                 break;
             case 'file':
-                $fileOptions = new MailHandler\Transport\FileOptions($config);
-                $transport = new MailHandler\Transport\File($fileOptions);
+                try {
+                    $option = new MailHandler\Transport\FileOptions($config);
+                    $transportClass = 'MailHandler\Transport\File';
+                } catch (\Exception $exception) {
+                    $transportClass = '';
+                }
                 break;
             case 'sendmail':
             default:
-                $transport = new MailHandler\Transport\Sendmail($config);
+                $option = $config;
+                $transportClass = 'MailHandler\Transport\Sendmail';
                 break;
+        }
+        if ($transportClass) {
+            try {
+                $transport = new $transportClass($option);
+            } catch (\Exception $eTransport) {
+                trigger_error($eTransport->getMessage());
+                $transport = null;
+            }
+        } elseif ($exception) {
+            trigger_error($exception->getMessage());
         }
 
         return $transport;
@@ -160,7 +182,7 @@ class Mail extends AbstractService
     /**
      * get default transport, load it if not previously loaded
      *
-     * @return MailHandler\Transport\TransportInterface
+     * @return MailHandler\Transport\TransportInterface|null
      */
     public function transport()
     {
@@ -194,12 +216,15 @@ class Mail extends AbstractService
      */
     public function send(MailHandler\Message $message)
     {
-        @set_time_limit(0);
-        try {
-            $this->transport()->send($message);
-        } catch (\Exception $e) {
-            trigger_error($e->getMessage());
-            return false;
+        $transport = $this->transport();
+        if ($transport) {
+            try {
+                @set_time_limit(0);
+                $transport->send($message);
+            } catch (\Exception $e) {
+                trigger_error($e->getMessage());
+                return false;
+            }
         }
 
         return true;
