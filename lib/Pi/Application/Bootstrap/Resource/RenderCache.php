@@ -136,8 +136,9 @@ class RenderCache extends AbstractResource
         $cacheKey       = md5($e->getRequest()->getRequestUri());
         $namespace      = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $namespace)
-                    ->meta('ttl', $cacheMeta['ttl']);
+            ->meta('namespace', $namespace)
+            ->meta('level', $cacheMeta['level'])
+            ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
@@ -257,8 +258,9 @@ class RenderCache extends AbstractResource
         $cacheKey       = md5($e->getRequest()->getRequestUri());
         $namespace      = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $namespace)
-                    ->meta('ttl', $cacheMeta['ttl']);
+            ->meta('namespace', $namespace)
+            ->meta('level', $cacheMeta['level'])
+            ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {

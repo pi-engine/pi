@@ -136,7 +136,7 @@ class Cache extends AbstractService
      * Canonize cache key
      *
      * @param string $key           Raw key
-     * @param string $cacheLevel    Cache level
+     * @param string $cacheLevel    Cache granularity
      * @return string
      */
     public function canonizeKey($key, $cacheLevel = '')

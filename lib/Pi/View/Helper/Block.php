@@ -131,13 +131,13 @@ class Block extends AbstractHelper
         $renderCache = null;
         $blockData = null;
         if ('tab' != $block['type'] && $block['cache_ttl']) {
-        //if ($block['cache_ttl']) {
             $cacheKey = empty($options)
                 ? md5($block['id']) : md5($block['id'] . serialize($options));
             $renderCache = Pi::service('render_cache')->setType('block');
             $renderCache->meta('key', $cacheKey)
-                        ->meta('namespace', $block['module'] ?: 'system')
-                        ->meta('ttl', $block['cache_ttl']);
+                ->meta('namespace', $block['module'] ?: 'system')
+                ->meta('ttl', $block['cache_ttl'])
+                ->meta('level', $block['cache_level']);
             $blockData = $renderCache->cachedContent();
             if (null !== $blockData) {
                 $blockData = json_decode($blockData, true);

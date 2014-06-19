@@ -31,7 +31,7 @@ use Pi\Db\RowGateway\RowGateway;
  *          'render'        => array('class', 'method'),
  *          // in module/template/block/, no suffix
  *          'template'      => 'template',
- *          // Cache level type, optional: role, locale, user
+ *          // Cache granularity, optional: role, locale, user, guest
  *          'cache_level'   => 'role',
  *          'config'        => array(
  *              'a' => array(
