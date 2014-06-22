@@ -197,17 +197,31 @@ class Collection extends Fieldset
 
         // Can't do anything with empty data
         if (empty($data)) {
-            $this->shouldCreateChildrenOnPrepareElement = false;
             return;
         }
 
         if (!$this->allowRemove && count($data) < $this->count) {
             throw new Exception\DomainException(sprintf(
-                'There are fewer elements than specified in the collection (%s). Either set the allow_remove option ' .
-                'to true, or re-submit the form.',
+                'There are fewer elements than specified in the collection (%s). Either set the allow_remove option '
+                . 'to true, or re-submit the form.',
                 get_class($this)
-                )
-            );
+            ));
+        }
+
+        // Check to see if elements have been replaced or removed
+        foreach ($this->byName as $name => $elementOrFieldset) {
+            if (isset($data[$name])) {
+                continue;
+            }
+
+            if (!$this->allowRemove) {
+                throw new Exception\DomainException(sprintf(
+                    'Elements have been removed from the collection (%s) but the allow_remove option is not true.',
+                    get_class($this)
+                ));
+            }
+
+            $this->remove($name);
         }
 
         foreach ($data as $key => $value) {
@@ -479,6 +493,10 @@ class Collection extends Fieldset
 
     /**
      * @return array
+     * @throws \Zend\Form\Exception\InvalidArgumentException
+     * @throws \Zend\Stdlib\Exception\InvalidArgumentException
+     * @throws \Zend\Form\Exception\DomainException
+     * @throws \Zend\Form\Exception\InvalidElementException
      */
     public function extract()
     {
@@ -509,27 +527,6 @@ class Collection extends Fieldset
                 }
             }
         }
-
-        foreach ($values as $name => $object) {
-            $fieldset = $this->addNewTargetElementInstance($name);
-
-            if ($fieldset->allowObjectBinding($object)) {
-                $fieldset->setObject($object);
-                $values[$name] = $fieldset->extract();
-            } else {
-                foreach ($fieldset->fieldsets as $childFieldset) {
-                    $childName = $childFieldset->getName();
-                    if (isset($object[$childName])) {
-                        $childObject = $object[$childName];
-                        if ($childFieldset->allowObjectBinding($childObject)) {
-                            $childFieldset->setObject($childObject);
-                            $values[$name][$childName] = $childFieldset->extract();
-                        }
-                    }
-                }
-            }
-        }
-
         return $values;
     }
 
@@ -546,6 +543,7 @@ class Collection extends Fieldset
     /**
      * Add a new instance of the target element
      *
+     * @param string $name
      * @return ElementInterface
      * @throws Exception\DomainException
      */
