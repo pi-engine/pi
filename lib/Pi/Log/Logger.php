@@ -182,9 +182,7 @@ class Logger
      * @throws \InvalidArgumentException
      * @return self
      */
-    public function addWriter(
-        $writer,
-        $priority = 1,
+    public function addWriter($writer, $priority = 1,
         array $options = array())
     {
         if (is_string($writer)) {
@@ -195,6 +193,9 @@ class Logger
                 is_object($writer) ? get_class($writer) : gettype($writer)
             ));
         }
+        $priority = is_int($options)
+            ? $options
+            : (isset($options['priority']) ? $options['priority'] : 1);
         $this->writers->insert($writer, $priority);
 
         return $this;
@@ -249,10 +250,6 @@ class Logger
      */
     public function log($priority, $message, $extra = array())
     {
-        if ($this->writers->count() === 0) {
-            return $this;
-        }
-
         if (!is_int($priority) || !isset($this->priorities[$priority])) {
             throw new \InvalidArgumentException('Invalid priority');
         }
@@ -278,6 +275,10 @@ class Logger
             );
         } elseif ($extra instanceof Traversable) {
             $extra = ArrayUtils::iteratorToArray($extra);
+        }
+
+        if ($this->writers->count() === 0) {
+            throw new \RuntimeException('No log writer specified');
         }
 
         if ($this->dateTimeFormat) {
