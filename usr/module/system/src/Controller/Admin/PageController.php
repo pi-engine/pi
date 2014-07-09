@@ -568,8 +568,9 @@ class PageController extends ComponentController
             }
         }
 
-        // Clear cache of the page module
+        // Clear cache of the module
         Pi::registry('block')->clear($row->module);
+        Pi::service('cache')->flush('module', $row->module);
         $result = array(
             'status'    => 1,
             'message'   => _a('Page block links are updated.'),
