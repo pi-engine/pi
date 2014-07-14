@@ -9,6 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
+use Pi;
 use Zend\View\Model\ViewModel;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Zend\Mvc\MvcEvent;
