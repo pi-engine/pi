@@ -58,6 +58,13 @@ class AccountForm extends BaseForm
                 'type' => 'hidden',
             ),
         ));
+        
+        $this->add(array(
+            'name'       => 'id',
+            'attributes' => array(
+                'type' => 'hidden',
+            ),
+        ));
 
         $this->add(array(
             'name'       => 'submit',

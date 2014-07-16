@@ -43,6 +43,7 @@ class AccountController extends ActionController
         // Generate form
         $form           = new AccountForm('account');
         $data['uid']    = $uid;
+        $data['id']     = $uid;
         $form->setData($data);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
