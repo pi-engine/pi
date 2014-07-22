@@ -41,11 +41,11 @@ class MediaTemplate extends Select
                 return false;
             }
             $name = $fileinfo->getBasename();
-            if (preg_match('/[^a-z0-9_\-]/', $name)) {
+            if (!preg_match('/[^a-z0-9_\-]/', $name)) {
                 return false;
             }
 
-            $list[$this->templateDir . '/' . $name] =  _a('Custom: ') . $name;
+            $list[$this->templateDir . '/' . $name] =  _a('Custom: ') . substr($name, 0, -6);
         };
         Pi::service('file')->getList($customPath, $filter);
 
