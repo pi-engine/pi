@@ -59,6 +59,7 @@
                 this.emailInitVal = $.trim(this.$email.val());
                 this.nameInitVal = $.trim(this.$name.val());
                 this.uidVal      = $.trim(this.$el.find('[name=uid]').val());
+                this.idVal       = $.trim(this.$el.find('[name=id]').val());
                 this.checkEmailRequest = null;
                 this.checkNameRequest = null;
             },
@@ -98,7 +99,7 @@
                         var emailVal = $.trim(this.$email.val());
                         var nameVal = $.trim(this.$name.val());
 
-                        $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal, 'uid': this.uidVal}, $.proxy(function(result) {
+                        $.post(this.options.accountIndexUrl, { 'email': emailVal, 'name': nameVal, 'uid': this.uidVal, 'id': this.idVal}, $.proxy(function(result) {
                             this.$email.next().remove();
                             this.$name.next().remove();
 
