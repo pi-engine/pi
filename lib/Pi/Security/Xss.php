@@ -81,7 +81,7 @@ class Xss extends AbstractAdapter
      * @param bool          $filter     To filter malicious code
      * @return bool
      */
-    public static function checkXssRecursive(& $content, $filter = true)
+    public static function checkXssRecursive(&$content, $filter = true)
     {
         if (is_array($content)) {
             foreach ($content as $key => &$val) {
@@ -100,7 +100,6 @@ class Xss extends AbstractAdapter
      *
      * Inspired by:
      *
-     *  - 4images: http://phpxref.com/xref/4images/global.php.source.txt
      *  - Daniel Morris: http://www.phpclasses.org/browse/file/9402.html
      *  - kallahar@quickwired.com's RemoveXSS
      *  - htmlLawed
@@ -118,18 +117,26 @@ class Xss extends AbstractAdapter
             return $filter ? $content : null;
         }
 
-        // convert decimal
-        $patterns[] = '/&#(\d+)/me';
-        $replaces[] = "chr(\\1)";
+        // Remove NULL bytes
+        $content = str_replace("\0", '', $content);
 
-        // convert hex
+        $patterns = array();
+        $replaces = array();
+
+        // Convert decimal
+        // Disabled temporarily for issue #1144
+        // on GitHub: https://github.com/pi-engine/pi/issues/1144
+        //$patterns[] = '/&#(\d+)/me';
+        //$replaces[] = "chr(\\1)";
+
+        // Convert hex
         $patterns[] = '/&#x([a-f0-9]+)/mei';
         $replaces[] = "chr(0x\\1)";
 
         $patterns[] = '/(&#*\w+)[\x00-\x20]+;/U';
         $replaces[] = "\\1;";
 
-        // Remove any attribute starting with "on" or xmlns
+        // Remove any attribute starting with `on` or `xmlns`
         $patterns[] = '/(<[^>]+[\x01-\x20\"\'])(on|xmlns)[^>]*>/iU';
         $replaces[] = "\\1>";
 
@@ -139,7 +146,7 @@ class Xss extends AbstractAdapter
         $replaces[] = '';
 
         $c = "[\x01-\x20]*";
-        // Remove javascript:, vbscript:, about:, moz-binding and xss: protocol
+        // Remove `javascript:`, `vbscript:`, `about:`, `moz-binding` and `xss:` protocol
         $script = "j{$c}a{$c}v{$c}a{$c}s{$c}c{$c}r{$c}i{$c}p{$c}t";
         $patterns[] = "/([a-z]*){$c}={$c}([\`\'\"]*){$c}{$script}{$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';
@@ -148,21 +155,21 @@ class Xss extends AbstractAdapter
         $patterns[] = "/([a-z]*){$c}={$c}([\'\"]*){$c}({$script}){$c}:/iU";
         $replaces[] = '\\1=\\2noscript:';
 
-        // @import
+        // Revoke `@import`
         $patterns[] = "/([a-z]*){$c}([\\\]*){$c}@([\\\]*){$c}i([\\\]*){$c}m"
                     . "([\\\]*){$c}p([\\\]*){$c}o([\\\]*){$c}r"
                     . "([\\\]*){$c}t/iU";
         $replaces[] = '\\1@noimport';
 
-        // <span style="width: expression|behaviour( ... );"></span>
-        // for ie
+        // Revoke `<span style="width: expression|behaviour( ... );"></span>`
+        // For IE only
         $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*"
                     . "(e{$c}x{$c}p{$c}r{$c}e{$c}s{$c}s{$c}i{$c}o{$c}n"
                     . "|b{$c}e{$c}h{$c}a{$c}v{$c}i{$c}o{$c}u{$c}r)"
                     . "{$c}\(.*\\2(.*)>/iU";
         $replaces[] = "\\1\\4>";
 
-        // <span style="script: "></span>
+        // Revoke `<span style="script: "></span>`
         $patterns[] = "/(<[^>]+)style{$c}={$c}([\`\'\"]{1}).*"
                     . "s{$c}c{$c}r{$c}i{$c}p{$c}t{$c}: .*\\2(.*)>/iU";
         $replaces[] = "\\1\\3>";
