@@ -1,11 +1,4 @@
 <h2 class="page-header"><?php _e('Test Page List'); ?></h2>
-<div class="form-group">
-    <select class="search-status form-control">
-        <option value=""><?php echo _a('all'); ?></option>
-        <option value="deactive" <?php if ($filter == 'deactive') echo 'selected'; ?>><?php echo _a('Inactive'); ?></option>
-        <option value="active" <?php if ($filter == 'active') echo 'selected'; ?> ><?php echo _a('Active'); ?></option>
-    </select>
-</div>
 <ul>
     <?php foreach ($pages as $page) {?>
         <li><a href=""><?php echo _escape($page['username']); ?> <?php echo _escape($page['content']); ?></a><span class="pull-right"><?php echo _date($page['time']); ?></span></li>

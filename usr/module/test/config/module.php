@@ -32,7 +32,7 @@ return array(
         'clonable'      => true,
     ),
     // Author information
-    /*  'author'    => array(
+     'author'    => array(
         // Author full name, required
         'Name'      => 'Taiwen Jiang',
         // Email address, optional
@@ -44,7 +44,7 @@ return array(
     ),
     // Module dependency: list of module directory names, optional
     'dependency'    => array(
-    ),*/
+    ),
 
     // Resource
     'resource' => array(
