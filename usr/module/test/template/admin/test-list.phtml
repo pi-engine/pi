@@ -1,0 +1,12 @@
+<h2 class="page-header"><?php _e('Test Page List'); ?></h2>
+<ul>
+    <?php foreach ($pages as $page) {?>
+        <li><a href=""><?php echo _escape($page['username']); ?> <?php echo _escape($page['content']); ?></a><span class="pull-right"><?php echo _date($page['time']); ?></span></li>
+    <?php } ?>
+</ul>
+
+<?php
+if (!empty($paginator)) {
+    echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
+}
+?>

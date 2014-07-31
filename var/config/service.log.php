@@ -51,8 +51,6 @@ $config['development'] = array(
         'error_reporting'   => -1,
         // Custom level for error_reporting, only applicable when error_reporting is not specified
         'error_level'   => 'development',
-        // Log for fatal errors, false for disable
-        'fatal_error_log'   => false, //'fatal-error',
     ),
     // Exception handler
     'exception_handler' => array(

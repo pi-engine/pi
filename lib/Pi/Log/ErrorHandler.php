@@ -9,8 +9,6 @@
 
 namespace Pi\Log;
 
-use Pi;
-
 /** @var int Production mode, no error display */
 define('ERROR_REPORTING_PRODUCTION', 0);
 /** @var int Development mode, all possible */
@@ -50,7 +48,6 @@ class ErrorHandler
         E_CORE_WARNING      => Logger::WARN,
         E_USER_WARNING      => Logger::WARN,
         E_ERROR             => Logger::ERR,
-        E_PARSE             => Logger::ERR,
         E_USER_ERROR        => Logger::ERR,
         E_CORE_ERROR        => Logger::ERR,
         E_RECOVERABLE_ERROR => Logger::ERR,
@@ -92,22 +89,6 @@ class ErrorHandler
         }
         */
 
-        // Register handler for fatal error
-        if (!empty($options['fatal_error_log'])) {
-            $logFile = is_string($options['fatal_error_log'])
-                ? $options['fatal_error_log']
-                : 'fatal-error';
-            register_shutdown_function(function () use ($logFile) {
-                $error = error_get_last();
-                if (null !== $error && $error['type'] == E_ERROR | E_PARSE) {
-                    $log = array(
-                        array(time(), array($error['message'], $error['file'], $error['line']))
-                    );
-                    Pi::service('audit')->write($logFile, $log);
-                }
-            });
-        }
-
         return true;
     }
 
@@ -123,8 +104,6 @@ class ErrorHandler
         if (!$this->logger || !$this->active) {
             return false;
         }
-
-        // Register regular error handler
         set_error_handler(array($this, 'handleError'));
 
         return true;
@@ -174,6 +153,7 @@ class ErrorHandler
      * @param int       $errline
      * @param array     $errcontext
      * @return bool
+     * @throws \Exception
      */
     public function handleError(
         $errno,
@@ -188,13 +168,17 @@ class ErrorHandler
             } else {
                 $priority = Logger::INFO;
             }
-            $this->logger->log($priority, $errstr, array(
-                'errno'     => $errno,
-                'file'      => $errfile,
-                'line'      => $errline,
-                'context'   => $errcontext,
-                'time'      => microtime(true)
-            ));
+            try {
+                $this->logger->log($priority, $errstr, array(
+                    'errno'     => $errno,
+                    'file'      => $errfile,
+                    'line'      => $errline,
+                    'context'   => $errcontext,
+                    'time'      => microtime(true)
+                ));
+            } catch (\Exception $e) {
+                throw $e;
+            }
         }
 
         return true;
