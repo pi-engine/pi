@@ -42,7 +42,7 @@ class Module extends AbstractService
      * Constructor
      *
      * @param array $options
-     *      Parameters to send to the service during instanciation
+     *      Parameters to send to the service during instantiation
      */
     public function __construct($options = array())
     {
@@ -100,21 +100,6 @@ class Module extends AbstractService
         }
 
         $status = Pi::service('config')->write($this->fileMeta, $meta);
-        /*
-        $configFile = Pi::path('config') . '/' . $this->fileMeta;
-        clearstatcache();
-        if (!file_exists($configFile)) {
-            touch($configFile);
-        } elseif (!is_writable($configFile)) {
-            @chmod($configFile, intval('0777', 8));
-        }
-        $content = '<?php' . PHP_EOL
-                 . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
-        file_put_contents($configFile, $content);
-        @chmod($configFile, intval('0444', 8));
-        clearstatcache();
-        */
-
         $this->init(true);
 
         return $meta;
@@ -130,11 +115,6 @@ class Module extends AbstractService
     {
         if ($force || empty($this->container['meta'])) {
             $list = Pi::config()->load($this->fileMeta);
-            /*
-            if (!$list) {
-                $list = $this->createMeta();
-            }
-            */
             $this->container['meta'] = $list;
         }
 
@@ -149,7 +129,6 @@ class Module extends AbstractService
      */
     public function meta($module = null)
     {
-        //$this->init();
         if (null === $module) {
             $return = $this->container['meta'];
         } elseif (isset($this->container['meta'][$module])) {

@@ -387,12 +387,11 @@ class Pi
     }
 
     /**
-     * Load a service or service handler
-     *
-     * If service name is not specified, a service placeholder will be returned
+     * Load a service provider, or service handler if name is not specified
      *
      * @param string    $name
      * @param array     $options
+     *
      * @return Service|AbstractService
      * @api
      */

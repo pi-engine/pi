@@ -13,7 +13,7 @@ namespace Pi\Application\Service;
 use Pi;
 
 /**
- * Pi Engine sevice abstract class
+ * Abstract class for Pi Engine service provider interface
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
