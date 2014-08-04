@@ -1,0 +1,9 @@
+<?php if (!empty($messages)) { ?>
+<div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <?php foreach ($messages as $msg): ?>
+        <div><?php echo $msg; ?></div>
+    <?php endforeach; ?>
+</div>
+<?php } ?>
+<?php include $this->templateComponent('form'); ?>
