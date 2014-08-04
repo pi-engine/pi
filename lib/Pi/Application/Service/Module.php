@@ -15,6 +15,18 @@ use Pi;
 /**
  * Module handling service
  *
+ * Usage:
+ *
+ * - Get meta of a module
+ * ```
+ *  $title = Pi::module()->meta(<module_name>, 'title');
+ *  $version = Pi::module()->meta(<module_name>, 'version');
+ *  $active = Pi::module()->meta(<module_name>, 'active');
+ *
+ *  $directory = Pi::module()->meta(<module_name>, 'directory');
+ *  $directory = Pi::module()->directory(<module_name>);
+ * ```
+ * 
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Module extends AbstractService
@@ -86,7 +98,7 @@ class Module extends AbstractService
     /**
      * Create module meta data fetching from DB and write to meta data
      *
-     * @return array
+     * @return array Array of `directory`, `title`, `version`, `active`
      */
     public function createMeta()
     {
@@ -95,6 +107,8 @@ class Module extends AbstractService
         foreach ($rowset as $row) {
             $meta[$row->name] = array(
                 'directory' => $row->directory,
+                'title'     => $row->title,
+                'version'   => $row->version,
                 'active'    => (int) $row->active,
             );
         }
@@ -125,19 +139,25 @@ class Module extends AbstractService
      * Get module meta data
      *
      * @param string $module
+     * @param string $key Valid keys: `directory`, `title`, `version`, `active`
+     *
      * @return array|bool
      */
-    public function meta($module = null)
+    public function meta($module = '', $key = '')
     {
-        if (null === $module) {
-            $return = $this->container['meta'];
-        } elseif (isset($this->container['meta'][$module])) {
-            $return = $this->container['meta'][$module];
+        if (!$module) {
+            $result = $this->container['meta'];
+        } elseif (!isset($this->container['meta'][$module])) {
+            $result = false;
+        } elseif ($key) {
+            $result = isset($this->container['meta'][$module][$key])
+                ? $this->container['meta'][$module][$key]
+                : false;
         } else {
-            $return = false;
+            $result = $this->container['meta'][$module];
         }
 
-        return $return;
+        return $result;
     }
 
     /**
@@ -183,7 +203,7 @@ class Module extends AbstractService
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;
 
-        // For backward compat
+        // For backward compatibility
         if (isset($config['maintenance'])) {
             if (isset($config['maintenance']['resource'])) {
                 $config['resource'] = $config['maintenance']['resource'];
