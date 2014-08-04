@@ -1,9 +1,6 @@
 [submodule "usr/module/uclient"]
 	path = usr/module/uclient
 	url = https://github.com/pi-module/uclient
-[submodule "usr/module/demo"]
-	path = usr/module/demo
-	url = https://github.com/pi-module/demo
 [submodule "usr/module/saml"]
 	path = usr/module/saml
 	url = https://github.com/pi-module/saml
