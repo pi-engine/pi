@@ -44,6 +44,11 @@ class PermController extends ComponentController
         $this->view()->assign('name', $module);
     }
 
+    /**
+     * List of resources for perm assignment
+     *
+     * @return array
+     */
     public function resourcesAction() 
     {
         $section = _get('section') ? : 'front';
@@ -316,6 +321,8 @@ class PermController extends ComponentController
             }
         }
 
+        // Flush caches
+        Pi::registry('block')->flush();
         Pi::registry('navigation')->flush();
 
         $status = 1;
