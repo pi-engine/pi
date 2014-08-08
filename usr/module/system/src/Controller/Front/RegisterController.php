@@ -51,7 +51,10 @@ class RegisterController extends ActionController
 
         $this->view()->headTitle(__('Register'));
         $this->view()->headdescription(__('User account register'), 'set');
-        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
+        $headKeywords = Pi::user()->config('head_keywords');
+        if ($headKeywords) {
+            $this->view()->headkeywords($headKeywords, 'set');
+        }
     }
 
     /**

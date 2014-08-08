@@ -95,10 +95,7 @@ class RegisterController extends ActionController
 
         $this->view()->headTitle(__('Register'));
         $this->view()->headdescription(__('Account registration'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**

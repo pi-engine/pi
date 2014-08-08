@@ -76,6 +76,12 @@ $config = array(
         'filter'        => 'int',
     ),
 
+    'head_keywords'     => array(
+        'title'         => _t('Head keywords'),
+        'description'   => _t('Head keywords for SEO.'),
+        'value'         => _t('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+    ),
+
     // Login
     'login_disable'     => array(
         'title'         => _t('Login disable'),
