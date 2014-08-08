@@ -1,23 +1,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2014-02-10 19:40+0800\n"
-"PO-Revision-Date: 2014-02-10 19:40+0800\n"
+"POT-Creation-Date: 2014-08-08 17:40+0800\n"
+"PO-Revision-Date: 2014-08-08 17:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\article\n"
 
-#: c:\code\pi\usr\module\article/src/Block/Block.php:583
+#: c:\code\pi\usr\module\article/src/Block/Block.php:586
 msgid "This is default recommended image"
 msgstr ""
 
-#: c:\code\pi\usr\module\article/src/Block/Block.php:584
+#: c:\code\pi\usr\module\article/src/Block/Block.php:587
 msgid "You should to add your own images and its title and description!"
 msgstr ""
 
@@ -42,6 +43,5 @@ msgid "30 days"
 msgstr ""
 
 #: c:\code\pi\usr\module\article/template/block/submitter-statistics.phtml:20
-#, fuzzy
 msgid "All"
-msgstr "All Categories"
+msgstr ""

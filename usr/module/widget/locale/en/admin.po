@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-05-21 13:01+0800\n"
-"PO-Revision-Date: 2014-05-21 13:01+0800\n"
+"POT-Creation-Date: 2014-08-08 17:29+0800\n"
+"PO-Revision-Date: 2014-08-08 17:29+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: C:\\code\\pi\\usr\\module\\widget\n"
@@ -110,12 +111,8 @@ msgid "Widget list"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/config/nav.php:31
-#: C:\code\pi\usr\module\widget/config/nav.php:120
-#: C:\code\pi\usr\module\widget/config/nav.php:154
-#: C:\code\pi\usr\module\widget/config/nav.php:188
-#: C:\code\pi\usr\module\widget/config/nav.php:222
-#: C:\code\pi\usr\module\widget/config/nav.php:256
-msgid "Add new"
+#: C:\code\pi\usr\module\widget/template/admin/ng-script.phtml:11
+msgid "Activate"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/config/nav.php:40
@@ -148,6 +145,14 @@ msgstr ""
 #: C:\code\pi\usr\module\widget/config/nav.php:95
 #: C:\code\pi\usr\module\widget/config/permission.php:19
 msgid "List group"
+msgstr ""
+
+#: C:\code\pi\usr\module\widget/config/nav.php:120
+#: C:\code\pi\usr\module\widget/config/nav.php:154
+#: C:\code\pi\usr\module\widget/config/nav.php:188
+#: C:\code\pi\usr\module\widget/config/nav.php:222
+#: C:\code\pi\usr\module\widget/config/nav.php:256
+msgid "Add new"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/config/nav.php:129
@@ -433,7 +438,7 @@ msgstr ""
 msgid ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
-"API and strict starndards."
+"API and strict standards."
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:61
@@ -443,7 +448,7 @@ msgstr ""
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:62
 msgid ""
 "Easy and responsive application and content management based on visualized "
-"mangement tools and interface with page and widget mechanism."
+"management tools and interface with page and widget mechanism."
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Installer/Action/Install.php:67
@@ -462,10 +467,6 @@ msgstr ""
 
 #: C:\code\pi\usr\module\widget/src/Validator/WidgetNameDuplicate.php:28
 msgid "Widget name already exists"
-msgstr ""
-
-#: C:\code\pi\usr\module\widget/template/admin/ng-script.phtml:11
-msgid "Install"
 msgstr ""
 
 #: C:\code\pi\usr\module\widget/template/admin/ng.phtml:12

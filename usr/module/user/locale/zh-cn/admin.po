@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-06-01 18:17+0800\n"
-"PO-Revision-Date: 2014-06-01 18:17+0800\n"
+"POT-Creation-Date: 2014-08-08 17:27+0800\n"
+"PO-Revision-Date: 2014-08-08 17:28+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\user\n"
@@ -73,39 +73,53 @@ msgstr "资料完善"
 msgid "Require user to complete profile data."
 msgstr "注册成功后，要求用户完善个人资料数据"
 
+#: c:\Code\pi\usr\module\user/config/config.php:80
+msgid "Head keywords"
+msgstr "关键词"
+
 #: c:\Code\pi\usr\module\user/config/config.php:81
+msgid "Head keywords for SEO."
+msgstr ""
+
+#: c:\Code\pi\usr\module\user/config/config.php:82
+msgid ""
+"account,social,tools,privacy,settings,profile,user,login,register,password,"
+"avatar"
+msgstr ""
+
+#: c:\Code\pi\usr\module\user/config/config.php:87
 msgid "Login disable"
 msgstr "关闭登录"
 
-#: c:\Code\pi\usr\module\user/config/config.php:82
+#: c:\Code\pi\usr\module\user/config/config.php:88
 msgid "Disable user login"
 msgstr "禁止用户登录"
 
-#: c:\Code\pi\usr\module\user/config/config.php:90
+#: c:\Code\pi\usr\module\user/config/config.php:96
 msgid "Login CAPTCHA"
 msgstr "登录验证码"
 
-#: c:\Code\pi\usr\module\user/config/config.php:91
+#: c:\Code\pi\usr\module\user/config/config.php:97
 msgid "Enable CAPTCHA for user login"
 msgstr "启用登录验证码"
 
-#: c:\Code\pi\usr\module\user/config/config.php:99
+#: c:\Code\pi\usr\module\user/config/config.php:105
 msgid "Remember me"
 msgstr "自动登录"
 
-#: c:\Code\pi\usr\module\user/config/config.php:100
+#: c:\Code\pi\usr\module\user/config/config.php:106
 msgid "Days to remember login, 0 for disable."
 msgstr "账号保持登录状态时间，0是不保持。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:107
+#: c:\Code\pi\usr\module\user/config/config.php:113
 msgid "Login field"
 msgstr "登录字段"
 
-#: c:\Code\pi\usr\module\user/config/config.php:108
+#: c:\Code\pi\usr\module\user/config/config.php:114
 msgid "Identity field(s) for authentication."
 msgstr "用于认证的字段。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:116
+#: c:\Code\pi\usr\module\user/config/config.php:122
 #: c:\Code\pi\usr\module\user/config/user.php:26
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:17
 #: c:\Code\pi\usr\module\user/template/admin/maintenance.phtml:30
@@ -116,7 +130,7 @@ msgstr "用于认证的字段。"
 msgid "Username"
 msgstr "用户名"
 
-#: c:\Code\pi\usr\module\user/config/config.php:117
+#: c:\Code\pi\usr\module\user/config/config.php:123
 #: c:\Code\pi\usr\module\user/config/user.php:58
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:18
 #: c:\Code\pi\usr\module\user/template/admin/maintenance.phtml:47
@@ -126,211 +140,211 @@ msgstr "用户名"
 msgid "Email"
 msgstr "邮箱"
 
-#: c:\Code\pi\usr\module\user/config/config.php:127
+#: c:\Code\pi\usr\module\user/config/config.php:133
 msgid "Maximum attempts"
 msgstr "最大尝试次数"
 
-#: c:\Code\pi\usr\module\user/config/config.php:128
+#: c:\Code\pi\usr\module\user/config/config.php:134
 msgid "Maximum attempts allowed to try for user login"
 msgstr "用户登录时的最大尝试次数"
 
-#: c:\Code\pi\usr\module\user/config/config.php:136
+#: c:\Code\pi\usr\module\user/config/config.php:142
 msgid "Register disable"
 msgstr "注册关闭"
 
-#: c:\Code\pi\usr\module\user/config/config.php:137
+#: c:\Code\pi\usr\module\user/config/config.php:143
 msgid "Disable user registration"
 msgstr "禁止用户注册"
 
-#: c:\Code\pi\usr\module\user/config/config.php:145
+#: c:\Code\pi\usr\module\user/config/config.php:151
 msgid "Register CAPTCHA"
 msgstr "注册验证码"
 
-#: c:\Code\pi\usr\module\user/config/config.php:146
+#: c:\Code\pi\usr\module\user/config/config.php:152
 msgid "Enable CAPTCHA for user registration"
 msgstr "启用注册验证码"
 
-#: c:\Code\pi\usr\module\user/config/config.php:154
+#: c:\Code\pi\usr\module\user/config/config.php:160
 msgid "Register complete"
 msgstr "注册数据完善"
 
-#: c:\Code\pi\usr\module\user/config/config.php:155
+#: c:\Code\pi\usr\module\user/config/config.php:161
 msgid "Require user to complete register data in an extra form."
 msgstr "要求用户注册时补充个人信息"
 
-#: c:\Code\pi\usr\module\user/config/config.php:163
+#: c:\Code\pi\usr\module\user/config/config.php:169
 msgid "Email notification"
 msgstr "邮件通知"
 
-#: c:\Code\pi\usr\module\user/config/config.php:164
+#: c:\Code\pi\usr\module\user/config/config.php:170
 msgid "Send email notification for register success."
 msgstr "注册成功后发送激活邮件"
 
-#: c:\Code\pi\usr\module\user/config/config.php:172
+#: c:\Code\pi\usr\module\user/config/config.php:178
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:19
 msgid "Activation"
 msgstr "激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:173
+#: c:\Code\pi\usr\module\user/config/config.php:179
 msgid "Activation mode for user accounts"
 msgstr "用户注册激活模式"
 
-#: c:\Code\pi\usr\module\user/config/config.php:178
+#: c:\Code\pi\usr\module\user/config/config.php:184
 msgid "Automatically activated"
 msgstr "自动激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:179
+#: c:\Code\pi\usr\module\user/config/config.php:185
 msgid "Activated by user email"
 msgstr "邮箱激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:180
+#: c:\Code\pi\usr\module\user/config/config.php:186
 msgid "Activated by admin approval"
 msgstr "管理员激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:190
+#: c:\Code\pi\usr\module\user/config/config.php:196
 msgid "Activation expiration"
 msgstr "激活有效期"
 
-#: c:\Code\pi\usr\module\user/config/config.php:191
+#: c:\Code\pi\usr\module\user/config/config.php:197
 msgid "Expiration time for activation email (in hours)."
 msgstr "激活邮件的有效期（单位小时）。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:199
+#: c:\Code\pi\usr\module\user/config/config.php:205
 msgid "Username format"
 msgstr "用户名规则"
 
-#: c:\Code\pi\usr\module\user/config/config.php:200
+#: c:\Code\pi\usr\module\user/config/config.php:206
 msgid "Format of username for registration."
 msgstr "注册用户名规则。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:205
-#: c:\Code\pi\usr\module\user/config/config.php:238
+#: c:\Code\pi\usr\module\user/config/config.php:211
+#: c:\Code\pi\usr\module\user/config/config.php:244
 msgid "Strict: alphabet or number only"
 msgstr "严格模式：只接受数字和字母"
 
-#: c:\Code\pi\usr\module\user/config/config.php:206
-#: c:\Code\pi\usr\module\user/config/config.php:239
+#: c:\Code\pi\usr\module\user/config/config.php:212
+#: c:\Code\pi\usr\module\user/config/config.php:245
 msgid "Medium: ASCII characters"
 msgstr "普通模式：允许ASCII码字符"
 
-#: c:\Code\pi\usr\module\user/config/config.php:207
-#: c:\Code\pi\usr\module\user/config/config.php:240
+#: c:\Code\pi\usr\module\user/config/config.php:213
+#: c:\Code\pi\usr\module\user/config/config.php:246
 msgid "Loose: multi-byte characters"
 msgstr "宽松模式：允许多字节字符"
 
-#: c:\Code\pi\usr\module\user/config/config.php:217
+#: c:\Code\pi\usr\module\user/config/config.php:223
 msgid "Minimum username"
 msgstr "用户名最小长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:218
+#: c:\Code\pi\usr\module\user/config/config.php:224
 msgid "Minimum length of username for user registration"
 msgstr "用户注册时用户名最小长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:225
+#: c:\Code\pi\usr\module\user/config/config.php:231
 msgid "Maximum username"
 msgstr "用户名最大长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:226
+#: c:\Code\pi\usr\module\user/config/config.php:232
 msgid "Maximum length of username for user registration"
 msgstr "用户注册时用户名最大长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:232
+#: c:\Code\pi\usr\module\user/config/config.php:238
 msgid "Display name format"
 msgstr "昵称规则"
 
-#: c:\Code\pi\usr\module\user/config/config.php:233
+#: c:\Code\pi\usr\module\user/config/config.php:239
 msgid "Format of display name for registration."
 msgstr "注册昵称规则。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:250
+#: c:\Code\pi\usr\module\user/config/config.php:256
 msgid "Minimum display name"
 msgstr "昵称最小长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:251
+#: c:\Code\pi\usr\module\user/config/config.php:257
 msgid "Minimum length of display name for user registration"
 msgstr "注册时昵称最小长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:258
+#: c:\Code\pi\usr\module\user/config/config.php:264
 msgid "Maximum display name"
 msgstr "昵称最大长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:259
+#: c:\Code\pi\usr\module\user/config/config.php:265
 msgid "Maximum length of display name for user registration"
 msgstr "注册时昵称最大长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:266
+#: c:\Code\pi\usr\module\user/config/config.php:272
 msgid "Minimum password"
 msgstr "密码最小长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:267
+#: c:\Code\pi\usr\module\user/config/config.php:273
 msgid "Minimum length of password for user registration"
 msgstr "用户注册时密码最小长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:274
+#: c:\Code\pi\usr\module\user/config/config.php:280
 msgid "Maximum password"
 msgstr "密码最大长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:275
+#: c:\Code\pi\usr\module\user/config/config.php:281
 msgid "Maximum length of password for user registration"
 msgstr "用户注册时密码最大长度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:282
+#: c:\Code\pi\usr\module\user/config/config.php:288
 msgid "Username blacklist"
 msgstr "用户名黑名单"
 
-#: c:\Code\pi\usr\module\user/config/config.php:283
+#: c:\Code\pi\usr\module\user/config/config.php:289
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
 msgstr "保留及禁止的用户名列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:290
+#: c:\Code\pi\usr\module\user/config/config.php:296
 msgid "Display blacklist"
 msgstr "显示黑名单"
 
-#: c:\Code\pi\usr\module\user/config/config.php:291
+#: c:\Code\pi\usr\module\user/config/config.php:297
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr "保留及禁止的昵称列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:298
+#: c:\Code\pi\usr\module\user/config/config.php:304
 msgid "Email blacklist"
 msgstr "邮箱黑名单"
 
-#: c:\Code\pi\usr\module\user/config/config.php:299
+#: c:\Code\pi\usr\module\user/config/config.php:305
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr "禁止的邮件地址列表。用 <strong>|</strong> 隔开，支持正则表达式。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:308
+#: c:\Code\pi\usr\module\user/config/config.php:314
 msgid "Max Avatar Width"
 msgstr "头像最大宽度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:309
+#: c:\Code\pi\usr\module\user/config/config.php:315
 msgid "Allowed image width, 0 for no limit"
 msgstr "最大图片宽度，0代表无限制"
 
-#: c:\Code\pi\usr\module\user/config/config.php:316
+#: c:\Code\pi\usr\module\user/config/config.php:322
 msgid "Max Avatar Height"
 msgstr "头像最大高度"
 
-#: c:\Code\pi\usr\module\user/config/config.php:317
+#: c:\Code\pi\usr\module\user/config/config.php:323
 msgid "Allowed image height, 0 for no limit"
 msgstr "最大图片高度，0代表无限制"
 
-#: c:\Code\pi\usr\module\user/config/config.php:324
+#: c:\Code\pi\usr\module\user/config/config.php:330
 msgid "Max File Size"
 msgstr "最大文件尺寸"
 
-#: c:\Code\pi\usr\module\user/config/config.php:325
+#: c:\Code\pi\usr\module\user/config/config.php:331
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr "头像上传最大允许文件（KB），0 为不限制。"
 
-#: c:\Code\pi\usr\module\user/config/config.php:341
+#: c:\Code\pi\usr\module\user/config/config.php:347
 msgid "Temporary Path"
 msgstr "临时路径"
 
-#: c:\Code\pi\usr\module\user/config/config.php:342
+#: c:\Code\pi\usr\module\user/config/config.php:348
 msgid "For temporary storage of avatar"
 msgstr "用于临时储存头像"
 

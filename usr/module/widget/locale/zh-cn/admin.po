@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-05-21 13:01+0800\n"
-"PO-Revision-Date: 2014-05-21 13:11+0800\n"
+"POT-Creation-Date: 2014-08-08 17:29+0800\n"
+"PO-Revision-Date: 2014-08-08 17:29+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\widget\n"
@@ -110,13 +111,9 @@ msgid "Widget list"
 msgstr "区块列表"
 
 #: c:\code\pi\usr\module\widget/config/nav.php:31
-#: c:\code\pi\usr\module\widget/config/nav.php:120
-#: c:\code\pi\usr\module\widget/config/nav.php:154
-#: c:\code\pi\usr\module\widget/config/nav.php:188
-#: c:\code\pi\usr\module\widget/config/nav.php:222
-#: c:\code\pi\usr\module\widget/config/nav.php:256
-msgid "Add new"
-msgstr "添加"
+#: c:\code\pi\usr\module\widget/template/admin/ng-script.phtml:11
+msgid "Activate"
+msgstr ""
 
 #: c:\code\pi\usr\module\widget/config/nav.php:40
 #: c:\code\pi\usr\module\widget/config/permission.php:16
@@ -149,6 +146,14 @@ msgstr "添加Markdown"
 #: c:\code\pi\usr\module\widget/config/permission.php:19
 msgid "List group"
 msgstr "文本列表"
+
+#: c:\code\pi\usr\module\widget/config/nav.php:120
+#: c:\code\pi\usr\module\widget/config/nav.php:154
+#: c:\code\pi\usr\module\widget/config/nav.php:188
+#: c:\code\pi\usr\module\widget/config/nav.php:222
+#: c:\code\pi\usr\module\widget/config/nav.php:256
+msgid "Add new"
+msgstr "添加"
 
 #: c:\code\pi\usr\module\widget/config/nav.php:129
 #: c:\code\pi\usr\module\widget/config/permission.php:22
@@ -434,7 +439,7 @@ msgstr ""
 msgid ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
-"API and strict starndards."
+"API and strict standards."
 msgstr ""
 
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:61
@@ -444,7 +449,7 @@ msgstr "可视化应用管理"
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:62
 msgid ""
 "Easy and responsive application and content management based on visualized "
-"mangement tools and interface with page and widget mechanism."
+"management tools and interface with page and widget mechanism."
 msgstr ""
 
 #: c:\code\pi\usr\module\widget/src/Installer/Action/Install.php:67
@@ -464,10 +469,6 @@ msgstr "在 GitHub 的更新"
 #: c:\code\pi\usr\module\widget/src/Validator/WidgetNameDuplicate.php:28
 msgid "Widget name already exists"
 msgstr "区块名已存在"
-
-#: c:\code\pi\usr\module\widget/template/admin/ng-script.phtml:11
-msgid "Install"
-msgstr "安装"
 
 #: c:\code\pi\usr\module\widget/template/admin/ng.phtml:12
 msgid "Delete"
@@ -515,3 +516,6 @@ msgstr ""
 #: c:\code\pi\usr\module\widget/template/admin/widget-tab.phtml:26
 msgid "Module blocks"
 msgstr "模块区块"
+
+#~ msgid "Install"
+#~ msgstr "安装"
