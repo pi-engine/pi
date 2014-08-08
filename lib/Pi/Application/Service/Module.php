@@ -26,7 +26,7 @@ use Pi;
  *  $directory = Pi::module()->meta(<module_name>, 'directory');
  *  $directory = Pi::module()->directory(<module_name>);
  * ```
- * 
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Module extends AbstractService
