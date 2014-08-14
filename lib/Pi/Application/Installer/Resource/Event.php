@@ -33,7 +33,7 @@ use Pi;
  *          // event info: module, event name
  *          'event'     => array('pm', 'test'),
  *          // listener callback: class, method
- *          'listener'  => array('event', 'message'),
+ *          'callback'  => array('event', 'message'),
  *      ),
  *  ),
  * );

@@ -32,7 +32,7 @@ return array(
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
         'Website'   => 'http://pialog.org',
-        // Credits and aknowledgement, optional
+        // Credits and acknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
 

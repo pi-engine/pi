@@ -7,3 +7,6 @@
 [submodule "lib/vendor/simplesamlphp"]
 	path = lib/vendor/simplesamlphp
 	url = https://github.com/pi-vendor/simplesamlphp
+[submodule "usr/module/sitemap"]
+	path = usr/module/sitemap
+	url = https://github.com/pi-module/sitemap
