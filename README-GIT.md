@@ -52,6 +52,17 @@ Working with upstream repo
 * Merge Pi Engine changes into local repo: `git merge upstream/<branch-name>`
 * Synchronize your repo with Pi Engine Repo: `git merge upstream/<branch-name>` + `git push origin <branch-name>`
 
+Build Your Private Repo Upon Pi Engine
+======================================
+1. Create your private repo
+2. Create a branch `pi` and set up remote upstream: `git remote add upstream https://github.com/pi-engine/pi.git`
+3. Fetch changes from Pi Engine Repo: `git fetch upstream`
+4. Merge Pi Engine changes into local repo: `git merge upstream/develop` for latest dev or `git merge upstream/master` for stable code
+5. Switch back to your dev branch `master`: `git checkout master`
+6. Merge Pi into our dev branch `master`: `git merge pi`
+7. Create module folders and/or theme folders in dev branch
+8. Keep synchronizing your repo with Pi Engine repo
+
 
 Pi Engine Github Skeleton
 =========================
