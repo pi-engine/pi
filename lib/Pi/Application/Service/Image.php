@@ -16,7 +16,11 @@ use Imagine\Image\ImagineInterface;
 use Imagine\Image\FontInterface;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
-use Imagine\Image\Color;
+//use Imagine\Image\Color;
+use Imagine\Image\Palette\Color\ColorInterface;
+use Imagine\Image\Palette\CMYK;
+use Imagine\Image\Palette\RGB;
+use Imagine\Image\Palette\Grayscale;
 
 /**
  * Image handler service
@@ -271,19 +275,37 @@ class Image extends AbstractService
     /**
      * Canonize Color element
      *
-     * @param array|string|Color $color Color value or color and alpha, or Color
+     * @param array|string|ColorInterface $color Color value or color and alpha, or Color
      * @param int $alpha
      *
-     * @return Color
+     * @return ColorInterface
      */
     public function color($color, $alpha = 0)
     {
-        if ($color instanceof Color) {
+        $result = null;
+        if ($color instanceof ColorInterface) {
             $result = $color;
-        } elseif (is_array($color)) {
-            $result = new Color($color[0], $color[1]);
         } else {
-            $result = new Color($color, $alpha);
+            if (!is_array($color)) {
+                $color = array($color);
+            }
+            switch (count($color)) {
+                case 1:
+                    $palette = new Grayscale;
+                    break;
+                case 3:
+                    $palette = new RGB;
+                    break;
+                case 4:
+                    $palette = new CMYK;
+                    break;
+                default:
+                    $palette = null;
+                    break;
+            }
+            if ($palette) {
+                $result = $palette->color($color, $alpha);
+            }
         }
 
         return $result;
@@ -293,7 +315,7 @@ class Image extends AbstractService
      * Creates a new empty image with an optional background color
      *
      * @param array|Box             $size   Width and height
-     * @param string|array|Color    $color  Color value and alpha
+     * @param string|array|ColorInterface    $color  Color value and alpha
      *
      * @return ImageInterface|bool
      */
@@ -387,7 +409,7 @@ class Image extends AbstractService
      *
      * @param string  $file
      * @param integer $size
-     * @param string|array|Color $color  Color value and alpha
+     * @param string|array|ColorInterface $color  Color value and alpha
      *
      * @return FontInterface|bool
      */
@@ -556,7 +578,7 @@ class Image extends AbstractService
      * @param string|Image       $sourceImage
      * @param int                $angle
      * @param string             $to
-     * @param string|array|Color $background
+     * @param string|array|ColorInterface $background
      *
      * @return bool
      */
