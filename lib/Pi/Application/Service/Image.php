@@ -512,7 +512,7 @@ class Image extends AbstractService
      * @return bool
      */
     public function crop(
-        $sourceImage, 
+        $sourceImage,
         $start,
         $size,
         $to = '',

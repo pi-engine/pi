@@ -146,7 +146,7 @@ class Mail extends AbstractService
             case 'smtp':
                 try {
                     $option = new MailHandler\Transport\SmtpOptions($config);
-                    $transportClass = 'MailHandler\Transport\Smtp';
+                    $transportClass = 'Smtp';
                 } catch (\Exception $exception) {
                     $transportClass = '';
                 }
@@ -154,7 +154,7 @@ class Mail extends AbstractService
             case 'file':
                 try {
                     $option = new MailHandler\Transport\FileOptions($config);
-                    $transportClass = 'MailHandler\Transport\File';
+                    $transportClass = 'File';
                 } catch (\Exception $exception) {
                     $transportClass = '';
                 }
@@ -162,11 +162,12 @@ class Mail extends AbstractService
             case 'sendmail':
             default:
                 $option = $config;
-                $transportClass = 'MailHandler\Transport\Sendmail';
+                $transportClass = 'Sendmail';
                 break;
         }
         if ($transportClass) {
             try {
+                $transportClass = 'Zend\Mail\Transport\\' . $transportClass;
                 $transport = new $transportClass($option);
             } catch (\Exception $eTransport) {
                 trigger_error($eTransport->getMessage());
