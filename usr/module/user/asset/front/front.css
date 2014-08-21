@@ -265,3 +265,18 @@
   display: block;
   border: 1px solid #e5e5e5;
 }
+
+/* login */
+.user-action-bar {
+  margin: 40px -15px;
+}
+
+.user-action-bar ul li {
+  margin: 0 5px;
+}
+
+/* other */
+.user-js-add,
+.user-js-reactivate-message {
+  margin: 0 20px;
+}

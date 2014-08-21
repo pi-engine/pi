@@ -1,33 +1,33 @@
-<?php
-$this->css($this->assetModule('front/front.css'));
-?>
-<?php include $this->template('./profile-topbar.phtml'); ?>
-<div class="user-min-body">
-    <?php foreach ($groups as $group) {?>
-        <div class="clearfix user-legend">
-            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
-            <div class="user-legend-linea"></div>
-        </div>
-        <?php if ($group['fields']) { ?>
-            <div class="user-field">
-                <?php
-                foreach ($group['fields'] as $set => $fields) {
-                    echo '<dl class="dl-horizontal user-field-dl">';
-                    foreach ($fields as $field) {
-                        echo sprintf(
-                            '<dt>%s<dd>%s',
-                            $field['title'],
-                            $field['value'] ? _escape($field['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
-                        );
-                    }
-                    echo '</dl>';
-                }
-                ?>
+<?php $this->css($this->assetModule('front/front.css')); ?>
+<div class="user">
+    <?php include $this->template('./profile-topbar.phtml'); ?>
+    <div class="user-min-body">
+        <?php foreach ($groups as $group) { ?>
+            <div class="clearfix user-legend">
+                <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+                <div class="user-legend-linea"></div>
             </div>
-        <?php } else { ?>
-        <div class="well text-center">
-            <?php _e('No data available.'); ?>
-        </div>
+            <?php if ($group['fields']) { ?>
+                <div class="user-field">
+                    <?php
+                    foreach ($group['fields'] as $set => $fields) {
+                        echo '<dl class="dl-horizontal user-field-dl">';
+                        foreach ($fields as $field) {
+                            echo sprintf(
+                                '<dt>%s<dd>%s',
+                                $field['title'],
+                                $field['value'] ? _escape($field['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
+                            );
+                        }
+                        echo '</dl>';
+                    }
+                    ?>
+                </div>
+            <?php } else { ?>
+            <div class="well text-center">
+                <?php _e('No data available.'); ?>
+            </div>
+            <?php } ?>
         <?php } ?>
-    <?php } ?>
+    </div>
 </div>

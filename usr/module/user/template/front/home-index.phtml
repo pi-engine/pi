@@ -1,41 +1,40 @@
-<?php
-$this->css($this->assetModule('front/front.css'));
-?>
-<?php include $this->template('./profile-topbar.phtml'); ?>
-<div class="user-min-body">
-    <?php if ($timeline) { ?>
-    <?php foreach ($timeline as $item) { ?>
-    <div class="media user-underline-list">
-        <div class="pull-left">
-            <?php
-            echo $item['icon'] ? '<i class="' . $item['icon'] . '"></i>' : '<i class="icon-comments-alt icon-large"></i>';
-            ?>
+<?php $this->css($this->assetModule('front/front.css')); ?>
+<div class="user">
+    <?php include $this->template('./profile-topbar.phtml'); ?>
+    <div class="user-min-body">
+        <?php if ($timeline) { ?>
+        <?php foreach ($timeline as $item) { ?>
+        <div class="media user-underline-list">
+            <div class="pull-left">
+                <?php
+                echo $item['icon'] ? '<i class="' . $item['icon'] . '"></i>' : '<i class="icon-comments-alt icon-large"></i>';
+                ?>
+            </div>
+            <div class="media-body">
+                <p class="media-heading">
+                    <strong class="user-media-name"><?php echo _escape($user['name']); ?></strong>
+                    <span class="text-muted"><?php echo _date($item['time']); ?></span>
+                <p class="media-heading">
+                    <?php echo _escape($item['message']); ?>
+                </p>
+                <?php
+                if ($item['link']) {
+                    echo sprintf('<a href="%s" target="_blank">%s</a>',
+                        $item['link'],
+                        $item['link']);
+                }
+                ?>
+            </div>
         </div>
-        <div class="media-body">
-            <p class="media-heading">
-                <strong class="user-media-name"><?php echo _escape($user['name']); ?></strong>
-                <span class="text-muted"><?php echo _date($item['time']); ?></span>
-            <p class="media-heading">
-                <?php echo _escape($item['message']); ?>
-            </p>
-            <?php
-            if ($item['link']) {
-                echo sprintf('<a href="%s" target="_blank">%s</a>',
-                    $item['link'],
-                    $item['link']);
+        <?php } ?>
+        <?php 
+            if ($paginator) {
+                echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-left'));
             }
-            ?>
+        } else { ?>
+        <div class="well">
+            <?php _e('No data available.'); ?>
         </div>
+        <?php } ?>
     </div>
-    <?php } ?>
-    <?php 
-        if ($paginator) {
-            echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml',array('class' => 'pagination-left'));
-        }
-    } else { ?>
-    <div class="well">
-        <?php _e('No data available.'); ?>
-    </div>
-    <?php } ?>
 </div>
-
