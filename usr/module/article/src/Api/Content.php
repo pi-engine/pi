@@ -86,7 +86,7 @@ class Content extends AbstractContent
     protected function buildUrl(array $item)
     {
         $link = Pi::service('url')->assemble(
-            'article-article',
+            'article',
             array('id' => $item['id'])
         );
 
