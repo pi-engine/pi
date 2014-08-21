@@ -1,26 +1,26 @@
-<?php
-    $this->css($this->assetModule('front/front.css'));
-?>
-<div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
-    <div class="col-md-9">
-        <div class="user-page-header">
-            <h3><?php echo $title; ?></h3>
-            <div class="text-muted">
-                <?php echo sprintf(__('Update %s'), $title); ?>
+<?php $this->css($this->assetModule('front/front.css')); ?>
+<div class="user">
+    <div class="row">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+        <div class="col-md-9">
+            <div class="user-page-header">
+                <h3><?php echo $title; ?></h3>
+                <div class="text-muted">
+                    <?php echo sprintf(__('Update %s'), $title); ?>
+                </div>
             </div>
+            <?php
+            if (isset($result)) {
+                echo sprintf('
+                    <div class="alert %s">
+                        <button data-dismiss="alert" class="close" type="button">&times;</button>
+                        %s
+                    </div>',
+                    $result['status'] ? 'alert-success' : 'alert-danger',
+                    $result['message']);
+            }
+            ?>
+            <?php include $this->templateComponent('form'); ?>
         </div>
-        <?php
-        if (isset($result)) {
-            echo sprintf('
-                <div class="alert %s">
-                    <button data-dismiss="alert" class="close" type="button">&times;</button>
-                    %s
-                </div>',
-                $result['status'] ? 'alert-success' : 'alert-danger',
-                $result['message']);
-        }
-        ?>
-        <?php include $this->templateComponent('form'); ?>
     </div>
 </div>

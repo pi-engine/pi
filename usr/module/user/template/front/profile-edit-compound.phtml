@@ -3,55 +3,55 @@
     $this->jQuery('ui/jquery-ui.min.js');
     $this->Backbone();
 ?>
-<div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
-    <div class="col-md-9" id="user-js-compound">
-        <div class="user-page-header">
-            <h3><?php echo _escape($title); ?></h3>
-            <div class="text-muted">
-                <?php echo sprintf(__('Update %s'), $title); ?>
-                <a style="margin-left: 20px;" href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
+<div class="user">
+    <div class="row">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+        <div class="col-md-9" id="user-js-compound">
+            <div class="user-page-header">
+                <h3><?php echo _escape($title); ?></h3>
+                <div class="text-muted">
+                    <?php echo sprintf(__('Update %s'), $title); ?>
+                    <a style="margin-left: 20px;" href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
+                </div>
             </div>
-        </div>
-        <div class="user-info-list">
-        </div>
-        <div class="user-info-add" id="user-info-add">
-            <div class="clearfix user-add-legend">
-                <h4 class="user-legend-title">
-                    <?php _e('Add new'); ?>
-                </h4>
-                <div class="user-legend-linea"></div>
+            <div class="user-info-list"></div>
+            <div class="user-info-add" id="user-info-add">
+                <div class="clearfix user-add-legend">
+                    <h4 class="user-legend-title">
+                        <?php _e('Add new'); ?>
+                    </h4>
+                    <div class="user-legend-linea"></div>
+                </div>
+                <?php include $this->templateComponent('form'); ?>
             </div>
-            <?php include $this->templateComponent('form'); ?>
         </div>
     </div>
+    <script type="text/template" id="field-template">
+        <div class="user-info-header">
+            <a class="btn btn-link btn-user-edit js-edit"><?php _e('Edit'); ?></a>
+            <button class="close js-delete" type="button">×</button>
+        </div>
+        <div class="user-info-body">
+            <dl class="dl-horizontal user-field-dl" style="margin: 15px;">
+                <% _.each(fields, function(field) { %>
+                <dt><%- field.title %>
+                <dd>
+                    <% if (field.value) { %>
+                    <%- field.value %>
+                    <% } else { %>
+                    <em class="text-muted"><?php _e('Unfiled'); ?></em>
+                    <% } %>
+                <% }); %>
+            </dl>
+        </div>
+    </script>
+    <script>
+    $('#user-js-compound').data('config', {
+        urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
+        groupId: '<?php echo $group_id; ?>',
+        compounds: <?php echo json_encode($compounds) ?>,
+        deleteConfirm: '<?php _e('Are you sure to delete this record?'); ?>'
+    });
+    </script>
+    <script src="<?php echo $this->assetModule('front/compound.js'); ?>"></script>
 </div>
-<script type="text/template" id="field-template">
-    <div class="user-info-header">
-        <a class="btn btn-link btn-user-edit js-edit"><?php _e('Edit'); ?></a>
-        <button class="close js-delete" type="button">×</button>
-    </div>
-    <div class="user-info-body">
-        <dl class="dl-horizontal user-field-dl" style="margin: 15px;">
-            <% _.each(fields, function(field) { %>
-            <dt><%- field.title %>
-            <dd>
-                <% if (field.value) { %>
-                <%- field.value %>
-                <% } else { %>
-                <em class="text-muted"><?php _e('Unfiled'); ?></em>
-                <% } %>
-            <% }); %>
-        </dl>
-    </div>
-</script>
-<script>
-$('#user-js-compound').data('config', {
-    urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
-    groupId: '<?php echo $group_id; ?>',
-    compounds: <?php echo json_encode($compounds) ?>,
-    deleteConfirm: '<?php _e('Are you sure to delete this record?'); ?>'
-});
-</script>
-<script src="<?php echo $this->assetModule('front/compound.js'); ?>"></script>
-

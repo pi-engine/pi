@@ -1,22 +1,24 @@
-<h2 class="page-header"><?php _e('Account registration'); ?></h2>
-
-<?php
-if (!empty($form)) {
-    if (empty($result['status']) && !empty($result['message'])) {
-?>
-        <div class="alert alert-danger">
-            <?php echo _escape($result['message']); ?>
-        </div>
-<?php
-    }
-
-    include $this->templateComponent('form');
-
-} elseif ('auto' == $activation) {
-    if (!empty($result['status'])) {
-?>
+<div class="user">
+    <h2 class="page-header">
+        <?php _e('Account registration'); ?>
+    </h2>
+    <?php
+    if (!empty($form)) {
+        if (empty($result['status']) && !empty($result['message'])) {
+    ?>
+    <div class="alert alert-danger">
+        <?php echo _escape($result['message']); ?>
+    </div>
+    <?php
+        }
+        include $this->templateComponent('form');
+    } elseif ('auto' == $activation) {
+        if (!empty($result['status'])) {
+    ?>
     <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php _e('Congratulations!'); ?></h3>
+        </div>
         <div class="panel-body">
             <?php
             echo '<p>' . sprintf(
@@ -32,33 +34,34 @@ if (!empty($form)) {
             ?>
         </div>
     </div>
-<?php
-    } else {
-        ?>
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
-            <div class="panel-body"><?php echo _escape($result['message']); ?>
-            </div>
+    <?php } else { ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3>
         </div>
-    <?php
-    }
-} elseif ('email' != $activation) {
-?>
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
-        <div class="panel-body"><?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?></div>
-    </div>
-<?php
-} elseif (empty($result['status'])) {
-?>
-    <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
-        <div class="panel-body"><?php echo _escape($result['message']); ?>
+        <div class="panel-body">
+            <?php echo _escape($result['message']); ?>
         </div>
     </div>
-<?php
-} else {
-?>
+    <?php } ?>
+    <?php } elseif ('email' != $activation) { ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php _e('Congratulations!'); ?></h3>
+        </div>
+        <div class="panel-body">
+            <?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?>
+        </div>
+    </div>
+    <?php } elseif (empty($result['status'])) { ?>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
+        <div class="panel-body">
+            <?php echo _escape($result['message']); ?>
+        </div>
+    </div>
+    <?php } else { ?>
     <div class="row">
         <div class="col-md-8">
             <p><?php _e('An email with activation link has been sent to you.'); ?></p>
@@ -73,7 +76,6 @@ if (!empty($form)) {
             </ol>
         </div>
     </div>
-
     <script>
         (function($) {
             var app = {
@@ -126,4 +128,5 @@ if (!empty($form)) {
             reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>'
         });
     </script>
-<?php } ?>
+    <?php } ?>
+</div>
