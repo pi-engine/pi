@@ -78,7 +78,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
                     <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
                         <?php 
                         if ($item['icon']) {
-                            echo sprintf('<i class="%s"></i>',$item['icon']);
+                            echo sprintf('<i class="fa %s"></i>',$item['icon']);
                         }
                         ?>
                         <?php echo $item['title']; ?>
