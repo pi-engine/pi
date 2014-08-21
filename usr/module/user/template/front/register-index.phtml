@@ -1,3 +1,4 @@
+<?php $this->css($this->assetModule('front/front.css')); ?>
 <div class="user">
     <h2 class="page-header">
         <?php _e('Account registration'); ?>
@@ -72,7 +73,12 @@
             <ol>
                 <li><?php _e('Wait a few minutes and check again.'); ?></li>
                 <li><?php _e('Check your email spam box.'); ?></li>
-                <li class="user-js-reactivate"><a class="user-js-reactivate-link" href="javascript:;"><?php _e('Request to resend activation email'); ?></a><span style="margin-left: 20px;" class="user-js-reactivate-message"></span></li>
+                <li class="user-js-reactivate">
+                    <a class="user-js-reactivate-link" href="javascript:;">
+                        <?php _e('Request to resend activation email'); ?>
+                    </a>
+                    <span class="user-js-reactivate-message"></span>
+                </li>
             </ol>
         </div>
     </div>
