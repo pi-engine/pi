@@ -139,6 +139,9 @@ CREATE TABLE `{activity}` (
   -- Callback to get user activity data
   `callback`        varchar(64)     NOT NULL,
 
+  -- Url to link to other module
+  `url`             text,
+
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)
 );
