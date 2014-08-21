@@ -11,6 +11,7 @@ namespace Module\User\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
+use Zend\Json\Json;
 
 /**
  * User activity APIs
@@ -34,10 +35,22 @@ class Activity extends AbstractApi
         $result = array();
         $list = Pi::registry('activity', 'user')->read();
         foreach ($list as $name => $activity) {
+            // Set result
             $result[$name] = array(
                 'title' => $activity['title'],
                 'icon'  => $activity['icon'],
             );
+            // Set url
+            if (!empty($activity['url'])) {
+                $url = Json::decode($activity['url'], true);
+                if (isset($url['route']) 
+                    && isset($url['params']) 
+                    && is_array($url['params'])
+                ) {
+                    $result[$name]['url'] = Pi::service('url')->assemble($url['route'], $url['params']);
+                }
+            }
+      
         }
 
         return $result;
