@@ -1,547 +1,546 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-05-22 22:16+0100\n"
-"PO-Revision-Date: 2014-06-08 15:00+0100\n"
-"Last-Translator: Marc Desrousseaux\n"
+"POT-Creation-Date: 2014-08-22 09:53+0330\n"
+"PO-Revision-Date: 2014-08-22 09:53+0330\n"
+"Last-Translator: \n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
-"\\module\\user\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-user/usr/module/user\n"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:21
-msgid "User logged in"
-msgstr "L'utilisateur est connecté"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:27
-msgid "User logged out"
-msgstr "L'utilisateur est déconnecté"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:33
-msgid "User registered"
-msgstr "L'utilisateur est inscrit"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:39
-msgid "User activated"
-msgstr "L'utilisateur est confirmé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:45
-msgid "User enabled"
-msgstr "L'utilisateur est activé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:51
-msgid "User disabled"
-msgstr "L'utilisateur est désactivé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:57
-msgid "User deleted"
-msgstr "L'utilisateur est supprimé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:63
-msgid "User profile updated"
-msgstr "Profil utilisateur mis à jour"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:69
-msgid "Display name changed"
-msgstr "Pseudo modifié"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:75
-msgid "Email changed"
-msgstr "Email modifié"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:81
-msgid "Avatar changed"
-msgstr "Avatar modifié"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:87
-msgid "Password changed"
-msgstr "Mot de passe modifié"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:93
-msgid "Role assigned"
-msgstr "Rôle affecté"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:99
-msgid "Role removed"
-msgstr "Rôle supprimé"
-
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/src/Api/Nav.php:46
-msgid "Profile"
-msgstr "Profil"
-
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/src/Api/Nav.php:62
-msgid "Feed"
-msgstr "Fil"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:93
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:93
 msgid "Everyone"
 msgstr "Tout le monde"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:94
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:94
 msgid "Logged-in user"
 msgstr "Utilisateur connecté"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:95
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:63
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:95
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:63
 msgid "Follower"
 msgstr "Abonné"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:96
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:96
 msgid "Followed"
 msgstr "Suivi"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Privacy.php:97
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:71
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:97
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:71
 msgid "Owner"
 msgstr "Propriétaire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:55
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Nav.php:46
+msgid "Profile"
+msgstr "Profil"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Nav.php:62
+msgid "Feed"
+msgstr "Fil"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:55
 msgid "Public"
 msgstr "Public"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:59
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:59
 msgid "Member"
 msgstr "Membre"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Api/Relation.php:67
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:67
 msgid "Following"
 msgstr "Suis"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Api/TimelineController.php:46
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:28
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:40
+msgid "Invalid user name: %formatHint%"
+msgstr "Non utilisateur non valide : %formatHint%"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:29
+msgid "User name is reserved"
+msgstr "Le nom utilisateur est réservé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:30
+msgid "User name is already taken"
+msgstr "Le nom utilisateur est déja pris"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:31
+msgid "User name is less than %min% characters long"
+msgstr "Le nom utilisateur a moins de %min% caractères"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:32
+msgid "User name is more than %max% characters long"
+msgstr "Le nom utilisateur a plus de %max% caractères"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:41
+msgid "Username is reserved"
+msgstr "Le nom utilisateur est réservé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:42
+msgid "Username is already taken"
+msgstr "Le nom utilisateur est déja pris"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:43
+msgid "Username is less than %min% characters long"
+msgstr "Le nom utilisateur a moins de %min% caractères"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:44
+msgid "Username is more than %max% characters long"
+msgstr "Le nom utilisateur a plus de %max% caractères"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:48
+#, fuzzy
+msgid "Only alphabetic and digits are allowed with leading alphabetic"
+msgstr ""
+"Seuls des caractères alphanumériques sont autorisés avec les premières "
+"caractères alphabétiques"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:49
+msgid "Only ASCII characters are allowed"
+msgstr "Seuls des caractères ASCII sont autorisés"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:50
+msgid "Multibyte characters are allowed"
+msgstr "Les caractères multibytes non autorisés"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/CredentialVerify.php:34
+msgid "Invalid password."
+msgstr "Mot de passe non valide."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Password.php:40
+msgid "Password is less than %min% characters long"
+msgstr "Le mot de passe a moins de %min% caractères"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Password.php:41
+msgid "Password is more than %max% characters long"
+msgstr "Le mot de passe a plus de %max% caractères"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/UserEmail.php:28
+msgid "User email is reserved"
+msgstr "Le mail utilisateur est réservé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/UserEmail.php:29
+msgid "User email is already used"
+msgstr "Le mail utilisateur est déja utilisé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EditUserForm.php:45
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResetPasswordForm.php:73
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:122
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/CompoundForm.php:58
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ProfileEditForm.php:42
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/RoleForm.php:99
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:87
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EmailForm.php:58
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResendActivationForm.php:47
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:72
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:34
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:36
+msgid "Submit"
+msgstr "Valider"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResetPasswordForm.php:42
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:57
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:53
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResetPasswordForm.php:52
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:66
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:63
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:30
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:90
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:27
+msgid "Username"
+msgstr "Nom utilisateur"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:39
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:99
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:48
+msgid "Display name"
+msgstr "Pseudo"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:48
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:108
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/FindPasswordForm.php:27
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:38
+msgid "Email"
+msgstr "Email"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:75
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:71
+msgid "Front role"
+msgstr "Rôle côté utilisateur"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:84
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:80
+msgid "Admin role"
+msgstr "Rôle côté admin"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:94
+msgid "Activate"
+msgstr "Confirmer"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:106
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:46
+msgid "Enable"
+msgstr "Activer"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "Nom"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/RoleForm.php:54
+msgid "Title"
+msgstr "Titre"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:29
+msgid "Active state"
+msgstr "Statut"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:31
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:45
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:59
+msgid "Any"
+msgstr "Tout"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:32
+msgid "Active"
+msgstr "Activer"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:33
+msgid "Inactive"
+msgstr "Non confirmé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:43
+msgid "Enable state"
+msgstr "Activer le statut"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:47
+msgid "Disable"
+msgstr "Désactiver"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:57
+msgid "Activated state"
+msgstr "Confirmation"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:60
+msgid "Pending"
+msgstr "En attente"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:61
+msgid "Activated"
+msgstr "Confirmé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:117
+msgid "Register date from"
+msgstr "Date d'inscription depuis le"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:126
+msgid "Register date end"
+msgstr "Date d'inscription avant le"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:135
+msgid "Register ip from"
+msgstr "Adresse IP enregistrée depuis"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:143
+msgid "Search"
+msgstr "Rechercher"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:42
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EmailForm.php:37
+msgid "Current password"
+msgstr "Mot de passe actuel"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
+msgstr "Merci de saisir le mot"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/FindPasswordForm.php:52
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:194
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:195
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-find.phtml:3
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login.phtml:16
+msgid "Find password"
+msgstr "Trouver le mot de passe."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EmailForm.php:27
+msgid "New email"
+msgstr "Nouvel email"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResendActivationForm.php:27
+msgid "Email address"
+msgstr "Adresse email"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResendActivationForm.php:38
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/form.register.php:60
+msgid "Please type the word."
+msgstr "Merci de saisir le mot."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/Element/Gender.php:36
+msgid "Male"
+msgstr "Masculin"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/Element/Gender.php:37
+msgid "Female"
+msgstr "Féminin"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Api/TimelineController.php:46
 msgid "Timeline post failed."
 msgstr "Echec de l'ajout de l'activité"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Api/TimelineController.php:89
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Api/TimelineController.php:89
 msgid "Timeline added successfully."
 msgstr "L'activité a été ajoutée avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:72
-msgid ""
-"A confirmation email has been sent to you. Please check your email and "
-"confirm."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:51
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:85
+msgid "User profile"
+msgstr "Profil utilisateur"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:52
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:86
+msgid "view profile"
+msgstr "Voir le profil"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:113
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:193
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:243
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:382
+msgid "Profile group ID is invalid."
+msgstr "Le numéro de groupe de profil n'est pas valide."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:147
+msgid "Profile updated successfully."
+msgstr "Profil mis à jour avec succès."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:149
+msgid "Profile update failed."
+msgstr "Echec de la mise à jour du profil."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:169
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:217
+msgid "Edit profile"
+msgstr "Editer le profi"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:170
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:218
+msgid "Edit profile data."
+msgstr "Editer les informations du profil."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:400
+msgid "Profile compound requires at least one set of data."
+msgstr "L'organisation du profil requiert au moins un jeu de données."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:405
+msgid "Profile compound data was not deleted."
+msgstr "Les données de l'organisation du profil n'ont pas été supprimées."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:426
+msgid "User ID or Profile group ID is invalid."
 msgstr ""
-"Un mail de confirmation vous a été envoyé. Merci de vérifier vos mails et de "
-"confirmer votre inscription."
+"Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:75
-msgid "It was failed to send you confirmation email. Please try later."
-msgstr "Le mail de confirmation n'a pas êté envoyé. Merci d'essayer plus tard."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PrivacyController.php:61
+msgid "Privacy settings saved successfully."
+msgstr "Paramètres de confidentialité enregistrés avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:87
-msgid "Email has been changed successfully."
-msgstr "L'email a été modifié avec succès."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PrivacyController.php:100
+msgid "Privacy Settings"
+msgstr "Paramètres de confidentialité"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:90
-msgid "It was failed to save new email. Please try later."
-msgstr "Le nouvel email n'a pas êté enregistré. Merci d'essayer plus tard."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PrivacyController.php:101
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:8
+msgid "Set profile field privacy."
+msgstr "Paramétrer la confidentialité des champs du profil"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:106
-msgid "Name has been changed successfully."
-msgstr "Le nom a été modifié avec succès."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:109
-msgid "It was failed to save new name. Please try later."
-msgstr "Le nouveau nom n'a pas été enregistré. Merci d'essayer plus tard."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:133
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:8
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-sidebar.phtml:32
-msgid "Account settings"
-msgstr "Paramétrages du compte"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:134
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:9
-msgid "Basic settings"
-msgstr "Paramétrages Généraux"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:136
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:188
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:102
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:200
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PrivacyController.php:103
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:54
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:91
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:178
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:229
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:99
-msgid ""
-"account,social,tools,privacy,settings,profile,user,login,register,password,"
-"avatar"
-msgstr ""
-"compte, réseaux sociaux, outils, confidentialité, paramétrages, profil, "
-"utilisateur, connextion, inscription, mot de passe, avatar"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:152
-msgid "Invalid data provided for email change."
-msgstr "Données fournies pour modifier le mail non valides."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:214
-msgid "Email changed successfully."
-msgstr "L'email été modifié avec succès."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:228
-msgid "Incorrect password."
-msgstr "Mot de passe incorrect."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AccountController.php:244
-msgid "Password verified."
-msgstr "Mot de passe vérifé."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ActivityController.php:41
-msgid "User was not found."
-msgstr "L'utilisateur n'a pas été trouvé."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ActivityController.php:57
-msgid "An error occurred."
-msgstr "Une erreur est survenue."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:85
-msgid "Allowed extensions:"
-msgstr "Extensions autorisées : "
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:90
-msgid "Max files size:"
-msgstr "Taille maximale des fichiers :"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:96
-msgid "Max image size:"
-msgstr "Taille maximale de l'image : "
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:171
-msgid "Avatar Settings"
-msgstr "Paramétrages de l'avatar"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:185
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:41
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-sidebar.phtml:40
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:115
-msgid "Change avatar"
-msgstr "Modifier l'avatar"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:186
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:42
-msgid "Customize your avatar anyway you like"
-msgstr "Personaliser votre avatar comme vous le voulez"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:207
-msgid "Invalid token!"
-msgstr "Token non valide !"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:311
-msgid "Invalid email for gravatar."
-msgstr "Email invalide pour gravatar."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:322
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:355
-msgid "Successful."
-msgstr "Succès."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:339
-msgid "No image selected!"
-msgstr "Aucune image sélectionnée !"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:373
-#, php-format
-msgid "Invalid source %s."
-msgstr "Source non valide %s."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:384
-msgid "Not image selected."
-msgstr "Aucune image sélectionnée."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:393
-msgid "Image is missing."
-msgstr "L'image est manquante."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:399
-msgid "Image does not exist."
-msgstr "L'image n'existe pas."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:409
-msgid "Image width or height is missing."
-msgstr "La largeur ou la hauteur de l'image est manquante."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:436
-msgid "Email address is missing."
-msgstr "L'adresse email est manquante."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:445
-msgid "Image name is missing."
-msgstr "Le nom de l'image est manquant."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:480
-msgid "Avatar set successfully."
-msgstr "L'avatar a été paramétré avec succès."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:495
-msgid "Image is not removed."
-msgstr "L'image n'a pas été supprimée."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/AvatarController.php:510
-msgid "Image removed successfully."
-msgstr "L'image a été supprimée avec succès."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:42
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:42
 msgid "Reset password failed."
 msgstr "La reinitialisation du mot de passe a échoué."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:82
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:82
 msgid "Reset password successfully."
 msgstr "La réinitialisation du mot de passe a réussi."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:99
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-index.phtml:8
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-sidebar.phtml:36
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:99
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-index.phtml:7
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:36
 msgid "Change password"
 msgstr "Modifier le mot de passe"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:100
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-index.phtml:9
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:100
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-index.phtml:8
 msgid "To ensure your account security, complex password is required."
 msgstr "Pour assurer la sécurité de votre compte, un mot de passe complexe."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:117
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:114
 msgid "Find password failed."
 msgstr "Le mot de passe n'a pas été trouvé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:188
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:185
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 "Le mail de confirmation a été envoyé avec succès. Merci de regarder le mail "
 "pour réinitialiser le mot de passe."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:197
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:198
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/FindPasswordForm.php:52
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login.phtml:15
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-find.phtml:2
-msgid "Find password"
-msgstr "Trouver le mot de passe."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:213
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:207
 msgid "Invalid token for password reset."
 msgstr "Token pour réinitialiser le mot de passe non valide."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PasswordController.php:270
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:264
 msgid "Password reset successfully."
 msgstr "Mot de passe reintialiser avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PrivacyController.php:61
-msgid "Privacy settings saved successfully."
-msgstr "Paramètres de confidentialité enregistrés avec succès."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:85
+msgid "Allowed extensions:"
+msgstr "Extensions autorisées : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PrivacyController.php:100
-msgid "Privacy Settings"
-msgstr "Paramètres de confidentialité"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:90
+#, fuzzy
+msgid "Max file size:"
+msgstr "Taille maximale des fichiers :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/PrivacyController.php:101
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/privacy-index.phtml:11
-msgid "Set profile field privacy."
-msgstr "Paramétrer la confidentialité des champs du profil"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:96
+msgid "Max image size:"
+msgstr "Taille maximale de l'image : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:51
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:88
-msgid "User profile"
-msgstr "Profil utilisateur"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:171
+msgid "Avatar Settings"
+msgstr "Paramétrages de l'avatar"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:52
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:89
-msgid "view profile"
-msgstr "Voir le profil"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:185
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:42
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:117
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:40
+msgid "Change avatar"
+msgstr "Modifier l'avatar"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:119
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:202
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:255
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:394
-msgid "Profile group ID is invalid."
-msgstr "Le numéro de groupe de profil n'est pas valide."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:186
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:43
+msgid "Customize your avatar anyway you like"
+msgstr "Personaliser votre avatar comme vous le voulez"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:153
-msgid "Profile updated successfully."
-msgstr "Profil mis à jour avec succès."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:204
+msgid "Invalid token!"
+msgstr "Token non valide !"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:155
-msgid "Profile update failed."
-msgstr "Echec de la mise à jour du profil."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:308
+msgid "Invalid email for gravatar."
+msgstr "Email invalide pour gravatar."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:175
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:226
-msgid "Edit profile"
-msgstr "Editer le profi"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:319
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:352
+msgid "Successful."
+msgstr "Succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:176
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:227
-msgid "Edit profile data."
-msgstr "Editer les informations du profil."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:336
+msgid "No image selected!"
+msgstr "Aucune image sélectionnée !"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:412
-msgid "Profile compound requires at least one set of data."
-msgstr "L'organisation du profil requiert au moins un jeu de données."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:370
+#, php-format
+msgid "Invalid source %s."
+msgstr "Source non valide %s."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:417
-msgid "Profile compound data was not deleted."
-msgstr "Les données de l'organisation du profil n'ont pas été supprimées."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:381
+msgid "Not image selected."
+msgstr "Aucune image sélectionnée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/ProfileController.php:438
-msgid "User ID or Profile group ID is invalid."
-msgstr ""
-"Le numéro utilisateur ou le numéro de groupe de profil n'est pas valide."
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:390
+msgid "Image is missing."
+msgstr "L'image est manquante."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-disabled.phtml:2
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:396
+msgid "Image does not exist."
+msgstr "L'image n'existe pas."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:406
+msgid "Image width or height is missing."
+msgstr "La largeur ou la hauteur de l'image est manquante."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:433
+msgid "Email address is missing."
+msgstr "L'adresse email est manquante."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:442
+msgid "Image name is missing."
+msgstr "Le nom de l'image est manquant."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:477
+msgid "Avatar set successfully."
+msgstr "L'avatar a été paramétré avec succès."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:492
+msgid "Image is not removed."
+msgstr "L'image n'a pas été supprimée."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:507
+msgid "Image removed successfully."
+msgstr "L'image a été supprimée avec succès."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:96
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:23
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-disabled.phtml:3
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login.phtml:19
 msgid "Register"
 msgstr "S'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:97
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:1
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:97
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:4
 msgid "Account registration"
 msgstr "Création de compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:168
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:165
 msgid "Activation token is invalid."
 msgstr "Le token de confirmation n'est pas valide."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:234
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:231
 msgid "Account Activated successfully."
 msgstr "Le compte a été confirmé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:254
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:251
 msgid "Activation email sent failed."
 msgstr "L'envoi de l'email de confirmation-activation a échoué."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:288
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:285
 msgid "Resend activation mail successfully."
 msgstr "Le mail de confirmation-activation a été renvoyé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:316
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:313
 msgid "Email was not found."
 msgstr "L'email n'a pas été trouvé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:321
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:318
 msgid "Account already activated."
 msgstr "Le compte est déja confirmé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:332
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:329
 msgid "Activation mail sent successfully."
 msgstr "Le mail de confirmation-activation a été envoyé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:337
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:334
 msgid "Activation mail was not sent."
 msgstr "Le mail de confirmation-activation n'a pas été envoyé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:345
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:342
 msgid "Invalid input."
 msgstr "Saisie non valide."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:444
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:441
 msgid "User account was not saved."
 msgstr "Le compte utilisateur n'a pas été enregistré."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:468
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:465
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -549,652 +548,172 @@ msgstr ""
 "Le compte utilisateur a été crée avec succès mais la confirmation a échoué, "
 "merci de contacter l'administrateur."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Front/RegisterController.php:494
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:491
 msgid "Account activation email was not able to send, please contact admin."
 msgstr ""
 "Le mail de confirmation-activation du compte n'a pu être envoyé, merci de "
 "contacter l'administrateur."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/AccountForm.php:27
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:30
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:90
-msgid "Username"
-msgstr "Nom utilisateur"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/AccountForm.php:38
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/FindPasswordForm.php:27
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:48
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:108
-msgid "Email"
-msgstr "Email"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/AccountForm.php:48
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:39
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:99
-msgid "Display name"
-msgstr "Pseudo"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/AccountForm.php:65
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/CompoundForm.php:58
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/EditUserForm.php:45
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/EmailForm.php:58
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:122
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/PasswordForm.php:87
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ProfileEditForm.php:42
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ResendActivationForm.php:47
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ResetPasswordForm.php:73
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/RoleForm.php:99
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:38
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/privacy-index.phtml:40
-msgid "Submit"
-msgstr "Valider"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/Element/Gender.php:36
-msgid "Male"
-msgstr "Masculin"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/Element/Gender.php:37
-msgid "Female"
-msgstr "Féminin"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/EmailForm.php:27
-msgid "New email"
-msgstr "Nouvel email"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/EmailForm.php:37
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/PasswordForm.php:42
-msgid "Current password"
-msgstr "Mot de passe actuel"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
-msgstr "Merci de saisir le mot"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:57
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/PasswordForm.php:53
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ResetPasswordForm.php:42
-msgid "New password"
-msgstr "Nouveau mot de passe"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:66
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/PasswordForm.php:63
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ResetPasswordForm.php:52
-msgid "Confirm password"
-msgstr "Confirmer le mot de passe"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:75
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:71
-msgid "Front role"
-msgstr "Rôle côté utilisateur"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:84
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:80
-msgid "Admin role"
-msgstr "Rôle côté admin"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:94
-msgid "Activate"
-msgstr "Confirmer"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:106
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:46
-msgid "Enable"
-msgstr "Activer"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ResendActivationForm.php:27
-msgid "Email address"
-msgstr "Adresse email"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/ResendActivationForm.php:38
-msgid "Please type the word."
-msgstr "Merci de saisir le mot."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/RoleForm.php:44
-msgid "Name"
-msgstr "Nom"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/RoleForm.php:54
-msgid "Title"
-msgstr "Titre"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:29
-msgid "Active state"
-msgstr "Statut"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:31
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:45
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:59
-msgid "Any"
-msgstr "Tout"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:32
-msgid "Active"
-msgstr "Activer"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:33
-msgid "Inactive"
-msgstr "Non confirmé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:43
-msgid "Enable state"
-msgstr "Activer le statut"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:47
-msgid "Disable"
-msgstr "Désactiver"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:57
-msgid "Activated state"
-msgstr "Confirmation"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:60
-msgid "Pending"
-msgstr "En attente"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:61
-msgid "Activated"
-msgstr "Confirmé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:117
-msgid "Register date from"
-msgstr "Date d'inscription depuis le"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:126
-msgid "Register date end"
-msgstr "Date d'inscription avant le"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:135
-msgid "Register ip from"
-msgstr "Adresse IP enregistrée depuis"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:143
-msgid "Search"
-msgstr "Rechercher"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/CredentialVerify.php:34
-msgid "Invalid password."
-msgstr "Mot de passe non valide."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Name.php:28
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:40
-msgid "Invalid user name: %formatHint%"
-msgstr "Non utilisateur non valide : %formatHint%"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Name.php:29
-msgid "User name is reserved"
-msgstr "Le nom utilisateur est réservé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Name.php:30
-msgid "User name is already taken"
-msgstr "Le nom utilisateur est déja pris"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Name.php:31
-msgid "User name is less than %min% characters long"
-msgstr "Le nom utilisateur a moins de %min% caractères"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Name.php:32
-msgid "User name is more than %max% characters long"
-msgstr "Le nom utilisateur a plus de %max% caractères"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Password.php:40
-msgid "Password is less than %min% characters long"
-msgstr "Le mot de passe a moins de %min% caractères"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Password.php:41
-msgid "Password is more than %max% characters long"
-msgstr "Le mot de passe a plus de %max% caractères"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/UserEmail.php:28
-msgid "User email is reserved"
-msgstr "Le mail utilisateur est réservé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/UserEmail.php:29
-msgid "User email is already used"
-msgstr "Le mail utilisateur est déja utilisé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:41
-msgid "Username is reserved"
-msgstr "Le nom utilisateur est réservé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:42
-msgid "Username is already taken"
-msgstr "Le nom utilisateur est déja pris"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:43
-msgid "Username is less than %min% characters long"
-msgstr "Le nom utilisateur a moins de %min% caractères"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:44
-msgid "Username is more than %max% characters long"
-msgstr "Le nom utilisateur a plus de %max% caractères"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:48
-#, fuzzy
-msgid "Only alphabetic and digits are allowed with leading alphabetic"
-msgstr ""
-"Seuls des caractères alphanumériques sont autorisés avec les premières "
-"caractères alphabétiques"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:49
-msgid "Only ASCII characters are allowed"
-msgstr "Seuls des caractères ASCII sont autorisés"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:50
-msgid "Multibyte characters are allowed"
-msgstr "Les caractères multibytes non autorisés"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:22
-msgid "Verify identity"
-msgstr "Vérifier l'identité"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:26
-msgid "Input password to verify your identity for account changes."
-msgstr ""
-"Saisir votre mot de passe pour vérifier votre identité et valider vos "
-"modifications."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:30
-msgid "Password"
-msgstr "Mot de passe"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:171
-msgid "Invalid email."
-msgstr "Email invalide."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:189
-msgid "Email has been used."
-msgstr "L'email est déja utilisé."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:207
-msgid "Invalid display name."
-msgstr "Pseudo invalide."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:225
-msgid "Display name has been used."
-msgstr "Le pseudo est déja utilisé."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:254
-msgid "No change!"
-msgstr "Aucune modification !"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-reset-email.phtml:1
-msgid "Change email"
-msgstr "Modifier l'email"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-reset-email.phtml:4
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-process.phtml:12
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:5
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:19
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:48
-msgid "Congratulations!"
-msgstr "Félicitations !"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-reset-email.phtml:6
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:8
-msgid "Login right now."
-msgstr "Se connecter maintenant."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/activity-index.phtml:25
-msgid "View all"
-msgstr "Voir tout"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/activity-index.phtml:32
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/home-index.phtml:37
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-view.phtml:29
-msgid "No data available."
-msgstr "Aucune donnée disponible."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:13
-msgid "Upload"
-msgstr "Uploader"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:18
-msgid "Gravatar"
-msgstr "Gravatar"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:23
-msgid "Select"
-msgstr "Selectionner"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:28
-msgid "Default"
-msgstr "Par défaut"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:45
-msgid "Current avatar"
-msgstr "Avatar actuel"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:49
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:73
 msgid ""
-"Once source type is switched and saved, the old avatar image will be deleted."
+"A confirmation email has been sent to you. Please check your email and "
+"confirm."
 msgstr ""
-"Une fois que votre source est modifiée et sauvegardée, l'ancienne image "
-"avatar sera supprimée."
+"Un mail de confirmation vous a été envoyé. Merci de vérifier vos mails et de "
+"confirmer votre inscription."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:71
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:186
-msgid "Upload avatar"
-msgstr "Uploader l'avatar"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:76
+msgid "It was failed to send you confirmation email. Please try later."
+msgstr "Le mail de confirmation n'a pas êté envoyé. Merci d'essayer plus tard."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:81
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:112
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:138
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:164
-msgid "Avatar previews"
-msgstr "Prévisualiser l'avatar"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:88
+msgid "Email has been changed successfully."
+msgstr "L'email a été modifié avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:100
-msgid "Recovered from Gravatar"
-msgstr "Récupéré depuis Gravatar"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:91
+msgid "It was failed to save new email. Please try later."
+msgstr "Le nouvel email n'a pas êté enregistré. Merci d'essayer plus tard."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:104
-msgid "Gravatar email"
-msgstr "Email Gravatar"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:107
+msgid "Name has been changed successfully."
+msgstr "Le nom a été modifié avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:160
-msgid "Apply system avatar as your avatar"
-msgstr "Appliquer l'avatar proposé par défaut"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:110
+msgid "It was failed to save new name. Please try later."
+msgstr "Le nouveau nom n'a pas été enregistré. Merci d'essayer plus tard."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:175
-msgid "Save"
-msgstr "Sauvegarder"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:134
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:7
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:32
+msgid "Account settings"
+msgstr "Paramétrages du compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:176
-msgid "Cancel"
-msgstr "Annuler"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:135
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:8
+msgid "Basic settings"
+msgstr "Paramétrages Généraux"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/avatar-index.phtml:187
-msgid "Uploading"
-msgstr "En téléchargement"
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:150
+msgid "Invalid data provided for email change."
+msgstr "Données fournies pour modifier le mail non valides."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-disabled.phtml:2
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:212
+msgid "Email changed successfully."
+msgstr "L'email été modifié avec succès."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:226
+msgid "Incorrect password."
+msgstr "Mot de passe incorrect."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:242
+msgid "Password verified."
+msgstr "Mot de passe vérifé."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ActivityController.php:41
+msgid "User was not found."
+msgstr "L'utilisateur n'a pas été trouvé."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ActivityController.php:57
+msgid "An error occurred."
+msgstr "Une erreur est survenue."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/form.register.php:28
+msgid "Confirm credential"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:21
+msgid "User logged in"
+msgstr "L'utilisateur est connecté"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:27
+msgid "User logged out"
+msgstr "L'utilisateur est déconnecté"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:33
+msgid "User registered"
+msgstr "L'utilisateur est inscrit"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:39
+msgid "User activated"
+msgstr "L'utilisateur est confirmé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:45
+msgid "User enabled"
+msgstr "L'utilisateur est activé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:51
+msgid "User disabled"
+msgstr "L'utilisateur est désactivé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:57
+msgid "User deleted"
+msgstr "L'utilisateur est supprimé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:63
+msgid "User profile updated"
+msgstr "Profil utilisateur mis à jour"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:69
+msgid "Display name changed"
+msgstr "Pseudo modifié"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:75
+msgid "Email changed"
+msgstr "Email modifié"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:81
+msgid "Avatar changed"
+msgstr "Avatar modifié"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:87
+msgid "Password changed"
+msgstr "Mot de passe modifié"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:93
+msgid "Role assigned"
+msgstr "Rôle affecté"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:99
+msgid "Role removed"
+msgstr "Rôle supprimé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-disabled.phtml:3
 msgid "User login"
 msgstr "Connexion utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-disabled.phtml:5
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-disabled.phtml:6
 msgid "Sorry, login is temporarily disabled. Please come back later."
 msgstr ""
 "Désolé, la connexion est temporairement désactivée. Merci de revenir plus "
 "tard."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:7
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-success.phtml:7
-msgid "homepage"
-msgstr "Accueil"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:10
-msgid "re-login"
-msgstr "Se Re-connecter"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:11
-#, php-format
-msgid "You have logged out successfully, please go to %s or to %s."
-msgstr "Vous vous êtes déconnecté avec succès, merci d'aller à %s ou %s."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:16
-msgid "Choose: "
-msgstr "Choisir :"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-logout.phtml:17
-msgid "Login"
-msgstr "Se connecter"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-message.phtml:7
-msgid "logout"
-msgstr "Se déconnecter"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-message.phtml:8
-#, php-format
-msgid ""
-"You have been logged on with account <strong>%s</strong>, please %s to re-"
-"login."
-msgstr ""
-"Vous avez été connecté avec le compte <strong>%s</strong>, merci %s de vous "
-"re-connecter."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/login-success.phtml:8
-#, php-format
-msgid "You have logged in successfully, please go to %s."
-msgstr "Vous vous êtes connecté avec succès, merci d'aller à %s."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-process.phtml:1
-msgid "Reset password"
-msgstr "Réinitialiser le mot de passe"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-process.phtml:7
-msgid "Try to find password again"
-msgstr "Essayer de trouver votre mot de passe de nouveau"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-process.phtml:13
-msgid "Your new password has worked"
-msgstr "Votre nouveau mot de passe a fonctionné"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/password-process.phtml:16
-msgid "Please login"
-msgstr "Merci de vous connecter"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/privacy-index.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-sidebar.phtml:52
-msgid "Privacy"
-msgstr "Confidentialité"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/privacy-index.phtml:16
-msgid "No available privacy setting"
-msgstr "Aucun paramétrage de confidentialité disponible"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit.phtml:10
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit.phtml:9
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:13
 #, php-format
 msgid "Update %s"
 msgstr "Mettre à jour %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:13
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:21
-msgid "Add new"
-msgstr "Ajouter un nouveau"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:31
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-index.phtml:20
-msgid "Edit"
-msgstr "Editer"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:42
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-index.phtml:33
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-view.phtml:20
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-view.phtml:19
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-index.phtml:32
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:42
 msgid "Unfiled"
 msgstr "Non rempli"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-edit-compound.phtml:53
-msgid "Are you sure to delete this record?"
-msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-view.phtml:28
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/home-index.phtml:36
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/activity-index.phtml:31
+msgid "No data available."
+msgstr "Aucune donnée disponible."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-index.phtml:42
-#, php-format
-msgid "Add %s"
-msgstr "Ajouter %s"
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:21
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:51
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:6
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:15
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-reset-email.phtml:4
+msgid "Congratulations!"
+msgstr "Félicitations !"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-sidebar.phtml:25
-msgid "View my profile"
-msgstr "Voir mon profil"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:56
-msgid "Switch to public"
-msgstr "Basculer côté utilisateur"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:60
-msgid "Quicklinks"
-msgstr "Liens rapides"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:66
-msgid "Settings"
-msgstr "Paramétrages"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:93
-msgid "Switch to own"
-msgstr "Basculer côté admin"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:99
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:104
-msgid "Send message"
-msgstr "Envoyer un message"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:123
-msgid "Gender:"
-msgstr "Genre : "
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:129
-msgid "Birthdate:"
-msgstr "Date de naissance :"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/profile-topbar.phtml:185
-msgid "More"
-msgstr "Plus"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:2
-msgid "Activate account"
-msgstr "Confirmer le compte"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:6
-msgid "Your account has been activated."
-msgstr "Votre compte a été confirmé."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:14
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:28
-#, php-format
-msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
-msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:20
-msgid "Sorry, account activation is failed."
-msgstr "Désolé, la confirmation-activation de votre compte a échoué."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-activate.phtml:22
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-resend-activation.phtml:2
-msgid "Resend activation email."
-msgstr "Renvoyer le mail de confirmation-activation."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-disabled.phtml:5
-msgid "Sorry, register is temporarily disabled. Please come back later."
-msgstr ""
-"Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
-"tard."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:23
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:26
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
@@ -1203,14 +722,18 @@ msgstr ""
 "Votre compte a été crée avec succès. Merci de  vous <a href=\"%s\">connecter "
 "</a>  avec votre compte."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:39
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:55
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:31
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:16
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr "Ou retourner à <a href=\"%s\">la page demandée </a> directement."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:41
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:60
 msgid "Registration was not completed."
 msgstr "L'inscription n'est pas été terminée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:49
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:54
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
@@ -1218,40 +741,320 @@ msgstr ""
 "Votre compte a été crée avec succès. Cependant il doit être approuvé par les "
 "administrateurs du site avant de pouvoir être utilisé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:64
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:68
 msgid "An email with activation link has been sent to you."
 msgstr "Un email avec un lien de confirmation-activation vous été envoyé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:65
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:69
 msgid "Please check it to finish the registration."
 msgstr "Merci de vérifier votre boite mail afin de terminer votre inscription."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:68
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:72
 msgid "If you do not receive the activation email:"
 msgstr "Si vous ne recevez pas le mail de confirmation :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:70
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:74
 msgid "Wait a few minutes and check again."
 msgstr "Attendez quelques minutes et vérifier de nouveau."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:71
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:75
 msgid "Check your email spam box."
 msgstr "Vérifier le répertoire spam de votre boite mail."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:72
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:78
 msgid "Request to resend activation email"
 msgstr "Demander le renvoi du mail d'activation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\user/template/front/register-index.phtml:107
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:115
 msgid "Already sent"
 msgstr "Déja envoyé"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:7
+msgid "Check your new email to complete the change"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:9
+msgid "The link will expired in 12 hours"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:15
+#, fuzzy
+msgid "1. wait a few minutes"
+msgstr "Attendez quelques minutes et vérifier de nouveau."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:16
+#, fuzzy
+msgid "2. Check your email rubbish"
+msgstr "Vérifier le répertoire spam de votre boite mail."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:17
+#, php-format
+msgid "3. <a href=\"%s\">Try another reset</a>"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:13
+msgid "Upload"
+msgstr "Uploader"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:18
+msgid "Gravatar"
+msgstr "Gravatar"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:23
+msgid "Select"
+msgstr "Selectionner"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:28
+msgid "Default"
+msgstr "Par défaut"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:49
+msgid "Current avatar"
+msgstr "Avatar actuel"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:50
+msgid ""
+"Once source type is switched and saved, the old avatar image will be deleted."
+msgstr ""
+"Une fois que votre source est modifiée et sauvegardée, l'ancienne image "
+"avatar sera supprimée."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:74
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:192
+msgid "Upload avatar"
+msgstr "Uploader l'avatar"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:84
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:119
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:145
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:171
+msgid "Avatar previews"
+msgstr "Prévisualiser l'avatar"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:105
+msgid "Gravatar email"
+msgstr "Email Gravatar"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:114
+#, fuzzy
+msgid "Configure at Gravatar"
+msgstr "Avatar actuel"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:167
+msgid "Apply system avatar as your avatar"
+msgstr "Appliquer l'avatar proposé par défaut"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:181
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:182
+msgid "Cancel"
+msgstr "Annuler"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:193
+msgid "Uploading"
+msgstr "En téléchargement"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:9
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-success.phtml:8
+msgid "homepage"
+msgstr "Accueil"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:12
+msgid "re-login"
+msgstr "Se Re-connecter"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:13
+#, php-format
+msgid "You have logged out successfully, please go to %s or to %s."
+msgstr "Vous vous êtes déconnecté avec succès, merci d'aller à %s ou %s."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:20
+msgid "Login"
+msgstr "Se connecter"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:3
+msgid "Activate account"
+msgstr "Confirmer le compte"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:7
+msgid "Your account has been activated."
+msgstr "Votre compte a été confirmé."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:10
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-reset-email.phtml:6
+msgid "Login right now."
+msgstr "Se connecter maintenant."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:22
+msgid "Sorry, account activation is failed."
+msgstr "Désolé, la confirmation-activation de votre compte a échoué."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:24
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-resend-activation.phtml:3
+msgid "Resend activation email."
+msgstr "Renvoyer le mail de confirmation-activation."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/activity-index.phtml:24
+msgid "View all"
+msgstr "Voir tout"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:2
+msgid "Reset password"
+msgstr "Réinitialiser le mot de passe"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:9
+msgid "Try to find password again"
+msgstr "Essayer de trouver votre mot de passe de nouveau"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:16
+msgid "Your new password has worked"
+msgstr "Votre nouveau mot de passe a fonctionné"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:20
+msgid "Please login"
+msgstr "Merci de vous connecter"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:18
+msgid "Verify identity"
+msgstr "Vérifier l'identité"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:22
+msgid "Input password to verify your identity for account changes."
+msgstr ""
+"Saisir votre mot de passe pour vérifier votre identité et valider vos "
+"modifications."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:26
+msgid "Password"
+msgstr "Mot de passe"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:169
+msgid "Invalid email."
+msgstr "Email invalide."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:187
+msgid "Email has been used."
+msgstr "L'email est déja utilisé."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:205
+msgid "Invalid display name."
+msgstr "Pseudo invalide."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:223
+msgid "Display name has been used."
+msgstr "Le pseudo est déja utilisé."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:252
+msgid "No change!"
+msgstr "Aucune modification !"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-index.phtml:19
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:31
+msgid "Edit"
+msgstr "Editer"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-index.phtml:41
+#, php-format
+msgid "Add %s"
+msgstr "Ajouter %s"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-message.phtml:8
+msgid "logout"
+msgstr "Se déconnecter"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-message.phtml:9
+#, php-format
+msgid ""
+"You have been logged on with account <strong>%s</strong>, please %s to re-"
+"login."
+msgstr ""
+"Vous avez été connecté avec le compte <strong>%s</strong>, merci %s de vous "
+"re-connecter."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-disabled.phtml:6
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:61
+msgid "Switch to public"
+msgstr "Basculer côté utilisateur"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:66
+msgid "Settings"
+msgstr "Paramétrages"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:72
+msgid "Quicklinks"
+msgstr "Liens rapides"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:95
+msgid "Switch to own"
+msgstr "Basculer côté admin"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:101
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:106
+msgid "Send message"
+msgstr "Envoyer un message"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:125
+msgid "Gender:"
+msgstr "Genre : "
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:131
+msgid "Birthdate:"
+msgstr "Date de naissance :"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:187
+msgid "More"
+msgstr "Plus"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:7
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:52
+msgid "Privacy"
+msgstr "Confidentialité"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:12
+msgid "No available privacy setting"
+msgstr "Aucun paramétrage de confidentialité disponible"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:14
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:21
+msgid "Add new"
+msgstr "Ajouter un nouveau"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:53
+msgid "Are you sure to delete this record?"
+msgstr "Etes-vous sûr de vouloir supprimer cet enregistrement?"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-reset-email.phtml:2
+msgid "Change email"
+msgstr "Modifier l'email"
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-success.phtml:9
+#, php-format
+msgid "You have logged in successfully, please go to %s."
+msgstr "Vous vous êtes connecté avec succès, merci d'aller à %s."
+
+#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:25
+msgid "View my profile"
+msgstr "Voir mon profil"
+
+#~ msgid ""
+#~ "account,social,tools,privacy,settings,profile,user,login,register,"
+#~ "password,avatar"
+#~ msgstr ""
+#~ "compte, réseaux sociaux, outils, confidentialité, paramétrages, profil, "
+#~ "utilisateur, connextion, inscription, mot de passe, avatar"
+
+#~ msgid "Recovered from Gravatar"
+#~ msgstr "Récupéré depuis Gravatar"
+
+#~ msgid "Choose: "
+#~ msgstr "Choisir :"
 
 #~ msgid "Resend activation email"
 #~ msgstr "Renvoyer le mail d'activation"
