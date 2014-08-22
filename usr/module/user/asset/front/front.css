@@ -153,6 +153,10 @@
   margin-top: 4px;
 }
 
+.user-page-box {
+  margin-bottom: 20px;
+}
+
 .user-info-item {
   margin-bottom: 20px;
   border: 1px solid #ccc;

@@ -41,7 +41,9 @@ class Activity extends AbstractApi
                 'icon'  => $activity['icon'],
             );
             // Set url
-            if (!empty($activity['url'])) {
+            if (!empty($activity['url']) 
+                && empty($activity['callback'])
+            ) {
                 $url = Json::decode($activity['url'], true);
                 if (isset($url['route']) 
                     && isset($url['params']) 
