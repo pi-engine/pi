@@ -506,9 +506,11 @@ class RegisterController extends ActionController
      */
     protected function sendNotification($type, array $data)
     {
+        /*
         if (!Pi::user()->config('register_notification')) {
             return true;
         }
+        */
         $params = array();
         $template = '';
         switch ($type) {
@@ -565,16 +567,9 @@ class RegisterController extends ActionController
         // Send email
         $message    = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($data['email']);
-        $transport  = Pi::service('mail')->transport();
-        try {
-            $transport->send($message);
-            $result = true;
-        } catch (\Exception $e) {
-            $result = false;
-        }
+        $result     = Pi::service('mail')->send($message);
 
         return $result;
-
     }
 
     /**
