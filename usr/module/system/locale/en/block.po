@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2014-08-08 17:26+0800\n"
-"PO-Revision-Date: 2014-08-08 17:26+0800\n"
+"POT-Creation-Date: 2014-08-24 14:56+0800\n"
+"PO-Revision-Date: 2014-08-24 14:56+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -17,45 +17,45 @@ msgstr ""
 #: c:\Code\pi\\usr\module\system/src/Block/Block.php:31
 #, php-format
 msgid "About %s"
-msgstr "关于%s"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/src/Block/Block.php:33
 msgid "Site name"
-msgstr "网站名称"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/src/Block/Block.php:34
 msgid "Slogan"
-msgstr "网站口号"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:8
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:61
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:92
 msgid "Login"
-msgstr "登录"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:13
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:66
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:97
 msgid "Register"
-msgstr "注册"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:19
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:20
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:79
 #: c:\Code\pi\\usr\module\system/template/block/user.phtml:3
 msgid "Profile"
-msgstr "用户信息"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:24
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:25
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:80
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:111
 msgid "Message"
-msgstr "私信"
+msgstr ""
 
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:30
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:81
 #: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:116
 #: c:\Code\pi\\usr\module\system/template/block/user.phtml:4
 msgid "Logout"
-msgstr "退出"
+msgstr ""

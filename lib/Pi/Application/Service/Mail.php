@@ -217,18 +217,19 @@ class Mail extends AbstractService
      */
     public function send(MailHandler\Message $message)
     {
-        $transport = $this->transport();
+        $result     = false;
+        $transport  = $this->transport();
         if ($transport) {
             try {
                 @set_time_limit(0);
                 $transport->send($message);
+                $result = true;
             } catch (\Exception $e) {
                 trigger_error($e->getMessage());
-                return false;
             }
         }
 
-        return true;
+        return $result;
     }
 
     /**
