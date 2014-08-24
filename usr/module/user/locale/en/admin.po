@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-08-24 14:57+0800\n"
-"PO-Revision-Date: 2014-08-24 14:58+0800\n"
+"POT-Creation-Date: 2014-08-24 21:52+0800\n"
+"PO-Revision-Date: 2014-08-24 21:52+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -165,48 +165,48 @@ msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:160
-msgid "Register complete"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/config/config.php:161
-msgid "Require user to complete register data in an extra form."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/config/config.php:169
-msgid "Email notification"
-msgstr ""
-
-#: C:\code\pi\usr\module\user/config/config.php:170
-msgid "Send email notification for register success."
-msgstr ""
-
-#: C:\code\pi\usr\module\user/config/config.php:178
 #: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:19
 msgid "Activation"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:179
+#: C:\code\pi\usr\module\user/config/config.php:161
 msgid "Activation mode for user accounts"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:184
+#: C:\code\pi\usr\module\user/config/config.php:166
 msgid "Automatically activated"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:185
+#: C:\code\pi\usr\module\user/config/config.php:167
 msgid "Activated by user email"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:186
+#: C:\code\pi\usr\module\user/config/config.php:168
 msgid "Activated by admin approval"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:196
+#: C:\code\pi\usr\module\user/config/config.php:178
 msgid "Activation expiration"
 msgstr ""
 
-#: C:\code\pi\usr\module\user/config/config.php:197
+#: C:\code\pi\usr\module\user/config/config.php:179
 msgid "Expiration time for activation email (in hours)."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:186
+msgid "Email notification"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:187
+msgid "Send email notification on register success by admin approval."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:195
+msgid "Register complete"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:196
+msgid "Require user to complete register data in an extra form."
 msgstr ""
 
 #: C:\code\pi\usr\module\user/config/config.php:205
