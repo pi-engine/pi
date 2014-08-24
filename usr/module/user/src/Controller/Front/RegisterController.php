@@ -464,6 +464,7 @@ class RegisterController extends ActionController
             if (!$status) {
                 $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
             }
+            /*
             if (Pi::user()->config('register_notification')) {
                 $this->sendNotification('success', array(
                     'email'     => $values['email'],
@@ -471,6 +472,7 @@ class RegisterController extends ActionController
                     'identity'  => $values['identity'],
                 ));
             }
+            */
         // Activated by admin
         } elseif ('admin' == $activationMode) {
             if (Pi::user()->config('register_notification')) {
@@ -498,6 +500,15 @@ class RegisterController extends ActionController
 
     /**
      * Send notification email
+     *
+     * There are three types of activation:
+     *  - (1) Automatically activated after registration
+     *  - (2) Activated by an administrator
+     *  - (3) Activated by email by the user himself
+     *
+     * For type (1), no email notification is to send.
+     * For type (2), an email notification is to send after activation only if `register_notification` is enabled
+     * For type (3), an email notification is to send.
      *
      * @param string $type
      * @param array $data   Data: email, uid, identity

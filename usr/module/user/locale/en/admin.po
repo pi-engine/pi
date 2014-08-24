@@ -2,12 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 <<<<<<< HEAD
+<<<<<<< HEAD
 "POT-Creation-Date: 2014-08-22 09:53+0330\n"
 "PO-Revision-Date: 2014-08-22 09:53+0330\n"
 "Last-Translator: \n"
 =======
 "POT-Creation-Date: 2014-08-24 14:57+0800\n"
 "PO-Revision-Date: 2014-08-24 14:58+0800\n"
+=======
+"POT-Creation-Date: 2014-08-24 21:52+0800\n"
+"PO-Revision-Date: 2014-08-24 21:52+0800\n"
+>>>>>>> develop
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 >>>>>>> develop
 "Language-Team: \n"
@@ -377,6 +382,7 @@ msgstr ""
 msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
+<<<<<<< HEAD
 #: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:160
 msgid "Register complete"
 msgstr ""
@@ -420,6 +426,51 @@ msgstr ""
 
 #: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:197
 msgid "Expiration time for activation email (in hours)."
+=======
+#: C:\code\pi\usr\module\user/config/config.php:160
+#: C:\code\pi\usr\module\user/template/admin/inquiry.phtml:19
+msgid "Activation"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:161
+msgid "Activation mode for user accounts"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:166
+msgid "Automatically activated"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:167
+msgid "Activated by user email"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:168
+msgid "Activated by admin approval"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:178
+msgid "Activation expiration"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:179
+msgid "Expiration time for activation email (in hours)."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:186
+msgid "Email notification"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:187
+msgid "Send email notification on register success by admin approval."
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:195
+msgid "Register complete"
+msgstr ""
+
+#: C:\code\pi\usr\module\user/config/config.php:196
+msgid "Require user to complete register data in an extra form."
+>>>>>>> develop
 msgstr ""
 
 #: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:205
