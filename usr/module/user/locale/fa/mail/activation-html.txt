@@ -7,7 +7,7 @@
 [body]
 <p style="margin-bottom: 5px"><strong>%username%</strong> عزیز:</p>
 
-<p style="margin-top: 5px">حساب کاربری شما در وب سایت %site_adminname% با این آدرس ایمیل ساخته شده است</p>
+<p style="margin-top: 5px">حساب کاربری شما در وب سایت %site_name% با این آدرس ایمیل ساخته شده است</p>
 <p style="margin-top: 5px">برای فعال سازی آن بر روی لینک زیر کلیک نمایید<br>
 <a href="%link%">%link%</a>
 </p>

@@ -1,4 +1,4 @@
-[comment]Pi Engine - notification de succès création de compte[/comment]
+[comment]Pi Engine - notification de succï¿½s crï¿½ation de compte[/comment]
 
 [format]html[/format]
 
@@ -7,7 +7,7 @@
 [body]
 <p style="margin-bottom: 5px">Cheagrave;re/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">Votre compte a eacute;teacute; creacute;eacute; avec succ&egrave;s sur le %site_adminname% avec cette adresse email.</p>
+<p style="margin-top: 5px">Votre compte a eacute;teacute; creacute;eacute; avec succ&egrave;s sur le %site_name% avec cette adresse email.</p>
 <p style="margin-top: 5px"><a href="%login_url%">Merci de visiter le site pour vous connecter.</a></p>
 
 <p style="margin-top: 10px">
