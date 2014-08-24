@@ -156,24 +156,6 @@ $config = array(
         'category'      => 'register',
     ),
 
-    'require_register_complete' => array(
-        'title'         => _t('Register complete'),
-        'description'   => _t('Require user to complete register data in an extra form.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'int',
-        'category'      => 'register',
-    ),
-
-    'register_notification' => array(
-        'title'         => _t('Email notification'),
-        'description'   => _t('Send email notification for register success.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'int',
-        'category'      => 'register',
-    ),
-
     'register_activation'  => array(
         'title'         => _t('Activation'),
         'description'   => _t('Activation mode for user accounts'),
@@ -196,6 +178,24 @@ $config = array(
         'title'         => _t('Activation expiration'),
         'description'   => _t('Expiration time for activation email (in hours).'),
         'value'         => 24,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_notification' => array(
+        'title'         => _t('Email notification'),
+        'description'   => _t('Send email notification on register success by admin approval.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'require_register_complete' => array(
+        'title'         => _t('Register complete'),
+        'description'   => _t('Require user to complete register data in an extra form.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
         'filter'        => 'int',
         'category'      => 'register',
     ),

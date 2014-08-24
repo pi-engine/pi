@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-08-08 17:27+0800\n"
-"PO-Revision-Date: 2014-08-08 17:28+0800\n"
+"POT-Creation-Date: 2014-08-24 21:53+0800\n"
+"PO-Revision-Date: 2014-08-24 21:54+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -165,49 +165,49 @@ msgid "Enable CAPTCHA for user registration"
 msgstr "启用注册验证码"
 
 #: c:\Code\pi\usr\module\user/config/config.php:160
-msgid "Register complete"
-msgstr "注册数据完善"
-
-#: c:\Code\pi\usr\module\user/config/config.php:161
-msgid "Require user to complete register data in an extra form."
-msgstr "要求用户注册时补充个人信息"
-
-#: c:\Code\pi\usr\module\user/config/config.php:169
-msgid "Email notification"
-msgstr "邮件通知"
-
-#: c:\Code\pi\usr\module\user/config/config.php:170
-msgid "Send email notification for register success."
-msgstr "注册成功后发送激活邮件"
-
-#: c:\Code\pi\usr\module\user/config/config.php:178
 #: c:\Code\pi\usr\module\user/template/admin/inquiry.phtml:19
 msgid "Activation"
 msgstr "激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:179
+#: c:\Code\pi\usr\module\user/config/config.php:161
 msgid "Activation mode for user accounts"
 msgstr "用户注册激活模式"
 
-#: c:\Code\pi\usr\module\user/config/config.php:184
+#: c:\Code\pi\usr\module\user/config/config.php:166
 msgid "Automatically activated"
 msgstr "自动激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:185
+#: c:\Code\pi\usr\module\user/config/config.php:167
 msgid "Activated by user email"
 msgstr "邮箱激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:186
+#: c:\Code\pi\usr\module\user/config/config.php:168
 msgid "Activated by admin approval"
 msgstr "管理员激活"
 
-#: c:\Code\pi\usr\module\user/config/config.php:196
+#: c:\Code\pi\usr\module\user/config/config.php:178
 msgid "Activation expiration"
 msgstr "激活有效期"
 
-#: c:\Code\pi\usr\module\user/config/config.php:197
+#: c:\Code\pi\usr\module\user/config/config.php:179
 msgid "Expiration time for activation email (in hours)."
 msgstr "激活邮件的有效期（单位小时）。"
+
+#: c:\Code\pi\usr\module\user/config/config.php:186
+msgid "Email notification"
+msgstr "邮件通知"
+
+#: c:\Code\pi\usr\module\user/config/config.php:187
+msgid "Send email notification on register success by admin approval."
+msgstr "管理员激活后给用户发送注册成功通知邮件。"
+
+#: c:\Code\pi\usr\module\user/config/config.php:195
+msgid "Register complete"
+msgstr "注册数据完善"
+
+#: c:\Code\pi\usr\module\user/config/config.php:196
+msgid "Require user to complete register data in an extra form."
+msgstr "要求用户注册时补充个人信息"
 
 #: c:\Code\pi\usr\module\user/config/config.php:205
 msgid "Username format"
