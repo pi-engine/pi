@@ -1,18 +1,18 @@
-[comment]Pi Engine- confirmation changement email utilisateur[/comment]
+﻿[comment]Pi Engine- confirmation changement email utilisateur[/comment]
 
 [format]html[/format]
 
 [subject]%site_name% - Confirmation de changement Email[/subject]
 
 [body]
-<p style="margin-bottom: 5px">Cheagrave;re/Cher <strong>%username%</strong>,</p>
+<p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">Une demande a eacute;teacute; re�ue pour changer l'adresse email de votre compte sur le %site_name% : changement de la valeur %old_email% &agrave; %new_email%.</p>
+<p style="margin-top: 5px">Une demande a été reçue pour changer l'adresse email de votre compte sur le %site_name% : changement de la valeur %old_email% à %new_email%.</p>
 <p style="margin-top: 5px">Merci de cliquer sur le lien suivant qui expire dans %expiration% heures afin de finaliser la demande.<br>
 <a href="%change_email_url%">%change_email_url%</a>
 </p>
 
-<p style="margin-top: 5px">Si vous n'&ecirc;tes pas &agrave; l'origine de cette demande, merci de simplement ignorer cet email.</p>
+<p style="margin-top: 5px">Si vous n'êtes pas à l'origine de cette demande, merci de simplement ignorer cet email.</p>
 
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>

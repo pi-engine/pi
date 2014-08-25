@@ -1,13 +1,13 @@
-[comment]Pi Engine - confirmation du succ�s changement email utilisateur[/comment]
+﻿[comment]Pi Engine - confirmation du succès changement email utilisateur[/comment]
 
 [format]html[/format]
 
 [subject]%site_name% Confirmation du changement de votre Email[/subject]
 
 [body]
-<p style="margin-bottom: 5px">Cheagrave;re/Cher <strong>%username%</strong>,</p>
+<p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">L'adresse email de votre compte sur %site_name% a eacute;teacute; modifieacute;e avec succ&egrave;s de la valeur %old_email% &agrave; %new_email%.</p>
+<p style="margin-top: 5px">L'adresse email de votre compte sur %site_name% a été modifiée avec succès de la valeur %old_email% à %new_email%.</p>
 
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
