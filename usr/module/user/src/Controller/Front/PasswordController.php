@@ -109,6 +109,12 @@ class PasswordController extends ActionController
      */
     public function findAction()
     {
+        // Check usrr not login
+        if (Pi::service('user')->hasIdentity()) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
+            return false;
+        }
+
         $result = array(
             'status'  => 0,
             'message' => __('Find password failed.'),

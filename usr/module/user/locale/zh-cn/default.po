@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-08-08 17:28+0800\n"
-"PO-Revision-Date: 2014-08-08 17:28+0800\n"
+"POT-Creation-Date: 2014-08-26 22:40+0800\n"
+"PO-Revision-Date: 2014-08-26 22:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -69,6 +69,15 @@ msgstr "角色调整"
 #: c:\Code\pi\usr\module\user/config/event.php:99
 msgid "Role removed"
 msgstr "移除角色 "
+
+#: c:\Code\pi\usr\module\user/config/form.register.php:28
+msgid "Confirm credential"
+msgstr "确认密码"
+
+#: c:\Code\pi\usr\module\user/config/form.register.php:60
+#: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:38
+msgid "Please type the word."
+msgstr "验证码"
 
 #: c:\Code\pi\usr\module\user/src/Api/Nav.php:46
 msgid "Profile"
@@ -200,7 +209,7 @@ msgstr "头像设置"
 #: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:185
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:41
 #: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:40
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:115
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:117
 msgid "Change avatar"
 msgstr "修改头像"
 
@@ -286,28 +295,28 @@ msgstr "修改密码"
 msgid "To ensure your account security, complex password is required."
 msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:114
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:120
 msgid "Find password failed."
 msgstr "找回密码失败。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:185
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:191
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改密码。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:194
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:195
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:200
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:201
 #: c:\Code\pi\usr\module\user/src/Form/FindPasswordForm.php:52
-#: c:\Code\pi\usr\module\user/template/front/login.phtml:15
+#: c:\Code\pi\usr\module\user/template/front/login.phtml:16
 #: c:\Code\pi\usr\module\user/template/front/password-find.phtml:2
 msgid "Find password"
 msgstr "找回密码"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:207
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:213
 msgid "Invalid token for password reset."
 msgstr "密码重置信息无效。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:264
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:270
 msgid "Password reset successfully."
 msgstr "重置密码成功。"
 
@@ -372,14 +381,14 @@ msgid "User ID or Profile group ID is invalid."
 msgstr "用户ID或资料组ID无效。"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
-#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:18
-#: c:\Code\pi\usr\module\user/template/front/login.phtml:18
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:23
+#: c:\Code\pi\usr\module\user/template/front/login.phtml:19
 #: c:\Code\pi\usr\module\user/template/front/register-disabled.phtml:2
 msgid "Register"
 msgstr "注册"
 
 #: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:97
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:1
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:2
 msgid "Account registration"
 msgstr "账号注册"
 
@@ -429,7 +438,7 @@ msgid ""
 "contact admin."
 msgstr "账号注册成功，但是激活失败。请联系管理员。"
 
-#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:491
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:493
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "激活邮件发送失败，请联系管理员。"
 
@@ -522,10 +531,6 @@ msgstr "打开"
 #: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:27
 msgid "Email address"
 msgstr "邮箱地址"
-
-#: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:38
-msgid "Please type the word."
-msgstr "验证码"
 
 #: c:\Code\pi\usr\module\user/src/Form/RoleForm.php:44
 msgid "Name"
@@ -697,8 +702,8 @@ msgstr "修改邮箱"
 #: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:4
 #: c:\Code\pi\usr\module\user/template/front/password-process.phtml:12
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:5
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:19
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:48
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:20
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:49
 msgid "Congratulations!"
 msgstr "恭喜！"
 
@@ -733,7 +738,7 @@ msgstr "系统挑选"
 msgid "Default"
 msgstr "系统默认"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:45
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:48
 msgid "Current avatar"
 msgstr "当前头像"
 
@@ -742,39 +747,39 @@ msgid ""
 "Once source type is switched and saved, the old avatar image will be deleted."
 msgstr " 一旦头像来源并切换保存，原来的头像数据将被删除。"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:71
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:186
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:73
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:191
 msgid "Upload avatar"
 msgstr "上传头像"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:81
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:112
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:138
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:164
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:83
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:118
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:144
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:170
 msgid "Avatar previews"
 msgstr "头像预览"
-
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:100
-msgid "Configure at Gravatar"
-msgstr "设置Gravatar头像"
 
 #: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:104
 msgid "Gravatar email"
 msgstr "Gravatar邮箱"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:160
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:113
+msgid "Configure at Gravatar"
+msgstr "设置Gravatar头像"
+
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:166
 msgid "Apply system avatar as your avatar"
 msgstr "使用系统默认头像"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:175
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:180
 msgid "Save"
 msgstr "保存"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:176
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:181
 msgid "Cancel"
 msgstr "取消"
 
-#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:187
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:192
 msgid "Uploading"
 msgstr "上传"
 
@@ -786,25 +791,21 @@ msgstr "用户登录"
 msgid "Sorry, login is temporarily disabled. Please come back later."
 msgstr "抱歉，现在禁止登录。请稍后尝试。"
 
-#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:7
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:8
 #: c:\Code\pi\usr\module\user/template/front/login-success.phtml:7
 msgid "homepage"
 msgstr "主页"
 
-#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:10
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:11
 msgid "re-login"
 msgstr "重登录"
 
-#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:11
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:12
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "您已退出，请前往 %s 或 %s。"
 
-#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:16
-msgid "Choose: "
-msgstr "选择："
-
-#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:17
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:20
 msgid "Login"
 msgstr "登录"
 
@@ -884,36 +885,36 @@ msgstr "新增%s"
 msgid "View my profile"
 msgstr "查看我的资料"
 
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:56
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:61
 msgid "Switch to public"
 msgstr "以他人视角"
-
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:60
-msgid "Quicklinks"
-msgstr "快捷链接"
 
 #: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:66
 msgid "Settings"
 msgstr "设置"
 
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:93
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:72
+msgid "Quicklinks"
+msgstr "快捷链接"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:95
 msgid "Switch to own"
 msgstr "以自己视角"
 
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:99
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:104
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:101
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:106
 msgid "Send message"
 msgstr "发送私信"
 
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:123
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:125
 msgid "Gender:"
 msgstr "性别："
 
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:129
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:131
 msgid "Birthdate:"
 msgstr "出生日期："
 
-#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:185
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:187
 msgid "More"
 msgstr "更多"
 
@@ -926,7 +927,7 @@ msgid "Your account has been activated."
 msgstr "您的账号已激活。"
 
 #: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:14
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:28
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:29
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "或直接点击返回<a href=\"%s\">原来访问的页面</a>。"
@@ -944,51 +945,54 @@ msgstr "重新发送激活邮件"
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr "抱歉，现在禁止注册。请稍后尝试。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:23
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:24
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
 "a> with your account."
 msgstr "账号已注册成功，请点击<a href=\"%s\">登录</a>。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:39
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:55
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:56
 msgid "Registration was not completed."
 msgstr "注册未完成。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:49
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:50
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
 msgstr "账号已注册成功，但是需要管理员激活。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:64
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:65
 msgid "An email with activation link has been sent to you."
 msgstr "激活链接已经发送到您的邮箱。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:65
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:66
 msgid "Please check it to finish the registration."
 msgstr "请查收邮件点击激活链接完成注册。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:68
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:69
 msgid "If you do not receive the activation email:"
 msgstr "如果你未收到激活邮件："
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:70
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:71
 msgid "Wait a few minutes and check again."
 msgstr "稍等几分钟再查收。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:71
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:72
 msgid "Check your email spam box."
 msgstr "检查邮件垃圾箱。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:72
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:73
 msgid "Request to resend activation email"
 msgstr "请求重新发送激活邮件。"
 
-#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:107
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:108
 msgid "Already sent"
 msgstr "邮件已发送"
+
+#~ msgid "Choose: "
+#~ msgstr "选择："
 
 #~ msgid "Recovered from Gravatar"
 #~ msgstr "去Gavatar修改"

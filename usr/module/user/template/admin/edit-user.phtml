@@ -1,7 +1,7 @@
 <?php $this->jQuery(); ?>
-<legend>
-    <?php echo _a('Edit user: '); ?> <?php echo $user['name']; ?>
-</legend>
+<div class="page-header">
+    <h2><small><?php echo _a('Edit user: '); ?></small> <?php echo $user['name']; ?></h2>
+</div>
 <ul class="nav nav-tabs">
     <?php foreach ($nav as $value) { ?>
     <li class="<?php if($value['name']== $name) { echo 'active'; } ?>">

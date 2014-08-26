@@ -40,8 +40,12 @@ if ($owner) {
     );
 }
 
+// Get module
+$module = Pi::service('module')->current();
+
 // Load quicklinks
 $quicklink = Pi::api('quicklink', 'user')->getList();
+
 ?>
 <div class="clearfix user-avatar-header">
     <div class="user-info-right">
@@ -51,33 +55,30 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
         }
         ?>
         <?php if ($owner) { ?>
+        <?php if ($module == 'user') { ?>
         <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
             <i class="fa fa-eye"></i>
             <?php _e('Switch to public'); ?>
         </a>
+        <?php } ?>
+        <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'account', 'action' => 'index')); ?>">
+            <i class="fa fa-cog"></i>
+            <?php _e('Settings'); ?>
+        </a>
+        <?php if ($quicklink) { ?>
         <div class="dropdown inline">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-magic"></i>
                 <?php _e('Quicklinks'); ?>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li>
-                    <a href="<?php echo $this->url('user', array('controller' => 'account', 'action' => 'index')); ?>">
-                        <?php _e('Settings'); ?>
-                    </a>
-                </li>
-                <?php if ($quicklink) { ?>
-                <li class="divider" style="margin: 1px;"></li>
-                <?php } ?>
                 <?php foreach ($quicklink as $item) { ?>
                 <li>
                     <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
                         <?php 
                         if ($item['icon']) {
-                            echo sprintf(
-                                '<i class="%s"></i>',
-                                $item['icon']
-                            );
+                            echo sprintf('<i class="fa %s"></i>',$item['icon']);
                         }
                         ?>
                         <?php echo $item['title']; ?>
@@ -86,8 +87,9 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
                 <?php } ?>
             </ul>
         </div>
+        <?php } ?>
         <?php } else { ?>
-            <?php if (Pi::user()->getId() == $uid) { ?>
+            <?php if (Pi::user()->getId() == $uid && $module == 'user') { ?>
             <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'index')); ?>">
                 <i class="fa fa-eye"></i>
                 <?php _e('Switch to own'); ?>

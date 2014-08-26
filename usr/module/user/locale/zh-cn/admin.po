@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-08-24 21:53+0800\n"
-"PO-Revision-Date: 2014-08-24 21:54+0800\n"
+"POT-Creation-Date: 2014-08-26 22:40+0800\n"
+"PO-Revision-Date: 2014-08-26 22:40+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
@@ -347,14 +347,6 @@ msgstr "临时路径"
 #: c:\Code\pi\usr\module\user/config/config.php:348
 msgid "For temporary storage of avatar"
 msgstr "用于临时储存头像"
-
-#: c:\Code\pi\usr\module\user/config/form.register.php:28
-msgid "Confirm credential"
-msgstr "确认密码"
-
-#: c:\Code\pi\usr\module\user/config/form.register.php:60
-msgid "Please type the word."
-msgstr "验证码"
 
 #: c:\Code\pi\usr\module\user/config/module.php:17
 #: c:\Code\pi\usr\module\user/config/nav.php:21
@@ -1271,3 +1263,9 @@ msgstr "编辑用户信息"
 #: c:\Code\pi\usr\module\user/template/admin/user.phtml:89
 msgid "Are you sure to delete this group?"
 msgstr "请确认是否删除该组？"
+
+#~ msgid "Confirm credential"
+#~ msgstr "确认密码"
+
+#~ msgid "Please type the word."
+#~ msgstr "验证码"
