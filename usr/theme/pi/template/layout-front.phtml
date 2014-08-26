@@ -165,10 +165,12 @@ $blockTemplate  = $this->template('block');
 
             <!-- Module content starts -->
             <?php if (!empty($content)) { ?>
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
+                <div class="<?php echo $module; ?>">
+                    <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                        <?php echo $content; ?>
+                    </div>
+                    <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
                 </div>
-                <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
             <?php } ?>
             <!-- Module content ends -->
 
