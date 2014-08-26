@@ -1,1018 +1,995 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-08-22 09:53+0330\n"
-"PO-Revision-Date: 2014-08-22 09:53+0330\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2014-08-26 22:40+0800\n"
+"PO-Revision-Date: 2014-08-26 22:40+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-user/usr/module/user\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\user\n"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:93
-msgid "Everyone"
-msgstr "所有人"
+#: c:\Code\pi\usr\module\user/config/event.php:21
+msgid "User logged in"
+msgstr "用户登录"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:94
-msgid "Logged-in user"
-msgstr "已登录用户"
+#: c:\Code\pi\usr\module\user/config/event.php:27
+msgid "User logged out"
+msgstr "用户退出 "
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:95
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:63
-msgid "Follower"
-msgstr "关注我的人"
+#: c:\Code\pi\usr\module\user/config/event.php:33
+msgid "User registered"
+msgstr "已注册账号"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:96
-msgid "Followed"
-msgstr "关注我的人"
+#: c:\Code\pi\usr\module\user/config/event.php:39
+msgid "User activated"
+msgstr "已激活账号"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Privacy.php:97
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:71
-msgid "Owner"
-msgstr "仅自己"
+#: c:\Code\pi\usr\module\user/config/event.php:45
+msgid "User enabled"
+msgstr "已启用账号"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Nav.php:46
-msgid "Profile"
-msgstr "资料"
+#: c:\Code\pi\usr\module\user/config/event.php:51
+msgid "User disabled"
+msgstr "已禁用账号"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Nav.php:62
-msgid "Feed"
-msgstr "动态"
+#: c:\Code\pi\usr\module\user/config/event.php:57
+msgid "User deleted"
+msgstr "已删除账号"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:55
-msgid "Public"
-msgstr "所有人"
+#: c:\Code\pi\usr\module\user/config/event.php:63
+msgid "User profile updated"
+msgstr "用户资料更新成功。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:59
-msgid "Member"
-msgstr "登录用户"
+#: c:\Code\pi\usr\module\user/config/event.php:69
+msgid "Display name changed"
+msgstr "修改昵称"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Api/Relation.php:67
-msgid "Following"
-msgstr "我关注的人"
+#: c:\Code\pi\usr\module\user/config/event.php:75
+msgid "Email changed"
+msgstr "修改邮箱"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:28
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:40
-msgid "Invalid user name: %formatHint%"
-msgstr "用户姓名格式不正确：%formatHint%"
+#: c:\Code\pi\usr\module\user/config/event.php:81
+msgid "Avatar changed"
+msgstr "修改头像"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:29
-msgid "User name is reserved"
-msgstr "用户姓名为保留字"
+#: c:\Code\pi\usr\module\user/config/event.php:87
+msgid "Password changed"
+msgstr "修改密码"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:30
-msgid "User name is already taken"
-msgstr "用户姓名已被占用"
+#: c:\Code\pi\usr\module\user/config/event.php:93
+msgid "Role assigned"
+msgstr "角色调整"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:31
-msgid "User name is less than %min% characters long"
-msgstr "用户姓名不得少于%min%个字符"
+#: c:\Code\pi\usr\module\user/config/event.php:99
+msgid "Role removed"
+msgstr "移除角色 "
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Name.php:32
-msgid "User name is more than %max% characters long"
-msgstr "用户姓名不得多于%max%个字符"
+#: c:\Code\pi\usr\module\user/config/form.register.php:28
+msgid "Confirm credential"
+msgstr "确认密码"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:41
-msgid "Username is reserved"
-msgstr "该用户名是保留字"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:42
-msgid "Username is already taken"
-msgstr "用户名已存在"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:43
-msgid "Username is less than %min% characters long"
-msgstr "用户名不得少于%min%个字符"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:44
-msgid "Username is more than %max% characters long"
-msgstr "用户名不得多于%max%个字符"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:48
-msgid "Only alphabetic and digits are allowed with leading alphabetic"
-msgstr "字母开头，支持字母和数字"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:49
-msgid "Only ASCII characters are allowed"
-msgstr "只允许输入ASCII字符"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Username.php:50
-msgid "Multibyte characters are allowed"
-msgstr "允许使用多字节字符"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/CredentialVerify.php:34
-msgid "Invalid password."
-msgstr "无效密码。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Password.php:40
-msgid "Password is less than %min% characters long"
-msgstr "密码不得少于%min%个字符"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/Password.php:41
-msgid "Password is more than %max% characters long"
-msgstr "密码不得多于%max%个字符"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/UserEmail.php:28
-msgid "User email is reserved"
-msgstr "邮箱已被占用"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Validator/UserEmail.php:29
-msgid "User email is already used"
-msgstr "邮箱已被占用"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EditUserForm.php:45
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResetPasswordForm.php:73
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:122
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/CompoundForm.php:58
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ProfileEditForm.php:42
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/RoleForm.php:99
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:87
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EmailForm.php:58
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResendActivationForm.php:47
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:72
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:34
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:36
-msgid "Submit"
-msgstr "提交"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResetPasswordForm.php:42
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:57
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:53
-msgid "New password"
-msgstr "输入新密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResetPasswordForm.php:52
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:66
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:63
-msgid "Confirm password"
-msgstr "确认新密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:30
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:90
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:27
-msgid "Username"
-msgstr "用户名"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:39
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:99
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:48
-msgid "Display name"
-msgstr "昵称"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:48
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:108
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/FindPasswordForm.php:27
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/AccountForm.php:38
-msgid "Email"
-msgstr "登录邮箱"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:75
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:71
-msgid "Front role"
-msgstr "前台角色"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:84
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:80
-msgid "Admin role"
-msgstr "后台角色"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:94
-msgid "Activate"
-msgstr "激活"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/MemberForm.php:106
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:46
-msgid "Enable"
-msgstr "打开"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/RoleForm.php:44
-msgid "Name"
-msgstr "名称"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/RoleForm.php:54
-msgid "Title"
-msgstr "标题"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:29
-msgid "Active state"
-msgstr "可用状态"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:31
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:45
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:59
-msgid "Any"
-msgstr "任意"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:32
-msgid "Active"
-msgstr "激活"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:33
-msgid "Inactive"
-msgstr "禁用"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:43
-msgid "Enable state"
-msgstr "禁用状态"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:47
-msgid "Disable"
-msgstr "禁用"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:57
-msgid "Activated state"
-msgstr "激活状态"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:60
-msgid "Pending"
-msgstr "未激活"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:61
-msgid "Activated"
-msgstr "已激活"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:117
-msgid "Register date from"
-msgstr "注册日期 从"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:126
-msgid "Register date end"
-msgstr "注册日期 止"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:135
-msgid "Register ip from"
-msgstr "注册IP 从"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/SearchForm.php:143
-msgid "Search"
-msgstr "搜索"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/PasswordForm.php:42
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EmailForm.php:37
-msgid "Current password"
-msgstr "输入旧密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
-msgstr "验证码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/FindPasswordForm.php:52
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:194
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:195
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-find.phtml:3
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login.phtml:16
-msgid "Find password"
-msgstr "找回密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/EmailForm.php:27
-msgid "New email"
-msgstr "新邮箱"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResendActivationForm.php:27
-msgid "Email address"
-msgstr "邮箱地址"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/ResendActivationForm.php:38
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/form.register.php:60
+#: c:\Code\pi\usr\module\user/config/form.register.php:60
+#: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:38
 msgid "Please type the word."
 msgstr "验证码"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/Element/Gender.php:36
-msgid "Male"
-msgstr "男"
+#: c:\Code\pi\usr\module\user/src/Api/Nav.php:46
+msgid "Profile"
+msgstr "资料"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Form/Element/Gender.php:37
-msgid "Female"
-msgstr "女"
+#: c:\Code\pi\usr\module\user/src/Api/Nav.php:62
+msgid "Feed"
+msgstr "动态"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Api/TimelineController.php:46
+#: c:\Code\pi\usr\module\user/src/Api/Privacy.php:93
+msgid "Everyone"
+msgstr "所有人"
+
+#: c:\Code\pi\usr\module\user/src/Api/Privacy.php:94
+msgid "Logged-in user"
+msgstr "已登录用户"
+
+#: c:\Code\pi\usr\module\user/src/Api/Privacy.php:95
+#: c:\Code\pi\usr\module\user/src/Api/Relation.php:63
+msgid "Follower"
+msgstr "关注我的人"
+
+#: c:\Code\pi\usr\module\user/src/Api/Privacy.php:96
+msgid "Followed"
+msgstr "关注我的人"
+
+#: c:\Code\pi\usr\module\user/src/Api/Privacy.php:97
+#: c:\Code\pi\usr\module\user/src/Api/Relation.php:71
+msgid "Owner"
+msgstr "仅自己"
+
+#: c:\Code\pi\usr\module\user/src/Api/Relation.php:55
+msgid "Public"
+msgstr "所有人"
+
+#: c:\Code\pi\usr\module\user/src/Api/Relation.php:59
+msgid "Member"
+msgstr "登录用户"
+
+#: c:\Code\pi\usr\module\user/src/Api/Relation.php:67
+msgid "Following"
+msgstr "我关注的人"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Api/TimelineController.php:46
 msgid "Timeline post failed."
 msgstr "时间线发布失败。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Api/TimelineController.php:89
+#: c:\Code\pi\usr\module\user/src/Controller/Api/TimelineController.php:89
 msgid "Timeline added successfully."
 msgstr "时间线发布成功。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:51
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:85
-msgid "User profile"
-msgstr "用户资料"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:52
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:86
-msgid "view profile"
-msgstr "查看用户资料"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:113
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:193
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:243
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:382
-msgid "Profile group ID is invalid."
-msgstr "资料组ID无效。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:147
-msgid "Profile updated successfully."
-msgstr "资料数据更新成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:149
-msgid "Profile update failed."
-msgstr "资料数据更新失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:169
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:217
-msgid "Edit profile"
-msgstr "编辑用户资料"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:170
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:218
-msgid "Edit profile data."
-msgstr "编辑用户资料数据。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:400
-msgid "Profile compound requires at least one set of data."
-msgstr "资料组要求至少有一套数据。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:405
-msgid "Profile compound data was not deleted."
-msgstr "资料组数据删除失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ProfileController.php:426
-msgid "User ID or Profile group ID is invalid."
-msgstr "用户ID或资料组ID无效。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PrivacyController.php:61
-msgid "Privacy settings saved successfully."
-msgstr "隐私数据保存成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PrivacyController.php:100
-msgid "Privacy Settings"
-msgstr "隐私设置"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PrivacyController.php:101
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:8
-msgid "Set profile field privacy."
-msgstr "设定用户资料字段隐私。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:42
-msgid "Reset password failed."
-msgstr "重置密码失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:82
-msgid "Reset password successfully."
-msgstr "重置密码成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:99
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-index.phtml:7
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:36
-msgid "Change password"
-msgstr "修改密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:100
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-index.phtml:8
-msgid "To ensure your account security, complex password is required."
-msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:114
-msgid "Find password failed."
-msgstr "找回密码失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:185
-msgid ""
-"Confirmation email sent successfully. Please check email and reset password."
-msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改密码。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:207
-msgid "Invalid token for password reset."
-msgstr "密码重置信息无效。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/PasswordController.php:264
-msgid "Password reset successfully."
-msgstr "重置密码成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:85
-msgid "Allowed extensions:"
-msgstr "支持格式："
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:90
-msgid "Max file size:"
-msgstr "最大文件尺寸："
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:96
-msgid "Max image size:"
-msgstr "最大图片尺寸："
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:171
-msgid "Avatar Settings"
-msgstr "头像设置"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:185
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:42
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:117
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:40
-msgid "Change avatar"
-msgstr "修改头像"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:186
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:43
-msgid "Customize your avatar anyway you like"
-msgstr "多种头像更换方案，任您选择"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:204
-msgid "Invalid token!"
-msgstr "无效token"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:308
-msgid "Invalid email for gravatar."
-msgstr "无效Gravatar邮箱"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:319
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:352
-msgid "Successful."
-msgstr "成功 "
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:336
-msgid "No image selected!"
-msgstr "没有选中图片"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:370
-#, php-format
-msgid "Invalid source %s."
-msgstr "无效来源 %s。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:381
-msgid "Not image selected."
-msgstr "没有选中图片。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:390
-msgid "Image is missing."
-msgstr "图片丢失。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:396
-msgid "Image does not exist."
-msgstr "图片不存在。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:406
-msgid "Image width or height is missing."
-msgstr "未给定图片高度或宽度。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:433
-msgid "Email address is missing."
-msgstr "邮箱地址丢失"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:442
-msgid "Image name is missing."
-msgstr "图片名丢失。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:477
-msgid "Avatar set successfully."
-msgstr "头像设置成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:492
-msgid "Image is not removed."
-msgstr "图片未能移除。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AvatarController.php:507
-msgid "Image removed successfully."
-msgstr "图片已删除。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:96
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:23
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-disabled.phtml:3
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login.phtml:19
-msgid "Register"
-msgstr "注册"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:97
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:4
-msgid "Account registration"
-msgstr "账号注册"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:165
-msgid "Activation token is invalid."
-msgstr "激活密钥无效。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:231
-msgid "Account Activated successfully."
-msgstr "账号激活成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:251
-msgid "Activation email sent failed."
-msgstr "激活邮件发送失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:285
-msgid "Resend activation mail successfully."
-msgstr "激活邮件重新发送成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:313
-msgid "Email was not found."
-msgstr "邮箱不存在。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:318
-msgid "Account already activated."
-msgstr "账号早已激活。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:329
-msgid "Activation mail sent successfully."
-msgstr "激活邮件发送成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:334
-msgid "Activation mail was not sent."
-msgstr "激活邮件未能发出。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:342
-msgid "Invalid input."
-msgstr "无效输入。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:441
-msgid "User account was not saved."
-msgstr "账号保存失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:465
-msgid ""
-"User account is registered successfully but activation was failed, please "
-"contact admin."
-msgstr "账号注册成功，但是激活失败。请联系管理员。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/RegisterController.php:491
-msgid "Account activation email was not able to send, please contact admin."
-msgstr "激活邮件发送失败，请联系管理员。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:73
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:73
 msgid ""
 "A confirmation email has been sent to you. Please check your email and "
 "confirm."
 msgstr "确认邮件已经发送。请检查邮件并确认。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:76
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:76
 msgid "It was failed to send you confirmation email. Please try later."
 msgstr "确认邮件发送失败，请稍后重试"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:88
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:88
 msgid "Email has been changed successfully."
 msgstr "Email地址已修改。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:91
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:91
 msgid "It was failed to save new email. Please try later."
 msgstr "新邮箱地址保存失败，请稍后重试"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:107
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:107
 msgid "Name has been changed successfully."
 msgstr "昵称已修改。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:110
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:110
 msgid "It was failed to save new name. Please try later."
 msgstr "新昵称保存失败，请稍后重试"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:134
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:7
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:32
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:134
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:8
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:32
 msgid "Account settings"
 msgstr "账号信息"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:135
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:8
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:135
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:9
 msgid "Basic settings"
 msgstr "修改您的账号信息"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:150
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:150
 msgid "Invalid data provided for email change."
 msgstr "邮箱修改提供的信息无效。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:212
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:212
 msgid "Email changed successfully."
 msgstr "修改Email成功。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:226
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:226
 msgid "Incorrect password."
 msgstr "密码错误"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/AccountController.php:242
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AccountController.php:242
 msgid "Password verified."
 msgstr "密码验证通过。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ActivityController.php:41
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ActivityController.php:41
 msgid "User was not found."
 msgstr "未找到用户"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Front/ActivityController.php:57
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ActivityController.php:57
 msgid "An error occurred."
 msgstr "发生错误"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/form.register.php:28
-msgid "Confirm credential"
-msgstr ""
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:85
+msgid "Allowed extensions:"
+msgstr "支持格式："
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:21
-msgid "User logged in"
-msgstr "用户登录"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:90
+msgid "Max file size:"
+msgstr "最大文件尺寸："
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:27
-msgid "User logged out"
-msgstr "用户退出 "
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:96
+msgid "Max image size:"
+msgstr "最大图片尺寸："
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:33
-msgid "User registered"
-msgstr "已注册账号"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:171
+msgid "Avatar Settings"
+msgstr "头像设置"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:39
-msgid "User activated"
-msgstr "已激活账号"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:45
-msgid "User enabled"
-msgstr "已启用账号"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:51
-msgid "User disabled"
-msgstr "已禁用账号"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:57
-msgid "User deleted"
-msgstr "已删除账号"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:63
-msgid "User profile updated"
-msgstr "用户资料更新成功。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:69
-msgid "Display name changed"
-msgstr "修改昵称"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:75
-msgid "Email changed"
-msgstr "修改邮箱"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:81
-msgid "Avatar changed"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:185
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:41
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:117
+msgid "Change avatar"
 msgstr "修改头像"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:87
-msgid "Password changed"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:186
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:42
+msgid "Customize your avatar anyway you like"
+msgstr "多种头像更换方案，任您选择"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:204
+msgid "Invalid token!"
+msgstr "无效token"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:308
+msgid "Invalid email for gravatar."
+msgstr "无效Gravatar邮箱"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:319
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:352
+msgid "Successful."
+msgstr "成功 "
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:336
+msgid "No image selected!"
+msgstr "没有选中图片"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:370
+#, php-format
+msgid "Invalid source %s."
+msgstr "无效来源 %s。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:381
+msgid "Not image selected."
+msgstr "没有选中图片。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:390
+msgid "Image is missing."
+msgstr "图片丢失。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:396
+msgid "Image does not exist."
+msgstr "图片不存在。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:406
+msgid "Image width or height is missing."
+msgstr "未给定图片高度或宽度。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:433
+msgid "Email address is missing."
+msgstr "邮箱地址丢失"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:442
+msgid "Image name is missing."
+msgstr "图片名丢失。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:477
+msgid "Avatar set successfully."
+msgstr "头像设置成功。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:492
+msgid "Image is not removed."
+msgstr "图片未能移除。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/AvatarController.php:507
+msgid "Image removed successfully."
+msgstr "图片已删除。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:42
+msgid "Reset password failed."
+msgstr "重置密码失败。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:82
+msgid "Reset password successfully."
+msgstr "重置密码成功。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:99
+#: c:\Code\pi\usr\module\user/template/front/password-index.phtml:8
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:36
+msgid "Change password"
 msgstr "修改密码"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:93
-msgid "Role assigned"
-msgstr "角色调整"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:100
+#: c:\Code\pi\usr\module\user/template/front/password-index.phtml:9
+msgid "To ensure your account security, complex password is required."
+msgstr "为了您的账号安全，密码不要以纯数字或纯字母组成"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/event.php:99
-msgid "Role removed"
-msgstr "移除角色 "
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:120
+msgid "Find password failed."
+msgstr "找回密码失败。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-disabled.phtml:3
-msgid "User login"
-msgstr "用户登录"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:191
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改密码。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-disabled.phtml:6
-msgid "Sorry, login is temporarily disabled. Please come back later."
-msgstr "抱歉，现在禁止登录。请稍后尝试。"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:200
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:201
+#: c:\Code\pi\usr\module\user/src/Form/FindPasswordForm.php:52
+#: c:\Code\pi\usr\module\user/template/front/login.phtml:16
+#: c:\Code\pi\usr\module\user/template/front/password-find.phtml:2
+msgid "Find password"
+msgstr "找回密码"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit.phtml:9
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:13
-#, php-format
-msgid "Update %s"
-msgstr "更新%s"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:213
+msgid "Invalid token for password reset."
+msgstr "密码重置信息无效。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-view.phtml:19
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-index.phtml:32
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:42
-msgid "Unfiled"
-msgstr "尚未填写"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PasswordController.php:270
+msgid "Password reset successfully."
+msgstr "重置密码成功。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-view.phtml:28
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/home-index.phtml:36
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/activity-index.phtml:31
-msgid "No data available."
-msgstr "尚无数据。"
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:61
+msgid "Privacy settings saved successfully."
+msgstr "隐私数据保存成功。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:21
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:51
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:6
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:15
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-reset-email.phtml:4
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:100
+msgid "Privacy Settings"
+msgstr "隐私设置"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/PrivacyController.php:101
+#: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:11
+msgid "Set profile field privacy."
+msgstr "设定用户资料字段隐私。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:51
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:85
+msgid "User profile"
+msgstr "用户资料"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:52
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:86
+msgid "view profile"
+msgstr "查看用户资料"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:113
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:193
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:243
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:382
+msgid "Profile group ID is invalid."
+msgstr "资料组ID无效。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:147
+msgid "Profile updated successfully."
+msgstr "资料数据更新成功。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:149
+msgid "Profile update failed."
+msgstr "资料数据更新失败。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:169
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:217
+msgid "Edit profile"
+msgstr "编辑用户资料"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:170
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:218
+msgid "Edit profile data."
+msgstr "编辑用户资料数据。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:400
+msgid "Profile compound requires at least one set of data."
+msgstr "资料组要求至少有一套数据。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:405
+msgid "Profile compound data was not deleted."
+msgstr "资料组数据删除失败。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/ProfileController.php:426
+msgid "User ID or Profile group ID is invalid."
+msgstr "用户ID或资料组ID无效。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:96
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:23
+#: c:\Code\pi\usr\module\user/template/front/login.phtml:19
+#: c:\Code\pi\usr\module\user/template/front/register-disabled.phtml:2
+msgid "Register"
+msgstr "注册"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:97
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:2
+msgid "Account registration"
+msgstr "账号注册"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:165
+msgid "Activation token is invalid."
+msgstr "激活密钥无效。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:231
+msgid "Account Activated successfully."
+msgstr "账号激活成功。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:251
+msgid "Activation email sent failed."
+msgstr "激活邮件发送失败。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:285
+msgid "Resend activation mail successfully."
+msgstr "激活邮件重新发送成功。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:313
+msgid "Email was not found."
+msgstr "邮箱不存在。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:318
+msgid "Account already activated."
+msgstr "账号早已激活。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:329
+msgid "Activation mail sent successfully."
+msgstr "激活邮件发送成功。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:334
+msgid "Activation mail was not sent."
+msgstr "激活邮件未能发出。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:342
+msgid "Invalid input."
+msgstr "无效输入。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:441
+msgid "User account was not saved."
+msgstr "账号保存失败。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:465
+msgid ""
+"User account is registered successfully but activation was failed, please "
+"contact admin."
+msgstr "账号注册成功，但是激活失败。请联系管理员。"
+
+#: c:\Code\pi\usr\module\user/src/Controller/Front/RegisterController.php:493
+msgid "Account activation email was not able to send, please contact admin."
+msgstr "激活邮件发送失败，请联系管理员。"
+
+#: c:\Code\pi\usr\module\user/src/Form/AccountForm.php:27
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:30
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:90
+msgid "Username"
+msgstr "用户名"
+
+#: c:\Code\pi\usr\module\user/src/Form/AccountForm.php:38
+#: c:\Code\pi\usr\module\user/src/Form/FindPasswordForm.php:27
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:48
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:108
+msgid "Email"
+msgstr "登录邮箱"
+
+#: c:\Code\pi\usr\module\user/src/Form/AccountForm.php:48
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:39
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:99
+msgid "Display name"
+msgstr "昵称"
+
+#: c:\Code\pi\usr\module\user/src/Form/AccountForm.php:72
+#: c:\Code\pi\usr\module\user/src/Form/CompoundForm.php:58
+#: c:\Code\pi\usr\module\user/src/Form/EditUserForm.php:45
+#: c:\Code\pi\usr\module\user/src/Form/EmailForm.php:58
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:122
+#: c:\Code\pi\usr\module\user/src/Form/PasswordForm.php:87
+#: c:\Code\pi\usr\module\user/src/Form/ProfileEditForm.php:42
+#: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:47
+#: c:\Code\pi\usr\module\user/src/Form/ResetPasswordForm.php:73
+#: c:\Code\pi\usr\module\user/src/Form/RoleForm.php:99
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:38
+#: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:40
+msgid "Submit"
+msgstr "提交"
+
+#: c:\Code\pi\usr\module\user/src/Form/Element/Gender.php:36
+msgid "Male"
+msgstr "男"
+
+#: c:\Code\pi\usr\module\user/src/Form/Element/Gender.php:37
+msgid "Female"
+msgstr "女"
+
+#: c:\Code\pi\usr\module\user/src/Form/EmailForm.php:27
+msgid "New email"
+msgstr "新邮箱"
+
+#: c:\Code\pi\usr\module\user/src/Form/EmailForm.php:37
+#: c:\Code\pi\usr\module\user/src/Form/PasswordForm.php:42
+msgid "Current password"
+msgstr "输入旧密码"
+
+#: c:\Code\pi\usr\module\user/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
+msgstr "验证码"
+
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:57
+#: c:\Code\pi\usr\module\user/src/Form/PasswordForm.php:53
+#: c:\Code\pi\usr\module\user/src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr "输入新密码"
+
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:66
+#: c:\Code\pi\usr\module\user/src/Form/PasswordForm.php:63
+#: c:\Code\pi\usr\module\user/src/Form/ResetPasswordForm.php:52
+msgid "Confirm password"
+msgstr "确认新密码"
+
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:75
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:71
+msgid "Front role"
+msgstr "前台角色"
+
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:84
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:80
+msgid "Admin role"
+msgstr "后台角色"
+
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:94
+msgid "Activate"
+msgstr "激活"
+
+#: c:\Code\pi\usr\module\user/src/Form/MemberForm.php:106
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:46
+msgid "Enable"
+msgstr "打开"
+
+#: c:\Code\pi\usr\module\user/src/Form/ResendActivationForm.php:27
+msgid "Email address"
+msgstr "邮箱地址"
+
+#: c:\Code\pi\usr\module\user/src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "名称"
+
+#: c:\Code\pi\usr\module\user/src/Form/RoleForm.php:54
+msgid "Title"
+msgstr "标题"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:29
+msgid "Active state"
+msgstr "可用状态"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:31
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:45
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:59
+msgid "Any"
+msgstr "任意"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:32
+msgid "Active"
+msgstr "激活"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:33
+msgid "Inactive"
+msgstr "禁用"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:43
+msgid "Enable state"
+msgstr "禁用状态"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:47
+msgid "Disable"
+msgstr "禁用"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:57
+msgid "Activated state"
+msgstr "激活状态"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:60
+msgid "Pending"
+msgstr "未激活"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:61
+msgid "Activated"
+msgstr "已激活"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:117
+msgid "Register date from"
+msgstr "注册日期 从"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:126
+msgid "Register date end"
+msgstr "注册日期 止"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:135
+msgid "Register ip from"
+msgstr "注册IP 从"
+
+#: c:\Code\pi\usr\module\user/src/Form/SearchForm.php:143
+msgid "Search"
+msgstr "搜索"
+
+#: c:\Code\pi\usr\module\user/src/Validator/CredentialVerify.php:34
+msgid "Invalid password."
+msgstr "无效密码。"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:28
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:40
+msgid "Invalid user name: %formatHint%"
+msgstr "用户姓名格式不正确：%formatHint%"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:29
+msgid "User name is reserved"
+msgstr "用户姓名为保留字"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:30
+msgid "User name is already taken"
+msgstr "用户姓名已被占用"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:31
+msgid "User name is less than %min% characters long"
+msgstr "用户姓名不得少于%min%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Name.php:32
+msgid "User name is more than %max% characters long"
+msgstr "用户姓名不得多于%max%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Password.php:40
+msgid "Password is less than %min% characters long"
+msgstr "密码不得少于%min%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Password.php:41
+msgid "Password is more than %max% characters long"
+msgstr "密码不得多于%max%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:28
+msgid "User email is reserved"
+msgstr "邮箱已被占用"
+
+#: c:\Code\pi\usr\module\user/src/Validator/UserEmail.php:29
+msgid "User email is already used"
+msgstr "邮箱已被占用"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:41
+msgid "Username is reserved"
+msgstr "该用户名是保留字"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:42
+msgid "Username is already taken"
+msgstr "用户名已存在"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:43
+msgid "Username is less than %min% characters long"
+msgstr "用户名不得少于%min%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:44
+msgid "Username is more than %max% characters long"
+msgstr "用户名不得多于%max%个字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:48
+msgid "Only alphabetic and digits are allowed with leading alphabetic"
+msgstr "字母开头，支持字母和数字"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:49
+msgid "Only ASCII characters are allowed"
+msgstr "只允许输入ASCII字符"
+
+#: c:\Code\pi\usr\module\user/src/Validator/Username.php:50
+msgid "Multibyte characters are allowed"
+msgstr "允许使用多字节字符"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:22
+msgid "Verify identity"
+msgstr "身份验证"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:26
+msgid "Input password to verify your identity for account changes."
+msgstr "在保存账号数据前请输入密码验证身份。"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:30
+msgid "Password"
+msgstr "密码"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:172
+msgid "Invalid email."
+msgstr "无效邮箱。"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:190
+msgid "Email has been used."
+msgstr "邮箱已存在。"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:208
+msgid "Invalid display name."
+msgstr "无效昵称。"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:226
+msgid "Display name has been used."
+msgstr "昵称已使用。"
+
+#: c:\Code\pi\usr\module\user/template/front/account-index.phtml:255
+msgid "No change!"
+msgstr "无修改。"
+
+#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:1
+msgid "Change email"
+msgstr "修改邮箱"
+
+#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:4
+#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:12
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:5
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:20
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:49
 msgid "Congratulations!"
 msgstr "恭喜！"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:26
-#, php-format
-msgid ""
-"Your account has been registered successfully. Please <a href=\"%s\">login</"
-"a> with your account."
-msgstr "账号已注册成功，请点击<a href=\"%s\">登录</a>。"
+#: c:\Code\pi\usr\module\user/template/front/account-reset-email.phtml:6
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:8
+msgid "Login right now."
+msgstr "立即登录。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:31
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:16
-#, php-format
-msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
-msgstr "或直接点击返回<a href=\"%s\">原来访问的页面</a>。"
+#: c:\Code\pi\usr\module\user/template/front/activity-index.phtml:25
+msgid "View all"
+msgstr "查看全部"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:41
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:60
-msgid "Registration was not completed."
-msgstr "注册未完成。"
+#: c:\Code\pi\usr\module\user/template/front/activity-index.phtml:32
+#: c:\Code\pi\usr\module\user/template/front/home-index.phtml:37
+#: c:\Code\pi\usr\module\user/template/front/profile-view.phtml:29
+msgid "No data available."
+msgstr "尚无数据。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:54
-msgid ""
-"You account has been registered successfully. However it needs to be "
-"approved by our admins before you can use it."
-msgstr "账号已注册成功，但是需要管理员激活。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:68
-msgid "An email with activation link has been sent to you."
-msgstr "激活链接已经发送到您的邮箱。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:69
-msgid "Please check it to finish the registration."
-msgstr "请查收邮件点击激活链接完成注册。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:72
-msgid "If you do not receive the activation email:"
-msgstr "如果你未收到激活邮件："
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:74
-msgid "Wait a few minutes and check again."
-msgstr "稍等几分钟再查收。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:75
-msgid "Check your email spam box."
-msgstr "检查邮件垃圾箱。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:78
-msgid "Request to resend activation email"
-msgstr "请求重新发送激活邮件。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-index.phtml:115
-msgid "Already sent"
-msgstr "邮件已发送"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:7
-msgid "Check your new email to complete the change"
-msgstr ""
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:9
-msgid "The link will expired in 12 hours"
-msgstr ""
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:15
-#, fuzzy
-msgid "1. wait a few minutes"
-msgstr "稍等几分钟再查收。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:16
-#, fuzzy
-msgid "2. Check your email rubbish"
-msgstr "检查邮件垃圾箱。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/change-email-success.phtml:17
-#, php-format
-msgid "3. <a href=\"%s\">Try another reset</a>"
-msgstr ""
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:13
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:13
 msgid "Upload"
 msgstr "上传"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:18
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:18
 msgid "Gravatar"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:23
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:23
 msgid "Select"
 msgstr "系统挑选"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:28
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:28
 msgid "Default"
 msgstr "系统默认"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:49
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:48
 msgid "Current avatar"
 msgstr "当前头像"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:50
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:49
 msgid ""
 "Once source type is switched and saved, the old avatar image will be deleted."
 msgstr " 一旦头像来源并切换保存，原来的头像数据将被删除。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:74
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:192
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:73
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:191
 msgid "Upload avatar"
 msgstr "上传头像"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:84
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:119
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:145
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:171
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:83
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:118
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:144
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:170
 msgid "Avatar previews"
 msgstr "头像预览"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:105
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:104
 msgid "Gravatar email"
 msgstr "Gravatar邮箱"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:114
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:113
 msgid "Configure at Gravatar"
 msgstr "设置Gravatar头像"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:167
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:166
 msgid "Apply system avatar as your avatar"
 msgstr "使用系统默认头像"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:181
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:180
 msgid "Save"
 msgstr "保存"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:182
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:181
 msgid "Cancel"
 msgstr "取消"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/avatar-index.phtml:193
+#: c:\Code\pi\usr\module\user/template/front/avatar-index.phtml:192
 msgid "Uploading"
 msgstr "上传"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:9
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-success.phtml:8
+#: c:\Code\pi\usr\module\user/template/front/login-disabled.phtml:2
+msgid "User login"
+msgstr "用户登录"
+
+#: c:\Code\pi\usr\module\user/template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr "抱歉，现在禁止登录。请稍后尝试。"
+
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:8
+#: c:\Code\pi\usr\module\user/template/front/login-success.phtml:7
 msgid "homepage"
 msgstr "主页"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:12
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:11
 msgid "re-login"
 msgstr "重登录"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:13
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:12
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "您已退出，请前往 %s 或 %s。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-logout.phtml:20
+#: c:\Code\pi\usr\module\user/template/front/login-logout.phtml:20
 msgid "Login"
 msgstr "登录"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:3
-msgid "Activate account"
-msgstr "激活帐号"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:7
-msgid "Your account has been activated."
-msgstr "您的账号已激活。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:10
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-reset-email.phtml:6
-msgid "Login right now."
-msgstr "立即登录。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:22
-msgid "Sorry, account activation is failed."
-msgstr "抱歉，账号激活失败。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-activate.phtml:24
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-resend-activation.phtml:3
-msgid "Resend activation email."
-msgstr "重新发送激活邮件"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/activity-index.phtml:24
-msgid "View all"
-msgstr "查看全部"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:2
-msgid "Reset password"
-msgstr "重置密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:9
-msgid "Try to find password again"
-msgstr "请尝试重新找回密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:16
-msgid "Your new password has worked"
-msgstr "新密码已生效"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/password-process.phtml:20
-msgid "Please login"
-msgstr "请登录"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:18
-msgid "Verify identity"
-msgstr "身份验证"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:22
-msgid "Input password to verify your identity for account changes."
-msgstr "在保存账号数据前请输入密码验证身份。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:26
-msgid "Password"
-msgstr "密码"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:169
-msgid "Invalid email."
-msgstr "无效邮箱。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:187
-msgid "Email has been used."
-msgstr "邮箱已存在。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:205
-msgid "Invalid display name."
-msgstr "无效昵称。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:223
-msgid "Display name has been used."
-msgstr "昵称已使用。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-index.phtml:252
-msgid "No change!"
-msgstr "无修改。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-index.phtml:19
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:31
-msgid "Edit"
-msgstr "编辑"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-index.phtml:41
-#, php-format
-msgid "Add %s"
-msgstr "新增%s"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-message.phtml:8
+#: c:\Code\pi\usr\module\user/template/front/login-message.phtml:7
 msgid "logout"
 msgstr "退出"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-message.phtml:9
+#: c:\Code\pi\usr\module\user/template/front/login-message.phtml:8
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr "您已登录账号 <strong>%s</strong>，请重新登录 %s。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/register-disabled.phtml:6
-msgid "Sorry, register is temporarily disabled. Please come back later."
-msgstr "抱歉，现在禁止注册。请稍后尝试。"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:61
-msgid "Switch to public"
-msgstr "以他人视角"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:66
-msgid "Settings"
-msgstr "设置"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:72
-msgid "Quicklinks"
-msgstr "快捷链接"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:95
-msgid "Switch to own"
-msgstr "以自己视角"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:101
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:106
-msgid "Send message"
-msgstr "发送私信"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:125
-msgid "Gender:"
-msgstr "性别："
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:131
-msgid "Birthdate:"
-msgstr "出生日期："
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-topbar.phtml:187
-msgid "More"
-msgstr "更多"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:7
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:52
-msgid "Privacy"
-msgstr "隐私设置"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/privacy-index.phtml:12
-msgid "No available privacy setting"
-msgstr "没有可用的隐私设置"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:14
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:21
-msgid "Add new"
-msgstr "新增"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-edit-compound.phtml:53
-msgid "Are you sure to delete this record?"
-msgstr "确认删除该数据？"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/account-reset-email.phtml:2
-msgid "Change email"
-msgstr "修改邮箱"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/login-success.phtml:9
+#: c:\Code\pi\usr\module\user/template/front/login-success.phtml:8
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr "您已登录成功，请前往 %s。"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/front/profile-sidebar.phtml:25
+#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr "重置密码"
+
+#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:7
+msgid "Try to find password again"
+msgstr "请尝试重新找回密码"
+
+#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:13
+msgid "Your new password has worked"
+msgstr "新密码已生效"
+
+#: c:\Code\pi\usr\module\user/template/front/password-process.phtml:16
+msgid "Please login"
+msgstr "请登录"
+
+#: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:10
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:52
+msgid "Privacy"
+msgstr "隐私设置"
+
+#: c:\Code\pi\usr\module\user/template/front/privacy-index.phtml:16
+msgid "No available privacy setting"
+msgstr "没有可用的隐私设置"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-edit-compound.phtml:12
+#: c:\Code\pi\usr\module\user/template/front/profile-edit.phtml:10
+#, php-format
+msgid "Update %s"
+msgstr "更新%s"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-edit-compound.phtml:13
+#: c:\Code\pi\usr\module\user/template/front/profile-edit-compound.phtml:21
+msgid "Add new"
+msgstr "新增"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-edit-compound.phtml:31
+#: c:\Code\pi\usr\module\user/template/front/profile-index.phtml:20
+msgid "Edit"
+msgstr "编辑"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-edit-compound.phtml:42
+#: c:\Code\pi\usr\module\user/template/front/profile-index.phtml:33
+#: c:\Code\pi\usr\module\user/template/front/profile-view.phtml:20
+msgid "Unfiled"
+msgstr "尚未填写"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-edit-compound.phtml:53
+msgid "Are you sure to delete this record?"
+msgstr "确认删除该数据？"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-index.phtml:42
+#, php-format
+msgid "Add %s"
+msgstr "新增%s"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-sidebar.phtml:25
 msgid "View my profile"
 msgstr "查看我的资料"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:61
+msgid "Switch to public"
+msgstr "以他人视角"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:66
+msgid "Settings"
+msgstr "设置"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:72
+msgid "Quicklinks"
+msgstr "快捷链接"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:95
+msgid "Switch to own"
+msgstr "以自己视角"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:101
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:106
+msgid "Send message"
+msgstr "发送私信"
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:125
+msgid "Gender:"
+msgstr "性别："
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:131
+msgid "Birthdate:"
+msgstr "出生日期："
+
+#: c:\Code\pi\usr\module\user/template/front/profile-topbar.phtml:187
+msgid "More"
+msgstr "更多"
+
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:2
+msgid "Activate account"
+msgstr "激活帐号"
+
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:6
+msgid "Your account has been activated."
+msgstr "您的账号已激活。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:14
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:29
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr "或直接点击返回<a href=\"%s\">原来访问的页面</a>。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:20
+msgid "Sorry, account activation is failed."
+msgstr "抱歉，账号激活失败。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-activate.phtml:22
+#: c:\Code\pi\usr\module\user/template/front/register-resend-activation.phtml:2
+msgid "Resend activation email."
+msgstr "重新发送激活邮件"
+
+#: c:\Code\pi\usr\module\user/template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr "抱歉，现在禁止注册。请稍后尝试。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:24
+#, php-format
+msgid ""
+"Your account has been registered successfully. Please <a href=\"%s\">login</"
+"a> with your account."
+msgstr "账号已注册成功，请点击<a href=\"%s\">登录</a>。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:40
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:56
+msgid "Registration was not completed."
+msgstr "注册未完成。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:50
+msgid ""
+"You account has been registered successfully. However it needs to be "
+"approved by our admins before you can use it."
+msgstr "账号已注册成功，但是需要管理员激活。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:65
+msgid "An email with activation link has been sent to you."
+msgstr "激活链接已经发送到您的邮箱。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:66
+msgid "Please check it to finish the registration."
+msgstr "请查收邮件点击激活链接完成注册。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:69
+msgid "If you do not receive the activation email:"
+msgstr "如果你未收到激活邮件："
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:71
+msgid "Wait a few minutes and check again."
+msgstr "稍等几分钟再查收。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:72
+msgid "Check your email spam box."
+msgstr "检查邮件垃圾箱。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:73
+msgid "Request to resend activation email"
+msgstr "请求重新发送激活邮件。"
+
+#: c:\Code\pi\usr\module\user/template/front/register-index.phtml:108
+msgid "Already sent"
+msgstr "邮件已发送"
 
 #~ msgid "Choose: "
 #~ msgstr "选择："

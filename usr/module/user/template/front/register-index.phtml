@@ -1,25 +1,23 @@
 <?php $this->css($this->assetModule('front/front.css')); ?>
-<div class="user">
-    <h2 class="page-header">
-        <?php _e('Account registration'); ?>
-    </h2>
-    <?php
-    if (!empty($form)) {
-        if (empty($result['status']) && !empty($result['message'])) {
-    ?>
-    <div class="alert alert-danger">
-        <?php echo _escape($result['message']); ?>
-    </div>
-    <?php
-        }
-        include $this->templateComponent('form');
-    } elseif ('auto' == $activation) {
-        if (!empty($result['status'])) {
-    ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php _e('Congratulations!'); ?></h3>
+<h2 class="page-header"><?php _e('Account registration'); ?></h2>
+
+<?php
+if (!empty($form)) {
+    if (empty($result['status']) && !empty($result['message'])) {
+?>
+        <div class="alert alert-danger">
+            <?php echo _escape($result['message']); ?>
         </div>
+<?php
+    }
+
+    include $this->templateComponent('form');
+
+} elseif ('auto' == $activation) {
+    if (!empty($result['status'])) {
+?>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
         <div class="panel-body">
             <?php
             echo '<p>' . sprintf(
@@ -35,34 +33,33 @@
             ?>
         </div>
     </div>
-    <?php } else { ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3>
+<?php
+    } else {
+        ?>
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
+            <div class="panel-body"><?php echo _escape($result['message']); ?>
+            </div>
         </div>
-        <div class="panel-body">
-            <?php echo _escape($result['message']); ?>
+    <?php
+    }
+} elseif ('email' != $activation) {
+?>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title"><?php _e('Congratulations!'); ?></h3></div>
+        <div class="panel-body"><?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?></div>
+    </div>
+<?php
+} elseif (empty($result['status'])) {
+?>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
+        <div class="panel-body"><?php echo _escape($result['message']); ?>
         </div>
     </div>
-    <?php } ?>
-    <?php } elseif ('email' != $activation) { ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php _e('Congratulations!'); ?></h3>
-        </div>
-        <div class="panel-body">
-            <?php _e('You account has been registered successfully. However it needs to be approved by our admins before you can use it.'); ?>
-        </div>
-    </div>
-    <?php } elseif (empty($result['status'])) { ?>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title"><?php _e('Registration was not completed.'); ?></h3></div>
-        <div class="panel-body">
-            <?php echo _escape($result['message']); ?>
-        </div>
-    </div>
-    <?php } else { ?>
+<?php
+} else {
+?>
     <div class="row">
         <div class="col-md-8">
             <p><?php _e('An email with activation link has been sent to you.'); ?></p>
@@ -73,15 +70,11 @@
             <ol>
                 <li><?php _e('Wait a few minutes and check again.'); ?></li>
                 <li><?php _e('Check your email spam box.'); ?></li>
-                <li class="user-js-reactivate">
-                    <a class="user-js-reactivate-link" href="javascript:;">
-                        <?php _e('Request to resend activation email'); ?>
-                    </a>
-                    <span class="user-js-reactivate-message"></span>
-                </li>
+                <li class="user-js-reactivate"><a class="user-js-reactivate-link" href="javascript:;"><?php _e('Request to resend activation email'); ?></a><span style="margin-left: 20px;" class="user-js-reactivate-message"></span></li>
             </ol>
         </div>
     </div>
+
     <script>
         (function($) {
             var app = {
@@ -134,5 +127,4 @@
             reactivateUrl: '<?php echo $this->url('', array('controller' => 'register', 'action' => 'reactivate', 'uid' => $result['uid']));?>'
         });
     </script>
-    <?php } ?>
-</div>
+<?php } ?>

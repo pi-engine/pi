@@ -68,21 +68,16 @@ class Nav extends AbstractApi
         // Set activity
         $activityList = Pi::api('activity', 'user')->getList();
         foreach ($activityList as $key => $value) {
-            // Set url params
-            if (isset($value['url']) && !empty($value['url'])) {
-                $url = $value['url'];
-            } else {
-                $params = array(
-                    'controller' => 'activity',
-                    'action'     => 'index',
-                    'name'       => $key,
-                );
-                if ($uid) {
-                    $params['uid'] = $uid;
-                }
-                $url = Pi::service('url')->assemble($route, $params);
+            $params = array(
+                'controller' => 'activity',
+                'action'     => 'index',
+                'name'       => $key,
+            );
+            if ($uid) {
+                $params['uid'] = $uid;
             }
-            // Set result
+            $url = Pi::service('url')->assemble($route, $params);
+
             $result['items'][] = array(
                 'title' => $value['title'],
                 'name'  => $key,
@@ -90,7 +85,8 @@ class Nav extends AbstractApi
                 'url'   => $url,
             );
         }
-        
+
         return $result;
+
     }
 }
