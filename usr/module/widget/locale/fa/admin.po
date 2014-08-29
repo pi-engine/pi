@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-20 09:37+0330\n"
-"PO-Revision-Date: 2014-03-20 09:37+0330\n"
+"POT-Creation-Date: 2014-08-29 15:31+0330\n"
+"PO-Revision-Date: 2014-08-29 16:17+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -13,111 +13,137 @@ msgstr ""
 "X-Poedit-KeywordsList: _a;_t;__\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/widget\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"widget\n"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:11
 msgid "Navigation"
 msgstr "ناوبری"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:12
 msgid "Block to display navigation menu and breadcrumbs"
 msgstr "بلاک برای نمایش منو ناوبری و مکان نما (breadcrumb)"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:16
 msgid "Navigation name"
 msgstr "نام منو"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:22
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:47
 msgid "Display menu"
 msgstr "نمایش منو"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:27
 msgid "ul class for menu"
 msgstr "کلاس ul برای منو"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:28
 msgid "Separate classes with space"
 msgstr "نام کلاس ها را با فاصله جدا کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:34
 msgid "Minimum depth for menu"
 msgstr "حداقل عمق منو"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:40
 msgid "Maximum depth for menu"
 msgstr "حداکثر عمق منو"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:53
 msgid "Separator for breadcrumb"
 msgstr "جدا کننده برای مکان نما (breadcrumb)"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:59
 msgid "Minimum depth for breadcrumb"
 msgstr "حداقل عمق مکان نما (breadcrumb)"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/meta/navigation.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/navigation.php:65
 msgid "Add link to last page"
 msgstr "درج لینک برای آخرین صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Api/Block.php:41
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Update.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/pi-github.php:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/pi-github.php:22
+msgid "Pi Engine Updates"
+msgstr "به روز رسانی های پای انجین"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/meta/pi-github.php:12
+msgid "Block to display Pi Engine new updates on GitHub"
+msgstr "بلاک برای نمایش آخرین به روز رسانی های پای انجین از گیت هاب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:91
 msgid "Image width"
 msgstr "عرض تصویر"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Api/Block.php:46
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Update.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:99
 msgid "Image height"
 msgstr "ارتفاع تصویر"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Api/Block.php:51
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Update.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:106
+msgid "Max rows to display"
+msgstr "بیشترین ردیف ها برای نمایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:111
+msgid "No limit"
+msgstr "بدون محدودیت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:112
+msgid "1 row"
+msgstr "۱ ردیف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:114
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:115
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:116
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:117
+#, php-format
+msgid "%d rows"
+msgstr "%d ردیف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:124
+msgid "Open link in new window"
+msgstr "بازکردن لینک در صفحه جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:150
 msgid "Time interval (ms)"
 msgstr "زمان توقف ( میلی ثانیه )"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Api/Block.php:57
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Update.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:156
 msgid "Mouse event"
 msgstr "رویداد موس"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Api/Block.php:58
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Update.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Api/Block.php:157
 msgid "Event to pause cycle"
 msgstr "رویداد برای توقف چرخه"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:41
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:42
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:55
-msgid "Title"
-msgstr "عنوان"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Validator/WidgetNameDuplicate.php:28
+msgid "Widget name already exists"
+msgstr "این نام برای ویجت هم اکنون موجود است"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:52
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:53
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:66
-msgid "Unique name"
-msgstr "نام یکتا"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:63
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:64
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:77
-msgid "Description"
-msgstr "توضیحات"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockTabForm.php:99
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:109
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:135
-msgid "Submit"
-msgstr "ارسال"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockCarouselForm.php:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/BlockMediaForm.php:25
 msgid "Template"
 msgstr "الگو"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/AbstractBaseForm.php:55
+msgid "Title"
+msgstr "عنوان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/AbstractBaseForm.php:66
+msgid "Unique name"
+msgstr "نام یکتا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/AbstractBaseForm.php:77
+msgid "Description"
+msgstr "توضیحات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/AbstractBaseForm.php:118
+msgid "Submit"
+msgstr "ارسال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/BlockStaticForm.php:53
 msgid "Content"
 msgstr "متن"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/BlockStaticForm.php:109
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/BlockStaticForm.php:60
 msgid ""
 "Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `"
 "%slogan%` - site slogan"
@@ -125,35 +151,71 @@ msgstr ""
 "تگ های پشتیبانی شده : `%sitename%` - نام سایت; `%siteurl%` - پیوند اصلی "
 "سایت; `%slogan%` - شعار سایت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:20
-msgid "Bootstrap slide"
-msgstr "اسلاید Bootstrap"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/BlockStaticForm.php:85
+msgid "Content type"
+msgstr "نوع متن"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:21
-msgid "jCarousel riding Carousel"
-msgstr "اسلاید jCarousel"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/SpotlightTemplate.php:25
+msgid "Spot on top"
+msgstr "اسپات لایت در بالا"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:22
-msgid "Parallax Content Slider"
-msgstr "اسلاید متنی Parallax"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/SpotlightTemplate.php:26
+msgid "Spot on left"
+msgstr "اسپات لایت در سمت چپ"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Form/Element/CarouselTemplate.php:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/MediaTemplate.php:48
 msgid "Custom: "
 msgstr "دست ساز :"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/MediaTemplate.php:63
+msgid "Image on left"
+msgstr "تصویر در سمت چپ"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/MediaTemplate.php:64
+msgid "Image on right"
+msgstr "تصویر در سمت راست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/ListTemplate.php:25
+msgid "Title only"
+msgstr "فقط عنوان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/ListTemplate.php:26
+msgid "Title and summary"
+msgstr "عنوان و خلاصه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/CarouselTemplate.php:25
+msgid "Bootstrap slide"
+msgstr "اسلاید Bootstrap"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/CarouselTemplate.php:26
+msgid "Bootstrap two columns"
+msgstr "اسلاید Bootstrap دو ستونه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/CarouselTemplate.php:27
+msgid "jQuery riding Carousel"
+msgstr "اسلاید jCarousel"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Form/Element/CarouselTemplate.php:28
+msgid "Parallax Content Slider"
+msgstr "اسلاید متنی Parallax"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Render/PiGithub.php:26
+msgid "Updates from GitHub"
+msgstr "به روز رسانی از گیت هاب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:42
 msgid "Pi Highlights"
 msgstr "نماد های پای"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:43
 msgid "Introduction to Pi Engine with carousel."
 msgstr "معرفی پای انجین با اسلاید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:49
 msgid "Sustainable ecosystem"
 msgstr "Sustainable ecosystem"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:50
 msgid ""
 "A sustainable ecosystem built upon open standard, open source code, open "
 "development and open management on Github."
@@ -161,37 +223,37 @@ msgstr ""
 "A sustainable ecosystem built upon open standard, open source code, open "
 "development and open management on Github."
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:55
 msgid "Engineered development"
 msgstr "Engineered development"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:83
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:56
 msgid ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
-"API and strict starndards."
+"API and strict standards."
 msgstr ""
 "Quality ensured engineering development with short learning curve, low skill "
 "requirements with clean MVC architecture, semantic templating, sophisticated "
-"API and strict starndards."
+"API and strict standards."
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:61
 msgid "Visualization of application management"
 msgstr "Visualization of application management"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:89
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:62
 msgid ""
 "Easy and responsive application and content management based on visualized "
-"mangement tools and interface with page and widget mechanism."
+"management tools and interface with page and widget mechanism."
 msgstr ""
 "Easy and responsive application and content management based on visualized "
-"mangement tools and interface with page and widget mechanism."
+"management tools and interface with page and widget mechanism."
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:94
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:67
 msgid "Agile compliant development workflow"
 msgstr "Agile compliant development workflow"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Installer/Action/Install.php:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Installer/Action/Install.php:68
 msgid ""
 "Role oriented architecture and deployment skeleton supports managable agile "
 "development workflow."
@@ -199,195 +261,317 @@ msgstr ""
 "Role oriented architecture and deployment skeleton supports managable agile "
 "development workflow."
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/IndexController.php:130
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/ScriptController.php:127
 #, php-format
 msgid "The widget \"%s\" is installed."
 msgstr "ویجت \"%s\" نصب شده است"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/IndexController.php:132
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/ScriptController.php:129
 #, php-format
 msgid "The widget \"%s\" is not installed."
 msgstr "ویجت \"%s\" نصب نشده است"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:92
-msgid "The widget does not exist."
-msgstr "ویجت موجود نیست"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:100
-#, php-format
-msgid "The widget \"%s\" is uninstalled."
-msgstr "ویجت \"%s\" از نصب خارج شد"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:105
-#, php-format
-msgid "The widget \"%s\" is not uninstalled."
-msgstr "ویجت \"%s\" از نصب خارج نشد"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:183
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:219
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/StaticController.php:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:289
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:327
 msgid "Block data saved successfully."
 msgstr "اطلاعات بلاک به موفقیت ذخیره شد"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:191
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:227
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/StaticController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:297
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:335
 msgid "Block data not saved."
 msgstr "اطلاعات بلاک ذخیره نشد"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:195
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:229
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/StaticController.php:104
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:301
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:337
 msgid "Invalid data, please check and re-submit."
 msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:207
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:312
 msgid "Add a block"
 msgstr "بلاک جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/WidgetController.php:244
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:353
 msgid "Block edit"
 msgstr "ویرایش بلاک"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/TabController.php:40
-msgid "Custom blocks"
-msgstr "بلاک دست ساز"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:370
+msgid "The widget is removed."
+msgstr "ویجت حذف شد"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/StaticController.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/WidgetController.php:373
+msgid "The widget is not removed."
+msgstr "ویجت حذف نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/StaticController.php:37
 msgid "HTML"
 msgstr "HTML"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/StaticController.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/StaticController.php:38
 msgid "Text"
 msgstr "Text"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/src/Controller/Admin/StaticController.php:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Admin/StaticController.php:39
 msgid "Markdown"
 msgstr "Markdown"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:13
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Front/IndexController.php:33
+msgid "Block title"
+msgstr "عنوان بلاک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/src/Controller/Front/IndexController.php:34
+msgid "Block content placeholder."
+msgstr "نگهدارنده مکان محتوی بلاک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:15
 msgid "Script widgets"
 msgstr "ویجت های اسکریپت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:16
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:40
 msgid "Static widgets"
 msgstr "ویجت های استاتیک"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:19
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:95
+msgid "List group"
+msgstr "فهرست گروهی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:129
+msgid "Media list"
+msgstr "فهرست رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:25
 msgid "Carousel widgets"
 msgstr "ویجت های اسلاید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/permission.php:22
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:28
+msgid "Spotlight widgets"
+msgstr "ویجت های اسپات لایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/permission.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:231
 msgid "Compound tabs"
 msgstr "تب های ترکیبی"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/module.php:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/module.php:14
 msgid "Widget"
 msgstr "ویجت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/module.php:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/module.php:16
 msgid "Management of custom blocks/widgets."
 msgstr "مدیریت بلاک ها ویجت های اختصاصی"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:33
-msgid "Static list"
-msgstr "فهرست ویجت های استاتیک"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:13
+msgid "Max file size"
+msgstr "بیشترین اندازه فایل"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:40
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:94
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:128
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/ng.phtml:21
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/common-list.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:14
+msgid "Allowed image file to upload (in KB), 0 for no limit"
+msgstr ""
+"اجازه برای بارگذاری فایل های تصویری ( به کیلوبایت ) ، ۰ برای عدم محدودیت حجمی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:20
+msgid "File extensions"
+msgstr "پسوند فایل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:21
+msgid "Extensions for images to upload, separate `,`."
+msgstr "پسوند های مجاز برای بارگذاری تصویر ، با `,` از هم جدا کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:26
+msgid "Max image width"
+msgstr "بیشترین عرض تصویر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:27
+msgid "Allowed image width, 0 for no limit"
+msgstr "بیشترین عرض تصویر مجاز ، ۰ برای عدم محدودیت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:33
+msgid "Max image height"
+msgstr "بیشترین ارتفاع تصویر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:34
+msgid "Allowed image height, 0 for no limit"
+msgstr "بیشترین ارتفا تصویر مجاز ، ۰ برای عدم محدودیت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:40
+msgid "Image width for media"
+msgstr "عرض تصویر برای رسانه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:76
+msgid "Default value for widgets"
+msgstr "مقدار پیش فرض برای ویجت ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:47
+msgid "Image height for media"
+msgstr "ارتفاع تصویر برای رسانه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:54
+msgid "Image width for carousel"
+msgstr "عرض تصویر برای اسلاید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:61
+msgid "Image height for carousel"
+msgstr "ارتفاع تصویر برای اسلاید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:68
+msgid "Image width for spotlight"
+msgstr "عرض تصویر برای اسپات لایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:75
+msgid "Image height for spotlight"
+msgstr "ارتفاع تصویر برای اسپات لایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:82
+msgid "Open new window"
+msgstr "بازکردن در صفحه جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:83
+msgid "Open new window for widgets not specified"
+msgstr "بازکردن در صفحه جدید برای ویجت هایی که تنظیم نشده باشند"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:104
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:138
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:172
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:206
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:240
+msgid "Widget list"
+msgstr "فهرست ویجت ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/ng-script.phtml:11
+msgid "Activate"
+msgstr "فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:56
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:179
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:213
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:247
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/ng.phtml:11
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:65
 msgid "Add HTML"
 msgstr "HTML جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:74
 msgid "Add text"
 msgstr "متن جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:83
 msgid "Add markdown"
 msgstr "Markdown جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:87
-msgid "Carousel list"
-msgstr "فهرست ویجت های اسلاید"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:103
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:120
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:154
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:188
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:222
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:256
 msgid "Add new"
 msgstr "جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:121
-msgid "Tab list"
-msgstr "فهرست تب ها"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:163
+msgid "Carousel"
+msgstr "اسلاید"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/config/nav.php:137
-msgid "Add"
-msgstr "جدید"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:197
+msgid "Spotlight"
+msgstr "اسپات لایت"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/ng.phtml:17
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/list-script.phtml:8
-msgid "Installed widgets"
-msgstr "ویجت های نصب شده"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/ng.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/list-script.phtml:20
-msgid "Available widgets"
-msgstr "ویجت های در دسترس"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/ng.phtml:19
-msgid "Install"
-msgstr "نصب"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/ng.phtml:20
-msgid "Uninstall"
-msgstr "حذف"
-
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/ng.phtml:22
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/common-list.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/ng.phtml:12
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-carousel.phtml:12
-msgid "Images"
-msgstr "تصاویر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-list.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-tab.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-media.phtml:14
+msgid "Items"
+msgstr "موارد"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-carousel.phtml:33
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-tab.phtml:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-list.phtml:14
+msgid "Click to add new item."
+msgstr "برای درج مورد جدید کلیک کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-list.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-tab.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-media.phtml:31
+msgid "Click to remove"
+msgstr "برای حذف کلیک کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-list.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-media.phtml:36
 msgid "Caption"
 msgstr "عنوان"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-carousel.phtml:36
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-tab.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-list.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-media.phtml:40
 msgid "Link"
 msgstr "لینک"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-carousel.phtml:39
-msgid "Desc"
-msgstr "توضیحات"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-list.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-media.phtml:44
+msgid "Summary"
+msgstr "خلاصه"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/widget-tab.phtml:129
-msgid "No Blocks"
-msgstr "بدون بلاک"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-tab.phtml:16
+msgid "Select from below available module blocks to add."
+msgstr "بلاک های در دسترس ماژول ها را از زیر انتخاب کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/common-list.phtml:16
-msgid "Are you sure delete this widget?"
-msgstr "آیا اطمینان دارید که میخواهید این ویجت را حذف کنید؟"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-tab.phtml:26
+msgid "Module blocks"
+msgstr "بلاک های ماژول"
 
-#: /var/www/html/local/pi/pi/usr/module/widget/template/admin/list-tab.phtml:2
-msgid "Add a compound"
-msgstr "ترکیب جدید"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/admin/widget-media.phtml:18
+msgid "Click to upload image then add item contents."
+msgstr "برای بارگذاری تصویر کلیک کنید بعد از آن محتوی این مورد را درج کنید."
 
-#~ msgid "Widget list"
-#~ msgstr "فهرست ویجت ها"
+#~ msgid "The widget \"%s\" is uninstalled."
+#~ msgstr "ویجت \"%s\" از نصب خارج شد"
+
+#~ msgid "The widget \"%s\" is not uninstalled."
+#~ msgstr "ویجت \"%s\" از نصب خارج نشد"
+
+#~ msgid "Custom blocks"
+#~ msgstr "بلاک دست ساز"
+
+#~ msgid "Static list"
+#~ msgstr "فهرست ویجت های استاتیک"
+
+#~ msgid "Add"
+#~ msgstr "جدید"
+
+#~ msgid "Installed widgets"
+#~ msgstr "ویجت های نصب شده"
+
+#~ msgid "Install"
+#~ msgstr "نصب"
+
+#~ msgid "Uninstall"
+#~ msgstr "حذف"
+
+#~ msgid "Images"
+#~ msgstr "تصاویر"
+
+#~ msgid "Desc"
+#~ msgstr "توضیحات"
+
+#~ msgid "Are you sure delete this widget?"
+#~ msgstr "آیا اطمینان دارید که میخواهید این ویجت را حذف کنید؟"
+
+#~ msgid "Add a compound"
+#~ msgstr "ترکیب جدید"
 
 #~ msgid "Compound tab widgets"
 #~ msgstr "ویجت تب های ترکیبی"

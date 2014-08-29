@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2014-03-20 09:39+0330\n"
-"PO-Revision-Date: 2014-03-20 09:50+0330\n"
+"POT-Creation-Date: 2014-08-29 15:32+0330\n"
+"PO-Revision-Date: 2014-08-29 15:32+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -12,90 +12,91 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/tag\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"tag\n"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/navigation.php:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:14
 msgid "Top tags"
 msgstr "برچسب های برتر"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/navigation.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:20
 msgid "New tags"
 msgstr "برچسب های جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/navigation.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:26
 msgid "Tagged items"
 msgstr "آیتم های برچسب گذاری شده"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:13
 msgid "Top tag list"
 msgstr "فهرست برچسب های برتر"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:14
 msgid "Top 10 tag block"
 msgstr "بلاک ۱۰ برچسب برتر"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:19
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:35
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:80
 msgid "Limit"
 msgstr "محدودیت"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:20
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:36
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:81
 msgid "Block display item count"
 msgstr "نمایش تعداد آیتم ها"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:29
 msgid "Tag Cloud"
 msgstr "ابر برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:30
 msgid "Top tag cloud block"
 msgstr "بلاک ابر برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:42
 msgid "Color"
 msgstr "رنگ"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:43
 msgid "Set tag cloud color"
 msgstr "تنظیم رنگ ابر برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:57
 msgid "Max font size"
 msgstr "بیشترین اندازه فونت"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:58
 msgid "Set max font size"
 msgstr "تنظیم بیشترین اندازه فونت"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:64
 msgid "Min font size"
 msgstr "کمترین اندازه فونت"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:65
 msgid "Set min font size"
 msgstr "تنظیم کمترین اندازه فونت"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:74
-#: /var/www/html/local/pi/pi/usr/module/tag/config/block.php:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:75
 msgid "The latest tag"
 msgstr "آخرین برچسب ها"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/module.php:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/module.php:18
 msgid "Tags"
 msgstr "برچسب ها"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/module.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/module.php:20
 msgid "Tag"
 msgstr "برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:13
 msgid "Tag delimiter"
 msgstr "جدا کننده برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:14
 msgid ""
 "Delimiter(s) to separate tag terms, use `s` for space and separate "
 "delimiters with `|`."
@@ -103,70 +104,70 @@ msgstr ""
 "جدا کننده های برچسب برای جدا کردن کلمات از هم. جدا کننده ها را به شکل `s` "
 "وارد کنید و با استفاده از `|` از هم جدا کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:19
 msgid "Enable quote"
 msgstr "فعال سازی نقل قول"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:20
 msgid "Use double quotes to identify multi-term tag."
 msgstr "استفاده از علامت نقل قول دوتایی برای هویت دادن به کلمات چند بخشی"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:27
 msgid "Minimum length"
 msgstr "کمترین طول"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:28
 msgid "Minimum length for valid tag terms."
 msgstr "کمترین طول برای پذیرش واژه برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:35
 msgid "Item per page"
 msgstr "تعداد در هر صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:36
 msgid "Number of items on tag list page."
 msgstr "تعداد آیتم ها در فهرست برچسب در هر صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:53
 msgid "Detail per page"
 msgstr "جزییات در صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:54
 msgid "Number of items on tag detail page."
 msgstr "تعداد آیتم ها در صفحه جزییات برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:71
 msgid "Link per page"
 msgstr "لینک در هر صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/config/config.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:72
 msgid "Number of items on one relationships page."
 msgstr "تعداد آیتم ها پر هر صفحه ارتباطی"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:7
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-new.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-top.phtml:7
 msgid "All"
 msgstr "همه"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:31
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-new.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-top.phtml:31
 msgid "Tag name"
 msgstr "نام برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-new.phtml:32
 msgid "Time"
 msgstr "زمان"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:33
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-new.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-top.phtml:33
 msgid "Action"
 msgstr "عملکرد"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-new.phtml:38
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-new.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-top.phtml:38
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/list-top.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-top.phtml:32
 msgid "Count"
 msgstr "تعداد"

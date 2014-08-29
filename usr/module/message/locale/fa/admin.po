@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2014-03-20 09:52+0330\n"
-"PO-Revision-Date: 2014-03-20 09:52+0330\n"
+"POT-Creation-Date: 2014-08-29 15:35+0330\n"
+"PO-Revision-Date: 2014-08-29 15:35+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -12,17 +12,18 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/message\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"message\n"
 
-#: /var/www/html/local/pi/pi/usr/module/message/config/module.php:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/config/module.php:17
 msgid "Message"
 msgstr "پیام"
 
-#: /var/www/html/local/pi/pi/usr/module/message/config/module.php:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/config/module.php:19
 msgid "A module to send message"
 msgstr "ماژول ارسال پیام"
 
-#: /var/www/html/local/pi/pi/usr/module/message/config/user.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/config/user.php:20
 msgid "Messages"
 msgstr "پیام ها"
 
