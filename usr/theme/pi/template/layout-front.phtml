@@ -18,6 +18,8 @@ $this->bootstrap(array(
     'font-awesome/css/font-awesome.min.css'
 ));
 $this->css($this->assetTheme('css/front.css'));
+$this->css($this->assetLocale('locale.css'));
+
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'href'  => $this->assetTheme('image/touch-icon-iphone.png')
