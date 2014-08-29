@@ -1,7 +1,7 @@
 <?php
 //Only show title 
 if (empty($elements)) {
-    if ($disorder == 1) {
+    if (isset($disorder) && $disorder == 1) {
         $render = '<ol class="pi-list">';
     } else {
         $render = '<ol class="pi-order-list">';
