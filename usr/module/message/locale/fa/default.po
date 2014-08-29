@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2014-03-20 09:52+0330\n"
-"PO-Revision-Date: 2014-03-20 09:52+0330\n"
+"POT-Creation-Date: 2014-08-29 15:35+0330\n"
+"PO-Revision-Date: 2014-08-29 15:35+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -12,150 +12,151 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/message\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"message\n"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Form/SendForm.php:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Form/SendForm.php:55
 msgid "Recipient"
 msgstr "دریافت کننده"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Form/SendForm.php:77
-#: /var/www/html/local/pi/pi/usr/module/message/src/Form/ReplyForm.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Form/SendForm.php:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Form/ReplyForm.php:66
 msgid "Content"
 msgstr "تماس"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Form/SendForm.php:83
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Form/SendForm.php:83
 msgid "Message content"
 msgstr "متن پیام"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Form/SendForm.php:93
-#: /var/www/html/local/pi/pi/usr/module/message/src/Form/ReplyForm.php:86
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Form/SendForm.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Form/ReplyForm.php:86
 msgid "Send"
 msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:184
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/NotifyController.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:184
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/NotifyController.php:42
 #, php-format
 msgid "Private message(%s unread)"
 msgstr "پایام خصوصی (%s خوانده نشده)"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:188
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:188
 #, php-format
 msgid "Notification(%s  unread)"
 msgstr "آگاهی رسانی (%s خوانده نشده)"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:224
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:224
 msgid "Username is invalid, please try again."
 msgstr "نام کاربری صحیح نیست ، دوباره امتحان کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:240
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:368
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:240
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:368
 msgid "Send failed, please try again."
 msgstr "ارسال موفقیت آمیز نبود ، دوباره امتحان کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:274
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:274
 msgid "User"
 msgstr "کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:278
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:278
 msgid "not found"
 msgstr "یافت نشد"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:284
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:284
 msgid "Sorry, you can't send message to yourself."
 msgstr "متاسفانه شما نمیتوانید به خودتان پیام بفرستید."
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:296
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:296
 msgid "An error occurred, please try again."
 msgstr "یک خطا روی داده است ، لطفا دوباره امتحان کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/IndexController.php:325
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/IndexController.php:325
 msgid "Send message"
 msgstr "ارسال پیام"
 
-#: /var/www/html/local/pi/pi/usr/module/message/src/Controller/Front/NotifyController.php:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/src/Controller/Front/NotifyController.php:46
 #, php-format
 msgid "Notification(%s unread)"
 msgstr "آگاهی رسانی (%s خوانده نشده)"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-detail.phtml:6
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:10
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-archive.phtml:3
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-detail.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-archive.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:6
 msgid "Private message"
 msgstr "پیام شخصی"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-detail.phtml:9
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-detail.phtml:7
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:13
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-archive.phtml:7
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-detail.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-detail.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-archive.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:10
 msgid "Archive"
 msgstr "آرشیو"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-detail.phtml:57
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-detail.phtml:59
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:47
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:103
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:47
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-detail.phtml:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-detail.phtml:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:103
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:96
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-detail.phtml:95
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-detail.phtml:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:46
 msgid "Once you delete this message, it cannot be undone."
 msgstr "شما این پیام را حذف کردید ، این فرایند برگشت پذیر نیست."
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-send.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-send.phtml:3
 msgid "Return message list page"
 msgstr "بازگشت به صفحه فهرست پیام ها"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-send.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-send.phtml:5
 msgid "Write message"
 msgstr "نوشتن پیام"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-detail.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-detail.phtml:5
 msgid "Messages"
 msgstr "پیام ها"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:63
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:102
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:60
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:95
 msgid "Mark as read"
 msgstr "به عنوان خوانده شده نشان کن"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:88
 msgid ""
 "<div class=\"alert alert-info message-alert\">No notification for you!</div>"
 msgstr ""
 "<div class=\"alert alert-info message-alert\">هیچ آگاهی رسانی برای شما نیست !"
 "</div>"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:99
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:92
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:92
 msgid "Checked all"
 msgstr "All Categories"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/notify-index.phtml:101
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:94
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/notify-index.phtml:101
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:94
 msgid "Massive operation"
 msgstr "عملکرد های پیام"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:68
 msgid "To"
 msgstr "به"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:68
 msgid "From"
 msgstr "از"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:82
 msgid "<div class=\"alert alert-info message-alert\">No message for you!</div>"
 msgstr ""
 "<div class=\"alert alert-info message-alert\">هیچ پیامی برای شما نیست !</div>"
 
-#: /var/www/html/local/pi/pi/usr/module/message/template/front/index-index.phtml:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/message/template/front/index-index.phtml:106
 #, fuzzy
 msgid "Once you delete those message, it cannot be undone."
 msgstr "شما این پیام را حذف کردید ، این فرایند برگشت پذیر نیست."
