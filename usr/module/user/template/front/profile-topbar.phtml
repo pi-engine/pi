@@ -173,7 +173,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
             <a href="<?php echo $item['url']; ?>">
                 <?php
                 if ($item['icon']) {
-                    echo '<i class="' . $item['icon'] . '"></i> ';
+                    echo '<i class="fa ' . $item['icon'] . '"></i> ';
                 }
                 echo _escape($item['title']);
                 ?>
@@ -194,7 +194,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
                         <a href="<?php echo $item['url']; ?>">
                             <?php
                             if ($item['icon']) {
-                                echo '<i class="' . $item['icon'] . '"></i> ';
+                                echo '<i class="fa ' . $item['icon'] . '"></i> ';
                             }
                             echo _escape($item['title']);
                             ?>
