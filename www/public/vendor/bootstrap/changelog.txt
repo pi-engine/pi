@@ -1,6 +1,11 @@
 Changelog
 
 
+Aug 30th, Kris Kris_fr
+=========================
+1. Update Font Awesome v4.2.0
+
+
 Feb 21th, Liao wei
 =========================
 1. Update bootstap to version v3.1.1.
