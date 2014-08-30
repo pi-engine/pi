@@ -24,6 +24,11 @@ if (!$user) {
     return;
 }
 
+// Check if the current visitor is owner of the user
+if (!isset($owner)) {
+    $owner = !_get('uid') && $uid ? true : false;
+}
+
 // Load nav
 if ($owner) {
     $nav = Pi::api('nav', 'user')->getList($name);
