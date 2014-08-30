@@ -60,6 +60,7 @@ class Activity extends AbstractApi
         $content    = '';
         $link       = '';
         $items      = array();
+        $data       = array();
 
         $meta = Pi::registry('activity', 'user')->read($name);
         $callback = $meta['callback'];
@@ -71,44 +72,41 @@ class Activity extends AbstractApi
                 'offset'    => $offset,
             ));
         } else {
-            $reader = new $meta['callback'](
-                isset($meta['module']) ? $meta['module'] : ''
-            );
-            $data = $reader->get($uid, $limit, $offset);
-        }
-        if ($data) {
-            if (is_string($data)) {
-                $content = $data;
-            } elseif (empty($meta['template'])) {
-                foreach ($data['items'] as $item) {
-                    if (is_string($item)) {
-                        $items[] = array(
-                            'time'      => null,
-                            'message'   => $item,
-                        );
-                    } else {
-                        $items[] = array(
-                            'time'      => isset($item['time']) ? $item['time'] : null,
-                            'message'   => $item['message'],
-                        );
-                    }
-                }
-                $link = isset($data['link']) ? $data['link'] : '';
-            } else {
-                // Render template()
-                $template = array(
-                    'module'    => isset($meta['module'])
-                            ? $meta['module'] : $this->module,
-                    'file'      => $meta['template'],
-                );
-                $content = Pi::service('view')->render($template, $data);
+            $reader = new $callback($meta['module']);
+            if ($reader instanceof AbstractActivityCallback) {
+                $data = $reader->get($uid, $limit, $offset);
             }
+        }
+        if (is_string($data)) {
+            $content = $data;
+        } elseif (empty($meta['template'])) {
+            foreach ($data['items'] as $item) {
+                if (is_string($item)) {
+                    $items[] = array(
+                        'time'      => null,
+                        'message'   => $item,
+                    );
+                } else {
+                    $items[] = array(
+                        'time'      => isset($item['time']) ? $item['time'] : null,
+                        'message'   => $item['message'],
+                    );
+                }
+            }
+            $link = isset($data['link']) ? $data['link'] : '';
+        } else {
+            // Render template()
+            $template = array(
+                'module'    => $meta['module'] ?: $this->module,
+                'file'      => $meta['template'],
+            );
+            $content = Pi::service('view')->render($template, $data);
         }
 
         $result = array(
             'title'         => $meta['title'],
             'description'   => $meta['description'],
-            //'module'        => $meta['module'],
+            'module'        => $meta['module'],
             'icon'          => $meta['icon'],
             'link'          => $link,
             'items'         => $items,
