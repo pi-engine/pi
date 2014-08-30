@@ -24,6 +24,9 @@ $this->bootstrap(array(
 // Load admin.css
 $this->css($this->assetTheme('css/admin.css'));
 
+// Load localization css
+$this->css($this->assetLocale('locale.css'));
+
 // Explicitly load favicon
 // @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
@@ -93,7 +96,7 @@ $module = Pi::service('module')->current();
         <?php include $this->template('flash-messenger'); ?>
         <article class="pi-module-content">
             <div ng-view></div>
-            <?php echo $content; ?>
+            <div clss="<?php echo $module; ?>"><?php echo $content; ?></div>
         </article>
 
         <footer class="pi-footer">

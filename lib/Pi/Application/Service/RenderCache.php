@@ -256,12 +256,16 @@ class RenderCache extends AbstractService
     public function cachedContent()
     {
         $key = $this->meta['key'];
-        if (!isset($this->cachedContent[$key])) {
-            $this->cachedContent[$key] = Pi::service('cache')->getItem(
-                $this->meta['key'],
-                $this->meta,
-                $this->getStorage()
-            );
+        if (!array_key_exists($key, $this->cachedContent)) {
+            if ('guest' == $this->meta('level') && Pi::user()->hasIdentity()) {
+                $this->cachedContent[$key] = null;
+            } else {
+                $this->cachedContent[$key] = Pi::service('cache')->getItem(
+                    $this->meta['key'],
+                    $this->meta,
+                    $this->getStorage()
+                );
+            }
         }
 
         return $this->cachedContent[$key];
@@ -276,7 +280,9 @@ class RenderCache extends AbstractService
     public function saveCache($content = null)
     {
         $content = (null !== $content) ? $content : $this->content;
-        if (null !== $content) {
+        if (null !== $content
+            && ('guest' != $this->meta('level') || !Pi::user()->hasIdentity())
+        ) {
             Pi::service('cache')->setItem(
                 $this->meta['key'],
                 $content,

@@ -1,0 +1,19 @@
+<?php
+$options    = (array) $block['options'];
+$items      = (array) $block['items'];
+$target     = empty($options['target_new']) ? '' : '_blank';
+?>
+<div class="widget-list widget-list-title">
+    <ul>
+        <?php foreach($items as $item) { ?>
+        <li>
+            <a href="<?php echo $item['link']; ?>"
+                title="<?php echo _escape($item['caption']); ?>" 
+                target="<?php echo $target; ?>"
+            >
+                <?php echo _escape($item['caption']); ?>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+</div>

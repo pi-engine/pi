@@ -1,66 +1,55 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-03-03 14:04+0800\n"
-"PO-Revision-Date: 2014-03-03 14:04+0800\n"
+"POT-Creation-Date: 2014-08-08 17:28+0800\n"
+"PO-Revision-Date: 2014-08-08 17:29+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\widget\n"
 
-#: c:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:42
-#: c:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:55
-#: c:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:41
-msgid "Title"
-msgstr "标题"
+#: c:\code\pi\usr\module\widget/src/Controller/Front/IndexController.php:33
+msgid "Block title"
+msgstr "区块标题"
 
-#: c:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:53
-#: c:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:66
-#: c:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:52
-msgid "Unique name"
-msgstr "唯一名称"
+#: c:\code\pi\usr\module\widget/src/Controller/Front/IndexController.php:34
+msgid "Block content placeholder."
+msgstr "区块内容"
 
-#: c:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:64
-#: c:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:77
-#: c:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:63
-msgid "Description"
-msgstr "描述"
+#: c:\code\pi\usr\module\widget/template/front/block-preview.phtml:6
+msgid "Block Preview"
+msgstr "区块预览"
 
-#: c:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:74
-msgid "Template"
-msgstr "模板"
+#: c:\code\pi\usr\module\widget/template/front/block-preview.phtml:9
+msgid "Here is placeholder for module generated contents."
+msgstr "模块产生的内容。"
 
-#: c:\code\pi\usr\module\widget/src/Form/BlockCarouselForm.php:109
-#: c:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:135
-#: c:\code\pi\usr\module\widget/src/Form/BlockTabForm.php:99
-msgid "Submit"
-msgstr "提交"
+#~ msgid "Title"
+#~ msgstr "标题"
 
-#: c:\code\pi\usr\module\widget/src/Form/BlockStaticForm.php:102
-msgid "Content"
-msgstr "内容"
+#~ msgid "Unique name"
+#~ msgstr "唯一名称"
 
-#: c:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:20
-msgid "Bootstrap slide"
-msgstr ""
+#~ msgid "Description"
+#~ msgstr "描述"
 
-#: c:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:21
-msgid "jCarousel riding Carousel"
-msgstr ""
+#~ msgid "Template"
+#~ msgstr "模板"
 
-#: c:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:22
-msgid "Parallax Content Slider"
-msgstr ""
+#~ msgid "Submit"
+#~ msgstr "提交"
 
-#: c:\code\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:43
-msgid "Custom: "
-msgstr "定制："
+#~ msgid "Content"
+#~ msgstr "内容"
+
+#~ msgid "Custom: "
+#~ msgstr "定制："
 
 #~ msgid "Add"
 #~ msgstr "添加"

@@ -1,3 +1,9 @@
+<?php
+    $this->css($this->assetModule('script/front.css'));
+    $this->jQuery();
+    $this->Backbone();
+?>
+
 <?php /* include 'draft-nav.phtml'; */ ?>
 <div id="jsList">
     <div class="form-inline">
@@ -99,3 +105,81 @@
         array('class' => 'pagination-right')
     ); ?>
 </div>
+
+<script>
+(function($) {
+    var page = {
+        url : "<?php echo $this->url(
+            '', 
+            array(
+                'controller' => (isset($action) && 'published' === $action) ? 'article' : 'draft', 
+                'action'     => 'delete'
+            )
+        ); ?>",
+        el  : $("#jsList"),
+        $   : function(selector) {
+            return this.el.find(selector);
+        },
+        init : function() {
+            _.bindAll(this);
+            this.$(".check-all").click(this.checkAll);
+            this.$(".btn-delete").click(this.bulkDelete);
+            this.$(".check-one").click(this.clickOne);
+            this.$(".delete").click(this.delete);
+        },
+        checkAll : function() {
+            var flag = this.$(".check-all").prop("checked");
+            this.$(".check-one").prop("checked",flag).each(function() {
+                var tr = $(this).parents("tr:first");
+                if (flag) {
+                    tr.addClass("info");
+                } else {
+                    tr.removeClass("info");
+                }
+            });
+            this.toggleBulk();
+        },
+        bulkDelete : function() {
+            var id = [],
+                fn = function() {
+                    this.$(".check-one:checked").each(function() {
+                        id.push($(this).val()); 
+                    });
+                    location.href = this.url + "?id=" + id.join(",") + "&from="
+                                  + this.encodeUrl();
+                };
+                if (confirm("<?php echo _a('Are you sure want to delete selected articles?'); ?>")) {
+                    fn.call(this);
+                }
+        },
+        clickOne : function(e) {
+            var el = $(e.target),
+                tr = el.parents("tr:first");
+            if (el.prop("checked")) {
+                tr.addClass("info");
+            } else {
+                tr.removeClass("info");
+            }
+            this.toggleBulk();
+        },
+        toggleBulk : function() {
+            if (this.$(".check-one:checked").length) {
+                this.$(".bulk-operation").removeClass("hide");
+            } else {
+                this.$(".bulk-operation").addClass("hide");
+            }
+        },
+        delete : function(e) {
+            var el = $(e.target),
+                id = el.parents("tr:first").attr("data-id");
+            if (confirm("<?php echo _a('Are you sure want to delete this article?'); ?>")) {
+                location.href = this.url + "?id=" + id + "&from=" + this.encodeUrl(); 
+            }
+        },
+        encodeUrl : function() {
+            return encodeURIComponent(location.href);
+        }
+    };
+    page.init();
+})(jQuery);
+</script>

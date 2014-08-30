@@ -38,8 +38,8 @@ class Block
         
         $maxTopCount = $options['top-category'];
         $maxSubCount = $options['sub-category'];
-        $route       = Pi::api('api', $module)->getRouteName();
-        
+        $route = 'article';
+
         $categories  = Pi::api('api', $module)->getCategoryList(
             array('is-tree' => true)
         );
@@ -84,7 +84,7 @@ class Block
             return false;
         }
         
-        $route = Pi::api('api', $module)->getRouteName();
+        $route = 'article';
         
         // Get all categories
         $categories = array(
@@ -96,9 +96,10 @@ class Block
                 'url'   => Pi::service('url')->assemble(
                     $route,
                     array(
-                        'controller' => 'list',
-                        'action'     => 'all',
-                        'list'       => 'all',
+                        'module'        => $module,
+                        'controller'    => 'list',
+                        'action'        => 'all',
+                        'list'          => 'all',
                     )
                 ),
             ),
@@ -109,9 +110,10 @@ class Block
                 continue;
             }
             $url = Pi::service('url')->assemble($route, array(
-                'controller' => 'category',
-                'action'     => 'list',
-                'category'   => $row['slug'] ?: $row['id'],
+                'module'        => $module,
+                'controller'    => 'category',
+                'action'        => 'list',
+                'category'      => $row['slug'] ?: $row['id'],
             ));
             $categories[$row['id']] = array(
                 'id'    => $row['id'],
@@ -171,16 +173,17 @@ class Block
         }
         
         // Get category Info
-        $route = Pi::api('api', $module)->getRouteName();
+        //$route = Pi::api('api', $module)->getRouteName();
         $where = array('id' => $categoryIds);
         $rowCategory = Pi::model('category', $module)->select($where);
         $categories = array();
         foreach ($rowCategory as $row) {
             $categories[$row->id]['title'] = $row->title;
             $categories[$row->id]['url']   = Pi::service('url')->assemble(
-                $route,
+                'article',
                 array(
-                    'category' => $row->slug ?: $row->id,
+                    'module'    => $module,
+                    'category'  => $row->slug ?: $row->id,
                 )
             );
         }

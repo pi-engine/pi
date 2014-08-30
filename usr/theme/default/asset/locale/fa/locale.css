@@ -1,0 +1,12 @@
+/**
+ * Locale css file
+ *
+ * Load in a theme template
+ * ```
+ *  $this->css($this->assetLocale('locale.css'));
+ * ```
+ */
+.rtl {
+    direction: RTL;
+    unicode-bidi: embed;
+}

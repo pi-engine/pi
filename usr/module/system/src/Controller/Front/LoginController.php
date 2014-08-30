@@ -92,7 +92,10 @@ class LoginController extends ActionController
 
         $this->view()->headTitle(__('Login'));
         $this->view()->headdescription(__('User login'), 'set');
-        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
+        $headKeywords = Pi::user()->config('head_keywords');
+        if ($headKeywords) {
+            $this->view()->headkeywords($headKeywords, 'set');
+        }
     }
 
     /**

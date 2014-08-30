@@ -62,7 +62,10 @@ return array(
         ),
 
         // Instantiate render cache manager
-        'render_cache'     => array(),
+        'render_cache'     => array(
+            // Enable etag for browser cache, it is suggested to disable.
+            'enable_etag'   => false,
+        ),
     ),
 
     // Service Manager configuration, and Application service configurations managed by Configuration service {@Pi\Mvc\Service\ConfigurationFactory}

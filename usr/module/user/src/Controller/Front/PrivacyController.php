@@ -99,9 +99,6 @@ class PrivacyController extends ActionController
 
         $this->view()->headTitle(__('Privacy Settings'));
         $this->view()->headdescription(__('Set profile field privacy.'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'), 
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 }

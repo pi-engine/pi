@@ -72,7 +72,7 @@ class ListController extends ActionController
         $select->order($order)->offset($offset)->limit($limit);
         
         $module = $this->getModule();
-        $route  = Pi::api('api', $module)->getRouteName();
+        $route  = 'article';
         $resultset = $model->selectWith($select);
         $items     = array();
         $categoryIds = $authorIds = array();
@@ -82,6 +82,7 @@ class ListController extends ActionController
             $items[$row->id]['url'] = $this->url(
                 $route, 
                 array(
+                    'module'    => $module,
                     'id'   => $row->id, 
                     'time' => $publishTime
                 )
@@ -148,9 +149,10 @@ class ListController extends ActionController
                 'title' => __('All articles'),
                 'image' => '',
                 'url'   => Pi::service('url')->assemble(
-                    Pi::api('api', $module)->getRouteName($module),
+                    'article',
                     array(
-                        'list'       => 'all',
+                        'module'    => $module,
+                        'list'      => 'all',
                     )
                 ),
             ),
@@ -161,6 +163,7 @@ class ListController extends ActionController
                 continue;
             }
             $url = Pi::service('url')->assemble('', array(
+                'module'    => $module,
                 'controller' => 'category',
                 'action'     => 'list',
                 'category'   => $row['id'],

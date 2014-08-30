@@ -1,0 +1,21 @@
+<?php
+/**
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
+ */
+
+namespace Custom\Widget\Render;
+
+use Module\Widget\Render\PiGithub;
+
+class PiModule extends PiGithub
+{
+    public static function render($options, $module = null)
+    {
+        $options['github_org'] = 'pi-module';
+        return parent::render($options, $module);
+    }
+}

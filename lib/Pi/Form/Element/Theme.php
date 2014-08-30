@@ -28,12 +28,11 @@ class Theme extends Select
      */
     public function getValueOptions()
     {
-        if (empty($this->valueOptions)) {
-            $type = $this->getOption('section');
-            $themes = Pi::registry('theme')->read($type);
-            foreach($themes as $name => $theme) {
-                $this->valueOptions[$name] = $theme['title'];
-            }
+        $type = $this->getOption('section');
+        $this->valueOptions = Pi::service('theme')->getThemes($type);
+        $allowAuto = $this->getOption('allow_auto');
+        if ($allowAuto) {
+            $this->valueOptions = array('' => __('Use system theme')) + $this->valueOptions;
         }
 
         return $this->valueOptions;

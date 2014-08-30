@@ -1,10 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-05-18 20:22+0100\n"
-"PO-Revision-Date: 2014-05-18 23:43+0100\n"
+"POT-Creation-Date: 2014-06-07 13:05+0100\n"
+"PO-Revision-Date: 2014-06-08 22:23+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
-"Language-Team: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,7 @@ msgid ""
 "\"Redis\">Redis page</a> for details."
 msgstr ""
 "L'extension est hautement recommandée pour un scenario de performance et une "
-"structure de donnée évoluée. Se référer à la <a href=\"http://redis.io\" "
+"structure évoluée de données. Se référer à la <a href=\"http://redis.io\" "
 "target=\"_blank\" title=\"Redis\">page Redis</a> pour plus de détails."
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/config.php:32
@@ -144,9 +144,9 @@ msgid ""
 msgstr ""
 "L'extension est suggérée pour le parser de texte, se référer à la page <a "
 "href=\"http://daringfireball.net/projects/markdown/\" title=\"Markdown "
-"project\" target=\"_blank\">Markdown</a> pour plus de détails, et "
-"téléchargez depuis la page <a href=\"http://pecl.php.net/package/markdown\" "
-"title=\"PECL project\" target=\"_blank\">PECL</a>."
+"project\" target=\"_blank\">Markdown</a> pour plus de détails, et pour un "
+"téléchargement allez à la page <a href=\"http://pecl.php.net/package/markdown"
+"\" title=\"PECL project\" target=\"_blank\">PECL</a>."
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/config.php:52
 msgid "Mbstring"
@@ -165,15 +165,15 @@ msgstr ""
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:13
 msgid "Presettings"
-msgstr "Présélection"
+msgstr "Serveur"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:14
 msgid "Presettings and server configuration detection"
-msgstr "Préselections et détection de la configuration serveur"
+msgstr "Détection et choix de la configuration serveur"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:17
 msgid "Basic"
-msgstr "Basic"
+msgstr "Site"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:18
 msgid "Basic settings for website"
@@ -181,7 +181,7 @@ msgstr "Paramètres de base du site web"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:21
 msgid "Database"
-msgstr "Base de données"
+msgstr "Données"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:22
 msgid "Database settings"
@@ -201,7 +201,7 @@ msgstr "Terminer"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\www\setup/include/page.php:30
 msgid "Finishing installation process"
-msgstr "Installation en cours de finalisation"
+msgstr "Installation terminée"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Admin.php:31
@@ -367,13 +367,13 @@ msgstr "Nom Base de données"
 msgid ""
 "The name of database on the host. The database must be already available."
 msgstr ""
-"Le nom de la base de données sur l'hébergement. La base de données soit être "
+"Le nom de la base de données sur l'hébergement. La base de données doit être "
 "déja disponible."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Database.php:233
 msgid "Table prefix"
-msgstr "Prefix des Tables"
+msgstr "Préfixe des Tables"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Database.php:234
@@ -382,8 +382,8 @@ msgid ""
 "in the database. If you are unsure, just keep the default."
 msgstr ""
 "Ce préfixe sera ajouté à toutes les tables crées afin d'éviter les conflits "
-"de nomage dans la base de données. Si vous n'êtes pas sûrs, simplement "
-"conserver la valeur par défaut."
+"de nommage dans la base de données. Si vous n'êtes pas sûrs, conserver "
+"simplement la valeur par défaut."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Database.php:269
@@ -393,7 +393,7 @@ msgstr "Configuration de la base de données"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Database.php:270
 msgid "Settings for database"
-msgstr "Paramétrages de la base de données"
+msgstr "Paramètres de la base de données"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:96
@@ -419,7 +419,7 @@ msgstr ""
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:294
 msgid "Power your web and mobile applications."
-msgstr "Propulsez vos applications web et mobiles"
+msgstr "Propulse vos applications web et mobiles"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:303
@@ -432,8 +432,8 @@ msgid ""
 "Unique identifier to distinguish this website. If there are multiple sites "
 "installed, make sure the identifier is unique."
 msgstr ""
-"Identifiant unique afin de distinguer ce site web. Si il y a plusieurs sites "
-"installés, assurez vous que l'identifiant est unique."
+"Identifiant unique afin de distinguer ce site web. S'il y a plusieurs sites "
+"installés, assurez-vous que l'identifiant est unique."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:307
@@ -458,23 +458,24 @@ msgstr "Slogan du site web."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:333
 msgid "Primary settings"
-msgstr "Paramétrages  de base"
+msgstr "Paramètres essentiels"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:337
 msgid "Primary settings for your website."
-msgstr "Paramétrages de base de votre site web"
+msgstr "Paramètres fondamentaux de votre site web"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:443
 msgid "File system"
-msgstr "Système de fichier"
+msgstr "Système par fichier"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:445
 msgid "Caching storage with files on disks specified in following steps."
 msgstr ""
-"Méthode de cache par fichiers sur disques indiqué dans les étapes suivantes."
+"Méthode de cache par fichiers situés sur disques indiqué dans les étapes "
+"suivantes."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:449
@@ -506,7 +507,8 @@ msgstr "Adresse du site web (URL)"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:500
 msgid "Main URL that will be used to access your Pi Engine"
-msgstr "URL principale qui sera utilisée pour accéder à votre Pi Engine"
+msgstr ""
+"URL principale qui sera utilisée pour accéder à votre site sous Pi Engine"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:503
@@ -520,7 +522,7 @@ msgid ""
 "will be allocated in PI root directory; PHP disabled."
 msgstr ""
 "Chemin physique du répertoire d'upload, sans slash de fin. Un chemin relatif "
-"sera alloué dans votre répertoire PI racine: PHP désactivé."
+"sera alloué dans votre répertoire racine PI ; PHP désactivé."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:507
@@ -533,8 +535,8 @@ msgid ""
 "URL that will be used to access upload directory. PI root URL will be "
 "prepended if relative URL is used."
 msgstr ""
-"URL qui sera utilisée pour accéder au répertoire d'upload. l'URL racine PI "
-"sera ajouté devant si une URL relative est utilisée"
+"URL qui sera utilisée pour accéder au répertoire d'upload. L'URL racine PI "
+"sera ajoutée devant si une URL relative est utilisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:511
@@ -575,8 +577,8 @@ msgid ""
 "Physical path to library directory without trailing slash. Locate the folder "
 "out of web directory to make it secure; PHP executable"
 msgstr ""
-"Chemin physique du repertoire des Librairies sans slash de fin. Localisez le "
-"dossier en dehors du répertoire web pour le sécuriser; PHP y est exécutable"
+"Chemin physique du repertoire des Librairies sans slash de fin. Placez le "
+"dossier en dehors du répertoire web pour le sécuriser; PHP y est exécutable."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:523
@@ -590,8 +592,8 @@ msgid ""
 "Locate the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 "Chemin physique du répertoire des fichiers de données (ouvert en écriture) "
-"SANS slash de fin.  Localisez le dossier en dehors de répertoire web pour le "
-"sécuriser; PHP y est exécutable"
+"SANS slash de fin.  Placez le dossier en dehors du répertoire web pour le "
+"sécuriser; PHP y est exécutable."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:527
@@ -605,18 +607,18 @@ msgid ""
 "the folder out of web directory to make it secure; PHP executable"
 msgstr ""
 "Chemin physique du répertoire des contributions utilisateur SANS slash de "
-"fin. Localisez le dossier en dehors de répertoire web pour sécuriser ; PHP y "
-"est exécutable"
+"fin. Placez le dossier en dehors du répertoire web pour sécuriser ; PHP y "
+"est exécutable."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:570
 msgid "Basic settings"
-msgstr "Paramétrages de base"
+msgstr "Paramètres généraux"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:576
 msgid "Settings required by system"
-msgstr "Paramétrages système requis"
+msgstr "Paramètres requis par le système"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:593
@@ -635,7 +637,7 @@ msgstr ""
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:606
 msgid "Path settings"
-msgstr "Paramètres Chemin"
+msgstr "Paramètrages des Chemins / Paths"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Directive.php:611
@@ -655,7 +657,7 @@ msgstr "Le système a été installé avec succès."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Finish.php:113
 msgid "Click to visit your website!"
-msgstr "Cliquez pour visiter votre site web !"
+msgstr "Cliquez ici pour visiter votre site web !"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Finish.php:114
@@ -682,8 +684,8 @@ msgid ""
 "For security considerations please make sure the following operations are "
 "done:"
 msgstr ""
-"Pour des raisons de sécurité, assurez vous que les opérations suivantes ont "
-"été réalisées: "
+"Pour des raisons de sécurité, assurez-vous que les opérations suivantes ont "
+"été réalisées : "
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Finish.php:118
@@ -703,32 +705,32 @@ msgstr ""
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:86
 msgid "Language Selection"
-msgstr "Selection de la langue"
+msgstr "Sélection de la langue"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:87
 msgid "Choose the language for the installation and website."
-msgstr "Choisissez la langue d'installation et du site web"
+msgstr "Choisissez la langue d'installation et de fonctionnement du site web"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:123
 msgid "Sever setting detection"
-msgstr "Detection des paramètres serveur"
+msgstr "Détection des paramètres serveur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:139
 msgid "Validate server settings and extensions"
-msgstr "Validez les paramètres et extension serveur"
+msgstr "Validez les paramètres et les extensions du serveur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:144
 msgid "System requirements"
-msgstr "Pre-requis système"
+msgstr "Pré-requis système"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:146
 msgid "Server settings and system extensions required by Pi Engine"
-msgstr "Paramétrages serveur et extensions système requises par Pi Engine"
+msgstr "Paramètres serveur et extensions système requis par Pi Engine"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:153
@@ -751,13 +753,14 @@ msgstr "Valide"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:177
 msgid "System extension recommendations"
-msgstr "Extension système recommandées"
+msgstr "Extensions système recommandées"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:179
 msgid "Extensions recommended for better functionality or performance"
 msgstr ""
-"Extensions recommandées pour de meilleurs fonctionnement ou performances"
+"Extensions recommandées pour un meilleur fonctionnement ou de meilleures "
+"performances"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\www\setup/src/Controller/Presetting.php:306

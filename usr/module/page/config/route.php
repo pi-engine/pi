@@ -10,12 +10,13 @@
 return array(
     // route name
     'page'  => array(
+        'name'      => 'page',
         'section'   => 'front',
         'priority'  => 10,
 
         'type'      => 'Module\Page\Route\Page',
         'options'   => array(
-            'route'     => '/page',
+            //'route'     => '/page',
             'defaults'  => array(
                 'module'        => 'page',
                 'controller'    => 'index',

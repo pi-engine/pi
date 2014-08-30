@@ -39,9 +39,6 @@ class SessionManager extends ZendSessionManager implements
     /** @var array Session containers */
     protected $containers = array();
 
-    /** @var array Validator */
-    protected $validators = array();
-
     /** @var bool Session is valid */
     protected $isValid;
 
@@ -62,24 +59,13 @@ class SessionManager extends ZendSessionManager implements
     }
 
     /**
-     * Write session to save handler and close
-     *
-     * Once done, the Storage object will be marked as isImmutable.
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function writeClose()
     {
         // Skip storage writing if validation is failed
         if (!$this->isValid()) {
-            //$this->destroy();
             return;
-        }
-
-        // Set metadata for validators
-        $storage = $this->getStorage();
-        if (!$storage->isImmutable() && $this->validators) {
-            $storage->setMetaData('_VALID', $this->validators);
         }
 
         parent::writeClose();
@@ -93,7 +79,11 @@ class SessionManager extends ZendSessionManager implements
      */
     public function setValidators($validators = array())
     {
-        $this->validators = $validators;
+        $chain = $this->getValidatorChain();
+        foreach ($validators as $validator) {
+            $validator = new $validator();
+            $chain->attach('session.validate', array($validator, 'isValid'));
+        }
 
         return $this;
     }

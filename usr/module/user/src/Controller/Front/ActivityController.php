@@ -120,7 +120,6 @@ class ActivityController extends ActionController
             //'quicklink' => $quicklink,
             //'owner'     => $isOwner,
         ));
-
     }
 
     /**

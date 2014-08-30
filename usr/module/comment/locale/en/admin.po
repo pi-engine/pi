@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-02-10 19:55+0800\n"
-"PO-Revision-Date: 2014-02-10 19:55+0800\n"
+"POT-Creation-Date: 2014-05-21 12:38+0800\n"
+"PO-Revision-Date: 2014-05-21 12:39+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,9 +14,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\comment\n"
 
 #: c:\code\pi\usr\module\comment/config/block.php:13
-#, fuzzy
 msgid "Recent comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:14
 msgid "Recent active comment posts."
@@ -36,7 +35,8 @@ msgid "Module"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:29
-msgid "Select module for articles"
+#: c:\code\pi\usr\module\comment/config/block.php:54
+msgid "Select module for articles."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:38
@@ -57,10 +57,6 @@ msgstr ""
 msgid "Number of articles to display."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/config/block.php:54
-msgid "Select module for articles."
-msgstr ""
-
 #: c:\code\pi\usr\module\comment/config/block.php:60
 msgid "Sort order"
 msgstr ""
@@ -71,14 +67,12 @@ msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:66
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:90
-#, fuzzy
 msgid "Most commented"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:67
-#, fuzzy
 msgid "Last commented"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:68
 msgid "Last published"
@@ -114,19 +108,16 @@ msgid "Excluded roles"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/block.php:102
-#, fuzzy
 msgid "Roles to exclude."
-msgstr "主题更新失败。"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/comment.php:18
-#, fuzzy
 msgid "Article comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/comment.php:31
-#, fuzzy
 msgid "Custom comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/config.php:12
 msgid "Leading page comment limit"
@@ -182,15 +173,13 @@ msgid "Comment"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/module.php:18
-#, fuzzy
 msgid "Comment management and services."
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/nav.php:14
 #: c:\code\pi\usr\module\comment/config/nav.php:61
-#, fuzzy
 msgid "All comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/nav.php:26
 msgid "My comments"
@@ -216,6 +205,8 @@ msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/nav.php:89
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:104
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:217
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:396
 msgid "Inactive posts"
 msgstr ""
 
@@ -236,23 +227,20 @@ msgid "By article"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/nav.php:128
-#, fuzzy
 msgid "Article with comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/nav.php:137
-#, fuzzy
 msgid "Article with active comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/user.php:20
 msgid "Comment posts by me"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/config/user.php:26
-#, fuzzy
 msgid "Comment posts on my articles"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:23
 #, php-format
@@ -291,14 +279,13 @@ msgid "Comment posts by module"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:87
-#, fuzzy
 msgid "Total posts"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/IndexController.php:277
-#, fuzzy, php-format
+#, php-format
 msgid "Demo comment %d."
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:128
 msgid "Comments by username or id"
@@ -310,25 +297,18 @@ msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:200
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:377
-#, fuzzy
 msgid "All Posts"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:208
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:386
 msgid "Active Posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:217
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:396
-msgid "Inactive Posts"
-msgstr ""
-
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:239
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:22
-#, fuzzy
 msgid "Comment types"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/ListController.php:334
 #, php-format
@@ -402,9 +382,9 @@ msgid "Invalid submission."
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:224
-#, fuzzy
-msgid "Operation failed"
-msgstr "主题更新失败。"
+#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:105
+msgid "Operation failed."
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:34
 msgid "Active"
@@ -422,15 +402,9 @@ msgstr ""
 msgid "Invalid operation."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/TypeController.php:105
-#, fuzzy
-msgid "Operation failed."
-msgstr "主题更新失败。"
-
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:5
-#, fuzzy
 msgid "Comment stats"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:10
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:53
@@ -450,9 +424,8 @@ msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:31
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:95
-#, fuzzy
 msgid "Comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-index.phtml:50
 msgid "Active comment posts by module"
@@ -499,23 +472,20 @@ msgstr ""
 #: c:\code\pi\usr\module\comment/template/admin/comment-module-select.phtml:20
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:14
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:30
-#, fuzzy
 msgid "View comments"
-msgstr "All Categories"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:7
 msgid "Enable type"
 msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:23
-#, fuzzy
 msgid "No"
-msgstr "否"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-type.phtml:26
-#, fuzzy
 msgid "Yes"
-msgstr "是"
+msgstr ""
 
 #: c:\code\pi\usr\module\comment/template/admin/comment-user-select.phtml:2
 msgid "Filter comments by a specific user."
@@ -530,15 +500,3 @@ msgstr ""
 #: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:19
 msgid "Submit"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Categories"
-#~ msgstr "All Categories"
-
-#, fuzzy
-#~ msgid "Comment categories"
-#~ msgstr "All Categories"
-
-#, fuzzy
-#~ msgid "All"
-#~ msgstr "All Categories"

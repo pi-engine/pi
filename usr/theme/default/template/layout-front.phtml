@@ -24,6 +24,9 @@ $this->bootstrap(array(
 // Load front.css
 $this->css($this->assetTheme('css/front.css'));
 
+// Load localization css
+$this->css($this->assetLocale('locale.css'));
+
 // Apple icons
 // Apple icon for iphone
 $this->headLink(array(
@@ -176,10 +179,12 @@ $module = Pi::service('module')->current();
 
                 <!-- Module content starts -->
                 <?php if (!empty($content)) { ?>
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
-                </div>
-                <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
+                    <div class="<?php echo $module; ?>">
+                        <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                            <?php echo $content; ?>
+                        </div>
+                        <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
+                    </div>
                 <?php } ?>
                 <!-- Module content ends -->
 

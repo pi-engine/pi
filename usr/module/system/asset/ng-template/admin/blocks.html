@@ -14,8 +14,8 @@
         	<th>{{'Action' | translate}}
     	<tbody>
     		<tr ng-repeat="block in blocks | filter:{title:searchTitle}">
-    			<td>{{block.title}}
-    			<td>{{block.description}}
+    			<td>{{block.title}}</td>
+    			<td>{{block.description}}</td>
     			<td>
             <div class="dropdown">
               <button type="button" class="btn btn-default dropdown-toggle"
@@ -35,17 +35,21 @@
                 </li>
               </ul>
             </div>
+                </td>
     			<td>
+                    <a class="btn btn-link" ng-href="{{block.previewUrl}}" target="_blank">
+                        {{'Preview' | translate}}
+                    </a>
     				<a class="btn btn-link" ng-href="{{block.editUrl}}">
-              {{'Edit' | translate}}
+                        {{'Edit' | translate}}
     				</a>
-            <a ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
-              {{'Delete' | translate}}
-            </a>
-            <a class="btn btn-link" ng-if="block.clonable" 
-               ng-href="{{block.cloneUrl}}">
-              {{'Clone' | translate}}
-            </a>
+                    <a class="btn btn-link" ng-if="block.clonable" ng-href="{{block.cloneUrl}}">
+                        {{'Clone' | translate}}
+                    </a>
+                    <a ng-if="block.cloned" class="btn btn-link" ng-href="{{block.deleteUrl}}">
+                        {{'Delete' | translate}}
+                    </a>
+                </td>
   	</table>
   </div>
 </div>

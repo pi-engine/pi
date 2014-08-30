@@ -15,7 +15,7 @@ use Zend\Filter\AbstractFilter;
 /**
  * User name filter
  *
- * Transiliate specified format of user identifier into tag links:
+ * Translierate specified format of user identifier into tag links:
  * From `@term` to
  * `<a href="<user-profile-link>/term" title="User term">@term</a>`
  *

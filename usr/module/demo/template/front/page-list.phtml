@@ -1,0 +1,13 @@
+<h2 class="page-header"><?php _e('Demo Page List'); ?></h2>
+
+<ul>
+<?php foreach ($pages as $page) {?>
+    <li><a href="<?php echo $page['url']; ?>"><?php echo _escape($page['title']); ?></a><span class="pull-right"><?php echo _date($page['time']); ?></span></li>
+<?php } ?>
+</ul>
+
+<?php
+if (!empty($paginator)) {
+    echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml');
+}
+?>

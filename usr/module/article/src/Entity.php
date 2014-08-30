@@ -455,11 +455,13 @@ class Entity
                 */
 
                 if (empty($columns) || in_array('subject', $columns)) {
-                    $route      = Pi::api('api', $module)->getRouteName($module);
+                    //$route = Pi::api('api', $this->module)->getRouteName();
+                    $route = 'article';
                     $row['url'] = Pi::service('url')->assemble($route, array(
-                        'time'   => date('Ymd', $row['time_publish']),
-                        'id'     => $row['id'],
-                        'slug'   => $extended[$row['id']]['slug'],
+                        'module'    => $module,
+                        'time'      => date('Ymd', $row['time_publish']),
+                        'id'        => $row['id'],
+                        'slug'      => isset($extended[$row['id']]) ? $extended[$row['id']]['slug'] : '',
                     ));
                 }
                 
@@ -529,6 +531,8 @@ class Entity
             $subtitle = Pi::service('markup')->render($row->subtitle, 'html');
         }
         $content = Compiled::getContent($row->id, 'html');
+        
+        $categories = Pi::api('api', $module)->getCategoryList();
 
         $result  = array(
             'title'         => $subject,
@@ -545,6 +549,7 @@ class Entity
             'attachment'    => array(),
             'tag'           => '',
             'related'       => array(),
+            'category_title' => $categories[$row->category]['title'],
         );
 
         // Get author
@@ -632,7 +637,7 @@ class Entity
 
         // Getting seo
         $modelExtended  = Pi::model('extended', $module);
-        $rowExtended    = $modelExtended->find($row->id, $module);
+        $rowExtended    = $modelExtended->find($row->id, 'article');
         if ($rowExtended) {
             $result['slug'] = $rowExtended->slug;
             $result['seo']  = array(
@@ -644,7 +649,7 @@ class Entity
         
         // Getting stats data
         $modelStatis    = Pi::model('stats', $module);
-        $rowStatis      = $modelStatis->find($row->id, $module);
+        $rowStatis      = $modelStatis->find($row->id, 'article');
         if ($rowStatis) {
             $result['visits'] = $rowStatis->visits;
         }
@@ -662,7 +667,7 @@ class Entity
      */
     public static function getSummary($from = 'my', $rules = array())
     {
-        // Processing user managment category
+        // Processing user management category
         $categories = array_keys($rules);
                     
         $module = Pi::service('module')->current();

@@ -17,7 +17,7 @@ return array(
         'name'      => 'comment',
         'type'      => 'Module\Comment\Route\Comment',
         'options'   => array(
-            'route'     => '/comment',
+            'prefix'    => '/comment',
             'defaults'  => array(
                 'module'        => 'comment',
                 'controller'    => 'index',

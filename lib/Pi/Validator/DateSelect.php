@@ -17,7 +17,7 @@ class DateSelect extends DateValidator
     /**
      * {@inheritDoc}
      */
-    protected $format = 'Y-m-d';
+    //protected $format = 'Y-m-d';
 
     /**
      * {@inheritDoc}

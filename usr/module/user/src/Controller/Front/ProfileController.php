@@ -15,7 +15,7 @@ use Module\User\Form\ProfileEditForm;
 use Module\User\Form\ProfileEditFilter;
 use Module\User\Form\CompoundForm;
 use Module\User\Form\CompoundFilter;
-use Pi\Paginator\Paginator;
+//use Pi\Paginator\Paginator;
 
 /**
  * Profile controller
@@ -50,10 +50,7 @@ class ProfileController extends ActionController
 
         $this->view()->headTitle(__('User profile'));
         $this->view()->headdescription(__('view profile'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -87,10 +84,7 @@ class ProfileController extends ActionController
 
         $this->view()->headTitle(__('User profile'));
         $this->view()->headdescription(__('view profile'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -174,10 +168,7 @@ class ProfileController extends ActionController
 
         $this->view()->headTitle(__('Edit profile'));
         $this->view()->headdescription(__('Edit profile data.'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -225,10 +216,7 @@ class ProfileController extends ActionController
 
         $this->view()->headTitle(__('Edit profile'));
         $this->view()->headdescription(__('Edit profile data.'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -551,6 +539,9 @@ class ProfileController extends ActionController
                 $fields = Pi::registry('display_field', 'user')->read($gid);
                 $list   = array();
                 foreach ($fields as $field) {
+                    if (!isset($meta[$field]['title'])) {
+                        continue;
+                    }
                     $list[$field] = array(
                         'title' => $meta[$field]['title'],
                         'value' => isset($profile[$field]) ? $profile[$field] : '',

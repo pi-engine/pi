@@ -101,4 +101,48 @@ class Theme extends AbstractService
 
         return $parent;
     }
+
+    /**
+     * Get list of themes
+     *
+     * @param string $type
+     *
+     * @return array
+     */
+    public function getThemes($type = 'front')
+    {
+        $list = array();
+        $themes = Pi::registry('theme')->read($type);
+        foreach($themes as $name => $theme) {
+            $list[$name] = $theme['title'];
+        }
+
+        return $list;
+    }
+
+    /**
+     * Get layout list of a theme
+     *
+     * @param string $theme
+     *
+     * @return array
+     */
+    public function getLayouts($theme = '')
+    {
+        $list = array(
+            'layout-front'      => __('Full layout (header/footer and blocks)'),
+            'layout-simple'     => __('Simple layout (header/footer)'),
+            'layout-style'      => __('Content only (with style)'),
+            'layout-content'    => __('Raw content (no style)'),
+        );
+        if ($theme) {
+            Pi::service('i18n')->loadTheme('default', $theme);
+            $config = $this->loadConfig($theme);
+            if (!empty($config['layout'])) {
+                $list += $config['layout'];
+            }
+        }
+
+        return $list;
+    }
 }

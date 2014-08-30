@@ -1,0 +1,12 @@
+
+jQuery/jQueryUI changelog
+
+July 9th, 2014
+=============
+Upgraded jQueryUI to 1.11.0
+Note: `jquery-ui.custom.min.js` is identical to `jquery-ui.min.js`, and solely kept for BC support.
+
+
+May 31st, 2014
+=============
+Upgraded jQuery to 1.11.1

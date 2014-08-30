@@ -72,6 +72,16 @@ class PageFilter extends InputFilter
         ));
 
         $this->add(array(
+            'name'          => 'theme',
+            'required'      => false,
+        ));
+
+        $this->add(array(
+            'name'          => 'layout',
+            'required'      => false,
+        ));
+
+        $this->add(array(
             'name'          => 'content',
             'filters'       => array(
                 array(

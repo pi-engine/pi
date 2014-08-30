@@ -634,12 +634,12 @@ class Form extends Fieldset implements FormInterface
                 }
 
                 $value = $values;
-            } else {
-                if (!isset($data[$key])) {
-                    $data[$key] = array();
-                }
-                $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
             }
+
+            if (!isset($data[$key])) {
+                $data[$key] = array();
+            }
+            $this->prepareValidationGroup($fieldset, $data[$key], $validationGroup[$key]);
         }
     }
 
@@ -760,7 +760,7 @@ class Form extends Fieldset implements FormInterface
             $elements = $fieldset->getElements();
         }
 
-        if (!$fieldset instanceof Collection || $inputFilter instanceof CollectionInputFilter) {
+        if (!$fieldset instanceof Collection || !$fieldset->getTargetElement() instanceof FieldsetInterface || $inputFilter instanceof CollectionInputFilter) {
             foreach ($elements as $element) {
                 $name = $element->getName();
 

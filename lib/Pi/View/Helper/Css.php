@@ -26,7 +26,7 @@ use Pi;
  *
  *  // Load specific file with attributes
  *  $this->css('some.css',
- *             array('conditional' => '...', 'postion' => 'prepend'));
+ *             array('conditional' => '...', 'position' => 'prepend'));
  *
  *  // Load a list of files
  *  $this->css(array(

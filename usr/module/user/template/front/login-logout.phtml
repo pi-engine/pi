@@ -1,3 +1,4 @@
+<?php $this->css($this->assetModule('front/front.css')); ?>
 <div class="page-header">
     <h2><?php echo _escape($title); ?></h2>
 </div>
@@ -12,8 +13,15 @@
     ?>
 </div>
 
-<div class="empty">
-    <strong><?php _e('Choose: '); ?></strong>
-    <span><a href="<?php echo Pi::service('authentication')->getUrl('login', ''); ?>" title="<?php _e('Login'); ?>"><?php _e('Login'); ?></a></span>
-    <span><a href="<?php echo Pi::service('user')->getUrl('register'); ?>" title="<?php _e('Register'); ?>"><?php _e('Register'); ?></a></span>
+<div class="user-action-bar">
+    <div class="col-md-offset-2 col-md-10">
+        <ul class="list-inline">
+            <li>
+                <a title="<?php _e('Login'); ?>" href="<?php echo Pi::service('authentication')->getUrl('login', ''); ?>"><?php _e('Login'); ?></a>
+            </li>
+            <li>
+                <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
+            </li>
+        </ul>
+    </div>
 </div>

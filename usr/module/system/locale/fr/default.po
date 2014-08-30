@@ -1,0 +1,747 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-system\n"
+"POT-Creation-Date: 2014-05-20 18:08+0100\n"
+"PO-Revision-Date: 2014-05-28 17:48+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\system\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:31
+#, php-format
+msgid "Module `%s` installed"
+msgstr "Le module `%s` a été installé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:33
+#, php-format
+msgid "The module `%s` is installed successfully."
+msgstr "Le module `%s` s'est installé avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:51
+#, php-format
+msgid "Module `%s` uninstalled"
+msgstr "Le module `%s` a été désinstallé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:53
+#, php-format
+msgid "The module `%s` is uninstalled successfully."
+msgstr "Le module `%s` a été désinstallé avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:71
+#, php-format
+msgid "Module `%s` updated"
+msgstr "Le module `%s` a été mis à jour"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:73
+#, php-format
+msgid "The module `%s` is updated successfully."
+msgstr "Le module `%s` a été mis à jour avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:91
+#, php-format
+msgid "Module `%s` activated"
+msgstr "Le module `%s` est activé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:93
+#, php-format
+msgid "The module `%s` is activated successfully."
+msgstr "Le module `%s` a été activé avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:111
+#, php-format
+msgid "Module %s deactivated"
+msgstr "Le module %s est déasactivé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Api/Event.php:113
+#, php-format
+msgid "The module %s is deactivated successfully."
+msgstr "Le module %s a été désactivé avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:333
+msgid "Bootstrap compiled successfully."
+msgstr "Bootstrap a été compilé avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:376
+msgid "Bootstrap reset successfully."
+msgstr "Boostrap réinitialisé avec succès"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
+msgid "What's new"
+msgstr "Nouveautés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Feed/IndexController.php:33
+msgid "Recent module updates."
+msgstr "Mises à jour récentes du module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:71
+#, php-format
+msgid ""
+"Login with the account is suspended,\n"
+"                            please wait for %d minutes to try again."
+msgstr ""
+"La connexion avec le compte est suspendue,\n"
+"                            merci d'attendre pendant %d minutes pour essayer "
+"de nouveau."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:80
+#, php-format
+msgid "You have %d times to try."
+msgstr "Il vous reste %d  essais"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:88
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:94
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-disabled.phtml:2
+msgid "User login"
+msgstr "Connexion utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:93
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:109
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:17
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:10
+msgid "Login"
+msgstr "Connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:95
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:129
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:77
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:54
+msgid "login,register,find,password,user,account"
+msgstr "connexion, inscription, rappel, mot de passe, utilisateur, compte"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:112
+msgid "Invalid request."
+msgstr "Demande non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:156
+msgid "You have tried too many times. Please try later."
+msgstr "Vous avez tenté trop de fois. Merci d'essayer plus tard."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:180
+msgid "Invalid credentials provided, please try again."
+msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:222
+msgid "You have logged in successfully."
+msgstr "Vous vous êtes connectés avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:241
+msgid "You logged out successfully."
+msgstr "Vous vous êtes déconnectés avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
+msgid "Find password failed."
+msgstr "Le rappel de mot de passe a échoué."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:118
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr ""
+"Le mail de confirmation a été envoyé avec succès. Merci de vérifier vos "
+"mails pour réinitialiser votre mot de passe."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:127
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:128
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/FindPasswordForm.php:51
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login.phtml:14
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-find.phtml:2
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:9
+msgid "Find password"
+msgstr "Rappel mot de passe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:143
+msgid "Invalid token for password reset."
+msgstr "Token non valide pour la réinitialisation du mot de passe."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:197
+msgid "Password reset successfully."
+msgstr "Le mot de passe a été réinitialisé avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:47
+msgid "Change password"
+msgstr "Changer de mot de passe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:63
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
+msgid "ID"
+msgstr "N°"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
+msgid "Username"
+msgstr "Nom utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/FindPasswordForm.php:26
+msgid "Email"
+msgstr "Email"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "Pseudo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:61
+msgid "Role"
+msgstr "Rôle"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:62
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:58
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:62
+msgid "Password"
+msgstr "Mot de passe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:67
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:75
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:76
+msgid "User profile"
+msgstr "Profil utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:49
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:53
+msgid "User account register"
+msgstr "Inscription du compte utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:52
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:110
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:18
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login.phtml:17
+msgid "Register"
+msgstr "S'inscrire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:80
+msgid "Invalid input, please try again."
+msgstr "Donnée non valide, merci d'essayer de nouveau."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:99
+msgid "The account is not created in database, please try again."
+msgstr ""
+"Le compte n'a pas été créé dans la base de donnée, merci d'essayer de "
+"nouveau."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/TestController.php:46
+msgid "site name"
+msgstr "nom du site"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/TestController.php:170
+#, php-format
+msgid "Greetings in raw body %d"
+msgstr "Remerciements dans le code source %d"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Module/IndexController.php:30
+msgid "Admin area"
+msgstr "Zone Admin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:47
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:59
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:32
+msgid "User account"
+msgstr "Nom utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:58
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:70
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:42
+msgid "Display name"
+msgstr "Pseudo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:69
+msgid "Birthdate"
+msgstr "Date de naissance"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:93
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:189
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ConfigForm.php:58
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:157
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleForm.php:58
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavForm.php:67
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:131
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:126
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:74
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:100
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ResetPasswordForm.php:73
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:115
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:49
+msgid "Submit"
+msgstr "Valider"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:61
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleForm.php:40
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavForm.php:40
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:45
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:54
+msgid "Title"
+msgstr "Nom"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:65
+msgid "Block label for display."
+msgstr "Label du bloc pour l'affichage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:73
+msgid "Hide title"
+msgstr "Cacher le nom"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:76
+msgid "Hide block title from display."
+msgstr "Ne pas afficher le nom du bloc"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:84
+msgid "Full-size body"
+msgstr "Corps de page (Body) pleine taille"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:87
+msgid "Display block body in full-size w/o padding."
+msgstr "Afficher le corps de bloc en pleine taille sans effet padding"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:94
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleForm.php:30
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavForm.php:30
+msgid "Unique name"
+msgstr "Nom unique"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:98
+msgid "A unique name to be called as widget."
+msgstr "Nom unique pour être appelé comme widget"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:106
+msgid "Template"
+msgstr "Modèle (Template)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:111
+msgid "PHTML rendering template, file extension is optional."
+msgstr ""
+"Modèle de présentation PHTML (template), extension fichier optionnelle."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:119
+msgid "Description"
+msgstr "Description"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:123
+msgid "Set a hint to distinguish the block."
+msgstr "Définir une clef pour distinguer le bloc"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:130
+msgid "Subline"
+msgstr "Ligne d'en dessous"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:134
+msgid "Header subline. HTML is allowed."
+msgstr "Sous ligne du Header, HTML autorisé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:141
+msgid "Style class"
+msgstr "Style de la classe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+msgid "Specified block container CSS class."
+msgstr "Classe CSS du bloc container spécifié"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:153
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:46
+msgid "Cache TTL"
+msgstr "Durée de vie du Cache (TTL)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:161
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:54
+msgid "Cache level"
+msgstr "Niveau de cache"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:209
+msgid "Configs"
+msgstr "Paramètres"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/Element/Controller.php:53
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:78
+msgid "None"
+msgstr "Aucun"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/FindPasswordForm.php:36
+msgid "Please type the word"
+msgstr "Merci de saisir les caractères affichés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:70
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:84
+msgid "Please type the word."
+msgstr "Merci de saisir les caractères affichés."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:81
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:85
+msgid "Remember me"
+msgstr "Se souvenir"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:81
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:52
+msgid "Email address"
+msgstr "Adresse email"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:93
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:101
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:72
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ResetPasswordForm.php:52
+msgid "Confirm password"
+msgstr "Confimer le mot de passe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:110
+msgid "User role"
+msgstr "Rôle Utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:121
+msgid "Management role"
+msgstr "Rôle de Management"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:133
+msgid "Active"
+msgstr "Actif"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:30
+msgid "Label"
+msgstr "Label"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:37
+msgid "Route"
+msgstr "Route"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:40
+msgid "Route to assemble URI."
+msgstr "Route pour construire l'URI."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:47
+msgid "Module"
+msgstr "Module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:54
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:63
+msgid "Controller"
+msgstr "Controller"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:61
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:72
+msgid "Action"
+msgstr "Action"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:68
+msgid "URI"
+msgstr "URI"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:76
+msgid "Open target"
+msgstr "Ouvrir la cible"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:79
+msgid "Current window"
+msgstr "Fenêtre courante"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:80
+msgid "Open a new window"
+msgstr "Ouvrir une nouvelle fenêtre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:88
+msgid "Permission resource"
+msgstr "Type de permission"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:92
+msgid "The resource identity for permission check."
+msgstr "Type de ressource pour le contrôle des droits."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:100
+msgid "Display"
+msgstr "Affichage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:103
+msgid "To display in menu."
+msgstr "A afficher dans le menu."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:31
+msgid "Cache type"
+msgstr "Type de cache"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:35
+msgid "Page wide"
+msgstr "Largeur de la page"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:36
+msgid "Action data"
+msgstr "Données actives"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:65
+msgid "Section"
+msgstr "Section"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:67
+msgid "Front"
+msgstr "Front"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:68
+msgid "Admin"
+msgstr "Admin"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\system/src/Menu.php:240
+msgid "Uncategorized"
+msgstr "Non catégorisé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Navigation.php:161
+msgid "Edit a block"
+msgstr "Editer un bloc"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Navigation.php:172
+msgid "Clone a block"
+msgstr "Cloner un block"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Navigation.php:218
+msgid "Block layout"
+msgstr "Mise en forme du bloc"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Navigation.php:229
+msgid "Setup page"
+msgstr "Page de configuration"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Password.php:50
+msgid "Password is less than %min% characters long"
+msgstr "Le mot de passe a une longueur de moins de %min% caractères"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Password.php:51
+msgid "Password is more than %max% characters long"
+msgstr "Le mot de passe a une longueur de plus de %max% caractères"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:50
+msgid "Cancel"
+msgstr "Annuler"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-customize.phtml:19
+msgid "In process of compiling"
+msgstr "Compilation en cours"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-customize.phtml:20
+msgid "Compile"
+msgstr "Compiler"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-customize.phtml:21
+msgid "Rebuild"
+msgstr "Reconstruire"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:32
+msgid "Customize"
+msgstr "Personnaliser"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, la connexion est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:8
+msgid "homepage"
+msgstr "accueil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:10
+msgid "re-login"
+msgstr "se reconnecter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:11
+#, php-format
+msgid "You have logged out successfully, please go to %s or to %s."
+msgstr "Vous vous êtes déconnectés avec succès, merci d'aller %s ou de %s."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:16
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:8
+msgid "Choose: "
+msgstr "Choisissez :"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-message.phtml:8
+msgid "logout"
+msgstr "deconnexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-message.phtml:9
+#, php-format
+msgid ""
+"You have been logged on with account <strong>%s</strong>, please %s to re-"
+"login."
+msgstr ""
+"Vous vous êtes connectés avec le compte <strong>%s</strong>, merci %s de "
+"vous reconnecter."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:9
+#, php-format
+msgid "You have logged in successfully, please go to %s."
+msgstr "Vous vous êtes connectés avec succès, merci d'aller à %s."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-process.phtml:1
+msgid "Reset password"
+msgstr "Réinitialiser le mot de passe"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-process.phtml:8
+msgid "Try to find password again"
+msgstr "Essayer de trouver le mot de passe de nouveau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-process.phtml:13
+msgid "Congratulations!"
+msgstr "Félicitations !"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-process.phtml:14
+msgid "Your new password has worked"
+msgstr "Votre nouveau mot de passe a fonctionné"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-process.phtml:16
+msgid "Please login"
+msgstr "Merci de vous connecter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-disabled.phtml:2
+msgid "User account registration"
+msgstr "Création du compte utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr ""
+"Désolé, l'inscription est temporairement désactivée. Merci de revenir plus "
+"tard."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:11
+msgid "login"
+msgstr "vous connecter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:12
+#, php-format
+msgid "You have registered successfully, please go to %s or to %s."
+msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."

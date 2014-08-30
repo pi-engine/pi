@@ -15,7 +15,7 @@ return array(
         // Description, for admin, optional
         'description'   => _a('Single page for direct content display.'),
         // Version number, required
-        'version'       => '1.2.1',
+        'version'       => '1.2.2',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional
@@ -24,6 +24,8 @@ return array(
         'demo'          => 'http://demo.pialog.org/demo',
 
         'icon'          => 'fa-file-text-o',
+
+        'clonable'      => true,
     ),
     // Author information
     'author'    => array(

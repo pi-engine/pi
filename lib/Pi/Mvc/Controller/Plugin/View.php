@@ -9,6 +9,7 @@
 
 namespace Pi\Mvc\Controller\Plugin;
 
+use Pi;
 use Zend\View\Model\ViewModel;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Zend\Mvc\MvcEvent;
@@ -193,6 +194,19 @@ class View extends AbstractPlugin
         }
 
         return $this->viewModel;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param string $theme
+     * @return $this
+     */
+    public function setTheme($theme)
+    {
+        Pi::service('theme')->setTheme($theme);
+
+        return $this;
     }
 
     /**

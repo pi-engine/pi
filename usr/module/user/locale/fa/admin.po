@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-03-20 09:35+0330\n"
-"PO-Revision-Date: 2014-03-20 09:35+0330\n"
+"POT-Creation-Date: 2014-08-29 15:32+0330\n"
+"PO-Revision-Date: 2014-08-29 15:51+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -12,488 +12,497 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/user\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"user\n"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Installer/Action/Install.php:138
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Installer/Action/Install.php:138
 msgid "Basic profile"
 msgstr "پروفایل پایه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:177
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:177
 msgid "Add user failed: user already exists."
 msgstr "خطا در اضافه کردن کاربر : این کاربر وجود دارد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:193
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:193
 msgid "Add user failed: invalid operation."
 msgstr "خطا در اضافه کردن کاربر : عملکرد اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:214
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:214
 msgid "Add user successfully"
 msgstr "کاربر با موفقیت اضافه شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:325
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:325
 msgid "Enable user failed: invalid uid."
 msgstr "خطا در فعال سازی کاربر : شناسه کاربری اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:346
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:346
 #, php-format
 msgid "%d users enabled."
 msgstr "%d کاربر فعال شدند"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:366
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:366
 msgid "Disable user failed: invalid uid."
 msgstr "خطا در غیر فعال سازی کاربر : شناسه کاربری اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:387
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:387
 #, php-format
 msgid "%d disable user successfully"
 msgstr "%d کاربر با موفقیت غیر فعال شدند"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:407
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:407
 msgid "Delete user failed: invalid uid"
 msgstr "خطا در حذف کاربر : شناسه کاربری اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:436
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:436
 #, php-format
 msgid "%d delete user successfully"
 msgstr "%d کاربر با موفقیت حذف شدند"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:456
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:462
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:456
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:462
 msgid "Activate user failed: invalid uid."
 msgstr "خطا در فعال سازی کاربر : شناسه کاربری اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:483
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:483
 #, php-format
 msgid "%d users activated."
 msgstr "%d کاربر فعال شدند"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:508
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:508
 msgid "Role assignment failed: invalid parameters."
 msgstr "خطا در واگذاری نقش : پارامتر های اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:514
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:514
 msgid "Role assignment failed: invalid user ids."
 msgstr "خطا در واگذاری نقش : شناسه کاربری اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:519
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:519
 msgid "Role assignment failed: invalid operation."
 msgstr "خطا در واگذاری نقش : عملکرد اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:529
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:547
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:529
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:547
 msgid "Role assignment failed."
 msgstr "خطا در واگذاری نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/IndexController.php:566
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/IndexController.php:566
 msgid "Role assignment succeeded."
 msgstr "واگذاری نقش موفقیت آمیز بود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/ProfileController.php:239
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/ProfileController.php:242
 msgid "Profile dress-up data saved successfully."
 msgstr "تنظیم حالت نمایشی پروفایل با موفقیت ذخیره شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/ProfileController.php:363
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/ProfileController.php:366
 msgid "Privacy set up failed: invalid field."
 msgstr "خطا در تنظیم حریم خصوصی :‌ فیلد اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/ProfileController.php:368
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/ProfileController.php:371
 msgid "Privacy set up failed: invalid privacy."
 msgstr "خطا در تنظیم حریم خصوصی :‌  حریم خصوصی اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/ProfileController.php:390
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/ProfileController.php:393
 msgid "Privacy set up failed: update error."
 msgstr "خطا در تنظیم حریم خصوصی :‌  خطای به روز رسانی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/ProfileController.php:405
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/ProfileController.php:408
 msgid "Privacy set up successfully."
 msgstr "تنظیم حریم خصوصی با موفقیت ذخیره شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:47
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:173
-msgid "Edit user info failed"
-msgstr "ویرایش اطلاعات کاربر موفقیت آمیز نبود"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:173
+msgid "User data update failed."
+msgstr "خطا در به روز رسانی اطلاعات کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:61
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:214
-msgid "Edit user info successfully"
-msgstr "اطلاعات کاربر با موفقیت ویرایش شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:214
+msgid "User data update successful."
+msgstr "اطلاعات کاربر با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:107
-msgid "Replace user avater failed"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:107
+msgid "User avatar change failed."
 msgstr "خطا در تعویض آواتار کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:112
-msgid "Replace user avater successfully"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:112
+msgid "User avatar change successful."
 msgstr "آواتار کاربر با موفقیت تعویض شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:264
-msgid "Delete this group successfully"
-msgstr "این گروه با موفقیت حذف شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:264
+msgid "Group deleted successfully."
+msgstr "گروه با موفقیت حذف شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:324
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:324
 msgid "Base info"
 msgstr "اطلاعات پایه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:331
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:37
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:134
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:331
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:134
 msgid "Avatar"
 msgstr "آواتار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/EditController.php:372
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/MaintenanceController.php:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/EditController.php:376
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/MaintenanceController.php:55
 msgid "User was not found."
 msgstr "کاربر یافت نشد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/RoleController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/RoleController.php:102
 msgid "User removed from the role."
 msgstr "کاربر از این نقش حذف شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/RoleController.php:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/RoleController.php:106
 msgid "User not in the role."
 msgstr "کاربر در این نقش نیست"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/RoleController.php:124
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/RoleController.php:124
 msgid "User added to the role."
 msgstr "کاربر به این نقش اضافه شد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/RoleController.php:135
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/RoleController.php:135
 msgid "User already in the role."
 msgstr "کاربر هم اکنون این نقش را دارد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/RoleController.php:140
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/RoleController.php:140
 msgid "User not found."
 msgstr "کاربری یافت نشد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/RoleController.php:193
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/RoleController.php:193
 #, php-format
 msgid "Users of role %s"
 msgstr "کاربران دارای نقش %s"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/MaintenanceController.php:208
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/MaintenanceController.php:208
 msgid "Clear failed."
 msgstr "خالی کردن فیلد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/MaintenanceController.php:218
-#: /var/www/html/local/pi/pi/usr/module/user/src/Controller/Admin/MaintenanceController.php:235
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/MaintenanceController.php:218
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Admin/MaintenanceController.php:235
 msgid "Clear all deleted user successfully."
 msgstr "خالی کردن تمام کاربران حذف شده موفقیت آمیز بود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:18
 msgid "User account"
 msgstr "حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:24
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:30
 msgid "Roles"
 msgstr "نقش ها"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:36
 msgid "Profile fields"
 msgstr "فیلد های پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:51
 msgid "Avatars"
 msgstr "آواتار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:57
 msgid "Forms"
 msgstr "فرم ها"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:63
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:141
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:141
 msgid "Plugin management"
 msgstr "مدیریت افزونه ها"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:69
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:179
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:179
 msgid "Maintenance"
 msgstr "تعمیرات"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/permission.php:75
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:217
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/permission.php:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:217
 msgid "Inquiry"
 msgstr "استعلام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/form.register.php:28
-msgid "Confirm credential"
-msgstr "تایید واژه رمز"
-
-#: /var/www/html/local/pi/pi/usr/module/user/config/form.register.php:60
-msgid "Please type the word."
-msgstr "لطفا این کلمه را وارد کنید"
-
-#: /var/www/html/local/pi/pi/usr/module/user/config/module.php:17
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/module.php:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:21
 msgid "User"
 msgstr "کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/module.php:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/module.php:18
 msgid "User profile and services."
 msgstr "پروفایل و سرویس کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:25
 msgid "Login"
 msgstr "ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:29
 msgid "Registration"
 msgstr "ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:33
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:25
 msgid "Account"
 msgstr "حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:44
 msgid "List limit"
 msgstr "محدویت فهرست"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:45
 msgid "Number of items on list page."
 msgstr "تعداد موارد در صفحه فهرست"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:51
 msgid "Birthdate format"
 msgstr "شکل تاریخ تولد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:52
 msgid "Format for birthdate display."
 msgstr "شکل نمایشی تاریخ تولد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:57
 msgid "Email expiration"
 msgstr "انقضا ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:58
 msgid "Expiration time for email/password reset (in hours)."
 msgstr "زمان انقضا برای ایمیل بازیابی کلمه عبور ( به ساعت )"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:64
 msgid "Email confirmation"
 msgstr "تایید ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:65
 msgid "Email confirmation with token is required for email change."
 msgstr "تایید ایمیل با توکن برای تغییر ایمیل نیاز است."
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:72
 msgid "Profile complete"
 msgstr "تکمیل پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:73
 msgid "Require user to complete profile data."
 msgstr "اجبار کاربر به تکمیل حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:80
+msgid "Head keywords"
+msgstr "کلمات کلیدی متا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:81
+msgid "Head keywords for SEO."
+msgstr "کلمات کلیدی متا برای سئو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:82
+msgid ""
+"account,social,tools,privacy,settings,profile,user,login,register,password,"
+"avatar"
+msgstr ""
+"حساب کاربری,شبکه اجتماعی,ابزار,کاربر,ورود,خروج,پسورد,واژه رمز,نشان,آواتار,"
+"حریم خصوصی,پروفایل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:87
 msgid "Login disable"
 msgstr "غیر فعال سازی ورود کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:88
 msgid "Disable user login"
 msgstr "غیر فعال سازی ورود کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:90
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:96
 msgid "Login CAPTCHA"
 msgstr "کپچا برای ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:91
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:97
 msgid "Enable CAPTCHA for user login"
 msgstr "فعال سازی کپچا برای ورود کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:105
 msgid "Remember me"
 msgstr "به خاطر بسپار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:100
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:106
 msgid "Days to remember login, 0 for disable."
 msgstr "روز برای یاد آوری ورود. ، صفر برای غیر فعال بودن"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:113
 msgid "Login field"
 msgstr "فیلد ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:108
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:114
 msgid "Identity field(s) for authentication."
 msgstr "فیلدها لازم برای شناسایی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:116
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:26
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:17
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:30
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:31
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:21
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:43
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:122
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:67
 msgid "Username"
 msgstr "نام کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:117
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:58
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:47
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:33
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:44
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:123
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:71
 msgid "Email"
 msgstr "ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:127
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:133
 msgid "Maximum attempts"
 msgstr "بیشترین تلاش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:128
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:134
 msgid "Maximum attempts allowed to try for user login"
 msgstr "بیشترین تعداد دفعات تلاش برای ورود کاربر به سایت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:136
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:142
 msgid "Register disable"
 msgstr "غیرفعال شدن ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:137
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:143
 msgid "Disable user registration"
 msgstr "غیر فعال شدن ثبت نام کاربران"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:151
 msgid "Register CAPTCHA"
 msgstr "کپچا برای ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:146
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:152
 msgid "Enable CAPTCHA for user registration"
 msgstr "فعال کردن کپچا برای ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:154
-msgid "Register complete"
-msgstr "تکمیل ثبت نام"
-
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:155
-msgid "Require user to complete register data in an extra form."
-msgstr "اجبار کاربران برای تکمیل ثبت نام در فرم دیگر"
-
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:163
-msgid "Email notification"
-msgstr "آگاهری رسانی از طریق ایمیل"
-
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:164
-msgid "Send email notification for register success."
-msgstr "ارسال ایمیل آگاهی رسانی برای ثبت نام های موفق"
-
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:172
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:160
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:19
 msgid "Activation"
 msgstr "فعال سازی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:173
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:161
 msgid "Activation mode for user accounts"
 msgstr "روش فعال سازی حساب کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:178
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:166
 msgid "Automatically activated"
 msgstr "فعال سازی خودکار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:179
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:167
 msgid "Activated by user email"
 msgstr "فعال سازی با ایمیل توسط کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:180
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:168
 msgid "Activated by admin approval"
 msgstr "فعال سازی دستی توسط مدیر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:190
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:178
 msgid "Activation expiration"
 msgstr "انقضا فعال سازی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:191
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:179
 msgid "Expiration time for activation email (in hours)."
 msgstr "زمان انقضا برای ایمیل فعال سازی ( به ساعت )"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:199
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:186
+msgid "Email notification"
+msgstr "آگاهری رسانی از طریق ایمیل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:187
+msgid "Send email notification on register success by admin approval."
+msgstr "ارسال ایمیل آگاهی رسانی برای ثبت نام های موفق با تایید مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:195
+msgid "Register complete"
+msgstr "تکمیل ثبت نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:196
+msgid "Require user to complete register data in an extra form."
+msgstr "اجبار کاربران برای تکمیل ثبت نام در فرم دیگر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:205
 msgid "Username format"
 msgstr "قالب شناسه‌ی کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:200
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:206
 msgid "Format of username for registration."
 msgstr "قالب شناسه برای ثبت‌نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:205
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:238
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:211
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:244
 msgid "Strict: alphabet or number only"
 msgstr "اسکریپت: حروف الفبا یا اعداد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:206
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:239
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:212
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:245
 msgid "Medium: ASCII characters"
 msgstr "متوسط: کاراکترهای ASCII"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:207
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:240
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:213
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:246
 msgid "Loose: multi-byte characters"
 msgstr "راحت: کاراکترهای مالتی بایت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:217
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:223
 msgid "Minimum username"
 msgstr "کمترین طول نام کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:218
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:224
 msgid "Minimum length of username for user registration"
 msgstr "کمترین طول نام کاربری برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:225
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:231
 msgid "Maximum username"
 msgstr "بیشترین طول نام کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:226
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:232
 msgid "Maximum length of username for user registration"
 msgstr "بیشترین طول نام کاربری برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:232
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:238
 msgid "Display name format"
 msgstr "قالب نام نمایشی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:233
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:239
 msgid "Format of display name for registration."
 msgstr "قالب نام نمایشی برای ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:250
-msgid "Minmum display name"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:256
+msgid "Minimum display name"
 msgstr "کمترین طول نام نمایشی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:251
-msgid "Minmum length of display name for user registration"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:257
+msgid "Minimum length of display name for user registration"
 msgstr "کمترین طول نام نمایشی برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:258
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:264
 msgid "Maximum display name"
 msgstr "بیشترین طول نام نمایشی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:259
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:265
 msgid "Maximum length of display name for user registration"
 msgstr "بیشترین طول نام نمایشی برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:266
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:272
 msgid "Minimum password"
 msgstr "کمترین طول کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:267
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:273
 msgid "Minimum length of password for user registration"
 msgstr "کمترین طول کلمه عبور برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:274
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:280
 msgid "Maximum password"
 msgstr "بیشترین طول کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:275
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:281
 msgid "Maximum length of password for user registration"
 msgstr "بیشترین طول کلمه عبور برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:282
-msgid "Username backlist"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:288
+msgid "Username blacklist"
 msgstr "لیست سایه نام کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:283
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:289
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -501,11 +510,11 @@ msgstr ""
 "فهرست نام های کاربری غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده "
 "مجاز است."
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:290
-msgid "Display backlist"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:296
+msgid "Display blacklist"
 msgstr "لیست سیاه نام نمایشی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:291
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:297
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
@@ -513,260 +522,261 @@ msgstr ""
 "فهرست نام های نمایشی غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده "
 "مجاز است."
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:298
-msgid "Email backlist"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:304
+msgid "Email blacklist"
 msgstr "لیست سیاه ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:299
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:305
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "فهرست ایمیل ها غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده مجاز "
 "است."
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:308
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:314
 msgid "Max Avatar Width"
 msgstr "بیشترین عرض آواتار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:309
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:315
 msgid "Allowed image width, 0 for no limit"
 msgstr "عرض تصویر مجار، صفر یعنی بدون محدودیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:315
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:322
 msgid "Max Avatar Height"
 msgstr "بیشترین ارتفاع آواتار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:316
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:323
 msgid "Allowed image height, 0 for no limit"
 msgstr "ارتفاع تصویر مجار، صفر یعنی بدون محدودیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:322
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:330
 msgid "Max File Size"
 msgstr "بیشترین حجم فایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:323
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:331
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "فایل های آواتار مورد تایید برای بارگذاری ( به کیلوبایت ) ، صفر یعنی بدون "
 "محدودیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:338
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:347
 msgid "Temporary Path"
 msgstr "مسیر موقت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/config.php:339
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:348
 msgid "For temporary storage of avatar"
 msgstr "برای منبع موقت ذخیره سازی آواتار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:38
 msgid "All"
 msgstr "همه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:46
 msgid "Activated user"
 msgstr "کاربران فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:54
 msgid "Pending user"
 msgstr "کاربران در انتظار تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:62
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:34
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:36
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:66
 msgid "Add user"
 msgstr "اضافه کردن کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:70
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:82
 msgid "Advanced search"
 msgstr "جستجوی پیشرفته"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:81
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:29
 msgid "Role"
 msgstr "نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:91
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:91
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:26
 msgid "Profile"
 msgstr "پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:102
 msgid "Profile field"
 msgstr "فیلد پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:110
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:110
 msgid "Profile dress up"
 msgstr "تنظیم نمایش پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:118
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:118
 msgid "Field privacy"
 msgstr "حریم خصوصی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:129
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:129
 msgid "Form"
 msgstr "فرم"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:152
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:152
 msgid "Timeline"
 msgstr "نوار زمان"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:160
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:160
 msgid "Activity"
 msgstr "فعالیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:168
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:168
 msgid "Quicklink"
 msgstr "لینک های سریع"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:190
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:190
 msgid "Stats"
 msgstr "آمار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:198
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:198
 msgid "User log"
 msgstr "گزارش فعالیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/nav.php:206
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/nav.php:206
 msgid "Deleted users"
 msgstr "کاربران حذف شده"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:42
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:46
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:72
 msgid "Password"
 msgstr "واژه رمز"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:81
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:14
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:32
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:22
 msgid "Display name"
 msgstr "نام نمایشی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:96
 msgid "Gender"
 msgstr "جنثیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:106
 msgid "Birthdate"
 msgstr "تاریخ تولد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:145
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:50
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:26
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:48
 msgid "Active"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:155
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:31
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:44
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:155
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:30
 msgid "Register time"
 msgstr "تاریخ ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:165
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:165
 msgid "Activation time"
 msgstr "زمان فعال شدن"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:175
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:175
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:53
 msgid "Disabled time"
 msgstr "زمان غیر فعال شدن"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:186
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:186
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:41
 msgid "Deleted time"
 msgstr "زمان حذف"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:199
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:199
 msgid "Level"
 msgstr "سطح"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:208
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:208
 msgid "Last modified"
 msgstr "آخرین ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:216
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:216
 msgid "Personal website"
 msgstr "وب سایت شخصی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:224
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:224
 msgid "Short bio"
 msgstr "بیوگرافی کوتاه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:232
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:232
 msgid "Signature"
 msgstr "امضا"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:241
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:78
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:83
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:241
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:83
 msgid "Register IP"
 msgstr "آی پی زمان ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:252
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:252
 msgid "Social tools"
 msgstr "ابزار های اجتماعی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:259
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:259
 msgid "Tool name"
 msgstr "نام ابزار"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:262
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:262
 msgid "ID or URL"
 msgstr "آی دی یا آدرس"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:272
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:272
 msgid "User action"
 msgstr "فعالیت کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/config/user.php:284
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/user.php:284
 msgid "Logout"
 msgstr "خروج"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/import.phtml:2
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/import.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/import.phtml:2
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/import.phtml:4
 msgid "Import"
 msgstr "ورود اطلاعات"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:17
 msgid "Item name"
 msgstr "نام آیتم"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:28
 msgid "From module"
 msgstr "از ماژول"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:19
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:24
 msgid "Display"
 msgstr "نمایش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:20
 msgid "Items displayed on the homepage timeline"
 msgstr "آیتم های نمایش داده شده در صفحه تایم لاین کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:21
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:24
 msgid "Yes"
 msgstr "بلی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:22
 msgid "No"
 msgstr "خیر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:23
 msgid "Activities"
 msgstr "فعالیت ها"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:24
 msgid "Activities items repository"
 msgstr "منبع آیتم های فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:25
 msgid ""
 "Items to display on the user\\'s homepage, Drag items vertically to "
 "determine the order displays"
@@ -774,230 +784,224 @@ msgstr ""
 "آیتم های نمایش داده شده در صفحه شخصی کاربر، برای تنظیم وضعیت و موقعیت آیتم "
 "ها ، آنها را بکشید و رها کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:26
 msgid "Quicklinks"
 msgstr "لینک های سریع"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/plugin.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/plugin.phtml:27
 msgid "Quicklinks items repository"
 msgstr "منبع لیتک های سریع"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:15
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:22
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:75
 msgid "Submit"
 msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:16
 msgid "Inquire of user via ID, username, display name or email."
 msgstr "استعلام کاربر بر اساس شناسه، نام کاربری، نام نمایشی یا ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:20
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:43
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:25
 msgid "Activated"
 msgstr "فعال شده"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:21
 msgid "Not activated"
 msgstr "فعال نشده"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:22
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:27
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:23
 msgid "Enabled"
 msgstr "تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:23
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:24
 msgid "Disabled"
 msgstr "غیر تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/inquiry.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/inquiry.phtml:28
 msgid "Unavailable"
 msgstr "غیر قابل دسترس"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:17
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:53
 msgid "Today"
 msgstr "امروز"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:54
 msgid "Last week"
 msgstr "هفته گذشته"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:19
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:55
 msgid "Last month"
 msgstr "ماه گذشته"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:20
 msgid "History"
 msgstr "تاریخ"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:21
 msgid "Register num"
 msgstr "تعداد ثبت نام شده"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:22
 msgid "Activated num"
 msgstr "تعداد فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:23
 msgid "Pending num"
 msgstr "تعداد غیر فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:24
 msgid "Top 10 registered IP"
 msgstr "۱۰ آی پی مورد استفاده برای ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:25
 msgid "None"
 msgstr "هیچ"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:26
 msgid "Sort by key:"
 msgstr "مرتب سازی بر اساس کلید :"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:27
 msgid "uid"
 msgstr "شناسه کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:28
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:34
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:29
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:85
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:85
 msgid "View log"
 msgstr "گزارش فعالیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:32
-msgid "Register ip"
-msgstr "آی پی زمان ثبت نام"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:33
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:55
 msgid "Activated time"
 msgstr "زمان فعال شدن"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:34
 msgid "Last login time"
 msgstr "آخرین زمان ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:35
-msgid "Last loin ip"
-msgstr "آخرین آی پی ورود"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:36
-msgid "Login count"
-msgstr "دفعات ورود"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:37
-msgid "Sort by:"
-msgstr "مرتب سازی بر اساس :"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:38
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:63
-msgid "Are you sure to delete this user?"
-msgstr "آیا اطمینان دارید که میخواهید این کاربر را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:39
-msgid "Are you sure to delete these users?"
-msgstr "آیا اطمینان دارید که میخواهید این کاربران را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:40
-msgid "Are you sure to delete all of these users?"
-msgstr "آیا اطمینان دارید که میخواهید همه این کاربران را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:42
-msgid "IP"
-msgstr "آی پی"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:45
-msgid "Displayname"
-msgstr "نام نمایشی"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:46
-msgid "Clear the users"
-msgstr "پاکسازی کاربران"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:48
-msgid "CLear all deleted users"
-msgstr "پاکسازی تام کاربران حذف شده"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:49
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:81
-msgid "No user matched your request."
-msgstr "هیچ کاربری مطابق درخواست شما یافت نشد"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:51
 msgid "Last login ip"
 msgstr "آخرین آی پی ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:36
+msgid "Login count"
+msgstr "دفعات ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:37
+msgid "Sort by:"
+msgstr "مرتب سازی بر اساس :"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:63
+msgid "Are you sure to delete this user?"
+msgstr "آیا اطمینان دارید که میخواهید این کاربر را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:64
+msgid "Are you sure to delete these users?"
+msgstr "آیا اطمینان دارید که میخواهید این کاربران را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:40
+msgid "Are you sure to delete all of these users?"
+msgstr "آیا اطمینان دارید که میخواهید همه این کاربران را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:42
+msgid "IP"
+msgstr "آی پی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:45
+msgid "Displayname"
+msgstr "نام نمایشی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:46
+msgid "Clear the users"
+msgstr "پاکسازی کاربران"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:48
+msgid "Clear all deleted users"
+msgstr "پاکسازی تام کاربران حذف شده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:81
+msgid "No user matched your request."
+msgstr "هیچ کاربری مطابق درخواست شما یافت نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:52
 msgid "Created time"
 msgstr "زمان ایجاد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:54
 msgid "Last login"
 msgstr "آخرین ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/maintenance.phtml:56
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/maintenance.phtml:56
 msgid "Null"
 msgstr "پوچ"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:34
 msgid "Basic field"
 msgstr "فیلد های پایه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:19
 msgid "Field title can be edited for display."
 msgstr "عنوان فیلد برای نمایش میتواند ویرایش شود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:20
 msgid "Field"
 msgstr "فیلد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:21
 msgid "Default setting"
 msgstr "تنظیمات پیش فرض"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:22
 msgid "Forced setting"
 msgstr "تنظیمات اجباری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:23
 msgid "Field title"
 msgstr "عنوان فیلد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:25
 msgid "Search"
 msgstr "جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:26
 msgid "Editable"
 msgstr "قابل ویرایش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:27
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:23
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:42
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:76
 msgid "Required"
 msgstr "ضروری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:29
 msgid "Compound"
 msgstr "ترکیبی"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:30
 msgid "Compound to organize a group of fields."
 msgstr "ترکیب برای سازمان دهی یک گروه از فیلد ها"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:31
 msgid ""
 "Privacy policy: set default value for profile field privacy setting. If "
 "`Forced` is set, user can not change privacy for corresponding field."
@@ -1005,286 +1009,306 @@ msgstr ""
 "Privacy policy: set default value for profile field privacy setting. If "
 "`Forced` is set, user can not change privacy for corresponding field."
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:32
 msgid "Add group"
 msgstr "گروه جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:33
 msgid "Field display on profile page"
 msgstr "فیلد های نمایش داده شده در صفحه پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:35
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:21
 msgid "Title"
 msgstr "عنوان"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:36
 msgid "Data will not be saved until `Save` button is hit."
 msgstr "اطلاعات تا زمانی که دکمه ذخیره را نزنید ، ذخیره نمی شود"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:37
 msgid "Click to choose a group for the field to add."
 msgstr "برایاضافه کردن گروه به فیلد اضافه شده ، کلیک کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:38
 msgid "Click to add a group."
 msgstr "برای اضافه کردن گروه کلیک کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:39
 msgid "Cancel"
 msgstr "لغو"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:40
 msgid "Save"
 msgstr "ذخیره"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:41
 msgid "Changes are not saved yet. Would you still like to leave this page?"
 msgstr "تغییرات شما هنوز ذخیره نشده است. آیا هنوز میخواهید صفحه را ترک کنید؟"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/profile.phtml:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/profile.phtml:42
 msgid "Create a group before adding."
 msgstr "ساخت گروه قبل ازاضافه کردن"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:15
 msgid "Admin roles"
 msgstr "نقش های مدیریت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:16
 msgid "Front roles"
 msgstr "نقش های کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:17
 msgid "Name"
 msgstr "نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:19
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:27
 msgid "Users in role"
 msgstr "کاربران در این نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:20
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:33
 msgid "Action"
 msgstr "فعالیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:24
 msgid "Type"
 msgstr "نوع"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:25
 msgid "Front"
 msgstr "بخش کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:26
 msgid "Admin"
 msgstr "بخش مدیر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:28
 msgid "User id or name"
 msgstr "نام یا شناسه کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:29
 msgid "Users"
 msgstr "کاربران"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:30
 msgid "User id"
 msgstr "شناسه کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/role.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/role.phtml:35
 msgid "None user in this role."
 msgstr "هیچ کاربری این نقش را ندارد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/form-profile-complete.phtml:4
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/form-register.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/form-profile-complete.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/form-register.phtml:4
 msgid "Register form"
 msgstr "فرم ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/form-profile-complete.phtml:9
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/form-register.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/form-profile-complete.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/form-register.phtml:9
 msgid "Profile complete form"
 msgstr "فرم تکمیل پروفایل"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/edit-user.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/edit-user.phtml:3
 msgid "Edit user: "
 msgstr "ویرایش کاربر :"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/edit-user.phtml:34
-msgid "Replace with defalt avatar."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/edit-user.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:88
+msgid "Replace with default avatar."
 msgstr "جایگزین با آواتار پیش فرض"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/edit-user.phtml:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/edit-user.phtml:40
 msgid "This user doesn't have any you can view"
 msgstr "کاربر هیچ اطلاعات برای نمایش به شما ندارد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/edit-user.phtml:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/edit-user.phtml:65
 msgid "Are you sure delete this group?"
 msgstr "آیا اطمینان دارید که میخواهید این گروه را حذف کنید؟"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:17
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:65
 msgid "Active State"
 msgstr "وضعیت فعالیت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:18
 msgid "Enable State"
 msgstr "وضعیت تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:19
 msgid "Select roles"
 msgstr "انتخاب نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:20
 msgid "Apply"
 msgstr "تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:27
 msgid "Inactive"
 msgstr "غیر فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:28
 msgid "Pending"
 msgstr "در انتظار تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:31
 msgid "Register time from"
 msgstr "تاریخ ثبت نام از"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:32
 msgid "Register time to"
 msgstr "تاریخ ثبت نام تا"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:35
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:37
 msgid "Passwords don\\'t match."
 msgstr "واژه رمز مطابقت ندارد"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:38
 msgid "Username is already taken."
 msgstr "نام کاربری قبلا گرفته شده است"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:39
 msgid "Email is already taken."
 msgstr "ایمیل قبلا گرفته شده است"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:40
 msgid "Display name is already taken."
 msgstr "نام نمایشی قبلا گرفته شده است"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:41
 msgid "Back to users list"
 msgstr "برگشت به فرهست کاربران"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:45
 msgid "Email invalid"
 msgstr "ایمیل اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:47
 msgid "Password confirm"
 msgstr "تایید کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:49
 msgid "Enable"
 msgstr "تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:50
 msgid "Disable"
 msgstr "غیر تایید"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:51
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:61
 msgid "Front role"
 msgstr "نقش های کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:52
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:62
 msgid "Admin role"
 msgstr "نقش های مدیریت"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:56
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:56
 msgid "Last three months"
 msgstr "سه ماه گذشته"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:57
 msgid "Last six months"
 msgstr "شش ماه گذشته"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:58
 msgid "Last year"
 msgstr "سال گذشته"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:59
 msgid "Assign role"
 msgstr "اختصاص نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:60
 msgid "Remove role"
 msgstr "حذف نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:64
-msgid "Are you sure to delete this users?"
-msgstr "آیا اطمینان دارید که میخواهید این کاربران را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:68
-msgid "Are you sure active this account, it can not be return"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:68
+msgid "Are you sure to activate this account? It can not be reverted."
 msgstr ""
 "آیا اطمینان دارید که میخواهید این کاربر را فعال کنید؟ این گزینه قبلا برگشت "
 "نیست"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:69
-msgid "Are you sure active these account, it can not be return"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:69
+msgid "Are you sure to activate these accounts? It can not be reverted."
 msgstr ""
 "آیا اطمینان دارید که میخواهید این کاربران را فعال کنید؟ این گزینه قبلا برگشت "
 "نیست"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:70
 msgid "Choose at least one item before submission."
 msgstr "لطفا قبل از ارسال یک آیتم انتخاب کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:73
 msgid "Confirm password"
 msgstr "تایید واژه رمز"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:74
 msgid "Activate"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:77
 msgid "Invalid email."
 msgstr "ایمیل نا معتبر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:79
 msgid "Activation state"
 msgstr "وضعیت حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:80
 msgid "User ID"
 msgstr "شناسه کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:84
 msgid "Search result"
 msgstr "نتایج جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:86
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:86
 msgid "No pending user."
 msgstr "هیچ کاربر در انتظار تاییدی نیست"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:87
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:87
 msgid "Edit user"
 msgstr "ویرایش کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:88
-msgid "Replace with default avatar."
-msgstr "جایگزین با آواتار پیش فرض"
-
-#: /var/www/html/local/pi/pi/usr/module/user/template/admin/user.phtml:89
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/admin/user.phtml:89
 msgid "Are you sure to delete this group?"
 msgstr "آیا اطمینان دارید که میخواهید این گروه را حذف کنید؟"
+
+#~ msgid "Confirm credential"
+#~ msgstr "تایید واژه رمز"
+
+#~ msgid "Please type the word."
+#~ msgstr "لطفا این کلمه را وارد کنید"
+
+#~ msgid "Edit user info failed"
+#~ msgstr "ویرایش اطلاعات کاربر موفقیت آمیز نبود"
+
+#~ msgid "Edit user info successfully"
+#~ msgstr "اطلاعات کاربر با موفقیت ویرایش شد"
+
+#~ msgid "Delete this group successfully"
+#~ msgstr "این گروه با موفقیت حذف شد"
+
+#~ msgid "Register ip"
+#~ msgstr "آی پی زمان ثبت نام"
+
+#~ msgid "Last loin ip"
+#~ msgstr "آخرین آی پی ورود"
+
+#~ msgid "Replace with defalt avatar."
+#~ msgstr "جایگزین با آواتار پیش فرض"
+
+#~ msgid "Are you sure to delete this users?"
+#~ msgstr "آیا اطمینان دارید که میخواهید این کاربران را حذف کنید؟"
 
 #, fuzzy
 #~ msgid "Role assignment failed"

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-04-29 10:55+0800\n"
-"PO-Revision-Date: 2014-04-29 10:55+0800\n"
+"POT-Creation-Date: 2014-08-08 17:23+0800\n"
+"PO-Revision-Date: 2014-08-08 17:24+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
@@ -241,7 +241,7 @@ msgid "Maximum length of password for user registration"
 msgstr "用户注册密码最大长度"
 
 #: c:\Code\pi\usr\module\system/config/config.php:207
-msgid "Username backlist"
+msgid "Username blacklist"
 msgstr "用户名黑名单"
 
 #: c:\Code\pi\usr\module\system/config/config.php:208
@@ -251,7 +251,7 @@ msgid ""
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/config/config.php:215
-msgid "Email backlist"
+msgid "Email blacklist"
 msgstr "邮箱黑名单"
 
 #: c:\Code\pi\usr\module\system/config/config.php:216
@@ -273,7 +273,7 @@ msgstr "登录状态保持时间，0为不保持。"
 #: c:\Code\pi\usr\module\system/config/config.php:231
 #: c:\Code\pi\usr\module\system/config/config.php:313
 msgid "Login field"
-msgstr "登录失败"
+msgstr "登录字段"
 
 #: c:\Code\pi\usr\module\system/config/config.php:232
 msgid "Identity field(s) for authentication."
@@ -901,18 +901,6 @@ msgstr "会员"
 msgid "Guest"
 msgstr "游客"
 
-#: c:\Code\pi\usr\module\system/src/Menu.php:34
-msgid "Operation"
-msgstr "操作"
-
-#: c:\Code\pi\usr\module\system/src/Menu.php:39
-msgid "Setting"
-msgstr "设置"
-
-#: c:\Code\pi\usr\module\system/src/Menu.php:44
-msgid "Deployment"
-msgstr "部署"
-
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/AssetController.php:50
 msgid "Asset component list"
 msgstr "资源类型列表"
@@ -949,46 +937,51 @@ msgstr "发布未完整进行，请检查并逐一进行发布。"
 msgid "All assets published successfully."
 msgstr "所有资源发布成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:113
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:136
 msgid "Block list"
 msgstr "区块列表"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:129
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:168
-msgid "The block is not allowed to clone."
-msgstr "该区块禁止克隆。"
-
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:152
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:239
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:204
+msgid "Base block is not found."
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:188
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:286
 msgid "Block data saved successfully."
 msgstr "区块数据保存成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:159
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:195
 msgid "Block data not saved."
 msgstr "区块数据未保存。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:162
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:246
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:198
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:293
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:169
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
 msgstr "无效数据，请检查后重新提交。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:202
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:229
+#, php-format
+msgid "%s clone"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:255
 #, php-format
 msgid "Block clone from: %s"
 msgstr "克隆区块：%s"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:252
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:299
 msgid "Block is not found."
 msgstr "区块不存在。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:267
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:314
 #, php-format
 msgid "Block edit: %s"
 msgstr "区块编辑：%s"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:287
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/BlockController.php:334
 msgid "Block is deleted."
 msgstr "区块删除成功。"
 
@@ -1018,18 +1011,18 @@ msgstr "全页面缓存"
 msgid "Action data"
 msgstr "当前请求逻辑缓存"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:156
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:161
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:87
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:417
 msgid "Module wide"
 msgstr "模块范围"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:166
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:171
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:97
 msgid "Module home"
 msgstr "模块首页"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:199
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/CacheController.php:195
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
 msgstr "缓存列表"
@@ -1107,6 +1100,20 @@ msgstr "成功清除缓存"
 msgid "Cache flush failed: %s"
 msgstr "缓存清除失败：%s"
 
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/IndexController.php:31
+msgid "Security: `setup` folder is not removed!"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/IndexController.php:37
+#, php-format
+msgid "Security: `%s` is writable!"
+msgstr ""
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/IndexController.php:47
+#, php-format
+msgid "Permission: `%s` is not available for write!"
+msgstr "权限：`%s` 不可写。"
+
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/LoginController.php:44
 msgid "Not privileged."
 msgstr "无权限。"
@@ -1115,164 +1122,164 @@ msgstr "无权限。"
 msgid "Installed modules"
 msgstr "已安装模块"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:144
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:135
 msgid "Modules ready for installation"
 msgstr "可安装模块"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:185
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:176
 msgid "Module moved successfully."
 msgstr "模块移动成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:192
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:183
 msgid "Category deleted successfully."
 msgstr "分类删除成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:232
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:223
 msgid "Category updated successfully."
 msgstr "分类更新成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:244
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:235
 msgid "Modules sorted successfully."
 msgstr "模块排序成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:277
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:268
 msgid "All categorized"
 msgstr "已分类"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:285
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:276
 msgid "Uncategorized"
 msgstr "未分类"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:304
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:295
 msgid "+ New category"
 msgstr "添加分类"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:347
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:338
 msgid "Directory is not specified."
 msgstr "目录未指定。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:353
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:344
 #, php-format
 msgid "Meta data are not loaded for \"%s\"."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:370
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:361
 msgid "The module has already been installed."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:385
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:376
 #, php-format
 msgid "Module \"%s\" is installed successfully."
 msgstr "模块 `%s` 安装成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:395
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:386
 #, php-format
 msgid "Module \"%s\" is not installed."
 msgstr "模块%s未安装。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:399
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:390
 msgid "Module is not installed."
 msgstr "模块未安装。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:403
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:457
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:394
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:448
 msgid "Module installation"
 msgstr "模块安装"
+
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:467
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:565
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:626
+msgid "Module is not specified."
+msgstr "模块未指定。"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:476
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:574
 #: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:635
-msgid "Module is not specified."
-msgstr "模块未指定。"
-
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:485
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:583
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:644
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:737
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:728
 msgid "Module is not found."
 msgstr "模块不存在。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:487
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:478
 msgid "System module is protected."
 msgstr "系统模块受保护。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:496
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:487
 #, php-format
 msgid "Module \"%s\" is uninstalled successfully."
 msgstr "模块 `%s` 卸载成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:503
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:508
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:494
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:499
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
 msgstr "模块%s未卸载。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:512
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:503
 msgid "Module is not uninstalled."
 msgstr "模块未卸载。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:516
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:507
 msgid "Module uninstallation"
 msgstr "模块卸载"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:551
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:542
 msgid "Module updates"
 msgstr "模块更新"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:592
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:583
 #, php-format
 msgid "Module \"%s\" is updated successfully."
 msgstr "模块 `%s` 更新成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:599
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:601
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:590
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:592
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr "模块%s未更新。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:604
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:595
 msgid "Module is not updated."
 msgstr "模块未更新。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:608
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:599
 msgid "Module update"
 msgstr "模块更新"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:658
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:649
 #, php-format
 msgid "Module \"%s\" is enabled successfully."
 msgstr "模块 `%s` 激活成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:665
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:670
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:656
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:661
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr "模块%s未激活。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:674
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:665
 msgid "Module is not enabled."
 msgstr "模块未激活。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:679
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:670
 #, php-format
 msgid "Module \"%s\" is disabled successfully."
 msgstr "模块 `%s` 禁用成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:686
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:691
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:677
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:682
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr "模块%s未禁用。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:695
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:686
 msgid "Module is not disabled."
 msgstr "模块未禁用。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:700
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:691
 msgid "Module activation"
 msgstr "模块激活"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:723
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:714
 msgid "Title is required."
 msgstr "标题为必需信息。"
 
@@ -1376,19 +1383,19 @@ msgstr "页面不存在。"
 msgid "%s blocks"
 msgstr "%s 区块"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:575
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:75
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:80
 msgid "Module access"
 msgstr "模块操作"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:82
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:87
 msgid "Module admin"
 msgstr "模块管理"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:322
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/PermController.php:329
 msgid "Permission assigned successfully."
 msgstr "成功分配权限"
 
@@ -1442,61 +1449,61 @@ msgstr ""
 msgid "Role deleted successfully."
 msgstr "角色删除成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:50
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:49
 msgid "admin"
 msgstr "后台"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:53
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:52
 msgid "front"
 msgstr "前台"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:67
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:66
 #, php-format
 msgid "Select theme for %s"
 msgstr "选择%s主题"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:110
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:109
 msgid "Theme set up successfully."
 msgstr "主题设置成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:125
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:124
 msgid "Installed themes"
 msgstr "已安装主题"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:165
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:163
 msgid "Themes available for installation"
 msgstr "可安装主题"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:184
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:182
 #, php-format
 msgid "The theme \"%s\" is not updated."
 msgstr "主题 %s 未更新。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:187
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:185
 #, php-format
 msgid "The theme \"%s\" is updated."
 msgstr "主题 %s 更新成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:208
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:206
 #, php-format
 msgid "The theme \"%s\" is not installed."
 msgstr "主题 %s 未安装。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:212
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:210
 #, php-format
 msgid "The theme \"%s\" is installed."
 msgstr "主题 %s 已安装。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:231
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:229
 msgid "Default theme is protected from uninstallation."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:240
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:238
 #, php-format
 msgid "The theme \"%s\" is not uninstalled."
 msgstr "主题 %s 未卸载。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:246
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:244
 #, php-format
 msgid "The theme \"%s\" is uninstalled."
 msgstr "主题 %s 已卸载。"
@@ -1522,7 +1529,7 @@ msgid "Title"
 msgstr "标题"
 
 #: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:40
-msgid "Font-awsome icon"
+msgid "Font-awesome icon"
 msgstr ""
 
 #: c:\Code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:44
@@ -1561,6 +1568,18 @@ msgstr "系统已更新"
 #: c:\Code\pi\usr\module\system/src/Installer/Action/Update.php:48
 msgid "The system is updated successfully."
 msgstr "系统更新成功。"
+
+#: c:\Code\pi\usr\module\system/src/Menu.php:34
+msgid "Operation"
+msgstr "操作"
+
+#: c:\Code\pi\usr\module\system/src/Menu.php:39
+msgid "Setting"
+msgstr "设置"
+
+#: c:\Code\pi\usr\module\system/src/Menu.php:44
+msgid "Deployment"
+msgstr "部署"
 
 #: c:\Code\pi\usr\module\system/template/admin/asset-index.phtml:12
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:21
@@ -1632,7 +1651,7 @@ msgstr ""
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:11
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:11
 #: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:27
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:56
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:55
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "简介"
@@ -1642,6 +1661,10 @@ msgid "Related pages"
 msgstr "关联页面"
 
 #: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:23
+msgid "Preview"
+msgstr "预览"
+
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:24
 #: c:\Code\pi\usr\module\system/template/admin/dashboard-system.phtml:21
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:35
 #: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:48
@@ -1649,7 +1672,7 @@ msgstr "关联页面"
 msgid "Edit"
 msgstr "编辑"
 
-#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:24
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:25
 #: c:\Code\pi\usr\module\system/template/admin/member-index.phtml:39
 #: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:49
 #: c:\Code\pi\usr\module\system/template/admin/page-list.phtml:34
@@ -1657,17 +1680,17 @@ msgstr "编辑"
 msgid "Delete"
 msgstr "删除"
 
-#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:25
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:26
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:62
 #: c:\Code\pi\usr\module\system/template/admin/nav-index.phtml:45
 msgid "Clone"
 msgstr "克隆"
 
-#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:26
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:27
 msgid "No page uses this block yet."
 msgstr ""
 
-#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:27
+#: c:\Code\pi\usr\module\system/template/admin/block-list.phtml:28
 msgid "Search in block title"
 msgstr "搜索区块标题"
 
@@ -1676,12 +1699,12 @@ msgid "Expiration"
 msgstr "有效期"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:16
-msgid "Cache level"
-msgstr "缓存条件"
+msgid "Granularity"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:17
-msgid "Cache scope"
-msgstr "缓存范围"
+msgid "Scope"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:38
 msgid "Force for all pages"
@@ -1880,7 +1903,7 @@ msgstr "图标"
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:10
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:10
 #: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:23
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:54
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:53
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "版本"
@@ -1888,7 +1911,7 @@ msgstr "版本"
 #: c:\Code\pi\usr\module\system/template/admin/module-available.phtml:34
 #: c:\Code\pi\usr\module\system/template/admin/module-index.phtml:38
 #: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:18
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:51
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:50
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "详情"
@@ -2165,15 +2188,15 @@ msgid "Type"
 msgstr "类型"
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:37
-msgid "Role name is already token"
-msgstr "角色名称已被占用"
+msgid "Role name is already taken"
+msgstr ""
 
 #: c:\Code\pi\usr\module\system/template/admin/role.phtml:38
 msgid "Are you sure to delete this role?"
 msgstr "确认删除该角色？"
 
 #: c:\Code\pi\usr\module\system/template/admin/theme-available.phtml:10
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:45
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:44
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "点击预览"
@@ -2188,10 +2211,11 @@ msgid "Theme in use"
 msgstr "当前主题"
 
 #: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:37
+#, fuzzy
 msgid "Themes available to use"
-msgstr "可用主题"
+msgstr "可安装主题"
 
-#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:50
+#: c:\Code\pi\usr\module\system/template/admin/theme-index.phtml:49
 msgid "Apply"
 msgstr "应用"
 
@@ -2202,3 +2226,9 @@ msgstr "主题更新成功。"
 #: c:\Code\pi\usr\module\system/template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "请确认是否删除该主题。"
+
+#~ msgid "Cache level"
+#~ msgstr "缓存条件"
+
+#~ msgid "Cache scope"
+#~ msgstr "缓存范围"

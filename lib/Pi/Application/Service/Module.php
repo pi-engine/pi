@@ -15,6 +15,18 @@ use Pi;
 /**
  * Module handling service
  *
+ * Usage:
+ *
+ * - Get meta of a module
+ * ```
+ *  $title = Pi::module()->meta(<module_name>, 'title');
+ *  $version = Pi::module()->meta(<module_name>, 'version');
+ *  $active = Pi::module()->meta(<module_name>, 'active');
+ *
+ *  $directory = Pi::module()->meta(<module_name>, 'directory');
+ *  $directory = Pi::module()->directory(<module_name>);
+ * ```
+ *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Module extends AbstractService
@@ -42,7 +54,7 @@ class Module extends AbstractService
      * Constructor
      *
      * @param array $options
-     *      Parameters to send to the service during instanciation
+     *      Parameters to send to the service during instantiation
      */
     public function __construct($options = array())
     {
@@ -86,7 +98,7 @@ class Module extends AbstractService
     /**
      * Create module meta data fetching from DB and write to meta data
      *
-     * @return array
+     * @return array Array of `directory`, `title`, `version`, `active`
      */
     public function createMeta()
     {
@@ -95,26 +107,13 @@ class Module extends AbstractService
         foreach ($rowset as $row) {
             $meta[$row->name] = array(
                 'directory' => $row->directory,
+                'title'     => $row->title,
+                'version'   => $row->version,
                 'active'    => (int) $row->active,
             );
         }
 
         $status = Pi::service('config')->write($this->fileMeta, $meta);
-        /*
-        $configFile = Pi::path('config') . '/' . $this->fileMeta;
-        clearstatcache();
-        if (!file_exists($configFile)) {
-            touch($configFile);
-        } elseif (!is_writable($configFile)) {
-            @chmod($configFile, intval('0777', 8));
-        }
-        $content = '<?php' . PHP_EOL
-                 . 'return ' . var_export($meta, true) . ';' . PHP_EOL;
-        file_put_contents($configFile, $content);
-        @chmod($configFile, intval('0444', 8));
-        clearstatcache();
-        */
-
         $this->init(true);
 
         return $meta;
@@ -130,11 +129,6 @@ class Module extends AbstractService
     {
         if ($force || empty($this->container['meta'])) {
             $list = Pi::config()->load($this->fileMeta);
-            /*
-            if (!$list) {
-                $list = $this->createMeta();
-            }
-            */
             $this->container['meta'] = $list;
         }
 
@@ -145,20 +139,25 @@ class Module extends AbstractService
      * Get module meta data
      *
      * @param string $module
+     * @param string $key Valid keys: `directory`, `title`, `version`, `active`
+     *
      * @return array|bool
      */
-    public function meta($module = null)
+    public function meta($module = '', $key = '')
     {
-        //$this->init();
-        if (null === $module) {
-            $return = $this->container['meta'];
-        } elseif (isset($this->container['meta'][$module])) {
-            $return = $this->container['meta'][$module];
+        if (!$module) {
+            $result = $this->container['meta'];
+        } elseif (!isset($this->container['meta'][$module])) {
+            $result = false;
+        } elseif ($key) {
+            $result = isset($this->container['meta'][$module][$key])
+                ? $this->container['meta'][$module][$key]
+                : false;
         } else {
-            $return = false;
+            $result = $this->container['meta'][$module];
         }
 
-        return $return;
+        return $result;
     }
 
     /**
@@ -204,7 +203,7 @@ class Module extends AbstractService
         $configFile = sprintf('%s/config/module.php', $this->path($module));
         $config = include $configFile;
 
-        // For backward compat
+        // For backward compatibility
         if (isset($config['maintenance'])) {
             if (isset($config['maintenance']['resource'])) {
                 $config['resource'] = $config['maintenance']['resource'];

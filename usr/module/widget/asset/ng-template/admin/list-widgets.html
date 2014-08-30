@@ -1,0 +1,16 @@
+<div class="row">
+	<div ng-repeat="item in widgets" class="col-sm-6 col-md-3">
+		<div class="panel panel-default">
+            <div class="panel-heading">{{item.block.title}}</div>
+            <div class="panel-body">
+                <p class="widget-desc">{{item.block.description}}</p>
+                <a ng-if="item.editUrl" class="btn btn-link" ng-href="{{item.editUrl}}">
+                    {{'EDIT' | translate}}
+                </a>
+                <a ng-if="item.deleteUrl" class="btn btn-link" ng-href="{{item.deleteUrl}}">
+                    {{'DELETE' | translate}}
+                </a>
+            </div>
+		</div>
+	</div>
+</div>

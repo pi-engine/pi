@@ -126,7 +126,10 @@ class PasswordController extends ActionController
 
         $this->view()->headTitle(__('Find password'));
         $this->view()->headdescription(__('Find password'), 'set');
-        $this->view()->headkeywords(__('login,register,find,password,user,account'), 'set');
+        $headKeywords = Pi::user()->config('head_keywords');
+        if ($headKeywords) {
+            $this->view()->headkeywords($headKeywords, 'set');
+        }
     }
 
     /**

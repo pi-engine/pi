@@ -1,0 +1,649 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-widget\n"
+"POT-Creation-Date: 2014-05-24 18:14+0100\n"
+"PO-Revision-Date: 2014-05-28 16:32+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\widget\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:13
+msgid "Max file size"
+msgstr "Taille maximale fichier"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:14
+msgid "Allowed image file to upload (in KB), 0 for no limit"
+msgstr "Fichier image autorisé en upload (en KB), 0 pour aucune limite"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:20
+msgid "File extensions"
+msgstr "Extensions fichier"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:21
+msgid "Extensions for images to upload, separate `,`."
+msgstr "Extensions pour les images en upload, séparées par `,`."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:26
+msgid "Max image width"
+msgstr "Largeur maximale des images"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:27
+msgid "Allowed image width, 0 for no limit"
+msgstr "Largeur image autorisée, 0 pour aucune limite"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:33
+msgid "Max image height"
+msgstr "Hauteur maximale de l'image"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:34
+msgid "Allowed image height, 0 for no limit"
+msgstr "Hauteur image autorisée, 0 pour aucune limite"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:40
+msgid "Image width for media"
+msgstr "Largeur image pour les médias"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:41
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:48
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:55
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:62
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:69
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:76
+msgid "Default value for widgets"
+msgstr "Valeur par défaut des widgets"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:47
+msgid "Image height for media"
+msgstr "Hauteur image pour les médias"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:54
+msgid "Image width for carousel"
+msgstr "Largeur image pour le carrousel"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:61
+msgid "Image height for carousel"
+msgstr "Hauteur image pour le carrousel"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:68
+msgid "Image width for spotlight"
+msgstr "Largeur image pour le spotlight"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:75
+msgid "Image height for spotlight"
+msgstr "Hauteur image pour le spotlight"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:82
+msgid "Open new window"
+msgstr "Ouvrir une nouvelle fenêtre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/config.php:83
+msgid "Open new window for widgets not specified"
+msgstr "Ouverture d'une nouvelle fenêtre pour les widgets non spécifiée"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/module.php:14
+msgid "Widget"
+msgstr "Widget"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/module.php:16
+msgid "Management of custom blocks/widgets."
+msgstr "Management des blocs personnalisés/widgets."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:15
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:13
+msgid "Script widgets"
+msgstr "Widgets Script"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:25
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:49
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:104
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:138
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:172
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:206
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:240
+msgid "Widget list"
+msgstr "Liste des Widgets"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:31
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:120
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:154
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:188
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:222
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:256
+msgid "Add new"
+msgstr "Ajouter un nouveau"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:40
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:16
+msgid "Static widgets"
+msgstr "Widgets statiques"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:56
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:111
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:145
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:179
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:213
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:247
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/ng.phtml:11
+msgid "Edit"
+msgstr "Editer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:65
+msgid "Add HTML"
+msgstr "Ajouter HTML"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:74
+msgid "Add text"
+msgstr "Ajouter Text"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:83
+msgid "Add markdown"
+msgstr "Ajouter Markdown"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:95
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:19
+msgid "List group"
+msgstr "Groupe de listes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:129
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:22
+msgid "Media list"
+msgstr "Liste Media"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:163
+msgid "Carousel"
+msgstr "Carrousel"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:197
+msgid "Spotlight"
+msgstr "Spotlight"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/nav.php:231
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:31
+msgid "Compound tabs"
+msgstr "A onglets composés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:25
+msgid "Carousel widgets"
+msgstr "Widgets Carrousel"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/config/permission.php:28
+msgid "Spotlight widgets"
+msgstr "Widgets Spotlight"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:11
+msgid "Navigation"
+msgstr "Navigation"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:12
+msgid "Block to display navigation menu and breadcrumbs"
+msgstr "Bloc pour afficher le menu de navigation et les breadcrumbs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:16
+msgid "Navigation name"
+msgstr "Nom Navigation"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:21
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:47
+msgid "Display menu"
+msgstr "Menu Affichage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:27
+msgid "ul class for menu"
+msgstr "classe ul pour les menus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:28
+msgid "Separate classes with space"
+msgstr "Séparer les classes avec un espace"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:34
+msgid "Minimum depth for menu"
+msgstr "Profondeur minimum du menu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:40
+msgid "Maximum depth for menu"
+msgstr "Profondeur maximum du menu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:53
+msgid "Separator for breadcrumb"
+msgstr "Séparateur pour les breadcrumbs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:59
+msgid "Minimum depth for breadcrumb"
+msgstr "Profondeur minimum pour les breadcrumb"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/navigation.php:65
+msgid "Add link to last page"
+msgstr "Ajouter un lien à la dernière page"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/pi-github.php:11
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/pi-github.php:22
+msgid "Pi Engine Updates"
+msgstr "Mises à jour Pi Engine"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/meta/pi-github.php:12
+msgid "Block to display Pi Engine new updates on GitHub"
+msgstr "Bloc pour afficher les nouvelles mises à jour Pi Engine de GitHub"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:91
+msgid "Image width"
+msgstr "Largeur Image"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:99
+msgid "Image height"
+msgstr "Hauteur Image"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:106
+msgid "Max rows to display"
+msgstr "Nombre maximum de lignes à afficher"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:111
+msgid "No limit"
+msgstr "Aucune limite"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:112
+msgid "1 row"
+msgstr "1 ligne"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:113
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:114
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:115
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:116
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:117
+#, php-format
+msgid "%d rows"
+msgstr "%d lignes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:124
+msgid "Open link in new window"
+msgstr "Ouvrir le lien dans une nouvelle fenêtre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:150
+msgid "Time interval (ms)"
+msgstr "Intervalle de temps (ms)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:156
+msgid "Mouse event"
+msgstr "Effet passage souris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Api/Block.php:157
+msgid "Event to pause cycle"
+msgstr "Evènement pour mettre en pause le défilement"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/ScriptController.php:127
+#, php-format
+msgid "The widget \"%s\" is installed."
+msgstr "Le widget \"%s\" est installé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/ScriptController.php:129
+#, php-format
+msgid "The widget \"%s\" is not installed."
+msgstr "Le widget \"%s\" n\\'est pas installé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/StaticController.php:37
+msgid "HTML"
+msgstr "HTML"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/StaticController.php:38
+msgid "Text"
+msgstr "Text"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/StaticController.php:39
+msgid "Markdown"
+msgstr "Markdown"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:289
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:327
+msgid "Block data saved successfully."
+msgstr "Les données du bloc ont été enregistrées avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:297
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:335
+msgid "Block data not saved."
+msgstr "Les données de bloc n'ont pas été enregistrées"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:301
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:337
+msgid "Invalid data, please check and re-submit."
+msgstr "Données non valides, merci de vérifier et de re-soumettre."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:312
+msgid "Add a block"
+msgstr "Ajouter un bloc"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:353
+msgid "Block edit"
+msgstr "Editer le bloc"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:370
+msgid "The widget is removed."
+msgstr "Le widget a été supprimé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Controller/Admin/WidgetController.php:373
+msgid "The widget is not removed."
+msgstr "Le widget n'a pas été supprimé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/AbstractBaseForm.php:55
+msgid "Title"
+msgstr "Nom"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/AbstractBaseForm.php:66
+msgid "Unique name"
+msgstr "Nom unique"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/AbstractBaseForm.php:77
+msgid "Description"
+msgstr "Description"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/AbstractBaseForm.php:118
+msgid "Submit"
+msgstr "Valider"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/BlockMediaForm.php:25
+msgid "Template"
+msgstr "Template"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/BlockStaticForm.php:53
+msgid "Content"
+msgstr "Contenu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/BlockStaticForm.php:60
+msgid ""
+"Tags supported: `%sitename%` - site name; `%siteurl%` - site root URL; `"
+"%slogan%` - site slogan"
+msgstr ""
+"Tags supportés : `%sitename%` - nom du site ; `%siteurl%` - URL racine du "
+"site ; `%slogan%` - slogan du site"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/BlockStaticForm.php:85
+msgid "Content type"
+msgstr "Type de contenu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:25
+msgid "Bootstrap slide"
+msgstr "Slide Boostrap"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:26
+msgid "Bootstrap two columns"
+msgstr "Boostrap deux colonnes"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:27
+msgid "jQuery riding Carousel"
+msgstr "Carrousel défilant jQuery"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/CarouselTemplate.php:28
+msgid "Parallax Content Slider"
+msgstr "Slider de Contenus Parallax"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/ListTemplate.php:25
+msgid "Title only"
+msgstr "Nom seulement"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/ListTemplate.php:26
+msgid "Title and summary"
+msgstr "Nom et Résumé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/MediaTemplate.php:48
+msgid "Custom: "
+msgstr "Personalisé :"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/MediaTemplate.php:63
+msgid "Image on left"
+msgstr "Image à gauche"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/MediaTemplate.php:64
+msgid "Image on right"
+msgstr "Image à droite"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/SpotlightTemplate.php:25
+msgid "Spot on top"
+msgstr "Spot au dessus"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Form/Element/SpotlightTemplate.php:26
+msgid "Spot on left"
+msgstr "Spot à gauche"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:42
+msgid "Pi Highlights"
+msgstr "Pi en résumé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:43
+msgid "Introduction to Pi Engine with carousel."
+msgstr "Introduction à Pi Engine avec un carrousel"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:49
+msgid "Sustainable ecosystem"
+msgstr "Ecosystème complêt"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:50
+msgid ""
+"A sustainable ecosystem built upon open standard, open source code, open "
+"development and open management on Github."
+msgstr ""
+"Un ecosystèm complet construit à partir de standards ouverts, un code source "
+"ouvert, un développement et un management participatif sur Github."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:55
+msgid "Engineered development"
+msgstr "Plateforme de développement professionnelle"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:56
+msgid ""
+"Quality ensured engineering development with short learning curve, low skill "
+"requirements with clean MVC architecture, semantic templating, sophisticated "
+"API and strict standards."
+msgstr ""
+"Plateforme de développement professionnelle et de qualité garantissant une "
+"prise en main rapide,  et facile d'accès : une architecture MVC claire, des "
+"gabarits/templates semantiques, une API sophistiquée, et des standards de "
+"développement stricts."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:61
+msgid "Visualization of application management"
+msgstr "Management graphique de l'application"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:62
+msgid ""
+"Easy and responsive application and content management based on visualized "
+"management tools and interface with page and widget mechanism."
+msgstr ""
+"Application ergonomique et rapide,  gestion de contenus basée sur des outils "
+"d'administrations graphiques et le management de page et de widgets."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:67
+msgid "Agile compliant development workflow"
+msgstr "Compatible avec les processus de développement agiles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Installer/Action/Install.php:68
+msgid ""
+"Role oriented architecture and deployment skeleton supports managable agile "
+"development workflow."
+msgstr ""
+"L'architecture orientée Rôles et les mécanismes de déploiements permettent "
+"le pilotage de processus de développement agile."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Render/PiGithub.php:26
+msgid "Updates from GitHub"
+msgstr "Mises à jour depuis GitHub"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/src/Validator/WidgetNameDuplicate.php:28
+msgid "Widget name already exists"
+msgstr "Ce nom de widget existe déja"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/ng-script.phtml:11
+msgid "Install"
+msgstr "Installer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/ng.phtml:12
+msgid "Delete"
+msgstr "Supprimer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-list.phtml:10
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-media.phtml:14
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-tab.phtml:11
+msgid "Items"
+msgstr "Eléments"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-list.phtml:14
+msgid "Click to add new item."
+msgstr "Cliquer pour ajouter un nouvel élément."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-list.phtml:24
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-media.phtml:31
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-tab.phtml:47
+msgid "Click to remove"
+msgstr "Cliquer pour supprimer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-list.phtml:27
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-media.phtml:36
+msgid "Caption"
+msgstr "Sous-titre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-list.phtml:31
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-media.phtml:40
+msgid "Link"
+msgstr "Lien"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-list.phtml:35
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-media.phtml:44
+msgid "Summary"
+msgstr "Résumé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-media.phtml:18
+msgid "Click to upload image then add item contents."
+msgstr ""
+"Cliquer pour uploader l'image et ensuite ajoute les contenus de l'élément."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-tab.phtml:16
+msgid "Select from below available module blocks to add."
+msgstr ""
+"Sélectionner en dessous les blocs disponibles pour le module à ajouter "
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\widget/template/admin/widget-tab.phtml:26
+msgid "Module blocks"
+msgstr "Blocs Module"
+
+#~ msgid "Images on top, texts below"
+#~ msgstr "Images en haut, texts en dessous"
+
+#~ msgid "Images on left, texts on right"
+#~ msgstr "Images à gauche, texts à droite"

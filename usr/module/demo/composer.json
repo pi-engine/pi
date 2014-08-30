@@ -1,0 +1,21 @@
+{
+    "name": "pi-module/demo",
+    "description": "Demonstration for module developers.",
+    "keywords": [
+        "Pi",
+        "module",
+        "demo"
+    ],
+    "homepage": "http://pialog.org",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Taiwen Jiang",
+            "email": "taiwen@me.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "pi/pi": ">=2.4-dev"
+    }
+}

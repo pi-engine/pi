@@ -87,7 +87,7 @@ class AvatarController extends ActionController
             ));
             if (!empty($config['max_size'])) {
                 $limits[] = array(
-                    'label' => __('Max files ize:'),
+                    'label' => __('Max file size:'),
                     'text'  => $config['max_size'] . ' KB',
                 );
             }
@@ -184,10 +184,7 @@ class AvatarController extends ActionController
 
         $this->view()->headTitle(__('Change avatar'));
         $this->view()->headdescription(__('Customize your avatar anyway you like'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'), 
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
     
     /**
@@ -319,7 +316,7 @@ class AvatarController extends ActionController
         $result = array(
             'status'        => true,
             'preview_url'   => $url,
-            'message'       => __('Successful'),
+            'message'       => __('Successful.'),
         );
 
         return $result;
@@ -442,7 +439,7 @@ class AvatarController extends ActionController
         } elseif ('select' == $source) {
             $name = $this->params('name', '');
             if (empty($name)) {
-                $result['message'] = __('Invalid image set name.');
+                $result['message'] = __('Image name is missing.');
 
                 return $result;
             }

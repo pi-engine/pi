@@ -55,7 +55,7 @@ class Application extends ZendApplication
     }
 
     /**
-     * Load application hander
+     * Load application handler
      *
      * @param array $configuration
      * @return $this

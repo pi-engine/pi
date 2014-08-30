@@ -17,16 +17,16 @@ return array(
         'section'  => 'front',
         'priority' => 100,
 
-        'type'     => 'Module\Article\Route\Article',
-        'options'  => array(
+        'type'      => 'Module\Article\Route\Article',
+        'options'   => array(
             'structure_delimiter'   => '/',
             'param_delimiter'       => '/',
             'key_value_delimiter'   => '-',
-            'route'                 => '/article',
-            'defaults'        => array(
-                'module'     => 'article',
-                'controller' => 'index',
-                'action'     => 'index',
+            //'prefix'                => '/article',
+            'defaults'              => array(
+                'module'        => 'article',
+                'controller'    => 'index',
+                'action'        => 'index',
             ),
         ),
     ),

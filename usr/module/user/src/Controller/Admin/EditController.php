@@ -44,7 +44,7 @@ class EditController extends ActionController
         if ($this->request->isPost()) {
             $form->setData($this->request->getPost());
             $form->setInputFilter(new EditUserFilter($formFilters));
-            $result['message'] = _a('Edit user info failed');
+            $result['message'] = _a('User data update failed.');
             $result['status']  = 0;
             if ($form->isValid()) {
                 // Update user
@@ -58,7 +58,7 @@ class EditController extends ActionController
                 $status = Pi::api('user', 'user')->updateUser($uid, $values);
                 if ($status == 1) {
                     Pi::service('event')->trigger('user_update', $uid);
-                    $result['message'] = _a('Edit user info successfully');
+                    $result['message'] = _a('User data update successful.');
                     $result['status']  = 1;
                 }
             }
@@ -104,12 +104,12 @@ class EditController extends ActionController
             $status = Pi::user()->set($uid, 'avatar', '');
             $result = array(
                 'status'  => 0,
-                'message' => _a('Replace user avater failed')
+                'message' => _a('User avatar change failed.')
             );
             if ($status) {
                 $result = array(
                     'status'  => 1,
-                    'message' => _a('Replace user avater successfully')
+                    'message' => _a('User avatar change successful.')
                 );
                 Pi::service('event')->trigger('user_update', $uid);
             }
@@ -170,7 +170,7 @@ class EditController extends ActionController
             $forms[$set]->setData($post);
             $result = array(
                 'status'  => 0,
-                'message' => _a('Edit user info failed')
+                'message' => _a('User data update failed.')
             );
             if ($forms[$set]->isValid()) {
                 $values        = $forms[$set]->getData();
@@ -211,7 +211,7 @@ class EditController extends ActionController
                 Pi::api('user', 'user')->updateUser($uid, array('last_modified' => time()));
                 if ($status) {
                     Pi::service('event')->trigger('user_update', $uid);
-                    $result['message'] = _a('Edit user info successfully');
+                    $result['message'] = _a('User data update successful.');
                     $result['status']  = 1;
                 }
                 
@@ -261,7 +261,7 @@ class EditController extends ActionController
             'action'      => 'compound',
             'uid'         => $uid,
             'name'        => $name
-        ), _a('Delete this group successfully'));
+        ), _a('Group deleted successfully.'));
         
     }
 
@@ -329,9 +329,11 @@ class EditController extends ActionController
         $result[] = array(
             'name'  => 'avatar',
             'title' => _a('Avatar'),
-            'link'  => $this->url('', array('controller' => 'edit', 
-                                            'action' => 'avatar', 
-                                            'uid' => $uid)),
+            'link'  => $this->url('', array(
+                    'controller'    => 'edit',
+                    'action'        => 'avatar',
+                    'uid'           => $uid
+                )),
         );
 
         $rowset = $this->getModel('field')->select(
@@ -347,10 +349,12 @@ class EditController extends ActionController
             $result[] = array(
                 'name'  => $row['name'],
                 'title' => $row['title'],
-                'link'  => $this->url('', array('controller' => 'edit', 
-                                                'action' => 'compound', 
-                                                'uid' => $uid,
-                                                'name' => $row['name'])),
+                'link'  => $this->url('', array(
+                        'controller'    => 'edit',
+                        'action'        => 'compound',
+                        'uid'           => $uid,
+                        'name'          => $row['name']
+                    )),
             );
         }
 

@@ -95,10 +95,7 @@ class RegisterController extends ActionController
 
         $this->view()->headTitle(__('Register'));
         $this->view()->headdescription(__('Account registration'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -467,6 +464,7 @@ class RegisterController extends ActionController
             if (!$status) {
                 $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
             }
+            /*
             if (Pi::user()->config('register_notification')) {
                 $this->sendNotification('success', array(
                     'email'     => $values['email'],
@@ -474,6 +472,7 @@ class RegisterController extends ActionController
                     'identity'  => $values['identity'],
                 ));
             }
+            */
         // Activated by admin
         } elseif ('admin' == $activationMode) {
             if (Pi::user()->config('register_notification')) {
@@ -502,6 +501,15 @@ class RegisterController extends ActionController
     /**
      * Send notification email
      *
+     * There are three types of activation:
+     *  - (1) Automatically activated after registration
+     *  - (2) Activated by an administrator
+     *  - (3) Activated by email by the user himself
+     *
+     * For type (1), no email notification is to send.
+     * For type (2), an email notification is to send after activation only if `register_notification` is enabled
+     * For type (3), an email notification is to send.
+     *
      * @param string $type
      * @param array $data   Data: email, uid, identity
      *
@@ -509,9 +517,11 @@ class RegisterController extends ActionController
      */
     protected function sendNotification($type, array $data)
     {
+        /*
         if (!Pi::user()->config('register_notification')) {
             return true;
         }
+        */
         $params = array();
         $template = '';
         switch ($type) {
@@ -568,16 +578,9 @@ class RegisterController extends ActionController
         // Send email
         $message    = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($data['email']);
-        $transport  = Pi::service('mail')->transport();
-        try {
-            $transport->send($message);
-            $result = true;
-        } catch (\Exception $e) {
-            $result = false;
-        }
+        $result     = Pi::service('mail')->send($message);
 
         return $result;
-
     }
 
     /**

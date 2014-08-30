@@ -1,0 +1,7 @@
+<h2><?php echo _escape($block['caption']); ?></h2>
+<p><?php echo $block['content']; ?></p>
+<hr />
+<h3><?php echo _b('The options: '); ?></h3>
+<?php foreach($block['options'] as $key => $value) { ?>
+<div><span><?php echo _escape($key); ?></span><span><?php echo _escape($value); ?></span></div>
+<?php } ?>

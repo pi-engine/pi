@@ -1,0 +1,131 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-theme-default\n"
+"POT-Creation-Date: 2014-06-07 13:34+0100\n"
+"PO-Revision-Date: 2014-06-07 13:34+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\theme\\default\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/module/demo/template/front/index-simple.phtml:6
+msgid "Paginator"
+msgstr "Pagination"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:5
+msgid "A 404 error occurred"
+msgstr "Une erreur 404 est survenue"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:6
+msgid "The page request is not found."
+msgstr "La page demandée n'a pas été trouvée."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:23
+msgid "The requested controller was unable to dispatch the request."
+msgstr "Le contrôleur demandé a été incapable de dispatcher la demande."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:26
+msgid ""
+"The requested controller could not be mapped to an existing controller class."
+msgstr ""
+"Le contrôleur demandé n'a pas pu être rapproché d'une controller class "
+"existante."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:29
+msgid "The requested controller was not dispatchable."
+msgstr "Le contrôleur demandé n'a pas pu être dispatché."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:32
+msgid "The requested URL could not be matched by routing."
+msgstr "L'URL demandée n'a pas pu être matchée avec une route."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-404.phtml:35
+msgid "We cannot determine at this time why a 404 was generated."
+msgstr ""
+"Nous n'avons pas pu déterminer encore pourquoi une erreur 404 a été générée."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:4
+msgid "Access denied"
+msgstr "Accès refusé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:14
+msgid "login"
+msgstr "vous connecter"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:15
+#, php-format
+msgid "You are not allowed to access the page. Please %s and try again."
+msgstr ""
+"Vous n'êtes pas autorisé à accéder à la page. Merci de %s et d'essayer de "
+"nouveau."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:24
+msgid "homepage"
+msgstr "Accueil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:26
+msgid "logout"
+msgstr "déconnexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error-denied.phtml:28
+#, php-format
+msgid ""
+"You are not allowed to access the page. Please go to %s or %s and try other "
+"account."
+msgstr ""
+"Vous n'êtes pas autorisés à accéder à cette page. Merci d'aller à la page %s "
+"ou %s , et d'essayer un autre compte."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error.phtml:5
+msgid "Error occurred"
+msgstr "Une erreur est survenue"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/error.phtml:6
+msgid "Please verify your request or visit later."
+msgstr "Merci de vérifier votre demande ou de revenir plus tard."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-admin.phtml:62
+msgid "Front"
+msgstr "Front"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-admin.phtml:120
+msgid "Execution time"
+msgstr "Temps d'exécution"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-front.phtml:113
+msgid "Home"
+msgstr "Accueil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-front.phtml:266
+#: MARC\Documents\GitHub\pi\usr\theme\default/template/layout-simple.phtml:133
+#, php-format
+msgid "Execution time: %.4f s"
+msgstr "Temps d'exécution : %.4f s"

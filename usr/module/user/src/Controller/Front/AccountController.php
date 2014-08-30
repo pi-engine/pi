@@ -43,6 +43,7 @@ class AccountController extends ActionController
         // Generate form
         $form           = new AccountForm('account');
         $data['uid']    = $uid;
+        $data['id']     = $uid;
         $form->setData($data);
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -132,10 +133,7 @@ class AccountController extends ActionController
 
         $this->view()->headTitle(__('Account settings'));
         $this->view()->headdescription(__('Basic settings'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**

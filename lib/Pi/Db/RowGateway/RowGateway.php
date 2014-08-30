@@ -211,7 +211,7 @@ class RowGateway extends AbstractRowGateway
     {
         foreach ($this->encodeColumns as $column => $assoc) {
             if (array_key_exists($column, $data)) {
-                // Escape if already a non-scalar
+                // Skip if already a non-scalar
                 if (!is_scalar($data[$column])) {
                     break;
                 }

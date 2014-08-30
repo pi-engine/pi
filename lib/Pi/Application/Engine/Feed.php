@@ -14,7 +14,7 @@ namespace Pi\Application\Engine;
  *
  * Tasks:
  *
- *  - load configs, default listeners, module manager, bootstrap, application;
+ * - load configs, default listeners, module manager, bootstrap, application;
  * - boot application;
  * - run application
  *

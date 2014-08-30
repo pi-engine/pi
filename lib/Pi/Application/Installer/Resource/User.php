@@ -72,7 +72,7 @@ use Module\User\Field\AbstractCustomHandler;
  *                  'validators'    => array(
  *                  ),
  *              ),
- *              // Filter specs
+ *              // Filter for value processing for output
  *              'filter'        => 'int',
  *          ),
  *          // Field with specified edit with simple element
@@ -84,7 +84,7 @@ use Module\User\Field\AbstractCustomHandler;
  *                  'element'       => 'text',
  *                  'validators'    => array(<...>),
  *              ),
- *              // Filter specs
+ *              // Filter for value processing for output
  *              'filter'        => 'int',
  *          ),
  *

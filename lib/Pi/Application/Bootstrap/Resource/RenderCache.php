@@ -35,7 +35,7 @@ class RenderCache extends AbstractResource
     protected $renderCache;
 
     /**
-     * Namespace for cacheing
+     * Namespace for caching
      * @var string
      */
     protected $namespace = 'render';
@@ -136,8 +136,9 @@ class RenderCache extends AbstractResource
         $cacheKey       = md5($e->getRequest()->getRequestUri());
         $namespace      = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $namespace)
-                    ->meta('ttl', $cacheMeta['ttl']);
+            ->meta('namespace', $namespace)
+            ->meta('level', $cacheMeta['level'])
+            ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {
@@ -147,9 +148,28 @@ class RenderCache extends AbstractResource
                 $renderCache->isOpened(true);
             } else {
                 Pi::service('log')->info('Page cached');
-                $response = $e->getResponse()->setContent(
-                    $renderCache->cachedContent()
-                );
+                $content = $renderCache->cachedContent();
+                $response = $e->getResponse()->setContent($content);
+
+                // Check ETag for response
+                if (!empty($this->options['enable_etag'])
+                    && '1.1' == $response->getVersion()
+                ) {
+                    $etag = md5($content);
+                    $response->getHeaders()->addHeaders(array(
+                        'etag'          => $etag,
+                        'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+                    ));
+                    $ifNoneMatch = $e->getRequest()->getHeader('if_none_match');
+                    if ($ifNoneMatch) {
+                        $ifNoneMatch = $ifNoneMatch->getFieldValue();
+                        if ($ifNoneMatch && $ifNoneMatch == $etag) {
+                            $response->setStatusCode(304);
+                        }
+                    }
+                }
+
+                $e->setResult($response);
                 return $response;
             }
         } else {
@@ -186,6 +206,16 @@ class RenderCache extends AbstractResource
 
         $content = $response->getContent();
         $this->renderCache()->saveCache($content);
+
+        // Set Etag for response header
+        if (!empty($this->options['enable_etag'])
+            && '1.1' == $response->getVersion()
+        ) {
+            $response->getHeaders()->addHeaders(array(
+                'etag'          => md5($content),
+                'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+            ));
+        }
 
         return;
     }
@@ -228,8 +258,9 @@ class RenderCache extends AbstractResource
         $cacheKey       = md5($e->getRequest()->getRequestUri());
         $namespace      = $e->getRouteMatch()->getParam('module');
         $renderCache->meta('key', $cacheKey)
-                    ->meta('namespace', $namespace)
-                    ->meta('ttl', $cacheMeta['ttl']);
+            ->meta('namespace', $namespace)
+            ->meta('level', $cacheMeta['level'])
+            ->meta('ttl', $cacheMeta['ttl']);
         // Skip following dispatch events and render dispatch
         // and set cached content directly if content is cached
         if ($renderCache->isCached()) {

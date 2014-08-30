@@ -993,7 +993,7 @@ var ReleaseProcess = Backbone.View.extend({
     preview : function () {
         page.submit({fn : function(data) {
             if (data.preview_url) {
-                $("#jsAlert").remove(); 
+                $("#jsAlert").remove();
                 page.$(".hide-preview").attr("href",data.preview_url)[0].click(); 
             } else {
                 page.formTip({status:0,message:"The url is not exists, please try again!"});

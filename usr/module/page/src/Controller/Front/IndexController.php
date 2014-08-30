@@ -47,6 +47,12 @@ class IndexController extends ActionController
             $this->view()->headdescription($row->seo_description, 'set');
             $this->view()->headkeywords($row->seo_keywords, 'set');
             $this->view()->assign('config', $config);
+            if ($row->theme) {
+                $this->view()->setTheme($row->theme);
+            }
+            if ($row->layout) {
+                $this->view()->setLayout($row->layout);
+            }
         }
 
         $this->view()->assign(array(
@@ -76,7 +82,7 @@ class IndexController extends ActionController
         } elseif ($slug) {
             $row = $this->getModel('page')->find($name, 'slug');
         }
-        if ($row->active) {
+        if ($row && $row->active) {
             $nav = Pi::registry('nav', $this->getModule())->read();
             if (isset($nav[$row->id])) {
                 $nav[$row->id]['active'] = 1;

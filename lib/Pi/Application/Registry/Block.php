@@ -14,7 +14,7 @@ use Pi;
 use Pi\Acl\Acl as AclManager;
 
 /**
- * Block list
+ * List of blocks on pages of a module
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

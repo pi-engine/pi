@@ -71,6 +71,22 @@ class PageForm extends BaseForm
             )
         ));
 
+        $this->add(array(
+            'name'          => 'theme',
+            'type'          => 'theme',
+            'options'       => array(
+                'allow_auto'    => true,
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'layout',
+            'type'          => 'layout',
+            'options'       => array(
+                'theme' => '', // Specify theme name here
+            ),
+        ));
+
         if ('phtml' == $this->markup) {
             $this->add(array(
                 'name'          => 'content',

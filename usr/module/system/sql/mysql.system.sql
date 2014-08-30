@@ -7,7 +7,7 @@
 # Audit
 # >>>>
 
-# Auditting of application operations
+# Auditing of application operations
 CREATE TABLE `{core.audit}` (
   `id`              int(10)         unsigned NOT NULL auto_increment,
   `user`            int(10)         unsigned NOT NULL    default '0',
@@ -73,7 +73,6 @@ CREATE TABLE `{core.block_root}` (
   `config`          text,                                           # serialized options (in JSON) for edit
   `cache_level`     varchar(64)     NOT NULL default '',            # content cache level type
   `type`            varchar(64)     NOT NULL default '',            # Content type: "" - module generated; carousel - Carousel; tab - block compound; text - static text; html - static HTML; markdown - static Markdown syntax compliant
-
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `module_name` (`module`, `name`)
@@ -280,7 +279,7 @@ CREATE TABLE `{core.route}` (
   `module`          varchar(64)     NOT NULL    default '',
   `data`            text,
   `active`          tinyint(1)      unsigned NOT NULL default '1',
-  `custom`          tinyint(1)      unsigned NOT NULL default '0',
+# `custom`          tinyint(1)      unsigned NOT NULL default '0',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`)

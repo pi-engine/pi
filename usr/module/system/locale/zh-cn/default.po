@@ -1,37 +1,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-04-27 19:03+0800\n"
-"PO-Revision-Date: 2014-04-29 10:29+0800\n"
+"POT-Creation-Date: 2014-08-08 17:25+0800\n"
+"PO-Revision-Date: 2014-08-08 17:25+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\module\\system\n"
-
-#: c:\Code\pi\usr\module\system/src/Menu.php:240
-msgid "Uncategorized"
-msgstr "未分类"
-
-#: c:\Code\pi\usr\module\system/src/Navigation.php:161
-msgid "Edit a block"
-msgstr "编辑区块"
-
-#: c:\Code\pi\usr\module\system/src/Navigation.php:172
-msgid "Clone a block"
-msgstr "克隆区块"
-
-#: c:\Code\pi\usr\module\system/src/Navigation.php:218
-msgid "Block layout"
-msgstr "区块布局"
-
-#: c:\Code\pi\usr\module\system/src/Navigation.php:229
-msgid "Setup page"
-msgstr "设置新页面"
 
 #: c:\Code\pi\usr\module\system/src/Api/Event.php:31
 #, php-format
@@ -83,11 +64,11 @@ msgstr "%s模块已禁用"
 msgid "The module %s is deactivated successfully."
 msgstr "成功禁用%s模块"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:334
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:332
 msgid "Bootstrap compiled successfully."
 msgstr "Bootstrap 编译成功。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:377
+#: c:\Code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:375
 msgid "Bootstrap reset successfully."
 msgstr "Bootstrap 重置成功。"
 
@@ -126,30 +107,23 @@ msgstr "用户登录"
 msgid "Login"
 msgstr "登录"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:95
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:129
-#: c:\Code\pi\usr\module\system/src/Controller/Front/ProfileController.php:77
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:54
-msgid "login,register,find,password,user,account"
-msgstr ""
-
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:112
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:115
 msgid "Invalid request."
 msgstr "无效请求。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:156
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:159
 msgid "You have tried too many times. Please try later."
 msgstr "尝试次数太多，请稍后重试。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:180
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:183
 msgid "Invalid credentials provided, please try again."
 msgstr "密码错误，请重试。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:222
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:225
 msgid "You have logged in successfully."
 msgstr "成功登录"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:241
+#: c:\Code\pi\usr\module\system/src/Controller/Front/LoginController.php:244
 msgid "You logged out successfully."
 msgstr "成功退出。"
 
@@ -171,11 +145,11 @@ msgstr "找回密码的确认邮件发生成功。请查收邮件确认后修改
 msgid "Find password"
 msgstr "找回密码"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:143
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:146
 msgid "Invalid token for password reset."
 msgstr "密码重置信息无效。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:197
+#: c:\Code\pi\usr\module\system/src/Controller/Front/PasswordController.php:200
 msgid "Password reset successfully."
 msgstr "重置密码成功。"
 
@@ -228,17 +202,17 @@ msgid "User account register"
 msgstr "账号注册"
 
 #: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:52
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:110
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:113
 #: c:\Code\pi\usr\module\system/template/front/login-logout.phtml:18
 #: c:\Code\pi\usr\module\system/template/front/login.phtml:17
 msgid "Register"
 msgstr "注册"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:80
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:83
 msgid "Invalid input, please try again."
 msgstr "无效输入，请重试。"
 
-#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:99
+#: c:\Code\pi\usr\module\system/src/Controller/Front/RegisterController.php:102
 msgid "The account is not created in database, please try again."
 msgstr "该账号未能保存到数据库，请重试。"
 
@@ -272,14 +246,14 @@ msgid "Birthdate"
 msgstr "生日"
 
 #: c:\Code\pi\usr\module\system/src/Form/AccountForm.php:93
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:200
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:207
 #: c:\Code\pi\usr\module\system/src/Form/ConfigForm.php:58
 #: c:\Code\pi\usr\module\system/src/Form/MemberForm.php:157
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:58
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:67
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:131
-#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:126
-#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:74
+#: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:93
+#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:68
 #: c:\Code\pi\usr\module\system/src/Form/RegisterForm.php:100
 #: c:\Code\pi\usr\module\system/src/Form/ResetPasswordForm.php:73
 #: c:\Code\pi\usr\module\system/src/Form/RoleForm.php:115
@@ -287,7 +261,7 @@ msgstr "生日"
 msgid "Submit"
 msgstr "提交"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:61
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:66
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:40
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:40
 #: c:\Code\pi\usr\module\system/src/Form/PageAddForm.php:45
@@ -295,82 +269,76 @@ msgstr "提交"
 msgid "Title"
 msgstr "标题"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:65
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:70
 msgid "Block label for display."
 msgstr "区块标题。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:73
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:78
 msgid "Hide title"
 msgstr "隐藏标题"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:76
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:81
 msgid "Hide block title from display."
 msgstr "显示区块时隐藏区块标题。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:84
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:89
 msgid "Full-size body"
 msgstr "全福尺寸"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:87
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:92
 msgid "Display block body in full-size w/o padding."
 msgstr "显示时全幅显示区块主体，不保留边界。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:94
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:99
 #: c:\Code\pi\usr\module\system/src/Form/ModuleForm.php:30
 #: c:\Code\pi\usr\module\system/src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr "唯一名称"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:98
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:103
 msgid "A unique name to be called as widget."
 msgstr "用于调用该区块的唯一标识符。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:106
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:117
-msgid "Template"
-msgstr "模板"
-
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:122
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:111
 msgid "PHTML rendering template, file extension is optional."
 msgstr "PHTML渲染模板，可不写扩展名。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:130
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:126
+msgid "Template"
+msgstr "模板"
+
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
 msgid "Description"
 msgstr "简介"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:134
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
 msgid "Set a hint to distinguish the block."
 msgstr "识别该区块的描述。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
 msgid "Subline"
 msgstr "副标题"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
 msgid "Header subline. HTML is allowed."
 msgstr "子标题，允许HTML语法。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:163
 msgid "Style class"
 msgstr "样式类名"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:167
 msgid "Specified block container CSS class."
 msgstr "区块风格的CSS类名。"
 
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:164
-#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:46
-msgid "Cache TTL"
-msgstr "缓存有效期"
-
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:172
-#: c:\Code\pi\usr\module\system/src/Form/PageEditForm.php:54
-msgid "Cache level"
-msgstr "缓存标准"
-
-#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:220
+#: c:\Code\pi\usr\module\system/src/Form/BlockModuleForm.php:227
 msgid "Configs"
 msgstr "配置参数"
+
+#: c:\Code\pi\usr\module\system/src/Form/Element/Controller.php:53
+#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:78
+msgid "None"
+msgstr "无"
 
 #: c:\Code\pi\usr\module\system/src/Form/FindPasswordForm.php:36
 msgid "Please type the word"
@@ -448,11 +416,6 @@ msgstr "URI"
 msgid "Open target"
 msgstr "打开方式"
 
-#: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:78
-#: c:\Code\pi\usr\module\system/src/Form/Element/Controller.php:53
-msgid "None"
-msgstr "无"
-
 #: c:\Code\pi\usr\module\system/src/Form/NavPageForm.php:79
 msgid "Current window"
 msgstr "当前窗口"
@@ -501,16 +464,35 @@ msgstr "前台"
 msgid "Admin"
 msgstr "后台"
 
-#: c:\Code\pi\usr\module\system/src/Validator/Password.php:50
+#: c:\Code\pi\usr\module\system/src/Menu.php:240
+msgid "Uncategorized"
+msgstr "未分类"
+
+#: c:\Code\pi\usr\module\system/src/Navigation.php:161
+msgid "Edit a block"
+msgstr "编辑区块"
+
+#: c:\Code\pi\usr\module\system/src/Navigation.php:172
+msgid "Clone a block"
+msgstr "克隆区块"
+
+#: c:\Code\pi\usr\module\system/src/Navigation.php:218
+msgid "Block layout"
+msgstr "区块布局"
+
+#: c:\Code\pi\usr\module\system/src/Navigation.php:229
+msgid "Setup page"
+msgstr "设置新页面"
+
+#: c:\Code\pi\usr\module\system/src/Validator/Password.php:39
 msgid "Password is less than %min% characters long"
 msgstr "密码不得少于%min%个字符"
 
-#: c:\Code\pi\usr\module\system/src/Validator/Password.php:51
+#: c:\Code\pi\usr\module\system/src/Validator/Password.php:40
 msgid "Password is more than %max% characters long"
 msgstr "密码不得多于%max%个字符"
 
 #: c:\Code\pi\usr\module\system/template/admin/cache-list.phtml:50
-#: c:\Code\pi\usr\module\system/template/component/form.phtml:77
 msgid "Cancel"
 msgstr "取消"
 
@@ -606,3 +588,9 @@ msgstr "登录"
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "您已注册成功，请前往%s或%s。"
+
+#~ msgid "Cache TTL"
+#~ msgstr "缓存有效期"
+
+#~ msgid "Cache level"
+#~ msgstr "缓存标准"

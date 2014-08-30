@@ -21,7 +21,7 @@ use Module\User\Form\LoginForm as LoginFormUser;
 class Block
 {
     /**
-     * Site infomation block
+     * Site information block
      *
      * @return array
      */

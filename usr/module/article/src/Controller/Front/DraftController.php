@@ -761,15 +761,16 @@ class DraftController extends ActionController
         $result['status']   = self::RESULT_TRUE;
         $result['data']     = array('id' => $id);
 
-        $module = $this->getModule();
-        $route = Pi::api('api', $module)->getRouteName();
+        //$module = $this->getModule();
+        $route = 'article';
         $result['data']['preview_url'] = $this->url(
             $route,
             array(
-                'time'    => date('Ymd', time()),
-                'id'      => $id,
-                'slug'    => $data['slug'],
-                'preview' => 1,
+                'module'    => $this->getModule(),
+                'time'      => date('Ymd', time()),
+                'id'        => $id,
+                'slug'      => $data['slug'],
+                'preview'   => 1,
             )
         );
         $result['message'] = __('Draft saved successfully.');
@@ -1143,7 +1144,7 @@ class DraftController extends ActionController
             'currentDelete'  => $currentDelete,
             'currentApprove' => $currentApprove,
         ));
-        
+
         $this->view()->setTemplate('draft-edit', $module, 'front');
     }
 
@@ -1438,7 +1439,11 @@ class DraftController extends ActionController
         $time    = time();
         $details = Draft::getDraft($id);
         $details['time_publish'] = $time;
-        $params  = array('preview' => 1);
+        $module = $this->getModule();
+        $params = array(
+            'module'    => $module,
+            'preview'   => 1
+        );
         
         if (!$id) {
             return $this->jumpTo404(__('Page not found'));
@@ -1459,14 +1464,13 @@ class DraftController extends ActionController
             );
         }
         
-        $module = $this->getModule();
-        $route = Pi::api('api', $module)->getRouteName();
+        $route = 'article';
         foreach ($details['content'] as &$value) {
             $value['url'] = $this->url($route, array_merge(array(
-                'time'       => date('Ymd', $time),
-                'id'         => $id,
-                'slug'       => $slug,
-                'p'          => $value['page'],
+                'time'      => date('Ymd', $time),
+                'id'        => $id,
+                'slug'      => $slug,
+                'p'         => $value['page'],
             ), $params));
             if (isset($value['title']) 
                 and preg_replace('/&nbsp;/', '', trim($value['title'])) !== ''

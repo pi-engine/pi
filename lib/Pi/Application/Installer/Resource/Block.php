@@ -31,7 +31,7 @@ use Pi\Db\RowGateway\RowGateway;
  *          'render'        => array('class', 'method'),
  *          // in module/template/block/, no suffix
  *          'template'      => 'template',
- *          // Cache level type, optional: role, locale, user
+ *          // Cache granularity, optional: role, locale, user, guest
  *          'cache_level'   => 'role',
  *          'config'        => array(
  *              'a' => array(
@@ -142,9 +142,6 @@ class Block extends AbstractResource
                                 ? $block['config'] : array(),
             'cache_level'   => isset($block['cache_level'])
                                 ? $block['cache_level'] : '',
-
-            //'link'          => isset($block['link']) ? $block['link'] : '',
-            //'class'         => isset($block['class']) ? $block['class'] : '',
         );
 
         return $data;

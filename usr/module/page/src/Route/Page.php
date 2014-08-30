@@ -26,6 +26,8 @@ class Page extends Standard
      */
     public function parse($path)
     {
+        $module = $this->defaults['module'];
+
         $name = '';
         if ($path) {
             if (false !== ($pos = strpos($path, $this->paramDelimiter))) {
@@ -36,8 +38,7 @@ class Page extends Standard
             }
         }
         $params  = $path
-            ? explode($this->paramDelimiter,
-                trim($path, $this->paramDelimiter))
+            ? explode($this->paramDelimiter, trim($path, $this->paramDelimiter))
             : array();
         $params = parent::parseParams($params);
         $matches = array_merge($this->defaults, $params);
@@ -53,7 +54,7 @@ class Page extends Standard
 
         // Set action
         $action = '';
-        $pageList = Pi::registry('page', 'page')->read();
+        $pageList = Pi::registry('page', $module)->read();
         if (!empty($matches['id'])) {
             if (isset($pageList[$matches['id']])) {
                 $action = $pageList[$matches['id']]['name'];
@@ -88,6 +89,8 @@ class Page extends Standard
      */
     public function assemble(array $params = array(), array $options = array())
     {
+        //$this->prefix = $this->defaults['module'];
+
         $mergedParams = array_merge($this->defaults, $params);
         $url = '';
         if (!empty($mergedParams['slug'])) {

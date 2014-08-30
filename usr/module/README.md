@@ -18,7 +18,7 @@ Folder and file skeleton
         'license'       => 'New BSD',
         // Logo image, for admin, optional
         'logo'          => 'image/logo.png',
-        // Logo icon, use font-awsome icons from http://fortawesome.github.io/Font-Awesome/icons/
+        // Logo icon, use font-awesome icons from http://fortawesome.github.io/Font-Awesome/icons/
         'icon'          => 'fa fa-search',
 
         // Readme file, for admin, optional
@@ -80,7 +80,7 @@ Folder and file skeleton
 * `config/`: required, configuration files used by a module
   * `module.php`: required, defines module meta data, author information and resources needed
   * `config.php`: optional, defines module configuration
-  * `navigation.php`: optional, defaines front-end and backend navigation of a module
+  * `navigation.php`: optional, defines front-end and backend navigation of a module
 * `locale/`: optional, localization specific assets
   * `en/`
     * `main.csv`: optional, default localization file should be named `main` and its format is `csv`

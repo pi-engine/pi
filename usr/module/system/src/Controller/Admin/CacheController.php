@@ -102,8 +102,8 @@ class CacheController extends ComponentController
 
         $factory = new FormFactory;
         $helper = $this->view()->helper('form_select');
-        $cacheType = function ($id, $value) use ($factory, $helper) {
-            $element = $factory->create(array(
+        $cacheType = function ($id, $value, $section) use ($factory, $helper) {
+            $spec = array(
                 'name'          => sprintf('cache_type[%s]', $id),
                 'type'          => 'select',
                 'attributes'    => array(
@@ -114,7 +114,12 @@ class CacheController extends ComponentController
                     'value'     => $value ?: 'page',
                     'class'     => 'form-control',
                 ),
-            ));
+            );
+            if ('feed' == $section) {
+                $spec['attributes']['value'] = 'page';
+                unset($spec['attributes']['options']['action']);
+            }
+            $element = $factory->create($spec);
             $content = $helper->render($element);
             return $content;
         };
@@ -148,50 +153,41 @@ class CacheController extends ComponentController
         $pageHome   = array();
         foreach ($rowset as $row) {
             $id         = $row->id;
-            //$isModule   = false;
+            $section    = $row->section ?: 'front';
 
             if (!$row->controller) {
-                $pageModule = array(
+                $pageModule[$section] = array(
                     'id'        => $row->id,
                     'title'     => _a('Module wide'),
-                    'type'      => $cacheType($id, $row['cache_type']),
+                    'type'      => $cacheType($id, $row['cache_type'], $section),
                     'ttl'       => $cacheTtl($id, $row['cache_ttl']),
                     'level'     => $cacheLevel($id, $row['cache_level']),
                     'is_module' => true,
                 );
                 continue;
             } elseif ('index' == $row->controller && 'index' == $row->action) {
-                $pageHome = array(
+                $pageHome[$section] = array(
                     'id'        => $row->id,
                     'title'     => _a('Module home'),
-                    'type'      => $cacheType($id, $row['cache_type']),
+                    'type'      => $cacheType($id, $row['cache_type'], $section),
                     'ttl'       => $cacheTtl($id, $row['cache_ttl']),
                     'level'     => $cacheLevel($id, $row['cache_level']),
                 );
                 continue;
             }
-            /*
-            if (!$row->controller) {
-                $title      = _a('Module wide');
-                $isModule   = true;
-            } else {
-                $title      = $row->title;
-            }
-            */
-            $sections[$row->section]['pages'][] = array(
+            $sections[$section]['pages'][] = array(
                 'id'        => $row->id,
                 'title'     => $row->title,
-                'type'      => $cacheType($id, $row['cache_type']),
+                'type'      => $cacheType($id, $row['cache_type'], $section),
                 'ttl'       => $cacheTtl($id, $row['cache_ttl']),
                 'level'     => $cacheLevel($id, $row['cache_level']),
-                //'is_module' => $isModule,
             );
         }
-        if ($pageHome) {
-            array_unshift($sections['front']['pages'], $pageHome);
+        foreach ($pageHome as $section => $page) {
+            array_unshift($sections[$section]['pages'], $page);
         }
-        if ($pageModule) {
-            array_unshift($sections['front']['pages'], $pageModule);
+        foreach ($pageModule as $section => $page) {
+            array_unshift($sections[$section]['pages'], $page);
         }
 
         $this->view()->assign('pagesBySection', $sections);

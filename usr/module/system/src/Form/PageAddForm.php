@@ -73,39 +73,6 @@ class PageAddForm extends BaseForm
             ),
         ));
 
-        /*
-        $this->add(array(
-            'name'          => 'cache_type',
-            'type'          => 'select',
-            'options'       => array(
-                'label' => __('Cache type'),
-            ),
-            'attributes'    => array(
-                'options'   => array(
-                    'page'      => __('Page wide'),
-                    'action'    => __('Action data'),
-                ),
-                'value'     => 'page',
-            ),
-        ));
-
-        $this->add(array(
-            'name'          => 'cache_ttl',
-            'type'          => 'cacheTtl',
-            'options'       => array(
-                'label' => __('Cache TTL'),
-            ),
-        ));
-
-        $this->add(array(
-            'name'          => 'cache_level',
-            'type'          => 'cacheLevel',
-            'options'       => array(
-                'label' => __('Cache level'),
-            ),
-        ));
-        */
-
         $this->add(array(
             'name'  => 'security',
             'type'  => 'csrf',

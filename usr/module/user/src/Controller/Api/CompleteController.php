@@ -4,7 +4,7 @@
  *
  * @link            http://code.pialog.org for the Pi Engine source repository
  * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
 namespace Module\User\Controller\Api;
@@ -21,6 +21,7 @@ use Zend\InputFilter\InputFilter;
  * - set: <uid>, <rule>, array(<field>)
  * - get: <uid>, <rule>, array(<data>)
  *
+ * @todo The controller has hard-coded customization and will be refactored. - By @taiwen
  * @author Zongshu Lin <lin40553024@163.com>
  */
 class CompleteController extends ApiController
@@ -70,17 +71,8 @@ class CompleteController extends ApiController
         
         $module = $this->getModule();
         
-        // Get filename that include elements definition or fields elements
-        if (!empty($fields)) {
-            foreach ($fields as $key => $field) {
-                if (in_array($field['name'], $this->protectedFields)) {
-                    unset($fields[$key]);
-                }
-            }
-            $name = $fields;
-        } else {
-            $name = $this->getFormFile($uid, $rule);
-        }
+        // Get filename that include elements definition
+        $name = $this->getFormFile($uid, $rule);
         
         // Get form instance, and remove uneed form
         $form = Pi::api('form', $module)->loadForm($name);
@@ -156,22 +148,8 @@ class CompleteController extends ApiController
         
         $module = $this->getModule();
         
-        // Get filename that include elements definition or fields elements
-        if (!empty($fields)) {
-            foreach ($fields as $key => $val) {
-                if (in_array($val['name'], $this->protectedFields)) {
-                    unset($fields[$key]);
-                }
-                if (preg_match('/-/', $val)) {
-                    list($compound, $field) = explode('-', $val);
-                    $fields[$compound][] = $field;
-                    unset($fields[$key]);
-                }
-            }
-            $name = $fields;
-        } else {
-            $name = $this->getFormFile($uid, $rule);
-        }
+        // Get filename that include elements definition
+        $name = $this->getFormFile($uid, $rule);
         
         // Get form instance, and remove uneed form
         $form = Pi::api('form', $module)->loadForm($name);

@@ -98,10 +98,7 @@ class PasswordController extends ActionController
 
         $this->view()->headTitle(__('Change password'));
         $this->view()->headdescription(__('To ensure your account security, complex password is required.'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -112,6 +109,12 @@ class PasswordController extends ActionController
      */
     public function findAction()
     {
+        // Check usrr not login
+        if (Pi::service('user')->hasIdentity()) {
+            $this->redirect()->toUrl(Pi::service('user')->getUrl('profile'));
+            return false;
+        }
+
         $result = array(
             'status'  => 0,
             'message' => __('Find password failed.'),
@@ -196,10 +199,7 @@ class PasswordController extends ActionController
 
         $this->view()->headTitle(__('Find password'));
         $this->view()->headdescription(__('Find password'), 'set');
-        $this->view()->headkeywords(
-            __('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
-            'set'
-        );
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**

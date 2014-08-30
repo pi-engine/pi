@@ -18,6 +18,8 @@ $this->bootstrap(array(
     'font-awesome/css/font-awesome.min.css'
 ));
 $this->css($this->assetTheme('css/front.css'));
+$this->css($this->assetLocale('locale.css'));
+
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'href'  => $this->assetTheme('image/touch-icon-iphone.png')
@@ -165,10 +167,12 @@ $blockTemplate  = $this->template('block');
 
             <!-- Module content starts -->
             <?php if (!empty($content)) { ?>
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
+                <div class="<?php echo $module; ?>">
+                    <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                        <?php echo $content; ?>
+                    </div>
+                    <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
                 </div>
-                <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
             <?php } ?>
             <!-- Module content ends -->
 

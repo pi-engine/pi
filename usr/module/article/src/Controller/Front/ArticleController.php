@@ -74,8 +74,7 @@ class ArticleController extends ActionController
 
         $details = Entity::getEntity($id);
         $details['id'] = $id;
-        $params  = array();
-        
+
         if (!$id or ($details['time_publish'] > time())) {
             return $this->jumpTo404(__('Page not found'));
         }
@@ -86,15 +85,19 @@ class ArticleController extends ActionController
             );
         }
         $module = $this->getModule();
-        $route = Pi::api('api', $module)->getRouteName();
+        $params  = array(
+            'module'        => $module,
+        );
+        //$route = Pi::api('api', $module)->getRouteName();
+        $route = 'article';
         if (strval($slug) != $details['slug']) {
             $routeParams = array(
-                'time'       => date('Ymd', $details['time_publish']),
-                'id'         => $id,
-                'slug'       => $details['slug'],
-                'p'          => $page,
-                'controller' => 'article',
-                'action'     => 'detail',
+                'time'          => date('Ymd', $details['time_publish']),
+                'id'            => $id,
+                'slug'          => $details['slug'],
+                'p'             => $page,
+                'controller'    => 'article',
+                'action'        => 'detail',
             );
             if ($remain) {
                 $params['r'] = $remain;
@@ -106,12 +109,12 @@ class ArticleController extends ActionController
         
         foreach ($details['content'] as &$value) {
             $value['url'] = $this->url($route, array_merge(array(
-                'time'       => date('Ymd', $details['time_publish']),
-                'id'         => $id,
-                'slug'       => $slug,
-                'p'          => $value['page'],
-                'controller' => 'article',
-                'action'     => 'detail',
+                'time'          => date('Ymd', $details['time_publish']),
+                'id'            => $id,
+                'slug'          => $slug,
+                'p'             => $value['page'],
+                'controller'    => 'article',
+                'action'        => 'detail',
             ), $params));
             if (isset($value['title']) 
                 and preg_replace('/&nbsp;/', '', trim($value['title'])) !== ''
@@ -256,10 +259,11 @@ class ArticleController extends ActionController
         // Redirect to edit draft
         if ($draftId) {
             return $this->redirect()->toRoute('', array(
-                'action'     => 'edit',
-                'controller' => 'draft',
-                'id'         => $draftId,
-                'from'       => 'all',
+                'module'        => $module,
+                'action'        => 'edit',
+                'controller'    => 'draft',
+                'id'            => $draftId,
+                'from'          => 'all',
             ));
         }
     }
@@ -358,7 +362,9 @@ class ArticleController extends ActionController
         ));
         */
 
-        $params = array();
+        $params = array(
+            'module'    => $module,
+        );
         foreach (array('category', 'filter', 'keyword', 'from') as $key) {
             if (${$key}) {
                 $params[$key] = ${$key};
@@ -503,9 +509,10 @@ class ArticleController extends ActionController
         } else {
             // Go to list page
             return $this->redirect()->toRoute('', array(
-                'controller' => 'article',
-                'action'     => 'published',
-                'from'       => 'all',
+                'module'        => $module,
+                'controller'    => 'article',
+                'action'        => 'published',
+                'from'          => 'all',
             ));
         }
     }

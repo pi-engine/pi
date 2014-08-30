@@ -1,0 +1,9 @@
+<h2 class="page-header"><?php _e('Paginator'); ?></h2>
+<ul>
+<?php foreach ($paginator as $article) { ?>
+    <li><?php echo _escape($article['title']); ?></li>
+<?php } ?>
+</ul>
+
+<?php echo $this->pagination($paginator, 'Sliding', 'paginator'); ?>
+<p><?php echo $module .'-'. $controller . '-' . $action; ?></p>

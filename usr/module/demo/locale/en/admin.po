@@ -1,0 +1,302 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-demo\n"
+"POT-Creation-Date: 2014-04-29 10:56+0800\n"
+"PO-Revision-Date: 2014-04-29 10:56+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\demo\n"
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:13
+msgid "First Block"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:14
+msgid "Block with options and tempalte"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:20
+msgid "Your input"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:21
+msgid "The first option for first block"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:24
+msgid "Demo option 1"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:28
+msgid "Yes or No"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:29
+msgid "Demo for Yes-No"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:36
+msgid "Input some figure"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:37
+msgid "Demo for number"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:50
+msgid "Second Block"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:51
+msgid "Block with custom options and tempalte"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:57
+msgid "Select it"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:63
+#: C:\wamp\www\master\usr\module\demo/config/config.php:60
+msgid "One"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:64
+#: C:\wamp\www\master\usr\module\demo/config/config.php:61
+msgid "Two"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:65
+#: C:\wamp\www\master\usr\module\demo/config/config.php:62
+msgid "Three"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:75
+msgid "Check applicable"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:81
+msgid "Check A"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:82
+msgid "Check B"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:83
+msgid "Check C"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:93
+msgid "Choose it"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:104
+msgid "Third Block"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/block.php:105
+msgid "Block w/o options, no template"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/comment.php:18
+msgid "Demo comments"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:14
+msgid "General"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:18
+msgid "Test"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:26
+msgid "Item per page"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:27
+msgid "Number of items on one page."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:44
+msgid "Test Config"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:45
+msgid "An example for configuration."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:51
+msgid "Add Item"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/config.php:52
+msgid "An example for adding configuration."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/event.php:16
+msgid "Event hook demo"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/module.php:14
+msgid "DEMO Sandbox"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/module.php:16
+msgid "Examples and tests for developers."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:14
+msgid "Pages"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:19
+msgid "Test User Call"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:25
+msgid "Homepage"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:32
+msgid "Full Paginator"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:38
+msgid "Lean Paginator"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:44
+msgid "Subpage one"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:50
+msgid "Subpage two"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:60
+msgid "Leaf one"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:74
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:88
+msgid "Routes"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:81
+msgid "Sample"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/nav.php:95
+msgid "Form"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/page.php:16
+msgid "Module homepage"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/page.php:23
+msgid "Module"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/page.php:32
+msgid "Module feeds"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/page.php:37
+msgid "Test feeds"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/page.php:44
+msgid "Try feeds"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/permission.php:14
+msgid "Test resource"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/permission.php:21
+msgid "Write privilege"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/permission.php:25
+msgid "Management privilege"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/user.php:14
+msgid "Sample field"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/user.php:21
+msgid "Test callback"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/config/user.php:26
+msgid "Test template"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/FormController.php:31
+#, fuzzy
+msgid "Form submitted successfully."
+msgstr "主题更新成功。"
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/FormController.php:46
+#, php-format
+msgid "File uploaded and saved as %s"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:52
+msgid "Route list"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:86
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:208
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:265
+msgid "Route data saved successfully."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:93
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:163
+msgid "Route data not saved."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:96
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:212
+msgid "Invalid data, please check and re-submit."
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:113
+#: C:\wamp\www\master\usr\module\demo/template/admin/route-list.phtml:16
+msgid "Add a route"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:148
+#, fuzzy
+msgid "Route added successfully."
+msgstr "主题更新成功。"
+
+#: C:\wamp\www\master\usr\module\demo/src/Controller/Admin/RouteController.php:230
+msgid "Route edit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/template/admin/route-list.phtml:9
+msgid "Class: "
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/template/admin/route-list.phtml:10
+msgid "Edit"
+msgstr ""
+
+#: C:\wamp\www\master\usr\module\demo/template/admin/route-list.phtml:11
+msgid "Delete"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Time"
+#~ msgstr "Application Execution Time"

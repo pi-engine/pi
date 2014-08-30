@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-theme-pi\n"
+"POT-Creation-Date: 2014-05-23 22:20+0100\n"
+"PO-Revision-Date: 2014-06-07 13:33+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc / Pi-Team\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\theme\\pi\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:102
+msgid "Home"
+msgstr "Accueil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:251
+msgid "About us"
+msgstr "A propos"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:255
+msgid "Contact us"
+msgstr "Contact"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:259
+msgid "Sitemap"
+msgstr "Plan du site"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:259
+msgid "Direct links to site elements"
+msgstr "Liens directs vers les éléments du site"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:263
+msgid "Get help"
+msgstr "Aide"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\theme\pi/template/layout-front.phtml:267
+#, php-format
+msgid "Execution time: %.4f s"
+msgstr "Temps d'exécution : %.4f s"

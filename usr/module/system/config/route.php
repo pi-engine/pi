@@ -21,6 +21,7 @@ return array(
 
         'type'      => 'Standard',
         'options'   =>array(
+            'prefix'                => '',
             'structure_delimiter'   => '/',
             'param_delimiter'       => '/',
             'key_value_delimiter'   => '-',
@@ -39,6 +40,7 @@ return array(
         'priority'  => 10000,
 
         'options'   =>array(
+            'prefix'                => '',
             'structure_delimiter'   => '-',
             'param_delimiter'       => '/',
             'key_value_delimiter'   => '-',
@@ -48,13 +50,12 @@ return array(
     // admin route
     'admin' => array(
         'name'      => 'admin',
-        // section, default as 'front'
         'section'   => 'admin',
         'priority'  => 100,
 
         'type'      => 'Standard',
         'options'   => array(
-            'route'     => '/admin',
+            'prefix'     => '/admin',
         ),
     ),
 
@@ -66,7 +67,7 @@ return array(
 
         'type'      => 'Api',
         'options'   => array(
-            'route'     => '/api',
+            'prefix'     => '/api',
         ),
     ),
 
@@ -78,7 +79,7 @@ return array(
 
         'type'      => 'Feed',
         'options'   => array(
-            'route'     => '/feed',
+            'prefix'     => '/feed',
         ),
     ),
 
@@ -88,25 +89,7 @@ return array(
         'type'      => 'Module\System\Route\User',
         'priority'  => 5,
         'options'   => array(
-            'route'    => '/system/user',
+            'prefix'    => '/system/user',
         ),
     ),
-
-    /*
-    // Transition page jump route
-    'jump' => array(
-        'name'      => 'jump',
-        'priority'  => 5,
-
-        //'type'      => 'Literal',
-        'options'   => array(
-            'route'     => '/jump',
-            'defaults'  => array(
-                'module'        => 'system',
-                'controller'    => 'jump',
-                'action'        => 'index'
-            ),
-        ),
-    ),
-    */
 );

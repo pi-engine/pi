@@ -39,7 +39,10 @@ class Nav extends AbstractRegistry
         foreach ($rowset as $row) {
             $id = (int) $row['id'];
             $name = $row['slug'] ?: $row['name'];
-            $url = Pi::service('url')->assemble('page-page', array('name' => $name));
+            $url = Pi::service('url')->assemble('page', array(
+                'module'    => $this->module,
+                'name'      => $name,
+            ));
             $item = array(
                 'id'    => $id,
                 'title' => $row['title'],

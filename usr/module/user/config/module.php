@@ -16,7 +16,7 @@ return array(
     'meta'  => array(
         'title'         => _a('User'),
         'description'   => _a('User profile and services.'),
-        'version'       => '1.3.4',
+        'version'       => '1.3.6',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org',
         'icon'          => 'fa-user',
@@ -32,7 +32,7 @@ return array(
         'Email'     => 'taiwenjiang@tsinghua.org.cn',
         // Website link, optional
         'Website'   => 'http://pialog.org',
-        // Credits and aknowledgement, optional
+        // Credits and acknowledgement, optional
         'Credits'   => 'Pi Engine Team; Zend Framework Team; EEFOCUS Team.'
     ),
 

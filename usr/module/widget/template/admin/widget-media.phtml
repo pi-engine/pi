@@ -1,0 +1,66 @@
+<?php
+$this->css($this->assetModule('admin/admin.css'));
+$this->jQuery(array(
+    'ui/jquery-ui.min.js',
+    'extension/fileupload-min.js',
+    'extension/jquery.magnific-popup.min.js',
+    'extension/magnific-popup.css'
+));
+$this->Backbone();
+
+include $this->templateComponent('form');
+?>
+<div class="form-group" id="widget-items">
+    <label class="col-md-2 control-label"><?php echo _a('Items'); ?></label>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-sm-6 col-md-3 widget-item-add">
+               <div class="thumbnail widget-item-add-mark" title="<?php echo _a('Click to upload image then add item contents.'); ?>">
+                 <i class="fa fa-plus fa-3x text-muted widget-file-button">
+                    <input type="file" name="image" multiple style="width: 100%;" class="hide">
+                </i>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="widget-item-template" type="text/template">
+<div class="col-sm-6 col-md-3 widget-item">
+    <div class="thumbnail">
+        <button type="button" class="close" title="<?php echo _a('Click to remove'); ?>">&times;</button>
+        <a href="<%= image %>" class="image-popup">
+            <img src="<%= image %>">
+        </a>
+        <p>
+            <label><?php echo _a('Caption'); ?></label>
+            <input type="text" value="<%= caption %>" name="<%= prefix %>caption" class="form-control">
+        </p>
+        <p>
+            <label><?php echo _a('Link'); ?></label>
+            <input type="text" value="<%= link %>" name="<%= prefix %>link" class="form-control">
+        </p>
+        <p>
+            <label><?php echo _a('Summary'); ?></label>
+            <textarea name="<%= prefix %>summary" class="form-control" rows="5"><%= summary %></textarea>
+        </p>
+    </div>
+</div>
+</script>
+<script src="<?php echo $this->assetModule('admin/widget-media.js'); ?>"></script>
+<script>
+widgetAction({
+    prefix: "block-",
+    uploadUrl: '<?php echo $this->url('', array('action' => 'upload')); ?>',
+    items: <?php echo $content ?: json_encode(array()); ?>
+});
+$(document).ready(function() {
+    $('.image-popup').magnificPopup({
+        type: 'image',
+        closeOnContentClick: true,
+        image: {
+            verticalFit: false
+        }
+    });
+});
+</script>

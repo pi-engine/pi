@@ -15,7 +15,7 @@ use Pi;
 /**
  * Config cache
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Config extends AbstractRegistry
 {

@@ -37,8 +37,13 @@ class ContentType implements HeaderInterface
         $values = preg_split('#\s*;\s*#', $value);
         $type   = array_shift($values);
 
+        //Remove empty values
+        $values = array_filter($values);
+
         $header = new static();
         $header->setType($type);
+
+        $values = array_filter($values);
 
         if (count($values)) {
             foreach ($values as $keyValuePair) {

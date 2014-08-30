@@ -9,8 +9,6 @@
 
 namespace Pi\Application\Engine;
 
-use Pi;
-
 /**
  * Pi API application engine
  *

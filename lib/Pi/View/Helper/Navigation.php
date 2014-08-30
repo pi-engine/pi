@@ -198,7 +198,7 @@ class Navigation extends NavigationHelper
      *
      * Register default router and RouteMatch to MvcPage
      *
-     * @param Container $container
+     * @param Container|array $container
      * @return self
      */
     public function setContainer($container = null)

@@ -53,7 +53,7 @@ return array(
      * To be stored in DB
      */
     // Version
-    'version'       => '1.1.0',
+    'version'       => '1.1.1',
     // Type of layouts available in the theme
     // Potential value: 'both', 'admin', 'front', default as 'both'
     'type'          => 'both',
@@ -78,4 +78,9 @@ return array(
     // Supported browsers
     'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+;'
                      . ' Safari: 5.1+; Opera: 9.8+;',
+
+    // List of custom front layouts, optional
+    'layout'        => array(
+        //'file-name'   => __('Layout name'),
+    ),
 );

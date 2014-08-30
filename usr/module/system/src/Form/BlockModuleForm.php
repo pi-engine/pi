@@ -24,15 +24,20 @@ class BlockModuleForm extends BaseForm
     /** @var BlockRow Root block model */
     protected $root;
 
+    /** @var bool Is for clone */
+    protected $isClone = false;
+
     /**
      * Constructor
      *
      * @param null|string|int $name Optional name for the element
-     * @param BlockRow $root Root block to be cloned
+     * @param BlockRow        $root Root block to be cloned
+     * @param bool            $isClone
      */
-    public function __construct($name = null, $root = null)
+    public function __construct($name = null, $root = null, $isClone = false)
     {
         $this->root = $root;
+        $this->isClone = $isClone;
         parent::__construct($name);
     }
 
@@ -99,18 +104,35 @@ class BlockModuleForm extends BaseForm
             )
         ));
 
-        if ('widget' != $this->root->module) {
-            $this->add(array(
+        $templateSpec = array(
+            'type'          => 'text',
+            'attributes'    => array(
+                'value'         => $this->root->template,
+                'description'   => __('PHTML rendering template, file extension is optional.'),
+            )
+        );
+        if ('widget' == $this->root->module) {
+            $spec = Pi::api('block', 'widget')->templateSpec($this->root->type);
+            if (false === $spec) {
+                $templateSpec = false;
+            } elseif ($spec) {
+                $templateSpec = array_replace($templateSpec, $spec);
+            }
+        }
+        if (false !== $templateSpec) {
+            $templateSpec = array_replace($templateSpec, array(
                 'name'          => 'template',
                 'options'       => array(
                     'label' => __('Template'),
-                ),
-                'attributes'    => array(
-                    'type'          => 'text',
-                    'value'         => $this->root->template,
-                    'description'   => __('PHTML rendering template, file extension is optional.'),
                 )
             ));
+
+            // Only cloned blocks are allowed to change template
+            if (!$this->isClone) {
+                $templateSpec['type'] = 'text';
+                $templateSpec['attributes']['readonly'] = 'readonly';
+            }
+            $this->add($templateSpec);
         }
 
         $this->add(array(
@@ -148,18 +170,12 @@ class BlockModuleForm extends BaseForm
 
         $this->add(array(
             'name'          => 'cache_ttl',
-            'type'          => 'cacheTtl',
-            'options'       => array(
-                'label' => __('Cache TTL'),
-            ),
+            'type'          => 'cache_ttl',
         ));
 
         $this->add(array(
             'name'          => 'cache_level',
-            'type'          => 'cacheLevel',
-            'options'       => array(
-                'label' => __('Cache level'),
-            ),
+            'type'          => 'cache_level',
         ));
 
         $this->addConfigFieldset();
@@ -169,6 +185,7 @@ class BlockModuleForm extends BaseForm
             'type'  => 'csrf',
         ));
 
+        /*
         $this->add(array(
             'name'  => 'root',
             'type'  => 'hidden',
@@ -176,6 +193,7 @@ class BlockModuleForm extends BaseForm
                 'value' => $this->root->id,
             ),
         ));
+        */
 
         $this->add(array(
             'name'  => 'id',
@@ -322,15 +340,17 @@ class BlockModuleForm extends BaseForm
 
         $inputFilter->add(array(
             'name'          => 'id',
-            //'required'      => true,
-            'allow_empty'   => true,
+            'required'      => true,
+            //'allow_empty'   => true,
         ));
 
+        /*
         $inputFilter->add(array(
             'name'          => 'root',
             'required'      => true,
             'allow_empty'   => true,
         ));
+        */
 
         $inputFilter->add(array(
             'name'          => 'title_hidden',

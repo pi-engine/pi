@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-04-27 12:51+0800\n"
-"PO-Revision-Date: 2014-04-27 12:51+0800\n"
+"POT-Creation-Date: 2014-08-08 16:57+0800\n"
+"PO-Revision-Date: 2014-08-08 16:57+0800\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: Pi Engine\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: c:\\Code\\pi\\\\usr\\locale\\_source\\Validator\n"
@@ -31,15 +32,15 @@ msgstr ""
 #: c:\Code\pi\\usr\locale\_source\Validator/EmailAddress.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/Hex.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:11
-#: c:\Code\pi\\usr\locale\_source\Validator/Ip.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alpha.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/DateTime.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/PhoneNumber.php:12
+#: c:\Code\pi\\usr\locale\_source\Validator/Ip.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Changefreq.php:11
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Lastmod.php:11
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Loc.php:11
+#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:10
+#: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:10
 msgid "Invalid type given. String expected"
 msgstr ""
 
@@ -118,6 +119,14 @@ msgstr ""
 msgid "The input is not a valid step"
 msgstr ""
 
+#: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:10
+msgid "No record matching the input was found"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:11
+msgid "A record matching the input was found"
+msgstr ""
+
 #: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:11
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alnum.php:12
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alpha.php:12
@@ -125,9 +134,9 @@ msgid "The input is an empty string"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Digits.php:12
-#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alnum.php:10
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Float.php:10
+#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:10
 msgid "Invalid type given. String, integer or float expected"
 msgstr ""
 
@@ -173,163 +182,6 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Explode.php:10
 msgid "Invalid type given"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/GreaterThan.php:10
-msgid "The input is not greater than '%min%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/GreaterThan.php:11
-msgid "The input is not greater or equal than '%min%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hex.php:11
-msgid "The input contains non-hexadecimal characters"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:10
-msgid ""
-"The input appears to be a DNS hostname but the given punycode notation "
-"cannot be decoded"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:12
-msgid ""
-"The input appears to be a DNS hostname but contains a dash in an invalid "
-"position"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:13
-msgid "The input does not match the expected structure for a DNS hostname"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:14
-msgid ""
-"The input appears to be a DNS hostname but cannot match against hostname "
-"schema for TLD '%tld%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:15
-msgid "The input does not appear to be a valid local network name"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:16
-msgid "The input does not appear to be a valid URI hostname"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:17
-msgid "The input appears to be an IP address, but IP addresses are not allowed"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:18
-msgid ""
-"The input appears to be a local network name but local network names are not "
-"allowed"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:19
-msgid "The input appears to be a DNS hostname but cannot extract TLD part"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:20
-msgid ""
-"The input appears to be a DNS hostname but cannot match TLD against known "
-"list"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:10
-msgid "Unknown country within the IBAN"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:11
-msgid ""
-"Countries outside the Single Euro Payments Area (SEPA) are not supported"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:12
-msgid "The input has a false IBAN format"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:13
-msgid "The input has failed the IBAN check"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Identical.php:10
-msgid "The two given tokens do not match"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Identical.php:11
-msgid "No token was provided to match against"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/InArray.php:10
-msgid "The input was not found in the haystack"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Ip.php:11
-msgid "The input does not appear to be a valid IP address"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Isbn.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Int.php:10
-#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:10
-msgid "Invalid type given. String or integer expected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Isbn.php:11
-msgid "The input is not a valid ISBN number"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/IsInstanceOf.php:10
-msgid "The input is not an instance of '%className%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:10
-msgid "The input is not less than '%max%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:11
-msgid "The input is not less or equal than '%max%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/NotEmpty.php:10
-msgid "Value is required and can't be empty"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/NotEmpty.php:11
-msgid "Invalid type given. String, integer, float, boolean or array expected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:11
-msgid "The input does not match against pattern '%pattern%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:12
-msgid "There was an internal error while using the pattern '%pattern%'"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Step.php:10
-msgid "Invalid value given. Scalar expected"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:11
-msgid "The input is less than %min% characters long"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:12
-msgid "The input is more than %max% characters long"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:11
-msgid "The input does not appear to be a valid Uri"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:10
-msgid "No record matching the input was found"
-msgstr ""
-
-#: c:\Code\pi\\usr\locale\_source\Validator/Db/AbstractDb.php:11
-msgid "A record matching the input was found"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/File/Count.php:10
@@ -557,6 +409,68 @@ msgstr ""
 msgid "Too few words, minimum '%min%' are expected but '%count%' were counted"
 msgstr ""
 
+#: c:\Code\pi\\usr\locale\_source\Validator/GreaterThan.php:10
+msgid "The input is not greater than '%min%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/GreaterThan.php:11
+msgid "The input is not greater or equal than '%min%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hex.php:11
+msgid "The input contains non-hexadecimal characters"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:10
+msgid ""
+"The input appears to be a DNS hostname but the given punycode notation "
+"cannot be decoded"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:12
+msgid ""
+"The input appears to be a DNS hostname but contains a dash in an invalid "
+"position"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:13
+msgid "The input does not match the expected structure for a DNS hostname"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:14
+msgid ""
+"The input appears to be a DNS hostname but cannot match against hostname "
+"schema for TLD '%tld%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:15
+msgid "The input does not appear to be a valid local network name"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:16
+msgid "The input does not appear to be a valid URI hostname"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:17
+msgid "The input appears to be an IP address, but IP addresses are not allowed"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:18
+msgid ""
+"The input appears to be a local network name but local network names are not "
+"allowed"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:19
+msgid "The input appears to be a DNS hostname but cannot extract TLD part"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Hostname.php:20
+msgid ""
+"The input appears to be a DNS hostname but cannot match TLD against known "
+"list"
+msgstr ""
+
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Alnum.php:11
 msgid "The input contains characters which are non alphabetic and no digits"
 msgstr ""
@@ -571,6 +485,12 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Float.php:11
 msgid "The input does not appear to be a float"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/I18n/Int.php:10
+#: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:10
+#: c:\Code\pi\\usr\locale\_source\Validator/Isbn.php:10
+msgid "Invalid type given. String or integer expected"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/Int.php:11
@@ -588,6 +508,71 @@ msgstr ""
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:11
 #: c:\Code\pi\\usr\locale\_source\Validator/I18n/PostCode.php:12
 msgid "The input does not appear to be a postal code"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:10
+msgid "Unknown country within the IBAN"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:11
+msgid ""
+"Countries outside the Single Euro Payments Area (SEPA) are not supported"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:12
+msgid "The input has a false IBAN format"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Iban.php:13
+msgid "The input has failed the IBAN check"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Identical.php:10
+msgid "The two given tokens do not match"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Identical.php:11
+msgid "No token was provided to match against"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/InArray.php:10
+msgid "The input was not found in the haystack"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Ip.php:11
+msgid "The input does not appear to be a valid IP address"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/IsInstanceOf.php:10
+msgid "The input is not an instance of '%className%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Isbn.php:11
+msgid "The input is not a valid ISBN number"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:10
+msgid "The input is not less than '%max%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/LessThan.php:11
+msgid "The input is not less or equal than '%max%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/NotEmpty.php:10
+msgid "Value is required and can't be empty"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/NotEmpty.php:11
+msgid "Invalid type given. String, integer, float, boolean or array expected"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:11
+msgid "The input does not match against pattern '%pattern%'"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Regex.php:12
+msgid "There was an internal error while using the pattern '%pattern%'"
 msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Changefreq.php:10
@@ -608,4 +593,20 @@ msgstr ""
 
 #: c:\Code\pi\\usr\locale\_source\Validator/Sitemap/Priority.php:11
 msgid "Invalid type given. Numeric string, integer or float expected"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Step.php:10
+msgid "Invalid value given. Scalar expected"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:11
+msgid "The input is less than %min% characters long"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/StringLength.php:12
+msgid "The input is more than %max% characters long"
+msgstr ""
+
+#: c:\Code\pi\\usr\locale\_source\Validator/Uri.php:11
+msgid "The input does not appear to be a valid Uri"
 msgstr ""

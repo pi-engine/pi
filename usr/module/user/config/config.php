@@ -76,6 +76,12 @@ $config = array(
         'filter'        => 'int',
     ),
 
+    'head_keywords'     => array(
+        'title'         => _t('Head keywords'),
+        'description'   => _t('Head keywords for SEO.'),
+        'value'         => _t('account,social,tools,privacy,settings,profile,user,login,register,password,avatar'),
+    ),
+
     // Login
     'login_disable'     => array(
         'title'         => _t('Login disable'),
@@ -150,24 +156,6 @@ $config = array(
         'category'      => 'register',
     ),
 
-    'require_register_complete' => array(
-        'title'         => _t('Register complete'),
-        'description'   => _t('Require user to complete register data in an extra form.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'int',
-        'category'      => 'register',
-    ),
-
-    'register_notification' => array(
-        'title'         => _t('Email notification'),
-        'description'   => _t('Send email notification for register success.'),
-        'edit'          => 'checkbox',
-        'value'         => 0,
-        'filter'        => 'int',
-        'category'      => 'register',
-    ),
-
     'register_activation'  => array(
         'title'         => _t('Activation'),
         'description'   => _t('Activation mode for user accounts'),
@@ -190,6 +178,24 @@ $config = array(
         'title'         => _t('Activation expiration'),
         'description'   => _t('Expiration time for activation email (in hours).'),
         'value'         => 24,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_notification' => array(
+        'title'         => _t('Email notification'),
+        'description'   => _t('Send email notification on register success by admin approval.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'require_register_complete' => array(
+        'title'         => _t('Register complete'),
+        'description'   => _t('Require user to complete register data in an extra form.'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
         'filter'        => 'int',
         'category'      => 'register',
     ),
@@ -247,8 +253,8 @@ $config = array(
     ),
 
     'name_min'     => array(
-        'title'         => _t('Minmum display name'),
-        'description'   => _t('Minmum length of display name for user registration'),
+        'title'         => _t('Minimum display name'),
+        'description'   => _t('Minimum length of display name for user registration'),
         'value'         => 3,
         'filter'        => 'int',
         'category'      => 'account',
@@ -279,7 +285,7 @@ $config = array(
     ),
 
     'uname_backlist'    => array(
-        'title'         => _t('Username backlist'),
+        'title'         => _t('Username blacklist'),
         'description'   => _t('Reserved and forbidden username list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
@@ -287,7 +293,7 @@ $config = array(
     ),
 
     'name_backlist'    => array(
-        'title'         => _t('Display backlist'),
+        'title'         => _t('Display blacklist'),
         'description'   => _t('Reserved and forbidden display name list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'webmaster|^pi|^admin',
@@ -295,7 +301,7 @@ $config = array(
     ),
 
     'email_backlist'    => array(
-        'title'         => _t('Email backlist'),
+        'title'         => _t('Email blacklist'),
         'description'   => _t('Forbidden email list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
         'value'         => 'pi-engine.org$',

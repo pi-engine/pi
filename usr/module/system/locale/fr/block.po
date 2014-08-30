@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-block\n"
+"POT-Creation-Date: 2014-05-20 18:08+0100\n"
+"PO-Revision-Date: 2014-05-20 18:08+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
+"Language-Team: Marc Desrousseaux\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\system\n"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Block/Block.php:31
+#, php-format
+msgid "About %s"
+msgstr "A propos de %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Block/Block.php:33
+msgid "Site name"
+msgstr "Nom du Site"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Block/Block.php:34
+msgid "Slogan"
+msgstr "Slogan"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:61
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:92
+msgid "Login"
+msgstr "Connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:13
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:66
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:97
+msgid "Register"
+msgstr "Inscription"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:19
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:20
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:79
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:3
+msgid "Profile"
+msgstr "Profil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:24
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:25
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:80
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:111
+msgid "Message"
+msgstr "Message"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:30
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:81
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:116
+#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:4
+msgid "Logout"
+msgstr "Déconnexion"

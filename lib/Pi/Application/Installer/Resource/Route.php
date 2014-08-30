@@ -14,14 +14,13 @@ use Pi;
 /**
  * Route setup
  *
- * If route name is not specified, route name is generated
- * by module name and route key as: `<module>-<route-key>`
+ * Route names are prepended with module name as: `<module>-<route>`
  *
  *
  * ```
  * array(
  *  // A specified route
- *  <route-eky>   => array(
+ *  <route-key>   => array(
  *      // Optional route name
  *      'name'  => <route-name>
  *      // section: front, admin, feed, etc.
@@ -31,8 +30,8 @@ use Pi;
  *      // Type defined in `Pi\Mvc\Router\Route`
  *      'type'      => 'Standard',
  *      'options'   =>array(
- *          // Used as prefix, which is different from Zend routes
- *          'route' => '',
+ *          // Used as prefix,  default as module name; if no prefix, set it as '' or false explicitly
+ *          'prefix' => '',
  *          'structure_delimiter'   => '/',
  *          'param_delimiter'       => '/',
  *          'key_value_delimiter'   => '-',
@@ -48,12 +47,12 @@ use Pi;
  *
  * - To use a route with specified name:
  * ```
- *  Pi::serice('url')->assemble('<route-name>', array(<...>));
+ *  Pi::service('url')->assemble('<route-name>', array(<...>));
  * ```
  *
  * - To use a route with no specified name:
  * ```
- *  Pi::serice('url')->assemble('<module>-<route-name>', array(<...>));
+ *  Pi::service('url')->assemble('<module>-<route-name>', array(<...>));
  * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
@@ -71,7 +70,8 @@ class Route extends AbstractResource
      */
     protected function canonize(array $configs)
     {
-        $module = $this->event->getParam('module');
+        $module     = $this->event->getParam('module');
+        $directory  = $this->event->getParam('directory');
 
         $routes = array();
         foreach ($configs as $key => $data) {
@@ -79,7 +79,11 @@ class Route extends AbstractResource
                 $name = $data['name'];
                 unset($data['name']);
             } else {
-                $name = $module . '-' . $key;
+                $name = $key;
+            }
+            // Prepend module for routes of cloned modules
+            if ($module != $directory) {
+                $name = $module . '-' . $name;
             }
             $route = array(
                 'name'      => $name,
@@ -87,47 +91,28 @@ class Route extends AbstractResource
                 'module'    => $module,
                 'priority'  => 0,
             );
-            if (isset($data['priority'])) {
-                $route['priority'] = $data['priority'];
-                unset($data['priority']);
-            }
             if (isset($data['section'])) {
                 $route['section'] = $data['section'];
                 unset($data['section']);
             }
+            if (isset($data['priority'])) {
+                $route['priority'] = $data['priority'];
+                unset($data['priority']);
+            }
+            if (isset($data['options']['route'])) {
+                $data['options']['prefix'] = $data['options']['route'];
+                unset($data['options']['route']);
+            }
+            if (!isset($data['options']['prefix'])) {
+                $data['options']['prefix'] = '/' . $module;
+            }
+            $data['options']['defaults']['module'] = $module;
+
             $route['data'] = $data;
             $routes[$name] = $route;
         }
 
         return $routes;
-    }
-
-    /**
-     * Canonize route specifications
-     *
-     * @param array $data
-     * @return array
-     */
-    protected function canonizeRoute(array $data)
-    {
-        $module = $this->event->getParam('module');
-
-        $route = array(
-            'section'   => 'front',
-            'module'    => $module,
-            'priority'  => 0,
-        );
-        if (isset($data['priority'])) {
-            $route['priority'] = $data['priority'];
-            unset($data['priority']);
-        }
-        if (isset($data['section'])) {
-            $route['section'] = $data['section'];
-            unset($data['section']);
-        }
-        $route['data'] = $data;
-
-        return $route;
     }
 
     /**
@@ -138,14 +123,20 @@ class Route extends AbstractResource
         if (empty($this->config)) {
             return;
         }
-        //$module = $this->event->getParam('module');
 
         $modelRoute = Pi::model('route');
         $routes = $this->canonize($this->config);
 
+        /*
+        // Skip existing routes, created by the module it clones from
+        $rowset = $modelRoute->select(array('name' => array_keys($routes)));
+        foreach ($rowset as $row) {
+            unset($routes[$row->name]);
+        }
+        */
+
+        // Add new routes
         foreach ($routes as $name => $data) {
-            //$data = $this->canonizeRoute($route);
-            //$data['name'] = $name;
             $row = $modelRoute->createRow($data);
             $status = $row->save();
             if (!$status) {
@@ -172,9 +163,29 @@ class Route extends AbstractResource
         }
 
         $modelRoute = Pi::model('route');
-        $modelRoute->delete(array('module' => $module, 'custom' => 0));
+        //$modelRoute->delete(array('module' => $module, 'custom' => 0));
         $routes = $this->canonize($this->config);
 
+        // Update existing routes
+        $rowset = $modelRoute->select(array('module' => $module));
+        foreach ($rowset as $row) {
+            if (!isset($routes[$row->name])) {
+                $row->delete();
+                continue;
+            }
+            $row->assign($routes[$row->name]);
+            $row->save();
+            unset($routes[$row->name]);
+        }
+
+        /*
+        // Skip existing routes, created by the module it clones from
+        $rowset = $modelRoute->select(array('name' => array_keys($routes)));
+        foreach ($rowset as $row) {
+            unset($routes[$row->name]);
+        }
+        */
+        // Add new routes
         foreach ($routes as $name => $data) {
             $row = $modelRoute->createRow($data);
             $status = $row->save();

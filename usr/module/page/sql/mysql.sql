@@ -12,15 +12,21 @@ CREATE TABLE `{page}` (
   `content`         text,
   -- Markup type: text, html, markdown, phtml
   `markup`          varchar(64)             NOT NULL default 'text',
+
   -- SEO slug for URL
   `slug`            varchar(64)             default NULL,
   `clicks`          int(10)                 unsigned    NOT NULL default '0',
   `seo_title`       varchar(255)            NOT NULL default '',
   `seo_keywords`    varchar(255)            NOT NULL default '',
   `seo_description` varchar(255)            NOT NULL default '',
+
   -- Order in navigation, '0' for not navigated
   `nav_order`       smallint(5)             unsigned    NOT NULL default '0',
- 
+
+  -- For rendering
+  `theme`           varchar(64)             NOT NULL default '',
+  `layout`          varchar(64)             NOT NULL default '',
+
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `slug` (`slug`)

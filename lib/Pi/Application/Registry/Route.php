@@ -13,9 +13,14 @@ namespace Pi\Application\Registry;
 use Pi;
 
 /**
- * Route list
+ * Routes
  *
- * Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
+ * Note:
+ * Route names for cloned modules are indexed by a string composed of module
+ * name and route name
+ *
+ * @see     Pi\Mvc\Router\Http\TreeRouteStack
+ * @author  Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Route extends AbstractRegistry
 {
@@ -24,9 +29,8 @@ class Route extends AbstractRegistry
      */
     protected function loadDynamic($options = array())
     {
-        $model = Pi::model('route');
-        $select = $model->select()->columns(array('name', 'data'))
-            ->order('priority ASC, id ASC');
+        $model  = Pi::model('route');
+        $select = $model->select();
         if (empty($options['exclude'])) {
             $select->where
                 ->equalTo('active', 1)
@@ -45,7 +49,20 @@ class Route extends AbstractRegistry
 
         $configs = array();
         foreach ($rowset as $row) {
-            $configs[$row->name] = $row->data;
+            $spec = $row->data;
+            if ($row->priority) {
+                $spec['priority'] = $row->priority;
+            }
+            /*
+            $directory = Pi::service('module')->directory($row->module);
+            if ($directory && $row->module != $directory) {
+                $name = $row->module . '-' . $row->name;
+            } else {
+                $name = $row->name;
+            }
+            */
+            $name = $row->name;
+            $configs[$name] = $spec;
         }
 
         return $configs;

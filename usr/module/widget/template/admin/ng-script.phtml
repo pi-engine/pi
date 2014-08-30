@@ -1,0 +1,16 @@
+<?php
+$this->angular(array('angular-route.js', 'pi.js'));
+?>
+<script>
+angular
+    .module('<?php echo $module; ?>', ['ngRoute', 'pi'])
+    .constant('config', {
+        assetRoot: '<?php echo $this->assetModule('ng-template/admin/', '', false); ?>',
+        data: <?php echo json_encode($data); ?>,
+        t: {
+            INSTALL: '<?php echo _a('Activate'); ?>'
+        }
+    });
+</script>
+<link rel="stylesheet" href="<?php echo $this->assetModule('admin/admin.css'); ?>">
+<script src="<?php echo $this->assetModule('admin/ng-widget-script.js'); ?>"></script>

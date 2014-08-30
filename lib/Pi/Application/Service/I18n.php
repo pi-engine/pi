@@ -57,7 +57,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->load(array('usr', 'mail/template'), 'en');
  *
  *  // Specified theme
- *  Pi::service('i18n')->load(array('theme/default', 'main'), 'en');
+ *  Pi::service('i18n')->load(array('theme/default', 'default'), 'en');
  *
  *  // Editor resource
  *  Pi::service('i18n')->load(array('usr/editor/myeditor', 'toolbar'), 'en');
@@ -66,7 +66,7 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->load(array('lib/Pi/Captcha/Image', 'captcha'), 'en');
  *
  *  // Specified custom component resource
- *  Pi::service('i18n')->load(array('www/script/mycode/demo', 'main'), 'en');
+ *  Pi::service('i18n')->load(array('www/script/mycode/demo', 'default'), 'en');
  * </code>
  *
  *   - Use string namespace with delimitor and specified locale
@@ -78,13 +78,13 @@ namespace Pi\Application\Service
  *  Pi::service('i18n')->load('usr:date', 'en');
  *  Pi::service('i18n')->load('mail/template', 'en');
  *  // Specified theme
- *  Pi::service('i18n')->load('theme/default:main', 'en');
+ *  Pi::service('i18n')->load('theme/default:default', 'en');
  *  // Editor resource
  *  Pi::service('i18n')->load('usr/editor/myeditor:toolbar', 'en');
  *  // Specified lib component resource
  *  Pi::service('i18n')->load('lib/Pi/Captcha/Image:captcha', 'en');
  *  // Specified custom component resource
- *  Pi::service('i18n')->load('www/script/mycode/demo:main', 'en');
+ *  Pi::service('i18n')->load('www/script/mycode/demo:default', 'en');
  * </code>
  *
  *   - Use current locale
@@ -339,7 +339,7 @@ namespace Pi\Application\Service
         const DIR_RESOURCE = 'locale';
 
         /** @var string Default file name */
-        const FILE_DEFAULT = 'main';
+        const FILE_DEFAULT = 'default';
 
         /** {@inheritDoc} */
         protected $fileIdentifier = 'i18n';

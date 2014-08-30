@@ -16,7 +16,11 @@ use Imagine\Image\ImagineInterface;
 use Imagine\Image\FontInterface;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
-use Imagine\Image\Color;
+//use Imagine\Image\Color;
+use Imagine\Image\Palette\Color\ColorInterface;
+use Imagine\Image\Palette\CMYK;
+use Imagine\Image\Palette\RGB;
+use Imagine\Image\Palette\Grayscale;
 
 /**
  * Image handler service
@@ -271,19 +275,37 @@ class Image extends AbstractService
     /**
      * Canonize Color element
      *
-     * @param array|string|Color $color Color value or color and alpha, or Color
+     * @param array|string|ColorInterface $color Color value or color and alpha, or Color
      * @param int $alpha
      *
-     * @return Color
+     * @return ColorInterface
      */
     public function color($color, $alpha = 0)
     {
-        if ($color instanceof Color) {
+        $result = null;
+        if ($color instanceof ColorInterface) {
             $result = $color;
-        } elseif (is_array($color)) {
-            $result = new Color($color[0], $color[1]);
         } else {
-            $result = new Color($color, $alpha);
+            if (!is_array($color)) {
+                $color = array($color);
+            }
+            switch (count($color)) {
+                case 1:
+                    $palette = new Grayscale;
+                    break;
+                case 3:
+                    $palette = new RGB;
+                    break;
+                case 4:
+                    $palette = new CMYK;
+                    break;
+                default:
+                    $palette = null;
+                    break;
+            }
+            if ($palette) {
+                $result = $palette->color($color, $alpha);
+            }
         }
 
         return $result;
@@ -293,7 +315,7 @@ class Image extends AbstractService
      * Creates a new empty image with an optional background color
      *
      * @param array|Box             $size   Width and height
-     * @param string|array|Color    $color  Color value and alpha
+     * @param string|array|ColorInterface    $color  Color value and alpha
      *
      * @return ImageInterface|bool
      */
@@ -387,7 +409,7 @@ class Image extends AbstractService
      *
      * @param string  $file
      * @param integer $size
-     * @param string|array|Color $color  Color value and alpha
+     * @param string|array|ColorInterface $color  Color value and alpha
      *
      * @return FontInterface|bool
      */
@@ -414,6 +436,7 @@ class Image extends AbstractService
      * @param string                $to
      * @param string                $watermarkImage
      * @param string|array|Point    $position
+     * @param array                 $options
      *
      * @return bool
      */
@@ -421,7 +444,8 @@ class Image extends AbstractService
         $sourceImage,
         $to = '',
         $watermarkImage = '',
-        $position = ''
+        $position = '',
+        array $options = array()
     ) {
         if (!$this->getDriver()) {
             return false;
@@ -467,7 +491,7 @@ class Image extends AbstractService
         }
         try {
             $image->paste($watermark, $start);
-            $result = $this->saveImage($image, $to, $sourceImage);
+            $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -483,11 +507,17 @@ class Image extends AbstractService
      * @param array|Point       $start
      * @param array|float|Box   $size
      * @param string            $to
+     * @param array             $options
      *
      * @return bool
      */
-    public function crop($sourceImage, $start, $size, $to = '')
-    {
+    public function crop(
+        $sourceImage,
+        $start,
+        $size,
+        $to = '',
+        array $options = array()
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -504,7 +534,7 @@ class Image extends AbstractService
         }
         try {
             $image->crop($start, $size);
-            $result = $this->saveImage($image, $to, $sourceImage);
+            $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -519,11 +549,17 @@ class Image extends AbstractService
      * @param array|float|Box   $size
      * @param string            $to
      * @param string            $filter
+     * @param array             $options
      *
      * @return bool
      */
-    public function resize($sourceImage, $size, $to = '', $filter = '')
-    {
+    public function resize(
+        $sourceImage,
+        $size,
+        $to = '',
+        $filter = '',
+        array $options = array()
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -540,7 +576,7 @@ class Image extends AbstractService
         }
         try {
             $image->resize($size, $filter);
-            $result = $this->saveImage($image, $to, $sourceImage);
+            $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -553,15 +589,21 @@ class Image extends AbstractService
      * Optional $background can be used to specify the fill color of the empty
      * area of rotated image.
      *
-     * @param string|Image       $sourceImage
-     * @param int                $angle
-     * @param string             $to
-     * @param string|array|Color $background
+     * @param string|Image                  $sourceImage
+     * @param int                           $angle
+     * @param string                        $to
+     * @param string|array|ColorInterface   $background
+     * @param array                         $options
      *
      * @return bool
      */
-    public function rotate($sourceImage, $angle, $to = '', $background = null)
-    {
+    public function rotate(
+        $sourceImage,
+        $angle,
+        $to = '',
+        $background = null,
+        array $options = array()
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -573,7 +615,7 @@ class Image extends AbstractService
         $background = $background ? $this->color($background) : null;
         try {
             $image->rotate($angle, $background);
-            $result = $this->saveImage($image, $to, $sourceImage);
+            $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
             $result = false;
         }
@@ -590,11 +632,17 @@ class Image extends AbstractService
      * @param string|Image $childImage
      * @param array|Point  $start
      * @param string       $to
+     * @param array        $options
      *
      * @return bool
      */
-    public function paste($sourceImage, $childImage, $start, $to)
-    {
+    public function paste(
+        $sourceImage,
+        $childImage,
+        $start,
+        $to,
+        array $options = array()
+    ) {
         if (!$this->getDriver()) {
             return false;
         }
@@ -611,8 +659,51 @@ class Image extends AbstractService
         $start = $this->point($start);
         try {
             $image->paste($child, $start);
-            $result = $this->saveImage($image, $to, $sourceImage);
+            $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Generates a thumbnail from a current image
+     * Returns it as a new image, doesn't modify the current image
+     *
+     * @param string|Image      $sourceImage
+     * @param array|float|Box   $size
+     * @param string            $to
+     * @param string            $mode
+     * @param array             $options
+     *
+     * @return bool|ImageInterface
+     */
+    public function thumbnail(
+        $sourceImage,
+        $size,
+        $to,
+        $mode = '',
+        array $options = array()
+    ) {
+        if (!$this->getDriver()) {
+            return false;
+        }
+        if ($sourceImage instanceof ImageInterface) {
+            $image = $sourceImage;
+        } else {
+            $image = $this->getDriver()->open($sourceImage);
+        }
+        if (is_float($size)) {
+            $size = $image->getSize()->scale($size);
+        } else {
+            $size = $this->box($size);
+        }
+        $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
+        try {
+            $thumbnail = $image->thumbnail($size, $mode);
+            $result = $this->saveImage($thumbnail, $to, $sourceImage, $options);
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -643,43 +734,6 @@ class Image extends AbstractService
         try {
             $result = $this->saveImage($image, $to, '', $options);
         } catch(\Exception $e) {
-            $result = false;
-        }
-
-        return $result;
-    }
-
-    /**
-     * Generates a thumbnail from a current image
-     * Returns it as a new image, doesn't modify the current image
-     *
-     * @param string|Image      $sourceImage
-     * @param array|float|Box   $size
-     * @param string            $to
-     * @param string            $mode
-     *
-     * @return bool|ImageInterface
-     */
-    public function thumbnail($sourceImage, $size, $to, $mode = '')
-    {
-        if (!$this->getDriver()) {
-            return false;
-        }
-        if ($sourceImage instanceof ImageInterface) {
-            $image = $sourceImage;
-        } else {
-            $image = $this->getDriver()->open($sourceImage);
-        }
-        if (is_float($size)) {
-            $size = $image->getSize()->scale($size);
-        } else {
-            $size = $this->box($size);
-        }
-        $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
-        try {
-            $thumbnail = $image->thumbnail($size, $mode);
-            $result = $this->saveImage($thumbnail, $to, $sourceImage);
-        } catch (\Exception $e) {
             $result = false;
         }
 

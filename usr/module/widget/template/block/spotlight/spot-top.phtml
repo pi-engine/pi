@@ -1,0 +1,75 @@
+<?php
+$options    = (array) $block['options'];
+$items      = (array) $block['items'];
+$target     = empty($options['target_new']) ? '' : '_blank';
+$ellipsis   = empty($options['max_rows'])
+            ? 'pi-ellipsis'
+            : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
+$imgStyle   = '';
+if (!empty($options['width'])) {
+    $imgStyle .= 'width: '  . $options['width'] . 'px;';
+}
+if (!empty($options['height'])) {
+    $imgStyle .= 'height: '  . $options['height'] . 'px;';
+}
+
+$spotLeft  = empty($options['spot_left']) ? false : true;
+$spotlight = array_shift($items);
+?>
+<div class="widget-spotlight">
+<?php if ($spotLeft) { ?>
+    <div class="row">
+        <div class="col-sm-6">
+<?php } ?>
+
+    <div class="media" style="margin-bottom: 10px">
+        <?php
+            echo sprintf(
+                '<a href="%s" title="%s" class="pull-left" target="%s">
+                    <img src="%s" class="img-responsive" alt="%s" style="%s">
+                </a>',
+                $spotlight['link'],
+                _escape($spotlight['caption']),
+                $target,
+                $spotlight['image'],
+                _escape($spotlight['caption']),
+                $imgStyle
+            );
+        ?>
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="<?php echo $spotlight['link']; ?>"
+                    title="<?php echo _escape($spotlight['caption']); ?>"
+                    class="pi-ellipsis pi-ellipsis-1"
+                    target="<?php echo $target; ?>"
+                >
+                    <?php echo _escape($spotlight['caption']); ?>
+                </a>
+            </h4>
+            <div class="<?php echo $ellipsis; ?>"><?php echo $spotlight['summary']; ?></div>
+        </div>
+    </div>
+    <?php if ($spotLeft) { ?>
+        </div>
+        <div class="col-sm-6">
+    <?php } ?>
+
+    <ul>
+    <?php foreach($items as $item) { ?>
+        <li>
+            <a href="<?php echo $item['link']; ?>"
+               title="<?php echo _escape($item['caption']); ?>"
+               target="<?php echo $target; ?>"
+            >
+                <?php echo _escape($item['caption']); ?>
+            </a>
+        </li>
+    <?php } ?>
+    </ul>
+
+<?php if ($spotLeft) { ?>
+        </div>
+    </div>
+<?php } ?>
+
+</div>

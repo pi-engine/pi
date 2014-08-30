@@ -1,148 +1,170 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2014-01-23 09:49+0800\n"
-"PO-Revision-Date: 2014-01-23 10:15+0800\n"
-"Last-Translator: lavenderli <lisibei1212@gmail.com>\n"
+"POT-Creation-Date: 2014-08-08 17:30+0800\n"
+"PO-Revision-Date: 2014-08-08 17:30+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\wamp\\www\\deploy\\usr\\module\\tag\n"
+"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\tag\n"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:23
+#: c:\code\pi\usr\module\tag/config/block.php:13
 msgid "Top tag list"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:24
+#: c:\code\pi\usr\module\tag/config/block.php:14
 msgid "Top 10 tag block"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:29
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:45
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:90
+#: c:\code\pi\usr\module\tag/config/block.php:19
+#: c:\code\pi\usr\module\tag/config/block.php:35
+#: c:\code\pi\usr\module\tag/config/block.php:80
 msgid "Limit"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:30
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:46
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:91
+#: c:\code\pi\usr\module\tag/config/block.php:20
+#: c:\code\pi\usr\module\tag/config/block.php:36
+#: c:\code\pi\usr\module\tag/config/block.php:81
 msgid "Block display item count"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:39
+#: c:\code\pi\usr\module\tag/config/block.php:29
 msgid "Tag Cloud"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:40
+#: c:\code\pi\usr\module\tag/config/block.php:30
 msgid "Top tag cloud block"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:52
+#: c:\code\pi\usr\module\tag/config/block.php:42
 msgid "Color"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:53
+#: c:\code\pi\usr\module\tag/config/block.php:43
 msgid "Set tag cloud color"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:67
+#: c:\code\pi\usr\module\tag/config/block.php:57
 msgid "Max font size"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:68
+#: c:\code\pi\usr\module\tag/config/block.php:58
 msgid "Set max font size"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:74
+#: c:\code\pi\usr\module\tag/config/block.php:64
 msgid "Min font size"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:75
+#: c:\code\pi\usr\module\tag/config/block.php:65
 msgid "Set min font size"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:84
-#: D:\wamp\www\deploy\usr\module\tag/config/block.php:85
+#: c:\code\pi\usr\module\tag/config/block.php:74
+#: c:\code\pi\usr\module\tag/config/block.php:75
 msgid "The latest tag"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:24
-msgid "General"
+#: c:\code\pi\usr\module\tag/config/config.php:13
+msgid "Tag delimiter"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:33
+#: c:\code\pi\usr\module\tag/config/config.php:14
+msgid ""
+"Delimiter(s) to separate tag terms, use `s` for space and separate "
+"delimiters with `|`."
+msgstr ""
+
+#: c:\code\pi\usr\module\tag/config/config.php:19
+msgid "Enable quote"
+msgstr ""
+
+#: c:\code\pi\usr\module\tag/config/config.php:20
+msgid "Use double quotes to identify multi-term tag."
+msgstr ""
+
+#: c:\code\pi\usr\module\tag/config/config.php:27
+msgid "Minimum length"
+msgstr ""
+
+#: c:\code\pi\usr\module\tag/config/config.php:28
+msgid "Minimum length for valid tag terms."
+msgstr ""
+
+#: c:\code\pi\usr\module\tag/config/config.php:35
 msgid "Item per page"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:34
+#: c:\code\pi\usr\module\tag/config/config.php:36
 msgid "Number of items on tag list page."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:51
+#: c:\code\pi\usr\module\tag/config/config.php:53
 msgid "Detail per page"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:52
+#: c:\code\pi\usr\module\tag/config/config.php:54
 msgid "Number of items on tag detail page."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:69
+#: c:\code\pi\usr\module\tag/config/config.php:71
 msgid "Link per page"
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/config.php:70
+#: c:\code\pi\usr\module\tag/config/config.php:72
 msgid "Number of items on one relationships page."
 msgstr ""
 
-#: D:\wamp\www\deploy\usr\module\tag/config/module.php:18
+#: c:\code\pi\usr\module\tag/config/module.php:18
 msgid "Tags"
 msgstr "标签"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/module.php:20
+#: c:\code\pi\usr\module\tag/config/module.php:20
 msgid "Tag"
 msgstr "标签"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:26
+#: c:\code\pi\usr\module\tag/config/navigation.php:14
 msgid "Top tags"
 msgstr "最热标签"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:32
+#: c:\code\pi\usr\module\tag/config/navigation.php:20
 msgid "New tags"
 msgstr "最新标签"
 
-#: D:\wamp\www\deploy\usr\module\tag/config/navigation.php:38
+#: c:\code\pi\usr\module\tag/config/navigation.php:26
 msgid "Tagged items"
 msgstr "关联项目"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:7
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:7
+#: c:\code\pi\usr\module\tag/template/admin/list-new.phtml:7
+#: c:\code\pi\usr\module\tag/template/admin/list-top.phtml:7
 msgid "All"
 msgstr "所有标签"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:31
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:31
+#: c:\code\pi\usr\module\tag/template/admin/list-new.phtml:31
+#: c:\code\pi\usr\module\tag/template/admin/list-top.phtml:31
 msgid "Tag name"
 msgstr "标签名"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:32
+#: c:\code\pi\usr\module\tag/template/admin/list-new.phtml:32
 msgid "Time"
 msgstr "时间"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:33
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:33
+#: c:\code\pi\usr\module\tag/template/admin/list-new.phtml:33
+#: c:\code\pi\usr\module\tag/template/admin/list-top.phtml:33
 msgid "Action"
 msgstr "操作"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-new.phtml:38
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:38
+#: c:\code\pi\usr\module\tag/template/admin/list-new.phtml:38
+#: c:\code\pi\usr\module\tag/template/admin/list-top.phtml:38
 msgid "Delete"
 msgstr "删除"
 
-#: D:\wamp\www\deploy\usr\module\tag/template/admin/list-top.phtml:32
+#: c:\code\pi\usr\module\tag/template/admin/list-top.phtml:32
 msgid "Count"
 msgstr "总数"

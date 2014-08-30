@@ -36,7 +36,7 @@ class ThemeController extends ActionController
      */
     public function indexAction()
     {
-        $section = $this->params('section', '_front');
+        $section = $this->params('side', '_front');
 
         // Themes
         $type = ('_admin' == $section) ? 'admin' : 'front';
@@ -45,7 +45,6 @@ class ThemeController extends ActionController
             $theme['name'] = $key;
         }
 
-        $themeName = '';
         if ('_admin' == $section) {
             $subject = _a('admin');
             $themeName = Pi::config('theme_admin');
@@ -60,7 +59,7 @@ class ThemeController extends ActionController
         }
 
         $this->view()->assign('theme', $data);
-        $this->view()->assign('section', $section);
+        $this->view()->assign('side', $section);
         $this->view()->assign('themes', $themes);
         $this->view()->assign(
             'title',
@@ -76,7 +75,7 @@ class ThemeController extends ActionController
     public function applyAction()
     {
         $theme = $this->params('theme');
-        $section = $this->params('section');
+        $section = $this->params('side');
         switch ($section) {
             case '_front':
                 $name = 'theme';

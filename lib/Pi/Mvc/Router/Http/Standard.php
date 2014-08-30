@@ -101,8 +101,7 @@ class Standard implements RouteInterface
         $paramDelimiter = '/',
         array $defaults = array()
     ) {
-        $this->prefix               = (null !== $prefix)
-            ? $prefix : $this->prefix;
+        $this->prefix               = (null !== $prefix) ? $prefix : $this->prefix;
         $this->structureDelimiter   = $structureDelimiter;
         $this->keyValueDelimiter    = $keyValueDelimiter;
         $this->paramDelimiter       = $paramDelimiter;
@@ -113,6 +112,7 @@ class Standard implements RouteInterface
      * Set options
      *
      * @param array $options
+     *
      * @return $this
      */
     public function setOptions(array $options = array())
@@ -120,6 +120,24 @@ class Standard implements RouteInterface
         $this->options = array_merge($this->options, $options);
 
         return $this;
+    }
+
+    /**
+     * Get options
+     *
+     * @param string $key
+     *
+     * @return array|mixed
+     */
+    public function getOptions($key = null)
+    {
+        if ($key) {
+            $result = isset($this->options[$key]) ? $this->options[$key] : null;
+        } else {
+            $result = $this->options;
+        }
+
+        return $result;
     }
 
     /**
@@ -196,9 +214,15 @@ class Standard implements RouteInterface
         $pathLength = strlen($path);
 
         if ($this->prefix) {
+            /*
             $prefix = rtrim($this->prefix, $this->paramDelimiter)
-                    . $this->paramDelimiter;
+                . $this->paramDelimiter;
             $path = rtrim($path, $this->paramDelimiter)
+                . $this->paramDelimiter;
+            */
+            $prefix = trim($this->prefix, $this->paramDelimiter)
+                    . $this->paramDelimiter;
+            $path = trim($path, $this->paramDelimiter)
                   . $this->paramDelimiter;
             $prefixLength = strlen($prefix);
             if ($prefix != substr($path, 0, $prefixLength)) {
@@ -275,11 +299,8 @@ class Standard implements RouteInterface
             array_shift($params);
         }
 
-        //vd($matches);
         $matches = array_merge($matches, $this->parseParams($params));
-        //vd($matches);
         $matches = array_merge($this->defaults, $matches);
-        //vd($matches);
 
         return $matches;
     }
@@ -318,7 +339,7 @@ class Standard implements RouteInterface
     {
         $url = '';
         foreach ($params as $key => $value) {
-            if (in_array($key, array('module', 'controller', 'action'))) {
+            if (in_array($key, array('section', 'module', 'controller', 'action'))) {
                 continue;
             }
             if (null === $value || '' === $value) {
@@ -436,5 +457,4 @@ class Standard implements RouteInterface
     {
         return $value ? rawurldecode($value) : $value;
     }
-
 }

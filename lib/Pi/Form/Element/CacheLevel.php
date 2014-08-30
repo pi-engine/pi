@@ -14,7 +14,7 @@ use Pi;
 use Zend\Form\Element\Select;
 
 /**
- *  Cache level select element
+ *  Cache granularity select element
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -29,11 +29,12 @@ class CacheLevel extends Select
     {
         if (empty($this->valueOptions)) {
             $this->valueOptions = array(
-                'none'      => __('No level'),
-                'locale'    => __('Language'),
-                'auth'      => __('Authenticated or not'),
-                'role'      => __('Role'),
-                //'user'      => __('User'),
+                'whole'     => __('As a whole'),
+                'locale'    => __('Per language'),
+                'role'      => __('Per role'),
+                'guest'     => __('Guest only'),
+                //'auth'      => __('Authenticated or not'),
+                //'user'      => __('By user'),
             );
         }
 
@@ -46,7 +47,7 @@ class CacheLevel extends Select
     public function getLabel()
     {
         if (null === $this->label) {
-            $this->label = __('Cache level');
+            $this->label = __('Cache granularity');
         }
 
         return parent::getLabel();

@@ -41,18 +41,12 @@ class PageEditForm extends BaseForm
 
         $this->add(array(
             'name'          => 'cache_ttl',
-            'type'          => 'cacheTtl',
-            'options'       => array(
-                'label' => __('Cache TTL'),
-            ),
+            'type'          => 'cache_ttl',
         ));
 
         $this->add(array(
             'name'          => 'cache_level',
-            'type'          => 'cacheLevel',
-            'options'       => array(
-                'label' => __('Cache level'),
-            ),
+            'type'          => 'cache_level',
         ));
 
         $this->add(array(

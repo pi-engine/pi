@@ -2,7 +2,7 @@ Pi Engine
 =================
 
 Pi is a multi-tenant application development engine for cloud ready SaaS platform with support for SSO/OAuth.
-Pi Engine is developed in PHP and MySQL upon frameworks including [Zend Framework](https://github.com/zendframework/zf2), jQuery, Bootstrap, Angular and Backbone.
+Pi Engine is developed in PHP and MySQL upon frameworks including [Zend Framework](https://github.com/zendframework/zf2), [jQuery](https://github.com/jquery/jquery), [AngularJS](https://github.com/angular/angular.js), [Bootstrap](https://github.com/twbs/bootstrap) as well as icons by [FontAwesome](http://fortawesome.github.io/Font-Awesome/icons/).
 
 Pi Engine is an open source project and follows the philosophy of open standard, open design, open development and open management. Pi is born as a complete open source project and intended to build a sustainable ecosystem that benefits all contributors and users.
 

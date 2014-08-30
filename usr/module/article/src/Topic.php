@@ -123,18 +123,14 @@ class Topic
         }
         $rowset = $modelTopic->selectWith($select);
         $topics = array();
-        $route  = Pi::api('api', $module)->getRouteName();
+        //$route  = Pi::api('api', $module)->getRouteName();
         foreach ($rowset as $row) {
             $id   = $row->id;
             $topics[$id] = $row->toArray();
-            $topics[$id]['url'] = Pi::engine()->application()
-                ->getRouter()
-                ->assemble(
-                    array(
-                        'topic' => $row->slug ?: $row->id,
-                    ),
-                    array('name' => $route)
-                );
+            $topics[$id]['url'] = Pi::service('url')->assemble('article', array(
+                'module'    => $module,
+                'topic'     => $row->slug ?: $row->id,
+            ));
         }
         
         return $topics;

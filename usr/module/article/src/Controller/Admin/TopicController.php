@@ -553,7 +553,7 @@ class TopicController extends ActionController
             'title'     => _a('Topic List'),
             'topics'    => $rowset,
             'action'    => 'list-topic',
-            'route'     => Pi::api('api', $module)->getRouteName(),
+            'route'     => 'article',
             'count'     => $count,
             'paginator' => $paginator,
         ));
