@@ -21,6 +21,10 @@ return array(
         'author'     => array(
             'title'       => _t('Author management'),
         ),
+        // Article cluster resource
+        'cluster'    => array(
+            'title'       => _t('Cluster management'),
+        ),
         // Article category resource
         'category'   => array(
             'title'       => _t('Category management'),

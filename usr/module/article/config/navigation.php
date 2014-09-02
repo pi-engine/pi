@@ -211,6 +211,58 @@ return array(
                     ),
                 ),
             ),
+            'cluster'           => array(
+                'label'         => _t('Cluster'),
+                'route'         => 'admin',
+                'controller'    => 'cluster',
+                'action'        => 'list',
+                'permission'    => array(
+                    'resource'  => 'cluster',
+                ),
+                
+                'pages'         => array(
+                    'list'          => array(
+                        'label'         => _t('Cluster list'),
+                        'route'         => 'admin',
+                        'controller'    => 'cluster',
+                        'action'        => 'list',
+                    ),
+                    'add'           => array(
+                        'label'         => _t('Add Cluster'),
+                        'route'         => 'admin',
+                        'controller'    => 'cluster',
+                        'action'        => 'add',
+                    ),
+                    'edit'          => array(
+                        'label'         => _t('Edit Cluster'),
+                        'route'         => 'admin',
+                        'controller'    => 'cluster',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
+                    'merge'         => array(
+                        'label'         => _t('Merge Cluster'),
+                        'route'         => 'admin',
+                        'controller'    => 'cluster',
+                        'action'        => 'merge',
+                        'visible'       => 1,
+                    ),
+                    'move'          => array(
+                        'label'         => _t('Move Cluster'),
+                        'route'         => 'admin',
+                        'controller'    => 'cluster',
+                        'action'        => 'move',
+                        'visible'       => 1,
+                    ),
+                    'sort'          => array(
+                        'label'         => _t('Sort Cluster'),
+                        'route'         => 'admin',
+                        'controller'    => 'cluster',
+                        'action'        => 'sort',
+                        'visible'       => 0,
+                    ),
+                ),
+            ),
             'category'          => array(
                 'label'         => _t('Category'),
                 'route'         => 'admin',
@@ -253,6 +305,13 @@ return array(
                         'controller'    => 'category',
                         'action'        => 'move',
                         'visible'       => 1,
+                    ),
+                    'sort'          => array(
+                        'label'         => _t('Sort Category'),
+                        'route'         => 'admin',
+                        'controller'    => 'category',
+                        'action'        => 'sort',
+                        'visible'       => 0,
                     ),
                 ),
             ),

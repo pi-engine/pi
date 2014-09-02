@@ -314,6 +314,12 @@ return array(
             'description' => _t('Path to upload image of category.'),
             'value'       => 'upload/article/category',
         ),
+        'path_cluster'    => array(
+            'category'    => 'media',
+            'title'       => _t('Cluster Path'),
+            'description' => _t('Path to upload image of cluster.'),
+            'value'       => 'upload/article/cluster',
+        ),
         'path_feature'  => array(
             'category'    => 'media',
             'title'       => _t('Feature Path'),
@@ -374,6 +380,26 @@ return array(
             'title'       => _t('Default Category Image'),
             'description' => _t('Path to default image of category.'),
             'value'       => 'image/default-category.png',
+        ),
+        'cluster_width'   => array(
+            'category'    => 'media',
+            'title'       => _t('Cluster Image Width'),
+            'description' => _t('Cluster image width'),
+            'value'       => 40,
+            'filter'      => 'int',
+        ),
+        'cluster_height'  => array(
+            'category'    => 'media',
+            'title'       => _t('Cluster Image Height'),
+            'description' => _t('Cluster image height'),
+            'value'       => 40,
+            'filter'      => 'int',
+        ),
+        'default_cluster_image' => array(
+            'category'    => 'media',
+            'title'       => _t('Default Cluster Image'),
+            'description' => _t('Path to default image of cluster.'),
+            'value'       => 'image/default-cluster.png',
         ),
         'topic_width'     => array(
             'category'    => 'media',
