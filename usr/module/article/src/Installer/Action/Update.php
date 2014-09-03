@@ -44,6 +44,9 @@ class Update extends BasicUpdate
         $moduleVersion = $e->getParam('version');
         $updator = new Schema\Updator110($this);
         $result = $updator->upgrade($moduleVersion);
+        
+        $updator = new Schema\Updator210($this);
+        $result = $updator->upgrade($moduleVersion) && $result;
 
         return $result;
     }

@@ -108,6 +108,27 @@ class Api extends AbstractApi
     }
     
     /**
+     * Read cluster data from cache
+     * 
+     * @param array $where
+     * @return array 
+     */
+    public function getClusterList($where = array())
+    {
+        $isTree = false;
+        if (isset($where['is-tree'])) {
+            $isTree = $where['is-tree'];
+            unset($where['is-tree']);
+        }
+        $module = $this->getModule();
+        $rows   = Pi::service('registry')
+            ->handler('cluster', $module)
+            ->read($where, $isTree, $module);
+        
+        return $rows;
+    }
+    
+    /**
      * Read category data from cache
      * 
      * @param array $where

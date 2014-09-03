@@ -78,6 +78,10 @@ return array(
             'permission'   => 'media',
         ),
         array(
+            'controller'   => 'cluster',
+            'permission'   => 'cluster',
+        ),
+        array(
             'controller'   => 'category',
             'permission'   => 'category',
         ),
