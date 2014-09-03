@@ -282,7 +282,10 @@ return array(
     'quicklink' => array(
         'logout'    => array(
             'title' => _a('Logout'),
-            'link'  => Pi::service('authentication')->getUrl('logout'),
+            'link'  => Pi::service('authentication')->getUrl(
+                    'logout',
+                    array('section' => 'front')
+                ),
             'icon'  => 'fa-power-off',
         ),
     ),
