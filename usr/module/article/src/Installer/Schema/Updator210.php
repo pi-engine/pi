@@ -43,6 +43,8 @@ class Updator210 extends AbstractUpdator
     protected function from111($version)
     {
         $result = true;
+        
+        // Add cluster table
         if (version_compare($version, '1.2.1', '<')) {
             $module = $this->handler->getParam('module');
             
@@ -87,6 +89,49 @@ EOD;
 ALTER TABLE {$tableArticle} ADD COLUMN `cluster` int(10) UNSIGNED NOT NULL DEFAULT 0 AFTER `category`;
 EOD;
             $result = $this->queryTable($sql);
+            if (false === $result) {
+                return $result;
+            }
+        }
+        
+        // Add tables for customizing fields
+        if (version_compare($version, '1.3.1', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            // Add fields for table field
+            $table  = Pi::db()->prefix('field', $module);
+            $addSql =<<<EOD
+ALTER TABLE {$table} ADD COLUMN `edit` text;
+ALTER TABLE {$table} ADD COLUMN `filter` text;
+ALTER TABLE {$table} ADD COLUMN `handler` text;
+ALTER TABLE {$table} ADD COLUMN `type` enum('common', 'compound') NOT NULL;
+ALTER TABLE {$table} ADD COLUMN `is_edit` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';
+ALTER TABLE {$table} ADD COLUMN `is_display` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';
+ALTER TABLE {$table} ADD COLUMN `is_required` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';
+ALTER TABLE {$table} ADD COLUMN `active` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';
+EOD;
+            $result = $this->querySchema($addSql, $module);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Create `compound_field` table
+            $table     = Pi::model('compound_field', $module)->getTable();
+            $createSql =<<<EOD
+CREATE TABLE `{$table}` (
+  `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
+  `name`            varchar(64)                     NOT NULL,
+  `compound`        varchar(64)                     NOT NULL,
+  `title`           varchar(255)                    NOT NULL DEFAULT '',
+  `edit`            text,
+  `filter`          text,
+  `is_required`     tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
+
+  PRIMARY KEY       (`id`),
+  UNIQUE KEY `name` (`compound`, `name`)
+);
+EOD;
+            $result = $this->queryTable($createSql);
             if (false === $result) {
                 return $result;
             }
