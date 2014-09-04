@@ -44,9 +44,30 @@ CREATE TABLE `{field}` (
   `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
   `name`            varchar(64)                     NOT NULL DEFAULT '',
   `title`           varchar(255)                    NOT NULL DEFAULT '',
+  `edit`            text,
+  `filter`          text,
+  `handler`         text,
+  `type`            enum('common', 'compound')      NOT NULL,
+  `is_edit`         tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
+  `is_display`      tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
+  `is_required`     tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
+  `active`          tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
 
   PRIMARY KEY                     (`id`),
   UNIQUE KEY                      (`name`)
+);
+
+CREATE TABLE `{compound_field}` (
+  `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
+  `name`            varchar(64)                     NOT NULL,
+  `compound`        varchar(64)                     NOT NULL,
+  `title`           varchar(255)                    NOT NULL DEFAULT '',
+  `edit`            text,
+  `filter`          text,
+  `is_required`     tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
+
+  PRIMARY KEY       (`id`),
+  UNIQUE KEY `name` (`compound`, `name`)
 );
 
 CREATE TABLE `{compiled}` (
