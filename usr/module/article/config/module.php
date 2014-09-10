@@ -17,7 +17,7 @@ return array(
     'meta'         => array(
         'title'         => _a('Article'),
         'description'   => _a('General module for content management.'),
-        'version'       => '1.3.1',
+        'version'       => '1.3.2',
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',
         'readme'        => 'README.md',
@@ -48,5 +48,6 @@ return array(
         'permission'    => 'permission.php',
         'page'          => 'page.php',
         'comment'       => 'comment.php',
+        'article'       => 'article.php',
     ),
 );
