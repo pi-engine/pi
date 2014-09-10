@@ -17,7 +17,7 @@ use ZipArchive;
  *
  * Download content generated on-fly
  *
- * <code>
+ * ```
  *  $source = 'Generated content';
  *  $options = array(
  *      // Required
@@ -29,11 +29,11 @@ use ZipArchive;
  *  );
  *  $downloader = new Download;
  *  $downloader->send($source, $options);
- * </code>
+ * ```
  *
  * Download a file
  *
- * <code>
+ * ```
  *  $source = 'path/to/file';
  *  $options = array(
  *      // Optional
@@ -46,11 +46,11 @@ use ZipArchive;
  *  $downloader = new Download;
  *  $downloader->send($source, options);
  *
- * </code>
+ * ```
  *
  * Download multiple files, compressed and sent as a zip file
  *
- * <code>
+ * ```
  *  $source = array(
  *      'path/to/file1',
  *      'path/to/file2',
@@ -78,16 +78,16 @@ use ZipArchive;
  *  );
  *  $downloader = new Download;
  *  $downloader->send($source, $options);
- * </code>
+ * ```
  *
- * Download with specified exit
+ * Download with explicit exit
  *
- * <code>
+ * ```
  *  $downloader = new Download(array('exit' => false));
  *  $downloader->send(array(...));
  *  // Do something
  *  exit;
- * </code>
+ * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
