@@ -9,6 +9,80 @@
 
 /**
  * Article custom attributes
+ * 
+ * Common fields
+ * <code>
+ * 'field' => array(
+ *     // Case 1
+ *     'field1' => array(
+ *         'type' => 'common',
+ *         ...
+ *     ),
+ *     // Case 2
+ *     'field2' => array(
+ *         // If there is no `field` key, `type` key can be ignored
+ *         ...
+ *     ),
+ * ),
+ * </code>
+ * 
+ * Compound fields
+ * <code>
+ * 'field' => array(
+ *     // Case 1
+ *     'field1' => array(
+ *         'type' => 'compound',
+ *         ...
+ *     ),
+ *     // Case 2
+ *     'field2' => array(
+ *         'field' => array(
+ *             ...
+ *         ),
+ *     ),
+ * ),
+ * </code>
+ * 
+ * Edit field
+ * <code>
+ * // Define edit type directly by string
+ * 'edit' => 'text',
+ * // Use array to define
+ * 'edit' => array(
+ *     'element' => 'text',
+ *     ...
+ * ),
+ * 'edit' => array(
+ *      // Without `element` field
+ *     'required' => true,
+ *     ...
+ * ),
+ * </code>
+ * All edit above will be resolved as 
+ * 'edit' => array(
+ *     'element' => array(
+ *         'type' => 'text',
+ *     ),
+ *     ...
+ * ),
+ * 
+ * Is required
+ * <code>
+ * // Case 1, the value of `is_required` field in database will be true
+ * 'edit' => array(
+ *     'required' => true,
+ * ),
+ * 'is_required' => false,
+ * // Case 2, the value of `is_required` will be true
+ * 'edit' => array(
+ *     'required' => true,
+ * ),
+ * // Case 3, the value of `is_required` will be false
+ * 'edit' => array(
+ *     
+ * ),
+ * 'is_required' => false,
+ * </code>
  *
  * @see Module\Article\Installer\Resource\Article
  * @author Zongshu Lin <lin40553024@163.com>
