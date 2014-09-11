@@ -71,9 +71,10 @@ class Registry extends AbstractService
         if (empty($module)) {
             $class = sprintf('Pi\Application\Registry\\%s', $name);
         } else {
+            $directory = Pi::service('module')->directory($module);
             $class = sprintf(
                 'Module\\%s\Registry\\%s',
-                ucfirst($module),
+                ucfirst($directory),
                 $name
             );
         }
