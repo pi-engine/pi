@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2014-08-29 15:28+0330\n"
-"PO-Revision-Date: 2014-08-29 15:29+0330\n"
+"POT-Creation-Date: 2014-09-11 12:00+0330\n"
+"PO-Revision-Date: 2014-09-11 12:00+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Poedit-SearchPath-0: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/"
 "default\n"
 
-#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-simple.phtml:135
-#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-front.phtml:268
+#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-simple.phtml:138
+#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-front.phtml:269
 #, php-format
 msgid "Execution time: %.4f s"
 msgstr "زمان اجرا %.4f s"
@@ -59,11 +59,11 @@ msgstr ""
 "شما برای دیدن این صفحه دسترسی ندارید. لطفا به %s یا %s مراجعه کرده و دوباره "
 "تلاش کنید."
 
-#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-admin.phtml:62
+#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-admin.phtml:65
 msgid "Front"
 msgstr "سمت کاربر"
 
-#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-admin.phtml:120
+#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-admin.phtml:123
 msgid "Execution time"
 msgstr "زمان اجرای نرم افزار"
 
@@ -96,7 +96,7 @@ msgstr "پیوندی که به آن مراجعه کرده اید با سیستم
 msgid "We cannot determine at this time why a 404 was generated."
 msgstr "ما نمیتوانیم تشخصی دهیم چرا در این زمان یک صفحه ۴۰۴ تولید شده است."
 
-#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-front.phtml:113
+#: /home/voltan/Work/git/pi/pi-engine/pi/usr/theme/default/template/layout-front.phtml:116
 msgid "Home"
 msgstr "خانه"
 
