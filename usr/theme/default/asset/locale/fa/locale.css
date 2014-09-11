@@ -8,6 +8,7 @@
  * RTL version created by : Farhad Eidi (farhadeidi.com, @farhadex)
  * https://github.com/farhadeidi/bootstrap-rtl
  */
+ 
 @font-face {
   font-family: 'WIranianSens';
   src: url('IranianSansWeb-Regular.woff') format('woff');
@@ -1654,6 +1655,8 @@ th {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
+
+/* login block */
 .user-login .input-group input[type="text"],
 .user-login .input-group input[type="password"] {
   border-bottom-left-radius: 4px !important;
@@ -1669,6 +1672,20 @@ th {
   border-top-right-radius: 4px;
   border-right: 1px;
   border-left: 0;
+}
+
+/* User topbar */
+.user-info-left {
+  float: right;
+}
+
+.user-info-center {
+  float: right;
+  margin-right: 20px;
+}
+
+.user-info-right {
+  float: left;
 }
 
 /* Admin side */
