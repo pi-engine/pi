@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-08-29 15:34+0330\n"
-"PO-Revision-Date: 2014-08-29 15:34+0330\n"
+"POT-Creation-Date: 2014-09-12 11:27+0330\n"
+"PO-Revision-Date: 2014-09-12 11:27+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -14,6 +14,15 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "search\n"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:12
+msgid "Search"
+msgstr "جستجو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:13
+msgid "Search box."
+msgstr "باکس جستجو"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:18
 msgid "Target"
@@ -27,9 +36,13 @@ msgstr "_self"
 msgid "_blank"
 msgstr "_blank"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:12
-msgid "Search"
-msgstr "جستجو"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:31
+msgid "Module"
+msgstr "ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:32
+msgid "Module for search"
+msgstr "ماژول منبع برای جستجو"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:13
 msgid "Search service applications."

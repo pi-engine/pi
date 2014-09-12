@@ -9,8 +9,8 @@
 return array(
     'search'    => array(
         'name'          => 'search',
-        'title'         => _b('Search'),
-        'description'   => _b('Search box.'),
+        'title'         => _a('Search'),
+        'description'   => _a('Search box.'),
         'render'        => array('block', 'search'),
         'template'      => 'search',
         'config'        => array(
@@ -26,6 +26,14 @@ return array(
                     ),
                 ),
                 'value'         => '_self', 
+            ),
+            'module' => array(
+                'title'         => _a('Module'),
+                'description'   => _a('Module for search'),
+                'edit'          => array(
+                    'type'      => 'Module\Search\Form\Element\Module',
+                ),
+                'value'         => 'all', 
             )
         )
     ),

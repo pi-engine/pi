@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2014-08-29 15:33+0330\n"
-"PO-Revision-Date: 2014-08-29 15:33+0330\n"
+"POT-Creation-Date: 2014-09-12 13:44+0330\n"
+"PO-Revision-Date: 2014-09-12 13:44+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: بش\n"
@@ -28,35 +28,51 @@ msgstr "نام سایت"
 msgid "Slogan"
 msgstr "شعار"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:8
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:61
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:92
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:90
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:91
 msgid "Login"
 msgstr "ورود"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:13
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:66
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:96
 msgid "Register"
 msgstr "ثبت نام"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:18
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:19
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:20
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:79
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:22
 msgid "Profile"
 msgstr "حساب کاربری"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:23
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:24
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:25
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:80
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:108
 msgid "Message"
 msgstr "پیام"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:30
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:81
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:116
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:32
 msgid "Logout"
 msgstr "خروج"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:27
+msgid "Settings"
+msgstr "تنظیمات"
