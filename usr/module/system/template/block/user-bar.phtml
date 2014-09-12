@@ -1,123 +1,120 @@
-<?php
-//For ajax request login
-if ('js' == $block['type']) { 
-?>
-<ul class="nav navbar-nav navbar-right" id="user-bar-anonymous" style="display: none;">
-    <li>
-        <a href="<?php echo $block['user']['login']; ?>">
-            <?php echo _b('Login'); ?>
-        </a>
-    </li>    
-    <li>
-        <a href="<?php echo $block['user']['register']; ?>">
-            <?php echo _b('Register'); ?>
-        </a>
-    </li>     
-</ul>
-<ul class="nav navbar-nav navbar-right" id="user-bar-member" style="display: none;">
-    <li>
-        <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">
-            <?php echo _b('Profile'); ?>
-        </a>
-    </li> 
-    <li>
-         <a id="member-message" href="#" title="<?php echo _b('Message'); ?>">
-            <?php echo _b('Message'); ?>
-        </a>
-    </li>
-    <li>
-        <a id="member-logout" href="<?php echo $block['user']['logout']; ?>">
-            <?php echo _b('Logout'); ?>
-        </a>
-    </li>
-</ul>
-<script>
-    $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
-        var ela = $('#user-bar-anonymous');
-        var elm = $('#user-bar-member');
-
-        if (user.uid > 0) {
-            ela.hide();
-            elm.show();
-            $('#member-message').attr('href', user.message);
-            $('#member-profile').attr('href', user.profile).html(user.avatar + ' ' + user.name);
-        } else {
-            ela.show();
-            elm.hide();
-        }
-    });
-</script>
-<?php
-return;
-}
-?>
-<ul class="nav navbar-nav navbar-right">
-<?php if ('dropdown' == $block['type']) { ?>
-    <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
-    <?php
-    if (!$block['user']['uid']) { ?>
-    <li>
-        <a href="<?php echo $block['user']['login']; ?>">
-            <?php echo _b('Login'); ?>
-        </a>
-    </li>
-    <li>
-        <a href="<?php echo $block['user']['register']; ?>">
-            <?php echo _b('Register'); ?>
-        </a>
-    </li>
-    <?php
-    } else {
-        ?>
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="icon-user"></i>
-            <?php echo _escape($block['user']['name']); ?>
-            <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-            <li><a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a></li>
-            <li><a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a></li>
-            <li><a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a></li>
-        </ul>
-    <?php
-    }
-    ?>
-<?php } else { ?>
-    <!-- Flat display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
-    <?php
-        if (!$block['user']['uid']) { ?>
+<div class="user-bar">
+<?php switch ($block['type']) { ?>
+<?php case 'js': ?>
+    <ul class="nav navbar-nav navbar-right" id="user-bar-anonymous" style="display: none;">
         <li>
-            <a href="<?php echo $block['user']['login']; ?>">
+            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                <?php echo _b('Login'); ?>
+            </a>
+        </li>    
+        <li>
+            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>">
+                <?php echo _b('Register'); ?>
+            </a>
+        </li>     
+    </ul>
+    <ul class="nav navbar-nav navbar-right" id="user-bar-member" style="display: none;">
+        <li>
+            <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">
+                <?php echo _b('Profile'); ?>
+            </a>
+        </li> 
+        <li>
+             <a id="member-message" href="#" title="<?php echo _b('Message'); ?>">
+                <?php echo _b('Message'); ?>
+            </a>
+        </li>
+        <li>
+            <a id="member-logout" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
+                <?php echo _b('Logout'); ?>
+            </a>
+        </li>
+    </ul>
+    <script>
+        $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
+            var ela = $('#user-bar-anonymous');
+            var elm = $('#user-bar-member');
+            if (user.uid > 0) {
+                ela.hide();
+                elm.show();
+                $('#member-message').attr('href', user.message);
+                $('#member-profile').attr('href', user.profile).html(user.avatar + ' ' + user.name);
+            } else {
+                ela.show();
+                elm.hide();
+            }
+        });
+    </script>
+<?php break; ?>
+<?php case 'dropdown': ?>
+    <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <ul class="nav navbar-nav navbar-right">
+    <?php if (!$block['user']['uid']) { ?>
+        <li>
+            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
                 <?php echo _b('Login'); ?>
             </a>
         </li>
         <li>
-            <a href="<?php echo $block['user']['register']; ?>">
+            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>">
                 <?php echo _b('Register'); ?>
             </a>
         </li>
-    <?php
-        } else {
-    ?>
+    <?php } else { ?>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="icon-user"></i>
+                <?php echo _escape($block['user']['name']); ?>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
+                </li>
+                <li>
+                    <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
+                </li>
+                <li>
+                    <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
+                </li>
+            </ul>
+        </li>    
+    <?php } ?>
+    </ul>
+<?php break; ?>
+<?php case 'flat': ?>
+    <!-- Flat display mode: logged in - user avatar, user name with link to user profile, link to logout; guest - link to login, link to register  -->
+    <ul class="nav navbar-nav navbar-right">
+    <?php if (!$block['user']['uid']) { ?>
         <li>
-            <a href="<?php echo $block['user']['profile']; ?>">
+            <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
+                <?php echo _b('Login'); ?>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $block['user']['register']; ?>" title="<?php echo _b('Register'); ?>">
+                <?php echo _b('Register'); ?>
+            </a>
+        </li>
+    <?php } else { ?>
+        <li>
+            <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _escape($block['user']['name']); ?>">
                 <?php echo $block['user']['avatar']; ?>
                 <?php echo _escape($block['user']['name']); ?>
             </a>
         </li>
         <li>
-            <a href="<?php echo $block['user']['message']; ?>">
+            <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
                 <?php echo _b('Message'); ?>
             </a>
         </li>
         <li>
-            <a href="<?php echo $block['user']['logout']; ?>">
+            <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                 <?php echo _b('Logout'); ?>
             </a>
         </li>
-    <?php
-        }
-    ?>
+    <?php } ?>
+    </ul>
+<?php break; ?>
 <?php } ?>
-</ul>
+</div>
