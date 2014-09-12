@@ -90,6 +90,24 @@ html {
 }
 
 /* Block */
+.pi-block {
+  margin-bottom: 20px;
+}
+
+.pi-block-title {
+  padding: 10px;
+}
+
+.pi-block-title h3 {
+  font-size: 1.2em;
+  padding: 0;
+  margin: 0;
+}
+
+.pi-block-content {
+
+}
+
 .pi-panel-subline {
   float: right;
 }
@@ -135,6 +153,12 @@ html {
 .panel-body ul,
 .panel-body ol {
     margin-left: -20px;
+}
+
+/* header */
+.pi-header h1 {
+  padding: 1px;
+  margin: 1px;
 }
 
 /* Footer */

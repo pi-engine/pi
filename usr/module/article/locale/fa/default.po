@@ -1,0 +1,979 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-article\n"
+"POT-Creation-Date: 2014-08-08 17:41+0800\n"
+"PO-Revision-Date: 2014-09-11 17:57+0330\n"
+"Last-Translator: \n"
+"Language-Team: Pi Engine\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"article\n"
+
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:71
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:69
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:362
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:82
+msgid "Content"
+msgstr "محتوا"
+
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:77
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:119
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:55
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:136
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:287
+msgid "All"
+msgstr "همه"
+
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:94
+#: c:\code\pi\usr\module\article/src/Api/Breadcrumbs.php:100
+msgid "Topic"
+msgstr "عنوان"
+
+#: c:\code\pi\usr\module\article/src/Block/Block.php:93
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:68
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:149
+msgid "All articles"
+msgstr "همه مقالات"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:744
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:30
+msgid "From"
+msgstr "از"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:757
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:42
+msgid "To"
+msgstr "برای"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:761
+msgid "First of"
+msgstr "اول از"
+
+#: c:\code\pi\usr\module\article/src/Controller/Admin/CategoryController.php:772
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:89
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:126
+#: c:\code\pi\usr\module\article/src/Form/CategoryMergeForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/CategoryMoveForm.php:59
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:81
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:108
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:162
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:404
+msgid "Submit"
+msgstr "ارسال"
+
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:36
+#: c:\code\pi\usr\module\article/src/Controller/Feed/IndexController.php:37
+#, php-format
+msgid "All Articles of %s"
+msgstr "مقالات %s"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/AjaxController.php:128
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:604
+msgid "OK"
+msgstr "تایید"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:79
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1449
+msgid "Page not found"
+msgstr "صفحه یافت نشد"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:83
+msgid "The article requested is not active"
+msgstr "مقاله درخواست غیر فعال است"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:171
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:434
+msgid "Invalid article ID"
+msgstr "ID مقاله نامعتبر است"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:197
+msgid "Can not create draft"
+msgstr "آیا می توانم پیش نویس ایجاد کنید"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:395
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:298
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:22
+msgid "Published"
+msgstr "تاریخ انتشار"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:637
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:148
+msgid "Subject is used by another article."
+msgstr "موضوع توسط یکی دیگر از مقاله استفاده می شود."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:638
+msgid "ok"
+msgstr "خوب"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ArticleController.php:657
+msgid "success"
+msgstr "موفقیت"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:101
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:49
+msgid "Invalid category id"
+msgstr "شناسه رده نامعتبر"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/CategoryController.php:178
+msgid "Article List in Category"
+msgstr "فهرست مقالات موجود در رده"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:137
+msgid "Subject cannot be empty."
+msgstr "موضوع نمی تواند خالی باشد."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:193
+msgid "Category cannot be empty."
+msgstr "رده نمی تواند خالی باشد."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:215
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:262
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:400
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1287
+msgid "Not enough parameter."
+msgstr "پارامتر به اندازه کافی نیست."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:227
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:268
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:407
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1293
+msgid "Invalid draft."
+msgstr "پیش نویس نامعتبر است."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:231
+msgid "Draft has been published."
+msgstr "پیش نویس منتشر شده است."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:239
+msgid "Draft submitted successfully."
+msgstr "پیش نویس موفقیت ارسال شد."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:243
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:822
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:304
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:27
+msgid "Pending"
+msgstr "در انتظار "
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:244
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:390
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2509
+msgid "Approve"
+msgstr "تصویب"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:534
+msgid "Article update successfully."
+msgstr "مقاله به روز رسانی با موفقیت."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:757
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1257
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1350
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1543
+msgid "Failed to save draft."
+msgstr "برای ذخیره پیش نویس شکست خورده است."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:776
+msgid "Draft saved successfully."
+msgstr "پیش نویس با موفقیت ذخیره شد."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:805
+msgid "Invalid source"
+msgstr "منبع نامعتبر"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:818
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:302
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:330
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:37
+msgid "Draft"
+msgstr "Draft"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:826
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:306
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:32
+msgid "Rejected"
+msgstr "رد شده."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:902
+msgid "Create Article"
+msgstr "ایجاد مقاله"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1129
+msgid "Edit Article"
+msgstr "ویرایش مقاله"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1170
+msgid "Invalid draft ID"
+msgstr "پیش نویس ID نامعتبر"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1363
+msgid "approve successfully."
+msgstr "تایید موفقیت."
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1569
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1783
+msgid "Invalid ID!"
+msgstr "ID نامعتبر است!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1586
+msgid "Media is not exists!"
+msgstr "رسانه است وجود دارد نیست!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1592
+msgid "Invalid file extension!"
+msgstr "فرمت فایل نامعتبر است!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1601
+msgid "Can not create image file!"
+msgstr "آیا می توانم فایل تصویر ایجاد کنید!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1717
+msgid "Invalid draft ID!"
+msgstr "پیش نویس ID نامعتبر است!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1725
+msgid "Invalid media!"
+msgstr "رسانه های نامعتبر است!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1746
+msgid "Can not save data!"
+msgstr "می تواند داده ها را ذخیره کرد!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1768
+msgid "Save asset successful!"
+msgstr "صرفه جویی در دارایی های موفق!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1790
+msgid "Delete item sucessful!"
+msgstr "حذف آیتم موفق!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/DraftController.php:1793
+msgid "Can not delete item!"
+msgstr "آیا می توانم آیتم را حذف کنید!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/ListController.php:182
+msgid "All Articles"
+msgstr "همه مقالات"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/SearchController.php:85
+msgid "Search result of "
+msgstr "جستجو نتیجه "
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:37
+msgid "Cannot find this page"
+msgstr "می توانید این صفحه را پیدا کند"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TagController.php:98
+msgid "Articles on Tag "
+msgstr "مقالات در برچسب "
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:43
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:214
+msgid "Invalid topic ID!"
+msgstr "نامعتبر ID موضوع!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:51
+msgid "Topic is not exists!"
+msgstr "موضوع است وجود دارد نیست!"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:56
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:225
+msgid "The topic requested is not active"
+msgstr "مبحث درخواست غیر فعال است"
+
+#: c:\code\pi\usr\module\article/src/Controller/Front/TopicController.php:197
+msgid "All Topics"
+msgstr "همه پست ها"
+
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:42
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:30
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:30
+msgid "Name"
+msgstr "نام"
+
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:41
+msgid "Photo"
+msgstr "عکس"
+
+#: c:\code\pi\usr\module\article/src/Form/AuthorEditForm.php:50
+msgid "Biography"
+msgstr "زندگی‌نامه"
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:30
+msgid "Parent"
+msgstr "مرجع"
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:33
+msgid "Category Hierarchy"
+msgstr "سلسله مراتب رده"
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:46
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:34
+msgid "The unique identifier of category."
+msgstr "شناسه منحصر به فرد از رده."
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:54
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:76
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:287
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:41
+msgid "Slug"
+msgstr "Slug"
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:58
+msgid "The \"Slug\" is category name in URL."
+msgstr "The \"Slug\" is category name in URL."
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:66
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:41
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:52
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:551
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1394
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1994
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:12
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:23
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:55
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:23
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:56
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:48
+msgid "Title"
+msgstr "عنوان"
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:70
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:45
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:56
+msgid "Will be displayed on your website."
+msgstr "آیا می شود در وب سایت خود نمایش داده شود."
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:78
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:53
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:107
+msgid "Description"
+msgstr "توضیحات"
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:82
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:57
+msgid "Display in the website depends on theme."
+msgstr "نمایش در وب سایت بستگی به موضوع."
+
+#: c:\code\pi\usr\module\article/src/Form/CategoryEditForm.php:90
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:70
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:224
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:96
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:55
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:47
+msgid "Image"
+msgstr "تصویر"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:52
+msgid "Form Mode"
+msgstr "حالت فرم"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:57
+msgid "Normal"
+msgstr "معم"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:58
+msgid "Extended"
+msgstr "تمدید"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftCustomForm.php:59
+msgid "Custom"
+msgstr "سفارشی"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:66
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:200
+msgid "Subject"
+msgstr "موضوع "
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:67
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:212
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:156
+msgid "Subtitle"
+msgstr "زیرنویس"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:68
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:410
+msgid "Summary"
+msgstr "خلاصه"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:71
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:246
+msgid "Author"
+msgstr "نویسنده"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:72
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:257
+msgid "Source"
+msgstr "منبع"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:73
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:268
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:13
+msgid "Category"
+msgstr "دسته"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:74
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:555
+msgid "Tag"
+msgstr "برچسب"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:75
+msgid "Related"
+msgstr "مرتبط"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:77
+msgid "SEO Title"
+msgstr "SEO عنوان"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:78
+msgid "SEO Keywords"
+msgstr "SEO کلید واژه ها"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:79
+msgid "SEO Description"
+msgstr "SEO شرح"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:162
+msgid "Save draft"
+msgstr "ذخیره پیش نویس"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:235
+msgid "Submitter"
+msgstr "ارسال"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:276
+msgid "Related article"
+msgstr "مقاله های مرتبط"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:299
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:503
+msgid "SEO title"
+msgstr "عنوان SEO"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:310
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:511
+msgid "SEO keywords"
+msgstr "کلمات کلیدی SEO"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:321
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:519
+msgid "SEO description"
+msgstr "توضیحات SEO"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:332
+msgid "Publish time"
+msgstr "زمان انتشار"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:342
+msgid "Update time"
+msgstr "زمان به روز رسانی"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:352
+msgid "Submit time"
+msgstr "ثبت کردن زمان"
+
+#: c:\code\pi\usr\module\article/src/Form/DraftEditForm.php:424
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:466
+msgid "Tags"
+msgstr "برچسب‌ها"
+
+#: c:\code\pi\usr\module\article/src/Form/Element/Account.php:50
+#: c:\code\pi\usr\module\article/src/Form/Element/CategoryWithRoot.php:35
+#: c:\code\pi\usr\module\article/src/Form/Element/Topic.php:38
+msgid "Null"
+msgstr "صفر"
+
+#: c:\code\pi\usr\module\article/src/Form/Element/Template.php:46
+msgid "Default"
+msgstr "پیش فرض"
+
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:34
+msgid "The unique identifier of media."
+msgstr "شناسه منحصر به فرد از رسانه ها."
+
+#: c:\code\pi\usr\module\article/src/Form/MediaEditForm.php:65
+msgid "Media"
+msgstr "رسانه ها"
+
+#: c:\code\pi\usr\module\article/src/Form/SimpleSearchForm.php:37
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:561
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:25
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:25
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:39
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:34
+msgid "Search"
+msgstr "جستجو"
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:45
+msgid "The \"Slug\" is topic name in URL."
+msgstr "The \"Slug\" is topic name in URL."
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:89
+msgid "Topic main content."
+msgstr "محتوای اصلی موضوع."
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:100
+msgid "Topic feature image, optional."
+msgstr "موضوع تصویر از ویژگی های، اختیاری است."
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:111
+msgid "Display in the website."
+msgstr "نمایش در وب سایت."
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:118
+msgid "Template"
+msgstr "قالب"
+
+#: c:\code\pi\usr\module\article/src/Form/TopicEditForm.php:121
+msgid "Choose a template for topic."
+msgstr "یک الگو برای موضوع را انتخاب کنید."
+
+#: c:\code\pi\usr\module\article/src/Rule.php:41
+msgid "article"
+msgstr " مقاله"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:42
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:44
+msgid "publish"
+msgstr "انتشار"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:42
+msgid "active"
+msgstr "فعال"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:43
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:52
+msgid "edit"
+msgstr "ویرایش"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:44
+#: c:\code\pi\usr\module\article/src/Rule.php:51
+#: c:\code\pi\usr\module\article/src/Rule.php:53
+msgid "delete"
+msgstr "حذف"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:48
+#: c:\code\pi\usr\module\article/src/Rule.php:49
+msgid "draft"
+msgstr "پیش نویس"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:49
+msgid "compose"
+msgstr "آهنگسازی"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:50
+#: c:\code\pi\usr\module\article/src/Rule.php:51
+msgid "rejected"
+msgstr "رد"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:52
+#: c:\code\pi\usr\module\article/src/Rule.php:53
+#: c:\code\pi\usr\module\article/src/Rule.php:54
+msgid "pending"
+msgstr "در انتظار"
+
+#: c:\code\pi\usr\module\article/src/Rule.php:54
+msgid "approve"
+msgstr "تایید"
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:101
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:108
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:153
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1595
+msgid "In processing ..."
+msgstr "در پردازش ..."
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:114
+#: c:\code\pi\usr\module\article/template/admin/media-edit.phtml:136
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:166
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:438
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:454
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1608
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:16
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:28
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:117
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: c:\code\pi\usr\module\article/template/admin/category-edit.phtml:281
+#: c:\code\pi\usr\module\article/template/admin/topic-edit.phtml:333
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1427
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1774
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2027
+msgid "No media available yet."
+msgstr "بدون رسانه ها در دسترس است."
+
+#: c:\code\pi\usr\module\article/template/block/rss.phtml:3
+msgid "Click to subscribe content"
+msgstr "برای عضویت کلیک کنید محتوا"
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:26
+msgid "Publish time: "
+msgstr "زمان انتشار: "
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:30
+msgid "Source: "
+msgstr "منبع: "
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:40
+msgid "Share with: "
+msgstr "به اشتراک گذاشتن با: "
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:109
+msgid "Next Page"
+msgstr "صفحه بعد"
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:112
+msgid "Remain Page"
+msgstr "باقی می ماند صفحه"
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:129
+msgid "Read More"
+msgstr "ادامه ..."
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:137
+msgid "Continue read"
+msgstr "ادامه به عنوان خوانده شده"
+
+#: c:\code\pi\usr\module\article/template/front/article-detail.phtml:158
+msgid "Author introduction"
+msgstr "نویسنده معرفی"
+
+#: c:\code\pi\usr\module\article/template/front/category-list.phtml:21
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:12
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:32
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:11
+msgid " articles"
+msgstr " مقالات"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:136
+msgid "Subject:"
+msgstr "موضوع:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:147
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:182
+msgid "character left"
+msgstr "شخصیت سمت چپ"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:171
+msgid "Subtitle:"
+msgstr "عنوان فرعی:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:191
+msgid "Category:"
+msgstr "دسته‌بندی:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:211
+msgid "Source:"
+msgstr "منبع:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:223
+msgid "Author:"
+msgstr "نویسنده:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:232
+msgid "Submitter:"
+msgstr "ارسال کننده:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:248
+msgid "Summary:"
+msgstr "خلاصه:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:262
+msgid "words left"
+msgstr "کلمات سمت چپ"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:278
+msgid "Choose files"
+msgstr "انتخاب فایل ها"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:283
+msgid "Max Size: "
+msgstr "حداکثر حجم: "
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:295
+msgid "Status:"
+msgstr "وضیعت:"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:338
+msgid "Preview"
+msgstr "پیش نمایش "
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:340
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:353
+msgid "Save"
+msgstr "ذخیره"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:346
+msgid "Scheduled at"
+msgstr "برنامه ریزی در"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:349
+msgid "publish immediately"
+msgstr "فورا منتشر"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:352
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:56
+msgid "Edit"
+msgstr "ویرایش"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:354
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:639
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:67
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:68
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:77
+msgid "Cancel"
+msgstr "لغو"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:378
+#, php-format
+msgid "Last edit at %s by %s"
+msgstr "آخرین ویرایش در %s توسط %s"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:386
+msgid "Update"
+msgstr "به روز رسانی  "
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:397
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:421
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2517
+msgid "Reject"
+msgstr "عدم پذیرش"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:407
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:641
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:660
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:4
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:58
+msgid "Delete"
+msgstr "حذف"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:415
+msgid "Reject reason"
+msgstr "رد دلیل"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:431
+msgid "Feature image"
+msgstr "ویژگی تصویر"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:440
+msgid "image size "
+msgstr "اندازه تصویر "
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:447
+msgid "Click toggle show"
+msgstr "ضامن را نشان می دهد کلیک کنید"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:450
+msgid "Image gallery"
+msgstr "گالری عکس"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:490
+msgid "SEO"
+msgstr "SEO"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:494
+msgid "SEO url name"
+msgstr "SEO نام آدرس"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:533
+msgid "Related articles"
+msgstr "مقالات مرتبط"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:537
+msgid "Add"
+msgstr "افزودن"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:546
+msgid "Manage related articles"
+msgstr "مدیریت مقالات مرتبط"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:567
+msgid "Articles to be selected"
+msgstr "مقالات انتخاب شود"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:574
+msgid "Articles selected"
+msgstr "مقالات انتخاب شده"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:582
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:605
+msgid "Done"
+msgstr "انجام شد"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:599
+msgid "Error"
+msgstr "خطا"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:619
+msgid "Add a new article"
+msgstr "اضافه کردن مقاله جدید"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:642
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:659
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1406
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2006
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:92
+msgid "Insert"
+msgstr "درج"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1049
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:111
+msgid "Are you sure delete this article?"
+msgstr "آیا مطمئن این مقاله را حذف کنید؟"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1220
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1444
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2046
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:56
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:57
+msgid "Remove"
+msgstr "حذف"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1337
+msgid ""
+"This operation will also remove attachment in editor, do you still want to "
+"continue?"
+msgstr ""
+"این عملیات نیز پیوست در ویرایشگر حذف، آیا شما هنوز هم می خواهید ادامه دهید؟"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1395
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1995
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:49
+msgid "Size"
+msgstr "اندازه"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1396
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1996
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:50
+msgid "Select"
+msgstr "انتخاب"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1459
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:2061
+msgid "Do you really want to remove this media?"
+msgstr "آیا شما واقعا می خواهید به حذف این رسانه ها؟"
+
+#: c:\code\pi\usr\module\article/template/front/draft-edit.phtml:1935
+msgid ""
+"This operation will also remove image in editor, do you still want to "
+"continue?"
+msgstr ""
+"این عملیات نیز تصویر را در ویرایشگر حذف، آیا شما هنوز هم می خواهید ادامه "
+"دهید؟"
+
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:20
+msgid "Published time"
+msgstr "زمان انتشار"
+
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:21
+msgid "Last update date"
+msgstr "آخرین تاریخ به روز رسانی"
+
+#: c:\code\pi\usr\module\article/template/front/draft-list.phtml:43
+msgid "No Title"
+msgstr "بدون عنوان"
+
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:50
+msgid "Compose"
+msgstr "ایجاد"
+
+#: c:\code\pi\usr\module\article/template/front/draft-nav.phtml:104
+msgid "Are you sure delete checked article?"
+msgstr "آیا مطمئن حذف مقاله بررسی می شود؟"
+
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:7
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:7
+msgid "Choose Files"
+msgstr "را انتخاب کنید فایل"
+
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:37
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:59
+msgid "Prev"
+msgstr "قبل"
+
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:42
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:42
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:64
+msgid "Next"
+msgstr "بعدی"
+
+#: c:\code\pi\usr\module\article/template/front/media-attachments-box.phtml:68
+#: c:\code\pi\usr\module\article/template/front/media-gallery-box.phtml:69
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:78
+msgid "Yes"
+msgstr "بله"
+
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:7
+msgid "Choose Image"
+msgstr "انتخاب تصویر"
+
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:14
+msgid "Upload Image"
+msgstr "بارگذاری تصویر"
+
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:18
+msgid "Choose From Media"
+msgstr "را انتخاب کنید از رسانه ها"
+
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:102
+msgid "Image choosed: "
+msgstr "تصویر انتخاب: "
+
+#: c:\code\pi\usr\module\article/template/front/media-image-box.phtml:121
+msgid "Format supported: "
+msgstr "قالب های پشتیبانی شده: "
+
+#: c:\code\pi\usr\module\article/template/front/search-simple.phtml:29
+msgid "title"
+msgstr "عنوان"
+
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:19
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:27
+#, php-format
+msgid "Created at %s"
+msgstr "ایجاد شده در %s"
+
+#: c:\code\pi\usr\module\article/template/front/topic-all-topic.phtml:22
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:31
+#, php-format
+msgid "Last added at %s"
+msgstr "آخرین اضافه شده در %s"
+
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:54
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:12
+msgid "Created at "
+msgstr "ایجاد شده در "
+
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:56
+#: c:\code\pi\usr\module\article/template/front/topic-list.phtml:14
+msgid "Last added at "
+msgstr "آخرین اضافه شده در "
+
+#: c:\code\pi\usr\module\article/template/front/topic-index.phtml:70
+msgid "View All"
+msgstr "مشاهده همه"
+
+#, fuzzy
+#~ msgid "All Articles of EEFOCUS"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "All articles of EEFOCUS."
+#~ msgstr "All Categories"
+
+#~ msgid "All Categories"
+#~ msgstr "All Categories"

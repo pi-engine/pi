@@ -1,7 +1,8 @@
 <?php
+// Load translation data
 $this->i18nTheme('default');
 
-// IE conditional
+//HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
     pi::url('static/js/html5shiv.js') => array(
         'conditional' => 'lt IE 9'
@@ -11,39 +12,56 @@ $this->js(array(
     ),
 ));
 
+// Load jQuery
 $this->jquery();
 
+// Load Bootstrap css/js and font-awesome
 $this->bootstrap(array(
     'js/bootstrap.min.js',
     'font-awesome/css/font-awesome.min.css'
 ));
+
+// Load front.css
 $this->css($this->assetTheme('css/front.css'));
+
+// Load localization css
 $this->css($this->assetLocale('locale.css'));
 
+// Apple icons
+// Apple icon for iphone
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'href'  => $this->assetTheme('image/touch-icon-iphone.png')
 ));
+// Apple icon for ipad
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '72x72',
     'href'  => $this->assetTheme('image/touch-icon-ipad.png')
 ));
+// Apple icon for iphone retina
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-iphone-retina.png')
 ));
+// Apple icon for ipad retina
 $this->headLink(array(
     'rel'   => 'apple-touch-icon',
     'sizes' => '114x114',
     'href'  => $this->assetTheme('image/touch-icon-ipad-retina.png')
 ));
+
+// Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
+
+// Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon(),
 ));
+
+// Load google analytics code
 $this->ga();
 
 $module = Pi::service('module')->current();
@@ -52,7 +70,7 @@ $module = Pi::service('module')->current();
 <html lang="<?php echo $locale; ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
 <!-- Header: brand, slogan, user bar -->
