@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-08-29 15:34+0330\n"
-"PO-Revision-Date: 2014-08-29 15:34+0330\n"
+"POT-Creation-Date: 2014-09-12 11:27+0330\n"
+"PO-Revision-Date: 2014-09-12 11:27+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -14,6 +14,10 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "search\n"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/src/Form/Element/Module.php:25
+msgid "All modules"
+msgstr "همه ماژول ها"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/src/Controller/Front/IndexController.php:406
 msgid "Google"
@@ -29,17 +33,17 @@ msgid "Go to home page"
 msgstr "برو به صفحه اول"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-form.phtml:17
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-home.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-home.phtml:16
 msgid "Global"
 msgstr "سراسری"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-form.phtml:33
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-home.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-home.phtml:32
 msgid "Keywords"
 msgstr "کلمات کلیدی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-form.phtml:36
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-home.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/front/search-home.phtml:35
 msgid "Search"
 msgstr "جستجو"
 

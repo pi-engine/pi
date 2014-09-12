@@ -3,8 +3,8 @@
 }
 
 .search-tabs a {
-	padding: 0 10px 0 8px;
-	color: #333;
+  padding: 0 10px 0 8px;
+  color: #333;
 }
 
 .search-tabs .active {
@@ -21,17 +21,22 @@
 }
 
 .search-result-item {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .search-logo {
-	font-size: 24px;
-	font-weight: bold;
-	margin-top: 30px;
-	text-align: right;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 30px;
+  text-align: right;
   display: block;
 }
 
 .google-result {
   margin: 30px 0;
+}
+
+.search-tabs,
+.search-service {
+  text-align: center;
 }

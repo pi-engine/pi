@@ -1,123 +1,137 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-08-08 17:34+0800\n"
-"PO-Revision-Date: 2014-08-08 17:34+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-09-12 11:17+0330\n"
+"PO-Revision-Date: 2014-09-12 11:17+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\search\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"search\n"
 
-#: c:\code\pi\usr\module\search/config/block.php:18
-msgid "Target"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/block.php:23
-msgid "_self"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/block.php:24
-msgid "_blank"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:12
-msgid "Leading search result limit"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:13
-msgid "Number of found items on leading page."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:19
-msgid "List search result limit"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:20
-msgid "Number of found items on list page."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:26
-msgid "Minimum query"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:27
-msgid "Minimum length for query term."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:33
-msgid "Search interval limit"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:34
-msgid "Limit for search time interval."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:40
-msgid "Anonymous interval limit"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:41
-msgid "Limit for anonymous search time interval."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:47
-msgid "Log search terms"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:54
-msgid "Search result cache"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:60
-msgid "Hot search"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:61
-msgid "Hot words for global auto-complete, separated by comma `,`."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:67
-msgid "Google local host"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:68
-msgid "Specify a google local host if it is not https://www.google.com"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:73
-msgid "Google custom search code"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:74
-msgid "Google CSE provided at https://www.google.com/cse/"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:79
-msgid "Baidu custom search code"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:80
-msgid "Custom search provided by Baidu at http://zhanzhang.baidu.com/search/"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:84
-msgid "Modules to search"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/config.php:85
-msgid "Only specified modules are allowed to search, separated by \",\"."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/module.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:12
 msgid "Search"
 msgstr ""
 
-#: c:\code\pi\usr\module\search/config/module.php:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:13
+msgid "Search box."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:18
+msgid "Target"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:23
+msgid "_self"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:24
+msgid "_blank"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:31
+msgid "Module"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:32
+msgid "Module for search"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:13
 msgid "Search service applications."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:12
+msgid "Leading search result limit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:13
+msgid "Number of found items on leading page."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:19
+msgid "List search result limit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:20
+msgid "Number of found items on list page."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:26
+msgid "Minimum query"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:27
+msgid "Minimum length for query term."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:33
+msgid "Search interval limit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:34
+msgid "Limit for search time interval."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:40
+msgid "Anonymous interval limit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:41
+msgid "Limit for anonymous search time interval."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:47
+msgid "Log search terms"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:54
+msgid "Search result cache"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:60
+msgid "Hot search"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:61
+msgid "Hot words for global auto-complete, separated by comma `,`."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:67
+msgid "Google local host"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:68
+msgid "Specify a google local host if it is not https://www.google.com"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:73
+msgid "Google custom search code"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:74
+msgid "Google CSE provided at https://www.google.com/cse/"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:79
+msgid "Baidu custom search code"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:80
+msgid "Custom search provided by Baidu at http://zhanzhang.baidu.com/search/"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:84
+msgid "Modules to search"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:85
+msgid "Only specified modules are allowed to search, separated by \",\"."
 msgstr ""

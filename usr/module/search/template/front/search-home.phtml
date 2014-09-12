@@ -1,12 +1,6 @@
 <?php
 $this->css($this->assetModule('front/front.css'));
 ?>
-<style>
-.search-tabs,
-.search-service {
-    text-align: center;
-}
-</style>
 <div class="row">
     <form method="get" class="col-md-6 col-md-offset-3" id="js-search-form"
           data-url="<?php echo $this->url('search'); ?>"
@@ -24,7 +18,7 @@ $this->css($this->assetModule('front/front.css'));
             <?php 
             foreach ($modules as $name => $data) {
                 echo sprintf(
-                    '<a data-name="%s" href="#" class="js-search-module%s">%s</a>',
+                    ' <a data-name="%s" href="#" class="js-search-module%s">%s</a> ',
                     $name,
                     $name == $searchModule ? ' active' : '',
                     _escape($data['title'])
@@ -46,7 +40,7 @@ $this->css($this->assetModule('front/front.css'));
             <?php
             foreach ($service as $name => $data) {
                 echo sprintf(
-                    '<a data-name="%s" href="#" class="js-search-service">%s</a>',
+                    ' <a data-name="%s" href="#" class="js-search-service">%s</a> ',
                     $name,
                     _escape($data['title'])
                 );  

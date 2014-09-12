@@ -1,36 +1,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-08-08 17:34+0800\n"
-"PO-Revision-Date: 2014-08-08 17:34+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-09-12 11:17+0330\n"
+"PO-Revision-Date: 2014-09-12 11:17+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: _b\n"
-"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\search\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"search\n"
 
-#: c:\code\pi\usr\module\search/config/block.php:12
-msgid "Search"
-msgstr ""
-
-#: c:\code\pi\usr\module\search/config/block.php:13
-msgid "Search box."
-msgstr ""
-
-#: c:\code\pi\usr\module\search/src/Block/Block.php:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/src/Block/Block.php:26
 msgid "Global"
 msgstr ""
 
-#: c:\code\pi\usr\module\search/src/Block/Block.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/src/Block/Block.php:27
 msgid "Current module"
 msgstr ""
 
-#: c:\code\pi\usr\module\search/template/block/search.phtml:5
-msgid "Keywords"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/block/search.phtml:4
+msgid "Search"
 msgstr ""
