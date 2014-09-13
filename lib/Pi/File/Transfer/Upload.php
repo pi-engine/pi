@@ -135,6 +135,9 @@ class Upload extends Transfer
      */
     protected $destination;
 
+    /** @var  bool|null Is upload valid */
+    protected $isValid;
+
     /**
      * Creates a file upload handler
      *
@@ -144,7 +147,7 @@ class Upload extends Transfer
     public function __construct($options = array(), $adapter = 'Http')
     {
         $direction = false;
-        $rename = !empty($options['rename']) ? $options['rename'] : '%random%';
+        $rename = isset($options['rename']) ? $options['rename'] : '%random%';
         $destination = !empty($options['destination'])
             ? $options['destination'] 
             : 'upload/' . Pi::service('module')->current();
@@ -336,5 +339,17 @@ class Upload extends Transfer
         */
 
         return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isValid()
+    {
+        if (null === $this->isValid) {
+            $this->isValid = parent::isValid();
+        }
+
+        return $this->isValid;
     }
 }

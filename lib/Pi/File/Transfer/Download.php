@@ -241,11 +241,12 @@ class Download
                 $options['content_length'] = filesize($source);
             }
         }
-        if (!isset($options['filename'])) {
+        if (empty($options['filename'])) {
             $options['filename'] = 'pi-download';
+        } else {
+            $options['filename'] = rawurlencode($options['filename']);
         }
-        $options['filename'] = rawurlencode($options['filename']);
-        if (!isset($options['content_type'])) {
+        if (empty($options['content_type'])) {
             $options['content_type'] = 'application/octet-stream';
         }
 

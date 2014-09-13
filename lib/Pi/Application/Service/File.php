@@ -748,7 +748,8 @@ class File extends AbstractService
      */
     public function getList($path, $filter = null, $recursive = false)
     {
-        $result = array();
+        $result     = array();
+        $iterator   = null;
         if ($path instanceof DirectoryIterator) {
             $iterator = $path;
         } else {
@@ -757,11 +758,19 @@ class File extends AbstractService
                 $flags = FilesystemIterator::SKIP_DOTS
                     | FilesystemIterator::FOLLOW_SYMLINKS
                     | FilesystemIterator::UNIX_PATHS;
-                $iterator = new RecursiveIteratorIterator(
-                    new RecursiveDirectoryIterator($path, $flags)
-                );
+                try {
+                    $iterator = new RecursiveIteratorIterator(
+                        new RecursiveDirectoryIterator($path, $flags)
+                    );
+                } catch (Exception $e) {
+                    $iterator = null;
+                }
             } else {
-                $iterator = new DirectoryIterator($path);
+                try {
+                    $iterator = new DirectoryIterator($path);
+                } catch (Exception $e) {
+                    $iterator = null;
+                }
             }
         }
         $filter = $filter instanceof Closure ? $filter : function ($fileinfo) {
@@ -770,12 +779,14 @@ class File extends AbstractService
             }
             return $fileinfo->getPathname();
         };
-        foreach ($iterator as $fileinfo) {
-            $filedata = $filter($fileinfo);
-            if (!$filedata) {
-                continue;
+        if ($iterator instanceof DirectoryIterator) {
+            foreach ($iterator as $fileinfo) {
+                $filedata = $filter($fileinfo);
+                if (!$filedata) {
+                    continue;
+                }
+                $result[] = $filedata;
             }
-            $result[] = $filedata;
         }
 
         return $result;
