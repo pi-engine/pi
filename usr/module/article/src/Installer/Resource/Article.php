@@ -47,6 +47,8 @@ use Module\Article\Field\AbstractCustomHandler;
  *              'is_display'    => true,
  *              // Is required, default as false
  *              'is_required'   => false,
+ *              // Table column type, default as text
+ *              'field_type'    => 'varchar(255) not null default \'\'',
  *          ),
  *          // Field with specified edit with form element and filter
  *          <field-key> => array(
@@ -239,6 +241,9 @@ class Article extends AbstractResource
      */
     protected function canonizeField($spec)
     {
+        if (!isset($spec['field_type'])) {
+            $spec['field_type'] = '';
+        }
         if (!isset($spec['handler'])) {
             $spec['handler'] = '';
         }
@@ -380,6 +385,8 @@ class Article extends AbstractResource
         ) as $op) {
             $model = Pi::model($op, $module);
             foreach ($config[$op] as $key => $spec) {
+                $fieldType = $spec['field_type'];
+                unset($spec['field_type']);
                 $row = $model->createRow($spec);
                 $status = $row->save();
                 if (!$status) {
@@ -396,7 +403,7 @@ class Article extends AbstractResource
                     if ($spec['handler']) {
                         $customNew[] = $spec;
                     } elseif ('common' == $spec['type']) {
-                        $commonFields[] = $key;
+                        $commonFields[$key] = $fieldType;
                     }
                 }
             }
@@ -459,6 +466,9 @@ class Article extends AbstractResource
                     if (isset($items[$key]['is_required'])) {
                         unset($items[$key]['is_required']);
                     }
+                    if (isset($items[$key]['field_type'])) {
+                        unset($items[$key]['field_type']);
+                    }
 
                     $row->assign($items[$key]);
                     $row->save();
@@ -490,6 +500,8 @@ class Article extends AbstractResource
             }
             // Add new items
             foreach ($items as $key => $spec) {
+                $fieldType = $spec['field_type'];
+                unset($spec['field_type']);
                 $row = $model->createRow($spec);
                 $status = $row->save();
                 if (!$status) {
@@ -506,7 +518,7 @@ class Article extends AbstractResource
                     if (isset($spec['handler']) && $spec['handler']) {
                         $custom['add'][] = $spec;
                     } elseif ('common' == $spec['type']) {
-                        $fieldsNew[] = $key;
+                        $fieldsNew[$key] = $fieldType;
                     }
                 }
             }
@@ -625,12 +637,13 @@ class Article extends AbstractResource
         $module = $this->getModule();
         $table = Pi::model('article', $module)->getTable();
         $meta = Pi::db()->metadata()->getColumns($table);
-        $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` text';
-        foreach ($fields as $field) {
+        $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` %s';
+        foreach ($fields as $field => $type) {
             if (isset($meta[$field])) {
                 continue;
             }
-            $sql = sprintf($pattern, $field);
+            $type = $type ?: 'text';
+            $sql = sprintf($pattern, $field, $type);
             try {
                 Pi::db()->query($sql);
             } catch (\Exception $exception) {

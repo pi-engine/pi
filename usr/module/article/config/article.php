@@ -83,6 +83,14 @@
  * ),
  * 'is_required' => false,
  * </code>
+ * 
+ * Table column type
+ * <code>
+ * // Default as text if the key not set or set to empty string
+ * 'field_type' => '',
+ * // int
+ * 'field_type' => 'int(10) unsigned not null default \'0\',
+ * </code>
  *
  * @see Module\Article\Installer\Resource\Article
  * @author Zongshu Lin <lin40553024@163.com>
