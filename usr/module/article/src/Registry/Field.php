@@ -66,7 +66,8 @@ class Field extends AbstractRegistry
             $columns = array_unique($columns);
         }
 
-        $model = Pi::model('field', $this->module);
+        $module = Pi::service('module')->current();
+        $model  = Pi::model('field', $module);
         $select = $model->select()->where($where);
         if ($columns) {
             $select->columns($columns);

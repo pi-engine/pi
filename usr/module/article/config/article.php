@@ -116,7 +116,7 @@ return array(
             'name'       => 'subtitle',
             'title'      => _a('Subtitle'),
             'edit'       => array(
-                'required' => true,
+                'required' => false,
                 'element'  => 'Module\Article\Form\Element\Subtitle',
             ),
             'is_edit'    => false,
@@ -126,7 +126,7 @@ return array(
             'name'       => 'summary',
             'title'      => _a('Summary'),
             'edit'       => array(
-                'required' => true,
+                'required' => false,
                 'element'  => 'Module\Article\Form\Element\Summary',
             ),
             'is_edit'    => false,
@@ -146,7 +146,7 @@ return array(
             'name'       => 'markup',
             'title'      => _a('Markup'),
             'edit'       => array(
-                'required' => true,
+                'required' => false,
             ),
             'is_edit'    => false,
             'is_display' => false,
@@ -162,7 +162,6 @@ return array(
             'type'       => 'common',
             'name'       => 'uid',
             'title'      => _a('Submitter'),
-            'edit'       => 'hidden',
             'is_edit'    => false,
         ),
         'author'         => array(
@@ -178,6 +177,7 @@ return array(
             'type'       => 'common',
             'name'       => 'source',
             'title'      => _a('Source'),
+            'edit'       => 'text',
             'is_edit'    => false,
         ),
         'pages'          => array(
@@ -247,7 +247,7 @@ return array(
             'is_edit'    => false,
             'is_display' => false,
         ),
-        'seo_title'      => array(
+        /*'seo_title'      => array(
             'type'       => 'common',
             'name'       => 'seo_title',
             'title'      => _a('SEO Title'),
@@ -276,6 +276,6 @@ return array(
             'name'       => 'slug',
             'title'      => _a('Slug'),
             'is_edit'    => false,
-        ),
+        ),*/
     ),
 );
