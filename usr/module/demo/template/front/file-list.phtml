@@ -1,13 +1,20 @@
 <h2 class="page-header"><?php _e('Demo File List'); ?></h2>
 
-<ul>
+<ul class="list-group">
 <?php foreach ($files as $file) {?>
-    <li><?php echo $file['filename']; ?>
-        <a href="<?php echo $file['url_download']; ?>" class="btn btn-default"><?php _e('Download'); ?></a>
-        <a href="<?php echo $file['url_delete']; ?>" class="btn btn-default"><?php _e('Delete'); ?></a>
+    <li class="list-group-item"><?php echo $file['filename']; ?>
+        <span class="pull-right">
+        <a href="<?php echo $file['url_download']; ?>" class="btn btn-sm"><?php _e('Download'); ?></a>
+        <a href="<?php echo $file['url_delete']; ?>" class="btn btn-sm"><?php _e('Delete'); ?></a>
+        </span>
     </li>
 <?php } ?>
 </ul>
+
+<h3 class="page-header"><?php _e('Upload a new file'); ?></h3>
+<?php include $this->templateComponent('form'); ?>
+
+<!--
 <form action="<?php echo $this->url('', array('action' => 'upload')); ?>" method="post" enctype="multipart/form-data">
 <div class="row">
     <div class="col-lg-6">
@@ -20,3 +27,4 @@
     </div>
 </div>
 </form>
+-->

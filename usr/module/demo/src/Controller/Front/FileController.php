@@ -11,6 +11,7 @@ namespace Module\Demo\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Module\Demo\Form\FileForm;
 
 class FileController extends ActionController
 {
@@ -45,7 +46,13 @@ class FileController extends ActionController
                     )),
             );
         }
-        $this->view()->assign('files', $files);
+
+        $form = new FileForm;
+        $form->setAttribute('action', $this->url('', array('action' => 'upload')));
+        $this->view()->assign(array(
+            'files' => $files,
+            'form'  => $form,
+        ));
 
         $this->view()->setTemplate('file-list');
     }
@@ -59,12 +66,16 @@ class FileController extends ActionController
             );
         } else {
             //$rename         = '%random%';
-            $rename         = false;
+            $rename         = '';
             $destination    = $this->getUploadPath();
             $extensions     = '';
             $maxImageSize   = array();
             $maxFileSize    = 0;
 
+            $post = $this->request->getPost();
+            if ('overwrite' != $post['rename']) {
+                $rename = '%random%';
+            }
             $config = $this->config();
             if (!empty($config['image_extension'])) {
                 $exts = explode(',', $config['image_extension']);
