@@ -235,7 +235,9 @@ class Download
             }
         } else {
             if (!isset($options['filename'])) {
-                $options['filename'] = basename($source);
+                $filename = str_replace('\\\\', '/', $source);
+                $segs = explode('/', $filename);
+                $options['filename'] = array_pop($segs);
             }
             if (!isset($options['content_length'])) {
                 $options['content_length'] = filesize($source);
@@ -243,8 +245,6 @@ class Download
         }
         if (empty($options['filename'])) {
             $options['filename'] = 'pi-download';
-        } else {
-            $options['filename'] = rawurlencode($options['filename']);
         }
         if (empty($options['content_type'])) {
             $options['content_type'] = 'application/octet-stream';
@@ -269,6 +269,21 @@ class Download
         $contentType,
         $contentLength = 0
     ) {
+        $isIe = false;
+        if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+            if (false !== strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE')) {
+                $isIe = true;
+            } elseif (false !== strpos($_SERVER['HTTP_USER_AGENT'], 'Trident')) {
+                $isIe = true;
+            }
+        }
+        if ($isIe) {
+            $contentType = $contentType ?: 'application/octet-stream';
+            $filename = urlencode($filename);
+        } else {
+            $contentType = $contentType ?: 'application/force-download';
+        }
+
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $contentType);
         header('Content-Disposition: attachment; filename="' . $filename . '"');
