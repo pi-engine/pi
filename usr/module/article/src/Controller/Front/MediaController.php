@@ -275,6 +275,13 @@ class MediaController extends ActionController
             if (!empty($row->url) and file_exists(Pi::path($row->url))) {
                 $files[]      = Pi::path($row->url);
                 $affectRows[] = $row->id;
+
+                $files[] = array(
+                    'source'            => Pi::path($row->url),
+                    'filename'          => basename($row->url),
+                    //'content_type'      => $row['mimetype'],
+                    //'content_length'    => $row['size'],
+                );
             }
         }
         
@@ -307,7 +314,29 @@ class MediaController extends ActionController
             $row = $model->createRow($data);
             $row->save();
         }
-        
+        if (1 == count($files)) {
+            $files      = current($files);
+            $source     = $files['source'];
+            $options    = $files;
+        } else {
+            $source     = $files;
+            $options    = array();
+        }
+
+        // This code cannot output file
+        $downloader = new Download();
+        $result = $downloader->send($source, $options);
+        if (false === $result) {
+            if (substr(PHP_SAPI, 0, 3) == 'cgi') {
+                header('Status: 404 Not Found');
+            } else {
+                header('HTTP/1.1 404 Not Found');
+            }
+        }
+
+        exit;
+
+        /*
         $filePath = 'upload/temp';
         Pi::service('file')->mkdir($filePath);
         $filename = sprintf('%s/media-%s.zip', $filePath, time());
@@ -336,6 +365,7 @@ class MediaController extends ActionController
             $options['deleteFile'] = true;
         }
         $this->httpOutputFile($options, $this);
+        */
     }
     
     /**
@@ -574,6 +604,7 @@ class MediaController extends ActionController
      * 
      * @param array $options 
      */
+    /*
     protected function httpOutputFile(array $options)
     {
         if ((!isset($options['file']) && !isset($options['raw']))) {
@@ -629,4 +660,5 @@ class MediaController extends ActionController
             exit();
         }
     }
+    */
 }
