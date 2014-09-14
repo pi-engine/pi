@@ -737,11 +737,13 @@ class DraftController extends ActionController
             'data'      => array(),
         );
 
-        $options = Setup::getFormConfig();
-        $form    = $this->getDraftForm('save', $options);
+        $module = $this->getModule();
+        $form   = Pi::api('form', $module)->loadForm('draft', true);
+        //$options = Setup::getFormConfig();
+        //$form    = $this->getDraftForm('save', $options);
         $form->setData($this->request->getPost());
-        $form->setInputFilter(new DraftEditFilter($options));
-        $form->setValidationGroup(DraftModel::getValidFields());
+        //$form->setInputFilter(new DraftEditFilter($options));
+        //$form->setValidationGroup(DraftModel::getValidColumns());
         
         if (!$form->isValid()) {
             return array(
@@ -761,12 +763,11 @@ class DraftController extends ActionController
         $result['status']   = self::RESULT_TRUE;
         $result['data']     = array('id' => $id);
 
-        //$module = $this->getModule();
         $route = 'article';
         $result['data']['preview_url'] = $this->url(
             $route,
             array(
-                'module'    => $this->getModule(),
+                'module'    => $module,
                 'time'      => date('Ymd', time()),
                 'id'        => $id,
                 'slug'      => $data['slug'],
@@ -883,8 +884,10 @@ class DraftController extends ActionController
             return $this->jumpToDenied();
         }
         
-        $options = Setup::getFormConfig();
-        $form    = $this->getDraftForm('add', $options);
+        //$options = Setup::getFormConfig();
+        //$form    = $this->getDraftForm('add', $options);
+        $module     = $this->getModule();
+        $form       = Pi::api('form', $module)->loadForm('draft');
         $categories = $form->get('category')->getValueOptions();
         $form->get('category')->setValueOptions(
                 array_intersect_key($categories, $listCategory)
@@ -896,13 +899,22 @@ class DraftController extends ActionController
             'fake_id'       => uniqid(),
             'uid'           => Pi::user()->getId(),
         ));
+        
+        $draftConfig = Pi::path(sprintf('custom/module/%s/config/form.draft.php', $module));
+        if (!file_exists($draftConfig)) {
+            $draftConfig = Pi::path('custom/module/article/config/form.draft.php');
+            if (!file_exists($draftConfig)) {
+                $draftConfig = Pi::path('module/article/config/form.draft.php');
+            }
+        }
+        $elements = include $draftConfig;
 
         $this->setModuleConfig();
         $this->view()->assign(array(
             'title'    => __('Create Article'),
             'form'     => $form,
             'config'   => Pi::config('', $this->getModule()),
-            'elements' => $options['elements'],
+            'elements' => $elements,
             'rules'    => $rules,
             'approve'  => $approve,
             'delete'   => $delete,
