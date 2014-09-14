@@ -90,10 +90,6 @@ return array(
             'permission'   => 'author',
         ),
         array(
-            'controller'   => 'setup',
-            'permission'   => 'setup',
-        ),
-        array(
             'controller'   => 'permission',
             'permission'   => 'permission',
         ),

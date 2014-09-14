@@ -1,0 +1,201 @@
+<div class="draft-message"></div>
+<?php
+/**
+ * Custom form element for draft edit page
+ */
+$isMultiple = empty($isSingle) ? true : false;
+/*
+ * Message at form top
+ */
+$hiddenMessages = $form->getHiddenMessages();
+if ($hiddenMessages) {
+?>
+    <div class="alert alert-danger">
+        <?php
+        if (!empty($hiddenMessages['security'])) {
+            foreach ($hiddenMessages['security'] as $elMessage) {
+                echo '<p>' . $elMessage . '</p>';
+            }
+            unset($hiddenMessages['security']);
+        }
+        ?>
+
+        <?php foreach ($hiddenMessages as $elName => $elMessages) { ?>
+            <h4><?php echo $elName; ?></h4>
+            <ol>
+                <?php
+                foreach ($elMessages as $elMessage) {
+                    echo '<li>' . $elMessage;
+                }
+                ?>
+            </ol>
+        <?php } ?>
+    </div>
+<?php
+}
+$formClass = 'form-horizontal';
+$form->prepare();
+$form->setAttribute('class', $formClass);
+$form->setAttribute('enctype', 'multipart/form-data');
+echo $this->form()->openTag($form);
+
+/**#@+
+ * Preparation
+ */
+$elements   = $form->elementList();
+$validate   = $form->getMessages();
+$groups     = $form->getGroups();
+$this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
+/**#@-**/
+
+/**#@++
+ * Temporary function for element display
+ */
+$emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
+$markRequired = '<i class="text-danger" style="margin-right: 5px;">*</i>';
+$renderElement = function ($element) use ($markRequired, $emptyControl, $isMultiple) {
+    $type = $element->getAttribute('type') ? : 'text';
+    $isEmptyControl = in_array($type, $emptyControl);
+    $isCheckbox = $type == 'checkbox';
+    $desc = $element->getAttribute('description');
+
+    if (!$isEmptyControl) {
+        $class      = $element->getAttribute('class');
+        $attrClass  = 'form-control' . ($class ? ' ' . $class : '');
+        $element->setAttribute('class', $attrClass);
+    }
+
+    $labelClass = $isMultiple ? 'col-md-2' : 'col-sm-3 col-lg-2';
+    $rendered = sprintf(
+        '<div class="form-group%s form-%s"><label class="%s control-label">%s%s</label>',
+        $element->getMessages() ? ' has-error' : '',
+        $element->getName(),
+        $labelClass,
+        $element->getAttribute('required') ? $markRequired : '',
+        $isCheckbox ?  '' : $element->getLabel()
+    );
+
+    if ($isMultiple) {
+        $dataSize = $element->getAttribute('data-size');
+        $rendered .= sprintf(
+            '<div class="col-md-%s">%s%s</div>%s</div>',
+            $dataSize ? 8 : 10,
+            $this->formElement($element),
+            $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : '',
+            $dataSize ? sprintf(__('<span class="left-word">%s</span> words left'), $dataSize) : ''
+        );
+    } else {
+        if ($type == 'multi_checkbox') {
+            $rendered .= sprintf(
+                '<div class="col-sm-9">%s</div></div>',
+                $this->formElement($element)
+            );
+        } elseif ($type == 'description') {
+            $rendered .= sprintf(
+                '<div class="col-sm-5 js-form-element">%s</div></div>',
+                $this->formElement($element)
+            );
+        } else {
+            $rendered .= sprintf(
+                '<div class="col-sm-5 js-form-element">%s%s</div></div>',
+                $this->formElement($element),
+                $desc && !$isCheckbox ? '<div class="text-muted">' . $desc . '</div>' : ''
+            );
+        }
+    }
+
+    echo $rendered;
+};
+
+$renderRow = function ($element) use ($validate, $renderElement) {
+    if (method_exists($element, 'getElements')) {
+        echo '<legend>' .  $this->formLabel($element) . '</legend>';
+
+        $eles = $element->elementList();
+        foreach ($eles['active'] as $ele) {
+            $renderElement($ele);
+        }
+    } else {
+        $renderElement($element);
+    }
+};
+/**#@-**/
+
+if (!$groups) {
+    foreach ($elements['active'] as $element) {
+        $renderRow($element);
+    }
+} else {
+    foreach ($groups as $group) {
+    ?>
+        <legend><?php echo _escape($group['label']); ?></legend>
+        <?php
+        foreach ($group['elements'] as $name) {
+            $element = $form->get($name);
+            $renderRow($element);
+        }
+    }
+}
+
+/**#@+
+ * Add hidden elements
+ */
+foreach ($elements['hidden'] as $element) {
+    echo $this->formElement($element);
+}
+/**#@-**/
+
+if (!empty($elements['submit'])) {
+    $submit = $this->formElement($elements['submit']);
+    $cancel = !empty($elements['cancel']) ? $this->formElement($elements['cancel']) : '';
+    $submitClass = $isMultiple ? 'col-md-offset-2 col-md-10' : 'col-sm-offset-3 col-lg-offset-2 col-md-4';
+    echo sprintf(
+        '<div class="form-group"><div class="%s">%s%s</div></div>',
+        $submitClass,
+        $submit,
+        $cancel
+    );
+}
+
+echo $this->form()->closeTag();
+?>
+
+<!-- Basic script for some common operations, such as:
+* display left word if `data-size` attribute is set
+-->
+<script type="text/javascript">
+(function($) {
+    var BasicForm = Backbone.View.extend({
+        template    : "",
+        el          : $("form"),
+        events      : {
+            "keyup [data-size]"    : "calLeftWord"
+        },
+        initialize  : function() {
+        },
+        calLeftWord : function(e) {
+            var obj       = $(e.target);
+            var allowSize = obj.data('size');
+            var size      = obj.val().length;
+            var leftSize  = size < allowSize ? (allowSize - size) : 0;
+            obj.parents(".form-group").find(".left-word").html(leftSize);
+            if (size > allowSize) {
+                this.setMessage('<?php echo __('The input content exceeded the length allowed.'); ?>', false);
+                obj.val(obj.val().substring(0, allowSize));
+            } else {
+                this.setMessage('');
+            }
+        },
+        setMessage  : function(content, status) {
+            var alert = status ? 'success' : 'danger';
+            var html  = '<div class="alert alert-' + alert + '">'
+                      + '<button class="close" data-dismiss="alert" type="button">×</button>'
+                      + content
+                      + '</div>';
+            $(".draft-message").html(content ? html : '');
+        }
+    });
+    
+    new BasicForm;
+})(jQuery);
+</script>
