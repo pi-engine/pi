@@ -899,22 +899,13 @@ class DraftController extends ActionController
             'fake_id'       => uniqid(),
             'uid'           => Pi::user()->getId(),
         ));
-        
-        $draftConfig = Pi::path(sprintf('custom/module/%s/config/form.draft.php', $module));
-        if (!file_exists($draftConfig)) {
-            $draftConfig = Pi::path('custom/module/article/config/form.draft.php');
-            if (!file_exists($draftConfig)) {
-                $draftConfig = Pi::path('module/article/config/form.draft.php');
-            }
-        }
-        $elements = include $draftConfig;
 
         $this->setModuleConfig();
         $this->view()->assign(array(
             'title'    => __('Create Article'),
             'form'     => $form,
             'config'   => Pi::config('', $this->getModule()),
-            'elements' => $elements,
+            //'elements' => $elements,
             'rules'    => $rules,
             'approve'  => $approve,
             'delete'   => $delete,
@@ -939,8 +930,8 @@ class DraftController extends ActionController
         
         $id       = $this->params('id', 0);
         $module   = $this->getModule();
-        $options  = Setup::getFormConfig();
-        $elements = $options['elements'];
+        //$options  = Setup::getFormConfig();
+        //$elements = $options['elements'];
 
         if (!$id) {
             return ;
@@ -1008,7 +999,8 @@ class DraftController extends ActionController
         $featureImage = $data['image'] ? Pi::url($data['image']) : '';
         $featureThumb = $data['image'] ? Pi::url(Media::getThumbFromOriginal($data['image'])) : '';
 
-        $form = $this->getDraftForm('edit', $options);
+        //$form = $this->getDraftForm('edit', $options);
+        $form = Pi::api('form', $module)->loadForm('draft');
         $allCategory = $form->get('category')->getValueOptions();
         $form->get('category')->setValueOptions(
             array_intersect_key($allCategory, $categories)
@@ -1016,7 +1008,7 @@ class DraftController extends ActionController
         $form->setData($data);
 
         // Get author info
-        if (in_array('author', $elements) and $data['author']) {
+        //if (in_array('author', $elements) and $data['author']) {
             $author = $this->getModel('author')->find($data['author']);
             if ($author) {
                 $this->view()->assign('author', array(
@@ -1024,7 +1016,7 @@ class DraftController extends ActionController
                     'name' => $author->name,
                 ));
             }
-        }
+        //}
 
         // Get submitter info
         $columns = array('id', 'name');
@@ -1050,7 +1042,7 @@ class DraftController extends ActionController
         }
 
         // Get related articles
-        if (in_array('related', $elements)) {
+        //if (in_array('related', $elements)) {
             $related = $relatedIds = array();
             if (!empty($row->related)) {
                 $relatedIds = array_flip($row->related);
@@ -1069,7 +1061,7 @@ class DraftController extends ActionController
                     return is_array($var);
                 });
             }
-        }
+        //}
 
         // Get assets
         $attachments = $images = array();
@@ -1148,7 +1140,7 @@ class DraftController extends ActionController
             'featureThumb'   => $featureThumb,
             'config'         => Pi::config('', $module),
             'from'           => $this->params('from', ''),
-            'elements'       => $elements,
+            //'elements'       => $elements,
             'status'         => $row->article ? Article::FIELD_STATUS_PUBLISHED : $row->status,
             'rules'          => $rules,
             'approve'        => $approve,

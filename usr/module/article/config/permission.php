@@ -45,10 +45,6 @@ return array(
         'permission' => array(
             'title'       => _t('Permission management'),
         ),
-        // Article configuration
-        'setup'      => array(
-            'title'       => _t('Setup management'),
-        ),
         
         // Module resources
         'active'            => array(

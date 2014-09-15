@@ -346,31 +346,6 @@ return array(
                     ),
                 ),
             ),
-            'setup'             => array(
-                'label'         => _t('Setup'),
-                'route'         => 'admin',
-                'controller'    => 'setup',
-                'action'        => 'form',
-                'permission'    => array(
-                    'resource'  => 'setup',
-                ),
-                
-                'pages'         => array(
-                    'custom-form'   => array(
-                        'label'         => _t('Custom form'),
-                        'route'         => 'admin',
-                        'controller'    => 'setup',
-                        'action'        => 'form',
-                    ),
-                    'form-preview'  => array(
-                        'label'         => _t('Preview form'),
-                        'route'         => 'admin',
-                        'controller'    => 'setup',
-                        'action'        => 'preview',
-                        'visible'       => 0,
-                    ),
-                ),
-            ),
             'analysis'          => array(
                 'label'         => _t('Statistics'),
                 'route'         => 'admin',

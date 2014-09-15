@@ -194,9 +194,10 @@ class Form extends AbstractApi
      */
     protected function loadConfig($name)
     {
-        $filePath   = sprintf('article/config/form.%s.php', $name);
+        $filePath   = sprintf('%s/config/form.%s.php', $this->module, $name);
         $file       = Pi::path('custom/module') . '/' . $filePath;
         if (!file_exists($file)) {
+            $filePath   = sprintf('article/config/form.%s.php', $name);
             $file = Pi::path('module') . '/' . $filePath;
         }
         $config     = include $file;
@@ -228,7 +229,7 @@ class Form extends AbstractApi
      */
     protected function canonizeElement($data)
     {
-        $element = $data['edit']['element'];
+        $element = isset($data['edit']['element']) ? $data['edit']['element'] : array();
         $element['name'] = $data['name'];
         if (isset($data['edit']['options']) &&
             $data['edit']['options']
