@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-08-29 16:39+0330\n"
-"PO-Revision-Date: 2014-08-29 16:43+0330\n"
+"POT-Creation-Date: 2014-09-15 21:23+0330\n"
+"PO-Revision-Date: 2014-09-15 21:23+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
@@ -56,90 +56,23 @@ msgstr "زن"
 msgid "Unknown gender"
 msgstr "جنسیت نا مشخص"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/User/Model/AbstractModel.php:239
-msgid "Guest"
-msgstr "مهمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Feed/Model.php:203
-#, php-format
-msgid "Feed of %s"
-msgstr "خوراک  %s"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/View/Helper/Tag.php:92
-msgid "Tags: "
-msgstr "برچسب ها :"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:133
-msgid "Full layout (header/footer and blocks)"
-msgstr "چیدمان کامل ( هدر / فوتر و بلاک ها )"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:134
-msgid "Simple layout (header/footer)"
-msgstr "چیدمان ساده ( هدر / فوتر )"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:135
-msgid "Content only (with style)"
-msgstr "فقط محتوی ( با استایل )"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:136
-msgid "Raw content (no style)"
-msgstr "محتوی خام ( بدون استایل )"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Comment.php:548
-msgid "Posted a new comment."
-msgstr "ارسال نظر جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:348
-msgid "Theme updated successfully."
-msgstr "به روز رسانی قالب موفقیت آمیز بود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:355
-msgid "Theme failed to update."
-msgstr "خطا در به روز رسانی قالب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:357
-msgid "Theme upgraded successfully."
-msgstr "به روز رسانی قابل موفقیت آمیز بود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:362
-msgid "Theme asset publish failed."
-msgstr "خطا در انتشار asse قالب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:32
-msgid "As a whole"
-msgstr "به عنوان یک کل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:33
-msgid "Per language"
-msgstr "در هر زبان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:34
-msgid "Per role"
-msgstr "در هر نقش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:35
-msgid "Guest only"
-msgstr "فقط مهمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:50
-msgid "Cache granularity"
-msgstr "کَش دانه دانه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Locale.php:34
-msgid "Auto-detection"
-msgstr "خودکار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Locale.php:69
-msgid "Language"
-msgstr "زبان"
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Tag.php:116
+msgid "Tags"
+msgstr "برچسب ها"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Layout.php:43
 msgid "Layout"
 msgstr "چیدمان"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Submit.php:38
-msgid "Submit"
-msgstr "ارسال"
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleUser.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Role.php:37
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleAdmin.php:35
+msgid "None"
+msgstr "هیچ"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Navigation.php:50
+msgid "Navigation"
+msgstr "منو"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/LoginField.php:36
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/LoginField.php:78
@@ -156,39 +89,9 @@ msgstr "ایمیل"
 msgid "Identity"
 msgstr "هویت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleCheckbox.php:52
-msgid "Roles"
-msgstr "نقش ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Theme.php:35
-msgid "Use system theme"
-msgstr "استفاده از قالب سیستم"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Theme.php:47
-msgid "Theme"
-msgstr "قالب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleUser.php:35
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleAdmin.php:35
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Role.php:37
-msgid "None"
-msgstr "هیچ"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Navigation.php:50
-msgid "Navigation"
-msgstr "منو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleAdmin.php:52
-msgid "Admin role"
-msgstr "نقش مدیریت"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Timezone.php:78
 msgid "Timezone"
 msgstr "منطقه زمانی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Editor.php:35
-msgid "Text editor"
-msgstr "ادیتور متنی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheTtl.php:32
 msgid "No cache"
@@ -238,9 +141,57 @@ msgstr "زمان باطل شدن کش"
 msgid "Role"
 msgstr "نقش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Tag.php:116
-msgid "Tags"
-msgstr "برچسب ها"
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:32
+msgid "As a whole"
+msgstr "به عنوان یک کل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:33
+msgid "Per language"
+msgstr "در هر زبان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:34
+msgid "Per role"
+msgstr "در هر نقش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:35
+msgid "Guest only"
+msgstr "فقط مهمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/CacheLevel.php:50
+msgid "Cache granularity"
+msgstr "کَش دانه دانه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Theme.php:35
+msgid "Use system theme"
+msgstr "استفاده از قالب سیستم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Theme.php:47
+msgid "Theme"
+msgstr "قالب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleAdmin.php:52
+msgid "Admin role"
+msgstr "نقش مدیریت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Editor.php:35
+msgid "Text editor"
+msgstr "ادیتور متنی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/RoleCheckbox.php:52
+msgid "Roles"
+msgstr "نقش ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Submit.php:38
+msgid "Submit"
+msgstr "ارسال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Locale.php:34
+msgid "Auto-detection"
+msgstr "خودکار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Locale.php:69
+msgid "Language"
+msgstr "زبان"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/View/Helper/FormDateSelect.php:91
 msgid "Day"
@@ -262,18 +213,49 @@ msgstr "تصویر کپچا"
 msgid "Click to refresh CAPTCHA"
 msgstr "برای تغییر تصویر کلیک کنید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Mvc/Controller/ActionController.php:98
-msgid "The requested action was not found."
-msgstr "اکشن مورد نظر یافت نشد"
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:133
+msgid "Full layout (header/footer and blocks)"
+msgstr "چیدمان کامل ( هدر / فوتر و بلاک ها )"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
-msgid "Login"
-msgstr "ورود"
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:134
+msgid "Simple layout (header/footer)"
+msgstr "چیدمان ساده ( هدر / فوتر )"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
-#, php-format
-msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
-msgstr "لطفا <a href=\"%s\" title=\"\">وارد شوید</a> و سپس به اینجا برگردید."
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:135
+msgid "Content only (with style)"
+msgstr "فقط محتوی ( با استایل )"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:136
+msgid "Raw content (no style)"
+msgstr "محتوی خام ( بدون استایل )"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Comment.php:548
+msgid "Posted a new comment."
+msgstr "ارسال نظر جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:348
+msgid "Theme updated successfully."
+msgstr "به روز رسانی قالب موفقیت آمیز بود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:355
+msgid "Theme failed to update."
+msgstr "خطا در به روز رسانی قالب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:357
+msgid "Theme upgraded successfully."
+msgstr "به روز رسانی قابل موفقیت آمیز بود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Installer/Theme.php:362
+msgid "Theme asset publish failed."
+msgstr "خطا در انتشار asse قالب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
+msgid "Supplied credential is invalid."
+msgstr "اعتبار عرضه شده نامعتبر است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
+msgid "Authentication successful."
+msgstr "تایید سندیت موفقیت آمیز بود"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
 msgid "A table must be supplied for the DbTable authentication adapter."
@@ -313,13 +295,31 @@ msgstr "هیچ رکوردی برای هویت انتخاب شده یافت نش�
 msgid "More than one record matches the supplied identity."
 msgstr "بیش از یک رکورد برای هویت انتخاب شده موجود دارد."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:81
-msgid "Supplied credential is invalid."
-msgstr "اعتبار عرضه شده نامعتبر است."
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/View/Helper/Tag.php:92
+msgid "Tags: "
+msgstr "برچسب ها :"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Authentication/Adapter/DbTable/CallbackAdapter.php:90
-msgid "Authentication successful."
-msgstr "تایید سندیت موفقیت آمیز بود"
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Mvc/Controller/ActionController.php:98
+msgid "The requested action was not found."
+msgstr "اکشن مورد نظر یافت نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Mvc/Controller/Plugin/Terminate.php:39
+msgid "Login"
+msgstr "ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Mvc/Controller/Plugin/Terminate.php:42
+#, php-format
+msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
+msgstr "لطفا <a href=\"%s\" title=\"\">وارد شوید</a> و سپس به اینجا برگردید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Feed/Model.php:203
+#, php-format
+msgid "Feed of %s"
+msgstr "خوراک  %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/User/Model/AbstractModel.php:239
+msgid "Guest"
+msgstr "مهمان"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Editor/Factory.php:77
 msgid "Pi Default Editor"
