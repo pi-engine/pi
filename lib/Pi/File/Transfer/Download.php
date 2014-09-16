@@ -233,6 +233,7 @@ class Download
             if (!isset($options['content_length'])) {
                 $options['content_length'] = strlen($source);
             }
+            $options['source'] = $source;
         } else {
             if (!isset($options['filename'])) {
                 $filename = str_replace('\\\\', '/', $source);
