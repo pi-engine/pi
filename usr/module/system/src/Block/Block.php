@@ -90,7 +90,7 @@ class Block
 
         if ('js' == $type) {
             $user = array(
-                'uid'       => 0,
+                'uid'       => Pi::service('user')->getUser()->get('id'),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
                 'login'     => Pi::service('authentication')->getUrl('login', $params),
                 'register'  => Pi::service('user')->getUrl('register', $params),

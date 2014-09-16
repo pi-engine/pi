@@ -78,7 +78,8 @@ class Api extends AbstractApi
         $row = Pi::model('page')->createRow($page);
         $row->save();
 
-        Pi::registry('page')->clear($this->getModule());
+        //Pi::registry('page')->clear($this->getModule());
+        Pi::registry('page', $this->getModule())->flush();
 
         return $id;
     }

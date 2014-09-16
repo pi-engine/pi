@@ -1,7 +1,8 @@
 <div class="user-bar">
 <?php switch ($block['type']) { ?>
 <?php case 'js': ?>
-    <ul class="nav navbar-nav navbar-right" id="user-bar-anonymous" style="display: none;">
+    <?php if (!$block['user']['uid']) { ?>
+    <ul class="nav navbar-nav navbar-right">
         <li>
             <a href="<?php echo $block['user']['login']; ?>" title="<?php echo _b('Login'); ?>">
                 <?php echo _b('Login'); ?>
@@ -13,7 +14,8 @@
             </a>
         </li>     
     </ul>
-    <ul class="nav navbar-nav navbar-right" id="user-bar-member" style="display: none;">
+    <?php } else { ?>
+    <ul class="nav navbar-nav navbar-right">
         <li>
             <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">
                 <?php echo _b('Profile'); ?>
@@ -32,19 +34,13 @@
     </ul>
     <script>
         $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
-            var ela = $('#user-bar-anonymous');
-            var elm = $('#user-bar-member');
             if (user.uid > 0) {
-                ela.hide();
-                elm.show();
                 $('#member-message').attr('href', user.message);
                 $('#member-profile').attr('href', user.profile).html(user.avatar + ' ' + user.name);
-            } else {
-                ela.show();
-                elm.hide();
             }
         });
     </script>
+    <?php } ?>
 <?php break; ?>
 <?php case 'dropdown': ?>
     <!-- Dropdown display mode: logged in - user avatar, dropdown menu with user name with link to user profile, link to logout; guest - link to login, link to register  -->
