@@ -109,11 +109,12 @@ class AjaxController extends ActionController
                 ->order('name ASC')
                 ->limit($limit);
         if ($name) {
-            $name = substr($name, 0, strpos($name, '['));
-            $select->where->like('name', "{$name}%");
+            if (false !== strpos($name, '[')) {
+                $name = substr($name, 0, strpos($name, '['));
+            }
+            $select->where->like('name', "%{$name}%");
+            $result = $model->selectWith($select)->toArray();
         }
-
-        $result = $model->selectWith($select)->toArray();
 
         foreach ($result as $val) {
             $resultset[] = array(

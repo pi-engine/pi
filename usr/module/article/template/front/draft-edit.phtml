@@ -367,86 +367,10 @@ var BasicInputView = Backbone.View.extend({
     el      : $("#jsBasicInput"),
     events  : {
         "click .subtitle-check"     : "toggleSub",
-        "keypress .control-word"    : "triggerLeftWord",
-        "keyup .control-word"       : "triggerLeftWord",
         "blur [name=subject]"       : "checkSubject"
     },
     initialize: function () {
         _.bindAll(this);
-        this.leftWord(this.$("[name=subject]"));
-        this.leftWord(this.$("[name=subtitle]"));
-        this.leftWord(this.$("[name=summary]"));
-        this.typeahead(
-            this.$(".author"),
-            "<?php echo $this->url('default', array(
-                'controller' => 'ajax',
-                'action'     => 'get.fuzzy.author',
-                'name'       => ''
-            )); ?>",
-            "author"
-        );
-        this.typeahead(
-            this.$(".submitter"),
-            "<?php echo $this->url('default',array(
-                'controller' => 'ajax',
-                'action'     => 'get.fuzzy.user',
-                'name'       => ''
-            )); ?>",
-            "uid"
-        );
-    },
-    typeahead: function (el, url, name) {
-        el.typeahead({
-            source      : function (query, process) {
-                var self = this;
-                return $.getJSON(url + encodeURIComponent(query), function (resp) {
-                    self.data = resp.data;
-                    return process(_.pluck(resp.data, 'name'));
-                });
-            },
-            updater    : function (item) {
-                page.$("[name="+name+"]").val(_.find(this.data, function(i) {
-                    if (i.name == item) return i;
-                }).id);
-                return item;
-            }
-        }).on("blur", function() {
-            var el    = $(this),
-                v     = $.trim(el.val()),
-                exist = _.where(el.data("typeahead").data, {name:v});
-            if (!exist.length) {
-                el.val("");
-                page.$("[name="+name+"]").val("")
-            } else {
-                page.$("[name="+name+"]").val(exist[0].id);
-            }
-        }).on("focus", function() {
-            var el = $(this);
-            el.data("typeahead").data=[{
-                name: $.trim(el.val()),
-                id: page.$("[name="+name+"]").val()
-            }];
-        });
-    },
-    triggerLeftWord: function(e) {
-        if (e.keyCode == 13) {
-            e.stopPropagation();
-        }
-        this.leftWord($(e.target));
-    },
-    leftWord: function (el) {
-        var val  = el.val()||"",
-            l    = val.length,
-            size = el.attr("data-size"),
-            s    = el.parents(".form-inline").find(".left-wrod"),
-            q;
-        q = size - l;
-        if (q >= 0) {
-            s.html(q);
-        } else {
-            el.val(val.substr(0,size));
-            s.html(0);
-        }
     },
     toggleSub: function() {
         this.$(".subtitle").slideToggle(150);

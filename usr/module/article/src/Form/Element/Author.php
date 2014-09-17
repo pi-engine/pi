@@ -20,6 +20,15 @@ use Zend\Form\Element\Hidden;
 class Author extends Hidden
 {
     /**
+     * Custom element attributes
+     * 
+     * @var array 
+     */
+    protected $attributes = array(
+        'type'  => 'Module\Article\Form\View\Helper\Author',
+    );
+    
+    /**
      * Constructor, set element attributes
      * 
      * @param string $name
