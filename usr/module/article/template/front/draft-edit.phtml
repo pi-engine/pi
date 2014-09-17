@@ -1,19 +1,6 @@
 <?php
 $this->jQuery('extension/fileupload-min.js');
 
-$locale = Pi::config('locale');
-if (false !== strpos('-', $locale)) {
-    $list = explode('-', $locale, 2);
-    $locale = $list[0] . '-' . strtoupper($list[1]);
-}
-$datepickerLocale = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $locale);
-$this->bootstrap(array(
-    'datepicker/datepicker.css',
-    'datepicker/bootstrap-datepicker.js',
-    $datepickerLocale,
-    'js/bootstrap-typeahead.js',
-));
-
 $this->css($this->assetModule('script/front.css'));
 $this->Backbone();
 
@@ -110,14 +97,131 @@ $uid = Pi::user()->getId();
     }
 </style>
 
-<div class="row">
+<div id="draft-page" class="row">
     <div class="col-md-8"><?php include $this->templateModule('article:component/form'); ?></div>
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="widget" id="jsReleaseProcess">
+            <div class="widget-header">
+                <?php _e('Status:'); ?>
+                <strong class="status">
+                    <?php if (isset($draft['article']) and $draft['article']) {
+                         _e('Published'); 
+                    } else {
+                        $draftStatus = isset($draft['status']) ? $draft['status'] : 0;
+                        switch ($draftStatus) {
+                            case 1: _e('Draft');
+                                break;
+                            case 2: _e('Pending');
+                                break; 
+                            case 3: _e('Rejected');
+                    ?>
+                    <i class="icon-question-sign" id="jsReject" data-content="
+                        <?php 
+                            echo isset($draft['reject_reason']) 
+                                ? _escape($draft['reject_reason']) : '' 
+                        ?>" data-placement="bottom">
+                    </i>
+                    <script>
+                    (function($) {
+                        var el = $("#jsReject");
+                        el.popover({
+                            title : "Reject reason <span class='close'>×</span>",
+                            html  : true
+                        });
+                        setTimeout(function() {
+                            el.popover("show").data("popover").$tip.on("click", ".close", function() {
+                                el.popover("hide");
+                            });
+                        }, 10);
+                    })(jQuery)
+                    </script>
+                    <?php         
+                                break;    
+                            default: _e('Draft');
+                                break;
+                        }
+                    } ?>
+                </strong>
+            </div>
+            <div class="widget-body">
+                <div class="clearfix article-flow">
+                     <span class="pull-right btn btn-default preview" data-src=""><?php _e('Preview'); ?></span>
+                     <?php if (!$draft['article']) { ?>
+                     <span class="btn btn-info save"><?php _e('Save'); ?></span>
+                     <?php } ?>
+                </div>
+                <div class="article-flow" style="padding-top: 10px;">
+                    <span class="publish-time-edit">
+                        <?php if ($draft['time_publish']) { ?>
+                            <?php _e('Scheduled at'); ?>
+                        <strong><?php echo _date($draft['time_publish']); ?></strong>
+                        <?php } else { 
+                            _e('publish immediately');
+                        } ?>
+                    </span>
+                    <span class="link-btn edit-time"><?php _e('Edit'); ?></span>
+                    <span class="link-btn save-time mr10"><?php _e('Save'); ?></span>
+                    <span class="link-btn cancel-time"><?php _e('Cancel'); ?></span>
+                    <div class="clearfix time-edit-wrap hide"></div>
+                    <p>
+                    <?php 
+                        if ($draft['time_save']) {
+                            echo sprintf(
+                                __('Last edit at %s by %s'), _date($draft['time_save']), (isset($userUpdate) ? $userUpdate['name'] : $user['name'])
+                            );
+                        }
+                    ?> 
+                    </p>
+                </div>
+                <div id="article-management-operation" class="clearfix" style="margin-top: 10px;">
+                    <?php if ($draft['article']) { ?>
+                    <button class="btn btn-primary pull-right update"><?php _e('Update'); ?></button>
+                    <?php } elseif ($draft['status'] == 2) { ?>
+                    <?php if (isset($currentApprove) and $currentApprove) { ?>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-primary approve"><?php _e('Approve'); ?></button>
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal" data-backdrop="false">
+                                        <?php _e('Reject'); ?>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php } ?>
+                    <?php } else { ?>    
+                    <button class="btn btn-primary pull-right pending"><?php _e('Submit'); ?></button>
+                    <?php } ?>
+                    <?php if (isset($currentDelete) and $currentDelete) { ?>
+                        <span class="link-btn delete"><?php _e('Delete'); ?></span>
+                    <?php } ?>
+                </div>
+                <div id="rejectModel" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title"><?php _e('Reject reason'); ?></h4>
+                            </div>
+                            <div class="modal-body" style="height: 100px">
+                                <textarea class="col-md-12 form-control memo"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary reject" data-dismiss="modal"><?php _e('Reject'); ?></button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-<div id="jsUploadModel" class="modal">
-</div>    
+<div id="jsUploadModel" class="modal"></div>    
 <script id="temp-upload-model" type="text/template">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -363,6 +467,20 @@ var page = {
         }
     }
 };
+var GlobalView = Backbone.View.extend({
+    el      : $("#draft-page"),
+    events  : {},
+    initialize: function () {
+        _.bindAll(this);
+        
+        this.timePublishLayout();
+    },
+    timePublishLayout : function() {
+        var html = this.$("#time-publish-element").parent().html();
+        this.$(".time-edit-wrap").html(html);
+        this.$(".form-time_publish").remove();
+    }
+});
 var BasicInputView = Backbone.View.extend({
     el      : $("#jsBasicInput"),
     events  : {
@@ -408,9 +526,7 @@ var ReleaseProcess = Backbone.View.extend({
         "click .update"     : "update",
         "click .edit-time"  : "popupTime",
         "click .save-time"  : "saveTime",
-        "click .cancel-time": "cancelTime",
-        "click .hour-sort"  : "hourAction",
-        "click .minute-sort": "minuteAction"
+        "click .cancel-time": "cancelTime"
     },
     initialize  : function() {
         $("#datepicker").datepicker({
@@ -575,33 +691,6 @@ var ReleaseProcess = Backbone.View.extend({
     },
     cancelTime  : function() {
         this.$(".article-flow").removeClass("editing");  
-    },
-    hourAction  : function(e) {
-        var el = this.$(".text-hour"),
-            v;
-        if ($(e.target).attr("data-action")) {
-            v = parseInt(el.val()) - 1;
-            v = v < 0 ? 23 : v;
-            el.val(v);
-        } else {
-            v = parseInt(el.val()) + 1;
-            v = v > 24 ? 0 : v; 
-            el.val(v);
-        }
-    },
-    minuteAction : function(e) {
-        var el = this.$(".text-minute"),
-            v;
-        if ($(e.target).attr("data-action")) {
-            v = parseInt(el.val()) - 1;
-            v = v < 0 ? 59 : v;
-            el.val(v); 
-            el.val(v);
-        } else {
-            v = parseInt(el.val()) + 1;
-            v = v > 59 ? 0 : v;  
-            el.val(v); 
-        }
     }
 });
 function fileupload(name,url,formate,size,collection) {
@@ -1919,6 +2008,7 @@ var RelatedView       = Backbone.View.extend({
     }
 });
 page.init();
+new GlobalView;
 new BasicInputView;
 new ReleaseProcess;
 new AttachmentListView;

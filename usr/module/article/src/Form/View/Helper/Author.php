@@ -44,7 +44,7 @@ class Author extends AbstractHelper
      */
     public function render(ElementInterface $element)
     {
-        $this->view->jQuery();
+        $this->view->bootstrap('js/bootstrap-typeahead.js');
 
         $required = $element->getAttribute('required');
         $url      = Pi::service('url')->assemble('default', array(
