@@ -71,8 +71,8 @@ class DraftForm extends BaseForm
         $fields = $this->fields;
         
         $hidden = array(
-            'time_publish', 'time_update', 'time_submit', 'uid', 'related',
-            'id', 'fake_id', 'article', 'tag', 'jump',
+            'time_update', 'time_submit', 'uid', 'related', 'id', 'fake_id',
+            'article', 'tag', 'jump',
         );
         foreach ($hidden as $key) {
             $fields[] = array(
@@ -83,13 +83,6 @@ class DraftForm extends BaseForm
         $fields[] = array(
             'name'       => 'security',
             'type'       => 'csrf',
-        );
-        $fields[] = array(
-            'name'       => 'do_submit',
-            'attributes' => array(               
-                'value'     => __('Save draft'),
-            ),
-            'type'       => 'submit',
         );
         
         foreach ($fields as $field) {

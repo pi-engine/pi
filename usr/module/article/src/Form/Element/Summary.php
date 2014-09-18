@@ -33,6 +33,7 @@ class Summary extends Textarea
         $this->setAttributes(array(
             'id'        => 'summary',
             'data-size' => $length,
+            'rows'      => 3,
         ));
         
         parent::__construct($name, $options);

@@ -230,6 +230,9 @@ return array(
             'type'       => 'common',
             'name'       => 'time_publish',
             'title'      => _a('Publish Time'),
+            'edit'       => array(
+                'element'  => 'Module\Article\Form\Element\TimePublish',
+            ),
             'is_edit'    => false,
             'is_display' => false,
         ),

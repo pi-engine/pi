@@ -13,11 +13,11 @@ use Pi;
 use Zend\Form\Element\Hidden;
 
 /**
- * Author element class
+ * Time publish element class
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class Author extends Hidden
+class TimePublish extends Hidden
 {
     /**
      * Custom element attributes
@@ -25,19 +25,6 @@ class Author extends Hidden
      * @var array 
      */
     protected $attributes = array(
-        'type'  => 'Module\Article\Form\View\Helper\Author',
+        'type'  => 'Module\Article\Form\View\Helper\TimePublish',
     );
-    
-    /**
-     * Constructor, set element attributes
-     * 
-     * @param string $name
-     * @param array  $options
-     */
-    public function __construct($name = null, $options = array())
-    {
-        $this->setAttribute('id', 'author');
-        
-        parent::__construct($name, $options);
-    }
 }
