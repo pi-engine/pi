@@ -71,8 +71,8 @@ class DraftForm extends BaseForm
         $fields = $this->fields;
         
         $hidden = array(
-            'time_update', 'time_submit', 'uid', 'related', 'id', 'fake_id',
-            'article', 'jump',
+            'time_update', 'time_submit', 'uid', 'id', 'fake_id', 'article',
+            'jump',
         );
         foreach ($hidden as $key) {
             $fields[] = array(

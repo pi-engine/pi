@@ -9,7 +9,13 @@ $uid = Pi::user()->getId();
 <div id="draft-page" class="row">
     <div class="col-md-8">
     <?php 
+        // Move some element to other place to display
         $timePublishElement = $form->get('time_publish');
+        $relatedElement     = '';
+        if ($form->has('related-related')) {
+            $relatedElement = $form->get('related-related');
+            $form->remove('related-related');
+        }
         $form->remove('time_publish');
         include $this->templateModule('article:component/form');
     ?>
@@ -132,6 +138,17 @@ $uid = Pi::user()->getId();
                 </div>
             </div>
         </div>
+        
+        <?php
+            if ($relatedElement) {
+        ?>
+        <div class="widget" id="jsRelated">
+            <div class="widget-header">
+                <strong><?php _e('Related articles'); ?></strong>
+            </div>
+            <div class="widget-body"><?php echo $this->formElement($relatedElement); ?></div>
+        </div>
+        <?php } ?>
     </div>
 </div>
 
@@ -232,21 +249,7 @@ $uid = Pi::user()->getId();
         <% } %>
     </div>
 </script>
-<script id="temp-related-search" type="text/template">
-    <%_.each(search,function(item) { %>
-    <li data-id="<%= item.id %>" style="list-style: none">
-        <span class="pull-right text-muted"><%= item.time_publish_text %></span>
-        <input class="search-check" type="checkbox" <% if(_.where(exist,{id:item.id}).length) { %>checked<% } %> ><%= item.channel_title %>
-        <a href="<%= item.url %>" target="_blank" class="ellipsis"  title="<%= item.subject %>"><strong><%= item.subject %></strong></a>
-    <% }); %>    
-</script>
-<script id="temp-related-selected" type="text/template">
-    <%_.each(exist,function(item) { %>
-    <li data-id="<%= item.id %>" style="list-style: none">
-        <i class="icon-remove-sign"></i>
-        <a href="<%= item.url %>" target="_blank" class="ellipsis"><%= item.subject %></a>
-    <% }); %>
-</script>
+
 <script>
 var obj;
 var currentStatus;
@@ -1783,131 +1786,6 @@ $("#jsSeo").on("click", ".widget-header", function() {
     $("#jsSeo").find(".seo-other").toggleClass("hide");
     $("#jsSeo").find(".widget-header").toggleClass("active");
 });
-var relatedCollection = new Backbone.Collection(
-    <?php echo isset($related) ? json_encode(array_values($related)) : ''; ?>
-);
-var searchCollection  = new Backbone.Collection;
-var RelatedView       = Backbone.View.extend({
-    el          : $("#jsRelated"),
-    initialize  : function () {
-        _.bindAll(this);
-        this.modal = this.$(".a-related-modal");
-        this.serachCon = this.$(".a-search").scroll(this.scrollLoad);
-        relatedCollection.on("add", this.render);
-        relatedCollection.on("remove", this.render);
-        this.render();
-    },
-    events: {
-        "click .a-close"          : "close",
-        "click .btn-search"       : "btnSearch",
-        "click .search-check"     : "clickAddOne",
-        "click .manually-related" : "showRelated",
-        "click .link-btn"         : "popup",
-        "click .icon-remove-sign" : "clickRemoveOne",
-        "click .other-related"    : "hideRelated",
-        "keyup [name=keyword]"    : "enterSearch"
-    },
-    popup: function () {
-        this.modal.removeClass("hide");
-        this.modal.show();
-    },
-    showRelated: function () {
-        var el = this.$(".article-related-list");
-        if (el.find("li").length) {
-            el.show();
-        } else {
-            el.hide();
-        }
-    },
-    hideRelated: function () {
-        this.$(".article-related-list").hide();
-    },
-    close: function () {
-        this.modal.fadeOut(150);
-    },
-    enterSearch: function(e) {
-        if (e.keyCode == 13) {
-            this.btnSearch();
-        }
-    },
-    btnSearch: function() {
-        this.$(".a-search ul").html("");
-        this.page = 0;
-        this.search();  
-    },
-    scrollLoad: function() {
-         var sh = this.serachCon[0].scrollHeight,
-             sp = this.serachCon.scrollTop(),
-             h  = this.serachCon.outerHeight(),
-             l  = this.$(".a-search ul").find(">li").length;
-             if (sp + h >= sh && l < this.paginator.totalCount) {
-                 this.search();
-             }
-    },
-    search: function () {
-        var ky   = $.trim(this.$("[name=keyword]").val()),
-            self = this;
-        ky && this.$(".loadimage").removeClass("invisible");
-        if (!this.locked) {
-            this.page++;
-            this.locked = true;   
-            if (ky) {
-                $.getJSON("<?php echo $this->url('default', array(
-                    'controller' => 'article',
-                    'action'     => 'get.fuzzy.article'
-                )); ?>", {
-                    type    : this.$("[name=type]").val(),
-                    keyword : ky,
-                    limi    : 15,
-                    page    : this.page
-                }).done(function(resp) {
-                    if (resp.status == 1) {
-                        var u = self.serachCon.find("ul");
-                        u.append(_.template($("#temp-related-search").html(), {
-                            search : resp.data,
-                            exist  : relatedCollection.toJSON()
-                        }));
-                        self.paginator = resp.paginator;
-                        self.$(".searchlength").html(u.find(">li").length);
-                        self.$(".searchtotal").html(resp.paginator.totalCount);
-                        self.locked = false;
-                        self.$(".loadimage").addClass("invisible");
-                    }
-                });
-            }
-        }       
-    },
-    clickAddOne: function (e) {
-        var tar = $(e.target),
-            el = tar.parent(),
-            id = el.attr("data-id"),
-            a = el.find("a");
-        if (tar.prop("checked")) {
-            relatedCollection.add({
-                id      : id,
-                url     : a.attr("href"),
-                subject : a.attr("title")
-            });
-        } else {
-            relatedCollection.remove(id);
-        }
-    },
-    clickRemoveOne: function (e) {
-        relatedCollection.remove($(e.target).parent().attr("data-id"));
-    },
-    render: function (search) {
-        this.$(".a-selected ul").html(_.template($("#temp-related-selected").html(), {
-            exist: relatedCollection.toJSON()
-        }));
-        this.$(".article-related-list").html(this.$(".a-selected").html());
-        this.showRelated();
-        this.serachCon.find(".search-check").removeAttr("checked");
-        _.each(relatedCollection.pluck("id"), _.bind(function(id) {
-            this.serachCon.find("[data-id=" + id + "]").find(".search-check").attr("checked", "checked");
-        },this));
-        $("[name=related]").val(relatedCollection.pluck("id").join(","));
-    }
-});
 page.init();
 new GlobalView;
 new BasicInputView;
@@ -1915,7 +1793,6 @@ new ReleaseProcess;
 new AttachmentListView;
 new FeatureView;
 new GalleryListView;
-new RelatedView;
 })(jQuery)
 </script>
 <script>

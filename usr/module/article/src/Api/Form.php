@@ -201,6 +201,12 @@ class Form extends AbstractApi
             $file = Pi::path('module') . '/' . $filePath;
         }
         $config     = include $file;
+        
+        // Added default form elements
+        $defaultCols = array('subject', 'content', 'time_publish');
+        $config      = array_merge($config, $defaultCols);
+        $config      = array_unique($config);
+        
         $result     = array();
         foreach ($config as $key => $value) {
             if (false === $value) {

@@ -1,0 +1,199 @@
+<div id="related-element">
+    <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $value; ?>" <?php echo $attributes; ?>>
+    <label class="radio">
+        <span class="pull-right link-btn"><?php _e('Add'); ?></span>
+    </label>
+    <ul class="article-related-list">
+    </ul>
+    <div class="modal a-related-modal bs-modal-lg hide">
+        <div class="modal-dialog modal-lg" style="width: 750px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close icon-remove a-close">&times;</button>
+                    <strong><?php _e('Manage related articles'); ?></strong>
+                </div>
+                <div class="modal-body">
+                    <div class="form-inline">
+                        <select name="type" class="form-control col-md-2">
+                            <option value="title"><?php echo _e('Title'); ?></option>
+                            <?php 
+                                if (!empty($enableTag)) {
+                            ?>
+                            <option value="tag"><?php echo _e('Tag'); ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                        <input class="form-control" placeholder="Keywords" type="text" name="keyword" value="">
+                        <span class="btn btn-primary btn-search"><?php _e('Search'); ?></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="widget-header" >
+                                <img src="<?php echo Pi::service('asset')->getModuleAsset('image/wait.gif','system'); ?>"
+                                     class="loadimage pull-right invisible" style="margin: 2px 10px 0 0;">
+                                <strong><?php _e('Articles to be selected'); ?></strong>
+                                (<span class="searchlength">0</span>)/(<span class="searchtotal">0</span>)
+                            </div>
+                            <div class="widget-body a-search"><ul></ul></div>    
+                        </div>
+                        <div class="col-md-5">
+                            <div class="widget-header">
+                                <strong><?php _e('Articles selected'); ?></strong>
+                                <span class="existlength"></span>
+                            </div>
+                            <div class="widget-body a-selected"><ul></ul></div>        
+                        </div>        
+                    </div>      
+                </div>
+                <div class="modal-footer">
+                    <span class="btn btn-primary a-close"><?php _e('Done'); ?></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="temp-related-search" type="text/template">
+    <%_.each(search,function(item) { %>
+    <li data-id="<%= item.id %>" style="list-style: none">
+        <span class="pull-right text-muted"><%= item.time_publish_text %></span>
+        <input class="search-check" type="checkbox" <% if(_.where(exist,{id:item.id}).length) { %>checked<% } %> ><%= item.channel_title %>
+        <a href="<%= item.url %>" target="_blank" class="ellipsis"  title="<%= item.subject %>"><strong><%= item.subject %></strong></a>
+    <% }); %>    
+</script>
+<script id="temp-related-selected" type="text/template">
+    <%_.each(exist,function(item) { %>
+    <li data-id="<%= item.id %>" style="list-style: none; margin-left: -20px;">
+        <span class="remove-related" style="cursor: pointer;">×</span>
+        <a href="<%= item.url %>" target="_blank" class="ellipsis" style="width: 200px;"><%= item.subject %></a>
+    <% }); %>
+</script>
+
+<script type="text/javascript">
+(function($) {
+    var relatedCollection = new Backbone.Collection(
+        <?php echo json_encode(array_values($related)); ?>
+    );
+    var searchCollection  = new Backbone.Collection;
+    var RelatedView       = Backbone.View.extend({
+        el          : $("#related-element"),
+        initialize  : function () {
+            _.bindAll(this);
+            this.modal     = this.$(".a-related-modal");
+            this.searchCon = this.$(".a-search").scroll(this.scrollLoad);
+            relatedCollection.on("add", this.render);
+            relatedCollection.on("remove", this.render);
+            this.render();
+        },
+        events: {
+            "click .a-close"          : "close",
+            "click .btn-search"       : "btnSearch",
+            "click .search-check"     : "clickAddOne",
+            "click .manually-related" : "showRelated",
+            "click .link-btn"         : "popup",
+            "click .remove-related"   : "clickRemoveOne",
+            "click .other-related"    : "hideRelated",
+            "keyup [name=keyword]"    : "enterSearch"
+        },
+        popup: function () {
+            this.modal.removeClass("hide");
+            this.modal.show();
+        },
+        showRelated: function () {
+            var el = this.$(".article-related-list");
+            if (el.find("li").length) {
+                el.show();
+            } else {
+                el.hide();
+            }
+        },
+        hideRelated: function () {
+            this.$(".article-related-list").hide();
+        },
+        close: function () {
+            this.modal.fadeOut(150);
+        },
+        enterSearch: function(e) {
+            if (e.keyCode == 13) {
+                this.btnSearch();
+            }
+        },
+        btnSearch: function() {
+            this.$(".a-search ul").html("");
+            this.page = 0;
+            this.search();
+        },
+        scrollLoad: function() {
+             var sh = this.searchCon[0].scrollHeight,
+                 sp = this.searchCon.scrollTop(),
+                 h  = this.searchCon.outerHeight(),
+                 l  = this.$(".a-search ul").find(">li").length;
+                 if (sp + h >= sh && l < this.paginator.totalCount) {
+                     this.search();
+                 }
+        },
+        search: function () {
+            var ky   = $.trim(this.$("[name=keyword]").val()),
+                self = this;
+            ky && this.$(".loadimage").removeClass("invisible");
+            if (!this.locked) {
+                this.page++;
+                this.locked = true;   
+                if (ky) {
+                    $.getJSON("<?php echo _escape($url); ?>", {
+                        type    : this.$("[name=type]").val(),
+                        keyword : ky,
+                        limi    : 15,
+                        page    : this.page
+                    }).done(function(resp) {
+                        if (resp.status == 1) {
+                            var u = self.searchCon.find("ul");
+                            u.append(_.template($("#temp-related-search").html(), {
+                                search : resp.data,
+                                exist  : relatedCollection.toJSON()
+                            }));
+                            self.paginator = resp.paginator;
+                            self.$(".searchlength").html(u.find(">li").length);
+                            self.$(".searchtotal").html(resp.paginator.totalCount);
+                            self.locked = false;
+                            self.$(".loadimage").addClass("invisible");
+                        }
+                    });
+                }
+            }       
+        },
+        clickAddOne: function (e) {
+            var tar = $(e.target),
+                el = tar.parent(),
+                id = el.attr("data-id"),
+                a = el.find("a");
+            if (tar.prop("checked")) {
+                relatedCollection.add({
+                    id      : id,
+                    url     : a.attr("href"),
+                    subject : a.attr("title")
+                });
+            } else {
+                relatedCollection.remove(id);
+            }
+        },
+        clickRemoveOne: function (e) {
+            relatedCollection.remove($(e.target).parent().attr("data-id"));
+        },
+        render: function (search) {
+            this.$(".a-selected ul").html(_.template($("#temp-related-selected").html(), {
+                exist: relatedCollection.toJSON()
+            }));
+            this.$(".article-related-list").html(this.$(".a-selected").html());
+            this.showRelated();
+            this.searchCon.find(".search-check").removeAttr("checked");
+            _.each(relatedCollection.pluck("id"), _.bind(function(id) {
+                this.searchCon.find("[data-id=" + id + "]").find(".search-check").prop("checked", "checked");
+            }, this));
+            $("[name=related-related]").val(relatedCollection.pluck("id").join(","));
+        }
+    });
+    new RelatedView;
+})(jQuery);
+</script>
