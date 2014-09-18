@@ -1,0 +1,69 @@
+<div id="author-element">
+    <input type="text" value="<?php echo $title; ?>" class="author form-control" <?php echo $required; ?>>
+    <input type="hidden" value="<?php echo $authorId; ?>" name="<?php echo $name; ?>" <?php echo $attributes; ?>>
+</div>
+<script type="text/javascript">
+(function($) {
+    var AuthorView = Backbone.View.extend({
+        el  : $("#author-element"),
+        events : {
+            "keyup .author" : "search"
+        },
+        initialize : function() {
+            _.bindAll(this);
+            this.search();
+        },
+        search : function(e) {
+            var obj = $(".author");
+            this.$('.author').typeahead({
+                source : function (query, process) {
+                    var self = this;
+                    return $.getJSON("<?php echo _escape($url); ?>name-" + obj.val(), function (resp) {
+                        self.data = resp.data;
+                        var items = new Array();
+                        for (i in resp.data) {
+                            items[i] = resp.data[i].name;
+                        }
+                        return process(items);
+                    });
+                },
+                updater : function(item) {
+                    var id;
+                    for (i in this.data) {
+                        if (item === this.data[i].name) {
+                            id = this.data[i].id;
+                            break;
+                        }
+                    }
+                    $("[name=author]").val(id);
+                    return item;
+                }
+            }).on("blur", function() {
+                var el = $(this),
+                    v  = $.trim(el.val());
+                var data = el.data("typeahead").data;
+                var selected = 0;
+                for (var i in data) {
+                    if (v === data[i].name) {
+                        selected = data[i].id;
+                        break;
+                    }
+                }
+                if (!selected) {
+                    el.val("");
+                    $("[name=author]").val("");
+                } else {
+                    $("[name=author]").val(selected);
+                }
+            }).on("focus", function() {
+                var el = $(this);
+                el.data("typeahead").data=[{
+                    name : $.trim(el.val()),
+                    id   : $([name=author]).val()
+                }];
+            });
+        }
+    });
+    new AuthorView;
+})(jQuery);
+</script>
