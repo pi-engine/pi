@@ -1,68 +1,6 @@
-<?php
-/**
- * Pi Engine (http://pialog.org)
- *
- * @link            http://code.pialog.org for the Pi Engine source repository
- * @copyright       Copyright (c) Pi Engine http://pialog.org
- * @license         http://pialog.org/license.txt New BSD License
- * @package         Form
- */
-
-namespace Module\Article\Form\View\Helper;
-
-use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\AbstractHelper;
-use Pi;
-
-/**
- * Author element helper
- * Helper cannot be used in other module
- *
- * @author Zongshu Lin <lin40553024@163.com>
- */
-class Author extends AbstractHelper
-{
-    /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @return string|self
-     */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function render(ElementInterface $element)
-    {
-        $this->view->bootstrap('js/bootstrap-typeahead.js');
-
-        $required = $element->getAttribute('required');
-        $url      = Pi::service('url')->assemble('default', array(
-            'controller' => 'ajax',
-            'action'     => 'get.fuzzy.author',
-        ));
-        $authorId = $element->getValue();
-        $name     = '';
-        if ($authorId) {
-            $module = Pi::service('module')->current();
-            $row    = Pi::model('author', $module)->find($authorId);
-            $name   = $row->name . "[{$row->id}]";
-        }
-        
-        $html = <<<EOT
 <div id="author-element">
-    <input type="text" value="{$name}" class="author form-control" %s>
-    <input type="hidden" value="{$authorId}" name="%s" %s>
+    <input type="text" value="<?php echo $title; ?>" class="author form-control" <?php echo $required; ?>>
+    <input type="hidden" value="<?php echo $authorId; ?>" name="<?php echo $name; ?>" <?php echo $attributes; ?>>
 </div>
 <script type="text/javascript">
 (function($) {
@@ -80,7 +18,7 @@ class Author extends AbstractHelper
             this.$('.author').typeahead({
                 source : function (query, process) {
                     var self = this;
-                    return $.getJSON("{$url}name-" + obj.val(), function (resp) {
+                    return $.getJSON("<?php echo _escape($url); ?>name-" + obj.val(), function (resp) {
                         self.data = resp.data;
                         var items = new Array();
                         for (i in resp.data) {
@@ -121,21 +59,11 @@ class Author extends AbstractHelper
                 var el = $(this);
                 el.data("typeahead").data=[{
                     name : $.trim(el.val()),
-                    id   : page.$("[name=author]").val()
+                    id   : $([name=author]).val()
                 }];
             });
         }
     });
     new AuthorView;
-})(jQuery)
+})(jQuery);
 </script>
-EOT;
-
-        return sprintf(
-            $html,
-            $required ? 'required="required"' : '',
-            $element->getName(),
-            $this->createAttributesString($element->getAttributes())
-        );
-    }
-}

@@ -72,12 +72,22 @@ class DraftForm extends BaseForm
         
         $hidden = array(
             'time_update', 'time_submit', 'uid', 'related', 'id', 'fake_id',
-            'article', 'tag', 'jump',
+            'article', 'jump',
         );
         foreach ($hidden as $key) {
             $fields[] = array(
                 'name' => $key,
                 'type' => 'hidden',
+            );
+        }
+        $enableTag = Pi::config('enable_tag', $this->module);
+        if (!empty($enableTag)) {
+            $fields[] = array(
+                'name'    => 'tag',
+                'type'    => 'tag',
+                'options' => array(
+                    'label'  => __('Tags'),
+                ),
             );
         }
         $fields[] = array(
