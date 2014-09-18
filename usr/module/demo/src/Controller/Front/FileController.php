@@ -133,7 +133,11 @@ class FileController extends ActionController
         $path = $this->getUploadPath(true);
         $filename = _get('file');
         $file = $path . '/' . $filename;
-        Pi::service('file')->download($file);
+        try {
+            Pi::service('file')->download($file);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**

@@ -135,9 +135,10 @@ class Download
     /**
      * Send the file to the client (Download)
      *
-     * @param string|array $source File or file meta to download
-     * @param array $options Options for the file(s) to send
+     * @param string|array $source  File or file meta to download
+     * @param array        $options Options for the file(s) to send
      *
+     * @throws \Exception
      * @return bool|void
      */
     public function send($source, array $options = array())
@@ -145,34 +146,40 @@ class Download
         // Disable logging service
         Pi::service('log')->mute();
 
+        $error = '';
+
         // Canonize download options
         $source = $this->canonizeDownload($source, $options);
         if (!$source) {
-            return false;
-        }
-
-        if ('raw' == $options['type']) {
+            $error = 'Invalid source';
+        } elseif ('raw' == $options['type']) {
             $source = $options['source'];
-        } else {
+        } elseif (file_exists($source)) {
             $source = fopen($source, 'rb');
+        } else {
+            $error = 'Source not found';
         }
 
-        // Send the content to client
-        $this->download(
-            $source,
-            $options['filename'],
-            $options['content_type'],
-            $options['content_length']
-        );
+        if (!$error) {
+            // Send the content to client
+            $this->download(
+                $source,
+                $options['filename'],
+                $options['content_type'],
+                $options['content_length']
+            );
 
-        // Close resource handler
-        if (is_resource($source)) {
-            fclose($source);
-        }
+            // Close resource handler
+            if (is_resource($source)) {
+                fclose($source);
+            }
 
-        // Remove tmp zip file
-        if ('zip' == $options['type']) {
-            @unlink($options['source']);
+            // Remove tmp zip file
+            if ('zip' == $options['type']) {
+                @unlink($options['source']);
+            }
+        } else {
+            throw new \Exception($error);
         }
 
         if ($this->exit) {
@@ -271,15 +278,6 @@ class Download
         $contentLength = 0
     ) {
         $isIe = Pi::service('browser')->isIe();
-        /*
-        if (!empty($_SERVER['HTTP_USER_AGENT'])) {
-            if (false !== strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE')) {
-                $isIe = true;
-            } elseif (false !== strpos($_SERVER['HTTP_USER_AGENT'], 'Trident')) {
-                $isIe = true;
-            }
-        }
-        */
         if ($isIe) {
             $contentType = $contentType ?: 'application/octet-stream';
             $filename = urlencode($filename);
