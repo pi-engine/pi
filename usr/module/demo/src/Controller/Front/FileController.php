@@ -10,6 +10,7 @@
 namespace Module\Demo\Controller\Front;
 
 use Pi;
+use Exception;
 use Pi\Mvc\Controller\ActionController;
 use Module\Demo\Form\FileForm;
 
@@ -143,12 +144,16 @@ class FileController extends ActionController
         $path = $this->getUploadPath();
         $filename = _get('file');
         $file = $path . '/' . $filename;
-        Pi::service('file')->remove($file);
+        try {
+            Pi::service('file')->remove($file);
+            $message = sprintf(__('File deleted: %s'), $filename);
+            $status = 'success';
+        } catch (Exception $e) {
+            $message = sprintf(__('File %s not deleted: %s'), $filename, $e->getMessage());
+            $status = 'error';
+        }
 
-        $this->jump(
-            array('action' => 'index'),
-            sprintf(__('File deleted: %s'), $filename)
-        );
+        $this->jump(array('action' => 'index'), $message, $status);
     }
 
     /**
