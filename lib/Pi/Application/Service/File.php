@@ -337,7 +337,10 @@ class File extends AbstractService
         $files = array_reverse($files);
         foreach ($files as $file) {
             if (!file_exists($file) && !is_link($file)) {
-                continue;
+                throw new Exception(
+                    sprintf('File %s not exist', $file)
+                );
+                //continue;
             }
 
             // hard directory
