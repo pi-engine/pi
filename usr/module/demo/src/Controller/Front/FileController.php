@@ -130,7 +130,7 @@ class FileController extends ActionController
      */
     public function downloadAction()
     {
-        $path = $this->getUploadPath();
+        $path = $this->getUploadPath(true);
         $filename = _get('file');
         $file = $path . '/' . $filename;
         Pi::service('file')->download($file);
@@ -141,15 +141,19 @@ class FileController extends ActionController
      */
     public function deleteAction()
     {
-        $path = $this->getUploadPath();
+        $path = $this->getUploadPath(true);
         $filename = _get('file');
         $file = $path . '/' . $filename;
         try {
             Pi::service('file')->remove($file);
-            $message = sprintf(__('File deleted: %s'), $filename);
+            $message = sprintf(__('File "%s" deleted.'), $filename);
             $status = 'success';
         } catch (Exception $e) {
-            $message = sprintf(__('File %s not deleted: %s'), $filename, $e->getMessage());
+            $message = sprintf(
+                __('File "%s" not deleted: %s.'),
+                $filename,
+                $e->getMessage()
+            );
             $status = 'error';
         }
 
@@ -159,10 +163,17 @@ class FileController extends ActionController
     /**
      * Get relative path for upload
      *
+     * @param bool $returnAbsolute Return absolute path
+     *
      * @return string
      */
-    protected function getUploadPath()
+    protected function getUploadPath($returnAbsolute = false)
     {
-        return 'upload/' . $this->getModule();
+        $path = 'upload/' . $this->getModule();
+        if ($returnAbsolute) {
+            $path = Pi::path($path);
+        }
+
+        return $path;
     }
 }
