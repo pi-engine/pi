@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-08-29 15:36+0330\n"
-"PO-Revision-Date: 2014-08-29 15:39+0330\n"
+"POT-Creation-Date: 2014-09-19 18:04+0330\n"
+"PO-Revision-Date: 2014-09-19 18:04+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -79,6 +79,55 @@ msgstr "ارسال های غیر فعال"
 msgid "Demo comment %d."
 msgstr "نظر نمایشی  %d"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:239
+msgid "Comment types"
+msgstr "انواع نظر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:34
+msgid "Active"
+msgstr "فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:34
+msgid "Disabled"
+msgstr "غیر فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:35
+msgid "Disable"
+msgstr "غیرفعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:30
+msgid "Enable"
+msgstr "فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:92
+msgid "Type was not found."
+msgstr "نوع یافت نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:96
+msgid "Invalid operation."
+msgstr "عملکرد غیر معتبر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:561
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:224
+msgid "Operation succeeded."
+msgstr "با موفقیت انجام شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:105
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:224
+msgid "Operation failed."
+msgstr "عملکرد موفق نبود"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:128
 msgid "Comments by username or id"
 msgstr "نظرات با نام کاربری یا آی دی"
@@ -96,11 +145,6 @@ msgstr "همه ارسال ها"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:386
 msgid "Active Posts"
 msgstr "نظرات فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:239
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:22
-msgid "Comment types"
-msgstr "انواع نظر"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:334
 #, php-format
@@ -124,58 +168,14 @@ msgstr "همه مطالب دارای نظر"
 msgid "All active commented articles"
 msgstr "همه مطالب با نظر فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/ListController.php:561
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:102
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:224
-msgid "Operation succeeded."
-msgstr "با موفقیت انجام شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:34
-msgid "Active"
-msgstr "فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:34
-msgid "Disabled"
-msgstr "غیر فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:58
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:33
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:28
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:35
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:34
-msgid "Disable"
-msgstr "غیرفعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:58
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:23
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:30
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:29
-msgid "Enable"
-msgstr "فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:92
-msgid "Type was not found."
-msgstr "نوع یافت نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:96
-msgid "Invalid operation."
-msgstr "عملکرد غیر معتبر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/TypeController.php:105
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:224
-msgid "Operation failed."
-msgstr "عملکرد موفق نبود"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:44
 msgid "Edit"
 msgstr "ویرایش"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:38
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:32
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:39
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:38
 msgid "Delete"
 msgstr "حذف"
 
@@ -203,6 +203,14 @@ msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوبار
 msgid "Invalid submission."
 msgstr "ارسال های اشتباه"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/user.php:20
+msgid "Comment posts by me"
+msgstr "نظرات اراسل شده توسط من"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/user.php:26
+msgid "Comment posts on my articles"
+msgstr "نظرات ارسال شده برای مطلب من"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:13
 msgid "Recent comments"
 msgstr "جدیدترین نظرات"
@@ -219,16 +227,6 @@ msgstr "تعداد ارسال ها"
 msgid "Number of posts to display."
 msgstr "تعداد ارسال ها برای نمایش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:28
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:53
-msgid "Module"
-msgstr "ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:29
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:54
-msgid "Select module for articles."
-msgstr "انتخاب ماژول برای مطالب"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:39
 msgid "Articles being commented."
 msgstr "مقالات شامل نظر"
@@ -240,27 +238,6 @@ msgstr "تعداد مطالب"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:46
 msgid "Number of articles to display."
 msgstr "تعداد مطالب برای نمایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:60
-msgid "Sort order"
-msgstr "مرتب سازی بر اساس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:61
-msgid "Criteria to select articles."
-msgstr "معیار برای انتخاب نظرات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:66
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:90
-msgid "Most commented"
-msgstr "بیشترین نظر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:67
-msgid "Last commented"
-msgstr "آخرین نظر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:68
-msgid "Last published"
-msgstr "آخرین نظرات منتشر شده"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:79
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:26
@@ -279,22 +256,6 @@ msgstr "تعداد کاربران"
 msgid "Number of users to display."
 msgstr "تعداد کاربران برای نمایش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:94
-msgid "Excluded user ids"
-msgstr "رد کردن بر اساس شناسه کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:95
-msgid "Users to exclude, separated by \",\"."
-msgstr "کاربرانی که نظراتشان رد می شود. با استفاده از \",\". جدا کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:101
-msgid "Excluded roles"
-msgstr "رد کردن بر اساس نقش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/block.php:102
-msgid "Roles to exclude."
-msgstr "نقش های که نظراتشان رد می شود"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/module.php:17
 msgid "Comment"
 msgstr "نظر"
@@ -303,45 +264,13 @@ msgstr "نظر"
 msgid "Comment management and services."
 msgstr "مدیریت و سرویس نظرات"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:12
-msgid "Leading page comment limit"
-msgstr "تعداد نظرات در صفحه پیشرو"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/comment.php:18
+msgid "Article comments"
+msgstr "نظرات مطلب"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:13
-msgid "Number of comments on leading page."
-msgstr "تعداد نظرات در صفحه پیشرو در زیر مطلب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:19
-msgid "List page comment limit"
-msgstr "محدیدت نظرات در صفحه فهرست نظر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:20
-msgid "Number of comments on list page."
-msgstr "تعداد نظرات در صفحه فهرست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:26
-msgid "Display operation"
-msgstr "عملکرد غیر فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:27
-msgid "Level of operations on post list pages."
-msgstr "سطح عملکرد در صفحات فهرست ارسال ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:34
-msgid "For members"
-msgstr "برای کاربران"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:35
-msgid "For authors"
-msgstr "برای فرستنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:36
-msgid "For administrators"
-msgstr "برای مدیران"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:43
-msgid "Auto approve submission"
-msgstr "تایید خودکار نظرات"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/comment.php:31
+msgid "Custom comments"
+msgstr "نظرات شخصی سازی شده"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/nav.php:14
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/nav.php:61
@@ -388,94 +317,56 @@ msgstr "مطلب شامل نظرات"
 msgid "Article with active comments"
 msgstr "مطلب با نظر فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/comment.php:18
-msgid "Article comments"
-msgstr "نظرات مطلب"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:12
+msgid "Leading page comment limit"
+msgstr "تعداد نظرات در صفحه پیشرو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/comment.php:31
-msgid "Custom comments"
-msgstr "نظرات شخصی سازی شده"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:13
+msgid "Number of comments on leading page."
+msgstr "تعداد نظرات در صفحه پیشرو در زیر مطلب"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/user.php:20
-msgid "Comment posts by me"
-msgstr "نظرات اراسل شده توسط من"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:19
+msgid "List page comment limit"
+msgstr "محدیدت نظرات در صفحه فهرست نظر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/user.php:26
-msgid "Comment posts on my articles"
-msgstr "نظرات ارسال شده برای مطلب من"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:20
+msgid "Number of comments on list page."
+msgstr "تعداد نظرات در صفحه فهرست"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:6
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:53
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:3
-msgid "Title"
-msgstr "عنوان"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:26
+msgid "Display operation"
+msgstr "عملکرد غیر فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:7
-msgid "Enable type"
-msgstr "انواع فعال"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:27
+msgid "Level of operations on post list pages."
+msgstr "سطح عملکرد در صفحات فهرست ارسال ها"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:8
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:4
-msgid "Action"
-msgstr "عملکرد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:34
+msgid "For members"
+msgstr "برای کاربران"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:14
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:30
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:11
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:20
-msgid "View comments"
-msgstr "نمایش نظرات"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:35
+msgid "For authors"
+msgstr "برای فرستنده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:23
-msgid "No"
-msgstr "خیر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:36
+msgid "For administrators"
+msgstr "برای مدیران"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:26
-msgid "Yes"
-msgstr "بله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user-select.phtml:2
-msgid "Filter comments by a specific user."
-msgstr "فیلتر کردن نظرات بر اساس کاربر خاص"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user-select.phtml:5
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:18
-msgid "Type user id or identity"
-msgstr "آی دی یا نام کاربری را وارد کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user-select.phtml:6
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:19
-msgid "Submit"
-msgstr "ارسال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:93
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:100
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:99
-msgid "Pending"
-msgstr "در انتظار تایید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:107
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:114
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:113
-msgid "No comments available yet."
-msgstr "هنوز هیچ نظری در دسترس نیست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:187
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:194
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:193
-msgid "Are you sure delete these comments?"
-msgstr "آیا اطمینان دارید که میخواهید این نظرات را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:233
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:240
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:239
-msgid "Are you sure delete this article?"
-msgstr "آیا اطمینان دارید که میخواهید این مطلب را حذف کنید؟"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:43
+msgid "Auto approve submission"
+msgstr "تایید خودکار نظرات"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:5
 msgid "Comment stats"
 msgstr "وضعیت نظر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:6
+msgid "Title"
+msgstr "عنوان"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:11
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:54
@@ -499,9 +390,105 @@ msgstr "نظرات فعال بر اساس ماژول"
 msgid "Links"
 msgstr "لینک ها"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:90
+msgid "Most commented"
+msgstr "بیشترین نظر"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:94
 msgid "Article title"
 msgstr "عنوان مطلب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:8
+msgid "Action"
+msgstr "عملکرد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module-select.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:30
+msgid "View comments"
+msgstr "نمایش نظرات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:100
+msgid "Pending"
+msgstr "در انتظار تایید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:114
+msgid "No comments available yet."
+msgstr "هنوز هیچ نظری در دسترس نیست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:193
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:187
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:194
+msgid "Are you sure delete these comments?"
+msgstr "آیا اطمینان دارید که میخواهید این نظرات را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:239
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:233
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:240
+msgid "Are you sure delete this article?"
+msgstr "آیا اطمینان دارید که میخواهید این مطلب را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user-select.phtml:2
+msgid "Filter comments by a specific user."
+msgstr "فیلتر کردن نظرات بر اساس کاربر خاص"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user-select.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:18
+msgid "Type user id or identity"
+msgstr "آی دی یا نام کاربری را وارد کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user-select.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:19
+msgid "Submit"
+msgstr "ارسال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:7
+msgid "Enable type"
+msgstr "انواع فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:23
+msgid "No"
+msgstr "خیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-type.phtml:26
+msgid "Yes"
+msgstr "بله"
+
+#~ msgid "Sort order"
+#~ msgstr "مرتب سازی بر اساس"
+
+#~ msgid "Criteria to select articles."
+#~ msgstr "معیار برای انتخاب نظرات"
+
+#~ msgid "Last commented"
+#~ msgstr "آخرین نظر"
+
+#~ msgid "Last published"
+#~ msgstr "آخرین نظرات منتشر شده"
+
+#~ msgid "Module"
+#~ msgstr "ماژول"
+
+#~ msgid "Select module for articles."
+#~ msgstr "انتخاب ماژول برای مطالب"
+
+#~ msgid "Excluded user ids"
+#~ msgstr "رد کردن بر اساس شناسه کاربر"
+
+#~ msgid "Users to exclude, separated by \",\"."
+#~ msgstr "کاربرانی که نظراتشان رد می شود. با استفاده از \",\". جدا کنید"
+
+#~ msgid "Excluded roles"
+#~ msgstr "رد کردن بر اساس نقش"
+
+#~ msgid "Roles to exclude."
+#~ msgstr "نقش های که نظراتشان رد می شود"
 
 #~ msgid "Inactive Posts"
 #~ msgstr "نظرات غیر فعال"

@@ -1,0 +1,35 @@
+<?php $this->css($this->assetModule('css/block.css', 'comment')); ?>
+<div class="pi-comment pi-comment-block-post">
+    <?php if ($block['posts']) { ?>
+    <div class="pi-comment-list">
+    <?php foreach ($block['posts'] as $post) { ?>
+        <div class="media">
+            <a class="pull-left" href="<?php echo $post['user']['url']; ?>" target="_blank">
+                <?php echo $post['user']['avatar']; ?>
+            </a>
+            <div class="media-body">
+                <div class="pi-comment-box">
+                    <span class="pi-comment-user">
+                        <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
+                            <?php echo $post['user']['name']; ?>
+                        </a>
+                    </span>
+                    <span class="pull-right muted pi-comment-time"><?php echo _date($post['time']); ?></span>
+                </div>
+                <div class="pi-comment-desc">
+                    <span class="muted pull-left"><?php echo _b('On '); ?></span>
+                    <a class="comment-title-hidden highlight pull-left" href="<?php echo $post['target']['url']; ?>" title="<?php echo $post['target']['title']; ?>">
+                        <?php echo $post['target']['title']; ?>
+                    </a>
+                </div>
+                <div class="pi-comment-content">
+                    <?php echo $post['content']; ?>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+    </div>
+    <?php } else { ?>
+    <div class="pi-comment-none"><?php echo _b('No comments available yet.'); ?></div>
+    <?php  } ?>
+</div>

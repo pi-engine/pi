@@ -45,7 +45,6 @@ class ListController extends ActionController
             $offset
         );
         $renderOptions = array(
-            'operation' => $this->config('display_operation'),
             'user'      => array(
                 'avatar'    => 'medium',
             ),

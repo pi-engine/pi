@@ -1,453 +1,455 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-05-21 12:39+0800\n"
-"PO-Revision-Date: 2014-05-21 12:39+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-09-19 18:05+0330\n"
+"PO-Revision-Date: 2014-09-19 18:05+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\comment\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"comment\n"
 
-#: c:\code\pi\usr\module\comment/config/event.php:21
-msgid "Post submitted"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/config/event.php:24
-msgid "Post published"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/config/event.php:27
-msgid "Post updated"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/config/event.php:30
-msgid "Post enabled"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/config/event.php:33
-msgid "Post disabled"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/config/event.php:36
-msgid "Post deleted"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:528
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:398
-msgid "Guest"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:570
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:518
-msgid "Edit"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:571
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:627
-msgid "Enable"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:572
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:525
-#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:36
-#: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:65
-msgid "Delete"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:573
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:532
-#: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:80
-msgid "Reply"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Api.php:624
-msgid "Disable"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Article.php:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Article.php:40
 #, php-format
 msgid "Demo article %d"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Api/Custom.php:41
-#, php-format
-msgid "Custom article %d"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/src/Api/Search.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Search.php:66
 #, php-format
 msgid "Comment by %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:301
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:139
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:192
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:331
-msgid "Invalid post parameter."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:528
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:397
+msgid "Guest"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:305
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:403
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:462
-msgid "Operation succeeded."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:570
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:518
+msgid "Edit"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Admin/PostController.php:305
-msgid "Operation failed."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:571
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:627
+msgid "Enable"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/CustomController.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:572
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:525
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-root.phtml:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-lead.phtml:36
+msgid "Delete"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:573
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:532
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-reply.phtml:80
+msgid "Reply"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:624
+msgid "Disable"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Custom.php:41
 #, php-format
-msgid "Demo custom article #%d"
+msgid "Custom article %d"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/DemoController.php:36
-#, php-format
-msgid "Demo article #%d"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Form/PostForm.php:82
+msgid "Comment"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Form/PostForm.php:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/_post-form.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/_post-form.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-reply.phtml:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-edit.phtml:46
+msgid "Type your content"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Form/PostForm.php:98
+msgid "Submit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:23
 #, php-format
 msgid "Comment portal for %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:35
 msgid "Demo article with comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:49
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:70
 msgid "All active comment posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:63
 msgid "Commented articles"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:70
 msgid "Comment posts for module \"Comment\""
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:76
 msgid "Comment posts for module \"Comment\" with type \"Article\""
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:84
 #, php-format
 msgid "Comment posts by %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:94
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:94
 msgid "Comment posts by me"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/IndexController.php:100
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:100
 msgid "Commented articles by me"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/CustomController.php:36
+#, php-format
+msgid "Demo custom article #%d"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:66
 msgid "All comment posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:68
 msgid "All inactive comment posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:128
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:127
 msgid "Comment posts of article"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:193
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:200
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:192
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:199
 msgid "My comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:208
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:207
 msgid "My active comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:217
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:216
 msgid "My pending comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:233
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:232
 msgid "Comment posts of user"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:304
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:303
 msgid "All"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:329
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:328
 msgid "Comment posts of module"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:445
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:444
 msgid "All commented articles"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:447
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:446
 msgid "Articles with comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:461
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:460
 msgid "My articles"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:469
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:468
 msgid "My articles with active comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:550
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:549
 msgid "Received comments"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:557
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:556
 msgid "All Posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:565
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:564
 msgid "Active Posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:574
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:573
 msgid "Inactive Posts"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/ListController.php:590
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:589
 msgid "Comment posts on user"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:50
 msgid "Permanent link"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:109
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:109
 msgid "Comment post not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:112
 msgid "Comment post"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:145
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:196
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:290
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:336
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:395
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:139
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:192
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:331
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:301
+msgid "Invalid post parameter."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:196
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:290
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:336
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:395
 msgid "Operation denied."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:157
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:157
 msgid "Comment post edit"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:209
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:209
 msgid "Comment post reply"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:293
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:293
 msgid "Invalid submission."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:310
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:310
 msgid "Root not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:313
-#: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:313
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/_post-form.phtml:3
 msgid "Comment is disabled."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:345
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:345
 msgid "Comment post saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:348
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:348
 msgid "Comment post not saved."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:353
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:353
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:403
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:462
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:403
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:462
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:305
+msgid "Operation succeeded."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:403
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:462
 msgid "Operation failed"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:453
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:508
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:453
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:508
 msgid "Invalid parameters."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:458
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:458
 msgid "Forbidden."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:514
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:514
 msgid "Login"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Controller/Front/PostController.php:539
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:539
 msgid "Enable/Disable"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Form/PostForm.php:82
-msgid "Comment"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/DemoController.php:36
+#, php-format
+msgid "Demo article #%d"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Form/PostForm.php:88
-#: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:46
-#: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:78
-#: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:24
-#: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:28
-msgid "Type your content"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:305
+msgid "Operation failed."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/src/Form/PostForm.php:98
-msgid "Submit"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/event.php:21
+msgid "Post submitted"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/admin/comment-list.phtml:79
-#: c:\code\pi\usr\module\comment/template/admin/comment-module.phtml:85
-#: c:\code\pi\usr\module\comment/template/admin/comment-user.phtml:86
-#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:35
-#: c:\code\pi\usr\module\comment/template/front/comment-list.phtml:50
-#: c:\code\pi\usr\module\comment/template/front/comment-module.phtml:53
-#: c:\code\pi\usr\module\comment/template/front/comment-my-post.phtml:61
-#: c:\code\pi\usr\module\comment/template/front/comment-my-received.phtml:64
-#: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:64
-#: c:\code\pi\usr\module\comment/template/front/comment-user-received.phtml:51
-#: c:\code\pi\usr\module\comment/template/front/comment-user.phtml:46
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/event.php:24
+msgid "Post published"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/event.php:27
+msgid "Post updated"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/event.php:30
+msgid "Post enabled"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/event.php:33
+msgid "Post disabled"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/event.php:36
+msgid "Post deleted"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-received.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-module.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-user-received.phtml:37
+msgid "commented on "
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-received.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-post.phtml:50
+msgid "Pending"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-received.phtml:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-module.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-list.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-user.phtml:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-root.phtml:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-post.phtml:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-user-received.phtml:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-lead.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-module.phtml:85
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-list.phtml:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-user.phtml:86
 msgid "Are you sure to delete this comment?"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/comment-article.phtml:34
-#, php-format
-msgid "%s comments"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-article.phtml:49
-msgid "Last commented: "
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-article.phtml:54
-#, php-format
-msgid " at %s"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-article.phtml:69
-msgid "No data available yet."
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:21
-msgid "Comment edit"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:39
-#: c:\code\pi\usr\module\comment/template/front/comment-list.phtml:37
-#: c:\code\pi\usr\module\comment/template/front/comment-my-post.phtml:44
-#: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:68
-#: c:\code\pi\usr\module\comment/template/front/comment-user.phtml:32
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:42
-msgid "Commented on "
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:49
-msgid "Cancel"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:50
-msgid "Save"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-edit.phtml:63
-#: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:92
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:66
-msgid "No content."
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:3
-#: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:34
-msgid "All comments "
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:45
-msgid "View all comments"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-lead.phtml:49
-#: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:75
-msgid "No one has commented yet."
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-list.phtml:19
-msgid "All active comments "
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-list.phtml:68
-#: c:\code\pi\usr\module\comment/template/front/comment-module.phtml:71
-#: c:\code\pi\usr\module\comment/template/front/comment-my-post.phtml:79
-#: c:\code\pi\usr\module\comment/template/front/comment-my-received.phtml:82
-#: c:\code\pi\usr\module\comment/template/front/comment-user-received.phtml:69
-#: c:\code\pi\usr\module\comment/template/front/comment-user.phtml:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-received.phtml:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-module.phtml:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-list.phtml:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-user.phtml:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-post.phtml:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-user-received.phtml:69
 msgid "No comments available yet."
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/comment-module.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/_post-form.phtml:37
+msgid "Post comment"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/_post-form.phtml:43
+#, php-format
+msgid "Please <a href=\"%s\">login</a> to leave comments."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-module.phtml:19
 #, php-format
 msgid "Comments for %s module"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/comment-module.phtml:39
-#: c:\code\pi\usr\module\comment/template/front/comment-my-received.phtml:47
-#: c:\code\pi\usr\module\comment/template/front/comment-user-received.phtml:37
-msgid "commented on "
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-my-post.phtml:50
-#: c:\code\pi\usr\module\comment/template/front/comment-my-received.phtml:53
-msgid "Pending"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-reply.phtml:50
-#, php-format
-msgid "Comment reply to %s"
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-root.phtml:20
-msgid "Item not found."
-msgstr ""
-
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:17
 msgid "Comment detail"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:33
 msgid "In reply to:"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:34
 msgid "Click to open"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/comment-view.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:35
 #, php-format
 msgid "Comment #%d"
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:37
-msgid "Post comment"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-reply.phtml:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-edit.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-list.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-user.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-my-post.phtml:44
+msgid "Commented on "
 msgstr ""
 
-#: c:\code\pi\usr\module\comment/template/front/_post-form.phtml:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-view.phtml:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-reply.phtml:92
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-edit.phtml:63
+msgid "No content."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-reply.phtml:50
 #, php-format
-msgid "Please <a href=\"%s\">login</a> to leave comments."
+msgid "Comment reply to %s"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-edit.phtml:21
+msgid "Comment edit"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-edit.phtml:49
+msgid "Cancel"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-edit.phtml:50
+msgid "Save"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-article.phtml:34
+#, php-format
+msgid "%s comments"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-article.phtml:49
+msgid "Last commented: "
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-article.phtml:54
+#, php-format
+msgid " at %s"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-article.phtml:69
+msgid "No data available yet."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-list.phtml:19
+msgid "All active comments "
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-root.phtml:20
+msgid "Item not found."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-root.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-lead.phtml:3
+msgid "All comments "
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-root.phtml:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-lead.phtml:49
+msgid "No one has commented yet."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-lead.phtml:45
+msgid "View all comments"
 msgstr ""
