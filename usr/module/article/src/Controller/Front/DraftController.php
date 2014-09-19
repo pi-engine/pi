@@ -11,7 +11,6 @@ namespace Module\Article\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
-use Module\Article\Controller\Admin\SetupController as Setup;
 use Pi\Paginator\Paginator;
 use Module\Article\Form\DraftEditForm;
 use Module\Article\Form\DraftEditFilter;
@@ -739,11 +738,7 @@ class DraftController extends ActionController
 
         $module = $this->getModule();
         $form   = Pi::api('form', $module)->loadForm('draft', true);
-        //$options = Setup::getFormConfig();
-        //$form    = $this->getDraftForm('save', $options);
         $form->setData($this->request->getPost());
-        //$form->setInputFilter(new DraftEditFilter($options));
-        //$form->setValidationGroup(DraftModel::getValidColumns());
         
         if (!$form->isValid()) {
             return array(
@@ -884,8 +879,6 @@ class DraftController extends ActionController
             return $this->jumpToDenied();
         }
         
-        //$options = Setup::getFormConfig();
-        //$form    = $this->getDraftForm('add', $options);
         $module     = $this->getModule();
         $form       = Pi::api('form', $module)->loadForm('draft');
         $categories = $form->get('category')->getValueOptions();
@@ -905,7 +898,6 @@ class DraftController extends ActionController
             'title'    => __('Create Article'),
             'form'     => $form,
             'config'   => Pi::config('', $this->getModule()),
-            //'elements' => $elements,
             'rules'    => $rules,
             'approve'  => $approve,
             'delete'   => $delete,
@@ -930,8 +922,6 @@ class DraftController extends ActionController
         
         $id       = $this->params('id', 0);
         $module   = $this->getModule();
-        //$options  = Setup::getFormConfig();
-        //$elements = $options['elements'];
 
         if (!$id) {
             return ;
@@ -999,24 +989,12 @@ class DraftController extends ActionController
         $featureImage = $data['image'] ? Pi::url($data['image']) : '';
         $featureThumb = $data['image'] ? Pi::url(Media::getThumbFromOriginal($data['image'])) : '';
 
-        //$form = $this->getDraftForm('edit', $options);
         $form = Pi::api('form', $module)->loadForm('draft');
         $allCategory = $form->get('category')->getValueOptions();
         $form->get('category')->setValueOptions(
             array_intersect_key($allCategory, $categories)
         );
         $form->setData($data);
-
-        // Get author info
-        //if (in_array('author', $elements) and $data['author']) {
-            $author = $this->getModel('author')->find($data['author']);
-            if ($author) {
-                $this->view()->assign('author', array(
-                    'id'   => $author->id,
-                    'name' => $author->name,
-                ));
-            }
-        //}
 
         // Get submitter info
         $columns = array('id', 'name');
@@ -1040,28 +1018,6 @@ class DraftController extends ActionController
                 ));
             }
         }
-
-        // Get related articles
-        //if (in_array('related', $elements)) {
-            $related = $relatedIds = array();
-            if (!empty($row->related)) {
-                $relatedIds = array_flip($row->related);
-
-                $related = Entity::getArticlePage(
-                    array('id' => $row->related), 
-                    1
-                );
-                foreach ($related as $item) {
-                    if (array_key_exists($item['id'], $relatedIds)) {
-                        $relatedIds[$item['id']] = $item;
-                    }
-                }
-
-                $related = array_filter($relatedIds, function($var) {
-                    return is_array($var);
-                });
-            }
-        //}
 
         // Get assets
         $attachments = $images = array();
@@ -1133,14 +1089,12 @@ class DraftController extends ActionController
             'title'          => __('Edit Article'),
             'form'           => $form,
             'draft'          => (array) $row,
-            'related'        => $related,
             'attachments'    => $attachments,
             'images'         => $images,
             'featureImage'   => $featureImage,
             'featureThumb'   => $featureThumb,
             'config'         => Pi::config('', $module),
             'from'           => $this->params('from', ''),
-            //'elements'       => $elements,
             'status'         => $row->article ? Article::FIELD_STATUS_PUBLISHED : $row->status,
             'rules'          => $rules,
             'approve'        => $approve,
@@ -1520,10 +1474,10 @@ class DraftController extends ActionController
             return $this->jumpTo404();
         }
         
-        $options = Setup::getFormConfig();
-        $form    = $this->getDraftForm('save', $options);
-        $form->setInputFilter(new DraftEditFilter($options));
-        $form->setValidationGroup(DraftModel::getValidFields());
+        //$options = Setup::getFormConfig();
+        $form    = Pi::api('form', $this->getModule())->loadForm('draft', true);
+        //$form->setInputFilter(new DraftEditFilter($options));
+        //$form->setValidationGroup(DraftModel::getValidFields());
         $form->setData($this->request->getPost());
 
         if (!$form->isValid()) {
@@ -1531,7 +1485,7 @@ class DraftController extends ActionController
         }
         
         $data     = $form->getData();
-        $validate = $this->validateForm(
+        /*$validate = $this->validateForm(
             $data,
             $this->params('article', 0),
             $options['elements']
@@ -1540,7 +1494,7 @@ class DraftController extends ActionController
         if (!$validate['status']) {
             $form->setMessages($validate['message']);
             return $validate;
-        }
+        }*/
         
         $id = $this->saveDraft($data);
         if (!$id) {

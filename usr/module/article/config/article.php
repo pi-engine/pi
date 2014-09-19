@@ -250,6 +250,24 @@ return array(
             'is_edit'    => false,
             'is_display' => false,
         ),
+        
+        // Compound
+        'related'        => array(
+            'name'       => 'related',
+            'title'      => _a('Related'),
+            // Custom handler
+            'handler'    => 'Module\Article\Field\Related',
+
+            // Fields
+            'field' => array(
+                'related'    => array(
+                    'title'      => _a('Related Article'),
+                    'edit'       => array(
+                        'element'  => 'Module\Article\Form\Element\Related\Related',
+                    ),
+                ),
+            ),
+        ),
         /*'seo_title'      => array(
             'type'       => 'common',
             'name'       => 'seo_title',

@@ -105,16 +105,6 @@ CREATE TABLE `{draft}` (
   KEY `time_save`       (`time_save`)
 );
 
-CREATE TABLE `{related}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `related`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `order`           tinyint(3) UNSIGNED   NOT NULL DEFAULT 0,
-
-  PRIMARY KEY          (`id`),
-  KEY `article`        (`article`)
-);
-
 CREATE TABLE `{visit}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
