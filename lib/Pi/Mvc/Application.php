@@ -122,7 +122,7 @@ class Application extends ZendApplication
     }
 
     /**#@+
-     * Syntatic sugar
+     * Syntactic sugar
      */
     /**
      * Get RouteMatch of MvcEvent

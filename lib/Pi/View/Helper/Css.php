@@ -26,7 +26,8 @@ use Pi;
  *
  *  // Load specific file with attributes
  *  $this->css('some.css',
- *             array('conditional' => '...', 'position' => 'prepend'));
+ *      array('conditional' => '...', 'position' => 'prepend')
+ *  );
  *
  *  // Load a list of files
  *  $this->css(array(
@@ -56,7 +57,7 @@ class Css extends AssetCanonize
      *      Only applicable when $files is scalar,
      *      default as string for position,
      *      append or prepend, default as 'append'
-     * @return  self
+     * @return  this
      */
     public function __invoke($files = null, $attributes = 'append')
     {
@@ -91,7 +92,8 @@ class Css extends AssetCanonize
             }
 
             $position = isset($attrs['position'])
-                ? $attrs['position'] : 'append';
+                ? $attrs['position']
+                : 'append';
             if (!isset($attrs['href'])) {
                 $attrs['href'] = $file;
             }
