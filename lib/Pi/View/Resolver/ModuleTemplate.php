@@ -53,7 +53,7 @@ use Zend\View\Renderer\RendererInterface as Renderer;
 class ModuleTemplate implements ResolverInterface
 {
     /**
-     * Theme template diretory
+     * Theme template directory
      * @var string
      */
     protected $templateDirectory = 'template';
@@ -138,6 +138,8 @@ class ModuleTemplate implements ResolverInterface
       */
     public function resolve($name, Renderer $renderer = null)
     {
+        // Set template context
+        $renderer->context('module');
         $return = $this->canonizeTemplate($name);
         if (!is_array($return)) {
             return $return;
@@ -180,6 +182,9 @@ class ModuleTemplate implements ResolverInterface
         if (file_exists($path)) {
             return $path;
         }
+
+        // Reset template context
+        $renderer->context('');
 
         return false;
     }

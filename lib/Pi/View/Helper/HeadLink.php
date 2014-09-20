@@ -23,6 +23,12 @@ use Zend\View\Helper\Placeholder;
  */
 class HeadLink extends ZendHeadLink
 {
+    /** Layout context names */
+    const CONTEXT_LAYOUT = 'layout';
+
+    /** @var array Placeholder for assets loaded by child templates */
+    protected $assets = array();
+
     /**
      * {@inheritDoc}
      * @return self
@@ -38,6 +44,38 @@ class HeadLink extends ZendHeadLink
 
     /**
      * {@inheritDoc}
+     */
+    public function append($value)
+    {
+        $context = $this->view->context();
+        if ($context && $context != static::CONTEXT_LAYOUT) {
+            if (!empty($value->type) && 'text/css' == $value->type) {
+                $this->assets[] = array($value, 'append');
+                return;
+            }
+        }
+
+        return parent::append($value);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function prepend($value)
+    {
+        $context = $this->view->context();
+        if ($context && $context != static::CONTEXT_LAYOUT) {
+            if (!empty($value->type) && 'text/css' == $value->type) {
+                $this->assets[] = array($value, 'prepend');
+                return;
+            }
+        }
+
+        return parent::prepend($value);
+    }
+
+    /**
+     * {@inheritDoc}
      *  Canonize attribute 'conditional' with 'conditionalStylesheet'
      */
     public function itemToString(stdClass $item)
@@ -48,5 +86,27 @@ class HeadLink extends ZendHeadLink
         }
 
         return parent::itemToString($item);
+    }
+
+    /**
+     * {@inheritDoc}
+     * Load module assets
+     */
+    public function toString($indent = null)
+    {
+        if ($this->assets) {
+            foreach ($this->assets as $item) {
+                switch ($item[1]) {
+                    case 'prepend':
+                        parent::prepend($item[0]);
+                        break;
+                    default:
+                        parent::append($item[0]);
+                        break;
+                }
+            }
+        }
+
+        return parent::toString($indent);
     }
 }

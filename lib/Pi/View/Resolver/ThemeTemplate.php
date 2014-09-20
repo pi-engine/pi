@@ -101,6 +101,7 @@ class ThemeTemplate implements ResolverInterface
         if (false !== strpos($name, ':')) {
             return false;
         }
+        $renderer->context('layout');
         // Get template path from template name
         $path = $this->canonizeTemplate($name);
         // Return the path if valid
@@ -116,6 +117,7 @@ class ThemeTemplate implements ResolverInterface
                 return $path;
             }
         }
+        $renderer->context('');
 
         return false;
     }
