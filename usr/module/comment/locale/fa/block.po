@@ -1,0 +1,370 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-comment\n"
+"POT-Creation-Date: 2014-09-19 18:04+0330\n"
+"PO-Revision-Date: 2014-09-19 18:04+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _b\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"comment\n"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/post-list.phtml:20
+msgid "On "
+msgstr "در"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/post-list.phtml:33
+msgid "No comments available yet."
+msgstr "هنوز هیچ نظری در دسترس نیست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/article-list.phtml:5
+msgid "Article title"
+msgstr "عنوان مطلب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/article-list.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/user-list.phtml:6
+msgid "Comments"
+msgstr "نظرات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/user-list.phtml:5
+msgid "Submitters"
+msgstr "ارسال کنندگان"
+
+#~ msgid "Commented on "
+#~ msgstr "ارسال شده در"
+
+#~ msgid "Comment portal for %s"
+#~ msgstr "پورتال نظرات برای %s"
+
+#~ msgid "Build comment data for demo articles"
+#~ msgstr "ساخت اطلاعات نظر برای مقالات دمو"
+
+#~ msgid "Demo article with comments"
+#~ msgstr "مقاله دمو با نظر"
+
+#~ msgid "All comment posts"
+#~ msgstr "همه نظرات"
+
+#~ msgid "All active comment posts"
+#~ msgstr "همه نظرات فعال"
+
+#~ msgid "All inactive comment posts"
+#~ msgstr "همه نظرات غیر فعال"
+
+#~ msgid "Commented articles"
+#~ msgstr "مطالب دارای نظر"
+
+#~ msgid "Comment posts by user"
+#~ msgstr "نظرات با کاربر"
+
+#~ msgid "Comment posts by module"
+#~ msgstr "نظرات با ماژول"
+
+#~ msgid "Total posts"
+#~ msgstr "مجموع ارسال ها"
+
+#~ msgid "Active posts"
+#~ msgstr "ارسال های فعال"
+
+#~ msgid "Inactive posts"
+#~ msgstr "ارسال های غیر فعال"
+
+#~ msgid "Demo comment %d."
+#~ msgstr "نظر نمایشی  %d"
+
+#~ msgid "Comments by username or id"
+#~ msgstr "نظرات با نام کاربری یا آی دی"
+
+#~ msgid "Comment posts of user"
+#~ msgstr "نظرات ارسال شده توسط کاربر"
+
+#~ msgid "All Posts"
+#~ msgstr "همه ارسال ها"
+
+#~ msgid "Active Posts"
+#~ msgstr "نظرات فعال"
+
+#~ msgid "Comment types"
+#~ msgstr "انواع نظر"
+
+#~ msgid "Comment posts of Module %s with type %s"
+#~ msgstr "نظرات ارسال شده در ماژول %s با نوع %s"
+
+#~ msgid "Comment posts of Module %s"
+#~ msgstr "نظرات اراسل شده در ماژول %s"
+
+#~ msgid "Guest"
+#~ msgstr "مهمان"
+
+#~ msgid "All commented articles"
+#~ msgstr "همه مطالب دارای نظر"
+
+#~ msgid "All active commented articles"
+#~ msgstr "همه مطالب با نظر فعال"
+
+#~ msgid "Operation succeeded."
+#~ msgstr "با موفقیت انجام شد"
+
+#~ msgid "Active"
+#~ msgstr "فعال"
+
+#~ msgid "Disabled"
+#~ msgstr "غیر فعال"
+
+#~ msgid "Disable"
+#~ msgstr "غیرفعال"
+
+#~ msgid "Enable"
+#~ msgstr "فعال"
+
+#~ msgid "Type was not found."
+#~ msgstr "نوع یافت نشد"
+
+#~ msgid "Invalid operation."
+#~ msgstr "عملکرد غیر معتبر"
+
+#~ msgid "Operation failed."
+#~ msgstr "عملکرد موفق نبود"
+
+#~ msgid "Edit"
+#~ msgstr "ویرایش"
+
+#~ msgid "Delete"
+#~ msgstr "حذف"
+
+#~ msgid "Comment post edit"
+#~ msgstr "ویرایش نظر ارسال شده"
+
+#~ msgid "Comment post saved successfully."
+#~ msgstr "نظر ارسال شده با موفقیت ذخیره شد"
+
+#~ msgid "Comment post not saved."
+#~ msgstr "نظر ارسال شده ذخیره نشد"
+
+#~ msgid "Invalid data, please check and re-submit."
+#~ msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره بفرستید"
+
+#~ msgid "Invalid submission."
+#~ msgstr "ارسال های اشتباه"
+
+#~ msgid "Recent comments"
+#~ msgstr "جدیدترین نظرات"
+
+#~ msgid "Recent active comment posts."
+#~ msgstr "آخرین نظرات فعال"
+
+#~ msgid "Post count"
+#~ msgstr "تعداد ارسال ها"
+
+#~ msgid "Number of posts to display."
+#~ msgstr "تعداد ارسال ها برای نمایش"
+
+#~ msgid "Module"
+#~ msgstr "ماژول"
+
+#~ msgid "Select module for articles."
+#~ msgstr "انتخاب ماژول برای مطالب"
+
+#~ msgid "Articles being commented."
+#~ msgstr "مقالات شامل نظر"
+
+#~ msgid "Article count"
+#~ msgstr "تعداد مطالب"
+
+#~ msgid "Number of articles to display."
+#~ msgstr "تعداد مطالب برای نمایش"
+
+#~ msgid "Sort order"
+#~ msgstr "مرتب سازی بر اساس"
+
+#~ msgid "Criteria to select articles."
+#~ msgstr "معیار برای انتخاب نظرات"
+
+#~ msgid "Most commented"
+#~ msgstr "بیشترین نظر"
+
+#~ msgid "Last commented"
+#~ msgstr "آخرین نظر"
+
+#~ msgid "Last published"
+#~ msgstr "آخرین نظرات منتشر شده"
+
+#~ msgid "Top posters"
+#~ msgstr "برترین ارسال کنندگان"
+
+#~ msgid "Users with most posts"
+#~ msgstr "کاربران با بیشترین ارسال"
+
+#~ msgid "User count"
+#~ msgstr "تعداد کاربران"
+
+#~ msgid "Number of users to display."
+#~ msgstr "تعداد کاربران برای نمایش"
+
+#~ msgid "Excluded user ids"
+#~ msgstr "رد کردن بر اساس شناسه کاربر"
+
+#~ msgid "Users to exclude, separated by \",\"."
+#~ msgstr "کاربرانی که نظراتشان رد می شود. با استفاده از \",\". جدا کنید"
+
+#~ msgid "Excluded roles"
+#~ msgstr "رد کردن بر اساس نقش"
+
+#~ msgid "Roles to exclude."
+#~ msgstr "نقش های که نظراتشان رد می شود"
+
+#~ msgid "Comment"
+#~ msgstr "نظر"
+
+#~ msgid "Comment management and services."
+#~ msgstr "مدیریت و سرویس نظرات"
+
+#~ msgid "Leading page comment limit"
+#~ msgstr "تعداد نظرات در صفحه پیشرو"
+
+#~ msgid "Number of comments on leading page."
+#~ msgstr "تعداد نظرات در صفحه پیشرو در زیر مطلب"
+
+#~ msgid "List page comment limit"
+#~ msgstr "محدیدت نظرات در صفحه فهرست نظر"
+
+#~ msgid "Number of comments on list page."
+#~ msgstr "تعداد نظرات در صفحه فهرست"
+
+#~ msgid "Display operation"
+#~ msgstr "عملکرد غیر فعال"
+
+#~ msgid "Level of operations on post list pages."
+#~ msgstr "سطح عملکرد در صفحات فهرست ارسال ها"
+
+#~ msgid "For members"
+#~ msgstr "برای کاربران"
+
+#~ msgid "For authors"
+#~ msgstr "برای فرستنده"
+
+#~ msgid "For administrators"
+#~ msgstr "برای مدیران"
+
+#~ msgid "Auto approve submission"
+#~ msgstr "تایید خودکار نظرات"
+
+#~ msgid "All comments"
+#~ msgstr "همه نظرات"
+
+#~ msgid "My comments"
+#~ msgstr "نظرات من"
+
+#~ msgid "My received"
+#~ msgstr "دریافت های من"
+
+#~ msgid "My articles"
+#~ msgstr "مطالب من"
+
+#~ msgid "Portal"
+#~ msgstr "پورتال"
+
+#~ msgid "Types"
+#~ msgstr "انواع"
+
+#~ msgid "By module"
+#~ msgstr "براساس ماژول"
+
+#~ msgid "By user"
+#~ msgstr "براساس کاربر"
+
+#~ msgid "By article"
+#~ msgstr "براساس مطلب"
+
+#~ msgid "Article with comments"
+#~ msgstr "مطلب شامل نظرات"
+
+#~ msgid "Article with active comments"
+#~ msgstr "مطلب با نظر فعال"
+
+#~ msgid "Article comments"
+#~ msgstr "نظرات مطلب"
+
+#~ msgid "Custom comments"
+#~ msgstr "نظرات شخصی سازی شده"
+
+#~ msgid "Comment posts by me"
+#~ msgstr "نظرات اراسل شده توسط من"
+
+#~ msgid "Comment posts on my articles"
+#~ msgstr "نظرات ارسال شده برای مطلب من"
+
+#~ msgid "Title"
+#~ msgstr "عنوان"
+
+#~ msgid "Enable type"
+#~ msgstr "انواع فعال"
+
+#~ msgid "Action"
+#~ msgstr "عملکرد"
+
+#~ msgid "View comments"
+#~ msgstr "نمایش نظرات"
+
+#~ msgid "No"
+#~ msgstr "خیر"
+
+#~ msgid "Yes"
+#~ msgstr "بله"
+
+#~ msgid "Filter comments by a specific user."
+#~ msgstr "فیلتر کردن نظرات بر اساس کاربر خاص"
+
+#~ msgid "Type user id or identity"
+#~ msgstr "آی دی یا نام کاربری را وارد کنید"
+
+#~ msgid "Submit"
+#~ msgstr "ارسال"
+
+#~ msgid "Pending"
+#~ msgstr "در انتظار تایید"
+
+#~ msgid "Are you sure delete these comments?"
+#~ msgstr "آیا اطمینان دارید که میخواهید این نظرات را حذف کنید؟"
+
+#~ msgid "Are you sure delete this article?"
+#~ msgstr "آیا اطمینان دارید که میخواهید این مطلب را حذف کنید؟"
+
+#~ msgid "Comment stats"
+#~ msgstr "وضعیت نظر"
+
+#~ msgid "Amounts"
+#~ msgstr "مقدار"
+
+#~ msgid "Active comment posts by module"
+#~ msgstr "نظرات فعال بر اساس ماژول"
+
+#~ msgid "Links"
+#~ msgstr "لینک ها"
+
+#~ msgid "Inactive Posts"
+#~ msgstr "نظرات غیر فعال"
+
+#~ msgid "Operation failed"
+#~ msgstr "عملکرد موفق نبود"
+
+#~ msgid "Select module for articles"
+#~ msgstr "انتخاب ماژول برای مطالب"
+
+#, fuzzy
+#~ msgid "Categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "Comment categories"
+#~ msgstr "All Categories"
+
+#, fuzzy
+#~ msgid "All"
+#~ msgstr "All Categories"

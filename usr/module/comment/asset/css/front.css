@@ -18,7 +18,8 @@ a.highlight {
     margin-top: 15px;
 }
 div.media > .pull-left {
-    margin-right: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 img {
     border-radius: 3px;
@@ -64,13 +65,15 @@ textarea:focus {
 }
 .pi-comment-user {
     font-weight: bold;
-    margin-right: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
     font-size: 14px;
 }
 .pi-comment-time {
     font-size: 13px;
     font-family: 'Arial';
     margin-left: 5px;
+    margin-right: 5px;
 }
 .pi-comment-content {
     margin-top: 10px;
