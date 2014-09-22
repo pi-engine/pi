@@ -82,7 +82,17 @@ class MediaController extends ActionController
     }
     
     /**
-     * Processing media uploaded. 
+     * AJAX action. Processing media uploaded.
+     * 
+     * @param int    `id`         Media ID, if it is indicated, the media will replace directly
+     * @param string `fake_id`    May required if media entity isn't exists, it will
+     *                            be used as key of session that stored media info
+     * @param string `type`       Whether to upload attachment or image
+     * @param string `form_name`  Form name that used to post file info
+     * @param int    `width`      Image width if want to resize image by force
+     * @param int    `height`     Image height if want to resize image by force
+     * 
+     * @return JSON
      */
     public function uploadAction()
     {
@@ -111,7 +121,7 @@ class MediaController extends ActionController
         $ext     = strtolower(
             pathinfo($rawInfo['name'], PATHINFO_EXTENSION)
         );
-        $rename  = $id ?: $fakeId . '.' . $ext;
+        $rename  = ($id ?: $fakeId) . '.' . $ext;
 
         $allowedExtension = ($type == 'image')
             ? $config['image_extension'] : $config['media_extension'];
@@ -189,7 +199,7 @@ class MediaController extends ActionController
         // Prepare return data
         $return['data'] = array_merge(
             array(
-                'originalName' => $rawInfo['name'],
+                'raw_name'     => $rawInfo['name'],
                 'size'         => $rawInfo['size'],
                 'preview_url'  => Pi::url($fileName),
                 'basename'     => basename($fileName),
@@ -339,7 +349,14 @@ class MediaController extends ActionController
     }
     
     /**
-     * Searching image details by AJAX according to posted parameters. 
+     * AJAX action, search image details by posted parameters.
+     * 
+     * @param string    `type`   Media type: `image` or `attachment`
+     * @param int|array `id`     Media id condition
+     * @param string    `title`  Media title condition, support vague matching
+     * @param int       `page`   Which page to search
+     * @param int       `limit`  Limitation per page, default as 15
+     * @return JSON
      */
     public function searchAction()
     {
@@ -349,16 +366,21 @@ class MediaController extends ActionController
         
         $where = array();
         // Resolving type
-        if ($type == 'image') {
-            $extensionDesc = $this->config('image_extension');
+        $mediaExts = explode(',', $this->config('image_extension'));
+        $allExts   = explode(',', $this->config('media_extension'));
+        array_walk($mediaExts, function(&$val) {
+            $val = trim($val);
+        });
+        array_walk($allExts, function(&$val) {
+            $val = trim($val);
+        });
+        if ('image' === $type) {
+            $types = $mediaExts;
+        } elseif ('attachment' === $type) {
+            $types = array_diff($allExts, $mediaExts);
         } else {
-            $extensionDesc = $type;
+            $types = array();
         }
-        $extensions = explode(',', $extensionDesc);
-        foreach ($extensions as &$ext) {
-            $ext = trim($ext);
-        }
-        $types = array_filter($extensions);
         if (!empty($types)) {
             $where['type'] = $types;
         }
@@ -377,37 +399,16 @@ class MediaController extends ActionController
         }
         
         $page   = (int) $this->params('page', 1);
-        $limit  = (int) $this->params('limit', 5);
+        $limit  = (int) $this->params('limit', 15);
         
         $rowset = Media::getList($where, $page, $limit);
         
         // Get count
         $count  = $this->getModel('media')->count($where);
         
-        // Get previous and next button URL
-        $prevUrl = '';
-        $nextUrl = '';
-        $params  = array(
-            'action'    => 'search',
-            'type'      => $type ?: 0,
-            'id'        => $id ?: 0,
-            'title'     => $title ?: 0,
-            'limit'     => $limit ?: 0,
-        );
-        $params = array_filter($params);
-        if ($count > $page * $limit) {
-            $params['page'] = $page + 1;
-            $nextUrl = $this->url('', $params);
-        }
-        if ($page > 1) {
-            $params['page'] = $page - 1;
-            $prevUrl = $this->url('', $params);
-        }
-        
         echo json_encode(array(
             'data'      => $rowset,
-            'prev_url'  => $prevUrl,
-            'next_url'  => $nextUrl,
+            'count'     => $count,
         ));
         exit();
     }
@@ -422,7 +423,8 @@ class MediaController extends ActionController
         $id     = $this->params('id', 0);
         $fakeId = $this->params('fake_id', 0);
         $source = $this->params('source', 'outside');
-        $uid    = $this->params('uid', 0);
+        $uid    = Pi::user()->getId();
+        $module = $this->getModule();
         $result = array();
         if (empty($fakeId) and empty($id)) {
             $result = array(
@@ -463,10 +465,13 @@ class MediaController extends ActionController
                     ),
                 );
             } else {
+                $row    = $this->getModel('media')->find($mediaId);
                 $result = array(
                     'status'     => self::AJAX_RESULT_TRUE,
                     'data'       => array(
-                        'id'        => $mediaId,
+                        'id'        => $row->id,
+                        'title'     => $row->title,
+                        'url'       => Pi::url($row->url),
                         'newid'     => uniqid(),
                         'message'   => _a('Media data saved successful!'),
                     ),

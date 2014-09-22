@@ -24,18 +24,6 @@ class Author extends AbstractCustomHelper
     /**
      * {@inheritDoc}
      */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function render(ElementInterface $element)
     {
         $this->view->bootstrap('js/bootstrap-typeahead.js');
@@ -53,16 +41,12 @@ class Author extends AbstractCustomHelper
             $title  = $row->name . "[{$row->id}]";
         }
         
-        $attributes = $element->getAttributes();
         $this->assign(array(
             'title'      => $title,
-            'name'       => $element->getName(),
             'required'   => $required ? 'required="required"' : '',
-            'author_id'  => $authorId,
-            'attributes' => $this->createAttributesString($attributes),
             'url'        => $url,
         ));
 
-        return $this->getTemplate($element);
+        return $this->getTemplate($element, 'author');
     }
 }

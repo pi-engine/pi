@@ -1,0 +1,386 @@
+<!--
+Need parameters:
+* `$medias`     : media items
+* `$id`         : unique id, string, use for distinquish elements if this template multi included in a same page
+* `$value`      : form element value
+* `$name`       : form element name
+* `$attributes` : attributes string, format key1="value1" key2="value2"
+* `$preview`    : array, preview image size
+* `$size`       : array, allowed image size of uploaded image
+* `$extension`  : allowed image extension
+* `$filesize`   : allowed max image filesize
+* `$type`       : tells whether to operate image or attachment
+* `$multiple`   : whether to allow select only one media or multiple medias
+* `$toSession`  : whether upload media to session or media section
+* `$urls`       : array()
+  * `search`: url for searching media from media table
+  * `upload`: url for uploading media to media
+  * `remove`: url for removing media from media
+  * `save`  : url for saving media to media
+-->
+<div id="<?php echo $id; ?>-image-element">
+    <!-- Preview panel -->
+    <input type="hidden" value="<?php echo $value; ?>" name="<?php echo $name; ?>" <?php echo $attributes; ?>>
+    <div class="pull-left" style="width: 100%">
+        <div style="width: 100%">
+            <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
+                <?php _e('Upload'); ?>
+            </button>
+            <span class="text-muted"><?php echo _e('Image size: '). $size['width'] . '×' . $size['height']; ?></span>
+        </div>
+        <div class="image-thumb"></div>
+    </div>
+    
+    <!-- Upload panel -->
+    <div id="upload-box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Header -->
+                <div class="modal-header">
+                    <button id="media-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 class="modal-title" id="modal-header"><?php echo __('Choose Media'); ?></h3>
+                </div>
+                <!-- Body -->
+                <div class="modal-body">
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#image-upload" data-toggle="tab"><?php _e('Upload Media'); ?></a>
+                            </li>
+                            <li>
+                                <a href="#image-choose" data-toggle="tab">
+                                    <?php _e('Choose From Media'); ?>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" style="overflow: hidden">
+                            <div class="tab-pane active" id="image-upload">
+
+                                <span class="btn btn-success upload fileinput-button">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    <span><?php _e('Upload'); ?></span>
+                                    <input type="file" <?php echo $multiple ? 'multiple=""' : ''; ?> name="upload">
+                                </span>
+                                <span class="text-muted"><?php echo __('Format: ') . $extension; ?></span>
+                                <span class="text-muted">(<?php echo Pi::service('file')->transformSize($filesize); ?>)</span>
+
+                                <div class="upload-item">
+                                    <table class="table table-striped">
+                                        <tbody class="files"></tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane" id="image-choose">
+                                <div class="clearfix form-inline" style="margin-bottom: 20px">
+                                    <div class="pull-right form-search">
+                                        <div class="form-group">
+                                            <input type="text" value="" placeholder="<?php _e('Title'); ?>" class="form-control" name="media-title">
+                                        </div>
+                                        <button class="media-search btn"><?php _e('Search'); ?></button>
+                                    </div>
+                                </div>
+                                <div id="media-select-result" style="margin-bottom: 20px"></div>
+                                <div id="media-lists">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="selected-media">
+                        <h4><?php _e('Selected Medias'); ?></h4>
+                        <div class="all-items row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Template used to list searched image items -->
+<script id="media-searched-image-item" type="text/template">
+    <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+        <i class="item-selected fa fa-check-square-o hide"></i>
+        <img class="searched-image" src="<%= url %>" alt="<%= title %>" title="<%= title %>">
+    </div>
+</script>
+
+<!-- Template used to list searched attachment items -->
+<script id="media-searched-attachment-item" type="text/template">
+    <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+        <i class="item-selected fa fa-check-square-o hide"></i>
+        <div class="searched-attachment" title="<%= title %>">
+            <%= title %>
+        </div>
+    </div>
+</script>
+
+<!-- Template used to list selected image items -->
+<script id="media-selected-image-item" type="text/template">
+    <% _.each(exist, function(item) { %>
+        <div class="selected-item col-md-2" data-id="<%= item.id %>">
+            <i class="remove-item fa fa-times"></i>
+            <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
+        </div>
+    <% }); %>
+</script>
+
+<!-- Template used to list selected attchment items -->
+<script id="media-selected-attachment-item" type="text/template">
+    <% _.each(exist, function(item) { %>
+        <div class="selected-item col-md-4" data-id="<%= item.id %>" style="position: relative; margin-bottom: 20px">
+            <i class="remove-item fa fa-times"></i>
+            <div class="attachment" title="<%= item.title %>">
+                <%= item.title %>
+            </div>
+        </div>
+    <% }); %>
+</script>
+
+<!-- Template used to list preivew image items -->
+<script id="media-preview-image-item" type="text/template">
+    <% _.each(exist, function(item) { %>
+        <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
+            <i class="remove-item fa fa-times"></i>
+            <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
+        </div>
+    <% }); %>
+</script>
+
+<!-- Template used to list preview attchment items -->
+<script id="media-preview-attachment-item" type="text/template">
+    <% _.each(exist, function(item) { %>
+        <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px;">
+            <i class="remove-item fa fa-times"></i>
+            <div class="attachment" title="<%= item.title %>">
+                <%= item.title %>
+            </div>
+        </div>
+    <% }); %>
+</script>
+
+<script id="media-start-upload" type="text/template">
+    <tr class="template-upload fade in">
+        <td><%= name %></td>
+        <td><%= size %></td>
+        <td style="width: 20%"><div id="progress"><div class="bar"></div></div></td>
+    </tr>
+</script>
+
+<script type="text/javascript">
+(function($) {
+    var <?php echo ucfirst($id); ?>ImageView = Backbone.View.extend({
+        el              : $("#<?php echo $id; ?>-image-element"),
+        collection      : new Backbone.Collection(<?php echo json_encode(array_values($medias)); ?>),
+        events          : {
+            "click .media-search"        : "search",
+            "click .single-item img"     : "toggle",
+            "click .searched-attachment" : "toggle",
+            "click .remove-item"         : "remove",
+            "click [name=upload]"        : "fileupload"
+        },
+        initialize      : function() {
+            _.bindAll(this);
+            this.renderPreview();
+            
+            this.$("#media-button").html($("#media-upload-button").html());
+            this.input = $('input[name="upload"]');
+            
+            this.collection.on("add", this.render);
+            this.collection.on("remove", this.render);
+            this.render();
+
+            // Init searched media
+            this.page = 1;
+            this.title = '';
+            this.doSearch();
+            this.scroll = this.$("#media-lists").scroll(this.scrollSearch);
+        },
+        renderPreview   : function() {
+            var template = '';
+            if ('image' === '<?php echo $type; ?>') {
+                template = $("#media-preview-image-item").html();
+            } else {
+                template = $("#media-preview-attachment-item").html();
+            }
+            this.$(".image-thumb").html(_.template(template, {
+                exist: this.collection.toJSON()
+            }));
+        },
+        fileupload      : function(e) {
+            var self = this;
+            $(e.target).fileupload({
+                url                 : '<?php echo $urls['upload']; ?>',
+                sequentialUploads   : true,
+                add     : function(e, data) {
+                    var errors = false;
+                    if (!data.files[0].name.match(/(\.|\/)(<?php echo str_replace(',', '|', $extension); ?>)$/i)) {
+                        alert('<?php _e('Incorrect file type.'); ?>');
+                        errors = true;
+                    }
+                    if (data.files[0].size > '<?php echo $filesize; ?>') {
+                        alert('<?php _e('File exceeds allowed size.'); ?>');
+                        errors = true;
+                    }
+                    
+                    if (!errors) {
+                        $('.files').append(_.template($('#media-start-upload').html(), {
+                            size    : data.files[0].size / 1024 + 'KB',
+                            name    : data.files[0].name
+                        }));
+                        data.submit();
+                    }
+                },
+                done    : function(e, data) {
+                    var result = $.parseJSON(data.jqXHR.responseText);
+                    if (result.status) {
+                        if (<?php echo $toSession ? 1 : 0; ?>) {
+                            self.collection.add({
+                                id    : result.data.id,
+                                url   : result.data.preview_url,
+                                title : result.data.raw_name
+                            });
+                        } else {
+                            $.get(
+                                '<?php echo rtrim($urls['save'], '/'); ?>/fake_id-' + result.data.id,
+                                function(resp)
+                            {
+                                var response = $.parseJSON(resp);
+                                if (response.status) {
+                                    if (!<?php echo $multiple ? 1 : 0; ?>) {
+                                        $(".selected-item").each(function() {
+                                            var id = $(this).data("id");
+                                            self.collection.remove(id);
+                                        });
+                                    }
+                                    self.collection.add({
+                                        id    : response.data.id,
+                                        url   : response.data.url,
+                                        title : response.data.title
+                                    });
+                                } else {
+                                    alert(response.message);
+                                }
+                            });
+                        }
+                    } else {
+                        alert(result.message);
+                    }
+                },
+                progressall : function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#progress .bar').css(
+                        'width',
+                        progress + '%'
+                    );
+                }
+            });
+        },
+        // Search media by title
+        search          : function(e) {
+            this.title = this.$('input[name="media-title"]').val();
+            this.page  = 1;
+            this.count = 0;
+            this.doSearch(true);
+        },
+        scrollSearch    : function() {
+             var sh = this.scroll[0].scrollHeight,
+                 sp = this.scroll.scrollTop(),
+                 h  = this.scroll.outerHeight(),
+                 l  = this.$("#media-lists").find(".single-item").length;
+                 if (sp + h >= sh/* && l < this.count*/) {
+                     this.doSearch(false);
+                 }
+        },
+        doSearch        : function(reset) {
+            var url = '<?php echo rtrim($urls['search'], '/'); ?>/page-' + this.page;
+            if (this.title) {
+                url += '/title-' + this.title;
+            }
+            var self = this;
+            $.get(url, function(result) {
+                var result = $.parseJSON(result);
+                if (!(result.data instanceof Array) && result.data) {
+                    var lists  = result.data;
+                    if (reset) {
+                        self.$("#media-lists").html('');
+                    }
+                    for (i in lists) {
+                        var template = '';
+                        if ('image' === '<?php echo $type; ?>') {
+                            template = $("#media-searched-image-item").html();
+                        } else {
+                            template = $("#media-searched-attachment-item").html();
+                        }
+                        self.$('#media-lists').append(_.template(template, lists[i]));
+                    }
+                    self.count = result.count;
+                    self.page++;
+                    
+                    self.render();
+                }
+            });
+        },
+        toggle          : function(e) {
+            var obj = $(e.target);
+            if (obj.parents(".single-item").data("checked")) {
+                this.remove(e);
+            } else {
+                this.insert(e);
+            }
+        },
+        insert          : function(e) {
+            if (!<?php echo $multiple ? 1 : 0; ?>) {
+                var self = this;
+                $(".selected-item").each(function() {
+                    var id = $(this).data("id");
+                    self.collection.remove(id);
+                });
+            }
+            var obj = $(e.target).parents(".single-item");
+            this.collection.add({
+                id      : obj.data("id"),
+                url     : obj.find("img").attr("src"),
+                title   : obj.data("title")
+            });
+        },
+        remove          : function(e) {
+            var obj = $(e.target).parents("div");
+            var id = obj.data("id");
+            var item = this.$("#media-lists").find("[data-id=" + id + "]");
+            item.data("checked", 0);
+            item.find("i").addClass("hide");
+            this.collection.remove(id);
+            if (<?php echo $toSession ? 1 : 0 ?>) {
+                $.get('<?php echo rtrim($urls['remove'], '/'); ?>/fake_id-' + id, function(result) {});
+            }
+        },
+        render          : function() {
+            var template = '';
+            if ('image' === '<?php echo $type; ?>') {
+                template = $("#media-selected-image-item").html();
+            } else {
+                template = $("#media-selected-attachment-item").html();
+            }
+            this.$(".all-items").html(_.template(template, {
+                exist: this.collection.toJSON()
+            }));
+            if (!<?php echo $multiple ? 1 : 0; ?>) {
+                var self = this;
+                $(".single-item").each(function() {
+                    $(this).data("checked", 0);
+                    $(this).find("i").addClass("hide");
+                });
+            }
+            _.each(this.collection.pluck("id"), _.bind(function(id) {
+                var item = this.$("#media-lists").find("[data-id=" + id + "]");
+                item.data("checked", 1);
+                item.find("i").removeClass("hide");
+            }, this));
+            $("[name=<?php echo $name; ?>]").val(this.collection.pluck("id").join(","));
+            
+            this.renderPreview();
+        }
+    });
+    new <?php echo ucfirst($id); ?>ImageView;
+})(jQuery);
+</script>

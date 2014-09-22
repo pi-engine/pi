@@ -21,23 +21,6 @@ use Pi;
 class TimePublish extends AbstractCustomHelper
 {
     /**
-     * Invoke helper as function
-     *
-     * Proxies to {@link render()}.
-     *
-     * @param  ElementInterface|null $element
-     * @return string|self
-     */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
      * {@inheritDoc}
      */
     public function render(ElementInterface $element)
@@ -68,17 +51,13 @@ class TimePublish extends AbstractCustomHelper
             }
         }
         
-        $attributes = $element->getAttributes();
         $this->assign(array(
-            'name'       => $element->getName(),
-            'value'      => $element->getValue(),
             'date'       => $date,
             'hour'       => $hour,
             'minute'     => $minute,
             'required'   => $required ? 'required="required"' : '',
-            'attributes' => $this->createAttributesString($attributes),
         ));
         
-        return $this->getTemplate($element);
+        return $this->getTemplate($element, 'time-publish');
     }
 }
