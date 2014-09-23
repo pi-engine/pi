@@ -41,7 +41,7 @@ class TemplateModule extends AbstractHelper
         $template = $module ? $module . ':' . $template : $template;
 
         $resolver = new ModuleTemplateResolver;
-        $template = $resolver->resolve($template);
+        $template = $resolver->resolve($template, $this->view);
 
         return $template;
     }
