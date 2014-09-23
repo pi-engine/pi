@@ -36,6 +36,6 @@ class TemplateTheme extends AbstractHelper
      */
     public function __invoke($template, $theme = null)
     {
-        return $this->getView()->resolver($template);
+        return $this->getView()->resolver($template, $this->view);
     }
 }
