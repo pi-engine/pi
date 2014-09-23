@@ -71,8 +71,7 @@ class DraftForm extends BaseForm
         $fields = $this->fields;
         
         $hidden = array(
-            'time_update', 'time_submit', 'uid', 'id', 'fake_id', 'article',
-            'jump',
+            'time_update', 'time_submit', 'uid', 'id', 'article', 'jump',
         );
         foreach ($hidden as $key) {
             $fields[] = array(
@@ -80,8 +79,8 @@ class DraftForm extends BaseForm
                 'type' => 'hidden',
             );
         }
-        $enableTag = Pi::config('enable_tag', $this->module);
-        if (!empty($enableTag)) {
+        //$enableTag = Pi::config('enable_tag', $this->module);
+        //if (!empty($enableTag)) {
             $fields[] = array(
                 'name'    => 'tag',
                 'type'    => 'tag',
@@ -89,7 +88,7 @@ class DraftForm extends BaseForm
                     'label'  => __('Tags'),
                 ),
             );
-        }
+        //}
         $fields[] = array(
             'name'       => 'security',
             'type'       => 'csrf',
@@ -125,7 +124,7 @@ class DraftForm extends BaseForm
                 $this->configIdentifier
             );
         }
-        foreach (array('related', 'tag') as $key) {
+        foreach (array('tag') as $key) {
             $filters[] = array(
                 'name'     => $key,
                 'required' => false,

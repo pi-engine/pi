@@ -78,7 +78,7 @@ class Media extends AbstractCustomHelper
             'urls'       => $element->getAjaxUrls(),
             'extension'  => $extension,
             'filesize'   => $filesize,
-            'multiple'   => isset($options['multiple']) ? (bool) $options['multiple'] : true,
+            'multiple'   => isset($options['multiple']) ? (bool) $options['multiple'] : false,
             'to_session' => isset($options['to_session']) ? (bool) $options['to_session'] : false,
             'type'       => $type,
             'medias'     => isset($options['medias']) ? $options['medias'] : array(),

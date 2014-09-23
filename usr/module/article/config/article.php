@@ -121,6 +121,8 @@ return array(
             ),
             // Is editable by admin, default as true
             'is_edit'    => false,
+            // Do not insert this column to article table
+            'is_insert'  => false,
         ),
         'subtitle'       => array(
             'type'       => 'common',
@@ -131,6 +133,7 @@ return array(
                 'element'  => 'Module\Article\Form\Element\Subtitle',
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'summary'        => array(
             'type'       => 'common',
@@ -141,6 +144,7 @@ return array(
                 'element'  => 'Module\Article\Form\Element\Summary',
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'content'        => array(
             'type'       => 'common',
@@ -151,6 +155,7 @@ return array(
                 'element'  => 'Module\Article\Form\Element\Content',
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'markup'         => array(
             'type'       => 'common',
@@ -161,6 +166,7 @@ return array(
             ),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'image'          => array(
             'type'       => 'common',
@@ -182,12 +188,58 @@ return array(
                 ),
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
+        ),
+        'gallery'        => array(
+            'type'       => 'common',
+            'name'       => 'gallery',
+            'title'      => _a('Gallery'),
+            'edit'       => array(
+                'required' => false,
+                'element'  => 'Module\Article\Form\Element\Media',
+                'options'  => array(
+                    'preview'   => array(
+                        'width'     => 80,
+                        'height'    => 60,
+                    ),
+                    'type'       => 'image',
+                    'multiple'   => true,
+                ),
+                'attributes' => array(
+                    'id'        => 'gallery',
+                ),
+            ),
+            'is_edit'    => false,
+            'is_insert'  => false,
+        ),
+        'attachment'     => array(
+            'type'       => 'common',
+            'name'       => 'attachment',
+            'title'      => _a('Attachment'),
+            'edit'       => array(
+                'required' => false,
+                'element'  => 'Module\Article\Form\Element\Media',
+                'options'  => array(
+                    'preview'   => array(
+                        'width'     => 120,
+                        //'height'    => 60,
+                    ),
+                    'type'       => 'attachment',
+                    'multiple'   => true,
+                ),
+                'attributes' => array(
+                    'id'        => 'attachment',
+                ),
+            ),
+            'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'uid'            => array(
             'type'       => 'common',
             'name'       => 'uid',
             'title'      => _a('Submitter'),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'author'         => array(
             'type'       => 'common',
@@ -197,6 +249,7 @@ return array(
                 'element'  => 'Module\Article\Form\Element\Author',
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'source'         => array(
             'type'       => 'common',
@@ -204,6 +257,7 @@ return array(
             'title'      => _a('Source'),
             'edit'       => 'text',
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'pages'          => array(
             'type'       => 'common',
@@ -211,6 +265,7 @@ return array(
             'title'      => _a('Pages'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'category'       => array(
             'type'       => 'common',
@@ -220,6 +275,7 @@ return array(
                 'element'  => 'Module\Article\Form\Element\Category',
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'cluster'        => array(
             'type'       => 'common',
@@ -229,6 +285,7 @@ return array(
                 'element'  => 'Module\Article\Form\Element\Cluster',
             ),
             'is_edit'    => false,
+            'is_insert'  => false,
         ),
         'status'         => array(
             'type'       => 'common',
@@ -236,6 +293,7 @@ return array(
             'title'      => _a('Status'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'active'         => array(
             'type'       => 'common',
@@ -243,6 +301,7 @@ return array(
             'title'      => _a('Activate'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'time_submit'    => array(
             'type'       => 'common',
@@ -250,6 +309,7 @@ return array(
             'title'      => _a('Submit Time'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'time_publish'   => array(
             'type'       => 'common',
@@ -260,6 +320,7 @@ return array(
             ),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'time_update'    => array(
             'type'       => 'common',
@@ -267,6 +328,7 @@ return array(
             'title'      => _a('Update Time'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         'user_update'    => array(
             'type'       => 'common',
@@ -274,6 +336,7 @@ return array(
             'title'      => _a('Update user ID'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
         ),
         
         // Compound
