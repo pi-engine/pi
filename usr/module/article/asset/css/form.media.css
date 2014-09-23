@@ -1,0 +1,104 @@
+#media-lists {
+    height: 200px;
+    overflow: auto;
+}
+#media-lists .single-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+#media-lists .item-selected {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 20;
+    color: red;
+}
+#media-lists .searched-image {
+    width: 100%;
+    height: 60px;
+    cursor: pointer;
+}
+#media-lists .searched-attachment {
+    width: 100%;
+    height: 30px;
+    color: #aaa;
+    overflow: hidden;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.selected-media .selected-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+.selected-media .remove-item {
+    position: absolute;
+    right: 15px;
+    top: 0;
+    z-index: 20;
+    color: red;
+    cursor: pointer;
+}
+.selected-media img {
+    width: 100%;
+    height: 60px;
+}
+.selected-media .attachment {
+    width: 100%;
+    height: 30px;
+    color: #aaa;
+    overflow: hidden;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+}
+
+.upload-item {
+    height: 200px;
+    overflow: auto;
+    margin-top: 10px;
+}
+.upload-item .bar {
+    width: 100%;
+    height: 18px;
+    background: green;
+}
+
+.selected-media {
+    margin-top: 10px;
+    border-top: 1px outset #aaa;
+}
+.selected-media .all-items {
+    height: 60px;
+    overflow: auto;
+}
+
+.image-thumb {
+    width: 100%;
+    margin-top: 10px;
+}
+.image-thumb .selected-item {
+    position: relative;
+    margin: 0 10px 20px 0;
+    float: left;
+}
+.image-thumb .remove-item {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 20;
+    color: red;
+    cursor: pointer;
+}
+.image-thumb img {
+    width: 100%;
+    height: 60px;
+}
+.image-thumb .attachment {
+    width: 100%;
+    height: 30px;
+    color: #aaa;
+    overflow: hidden;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+}

@@ -20,7 +20,8 @@
  *     ),
  *     // Case 2
  *     'field2' => array(
- *         // If there is no `field` key, `type` key can be ignored
+ *         // If there is no `field` key, it means the element is not compound item,
+ *         // therefore, `type` key can be ignored
  *         ...
  *     ),
  * ),
@@ -91,6 +92,16 @@
  * // int
  * 'field_type' => 'int(10) unsigned not null default \'0\',
  * </code>
+ * 
+ * Media form
+ * @see Module\Article\Form\Element\Media
+ * <code>
+ * 'edit' => array(
+ *     'element' => array(
+ *         'type' => 'Module\Article\Form\Element\Media',
+ *     ),
+ * ),
+ * </code>
  *
  * @see Module\Article\Installer\Resource\Article
  * @author Zongshu Lin <lin40553024@163.com>
@@ -155,7 +166,21 @@ return array(
             'type'       => 'common',
             'name'       => 'image',
             'title'      => _a('Image'),
-            'edit'       => 'hidden',
+            'edit'       => array(
+                'required' => false,
+                'element'  => 'Module\Article\Form\Element\Media',
+                'options'  => array(
+                    'preview'   => array(
+                        'width'     => 80,
+                        'height'    => 60,
+                    ),
+                    'type'       => 'image',
+                    'to_session' => true,
+                ),
+                'attributes' => array(
+                    'id'        => 'featured',
+                ),
+            ),
             'is_edit'    => false,
         ),
         'uid'            => array(

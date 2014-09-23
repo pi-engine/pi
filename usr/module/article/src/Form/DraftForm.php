@@ -98,6 +98,17 @@ class DraftForm extends BaseForm
         foreach ($fields as $field) {
             $this->add($field);
         }
+        
+        // Initiate image element data
+        $urls['save_draft'] = Pi::service('url')->assemble('default', array(
+            'controller' => 'draft',
+            'action'     => 'save-image',
+        ));
+        $urls['remove_draft'] = Pi::service('url')->assemble('default', array(
+            'controller' => 'draft',
+            'action'     => 'remove-image',
+        ));
+        $this->get('image')->setOption('urls', $urls);
     }
 
     /**

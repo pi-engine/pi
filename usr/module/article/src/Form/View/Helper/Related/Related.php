@@ -25,18 +25,6 @@ class Related extends AbstractCustomHelper
     /**
      * {@inheritDoc}
      */
-    public function __invoke(ElementInterface $element = null)
-    {
-        if (!$element) {
-            return $this;
-        }
-
-        return $this->render($element);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function render(ElementInterface $element)
     {
         $module = $element->getOption('module') ?:
@@ -65,16 +53,12 @@ class Related extends AbstractCustomHelper
             });
         }
         
-        $attributes = $element->getAttributes();
         $this->assign(array(
             'enable_tag' => Pi::config('enable_tag', $module),
             'url'        => $url,
             'related'    => $related,
-            'attributes' => $this->createAttributesString($attributes),
-            'name'       => $element->getName(),
-            'value'      => $element->getValue(),
         ));
 
-        return $this->getTemplate($element);
+        return $this->getTemplate($element, 'related');
     }
 }
