@@ -20,8 +20,8 @@ use Zend\Form\Element\Hidden;
  * `preview`:    array, preview media size, include fields `width` and `height`
  * `size`:       array, allowed size of uploaded media, include fields `width` and `height`
  * `type`:       string, which media want to upload, 'image' or 'attachment' or '' (all types)
- * `multiple`:   bool, whether to allowed to upload more than one media
- * `to_session`: bool, whether to store media in session or media section
+ * `multiple`:   bool, whether to allowed to upload more than one media, default as false
+ * `to_session`: bool, whether to store media in session or media section, default as false
  * `urls`:       array, @see description of $urls variable
  * 
  * <Attributes>

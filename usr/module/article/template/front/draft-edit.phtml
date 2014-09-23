@@ -2,11 +2,15 @@
 $this->jQuery('extension/fileupload-min.js');
 $this->css($this->assetModule('script/front.css'));
 $this->Backbone();
-
-$uid = Pi::user()->getId();
 ?>
 
 <div id="draft-page" class="row">
+    <?php
+        $form->prepare();
+        $form->setAttribute('class', 'form-horizontal');
+        $form->setAttribute('enctype', 'multipart/form-data');
+        echo $this->form()->openTag($form);
+    ?>
     <div class="col-md-8">
     <?php 
         // Move some element (i.e.: time publish, featured image, gallery, related article) to right side
@@ -20,6 +24,10 @@ $uid = Pi::user()->getId();
         if ($form->has('image')) {
             $imageElement = $form->get('image');
             $form->remove('image');
+        }
+        if ($form->has('gallery')) {
+            $galleryElement = $form->get('gallery');
+            $form->remove('gallery');
         }
         include $this->templateModule('article:component/form');
     ?>
@@ -156,6 +164,19 @@ $uid = Pi::user()->getId();
         </div>
         <!-- End featured image management block -->
         
+        <!-- Start gallery management block -->
+        <div class="widget" id="jsGallery">
+            <div class="widget-header" style="cursor: pointer;" title="<?php _e('Click toggle show'); ?>">
+                <i class="icon-caret-up fa fa-chevron-up"></i>
+                <i class="icon-caret-down fa fa-chevron-down"></i>
+                <strong><?php _e('Image gallery'); ?></strong>
+            </div>
+            <div class="widget-body" style="padding-right: 0; display: inline-block; width: 100%;">
+                <?php echo $this->formElement($galleryElement); ?>
+            </div>
+        </div>
+        <!-- End gallery management block -->
+        
         <!-- Start related article management block -->
         <?php
             if ($relatedElement) {
@@ -170,26 +191,8 @@ $uid = Pi::user()->getId();
         <!-- End related article management block -->
         
     </div>
+    <?php echo $this->form()->closeTag(); ?>
 </div>
-
-
-<div id="jsUploadModel" class="modal"></div>    
-<script id="temp-upload-model" type="text/template">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button aria-hidden="true" data-dismiss="modal" class="close close-all" type="button">×</button>
-                <strong><?php _e('Error'); ?></strong>
-            </div>
-            <div class="modal-body">
-                <p class="text-error"><span style="margin-right:10px;">"<%= fileName%>"</span><%= message %></p>
-            </div>
-            <div class="modal-footer">
-                <span class="close-all btn btn-primary"><?php _e('Done'); ?></span>
-            </div>
-        </div>
-    </div>
-</script>
        
 <script id="temp-validate" type="text/template">
     <div class="alert <% if (status) { %>alert-success<% } else { %>alert-danger<% } %>" id="jsAlert">
@@ -222,14 +225,8 @@ var response;
 (function($) {
 var page = {
     base    : "<?php echo Pi::url(''); ?>",
-    id      : "<?php echo $form->get('id')->getValue() ?: $form->get('fake_id')->getValue(); ?>",
-    ajaxId  : function() {
-        var id      = $("[name=id]").val();
-        var fake_id = $("[name=fake_id]").val();
-        return id.length ? 'id-' + id : 'fake_id-' + fake_id;
-    },
     status  : "<?php echo $this->escape($draft['status']); ?>",
-    form    : $("form.row"),
+    form    : $("form#draft"),
     from    : "<?php echo isset($from) ? $this->escape($from) : ''; ?>",
     init    : function () {
         this.jump = this.$("[name=jump]");
@@ -264,7 +261,7 @@ var page = {
             fail    : function(){}
         };
         option = _.extend(option,arg);
-        this.$("#content").val(this.editor.getData());
+        this.$("[name=content]").val(this.editor.getData());
         this.$("select:disabled").removeAttr("disabled");
         $.post(option.url, this.form.serialize()).done(function (resp) {
             resp = $.parseJSON(resp);
@@ -278,7 +275,7 @@ var page = {
                         },200)
                     } else {
                         page.$("[name=id]").val(resp.data.id);
-                        page.id = resp.data.id;
+                        //page.id = resp.data.id;
                     }
                 }
                 option.fn(resp.data);

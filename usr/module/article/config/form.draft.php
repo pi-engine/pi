@@ -19,7 +19,9 @@ return array(
     'summary',
     'content',
     'image',
-    'time_publish',
+    //'time_publish',
     'tag',
+    'attachment',
     'related',
+    'gallery',
 );

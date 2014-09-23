@@ -403,7 +403,9 @@ class Article extends AbstractResource
                     if ($spec['handler']) {
                         $customNew[] = $spec;
                     } elseif ('common' == $spec['type']) {
-                        $commonFields[$key] = $fieldType;
+                        if (isset($spec['is_insert']) && $spec['is_insert']) {
+                            $commonFields[$key] = $fieldType;
+                        }
                     }
                 }
             }
@@ -502,6 +504,7 @@ class Article extends AbstractResource
             foreach ($items as $key => $spec) {
                 $fieldType = $spec['field_type'];
                 unset($spec['field_type']);
+                unset($spec['is_insert']);
                 $row = $model->createRow($spec);
                 $status = $row->save();
                 if (!$status) {
@@ -518,7 +521,9 @@ class Article extends AbstractResource
                     if (isset($spec['handler']) && $spec['handler']) {
                         $custom['add'][] = $spec;
                     } elseif ('common' == $spec['type']) {
-                        $fieldsNew[$key] = $fieldType;
+                        if (isset($spec['is_insert']) && $spec['is_insert']) {
+                            $fieldsNew[$key] = $fieldType;
+                        }
                     }
                 }
             }

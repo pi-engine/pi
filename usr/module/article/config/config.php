@@ -52,35 +52,6 @@ return array(
             'value'       => 5,
             'filter'      => 'int',
         ),
-        'page_limit_management' => array(
-            'category'    => 'general',
-            'title'       => _t('Article Management Page Limit'),
-            'description' => _t('Maximum count of articles in a management page.'),
-            'value'       => 40,
-            'filter'      => 'int',
-        ),
-        'author_limit'    => array(
-            'category'    => 'general',
-            'title'       => _t('Author Limit'),
-            'description' => _t('Maximum count of author in management page.'),
-            'value'       => 20,
-            'filter'      => 'int',
-        ),
-        'category_limit'  => array(
-            'category'    => 'general',
-            'title'       => _t('Category Limit'),
-            'description' => _t('Maximum count of category in management page.'),
-            'value'       => 20,
-            'filter'      => 'int',
-        ),
-        'enable_tag'      => array(
-            'category'    => 'general',
-            'title'       => _t('Enable Tag'),
-            'description' => _t('Enable tag (Tag module must be installed)'),
-            'edit'        => 'checkbox',
-            'value'       => 1,
-            'filter'      => 'int',
-        ),
         'default_source'  => array(
             'category'    => 'general',
             'title'       => _t('Default Source'),
@@ -180,6 +151,13 @@ return array(
             'value'       => 1,
             'filter'      => 'int',
         ),
+        'repeat_subject'  => array(
+            'category'    => 'general',
+            'title'       => _t('Whether allows repeat subject'),
+            'edit'        => 'checkbox',
+            'value'       => 1,
+            'filter'      => 'int',
+        ),
 
         // Autosave
         'autosave_interval' => array(
@@ -191,12 +169,11 @@ return array(
         ),
         
         // Summary
-        'enable_summary'     => array(
+        'max_subject_length' => array(
             'category'    => 'summary',
-            'title'       => _t('Enable Summary'),
-            'description' => _t('Enable summary'),
-            'edit'        => 'checkbox',
-            'value'       => 1,
+            'title'       => _t('Max Subject Length'),
+            'description' => _t('Not more than 255'),
+            'value'       => 60,
             'filter'      => 'int',
         ),
         'max_summary_length' => array(
@@ -204,13 +181,6 @@ return array(
             'title'       => _t('Max Summary Length'),
             'description' => _t('Not more than 255'),
             'value'       => 255,
-            'filter'      => 'int',
-        ),
-        'max_subject_length' => array(
-            'category'    => 'summary',
-            'title'       => _t('Max Subject Length'),
-            'description' => _t('Not more than 255'),
-            'value'       => 60,
             'filter'      => 'int',
         ),
         'max_subtitle_length' => array(
@@ -287,15 +257,15 @@ return array(
             'category'    => 'media',
             'title'       => _t('Image Height'),
             'description' => _t('Max allowed image height'),
-            'value'       => 460,
+            'value'       => 540,
         ),
         'image_extension' => array(
             'category'    => 'media',
             'title'       => _t('Image Extension'),
             'description' => _t('Images types which can be uploaded.'),
-            'value'       => 'jpg,png,gif',
+            'value'       => 'jpg,jpeg,png,gif',
         ),
-        'max_image_size' => array(
+        'max_image_size'  => array(
             'category'    => 'media',
             'title'       => _t('Max Image Size'),
             'description' => _t('Max image size allowed, unit is Byte'),
@@ -445,14 +415,14 @@ return array(
             'category'    => 'media',
             'title'       => _t('Feature Image Width'),
             'description' => _t('Feature image width'),
-            'value'       => 440,
+            'value'       => 80,
             'filter'      => 'int',
         ),
         'feature_height'  => array(
             'category'    => 'media',
             'title'       => _t('Feature Image Height'),
             'description' => _t('Feature image height'),
-            'value'       => 300,
+            'value'       => 60,
             'filter'      => 'int',
         ),
         'default_feature_image' => array(
@@ -460,40 +430,6 @@ return array(
             'title'       => _t('Default Feature Image'),
             'description' => _t('Path to default feature image of article.'),
             'value'       => 'image/default-feature.png',
-        ),
-        'feature_thumb_width' => array(
-            'category'    => 'media',
-            'title'       => _t('Feature thumb width'),
-            'description' => '',
-            'value'       => 80,
-            'filter'      => 'int',
-        ),
-        'feature_thumb_height' => array(
-            'category'    => 'media',
-            'title'       => _t('Feature thumb height'),
-            'description' => '',
-            'value'       => 60,
-            'filter'      => 'int',
-        ),
-        'default_feature_thumb' => array(
-            'category'    => 'media',
-            'title'       => _t('Default feature thumb'),
-            'description' => _t('Path to default feature thumb of article.'),
-            'value'       => 'image/default-feature-thumb.png',
-        ),
-        'content_thumb_width' => array(
-            'category'    => 'media',
-            'title'       => _t('Content thumb width'),
-            'description' => '',
-            'value'       => 640,
-            'filter'      => 'int',
-        ),
-        'content_thumb_height' => array(
-            'category'    => 'media',
-            'title'       => _t('Content thumb height'),
-            'description' => '',
-            'value'       => 360,
-            'filter'      => 'int',
         ),
 
         // SEO

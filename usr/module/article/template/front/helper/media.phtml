@@ -23,16 +23,18 @@ Need parameters:
     <input type="hidden" value="<?php echo $value; ?>" name="<?php echo $name; ?>" <?php echo $attributes; ?>>
     <div class="pull-left" style="width: 100%">
         <div style="width: 100%">
-            <button class="btn upload fileinput-button" data-toggle="modal" href="#upload-box">
+            <button class="btn upload fileinput-button" data-toggle="modal" href="#<?php echo $id; ?>-upload-box">
                 <?php _e('Upload'); ?>
             </button>
-            <span class="text-muted"><?php echo _e('Image size: '). $size['width'] . '×' . $size['height']; ?></span>
+            <?php if ('image' === $type) { ?>
+            <span class="text-muted"><?php echo _e('Max image size: '). $size['width'] . '×' . $size['height']; ?></span>
+            <?php } ?>
         </div>
         <div class="image-thumb"></div>
     </div>
     
     <!-- Upload panel -->
-    <div id="upload-box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header" aria-hidden="true">
+    <div id="<?php echo $id; ?>-upload-box" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modal-header" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Header -->
@@ -45,16 +47,16 @@ Need parameters:
                     <div class="tabbable">
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#image-upload" data-toggle="tab"><?php _e('Upload Media'); ?></a>
+                                <a href="#<?php echo $id; ?>-image-upload" data-toggle="tab"><?php _e('Upload Media'); ?></a>
                             </li>
                             <li>
-                                <a href="#image-choose" data-toggle="tab">
+                                <a href="#<?php echo $id; ?>-image-choose" data-toggle="tab">
                                     <?php _e('Choose From Media'); ?>
                                 </a>
                             </li>
                         </ul>
                         <div class="tab-content" style="overflow: hidden">
-                            <div class="tab-pane active" id="image-upload">
+                            <div class="tab-pane active" id="<?php echo $id; ?>-image-upload">
 
                                 <span class="btn btn-success upload fileinput-button">
                                     <i class="glyphicon glyphicon-plus"></i>
@@ -71,7 +73,7 @@ Need parameters:
                                 </div>
 
                             </div>
-                            <div class="tab-pane" id="image-choose">
+                            <div class="tab-pane" id="<?php echo $id; ?>-image-choose">
                                 <div class="clearfix form-inline" style="margin-bottom: 20px">
                                     <div class="pull-right form-search">
                                         <div class="form-group">
@@ -94,77 +96,78 @@ Need parameters:
             </div>
         </div>
     </div>
+    
+    <!-- Template used to list searched image items -->
+    <script id="media-searched-image-item" type="text/template">
+        <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+            <i class="item-selected fa fa-check-square-o hide"></i>
+            <img class="searched-image" src="<%= url %>" alt="<%= title %>" title="<%= title %>">
+        </div>
+    </script>
+
+    <!-- Template used to list searched attachment items -->
+    <script id="media-searched-attachment-item" type="text/template">
+        <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+            <i class="item-selected fa fa-check-square-o hide"></i>
+            <div class="searched-attachment" title="<%= title %>">
+                <%= title %>
+            </div>
+        </div>
+    </script>
+
+    <!-- Template used to list selected image items -->
+    <script id="media-selected-image-item" type="text/template">
+        <% _.each(exist, function(item) { %>
+            <div class="selected-item col-md-2" data-id="<%= item.id %>">
+                <i class="remove-item fa fa-times"></i>
+                <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
+            </div>
+        <% }); %>
+    </script>
+
+    <!-- Template used to list selected attchment items -->
+    <script id="media-selected-attachment-item" type="text/template">
+        <% _.each(exist, function(item) { %>
+            <div class="selected-item col-md-4" data-id="<%= item.id %>" style="position: relative; margin-bottom: 20px">
+                <i class="remove-item fa fa-times"></i>
+                <div class="attachment" title="<%= item.title %>">
+                    <%= item.title %>
+                </div>
+            </div>
+        <% }); %>
+    </script>
+
+    <!-- Template used to list preivew image items -->
+    <script id="media-preview-image-item" type="text/template">
+        <% _.each(exist, function(item) { %>
+            <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
+                <i class="remove-item fa fa-times"></i>
+                <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
+            </div>
+        <% }); %>
+    </script>
+
+    <!-- Template used to list preview attchment items -->
+    <script id="media-preview-attachment-item" type="text/template">
+        <% _.each(exist, function(item) { %>
+            <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px;">
+                <i class="remove-item fa fa-times"></i>
+                <div class="attachment" title="<%= item.title %>">
+                    <%= item.title %>
+                </div>
+            </div>
+        <% }); %>
+    </script>
+
+    <script id="media-start-upload" type="text/template">
+        <tr class="template-upload fade in">
+            <td><%= name %></td>
+            <td><%= size %></td>
+            <td style="width: 20%"><div id="progress"><div class="bar"></div></div></td>
+        </tr>
+    </script>
+
 </div>
-
-<!-- Template used to list searched image items -->
-<script id="media-searched-image-item" type="text/template">
-    <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
-        <i class="item-selected fa fa-check-square-o hide"></i>
-        <img class="searched-image" src="<%= url %>" alt="<%= title %>" title="<%= title %>">
-    </div>
-</script>
-
-<!-- Template used to list searched attachment items -->
-<script id="media-searched-attachment-item" type="text/template">
-    <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
-        <i class="item-selected fa fa-check-square-o hide"></i>
-        <div class="searched-attachment" title="<%= title %>">
-            <%= title %>
-        </div>
-    </div>
-</script>
-
-<!-- Template used to list selected image items -->
-<script id="media-selected-image-item" type="text/template">
-    <% _.each(exist, function(item) { %>
-        <div class="selected-item col-md-2" data-id="<%= item.id %>">
-            <i class="remove-item fa fa-times"></i>
-            <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
-        </div>
-    <% }); %>
-</script>
-
-<!-- Template used to list selected attchment items -->
-<script id="media-selected-attachment-item" type="text/template">
-    <% _.each(exist, function(item) { %>
-        <div class="selected-item col-md-4" data-id="<%= item.id %>" style="position: relative; margin-bottom: 20px">
-            <i class="remove-item fa fa-times"></i>
-            <div class="attachment" title="<%= item.title %>">
-                <%= item.title %>
-            </div>
-        </div>
-    <% }); %>
-</script>
-
-<!-- Template used to list preivew image items -->
-<script id="media-preview-image-item" type="text/template">
-    <% _.each(exist, function(item) { %>
-        <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
-            <i class="remove-item fa fa-times"></i>
-            <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
-        </div>
-    <% }); %>
-</script>
-
-<!-- Template used to list preview attchment items -->
-<script id="media-preview-attachment-item" type="text/template">
-    <% _.each(exist, function(item) { %>
-        <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px;">
-            <i class="remove-item fa fa-times"></i>
-            <div class="attachment" title="<%= item.title %>">
-                <%= item.title %>
-            </div>
-        </div>
-    <% }); %>
-</script>
-
-<script id="media-start-upload" type="text/template">
-    <tr class="template-upload fade in">
-        <td><%= name %></td>
-        <td><%= size %></td>
-        <td style="width: 20%"><div id="progress"><div class="bar"></div></div></td>
-    </tr>
-</script>
 
 <script type="text/javascript">
 (function($) {
@@ -183,7 +186,7 @@ Need parameters:
             this.renderPreview();
             
             this.$("#media-button").html($("#media-upload-button").html());
-            this.input = $('input[name="upload"]');
+            this.input = this.$('input[name="upload"]');
             
             this.collection.on("add", this.render);
             this.collection.on("remove", this.render);
@@ -198,9 +201,9 @@ Need parameters:
         renderPreview   : function() {
             var template = '';
             if ('image' === '<?php echo $type; ?>') {
-                template = $("#media-preview-image-item").html();
+                template = this.$("#media-preview-image-item").html();
             } else {
-                template = $("#media-preview-attachment-item").html();
+                template = this.$("#media-preview-attachment-item").html();
             }
             this.$(".image-thumb").html(_.template(template, {
                 exist: this.collection.toJSON()
@@ -223,7 +226,7 @@ Need parameters:
                     }
                     
                     if (!errors) {
-                        $('.files').append(_.template($('#media-start-upload').html(), {
+                        self.$('.files').append(_.template(self.$('#media-start-upload').html(), {
                             size    : data.files[0].size / 1024 + 'KB',
                             name    : data.files[0].name
                         }));
@@ -233,6 +236,12 @@ Need parameters:
                 done    : function(e, data) {
                     var result = $.parseJSON(data.jqXHR.responseText);
                     if (result.status) {
+                        if (!<?php echo $multiple ? 1 : 0; ?>) {
+                            self.$(".selected-item").each(function() {
+                                var id = $(this).data("id");
+                                self.collection.remove(id);
+                            });
+                        }
                         if (<?php echo $toSession ? 1 : 0; ?>) {
                             self.collection.add({
                                 id    : result.data.id,
@@ -246,12 +255,6 @@ Need parameters:
                             {
                                 var response = $.parseJSON(resp);
                                 if (response.status) {
-                                    if (!<?php echo $multiple ? 1 : 0; ?>) {
-                                        $(".selected-item").each(function() {
-                                            var id = $(this).data("id");
-                                            self.collection.remove(id);
-                                        });
-                                    }
                                     self.collection.add({
                                         id    : response.data.id,
                                         url   : response.data.url,
@@ -268,7 +271,7 @@ Need parameters:
                 },
                 progressall : function (e, data) {
                     var progress = parseInt(data.loaded / data.total * 100, 10);
-                    $('#progress .bar').css(
+                    self.$('#progress .bar').css(
                         'width',
                         progress + '%'
                     );
@@ -283,13 +286,13 @@ Need parameters:
             this.doSearch(true);
         },
         scrollSearch    : function() {
-             var sh = this.scroll[0].scrollHeight,
-                 sp = this.scroll.scrollTop(),
-                 h  = this.scroll.outerHeight(),
-                 l  = this.$("#media-lists").find(".single-item").length;
-                 if (sp + h >= sh/* && l < this.count*/) {
-                     this.doSearch(false);
-                 }
+            var sh = this.scroll[0].scrollHeight,
+                sp = this.scroll.scrollTop(),
+                h  = this.scroll.outerHeight(),
+                l  = this.$("#media-lists").find(".single-item").length;
+            if (sp + h >= sh/* && l < this.count*/) {
+                this.doSearch(false);
+            }
         },
         doSearch        : function(reset) {
             var url = '<?php echo rtrim($urls['search'], '/'); ?>/page-' + this.page;
@@ -307,9 +310,9 @@ Need parameters:
                     for (i in lists) {
                         var template = '';
                         if ('image' === '<?php echo $type; ?>') {
-                            template = $("#media-searched-image-item").html();
+                            template = self.$("#media-searched-image-item").html();
                         } else {
-                            template = $("#media-searched-attachment-item").html();
+                            template = self.$("#media-searched-attachment-item").html();
                         }
                         self.$('#media-lists').append(_.template(template, lists[i]));
                     }
@@ -331,7 +334,7 @@ Need parameters:
         insert          : function(e) {
             if (!<?php echo $multiple ? 1 : 0; ?>) {
                 var self = this;
-                $(".selected-item").each(function() {
+                this.$(".selected-item").each(function() {
                     var id = $(this).data("id");
                     self.collection.remove(id);
                 });
@@ -357,26 +360,27 @@ Need parameters:
         render          : function() {
             var template = '';
             if ('image' === '<?php echo $type; ?>') {
-                template = $("#media-selected-image-item").html();
+                template = this.$("#media-selected-image-item").html();
             } else {
-                template = $("#media-selected-attachment-item").html();
+                template = this.$("#media-selected-attachment-item").html();
             }
             this.$(".all-items").html(_.template(template, {
                 exist: this.collection.toJSON()
             }));
             if (!<?php echo $multiple ? 1 : 0; ?>) {
                 var self = this;
-                $(".single-item").each(function() {
+                this.$(".single-item").each(function() {
                     $(this).data("checked", 0);
                     $(this).find("i").addClass("hide");
                 });
             }
+            var self = this;
             _.each(this.collection.pluck("id"), _.bind(function(id) {
-                var item = this.$("#media-lists").find("[data-id=" + id + "]");
+                var item = self.$("#media-lists").find("[data-id=" + id + "]");
                 item.data("checked", 1);
                 item.find("i").removeClass("hide");
             }, this));
-            $("[name=<?php echo $name; ?>]").val(this.collection.pluck("id").join(","));
+            this.$("[name=<?php echo $name; ?>]").val(this.collection.pluck("id").join(","));
             
             this.renderPreview();
         }
