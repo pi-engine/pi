@@ -11,6 +11,7 @@ namespace Module\Article\Controller\Front;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Module\Article\Media;
 
 /**
  * Ajax controller
@@ -62,34 +63,6 @@ class AjaxController extends ActionController
             'data'      => $resultset,
         );
     }
-
-    /**
-     * Get tag
-     * 
-     * @return array
-     */
-    /*
-    public function ____getFuzzyTagAction()
-    {
-        Pi::service('log')->mute();
-        $resultset = array();
-
-        $name  = $this->params('name', '');
-        $limit = $this->params('limit', 10);
-        $limit = $limit > 100 ? 100 : $limit;
-        $module = $this->getModule();
-        
-        if ($name && $this->config('enable_tag')) {
-            $resultset = Pi::service('tag')->match($name, $limit, $module);
-        }
-
-        return array(
-            'status'    => self::AJAX_RESULT_TRUE,
-            'message'   => 'ok',
-            'data'      => $resultset,
-        );
-    }
-    */
     
     /**
      * Get author name by AJAX
@@ -129,6 +102,97 @@ class AjaxController extends ActionController
             'message'   => __('OK'),
             'data'      => $resultset,
         ));
+        exit;
+    }
+    
+    /**
+     * Save image into indicated folder
+     * 
+     * @param `name` Folder name under upload folder
+     * @param `id`   Session ID or media ID
+     * @return JSON
+     */
+    protected function saveImageAction()
+    {
+        Pi::service('log')->mute();
+        
+        $return = array('status' => false);
+        
+        $uid  = Pi::user()->getId();
+        if (empty($uid)) {
+            $return['message'] = __('Access denied.');
+            echo json_encode($return);
+            exit;
+        }
+        
+        $name = $this->params('name', '');
+        $id   = $this->params('id', 0);
+        
+        if (empty($name) || empty($id)) {
+            $return['message'] = __('Name or ID is missing');
+            echo json_encode($return);
+            exit;
+        }
+        
+        // Fetch media detail from media if id is digit, or else try to fetch 
+        // it from session.
+        $module      = $this->getModule();
+        $destination = Media::getTargetDir($name, $module, true, true);
+        if (!is_numeric($id)) {
+            $session = Media::getUploadSession($module, 'media');
+            if (isset($session->$id)) {
+                $uploadInfo = $session->$id;
+
+                if ($uploadInfo) {
+                    $filename = isset($uploadInfo['tmp_name'])
+                        ? Pi::path($uploadInfo['tmp_name']) : '';
+                }
+                unset($session->$id);
+            }
+        } else {
+            $row = $this->getModel('media')->find($id);
+            if ($row->id) {
+                $filename = Pi::path($row->url);
+            }
+        }
+        if (!file_exists($filename)) {
+            $return['message'] = __('Image is missing.');
+            echo json_encode($return);
+            exit;
+        }
+        
+        // Copy media to target path
+        $ext      = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        $basename = sprintf('%s.%s', md5(uniqid($id)), $ext);
+        $newPath  = $destination . '/' . $basename;
+        Pi::service('file')->copy($filename, Pi::path($newPath));
+        if (!is_numeric($id)) {
+            @unlink($filename);
+        }
+        
+        // Resize image
+        $width  = $this->params('width', 0);
+        $height = $this->params('height', 0);
+        if (!empty($width) && !empty($height)) {
+            Pi::service('image')->resize(Pi::path($newPath), array(
+                $width,
+                $height
+            ));
+        }
+        
+        $id       = $newPath;
+        $url      = Pi::url($newPath);
+        $title    = substr($basename, 0, strrpos($basename, '.'));
+        
+        $return = array(
+            'status' => true,
+            'data'   => array(
+                'id'    => $id,
+                'url'   => $url,
+                'title' => $title,
+            )
+        );
+        echo json_encode($return);
         exit;
     }
 }

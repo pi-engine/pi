@@ -98,16 +98,12 @@ class DraftForm extends BaseForm
             $this->add($field);
         }
         
-        // Initiate image element data
-        $urls['save_draft'] = Pi::service('url')->assemble('default', array(
-            'controller' => 'draft',
-            'action'     => 'save-image',
+        $module = Pi::service('module')->current();
+        $config = Pi::config('', $module);
+        $this->get('image')->setOption('size', array(
+            'width'  => $config['feature_width'],
+            'height' => $config['feature_height'],
         ));
-        $urls['remove_draft'] = Pi::service('url')->assemble('default', array(
-            'controller' => 'draft',
-            'action'     => 'remove-image',
-        ));
-        $this->get('image')->setOption('urls', $urls);
     }
 
     /**

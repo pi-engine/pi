@@ -142,7 +142,10 @@ return array(
             'edit'       => array(
                 'required' => false,
                 'element'  => 'Module\Article\Form\Element\Summary',
+                'filters'  => array(),
             ),
+            // Custom filter for formatting value post by form
+            'filter'     => 'Module\Article\Form\Filter\Summary',
             'is_edit'    => false,
             'is_insert'  => false,
         ),
@@ -174,7 +177,7 @@ return array(
             'title'      => _a('Image'),
             'edit'       => array(
                 'required' => false,
-                'element'  => 'Module\Article\Form\Element\Media',
+                'element'  => 'Module\Article\Form\Element\FeatureImage',
                 'options'  => array(
                     'preview'   => array(
                         'width'     => 80,
@@ -247,6 +250,11 @@ return array(
             'title'      => _a('Author'),
             'edit'       => array(
                 'element'  => 'Module\Article\Form\Element\Author',
+                'filters'  => array(
+                    array(
+                        'name' => 'Int',
+                    ),
+                ),
             ),
             'is_edit'    => false,
             'is_insert'  => false,
@@ -318,6 +326,7 @@ return array(
             'edit'       => array(
                 'element'  => 'Module\Article\Form\Element\TimePublish',
             ),
+            'filter'     => 'Module\Article\Form\Filter\TimePublish',
             'is_edit'    => false,
             'is_display' => false,
             'is_insert'  => false,

@@ -11,7 +11,6 @@ namespace Module\Article;
 
 use Pi;
 use Module\Article\Model\Article;
-use Pi\Mvc\Controller\ActionController;
 use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Compiled;
 use Module\Article\Media;

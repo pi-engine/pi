@@ -58,13 +58,14 @@ class Media extends Hidden
      */
     public function setAjaxUrls($data = array())
     {
-        $data   = array_merge($this->urls, (array) $data);
-        $type   = $this->getOption('type') ?: '';
-        $params = $type ? array('type' => $type) : array();
+        $options = $this->getOptions();
+        $data    = array_merge($this->urls, (array) $data);
+        $type    = isset($options['type']) ? $options['type'] : '';
+        $params  = $type ? array('type' => $type) : array();
         
         if (!isset($data['search']) || empty($data['search'])) {
             $data['search'] = Pi::service('url')->assemble(
-                'default', 
+                '', 
                 array_merge(array(
                     'controller' => 'media',
                     'action'     => 'search',
@@ -74,17 +75,19 @@ class Media extends Hidden
         
         if (!isset($data['upload']) || empty($data['upload'])) {
             $data['upload'] = Pi::service('url')->assemble(
-                'default',
+                '',
                 array_merge(array(
                     'controller' => 'media',
                     'action'     => 'upload',
+                    'width'      => isset($options['size']['width']) ? $options['size']['width'] : 0,
+                    'height'     => isset($options['size']['height']) ? $options['size']['height'] : 0,
                 ), $params)
             );
         }
         
         if (!isset($data['remove']) || empty($data['remove'])) {
             $data['remove'] = Pi::service('url')->assemble(
-                'default',
+                '',
                 array(
                     'controller' => 'media',
                     'action'     => 'remove',
@@ -94,7 +97,7 @@ class Media extends Hidden
         
         if (!isset($data['save']) || empty($data['save'])) {
             $data['save'] = Pi::service('url')->assemble(
-                'default',
+                '',
                 array(
                     'controller' => 'media',
                     'action'     => 'save',
