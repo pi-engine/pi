@@ -99,7 +99,7 @@ Need parameters:
     
     <!-- Template used to list searched image items -->
     <script id="media-searched-image-item" type="text/template">
-        <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+        <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-download="<%= download_url %>" data-checked="0">
             <i class="item-selected fa fa-check-square-o hide"></i>
             <img class="searched-image" src="<%= url %>" alt="<%= title %>" title="<%= title %>">
         </div>
@@ -107,7 +107,7 @@ Need parameters:
 
     <!-- Template used to list searched attachment items -->
     <script id="media-searched-attachment-item" type="text/template">
-        <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+        <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-download="<%= download_url %>" data-checked="0">
             <i class="item-selected fa fa-check-square-o hide"></i>
             <div class="searched-attachment" title="<%= title %>">
                 <%= title %>
@@ -140,7 +140,7 @@ Need parameters:
     <!-- Template used to list preivew image items -->
     <script id="media-preview-image-item" type="text/template">
         <% _.each(exist, function(item) { %>
-            <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
+            <div class="selected-item" data-id="<%= item.id %>" data-download="<%= item.download %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
                 <i class="remove-item fa fa-times"></i>
                 <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
             </div>
@@ -150,7 +150,7 @@ Need parameters:
     <!-- Template used to list preview attchment items -->
     <script id="media-preview-attachment-item" type="text/template">
         <% _.each(exist, function(item) { %>
-            <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px;">
+            <div class="selected-item" data-id="<%= item.id %>" data-download="<%= item.download %>" style="width: <?php echo $preview['width']; ?>px;">
                 <i class="remove-item fa fa-times"></i>
                 <div class="attachment" title="<%= item.title %>">
                     <%= item.title %>
@@ -214,6 +214,7 @@ Need parameters:
             $(e.target).fileupload({
                 url                 : '<?php echo $urls['upload']; ?>',
                 sequentialUploads   : true,
+                formData            : false,
                 add     : function(e, data) {
                     var errors = false;
                     if (!data.files[0].name.match(/(\.|\/)(<?php echo str_replace(',', '|', $extension); ?>)$/i)) {
@@ -236,30 +237,43 @@ Need parameters:
                 done    : function(e, data) {
                     var result = $.parseJSON(data.jqXHR.responseText);
                     if (result.status) {
+                        // Remove current selected media if only one media is allowed
                         if (!<?php echo $multiple ? 1 : 0; ?>) {
                             self.$(".selected-item").each(function() {
                                 var id = $(this).data("id");
                                 self.collection.remove(id);
                             });
                         }
+                        // Get data from session if donot want to upload to media section
                         if (<?php echo $toSession ? 1 : 0; ?>) {
                             self.collection.add({
-                                id    : result.data.id,
-                                url   : result.data.preview_url,
-                                title : result.data.raw_name
+                                id        : result.data.id,
+                                url       : result.data.preview_url,
+                                title     : result.data.raw_name,
+                                download  : result.data.download_url
                             });
+                            
+                            // Custom further process by AJAX
+                            self.furtherSaveProcess(result.data.id);
                         } else {
-                            $.get(
-                                '<?php echo rtrim($urls['save'], '/'); ?>/fake_id-' + result.data.id,
+                            var post = new Object;
+                            post['fake_id'] = result.data.id;
+                            $.post(
+                                '<?php echo $urls['save']; ?>',
+                                post,
                                 function(resp)
                             {
                                 var response = $.parseJSON(resp);
                                 if (response.status) {
                                     self.collection.add({
-                                        id    : response.data.id,
-                                        url   : response.data.url,
-                                        title : response.data.title
+                                        id        : response.data.id,
+                                        url       : response.data.url,
+                                        title     : response.data.title,
+                                        download  : response.data.download
                                     });
+                                    
+                                    // Custom further process by AJAX
+                                    self.furtherSaveProcess(response.data.id);
                                 } else {
                                     alert(response.message);
                                 }
@@ -295,12 +309,14 @@ Need parameters:
             }
         },
         doSearch        : function(reset) {
-            var url = '<?php echo rtrim($urls['search'], '/'); ?>/page-' + this.page;
+            var post = new Object;
+            post['page'] = this.page;
+            var url = '<?php echo $urls['search']; ?>';
             if (this.title) {
-                url += '/title-' + this.title;
+                post['title'] = this.title;
             }
             var self = this;
-            $.get(url, function(result) {
+            $.post(url, post, function(result) {
                 var result = $.parseJSON(result);
                 if (!(result.data instanceof Array) && result.data) {
                     var lists  = result.data;
@@ -341,21 +357,30 @@ Need parameters:
             }
             var obj = $(e.target).parents(".single-item");
             this.collection.add({
-                id      : obj.data("id"),
-                url     : obj.find("img").attr("src"),
-                title   : obj.data("title")
+                id       : obj.data("id"),
+                url      : obj.find("img").attr("src"),
+                title    : obj.data("title"),
+                download : obj.data("download")
             });
+            
+            // Custom further process by AJAX
+            self.furtherSaveProcess(obj.data("id"));
         },
         remove          : function(e) {
             var obj = $(e.target).parents("div");
             var id = obj.data("id");
-            var item = this.$("#media-lists").find("[data-id=" + id + "]");
+            var item = this.$("#media-lists").find("[data-id='" + id + "']");
             item.data("checked", 0);
             item.find("i").addClass("hide");
             this.collection.remove(id);
+            var post = new Object;
             if (<?php echo $toSession ? 1 : 0 ?>) {
-                $.get('<?php echo rtrim($urls['remove'], '/'); ?>/fake_id-' + id, function(result) {});
+                post['fake_id'] = id;
+                $.post('<?php echo $urls['remove']; ?>', post, function(result) {});
             }
+            
+            // Custom further process
+            this.furtherRemoveProcess(id);
         },
         render          : function() {
             var template = '';
@@ -376,13 +401,56 @@ Need parameters:
             }
             var self = this;
             _.each(this.collection.pluck("id"), _.bind(function(id) {
-                var item = self.$("#media-lists").find("[data-id=" + id + "]");
+                var item = self.$("#media-lists").find("[data-id='" + id + "']");
                 item.data("checked", 1);
                 item.find("i").removeClass("hide");
             }, this));
             this.$("[name=<?php echo $name; ?>]").val(this.collection.pluck("id").join(","));
             
             this.renderPreview();
+        },
+        // Custom additional pocessing supported if url
+        furtherSaveProcess  : function(id) {
+            var url = '<?php echo isset($urls['custom_save']) ? $urls['custom_save'] : ''; ?>';
+            if (!url) {
+                return;
+            }
+            
+            var self = this;
+            var post = new Object;
+            post['id'] = id;
+            $.post(url, post, function(result) {
+                var resp = $.parseJSON(result);
+                if (resp.status) {
+                    // If new process data received, remove data set before
+                    self.collection.remove(id);
+                    
+                    // Add new data
+                    self.collection.add({
+                        id       :  resp.data.id,
+                        url      :  resp.data.url,
+                        title    :  resp.data.title,
+                        download :  resp.data.download
+                    });
+                } else {
+                    alert(resp.message);
+                }
+            });
+        },
+        furtherRemoveProcess    : function(id) {
+            var url = '<?php echo isset($urls['custom_remove']) ? $urls['custom_remove'] : ''; ?>';
+            if (!url) {
+                return;
+            }
+            
+            var post = new Object;
+            post['id'] = id;
+            $.post(url, post, function(result) {
+                var resp = $.parseJSON(result);
+                if (!resp.status) {
+                    alert(resp.message);
+                }
+            });
         }
     });
     new <?php echo ucfirst($id); ?>ImageView;

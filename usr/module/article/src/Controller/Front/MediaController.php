@@ -196,12 +196,22 @@ class MediaController extends ActionController
             $session->$fakeId = $uploadInfo;
         }
         
+        // Get download URL
+        $downloadUrl = '';
+        if ($id) {
+            $downloadUrl = $this->url('default', array(
+                'action' => 'download',
+                'id'     => $id,
+            ));
+        }
+        
         // Prepare return data
         $return['data'] = array_merge(
             array(
                 'raw_name'     => $rawInfo['name'],
                 'size'         => $rawInfo['size'],
                 'preview_url'  => Pi::url($fileName),
+                'download_url' => Pi::url($downloadUrl),
                 'basename'     => basename($fileName),
                 'type'         => $ext,
                 'id'           => $id ?: $fakeId,
@@ -414,7 +424,12 @@ class MediaController extends ActionController
     }
     
     /**
-     * Saving image into media table by AJAX. 
+     * AJAX action, save media file into media table.
+     * 
+     * @param int    `id`       Media ID if media exists
+     * @param string `fake_id`  Media fake ID if media not created yet
+     * @param string `source`   Where media from
+     * @return JSON
      */
     public function saveAction()
     {
@@ -466,6 +481,10 @@ class MediaController extends ActionController
                 );
             } else {
                 $row    = $this->getModel('media')->find($mediaId);
+                $downloadUrl = $this->url('default', array(
+                    'action' => 'download',
+                    'id'     => $row->id,
+                ));
                 $result = array(
                     'status'     => self::AJAX_RESULT_TRUE,
                     'data'       => array(
@@ -473,6 +492,7 @@ class MediaController extends ActionController
                         'title'     => $row->title,
                         'url'       => Pi::url($row->url),
                         'newid'     => uniqid(),
+                        'download'  => Pi::url($downloadUrl),
                         'message'   => _a('Media data saved successful!'),
                     ),
                 );

@@ -11,7 +11,7 @@ $this->Backbone();
         $form->setAttribute('enctype', 'multipart/form-data');
         echo $this->form()->openTag($form);
     ?>
-    <div class="col-md-8">
+    <div id="jsBasicInput" class="col-md-8">
     <?php 
         // Move some element (i.e.: time publish, featured image, gallery, related article) to right side
         $timePublishElement = $form->get('time_publish');
@@ -195,26 +195,28 @@ $this->Backbone();
 </div>
        
 <script id="temp-validate" type="text/template">
-    <div class="alert <% if (status) { %>alert-success<% } else { %>alert-danger<% } %>" id="jsAlert">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        <% if (!_.isEmpty(message)) { %>
-        <% if (_.isString(message)) { %>
-            <%= message %>
-            <% if (status) { %>
-            <a href="<?php echo $this->url('', array('controller' => 'draft' ,'action'=>'add')); ?>">
-                <?php _e('Add a new article'); ?>
-            </a>
-            <% } %>
-        <% } else { %>    
-        <% _.each(message,function(first,key1) { %>
-            <strong><%= key1 %>:</strong>
-            <div>
-            <% _.each(message[key1],function(second,key2) { %>
-                <span class="mr10"><%= message[key1][key2] %></span>
+    <div class="col-md-12">
+        <div class="col-md-12 alert <% if (status) { %>alert-success<% } else { %>alert-danger<% } %>" id="jsAlert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <% if (!_.isEmpty(message)) { %>
+            <% if (_.isString(message)) { %>
+                <%= message %>
+                <% if (status) { %>
+                <a href="<?php echo $this->url('', array('controller' => 'draft' ,'action'=>'add')); ?>">
+                    <?php _e('Add a new article'); ?>
+                </a>
+                <% } %>
+            <% } else { %>    
+            <% _.each(message,function(first,key1) { %>
+                <strong><%= key1 %>:</strong>
+                <div>
+                <% _.each(message[key1],function(second,key2) { %>
+                    <span class="mr10"><%= message[key1][key2] %></span>
+                <% }); %>
+                </div>
             <% }); %>
-            </div>
-        <% }); %>
-        <% }} %>
+            <% }} %>
+        </div>
     </div>
 </script>
 
@@ -332,12 +334,13 @@ var page = {
 var BasicInputView = Backbone.View.extend({
     el      : $("#jsBasicInput"),
     events  : {
-        "blur [name=subject]"       : "checkSubject"
+        "blur [name=subject]"       : "checkSubject",
+        "change [name=category]"    : "checkOperation"
     },
     initialize: function () {
         _.bindAll(this);
     },
-    checkSubject: function(e) {
+    checkSubject    : function(e) {
         var tar = $(e.currentTarget).removeClass("error");
         $.getJSON("<?php echo $this->url(
             'default',
@@ -352,6 +355,41 @@ var BasicInputView = Backbone.View.extend({
                 page.formTip(resp);
             }
         });
+    },
+    checkOperation  : function(e) {
+        var approve = '<?php echo implode(',', $approve); ?>';
+        var approves = new Array();
+        approves = approve.split(',');
+        var category = $(this).val();
+        var allowed = false;
+        for (i = 0; i < approves.length; i++) {
+            if (category == approves[i]) {
+                allowed = true;
+            }
+        }
+        var prevStatus = '<?php echo $status ?>';
+        var content = '';
+        if ($('span.link-btn.delete').length) {
+            content = '<span class="link-btn delete" style="display: block;">Delete</span>';
+        }
+        if ((1 == prevStatus || 3 == prevStatus) && 2 == currentStatus) {
+            if (allowed) {
+                content = '<button class="btn btn-primary pull-right approve">Approve</button>' + content;
+            }
+            $('#article-management-operation').html(content);
+        } else if (2 == prevStatus) {
+            if (allowed) {
+                content = '<div class="btn-group pull-right">'
+                        + '<button class="btn btn-primary approve"><?php _e('Approve'); ?></button>'
+                        + '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'
+                        + '<span class="caret"></span>'
+                        + '</button>'
+                        + '<ul class="dropdown-menu"><li>'
+                        + '<a href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal" data-backdrop="false"><?php _e('Reject'); ?></a>'
+                        + '</ul></div>' + content;
+            }
+            $('#article-management-operation').html(content);
+        }
     }
 });
 var ReleaseProcess = Backbone.View.extend({
@@ -534,52 +572,49 @@ var ReleaseProcess = Backbone.View.extend({
         this.$(".article-flow").removeClass("editing");  
     }
 });
+var AttachmentView = Backbone.View.extend({
+    el          : $("#attachment-image-element"),
+    events      : {
+        "click .image-thumb .remove-item" : "removeFromEditor",
+        "click .image-thumb .attachment"  : "insertEditor"
+    },
+    initialize: function () {},
+    removeFromEditor    : function (e) {
+        if (confirm("<?php _e('This operation will also remove attachment in editor, do you still want to continue?'); ?>")) {
+            var el = $(e.target).parents(".selected-item");
+            $(page.editor.document.getBody().$).find("a[href='" + el.data("download") + "']").remove();
+        }
+    },
+    insertEditor        : function (e) {
+        var el = $(e.target).parents(".selected-item");
+        var html = '<a href="' + el.data("download") + '">' + el.find(".attachment").attr("title") + '</a>';
+        page.editor.insertHtml(html);
+    }
+});
+var GalleryView = Backbone.View.extend({
+    el          : $("#gallery-image-element"),
+    events      : {
+        "click .image-thumb .remove-item" : "removeFromEditor",
+        "click .image-thumb img"          : "insertEditor"
+    },
+    initialize: function () {},
+    removeFromEditor    : function (e) {
+        if (confirm("<?php _e('This operation will also remove image in editor, do you still want to continue?'); ?>")) {
+            var el = $(e.target).parents(".selected-item");
+            $(page.editor.document.getBody().$).find("a[href='" + el.data("download") + "']").remove();
+        }
+    },
+    insertEditor        : function (e) {
+        var el = $(e.target).parents(".selected-item");
+        var html = '<a href="' + el.data("download") + '" target="_blank"><img alt="' + el.find("img").attr("title") + '" src="' + el.find("img").attr("src") + '"></a>';
+        page.editor.insertHtml(html);
+    }
+});
 
 page.init();
 new BasicInputView;
 new ReleaseProcess;
+new AttachmentView;
+new GalleryView;
 })(jQuery)
-</script>
-<script>
-    $('select[name="category"]').change(function() {
-        var approve = '<?php echo implode(',', $approve); ?>';
-        var approves = new Array();
-        approves = approve.split(',');
-        var category = $(this).val();
-        var allowed = false;
-        for (i = 0; i < approves.length; i++) {
-            if (category == approves[i]) {
-                allowed = true;
-            }
-        }
-        var prevStatus = '<?php echo $status ?>';
-        var content = '';
-        if ($('span.link-btn.delete').length) {
-            content = '<span class="link-btn delete" style="display: block;">Delete</span>';
-        }
-        if ((1 == prevStatus || 3 == prevStatus) && 2 == currentStatus) {
-            if (allowed) {
-                content = '<button class="btn btn-primary pull-right approve">Approve</button>' + content;
-            }
-            $('#article-management-operation').html(content);
-        } else if (2 == prevStatus) {
-            if (allowed) {
-                content = '<div class="btn-group pull-right">'
-                        + '<button class="btn btn-primary approve">' 
-                        + '<?php _e('Approve'); ?>'
-                        + '</button>'
-                        + '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'
-                        + '<span class="caret"></span>'
-                        + '</button>'
-                        + '<ul class="dropdown-menu">'
-                        + '<li>'
-                        + '<a href="javascript:void(0)" data-target="#rejectModel" data-toggle="modal" data-backdrop="false">'
-                        + '<?php _e('Reject'); ?>'
-                        + '</a>'
-                        + '</ul>'
-                        + '</div>' + content;
-            }
-            $('#article-management-operation').html(content);
-        }
-    });
 </script>

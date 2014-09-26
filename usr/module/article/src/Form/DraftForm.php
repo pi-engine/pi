@@ -89,25 +89,21 @@ class DraftForm extends BaseForm
                 ),
             );
         //}
-        $fields[] = array(
+        /*$fields[] = array(
             'name'       => 'security',
             'type'       => 'csrf',
-        );
+        );*/
         
         foreach ($fields as $field) {
             $this->add($field);
         }
         
-        // Initiate image element data
-        $urls['save_draft'] = Pi::service('url')->assemble('default', array(
-            'controller' => 'draft',
-            'action'     => 'save-image',
+        $module = Pi::service('module')->current();
+        $config = Pi::config('', $module);
+        $this->get('image')->setOption('size', array(
+            'width'  => $config['feature_width'],
+            'height' => $config['feature_height'],
         ));
-        $urls['remove_draft'] = Pi::service('url')->assemble('default', array(
-            'controller' => 'draft',
-            'action'     => 'remove-image',
-        ));
-        $this->get('image')->setOption('urls', $urls);
     }
 
     /**
@@ -168,6 +164,7 @@ class DraftForm extends BaseForm
         $result = array();
         foreach ($data as $key => $value) {
             if (is_array($value) && isset($compounds[$key])) {
+                $value = array_pop($value);
                 foreach ($value as $fName => $fValue) {
                     $fieldName = Pi::api('form', $this->module)
                         ->assembleCompoundFieldName($key, $fName);

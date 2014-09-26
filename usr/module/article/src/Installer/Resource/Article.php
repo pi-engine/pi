@@ -288,6 +288,8 @@ class Article extends AbstractResource
             } else {
                 $spec['filter'] = (array) $spec['filter'];
             }
+        } else {
+            $spec['filter'] = array();
         }
 
         return $spec;

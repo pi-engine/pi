@@ -192,7 +192,7 @@ class Form extends AbstractApi
      *
      * @return array
      */
-    protected function loadConfig($name)
+    protected function loadConfig($name = 'draft')
     {
         $filePath   = sprintf('%s/config/form.%s.php', $this->module, $name);
         $file       = Pi::path('custom/module') . '/' . $filePath;
@@ -270,6 +270,9 @@ class Form extends AbstractApi
         $result = array();
         if (!empty($data['name'])) {
             $result['name'] = $data['name'];
+        }
+        if (!empty($data['filter'])) {
+            $result['type'] = array_pop($data['filter']);
         }
         if (!empty($data['edit']['filters'])) {
             $result['filters'] = $data['edit']['filters'];
@@ -433,5 +436,31 @@ class Form extends AbstractApi
         };
 
         return $lookup($name, $compounds);
+    }
+    
+    /**
+     * Get all fields want to show in draft edit page
+     * 
+     * @param string $name
+     * @return array
+     */
+    public function getShowFields($name = 'draft')
+    {
+        $fields = $this->loadConfig($name);
+        
+        return array_keys($fields);
+    }
+    
+    /**
+     * Check if given key is allowed to show
+     * @param type $key
+     * @param type $name
+     * @return type
+     */
+    public function hasShowField($key, $name = 'draft')
+    {
+        $fields = $this->getShowFields($name);
+        
+        return (bool) in_array($key, $fields);
     }
 }

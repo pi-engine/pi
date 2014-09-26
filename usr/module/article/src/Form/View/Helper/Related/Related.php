@@ -38,19 +38,12 @@ class Related extends AbstractCustomHelper
         $value   = $element->getValue();
         $related = $relatedIds = array();
         if (!empty($value)) {
-            $relatedIds = array_flip($value);
+            $relatedIds = explode(',', $value);
             $related    = Entity::getArticlePage(
-                array('id' => $value), 
-                1
+                array('id' => $relatedIds), 
+                1,
+                count($related)
             );
-            foreach ($related as $item) {
-                if (array_key_exists($item['id'], $relatedIds)) {
-                    $relatedIds[$item['id']] = $item;
-                }
-            }
-            $related = array_filter($relatedIds, function($var) {
-                return is_array($var);
-            });
         }
         
         $this->assign(array(
