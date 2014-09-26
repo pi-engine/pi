@@ -61,4 +61,34 @@ class FeatureImage extends Media
         
         parent::setAjaxUrls($data);
     }
+    
+    /**
+     * Change image URL into readable data for template
+     * 
+     * @param string $value
+     * @return array
+     */
+    public function canonizeMedias($value = '')
+    {
+        $value  = $value ?: $this->getValue();
+        
+        $result = array();
+        
+        if (is_numeric($value)
+            || !file_exists(Pi::path($value))
+        ) {
+            return $result;
+        }
+        
+        $basename = basename($value);
+        $title    = substr($basename, 0, strrpos($basename, '.'));
+        $result[] = array(
+            'id'       => $value,
+            'url'      => Pi::url($value),
+            'title'    => $title,
+            'download' => '',
+        );
+        
+        return $result;
+    }
 }

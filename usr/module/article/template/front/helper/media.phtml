@@ -99,7 +99,7 @@ Need parameters:
     
     <!-- Template used to list searched image items -->
     <script id="media-searched-image-item" type="text/template">
-        <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+        <div class="col-md-2 single-item" data-id="<%= id %>" data-title="<%= title %>" data-download="<%= download_url %>" data-checked="0">
             <i class="item-selected fa fa-check-square-o hide"></i>
             <img class="searched-image" src="<%= url %>" alt="<%= title %>" title="<%= title %>">
         </div>
@@ -107,7 +107,7 @@ Need parameters:
 
     <!-- Template used to list searched attachment items -->
     <script id="media-searched-attachment-item" type="text/template">
-        <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-checked="0">
+        <div class="col-md-4 single-item" data-id="<%= id %>" data-title="<%= title %>" data-download="<%= download_url %>" data-checked="0">
             <i class="item-selected fa fa-check-square-o hide"></i>
             <div class="searched-attachment" title="<%= title %>">
                 <%= title %>
@@ -140,7 +140,7 @@ Need parameters:
     <!-- Template used to list preivew image items -->
     <script id="media-preview-image-item" type="text/template">
         <% _.each(exist, function(item) { %>
-            <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
+            <div class="selected-item" data-id="<%= item.id %>" data-download="<%= item.download %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
                 <i class="remove-item fa fa-times"></i>
                 <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
             </div>
@@ -150,7 +150,7 @@ Need parameters:
     <!-- Template used to list preview attchment items -->
     <script id="media-preview-attachment-item" type="text/template">
         <% _.each(exist, function(item) { %>
-            <div class="selected-item" data-id="<%= item.id %>" style="width: <?php echo $preview['width']; ?>px;">
+            <div class="selected-item" data-id="<%= item.id %>" data-download="<%= item.download %>" style="width: <?php echo $preview['width']; ?>px;">
                 <i class="remove-item fa fa-times"></i>
                 <div class="attachment" title="<%= item.title %>">
                     <%= item.title %>
@@ -214,6 +214,7 @@ Need parameters:
             $(e.target).fileupload({
                 url                 : '<?php echo $urls['upload']; ?>',
                 sequentialUploads   : true,
+                formData            : false,
                 add     : function(e, data) {
                     var errors = false;
                     if (!data.files[0].name.match(/(\.|\/)(<?php echo str_replace(',', '|', $extension); ?>)$/i)) {
@@ -246,9 +247,10 @@ Need parameters:
                         // Get data from session if donot want to upload to media section
                         if (<?php echo $toSession ? 1 : 0; ?>) {
                             self.collection.add({
-                                id    : result.data.id,
-                                url   : result.data.preview_url,
-                                title : result.data.raw_name
+                                id        : result.data.id,
+                                url       : result.data.preview_url,
+                                title     : result.data.raw_name,
+                                download  : result.data.download_url
                             });
                             
                             // Custom further process by AJAX
@@ -264,9 +266,10 @@ Need parameters:
                                 var response = $.parseJSON(resp);
                                 if (response.status) {
                                     self.collection.add({
-                                        id    : response.data.id,
-                                        url   : response.data.url,
-                                        title : response.data.title
+                                        id        : response.data.id,
+                                        url       : response.data.url,
+                                        title     : response.data.title,
+                                        download  : response.data.download
                                     });
                                     
                                     // Custom further process by AJAX
@@ -354,9 +357,10 @@ Need parameters:
             }
             var obj = $(e.target).parents(".single-item");
             this.collection.add({
-                id      : obj.data("id"),
-                url     : obj.find("img").attr("src"),
-                title   : obj.data("title")
+                id       : obj.data("id"),
+                url      : obj.find("img").attr("src"),
+                title    : obj.data("title"),
+                download : obj.data("download")
             });
             
             // Custom further process by AJAX
@@ -423,9 +427,10 @@ Need parameters:
                     
                     // Add new data
                     self.collection.add({
-                        id    :  resp.data.id,
-                        url   :  resp.data.url,
-                        title :  resp.data.title
+                        id       :  resp.data.id,
+                        url      :  resp.data.url,
+                        title    :  resp.data.title,
+                        download :  resp.data.download
                     });
                 } else {
                     alert(resp.message);

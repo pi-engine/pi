@@ -101,6 +101,7 @@ class Media extends Hidden
                 array(
                     'controller' => 'media',
                     'action'     => 'save',
+                    'source'     => $type,
                 )
             );
         }
@@ -121,5 +122,59 @@ class Media extends Hidden
         }
         
         return $this->urls;
+    }
+    
+    /**
+     * Format element value
+     * 
+     * @param mixed $value
+     */
+    public function canonizeMedias($value = '')
+    {
+        $result = array();
+        
+        $value = $value ?: $this->getValue();
+        $items = array_filter(explode(',', $value));
+        foreach ($items as $id) {
+            $id = trim($id);
+            if (!is_numeric($id)) {
+                continue;
+            }
+            $result[] = $this->canonizeMedia($id);
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * Read media detail from media section
+     * 
+     * @param int $id Media ID
+     * @return array
+     */
+    protected function canonizeMedia($id)
+    {
+        if (empty($id)) {
+            return array();
+        }
+        
+        $result = array();
+        $module = Pi::service('module')->current();
+        $row    = Pi::model('media', $module)->find($id);
+        if ($row->id) {
+            $downloadUrl = Pi::service('url')->assemble('default', array(
+                'controller' => 'media',
+                'action'     => 'download',
+                'id'         => $row->id,
+            ));
+            $result = array(
+                'id'       => $row->id,
+                'url'      => Pi::url($row->url),
+                'title'    => $row->title,
+                'download' => $downloadUrl,
+            );
+        }
+        
+        return $result;
     }
 }

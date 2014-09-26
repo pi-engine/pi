@@ -102,3 +102,8 @@
     padding: 5px 10px;
     background-color: #f5f5f5;
 }
+
+#gallery-image-element .image-thumb .selected-item,
+#attachment-image-element .image-thumb .selected-item {
+    cursor: pointer;
+}

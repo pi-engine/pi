@@ -513,20 +513,15 @@ class DraftController extends ActionController
      * @return boolean 
      */
     protected function saveDraft($data)
-    {var_dump($data);exit;
-        $rowDraft   = $id = $fakeId = null;
-        $module     = $this->getModule();
+    {
+        $rowDraft   = $id = null;
         $modelDraft = $this->getModel('draft');
 
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
         }
-
-        $fakeId = $this->params('fake_id', 0);
-        
         unset($data['article']);
-        unset($data['image']);
         
         $pages = Draft::breakPage($data['content']);
         $data['pages']     = count($pages);
@@ -535,7 +530,6 @@ class DraftController extends ActionController
 
         if (empty($id)) {
             $data['status'] = DraftModel::FIELD_STATUS_DRAFT;
-
             $rowDraft = $modelDraft->saveRow($data);
 
             if (empty($rowDraft->id)) {
@@ -552,34 +546,6 @@ class DraftController extends ActionController
             }
 
             $modelDraft->updateRow($data, array('id' => $rowDraft->id));
-        }
-        
-        // Save image
-        $session = Media::getUploadSession($module, 'feature');
-        if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))
-        ) {
-            $uploadInfo = isset($session->$id) 
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $data['image'] = $uploadInfo['tmp_name'];
-                $this->getModel('draft')->updateRow(
-                    $data,
-                    array('id' => $rowDraft->id)
-                );
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-
-        // Update assets linked to fake id
-        if ($fakeId) {
-            $this->getModel('asset_draft')->update(
-                array('draft' => $rowDraft->id),
-                array('draft' => $fakeId)
-            );
         }
 
         return $rowDraft->id;
@@ -927,12 +893,7 @@ class DraftController extends ActionController
         // prepare data
         $data                 = (array) $row;
         $data['category']     = $data['category'] ?: $this->config('default_category');
-        $data['related']      = $data['related'] ? implode(self::TAG_DELIMITER, $data['related']) : '';
         $data['time_publish'] = $data['time_publish'] ? _date($data['time_publish']) : '';
-        $data['time_update']  = $data['time_update'] ? _date($data['time_update']) : '';
-        
-        $featureImage = $data['image'] ? Pi::url($data['image']) : '';
-        $featureThumb = $data['image'] ? Pi::url(Media::getThumbFromOriginal($data['image'])) : '';
 
         $form = Pi::api('form', $module)->loadForm('draft');
         $allCategory = $form->get('category')->getValueOptions();
@@ -940,22 +901,10 @@ class DraftController extends ActionController
             array_intersect_key($allCategory, $categories)
         );
         $form->setData($data);
-
-        // Get submitter info
-        $columns = array('id', 'name');
-        if ($data['uid']) {
-            $user = Pi::user()->get($data['uid'], $columns);
-            if ($user) {
-                $this->view()->assign('user', array(
-                    'id'   => $user['id'],
-                    'name' => $user['name'],
-                ));
-            }
-        }
         
         // Get update user info
         if ($data['user_update']) {
-            $userUpdate = Pi::user()->get($data['user_update'], $columns);
+            $userUpdate = Pi::user()->get($data['user_update'], array('id', 'name'));
             if ($userUpdate) {
                 $this->view()->assign('userUpdate', array(
                     'id'   => $userUpdate['id'],
@@ -963,81 +912,11 @@ class DraftController extends ActionController
                 ));
             }
         }
-
-        // Get assets
-        $attachments = $images = array();
-        $resultsetDraftAsset = $this->getModel('asset_draft')->select(array(
-            'draft' => $id,
-        ))->toArray();
-        // Getting media ID
-        $mediaIds = array(0);
-        foreach ($resultsetDraftAsset as $asset) {
-            $mediaIds[] = $asset['media'];
-        }
-        // Getting media details
-        $resultsetMedia = $this->getModel('media')
-            ->select(array('id' => $mediaIds));
-        $medias = array();
-        foreach ($resultsetMedia as $media) {
-            $medias[$media->id] = $media->toArray();
-        }
-        // Getting assets
-        foreach ($resultsetDraftAsset as $asset) {
-            $media = $medias[$asset['media']];
-            if ('attachment' == $asset['type']) {
-                $attachments[] = array(
-                    'id'           => $asset['id'],
-                    'title'        => $media['title'],
-                    'size'         => $media['size'],
-                    'deleteUrl'    => $this->url(
-                        '',
-                        array(
-                            'controller' => 'draft',
-                            'action'     => 'remove-asset',
-                            'id'         => $asset['id'],
-                        )
-                    ),
-                    'downloadUrl' => $this->url(
-                        'admin',
-                        array(
-                            'controller' => 'media',
-                            'action'     => 'download',
-                            'id'         => $media['id'],
-                        )
-                    ),
-                );
-            } else {
-                $imageSize = getimagesize(Pi::path($media['url']));
-
-                $images[] = array(
-                    'id'           => $asset['id'],
-                    'title'        => $media['title'],
-                    'size'         => $media['size'],
-                    'w'            => $imageSize['0'],
-                    'h'            => $imageSize['1'],
-                    'downloadUrl'  => $this->url(
-                        '',
-                        array(
-                            'controller' => 'media',
-                            'action'     => 'download',
-                            'id'         => $media['id'],
-                        )
-                    ),
-                    'preview_url' => Pi::url($media['url']),
-                    'thumb_url'   => Pi::url(Media::getThumbFromOriginal($media['url'])),
-                );
-            }
-        }
-
-        $this->setModuleConfig();
+        
         $this->view()->assign(array(
             'title'          => __('Edit Article'),
             'form'           => $form,
             'draft'          => (array) $row,
-            'attachments'    => $attachments,
-            'images'         => $images,
-            'featureImage'   => $featureImage,
-            'featureThumb'   => $featureThumb,
             'config'         => Pi::config('', $module),
             'from'           => $this->params('from', ''),
             'status'         => $row->article ? Article::FIELD_STATUS_PUBLISHED : $row->status,
@@ -1046,6 +925,7 @@ class DraftController extends ActionController
             'delete'         => $delete,
             'currentDelete'  => $currentDelete,
             'currentApprove' => $currentApprove,
+            'autoSave'       => $this->config('autosave_interval'),
         ));
 
         $this->view()->setTemplate('draft-edit', $module, 'front');

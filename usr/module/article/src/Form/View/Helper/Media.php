@@ -81,7 +81,7 @@ class Media extends AbstractCustomHelper
             'multiple'   => isset($options['multiple']) ? (bool) $options['multiple'] : false,
             'to_session' => isset($options['to_session']) ? (bool) $options['to_session'] : false,
             'type'       => $type,
-            'medias'     => isset($options['medias']) ? $options['medias'] : array(),
+            'medias'     => $element->canonizeMedias($element->getValue()),
         ));
 
         return $this->getTemplate($element, 'media');

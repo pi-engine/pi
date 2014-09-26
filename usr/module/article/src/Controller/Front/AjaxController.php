@@ -187,9 +187,10 @@ class AjaxController extends ActionController
         $return = array(
             'status' => true,
             'data'   => array(
-                'id'    => $id,
-                'url'   => $url,
-                'title' => $title,
+                'id'       => $id,
+                'url'      => $url,
+                'title'    => $title,
+                'download' => '',
             )
         );
         echo json_encode($return);

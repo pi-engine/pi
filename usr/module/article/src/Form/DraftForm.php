@@ -89,10 +89,10 @@ class DraftForm extends BaseForm
                 ),
             );
         //}
-        $fields[] = array(
+        /*$fields[] = array(
             'name'       => 'security',
             'type'       => 'csrf',
-        );
+        );*/
         
         foreach ($fields as $field) {
             $this->add($field);
@@ -164,6 +164,7 @@ class DraftForm extends BaseForm
         $result = array();
         foreach ($data as $key => $value) {
             if (is_array($value) && isset($compounds[$key])) {
+                $value = array_pop($value);
                 foreach ($value as $fName => $fValue) {
                     $fieldName = Pi::api('form', $this->module)
                         ->assembleCompoundFieldName($key, $fName);

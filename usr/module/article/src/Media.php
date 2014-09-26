@@ -67,7 +67,7 @@ class Media
             $item['type'] = strtolower($item['type']);
             $meta = empty($row->meta) ? array() : json_decode($row->meta, true);
             unset($item['meta']);
-            $item['previewUrl'] = Pi::service('url')->assemble(
+            $item['previewUrl'] = Pi::url(Pi::service('url')->assemble(
                 'default',
                 array(
                     'module'     => $module,
@@ -75,7 +75,16 @@ class Media
                     'action'     => 'detail',
                     'id'         => $row->id,
                 )
-            );
+            ));
+            $item['download_url'] = Pi::url(Pi::service('url')->assemble(
+                'default',
+                array(
+                    'module'     => $module,
+                    'controller' => 'media',
+                    'action'     => 'download',
+                    'id'         => $row->id,
+                )
+            ));
             $item = array_merge($item, $meta);
             $mediaSet[$row->id] = $item;
             $mediaIds[]         = $row->id;
