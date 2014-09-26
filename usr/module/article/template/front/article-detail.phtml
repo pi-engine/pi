@@ -14,7 +14,7 @@ if (!empty($details['seo'])) {
 
 <div class="pi-article-module">
     <div class="article-header">
-        <h1 class="headline"><?php echo _escape($details['title']); ?></h1>
+        <h1 class="headline"><?php echo _escape($details['subject']); ?></h1>
         <?php if ($details['subtitle']) { ?>
         <div class="byline">
             <?php echo _escape($details['subtitle']); ?>
@@ -161,7 +161,7 @@ if (!empty($details['seo'])) {
                 <a class="pull-left" href="#">
                     <img class="" src="<?php echo Pi::url($details['author']['photo']); ?>"
                         alt="<?php echo $this->escape($details['author']['name']); ?>"
-                        style="width: <?php echo $this->escape($config['author_width']); ?>px; height: <?php echo $this->escape($config['author_height']); ?>px; border-radius: 5px">
+                        style="width: <?php echo $this->escape($config['author_size']); ?>px; height: <?php echo $this->escape($config['author_size']); ?>px; border-radius: 5px">
                 </a>
                 <div class="media-body">
                     <div class="author-name"><?php echo $this->escape($details['author']['name']); ?></div>

@@ -288,6 +288,34 @@ class Form extends AbstractApi
         } else {
             $result['required']= 0;
         }
+        
+        // Enabled validator callback
+        $callback = isset($result['validators']['callback'])
+            ? $result['validators']['callback'] : '';
+        if (!empty($callback)) {
+            if (is_string($callback)
+               && (false !== strpos($callback, '::'))) {
+                $callback = explode('::', $callback);
+            }
+            $validators = $callback[0]::$callback[1]();
+            unset($result['validators']['callback']);
+            $result['validators'] = array_merge($result['validators'], $validators);
+        }
+        unset($callback);
+        
+        // Enabled filter callback
+        $callback = isset($result['filters']['callback'])
+            ? $result['filters']['callback'] : '';
+        if (!empty($callback)) {
+            if (is_string($callback)
+               && (false !== strpos($callback, '::'))) {
+                $callback = explode('::', $callback);
+            }
+            $filters = $callback[0]::$callback[1]();
+            unset($result['filters']['callback']);
+            $result['filters'] = array_merge($result['filters'], $filters);
+        }
+        
         /*
         if (!empty($data['edit']['element']['type'])
             && 'multi_checkbox' == $data['edit']['element']['type']
@@ -446,9 +474,7 @@ class Form extends AbstractApi
      */
     public function getShowFields($name = 'draft')
     {
-        $fields = $this->loadConfig($name);
-        
-        return array_keys($fields);
+        return $this->loadConfig($name);
     }
     
     /**
@@ -459,8 +485,12 @@ class Form extends AbstractApi
      */
     public function hasShowField($key, $name = 'draft')
     {
-        $fields = $this->getShowFields($name);
+        $compound = $this->parseCompoundFieldName($key);
+        $fields   = $this->getShowFields($name);
+        if (false === $compound) {
+            return isset($fields[$key]);
+        }
         
-        return (bool) in_array($key, $fields);
+        return (bool) in_array($compound[1], $fields[$compound[0]]);
     }
 }

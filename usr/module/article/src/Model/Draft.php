@@ -28,7 +28,6 @@ class Draft extends Model
 
     protected $encodeColumns = array(
         'related'      => true,
-        //'tag'          => true,
     );
     
     /**

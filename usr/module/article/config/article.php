@@ -117,7 +117,14 @@ return array(
             'title'      => _a('Subject'),
             'edit'       => array(
                 'required' => true,
+                // Custom form element, this allows custom form template
                 'element'  => 'Module\Article\Form\Element\Subject',
+                'validators' => array(
+                    array(
+                        'name'  => 'Module\Article\Validator\RepeatSubject',
+                    ),
+                    'callback' => 'Module\Article\Form\CommonValidators::subjectValidator',
+                ),
             ),
             // Is editable by admin, default as true
             'is_edit'    => false,
@@ -131,6 +138,9 @@ return array(
             'edit'       => array(
                 'required' => false,
                 'element'  => 'Module\Article\Form\Element\Subtitle',
+                'validators' => array(
+                    'callback' => 'Module\Article\Form\CommonValidators::subtitleValidator',
+                ),
             ),
             'is_edit'    => false,
             'is_insert'  => false,
@@ -143,6 +153,9 @@ return array(
                 'required' => false,
                 'element'  => 'Module\Article\Form\Element\Summary',
                 'filters'  => array(),
+                'validators' => array(
+                    'callback' => 'Module\Article\Form\CommonValidators::summaryValidator',
+                ),
             ),
             // Custom filter for formatting value post by form
             'filter'     => 'Module\Article\Form\Filter\Summary',
@@ -345,6 +358,17 @@ return array(
             'title'      => _a('Update user ID'),
             'is_edit'    => false,
             'is_display' => false,
+            'is_insert'  => false,
+        ),
+        'tag'            => array(
+            'type'       => 'common',
+            'name'       => 'tag',
+            'title'      => _a('Tag'),
+            'edit'       => array(
+                'required' => false,
+                'element'  => 'tag',
+            ),
+            'is_edit'    => false,
             'is_insert'  => false,
         ),
         
