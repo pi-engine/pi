@@ -36,4 +36,22 @@ class Tag extends CustomCommonHandler
         
         return $result;
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function delete($id)
+    {
+        return Pi::service('tag')->delete($this->module, $id);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function encode($id)
+    {
+        $result = Pi::service('tag')->get($this->module, $id);
+        
+        return array('tag' => implode(',', $result));
+    }
 }

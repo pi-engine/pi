@@ -11,7 +11,7 @@ namespace Module\Article\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Module\Article\Model\Article;
+use Module\Article\Model\Article as ModelArticle;
 use Module\Article\Installer\Resource\Route;
 
 /**
@@ -77,7 +77,7 @@ class Api extends AbstractApi
             $where, 
             $limit, 
             isset($offset) ? $offset : null, 
-            Article::getDefaultColumns(), 
+            ModelArticle::getDefaultColumns(), 
             $order
         );
         

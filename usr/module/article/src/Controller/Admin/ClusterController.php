@@ -764,7 +764,7 @@ class ClusterController extends ActionController
     }
     
     /**
-     * Get move and merge form instance
+     * Get move or merge form instance
      * 
      * @param string $mode
      * @return \Pi\Form\Form

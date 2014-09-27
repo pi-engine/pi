@@ -33,6 +33,20 @@ class Gallery extends CustomCommonHandler
     }
     
     /**
+     * {@inheritDoc}
+     */
+    public function get($id, $filter = false)
+    {
+        $where  = array(
+            'article' => $id,
+            'type'    => $this->type,
+        );
+        $rowset = $this->getModel()->select($where);
+        
+        return $rowset->toArray();
+    }
+    
+    /**
      * Insert asset into table
      * 
      * @param int  $id
@@ -62,5 +76,64 @@ EOD;
         }
         
         return true;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function delete($id)
+    {
+        $where = array(
+            'article' => $id,
+            'type'    => $this->type,
+        );
+        return $this->getModel()->delete($where);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function resolve($value, $options = array())
+    {
+        $result = array();
+        
+        $mediaIds = array_filter(explode(',', $value));
+        if (empty($mediaIds)) {
+            return array();
+        }
+        
+        $rowset = Pi::model('media', $this->module)->select(
+            array('id' => $mediaIds)
+        );
+        foreach ($rowset as $row) {
+            $result[$row->id] = array(
+                'original_name' => $row->title,
+                'extension'     => $row->type,
+                'size'          => $row->size,
+                'url'           => Pi::service('url')->assemble('default', array(
+                    'module'       => $this->module,
+                    'controller'   => 'media',
+                    'action'       => 'download',
+                    'name'         => $row->id,
+                )),
+            );
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function encode($id)
+    {
+        $data = $this->get($id);
+        
+        $mediaIds = array();
+        array_walk($data, function($value) use (&$mediaIds) {
+            $mediaIds[] = $value['media'];
+        });
+        
+        return array($this->name => implode(',', $mediaIds));
     }
 }
