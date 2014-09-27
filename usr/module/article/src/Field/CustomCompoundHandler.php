@@ -128,4 +128,16 @@ abstract class CustomCompoundHandler extends AbstractCustomHandler
 
         return $result;
     }
+    
+    /**
+     * Tanslate current data into format that can be display in detail page
+     * 
+     * @param mixed $data
+     * @param array $options
+     * @return mixed
+     */
+    public function resolve($data, $options = array())
+    {
+        return $data;
+    }
 }

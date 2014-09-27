@@ -12,6 +12,7 @@ $this->Backbone();
         echo $this->form()->openTag($form);
     ?>
     <div id="jsBasicInput" class="col-md-8">
+        <a href="#" target="_blank" class="hide hide-preview"></a>
     <?php 
         // Move some element (i.e.: time publish, featured image, gallery, related article) to right side
         $timePublishElement = $form->get('time_publish');
@@ -226,6 +227,7 @@ var currentStatus;
 var response;
 (function($) {
 var page = {
+    id      : "<?php echo $form->get('id')->getValue() ?: 'none'; ?>",
     base    : "<?php echo Pi::url(''); ?>",
     status  : "<?php echo $this->escape($draft['status']); ?>",
     form    : $("form#draft"),
@@ -277,7 +279,7 @@ var page = {
                         },200)
                     } else {
                         page.$("[name=id]").val(resp.data.id);
-                        //page.id = resp.data.id;
+                        page.id = resp.data.id;
                     }
                 }
                 option.fn(resp.data);
@@ -440,7 +442,7 @@ var ReleaseProcess = Backbone.View.extend({
         page.submit({fn : function(data) {
             if (data.preview_url) {
                 $("#jsAlert").remove();
-                page.$(".hide-preview").attr("href",data.preview_url)[0].click(); 
+                page.$(".hide-preview").attr("href", data.preview_url)[0].click(); 
             } else {
                 page.formTip({status:0,message:"The url is not exists, please try again!"});
             }

@@ -10,7 +10,6 @@
 namespace Module\Article;
 
 use Pi;
-use Module\Article\Service;
 use Module\Article\Entity;
 use Module\Article\Model\Article;
 use Zend\Db\Sql\Expression;

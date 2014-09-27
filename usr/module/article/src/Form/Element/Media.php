@@ -171,7 +171,7 @@ class Media extends Hidden
                 'id'       => $row->id,
                 'url'      => Pi::url($row->url),
                 'title'    => $row->title,
-                'download' => $downloadUrl,
+                'download' => Pi::url($downloadUrl),
             );
         }
         

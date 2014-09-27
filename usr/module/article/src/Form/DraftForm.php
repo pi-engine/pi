@@ -79,16 +79,7 @@ class DraftForm extends BaseForm
                 'type' => 'hidden',
             );
         }
-        //$enableTag = Pi::config('enable_tag', $this->module);
-        //if (!empty($enableTag)) {
-            $fields[] = array(
-                'name'    => 'tag',
-                'type'    => 'tag',
-                'options' => array(
-                    'label'  => __('Tags'),
-                ),
-            );
-        //}
+
         /*$fields[] = array(
             'name'       => 'security',
             'type'       => 'csrf',

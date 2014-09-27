@@ -473,6 +473,9 @@ class Article extends AbstractResource
                     if (isset($items[$key]['field_type'])) {
                         unset($items[$key]['field_type']);
                     }
+                    if (!isset($items[$key]['filter'])) {
+                        $items[$key]['filter'] = '';
+                    }
 
                     $row->assign($items[$key]);
                     $row->save();

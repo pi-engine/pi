@@ -72,6 +72,10 @@ class FeatureImage extends Media
     {
         $value  = $value ?: $this->getValue();
         
+        if (empty($value)) {
+            return array();
+        }
+        
         $result = array();
         
         if (is_numeric($value)

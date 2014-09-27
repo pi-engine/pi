@@ -226,12 +226,12 @@ abstract class AbstractCustomHandler
     /**
      * Canonize field data
      *
-     * @param int $uid
+     * @param int $id
      * @param mixed $data
      *
      * @return array
      */
-    protected function canonize($uid, $data)
+    protected function canonize($id, $data)
     {
         $meta = $this->getMeta();
         foreach (array_keys($data) as $key) {
@@ -242,7 +242,7 @@ abstract class AbstractCustomHandler
                 unset($data[$key]);
             }
         }
-        $data['uid'] = $uid;
+        $data['article'] = $id;
 
         return $data;
     }
@@ -250,23 +250,23 @@ abstract class AbstractCustomHandler
     /**
      * Add article custom compound/field
      *
-     * @param int   $uid
+     * @param int   $id
      * @param mixed $data
      *
      * @return int
      */
-    public function add($uid, $data)
+    public function add($id, $data)
     {
         if ($this->isMultiple) {
             $order = 0;
             foreach ((array) $data as $set) {
-                $set = $this->canonize($uid, $set);
+                $set = $this->canonize($id, $set);
                 $set['order'] = $order++;
                 $row = $this->getModel()->createRow($set);
                 $row->save();
             }
         } else {
-            $row = $this->getModel()->createRow($this->canonize($uid, $data));
+            $row = $this->getModel()->createRow($this->canonize($id, $data));
             $row->save();
         }
 
@@ -276,18 +276,18 @@ abstract class AbstractCustomHandler
     /**
      * Update article custom compound/field
      *
-     * @param int   $uid
+     * @param int   $id
      * @param mixed $data
      *
      * @return int
      */
-    public function update($uid, $data)
+    public function update($id, $data)
     {
         if (!$data) {
-            return $this->delete($uid);
+            return $this->delete($id);
         }
-        $this->delete($uid);
-        $id = $this->add($uid, $data);
+        $this->delete($id);
+        $id = $this->add($id, $data);
 
         return $id;
     }
@@ -295,7 +295,7 @@ abstract class AbstractCustomHandler
     /**
      * Delete article custom compound/field
      *
-     * @param int   $uid
+     * @param int   $id
      *
      * @return bool
      */
@@ -309,7 +309,7 @@ abstract class AbstractCustomHandler
     /**
      * Get article custom compound/field
      *
-     * @param int   $uid
+     * @param int   $id
      * @param bool  $filter     To filter for display
      *
      * @return array
@@ -319,7 +319,7 @@ abstract class AbstractCustomHandler
     /**
      * Get multiple article custom compound fields
      *
-     * @param int[] $uids
+     * @param int[] $ids
      * @param bool  $filter     To filter for display
      *
      * @return array
@@ -329,7 +329,7 @@ abstract class AbstractCustomHandler
     /**
      * Get article custom compound/field read for display
      *
-     * @param int|int[]   $uid
+     * @param int|int[]   $id
      * @param array|null $data
      *
      * @return array
