@@ -73,4 +73,13 @@ class CommonHandler extends AbstractCommonHandler
     {
         
     }
+    
+    /**
+     * Fetch data from published article table, and convert into format draft needed
+     * @param type $id
+     */
+    public function encode($id)
+    {
+        return $this->get($id);
+    }
 }

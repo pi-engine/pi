@@ -35,7 +35,9 @@ class CustomCommonHandler extends CommonHandler
      */
     public function get($id, $filter = false)
     {
-        return array();
+        $rowset = $this->getModel()->select(array('article' => $id));
+        
+        return $rowset->toArray();
     }
 
     /**
@@ -50,4 +52,12 @@ class CustomCommonHandler extends CommonHandler
      * {@inheritDoc}
      */
     public function display($id, $data = null) {}
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function delete($id)
+    {
+        return $this->getModel()->delete(array('article' => $id));
+    }
 }

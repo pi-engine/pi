@@ -12,9 +12,7 @@ namespace Module\Article;
 use Pi;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
-use Module\Article\Compiled;
 use Module\Article\Stats;
-use Module\Article\Draft;
 use Module\Article\Model\Stats as ModelStats;
 use Module\Article\Model\Draft as DraftModel;
 
@@ -272,24 +270,14 @@ class Entity
         $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
         $module = $module ?: Pi::service('module')->current();
-        $config = Pi::config('', $module);
         $articleIds = $userIds = $authorIds = $categoryIds = array();
         $categories = $authors = $users = $tags = $urls = array();
 
         $modelArticle  = Pi::model('article', $module);
         
-        // Generate columns of extended table and statistics table
-        $extendedColumns = Pi::service('registry')
-            ->handler('extended', $module)
-            ->read($module);
+        // Generate columns of statistics table
         $statisColumns = ModelStats::getAvailableColumns();
         if (!empty($columns)) {
-            // Get needed columns of extended table
-            foreach ($extendedColumns as $key => $col) {
-                if (!in_array($col, $columns)) {
-                    unset($extendedColumns[$key]);
-                }
-            }
             // Get needed columns of statistics table
             foreach ($statisColumns as $key => $col) {
                 if (!in_array($col, $columns)) {
@@ -297,7 +285,6 @@ class Entity
                 }
             }
             // Remove fields not belong to article table
-            $columns = array_diff($columns, $extendedColumns);
             $columns = array_diff($columns, $statisColumns);
         }
 
@@ -347,38 +334,6 @@ class Entity
                         continue;
                     }
                     $templateStatis[$col] = null;
-                }
-            }
-            
-            // Default extended columns
-            $extendedColumns = array_merge(
-                $extendedColumns,
-                array('slug', 'seo_title', 'seo_keywords', 'seo_description')
-            );
-            $extendedColumns = array_unique($extendedColumns);
-            // Getting extended data
-            $templateExtended = array();
-            if (!empty($extendedColumns)) {
-                $extendedColumns[] = 'id';
-                $extendedColumns[] = 'article';
-                $modelExtended = Pi::model('extended', $module);
-                $select        = $modelExtended
-                    ->select()
-                    ->where(array('article' => $articleIds))
-                    ->columns($extendedColumns);
-                $rowExtended   = $modelExtended->selectWith($select);
-                $extended      = array();
-                foreach ($rowExtended as $item) {
-                    $temp = $item->toArray();
-                    unset($temp['id']);
-                    unset($temp['article']);
-                    $extended[$item->article] = $temp;
-                }
-                foreach ($extendedColumns as $col) {
-                    if (in_array($col, array('id', 'article'))) {
-                        continue;
-                    }
-                    $templateExtended[$col] = null;
                 }
             }
 
@@ -461,7 +416,6 @@ class Entity
                         'module'    => $module,
                         'time'      => date('Ymd', $row['time_publish']),
                         'id'        => $row['id'],
-                        'slug'      => $extended[$row['id']]['slug'],
                     ));
                 }
                 
@@ -469,10 +423,6 @@ class Entity
                     $statis[$row['id']] = $templateStatis;
                 }
                 $row = array_merge($row, $statis[$row['id']]);
-                if (!isset($extended[$row['id']])) {
-                    $extended[$row['id']] = $templateExtended;
-                }
-                $row = array_merge($row, $extended[$row['id']]);
             }
         }
 
@@ -523,130 +473,52 @@ class Entity
         if (empty($row->id)) {
             return array();
         }
-        if ($row->markup) {
-            $subject  = Pi::service('markup')->render($row->subject, 'html', $row->markup);
-            $subtitle = Pi::service('markup')->render($row->subtitle, 'html', $row->markup);
-        } else {
-            $subject  = Pi::service('markup')->render($row->subject, 'html');
-            $subtitle = Pi::service('markup')->render($row->subtitle, 'html');
+        $result = Pi::api('article', $module)->resolver($row->toArray());
+        
+        $custom = $compound = array();
+        $meta = Pi::registry('field', $module)->read();
+        foreach ($meta as $field => $value) {
+            if (isset($result[$field])) {
+                continue;
+            }
+            if ('compound' === $value['type']) {
+                $compound[] = $field;
+                continue;
+            }
+            $custom[] = $field;
         }
-        $content = Compiled::getContent($row->id, 'html');
 
-        $result  = array(
-            'title'         => $subject,
-            'content'       => Draft::breakPage($content),
-            'subtitle'      => $subtitle,
-            'source'        => $row->source,
-            'pages'         => $row->pages,
-            'time_publish'  => $row->time_publish,
-            'active'        => $row->active,
-            'visits'        => '',
-            'slug'          => '',
-            'seo'           => array(),
-            'author'        => array(),
-            'attachment'    => array(),
-            'tag'           => '',
-            'related'       => array(),
-        );
-
-        // Get author
-        if ($row->author) {
-            $author = Pi::api('api', $module)->getAuthorList((array) $row->author);
-
-            if ($author) {
-                $result['author'] = array_shift($author);
-                if (empty($result['author']['photo'])) {
-                    $result['author']['photo'] = 
-                        Pi::service('asset')->getModuleAsset(
-                            $config['default_author_photo'], 
-                            $module
-                        );
+        // Get compound data
+        foreach ($compound as $name) {
+            $class = sprintf('Custom\Article\Field\%s', ucfirst($name));
+            if (!class_exists($class)) {
+                $class = sprintf('Module\Article\Field\%s', ucfirst($name));
+                if (!class_exists($class)) {
+                    continue;
                 }
             }
+            $handler = new $class($module, $name);
+            $data    = $handler->encode($id);
+            $result[$name] = $handler->resolve(array_pop($data));
         }
-
-        // Get attachments
-        $resultsetAsset = Pi::model('asset', $module)->select(array(
-            'article'   => $id,
-            'type'      => 'attachment',
-        ));
-        $mediaIds = array();
-        foreach ($resultsetAsset as $asset) {
-            $mediaIds[$asset->media] = $asset->media;
-        }
-        if ($mediaIds) {
-            $resultsetMedia = Pi::model('media', $module)->select(
-                array('id' => $mediaIds)
-            );
-
-            foreach ($resultsetMedia as $media) {
-                $result['attachment'][] = array(
-                    'original_name' => $media->title,
-                    'extension'     => $media->type,
-                    'size'          => $media->size,
-                    'url'           => Pi::service('url')->assemble(
-                        'default',
-                        array(
-                            'module'     => $module,
-                            'controller' => 'media',
-                            'action'     => 'download',
-                            'id'         => $media->id,
-                        )
-                    ),
-                );
-            }
-        }
-
-        // Get tag
-        /*
-        if ($config['enable_tag']) {
-            $result['tag'] = Pi::service('tag')->get($module, $id);
-        }
-        */
-
-        // Get related articles
-        $relatedIds = Pi::model('related', $module)->getRelated($id);
-
-        if ($relatedIds) {
-            $related = array_flip($relatedIds);
-            $where   = array('id' => $relatedIds);
-            $columns = array('id', 'subject', 'time_publish');
-
-            $resultsetRelated = self::getArticlePage(
-                $where, 
-                1, 
-                null, 
-                $columns, 
-                null, 
-                $module
-            );
-
-            foreach ($resultsetRelated as $key => $val) {
-                if (array_key_exists($key, $related)) {
-                    $related[$key] = $val;
+        
+        // Get custom data
+        foreach ($custom as $name) {
+            $class = sprintf('Custom\Article\Field\%s', ucfirst($name));
+            if (!class_exists($class)) {
+                $class = sprintf('Module\Article\Field\%s', ucfirst($name));
+                if (!class_exists($class)) {
+                    continue;
                 }
             }
-
-            $result['related'] = array_filter($related, function($var) {
-                return is_array($var);
-            });
-        }
-
-        // Getting seo
-        $modelExtended  = Pi::model('extended', $module);
-        $rowExtended    = $modelExtended->find($row->id);
-        if ($rowExtended) {
-            $result['slug'] = $rowExtended->slug;
-            $result['seo']  = array(
-                'title'        => $rowExtended->seo_title,
-                'keywords'     => $rowExtended->seo_keywords,
-                'description'  => $rowExtended->seo_description,
-            );
+            $handler = new $class($module, $name);
+            $data    = $handler->encode($id);
+            $result[$name] = $handler->resolve(array_pop($data));
         }
         
         // Getting stats data
         $modelStatis    = Pi::model('stats', $module);
-        $rowStatis      = $modelStatis->find($row->id);
+        $rowStatis      = $modelStatis->find($id, 'article');
         if ($rowStatis) {
             $result['visits'] = $rowStatis->visits;
         }

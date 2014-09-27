@@ -126,47 +126,6 @@ class Draft
     }
 
     /**
-     * Delete draft, along with featured image and attachment.
-     * 
-     * @param array   $ids     Draft ID
-     * @param string  $module  Current module name
-     * @return int             Affected rows
-     */
-    public static function deleteDraft($ids, $module = null)
-    {
-        $module         = $module ?: Pi::service('module')->current();
-
-        $modelDraft     = Pi::model('draft', $module);
-        $modelArticle   = Pi::model('article', $module);
-
-        // Delete feature image
-        $resultsetFeatureImage = $modelDraft->select(array('id' => $ids));
-        foreach ($resultsetFeatureImage as $featureImage) {
-            if ($featureImage->article) {
-                $rowArticle = $modelArticle->find($featureImage->article);
-                if ($featureImage->image 
-                    && strcmp($featureImage->image, $rowArticle->image) != 0
-                ) {
-                    @unlink(Pi::path($featureImage->image));
-                    @unlink(Pi::path(Media::getThumbFromOriginal($featureImage->image)));
-                }
-            } else if ($featureImage->image) {
-                @unlink(Pi::path($featureImage->image));
-                @unlink(Pi::path(Media::getThumbFromOriginal($featureImage->image)));
-            }
-        }
-
-        // Delete assets
-        $modelDraftAsset = Pi::model('asset_draft', $module);
-        $modelDraftAsset->delete(array('draft' => $ids));
-
-        // Delete draft
-        $affectedRows = $modelDraft->delete(array('id' => $ids));
-
-        return $affectedRows;
-    }
-
-    /**
      * Break article content by delimiter
      * 
      * @param string  $content
@@ -228,25 +187,6 @@ class Draft
         $result = mb_substr($result, 0, $length, 'utf-8');
 
         return $result;
-    }
-
-    /**
-     * Apply htmlspecialchars() on each value of an array
-     *
-     * @param mixed $data
-     */
-    public static function deepHtmlspecialchars($data)
-    {
-        if (is_array($data)) {
-            foreach ($data as $key => $val) {
-                $data[$key] = static::deepHtmlspecialchars($val);
-            }
-        } else {
-            $data = is_string($data) 
-                ? htmlspecialchars($data, ENT_QUOTES, 'utf-8') : $data;
-        }
-
-        return $data;
     }
     
     /**

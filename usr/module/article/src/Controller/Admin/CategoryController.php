@@ -14,10 +14,6 @@ use Pi\Form\Form;
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\CategoryEditForm;
 use Module\Article\Form\CategoryEditFilter;
-use Module\Article\Form\CategoryMergeForm;
-use Module\Article\Form\CategoryMergeFilter;
-use Module\Article\Form\CategoryMoveForm;
-use Module\Article\Form\CategoryMoveFilter;
 use Module\Article\Model\Category;
 use Module\Article\Media;
 
@@ -245,7 +241,7 @@ class CategoryController extends ActionController
      */
     public function mergeAction()
     {
-        $form = new CategoryMergeForm();
+        $form = $this->getIntegrationForm('merge');
         $this->view()->assign(array(
             'title' => _a('Merge Category'),
             'form'  => $form,
@@ -254,7 +250,6 @@ class CategoryController extends ActionController
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
-            $form->setInputFilter(new CategoryMergeFilter);
         
             if (!$form->isValid()) {
                 $this->renderForm(
@@ -336,7 +331,7 @@ class CategoryController extends ActionController
      */
     public function moveAction()
     {
-        $form = new CategoryMoveForm();
+        $form = $this->getIntegrationForm();
         $this->view()->assign(array(
             'title' => _a('Move Category'),
             'form'  => $form,
@@ -345,7 +340,6 @@ class CategoryController extends ActionController
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
-            $form->setInputFilter(new CategoryMoveFilter);
 
             if (!$form->isValid()) {
                 $this->renderForm(
@@ -777,6 +771,75 @@ class CategoryController extends ActionController
         foreach ($elements as $element) {
             $form->add($element);
         }
+        
+        return $form;
+    }
+    
+    /**
+     * Get move or merge form instance
+     * 
+     * @param string $mode
+     * @return \Pi\Form\Form
+     */
+    protected function getIntegrationForm($mode = 'move')
+    {
+        $form = new \Pi\Form\Form;
+        $type = ('move' === $mode ? 'Module\Article\Form\Element\CategoryWithRoot'
+            : 'Module\Article\Form\Element\Category');
+        $elements = array(
+            array(
+                'name'       => 'from',
+                'options'    => array(
+                    'label'     => __('From'),
+                ),
+                'attributes' => array(
+                    'id'        => 'from',
+                    'class'     => 'form-control',
+                ),
+                'type'       => 'Module\Article\Form\Element\Category',
+            ),
+            array(
+                'name'       => 'to',
+                'options'    => array(
+                    'label'     => __('To'),
+                ),
+                'attributes' => array(
+                    'id'        => 'to',
+                    'class'     => 'form-control',
+                ),
+                'type'       => $type,
+            ),
+            array(
+                'name'       => 'security',
+                'type'       => 'csrf',
+            ),
+            array(
+                'name'       => 'submit',
+                'attributes' => array(              
+                    'value'     => __('Submit'),
+                ),
+                'type'       => 'submit',
+            ),
+        );
+        foreach ($elements as $element) {
+            $form->add($element);
+        }
+        
+        $filters = array(
+            array(
+                'name'     => 'from',
+                'required' => true,
+            ),
+            array(
+                'name'     => 'to',
+                'required' => 'move' === $mode ? false : true,
+            ),
+        );
+        $filter = new \Zend\InputFilter\InputFilter;
+        foreach ($filters as $element) {
+            $filter->add($element);
+        }
+        $form->setInputFilter($filter);
         
         return $form;
     }

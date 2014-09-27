@@ -12,14 +12,11 @@ namespace Module\Article\Controller\Front;
 use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
-use Module\Article\Form\DraftEditForm;
-use Module\Article\Form\DraftEditFilter;
 use Module\Article\Model\Draft as DraftModel;
 use Module\Article\Model\Article;
 use Module\Article\Rule;
 use Module\Article\Compiled;
 use Module\Article\Entity;
-use Module\Article\Media;
 use Module\Article\Draft;
 
 
@@ -43,9 +40,6 @@ class DraftController extends ActionController
      * @var string
      */
     protected $section = 'front';
-    
-    const RESULT_FALSE = false;
-    const RESULT_TRUE  = true;
 
     /**
      * Publish a article, the status of article will be changed to pendding
@@ -56,7 +50,7 @@ class DraftController extends ActionController
     protected function publish($id)
     {
         $result = array(
-            'status'    => self::RESULT_FALSE,
+            'status'    => false,
             'message'   => array(),
             'data'      => array(),
         );
@@ -85,7 +79,7 @@ class DraftController extends ActionController
         $rowDraft->time_submit = time();
         $rowDraft->save();
 
-        $result['status']   = self::RESULT_TRUE;
+        $result['status']   = true;
         $result['message']  = __('Draft submitted successfully.');
         $result['data']     = array(
             'id'          => $id,
@@ -118,7 +112,7 @@ class DraftController extends ActionController
         }
         
         $result = array(
-            'status'    => self::RESULT_FALSE,
+            'status'    => false,
             'message'   => array(),
             'data'      => array(),
         );
@@ -169,6 +163,7 @@ class DraftController extends ActionController
         $rowCompiled     = $modelCompiled->createRow($compiled);
         $rowCompiled->save();
         
+        // Save custom element data
         foreach ($custom as $field => $value) {
             $class = sprintf('Custom\Article\Field\%s', ucfirst($field));
             if (!class_exists($class)) {
@@ -181,6 +176,7 @@ class DraftController extends ActionController
             $handler->add($articleId, $value);
         }
         
+        // Save compound data
         foreach ($compound as $field => $value) {
             $class = sprintf('Custom\Article\Field\%s', ucfirst($field));
             if (!class_exists($class)) {
@@ -193,46 +189,10 @@ class DraftController extends ActionController
             $handler->add($articleId, $value);
         }
 
-        // Move asset
-        /*$modelDraftAsset     = $this->getModel('asset_draft');
-        $resultsetDraftAsset = $modelDraftAsset->select(array(
-            'draft' => $id,
-        ));
-        $modelAsset = $this->getModel('asset');
-        foreach ($resultsetDraftAsset as $asset) {
-            $data = array(
-                'media'         => $asset->media,
-                'type'          => $asset->type,
-                'article'       => $articleId,
-            );
-            $rowAsset = $modelAsset->createRow($data);
-            $rowAsset->save();
-        }
-
-        // Clear draft assets info
-        $modelDraftAsset->delete(array('draft' => $id));*/
-
-        // Save tag
-        /*if ($this->config('enable_tag') && !empty($row->tag)) {
-            Pi::service('tag')->add(
-                $module,
-                $articleId,
-                '',
-                $row->tag
-            );
-        }*/
-
-        // Save related articles
-        /*$relatedArticles = $row->related;
-        if ($relatedArticles) {
-            $relatedModel = $this->getModel('related');
-            $relatedModel->saveRelated($articleId, $relatedArticles);
-        }*/
-
         // delete draft
         $model->delete(array('id' => $id));
 
-        $result['status']   = self::RESULT_TRUE;
+        $result['status']   = true;
         $result['data']['redirect'] = $this->url(
             '',
             array('action' => 'published', 'controller' => 'article')
@@ -250,13 +210,13 @@ class DraftController extends ActionController
     protected function update($id)
     {
         $result = array(
-            'status'    => self::RESULT_FALSE,
+            'status'    => false,
             'message'   => array(),
             'data'      => array(),
         );
 
         if (!$id) {
-            $result['message'] = __('Not enough parameter.');
+            $result['message'] = __('No enough parameter.');
         }
         
         $modelDraft = $this->getModel('draft');
@@ -268,26 +228,30 @@ class DraftController extends ActionController
         
         $module         = $this->getModule();
         $modelArticle   = $this->getModel('article');
-
-        // Update draft to article
+        
+        // move draft to article
         $articleId = $rowDraft->article;
-        $timestamp = time();
-
-        $article = array(
-            'subject'      => $rowDraft->subject,
-            'subtitle'     => $rowDraft->subtitle,
-            'summary'      => $rowDraft->summary,
-            'content'      => $rowDraft->content,
-            'uid'          => $rowDraft->uid,
-            'author'       => $rowDraft->author,
-            'source'       => $rowDraft->source,
-            'pages'        => $rowDraft->pages,
-            'time_submit'  => $rowDraft->time_submit,
-            'time_publish' => $rowDraft->time_publish,
-            'time_update'  => time(),
-            'user_update'  => Pi::user()->getId(),
-        );
-        $rowArticle = $modelArticle->find($articleId);
+        $custom = $compound = $article = array();
+        $meta     = Pi::registry('field', $module)->read();
+        $columns  = $modelArticle->getColumns(true);
+        foreach ((array) $rowDraft as $key => $value) {
+            if (!isset($meta[$key])) {
+                continue;
+            }
+            if ('compound' === $meta[$key]['type']) {
+                $compound[$key] = $value;
+                continue;
+            }
+            if (!in_array($key, $columns)) {
+                $custom[$key] = $value;
+                continue;
+            }
+            $article[$key] = $value;
+        }
+        $article['user_update'] = Pi::user()->getId();
+        $article['time_update'] = time();
+        unset($article['status']);
+        $rowArticle = $modelArticle->find($rowDraft->article);
         $rowArticle->assign($article);
         $rowArticle->save();
         
@@ -311,85 +275,47 @@ class DraftController extends ActionController
             $rowCompiled->assign($compiled);
             $rowCompiled->save();
         } else {
-            $rowCompiled     = $modelCompiled->createRow($compiled);
+            $rowCompiled = $modelCompiled->createRow($compiled);
             $rowCompiled->save();
         }
         
-        // Update value of extended fields
-        $extended = array();
-        $modelExtended = $this->getModel('extended');
-        $columns       = $modelExtended->getValidColumns();
-        foreach ($columns as $column) {
-            $extended[$column] = $rowDraft->$column;
-        }
-        $extended['article'] = $articleId;
-        $rowExtended   = $modelExtended->find($articleId, 'article');
-        if (!$rowExtended) {
-            $rowExtended = $modelExtended->createRow($extended);
-        } else {
-            $rowExtended->assign($extended);
-        }
-        $rowExtended->save();
-
-        // Move feature image
-        if (strcmp($rowDraft->image, $rowArticle->image) != 0) {
-            if ($rowArticle->image) {
-                $image = Pi::path($rowArticle->image);
-
-                unlink($image);
-                unlink(Media::getThumbFromOriginal($image));
+        // Save custom element data
+        foreach ($custom as $field => $value) {
+            $class = sprintf('Custom\Article\Field\%s', ucfirst($field));
+            if (!class_exists($class)) {
+                $class = sprintf('Module\Article\Field\%s', ucfirst($field));
+                if (!class_exists($class)) {
+                    continue;
+                }
             }
-
-            $rowArticle->image = $rowDraft->image;
-            $rowArticle->save();
-        }
-
-        // Update assets
-        $modelAsset          = $this->getModel('asset');
-        $modelAsset->delete(array('article' => $articleId));
-        $modelDraftAsset     = $this->getModel('asset_draft');
-        $resultsetDraftAsset = $modelDraftAsset->select(array(
-            'draft' => $id,
-        ));
-        foreach ($resultsetDraftAsset as $asset) {
-            $data = array(
-                'media'     => $asset->media,
-                'type'      => $asset->type,
-                'article'   => $articleId,
-            );
-            $rowAsset = $modelAsset->createRow($data);
-            $rowAsset->save();
+            $handler = new $class($module, $field);
+            $handler->delete($articleId);
+            $handler->add($articleId, $value);
         }
         
-        // Clear draft assets
-        $modelDraftAsset->delete(array('draft' => $id));
-
-        // Save tag
-        if ($this->config('enable_tag')) {
-            Pi::service('tag')->update(
-                $module,
-                $articleId,
-                '',
-                $rowDraft->tag
-            );
-        }
-
-        // Save related articles
-        $relatedArticles = $rowDraft->related;
-        if ($relatedArticles) {
-            $modelRelated = $this->getModel('related');
-            $modelRelated->saveRelated($articleId, $relatedArticles);
+        // Save compound data
+        foreach ($compound as $field => $value) {
+            $class = sprintf('Custom\Article\Field\%s', ucfirst($field));
+            if (!class_exists($class)) {
+                $class = sprintf('Module\Article\Field\%s', ucfirst($field));
+                if (!class_exists($class)) {
+                    continue;
+                }
+            }
+            $handler = new $class($module, $field);
+            $handler->delete($articleId);
+            $handler->add($articleId, $value);
         }
 
         // Delete draft
         $modelDraft->delete(array('id' => $rowDraft->id));
 
-        $result['status']   = self::RESULT_TRUE;
+        $result['status']   = true;
         $result['data']['redirect'] = $this->url(
             '',
             array('action' => 'published', 'controller' => 'article')
         );
-        $result['message']= __('Article update successfully.');
+        $result['message'] = __('Article update successfully.');
 
         return $result;
     }
@@ -498,24 +424,6 @@ class DraftController extends ActionController
             'limit'     => $limit,
         ));
     }
-    
-    /**
-     * Get a empty template of a draft
-     * 
-     * @return array 
-     */
-    protected function getDraftEmptyTemplate()
-    {
-        $columns = DraftModel::getAvailableFields();
-        
-        $template = array();
-        foreach ($columns as $column) {
-            $template[$column] = null;
-        }
-        
-        return $template;
-    }
-
 
     /**
      * AJAX action, save article to draft.
@@ -533,7 +441,7 @@ class DraftController extends ActionController
             return $this->jumpTo404();
         }
         $result = array(
-            'status'    => self::RESULT_FALSE,
+            'status'    => false,
             'message'   => array(),
             'data'      => array(),
         );
@@ -557,7 +465,7 @@ class DraftController extends ActionController
             );
         }
         
-        $result['status']   = self::RESULT_TRUE;
+        $result['status']   = true;
         $result['data']     = array('id' => $id);
 
         $route = 'article';
@@ -694,13 +602,19 @@ class DraftController extends ActionController
             'uid'           => Pi::user()->getId(),
         ));
         
+        $columns = $this->getModel('article')->getColumns(true);
+        $template = array_flip(array_merge($columns, array('article', 'time_save')));
+        array_walk($template, function(&$value) {
+            $value = '';
+        });
+        
         $this->view()->assign(array(
             'form'          => $form,
             'rules'         => $rules,
             'approve'       => $approve,
             'delete'        => $delete,
             'status'        => DraftModel::FIELD_STATUS_DRAFT,
-            'draft'         => $this->getDraftEmptyTemplate(),
+            'draft'         => $template,
             'currentDelete' => true,
             'autoSave'      => $this->config('autosave_interval'),
         ));
@@ -938,7 +852,7 @@ class DraftController extends ActionController
         }
         
         $result = array(
-            'status'    => self::RESULT_TRUE,
+            'status'    => true,
             'message'   => array(),
             'data'      => array(),
         );
@@ -968,7 +882,7 @@ class DraftController extends ActionController
         $row->reject_reason = $rejectReason;
         $row->save();
 
-        $result['status']   = self::RESULT_TRUE;
+        $result['status']   = true;
         $result['data']['redirect'] = $this->url(
             '',
             array('action'=>'list', 'controller' => 'draft')
@@ -1032,7 +946,6 @@ class DraftController extends ActionController
         $ids    = array_filter(explode(',', $id));
         $from   = $this->params('from', '');
 
-        $options = Setup::getFormConfig();
         if ($ids) {
             // To approve articles that user has permission to approve
             $model = $this->getModel('draft');
@@ -1057,7 +970,7 @@ class DraftController extends ActionController
             }
             // Approve articles
             foreach ($ids as $id) {
-                $this->approve($id, $options['elements']);
+                $this->approve($id);
             }
         }
 

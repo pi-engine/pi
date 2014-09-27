@@ -93,6 +93,12 @@ class Related extends CustomCompoundHandler
         return $result;
     }
     
+    /**
+     * Add related article into related table
+     * 
+     * @param int   $id
+     * @param array $data
+     */
     public function add($id, $data)
     {
         $article = array();
@@ -111,5 +117,20 @@ class Related extends CustomCompoundHandler
         }
         
         parent::add($id, $rows);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    public function encode($id)
+    {
+        $rows = parent::encode($id);
+        $articleIds = array();
+        array_walk($rows, function($value) use (&$articleIds) {
+            $articleIds[] = $value['related'];
+        });
+        $result[0] = array('related' => implode(',', $articleIds));
+        
+        return array($this->name => $result);
     }
 }
