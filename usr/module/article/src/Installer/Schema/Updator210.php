@@ -104,7 +104,7 @@ EOD;
 ALTER TABLE {$table} ADD COLUMN `edit` text;
 ALTER TABLE {$table} ADD COLUMN `filter` text;
 ALTER TABLE {$table} ADD COLUMN `handler` text;
-ALTER TABLE {$table} ADD COLUMN `type` enum('common', 'compound') NOT NULL;
+ALTER TABLE {$table} ADD COLUMN `type` enum('common', 'custom', 'compound') NOT NULL;
 ALTER TABLE {$table} ADD COLUMN `is_edit` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';
 ALTER TABLE {$table} ADD COLUMN `is_display` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';
 ALTER TABLE {$table} ADD COLUMN `is_required` tinyint(1) UNSIGNED NOT NULL DEFAULT '0';

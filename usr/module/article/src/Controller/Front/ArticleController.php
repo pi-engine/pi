@@ -200,44 +200,19 @@ class ArticleController extends ActionController
         $draft['article'] = $draft['id'];
         $draft['status']  = DraftModel::FIELD_STATUS_DRAFT;
         unset($draft['id']);
-        
-        $custom = $compound = array();
-        $meta = Pi::registry('field', $module)->read();
-        foreach ($meta as $field => $value) {
-            if (isset($draft[$field])) {
-                continue;
-            }
-            if ('compound' === $value['type']) {
-                $compound[] = $field;
-                continue;
-            }
-            $custom[] = $field;
-        }
 
         // Get compound data
-        foreach ($compound as $name) {
-            $class = sprintf('Custom\Article\Field\%s', ucfirst($name));
-            if (!class_exists($class)) {
-                $class = sprintf('Module\Article\Field\%s', ucfirst($name));
-                if (!class_exists($class)) {
-                    continue;
-                }
-            }
-            $handler = new $class($module, $name);
+        $compound = Pi::registry('field', $module)->read('compound');
+        foreach (array_keys($compound) as $name) {
+            $handler = Pi::api('field', $module)->loadCompoundFieldHandler($name);
             $data    = $handler->encode($draft['article']);
             $draft   = array_merge($draft, $data);
         }
         
         // Get custom data
-        foreach ($custom as $name) {
-            $class = sprintf('Custom\Article\Field\%s', ucfirst($name));
-            if (!class_exists($class)) {
-                $class = sprintf('Module\Article\Field\%s', ucfirst($name));
-                if (!class_exists($class)) {
-                    continue;
-                }
-            }
-            $handler = new $class($module, $name);
+        $custom = Pi::registry('field', $module)->read('custom');
+        foreach (array_keys($custom) as $name) {
+            $handler = Pi::api('field', $module)->loadCustomFieldHandler($name);
             $data    = $handler->encode($draft['article']);
             $draft   = array_merge($draft, $data);
         }
@@ -426,7 +401,6 @@ class ArticleController extends ActionController
         
         $module         = $this->getModule();
         $modelArticle   = $this->getModel('article');
-        $modelAsset     = $this->getModel('asset');
         
         // Delete articles that user has permission to do
         $rules = Rule::getPermission();
@@ -470,18 +444,22 @@ class ArticleController extends ActionController
         // Deleting compiled article
         $this->getModel('compiled')->delete(array('article' => $ids));
         
-        // Delete tag
-        if ($this->config('enable_tag')) {
-            Pi::service('tag')->delete($module, $ids);
+        // Remove compound data
+        $compound = Pi::registry('field', $module)->read('compound');
+        foreach (array_keys($compound) as $name) {
+            $handler = Pi::api('field', $module)->loadCompoundFieldHandler($name);
+            $handler->delete($ids);
         }
-        // Delete related articles
-        $this->getModel('related')->delete(array('article' => $ids));
+        
+        // Remove custom data
+        $custom = Pi::registry('field', $module)->read('custom');
+        foreach (array_keys($custom) as $name) {
+            $handler = Pi::api('field', $module)->loadCustomFieldHandler($name);
+            $handler->delete($ids);
+        }
 
         // Delete visits
         $this->getModel('visit')->delete(array('article' => $ids));
-
-        // Delete assets
-        $modelAsset->delete(array('article' => $ids));
 
         // Delete article directly
         $modelArticle->delete(array('id' => $ids));

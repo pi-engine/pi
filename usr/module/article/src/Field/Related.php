@@ -122,6 +122,16 @@ class Related extends CustomCompoundHandler
     /**
      * {@inheritDoc}
      */
+    public function delete($id)
+    {
+        $this->getModel()->delete(array('article' => (array) $id));
+
+        return true;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
     public function encode($id)
     {
         $rows = parent::encode($id);

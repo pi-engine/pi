@@ -472,7 +472,7 @@ class Form extends AbstractApi
      * @param string $name
      * @return array
      */
-    public function getShowFields($name = 'draft')
+    public function getDisplayFields($name = 'draft')
     {
         return $this->loadConfig($name);
     }
@@ -483,10 +483,10 @@ class Form extends AbstractApi
      * @param type $name
      * @return type
      */
-    public function hasShowField($key, $name = 'draft')
+    public function isDisplayField($key, $name = 'draft')
     {
         $compound = $this->parseCompoundFieldName($key);
-        $fields   = $this->getShowFields($name);
+        $fields   = $this->getDisplayFields($name);
         if (false === $compound) {
             return isset($fields[$key]);
         }

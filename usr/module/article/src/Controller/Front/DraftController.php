@@ -231,27 +231,13 @@ class DraftController extends ActionController
         
         // move draft to article
         $articleId = $rowDraft->article;
-        $custom = $compound = $article = array();
-        $meta     = Pi::registry('field', $module)->read();
-        $columns  = $modelArticle->getColumns(true);
-        foreach ((array) $rowDraft as $key => $value) {
-            if (!isset($meta[$key])) {
-                continue;
-            }
-            if ('compound' === $meta[$key]['type']) {
-                $compound[$key] = $value;
-                continue;
-            }
-            if (!in_array($key, $columns)) {
-                $custom[$key] = $value;
-                continue;
-            }
-            $article[$key] = $value;
-        }
+        $article = (array) $rowDraft;
         $article['user_update'] = Pi::user()->getId();
         $article['time_update'] = time();
         unset($article['status']);
+        unset($article['id']);
         $rowArticle = $modelArticle->find($rowDraft->article);
+        $modelArticle->canonizeColumns($article);
         $rowArticle->assign($article);
         $rowArticle->save();
         
@@ -280,31 +266,19 @@ class DraftController extends ActionController
         }
         
         // Save custom element data
-        foreach ($custom as $field => $value) {
-            $class = sprintf('Custom\Article\Field\%s', ucfirst($field));
-            if (!class_exists($class)) {
-                $class = sprintf('Module\Article\Field\%s', ucfirst($field));
-                if (!class_exists($class)) {
-                    continue;
-                }
-            }
-            $handler = new $class($module, $field);
+        $custom = Pi::registry('field', $module)->read('custom');
+        foreach (array_keys($custom) as $field) {
+            $handler = Pi::api('field', $module)->loadCustomFieldHandler($field);
             $handler->delete($articleId);
-            $handler->add($articleId, $value);
+            $handler->add($articleId, $rowDraft->$field);
         }
         
         // Save compound data
-        foreach ($compound as $field => $value) {
-            $class = sprintf('Custom\Article\Field\%s', ucfirst($field));
-            if (!class_exists($class)) {
-                $class = sprintf('Module\Article\Field\%s', ucfirst($field));
-                if (!class_exists($class)) {
-                    continue;
-                }
-            }
-            $handler = new $class($module, $field);
+        $compound = Pi::registry('field', $module)->read('compound');
+        foreach (array_keys($compound) as $field) {
+            $handler = Pi::api('field', $module)->loadCompoundFieldHandler($field);
             $handler->delete($articleId);
-            $handler->add($articleId, $value);
+            $handler->add($articleId, $rowDraft->$field);
         }
 
         // Delete draft
@@ -1005,7 +979,7 @@ class DraftController extends ActionController
         $time    = time();
         $module  = $this->getModule();
         $row     = $this->getModel('draft')->findRow($id, 'id', false);
-        $details = Pi::api('article', $module)->resolver((array) $row);
+        $details = Pi::api('field', $module)->resolver((array) $row);
         $details['time_publish'] = $time;
         
         $params = array(
