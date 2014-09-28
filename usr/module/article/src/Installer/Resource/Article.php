@@ -404,7 +404,9 @@ class Article extends AbstractResource
                 if ('field' == $op) {
                     if ($spec['handler']) {
                         $customNew[] = $spec;
-                    } elseif ('common' == $spec['type']) {
+                    } elseif ('common' == $spec['type']
+                        || 'custom' == $spec['type']
+                    ) {
                         if (isset($spec['is_insert']) && $spec['is_insert']) {
                             $commonFields[$key] = $fieldType;
                         }
@@ -491,7 +493,9 @@ class Article extends AbstractResource
                     if ('field' == $op) {
                         if ($row->handler) {
                             $custom['delete'][] = $row->toArray();
-                        } elseif ('common' == $row->type) {
+                        } elseif ('common' == $row->type
+                            || 'custom' == $row->type
+                        ) {
                             $itemsDeleted[$op]['common'][] = $key;
                         } elseif ('compound' == $row->type) {
                             $itemsDeleted[$op]['compound'][] = $key;
@@ -525,7 +529,9 @@ class Article extends AbstractResource
                 if ('field' == $op) {
                     if (isset($spec['handler']) && $spec['handler']) {
                         $custom['add'][] = $spec;
-                    } elseif ('common' == $spec['type']) {
+                    } elseif ('common' == $spec['type']
+                        || 'custom' == $spec['type']
+                    ) {
                         if (isset($spec['is_insert']) && $spec['is_insert']) {
                             $fieldsNew[$key] = $fieldType;
                         }

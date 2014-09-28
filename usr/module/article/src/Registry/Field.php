@@ -83,7 +83,7 @@ class Field extends AbstractRegistry
 
     /**
      * {@inheritDoc}
-     * @param string $type Field types: common, compound
+     * @param string $type Field types: common, custom, compound
      * @param string $action Actions: display, edit, all
      * @param array
      */

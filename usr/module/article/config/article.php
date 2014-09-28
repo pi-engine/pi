@@ -10,7 +10,7 @@
 /**
  * Article custom attributes
  * 
- * Common fields
+ * Common fields: fields that exist in article table
  * <code>
  * 'field' => array(
  *     // Case 1
@@ -26,6 +26,19 @@
  *     ),
  * ),
  * </code>
+ * 
+ * Custom fields: fields that can be operated in edit page but not in article table
+ * E.G. `tag` field can be operated in edit page, but its relation table is in tag module.
+ * 
+ * <code>
+ * 'field' => array(
+ *     'field1' => array(
+ *         // The type field must be indicated, or else the field will be treated as common field
+ *         'type' => 'custom',
+ *         ...
+ *     ),
+ * ),
+ * <code>
  * 
  * Compound fields
  * <code>
@@ -207,7 +220,7 @@ return array(
             'is_insert'  => false,
         ),
         'gallery'        => array(
-            'type'       => 'common',
+            'type'       => 'custom',
             'name'       => 'gallery',
             'title'      => _a('Gallery'),
             'edit'       => array(
@@ -229,7 +242,7 @@ return array(
             'is_insert'  => false,
         ),
         'attachment'     => array(
-            'type'       => 'common',
+            'type'       => 'custom',
             'name'       => 'attachment',
             'title'      => _a('Attachment'),
             'edit'       => array(
@@ -361,7 +374,7 @@ return array(
             'is_insert'  => false,
         ),
         'tag'            => array(
-            'type'       => 'common',
+            'type'       => 'custom',
             'name'       => 'tag',
             'title'      => _a('Tag'),
             'edit'       => array(

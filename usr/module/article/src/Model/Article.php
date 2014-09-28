@@ -48,7 +48,7 @@ class Article extends Model
             'time_publish', 'category', 'active'
         );
     }
-
+    
     /**
      * Get articles by ids
      *
@@ -201,32 +201,21 @@ class Article extends Model
 
         return $result;
     }
-
+    
     /**
-     * Check whether slug is already exists
+     * Remove un-exist columns
      * 
-     * @param string  $slug
-     * @param int     $id
-     * @return bool
+     * @param array $data
+     * @return mixed
      */
-    public function checkSlugExists($slug, $id = null)
+    public function canonizeColumns(&$data)
     {
-        $result = false;
-
-        if ($slug) {
-            $select = $this->select()
-                ->columns(array('total' => new Expression('count(id)')))
-                ->where(array(
-                    'slug' => $slug,
-                    'status'  => self::FIELD_STATUS_PUBLISHED,
-                ));
-            if ($id) {
-                $select->where(array('id <> ?' => $id));
+        $data    = (array) $data;
+        $columns = $this->getColumns(true);
+        foreach (array_keys($data) as $key) {
+            if (!in_array($key, $columns)) {
+                unset($data[$key]);
             }
-
-            $result = $this->selectWith($select)->current()->total > 0;
         }
-
-        return $result;
     }
 }

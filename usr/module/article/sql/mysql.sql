@@ -47,7 +47,7 @@ CREATE TABLE `{field}` (
   `edit`            text,
   `filter`          text,
   `handler`         text,
-  `type`            enum('common', 'compound')      NOT NULL,
+  `type`            enum('common', 'custom', 'compound') NOT NULL,
   `is_edit`         tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
   `is_display`      tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',
   `is_required`     tinyint(1) UNSIGNED             NOT NULL DEFAULT '0',

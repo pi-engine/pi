@@ -467,51 +467,25 @@ class Entity
     public static function getEntity($id)
     {
         $module = Pi::service('module')->current();
-        $config = Pi::config('', $module);
 
         $row = Pi::model('article', $module)->find($id);
         if (empty($row->id)) {
             return array();
         }
-        $result = Pi::api('article', $module)->resolver($row->toArray());
-        
-        $custom = $compound = array();
-        $meta = Pi::registry('field', $module)->read();
-        foreach ($meta as $field => $value) {
-            if (isset($result[$field])) {
-                continue;
-            }
-            if ('compound' === $value['type']) {
-                $compound[] = $field;
-                continue;
-            }
-            $custom[] = $field;
-        }
+        $result = Pi::api('field', $module)->resolver($row->toArray());
 
         // Get compound data
-        foreach ($compound as $name) {
-            $class = sprintf('Custom\Article\Field\%s', ucfirst($name));
-            if (!class_exists($class)) {
-                $class = sprintf('Module\Article\Field\%s', ucfirst($name));
-                if (!class_exists($class)) {
-                    continue;
-                }
-            }
-            $handler = new $class($module, $name);
+        $compound = Pi::registry('field', $module)->read('compound');
+        foreach (array_keys($compound) as $name) {
+            $handler = Pi::api('field', $module)->loadCompoundFieldHandler($name);
             $data    = $handler->encode($id);
             $result[$name] = $handler->resolve(array_pop($data));
         }
         
         // Get custom data
-        foreach ($custom as $name) {
-            $class = sprintf('Custom\Article\Field\%s', ucfirst($name));
-            if (!class_exists($class)) {
-                $class = sprintf('Module\Article\Field\%s', ucfirst($name));
-                if (!class_exists($class)) {
-                    continue;
-                }
-            }
-            $handler = new $class($module, $name);
+        $custom = Pi::registry('field', $module)->read('custom');
+        foreach (array_keys($custom) as $name) {
+            $handler = Pi::api('field', $module)->loadCustomFieldHandler($name);
             $data    = $handler->encode($id);
             $result[$name] = $handler->resolve(array_pop($data));
         }
