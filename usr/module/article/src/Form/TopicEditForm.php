@@ -91,17 +91,6 @@ class TopicEditForm extends BaseForm
         ));
         
         $this->add(array(
-            'name'       => 'placeholder',
-            'options'    => array(
-                'label'       => __('Image'),
-            ),
-            'attributes' => array(
-                'type'        => '',
-                'description' => __('Topic feature image, optional.'),
-            ),
-        ));
-        
-        $this->add(array(
             'name'       => 'description',
             'options'    => array(
                 'label'       => __('Description'),
@@ -111,6 +100,33 @@ class TopicEditForm extends BaseForm
                 'description' => __('Display in the website.'),
             ),
         ));
+        
+        $this->add(array(
+            'name'       => 'image',
+            'attributes' => array(
+                
+            ),
+            'options'    => array(
+                'preview'     => array(
+                    'width'       => $config['topic_width'],
+                    'height'      => $config['topic_height'],
+                ),
+                'type'        => 'image',
+                'to_session'  => true,
+            ),
+            'type'        => 'Module\Article\Form\Element\FeatureImage',
+        ));
+        $data['custom_save'] = Pi::service('url')->assemble(
+            '', 
+            array(
+                'controller' => 'ajax',
+                'action'     => 'save-image',
+                'name'       => 'topic',
+                'width'      => $config['topic_width'],
+                'height'     => $config['topic_height'],
+            )
+        );
+        $this->get('image')->setAjaxUrls($data);
         
         $this->add(array(
             'name'       => 'template-placeholder',
@@ -129,20 +145,6 @@ class TopicEditForm extends BaseForm
 
         $this->add(array(
             'name'       => 'id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
-            'name'       => 'fake_id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
-        $this->add(array(
-            'name'       => 'image',
             'attributes' => array(
                 'type'        => 'hidden',
             ),

@@ -142,7 +142,6 @@ div .well {
 }
 .form-horizontal .upload {
     float: left;
-    margin-left: 20px;
 }
 .upload-image-bg i {
     display: block;
@@ -176,6 +175,12 @@ div .well {
 .black-bg span {
     margin-left: 6px;
     width: 79%;
+}
+.fileinput-button input {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 /* Media upload box */

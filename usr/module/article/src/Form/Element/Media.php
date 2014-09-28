@@ -15,6 +15,11 @@ use Zend\Form\Element\Hidden;
 /**
  * Media element class
  * 
+ * @todo
+ * - Abbreviation image configuration
+ * - File path configuration
+ * - Template that support image resize
+ * 
  * <Options>
  * `medias`:     array, media items, such fields must provided - `id`, `url`, `title`
  * `preview`:    array, preview media size, include fields `width` and `height`

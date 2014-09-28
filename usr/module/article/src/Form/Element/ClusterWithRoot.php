@@ -10,32 +10,17 @@
 namespace Module\Article\Form\Element;
 
 use Pi;
-use Zend\Form\Element\Select;
 
 /**
  * Cluster form class for extending cluster selection
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class ClusterWithRoot extends Select
+class ClusterWithRoot extends CategoryWithRoot
 {
     /**
-     * Reading all added categories from database
-     * 
-     * @return array 
+     * Table name
+     * @var string 
      */
-    public function getValueOptions()
-    {
-        if (empty($this->valueOptions)) {
-            $module = $this->getOption('module')
-                ?: Pi::service('module')->current();
-            $this->valueOptions = Pi::model('cluster', $module)
-                ->getSelectOptions(true);
-            if ('system' == Pi::service('module')->current()) {
-                $this->valueOptions = array(0 => __('Null')) + $this->valueOptions;
-            }
-        }
-
-        return $this->valueOptions;
-    }
+    protected $table = 'cluster';
 }

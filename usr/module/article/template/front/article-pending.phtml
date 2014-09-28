@@ -6,7 +6,6 @@
 <div class="row">
     <div class="col-md-12">
     <div id="jsList">
-        <?php/* include "article-nav.phtml"; */?>
         <div class="form-inline">
             <div class="form-group">
                 <span class="btn btn-primary btn-approve form-control" data-action="batch.approve"><?php echo _a('Approve'); ?></span>
@@ -20,9 +19,6 @@
                     </th>
                     <th><?php echo _a('Title'); ?></th>
                     <th style="width: 10%;"><?php echo _a('Category'); ?></th>
-                    <?php /*
-                    <th style="width: 14%"><?php echo _a('Tag'); ?></th>
-                    */ ?>
                     <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
                     <th style="width: 100px;"><?php echo _a('Last update'); ?></th>
                 </tr>
@@ -46,15 +42,6 @@
                     <td>
                         <?php echo $this->escape($draft['category_title']); ?>
                     </td>
-                    <?php
-                    /*
-                    <td><?php
-                        echo !empty($draft['tag']) ? $this->escape(implode(',', $draft['tag'])) 
-                            : '<span class="muted">' . _a('No tags') . '</span>'
-                    ?>
-                    </td>
-                    */
-                    ?>
                     <td><?php echo $this->escape($draft['user_name']); ?></td>
                     <td><?php echo _date($draft['time_save']); ?></td>
                 </tr>
