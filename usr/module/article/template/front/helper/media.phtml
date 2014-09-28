@@ -23,9 +23,9 @@ Need parameters:
     <input type="hidden" value="<?php echo $value; ?>" name="<?php echo $name; ?>" <?php echo $attributes; ?>>
     <div class="pull-left" style="width: 100%">
         <div style="width: 100%">
-            <button class="btn upload fileinput-button" data-toggle="modal" href="#<?php echo $id; ?>-upload-box">
+            <span class="btn btn-default upload fileinput-button" data-toggle="modal" href="#<?php echo $id; ?>-upload-box">
                 <?php _e('Upload'); ?>
-            </button>
+            </span>
             <?php if ('image' === $type) { ?>
             <span class="text-muted"><?php echo _e('Max image size: '). $size['width'] . '×' . $size['height']; ?></span>
             <?php } ?>
@@ -142,7 +142,7 @@ Need parameters:
         <% _.each(exist, function(item) { %>
             <div class="selected-item" data-id="<%= item.id %>" data-download="<%= item.download %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
                 <i class="remove-item fa fa-times"></i>
-                <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>">
+                <img src="<%= item.url %>" alt="<%= item.title %>" title="<%= item.title %>" style="width: <?php echo $preview['width']; ?>px; height: <?php echo $preview['height']; ?>px">
             </div>
         <% }); %>
     </script>

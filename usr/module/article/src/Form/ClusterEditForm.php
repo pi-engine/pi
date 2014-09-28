@@ -83,16 +83,6 @@ class ClusterEditForm extends BaseForm
             ),
             
         ));
-        
-        $this->add(array(
-            'name'       => 'placeholder',
-            'options'    => array(
-                'label'       => __('Image'),
-            ),
-            'attributes' => array(
-                'type'        => '',
-            ),
-        ));
 
         $this->add(array(
             'name'       => 'security',
@@ -106,19 +96,34 @@ class ClusterEditForm extends BaseForm
             ),
         ));
         
-        $this->add(array(
-            'name'       => 'fake_id',
-            'attributes' => array(
-                'type'        => 'hidden',
-            ),
-        ));
-        
+        $module  = Pi::service('module')->current();
+        $config  = Pi::config('', $module);
         $this->add(array(
             'name'       => 'image',
             'attributes' => array(
-                'type'        => 'hidden',
+                
             ),
+            'options'    => array(
+                'preview'     => array(
+                    'width'       => $config['cluster_width'],
+                    'height'      => $config['cluster_height'],
+                ),
+                'type'        => 'image',
+                'to_session'  => true,
+            ),
+            'type'        => 'Module\Article\Form\Element\FeatureImage',
         ));
+        $data['custom_save'] = Pi::service('url')->assemble(
+            '', 
+            array(
+                'controller' => 'ajax',
+                'action'     => 'save-image',
+                'name'       => 'cluster',
+                'width'      => $config['cluster_width'],
+                'height'     => $config['cluster_height'],
+            )
+        );
+        $this->get('image')->setAjaxUrls($data);
         
         $this->add(array(
             'name'       => 'submit',

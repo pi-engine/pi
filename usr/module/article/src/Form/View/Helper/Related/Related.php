@@ -47,7 +47,7 @@ class Related extends AbstractCustomHelper
         }
         
         $this->assign(array(
-            'enable_tag' => Pi::config('enable_tag', $module),
+            'enable_tag' => Pi::api('form', $module)->isDisplayField('tag'),
             'url'        => $url,
             'related'    => $related,
         ));

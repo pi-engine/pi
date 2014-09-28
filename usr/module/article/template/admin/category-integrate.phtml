@@ -1,23 +1,27 @@
-<?php include $this->template('./message-box.phtml'); ?>
+<?php include 'message-box.phtml'; ?>
 
 <?php
     $form->setAttributes(array(
-        'action'  => $this->url('', array('action' => 'sort')),
+        'action'  => $this->url('', array('action' => $action)),
         'method'  => 'post',
         'class'   => 'form-horizontal',
     ));
     echo $this->form()->openTag($form);
 ?>
-
 <div class="">
     <div class="col-md-12 alert alert-info">
-        <?php echo _a('Move a cluster after the target cluster'); ?>
+    <?php 
+        echo sprintf(
+            _a('%s all articles from source to target'),
+            'merge' === $action ? _a('Merge') : _a('Move')
+        );
+    ?>
     </div>
 
     <div class="col-md-12">
         <div class="">
             <div class="col-md-5">
-                <h3><?php echo _a('Source Cluster'); ?></h3>
+                <h3><?php echo _a('Source'); ?></h3>
                 <br/>
                 <?php
                     $element = $form->get('from');
@@ -30,11 +34,11 @@
                 <h3>&nbsp;</h3>
                 <br/>
                 <p class="help-block">
-                    <?php echo _a('move after'); ?>
+                    <?php echo sprintf(_a('%s into'), 'merge' === $action ? _a('merge') : _a('move')); ?>
                 </p>
             </div>
             <div class="col-md-5">
-                <h3><?php echo _a('Target Cluster'); ?></h3>
+                <h3><?php echo _a('Target'); ?></h3>
                 <br/>
                 <?php
                     $element = $form->get('to');

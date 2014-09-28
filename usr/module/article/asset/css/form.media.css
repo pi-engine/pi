@@ -57,6 +57,8 @@
     height: 200px;
     overflow: auto;
     margin-top: 10px;
+    width: 100%;
+    display: inline-block;
 }
 .upload-item .bar {
     width: 100%;
@@ -76,6 +78,7 @@
 .image-thumb {
     width: 100%;
     margin-top: 10px;
+    float: left;
 }
 .image-thumb .selected-item {
     position: relative;

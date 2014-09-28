@@ -10,11 +10,9 @@
 namespace Module\Article\Controller\Admin;
 
 use Pi;
-use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\ClusterEditForm;
 use Module\Article\Form\ClusterEditFilter;
 use Module\Article\Model\Cluster;
-use Module\Article\Media;
 
 /**
  * Cluster controller
@@ -28,19 +26,8 @@ use Module\Article\Media;
  * 
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class ClusterController extends ActionController
+class ClusterController extends CategoryController
 {
-    /**
-     * Cluster index page, which will redirect to cluster list page
-     */
-    public function indexAction()
-    {
-        return $this->redirect()->toRoute(
-            '',
-            array('action' => 'list')
-        );
-    }
-    
     /**
      * Add cluster information
      * 
@@ -66,7 +53,7 @@ class ClusterController extends ActionController
             'configs' => $configs,
             'form'    => $form,
         ));
-        $this->view()->setTemplate('cluster-edit');
+        $this->view()->setTemplate('category-edit');
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -118,6 +105,7 @@ class ClusterController extends ActionController
             'title'   => _a('Edit Cluster Info'),
             'configs' => $configs,
         ));
+        $this->view()->setTemplate('category-edit');
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -224,8 +212,9 @@ class ClusterController extends ActionController
 
         $this->view()->assign(array(
             'title'      => _a('Cluster List'),
-            'clusters'   => $rowset,
+            'items'      => $rowset,
         ));
+        $this->view()->setTemplate('category-list');
     }
 
     /**
@@ -241,7 +230,7 @@ class ClusterController extends ActionController
             'form'   => $form,
             'action' => 'merge',
         ));
-        $this->view()->setTemplate('cluster-integrate');
+        $this->view()->setTemplate('category-integrate');
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -323,7 +312,7 @@ class ClusterController extends ActionController
             'form'   => $form,
             'action' => 'move',
         ));
-        $this->view()->setTemplate('cluster-integrate');
+        $this->view()->setTemplate('category-integrate');
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -399,6 +388,7 @@ class ClusterController extends ActionController
             'title' => _a('Sort Cluster'),
             'form'  => $form,
         ));
+        $this->view()->setTemplate('category-sort');
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -449,150 +439,6 @@ class ClusterController extends ActionController
     }
     
     /**
-     * Save image by AJAX, but do not save data into database.
-     * If the image is fetched by upload, try to receive image by Upload class,
-     * if the it comes from media, copy the image from media to cluster path.
-     * Finally the image data will be saved into session.
-     * 
-     */
-    public function saveImageAction()
-    {
-        Pi::service('log')->mute();
-        $module  = $this->getModule();
-
-        $return  = array('status' => false);
-        $mediaId = $this->params('media_id', 0);
-        $id      = $this->params('id', 0);
-        if (empty($id)) {
-            $id = $this->params('fake_id', 0);
-        }
-        // Check is id valid
-        if (empty($id)) {
-            $return['message'] = _a('Invalid ID!');
-            echo json_encode($return);
-            exit;
-        }
-        
-        $extensions = array_filter(
-            explode(',', $this->config('image_extension'))
-        );
-        foreach ($extensions as &$ext) {
-            $ext = strtolower(trim($ext));
-        }
-        
-        // Get destination path
-        $destination = Media::getTargetDir('cluster', $module, true, false);
-        
-        $rowMedia = $this->getModel('media')->find($mediaId);
-        // Check is media exists
-        if (!$rowMedia->id or !$rowMedia->url) {
-            $return['message'] = _a('Media is not exists!');
-            echo json_encode($return);
-            exit;
-        }
-        // Check is media an image
-        if (!in_array(strtolower($rowMedia->type), $extensions)) {
-            $return['message'] = _a('Invalid file extension!');
-            echo json_encode($return);
-            exit;
-        }
-
-        $ext    = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-        $rename = $id . '.' . $ext;
-        $fileName = rtrim($destination, '/') . '/' . $rename;
-        if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-            $return['message'] = _a('Can not create image file!');
-            echo json_encode($return);
-            exit;
-        }
-
-        // Scale image
-        $uploadInfo['tmp_name'] = $fileName;
-        $uploadInfo['w']        = $this->config('cluster_width');
-        $uploadInfo['h']        = $this->config('cluster_height');
-
-        Media::saveImage($uploadInfo);
-
-        // Save image to cluster
-        $row = $this->getModel('cluster')->find($id);
-        if ($row) {
-            if ($row->image && $row->image != $fileName) {
-                @unlink(Pi::path($row->image));
-            }
-
-            $row->image = $fileName;
-            $row->save();
-        } else {
-            // Or save info to session
-            $session = Media::getUploadSession($module, 'cluster');
-            $session->$id = $uploadInfo;
-        }
-
-        $imageSize = getimagesize(Pi::path($fileName));
-        $orginalName = isset($rawInfo['name']) ? $rawInfo['name'] : $rename;
-
-        // Prepare return data
-        $return['data'] = array(
-            'originalName' => $orginalName,
-            'size'         => filesize(Pi::path($fileName)),
-            'w'            => $imageSize['0'],
-            'h'            => $imageSize['1'],
-            'preview_url'  => Pi::url($fileName),
-            'filename'     => $fileName,
-        );
-
-        $return['status'] = true;
-        echo json_encode($return);
-        exit();
-    }
-    
-    /**
-     * Removing image by AJAX.
-     * This operation will also remove image data in database.
-     * 
-     * @return ViewModel 
-     */
-    public function removeImageAction()
-    {
-        Pi::service('log')->mute();
-        $id           = $this->params('id', 0);
-        $fakeId       = $this->params('fake_id', 0);
-        $affectedRows = 0;
-        $module       = $this->getModule();
-
-        if ($id) {
-            $row = $this->getModel('cluster')->find($id);
-
-            if ($row && $row->image) {
-                // Delete image
-                @unlink(Pi::path($row->image));
-
-                // Update db
-                $row->image = '';
-                $affectedRows = $row->save();
-            }
-        } else if ($fakeId) {
-            $session = Media::getUploadSession($module, 'cluster');
-
-            if (isset($session->$fakeId)) {
-                $uploadInfo = isset($session->$id)
-                    ? $session->$id : $session->$fakeId;
-
-                @unlink(Pi::path($uploadInfo['tmp_name']));
-
-                unset($session->$id);
-                unset($session->$fakeId);
-            }
-        }
-
-        echo json_encode(array(
-            'status'    => $affectedRows ? true : false,
-            'message'   => 'ok',
-        ));
-        exit;
-    }
-    
-    /**
      * Get cluster form object
      * 
      * @param string $action  Form name
@@ -605,19 +451,6 @@ class ClusterController extends ActionController
 
         return $form;
     }
-    
-    /**
-     * Render form
-     * 
-     * @param Form      $form     Form instance
-     * @param string    $message  Message assign to template
-     * @param bool      $error    Whether is error message
-     */
-    public function renderForm(Form $form, $message = null, $error = true)
-    {
-        $params = compact('form', 'message', 'error');
-        $this->view()->assign($params);
-    }
 
     /**
      * Save cluster information
@@ -628,20 +461,15 @@ class ClusterController extends ActionController
      */
     protected function saveCluster($data)
     {
-        $module = $this->getModule();
         $model  = $this->getModel('cluster');
-        $fakeId = $image = null;
 
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
         }
-
-        $fakeId = $this->params('fake_id', 0);
         
         $parent = $data['parent'];
         unset($data['parent']);
-        unset($data['image']);
 
         if (isset($data['slug']) && empty($data['slug'])) {
             unset($data['slug']);
@@ -674,93 +502,8 @@ class ClusterController extends ActionController
                 }
             }
         }
-
-        // Save image
-        $session    = Media::getUploadSession($module, 'cluster');
-        if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))
-        ) {
-            $uploadInfo = isset($session->$id)
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $fileName = $row->id;
-
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $fileName .= '.' . $pathInfo['extension'];
-                }
-                $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-                $row->image = rename(
-                    Pi::path($uploadInfo['tmp_name']),
-                    Pi::path($fileName)
-                ) ? $fileName : $uploadInfo['tmp_name'];
-                $row->save();
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-
-        return $id;
-    }
-    
-    /**
-     * Get sort form instance
-     * 
-     * @param int $from
-     * @param array $sibling
-     *
-     * @return Form
-     */
-    protected function getSortForm($from, array $sibling)
-    {
-        $name = $sibling[$from];
-        unset($sibling[$from]);
-        $form = new \Pi\Form\Form;
-        $elements = array(
-            array(
-                'name'       => 'from',
-                'options'    => array(
-                    'label'     => __('From'),
-                ),
-                'attributes' => array(
-                    'class'     => 'form-control',
-                    'options'   => array(
-                        $from         => $name,
-                    ),
-                ),
-                'type'       => 'select',
-            ),
-            array(
-                'name'       => 'to',
-                'options'    => array(
-                    'label'     => __('To'),
-                ),
-                'attributes' => array(
-                    'class'     => 'form-control',
-                    'options'   => array(0 => __('First of')) + $sibling,
-                ),
-                'type'       => 'select',
-            ),
-            array(
-                'name'       => 'security',
-                'type'       => 'csrf',
-            ),
-            array(
-                'name'       => 'submit',
-                'attributes' => array(              
-                    'value'     => __('Submit'),
-                ),
-                'type'       => 'submit',
-            ),
-        );
-        foreach ($elements as $element) {
-            $form->add($element);
-        }
         
-        return $form;
+        return $id;
     }
     
     /**

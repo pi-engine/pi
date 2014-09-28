@@ -15,7 +15,6 @@ use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\CategoryEditForm;
 use Module\Article\Form\CategoryEditFilter;
 use Module\Article\Model\Category;
-use Module\Article\Media;
 
 /**
  * Category controller
@@ -230,7 +229,7 @@ class CategoryController extends ActionController
 
         $this->view()->assign(array(
             'title'      => _a('Category List'),
-            'categories' => $rowset,
+            'items'      => $rowset,
         ));
     }
 
@@ -243,9 +242,11 @@ class CategoryController extends ActionController
     {
         $form = $this->getIntegrationForm('merge');
         $this->view()->assign(array(
-            'title' => _a('Merge Category'),
-            'form'  => $form,
+            'title'  => _a('Merge Category'),
+            'form'   => $form,
+            'action' => 'merge',
         ));
+        $this->view()->setTemplate('category-integrate');
 
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -333,9 +334,11 @@ class CategoryController extends ActionController
     {
         $form = $this->getIntegrationForm();
         $this->view()->assign(array(
-            'title' => _a('Move Category'),
-            'form'  => $form,
+            'title'  => _a('Move Category'),
+            'form'   => $form,
+            'action' => 'merge',
         ));
+        $this->view()->setTemplate('category-integrate');
         
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -461,150 +464,6 @@ class CategoryController extends ActionController
     }
     
     /**
-     * Save image by AJAX, but do not save data into database.
-     * If the image is fetched by upload, try to receive image by Upload class,
-     * if the it comes from media, copy the image from media to category path.
-     * Finally the image data will be saved into session.
-     * 
-     */
-    public function saveImageAction()
-    {
-        Pi::service('log')->mute();
-        $module  = $this->getModule();
-
-        $return  = array('status' => false);
-        $mediaId = $this->params('media_id', 0);
-        $id      = $this->params('id', 0);
-        if (empty($id)) {
-            $id = $this->params('fake_id', 0);
-        }
-        // Check is id valid
-        if (empty($id)) {
-            $return['message'] = _a('Invalid ID!');
-            echo json_encode($return);
-            exit;
-        }
-        
-        $extensions = array_filter(
-            explode(',', $this->config('image_extension'))
-        );
-        foreach ($extensions as &$ext) {
-            $ext = strtolower(trim($ext));
-        }
-        
-        // Get destination path
-        $destination = Media::getTargetDir('category', $module, true, false);
-        
-        $rowMedia = $this->getModel('media')->find($mediaId);
-        // Check is media exists
-        if (!$rowMedia->id or !$rowMedia->url) {
-            $return['message'] = _a('Media is not exists!');
-            echo json_encode($return);
-            exit;
-        }
-        // Check is media an image
-        if (!in_array(strtolower($rowMedia->type), $extensions)) {
-            $return['message'] = _a('Invalid file extension!');
-            echo json_encode($return);
-            exit;
-        }
-
-        $ext    = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-        $rename = $id . '.' . $ext;
-        $fileName = rtrim($destination, '/') . '/' . $rename;
-        if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-            $return['message'] = _a('Can not create image file!');
-            echo json_encode($return);
-            exit;
-        }
-
-        // Scale image
-        $uploadInfo['tmp_name'] = $fileName;
-        $uploadInfo['w']        = $this->config('category_width');
-        $uploadInfo['h']        = $this->config('category_height');
-
-        Media::saveImage($uploadInfo);
-
-        // Save image to category
-        $row = $this->getModel('category')->find($id);
-        if ($row) {
-            if ($row->image && $row->image != $fileName) {
-                @unlink(Pi::path($row->image));
-            }
-
-            $row->image = $fileName;
-            $row->save();
-        } else {
-            // Or save info to session
-            $session = Media::getUploadSession($module, 'category');
-            $session->$id = $uploadInfo;
-        }
-
-        $imageSize = getimagesize(Pi::path($fileName));
-        $orginalName = isset($rawInfo['name']) ? $rawInfo['name'] : $rename;
-
-        // Prepare return data
-        $return['data'] = array(
-            'originalName' => $orginalName,
-            'size'         => filesize(Pi::path($fileName)),
-            'w'            => $imageSize['0'],
-            'h'            => $imageSize['1'],
-            'preview_url'  => Pi::url($fileName),
-            'filename'     => $fileName,
-        );
-
-        $return['status'] = true;
-        echo json_encode($return);
-        exit();
-    }
-    
-    /**
-     * Removing image by AJAX.
-     * This operation will also remove image data in database.
-     * 
-     * @return ViewModel 
-     */
-    public function removeImageAction()
-    {
-        Pi::service('log')->mute();
-        $id           = $this->params('id', 0);
-        $fakeId       = $this->params('fake_id', 0);
-        $affectedRows = 0;
-        $module       = $this->getModule();
-
-        if ($id) {
-            $row = $this->getModel('category')->find($id);
-
-            if ($row && $row->image) {
-                // Delete image
-                @unlink(Pi::path($row->image));
-
-                // Update db
-                $row->image = '';
-                $affectedRows = $row->save();
-            }
-        } else if ($fakeId) {
-            $session = Media::getUploadSession($module, 'category');
-
-            if (isset($session->$fakeId)) {
-                $uploadInfo = isset($session->$id)
-                    ? $session->$id : $session->$fakeId;
-
-                @unlink(Pi::path($uploadInfo['tmp_name']));
-
-                unset($session->$id);
-                unset($session->$fakeId);
-            }
-        }
-
-        echo json_encode(array(
-            'status'    => $affectedRows ? true : false,
-            'message'   => 'ok',
-        ));
-        exit;
-    }
-    
-    /**
      * Get category form object
      * 
      * @param string $action  Form name
@@ -640,20 +499,15 @@ class CategoryController extends ActionController
      */
     protected function saveCategory($data)
     {
-        $module = $this->getModule();
         $model  = $this->getModel('category');
-        $fakeId = $image = null;
 
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
         }
-
-        $fakeId = $this->params('fake_id', 0);
         
         $parent = $data['parent'];
         unset($data['parent']);
-        unset($data['image']);
 
         if (isset($data['slug']) && empty($data['slug'])) {
             unset($data['slug']);
@@ -685,34 +539,6 @@ class CategoryController extends ActionController
                     $model->move($id, $parent);
                 }
             }
-        }
-
-        // Save image
-        $session    = Media::getUploadSession($module, 'category');
-        if (isset($session->$id)
-            || ($fakeId && isset($session->$fakeId))
-        ) {
-            $uploadInfo = isset($session->$id)
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $fileName = $row->id;
-
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $fileName .= '.' . $pathInfo['extension'];
-                }
-                $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-                $row->image = rename(
-                    Pi::path($uploadInfo['tmp_name']),
-                    Pi::path($fileName)
-                ) ? $fileName : $uploadInfo['tmp_name'];
-                $row->save();
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
         }
 
         return $id;

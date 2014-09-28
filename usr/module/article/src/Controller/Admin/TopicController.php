@@ -17,7 +17,6 @@ use Module\Article\Form\TopicEditFilter;
 use Module\Article\Form\SimpleSearchForm;
 use Module\Article\Model\Topic;
 use Zend\Db\Sql\Expression;
-use Module\Article\Media;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
 
@@ -362,7 +361,6 @@ class TopicController extends ActionController
             ->transformSize($configs['max_media_size']);
         
         $form = $this->getTopicForm('add');
-        $form->setData(array('fake_id' => uniqid()));
         
         $this->view()->assign(array(
             'title'   => _a('Add Topic Info'),
@@ -587,151 +585,6 @@ class TopicController extends ActionController
     }
     
     /**
-     * Saving image by AJAX, but do not save data into database.
-     * If the image is fetched by upload, try to receive image by Upload class,
-     * if it comes from media, try to copy the image from media to topic path.
-     * Finally the image data will be saved into session.
-     * 
-     */
-    public function saveImageAction()
-    {
-        Pi::service('log')->mute();
-        $module  = $this->getModule();
-
-        $return  = array('status' => false);
-        $mediaId = $this->params('media_id', 0);
-        $id      = $this->params('id', 0);
-        if (empty($id)) {
-            $id = $this->params('fake_id', 0);
-        }
-        // Checking is ID exists
-        if (empty($id)) {
-            $return['message'] = _a('Invalid ID!');
-            echo json_encode($return);
-            exit;
-        }
-        
-        $extensions = array_filter(
-            explode(',', $this->config('image_extension')));
-        foreach ($extensions as &$ext) {
-            $ext = strtolower(trim($ext));
-        }
-        
-        // Get distination path
-        $destination = Media::getTargetDir('topic', $module, true, false);
-
-        $rowMedia = $this->getModel('media')->find($mediaId);
-        // Checking is media exists
-        if (!$rowMedia->id or !$rowMedia->url) {
-            $return['message'] = _a('Media is not exists!');
-            echo json_encode($return);
-            exit;
-        }
-        // Checking is media an image
-        if (!in_array(strtolower($rowMedia->type), $extensions)) {
-            $return['message'] = _a('Invalid file extension!');
-            echo json_encode($return);
-            exit;
-        }
-
-        $ext = strtolower(pathinfo($rowMedia->url, PATHINFO_EXTENSION));
-        $rename      = $id . '.' . $ext;
-        $fileName    = rtrim($destination, '/') . '/' . $rename;
-        if (!copy(Pi::path($rowMedia->url), Pi::path($fileName))) {
-            $return['message'] = _a('Can not create image file!');
-            echo json_encode($return);
-            exit;
-        }
-
-        // Scale image
-        $uploadInfo['tmp_name'] = $fileName;
-        $uploadInfo['w']        = $this->config('topic_width');
-        $uploadInfo['h']        = $this->config('topic_height');
-        $uploadInfo['thumb_w']  = $this->config('topic_thumb_width');
-        $uploadInfo['thumb_h']  = $this->config('topic_thumb_height');
-
-        Media::saveImage($uploadInfo);
-
-        // Save image to topic
-        $row = $this->getModel('topic')->find($id);
-        if ($row) {
-            if ($row->image && $row->image != $fileName) {
-                @unlink(Pi::path($row->image));
-            }
-
-            $row->image = $fileName;
-            $row->save();
-        } else {
-            // Or save info to session
-            $session = Media::getUploadSession($module, 'topic');
-            $session->$id = $uploadInfo;
-        }
-
-        $imageSize = getimagesize(Pi::path($fileName));
-        $originalName = isset($rawInfo['name']) ? $rawInfo['name'] : $rename;
-
-        // Prepare return data
-        $return['data'] = array(
-            'originalName' => $originalName,
-            'size'         => filesize(Pi::path($fileName)),
-            'w'            => $imageSize['0'],
-            'h'            => $imageSize['1'],
-            'preview_url'  => Pi::url($fileName),
-            'filename'     => $fileName,
-        );
-
-        $return['status'] = true;
-        echo json_encode($return);
-        exit();
-    }
-    
-    /**
-     * Removing image by AJAX.
-     * This operation will also remove image data in database.
-     * 
-     * @return ViewModel 
-     */
-    public function removeImageAction()
-    {
-        Pi::service('log')->mute();
-        $id           = $this->params('id', 0);
-        $fakeId       = $this->params('fake_id', 0);
-        $affectedRows = 0;
-        $module       = $this->getModule();
-
-        if ($id) {
-            $row = $this->getModel('topic')->find($id);
-
-            if ($row && $row->image) {
-                // Delete image
-                @unlink(Pi::path($row->image));
-
-                // Update db
-                $row->image = '';
-                $affectedRows = $row->save();
-            }
-        } else if ($fakeId) {
-            $session = Media::getUploadSession($module, 'topic');
-
-            if (isset($session->$fakeId)) {
-                $uploadInfo = isset($session->$id) 
-                    ? $session->$id : $session->$fakeId;
-
-                @unlink(Pi::path($uploadInfo['tmp_name']));
-
-                unset($session->$id);
-                unset($session->$fakeId);
-            }
-        }
-
-        echo json_encode(array(
-            'status'    => $affectedRows ? true : false,
-            'message'   => 'ok',
-        ));
-        exit;
-    }
-    
-    /**
      * Get all avaliable templates 
      */
     public function getTemplateAction()
@@ -863,19 +716,13 @@ class TopicController extends ActionController
      */
     protected function saveTopic($data)
     {
-        $module = $this->getModule();
         $model  = $this->getModel('topic');
-        $fakeId = $image = null;
 
         if (isset($data['id'])) {
             $id = $data['id'];
             unset($data['id']);
         }
         //$data['active'] = 1;
-
-        $fakeId = $this->params('fake_id', 0);
-
-        unset($data['image']);
         
         if (isset($data['slug']) && empty($data['slug'])) {
             unset($data['slug']);
@@ -895,35 +742,7 @@ class TopicController extends ActionController
             $row->assign($data);
             $row->save();
         }
-
-        // Save image
-        $session    = Media::getUploadSession($module, 'topic');
-        if (isset($session->$id) 
-            || ($fakeId && isset($session->$fakeId))
-        ) {
-            $uploadInfo = isset($session->$id)
-                ? $session->$id : $session->$fakeId;
-
-            if ($uploadInfo) {
-                $fileName = $row->id;
-
-                $pathInfo = pathinfo($uploadInfo['tmp_name']);
-                if ($pathInfo['extension']) {
-                    $fileName .= '.' . $pathInfo['extension'];
-                }
-                $fileName = $pathInfo['dirname'] . '/' . $fileName;
-
-                $row->image = rename(
-                    Pi::path($uploadInfo['tmp_name']),
-                    Pi::path($fileName)
-                ) ? $fileName : $uploadInfo['tmp_name'];
-                $row->save();
-            }
-
-            unset($session->$id);
-            unset($session->$fakeId);
-        }
-
+        
         return $id;
     }
     

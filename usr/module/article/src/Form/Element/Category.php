@@ -20,6 +20,12 @@ use Zend\Form\Element\Select;
 class Category extends Select
 {
     /**
+     * Table name
+     * @var string 
+     */
+    protected $table = 'category';
+    
+    /**
      * Read all added categories from database without root node
      * 
      * @return array 
@@ -29,7 +35,7 @@ class Category extends Select
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module') 
                 ?: Pi::service('module')->current();
-            $this->valueOptions = Pi::model('category', $module)
+            $this->valueOptions = Pi::model($this->table, $module)
                 ->getSelectOptions();
         }
 
