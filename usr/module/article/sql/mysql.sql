@@ -90,7 +90,6 @@ CREATE TABLE `{draft}` (
   `uid`             int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `author`          int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `category`        int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `cluster`         int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `image`           varchar(255)                    NOT NULL DEFAULT '',
   `time_submit`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `time_publish`    int(10) UNSIGNED                NOT NULL DEFAULT 0,
@@ -148,6 +147,15 @@ CREATE TABLE `{cluster}` (
   PRIMARY KEY           (`id`),
   UNIQUE KEY `name`     (`name`),
   UNIQUE KEY `slug`     (`slug`)
+);
+
+CREATE TABLE `{cluster_article}` (
+  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
+  `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `cluster`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
+
+  PRIMARY KEY           (`id`),
+  KEY `cluster_item`    (`cluster`, `article`)
 );
 
 CREATE TABLE `{author}` (
@@ -237,14 +245,4 @@ CREATE TABLE `{asset}` (
   UNIQUE KEY `media_article`    (`media`, `article`),
   KEY `article_type`            (`article`, `type`),
   KEY `media`                   (`media`)
-);
-
-CREATE TABLE `{asset_draft}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `media`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `draft`           varchar(255)          NOT NULL DEFAULT '',
-  `type`            enum('attachment', 'image') NOT NULL DEFAULT 'attachment',
-
-  PRIMARY KEY                   (`id`),
-  KEY `draft_type`              (`draft`, `type`)
 );

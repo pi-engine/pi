@@ -57,7 +57,7 @@
  * ),
  * </code>
  * 
- * Edit field
+ * Form element definition
  * <code>
  * // Define edit type directly by string
  * 'edit' => 'text',
@@ -98,7 +98,7 @@
  * 'is_required' => false,
  * </code>
  * 
- * Table column type
+ * Table column type for non compound but custom fields
  * <code>
  * // Default as text if the key not set or set to empty string
  * 'field_type' => '',
@@ -115,6 +115,13 @@
  *     ),
  * ),
  * </code>
+ * 
+ * Filter for format form data by using $form->getData()
+ * <code>
+ * 'filter' => 'Module\Article\Form\Filter\Test',
+ * </code>
+ * Note:
+ * If the form instance of `getInputSpecification()` method, this config is not support.
  *
  * @see Module\Article\Installer\Resource\Article
  * @author Zongshu Lin <lin40553024@163.com>
@@ -311,12 +318,27 @@ return array(
             'is_edit'    => false,
             'is_insert'  => false,
         ),
-        'cluster'        => array(
-            'type'       => 'common',
+        // Config that article only belong to one cluster
+        /*'cluster'        => array(
+            'type'       => 'custom',
             'name'       => 'cluster',
             'title'      => _a('Cluster'),
             'edit'       => array(
                 'element'  => 'Module\Article\Form\Element\Cluster',
+            ),
+            'is_edit'    => false,
+            'is_insert'  => false,
+        ),*/
+        // Article can belong to multi clusters
+        'cluster'        => array(
+            'type'       => 'custom',
+            'name'       => 'cluster',
+            'title'      => _a('Cluster'),
+            'edit'       => array(
+                'element'  => 'Module\Article\Form\Element\MultiCluster',
+                'options'  => array(
+                    'is_multiple' => true,
+                ),
             ),
             'is_edit'    => false,
             'is_insert'  => false,

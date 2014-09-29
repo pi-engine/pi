@@ -136,6 +136,37 @@ EOD;
                 return $result;
             }
         }
+        
+        if (version_compare($version, '1.4.2', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            // Drop `asset_draft` table
+            $table  = Pi::model('asset_draft', $module)->getTable();
+            $sql    =<<<EOD
+DROP TABLE IF EXISTS `{$table}`;
+EOD;
+            $result = $this->querySchema($sql, $module);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Add `cluster_article` table
+            $table     = Pi::model('cluster_article', $module)->getTable();
+            $createSql =<<<EOD
+CREATE TABLE `{$table}` (
+  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
+  `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `cluster`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
+
+  PRIMARY KEY           (`id`),
+  KEY `cluster_item`    (`cluster`, `article`)
+);
+EOD;
+            $result = $this->queryTable($createSql);
+            if (false === $result) {
+                return $result;
+            }
+        }
 
         return $result;
     }

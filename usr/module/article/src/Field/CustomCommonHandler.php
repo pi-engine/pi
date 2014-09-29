@@ -27,7 +27,7 @@ class CustomCommonHandler extends CommonHandler
      */
     public function resolve($value, $options = array())
     {
-        return array();
+        return $value;
     }
     
     /**
