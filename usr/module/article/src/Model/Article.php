@@ -50,6 +50,37 @@ class Article extends Model
     }
     
     /**
+     * Get table fields exclude id field.
+     * 
+     * @return array 
+     */
+    public function getColumns($fetch = false)
+    {
+        $table    = $this->getTable();
+        $database = Pi::config()->load('service.database.php');
+        $schema   = $database['schema'];
+        $sql = 'select COLUMN_NAME as name from information_schema.columns '
+             . 'where table_name=\'' 
+             . $table . '\' and table_schema=\'' 
+             . $schema . '\'';
+        try {
+            $rowset = Pi::db()->getAdapter()->query($sql, 'prepare')->execute();
+        } catch (\Exception $exception) {
+            return false;
+        }
+        
+        $fields = array();
+        foreach ($rowset as $row) {
+            if ($row['name'] == 'id') {
+                continue;
+            }
+            $fields[] = $row['name'];
+        }
+        
+        return $fields;
+    }
+    
+    /**
      * Get articles by ids
      *
      * @param  array  $ids      Article ids

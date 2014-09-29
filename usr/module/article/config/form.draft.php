@@ -14,6 +14,7 @@ return array(
     'subject',
     'subtitle',
     'category',
+    'cluster',
     'source',
     'author',
     'summary',
