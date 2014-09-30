@@ -109,6 +109,20 @@ class PageController extends ActionController
                 return;
             }
             
+            // Set up core page
+            $result = $this->saveCorePage(
+                $data['title'],
+                $rule['controller'],
+                $data['name']
+            );
+            if (!$result) {
+                $this->renderForm(
+                    $form,
+                    _a('Can not set up page!')
+                );
+                return;
+            }
+            
             // Clear cache
             Pi::registry('page', $module)->clear($module);
             
@@ -165,6 +179,20 @@ class PageController extends ActionController
                 return;
             }
             
+            // Set up core page
+            $result = $this->saveCorePage(
+                $data['title'],
+                $rule['controller'],
+                $data['name']
+            );
+            if (!$result) {
+                $this->renderForm(
+                    $form,
+                    _a('Can not set up page!')
+                );
+                return;
+            }
+            
             // Clear cache
             Pi::registry('page', $module)->clear($module);
 
@@ -195,6 +223,11 @@ class PageController extends ActionController
         }
     }
     
+    /**
+     * Delete page
+     * 
+     * @return ViewModel
+     */
     public function deleteAction()
     {
         $id     = $this->params('id');
@@ -209,12 +242,33 @@ class PageController extends ActionController
                 );
             }
 
+            // Remove page
+            $pageId = 0;
+            $row   = $model->find($id);
+            $where = array(
+                'section'    => 'front',
+                'module'     => $this->getModule(),
+                'controller' => $row->controller,
+                'action'     => $row->name,
+            );
+            $rowset = Pi::model('page')->select($where);
+            foreach ($rowset as $row) {
+                $pageId = $row->id;
+                break;
+            }
+            Pi::model('page')->delete(array('id' => $pageId));
+            Pi::model('page_block')->delete(array('page' => $pageId));
+            
             // Remove node
             $model->remove($id);
             
             // Clear cache
             $module = $this->getModule();
             Pi::registry('page', $module)->clear($module);
+            
+            Pi::registry('page')->flush();
+            Pi::registry('page_cache')->flush();
+            
 
             // Go to list page
             return $this->redirect()->toRoute('', array('action' => 'list'));
@@ -323,5 +377,52 @@ class PageController extends ActionController
         $rule = Pi::api('page', $module)->getRule($conditionKey);
         
         return $rule;
+    }
+    
+    /**
+     * Set up a page in core page table
+     * 
+     * @param string $title
+     * @param string $controller
+     * @param string $action
+     * @return bool
+     */
+    protected function saveCorePage($title, $controller, $action)
+    {
+        $model = Pi::model('page');
+        
+        $where = array(
+            'section'    => 'front',
+            'module'     => $this->getModule(),
+            'controller' => $controller,
+            'action'     => $action,
+        );
+        $count = $model->count($where);
+        if ($count) {
+            $model->update(array(
+                'title'      => $title,
+                'controller' => $controller,
+                'action'     => $action,
+            ), $where);
+            
+            $result = true;
+        } else {
+            $data = array(
+                'title'      => $title,
+                'section'    => 'front',
+                'module'     => $this->getModule(),
+                'controller' => $controller,
+                'action'     => $action,
+                'block'      => 1,
+                'custom'     => 0,
+            );
+            $result = $row = $model->createRow($data);
+            $row->save();
+        }
+        
+        Pi::registry('page')->flush();
+        Pi::registry('page_cache')->flush();
+        
+        return $result;
     }
 }
