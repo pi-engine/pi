@@ -246,10 +246,11 @@ class ArticleController extends ActionController
         }
 
         $page       = $this->params('p', 1);
-        $limit      = $this->params('limit', 20);
+        $limit      = $this->params('limit', 5);
         $from       = $this->params('from', 'my');
         $keyword    = $this->params('keyword', '');
         $category   = $this->params('category', 0);
+        $cluster    = $this->params('cluster', 0);
         $filter     = $this->params('filter', '');
         $order      = 'time_publish DESC';
 
@@ -264,6 +265,8 @@ class ArticleController extends ActionController
             $categories[$key] = true;
         }
         $where['category'] = array_keys($categories);
+        
+        $where['cluster'] = $cluster;
         
         // Select article of mine
         if ('my' == $from) {
@@ -305,32 +308,10 @@ class ArticleController extends ActionController
         // Total count
         $totalCount = $modelArticle->count($where);
 
-        // Paginator
-        /*
-        $paginator = Paginator::factory($totalCount);
-        $paginator->setItemCountPerPage($limit)
-            ->setCurrentPageNumber($page)
-            ->setUrlOptions(array(
-            'page_param' => 'p',
-            'router'     => $this->getEvent()->getRouter(),
-            'route'      => $this->getEvent()
-                ->getRouteMatch()
-                ->getMatchedRouteName(),
-            'params'     => array_filter(array(
-                'module'        => $module,
-                'controller'    => 'article',
-                'action'        => 'published',
-                'category'      => $category,
-                'filter'        => $filter,
-                'keyword'       => $keyword,
-            )),
-        ));
-        */
-
         $params = array(
             'module'    => $module,
         );
-        foreach (array('category', 'filter', 'keyword', 'from') as $key) {
+        foreach (array('cluster', 'category', 'filter', 'keyword', 'from') as $key) {
             if (${$key}) {
                 $params[$key] = ${$key};
             }
@@ -356,6 +337,12 @@ class ArticleController extends ActionController
         );
 
         $cacheCategories = Pi::api('api', $module)->getCategoryList();
+        
+        if (Pi::api('form', $module)->isDisplayField('cluster')) {
+            $clusters = Pi::api('api', $module)->getClusterList();
+            $this->view()->assign('clusters', $clusters);
+        }
+        
         $this->view()->assign(array(
             'title'      => __('Published'),
             'data'       => $data,
@@ -370,6 +357,7 @@ class ArticleController extends ActionController
             'status'     => Article::FIELD_STATUS_PUBLISHED,
             'from'       => $from,
             'rules'      => $rules,
+            'cluster'    => $cluster,
         ));
         
         if ('my' == $from) {

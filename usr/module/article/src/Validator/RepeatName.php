@@ -24,9 +24,21 @@ class RepeatName extends AbstractValidator
     /**
      * @var array
      */
-    protected $messageTemplates = array(
-        self::NAME_EXISTS     => 'The name is already exists in database!',
-    );
+    protected $messageTemplates = array();
+    
+    /**
+     * Initialize template
+     * 
+     * @param array $options
+     */
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+        self::NAME_EXISTS => __('The name is already exists in database!'),
+        );
+        
+        parent::__construct($options);
+    }
 
     /**
      * Check whether a name is repeat
@@ -35,17 +47,20 @@ class RepeatName extends AbstractValidator
      * @param  array  $context
      * @return boolean
      */
-    public function isValid($value)
+    public function isValid($value, $context = null)
     {
         $this->setValue($value);
 
-        $options = $this->getOptions();
         $module  = Pi::service('module')->current();
-        $row     = Pi::model($options['table'], $module)->find($value, 'name');
-        if (empty($row)) {
-            return true;
+        $options = $this->getOptions();
+        $where   = array(
+            'name' => $value,
+        );
+        if ($context['id']) {
+            $where['id <> ?'] = $context['id'];
         }
-        if (isset($options['id']) and $row->id == $options['id']) {
+        $count = Pi::model($options['table'], $module)->count($where);
+        if (empty($count)) {
             return true;
         }
         

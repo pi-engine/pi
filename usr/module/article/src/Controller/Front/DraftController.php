@@ -539,10 +539,12 @@ class DraftController extends ActionController
         
         $module     = $this->getModule();
         $form       = Pi::api('form', $module)->loadForm('draft');
-        $categories = $form->get('category')->getValueOptions();
-        $form->get('category')->setValueOptions(
-            array_intersect_key($categories, $listCategory)
-        );
+        if ($form->has('category')) {
+            $categories = $form->get('category')->getValueOptions();
+            $form->get('category')->setValueOptions(
+                array_intersect_key($categories, $listCategory)
+            );
+        }
         
         $form->setData(array(
             'category'      => $this->config('default_category'),

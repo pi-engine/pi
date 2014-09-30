@@ -364,16 +364,6 @@ class Entity
                 unset($resultsetUser);
             }
 
-            /*
-            if (!empty($articleIds)) {
-                if ((empty($columns) || in_array('tag', $columns))
-                    && $config['enable_tag']
-                ) {
-                    $tags = Pi::service('tag')->get($module, $articleIds);
-                }
-            }
-            */
-
             foreach ($resultset as &$row) {
                 if (empty($columns) || in_array('category', $columns)) {
                     if (!empty($categories[$row['category']])) {
@@ -399,15 +389,6 @@ class Entity
                         $row['thumb'] = Media::getThumbFromOriginal($row['image']);
                     }
                 }
-
-                /*
-                if ((empty($columns) 
-                    || in_array('tag', $columns)) && $config['enable_tag']) {
-                    if (!empty($tags[$row['id']])) {
-                        $row['tag'] = $tags[$row['id']];
-                    }
-                }
-                */
 
                 if (empty($columns) || in_array('subject', $columns)) {
                     //$route = Pi::api('api', $this->module)->getRouteName();

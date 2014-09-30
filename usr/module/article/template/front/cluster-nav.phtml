@@ -1,0 +1,10 @@
+<div class="list-group">
+    <?php $url = $this->url('', array('action' => '', 'from' => $from)); ?>
+    <a href="<?php echo _escape($url); ?>" class="list-group-item <?php echo $cluster ? '' : 'active'; ?>"><?php _e('All Clusters'); ?></a>
+    <?php 
+        foreach ($clusters as $item) {
+            $url = $this->url('', array('action' => '', 'from' => $from, 'cluster' => $item['id']));
+    ?>
+    <a href="<?php echo _escape($url); ?>" class="list-group-item <?php echo $item['id'] == $cluster ? 'active' : ''; ?>"><?php echo _escape($item['title']); ?></a>
+    <?php } ?>
+</div>

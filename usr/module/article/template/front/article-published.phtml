@@ -4,7 +4,10 @@
     $this->Backbone();
 ?>
 <div class="row">
-    <div class="col-md-12">
+    <?php if (isset($clusters)) { ?>
+    <div class="col-md-2"><?php include 'cluster-nav.phtml'; ?></div>
+    <?php } ?>
+    <div class="col-md-<?php echo isset($clusters) ? 10 : 12; ?>">
     <div id="jsList">
         <div class="clearfix">
             <div class="pull-left form-inline">
@@ -154,7 +157,7 @@
             this.toggleBulk();
         },
         search : function() {
-            var url = "<?php echo $this->url('', array('action' => 'published', 'from' => 'all')); ?>";
+            var url = "<?php echo $this->url('', array('action' => 'published', 'cluster' => $cluster, 'from' => $from)); ?>";
             location.href = url + "?filter=" +this.$(".search-status").val() + "&category="
                           + this.$(".search-category").val();
         },
@@ -175,7 +178,7 @@
                     }
                 };
             if (val) {
-                if (val == "delete") {
+                if (val === "delete") {
                     if (confirm("<?php echo _a('Are you sure delete selected article?'); ?>")) {
                         fn.call(this);
                     } else {
@@ -208,7 +211,7 @@
                 id = el.parents("tr:first").attr("data-id"),
                 val = el.attr("data-value"),
                 status=el.attr("data-status");
-            if (val == "delete") {
+            if (val === "delete") {
                 if (confirm("<?php echo _a('Are you sure delete this article?'); ?>")) {
                     location.href = this.url + "delete?id=" + id + "&from=" + this.encodeUrl(); 
                 }
@@ -222,7 +225,7 @@
         encodeUrl : function() {
             return encodeURIComponent(location.href);
         }
-    }
+    };
     page.init();
-})(jQuery)
+})(jQuery);
 </script>

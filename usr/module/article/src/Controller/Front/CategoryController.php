@@ -9,8 +9,8 @@
 
 namespace Module\Article\Controller\Front;
 
-use Pi\Mvc\Controller\ActionController;
 use Pi;
+use Pi\Mvc\Controller\ActionController;
 use Pi\Paginator\Paginator;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
@@ -170,9 +170,6 @@ class CategoryController extends ActionController
                 ),
             ),
         ));
-
-        $module = $this->getModule();
-        $config = Pi::config('', $module);
 
         $this->view()->assign(array(
             'title'         => __('Article List in Category'),

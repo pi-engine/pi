@@ -203,7 +203,7 @@ class Form extends AbstractApi
         $config     = include $file;
         
         // Added default form elements
-        $defaultCols = array('subject', 'content', 'time_publish');
+        $defaultCols = array('subject', 'content', 'category', 'time_publish');
         $config      = array_merge($config, $defaultCols);
         $config      = array_unique($config);
         

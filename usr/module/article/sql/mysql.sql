@@ -28,18 +28,6 @@ CREATE TABLE `{article}` (
   KEY `cluster`                   (`cluster`)
 );
 
-CREATE TABLE `{extended}` (
-  `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
-  `article`         int(10) UNSIGNED                NOT NULL DEFAULT 0,
-  `seo_title`       varchar(255)                    NOT NULL DEFAULT '',
-  `seo_keywords`    varchar(255)                    NOT NULL DEFAULT '',
-  `seo_description` varchar(255)                    NOT NULL DEFAULT '',
-  `slug`            varchar(255)                    DEFAULT NULL,
-
-  PRIMARY KEY                     (`id`),
-  UNIQUE KEY                      (`article`)
-);
-
 CREATE TABLE `{field}` (
   `id`              int(10) UNSIGNED                NOT NULL AUTO_INCREMENT,
   `name`            varchar(64)                     NOT NULL DEFAULT '',
@@ -245,4 +233,24 @@ CREATE TABLE `{asset}` (
   UNIQUE KEY `media_article`    (`media`, `article`),
   KEY `article_type`            (`article`, `type`),
   KEY `media`                   (`media`)
+);
+
+CREATE TABLE `{page}` (
+  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
+  `left`            int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `right`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `depth`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `title`           varchar(255)          NOT NULL DEFAULT '',
+  `name`            varchar(64)           NOT NULL DEFAULT '',
+  `controller`      varchar(32)           NOT NULL DEFAULT '',
+  `action`          varchar(32)           NOT NULL DEFAULT '',
+  `seo_title`       text                  DEFAULT NULL,
+  `seo_keywords`    text                  DEFAULT NULL,
+  `seo_description` text                  DEFAULT NULL,
+  `active`          tinyint(1)            NOT NULL DEFAULT '0',
+  `meta`            text                  DEFAULT NULL,
+
+  PRIMARY KEY                   (`id`),
+  UNIQUE KEY                    (`name`),
+  KEY                           (`active`)
 );

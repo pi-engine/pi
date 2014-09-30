@@ -155,6 +155,7 @@ $this->Backbone();
         <!-- End article management block -->
         
         <!-- Start featured image management block -->
+        <?php if ($form->has('image')) { ?>
         <div class="widget" id="jsUpload">
             <div class="widget-header">
                 <strong><?php _e('Feature image'); ?></strong>
@@ -163,9 +164,11 @@ $this->Backbone();
                 <?php echo $this->formElement($imageElement); ?>
             </div>
         </div>
+        <?php } ?>
         <!-- End featured image management block -->
         
         <!-- Start gallery management block -->
+        <?php if ($form->has('gllary')) { ?>
         <div class="widget" id="jsGallery">
             <div class="widget-header" style="cursor: pointer;" title="<?php _e('Click toggle show'); ?>">
                 <i class="icon-caret-up fa fa-chevron-up"></i>
@@ -176,6 +179,7 @@ $this->Backbone();
                 <?php echo $this->formElement($galleryElement); ?>
             </div>
         </div>
+        <?php } ?>
         <!-- End gallery management block -->
         
         <!-- Start related article management block -->
