@@ -41,6 +41,28 @@ class ArticleController extends ActionController
      */
     protected $section = 'front';
     
+        /**
+     * Parse action name
+     * 
+     * @param string  $action
+     * @return string
+     */
+    public static function getMethodFromAction($action)
+    {
+        $module = Pi::service('module')->current();
+        $pages  = Pi::registry('page', $module)->read();
+        
+        $name = '';
+        foreach ($pages as $page) {
+            if ($action === $page['name']) {
+                $name = $page['action'] . 'Action';
+                break;
+            }
+        }
+ 
+        return $name ?: $action . 'Action';
+    }
+    
     /**
      * Article homepage, all page content are dressed up by user 
      */
@@ -50,6 +72,8 @@ class ArticleController extends ActionController
             return $this->redirect()
                         ->toUrl(Pi::url($this->config('default_homepage')));
         }
+        
+        $this->view()->setTemplate('article-index');
     }
     
     /**
@@ -148,6 +172,8 @@ class ArticleController extends ActionController
             'config'      => Pi::config('', $module),
             'module'      => $module,
         ));
+        
+        $this->view()->setTemplate('article-detail');
     }
 
     /**

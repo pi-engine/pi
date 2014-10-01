@@ -54,10 +54,9 @@ class Page extends Nest
      * Get category list
      *
      * @param null  $columns   Columns, null for default
-     * @param bool  $withRoot  Include root node or not
      * @return array Associative array
      */
-    public function getList($columns = null, $withRoot = false)
+    public function getList($columns = null)
     {
         $result = $rows = array();
 
@@ -72,9 +71,6 @@ class Page extends Nest
         $select = $this->select()
             ->columns($columns)
             ->order('left ASC');
-        if (!$withRoot) {
-            $select->where(array('depth > 0'));
-        }
         $rows = $this->selectWith($select)->toArray();
 
         foreach ($rows as $row) {

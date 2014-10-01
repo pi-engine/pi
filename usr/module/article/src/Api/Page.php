@@ -400,4 +400,123 @@ class Page extends AbstractApi
 
         return $result;
     }
+    
+    /**
+     * Get page action name
+     * 
+     * @param array $params
+     * @return string
+     */
+    public function getPageAction($params)
+    {
+        $module = isset($params['module'])
+            ? $params['module'] : Pi::service('module')->current();
+        
+        $class = 'Custom\Article\Api\Page';
+        if (class_exists($class)) {
+            $handler = new $class($module);
+            $action = $handler->parseAction($params, $module);
+        } else {
+            $action = $this->parseAction($params, $module);
+        }
+        
+        return $action;
+    }
+    
+    /**
+     * Parse action name by given parameters.
+     * 
+     * Note: this method must be overrided in `page` api of custom folder if
+     * you want to customize page dress up rule.
+     * 
+     * @param array  $params
+     * @param string $module
+     * @return string
+     */
+    protected function parseAction($params, $module = '')
+    {
+        $page = array();
+        $module = $module ?: $params['module'];
+        
+        if (isset($params['category'])
+            && !is_numeric($params['category'])
+        ) {
+            $category = Pi::api('api', $module)->getCategoryList();
+            foreach ($category as $row) {
+                if ($params['category'] == $row['slug']) {
+                    $params['category'] = $row['id'];
+                    break;
+                }
+            }
+        }
+        $pages = Pi::api('api', $module)->getPageList();
+        
+        if ('list' === $params['controller']
+            && 'all' === $params['action']
+        ) {
+            foreach ($pages as $row) {
+                if ('list' !== $row['controller']
+                    || 'all' !== $row['action']
+                ) {
+                    continue;
+                }
+                
+                $meta = json_decode($row['meta'], true);
+                if ($meta['category'] == $params['category']) {
+                    $page = $row;
+                    break;
+                }
+            }
+        } elseif ('category' === $params['controller']
+           && 'index' === $params['action']
+        ) {
+            foreach ($pages as $row) {
+                if ('category' !== $row['controller']
+                    || 'index' !== $row['action']
+                ) {
+                    continue;
+                }
+                
+                $meta = json_decode($row['meta'], true);
+                if ($meta['category'] == $params['category']) {
+                    $page = $row;
+                    break;
+                }
+            }
+        } elseif ('article' === $params['controller']
+            && 'detail' === $params['action']
+        ) {
+            foreach ($pages as $row) {
+                if ('article' !== $row['controller']
+                    || 'detail' !== $row['action']
+                ) {
+                    continue;
+                }
+                
+                // Get article category
+                $article = Pi::model('article', $module)->find($params['id']);
+                $meta    = json_decode($row['meta'], true);
+                if ($meta['category'] == $article->category) {
+                    $page = $row;
+                    break;
+                }
+            }
+        }
+        
+        // Get parent page, if it exists, its page blocks will be used
+        if ($page && 1 != $page['depth']) {
+            foreach ($pages as $row) {
+                if ($row['left'] < $page['left']
+                    && $row['right'] > $page['right']
+                    && 1 == $row['depth']
+                ) {
+                    $page = $row;
+                    break;
+                }
+            }
+        }
+        $action = isset($page['name']) ? $page['name'] : $params['action'];
+        
+        return $action;
+    }
 }

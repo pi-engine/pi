@@ -11,6 +11,7 @@ namespace Module\Article\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Module\Article\Form\PageForm as Form;
 
 /**
  * Page controller
@@ -124,7 +125,7 @@ class PageController extends ActionController
             }
             
             // Clear cache
-            Pi::registry('page', $module)->clear($module);
+            Pi::registry('page', $module)->flush();
             
             return $this->redirect()->toRoute('',array(
                 'action' => 'list'
@@ -142,6 +143,8 @@ class PageController extends ActionController
         $module  = $this->getModule();
         
         $form = Pi::api('page', $module)->loadForm('form', true);
+        $form->remove('name');
+        $form->getInputFilter()->remove('name');
         $this->view()->assign(array(
             'form'  => $form,
         ));
@@ -180,10 +183,11 @@ class PageController extends ActionController
             }
             
             // Set up core page
+            $row = $this->getModel('page')->find($id);
             $result = $this->saveCorePage(
-                $data['title'],
-                $rule['controller'],
-                $data['name']
+                $row->title,
+                $row->controller,
+                $row->name
             );
             if (!$result) {
                 $this->renderForm(
@@ -194,7 +198,7 @@ class PageController extends ActionController
             }
             
             // Clear cache
-            Pi::registry('page', $module)->clear($module);
+            Pi::registry('page', $module)->flush();
 
             return $this->redirect()->toRoute('', array(
                 'action' => 'list'
@@ -239,6 +243,12 @@ class PageController extends ActionController
             if ($model->hasChildren($id)) {
                 return $this->jumpTo404(
                     _a('Cannot remove page with children.')
+                );
+            }
+            
+            if (1 == $id) {
+                return $this->jumpTo404(
+                    _a('Root page can not be removed.')
                 );
             }
 

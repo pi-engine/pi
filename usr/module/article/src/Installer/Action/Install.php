@@ -39,6 +39,7 @@ class Install extends BasicInstall
     {
         $events = $this->events;
         $events->attach('install.post', array($this, 'initCategory'), 1);
+        $events->attach('install.post', array($this, 'initPage'), -10);
         $events->attach(
             'install.post',
             array($this, 'initDraftEditPageForm'),
@@ -111,6 +112,26 @@ class Install extends BasicInstall
         );
         $parent = $model->select(array('name' => 'root'))->current();
         $model->add($defaultCategory, $parent);
+        
+        return $result;
+    }
+    
+    /**
+     * Add a root category
+     * 
+     * @param Event $e 
+     */
+    public function initPage(Event $e)
+    {
+        // Add a root category
+        $module = $this->event->getParam('module');
+        $model  = Pi::model('page', $module);
+        $data   = array(
+            'id'          => null,
+            'name'        => 'root',
+            'title'       => _a('Null'),
+        );
+        $result = $model->add($data);
         
         return $result;
     }

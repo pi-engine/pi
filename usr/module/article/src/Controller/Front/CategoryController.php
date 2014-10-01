@@ -155,8 +155,7 @@ class CategoryController extends ActionController
             'status'            => Article::FIELD_STATUS_PUBLISHED,
             'active'            => 1,
         ));
-        $modelArticle   = $this->getModel('article');
-        $totalCount     = $modelArticle->getSearchRowsCount($where);
+        $totalCount = $modelArticle->getSearchRowsCount($where);
 
         // Pagination
         $paginator = Paginator::factory($totalCount, array(
@@ -195,6 +194,8 @@ class CategoryController extends ActionController
             'breadCrumbs' => true,
             'Tag'         => $categoryInfo['title'],
         ));
+        
+        $this->view()->setTemplate('category-list');
     }
     
     /**

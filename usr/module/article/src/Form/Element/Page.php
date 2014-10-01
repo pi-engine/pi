@@ -29,10 +29,8 @@ class Page extends Select
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module') 
                 ?: Pi::service('module')->current();
-            $options = Pi::model('page', $module)
+            $this->valueOptions = Pi::model('page', $module)
                 ->getSelectOptions();
-            $options = array_filter($options);
-            $this->valueOptions = array('0' => _a('Null')) + $options;
         }
 
         return $this->valueOptions;

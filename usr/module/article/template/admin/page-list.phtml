@@ -14,7 +14,7 @@
                 <th><?php echo _a('Action'); ?></th>
             </tr>
             <?php foreach ($items as $item) {
-                if ('root' == $item['slug']) {
+                if (1 == $item['id']) {
                     continue;
                 }
                 // Generate url

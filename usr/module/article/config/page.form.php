@@ -91,7 +91,7 @@ return array(
             // Use this form name as condition
             'condition_level' => 'key',
         ),
-        'cluster'   => array(
+        /*'cluster'   => array(
             'name'        => 'cluster',
             'title'       => _a('Cluster'),
             'edit'        => array(
@@ -101,7 +101,7 @@ return array(
                 ),
             ),
             'condition_level' => 'key',
-        ),
+        ),*/
         'type'      => array(
             'name'        => 'type',
             'title'       => _a('Type'),

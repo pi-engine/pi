@@ -78,8 +78,8 @@ return array(
             'action'        => 'index',
         ),
         'category_list'     => array(
-            'controller'    => 'category',
-            'action'        => 'list',
+            'controller'    => 'list',
+            'action'        => 'all',
         ),
         'category_detail'   => array(
             'controller'    => 'article',

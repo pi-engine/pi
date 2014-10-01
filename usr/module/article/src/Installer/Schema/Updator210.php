@@ -198,6 +198,18 @@ EOD;
             if (false === $result) {
                 return $result;
             }
+            
+            // Add root page
+            $model  = Pi::model('page', $module);
+            $data   = array(
+                'id'          => null,
+                'name'        => 'root',
+                'title'       => _a('Null'),
+            );
+            $result = $model->add($data);
+            if (false === $result) {
+                return $result;
+            }
         }
 
         return $result;
