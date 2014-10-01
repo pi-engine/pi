@@ -500,7 +500,7 @@ class Api extends AbstractApi
                 $users = Pi::service('user')->mget($uids, array($label));
                 $avatars = null;
                 if (false !== $avatar) {
-                    $avatars = Pi::service('avatar')->getList($uids, $avatar);
+                    $avatars = Pi::service('avatar')->getList($uids, $avatar, __('View profile'));
                 }
                 array_walk(
                     $users,
