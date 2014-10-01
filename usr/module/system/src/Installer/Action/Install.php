@@ -197,7 +197,13 @@ class Install extends BasicInstall
                     'video',
                     'forum',
                     'page',
-                    'demo'
+                    'demo',
+                    'news',
+                    'shop',
+                    'contact',
+                    'guide',
+                    'portfolio',
+                    'ask'
                 ),
             ),
             array(
@@ -211,7 +217,12 @@ class Install extends BasicInstall
                     'search',
                     'widget',
                     'media',
-                    'saml'
+                    'saml',
+                    'favourite',
+                    'payment',
+                    'vote',
+                    'sitemap',
+                    'ads'
                 ),
             )
         );
