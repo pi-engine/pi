@@ -1702,7 +1702,7 @@ th {
 }
 
 .user-info-right {
-  float: left;
+  float: left !important;
 }
 
 /* Admin side */
