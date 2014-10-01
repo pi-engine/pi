@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-09-19 18:05+0330\n"
-"PO-Revision-Date: 2014-09-19 18:05+0330\n"
+"POT-Creation-Date: 2014-10-01 16:51+0330\n"
+"PO-Revision-Date: 2014-10-01 16:51+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -25,8 +25,12 @@ msgstr ""
 msgid "Comment by %s"
 msgstr ""
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:503
+msgid "View profile"
+msgstr ""
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:528
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:397
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:398
 msgid "Guest"
 msgstr ""
 
@@ -88,7 +92,7 @@ msgid "Demo article with comments"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/IndexController.php:49
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:71
 msgid "All active comment posts"
 msgstr ""
 
@@ -122,76 +126,76 @@ msgstr ""
 msgid "Demo custom article #%d"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:67
 msgid "All comment posts"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:69
 msgid "All inactive comment posts"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:127
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:128
 msgid "Comment posts of article"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:192
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:199
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:193
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:200
 msgid "My comments"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:207
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:208
 msgid "My active comments"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:216
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:217
 msgid "My pending comments"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:232
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:233
 msgid "Comment posts of user"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:303
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:304
 msgid "All"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:328
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:329
 msgid "Comment posts of module"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:444
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:445
 msgid "All commented articles"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:446
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:447
 msgid "Articles with comments"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:460
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:461
 msgid "My articles"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:468
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:469
 msgid "My articles with active comments"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:549
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:550
 msgid "Received comments"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:556
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:557
 msgid "All Posts"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:564
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:565
 msgid "Active Posts"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:573
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:574
 msgid "Inactive Posts"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:589
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/ListController.php:590
 msgid "Comment posts on user"
 msgstr ""
 

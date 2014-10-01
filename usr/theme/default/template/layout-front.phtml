@@ -64,7 +64,9 @@ $this->headLink(array(
 // Load google analytics code
 $this->ga();
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -113,7 +115,7 @@ $module = Pi::service('module')->current();
     ?>
     <section class="container pi-main-container">
         <?php
-        $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home')))));
+        $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home'), 'href' => $this->url('home')))));
         if ($breadcrumbs) {
             echo $breadcrumbs;
         }

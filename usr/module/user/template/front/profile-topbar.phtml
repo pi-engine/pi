@@ -6,9 +6,28 @@
  * `$owner`: bool, if current visitor is the user himself
  * `$extra`: extra information to display on user topbar
  *
- * To load the template for a module other than `user`, load user module css by:
+ * To load the template for a module other than `user`
+ * load user module css by:
  * `$this->css($this->assetModule('front/front.css', 'user'));`
+ * load user module default language file by:
+ * `Pi::service('i18n')->load(array('module/user', 'default'));`
  */
+
+// Load css
+$this->css($this->assetModule('front/front.css', 'user'));
+
+// Load language
+Pi::service('i18n')->load(array('module/user', 'default'));
+
+// Set uid if not set on controller
+if (!isset($uid)) {
+    $uid = Pi::user()->getId();
+}
+
+// Set name if not set on controller
+if (!isset($name)) {
+    $name = 'profile';
+}
 
 // Get user base info
 $user = Pi::api('user', 'user')->get(
@@ -56,7 +75,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
     <div class="user-info-right">
         <?php
         if (!empty($extra)) {
-            echo '<span>' . $extra . '</span>';
+            echo '<span class="user-extra">' . $extra . '</span>';
         }
         ?>
         <?php if ($owner) { ?>

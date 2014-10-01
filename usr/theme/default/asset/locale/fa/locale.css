@@ -95,6 +95,7 @@ pre,
 samp {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   text-align: left;
+  direction: ltr;
 }
 .container {
   margin-right: auto;
@@ -1647,6 +1648,11 @@ th {
   float: left !important;
 }
 
+.pi-header .navbar-right .dropdown-menu {
+  left: 0;
+  right: auto;
+}
+
 .input-group input[type="text"] {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -1661,7 +1667,7 @@ th {
   border-top-right-radius: 0;
 }
 
-/* User block */
+/* User */
 .user-login .input-group input[type="text"],
 .user-login .input-group input[type="password"] {
   border-bottom-left-radius: 4px !important;
@@ -1683,15 +1689,26 @@ th {
   border: 1px solid #ccc !important;
 }
 
+#fromGravatar .input-group-addon {
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-right-radius: 4px !important;
+  border-top-right-radius: 4px !important;
+  border: 1px solid #ccc !important;
+}
+
+#fromGravatar input {
+  border-bottom-left-radius: 4px !important;
+  border-top-left-radius: 4px !important;
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-right: 0;
+}
+
 .user-bar .navbar-right {
   float: left !important;
 }
 
-.user-info .pull-left {
-  float: right !important;
-}
-
-/* User topbar */
 .user-info-left {
   float: right;
 }
@@ -1702,7 +1719,7 @@ th {
 }
 
 .user-info-right {
-  float: left;
+  float: left !important;
 }
 
 /* Admin side */
@@ -1733,4 +1750,20 @@ th {
 
 .pi-navbar-nav ul li ul {
   right: 100%;
+}
+
+/* right to left */
+.pull-left {
+  float: right !important;
+}
+
+.pull-right {
+  float: left !important;
+}
+
+.text-left {
+  text-align: right !important;
+}
+.text-right {
+  text-align: left !important;
 }
