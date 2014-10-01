@@ -95,6 +95,7 @@ pre,
 samp {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   text-align: left;
+  direction: ltr;
 }
 .container {
   margin-right: auto;
