@@ -1647,6 +1647,11 @@ th {
   float: left !important;
 }
 
+.pi-header .navbar-right .dropdown-menu {
+  left: 0;
+  right: auto;
+}
+
 .input-group input[type="text"] {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -1685,10 +1690,6 @@ th {
 
 .user-bar .navbar-right {
   float: left !important;
-}
-
-.user-info .pull-left {
-  float: right !important;
 }
 
 /* User topbar */
@@ -1733,4 +1734,20 @@ th {
 
 .pi-navbar-nav ul li ul {
   right: 100%;
+}
+
+/* right to left */
+.pull-left {
+  float: right !important;
+}
+
+.pull-right {
+  float: left !important;
+}
+
+.text-left {
+  text-align: right !important;
+}
+.text-right {
+  text-align: left !important;
 }
