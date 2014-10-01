@@ -1,0 +1,112 @@
+<?php
+    $this->backbone();
+?>
+
+<div id="pi-js-field">
+    <div id="common-fields">
+        <h4><?php _e('Basic Fields'); ?></h4>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th style="width: 250px"><?php echo _a('Field name'); ?></th>
+                    <th><?php echo _a('Display'); ?></th>
+                    <th><?php echo _a('Editable'); ?></th>
+                    <th><?php echo _a('Require'); ?></th>
+                    <th><?php echo _a('Module source'); ?></th>
+                </tr>
+                <?php 
+                    foreach ($fields as $field) {
+                        if ('compound' === $field['type']) {
+                            continue;
+                        }
+                ?>
+                <tr data-id="<?php echo _escape($field['id']); ?>" data-type="common">
+                    <td><?php echo $field['title'] ? _escape($field['title']) : _escape($field['name']); ?></td>
+                    <td>
+                        <?php if ($field['is_display']) { ?>
+                        <i class="fa fa-check fa-lg text-success ng-scope"></i>
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <?php if ($field['is_edit']) { ?>
+                        <i class="fa fa-check fa-lg text-success ng-scope"></i>
+                        <?php } ?>
+                    </td>
+                    <td>
+                        <?php if ($field['is_edit']) { ?>
+                        <input type="checkbox" data-name="is_required" class="check-one"<?php echo $field['is_required'] ? ' checked="checked"' : ''; ?>>
+                        <?php } ?>
+                    </td>
+                    <td><?php echo _escape($module); ?></td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="compound-fields">
+    <?php foreach ($compounds as $name => $compound) { ?>
+        <div id="<?php _e($name); ?>-compound-field">
+            <h4><?php echo _escape($fields[$name]['title']); ?></h4>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th style="width: 250px"><?php echo _a('Field name'); ?></th>
+                        <th><?php echo _a('Require'); ?></th>
+                        <th><?php echo _a('Module source'); ?></th>
+                    </tr>
+                    <?php foreach ($compound as $field) { ?>
+                    <tr data-id="<?php echo _escape($field['id']); ?>" data-type="compound">
+                        <td><?php echo $field['title'] ? _escape($field['title']) : _escape($field['name']); ?></td>
+                        <td>
+                            <input type="checkbox" data-name="is_required" class="check-one"<?php echo $field['is_required'] ? ' checked="checked"' : ''; ?>>
+                        </td>
+                        <td><?php echo _escape($module); ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    <?php } ?>
+    </div>
+</div>
+
+<script>
+(function($) {
+    var page = {
+        url : "<?php echo $this->url('', array('controller' => 'field', 'action' => 'update')); ?>",
+        el  : $("#pi-js-field"),
+        $   : function(selector) {
+            return this.el.find(selector);
+        },
+        init : function() {
+            _.bindAll(this);
+            this.$(".check-one").click(this.clickOne);
+        },
+        clickOne : function(e) {
+            var el     = $(e.target),
+                id     = el.parents("tr:first").attr("data-id"),
+                name   = el.attr("data-name"),
+                type   = el.parents("tr:first").attr("data-type"),
+                status = el.is(":checked");
+                status = status ? 1 : 0;
+            
+            var post = new Object;
+            post['id']     = id;
+            post['name']   = name;
+            post['type']   = type;
+            post['status'] = status;
+            $.post(page.url, post, function(result) {
+                result = $.parseJSON(result);
+                if (!result.status) {
+                    alert(result.message);
+                }
+            });
+        },
+        encodeUrl : function() {
+            return encodeURIComponent(location.href);
+        }
+    }
+    page.init();
+})(jQuery);
+</script>

@@ -356,6 +356,15 @@ return array(
                     ),
                 ),
             ),
+            'field'             => array(
+                'label'         => _t('Fields'),
+                'route'         => 'admin',
+                'controller'    => 'field',
+                'action'        => 'list',
+                'permission'    => array(
+                    'resource'  => 'field',
+                ),
+            ),
             'page'              => array(
                 'label'         => _t('Page'),
                 'route'         => 'admin',

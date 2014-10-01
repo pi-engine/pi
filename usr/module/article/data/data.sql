@@ -48,14 +48,6 @@ INSERT INTO `{prefix}{module}_asset` (`id`, `media`, `article`, `type`) VALUES
 (6, 25, 15, 'image');
 
 --
--- Dumping data for table `{prefix}{module}_asset_draft`
---
-
-INSERT INTO `{prefix}{module}_asset_draft` (`id`, `media`, `draft`, `type`) VALUES
-(9, 25, '25', 'image'),
-(6, 9, '5', 'attachment');
-
---
 -- Dumping data for table `{prefix}{module}_author`
 --
 
@@ -132,27 +124,6 @@ INSERT INTO `{prefix}{module}_draft` (`id`, `article`, `markup`, `detail`, `uid`
 (25, 15, 'html', '{"subject":"Ding Wins Historic Final","subtitle":"","summary":"Ding Junhui beat Xiao Guodong 10-6 in the first ever all-Chinese ranking final at the Bank of Communications Shanghai Masters.\\r\\n\\r\\n\\tLocal hero Ding, from Wuxi not far from Shanghai, delighted his millions of fans by winning the seventh ranking title of his","content":"<div class=\\"description\\">\\r\\n\\t<a href=\\"\\/article\\/media\\/download\\/id-25\\" target=\\"_blank\\"><img src=\\"http:\\/\\/mytest.zongshu.eefocus.com\\/upload\\/article\\/media\\/2013\\/09\\/26\\/25.jpg\\" \\/><\\/a><\\/div>\\r\\n<div class=\\"description\\">\\r\\n\\tDing Junhui beat Xiao Guodong 10-6 in the first ever all-Chinese ranking final at the Bank of Communications Shanghai Masters.<\\/div>\\r\\n<p>\\r\\n\\tLocal hero Ding, from Wuxi not far from Shanghai, delighted his millions of fans by winning the seventh ranking title of his career and second in six months having captured the PTC Grand Finals in March. He received the top prize of &pound;80,000.<\\/p>\\r\\n<p>\\r\\n\\tSheffield based Ding, age 26, took his first ranking title on home soil since the 2005 China Open in Beijing. He has often struggled to handle the weight of expectation when he plays in China, but he produced some excellent snooker this week, not least in the final which saw him compile a century and seven more breaks over 50.<\\/p>\\r\\n<p>\\r\\n\\tThat 2005 Ding victory was the catalyst for the explosion of interest in snooker in China. Since then, increasing numbers of Chinese players have earned places on the professional tour. Prior to this week, only Liang Wenbo had come close to emulating Ding&#39;s success, reaching one ranking final and briefly climbing into the top 16.<\\/p>\\r\\n<p>\\r\\n\\tNow, Xiao looks the leading candidate to be the &#39;next best&#39; player from mainland China. He is one of the most improved players on the circuit over the past two years and played some superb snooker this week to reach his first ranking final. The 24-year-old Gloucester-based cueman can enjoy his biggest pay-day, &pound;35,000, and look ahead with confidence to the rest of the season.<\\/p>\\r\\n<p>\\r\\n\\tDing took the first two frames today with top breaks of 42 and 83, then Xiao made 62 and 67 for 2-2. Ding regained the lead with a 66 before Xiao came from 46-0 down in the sixth to make it 3-3. Ding pulled away at the end of the first session, knocking in 126 and 58 for 5-3 then taking the last frame of the session on the colours.<\\/p>\\r\\n<p>\\r\\n\\tOn the resumption, Xiao pulled one back with a 78, only for Ding to reel off three frames in a row with 58, 78 and 81 for 9-4. Xiao threatened a fight back as he dominated the next two for 9-6, and led 45-0 in frame 16. But Ding then took his chance with a smooth 71 to seal the title.<\\/p>\\r\\n<p>\\r\\n\\t&quot;Before the final I knew I needed to build an early lead, and I had to keep my safety strong to force my opponent to give me chances,&quot; said Ding. &quot;I built a three-frame-lead in the afternoon session because Xiao&#39;s safety was not as good as mine. But he managed to play relaxed and open frames in the evening so he did pull some frames back, after I had reached nine. I&#39;m just happy that I managed to win my tenth frame with a solid break.<\\/p>\\r\\n<p>\\r\\n\\t&quot;Liang Wenbo has been in the final of this tournament too so hopefully there will be many more chances for the players from China. The young generation is growing up quickly so their days will come soon.<\\/p>\\r\\n<p>\\r\\n\\t&quot;I had to let my emotions go after winning the tournament. This showed how much I wanted this title, I wanted it more than anybody. But there was less pressure on me than in the past when I played here in China.<\\/p>\\r\\n<p>\\r\\n\\t&quot;I&#39;ve been changing my game a little bit with a friend&#39;s help, and training a lot. Now I can concentrate more on my snooker and this win means a lot to my career.&quot;<\\/p>\\r\\n<p>\\r\\n\\tXiao said: &quot;Today is a historic day, no matter whether I won or not. Two Chinese players performing a top class match on worldwide stage. I&#39;m so proud of myself, being a Chinese player. I&#39;ve always dreamed of winning a title but I wasn&#39;t very comfortable out there because this is my first ranking final. I&#39;ll be more relaxed next time.<\\/p>\\r\\n<p>\\r\\n\\t&quot;It&#39;s a special experience for me. I hope not to disappear from sight and hopefully I will take part in many more world class tournaments.<\\/p>\\r\\n<p>\\r\\n\\t&quot;Before this match my goal was to get into the top 32. I&#39;m in the top 32 now but I hope to raise my ranking steadily. It seems to be really hard for me to get into top 16 this season, but if I keep my form it&#39;s not impossible. I played well in the first few tournaments this season so hopefully I can achieve my goal.&quot;<\\/p>\\r\\n","source":"Pi","pages":"1","user_update":"0","seo_title":"","seo_keywords":"","seo_description":"","slug":"","related":[]}', 1, 2, 24, '', 1380179968, 1380179969, 0, 1, 1380180408, '');
 
 --
--- Dumping data for table `{prefix}{module}_extended`
---
-
-INSERT INTO `{prefix}{module}_extended` (`id`, `article`, `seo_title`, `seo_keywords`, `seo_description`, `slug`) VALUES
-(1, 1, '', '', '', ''),
-(2, 2, '', '', '', ''),
-(3, 3, '', '', '', ''),
-(4, 4, '', '', '', ''),
-(5, 5, '', '', '', ''),
-(6, 6, '', '', '', ''),
-(7, 7, '', '', '', ''),
-(8, 8, '', '', '', ''),
-(9, 9, '', '', '', ''),
-(10, 10, '', '', '', ''),
-(11, 11, '', '', '', ''),
-(12, 12, '', '', '', ''),
-(13, 13, '', '', '', ''),
-(14, 14, '', '', '', ''),
-(15, 15, '', '', '', '');
-
---
 -- Dumping data for table `{prefix}{module}_media`
 --
 
@@ -182,10 +153,10 @@ INSERT INTO `{prefix}{module}_media` (`id`, `name`, `title`, `type`, `descriptio
 (25, '5243dff13a1e9', 'File 5243dff13a1e9 from gallery', 'jpg', '', 'upload/article/media/2013/09/26/25.jpg', 31118, 1, 1380179955, 0, '{"w":"500","h":"400"}');
 
 --
--- Dumping data for table `{prefix}{module}_related`
+-- Dumping data for table `{prefix}{module}_custom_related`
 --
 
-INSERT INTO `{prefix}{module}_related` (`id`, `article`, `related`, `order`) VALUES
+INSERT INTO `{prefix}{module}_custom_related` (`id`, `article`, `related`, `order`) VALUES
 (1, 3, 1, 0);
 
 --

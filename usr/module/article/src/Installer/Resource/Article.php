@@ -270,8 +270,12 @@ class Article extends AbstractResource
             }
         }
 
-        if (!isset($spec['edit']) && $spec['is_edit']) {
-            $spec['edit'] = 'text';
+        if (!isset($spec['edit'])) {
+            if ($spec['is_edit']) {
+                $spec['edit'] = 'text';
+            } else {
+                $spec['edit'] = 'hidden';
+            }
         }
 
         if (isset($spec['edit'])) {
@@ -387,9 +391,8 @@ class Article extends AbstractResource
         ) as $op) {
             $model = Pi::model($op, $module);
             foreach ($config[$op] as $key => $spec) {
-                $fieldType = $spec['field_type'];
-                unset($spec['field_type']);
-                $row = $model->createRow($spec);
+                $data   = $model->canonizeColumns($spec);
+                $row    = $model->createRow($data);
                 $status = $row->save();
                 if (!$status) {
                     return array(
@@ -408,7 +411,7 @@ class Article extends AbstractResource
                         || 'custom' == $spec['type']
                     ) {
                         if (isset($spec['is_insert']) && $spec['is_insert']) {
-                            $commonFields[$key] = $fieldType;
+                            $commonFields[$key] = $spec['field_type'];
                         }
                     }
                 }
@@ -511,10 +514,8 @@ class Article extends AbstractResource
             }
             // Add new items
             foreach ($items as $key => $spec) {
-                $fieldType = $spec['field_type'];
-                unset($spec['field_type']);
-                unset($spec['is_insert']);
-                $row = $model->createRow($spec);
+                $data   = $model->canonizeColumns($spec);
+                $row    = $model->createRow($data);
                 $status = $row->save();
                 if (!$status) {
                     return array(
@@ -533,7 +534,7 @@ class Article extends AbstractResource
                         || 'custom' == $spec['type']
                     ) {
                         if (isset($spec['is_insert']) && $spec['is_insert']) {
-                            $fieldsNew[$key] = $fieldType;
+                            $fieldsNew[$key] = $spec['field_type'];
                         }
                     }
                 }

@@ -38,7 +38,15 @@ return array(
             'title'       => _t('Media management'),
         ),
         // Article statistics resource
-        'stats' => array(
+        'field'      => array(
+            'title'       => _t('Fields management'),
+        ),
+        // Article statistics resource
+        'page'       => array(
+            'title'       => _t('Page management'),
+        ),
+        // Article statistics resource
+        'stats'      => array(
             'title'       => _t('Statistics page view'),
         ),
         // Module permission controller

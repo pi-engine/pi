@@ -250,10 +250,10 @@ class Form extends AbstractApi
         }
 
         if (isset($data['is_required'])) {
-            $element['attributes']['required']= $data['is_required'];
+            $element['attributes']['required'] = $data['is_required'];
         }
         if (!empty($element['type']) && 'multi_checkbox' == $element['type']) {
-            $element['attributes']['required']= 0;
+            $element['attributes']['required'] = 0;
         }
 
         return $element;

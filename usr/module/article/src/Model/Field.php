@@ -27,4 +27,45 @@ class Field extends BasicModel
         'edit'      => true,
         'filter'    => true,
     );
+    
+    /**
+     * Table columns
+     * 
+     * @var array 
+     */
+    protected $columns = array();
+    
+    /**
+     * Get table columns
+     * 
+     * @param bool $fetch
+     * @return array
+     */
+    public function getColumns($fetch = false)
+    {
+        if (empty($this->columns)) {
+            $this->columns = parent::getColumns(true);
+        }
+        
+        return $this->columns;
+    }
+    
+    /**
+     * Remove un-exists columns
+     * 
+     * @param array $data
+     * @return array
+     */
+    public function canonizeColumns($data)
+    {
+        $columns = $this->getColumns();
+        
+        foreach (array_keys($data) as $field) {
+            if (!in_array($field, $columns)) {
+                unset($data[$field]);
+            }
+        }
+        
+        return $data;
+    }
 }
