@@ -94,6 +94,14 @@ return array(
             'permission'   => 'permission',
         ),
         array(
+            'controller'   => 'field',
+            'permission'   => 'field',
+        ),
+        array(
+            'controller'   => 'page',
+            'permission'   => 'page',
+        ),
+        array(
             'controller'   => 'stats',
             'permission'   => 'stats',
         ),

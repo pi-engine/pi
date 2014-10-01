@@ -1,3 +1,23 @@
+Article Module 2.1.0 Release
+============================
+### Article
+* Support custom forms and columns for article edit page
+* Support custom compound forms and tables for article edit page
+* Provide edit page forms management
+
+### Cluster
+* Add another category named `cluster` independent with `category`
+* Provide configuration that article belong to only one or multiple cluster
+* Add cluster related article list page
+
+### Page management
+* Support custom dressing up of front pages
+* Support inherit of page dressing up
+* Support custom SEO meta for each front page
+
+### Other new features
+* UE enhance of media upload
+
 Article Module 1.0.0 Release
 ============================
 

@@ -11,7 +11,6 @@ namespace Module\Article\Installer\Action;
 
 use Pi;
 use Pi\Application\Installer\Action\Install as BasicInstall;
-use Module\Article\Controller\Admin\SetupController as Setup;
 use Zend\EventManager\Event;
 use ZipArchive;
 
@@ -40,11 +39,6 @@ class Install extends BasicInstall
         $events = $this->events;
         $events->attach('install.post', array($this, 'initCategory'), 1);
         $events->attach('install.post', array($this, 'initPage'), -10);
-        $events->attach(
-            'install.post',
-            array($this, 'initDraftEditPageForm'),
-            -90
-        );
         $events->attach(
             'install.post',
             array($this, 'initDefaultTopicTemplateScreenshot'),
@@ -132,24 +126,6 @@ class Install extends BasicInstall
             'title'       => _a('Null'),
         );
         $result = $model->add($data);
-        
-        return $result;
-    }
-    
-    /**
-     * Add a config file to initilize draft edit page form type as extended.
-     * 
-     * @param Event $e 
-     */
-    public function initDraftEditPageForm(Event $e)
-    {
-        $module = $this->event->getParam('module');
-        $elements = array(
-            'mode'  => 'extension',
-        );
-        
-        $filename = Setup::getFilename(false, $module);
-        $result   = Pi::config()->write($filename, $elements, true);
         
         return $result;
     }
@@ -320,6 +296,8 @@ class Install extends BasicInstall
                     return false;
                 }
             }
+            
+            Pi::registry('block')->flush();
         }
         
         return $result;
@@ -390,6 +368,9 @@ class Install extends BasicInstall
                     return false;
                 }
             }
+            
+            Pi::registry('page')->flush();
+            Pi::registry('page_cache')->flush();
         }
         
         return $result;
@@ -430,6 +411,8 @@ VALUE;
         } catch (\Exception $exception) {
             return false;
         }
+        
+        Pi::registry('permission_resource')->flush();
         
         return true;
     }

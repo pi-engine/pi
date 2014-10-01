@@ -30,7 +30,7 @@ class CompoundField extends AbstractRegistry
     {
         $fields = array();
 
-        $columns = array('name', 'title', 'compound', 'edit', 'filter', 'is_required');
+        $columns = array('id', 'name', 'title', 'compound', 'edit', 'filter', 'is_required');
         $where = array('compound' => $options['compound']);
         $model = Pi::model('compound_field', $this->module);
         $select = $model->select()->where($where)

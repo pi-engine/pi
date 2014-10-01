@@ -147,7 +147,7 @@ return array(
                 ),
             ),
             // Is editable by admin, default as true
-            'is_edit'    => false,
+            'is_edit'    => true,
             // Do not insert this column to article table
             'is_insert'  => false,
         ),
@@ -162,7 +162,7 @@ return array(
                     'callback' => 'Module\Article\Form\CommonValidators::subtitleValidator',
                 ),
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'summary'        => array(
@@ -179,7 +179,7 @@ return array(
             ),
             // Custom filter for formatting value post by form
             'filter'     => 'Module\Article\Form\Filter\Summary',
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'content'        => array(
@@ -190,7 +190,7 @@ return array(
                 'required' => false,
                 'element'  => 'Module\Article\Form\Element\Content',
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'markup'         => array(
@@ -223,7 +223,7 @@ return array(
                     'id'        => 'featured',
                 ),
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'gallery'        => array(
@@ -245,7 +245,7 @@ return array(
                     'id'        => 'gallery',
                 ),
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'attachment'     => array(
@@ -267,7 +267,7 @@ return array(
                     'id'        => 'attachment',
                 ),
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'uid'            => array(
@@ -289,7 +289,7 @@ return array(
                     ),
                 ),
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'source'         => array(
@@ -297,7 +297,7 @@ return array(
             'name'       => 'source',
             'title'      => _a('Source'),
             'edit'       => 'text',
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'pages'          => array(
@@ -340,7 +340,7 @@ return array(
                     'is_multiple' => true,
                 ),
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         'status'         => array(
@@ -403,7 +403,7 @@ return array(
                 'required' => false,
                 'element'  => 'tag',
             ),
-            'is_edit'    => false,
+            'is_edit'    => true,
             'is_insert'  => false,
         ),
         
@@ -429,12 +429,15 @@ return array(
             'name'       => 'seo_title',
             'title'      => _a('SEO Title'),
             'is_edit'    => false,
+            'is_insert'  => true,
+            'field_type' => 'varchar(255) not null default \'\'',
         ),
         'seo_keywords'   => array(
             'type'       => 'common',
             'name'       => 'seo_keywords',
             'title'      => _a('SEO Keywords'),
             'is_edit'    => false,
+            'is_insert'  => true,
         ),
         'seo_description' => array(
             'type'       => 'common',
@@ -447,12 +450,14 @@ return array(
                 ),
             ),
             'is_edit'    => false,
+            'is_insert'  => true,
         ),
         'slug'           => array(
             'type'       => 'common',
             'name'       => 'slug',
             'title'      => _a('Slug'),
             'is_edit'    => false,
+            'is_insert'  => true,
         ),*/
     ),
 );
