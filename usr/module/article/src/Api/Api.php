@@ -121,9 +121,7 @@ class Api extends AbstractApi
             unset($where['is-tree']);
         }
         $module = $this->getModule();
-        $rows   = Pi::service('registry')
-            ->handler('cluster', $module)
-            ->read($where, $isTree, $module);
+        $rows   = Pi::registry('cluster', $module)->read($where, $isTree, $module);
         
         return $rows;
     }
@@ -142,9 +140,26 @@ class Api extends AbstractApi
             unset($where['is-tree']);
         }
         $module = $this->getModule();
-        $rows   = Pi::service('registry')
-            ->handler('category', $module)
-            ->read($where, $isTree, $module);
+        $rows   = Pi::registry('category', $module)->read($where, $isTree, $module);
+        
+        return $rows;
+    }
+    
+    /**
+     * Read page data from cache
+     * 
+     * @param array $where
+     * @return array 
+     */
+    public function getPageList($where = array())
+    {
+        $isTree = false;
+        if (isset($where['is-tree'])) {
+            $isTree = $where['is-tree'];
+            unset($where['is-tree']);
+        }
+        $module = $this->getModule();
+        $rows   = Pi::registry('page', $module)->read($where, $isTree, $module);
         
         return $rows;
     }
@@ -158,9 +173,7 @@ class Api extends AbstractApi
     public function getAuthorList($ids = array())
     {
         $module = $this->getModule();
-        $rows   = Pi::service('registry')
-            ->handler('author', $module)
-            ->read($module);
+        $rows   = Pi::registry('author', $module)->read($module);
         
         if (!empty($ids)) {
             foreach ($rows as $key => $row) {

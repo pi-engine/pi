@@ -78,7 +78,9 @@ EOD;
         $data = $this->get($id);
         
         $form = Pi::api('form', $this->module)->loadForm('draft');
-        $isMultiple = $form->get($this->name)->getOption('is_multiple');
+        if ($form->has($this->name)) {
+            $isMultiple = $form->get($this->name)->getOption('is_multiple');
+        }
         
         if (!$isMultiple) {
             return array($this->name => $data[0]['cluster']);

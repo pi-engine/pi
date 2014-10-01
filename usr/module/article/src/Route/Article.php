@@ -101,7 +101,9 @@ class Article extends Standard
                     $action     = 'all';
                     $category   = $this->decode($category);
                 }
-                if (preg_match('/^sort-/', $urlParams[1])) {
+                if (isset($urlParams[1])
+                    && preg_match('/^sort-/', $urlParams[1])
+                ) {
                     list($ignored, $sort) = explode(
                         $this->keyValueDelimiter, 
                         $urlParams[1],
@@ -171,6 +173,15 @@ class Article extends Standard
                 $matches[$key] = $this->decode($value);
             }
         }
+        
+        // Get page action
+        $module = ltrim($this->prefix, '/');
+        $matches['module'] = $module;
+        $action = Pi::api('page', $module)->getPageAction($matches);
+        if ($action) {
+            $matches['action'] = $action;
+        }
+        
         if (isset($matches['preview']) and $matches['preview'] == 1) {
             $matches['controller'] = 'draft';
             $matches['action']     = 'preview';

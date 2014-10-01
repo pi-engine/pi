@@ -12,14 +12,13 @@ namespace Module\Article\Form;
 use Pi;
 use Pi\Form\Form as BaseForm;
 use Zend\InputFilter\InputFilter as DraftInputFilter;
-use Zend\Form\FormInterface;
 
 /**
- * Draft form for manipulating form instance
+ * Page form for manipulating form instance
  *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class DraftForm extends BaseForm
+class PageForm extends BaseForm
 {
     /**
      * Fields to render
@@ -29,7 +28,7 @@ class DraftForm extends BaseForm
     protected $fields = array();
 
     /** @var string Config file identifier */
-    protected $configIdentifier = 'draft';
+    protected $configIdentifier = 'form';
 
     /** @var string InputFilter class */
     protected $inputFilterClass = '';
@@ -52,7 +51,7 @@ class DraftForm extends BaseForm
             }
             if ($configFile) {
                 $module = Pi::service('module')->current();
-                $fields = Pi::api('form', $module)->loadFields($configFile);
+                $fields = Pi::api('page', $module)->loadFields($configFile);
             }
         }
         if (empty($this->module)) {
@@ -71,7 +70,7 @@ class DraftForm extends BaseForm
         $fields = $this->fields;
         
         $hidden = array(
-            'time_update', 'time_submit', 'uid', 'id', 'article', 'jump',
+            'id',
         );
         foreach ($hidden as $key) {
             $fields[] = array(
@@ -80,22 +79,17 @@ class DraftForm extends BaseForm
             );
         }
 
-        /*$fields[] = array(
+        $fields[] = array(
             'name'       => 'security',
             'type'       => 'csrf',
-        );*/
+        );
+        $fields[] = array(
+            'name'       => 'submit',
+            'type'       => 'submit',
+        );
         
         foreach ($fields as $field) {
             $this->add($field);
-        }
-        
-        $module = Pi::service('module')->current();
-        $config = Pi::config('', $module);
-        if ($this->has('image')) {
-            $this->get('image')->setOption('size', array(
-                'width'  => $config['feature_width'],
-                'height' => $config['feature_height'],
-            ));
         }
     }
 
@@ -111,12 +105,6 @@ class DraftForm extends BaseForm
         if (!$filters) {
             $filters = Pi::api('form', $this->module)->loadFilters(
                 $this->configIdentifier
-            );
-        }
-        foreach (array('tag') as $key) {
-            $filters[] = array(
-                'name'     => $key,
-                'required' => false,
             );
         }
         $inputFilter = $this->initInputFilter();
@@ -142,54 +130,5 @@ class DraftForm extends BaseForm
         }
 
         return $inputFilter;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * Canonize compound data
-     */
-    public function setData($data)
-    {
-        $data = (array) $data;
-        $compounds = Pi::registry('field', $this->module)->read('compound');
-
-        $result = array();
-        foreach ($data as $key => $value) {
-            if (is_array($value) && isset($compounds[$key])) {
-                $value = array_pop($value);
-                foreach ($value as $fName => $fValue) {
-                    $fieldName = Pi::api('form', $this->module)
-                        ->assembleCompoundFieldName($key, $fName);
-                    $result[$fieldName] = $fValue;
-                }
-            } else {
-                $result[$key] = $value;
-            }
-        }
-        parent::setData($result);
-
-        return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * Canonize compound data
-     */
-    public function getData($flags = FormInterface::VALUES_NORMALIZED)
-    {
-        $data = parent::getData($flags);
-        $result = array();
-        foreach ($data as $key => $value) {
-            $tmp = Pi::api('form', $this->module)->parseCompoundFieldName($key);
-            if ($tmp) {
-                $result[$tmp[0]][0][$tmp[1]] = $value;
-            } else {
-                $result[$key] = $value;
-            }
-        }
-
-        return $result;
     }
 }

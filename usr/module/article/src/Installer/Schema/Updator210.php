@@ -167,6 +167,50 @@ EOD;
                 return $result;
             }
         }
+        
+        if (version_compare($version, '1.5.2', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            // Add `page` table
+            $table     = Pi::model('page', $module)->getTable();
+            $createSql =<<<EOD
+CREATE TABLE `{$table}` (
+  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
+  `left`            int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `right`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `depth`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `title`           varchar(255)          NOT NULL DEFAULT '',
+  `name`            varchar(64)           NOT NULL DEFAULT '',
+  `controller`      varchar(32)           NOT NULL DEFAULT '',
+  `action`          varchar(32)           NOT NULL DEFAULT '',
+  `seo_title`       text                  DEFAULT NULL,
+  `seo_keywords`    text                  DEFAULT NULL,
+  `seo_description` text                  DEFAULT NULL,
+  `active`          tinyint(1)            NOT NULL DEFAULT '0',
+  `meta`            text                  DEFAULT NULL,
+
+  PRIMARY KEY                   (`id`),
+  UNIQUE KEY                    (`name`),
+  KEY                           (`active`)
+);
+EOD;
+            $result = $this->queryTable($createSql);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Add root page
+            $model  = Pi::model('page', $module);
+            $data   = array(
+                'id'          => null,
+                'name'        => 'root',
+                'title'       => _a('Null'),
+            );
+            $result = $model->add($data);
+            if (false === $result) {
+                return $result;
+            }
+        }
 
         return $result;
     }

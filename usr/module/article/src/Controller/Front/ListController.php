@@ -23,6 +23,28 @@ use Pi;
 class ListController extends ActionController
 {
     /**
+     * Parse action name
+     * 
+     * @param string  $action
+     * @return string
+     */
+    public static function getMethodFromAction($action)
+    {
+        $module = Pi::service('module')->current();
+        $pages  = Pi::registry('page', $module)->read();
+        
+        $name = '';
+        foreach ($pages as $page) {
+            if ($action === $page['name']) {
+                $name = $page['action'] . 'Action';
+                break;
+            }
+        }
+ 
+        return $name ?: $action . 'Action';
+    }
+    
+    /**
      * Listing all articles for users to review 
      */
     public function allAction()
@@ -195,6 +217,8 @@ class ListController extends ActionController
                 'new'       => $urlNew,
             ),
         ));
+        
+        $this->view()->setTemplate('list-all');
     }
     
     /**

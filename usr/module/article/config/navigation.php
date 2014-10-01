@@ -83,6 +83,16 @@ return array(
                 'permission'    => array(
                     'resource'  => 'compose',
                 ),
+                
+                'pages'         => array(
+                    'edit'          => array(
+                        'label'         => _t('Edit draft'),
+                        'route'         => 'admin',
+                        'controller'    => 'draft',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
+                ),
             ),
             'my'                => array(
                 'label'         => _t('My Article'),
@@ -341,6 +351,37 @@ return array(
                         'label'         => _t('Edit author'),
                         'route'         => 'admin',
                         'controller'    => 'author',
+                        'action'        => 'edit',
+                        'visible'       => 0,
+                    ),
+                ),
+            ),
+            'page'              => array(
+                'label'         => _t('Page'),
+                'route'         => 'admin',
+                'controller'    => 'page',
+                'action'        => 'list',
+                'permission'    => array(
+                    'resource'  => 'page',
+                ),
+                
+                'pages'         => array(
+                    'list'          => array(
+                        'label'         => _t('Page list'),
+                        'route'         => 'admin',
+                        'controller'    => 'page',
+                        'action'        => 'list',
+                    ),
+                    'add'           => array(
+                        'label'         => _t('Add page'),
+                        'route'         => 'admin',
+                        'controller'    => 'page',
+                        'action'        => 'add',
+                    ),
+                    'edit'          => array(
+                        'label'         => _t('Edit page'),
+                        'route'         => 'admin',
+                        'controller'    => 'page',
                         'action'        => 'edit',
                         'visible'       => 0,
                     ),
