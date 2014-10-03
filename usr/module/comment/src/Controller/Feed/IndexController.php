@@ -11,7 +11,6 @@ namespace Module\Comment\Controller\Feed;
 
 use Pi;
 use Pi\Mvc\Controller\FeedController;
-use Pi\Feed\Model as DataModel;
 
 class IndexController extends FeedController
 {
@@ -19,7 +18,7 @@ class IndexController extends FeedController
     {
         $feed = $this->getDataModel(array(
             'title'         => __('Comment feed'),
-            'description'   => __('Recent submited comments.'),
+            'description'   => __('Latest comments.'),
             'date_created'  => time(),
         ));
 
@@ -32,13 +31,15 @@ class IndexController extends FeedController
         $posts = Pi::api('api', 'comment')->renderList($posts, $renderOptions);
 
         foreach ($posts as $post) {
-            $entry = array();
-            $entry['title'] = $post['target']['title'];
-            $entry['description'] = $post['content'];
-            $entry['date_modified'] = (int)$post['time'];
-            $entry['link'] = Pi::url($post['url']);
+            $entry = array(
+                'title'         => $post['target']['title'],
+                'description'   => $post['content'],
+                'date_modified' => (int) $post['time'],
+                'link'          => Pi::url($post['url'], true)
+            );
             $feed->entry = $entry;
         }
+
         return $feed;
     }
 }
