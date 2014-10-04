@@ -40,7 +40,7 @@ class UserEmail extends SystemUserEmail
     public function setConfigOption()
     {
         $this->options = array(
-            'backlist'         => Pi::user()->config('email_backlist'),
+            'blacklist'        => Pi::user()->config('email_blacklist'),
             'checkDuplication' => true,
         );
 

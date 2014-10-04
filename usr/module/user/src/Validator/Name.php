@@ -66,7 +66,7 @@ class Name extends Username
             'min'               => Pi::user()->config('name_min'),
             'max'               => Pi::user()->config('name_max'),
             'format'            => Pi::user()->config('name_format'),
-            'backlist'          => Pi::user()->config('name_backlist'),
+            'blacklist'         => Pi::user()->config('name_blacklist'),
             'checkDuplication'  => true,
         );
 

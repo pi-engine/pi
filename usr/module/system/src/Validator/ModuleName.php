@@ -41,7 +41,7 @@ class ModuleName extends AbstractValidator
     protected $options = array(
         // Reserved module name which could be
         // potentially conflicted with system
-        'backlist'  => array(
+        'blacklist' => array(
             'pi', 'zend', 'module', 'service', 'theme',
             'application', 'event', 'registry', 'config'
         ),
@@ -58,8 +58,8 @@ class ModuleName extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!empty($this->options['backlist'])) {
-            $pattern = implode('|', $this->options['backlist']);
+        if (!empty($this->options['blacklist'])) {
+            $pattern = implode('|', $this->options['blacklist']);
             if (preg_match('/(' . $pattern . ')/', $value)) {
                 $this->error(static::RESERVED);
                 return false;

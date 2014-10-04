@@ -11,6 +11,8 @@ namespace Module\System\Form;
 
 use Pi;
 use Zend\InputFilter\InputFilter;
+use Module\System\Validator\UserEmail as UserEmailValidator;
+use Module\System\Validator\Username as UsernameValidator;
 
 /**
  * Member form filter
@@ -43,9 +45,9 @@ class MemberFilter extends InputFilter
                         'max'       => $config['uname_max'],
                     ),
                 ),
-                new \Module\System\Validator\Username(array(
+                new UsernameValidator(array(
                     'format'            => $config['uname_format'],
-                    'backlist'          => $config['uname_backlist'],
+                    'blacklist'         => $config['uname_blacklist'],
                     'checkDuplication'  => true,
                 )),
             ),
@@ -117,8 +119,8 @@ class MemberFilter extends InputFilter
                         'useDomainCheck'    => false,
                     ),
                 ),
-                new \Module\System\Validator\UserEmail(array(
-                    'backlist'          => $config['email_backlist'],
+                new UserEmailValitor(array(
+                    'blacklist'         => $config['email_blacklist'],
                     'checkDuplication'  => true,
                 )),
             ),

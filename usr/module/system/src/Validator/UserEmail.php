@@ -39,7 +39,7 @@ class UserEmail extends AbstractValidator
      * @var array
      */
     protected $options = array(
-        'backlist'          => array(),
+        'blacklist'         => array(),
         'checkDuplication'  => true,
     );
 
@@ -54,10 +54,10 @@ class UserEmail extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!empty($this->options['backlist'])) {
-            $pattern = is_array($this->options['backlist'])
-                ? implode('|', $this->options['backlist'])
-                : $this->options['backlist'];
+        if (!empty($this->options['blacklist'])) {
+            $pattern = is_array($this->options['blacklist'])
+                ? implode('|', $this->options['blacklist'])
+                : $this->options['blacklist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
                 $this->error(static::RESERVED);
                 return false;

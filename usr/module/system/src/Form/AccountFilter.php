@@ -45,7 +45,7 @@ class AccountFilter extends InputFilter
                 ),
                 new \Module\System\Validator\Username(array(
                     'format'            => $config['uname_format'],
-                    'backlist'          => $config['uname_backlist'],
+                    'blacklist'         => $config['uname_blacklist'],
                     'checkDuplication'  => true,
                 )),
             ),

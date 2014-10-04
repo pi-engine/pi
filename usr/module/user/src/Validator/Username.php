@@ -90,7 +90,7 @@ class Username extends SystemUsername
         $this->options = array(
             'min'       => Pi::user()->config('uname_min'),
             'max'       => Pi::user()->config('uname_max'),
-            'backlist'  => Pi::user()->config('uname_backlist'),
+            'blacklist' => Pi::user()->config('uname_blacklist'),
             'format'    => Pi::user()->config('uname_format'),
             'checkDuplication' => true,
         );
