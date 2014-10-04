@@ -119,7 +119,7 @@ class MemberFilter extends InputFilter
                         'useDomainCheck'    => false,
                     ),
                 ),
-                new UserEmailValitor(array(
+                new UserEmailValidator(array(
                     'blacklist'         => $config['email_blacklist'],
                     'checkDuplication'  => true,
                 )),
