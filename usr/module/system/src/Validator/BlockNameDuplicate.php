@@ -23,12 +23,15 @@ class BlockNameDuplicate extends AbstractValidator
     const TAKEN        = 'blockExists';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Block name already exists',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::TAKEN     => __('Block name already exists'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * Block name validate

@@ -23,12 +23,15 @@ class PageDuplicate extends AbstractValidator
     const PAGEEXISTS        = 'pageExists';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::PAGEEXISTS     => 'The page already exists',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::PAGEEXISTS => __('The page already exists'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * Page validate

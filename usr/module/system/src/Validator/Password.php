@@ -23,8 +23,6 @@ class Password extends AbstractValidator
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
-    protected $messageTemplates;
-
     protected $messageVariables = array(
         'max'        => 'max',
         'min'        => 'min',

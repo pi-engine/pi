@@ -23,12 +23,15 @@ class ActionAvailable extends AbstractValidator
     const ACTION_UNAVAILABLE = 'actionUnavailable';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::ACTION_UNAVAILABLE => 'The action is not available.',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::ACTION_UNAVAILABLE => __('The action is not available.'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * Page validate

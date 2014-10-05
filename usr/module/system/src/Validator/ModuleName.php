@@ -26,15 +26,6 @@ class ModuleName extends AbstractValidator
     const TAKEN     = 'moduleNameTaken';
 
     /**
-     * Message templates
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::RESERVED  => 'Module name is reserved',
-        self::TAKEN     => 'Module name is already taken',
-    );
-
-    /**
      * Options
      * @var array
      */
@@ -46,6 +37,18 @@ class ModuleName extends AbstractValidator
             'application', 'event', 'registry', 'config'
         ),
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::RESERVED  => __('Module name is reserved'),
+            static::TAKEN     => __('Module name is already taken'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * User name validate
@@ -70,7 +73,6 @@ class ModuleName extends AbstractValidator
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }
-        //$rowset = Pi::model('module')->select($where);
         $count = Pi::model('module')->count($where);
         if ($count) {
             $this->error(static::TAKEN);
