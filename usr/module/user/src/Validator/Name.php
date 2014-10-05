@@ -22,15 +22,14 @@ class Name extends Username
 {
     public function __construct()
     {
-        parent::__construct();
-
         $this->messageTemplates = array(
-            self::INVALID   => __('Invalid user name: %formatHint%'),
-            self::RESERVED  => __('User name is reserved'),
-            self::TAKEN     => __('User name is already taken'),
-            self::TOO_SHORT => __('User name is less than %min% characters long'),
-            self::TOO_LONG  => __('User name is more than %max% characters long')
+            static::INVALID     => __('Invalid name: %formatHint%'),
+            static::RESERVED    => __('User name is reserved'),
+            static::TAKEN       => __('User name is already taken'),
+            static::TOO_SHORT   => __('User name is less than %min% characters long'),
+            static::TOO_LONG    => __('User name is more than %max% characters long')
         );
+        parent::__construct();
         $this->setConfigOption();
     }
 

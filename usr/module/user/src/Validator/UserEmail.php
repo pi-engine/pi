@@ -20,30 +20,21 @@ use Module\System\Validator\UserEmail as SystemUserEmail;
  */
 class UserEmail extends SystemUserEmail
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->messageTemplates = array(
-            self::RESERVED  => __('User email is reserved'),
-            self::USED      => __('User email is already used'),
-        );
-
-        $this->setConfigOption();
-    }
-
     /**
-     * Set email validator according to config
-     *
-     * @return $this
+     * {@inheritDoc}
      */
-    public function setConfigOption()
+    public function __construct($options = null)
     {
-        $this->options = array(
-            'blacklist'        => Pi::user()->config('email_blacklist'),
-            'checkDuplication' => true,
-        );
+        $options = $options ?: array();
+        $options = array_merge(array(
+            'blacklist'         => Pi::user()->config('email_blacklist'),
+            'check_duplication' => true,
+        ), $options);
 
-        return $this;
+        parent::__construct($options);
+        $this->abstractOptions['messageTemplates'] = array(
+            static::RESERVED    => __('User email is reserved'),
+            static::USED        => __('User email is already used'),
+        ) + $this->abstractOptions['messageTemplates'];
     }
 }

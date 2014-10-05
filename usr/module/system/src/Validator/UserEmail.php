@@ -10,14 +10,15 @@
 namespace Module\System\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+//use Zend\Validator\AbstractValidator;
+use Zend\Validator\EmailAddress;
 
 /**
  * User email check
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class UserEmail extends AbstractValidator
+class UserEmail extends EmailAddress
 {
     /** @var string */
     const RESERVED  = 'userEmailReserved';
@@ -29,19 +30,25 @@ class UserEmail extends AbstractValidator
      * Message templates
      * @var array
      */
-    protected $messageTemplates = array(
-        self::RESERVED  => 'User email is reserved',
-        self::USED      => 'User email is already used',
-    );
+    //protected $messageTemplates = array();
 
     /**
-     * Options
-     * @var array
+     * {@inheritDoc}
      */
-    protected $options = array(
-        'blacklist'         => array(),
-        'checkDuplication'  => true,
-    );
+    public function __construct($options = null)
+    {
+        $options = $options ?: array();
+        $options = array_merge(array(
+            'blacklist'         => array(),
+            'check_duplication' => true,
+        ), $options);
+
+        parent::__construct($options);
+        $this->abstractOptions['messageTemplates'] = array(
+            static::RESERVED    => __('User email is reserved'),
+            static::USED        => __('User email is already used'),
+        ) + $this->abstractOptions['messageTemplates'];
+    }
 
     /**
      * User name validate
@@ -53,6 +60,11 @@ class UserEmail extends AbstractValidator
     public function isValid($value, $context = null)
     {
         $this->setValue($value);
+
+        $result = parent::isValid($value, $context);
+        if (!$result) {
+            return false;
+        }
 
         if (!empty($this->options['blacklist'])) {
             $pattern = is_array($this->options['blacklist'])

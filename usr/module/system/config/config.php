@@ -159,10 +159,13 @@ $config['item'] = array(
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
-                'options'       => array(
-                    'strict'    => _t('Strict: alphabet or number only'),
-                    'medium'    => _t('Medium: ASCII characters'),
-                    'loose'     => _t('Loose: multi-byte characters'),
+                'options'           => array(
+                    'strict'        => _t('Strict: alphabet or number only'),
+                    'strict-space'  => _t('Strict/space: alphabet, number or space only'),
+                    'medium'        => _t('Medium: ASCII characters'),
+                    'medium-space'  => _t('Medium/space: ASCII characters and spaces'),
+                    'loose'         => _t('Loose: multi-byte characters'),
+                    'loose-space'   => _t('Loose/space: multi-byte characters and spaces'),
                 ),
             ),
         ),

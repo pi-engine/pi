@@ -11,6 +11,7 @@ namespace Module\System\Form;
 
 use Pi;
 use Zend\InputFilter\InputFilter;
+use Module\System\Validator\Username as UsernameValidator;
 
 /**
  * Account form filter
@@ -43,10 +44,10 @@ class AccountFilter extends InputFilter
                         'max'       => $config['uname_max'],
                     ),
                 ),
-                new \Module\System\Validator\Username(array(
+                new UsernameValidator(array(
                     'format'            => $config['uname_format'],
                     'blacklist'         => $config['uname_blacklist'],
-                    'checkDuplication'  => true,
+                    'check_duplication' => true,
                 )),
             ),
         ));

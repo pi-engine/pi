@@ -20,36 +20,36 @@ use Module\System\Validator\Username as SystemUsername;
  */
 class Username extends SystemUsername
 {
+    /** Constants for username length restrict */
     const TOO_SHORT = 'stringLengthTooShort';
     const TOO_LONG  = 'stringLengthTooLong';
 
+    /**
+     * Maximum/minimum length of username
+     * @var string
+     */
+    protected $max;
+    protected $min;
+
+    /**
+     * {@inheritDoc}
+     */
     protected $messageVariables = array(
         'formatHint' => 'formatHint',
         'max'        => 'max',
         'min'        => 'min',
     );
 
-    protected $max;
-    protected $min;
-
+    /**
+     * {@inheritDoc}
+     */
     public function __construct()
     {
+        $this->messageTemplates = $this->messageTemplates + array(
+            static::TOO_SHORT   => __('Username is less than %min% characters long'),
+            static::TOO_LONG    => __('Username is more than %max% characters long')
+        );
         parent::__construct();
-
-        $this->messageTemplates = array(
-            self::INVALID   => __('Invalid user name: %formatHint%'),
-            self::RESERVED  => __('Username is reserved'),
-            self::TAKEN     => __('Username is already taken'),
-            self::TOO_SHORT => __('Username is less than %min% characters long'),
-            self::TOO_LONG  => __('Username is more than %max% characters long')
-        );
-
-        $this->formatMessage = array(
-            'strict'    => __('Only alphabetic and digits are allowed with leading alphabetic'),
-            'medium'    => __('Only ASCII characters are allowed'),
-            'loose'     => __('Multibyte characters are allowed'),
-        );
-
         $this->setConfigOption();
     }
 
