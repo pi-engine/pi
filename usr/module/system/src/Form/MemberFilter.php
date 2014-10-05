@@ -48,7 +48,7 @@ class MemberFilter extends InputFilter
                 new UsernameValidator(array(
                     'format'            => $config['uname_format'],
                     'blacklist'         => $config['uname_blacklist'],
-                    'checkDuplication'  => true,
+                    'check_duplication' => true,
                 )),
             ),
         ));
@@ -121,7 +121,7 @@ class MemberFilter extends InputFilter
                 ),
                 new UserEmailValidator(array(
                     'blacklist'         => $config['email_blacklist'],
-                    'checkDuplication'  => true,
+                    'check_duplication' => true,
                 )),
             ),
         ));

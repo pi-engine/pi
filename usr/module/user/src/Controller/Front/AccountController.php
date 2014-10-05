@@ -150,7 +150,6 @@ class AccountController extends ActionController
             'message' => __('Invalid data provided for email change.'),
         );
         $token   = _get('token');
-        //$email   = _get('email');
 
         $view = $this->view();
         $fallback = function () use ($view, $result) {

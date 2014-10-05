@@ -79,7 +79,7 @@ class Username extends AbstractValidator
     protected $options = array(
         'format'            => 'strict',
         'blacklist'         => array(),
-        'checkDuplication'  => true,
+        'check_duplication' => true,
     );
 
     /**
@@ -110,7 +110,7 @@ class Username extends AbstractValidator
             }
         }
 
-        if ($this->options['checkDuplication']) {
+        if ($this->options['check_duplication']) {
             $isDuplicated = $this->isDuplicated($value, $context);
             if ($isDuplicated) {
                 $this->error(static::TAKEN);

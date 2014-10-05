@@ -67,7 +67,7 @@ class Name extends Username
             'max'               => Pi::user()->config('name_max'),
             'format'            => Pi::user()->config('name_format'),
             'blacklist'         => Pi::user()->config('name_blacklist'),
-            'checkDuplication'  => true,
+            'check_duplication' => true,
         );
 
         return $this;

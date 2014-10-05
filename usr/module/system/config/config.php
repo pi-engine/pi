@@ -203,7 +203,7 @@ $config['item'] = array(
         'category'      => 'user',
     ),
 
-    'uname_backlist'    => array(
+    'uname_blacklist'   => array(
         'title'         => _t('Username blacklist'),
         'description'   => _t('Reserved and forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',
@@ -211,7 +211,7 @@ $config['item'] = array(
         'category'      => 'user',
     ),
 
-    'email_backlist'    => array(
+    'email_blacklist'   => array(
         'title'         => _t('Email blacklist'),
         'description'   => _t('Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax is allowed.'),
         'edit'          => 'textarea',

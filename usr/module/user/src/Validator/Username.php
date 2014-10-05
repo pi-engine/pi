@@ -88,11 +88,11 @@ class Username extends SystemUsername
     public function setConfigOption()
     {
         $this->options = array(
-            'min'       => Pi::user()->config('uname_min'),
-            'max'       => Pi::user()->config('uname_max'),
-            'blacklist' => Pi::user()->config('uname_blacklist'),
-            'format'    => Pi::user()->config('uname_format'),
-            'checkDuplication' => true,
+            'min'               => Pi::user()->config('uname_min'),
+            'max'               => Pi::user()->config('uname_max'),
+            'blacklist'         => Pi::user()->config('uname_blacklist'),
+            'format'            => Pi::user()->config('uname_format'),
+            'check_duplication' => true,
         );
 
         return $this;

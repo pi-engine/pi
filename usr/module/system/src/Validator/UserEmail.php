@@ -64,7 +64,7 @@ class UserEmail extends AbstractValidator
             }
         }
 
-        if ($this->options['checkDuplication']) {
+        if ($this->options['check_duplication']) {
             $where = array('email' => $value);
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];

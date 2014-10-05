@@ -46,7 +46,7 @@ class RegisterFilter extends InputFilter
                 new \Module\System\Validator\Username(array(
                     'format'            => $config['uname_format'],
                     'blacklist'         => $config['uname_blacklist'],
-                    'checkDuplication'  => true,
+                    'check_duplication' => true,
                 )),
             ),
         ));
@@ -80,7 +80,7 @@ class RegisterFilter extends InputFilter
                 ),
                 new \Module\System\Validator\UserEmail(array(
                     'blacklist'         => $config['email_blacklist'],
-                    'checkDuplication'  => true,
+                    'check_duplication' => true,
                 )),
             ),
         ));

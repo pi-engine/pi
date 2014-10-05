@@ -13,7 +13,7 @@ use Pi;
 use Module\System\Validator\UserEmail as SystemUserEmail;
 
 /**
- * Validator user email
+ * Validate user email
  *
  * @author Liu Chuang <liuchuang@eefocus.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
