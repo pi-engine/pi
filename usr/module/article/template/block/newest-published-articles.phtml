@@ -10,5 +10,5 @@
     if ('single' == $column) {
         $items = $articles;
     }
-    include $template;
+include $this->templateModule('block/' . $template, $block['module']);
 ?>

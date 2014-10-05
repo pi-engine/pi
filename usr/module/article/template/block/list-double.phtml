@@ -14,14 +14,14 @@
 <div class="row">
     <div class="col-md-6">
         <?php
-            $items = $left;
-            include 'list-single.phtml';
+        $items = $left;
+        include $this->templateModule('block/list-single.phtml', $block['module']);
         ?>
     </div>
     <div class="col-md-6">
         <?php
-            $items = $right;
-            include 'list-single.phtml';
+        $items = $right;
+        include $this->templateModule('block/list-single.phtml', $block['module']);
         ?>
     </div>
 </div>

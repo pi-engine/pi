@@ -286,7 +286,7 @@ $uid = Pi::user()->getId();
             </div>    
             <table class="attachment-list table table-condensed"></table>
             <!-- Starting attachment modal box -->
-            <?php include 'media-attachments-box.phtml'; ?>
+            <?php include $this->template('./media-attachments-box.phtml'); ?>
         </div>
     </div>
     <div class="col-md-4">
@@ -440,7 +440,7 @@ $uid = Pi::user()->getId();
                     <span class="text-muted"><?php echo _e('image size '). $width . '*' . $height; ?></span>
                 </div>
                 <!-- Start modal box -->
-                <?php include 'media-image-box.phtml'; ?>
+                <?php include $this->template('./media-image-box.phtml'); ?>
             </div>
         </div>
         <div class="widget" id="jsGallery">
@@ -457,7 +457,7 @@ $uid = Pi::user()->getId();
                 </div>
             </div>
             <!-- Starting gallery modal box -->
-            <?php include 'media-gallery-box.phtml'; ?>
+            <?php include $this->template('./media-gallery-box.phtml'); ?>
         </div>
         <?php } ?>
         <?php if (!empty($config['enable_tag']) and in_array('tag', $elements)) { ?>

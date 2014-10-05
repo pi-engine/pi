@@ -4,7 +4,7 @@
     $this->Backbone();
 ?>
 
-<?php include 'message-box.phtml' ?>
+<?php include $this->template('./message-box.phtml'); ?>
 
 <?php 
     $error = $this->formElementErrors(

@@ -6,7 +6,7 @@
     $this->Backbone();
 ?>
 
-<?php include 'message-box.phtml'; ?>
+<?php include $this->template('./message-box.phtml'); ?>
 
 <div id="pi-js-upload">
     <?php include $this->templateComponent('form'); ?>
@@ -31,8 +31,8 @@
             </div>
         </div>
     </script>
-    
-    <?php include 'media-image-box.phtml'; ?>
+
+    <?php include $this->template('./media-image-box.phtml'); ?>
 </div>
 
 <script id="template-template" type="text/template">

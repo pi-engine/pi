@@ -9,7 +9,7 @@
 <div>
     <div class="">
 
-        <?php include 'message-box.phtml'; ?>
+        <?php include $this->template('./message-box.phtml'); ?>
 
         <?php echo $this->form()->openTag($form); ?>
         <div><?php $element = $form->get('mode'); ?>
