@@ -18,7 +18,7 @@
 ?>
 <?php
     if ($name == 'info') {
-        include $this->templateComponent('form');
+        echo $this->form($form);
         return;
     } 
 ?>
@@ -56,7 +56,7 @@
             </button>
         </div>
         <div class="pi-widget-body" style="padding-left: 0;">   
-            <?php include $this->templateComponent('form'); ?>
+            <?php echo $this->form($form); ?>
         </div>
     </div>
 <?php } ?>

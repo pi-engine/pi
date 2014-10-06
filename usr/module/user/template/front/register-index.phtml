@@ -11,7 +11,7 @@ if (!empty($form)) {
 <?php
     }
 
-    include $this->templateComponent('form');
+    echo $this->form($form);
 
 } elseif ('auto' == $activation) {
     if (!empty($result['status'])) {

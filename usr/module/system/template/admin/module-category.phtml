@@ -47,7 +47,7 @@ if ('_all' == $id) {
     </ul>
 <?php
 } elseif ('_new' == $id || 'edit' == $op) {
-    include $this->templateComponent('form');
+    echo $this->form($form);
 } else {
 ?>
 

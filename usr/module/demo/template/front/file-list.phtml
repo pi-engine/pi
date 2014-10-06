@@ -12,7 +12,10 @@
 </ul>
 
 <h3 class="page-header"><?php _e('Upload a new file'); ?></h3>
-<?php include $this->templateComponent('form'); ?>
+<?php
+//include $this->templateComponent('form');
+echo $this->form($form);
+?>
 
 <!--
 <form action="<?php echo $this->url('', array('action' => 'upload')); ?>" method="post" enctype="multipart/form-data">
