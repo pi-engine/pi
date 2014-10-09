@@ -36,8 +36,7 @@ class Category extends Select
             $module = $this->getOption('module') 
                 ?: Pi::service('module')->current();
             $withRoot = (bool) $this->getOption('root') ?: false;
-            $method   = sprintf('get%sList', ucfirst($this->table));
-            $rowset   = Pi::api('api', $module)->$method(
+            $rowset   = Pi::api($this->table, $module)->getList(
                 array('active' => 1),
                 array('id', 'title', 'depth'),
                 true,

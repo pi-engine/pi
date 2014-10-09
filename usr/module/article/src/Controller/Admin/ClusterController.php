@@ -12,7 +12,6 @@ namespace Module\Article\Controller\Admin;
 use Pi;
 use Module\Article\Form\ClusterEditForm;
 use Module\Article\Form\ClusterEditFilter;
-use Module\Article\Model\Cluster;
 
 /**
  * Cluster controller
@@ -145,7 +144,9 @@ class ClusterController extends CategoryController
             return $this->jumpTo404(_a('Can not find cluster!'));
         }
         
-        $form->setData($row->toArray());
+        $data = $row->toArray();
+        $meta = (array) json_decode($row->meta, true);
+        $form->setData(array_merge($data, $meta));
 
         $parent = $model->getParentNode($row->id);
         if ($parent) {
@@ -153,6 +154,34 @@ class ClusterController extends CategoryController
         }
 
         $this->view()->assign('form', $form);
+    }
+    
+    /**
+     * Active/deactivate category
+     * 
+     * @return ViewModel
+     */
+    public function activeAction()
+    {
+        $status = $this->params('status', 0);
+        $id     = $this->params('id', 0);
+        
+        $module = $this->getModule();
+        $model  = $this->getModel('cluster');
+        $children = $model->getChildrenIds($id);
+        $children[] = $id;
+
+        $model->update(
+            array('active' => $status),
+            array('id' => $children)
+        );
+
+        // Clear cache
+        Pi::registry('cluster', $module)->clear($module);
+        
+        return $this->redirect()->toRoute('', array(
+            'action' => 'list'
+        ));
     }
     
     /**
@@ -460,6 +489,7 @@ class ClusterController extends CategoryController
     protected function saveCluster($data)
     {
         $model  = $this->getModel('cluster');
+        $module = $this->getModule();
 
         if (isset($data['id'])) {
             $id = $data['id'];
@@ -473,7 +503,19 @@ class ClusterController extends CategoryController
             unset($data['slug']);
         }
         
+        $customFields = Pi::api('cluster', $module)->getFields();
+        $custom = array();
+        foreach ($data as $key => $val) {
+            if (in_array($key, $customFields)) {
+                $custom[$key] = $val;
+            }
+        }
+        $meta = json_encode($custom);
+        
         $data = $model->canonizeColumns($data);
+        if (!isset($data['meta'])) {
+            $data['meta'] = $meta;
+        }
 
         if (empty($id)) {
             $id = $model->add($data, $parent);

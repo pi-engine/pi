@@ -14,7 +14,6 @@ use Pi\Form\Form;
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Form\CategoryEditForm;
 use Module\Article\Form\CategoryEditFilter;
-use Module\Article\Model\Category;
 
 /**
  * Category controller
