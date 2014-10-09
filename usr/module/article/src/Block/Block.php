@@ -40,8 +40,10 @@ class Block
         $maxSubCount = $options['sub-category'];
         $route = 'article';
 
-        $categories  = Pi::api('api', $module)->getCategoryList(
-            array('is-tree' => true)
+        $categories  = Pi::api('category', $module)->getList(
+            array(),
+            null,
+            false
         );
         
         $allItems = static::canonizeCategories(
@@ -462,7 +464,7 @@ class Block
         $limit  = isset($options['list-count']) 
             ? (int) $options['list-count'] : 10;
         $config = Pi::config('', $module);
-        $image  = $config['default_feature_thumb'];
+        $image  = $config['default_feature'];
         $image  = Pi::service('asset')->getModuleAsset($image, $module);
         $day    = $options['day-range'] ? intval($options['day-range']) : 7;
 
@@ -654,6 +656,9 @@ class Block
     ) {
         $result = array();
         foreach ($categories as $category) {
+            if (!$category['active']) {
+                continue;
+            }
             $result[$category['id']] = array(
                 'title' => $category['title'],
                 'depth' => $category['depth'],

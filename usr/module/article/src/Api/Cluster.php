@@ -7,16 +7,14 @@
  * @license      http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Module\Article\Form\Element;
-
-use Pi;
+namespace Module\Article\Api;
 
 /**
- * Cluster form class for extending cluster selection
+ * Public API for other module
  * 
- * @author Zongshu Lin <lin40553024@163.com>
+ * @author Zongshu Lin <lin40553024@163.com> 
  */
-class ClusterWithRoot extends CategoryWithRoot
+class Cluster extends Category
 {
     /**
      * Table name

@@ -30,11 +30,13 @@ class Author extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $module = $options['module'];
-        $model  = Pi::model('author', $module);
-        
-        $rows   = $model->select(array())->toArray();
+        $rows   = Pi::model('author', $module)->select(array());
+        $result = array();
+        foreach ($rows as $row) {
+            $result[$row->id] = $row->toArray();
+        }
 
-        return $rows;
+        return $result;
     }
     
     /**

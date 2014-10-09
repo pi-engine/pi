@@ -45,8 +45,8 @@ class PageController extends ActionController
         $rowset = $this->getModel('page')->enumerate(null, null, true);
         
         $module   = $this->getModule();
-        $category = Pi::api('api', $module)->getCategoryList();
-        $cluster  = Pi::api('api', $module)->getClusterList();
+        $category = Pi::api('category', $module)->getList();
+        $cluster  = Pi::api('cluster', $module)->getList();
 
         $this->view()->assign(array(
             'title'      => _a('Page List'),

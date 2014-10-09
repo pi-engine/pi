@@ -20,6 +20,12 @@ use Pi;
 class Category extends AbstractRegistry
 {
     protected $module = 'article';
+    
+    /**
+     * Table name
+     * @var string 
+     */
+    protected $table = 'category';
 
     /**
      * Load data from database
@@ -30,14 +36,14 @@ class Category extends AbstractRegistry
     protected function loadDynamic($options = array())
     {
         $module = $options['module'];
-        $model  = Pi::model('category', $module);
+        $model  = Pi::model($this->table, $module);
         
-        if ($options['isTree']) {
+        if (!$options['plain']) {
             $root   = $model->find('root', 'name');
             $rowset = $model->enumerate($root->id);
             $rows   = array_shift($rowset);
         } else {
-            $rows   = $model->getList();
+            $rows   = $model->enumerate(null, null, true);
         }
 
         return $rows;
@@ -46,12 +52,13 @@ class Category extends AbstractRegistry
     /**
      * Read data from cache or database
      * 
+     * @param bool $plain  Whether to read categories with tree structure
      * @return array 
      */
-    public function read($where = array(), $isTree = false, $module = null)
+    public function read($plain = true, $module = null)
     {
         $module  = $module ?: Pi::service('module')->current();
-        $options = compact('module', 'where', 'isTree');
+        $options = compact('module', 'plain');
         
         return $this->loadData($options);
     }
@@ -59,11 +66,11 @@ class Category extends AbstractRegistry
     /**
      * Create a cache
      */
-    public function create($where = array(), $isTree = false)
+    public function create($isTree = false)
     {
         $module  = Pi::service('module')->current();
         $this->clear($module);
-        $this->read($where, $isTree);
+        $this->read($isTree);
     }
     
     /**

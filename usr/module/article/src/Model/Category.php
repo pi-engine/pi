@@ -20,19 +20,6 @@ use Pi\Application\Model\Nest as Nest;
 class Category extends Nest
 {
     /**
-     * Gett available fields
-     * 
-     * @return array 
-     */
-    public static function getAvailableFields()
-    {
-        return array(
-            'id', 'parent', 'name', 'slug',
-            'title', 'description', 'image'
-        );
-    }
-
-    /**
      * Get default columns
      * 
      * @return array 
@@ -78,42 +65,6 @@ class Category extends Nest
                 return is_array($var);
             });
         }
-
-        return $result;
-    }
-
-    /**
-     * Get category list
-     *
-     * @param null  $columns   Columns, null for default
-     * @param bool  $withRoot  Include root node or not
-     * @return array Associative array
-     */
-    public function getList($columns = null, $withRoot = false)
-    {
-        $result = $rows = array();
-
-        if (null === $columns) {
-            $columns = self::getDefaultColumns();
-        }
-
-        if (!in_array('id', $columns)) {
-            $columns[] = 'id';
-        }
-
-        $select = $this->select()
-            ->columns($columns)
-            ->order('left ASC');
-        if (!$withRoot) {
-            $select->where(array('depth > 0'));
-        }
-        $rows = $this->selectWith($select)->toArray();
-
-        foreach ($rows as $row) {
-            $result[$row['id']] = $row;
-        }
-
-        unset($rows);
 
         return $result;
     }
@@ -262,54 +213,22 @@ class Category extends Nest
 
         return $result;
     }
-
+    
     /**
-     * Get nodes as options of Select element
-     *
-     * @param bool   $withRoot  Include root node in result or not
-     * @return array Options
-     */
-    public function getSelectOptions($withRoot = false)
-    {
-        $result = array();
-
-        $allNodes = $this->enumerate(null, null, true);
-        if ($allNodes) {
-            foreach ($allNodes as $id => $node) {
-                $result[$id] = sprintf(
-                    '%s%s',
-                    str_repeat('-', $node['depth']),
-                    $node['title']
-                );
-            }
-
-            if (!$withRoot) {
-                unset($result[1]);
-            }
-        } else {
-            $result['0'] = '';
-        }
-
-        return $result;
-    }
-
-    /**
-     * Change category slug to cagetory ID
+     * Remove un-exists fields
      * 
-     * @param string  $slug  Category unique flag
-     * @return int 
+     * @param array $data
+     * @return array
      */
-    public function slugToId($slug)
+    public function canonizeColumns($data)
     {
-        $result = false;
-
-        if ($slug) {
-            $row = $this->find($slug, 'slug');
-            if ($row) {
-                $result = $row->id;
+        $columns = $this->getColumns(true);
+        foreach (array_keys($data) as $key) {
+            if (!in_array($key, $columns)) {
+                unset($data[$key]);
             }
         }
-
-        return $result;
+        
+        return $data;
     }
 }

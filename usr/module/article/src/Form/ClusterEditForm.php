@@ -28,11 +28,12 @@ class ClusterEditForm extends BaseForm
             'name'       => 'parent',
             'options'    => array(
                 'label'       => __('Parent'),
+                'root'        => true,
             ),
             'attributes' => array(
                 'description' => __('Cluster Hierarchy'),
             ),
-            'type'       => 'Module\Article\Form\Element\ClusterWithRoot',
+            'type'       => 'Module\Article\Form\Element\Cluster',
             
         ));
 
@@ -124,6 +125,17 @@ class ClusterEditForm extends BaseForm
             )
         );
         $this->get('image')->setAjaxUrls($data);
+        
+        $this->add(array(
+            'name'       => 'active',
+            'options'    => array(
+                'label'       => __('Active'),
+            ),
+            'attributes' => array(
+                'value'       => 1,
+            ),
+            'type'       => 'checkbox',
+        ));
         
         $this->add(array(
             'name'       => 'submit',

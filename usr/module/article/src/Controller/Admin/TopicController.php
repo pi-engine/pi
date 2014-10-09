@@ -256,7 +256,7 @@ class TopicController extends ActionController
             'form'       => $form,
             'paginator'  => $paginator,
             'category'   => $category,
-            'categories' => Pi::api('api', $module)->getCategoryList(),
+            'categories' => Pi::api('category', $module)->getList(),
             'action'     => 'pull',
             'topics'     => $topics,
             'relation'   => $relation,
@@ -551,7 +551,7 @@ class TopicController extends ActionController
             'title'     => _a('Topic List'),
             'topics'    => $rowset,
             'action'    => 'list-topic',
-            'route'     => 'article',
+            'route'     => Pi::api('api', $module)->getRouteName(),
             'count'     => $count,
             'paginator' => $paginator,
         ));

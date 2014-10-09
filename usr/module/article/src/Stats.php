@@ -157,7 +157,7 @@ class Stats
             $where['time_submit <= ?'] = $dateTo;
         }
 
-        $result = Pi::api('api', $module)->getCategoryList();
+        $result = Pi::api('category', $module)->getList();
 
         foreach ($result as &$val) {
             $val['total'] = 0;

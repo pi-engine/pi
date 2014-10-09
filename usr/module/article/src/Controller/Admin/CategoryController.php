@@ -72,7 +72,6 @@ class CategoryController extends ActionController
             $post = $this->request->getPost();
             $form->setData($post);
             $form->setInputFilter(new CategoryEditFilter);
-            $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
                 $this->renderForm(
                     $form,
@@ -126,7 +125,6 @@ class CategoryController extends ActionController
                 'id' => $post['id'],
             );
             $form->setInputFilter(new CategoryEditFilter($options));
-            $form->setValidationGroup(Category::getAvailableFields());
             if (!$form->isValid()) {
                 $this->renderForm(
                     $form,
@@ -167,6 +165,34 @@ class CategoryController extends ActionController
         }
 
         $this->view()->assign('form', $form);
+    }
+    
+    /**
+     * Active/deactivate category
+     * 
+     * @return ViewModel
+     */
+    public function activeAction()
+    {
+        $status = $this->params('status', 0);
+        $id     = $this->params('id', 0);
+        
+        $module = $this->getModule();
+        $model  = $this->getModel('category');
+        $children = $model->getChildrenIds($id);
+        $children[] = $id;
+
+        $model->update(
+            array('active' => $status),
+            array('id' => $children)
+        );
+
+        // Clear cache
+        Pi::registry('category', $module)->clear($module);
+        
+        return $this->redirect()->toRoute('', array(
+            'action' => 'list'
+        ));
     }
     
     /**
@@ -512,6 +538,8 @@ class CategoryController extends ActionController
         if (isset($data['slug']) && empty($data['slug'])) {
             unset($data['slug']);
         }
+        
+        $data = $model->canonizeColumns($data);
 
         if (empty($id)) {
             $id = $model->add($data, $parent);
@@ -539,6 +567,15 @@ class CategoryController extends ActionController
                     $model->move($id, $parent);
                 }
             }
+        }
+        
+        // Active/deactivate subcategories
+        $children = $model->getChildrenIds($id);
+        if (!empty($children)) {
+            $model->update(
+                array('active' => $data['active']),
+                array('id' => $children)
+            );
         }
 
         return $id;
@@ -610,8 +647,6 @@ class CategoryController extends ActionController
     protected function getIntegrationForm($mode = 'move')
     {
         $form = new \Pi\Form\Form;
-        $type = ('move' === $mode ? 'Module\Article\Form\Element\CategoryWithRoot'
-            : 'Module\Article\Form\Element\Category');
         $elements = array(
             array(
                 'name'       => 'from',
@@ -628,12 +663,13 @@ class CategoryController extends ActionController
                 'name'       => 'to',
                 'options'    => array(
                     'label'     => __('To'),
+                    'root'      => 'move' === $mode,
                 ),
                 'attributes' => array(
                     'id'        => 'to',
                     'class'     => 'form-control',
                 ),
-                'type'       => $type,
+                'type'       => 'Module\Article\Form\Element\Category',
             ),
             array(
                 'name'       => 'security',

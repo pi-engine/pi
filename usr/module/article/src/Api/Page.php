@@ -441,13 +441,9 @@ class Page extends AbstractApi
         if (isset($params['category'])
             && !is_numeric($params['category'])
         ) {
-            $category = Pi::api('api', $module)->getCategoryList();
-            foreach ($category as $row) {
-                if ($params['category'] == $row['slug']) {
-                    $params['category'] = $row['id'];
-                    break;
-                }
-            }
+            $params['category'] = Pi::api('category', $module)->slugToId(
+                $params['category']
+            );
         }
         $pages = Pi::api('api', $module)->getPageList();
         

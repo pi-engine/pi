@@ -337,7 +337,10 @@ class Entity
                 }
             }
 
-            $categories = Pi::api('api', $module)->getCategoryList();
+            $categories = Pi::api('category', $module)->getList(
+                array(),
+                array('id', 'title', 'slug')
+            );
 
             if (!empty($authorIds) 
                 && (empty($columns) || in_array('author', $columns))
@@ -391,8 +394,8 @@ class Entity
                 }
 
                 if (empty($columns) || in_array('subject', $columns)) {
-                    //$route = Pi::api('api', $this->module)->getRouteName();
-                    $route = 'article';
+                    $route = Pi::api('api', $module)->getRouteName();
+                    //$route = 'article';
                     $row['url'] = Pi::service('url')->assemble($route, array(
                         'module'    => $module,
                         'time'      => date('Ymd', $row['time_publish']),

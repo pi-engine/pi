@@ -31,8 +31,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
     {
         $module = $this->module;
         $moduleData = Pi::registry('module')->read($module);
-        //$route = Pi::api('api', $this->module)->getRouteName();
-        $route = 'article';
+        $route  = Pi::api('api', $this->module)->getRouteName();
         $home   = Pi::service('module')->config('default_homepage', $module);
         $home   = $home ? Pi::url($home) : Pi::service('url')->assemble(
             'default',
@@ -52,19 +51,21 @@ class Breadcrumbs extends AbstractBreadcrumbs
         ) {
             $model = Pi::model('article', $module);
             if (isset($params['slug']) && $params['slug']) {
-                $row = Pi::model('extended', $module)->find($params['slug'], 'slug');
-                $row = $model->find($row->article);
+                $row = $model->find($params['slug'], 'slug');
             } else {
                 $row = $model->find($params['id']);
             }
-            $category = Pi::model('category', $module)->find($row->category);
+            $rows     = Pi::api('category', $module)->getList(
+                array('id' => $row->category)
+            );
+            $category = array_shift($rows);
             $result[] = array(
-                'label' => $category->title,
+                'label' => $category['title'],
                 'href'  => Pi::service('url')->assemble($route, array(
                     'module'     => $module,
                     'controller' => 'list',
                     //'action'     => 'all',
-                    'category'   => $category->slug ?: $category->id,
+                    'category'   => $category['slug'] ?: $category['id'],
                 )),
             );
             $result[] = array(
@@ -76,13 +77,15 @@ class Breadcrumbs extends AbstractBreadcrumbs
             if ('all' == $params['category']) {
                 $title = __('All');
             } else {
-                $model = Pi::model('category', $module);
-                if (is_numeric($params['category'])) {
-                    $row = $model->find($params['category']);
-                } else {
-                    $row = $model->find($params['category'], 'slug');
-                }
-                $title = $row->title;
+                $categoryId = Pi::api('category', $module)->slugToId(
+                    $params['category']
+                );
+                $rows = Pi::api('category', $module)->getList(array(
+                    'id'     => $categoryId,
+                    'active' => 1,
+                ));
+                $row  = array_shift($rows);
+                $title = $row['title'];
             }
             $result[] = array(
                 'label' => $title,

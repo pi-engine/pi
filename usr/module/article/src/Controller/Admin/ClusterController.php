@@ -59,7 +59,6 @@ class ClusterController extends CategoryController
             $post = $this->request->getPost();
             $form->setData($post);
             $form->setInputFilter(new ClusterEditFilter);
-            $form->setValidationGroup(Cluster::getAvailableFields());
             if (!$form->isValid()) {
                 $this->renderForm(
                     $form,
@@ -114,7 +113,6 @@ class ClusterController extends CategoryController
                 'id' => $post['id'],
             );
             $form->setInputFilter(new ClusterEditFilter($options));
-            $form->setValidationGroup(Cluster::getAvailableFields());
             if (!$form->isValid()) {
                 $this->renderForm(
                     $form,
@@ -474,6 +472,8 @@ class ClusterController extends CategoryController
         if (isset($data['slug']) && empty($data['slug'])) {
             unset($data['slug']);
         }
+        
+        $data = $model->canonizeColumns($data);
 
         if (empty($id)) {
             $id = $model->add($data, $parent);
@@ -515,8 +515,6 @@ class ClusterController extends CategoryController
     protected function getIntegrationForm($mode = 'move')
     {
         $form = new \Pi\Form\Form;
-        $type = ('move' === $mode ? 'Module\Article\Form\Element\ClusterWithRoot'
-            : 'Module\Article\Form\Element\Cluster');
         $elements = array(
             array(
                 'name'       => 'from',
@@ -533,12 +531,13 @@ class ClusterController extends CategoryController
                 'name'       => 'to',
                 'options'    => array(
                     'label'     => __('To'),
+                    'root'      => 'move' === $mode,
                 ),
                 'attributes' => array(
                     'id'        => 'to',
                     'class'     => 'form-control',
                 ),
-                'type'       => $type,
+                'type'       => 'Module\Article\Form\Element\Cluster',
             ),
             array(
                 'name'       => 'security',

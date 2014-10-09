@@ -35,8 +35,35 @@ class Category extends Select
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module') 
                 ?: Pi::service('module')->current();
-            $this->valueOptions = Pi::model($this->table, $module)
-                ->getSelectOptions();
+            $withRoot = (bool) $this->getOption('root') ?: false;
+            $method   = sprintf('get%sList', ucfirst($this->table));
+            $rowset   = Pi::api('api', $module)->$method(
+                array('active' => 1),
+                array('id', 'title', 'depth'),
+                true,
+                $withRoot
+            );
+            $result = array();
+            foreach ($rowset as &$row) {
+                $row['title'] = sprintf(
+                    '%s%s',
+                    str_repeat('-', $row['depth']),
+                    $row['title']
+                );
+                $result[$row['id']] = $row['title'];
+            }
+            
+            $default  = array();
+            $withNull = (bool) $this->getOption('blank') ?: false;
+            if ($withNull) {
+                $default[0] = _a('Null');
+            }
+            $willAll  = (bool) $this->getOption('all') ?: false;
+            if ($willAll) {
+                $default['all'] = _a('All');
+            }
+            
+            $this->valueOptions = $default + $result;
         }
 
         return $this->valueOptions;

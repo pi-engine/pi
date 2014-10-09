@@ -9,8 +9,6 @@
 
 namespace Module\Article\Form\Element;
 
-use Pi;
-
 /**
  * Cluster form class for extending cluster selection
  * 
