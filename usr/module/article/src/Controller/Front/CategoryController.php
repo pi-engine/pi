@@ -32,20 +32,19 @@ class CategoryController extends ActionController
      */
     public function listAction()
     {
+        $module = $this->getModule();
         $modelCategory = $this->getModel('category');
 
         $category   = $this->params('category', '');
-        $categoryId = is_numeric($category)
-            ? (int) $category : $modelCategory->slugToId($category);
+        $categoryId = Pi::api('category', $module)->slugToId($category);
         $page       = $this->params('p', 1);
         $page       = $page > 0 ? $page : 1;
 
-        $module = $this->getModule();
         $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_all'] ?: 40;
         $where  = array();
         
-        $route  = 'article';
+        $route  = Pi::api('api', $module)->getRouteName();
 
         // Get category nav
         $rowset = Pi::model('category', $module)->enumerate(null, null);

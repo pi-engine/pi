@@ -74,7 +74,7 @@ class Draft
             $authorIds = array_unique($authorIds);
             $userIds   = array_unique($userIds);
 
-            $categories = Pi::api('api', $module)->getCategoryList();
+            $categories = Pi::api('category', $module)->getList();
 
             if (!empty($authorIds)) {
                 $resultsetAuthor = $modelAuthor->find($authorIds);

@@ -28,12 +28,12 @@ class CategoryEditForm extends BaseForm
             'name'       => 'parent',
             'options'    => array(
                 'label'       => __('Parent'),
+                'root'        => true,
             ),
             'attributes' => array(
                 'description' => __('Category Hierarchy'),
             ),
-            'type'       => 'Module\Article\Form\Element\CategoryWithRoot',
-            
+            'type'       => 'Module\Article\Form\Element\Category',
         ));
 
         $this->add(array(
@@ -45,7 +45,6 @@ class CategoryEditForm extends BaseForm
                 'type'        => 'text',
                 'description' => __('The unique identifier of category.'),
             ),
-            
         ));
 
         $this->add(array(
@@ -57,7 +56,6 @@ class CategoryEditForm extends BaseForm
                 'type'        => 'text',
                 'description' => __('The "Slug" is category name in URL.'),
             ),
-            
         ));
 
         $this->add(array(
@@ -69,7 +67,6 @@ class CategoryEditForm extends BaseForm
                 'type'        => 'text',
                 'description' => __('Will be displayed on your website.'),
             ),
-           
         ));
 
         $this->add(array(
@@ -81,9 +78,8 @@ class CategoryEditForm extends BaseForm
                 'type'        => 'textarea',
                 'description' => __('Display in the website depends on theme.'),
             ),
-            
         ));
-
+        
         $this->add(array(
             'name'       => 'security',
             'type'       => 'csrf',
@@ -124,6 +120,17 @@ class CategoryEditForm extends BaseForm
             )
         );
         $this->get('image')->setAjaxUrls($data);
+        
+        $this->add(array(
+            'name'       => 'active',
+            'options'    => array(
+                'label'       => __('Active'),
+            ),
+            'attributes' => array(
+                'value'       => 1,
+            ),
+            'type'       => 'checkbox',
+        ));
         
         $this->add(array(
             'name'       => 'submit',

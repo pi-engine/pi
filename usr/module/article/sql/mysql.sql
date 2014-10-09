@@ -114,6 +114,7 @@ CREATE TABLE `{category}` (
   `title`           varchar(64)           NOT NULL DEFAULT '',
   `description`     varchar(255)          NOT NULL DEFAULT '',
   `image`           varchar(255)          NOT NULL DEFAULT '',
+  `active`          tinyint(1)            NOT NULL DEFAULT 0,
 
   PRIMARY KEY           (`id`),
   UNIQUE KEY `name`     (`name`),
@@ -131,6 +132,8 @@ CREATE TABLE `{cluster}` (
   `title`           varchar(64)           NOT NULL DEFAULT '',
   `description`     varchar(255)          NOT NULL DEFAULT '',
   `image`           varchar(255)          NOT NULL DEFAULT '',
+  `active`          tinyint(1)            NOT NULL DEFAULT 0,
+  `meta`            text,
 
   PRIMARY KEY           (`id`),
   UNIQUE KEY `name`     (`name`),

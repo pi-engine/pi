@@ -87,6 +87,7 @@ class ArticleController extends ActionController
         $slug     = $this->params('slug', '');
         $page     = $this->params('p', 1);
         $remain   = $this->params('r', '');
+        $module   = $this->getModule();
         
         if ('' !== $remain) {
             $this->view()->assign('remain', $remain);
@@ -98,6 +99,20 @@ class ArticleController extends ActionController
 
         $details = Entity::getEntity($id);
         $details['id'] = $id;
+        
+        // Return 404 if category or cluster is deactivated
+        $category = Pi::api('category', $module)->getList(array(
+            'id'     => $details['category'],
+            'active' => 1,
+        ));
+        $cluster  = Pi::api('cluster', $module)->getList(array(
+            'id'     => $details['cluster'],
+            'active' => 1,
+        ));
+        if (($details['category'] && empty($category))
+            || ($details['cluster'] && empty($cluster))) {
+            return $this->jumpTo404(__('Page not found'));
+        }
 
         if (!$id or ($details['time_publish'] > time())) {
             return $this->jumpTo404(__('Page not found'));
@@ -108,12 +123,11 @@ class ArticleController extends ActionController
                 503
             );
         }
-        $module = $this->getModule();
+        
         $params  = array(
-            'module'        => $module,
+            'module' => $module,
         );
-        //$route = Pi::api('api', $module)->getRouteName();
-        $route = 'article';
+        $route = Pi::api('api', $module)->getRouteName();
         if (strval($slug) != $details['slug']) {
             $routeParams = array(
                 'time'          => date('Ymd', $details['time_publish']),
@@ -362,10 +376,10 @@ class ArticleController extends ActionController
             'published' => Article::FIELD_STATUS_PUBLISHED,
         );
 
-        $cacheCategories = Pi::api('api', $module)->getCategoryList();
+        $cacheCategories = Pi::api('category', $module)->getList();
         
         if (Pi::api('form', $module)->isDisplayField('cluster')) {
-            $clusters = Pi::api('api', $module)->getClusterList();
+            $clusters = Pi::api('cluster', $module)->getList();
             $this->view()->assign('clusters', $clusters);
         }
         

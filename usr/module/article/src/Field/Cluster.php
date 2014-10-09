@@ -62,7 +62,11 @@ EOD;
     {
         $result = array();
         
-        $clusters = Pi::api('api', $this->module)->getClusterList();
+        if (empty($value)) {
+            return $result;
+        }
+        
+        $clusters = Pi::api('cluster', $this->module)->getList();
         foreach ((array) $value as $id) {
             $result[$id] = $clusters[$id];
         }

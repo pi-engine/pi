@@ -49,8 +49,9 @@ class ListController extends ActionController
      */
     public function allAction()
     {
-        $page     = $this->params('p', 1);
-        $sort     = $this->params('sort', 'new');
+        $module = $this->getModule();
+        $page   = $this->params('p', 1);
+        $sort   = $this->params('sort', 'new');
 
         $params = array('sort' => $sort);
         $where  = array(
@@ -62,11 +63,8 @@ class ListController extends ActionController
         $category = $this->params('category', 0);
         $params['category'] = $category;
         if (!empty($category) && 'all' != $category) {
-            $modelCategory = $this->getModel('category');
-            if (!is_numeric($category)) {
-                $category = $modelCategory->slugToId($category);
-            }
-            $children = $modelCategory->getDescendantIds($category);
+            $category = Pi::api('category', $module)->slugToId($category);
+            $children = $this->getModel('category')->getDescendantIds($category);
             if (empty($children)) {
                 return $this->jumpTo404(__('Invalid category id'));
             }
@@ -93,8 +91,7 @@ class ListController extends ActionController
         }
         $select->order($order)->offset($offset)->limit($limit);
         
-        $module = $this->getModule();
-        $route  = 'article';
+        $route     = Pi::api('api', $module)->getRouteName();
         $resultset = $model->selectWith($select);
         $items     = array();
         $categoryIds = $authorIds = array();
@@ -116,29 +113,21 @@ class ListController extends ActionController
         // Get author
         $authors = array();
         if (!empty($authorIds)) {
-            $rowAuthor = $this->getModel('author')
-                ->select(array('id' => $authorIds));
-            foreach ($rowAuthor as $row) {
-                $authors[$row->id] = $row->toArray();
-            }
+            $authors = Pi::api('api', $module)->getAuthorList(
+                array('id' => $authorIds)
+            );
         }
         
-        // Total count
-        $select = $model->select()
-            ->where($where)
-            ->columns(array('total' => new Expression('count(id)')));
-        $articleCountResultset = $model->selectWith($select);
-        $totalCount = intval($articleCountResultset->current()->total);
-
         // Paginator
-        $paginator = Paginator::factory($totalCount, array(
+        $count     = $model->count($where);
+        $paginator = Paginator::factory($count, array(
             'limit'       => $limit,
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'        => array_merge(
                     array(
-                        'module'        => $this->getModule(),
+                        'module'        => $module,
                         'controller'    => 'list',
                         'action'        => 'all',
                     ),
@@ -150,8 +139,7 @@ class ListController extends ActionController
         $config = Pi::config('', $module);
         
         // Get category nav
-        $rowset = $this->getModel('category')->enumerate(null, null);
-        $rowset = array_shift($rowset);
+        $rowset = Pi::api('category', $module)->getList(array(), null, false);
         $navs   = $this->canonizeCategory($rowset['child'], $route);
         $categoryTitle = $this->getCategoryTitle($category, $rowset['child']);
         $allNav['all'] = array(
@@ -179,13 +167,13 @@ class ListController extends ActionController
                 ),
             ),
         );
-        $rowset = $this->getModel('category')->enumerate(null, null, true);
+        $rowset = Pi::api('category', $module)->getList(
+            array('active' => 1),
+            array('id', 'title', 'image', 'slug')
+        );
         foreach ($rowset as $row) {
-            if ('root' == $row['name']) {
-                continue;
-            }
             $url = Pi::service('url')->assemble('', array(
-                'module'    => $module,
+                'module'     => $module,
                 'controller' => 'category',
                 'action'     => 'list',
                 'category'   => $row['id'],
@@ -229,7 +217,11 @@ class ListController extends ActionController
      */
     protected function canonizeCategory(&$categories, $route)
     {
-        foreach ($categories as &$row) {
+        foreach ($categories as $key => &$row) {
+            if (!$row['active']) {
+                unset($categories[$key]);
+                continue;
+            }
             $row['label']      = $row['title'];
             $row['params']     = array(
                 'category' => $row['slug'] ?: $row['id'],

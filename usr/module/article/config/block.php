@@ -144,7 +144,10 @@ return array(
                 'title'        => _a('Category'),
                 'description'  => _a('Which category article want to list'),
                 'edit'         => array(
-                    'type'        => 'Module\Article\Form\Element\CategoryWithRoot',
+                    'type'        => 'Module\Article\Form\Element\Category',
+                    'options'     => array(
+                        'root'       => true,
+                    ),
                 ),
                 'filter'       => 'string',
                 'value'        => 0,

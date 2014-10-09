@@ -211,6 +211,49 @@ EOD;
                 return $result;
             }
         }
+        
+        if (version_compare($version, '1.6.2', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            // Add fields for category table
+            $table  = Pi::db()->prefix('category', $module);
+            $addSql =<<<EOD
+ALTER TABLE {$table} ADD COLUMN `active` tinyint(1) NOT NULL DEFAULT 0;
+EOD;
+            $result = $this->querySchema($addSql, $module);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Update field value
+            $updateSql =<<<EOD
+UPDATE `{$table}` SET `active` = 1;
+EOD;
+            $result = $this->queryTable($updateSql);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Add fields for cluster table
+            $table  = Pi::db()->prefix('cluster', $module);
+            $addSql =<<<EOD
+ALTER TABLE {$table} ADD COLUMN `active` tinyint(1) NOT NULL DEFAULT 0;
+ALTER TABLE {$table} ADD COLUMN `meta` text;
+EOD;
+            $result = $this->querySchema($addSql, $module);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Update field value
+            $updateSql =<<<EOD
+UPDATE `{$table}` SET `active` = 1;
+EOD;
+            $result = $this->queryTable($updateSql);
+            if (false === $result) {
+                return $result;
+            }
+        }
 
         return $result;
     }

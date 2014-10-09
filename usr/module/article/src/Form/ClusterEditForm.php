@@ -28,12 +28,12 @@ class ClusterEditForm extends BaseForm
             'name'       => 'parent',
             'options'    => array(
                 'label'       => __('Parent'),
+                'root'        => true,
             ),
             'attributes' => array(
                 'description' => __('Cluster Hierarchy'),
             ),
-            'type'       => 'Module\Article\Form\Element\ClusterWithRoot',
-            
+            'type'       => 'Module\Article\Form\Element\Cluster',
         ));
 
         $this->add(array(
@@ -45,7 +45,6 @@ class ClusterEditForm extends BaseForm
                 'type'        => 'text',
                 'description' => __('The unique identifier of cluster.'),
             ),
-            
         ));
 
         $this->add(array(
@@ -57,7 +56,6 @@ class ClusterEditForm extends BaseForm
                 'type'        => 'text',
                 'description' => __('The "Slug" is cluster name in URL.'),
             ),
-            
         ));
 
         $this->add(array(
@@ -69,7 +67,6 @@ class ClusterEditForm extends BaseForm
                 'type'        => 'text',
                 'description' => __('Will be displayed on your website.'),
             ),
-           
         ));
 
         $this->add(array(
@@ -81,7 +78,6 @@ class ClusterEditForm extends BaseForm
                 'type'        => 'textarea',
                 'description' => __('Display in the website depends on theme.'),
             ),
-            
         ));
 
         $this->add(array(
@@ -125,6 +121,22 @@ class ClusterEditForm extends BaseForm
         );
         $this->get('image')->setAjaxUrls($data);
         
+        $customElements = $this->getCustomElements();
+        foreach ($customElements as $element) {
+            $this->add($element);
+        }
+        
+        $this->add(array(
+            'name'       => 'active',
+            'options'    => array(
+                'label'       => __('Active'),
+            ),
+            'attributes' => array(
+                'value'       => 1,
+            ),
+            'type'       => 'checkbox',
+        ));
+        
         $this->add(array(
             'name'       => 'submit',
             'attributes' => array(                
@@ -132,5 +144,66 @@ class ClusterEditForm extends BaseForm
             ),
             'type'       => 'submit',
         ));
+    }
+    
+    /**
+     * Get custom elements
+     * 
+     * @return array
+     */
+    protected function getCustomElements()
+    {
+        $module = Pi::service('module')->current();
+        $config = Pi::api('cluster', $module)->loadConfig();
+        
+        $elements = array();
+        foreach ($config['field'] as $element) {
+            $elements[] = $this->canonizeElement($element);
+        }
+        
+        return $elements;
+    }
+    
+    /**
+     * Canonize form element for a field
+     *
+     * @param array $data
+     * @return array
+     */
+    protected function canonizeElement($data)
+    {
+        $element = array();
+        if (!isset($data['edit'])) {
+            $element['type'] = 'text';
+        } elseif (is_array($data['edit'])) {
+            if (isset($data['edit']['element'])) {
+                $element['type'] = $data['edit']['element'];
+            } else {
+                $element['type'] = 'text';
+            }
+        } else {
+            $element['type'] = $data['edit'];
+        }
+        $element['name'] = $data['name'];
+        if (isset($data['edit']['options']) &&
+            $data['edit']['options']
+        ) {
+            $element['options'] = $data['edit']['options'];
+        } else {
+            $element['options'] = array();
+        }
+        $element['options']['label'] = $data['title'];
+        if (isset($data['edit']['attributes'])) {
+            $element['attributes'] = $data['edit']['attributes'];
+        }
+
+        if (isset($data['is_required'])) {
+            $element['attributes']['required']= $data['is_required'];
+        }
+        if (!empty($element['type']) && 'multi_checkbox' == $element['type']) {
+            $element['attributes']['required']= 0;
+        }
+
+        return $element;
     }
 }

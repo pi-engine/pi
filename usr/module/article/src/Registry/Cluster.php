@@ -9,8 +9,6 @@
 
 namespace Module\Article\Registry;
 
-use Pi;
-
 /**
  * Cluster registry class
  * 
@@ -18,27 +16,9 @@ use Pi;
  */
 class Cluster extends Category
 {
-    protected $module = 'article';
-
     /**
-     * Load data from database
-     * 
-     * @param array $options
-     * @return array 
+     * Table name
+     * @var string 
      */
-    protected function loadDynamic($options = array())
-    {
-        $module = $options['module'];
-        $model  = Pi::model('cluster', $module);
-        
-        if ($options['isTree']) {
-            $root   = $model->find('root', 'name');
-            $rowset = $model->enumerate($root->id);
-            $rows   = array_shift($rowset);
-        } else {
-            $rows   = $model->getList();
-        }
-
-        return $rows;
-    }
+    protected $table = 'cluster';
 }

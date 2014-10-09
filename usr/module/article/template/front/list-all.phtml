@@ -53,7 +53,7 @@
                                 <?php
                                     if (in_array('author', $elements)) {
                                 ?>
-                                    <span style="margin-right: 10px"><?php echo $authors[$row['author']]['name']; ?></span>
+                                    <span style="margin-right: 10px"><?php echo isset($authors[$row['author']]) ? $authors[$row['author']]['name'] : ''; ?></span>
                                 <?php
                                     }
                                     if (in_array('category', $elements)) {

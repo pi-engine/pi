@@ -12,7 +12,6 @@ namespace Module\Article\Api;
 use Pi;
 use Pi\Application\Api\AbstractApi;
 use Module\Article\Model\Article as ModelArticle;
-use Module\Article\Installer\Resource\Route;
 
 /**
  * Public API for other module
@@ -51,7 +50,6 @@ class Api extends AbstractApi
         $limit = null
     ) {
         if (empty($submitter)) {
-            //$user      = Pi::service('user')->getUser();
             $submitter = Pi::user()->getId();
         }
         if (!is_numeric($submitter)) {
@@ -108,44 +106,6 @@ class Api extends AbstractApi
     }
     
     /**
-     * Read cluster data from cache
-     * 
-     * @param array $where
-     * @return array 
-     */
-    public function getClusterList($where = array())
-    {
-        $isTree = false;
-        if (isset($where['is-tree'])) {
-            $isTree = $where['is-tree'];
-            unset($where['is-tree']);
-        }
-        $module = $this->getModule();
-        $rows   = Pi::registry('cluster', $module)->read($where, $isTree, $module);
-        
-        return $rows;
-    }
-    
-    /**
-     * Read category data from cache
-     * 
-     * @param array $where
-     * @return array 
-     */
-    public function getCategoryList($where = array())
-    {
-        $isTree = false;
-        if (isset($where['is-tree'])) {
-            $isTree = $where['is-tree'];
-            unset($where['is-tree']);
-        }
-        $module = $this->getModule();
-        $rows   = Pi::registry('category', $module)->read($where, $isTree, $module);
-        
-        return $rows;
-    }
-    
-    /**
      * Read page data from cache
      * 
      * @param array $where
@@ -170,72 +130,84 @@ class Api extends AbstractApi
      * @param array  $ids
      * @return array 
      */
-    public function getAuthorList($ids = array())
+    public function getAuthorList($where = array(), $columns = null)
     {
         $module = $this->getModule();
         $rows   = Pi::registry('author', $module)->read($module);
         
-        if (!empty($ids)) {
-            foreach ($rows as $key => $row) {
-                if (!in_array($row['id'], $ids)) {
-                    unset($rows[$key]);
-                }
-            }
-        }
+        $result = $this->filterData($rows, $where, $columns);
         
-        return $rows;
+        return $result;
     }
 
     /**
      * Get route name
      *
      * @param string $module
-     *
      * @return string
      */
     public function getRouteName($module = '')
     {
         return 'article';
-        $module = $module ?: $this->getModule();
-        $route = $module . '-article';
-
-        return $route;
-
-        /*
-        $defaultRoute = $module . '-article';
-        $resFilename = sprintf(
-            '%s/module/%s/config/route.php',
-            Pi::path('custom'),
-            $module
-        );
-        $resPath     = Pi::path($resFilename);
-        if (!file_exists($resPath)) {
-            return $defaultRoute;
+    }
+    
+    /**
+     * Filter data by where condition and allowed columns
+     * 
+     * @param array $data
+     * @param array $where
+     * @param array $columns
+     * @return array
+     */
+    public function filterData($data, $where = array(), $columns = null)
+    {
+        foreach ($data as $id => &$row) {
+            if (!empty($where)) {
+                foreach ($where as $key => $val) {
+                    if (false === strpos($key, '?')) {
+                        if ((!is_array($val) && $row[$key] != $val)
+                            || (is_array($val) && !in_array($row[$key], $val))) {
+                            unset($data[$id]);
+                            break;
+                        }
+                    } else {
+                        if (!is_array($val)) {
+                            list($key, $symbol) = explode(' ', $key);
+                            switch ($symbol) {
+                                case '>=':
+                                    $result = ($row[$key] >= $val);
+                                    break;
+                                case '>':
+                                    $result = ($row[$key] > $val);
+                                    break;
+                                case '<=':
+                                    $result = ($row[$key] <= $val);
+                                    break;
+                                case '<':
+                                    $result = ($row[$key] < $val);
+                                    break;
+                                case '!=':
+                                case '<>':
+                                    $result = ($row[$key] != $val);
+                                    break;
+                            }
+                            if (!$result) {
+                                unset($data[$id]);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            if (null !== $columns) {
+                foreach (array_keys($row) as $key) {
+                    if (!in_array($key, $columns)) {
+                        unset($row[$key]);
+                    }
+                };
+            }
         }
         
-        $configs = include $resPath;
-        $class   = '';
-        $name    = '';
-        foreach ($configs as $key => $config) {
-            $class = $config['type'];
-            $name  = $key;
-            break;
-        }
-        
-        if (!class_exists($class)) {
-            return $defaultRoute;
-        }
-        
-        // Check if the route is already in database
-        $routeName = $module . '-' . $name;
-        $cacheName = Pi::service('registry')
-            ->handler('route', $module)
-            ->read($module);
-        if ($routeName != $cacheName) {
-            return $defaultRoute;
-        }
-        
-        return $cacheName;
-        */
+        return $data;
     }
 }

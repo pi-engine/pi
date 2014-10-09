@@ -99,7 +99,9 @@ class Rule
         if (is_string($category)) {
             $category = Pi::model('category', $module)->slugToId($category);
         }
-        $rowCategories = Pi::api('api', $module)->getCategoryList();
+        $rowCategories = Pi::api('category', $module)->getList(
+            array('active' => 1)
+        );
         $categories = array();
         foreach ($rowCategories as $row) {
             $categories[$row['name']] = $row['id'];

@@ -83,9 +83,13 @@ return array(
             'name'        => 'category',
             'title'       => _a('Category'),
             'edit'        => array(
-                'element'    => 'Module\Article\Form\Element\PageCategory',
+                'element'    => 'Module\Article\Form\Element\Category',
                 'attributes' => array(
                     'description'   => _a('Page with which category to dress up.'),
+                ),
+                'options'    => array(
+                    'blank'         => true,
+                    'all'           => true,
                 ),
             ),
             // Use this form name as condition
@@ -95,9 +99,13 @@ return array(
             'name'        => 'cluster',
             'title'       => _a('Cluster'),
             'edit'        => array(
-                'element'    => 'Module\Article\Form\Element\PageCluster',
+                'element'    => 'Module\Article\Form\Element\Cluster',
                 'attributes' => array(
                     'description'   => _a('Page with which cluster to dress up.'),
+                ),
+                'options'    => array(
+                    'blank'         => true,
+                    'all'           => true,
                 ),
             ),
             'condition_level' => 'key',
