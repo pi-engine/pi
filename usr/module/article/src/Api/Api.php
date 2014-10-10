@@ -11,7 +11,6 @@ namespace Module\Article\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractApi;
-use Module\Article\Model\Article as ModelArticle;
 
 /**
  * Public API for other module

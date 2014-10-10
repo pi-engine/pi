@@ -19,21 +19,21 @@ return array(
         'render'      => 'block::allCategories',
         'template'    => 'all-categories',
         'config'      => array(
-            'top-category'     => array(
+            'top_category'     => array(
                 'title'        => _t('Top-Category Count'),
                 'description'  => _t('The max top category count want to display'),
                 'edit'         => 'text',
                 'filter'       => 'number int',
                 'value'        => 6,
             ),
-            'sub-category'     => array(
+            'sub_category'     => array(
                 'title'        => _t('Sub-Category Count'),
                 'description'  => _t('The max child category count want to display'),
                 'edit'         => 'text',
                 'filter'       => 'number int',
                 'value'        => 2,
             ),
-            'default-category' => array(
+            'default_category' => array(
                 'title'        => _t('Default Category Name'),
                 'description'  => _t('Default category name when there is no category acquired'),
                 'edit'         => 'text',
@@ -65,7 +65,7 @@ return array(
         'render'      => 'block::categoryList',
         'template'    => 'category-list',
         'config'      => array(
-            'list-count'       => array(
+            'list_count'       => array(
                 'title'        => _a('List Count'),
                 'description'  => _a('The max categories to display'),
                 'filter'       => 'int',
@@ -96,13 +96,13 @@ return array(
         'render'      => 'block::hotCategories',
         'template'    => 'hot-categories',
         'config'      => array(
-            'list-count'       => array(
+            'list_count'       => array(
                 'title'        => _a('List Count'),
                 'description'  => _a('The max categories to display'),
                 'filter'       => 'int',
                 'value'        => 18,
             ),
-            'day-range'        => array(
+            'day_range'        => array(
                 'title'        => _a('Day Range'),
                 'description'  => _a('Day range'),
                 'filter'       => 'int',
@@ -133,12 +133,24 @@ return array(
         'render'      => 'block::newestPublishedArticles',
         'template'    => 'newest-published-articles',
         'config'      => array(
-            'list-count'       => array(
+            'list_count'       => array(
                 'title'        => _a('List Count'),
                 'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
                 'filter'       => 'int',
                 'value'        => 10,
+            ),
+            'cluster'          => array(
+                'title'        => _a('Cluster'),
+                'description'  => _a('Which cluster article want to list'),
+                'edit'         => array(
+                    'type'        => 'Module\Article\Form\Element\Cluster',
+                    'options'     => array(
+                        'blank'      => true,
+                    ),
+                ),
+                'filter'       => 'string',
+                'value'        => 0,
             ),
             'category'         => array(
                 'title'        => _a('Category'),
@@ -146,13 +158,13 @@ return array(
                 'edit'         => array(
                     'type'        => 'Module\Article\Form\Element\Category',
                     'options'     => array(
-                        'root'       => true,
+                        'blank'      => true,
                     ),
                 ),
                 'filter'       => 'string',
                 'value'        => 0,
             ),
-            'is-topic'         => array(
+            'is_topic'         => array(
                 'title'        => _a('Is Topic'),
                 'description'  => _a('Whether to list topic articles'),
                 'edit'         => array(
@@ -172,7 +184,7 @@ return array(
                 'filter'       => 'string',
                 'value'        => 0,
             ),
-            'column-number'    => array(
+            'column_number'    => array(
                 'title'        => _a('List Column Number'),
                 'description'  => _a('Whether to display only one column or two columns'),
                 'edit'         => array(
@@ -280,21 +292,21 @@ return array(
                 'filter'       => 'string',
                 'value'        => 'image/default-recommended.png',
             ),
-            'image-link'       => array(
+            'image_link'       => array(
                 'title'        => _a('Image Link'),
                 'description'  => _a('URL to redirect when click image'),
                 'edit'         => 'textarea',
                 'filter'       => 'string',
                 'value'        => '',
             ),
-            'image-width'      => array(
+            'image_width'      => array(
                 'title'        => _a('Slide image width'),
                 'description'  => _a('Maximum width of slide image'),
                 'edit'         => 'text',
                 'filter'       => 'int',
                 'value'        => 320,
             ),
-            'image-height'     => array(
+            'image_height'     => array(
                 'title'        => _a('Slide image height'),
                 'description'  => _a('Maximum height of slide image'),
                 'edit'         => 'text',
@@ -354,7 +366,7 @@ return array(
                 'filter'       => 'string',
                 'value'        => 0,
             ),
-            'column-number'    => array(
+            'column_number'    => array(
                 'title'        => _a('List Column Number'),
                 'description'  => _a('Whether to display only one column or two columns'),
                 'edit'         => array(
@@ -431,7 +443,7 @@ return array(
         'render'      => 'block::submitterStatistics',
         'template'    => 'submitter-statistics',
         'config'      => array(
-            'list-count'       => array(
+            'list_count'       => array(
                 'title'        => _a('List Count'),
                 'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
@@ -446,7 +458,7 @@ return array(
         'render'      => 'block::newestTopic',
         'template'    => 'newest-topic',
         'config'      => array(
-            'list-count'       => array(
+            'list_count'       => array(
                 'title'        => _a('List Count'),
                 'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
@@ -499,14 +511,14 @@ return array(
         'render'      => 'block::hotArticles',
         'template'    => 'hot-article',
         'config'      => array(
-            'list-count'       => array(
+            'list_count'       => array(
                 'title'        => _a('List Count'),
                 'description'  => _a('The max articles to display'),
                 'edit'         => 'text',
                 'filter'       => 'int',
                 'value'        => 10,
             ),
-            'is-topic'         => array(
+            'is_topic'         => array(
                 'title'        => _a('Is Topic'),
                 'description'  => _a('Whether to list topic articles'),
                 'edit'         => array(
@@ -517,14 +529,14 @@ return array(
                 ),
                 'filter'       => 'int',
             ),
-            'day-range'        => array(
+            'day_range'        => array(
                 'title'        => _a('Day Range'),
                 'description'  => _a('Day range'),
                 'edit'         => 'text',
                 'filter'       => 'int',
                 'value'        => 7,
             ),
-            'column-number'    => array(
+            'column_number'    => array(
                 'title'        => _a('List Column Number'),
                 'description'  => _a('Whether to display only one column or two columns'),
                 'edit'         => array(
@@ -597,7 +609,7 @@ return array(
     ),
     'simple-search'             => array(
         'title'       => _a('Simple Search'),
-        'title_hidden'  => 1,
+        'title_hidden' => 1,
         'description' => _a('Search form for searching articles by article title'),
         'render'      => 'block::simpleSearch',
         'template'    => 'simple-search',
@@ -605,7 +617,7 @@ return array(
     ),
     'rss'             => array(
         'title'       => _a('RSS Link'),
-        'title_hidden'  => 1,
+        'title_hidden' => 1,
         'description' => _a('Click to subscribe article'),
         'render'      => 'block::rss',
         'template'    => 'rss',

@@ -13,7 +13,6 @@ use Pi;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Module\Article\Stats;
-use Module\Article\Model\Stats as ModelStats;
 use Module\Article\Model\Draft as DraftModel;
 
 /**
@@ -99,7 +98,7 @@ class Entity
                 1, 
                 $limit, 
                 null, 
-                '', 
+                null, 
                 $module
             );
 
@@ -271,22 +270,67 @@ class Entity
         $module = $module ?: Pi::service('module')->current();
         $users  = $articleIds = $userIds = array();
 
-        $resultSet = Pi::model('article', $module)->getSearchRows(
+        $modelArticle = Pi::model('article', $module);
+        $modelCluster = Pi::model('cluster_article', $module);
+        
+        if (null === $columns) {
+            $columns = $modelArticle->getColumns(true, true);
+        }
+        if (!in_array('id', $columns)) {
+            $columns[] = 'id';
+        }
+        
+        $order = (null === $order) ? 'time_publish DESC' : $order;
+        
+        $prefix = $modelArticle->getTable();
+        $newWhere = array();
+        foreach ($where as $key => $val) {
+            if ('cluster' === $key) {
+                $newWhere['c.cluster'] = $val;
+                continue;
+            }
+            $newKey = sprintf('%s.%s', $prefix, $key);
+            $newWhere[$newKey] = $val;
+        }
+        
+        $select = $modelArticle->select()
+            ->columns($columns)
+            ->join(
+                array('c' => $modelCluster->getTable()),
+                sprintf('%s.id = c.article', $prefix),
+                array('clusters' => 'cluster'),
+                'left'
+            )->where($newWhere)
+            ->group(sprintf('%s.id', $prefix))->order($order);
+        if ($limit) {
+            $select->limit(intval($limit));
+        }
+        if ($offset) {
+            $select->offset(intval($offset));
+        }
+        $rowset = $modelArticle->selectWith($select);
+        
+        /*$resultSet = Pi::model('article', $module)->getSearchRows(
             $where, 
             $limit, 
             $offset, 
             $columns, 
             $order
-        );
+        );*/
 
-        if ($resultSet) {
-            foreach ($resultSet as $row) {
-                $articleIds[$row['id']] = $row['id'];
+        $resultSet = array();
+        if ($rowset->count()) {
+            foreach ($rowset as $row) {
+                $articleIds[$row->id] = $row->id;
 
-                if (!empty($row['uid'])) {
-                    $userIds[$row['uid']] = $row['uid'];
+                if (!empty($row->uid)) {
+                    $userIds[$row->uid] = $row->uid;
                 }
+                $resultSet[$row->id] = $row->toArray();
             }
+            
+            // Get clusters
+            $clusters = Pi::api('cluster', $module)->getArticleClusters($articleIds);
             
             // Getting statistics data
             $stats = Pi::model('stats', $module)->getList(array(
@@ -309,6 +353,9 @@ class Entity
                 }
                 if (isset($stats[$row['id']])) {
                     $row['stats'] = $stats[$row['id']];
+                }
+                if (isset($clusters[$row['id']])) {
+                    $row['clusters'] = $clusters[$row['id']];
                 }
 
                 $route      = Pi::api('api', $module)->getRouteName();
@@ -460,5 +507,42 @@ class Entity
         }
 
         return $result;
+    }
+    
+    /**
+     * Get total article number by condition
+     * 
+     * @param array $where
+     * @return int
+     */
+    public static function count($where)
+    {
+        $module = Pi::service('module')->current();
+        
+        $modelArticle = Pi::model('article', $module);
+        $modelCluster = Pi::model('cluster_article', $module);
+        
+        $prefix = $modelArticle->getTable();
+        $newWhere = array();
+        foreach ($where as $key => $val) {
+            if ('cluster' === $key) {
+                $newWhere['c.cluster'] = $val;
+                continue;
+            }
+            $newKey = sprintf('%s.%s', $prefix, $key);
+            $newWhere[$newKey] = $val;
+        }
+        
+        $select = $modelArticle->select()
+            ->columns(array('count' => new Expression("count(distinct $prefix.id)")))
+            ->join(
+                array('c' => $modelCluster->getTable()),
+                sprintf('%s.id = c.article', $prefix),
+                array(),
+                'left'
+            )->where($newWhere);
+        $count = $modelArticle->selectWith($select)->current()->count;
+        
+        return (int) $count;
     }
 }

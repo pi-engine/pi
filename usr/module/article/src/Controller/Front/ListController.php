@@ -11,7 +11,7 @@ namespace Module\Article\Controller\Front;
 
 use Pi\Mvc\Controller\ActionController;
 use Module\Article\Model\Article;
-use Zend\Db\Sql\Expression;
+use Module\Article\Entity;
 use Pi\Paginator\Paginator;
 use Pi;
 
@@ -36,7 +36,7 @@ class ListController extends ActionController
         $name = '';
         foreach ($pages as $page) {
             if ($action === $page['name']) {
-                $name = $page['action'] . 'Action';
+                $name = $page['action'];
                 break;
             }
         }
@@ -119,7 +119,7 @@ class ListController extends ActionController
         }
         
         // Paginator
-        $count     = $model->count($where);
+        $count     = Entity::count($where, true);
         $paginator = Paginator::factory($count, array(
             'limit'       => $limit,
             'page'        => $page,

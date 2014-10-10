@@ -36,8 +36,8 @@ class Block
             return false;
         }
         
-        $maxTopCount = $options['top-category'];
-        $maxSubCount = $options['sub-category'];
+        $maxTopCount = $options['top_category'];
+        $maxSubCount = $options['sub_category'];
         $route = 'article';
 
         $categories  = Pi::api('category', $module)->getList(
@@ -148,9 +148,9 @@ class Block
             return false;
         }
         
-        $limit = (int) $options['list-count'];
+        $limit = (int) $options['list_count'];
         $limit = $limit < 0 ? 0 : $limit;
-        $day = (int) $options['day-range'];
+        $day = (int) $options['day_range'];
         $endDay   = time();
         $startDay = $endDay - $day * 3600 * 24;
         
@@ -175,14 +175,14 @@ class Block
         }
         
         // Get category Info
-        //$route = Pi::api('api', $module)->getRouteName();
+        $route = Pi::api('api', $module)->getRouteName();
         $where = array('id' => $categoryIds);
         $rowCategory = Pi::model('category', $module)->select($where);
         $categories = array();
         foreach ($rowCategory as $row) {
             $categories[$row->id]['title'] = $row->title;
             $categories[$row->id]['url']   = Pi::service('url')->assemble(
-                'article',
+                $route,
                 array(
                     'module'    => $module,
                     'category'  => $row->slug ?: $row->id,
@@ -214,34 +214,41 @@ class Block
         $params   = Pi::service('url')->getRouteMatch()->getParams();
         
         $config   = Pi::config('', $module);
-        $image    = $config['default_feature_image'];d($image);
-        $image    = Pi::service('asset')->getModuleAsset($image, $module);
+        $image    = Pi::service('asset')->getModuleAsset(
+            $config['default_feature_image'],
+            $module
+        );
         
-        $postCategory = isset($params['category']) ? $params['category'] : 0;
+        //$postCategory = isset($params['category']) ? $params['category'] : 0;
         $postTopic    = isset($params['topic']) ? $params['topic'] : 0;
         
-        $category = $options['category'] ? $options['category'] : $postCategory;
+        //$category = $options['category'] ? $options['category'] : $postCategory;
         $topic    = $options['topic'] ? $options['topic'] : $postTopic;
         if (!is_numeric($topic)) {
             $topic = Pi::model('topic', $module)->slugToId($topic);
         }
-        $limit    = ($options['list-count'] <= 0) ? 10 : $options['list-count'];
-        $page     = 1;
+        $limit    = ($options['list_count'] <= 0) ? 10 : $options['list_count'];
         $order    = 'time_update DESC, time_publish DESC';
         $columns  = array('subject', 'summary', 'time_publish', 'image');
         $where    = array();
-        if (!empty($category)) {
+        if (!empty($options['category'])) {
             $category = Pi::model('category', $module)
-                ->getDescendantIds($category);
+                ->getDescendantIds($options['category']);
             $where['category'] = $category;
         }
-        if (!empty($options['is-topic'])) {
+        if (!empty($options['cluster'])) {
+            $cluster = Pi::model('cluster', $module)
+                ->getDescendantIds($options['cluster']);
+            $where['cluster'] = $cluster;
+        }
+        
+        if (!empty($options['is_topic'])) {
             if (!empty($topic)) {
                 $where['topic'] = $topic;
             }
             $articles = Topic::getTopicArticles(
                 $where, 
-                $page, 
+                1, 
                 $limit, 
                 $columns, 
                 $order, 
@@ -250,7 +257,7 @@ class Block
         } else {
             $articles = Entity::getAvailableArticlePage(
                 $where, 
-                $page, 
+                1, 
                 $limit, 
                 $columns, 
                 $order, 
@@ -271,9 +278,7 @@ class Block
                 $options['max_summary_length'],
                 'UTF-8'
             );
-            $article['image'] = $article['image'] 
-                ? Media::getThumbFromOriginal(Pi::url($article['image']))
-                : $image;
+            $article['image'] = $article['image'] ?: $image;
         }
         
         return array(
@@ -281,7 +286,7 @@ class Block
             'target'    => $options['target'],
             'elements'  => (array) $options['element'],
             'config'    => $config,
-            'column'    => $options['column-number'],
+            'column'    => $options['column_number'],
             'rows'      => $options['description_rows'],
         );
     }
@@ -340,7 +345,7 @@ class Block
             'articles'  => $articles,
             'target'    => $options['target'],
             'elements'  => (array) $options['element'],
-            'column'    => $options['column-number'],
+            'column'    => $options['column_number'],
             'config'    => $config,
             'rows'      => $options['description_rows'],
         );
@@ -384,7 +389,7 @@ class Block
             return false;
         }
         
-        $limit    = ($options['list-count'] <= 0) ? 10 : $options['list-count'];
+        $limit    = ($options['list_count'] <= 0) ? 10 : $options['list_count'];
         $time      = time();
         $today     = strtotime(date('Y-m-d', $time));
         $tomorrow  = $today + 24 * 3600;
@@ -416,7 +421,7 @@ class Block
             return false;
         }
         
-        $limit  = ($options['list-count'] <= 0) ? 10 : $options['list-count'];
+        $limit  = ($options['list_count'] <= 0) ? 10 : $options['list_count'];
         $order  = 'id DESC';
         $topics = Topic::getTopics(array(), 1, $limit, null, $order, $module);
         $config = Pi::config('', $module);
@@ -461,14 +466,14 @@ class Block
             return false;
         }
         
-        $limit  = isset($options['list-count']) 
-            ? (int) $options['list-count'] : 10;
+        $limit  = isset($options['list_count']) 
+            ? (int) $options['list_count'] : 10;
         $config = Pi::config('', $module);
         $image  = $config['default_feature_image'];
         $image  = Pi::service('asset')->getModuleAsset($image, $module);
-        $day    = $options['day-range'] ? intval($options['day-range']) : 7;
+        $day    = $options['day_range'] ? intval($options['day_range']) : 7;
 
-        if ($options['is-topic']) {
+        if ($options['is_topic']) {
             $params = Pi::service('url')->getRouteMatch()->getParams();
             if (is_string($params)) {
                 $params['topic'] = Pi::model('topic', $module)
@@ -507,7 +512,7 @@ class Block
             'articles'  => $articles,
             'target'    => $options['target'],
             'elements'  => (array) $options['element'],
-            'column'    => $options['column-number'],
+            'column'    => $options['column_number'],
             'config'    => $config,
             'rows'      => $options['description_rows'],
         );
@@ -566,7 +571,7 @@ class Block
         }
         
         // Getting image link url
-        $urlRows    = explode('\n', $options['image-link']);
+        $urlRows    = explode('\n', $options['image_link']);
         $imageLinks = array();
         foreach ($urlRows as $row) {
             if (false !== strpos($row, ':')) {
@@ -612,8 +617,8 @@ class Block
             'articles'  => $articles,
             'target'    => $options['target'],
             'elements'  => (array) $options['element'],
-            'height'    => $options['image-height'],
-            'width'     => $options['image-width'],
+            'height'    => $options['image_height'],
+            'width'     => $options['image_width'],
             'images'    => $images,
             'config'    => Pi::config('', $module),
             'rows'      => $options['description_rows'],
