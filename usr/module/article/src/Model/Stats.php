@@ -20,15 +20,34 @@ use Pi\Application\Model\Model;
 class Stats extends Model
 {
     /**
-     * Get avaliable columns
+     * Get table fields exclude id field.
      * 
      * @return array 
      */
-    public static function getAvailableColumns()
+    public function getColumns($fetch = false)
     {
-        $columns = array('visits');
+        $table    = $this->getTable();
+        $database = Pi::config()->load('service.database.php');
+        $schema   = $database['schema'];
+        $sql = 'select COLUMN_NAME as name from information_schema.columns '
+             . 'where table_name=\'' 
+             . $table . '\' and table_schema=\'' 
+             . $schema . '\'';
+        try {
+            $rowset = Pi::db()->getAdapter()->query($sql, 'prepare')->execute();
+        } catch (\Exception $exception) {
+            return false;
+        }
         
-        return $columns;
+        $fields = array();
+        foreach ($rowset as $row) {
+            if ($row['name'] == 'id') {
+                continue;
+            }
+            $fields[] = $row['name'];
+        }
+        
+        return $fields;
     }
     
     /**
@@ -86,7 +105,7 @@ class Stats extends Model
             $select->limit($limit);
         }
         
-        $columns = $columns ?: self::getAvailableColumns();
+        $columns = $columns ?: $this->getColumns(true);
         if (!in_array('article', $columns)) {
             $columns[] = 'article';
         }

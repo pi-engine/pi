@@ -67,11 +67,6 @@
                 </th>
                 <th><?php echo _a('Title'); ?></th>
                 <th style="width: 10%;"><?php echo _a('Category'); ?></th>
-                <?php
-                /*
-                <th style="width: 14%"><?php echo _a('Tag'); ?></th>
-                */
-                ?>
                 <th style="width: 8%"><?php echo _a('Submitter'); ?></th>
                 <th style="width: 8%"><?php echo _a('View'); ?></th>
                 <th style="width: 100px;"><?php echo _a('Publish date'); ?></th>
@@ -105,19 +100,9 @@
                         <?php } ?>   
                     </div>
                 </td>
-                <td><?php echo _escape($article['category_title']); ?></td>
-                <?php
-                /*
-                ?>
-                <td><?php 
-                    echo !empty($article['tag']) ? _escape(join($article['tag'], ',')) 
-                        : '<span class="muted">' . _a('No tags') . '</span>'
-                ?>
-                </td>
-                */
-                ?>
-                <td><?php echo !empty($article['user_name']) ? _escape($article['user_name']) : '&nbsp;'; ?></td>
-                <td><?php echo $article['visits'] ? _escape($article['visits']) : 0; ?></td>
+                <td><?php echo _escape($article['category']['title']); ?></td>
+                <td><?php echo !empty($article['user']['name']) ? _escape($article['user']['name']) : '&nbsp;'; ?></td>
+                <td><?php echo $article['stats']['visits'] ? _escape($article['stats']['visits']) : 0; ?></td>
                 <td><?php echo _date($article['time_publish']); ?></td>
             </tr>
             <?php } ?>

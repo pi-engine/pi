@@ -35,26 +35,13 @@ class Article extends Model
     const FIELD_SEO_DESCRIPTION_SUMMARY = 1;
 
     const PAGE_BREAK_PATTERN = '|(<p class="pagebreak page-title">.*?</p>)|is';
-
-    /**
-     * Get default columns
-     * 
-     * @return array
-     */
-    public static function getDefaultColumns()
-    {
-        return array(
-            'id', 'subject', 'summary', 'image', 'uid', 'author', 
-            'time_publish', 'category', 'active'
-        );
-    }
     
     /**
      * Get table fields exclude id field.
      * 
      * @return array 
      */
-    public function getColumns($fetch = false)
+    public function getColumns($fetch = false, $default = false)
     {
         $table    = $this->getTable();
         $database = Pi::config()->load('service.database.php');
@@ -72,6 +59,9 @@ class Article extends Model
         $fields = array();
         foreach ($rowset as $row) {
             if ($row['name'] == 'id') {
+                continue;
+            }
+            if ($default && 'content' == $row['name']) {
                 continue;
             }
             $fields[] = $row['name'];
@@ -92,7 +82,7 @@ class Article extends Model
         $result = $rows = array();
 
         if (null === $columns) {
-            $columns = self::getDefaultColumns();
+            $columns = $this->getColumns(true, true);
         }
 
         if ($ids) {
@@ -132,60 +122,32 @@ class Article extends Model
         $result = $rows = array();
 
         if (null === $columns) {
-            $columns = self::getDefaultColumns();
+            $columns = $this->getColumns(true, true);
         }
-
         if (!in_array('id', $columns)) {
             $columns[] = 'id';
         }
 
         $order = (null === $order) ? 'time_publish DESC' : $order;
 
-        $select = $this->select()
-            ->columns($columns);
-
+        $select = $this->select()->columns($columns);
         if ($where) {
             $select->where($where);
         }
-
         if ($limit) {
             $select->limit(intval($limit));
         }
-
         if ($offset) {
             $select->offset(intval($offset));
         }
-
         if ($order) {
             $select->order($order);
         }
 
-        $rows = $this->selectWith($select)->toArray();
-
+        $rows = $this->selectWith($select);
         foreach ($rows as $row) {
-            $result[$row['id']] = $row;
+            $result[$row->id] = $row->toArray();
         }
-
-        return $result;
-    }
-
-    /**
-     * Get count of searched row
-     * 
-     * @param array  $where
-     * @return int
-     */
-    public function getSearchRowsCount($where = array())
-    {
-        $select = $this->select()
-            ->columns(array('total' => new Expression('count(id)')));
-
-        if ($where) {
-            $select->where($where);
-        }
-
-        $resultset  = $this->selectWith($select);
-        $result     = intval($resultset->current()->total);
 
         return $result;
     }

@@ -32,12 +32,12 @@ class Page extends AbstractRegistry
         $module = $options['module'];
         $model  = Pi::model('page', $module);
         
-        if ($options['isTree']) {
+        if (!$options['plain']) {
             $root   = $model->find('root', 'name');
             $rowset = $model->enumerate($root->id);
             $rows   = array_shift($rowset);
         } else {
-            $rows   = $model->getList();
+            $rows   = $model->enumerate(null, null, true);
         }
 
         return $rows;
@@ -48,10 +48,10 @@ class Page extends AbstractRegistry
      * 
      * @return array 
      */
-    public function read($where = array(), $isTree = false, $module = null)
+    public function read($plain = true, $module = null)
     {
         $module  = $module ?: Pi::service('module')->current();
-        $options = compact('module', 'where', 'isTree');
+        $options = compact('module', 'plain');
         
         return $this->loadData($options);
     }
@@ -59,11 +59,11 @@ class Page extends AbstractRegistry
     /**
      * Create a cache
      */
-    public function create($where = array(), $isTree = false)
+    public function create($plain = true)
     {
         $module  = Pi::service('module')->current();
         $this->clear($module);
-        $this->read($where, $isTree);
+        $this->read($plain, $module);
     }
     
     /**

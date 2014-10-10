@@ -35,8 +35,7 @@ class MultiCluster extends MultiCheckbox
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module') 
                 ?: Pi::service('module')->current();
-            $method   = sprintf('get%sList', ucfirst($this->table));
-            $rowset   = Pi::api('api', $module)->$method(
+            $rowset   = Pi::api($this->table, $module)->getList(
                 array('active' => 1),
                 array('id', 'title', 'depth')
             );

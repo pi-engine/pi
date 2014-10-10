@@ -47,13 +47,13 @@
                         <select class="search-type form-control form-group" data-url="<?php echo $this->url('', array('action' => 'list', 'type' => $type, 'style' => $style)); ?>" style="margin-right: 20px">
                             <option value=""><?php echo _a('All'); ?></option>
                             <?php foreach ($types as $key => $val) { ?>
-                            <option value="<?php echo $this->escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo $this->escape($val); ?></option>
+                            <option value="<?php echo _escape($key); ?>" <?php if ($miniType == $key) echo "selected"; ?>><?php echo _escape($val); ?></option>
                             <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <div class="text-muted pull-right" style="padding-top: 5px">
-                            <?php echo $this->escape($count) . ' results'; ?>
+                            <?php echo _escape($count) . ' results'; ?>
                         </div>
                     </div>
                 </div>
@@ -111,16 +111,15 @@
                     <th style="width: 80px;"><?php echo _a('Uploaded date'); ?></th>
                 </tr>
                 <?php foreach ($medias as $media) { ?>
-                <tr data-id="<?php echo $this->escape($media['id']); ?>">
+                <tr data-id="<?php echo _escape($media['id']); ?>">
                     <td>
-                        <input type="checkbox" value="<?php echo $this->escape($media['id']); ?>" class="check-one">
+                        <input type="checkbox" value="<?php echo _escape($media['id']); ?>" class="check-one">
                     </td>
-                    <td><?php echo $this->escape($media['id']); ?></td>
+                    <td><?php echo _escape($media['id']); ?></td>
                     <td><?php 
                         if ('image' == $type) {
-                            $image = Pi::url($media['url']);
                     ?>
-                        <img src="<?php echo $this->escape($image); ?>" style="width: 40px;">
+                        <img src="<?php echo _escape($media['url']); ?>" style="width: 40px;">
                     <?php
                         } else {
                     ?>
@@ -130,7 +129,7 @@
                     ?>
                     </td>
                     <td>
-                        <a class="media-list-title" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="<?php echo $this->escape($media['title']); ?>"><?php echo mb_substr($media['title'], 0, 18, 'UTF-8'); ?></a>
+                        <a class="media-list-title" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="<?php echo _escape($media['title']); ?>"><?php echo mb_substr($media['title'], 0, 18, 'UTF-8'); ?></a>
                         <div class="row-actions">
                             <a href="<?php echo $this->url('', array('action' => 'edit', 'id' => $media['id'])); ?>"><?php echo _a('Edit'); ?></a>
                             <span class="divider">|</span>
@@ -139,10 +138,10 @@
                             <a class="one-action" data-value="download" href="javascript:void(0)"><?php echo _a('Download'); ?></a>
                         </div>
                     </td>
-                    <td><?php echo $this->escape($media['type']); ?></td>
-                    <td><?php echo $this->escape($media['size']); ?></td>
+                    <td><?php echo _escape($media['type']); ?></td>
+                    <td><?php echo _escape($media['size']); ?></td>
                     <td><?php if ('image' == $type) { ?>
-                        <?php echo $this->escape($media['w']) . ' * ' . $this->escape($media['h']); ?>
+                        <?php echo _escape($media['w']) . ' * ' . _escape($media['h']); ?>
                     <?php } else {
                         echo '<span class="text-muted">' . _a('None') . '</span>';
                     } ?>
@@ -153,8 +152,8 @@
                             : '<span class="text-muted">' . _a('No description') . '</span>'
                         ?>
                     </td>
-                    <td><?php echo isset($media['download']) ? $this->escape($media['download']) : 0 ?></td>
-                    <td><?php echo $this->escape($media['submitter']); ?></td>
+                    <td><?php echo isset($media['stats']['download']) ? _escape($media['stats']['download']) : 0 ?></td>
+                    <td><?php echo isset($media['user']['name']) ? _escape($media['user']['name']) : ''; ?></td>
                     <td><?php echo _date($media['time_upload']); ?></td>
                 </tr>
                 <?php } ?>
@@ -175,7 +174,7 @@
 (function($){
     var page = {
         url     : "<?php echo $this->url('', array('controller' => 'media','action' => '')); ?>" . replace(/list\/$/,""),
-        type    : '<?php echo $this->escape($type); ?>',
+        type    : '<?php echo _escape($type); ?>',
         el      : $("#pi-js-list"),
         $       : function(selector) {
             return this.el.find(selector);
@@ -369,5 +368,5 @@
         }
     }
     page.init();
-})(jQuery)
+})(jQuery);
 </script>

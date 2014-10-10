@@ -327,23 +327,19 @@ class DraftController extends ActionController
         $page   = $this->params('p', 1);
         $limit  = $this->params('limit', 20);
 
-        $where['status']        = $status;
-        $where['article < ?']   = 1;
+        $where['status']  = $status;
+        $where['article'] = 0;
         if ('my' == $from) {
-            $where['uid']       = Pi::user()->getId();
+            $where['uid'] = Pi::user()->getId();
         }
         if (isset($options['keyword'])) {
             $where['subject like ?'] = sprintf('%%%s%%', $options['keyword']);
         }
 
-        $module         = $this->getModule();
-        $modelDraft     = $this->getModel('draft');
-
         $resultsetDraft = Draft::getDraftPage($where, $page, $limit);
 
         // Total count
-        $totalCount = (int) $modelDraft->getSearchRowsCount($where);
-        $action     = $this->getEvent()->getRouteMatch()->getParam('action');
+        $totalCount = (int) $this->getModel('draft')->count($where);
 
         // Paginator
         $paginator = Paginator::factory($totalCount, array(
@@ -352,13 +348,10 @@ class DraftController extends ActionController
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'        => array(
-                    'module'        => $module,
-                    'controller'    => 'draft',
-                    'action'        => $action,
                     'status'        => $status,
                     'from'          => $from,
-                    'where'         => urlencode(json_encode($options)),
-                    'limit'         => $limit,
+                    //'where'         => urlencode(json_encode($options)),
+                    //'limit'         => $limit,
                 ),
             ),
         ));
@@ -368,8 +361,8 @@ class DraftController extends ActionController
             'paginator' => $paginator,
             'status'    => $status,
             'from'      => $from,
-            'page'      => $page,
-            'limit'     => $limit,
+            //'page'      => $page,
+            //'limit'     => $limit,
         ));
     }
 
@@ -430,14 +423,6 @@ class DraftController extends ActionController
         $result['message'] = __('Draft saved successfully.');
 
         return $result;
-    }
-
-    /**
-     * Default action. 
-     */
-    public function indexAction()
-    {
-        // @todo use transaction
     }
     
     /**

@@ -60,35 +60,19 @@ class Media
         // Fetching data
         $rowset   = $model->selectWith($select);
         $mediaSet = array();
-        $submitterIds = $mediaIds = array();
+        $uids     = $mediaIds = array();
         foreach ($rowset as $row) {
             $item         = $row->toArray();
             $item['size'] = Pi::service('file')->transformSize($item['size']);
             $item['type'] = strtolower($item['type']);
             $meta = empty($row->meta) ? array() : json_decode($row->meta, true);
             unset($item['meta']);
-            $item['previewUrl'] = Pi::url(Pi::service('url')->assemble(
-                'default',
-                array(
-                    'module'     => $module,
-                    'controller' => 'media',
-                    'action'     => 'detail',
-                    'id'         => $row->id,
-                )
-            ));
-            $item['download_url'] = Pi::url(Pi::service('url')->assemble(
-                'default',
-                array(
-                    'module'     => $module,
-                    'controller' => 'media',
-                    'action'     => 'download',
-                    'id'         => $row->id,
-                )
-            ));
+            $item['preview_url']  = self::getUrl($row->id, 'profile', $module);
+            $item['download_url'] = self::getUrl($row->id, 'download', $module);
             $item = array_merge($item, $meta);
             $mediaSet[$row->id] = $item;
-            $mediaIds[]         = $row->id;
-            $submitterIds[]     = $row->uid;
+            $mediaIds[$row->id] = $row->id;
+            $uids[$row->uid]    = $row->uid;
         }
         
         // Fetching stats data
@@ -96,29 +80,21 @@ class Media
             $model  = Pi::model('media_stats', $module);
             $rowset = $model->select(array('media' => $mediaIds));
             foreach ($rowset as $row) {
-                $id = $row['media'];
-                $stats = $row->toArray();
-                unset($stats['id']);
-                unset($stats['media']);
-                $mediaSet[$id] = array_merge($mediaSet[$id], $stats);
+                $mediaSet[$row->media]['stats'] = $row->toArray();
             }
         }
         
         // Fetching submitter
-        $submitter = array();
-        if (!empty($submitterIds)) {
-            $rowset = Pi::user()
-                ->get($submitterIds, array('id', 'name'));
-            foreach ($rowset as $row) {
-                $submitter[$row['id']] = $row['name'];
-            }
-            unset($rowset);
+        $users = array();
+        if (!empty($uids)) {
+            $uids  = array_filter($uids);
+            $users = Pi::user()->get($uids, array('id', 'name'));
         }
         
         foreach ($mediaSet as &$set) {
             $uid = $set['uid'];
-            $set['submitter'] = isset($submitter[$uid]) ? $submitter[$uid] : '';
-            $set['url']       = Pi::url($set['url']);
+            $set['user'] = isset($users[$uid]) ? $users[$uid] : array();
+            $set['url']  = Pi::url($set['url']);
         }
         
         return $mediaSet;
@@ -213,5 +189,43 @@ class Media
         }
 
         return $result ? $fileName : false;
+    }
+    
+    /**
+     * Get media URL
+     * 
+     * @param int[]  $ids
+     * @param string $type
+     * @param string $module
+     * @return array|string
+     */
+    public static function getUrl($ids, $type = 'profile', $module = null)
+    {
+        $module = $module ?: Pi::service('module')->current();
+        $params = array(
+            'module'     => $module,
+            'controller' => 'media',
+        );
+        
+        switch ($type) {
+            case 'profile':
+                $params['action'] = 'detail';
+                break;
+            case 'download':
+                $params['action'] = 'download';
+                break;
+        }
+        
+        $result = array();
+        foreach ((array) $ids as $id) {
+            $params['id'] = $id;
+            $url = Pi::service('url')->assemble('default', $params);
+            $result[$id] = Pi::url($url); 
+        }
+        if (is_scalar($ids)) {
+            $result = $result[$ids];
+        }
+        
+        return $result;
     }
 }

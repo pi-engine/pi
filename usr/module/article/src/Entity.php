@@ -87,14 +87,14 @@ class Entity
             $select->limit($limit);
         }
 
-        $resultsetVisit = $modelVisit->selectWith($select)->toArray();
-        foreach ($resultsetVisit as $row) {
+        $resultSetVisit = $modelVisit->selectWith($select)->toArray();
+        foreach ($resultSetVisit as $row) {
             $result[$row['article']] = $row;
         }
 
         $articleIds = array_keys($result);
         if ($articleIds) {
-            $resultsetArticle = self::getAvailableArticlePage(
+            $resultSetArticle = self::getAvailableArticlePage(
                 array('id' => $articleIds), 
                 1, 
                 $limit, 
@@ -104,8 +104,8 @@ class Entity
             );
 
             foreach ($result as $key => &$row) {
-                if (isset($resultsetArticle[$key])) {
-                    $row = $row + $resultsetArticle[$key];
+                if (isset($resultSetArticle[$key])) {
+                    $row = $row + $resultSetArticle[$key];
                 }
             }
         }
@@ -179,7 +179,6 @@ class Entity
             'pages',
             'summary',
             'time_publish',
-            'visits',
         );
 
         $result = self::getAvailableArticlePage(
@@ -270,25 +269,9 @@ class Entity
         $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
         $module = $module ?: Pi::service('module')->current();
-        $articleIds = $userIds = $authorIds = $categoryIds = array();
-        $categories = $authors = $users = $tags = $urls = array();
+        $users  = $articleIds = $userIds = array();
 
-        $modelArticle  = Pi::model('article', $module);
-        
-        // Generate columns of statistics table
-        $statisColumns = ModelStats::getAvailableColumns();
-        if (!empty($columns)) {
-            // Get needed columns of statistics table
-            foreach ($statisColumns as $key => $col) {
-                if (!in_array($col, $columns)) {
-                    unset($statisColumns[$key]);
-                }
-            }
-            // Remove fields not belong to article table
-            $columns = array_diff($columns, $statisColumns);
-        }
-
-        $resultset = $modelArticle->getSearchRows(
+        $resultSet = Pi::model('article', $module)->getSearchRows(
             $where, 
             $limit, 
             $offset, 
@@ -296,121 +279,48 @@ class Entity
             $order
         );
 
-        if ($resultset) {
-            foreach ($resultset as $row) {
-                $articleIds[] = $row['id'];
-
-                if (!empty($row['author'])) {
-                    $authorIds[] = $row['author'];
-                }
+        if ($resultSet) {
+            foreach ($resultSet as $row) {
+                $articleIds[$row['id']] = $row['id'];
 
                 if (!empty($row['uid'])) {
-                    $userIds[] = $row['uid'];
+                    $userIds[$row['uid']] = $row['uid'];
                 }
             }
-            $authorIds = array_unique($authorIds);
-            $userIds   = array_unique($userIds);
             
             // Getting statistics data
-            $templateStatis = array();
-            if (!empty($statisColumns)) {
-                $statisColumns[] = 'id';
-                $statisColumns[] = 'article';
-                $modelStatis = Pi::model('stats', $module);
-                $select      = $modelStatis
-                    ->select()
-                    ->where(array('article' => $articleIds))
-                    ->columns($statisColumns);
-                $rowStatis   = $modelStatis->selectWith($select);
-                $statis      = array();
-                foreach ($rowStatis as $item) {
-                    $temp = $item->toArray();
-                    unset($temp['id']);
-                    unset($temp['article']);
-                    $statis[$item->article] = $temp;
-                }
-                foreach ($statisColumns as $col) {
-                    if (in_array($col, array('id', 'article'))) {
-                        continue;
-                    }
-                    $templateStatis[$col] = null;
-                }
-            }
-
-            $categories = Pi::api('category', $module)->getList(
-                array(),
-                array('id', 'title', 'slug')
-            );
-
-            if (!empty($authorIds) 
-                && (empty($columns) || in_array('author', $columns))
-            ) {
-                $resultsetAuthor = Pi::api('api', $module)->getAuthorList($authorIds);
-                foreach ($resultsetAuthor as $row) {
-                    $authors[$row['id']] = array(
-                        'name' => $row['name'],
-                    );
-                }
-                unset($resultsetAuthor);
-            }
+            $stats = Pi::model('stats', $module)->getList(array(
+                'article' => $articleIds
+            ));
 
             if (!empty($userIds) 
                 && (empty($columns) || in_array('uid', $columns))
             ) {
-                $resultsetUser = Pi::user()
-                    ->get($userIds, array('id', 'name'));
-                foreach ($resultsetUser as $row) {
-                    $users[$row['id']] = array(
-                        'name' => $row['name'],
-                    );
-                }
-                unset($resultsetUser);
+                $users = Pi::user()->get($userIds, array('id', 'name'));
             }
 
-            foreach ($resultset as &$row) {
-                if (empty($columns) || in_array('category', $columns)) {
-                    if (!empty($categories[$row['category']])) {
-                        $row['category_title'] = $categories[$row['category']]['title'];
-                        $row['category_slug']  = $categories[$row['category']]['slug'];
+            foreach ($resultSet as &$row) {
+                $row = Pi::api('field', $module)->resolver($row);
+
+                if (null === $columns || in_array('uid', $columns)) {
+                    if (isset($users[$row['uid']])) {
+                        $row['user'] = $users[$row['uid']];
                     }
                 }
-
-                if (empty($columns) || in_array('uid', $columns)) {
-                    if (!empty($users[$row['uid']])) {
-                        $row['user_name'] = $users[$row['uid']]['name'];
-                    }
+                if (isset($stats[$row['id']])) {
+                    $row['stats'] = $stats[$row['id']];
                 }
 
-                if (empty($columns) || in_array('author', $columns)) {
-                    if (!empty($authors[$row['author']])) {
-                        $row['author_name'] = $authors[$row['author']]['name'];
-                    }
-                }
-
-                if (empty($columns) || in_array('image', $columns)) {
-                    if ($row['image']) {
-                        $row['thumb'] = Media::getThumbFromOriginal($row['image']);
-                    }
-                }
-
-                if (empty($columns) || in_array('subject', $columns)) {
-                    $route = Pi::api('api', $module)->getRouteName();
-                    //$route = 'article';
-                    $row['url'] = Pi::service('url')->assemble($route, array(
-                        'module'    => $module,
-                        'time'      => date('Ymd', $row['time_publish']),
-                        'id'        => $row['id'],
-                    ));
-                }
-                
-                if (!isset($statis[$row['id']])) {
-                    $statis[$row['id']] = $templateStatis;
-                }
-                $row = array_merge($row, $statis[$row['id']]);
+                $route      = Pi::api('api', $module)->getRouteName();
+                $row['url'] = Pi::service('url')->assemble($route, array(
+                    'module'    => $module,
+                    'time'      => date('Ymd', $row['time_publish']),
+                    'id'        => $row['id'],
+                ));
             }
         }
 
-        return $resultset;
+        return $resultSet;
     }
 
     /**
@@ -519,8 +429,8 @@ class Entity
             ))
             ->where($where)
             ->group(array('status', 'category'));
-        $resultset  = $modelDraft->selectWith($select);
-        foreach ($resultset as $row) {
+        $resultSet  = $modelDraft->selectWith($select);
+        foreach ($resultSet as $row) {
             if (DraftModel::FIELD_STATUS_DRAFT == $row->status) {
                 $result['draft'] += $row->total;
             } else if (DraftModel::FIELD_STATUS_PENDING == $row->status) {

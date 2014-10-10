@@ -424,7 +424,7 @@ class PageController extends ActionController
                 'controller' => $controller,
                 'action'     => $action,
                 'block'      => 1,
-                'custom'     => 0,
+                'custom'     => 1,
             );
             $result = $row = $model->createRow($data);
             $row->save();

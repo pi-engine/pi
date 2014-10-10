@@ -41,7 +41,7 @@ class ListController extends ActionController
             }
         }
  
-        return $name ?: $action . 'Action';
+        return parent::getMethodFromAction($name ?: $action);
     }
     
     /**

@@ -60,7 +60,7 @@ class SearchController extends ActionController
             'active'            => 1,
         ));
         $modelArticle   = $this->getModel('article');
-        $totalCount     = $modelArticle->getSearchRowsCount($where);
+        $totalCount     = $modelArticle->count($where);
 
         // Paginator
         $paginator = Paginator::factory($totalCount, array(

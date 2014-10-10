@@ -30,7 +30,7 @@ class Related extends AbstractCustomHelper
         $module = $element->getOption('module') ?:
             Pi::service('module')->current();
         
-        $url = Pi::service('url')->assemble('default', array(
+        $url = Pi::service('url')->assemble('', array(
             'controller' => 'article',
             'action'     => 'get.fuzzy.article',
         ));

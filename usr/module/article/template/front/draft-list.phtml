@@ -17,11 +17,6 @@
                 </th>
                 <th><?php echo __('Title'); ?></th>
                 <th style="width: 15%;"><?php _e('Category'); ?></th>
-                <?php
-                /*
-                <th style="width: 15%;"><?php _e('Tag'); ?></th>
-                */
-                ?>
                 <th style="width: 15%;">
                 <?php echo $status == $flags['published'] ? __('Published time') 
                     : __('Last update date'); 
@@ -74,20 +69,10 @@
                             echo '&gt;';
                         }
                     }
-                } elseif (isset($draft['category_title'])) {
-                    echo $this->escape($draft['category_title']);
+                } elseif (isset($draft['category']['title'])) {
+                    echo $this->escape($draft['category']['title']);
                 } ?>
                 </td>
-                <?php
-                /*
-                <td><?php
-                    echo !empty($draft['tag'])
-                        ? $this->escape($draft['tag']) 
-                        : '<span class="text-muted">' . __('No tags') . '</span>' 
-                ?>
-                </td>
-                */
-                ?>
                 <td><?php 
                     echo _date($status == $flags['published']
                         ? $draft['time_publish'] 

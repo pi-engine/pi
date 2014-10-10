@@ -60,7 +60,7 @@ class ArticleController extends ActionController
             }
         }
  
-        return $name ?: $action . 'Action';
+        return parent::getMethodFromAction($name ?: $action);
     }
     
     /**
@@ -577,7 +577,7 @@ class ArticleController extends ActionController
             $articles = Entity::getArticlePage($where, $page, $limit);
 
             // Get total
-            $total      = $articleModel->getSearchRowsCount($where);
+            $total      = $articleModel->count($where);
             $pageCount  = ceil($total / $limit);
         }
 

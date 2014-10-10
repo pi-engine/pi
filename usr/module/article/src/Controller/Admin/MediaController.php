@@ -76,31 +76,24 @@ class MediaController extends FrontMedia
             $where['title like ?'] = '%' . $keyword . '%';
             $params['keyword'] = $keyword;
         }
-        
-        $model = $this->getModel('media');
 
-        $page  = $this->params('p', 1);
+        $page  = (int) $this->params('page', 1);
         $page  = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
-        $config = Pi::config('', $module);
-        $limit  = (int) $config['page_limit_all'] ?: 40;
+        $limit  = (int) $this->params('limit', 40);
         
         $resultSet = Media::getList($where, $page, $limit, null, null, $module);
 
         // Total count
-        $count  = $model->count($where);
+        $count  = $this->getModel('media')->count($where);
 
         // Pagination
         $paginator = Paginator::factory($count, array(
             'limit'       => $limit,
             'page'        => $page,
             'url_options' => array(
-                'page_param'    => 'p',
                 'params'     => array_merge(array(
-                    'module'     => $this->getModule(),
-                    'controller' => 'media',
-                    'action'     => 'list',
                     'type'       => $type,
                     'style'      => $style,
                 ), $params),
