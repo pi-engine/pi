@@ -144,7 +144,7 @@
                     $.getJSON("<?php echo _escape($url); ?>", {
                         type    : this.$("[name=type]").val(),
                         keyword : ky,
-                        limi    : 15,
+                        limit   : 15,
                         page    : this.page
                     }).done(function(resp) {
                         if (resp.status == 1) {
@@ -181,7 +181,7 @@
         clickRemoveOne: function (e) {
             relatedCollection.remove($(e.target).parent().attr("data-id"));
         },
-        render: function (search) {
+        render: function () {
             this.$(".a-selected ul").html(_.template($("#temp-related-selected").html(), {
                 exist: relatedCollection.toJSON()
             }));

@@ -20,13 +20,34 @@ use Pi\Application\Model\Model;
 class Related extends Model
 {
     /**
-     * Get default table fields
+     * Get table fields exclude id field.
      * 
      * @return array 
      */
-    public static function getDefaultColumns()
+    public function getColumns($fetch = false)
     {
-        return array('id', 'related');
+        $table    = $this->getTable();
+        $database = Pi::config()->load('service.database.php');
+        $schema   = $database['schema'];
+        $sql = 'select COLUMN_NAME as name from information_schema.columns '
+             . 'where table_name=\'' 
+             . $table . '\' and table_schema=\'' 
+             . $schema . '\'';
+        try {
+            $rowset = Pi::db()->getAdapter()->query($sql, 'prepare')->execute();
+        } catch (\Exception $exception) {
+            return false;
+        }
+        
+        $fields = array();
+        foreach ($rowset as $row) {
+            if ($row['name'] == 'id') {
+                continue;
+            }
+            $fields[] = $row['name'];
+        }
+        
+        return $fields;
     }
 
     /**
@@ -66,7 +87,7 @@ class Related extends Model
         $result = array();
 
         $select = $this->select()
-            ->columns(self::getDefaultColumns())
+            ->columns($this->getColumns())
             ->where(array('article' => $article))
             ->order('order ASC');
         $resultset = $this->selectWith($select)->toArray();

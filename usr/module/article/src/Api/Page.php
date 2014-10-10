@@ -26,6 +26,37 @@ class Page extends AbstractApi
     protected $module = 'article';
     
     /**
+     * Read page data from cache
+     * 
+     * @param array $where
+     * @return array 
+     */
+    public function getList(
+        $where = array(),
+        $columns = null,
+        $plain = true
+    ) {
+        $module = $this->getModule();
+        $rows   = Pi::registry('page', $module)->read($plain, $module);
+        if (!$plain) {
+            return $rows;
+        }
+        
+        foreach ($rows as $id => &$row) {
+            if (0 == $row['depth']) {
+                unset($rows[$id]);
+                break;
+            }
+            $meta = (array) json_decode($row['meta'], true);
+            $row  = array_merge($row, $meta);
+        }
+        
+        $result = Pi::api('api', $module)->filterData($rows, $where, $columns);
+        
+        return $result;
+    }
+    
+    /**
      * Get all conditions
      * 
      * @return array
@@ -445,7 +476,7 @@ class Page extends AbstractApi
                 $params['category']
             );
         }
-        $pages = Pi::api('api', $module)->getPageList();
+        $pages = Pi::api('page', $module)->getList(array('active' => 1));
         
         if ('list' === $params['controller']
             && 'all' === $params['action']

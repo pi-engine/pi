@@ -91,7 +91,7 @@ class TopicController extends ActionController
             
             // Get count
             $modelArticle   = $this->getModel('article');
-            $totalCount     = $modelArticle->getSearchRowsCount($where);
+            $totalCount     = $modelArticle->count($where);
         }
 
         // Get list page url
@@ -177,7 +177,7 @@ class TopicController extends ActionController
 
         // Total count
         $modelTopic = $this->getModel('topic');
-        $totalCount = $modelTopic->getSearchRowsCount($where);
+        $totalCount = $modelTopic->count($where);
 
         // Pagination
         $route     = 'article';
@@ -267,7 +267,7 @@ class TopicController extends ActionController
             'active'            => 1,
         ));
         $modelArticle   = $this->getModel('article');
-        $totalCount     = $modelArticle->getSearchRowsCount($where);
+        $totalCount     = $modelArticle->count($where);
 
         // Pagination
         $paginator = Paginator::factory($totalCount, array(

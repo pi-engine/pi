@@ -11,7 +11,6 @@ namespace Module\Article\Model;
 
 use Pi;
 use Pi\Application\Model\Model;
-use Zend\Db\Sql\Expression;
 
 /**
  * Topic model class
@@ -21,26 +20,39 @@ use Zend\Db\Sql\Expression;
 class Topic extends Model
 {
     /**
-     * Get available fields
+     * Get table fields exclude id field.
      * 
      * @return array 
      */
-    public static function getAvailableFields()
+    public function getColumns($fetch = false, $default = false)
     {
-        return array(
-            'id', 'name', 'slug', 'title',
-            'template', 'description', 'image', 'content'
-        );
-    }
-
-    /**
-     * Get default columns
-     * 
-     * @return array 
-     */
-    public static function getDefaultColumns()
-    {
-        return array('id', 'slug', 'title', 'image', 'template');
+        $table    = $this->getTable();
+        $database = Pi::config()->load('service.database.php');
+        $schema   = $database['schema'];
+        $sql = 'select COLUMN_NAME as name from information_schema.columns '
+             . 'where table_name=\'' 
+             . $table . '\' and table_schema=\'' 
+             . $schema . '\'';
+        try {
+            $rowset = Pi::db()->getAdapter()->query($sql, 'prepare')->execute();
+        } catch (\Exception $exception) {
+            return false;
+        }
+        
+        $fields = array();
+        foreach ($rowset as $row) {
+            if ($row['name'] == 'id') {
+                continue;
+            }
+            if ($default
+                && in_array($row['name'], array('content', 'description'))
+            ) {
+                continue;
+            }
+            $fields[] = $row['name'];
+        }
+        
+        return $fields;
     }
 
     /**
@@ -95,7 +107,7 @@ class Topic extends Model
     public function getList($where = array(), $columns = null, $all = false)
     {
         if (empty($columns)) {
-            $columns = $this->getDefaultColumns();
+            $columns = $this->getColumns(true, true);
         }
         if (!isset($columns['id'])) {
             $columns[] = 'id';
@@ -119,18 +131,19 @@ class Topic extends Model
     }
     
     /**
-     * Get searched row count
+     * Remove un-exist columns
      * 
-     * @param array  $where
-     * @return int 
+     * @param array $data
+     * @return mixed
      */
-    public function getSearchRowsCount($where = array())
+    public function canonizeColumns(&$data)
     {
-        $select = $this->select()
-                       ->where($where)
-                       ->columns(array('count' => new Expression('count(id)')));
-        $count  = (int) $this->selectWith($select)->current()->count;
-        
-        return $count;
+        $data    = (array) $data;
+        $columns = $this->getColumns(true);
+        foreach (array_keys($data) as $key) {
+            if (!in_array($key, $columns)) {
+                unset($data[$key]);
+            }
+        }
     }
 }

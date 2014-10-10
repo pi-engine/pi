@@ -159,5 +159,15 @@ return array(
                 ),
             ),
         ),
+        'active'          => array(
+            'name'        => 'active',
+            'title'       => _a('Active'),
+            'edit'        => array(
+                'element'    => 'checkbox',
+                'attributes' => array(
+                    'value'         => 1,
+                ),
+            ),
+        ),
     ),
 );

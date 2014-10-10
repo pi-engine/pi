@@ -11,9 +11,7 @@ namespace Module\Article\Model;
 
 use Pi;
 use Pi\Application\Model\Model;
-use Zend\Db\Sql\Expression;
 use Zend\Stdlib\ArrayObject;
-use Module\Article\Controller\Admin\SetupController as Setup;
 
 /**
  * Draft model
@@ -62,85 +60,6 @@ class Draft extends Model
     }
 
     /**
-     * Get available fields
-     * 
-     * @param string  $module
-     * @return array
-     */
-    public static function getAvailableFields($module = null)
-    {
-        $result = array(
-            'id', 'article', 'subject', 'subtitle', 'image', 'author', 
-            'uid', 'source', 'content', 'category', 'related', 'time_publish', 
-            'time_update', 'time_submit', 'time_save', 'slug', 'seo_title',
-            'seo_keywords', 'seo_description', 'status',
-        );
-
-        $module = $module ?: Pi::service('module')->current();
-
-        if (Pi::config('enable_summary', $module)) {
-            $result[] = 'summary';
-        }
-
-        if (Pi::config('enable_tag', $module)) {
-            $result[] = 'tag';
-        }
-
-        return $result;
-    }
-    
-    /**
-     * Get the fields needed defines by user
-     * 
-     * @param string  $module  Module name
-     * @return array 
-     */
-    public static function getValidFields($module = null)
-    {
-        $options         = Setup::getFormConfig();
-        $availableFields = self::getAvailableFields($module);
-        $remainFields    = array(
-            'id', 'article', 'uid', 'time_publish', 'time_update', 'time_submit'
-        );
-        $validFields     = array_merge(
-            $remainFields,
-            array_intersect($availableFields, $options['elements'])
-        );
-        
-        return $validFields;
-    }
-
-    /**
-     * Get default column
-     * 
-     * @return array
-     */
-    public static function getDefaultColumns()
-    {
-        return array(
-            'id', 'subject', 'subtitle', 'category', 'image', 'uid', 
-            'author', 'slug', 'source', 'time_save', 'time_update', 'tag',
-        );
-    }
-
-    /**
-     * Create a draft
-     * 
-     * @return bool|int
-     */
-    public function createOne()
-    {
-        $data = array(
-            'user'   => Pi::user()->getId(),
-            'status' => self::FIELD_STATUS_DRAFT,
-        );
-        $row = $this->createRow($data);
-        $row->save();
-
-        return $row->id ?: false;
-    }
-
-    /**
      * Get draft articles by condition
      * 
      * @param array   $where
@@ -160,67 +79,39 @@ class Draft extends Model
         $result = $rows = array();
 
         $fields        = $this->getValidColumns();
-        $neededColumns = empty($columns) ? self::getDefaultColumns() : $columns;
+        $neededColumns = empty($columns) ? $fields : $columns;
         $searchColumns = array_intersect($neededColumns, $fields);
 
         if (!in_array('id', $searchColumns)) {
             $searchColumns[] = 'id';
         }
         $searchColumns[] = 'detail';
-
-        $order = (null === $order) ? 'time_save DESC' : $order;
-
-        $select = $this->select()
-            ->columns($searchColumns);
-
+        
+        $select = $this->select()->columns($searchColumns);
         if ($where) {
             $select->where($where);
         }
-
         if ($limit) {
             $select->limit(intval($limit));
         }
-
         if ($offset) {
             $select->offset(intval($offset));
         }
-
+        $order = (null === $order) ? 'time_save DESC' : $order;
         if ($order) {
             $select->order($order);
         }
-
         $rows = $this->selectWith($select)->toArray();
 
         foreach ($rows as $row) {
             $details = json_decode($row['detail'], true);
-            $result[$row['id']] = array_merge($row, $details);
-            foreach (array_keys($result[$row['id']]) as $key) {
-                if (!in_array($key, $neededColumns)) {
-                    unset($result[$row['id']][$key]);
-                }
+            unset($row['detail']);
+            if (!empty($columns)) {
+                $neededColumns = array_flip($neededColumns);
+                $details       = array_intersect_key($details, $neededColumns);
             }
+            $result[$row['id']] = array_merge($row, $details);
         }
-
-        return $result;
-    }
-
-    /**
-     * Get searched row count
-     * 
-     * @param array  $where
-     * @return int
-     */
-    public function getSearchRowsCount($where = array())
-    {
-        $select = $this->select()
-            ->columns(array('total' => new Expression('count(id)')));
-
-        if ($where) {
-            $select->where($where);
-        }
-
-        $resultset = $this->selectWith($select);
-        $result    = intval($resultset->current()->total);
 
         return $result;
     }

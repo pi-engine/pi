@@ -27,10 +27,12 @@ class Author extends CustomCommonHandler
         $result = array();
         
         if ($value) {
-            $author = Pi::model('author', $this->module)->find($value);
+            $author = Pi::api('api', $this->module)->getAuthorList(array(
+                'id' => $value,
+            ));
 
             if ($author) {
-                $result = $author->toArray();
+                $result = array_shift($author);
                 if (empty($result['photo'])) {
                     $result['photo'] = Pi::service('asset')->getModuleAsset(
                         Pi::config('default_author_photo', $this->module), 

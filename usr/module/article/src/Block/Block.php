@@ -214,7 +214,7 @@ class Block
         $params   = Pi::service('url')->getRouteMatch()->getParams();
         
         $config   = Pi::config('', $module);
-        $image    = $config['default_feature_thumb'];
+        $image    = $config['default_feature_image'];d($image);
         $image    = Pi::service('asset')->getModuleAsset($image, $module);
         
         $postCategory = isset($params['category']) ? $params['category'] : 0;
@@ -300,7 +300,7 @@ class Block
         }
         
         $config   = Pi::config('', $module);
-        $image    = $config['default_feature_thumb'];
+        $image    = $config['default_feature_image'];
         $image    = Pi::service('asset')->getModuleAsset($image, $module);
         
         $columns  = array('subject', 'summary', 'time_publish', 'image');
@@ -421,7 +421,7 @@ class Block
         $topics = Topic::getTopics(array(), 1, $limit, null, $order, $module);
         $config = Pi::config('', $module);
         $image  = Pi::service('asset')
-            ->getModuleAsset($config['default_topic_thumb'], $module);
+            ->getModuleAsset($config['default_topic_image'], $module);
         
         foreach ($topics as &$topic) {
             $topic['title'] = mb_substr(
@@ -464,7 +464,7 @@ class Block
         $limit  = isset($options['list-count']) 
             ? (int) $options['list-count'] : 10;
         $config = Pi::config('', $module);
-        $image  = $config['default_feature'];
+        $image  = $config['default_feature_image'];
         $image  = Pi::service('asset')->getModuleAsset($image, $module);
         $day    = $options['day-range'] ? intval($options['day-range']) : 7;
 
@@ -545,7 +545,7 @@ class Block
         );
         
         $config   = Pi::config('', $module);
-        $image    = $config['default_feature_thumb'];
+        $image    = $config['default_feature_image'];
         $image    = Pi::service('asset')->getModuleAsset($image, $module);
         foreach ($articles as &$article) {
             $article['subject'] = mb_substr(
@@ -569,8 +569,10 @@ class Block
         $urlRows    = explode('\n', $options['image-link']);
         $imageLinks = array();
         foreach ($urlRows as $row) {
-            list($id, $url) = explode(':', trim($row), 2);
-            $imageLinks[trim($id)] = trim($url);
+            if (false !== strpos($row, ':')) {
+                list($id, $url) = explode(':', trim($row), 2);
+                $imageLinks[trim($id)] = trim($url);
+            }
         }
         
         // Fetching image ID
@@ -609,9 +611,9 @@ class Block
         return array(
             'articles'  => $articles,
             'target'    => $options['target'],
-            'style'     => $options['block-style'],
             'elements'  => (array) $options['element'],
             'height'    => $options['image-height'],
+            'width'     => $options['image-width'],
             'images'    => $images,
             'config'    => Pi::config('', $module),
             'rows'      => $options['description_rows'],

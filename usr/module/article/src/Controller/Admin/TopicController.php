@@ -15,7 +15,6 @@ use Pi\Paginator\Paginator;
 use Module\Article\Form\TopicEditForm;
 use Module\Article\Form\TopicEditFilter;
 use Module\Article\Form\SimpleSearchForm;
-use Module\Article\Model\Topic;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
@@ -51,13 +50,12 @@ class TopicController extends ActionController
     {
         $model = $this->getModel('topic');
 
-        $topic      = $this->params('topic', '');
-        $page       = $this->params('p', 1);
-        $page       = $page > 0 ? $page : 1;
+        $topic = $this->params('topic', '');
+        $page  = $this->params('p', 1);
+        $page  = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
-        $config = Pi::config('', $module);
-        $limit  = (int) $config['page_limit_management'] ?: 20;
+        $limit  = (int) $this->params('limit', 20);
         $offset = ($page - 1) * $limit;
         $where  = array();
         
@@ -105,15 +103,9 @@ class TopicController extends ActionController
             $topics[$row['id']] = $row['title'];
         }
         
-        // Get topic info
-        $select     = $modelRelation->select()
-            ->where($where)
-            ->columns(array('count' => new Expression('count(id)')));
-        $totalCount = (int) $modelRelation->selectWith($select)
-            ->current()->count;
-
         // Pagination
-        $paginator = Paginator::factory($totalCount, array(
+        $totalCount = $modelRelation->count($where);
+        $paginator  = Paginator::factory($totalCount, array(
             'limit'       => $limit,
             'page'        => $page,
             'url_options' => array(
@@ -134,7 +126,6 @@ class TopicController extends ActionController
             'topics'        => $topics,
             'topic'         => $topic,
             'paginator'     => $paginator,
-            'config'        => $config,
             'action'        => 'list-article',
             'count'         => $totalCount,
             'pulls'         => $pulls,
@@ -376,7 +367,6 @@ class TopicController extends ActionController
             $form->setData($post);
             $this->view()->assign('url', $this->getScreenshot($post['template']));
             $form->setInputFilter(new TopicEditFilter);
-            $form->setValidationGroup(Topic::getAvailableFields());
             if (!$form->isValid()) {
                 return $this->renderForm(
                     $form,
@@ -427,7 +417,6 @@ class TopicController extends ActionController
                 'id'   => $post['id'],
             );
             $form->setInputFilter(new TopicEditFilter($options));
-            $form->setValidationGroup(Topic::getAvailableFields());
             if (!$form->isValid()) {
                 return $this->renderForm(
                     $form,
@@ -728,6 +717,7 @@ class TopicController extends ActionController
             unset($data['slug']);
         }
 
+        $model->canonizeColumns($data);
         if (empty($id)) {
             $row = $model->createRow($data);
             $row->save();

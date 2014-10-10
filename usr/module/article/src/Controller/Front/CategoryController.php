@@ -154,7 +154,7 @@ class CategoryController extends ActionController
             'status'            => Article::FIELD_STATUS_PUBLISHED,
             'active'            => 1,
         ));
-        $totalCount = $modelArticle->getSearchRowsCount($where);
+        $totalCount = $modelArticle->count($where);
 
         // Pagination
         $paginator = Paginator::factory($totalCount, array(

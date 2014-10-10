@@ -12,7 +12,6 @@ namespace Module\Article;
 use Pi;
 use Module\Article\Model\Article;
 use Module\Article\Model\Draft as DraftModel;
-use Module\Article\Media;
 
 /**
  * Common draft API
@@ -42,16 +41,12 @@ class Draft
         $order = null, 
         $module = null
     ) {
-        $offset     = ($limit && $page) ? $limit * ($page - 1) : null;
+        $offset  = ($limit && $page) ? $limit * ($page - 1) : null;
 
-        $module     = $module ?: Pi::service('module')->current();
-        $draftIds   = $userIds = $authorIds = $categoryIds = array();
-        //$categories = $authors = $users = $tags = $urls = array();
+        $module  = $module ?: Pi::service('module')->current();
+        $users   = $userIds = array();
 
-        $modelDraft     = Pi::model('draft', $module);
-        $modelAuthor    = Pi::model('author', $module);
-
-        $resultset = $modelDraft->getSearchRows(
+        $resultSet = (array) Pi::model('draft', $module)->getSearchRows(
             $where,
             $limit,
             $offset,
@@ -59,70 +54,26 @@ class Draft
             $order
         );
 
-        if ($resultset) {
-            foreach ($resultset as $row) {
-                $draftIds[] = $row['id'];
-
-                if (!empty($row['author'])) {
-                    $authorIds[] = $row['author'];
-                }
-
-                if (!empty($row['uid'])) {
-                    $userIds[] = $row['uid'];
-                }
+        foreach ($resultSet as $row) {
+            if (!empty($row['uid'])) {
+                $userIds[$row['uid']] = $row['uid'];
             }
-            $authorIds = array_unique($authorIds);
-            $userIds   = array_unique($userIds);
+        }
 
-            $categories = Pi::api('category', $module)->getList();
+        if (!empty($userIds)) {
+            $users = Pi::user()->get($userIds, array('id', 'name'));
+        }
 
-            if (!empty($authorIds)) {
-                $resultsetAuthor = $modelAuthor->find($authorIds);
-                foreach ($resultsetAuthor as $row) {
-                    $authors[$row->id] = array(
-                        'name' => $row->name,
-                    );
-                }
-                unset($resultsetAuthor);
-            }
-
-            if (!empty($userIds)) {
-                $resultsetUser = Pi::user()
-                    ->get($userIds, array('id', 'name'));
-                foreach ($resultsetUser as $row) {
-                    $users[$row['id']] = array(
-                        'name' => $row['name'],
-                    );
-                }
-                unset($resultsetUser);
-            }
-
-            foreach ($resultset as &$row) {
-                if (empty($columns) || isset($columns['category'])) {
-                    $row['category_title'] = $categories[$row['category']]['title'];
-                }
-
-                if (empty($columns) || isset($columns['uid'])) {
-                    if (!empty($users[$row['uid']])) {
-                        $row['user_name'] = $users[$row['uid']]['name'];
-                    }
-                }
-
-                if (empty($columns) || isset($columns['author'])) {
-                    if (!empty($authors[$row['author']])) {
-                        $row['author_name'] = $authors[$row['author']]['name'];
-                    }
-                }
-
-                if (empty($columns) || isset($columns['image'])) {
-                    if ($row['image']) {
-                        $row['thumb'] = Media::getThumbFromOriginal($row['image']);
-                    }
+        foreach ($resultSet as &$row) {
+            $row = Pi::api('field', $module)->resolver($row);
+            if (empty($columns) || isset($columns['uid'])) {
+                if (!empty($users[$row['uid']])) {
+                    $row['user'] = $users[$row['uid']];
                 }
             }
         }
 
-        return $resultset;
+        return $resultSet;
     }
 
     /**

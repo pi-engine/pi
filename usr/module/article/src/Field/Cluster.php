@@ -66,10 +66,9 @@ EOD;
             return $result;
         }
         
-        $clusters = Pi::api('cluster', $this->module)->getList();
-        foreach ((array) $value as $id) {
-            $result[$id] = $clusters[$id];
-        }
+        $result = Pi::api('cluster', $this->module)->getList(array(
+            'id' => (array) $value,
+        ));
         
         return $result;
     }

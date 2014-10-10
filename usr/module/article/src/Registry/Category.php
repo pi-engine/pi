@@ -66,11 +66,11 @@ class Category extends AbstractRegistry
     /**
      * Create a cache
      */
-    public function create($isTree = false)
+    public function create($plain = true)
     {
         $module  = Pi::service('module')->current();
         $this->clear($module);
-        $this->read($isTree);
+        $this->read($plain, $module);
     }
     
     /**
