@@ -18,6 +18,8 @@ CREATE TABLE `{article}` (
   `time_publish`    int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `time_update`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
   `user_update`     int(10) UNSIGNED                NOT NULL DEFAULT 0,
+  `seo_keywords`    varchar(255)                    NOT NULL DEFAULT '',
+  `seo_description` varchar(255)                    NOT NULL DEFAULT '',
 
   PRIMARY KEY                     (`id`),
   KEY `uid`                       (`uid`),

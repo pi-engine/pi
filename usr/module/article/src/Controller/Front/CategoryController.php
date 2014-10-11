@@ -28,6 +28,28 @@ use Module\Article\Entity;
 class CategoryController extends ActionController
 {
     /**
+     * Parse action name
+     * 
+     * @param string  $action
+     * @return string
+     */
+    public static function getMethodFromAction($action)
+    {
+        $module = Pi::service('module')->current();
+        $pages  = Pi::registry('page', $module)->read();
+        
+        $name = '';
+        foreach ($pages as $page) {
+            if ($action === $page['name']) {
+                $name = $page['action'];
+                break;
+            }
+        }
+ 
+        return parent::getMethodFromAction($name ?: $action);
+    }
+    
+    /**
      * List articles of a category
      */
     public function listAction()
@@ -168,6 +190,8 @@ class CategoryController extends ActionController
                 ),
             ),
         ));
+        
+        $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
 
         $this->view()->assign(array(
             'title'         => __('Article List in Category'),
@@ -176,7 +200,6 @@ class CategoryController extends ActionController
             'categories'    => $categories,
             'categoryInfo'  => $categoryInfo,
             'category'      => $category,
-            'p'             => $page,
             'config'        => $config,
             'counts'        => $counts,
             'categoryId'    => array_shift($categoryIds),
@@ -186,12 +209,7 @@ class CategoryController extends ActionController
             'authors'       => $authors,
             'length'        => $config['list_summary_length'],
             'navs'          => $this->config('enable_list_nav') ? $navs : '',
-            //'seo'           => $this->setupSeo($categoryId),
-        ));
-
-        $this->view()->viewModel()->getRoot()->setVariables(array(
-            'breadCrumbs' => true,
-            'Tag'         => $categoryInfo['title'],
+            'seo'           => $seo,
         ));
         
         $this->view()->setTemplate('category-list');

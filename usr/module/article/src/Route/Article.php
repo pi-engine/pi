@@ -148,7 +148,7 @@ class Article extends Standard
                     $urlParams[0],
                     2
                 );
-                if (preg_match(
+                if (isset($urlParams[1]) && preg_match(
                     '/^list' . $this->keyValueDelimiter . '/',
                     $urlParams[1]
                 )) {

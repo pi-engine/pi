@@ -292,6 +292,21 @@ EOD;
                 return $result;
             }
         }
+        
+        // Add SEO related fields into article table
+        if (version_compare($version, '1.8.3', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            $table  = Pi::db()->prefix('article', $module);
+            $addSql =<<<EOD
+ALTER TABLE {$table} ADD COLUMN `seo_keywords` varchar(255) NOT NULL DEFAULT '';
+ALTER TABLE {$table} ADD COLUMN `seo_description` varchar(255) NOT NULL DEFAULT '';
+EOD;
+            $result = $this->querySchema($addSql, $module);
+            if (false === $result) {
+                return $result;
+            }
+        }
 
         return $result;
     }

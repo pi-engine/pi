@@ -2,6 +2,16 @@
     $this->css(array(
         $this->assetModule('script/block.css'),
     ));
+    
+    if (isset($seo['title'])) {
+        $this->headTitle($seo['title'], 'SET');
+    }
+    if (isset($seo['keywords'])) {
+        $this->headMeta()->setName('keywords', $seo['keywords']);
+    }
+    if (isset($seo['description'])) {
+        $this->headMeta()->setName('description', $seo['description']);
+    }
 ?>
 
 <div class="row">
@@ -53,7 +63,7 @@
                                 <?php
                                     if (in_array('author', $elements)) {
                                 ?>
-                                    <span style="margin-right: 10px"><?php echo isset($authors[$row['author']]) ? $authors[$row['author']]['name'] : ''; ?></span>
+                                    <span style="margin-right: 10px"><?php echo isset($row['author']['name']) ? $row['author']['name'] : ''; ?></span>
                                 <?php
                                     }
                                     if (in_array('category', $elements)) {

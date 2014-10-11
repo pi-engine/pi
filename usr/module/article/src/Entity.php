@@ -37,6 +37,7 @@ class Entity
         $range,
         $where = array(),
         $columns = null,
+        $offset = null,
         $limit = null,
         $module = null
     ) {
@@ -69,7 +70,7 @@ class Entity
         
         // Start time condition
         $startTime = self::getStartTime($range);
-        $newWhere['s.time_updated > ?'] = $startTime;
+        $newWhere['s.time_updated >= ?'] = $startTime;
         
         $select = $modelArticle->select()
             ->columns($columns)
@@ -87,6 +88,9 @@ class Entity
             ->group(sprintf('%s.id', $prefix))
             ->order('s.visits DESC')
             ->limit($limit);
+        if ($offset) {
+            $select->offset($offset);
+        }
         $rowset = $modelArticle->selectWith($select)->toArray();
         
         $result = self::canonize($rowset, $module);

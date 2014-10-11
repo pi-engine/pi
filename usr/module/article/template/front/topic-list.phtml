@@ -2,13 +2,23 @@
     $this->css(array(
         $this->assetModule('script/block.css'),
     ));
+    
+    if (isset($seo['title'])) {
+        $this->headTitle($seo['title'], 'SET');
+    }
+    if (isset($seo['keywords'])) {
+        $this->headMeta()->setName('keywords', $seo['keywords']);
+    }
+    if (isset($seo['description'])) {
+        $this->headMeta()->setName('description', $seo['description']);
+    }
 ?>
 
 <div class="">
     <div class="clearfix">
-        <h3 class="pi-block-title"><?php echo $this->escape($title); ?></h3>
+        <h3 class="pi-block-title"><?php echo _escape($title); ?></h3>
         <div class="text-muted">
-            <span style="padding-right: 10px"><?php echo $this->escape($count) . __(' articles'); ?></span>
+            <span style="padding-right: 10px"><?php echo _escape($count) . __(' articles'); ?></span>
             <span style="padding-right: 10px"><?php echo sprintf(__('Created at ') . _date($topic['time_create'])); ?></span>
             <span style="padding-right: 10px"><?php echo $lastAdded
                 ? sprintf(__('Last added at ') . _date($lastAdded))
@@ -25,9 +35,9 @@
                         <span class="pull-right article-size12">
                             <?php echo _date($row['time_publish']); ?>
                         </span>
-                        <a class="article-list-title" target="_blank" href="<?php echo $this->escape($row['url']); ?>"
-                           title="<?php echo $this->escape($row['subject']); ?>">
-                               <?php echo $this->escape($row['subject']); ?>
+                        <a class="article-list-title" target="_blank" href="<?php echo _escape($row['url']); ?>"
+                           title="<?php echo _escape($row['subject']); ?>">
+                               <?php echo _escape($row['subject']); ?>
                         </a>
                     </div>
                 </li>

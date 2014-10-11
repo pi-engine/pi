@@ -16,7 +16,6 @@ use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
 use Module\Article\Entity;
 use Module\Article\Topic as TopicService;
-use Module\Article\Media;
 
 /**
  * Topic controller
@@ -31,6 +30,28 @@ use Module\Article\Media;
  */
 class TopicController extends ActionController
 {
+    /**
+     * Parse action name
+     * 
+     * @param string  $action
+     * @return string
+     */
+    public static function getMethodFromAction($action)
+    {
+        $module = Pi::service('module')->current();
+        $pages  = Pi::registry('page', $module)->read();
+        
+        $name = '';
+        foreach ($pages as $page) {
+            if ($action === $page['name']) {
+                $name = $page['action'];
+                break;
+            }
+        }
+ 
+        return parent::getMethodFromAction($name ?: $action);
+    }
+    
     /**
      * Homepage of a topic
      * 
@@ -104,6 +125,8 @@ class TopicController extends ActionController
             )
         );
         
+        $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
+        
         $this->view()->assign(array(
             'content'   => $row->content,
             'title'     => $row->title,
@@ -113,6 +136,7 @@ class TopicController extends ActionController
             'count'     => isset($totalCount) ? $totalCount : 0,
             'pullTime'  => $pullTime,
             'url'       => $url,
+            'seo'       => $seo,
         ));
         
         $template = ('default' == $row->template)
@@ -140,7 +164,7 @@ class TopicController extends ActionController
         $resultsetTopic = TopicService::getTopics($where, $page, $limit);
         foreach ($resultsetTopic as &$topic) {
             $topic['image'] = $topic['image']
-                ? Media::getThumbFromOriginal($topic['image'])
+                ? Pi::url($topic['image'])
                 : Pi::service('asset')
                     ->getModuleAsset($config['default_topic_image']);
         }
@@ -180,7 +204,7 @@ class TopicController extends ActionController
         $totalCount = $modelTopic->count($where);
 
         // Pagination
-        $route     = 'article';
+        $route     = Pi::api('api', $module)->getRouteName();
         $paginator = Paginator::factory($totalCount, array(
             'limit'       => $limit,
             'page'        => $page,
@@ -192,6 +216,8 @@ class TopicController extends ActionController
                 ),
             ),
         ));
+        
+        $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
 
         $this->view()->assign(array(
             'title'         => __('All Topics'),
@@ -201,6 +227,7 @@ class TopicController extends ActionController
             'config'        => $config,
             'route'         => $route,
             'lastAdded'     => $lastAdded,
+            'seo'           => $seo,
         ));
     }
     
@@ -283,12 +310,15 @@ class TopicController extends ActionController
             ),
         ));
 
+        $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
+        
         $this->view()->assign(array(
             'title'         => empty($topic) ? __('All') : $title,
             'articles'      => $resultsetArticle,
             'paginator'     => $paginator,
             'lastAdded'     => $lastAdded,
             'count'         => $totalCount,
+            'seo'           => $seo,
         ));
     }
 }

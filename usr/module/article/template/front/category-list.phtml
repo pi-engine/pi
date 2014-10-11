@@ -3,6 +3,16 @@
         $this->assetModule('script/block.css'),
     ));
     $this->jQuery();
+    
+    if (isset($seo['title'])) {
+        $this->headTitle($seo['title'], 'SET');
+    }
+    if (isset($seo['keywords'])) {
+        $this->headMeta()->setName('keywords', $seo['keywords']);
+    }
+    if (isset($seo['description'])) {
+        $this->headMeta()->setName('description', $seo['description']);
+    }
 ?>
 
 <div class="row">

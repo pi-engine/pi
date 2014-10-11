@@ -1,6 +1,18 @@
+<?php
+    if (isset($seo['title'])) {
+        $this->headTitle($seo['title'], 'SET');
+    }
+    if (isset($seo['keywords'])) {
+        $this->headMeta()->setName('keywords', $seo['keywords']);
+    }
+    if (isset($seo['description'])) {
+        $this->headMeta()->setName('description', $seo['description']);
+    }
+?>
+
 <div class="pi-article-module">
     <div class="clearfix pi-block-header">
-        <h3><?php echo $this->escape($title); ?></h3>
+        <h3><?php echo _escape($title); ?></h3>
     </div>
     <hr>
     <div class="topic-list-content">
@@ -8,28 +20,28 @@
             $eachCount = isset($count[$row['id']]) ? $count[$row['id']] : 0;
         ?>
         <div class="media">
-            <img class="pull-left" src="<?php echo Pi::url($row['image']); ?>">
+            <img class="pull-left" src="<?php echo Pi::url($row['image']); ?>" style="width: 80px; height: 60px">
             <div class="media-body">
                 <div class="col-md-10">
-                    <a target="_blank" href="<?php echo $this->escape($row['url']); ?>"
-                        title="<?php echo $this->escape($row['title']); ?>" style="font-size: 14px; font-weight: bold">
-                            <?php echo $this->escape($row['title']); ?>
+                    <a target="_blank" href="<?php echo _escape($row['url']); ?>"
+                        title="<?php echo _escape($row['title']); ?>" style="font-size: 14px; font-weight: bold">
+                            <?php echo _escape($row['title']); ?>
                     </a>
                     <div class="text-muted" style="font-size: 12px">
                         <span><?php echo sprintf(__('Created at %s'), _date($row['time_create'])); ?></span>
                         <span style="margin-left: 10px">
                             <?php echo isset($lastAdded[$row['id']])
-                                ? sprintf(__('Last added at %s', _date($lastAdded[$row['id']])))
+                                ? sprintf(__('Last added at %s'), _date($lastAdded[$row['id']]))
                                 : ''; ?>
                         </span>
                     </div>
                     <div class="text-muted" style="margin-top: 5px; font-size: 12px">
-                        <p><?php echo $this->escape($row['description']); ?></p>
+                        <p><?php echo _escape($row['description']); ?></p>
                     </div>
                 </div>
                 <span class="pull-right col-md-2" style="text-align: right">
                     <a href="<?php echo $this->url($route, array('topic' => $row['slug'] ?: $row['id'], 'list' => 'all')); ?>">
-                        <?php echo $this->escape($eachCount) . __(' articles'); ?>
+                        <?php echo _escape($eachCount) . __(' articles'); ?>
                     </a>
                 </span>
             </div>
