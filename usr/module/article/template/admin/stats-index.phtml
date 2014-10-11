@@ -16,16 +16,16 @@
                 </tr>
                 <tr>
                     <td><?php echo _a('All categories'); ?></td>
-                    <td><?php echo $this->escape($total7); ?></td>
-                    <td><?php echo $this->escape($total30); ?></td>
-                    <td><?php echo $this->escape($totalEver); ?></td>
+                    <td><?php echo _escape($total7); ?></td>
+                    <td><?php echo _escape($total30); ?></td>
+                    <td><?php echo _escape($totalEver); ?></td>
                 </tr>
                 <?php foreach ($total7ByCategory as $key => $row) { ?>
                 <tr>
-                    <td><?php echo $this->escape($row['title']); ?></td>
-                    <td><?php echo $this->escape($row['total']); ?></td>
-                    <td><?php echo $this->escape($total30ByCategory[$key]['total']); ?></td>
-                    <td><?php echo $this->escape($totalEverByCategory[$key]['total']); ?></td>
+                    <td><?php echo _escape($row['title']); ?></td>
+                    <td><?php echo _escape($row['total']); ?></td>
+                    <td><?php echo _escape($total30ByCategory[$key]['total']); ?></td>
+                    <td><?php echo _escape($totalEverByCategory[$key]['total']); ?></td>
                 </tr>
                 <?php } ?>    
             </tbody>
@@ -57,11 +57,11 @@
                     <tr>
                         <td><?php echo ++$index; ?></td>
                         <td>
-                            <a href="<?php echo $this->escape($row['url']); ?>" target="_blank">
-                                <?php echo $this->escape($row['subject']); ?>
+                            <a href="<?php echo _escape($row['url']); ?>" target="_blank">
+                                <?php echo _escape($row['subject']); ?>
                             </a>
                         </td>
-                        <td><?php echo $this->escape($row['total']); ?></td>
+                        <td><?php echo _escape($row['total']); ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -79,11 +79,11 @@
                 <tr>
                     <td><?php echo ++$index; ?></td>
                     <td>
-                        <a href="<?php echo $this->escape($row['url']); ?>" target="_blank">
-                            <?php echo $this->escape($row['subject']); ?>
+                        <a href="<?php echo _escape($row['url']); ?>" target="_blank">
+                            <?php echo _escape($row['subject']); ?>
                         </a>
                     </td>
-                    <td><?php echo $this->escape($row['total']); ?></td>
+                    <td><?php echo _escape($row['total']); ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -100,11 +100,11 @@
                 <tr>
                     <td><?php echo ++$index; ?></td>
                     <td>
-                        <a href="<?php echo $this->escape($row['url']); ?>" target="_blank">
-                            <?php echo $this->escape($row['subject']); ?>
+                        <a href="<?php echo _escape($row['url']); ?>" target="_blank">
+                            <?php echo _escape($row['subject']); ?>
                         </a>
                     </td>
-                    <td><?php echo $this->escape($row['visits']); ?></td>
+                    <td><?php echo _escape($row['total']); ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -136,8 +136,8 @@
                 ?>
                 <tr>
                     <td><?php echo ++$index; ?></td>
-                    <td><?php echo $this->escape($row['name']); ?></td>
-                    <td><?php echo $this->escape($row['total']); ?></td>
+                    <td><?php echo _escape($row['name']); ?></td>
+                    <td><?php echo _escape($row['total']); ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -153,8 +153,8 @@
                 ?>
                 <tr>
                     <td><?php echo ++$index; ?></td>
-                    <td><?php echo $this->escape($row['name']); ?></td>
-                    <td><?php echo $this->escape($row['total']); ?></td>
+                    <td><?php echo _escape($row['name']); ?></td>
+                    <td><?php echo _escape($row['total']); ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -170,8 +170,8 @@
                 ?>
                 <tr>
                     <td><?php echo ++$index; ?></td>
-                    <td><?php echo $this->escape($row['name']); ?></td>
-                    <td><?php echo $this->escape($row['total']); ?></td>
+                    <td><?php echo _escape($row['name']); ?></td>
+                    <td><?php echo _escape($row['total']); ?></td>
                 </tr>
                 <?php } ?>
             </table>
@@ -191,8 +191,8 @@
                     ?>
                     <tr>
                         <td><?php echo $i++ ?></td>
-                        <td><?php echo $this->escape($row['term']); ?></td>
-                        <td><?php echo $this->escape($row['count']); ?></td>
+                        <td><?php echo _escape($row['term']); ?></td>
+                        <td><?php echo _escape($row['count']); ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

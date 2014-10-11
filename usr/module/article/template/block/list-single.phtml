@@ -1,4 +1,7 @@
 <?php
+$width  = isset($block['width']) ? $block['width'] : 80;
+$height = isset($block['height']) ? $block['height'] : 60;
+
 //Only show title 
 if (empty($elements)) {
     if (isset($disorder) && $disorder == 1) {
@@ -25,10 +28,12 @@ if (empty($elements)) {
     if (in_array('feature', $elements) && $item['image']) {
         echo sprintf('
             <a href="%s" class="pull-left">
-                <img src="%s" class="img-responsive">
+                <img src="%s" class="img-responsive" style="width: %spx; height: %spx">
             </a>',
             $item['url'],
-            $item['image']
+            $item['image'],
+            $width,
+            $height
         );
     } 
     ?>

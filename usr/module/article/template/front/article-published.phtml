@@ -102,7 +102,7 @@
                 </td>
                 <td><?php echo _escape($article['category']['title']); ?></td>
                 <td><?php echo !empty($article['user']['name']) ? _escape($article['user']['name']) : '&nbsp;'; ?></td>
-                <td><?php echo $article['stats']['visits'] ? _escape($article['stats']['visits']) : 0; ?></td>
+                <td><?php echo isset($stats[$article['id']]) ? _escape($stats[$article['id']]) : 0; ?></td>
                 <td><?php echo _date($article['time_publish']); ?></td>
             </tr>
             <?php } ?>

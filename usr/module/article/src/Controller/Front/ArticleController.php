@@ -314,7 +314,6 @@ class ArticleController extends ActionController
         }
 
         $module         = $this->getModule();
-        $modelArticle   = $this->getModel('article');
         $categoryModel  = $this->getModel('category');
 
         if (!empty($category) and !in_array($category, $where['category'])) {
@@ -344,6 +343,10 @@ class ArticleController extends ActionController
 
         // Retrieve data
         $data = Entity::getArticlePage($where, $page, $limit, null, $order);
+        
+        // Get article operation stats data
+        $ids   = array_keys($data);
+        $stats = Stats::getTotalVisit($ids, 'A');
 
         // Total count
         $totalCount = Entity::count($where);
@@ -398,6 +401,7 @@ class ArticleController extends ActionController
             'from'       => $from,
             'rules'      => $rules,
             'cluster'    => $cluster,
+            'stats'      => $stats,
         ));
         
         if ('my' == $from) {
@@ -633,15 +637,31 @@ class ArticleController extends ActionController
     }
     
     /**
-     * Count view number by AJAX
+     * AJAX action, count browse number.
+     * 
+     * @param `id` Article ID
+     * @return JSON
      */
-    public function countAction()
+    public function statsAction()
     {
         Pi::service('log')->mute();
         
         $id = $this->params('id', 0);
         if (!empty($id)) {
-            Stats::addVisit($id, $this->getModule());
+            // Write visitor info into log file
+            $args = array(
+                'article'  => $id,
+                'time'     => time(),
+                'ip'       => Pi::user()->getIp(),
+                'uid'      => Pi::user()->getId() ?: 0,
+            );
+            Pi::service('audit')->attach('csv', array(
+                'file' => Pi::path('log') . '/article-browse.csv',
+            ));
+            Pi::service('audit')->log('csv', $args);
+            
+            // Increase visit number
+            $this->getModel('stats')->increase($id);
         }
         
         echo json_encode(array(

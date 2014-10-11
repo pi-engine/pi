@@ -62,31 +62,31 @@ INSERT INTO `{prefix}{module}_author` (`id`, `name`, `photo`, `description`) VAL
 -- Dumping data for table `{prefix}{module}_category`
 --
 
-INSERT INTO `{prefix}{module}_category` (`id`, `left`, `right`, `depth`, `name`, `slug`, `title`, `description`, `image`) VALUES
-(1, 1, 48, 0, 'root', 'root', 'Root', 'Module root category', ''),
-(2, 2, 9, 1, 'news', 'news', 'News', 'World wise news', ''),
-(3, 3, 4, 2, 'africa', 'africa', 'Africa', '', 'upload/article/category/3.jpg'),
-(4, 5, 6, 2, 'asia', NULL, 'Asia', '', ''),
-(5, 7, 8, 2, 'europe', 'europe', 'Europe', '', ''),
-(6, 10, 17, 1, 'sport', 'sport', 'Sport', '', ''),
-(7, 11, 12, 2, 'nba', 'nba', 'NBA', 'National Basketball Association.', 'upload/article/category/7.gif'),
-(8, 13, 14, 2, 'football', 'football', 'Football', '', ''),
-(9, 18, 21, 1, 'entertainment', NULL, 'Entertainment', '', ''),
-(10, 19, 20, 2, 'comedy', 'comedy', 'Comedy', '', ''),
-(11, 22, 27, 1, 'science', 'science', 'Science', '', ''),
-(12, 23, 24, 2, 'humans', 'humans', 'Humans', '', ''),
-(13, 25, 26, 2, 'space', 'space', 'Space', '', ''),
-(14, 28, 33, 1, 'business', 'business', 'Business', '', ''),
-(15, 34, 41, 1, 'music', 'music', 'Music', '', ''),
-(16, 42, 45, 1, 'nature', NULL, 'Nature', '', 'upload/article/category/16.jpg'),
-(17, 46, 47, 1, 'weather', 'weather', 'Weather', '', ''),
-(18, 29, 30, 2, 'economy', 'economy', 'Economy', '', ''),
-(19, 31, 32, 2, 'company', 'company', 'Company', '', ''),
-(20, 35, 36, 2, 'genres', 'genres', 'Genres', '', ''),
-(21, 37, 38, 2, 'artists', 'artists', 'Artists', '', 'upload/article/category/21.jpg'),
-(22, 39, 40, 2, 'classical', 'classical', 'Classical', '', ''),
-(23, 43, 44, 2, 'animals', 'animals', 'Animals', '', 'upload/article/category/23.jpg'),
-(24, 15, 16, 2, 'snooker', NULL, 'Snooker', '', '');
+INSERT INTO `{prefix}{module}_category` (`id`, `left`, `right`, `depth`, `name`, `slug`, `title`, `description`, `image`, `active`) VALUES
+(1, 1, 48, 0, 'root', 'root', 'Root', 'Module root category', '', 1),
+(2, 2, 9, 1, 'news', 'news', 'News', 'World wise news', '', 1),
+(3, 3, 4, 2, 'africa', 'africa', 'Africa', '', 'upload/article/category/3.jpg', 1),
+(4, 5, 6, 2, 'asia', NULL, 'Asia', '', '', 1),
+(5, 7, 8, 2, 'europe', 'europe', 'Europe', '', '', 1),
+(6, 10, 17, 1, 'sport', 'sport', 'Sport', '', '', 1),
+(7, 11, 12, 2, 'nba', 'nba', 'NBA', 'National Basketball Association.', 'upload/article/category/7.gif', 1),
+(8, 13, 14, 2, 'football', 'football', 'Football', '', '', 1),
+(9, 18, 21, 1, 'entertainment', NULL, 'Entertainment', '', '', 1),
+(10, 19, 20, 2, 'comedy', 'comedy', 'Comedy', '', '', 1),
+(11, 22, 27, 1, 'science', 'science', 'Science', '', '', 1),
+(12, 23, 24, 2, 'humans', 'humans', 'Humans', '', '', 1),
+(13, 25, 26, 2, 'space', 'space', 'Space', '', '', 1),
+(14, 28, 33, 1, 'business', 'business', 'Business', '', '', 1),
+(15, 34, 41, 1, 'music', 'music', 'Music', '', '', 1),
+(16, 42, 45, 1, 'nature', NULL, 'Nature', '', 'upload/article/category/16.jpg', 1),
+(17, 46, 47, 1, 'weather', 'weather', 'Weather', '', '', 1),
+(18, 29, 30, 2, 'economy', 'economy', 'Economy', '', '', 1),
+(19, 31, 32, 2, 'company', 'company', 'Company', '', '', 1),
+(20, 35, 36, 2, 'genres', 'genres', 'Genres', '', '', 1),
+(21, 37, 38, 2, 'artists', 'artists', 'Artists', '', 'upload/article/category/21.jpg', 1),
+(22, 39, 40, 2, 'classical', 'classical', 'Classical', '', '', 1),
+(23, 43, 44, 2, 'animals', 'animals', 'Animals', '', 'upload/article/category/23.jpg', 1),
+(24, 15, 16, 2, 'snooker', NULL, 'Snooker', '', '', 1);
 
 --
 -- Dumping data for table `{prefix}{module}_compiled`
@@ -163,13 +163,13 @@ INSERT INTO `{prefix}{module}_custom_related` (`id`, `article`, `related`, `orde
 -- Dumping data for table `{prefix}{module}_stats`
 --
 
-INSERT INTO `{prefix}{module}_stats` (`id`, `article`, `visits`) VALUES
-(1, 1, 1),
-(2, 5, 4),
-(3, 3, 1),
-(4, 7, 4),
-(5, 11, 2),
-(6, 12, 2);
+INSERT INTO `{prefix}{module}_stats` (`id`, `article`, `date`, `visits`) VALUES
+(1, 1, 'A', 1),
+(2, 5, 'A', 4),
+(3, 3, 'A', 1),
+(4, 7, 'A', 4),
+(5, 11, 'A', 2),
+(6, 12, 'A', 2);
 
 --
 -- Dumping data for table `{prefix}{module}_topic`
@@ -178,23 +178,3 @@ INSERT INTO `{prefix}{module}_stats` (`id`, `article`, `visits`) VALUES
 INSERT INTO `{prefix}{module}_topic` (`id`, `name`, `content`, `title`, `image`, `slug`, `template`, `description`, `active`, `time_create`) VALUES
 (1, 'Siggraph2013', '<p style="color: rgb(51, 51, 51); font-size: 14px; font-family: SwissRom;">\r\n	Since its beginning in 1974 as a small group of specialists in a previously unknown discipline, ACM SIGGRAPH has evolved to become an international community of researchers, artists, developers, filmmakers, scientists, and business professionals who share an interest in computer graphics and interactive techniques.</p>\r\n<p style="color: rgb(51, 51, 51); font-size: 14px; font-family: SwissRom;">\r\n	A special interest group of the Association for Computing Machinery (ACM), the world&rsquo;s first and largest computing society, ACM SIGGRAPH offers a diverse menu of programs and services for its members and the computer graphics community:</p>\r\n<ul style="padding-right: 0px; padding-left: 0px; font-family: SwissRom; line-height: 14px;">\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		Annual&nbsp;<a href="https://www.siggraph.org/attend/annual-conferences" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);">SIGGRAPH and SIGGRAPH Asia conferences</a>, two of the premier technology conferences in the world.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		An international network of&nbsp;<a href="http://www.siggraph.org/connect/chapters" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);">Student and Professional Chapters</a>, which host year-round activities highlighting computer graphics and interactive techniques.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		A robust&nbsp;<a href="http://www.siggraph.org/connect/education" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);">Education Program</a>&nbsp;that supports both computer graphics education and the use of computer graphics in education with curriculum studies, a web site for educators, and other educational projects.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		An international&nbsp;<a href="http://siggrapharts.ning.com/" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);" target="_blank">Digital Arts Collaborative</a>&nbsp;that fosters the evolution of a strong digital arts community and promotes dialogue among visual artists, scientists, interaction designers, and more.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		Focused&nbsp;<a href="http://www.siggraph.org/attend/small-conferences" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);">symposia, conferences and workshops</a>&nbsp;on topics related to computer graphics and interactive techniques.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		Prestigious&nbsp;<a href="http://www.siggraph.org/learn/conference-content" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);">publications and conference proceedings</a>&nbsp;in the Digital Library that provide the largest source of citations in the computer graphics literature.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		SIGGRAPH Video Review, which documents the annual SIGGRAPH Computer Animation Festival, providing an unequalled opportunity to study state-of-the-art computer graphics techniques, theory, and applications.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		An&nbsp;<a href="http://www.siggraph.org/participate/awards" style="text-decoration: none; transition: all 0.2s ease-out; -webkit-transition: all 0.2s ease-out; color: rgb(59, 128, 189);">Awards Program</a>&nbsp;that recognizes achievements in the profession and service to the community.</li>\r\n	<li style="color: rgb(51, 51, 51); font-size: 14px;">\r\n		A strong volunteer program that allows members to become involved in the community and network with luminaries in the profession.</li>\r\n</ul>\r\n<p>\r\n	<span style="font-family: SwissRom; line-height: 14px;">- See more at: http://www.siggraph.org/about/about-acm-siggraph#sthash.oddhCwos.dpuf</span></p>\r\n', 'Siggraph2013', 'upload/article/topic/1.png', 'Siggraph2013', 'default', 'Since its beginning in 1974 as a small group of specialists in a previously unknown discipline, ACM SIGGRAPH has evolved to become an international community of researchers, artists, developers, filmmakers, scientists, and business professionals who share', 1, 1380170218),
 (2, 'Flat Design Trend', '', 'Flat Design Trend', 'upload/article/topic/2.png', 'Flatdesigntrend', 'default', 'Over the last several months, I’ve been reading post after post about “Flat Design”. It seems like every designer is adopting the trend of so-called “Flat Design” and applying it to their work. Even larger companies like Microsoft and Google have followed', 1, 1380181941);
-
---
--- Dumping data for table `{prefix}{module}_visit`
---
-
-INSERT INTO `{prefix}{module}_visit` (`id`, `article`, `time`, `ip`, `uid`) VALUES
-(1, 1, 1380167393, '192.168.18.118', 1),
-(2, 5, 1380170310, '192.168.18.8', 1),
-(3, 3, 1380170403, '192.168.18.8', 1),
-(4, 5, 1380170566, '192.168.18.118', 1),
-(5, 7, 1380177190, '192.168.18.8', 1),
-(6, 7, 1380177228, '192.168.18.8', 1),
-(7, 7, 1380177352, '192.168.18.8', 1),
-(8, 11, 1380177557, '192.168.18.8', 1),
-(9, 12, 1380178906, '192.168.18.8', 1),
-(10, 7, 1380178924, '192.168.18.8', 1),
-(11, 12, 1380178982, '192.168.18.8', 1),
-(12, 11, 1380178999, '192.168.18.8', 1),
-(13, 5, 1380179148, '192.168.18.8', 1),
-(14, 5, 1380179158, '192.168.18.8', 1);

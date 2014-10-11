@@ -56,22 +56,102 @@ class Stats extends Model
      * @param int  $id  Article ID
      * @return array
      */
-    public function increaseVisits($id)
+    public function increase($id)
     {
-        $row = $this->find($id, 'article');
-        if (empty($row)) {
-            $data = array(
-                'article'  => $id,
-                'visits'   => 1,
-            );
-            $row    = $this->createRow($data);
-            $result = $row->save();
+        // Increase date count
+        $rowDate = $this->select(array('article' => $id));
+        $dateId  = array();
+        foreach ($rowDate as $row) {
+            $dateId[$row->date] = $row->id;
+        }
+        
+        $time = time();
+        
+        // Increase today count
+        if (isset($dateId['D'])) {
+            $rowDay = $this->find($dateId['D']);
+            $date   = date('Ymd', $rowDay->time_updated);
+            if (date('Ymd', time()) != $date) {
+                $rowDay->visits = 1;
+            } else {
+                $rowDay->visits += 1;
+            }
+            $rowDay->time_updated = $time;
+            $rowDay->save();
         } else {
-            $row->visits++;
-            $result = $row->save();
+            $data = array(
+                'article'      => $id,
+                'date'         => 'D',
+                'visits'       => 1,
+                'time_updated' => $time,
+            );
+            $rowDay = $this->createRow($data);
+            $rowDay->save();
+        }
+        
+        // Increase this week count
+        if (isset($dateId['W'])) {
+            $rowWeek = $this->find($dateId['W']);
+            $date   = date('W', $rowWeek->time_updated);
+            if (date('W', time()) != $date) {
+                $rowWeek->visits = 1;
+            } else {
+                $rowWeek->visits += 1;
+            }
+            $rowWeek->time_updated = $time;
+            $rowWeek->save();
+        } else {
+            $data = array(
+                'article'      => $id,
+                'date'         => 'W',
+                'visits'       => 1,
+                'time_updated' => $time,
+            );
+            $rowWeek = $this->createRow($data);
+            $rowWeek->save();
+        }
+        
+        // Increase this month count
+        if (isset($dateId['M'])) {
+            $rowMonth = $this->find($dateId['M']);
+            $date   = date('Ym', $rowMonth->time_updated);
+            if (date('Ym', time()) != $date) {
+                $rowMonth->visits = 1;
+            } else {
+                $rowMonth->visits += 1;
+            }
+            $rowMonth->time_updated = $time;
+            $rowMonth->save();
+        } else {
+            $data = array(
+                'article'      => $id,
+                'date'         => 'M',
+                'visits'       => 1,
+                'time_updated' => $time,
+            );
+            $rowMonth = $this->createRow($data);
+            $rowMonth->save();
+        }
+        
+        // Increase date 
+        if (isset($dateId['A'])) {
+            $rowAll = $this->find($dateId['A']);
+            $rowAll->visits += 1;
+            $rowAll->time_updated = $time;
+            $rowAll->save();
+        } else {
+            $data = array(
+                'article'      => $id,
+                'date'         => 'A',
+                'visits'       => 1,
+                'time_updated' => $time,
+            );
+            $rowAll->time_updated = $time;
+            $rowAll = $this->createRow($data);
+            $rowAll->save();
         }
 
-        return $result;
+        return true;
     }
     
     /**

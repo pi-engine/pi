@@ -58,7 +58,7 @@ if (!empty($details['seo'])) {
                 <?php if (isset($remain) and '0' === $remain) {
                     foreach ($details['content'] as $content) {
                         if ( $content['title']) {
-                            echo '<div class="title title18">' . $this->escape($content['title']) . '</div>';
+                            echo '<div class="title title18">' . _escape($content['title']) . '</div>';
                         }
                         echo $content['content'];
                     } 
@@ -66,14 +66,14 @@ if (!empty($details['seo'])) {
                     for ($p = (int) $remain; $p < $details['pages']; $p++) {
                         if ($details['content'][$p]['title']) {
                             echo '<div class="title title18">' 
-                            . $this->escape($details['content'][$p]['title']) . '</div>';
+                            . _escape($details['content'][$p]['title']) . '</div>';
                         }
                         echo $details['content'][$p]['content'];
                     }
                 } else {
                     if ($details['content'][$page - 1]['title']) {
                         echo '<div class="title title18">' 
-                        . $this->escape(isset($details['content'][$page-1]['title']) 
+                        . _escape(isset($details['content'][$page-1]['title']) 
                             ? $details['content'][$page-1]['title'] : '') .'</div>';
                     }
                     echo $details['content'][$page - 1]['content'];
@@ -92,7 +92,7 @@ if (!empty($details['seo'])) {
                         'action'     => 'list', 
                         'tag'        => $tag
                     )); ?>">
-                        <?php echo $this->escape($tag); ?>
+                        <?php echo _escape($tag); ?>
                     </a>
                 </span>
                 <?php if ($tag != end($details['tag'])) {
@@ -105,10 +105,10 @@ if (!empty($details['seo'])) {
         <div class="clearfix">
             <?php if (!isset($remain) and (int) $page < $details['pages']) { ?>
                 <div class="pull-right text-muted">
-                    <a class="link mr10" href="<?php echo $this->escape($details['content'][$page]['url']); ?>">
+                    <a class="link mr10" href="<?php echo _escape($details['content'][$page]['url']); ?>">
                         <?php _e('Next Page'); ?>
                     </a>
-                    <a class="link mr10" href="<?php echo $this->escape($details['remain']); ?>" rel="nofollow">
+                    <a class="link mr10" href="<?php echo _escape($details['remain']); ?>" rel="nofollow">
                         <?php _e('Remain Page'); ?>
                     </a>
                 </div>
@@ -119,13 +119,13 @@ if (!empty($details['seo'])) {
             <ul class="pagination">
             <?php for ($i = 1; $i <= $details['pages']; $i++) { ?>
                 <li <?php if ($i == $page && !isset($remain)) echo 'class="active"'; ?>>
-                    <a href="<?php echo $this->escape($details['content'][$i-1]['url']); ?>">
+                    <a href="<?php echo _escape($details['content'][$i-1]['url']); ?>">
                         <?php echo $i; ?>
                     </a>
                 </li>
             <?php } ?>
                 <li class="<?php if (isset($remain) and $remain === '0') echo 'active'; ?>">
-                    <a href="<?php echo $this->escape($details['view']); ?>" rel="nofollow">
+                    <a href="<?php echo _escape($details['view']); ?>" rel="nofollow">
                         <?php _e('Read More'); ?>
                     </a>
                 </li>
@@ -141,9 +141,9 @@ if (!empty($details['seo'])) {
                 foreach($details['related'] as $related) { 
             ?>
                 <li class="text-muted">
-                    <a target="_blank" href="<?php echo $this->escape($related['url']); ?>"
-                       title="<?php echo $this->escape($related['subject']); ?>">
-                    <?php echo $this->escape($related['subject']); ?>
+                    <a target="_blank" href="<?php echo _escape($related['url']); ?>"
+                       title="<?php echo _escape($related['subject']); ?>">
+                    <?php echo _escape($related['subject']); ?>
                     </a>
             <?php 
                     $leftright++; 
@@ -160,14 +160,14 @@ if (!empty($details['seo'])) {
             <div class="media">
                 <a class="pull-left" href="#">
                     <img class="" src="<?php echo Pi::url($details['author']['photo']); ?>"
-                        alt="<?php echo $this->escape($details['author']['name']); ?>"
-                        style="width: <?php echo $this->escape($config['author_size']); ?>px; height: <?php echo $this->escape($config['author_size']); ?>px; border-radius: 5px">
+                        alt="<?php echo _escape($details['author']['name']); ?>"
+                        style="width: <?php echo _escape($config['author_size']); ?>px; height: <?php echo _escape($config['author_size']); ?>px; border-radius: 5px">
                 </a>
                 <div class="media-body">
-                    <div class="author-name"><?php echo $this->escape($details['author']['name']); ?></div>
+                    <div class="author-name"><?php echo _escape($details['author']['name']); ?></div>
                     <div class="author-desc">
                         <p></p>
-                        <p><?php echo $this->escape($details['author']['description']); ?></p>
+                        <p><?php echo _escape($details['author']['description']); ?></p>
                     </div>
                 </div>
             </div>
@@ -180,7 +180,7 @@ if (!empty($details['seo'])) {
     var id = '<?php echo $details['id']; ?>';
     var url = '<?php echo $this->url('default', array(
         'controller' => 'article',
-        'action'     => 'count',
+        'action'     => 'stats',
         'id'         => $details['id'],
     )); ?>';
     $.get(url, function(result) {});

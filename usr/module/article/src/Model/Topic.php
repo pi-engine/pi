@@ -64,8 +64,11 @@ class Topic extends Model
     public function slugToId($slug)
     {
         $result = false;
-
+        
         if ($slug) {
+            if (is_numeric($slug)) {
+                return $slug;
+            }
             $row = $this->find($slug, 'slug');
             if ($row) {
                 $result = $row->id;

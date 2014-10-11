@@ -118,44 +118,6 @@ class MediaController extends FrontMedia
     }
     
     /**
-     * Details page to implement media. 
-     */
-    public function detailAction()
-    {
-        $id = $this->params('id', 0);
-        if (empty($id)) {
-            return $this->jumpTo404($this, _a('Invalid ID!'));
-        }
-        
-        $module = $this->getModule();
-        $config = Pi::config('', $module);
-        
-        $media = $this->getModel('media')->find($id);
-        
-        $type  = '';
-        $imageExt = array_map('trim', explode(',', $config['image_format']));
-        if (in_array($media->type, $imageExt)) {
-            $type = 'image';
-            header('Content-type: image/' . $media->type);
-            readfile(Pi::url($media->url));
-            exit();
-        } else {
-            $this->view()->assign(array(
-                'content' => _a('This page have not been considered yet!'))
-            );
-            $this->view()->setTemplate(false);
-            return ;
-        }
-        
-        $this->view()->assign(array(
-            'title'     => _a('Media Detail'),
-            'type'      => $type,
-            'media'     => $media->toArray(),
-        ));
-        $this->view()->setTemplate('media-detail-' . $type);
-    }
-    
-    /**
      * Adding media information
      * 
      * @return ViewModel 

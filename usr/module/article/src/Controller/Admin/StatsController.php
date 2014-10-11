@@ -26,9 +26,11 @@ class StatsController extends ActionController
      */
     public function indexAction()
     {
-        $topVisitsEver = Entity::getTotalVisits(10);
-        $topVisits7    = Entity::getVisitsRecently(7, 10);
-        $topVisits30   = Entity::getVisitsRecently(30, 10);
+        $where   = array();
+        $columns = array('subject', 'time_publish');
+        $topVisitsEver = Entity::getTopVisitArticles('A', $where, $columns, 10);d($topVisitsEver);
+        $topVisits7    = Entity::getTopVisitArticles('W', $where, $columns, 10);
+        $topVisits30   = Entity::getTopVisitArticles('M', $where, $columns, 10);
 
         $totalEver = Stats::getTotalRecently();
         $total7    = Stats::getTotalRecently(7);
