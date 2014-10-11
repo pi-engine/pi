@@ -55,7 +55,7 @@ class ArticleController extends ActionController
         $name = '';
         foreach ($pages as $page) {
             if ($action === $page['name']) {
-                $name = $page['action'] . 'Action';
+                $name = $page['action'];
                 break;
             }
         }
@@ -286,7 +286,7 @@ class ArticleController extends ActionController
         }
 
         $page       = $this->params('p', 1);
-        $limit      = $this->params('limit', 5);
+        $limit      = $this->params('limit', 40);
         $from       = $this->params('from', 'my');
         $keyword    = $this->params('keyword', '');
         $category   = $this->params('category', 0);
@@ -346,7 +346,7 @@ class ArticleController extends ActionController
         $data = Entity::getArticlePage($where, $page, $limit, null, $order);
 
         // Total count
-        $totalCount = $modelArticle->count($where);
+        $totalCount = Entity::count($where);
 
         $params = array(
             'module'    => $module,

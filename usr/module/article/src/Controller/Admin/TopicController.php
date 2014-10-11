@@ -158,7 +158,6 @@ class TopicController extends ActionController
         $data   = $ids = array();
 
         $module         = $this->getModule();
-        $modelArticle   = $this->getModel('article');
         $categoryModel  = $this->getModel('category');
         $modelRelation  = $this->getModel('article_topic');
         
@@ -210,23 +209,14 @@ class TopicController extends ActionController
             }
         }
 
-        // Total count
-        $select = $modelArticle->select()
-            ->columns(array('total' => new Expression('count(id)')))
-            ->where($where);
-        $resulsetCount = $modelArticle->selectWith($select);
-        $totalCount    = (int) $resulsetCount->current()->total;
-
         // Paginator
-        $paginator = Paginator::factory($totalCount, array(
+        $totalCount = (int) Entity::count($where);
+        $paginator  = Paginator::factory($totalCount, array(
             'limit'       => $limit,
             'page'        => $page,
             'url_options' => array(
                 'page_param'    => 'p',
                 'params'        => array_filter(array(
-                    'module'        => $module,
-                    'controller'    => 'topic',
-                    'action'        => 'pull',
                     'topic'         => $topic,
                     'category'      => $category,
                     'keyword'       => $keyword,
@@ -241,13 +231,15 @@ class TopicController extends ActionController
         $count = $this->getModel('article_topic')
                       ->count(array('topic' => $rowTopic->id));
         
+        $categories = Pi::api('category', $module)->getList(array('active' => 1));
+        
         $this->view()->assign(array(
             'title'      => _a('All Articles'),
             'data'       => $data,
             'form'       => $form,
             'paginator'  => $paginator,
             'category'   => $category,
-            'categories' => Pi::api('category', $module)->getList(),
+            'categories' => $categories,
             'action'     => 'pull',
             'topics'     => $topics,
             'relation'   => $relation,
@@ -488,9 +480,8 @@ class TopicController extends ActionController
     public function listTopicAction()
     {
         $module = $this->getModule();
-        $config = Pi::config('', $module);
-        $limit  = (int) $config['page_limit_management'] ?: 20;
-        $page   = $this->params('p', 1);
+        $limit  = (int) $this->params('limit', 20);
+        $page   = $this->params('page', 1);
         $page   = $page > 0 ? $page : 1;
         $offset = ($page - 1) * $limit;
         
@@ -519,15 +510,11 @@ class TopicController extends ActionController
         }
         
         // Get total topic count
-        $select = $model->select()
-            ->columns(array('count' => new Expression('count(*)')));
-        $totalCount = (int) $model->selectWith($select)->current()->count;
-
-        $paginator = Paginator::factory($totalCount, array(
+        $totalCount = (int) $model->count();
+        $paginator  = Paginator::factory($totalCount, array(
             'limit'       => $limit,
             'page'        => $page,
             'url_options' => array(
-                'page_param'    => 'p',
                 'params'        => array(
                     'module'        => $module,
                     'controller'    => 'topic',

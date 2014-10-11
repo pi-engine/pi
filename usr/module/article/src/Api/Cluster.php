@@ -63,4 +63,23 @@ class Cluster extends Category
         
         return $fields;
     }
+    
+    /**
+     * Get article related clusters
+     * 
+     * @param int[] $ids
+     * @return array
+     */
+    public function getArticleClusters($ids)
+    {
+        $result = array();
+        
+        $model = Pi::model('cluster_article', $this->module);
+        $rowset = $model->select(array('article' => (array) $ids));
+        foreach ($rowset as $row) {
+            $result[$row->article][] = $row->cluster;
+        }
+        
+        return $result;
+    }
 }
