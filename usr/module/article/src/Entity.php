@@ -12,7 +12,6 @@ namespace Module\Article;
 use Pi;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
-use Module\Article\Stats;
 use Module\Article\Model\Draft as DraftModel;
 
 /**
@@ -25,7 +24,7 @@ class Entity
     protected static $module = 'article';
 
     /**
-     * Get recently visited articles
+     * Get recently mostly visited articles
      * 
      * @param int     $dateFrom
      * @param int     $dateTo
@@ -34,214 +33,63 @@ class Entity
      * @param string  $module
      * @return array 
      */
-    public static function getVisitsInPeriod(
-        $dateFrom, 
-        $dateTo, 
-        $limit = null, 
-        $category = null, 
+    public static function getTopVisitArticles(
+        $range,
+        $where = array(),
+        $columns = null,
+        $limit = null,
         $module = null
     ) {
-        $result = $where = array();
         $module = $module ?: Pi::service('module')->current();
 
-        $modelArticle   = Pi::model('article', $module);
-        $modelCategory  = Pi::model('category', $module);
-        $modelVisit     = Pi::model('visit', $module);
-
-        if (!empty($dateFrom)) {
-            $where['time >= ?'] = $dateFrom;
+        $modelArticle = Pi::model('article', $module);
+        $modelCluster = Pi::model('cluster_article', $module);
+        $modelStats   = Pi::model('stats', $module);
+        
+        if (null === $columns) {
+            $columns = $modelArticle->getColumns(true, true);
         }
-        if (!empty($dateTo)) {
-            $where['time <= ?'] = $dateTo;
+        if (!in_array('id', $columns)) {
+            $columns[] = 'id';
         }
-
-        if ($category && $category > 1) {
-            $categoryIds = $modelCategory->getDescendantIds($category);
-
-            if ($categoryIds) {
-                $where['a.category'] = $categoryIds;
+        
+        $limit = (int) $limit ?: 10;
+        
+        $prefix = $modelArticle->getTable();
+        $newWhere = array();
+        foreach ($where as $key => $val) {
+            if ('cluster' === $key) {
+                $newWhere['c.cluster'] = $val;
+                continue;
             }
+            $newKey = sprintf('%s.%s', $prefix, $key);
+            $newWhere[$newKey] = $val;
         }
-
-        $where['status'] = Article::FIELD_STATUS_PUBLISHED;
-        $where['active'] = 1;
-
-        $select = $modelVisit->select()
-            ->columns(
-                array(
-                    'article',
-                    'total' => new Expression('count(article)')
-                )
-            )
+        $newWhere['s.date'] = $range;
+        
+        // Start time condition
+        $startTime = self::getStartTime($range);
+        $newWhere['s.time_updated > ?'] = $startTime;
+        
+        $select = $modelArticle->select()
+            ->columns($columns)
             ->join(
-                array('a' => $modelArticle->getTable()),
-                sprintf('%s.article = a.id', $modelVisit->getTable()),
-                array()
-            )
-            ->where($where)
-            ->group(array(sprintf('%s.article', $modelVisit->getTable())))
-            ->order('total DESC');
-
-        if ($limit) {
-            $select->limit($limit);
-        }
-
-        $resultSetVisit = $modelVisit->selectWith($select)->toArray();
-        foreach ($resultSetVisit as $row) {
-            $result[$row['article']] = $row;
-        }
-
-        $articleIds = array_keys($result);
-        if ($articleIds) {
-            $resultSetArticle = self::getAvailableArticlePage(
-                array('id' => $articleIds), 
-                1, 
-                $limit, 
-                null, 
-                null, 
-                $module
-            );
-
-            foreach ($result as $key => &$row) {
-                if (isset($resultSetArticle[$key])) {
-                    $row = $row + $resultSetArticle[$key];
-                }
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * Get recently visited articles
-     * 
-     * @param int     $days
-     * @param int     $limit
-     * @param int     $category
-     * @param string  $module
-     * @return array 
-     */
-    public static function getVisitsRecently(
-        $days,
-        $limit = null,
-        $category = null,
-        $module = null
-    ) {
-        $dateTo   = time();
-        $dateFrom = $dateTo - 24 * 3600 * $days;
-
-        return self::getVisitsInPeriod(
-            $dateFrom, 
-            $dateTo, 
-            $limit, 
-            $category, 
-            $module
-        );
-    }
-
-    /**
-     * Get total visits of articles.
-     * 
-     * @param int     $limit
-     * @param int     $category
-     * @param string  $module
-     * @return array 
-     */
-    public static function getTotalVisits(
-        $limit = null, 
-        $category = null, 
-        $module = null
-    ) {
-        $where = $columns = array();
-        $module = $module ?: self::$module;
-
-        $modelCategory  = Pi::model('category', $module);
-        if ($category && $category > 1) {
-            $categoryIds = $modelCategory->getDescendantIds($category);
-
-            if ($categoryIds) {
-                $where['category'] = $categoryIds;
-            }
-        }
+                array('c' => $modelCluster->getTable()),
+                sprintf('%s.id = c.article', $prefix),
+                array('clusters' => 'cluster'),
+                'left'
+            )->join(
+                array('s' => $modelStats->getTable()),
+                sprintf('%s.id = s.article', $prefix),
+                array('total' => 'visits'),
+                'left'
+            )->where($newWhere)
+            ->group(sprintf('%s.id', $prefix))
+            ->order('s.visits DESC')
+            ->limit($limit);
+        $rowset = $modelArticle->selectWith($select)->toArray();
         
-        $articles    = Stats::getTopVisits($limit, $module);
-        if (!empty($articles)) {
-            $where['id'] = array_keys($articles);
-        }
-        
-        $columns = array(
-            'id',
-            'article' => 'id',
-            'subject',
-            'source',
-            'image',
-            'pages',
-            'summary',
-            'time_publish',
-        );
-
-        $result = self::getAvailableArticlePage(
-            $where, 
-            1, 
-            $limit, 
-            $columns, 
-            null, 
-            $module
-        );
-        
-        foreach ($articles as $id => &$article) {
-            $article = array_merge($article, $result[$id]);
-        }
-
-        return $articles;
-    }
-
-    /**
-     * Get latest articles
-     * 
-     * @param int    $limit
-     * @param int    $category
-     * @param string $module
-     * @return array
-     */
-    public static function getLatest(
-        $limit = null, 
-        $category = null, 
-        $module = null
-    ) {
-        $where = $columns = array();
-        $module = $module ?: self::$module;
-
-        $modelCategory  = Pi::model('category', $module);
-        if ($category && $category > 1) {
-            $categoryIds = $modelCategory->getDescendantIds($category);
-
-            if ($categoryIds) {
-                $where['category'] = $categoryIds;
-            }
-        }
-
-        $columns = array(
-            'id',
-            'article' => 'id',
-            'total'   => 'visits',
-            'subject',
-            'source',
-            'image',
-            'pages',
-            'slug',
-            'summary',
-            'time_publish',
-        );
-
-        $result = self::getAvailableArticlePage(
-            $where, 
-            1, 
-            $limit, 
-            $columns, 
-            null,
-            $module
-        );
+        $result = self::canonize($rowset, $module);
 
         return $result;
     }
@@ -268,7 +116,6 @@ class Entity
         $offset = ($limit && $page) ? $limit * ($page - 1) : null;
 
         $module = $module ?: Pi::service('module')->current();
-        $users  = $articleIds = $userIds = array();
 
         $modelArticle = Pi::model('article', $module);
         $modelCluster = Pi::model('cluster_article', $module);
@@ -308,66 +155,98 @@ class Entity
         if ($offset) {
             $select->offset(intval($offset));
         }
-        $rowset = $modelArticle->selectWith($select);
+        $rowset = $modelArticle->selectWith($select)->toArray();
+
+        $result = self::canonize($rowset, $module);
+
+        return $result;
+    }
+    
+    /**
+     * Resolve articles info into readable info
+     * 
+     * @param array $data
+     * @return array
+     */
+    public static function canonize(array $data, $module = null)
+    {
+        $result = array();
         
-        /*$resultSet = Pi::model('article', $module)->getSearchRows(
-            $where, 
-            $limit, 
-            $offset, 
-            $columns, 
-            $order
-        );*/
-
-        $resultSet = array();
-        if ($rowset->count()) {
-            foreach ($rowset as $row) {
-                $articleIds[$row->id] = $row->id;
-
-                if (!empty($row->uid)) {
-                    $userIds[$row->uid] = $row->uid;
-                }
-                $resultSet[$row->id] = $row->toArray();
+        if (!count($data)) {
+            return $result;
+        }
+        
+        $ids = $uids = array();
+        foreach ($data as $row) {
+            $ids[$row['id']] = $row['id'];
+            if (!empty($row['uid'])) {
+                $uids[$row['uid']] = $row['uid'];
             }
-            
-            // Get clusters
-            $clusters = Pi::api('cluster', $module)->getArticleClusters($articleIds);
-            
-            // Getting statistics data
-            $stats = Pi::model('stats', $module)->getList(array(
-                'article' => $articleIds
-            ));
-
-            if (!empty($userIds) 
-                && (empty($columns) || in_array('uid', $columns))
-            ) {
-                $users = Pi::user()->get($userIds, array('id', 'name'));
-            }
-
-            foreach ($resultSet as &$row) {
-                $row = Pi::api('field', $module)->resolver($row);
-
-                if (null === $columns || in_array('uid', $columns)) {
-                    if (isset($users[$row['uid']])) {
-                        $row['user'] = $users[$row['uid']];
-                    }
-                }
-                if (isset($stats[$row['id']])) {
-                    $row['stats'] = $stats[$row['id']];
-                }
-                if (isset($clusters[$row['id']])) {
-                    $row['clusters'] = $clusters[$row['id']];
-                }
-
-                $route      = Pi::api('api', $module)->getRouteName();
-                $row['url'] = Pi::service('url')->assemble($route, array(
-                    'module'    => $module,
-                    'time'      => date('Ymd', $row['time_publish']),
-                    'id'        => $row['id'],
-                ));
-            }
+            $result[$row['id']] = $row;
         }
 
-        return $resultSet;
+        $module = $module ?: Pi::service('module')->current();
+        
+        // Get clusters
+        $clusters = Pi::api('cluster', $module)->getArticleClusters($ids);
+
+        $users = array();
+        if (!empty($uids)) {
+            $users = Pi::user()->get($uids, array('id', 'name'));
+        }
+
+        foreach ($result as &$row) {
+            $row = Pi::api('field', $module)->resolver($row);
+
+            if (!empty($uids) && isset($users[$row['uid']])) {
+                $row['user'] = $users[$row['uid']];
+            }
+            if (isset($clusters[$row['id']])) {
+                $row['clusters'] = $clusters[$row['id']];
+            }
+
+            $route      = Pi::api('api', $module)->getRouteName();
+            $row['url'] = Pi::service('url')->assemble($route, array(
+                'module'    => $module,
+                'time'      => date('Ymd', $row['time_publish']),
+                'id'        => $row['id'],
+            ));
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * Get start time of today, this week or this month
+     * 
+     * @param string  $date  'day', 'week', 'month' or 'all'
+     * @return int
+     */
+    public static function getStartTime($date)
+    {
+        $today = time();
+        $startTime  = 0;
+        switch ($date) {
+            case 'D':
+                $date      = date('Y-m-d', $today);
+                $startTime = strtotime($date);
+                break;
+            case 'W':
+                $todayDate = date('Y-m-d', $today);
+                $weekDay   = date('w', $today);
+                $startTime = strtotime($todayDate) - $weekDay * 24 * 3600;
+                break;
+            case 'M':
+                $date      = date('Y-m-01', $today);
+                $startTime = strtotime($date);
+                break;
+            case 'A':
+                break;
+            default:
+                
+        }
+        
+        return $startTime;
     }
 
     /**

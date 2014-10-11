@@ -212,6 +212,7 @@ EOD;
             }
         }
         
+        // Add `active` field for category and cluster
         if (version_compare($version, '1.6.2', '<')) {
             $module = $this->handler->getParam('module');
             
@@ -250,6 +251,43 @@ EOD;
 UPDATE `{$table}` SET `active` = 1;
 EOD;
             $result = $this->queryTable($updateSql);
+            if (false === $result) {
+                return $result;
+            }
+        }
+        
+        // Add fields for stats and media_stats tables
+        if (version_compare($version, '1.7.2', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            // Add fields for stats table
+            $table  = Pi::db()->prefix('stats', $module);
+            $addSql =<<<EOD
+ALTER TABLE {$table} ADD COLUMN `date` enum('D','W','M','A') NOT NULL DEFAULT 'D';
+ALTER TABLE {$table} ADD COLUMN `time_updated` int(10) UNSIGNED NOT NULL DEFAULT 0;
+ALTER TABLE {$table} DROP INDEX `article`;
+ALTER TABLE {$table} ADD UNIQUE `a_date` (`article`, `date`);
+EOD;
+            $result = $this->querySchema($addSql, $module);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Update field value
+            $updateSql =<<<EOD
+UPDATE `{$table}` SET `date` = 'A';
+EOD;
+            $result = $this->queryTable($updateSql);
+            if (false === $result) {
+                return $result;
+            }
+            
+            // Add fields for media_stats table
+            $table  = Pi::db()->prefix('media_stats', $module);
+            $addSql =<<<EOD
+ALTER TABLE {$table} ADD COLUMN `browse` int(10) UNSIGNED NOT NULL DEFAULT 0;
+EOD;
+            $result = $this->querySchema($addSql, $module);
             if (false === $result) {
                 return $result;
             }

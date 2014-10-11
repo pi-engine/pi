@@ -10,10 +10,8 @@
 namespace Module\Article;
 
 use Pi;
-use Zend\Mvc\MvcEvent;
 use Zend\Db\Sql\Expression;
 use Module\Article\Model\Article;
-use Module\Article\Service;
 
 /**
  * Stats service API
@@ -23,68 +21,6 @@ use Module\Article\Service;
 class Stats
 {
     protected static $module = 'article';
-    
-    /**
-     * Event listener to run before page cache, so some operation will also work
-     * if the page is cached.
-     * If this code is added in action, it will be ignored if page is cached.
-     * 
-     * @param MvcEvent $e 
-     */
-    public function runBeforePageCache(MvcEvent $e)
-    {
-        $name = $e->getRouteMatch()->getParam('id');
-        if (empty($name)) {
-            $name = $e->getRouteMatch()->getParam('slug');
-        }
-        $module = $e->getRouteMatch()->getParam('module');
-        
-        self::addVisit($name, $module);
-    }
-
-    /**
-     * Add visit count and visit record.
-     * 
-     * @param int|string $name    Article ID or slug
-     * @param string     $module  Module name
-     */
-    public static function addVisit($name, $module = null)
-    {
-        $module = $module ?: Pi::service('module')->current();
-        
-        if (!is_numeric($name)) {
-            $model = Pi::model('extended', $module);
-            $name  = $model->slugToId($name);
-        }
-        
-        Pi::model('stats', $module)->increaseVisits($name);
-        Pi::model('visit', $module)->addRow($name);
-    }
-    
-    /**
-     * Get articles which are mostly visit.
-     * 
-     * @param int     $limit   Article limitation
-     * @param string  $module
-     * @return array 
-     */
-    public static function getTopVisits($limit, $module = null)
-    {
-        $module = $module ?: Pi::service('module')->current();
-        $model  = Pi::model('stats', $module);
-        $select = $model->select()
-                        ->limit($limit)
-                        ->order('visits DESC');
-        $rowset = $model->selectWith($select);
-        
-        $result = array();
-        foreach ($rowset as $row) {
-            unset($row->id);
-            $result[$row->article] = $row->toArray();
-        }
-        
-        return $result;
-    }
     
     /**
      * Get article total count in period.
@@ -282,5 +218,42 @@ class Stats
         $dateTo   = time();
 
         return self::getSubmittersInPeriod($dateFrom, $dateTo, $limit, $module);
+    }
+    
+    /**
+     * Get article stats data
+     * 
+     * @param int[]       $ids
+     * @param string|null $range  Values: 'D', 'W', 'M', 'A', all data available as default
+     * @return int|array
+     */
+    public static function getTotalVisit($ids, $range = null)
+    {
+        $result = array();
+        
+        if (empty($ids)) {
+            return $result;
+        }
+        
+        $module = Pi::service('module')->current();
+        
+        $where  = array('article' => $ids);
+        if (null !== $range) {
+            $where['date'] = $range;
+        }
+        $rowset = Pi::model('stats', $module)->select($where);
+        foreach ($rowset as $row) {
+            if (null !== $range && is_scalar($range)) {
+                $result[$row->article] = $row->visits;
+            } else {
+                $result[$row->article][$row->date] = $row->visits;
+            }
+        }
+        
+        if (is_scalar($ids)) {
+            $result = $result[$ids];
+        }
+        
+        return $result;
     }
 }

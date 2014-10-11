@@ -92,18 +92,6 @@ CREATE TABLE `{draft}` (
   KEY `time_save`       (`time_save`)
 );
 
-CREATE TABLE `{visit}` (
-  `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
-  `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `time`            int(10) UNSIGNED      NOT NULL DEFAULT 0,
-  `ip`              varchar(255)          NOT NULL DEFAULT '',
-  `uid`             int(10) UNSIGNED      NOT NULL DEFAULT 0,
-
-  PRIMARY KEY                 (`id`),
-  UNIQUE KEY `article_time`   (`article`,`time`),
-  KEY        `time`           (`time`)
-);
-
 CREATE TABLE `{category}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `left`            int(10) UNSIGNED      NOT NULL DEFAULT 0,
@@ -162,10 +150,12 @@ CREATE TABLE `{author}` (
 CREATE TABLE `{stats}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `article`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `date`            enum('D','W','M','A') NOT NULL DEFAULT 'D',
   `visits`          int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `time_updated`    int(10) UNSIGNED      NOT NULL DEFAULT 0,
 
   PRIMARY KEY           (`id`),
-  UNIQUE KEY `article`  (`article`),
+  UNIQUE KEY `a_date`   (`article`, `date`),
   KEY `article_visits`  (`article`, `visits`)
 );
 
@@ -221,6 +211,7 @@ CREATE TABLE `{media_stats}` (
   `id`              int(10) UNSIGNED      NOT NULL AUTO_INCREMENT,
   `media`           int(10) UNSIGNED      NOT NULL DEFAULT 0,
   `download`        int(10) UNSIGNED      NOT NULL DEFAULT 0,
+  `browse`          int(10) UNSIGNED      NOT NULL DEFAULT 0,
 
   PRIMARY KEY           (`id`),
   UNIQUE KEY `media`    (`media`)

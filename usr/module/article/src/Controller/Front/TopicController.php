@@ -85,7 +85,7 @@ class TopicController extends ActionController
                 1,
                 $this->config('page_limit_topic'),
                 null,
-                '',
+                null,
                 $module
             );
             

@@ -82,6 +82,42 @@ class MediaController extends ActionController
     }
     
     /**
+     * Details page to implement media. 
+     */
+    public function detailAction()
+    {
+        $id = $this->params('id', 0);
+        if (empty($id)) {
+            return $this->jumpTo404($this, _a('Invalid ID!'));
+        }
+        
+        $module = $this->getModule();
+        $config = Pi::config('', $module);
+        
+        $media = $this->getModel('media')->find($id);
+        if (!$media) {
+            return $this->jumpTo404(__('Media not found.'));
+        }
+        
+        $this->statsMedia($media->id);
+        
+        $type  = '';
+        $imageExt = array_map('trim', explode(',', $config['image_format']));
+        if (in_array($media->type, $imageExt)) {
+            $type = 'image';
+            header('Content-type: image/' . $media->type);
+            readfile(Pi::url($media->url));
+            exit();
+        } else {
+            $this->view()->assign(array(
+                'content' => _a('This page have not been considered yet!'))
+            );
+            $this->view()->setTemplate(false);
+            return ;
+        }
+    }
+    
+    /**
      * AJAX action. Processing media uploaded.
      * 
      * @param int    `id`         Media ID, if it is indicated, the media will replace directly
@@ -312,9 +348,7 @@ class MediaController extends ActionController
         
         if (!empty($exists)) {
             foreach ($exists as $item) {
-                $row = $model->find($item, 'media');
-                $row->download = $row->download + 1;
-                $row->save();
+                $this->statsMedia($item, 'download');
             }
         }
         
@@ -653,5 +687,40 @@ class MediaController extends ActionController
         if (empty($options['notExit'])) {
             exit();
         }
+    }
+    
+    /**
+     * Add media operation log
+     * 
+     * @param int    $id
+     * @param string $type
+     */
+    protected function statsMedia($id, $type = 'browse')
+    {
+        // Write visit info into log file
+        $args = array(
+            'media' => $id,
+            'time'  => time(),
+            'ip'    => Pi::user()->getIp(),
+            'uid'   => Pi::user()->getId() ?: 0,
+        );
+        Pi::service('audit')->attach('csv', array(
+            'file' => sprintf('%s/media-%s.csv', Pi::path('log'), $type),
+        ));
+        Pi::service('audit')->log('csv', $args);
+        
+        // Increase number
+        $model = $this->getModel('media_stats');
+        $row   = $model->find($id, 'media');
+        if ($row) {
+            $row->$type = $row->$type + 1;
+        } else {
+            $data = array(
+                'media' => $id,
+                $type   => 1,
+            );
+            $row = $model->createRow($data);
+        }
+        $row->save();
     }
 }

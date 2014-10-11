@@ -23,14 +23,14 @@ return array(
                 'title'        => _t('Top-Category Count'),
                 'description'  => _t('The max top category count want to display'),
                 'edit'         => 'text',
-                'filter'       => 'number int',
+                'filter'       => 'int',
                 'value'        => 6,
             ),
             'sub_category'     => array(
                 'title'        => _t('Sub-Category Count'),
                 'description'  => _t('The max child category count want to display'),
                 'edit'         => 'text',
-                'filter'       => 'number int',
+                'filter'       => 'int',
                 'value'        => 2,
             ),
             'default_category' => array(
@@ -532,9 +532,19 @@ return array(
             'day_range'        => array(
                 'title'        => _a('Day Range'),
                 'description'  => _a('Day range'),
-                'edit'         => 'text',
-                'filter'       => 'int',
-                'value'        => 7,
+                'edit'         => array(
+                    'type'        => 'select',
+                    'attributes'  => array(
+                        'options'    => array(
+                            'D'         => _a('Today'),
+                            'W'         => _a('This week'),
+                            'M'         => _a('This month'),
+                            'A'         => _a('Total'),
+                        ),
+                    ),
+                ),
+                'filter'        => 'string',
+                'value'         => 'W',
             ),
             'column_number'    => array(
                 'title'        => _a('List Column Number'),

@@ -122,11 +122,11 @@ class Topic
         }
         $rowset = $modelTopic->selectWith($select);
         $topics = array();
-        //$route  = Pi::api('api', $module)->getRouteName();
+        $route  = Pi::api('api', $module)->getRouteName();
         foreach ($rowset as $row) {
             $id   = $row->id;
             $topics[$id] = $row->toArray();
-            $topics[$id]['url'] = Pi::service('url')->assemble('article', array(
+            $topics[$id]['url'] = Pi::service('url')->assemble($route, array(
                 'module'    => $module,
                 'topic'     => $row->slug ?: $row->id,
             ));
@@ -145,81 +145,78 @@ class Topic
      * @param string  $module
      * @return array 
      */
-    public static function getVisitsRecently(
-        $days,
+    public static function getTopVisitArticles(
+        $range,
+        $where = array(),
+        $columns = null,
         $limit = null,
-        $category = null,
-        $topic = null,
         $module = null
     ) {
         $module = $module ?: Pi::service('module')->current();
         
-        $dateTo   = time();
-        $dateFrom = $dateTo - 24 * 3600 * $days;
+        $modelArticle = Pi::model('article', $module);
+        $modelCluster = Pi::model('cluster_article', $module);
+        $modelStats   = Pi::model('stats', $module);
+        $modelTopic   = Pi::model('article_topic', $module);
         
-        $where    = array(
-            'active'   => 1,
-            'status'   => Article::FIELD_STATUS_PUBLISHED,
-        );
-        
-        $modelVisit    = Pi::model('visit', $module);
-        $tableVisit    = $modelVisit->getTable();
-        $where[$tableVisit . '.time >= ?'] = $dateFrom;
-        $where[$tableVisit . '.time < ?']  = $dateTo;
-        
-        $modelCategory  = Pi::model('category', $module);
-        if ($category && $category > 1) {
-            $categoryIds = $modelCategory->getDescendantIds($category);
-
-            if ($categoryIds) {
-                $where['category'] = $categoryIds;
-            }
+        if (null === $columns) {
+            $columns = $modelArticle->getColumns(true, true);
         }
+        if (!in_array('id', $columns)) {
+            $columns[] = 'id';
+        }
+        
+        $limit = (int) $limit ?: 10;
+        
+        $topic  = isset($where['topic']) ? $where['topic'] : '';
+        unset($where['topic']);
+        $prefix = $modelArticle->getTable();
+        $newWhere = array();
+        foreach ($where as $key => $val) {
+            if ('cluster' === $key) {
+                $newWhere['c.cluster'] = $val;
+                continue;
+            }
+            $newKey = sprintf('%s.%s', $prefix, $key);
+            $newWhere[$newKey] = $val;
+        }
+        $newWhere['s.date'] = $range;
         
         if ($topic) {
-            $where['r.topic'] = $topic;
+            $newWhere['t.topic'] = $topic;
+        } else {
+            $newWhere['t.topic > ?'] = 0;
         }
         
-        $modelArticle  = Pi::model('article', $module);
-        $modelRelation = Pi::model('article_topic', $module);
+        // Start time condition
+        $startTime = Entity::getStartTime($range);
+        $newWhere['s.time_updated > ?'] = $startTime;
         
-        $tableArticle  = $modelArticle->getTable();
-        $tableRelation = $modelRelation->getTable();
-        $select = $modelVisit->select()
-            ->columns(array(
-                'article',
-                'total'      => new Expression('count(*)'),
-            ))
+        $select = $modelArticle->select()
+            ->columns($columns)
             ->join(
-                array('a' => $tableArticle),
-                sprintf('%s.article = a.id', $tableVisit)
-            )
-            ->join(
-                array('r' => $tableRelation),
-                'a.id = r.article'
-            )
-            ->where($where)
-            ->offset(0)
-            ->group(array(sprintf('%s.article', $tableVisit)))
-            ->limit($limit)
-            ->order('total DESC');
-        $rowset = $modelVisit->selectWith($select);
+                array('c' => $modelCluster->getTable()),
+                sprintf('%s.id = c.article', $prefix),
+                array('clusters' => 'cluster'),
+                'left'
+            )->join(
+                array('s' => $modelStats->getTable()),
+                sprintf('%s.id = s.article', $prefix),
+                array('total' => 'visits'),
+                'left'
+            )->join(
+                array('t' => $modelTopic->getTable()),
+                sprintf('%s.id = t.article', $prefix),
+                array('topic' => 'topic'),
+                'left'
+            )->where($newWhere)
+            ->group(sprintf('%s.id', $prefix))
+            ->order('s.visits DESC')
+            ->limit($limit);
+        $rowset = $modelArticle->selectWith($select)->toArray();
         
-        $articleIds = array(0);
-        foreach ($rowset as $row) {
-            $articleIds[] = $row['article'];
-        }
+        $result = Entity::canonize($rowset, $module);
         
-        $where = array(
-            'id' => $articleIds,
-        );
-        return Entity::getAvailableArticlePage(
-            $where,
-            1,
-            $limit,
-            null,
-            null,
-            $module
-        );
+        return $result;
     }
 }

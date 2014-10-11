@@ -15,6 +15,7 @@ use Module\Article\Topic;
 use Module\Article\Stats;
 use Module\Article\Entity;
 use Zend\Db\Sql\Expression;
+use Module\Article\Model\Article;
 
 /**
  * Block class for providing article blocks
@@ -442,7 +443,7 @@ class Block
                 'UTF-8'
             );
             $topic['image'] = $topic['image'] 
-                ? Media::getThumbFromOriginal(Pi::url($topic['image']))
+                ? Pi::url($topic['image'])
                 : $image;
         }
         
@@ -466,28 +467,43 @@ class Block
             return false;
         }
         
-        $limit  = isset($options['list_count']) 
-            ? (int) $options['list_count'] : 10;
-        $config = Pi::config('', $module);
-        $image  = $config['default_feature_image'];
-        $image  = Pi::service('asset')->getModuleAsset($image, $module);
-        $day    = $options['day_range'] ? intval($options['day_range']) : 7;
+        $limit   = (int) $options['list_count'] ?: 10;
+        $config  = Pi::config('', $module);
+        $image   = Pi::service('asset')->getModuleAsset(
+            $config['default_feature_image'],
+            $module
+        );
+        $columns = array('subject', 'summary', 'time_publish', 'image', 'author');
+        
+        $where = array(
+            'time_publish <= ?' => time(),
+            'status'            => Article::FIELD_STATUS_PUBLISHED,
+            'active'            => 1,
+        );
 
         if ($options['is_topic']) {
-            $params = Pi::service('url')->getRouteMatch()->getParams();
-            if (is_string($params)) {
-                $params['topic'] = Pi::model('topic', $module)
-                    ->slugToId($params['topic']);
+            $topic = _get('topic', '');
+            if ($topic) {
+                $topic = Pi::model('topic', $module)->slugToId($topic);
+                if ($topic) {
+                    $where['topic'] = $topic;
+                }
             }
-            $articles = Topic::getVisitsRecently(
-                $day,
+            $articles = Topic::getTopVisitArticles(
+                $options['day_range'],
+                $where,
+                $columns,
                 $limit,
-                null,
-                isset($params['topic']) ? $params['topic'] : null,
                 $module
             );
         } else {
-            $articles = Entity::getVisitsRecently($day, $limit, null, $module);
+            $articles = Entity::getTopVisitArticles(
+                $options['day_range'],
+                $where,
+                $columns,
+                $limit,
+                $module
+            );
         }
         
         foreach ($articles as &$article) {
@@ -503,9 +519,7 @@ class Block
                 $options['max_summary_length'],
                 'UTF-8'
             );
-            $article['image'] = $article['image'] 
-                ? Media::getThumbFromOriginal(Pi::url($article['image']))
-                : $image;
+            $article['image'] = $article['image'] ?: $image;
         }
 
         return array(
@@ -639,7 +653,7 @@ class Block
         }
         
         $url = Pi::service('asset')->getModuleAsset(
-            $options['default_image'],
+            'image/rss.jpg',
             $module
         );
         
