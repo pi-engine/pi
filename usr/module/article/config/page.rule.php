@@ -79,7 +79,7 @@ return array(
         ),
         'category_list'     => array(
             'controller'    => 'list',
-            'action'        => 'all',
+            'action'        => 'index',
         ),
         'category_detail'   => array(
             'controller'    => 'article',

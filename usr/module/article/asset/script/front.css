@@ -1,4 +1,10 @@
 /* Article detail */
+.title {
+    font-weight: bold;
+}
+.title18 {
+    font-size: 18px;
+}
 .article-header {
     margin: 10px 15px 20px 15px;
     border: 0px;

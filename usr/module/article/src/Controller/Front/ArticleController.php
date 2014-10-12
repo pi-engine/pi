@@ -88,21 +88,11 @@ class ArticleController extends ActionController
     public function detailAction()
     {
         $id       = $this->params('id');
-        $slug     = $this->params('slug', '');
         $page     = $this->params('p', 1);
         $remain   = $this->params('r', '');
         $module   = $this->getModule();
-        
-        if ('' !== $remain) {
-            $this->view()->assign('remain', $remain);
-        }
-
-        if (empty($id)) {
-            $id = $this->getModel('extended')->slugToId($slug);
-        }
 
         $details = Entity::getEntity($id);
-        $details['id'] = $id;
         
         // Return 404 if category or cluster is deactivated
         $category = Pi::api('category', $module)->getList(array(
@@ -127,68 +117,22 @@ class ArticleController extends ActionController
                 503
             );
         }
-        
-        $params  = array(
-            'module' => $module,
+
+        $params = array(
+            'time'        => date('Ymd', $details['time_publish']),
+            'id'          => $id,
+            'r'           => -1,
         );
-        $route = Pi::api('api', $module)->getRouteName();
-        if (strval($slug) != $details['slug']) {
-            $routeParams = array(
-                'time'          => date('Ymd', $details['time_publish']),
-                'id'            => $id,
-                'slug'          => $details['slug'],
-                'p'             => $page,
-                'controller'    => 'article',
-                'action'        => 'detail',
-            );
-            if ($remain) {
-                $params['r'] = $remain;
-            }
-            return $this->redirect()
-                ->setStatusCode(301)
-                ->toRoute($route, array_merge($routeParams, $params));
-        }
-        
-        foreach ($details['content'] as &$value) {
-            $value['url'] = $this->url($route, array_merge(array(
-                'time'          => date('Ymd', $details['time_publish']),
-                'id'            => $id,
-                'slug'          => $slug,
-                'p'             => $value['page'],
-                'controller'    => 'article',
-                'action'        => 'detail',
-            ), $params));
-            if (isset($value['title']) 
-                and preg_replace('/&nbsp;/', '', trim($value['title'])) !== ''
-            ) {
-                $showTitle = true;
-            } else {
-                $value['title'] = '';
-            }
-        }
-        $details['view'] = $this->url($route, array_merge(array(
-            'time'        => date('Ymd', $details['time_publish']),
-            'id'          => $id,
-            'slug'        => $slug,
-            'r'           => 0,
-            'controller'  => 'article',
-            'action'      => 'detail',
-        ), $params));
-        $details['remain'] = $this->url($route, array_merge(array(
-            'time'        => date('Ymd', $details['time_publish']),
-            'id'          => $id,
-            'slug'        => $slug,
-            'r'           => $page,
-            'controller'  => 'article',
-            'action'      => 'detail',
-        ), $params));
+        $details['view']   = Pi::api('api', $module)->getUrl('detail', $params, $details);
+        $params['r']       = $page;
+        $details['remain'] = Pi::api('api', $module)->getUrl('detail', $params, $details);
         
         $this->view()->assign(array(
             'details'     => $details,
             'page'        => $page,
-            'showTitle'   => isset($showTitle) ? $showTitle : null,
             'config'      => Pi::config('', $module),
             'module'      => $module,
+            'remain'      => $remain,
         ));
         
         $this->view()->setTemplate('article-detail');
@@ -406,6 +350,7 @@ class ArticleController extends ActionController
             'rules'      => $rules,
             'cluster'    => $cluster,
             'stats'      => $stats,
+            'section'    => $this->section,
         ));
         
         if ('my' == $from) {

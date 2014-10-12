@@ -95,10 +95,10 @@ class Article extends Standard
                 );
                 if ('all' == $category) {
                     $controller = 'list';
-                    $action     = 'all';
+                    $action     = 'index';
                 } else {
                     $controller = 'list';
-                    $action     = 'all';
+                    $action     = 'index';
                     $category   = $this->decode($category);
                 }
                 if (isset($urlParams[1])
@@ -132,7 +132,6 @@ class Article extends Standard
                     2
                 );
                 $id   = is_numeric($uniqueVal) ? $uniqueVal : 0;
-                $slug = !is_numeric($uniqueVal) ? $this->decode($uniqueVal) : '';
                 $controller = 'article';
                 $action     = 'detail';
             } elseif ('topic' == $urlParams[0]) {
@@ -160,9 +159,8 @@ class Article extends Standard
                 return null;
             }
         }
-        $matches  = compact(
-            'controller', 'action', 'category', 'tag', 'id', 'slug', 'topic',
-            'sort'
+        $matches = compact(
+            'controller', 'action', 'category', 'tag', 'id', 'topic', 'sort'
         );
         $matches = array_filter($matches);
         
@@ -218,29 +216,14 @@ class Article extends Standard
         unset($mergedParams['action']);
         unset($mergedParams['module']);
         
-        if (isset($mergedParams['slug'])
-            && !empty($mergedParams['slug'])
-            && !is_numeric($mergedParams['slug'])
-        ) {
-            $url .= 'id'
-                 . $this->keyValueDelimiter 
-                 . $this->encode($mergedParams['slug']);
-            if (!isset($mergedParams['preview'])) {
-                unset($mergedParams['id']);
-            }
-            unset($mergedParams['slug']);
-            unset($mergedParams['time']);
-        } elseif (isset($mergedParams['id'])
+        if (isset($mergedParams['id'])
             && !empty($mergedParams['id'])
             && is_numeric($mergedParams['id'])
         ) {
             $url .= 'id'
                  . $this->keyValueDelimiter 
                  . $mergedParams['id'];
-            if (!isset($mergedParams['preview'])) {
-                unset($mergedParams['id']);
-            }
-            unset($mergedParams['slug']);
+            unset($mergedParams['id']);
             unset($mergedParams['time']);
         } elseif (isset($mergedParams['topic'])) {
             if ('all' == $mergedParams['topic']) {
@@ -257,11 +240,6 @@ class Article extends Standard
                      . $mergedParams['topic'];
             }
             unset($mergedParams['topic']);
-        } elseif (isset($mergedParams['list'])) {
-            $url .= 'list'
-                 . $this->keyValueDelimiter 
-                 . $this->encode($mergedParams['list']);
-            unset($mergedParams['list']);
         } elseif (isset($mergedParams['category'])
             || 'list' == $controller
         ) {

@@ -83,9 +83,7 @@ class AuthorController extends ActionController
             }
             
             // Clear cache
-            Pi::service('registry')
-                ->handler('author', $module)
-                ->clear($module);
+            Pi::registry('author', $module)->clear($module);
             
             $this->redirect()->toRoute('', array('action' => 'list'));
         }
@@ -129,9 +127,7 @@ class AuthorController extends ActionController
             $id   = $this->saveAuthor($data);
             
             // Clear cache
-            Pi::service('registry')
-                ->handler('author', $module)
-                ->clear($module);
+            Pi::registry('author', $module)->clear($module);
 
             return $this->redirect()->toRoute('', array('action' => 'list'));
         }
@@ -183,9 +179,7 @@ class AuthorController extends ActionController
         
         // Clear cache
         $module = $this->getModule();
-        Pi::service('registry')
-            ->handler('author', $module)
-            ->clear($module);
+        Pi::registry('author', $module)->clear($module);
 
         // Go to list page
         return $this->redirect()->toRoute('', array('action' => 'list'));

@@ -11,8 +11,7 @@ namespace Module\Article\Api;
 
 use Pi;
 use Pi\Application\Api\AbstractComment;
-use Zend\Mvc\Router\RouteMatch;
-use Module\Article\Service;
+use Module\Article\Entity;
 
 /**
  * Comment target callback handler
@@ -34,40 +33,30 @@ class Comment extends AbstractComment
     public function get($item)
     {
         $result = array();
-        $items = (array) $item;
-
-        //$route = Pi::api('api', $this->module)->getRouteName();
-        $route = 'article';
 
         // Get articles
-        $where   = array('id' => $items);
+        $where   = array('id' => (array) $item);
         $columns = array('id', 'subject', 'time_publish', 'uid');
-        $modelArticle = Pi::model('article', $this->module);
-        $articles = $modelArticle->getSearchRows($where, null, null, $columns);
+        $items = Entity::getAvailableArticlePage(
+            $where, 
+            1, 
+            null, 
+            $columns, 
+            null,
+            $this->module
+        );
         
-        // Get article slugs
-        $modelExtended = Pi::model('extended', $this->module);
-        $rowset = $modelExtended->select(array('article' => $items));
-        $slugs  = array();
-        foreach ($rowset as $row) {
-            $slugs[$row->article] = $row->slug;
-        }
-        
-        foreach ($items as $id) {
+        foreach ($items as $item) {
+            $id          = $item['id'];
             $result[$id] = array(
                 'id'    => $id,
-                'title' => $articles[$id]['subject'],
-                'url'   => Pi::service('url')->assemble(
-                    $route,
-                    array(
-                        'module'    => $this->module,
-                        'id'        => $id,
-                        'slug'      => $slugs[$id],
-                        'time'      => $articles[$id]['time_publish'],
-                    )
-                ),
-                'uid'   => $articles[$id]['uid'],
-                'time'  => $articles[$id]['time_publish'],
+                'title' => $item['subject'],
+                'url'   => Pi::api('api', $this->module)->getUrl('detail', array(
+                    'id'   => $id,
+                    'time' => $item['time_publish'],
+                ), $item),
+                'uid'   => $item['uid'],
+                'time'  => $item['time_publish'],
             );
         }
 

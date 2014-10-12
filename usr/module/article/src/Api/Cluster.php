@@ -22,7 +22,7 @@ class Cluster extends Category
      * Table name
      * @var string 
      */
-    protected $table = 'cluster';
+    protected $identifier = 'cluster';
     
     /**
      * Load custom cluster forms configuration

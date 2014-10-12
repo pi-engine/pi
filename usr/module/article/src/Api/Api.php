@@ -22,6 +22,75 @@ class Api extends AbstractApi
     protected $module = 'article';
 
     /**
+     * Get page URL
+     * 
+     * @param string  $type     Which page URL want to get
+     * @param array   $params   Parameters for assembling URL
+     * @param array   $options  Additional parameters for assembling URL
+     * @return string
+     */
+    public function getUrl($type, $params = array(), $options = array())
+    {
+        // Get custom URL
+        $module = $this->getModule();
+        $params['module'] = $module;
+        $class  = sprintf('Custom\%s\Api\Api', ucfirst($module));
+        if (class_exists($class)) {
+            $handler = new $class($module);
+            return $handler->getUrl($type, $params, $options);
+        }
+        
+        // Default process
+        switch($type) {
+            case 'home':
+                $params['controller'] = 'article';
+                $params['action']     = 'index';
+                break;
+            case 'list':
+                $params['controller'] = 'list';
+                $params['action']     = 'index';
+                // Optional parameters
+                //$category = Pi::api('category', $module)->get($options['category']);
+                //$cluster  = Pi::api('cluster', $module)->get($options['cluster']);
+                break;
+            case 'detail':
+                $params['controller'] = 'article';
+                $params['action']     = 'detail';
+                break;
+            case 'topic-home':
+                $params['controller'] = 'topic';
+                $params['action']     = 'index';
+                break;
+            case 'topic-list':
+                $params['controller'] = 'topic';
+                $params['action']     = 'list';
+                $params['list']       = 'all';
+                break;
+            case 'topics':
+                $params['controller'] = 'topic';
+                $params['action']     = 'all-topic';
+                $params['topic']      = 'all';
+                break;
+            case 'tag-list':
+                $params['controller'] = 'tag';
+                $params['action']     = 'list';
+                break;
+            case 'category-home':
+                $params['controller'] = 'category';
+                $params['action']     = 'index';
+                break;
+            case 'cluster-home':
+                $params['controller'] = 'cluster';
+                $params['action']     = 'index';
+                break;
+        }
+        $route = $this->getRouteName();
+        $url   = Pi::service('url')->assemble($route, $params);
+        
+        return $url;
+    }
+    
+    /**
      * Get compose url
      * 
      * @return string 

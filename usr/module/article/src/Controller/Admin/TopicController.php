@@ -493,8 +493,13 @@ class TopicController extends ActionController
         $rowset = $model->selectWith($select)->toArray();
         
         $topicIds = array(0);
-        foreach ($rowset as $row) {
+        foreach ($rowset as &$row) {
             $topicIds[] = $row['id'];
+            $row['url'] = Pi::api('api', $module)->getUrl(
+                'topic-home',
+                array('topic' => $row['slug'] ?: $row['id']),
+                $row
+            );
         }
         
         // Fetch topic article count

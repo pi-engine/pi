@@ -31,12 +31,8 @@ class Breadcrumbs extends AbstractBreadcrumbs
     {
         $module = $this->module;
         $moduleData = Pi::registry('module')->read($module);
-        $route  = Pi::api('api', $this->module)->getRouteName();
-        $home   = Pi::service('module')->config('default_homepage', $module);
-        $home   = $home ? Pi::url($home) : Pi::service('url')->assemble(
-            'default',
-            array('module' => $module)
-        );
+        $home   = Pi::config('default_homepage', $module);
+        $home   = $home ? Pi::url($home) : Pi::api('api', $module)->getUrl('home');
         $result = array(
             array(
                 'label' => $moduleData['title'],
@@ -44,35 +40,39 @@ class Breadcrumbs extends AbstractBreadcrumbs
             ),
         );
         
+        // Get actural controller & action
         $params = Pi::service('url')->getRouteMatch()->getParams();
+        $page   = Pi::api('page', $module)->get($params['action']);
+        if ($page) {
+            $params = array_merge($params, array(
+                'controller' => $page['controller'],
+                'action'     => $page['action'],
+            ));
+        }
         
         if ('article' == $params['controller']
+            && 'index' == $params['action']
+        ) {
+            return array();
+        } elseif ('article' == $params['controller']
             && 'detail' == $params['action']
         ) {
-            $model = Pi::model('article', $module);
-            if (isset($params['slug']) && $params['slug']) {
-                $row = $model->find($params['slug'], 'slug');
-            } else {
-                $row = $model->find($params['id']);
-            }
-            $rows     = Pi::api('category', $module)->getList(
-                array('id' => $row->category)
-            );
-            $category = array_shift($rows);
+            $row      = Pi::model('article', $module)->find($params['id']);
+            $category = Pi::api('category', $module)->get($row->category);
             $result[] = array(
                 'label' => $category['title'],
-                'href'  => Pi::service('url')->assemble($route, array(
-                    'module'     => $module,
-                    'controller' => 'list',
-                    //'action'     => 'all',
-                    'category'   => $category['slug'] ?: $category['id'],
+                'href'  => Pi::api('api', $module)->getUrl('detail', array(
+                    'category' => $category['slug'] ?: $category['id'],
+                ), array(
+                    'category' => $row->category,
+                    'cluster'  => $row->cluster,
                 )),
             );
             $result[] = array(
                 'label' => __('Content'),
             );
         } elseif ('list' == $params['controller']
-            && 'all' == $params['action']
+            && 'index' == $params['action']
         ) {
             if ('all' == $params['category']) {
                 $title = __('All');
@@ -80,43 +80,30 @@ class Breadcrumbs extends AbstractBreadcrumbs
                 $categoryId = Pi::api('category', $module)->slugToId(
                     $params['category']
                 );
-                $rows = Pi::api('category', $module)->getList(array(
-                    'id'     => $categoryId,
-                    'active' => 1,
-                ));
-                $row  = array_shift($rows);
-                $title = $row['title'];
+                $category = Pi::api('category', $module)->get($categoryId);
+                $title    = $category['title'];
             }
-            $result[] = array(
-                'label' => $title,
-            );
+            $result[] = array('label' => $title);
         } else if ('topic' == $params['controller']
             && 'all-topic' == $params['action']
         ) {
-            $result[] = array(
-                'label' => __('Topic'),
-            );
+            $result[] = array('label' => __('Topic'));
         } else if ('topic' == $params['controller']
             && ('index' == $params['action'] || 'list' == $params['action'])
         ) {
             $result[] = array(
                 'label' => __('Topic'),
-                'href'  => Pi::service('url')->assemble('default', array(
-                    'module'     => $module,
-                    'controller' => 'topic',
-                )),
+                'href'  => Pi::api('api', $module)->getUrl('topics'),
             );
             if ('index' == $params['action']) {
-                $result[] = array(
-                    'label' => $params['topic'],
-                );
+                $result[] = array('label' => $params['topic']);
             } elseif ('list' == $params['action']) {
                 $result[] = array(
                     'label' => $params['topic'],
-                    'href'  => Pi::service('url')->assemble($route, array(
-                        'module'     => $module,
-                        'topic'      => $params['topic'],
-                    )),
+                    'href'  => Pi::api('api', $module)->getUrl(
+                        'topic-list',
+                        array('topic' => $params['topic'])
+                    ),
                 );
                 $result[] = array(
                     'label' => __('All'),

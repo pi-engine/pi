@@ -26,9 +26,6 @@ use Module\Article\Media;
  */
 class AjaxController extends ActionController
 {
-    const AJAX_RESULT_TRUE = 1;
-    const AJAX_RESULT_FALSE = 0;
-
     /**
      * Get user name
      * 
@@ -58,7 +55,7 @@ class AjaxController extends ActionController
         }
 
         return array(
-            'status'    => self::AJAX_RESULT_TRUE,
+            'status'    => true,
             'message'   => 'ok',
             'data'      => $resultset,
         );

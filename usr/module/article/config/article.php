@@ -449,40 +449,5 @@ return array(
                 ),
             ),
         ),
-        /*'seo_title'      => array(
-            'type'       => 'common',
-            'name'       => 'seo_title',
-            'title'      => _a('SEO Title'),
-            'is_edit'    => false,
-            'is_insert'  => true,
-            'field_type' => 'varchar(255) not null default \'\'',
-        ),
-        'seo_keywords'   => array(
-            'type'       => 'common',
-            'name'       => 'seo_keywords',
-            'title'      => _a('SEO Keywords'),
-            'is_edit'    => false,
-            'is_insert'  => true,
-        ),
-        'seo_description' => array(
-            'type'       => 'common',
-            'name'       => 'seo_description',
-            'title'      => _a('SEO Description'),
-            'edit'       => array(
-                'attributes' => array(
-                    'id'        => 'seo_description',
-                    'type'      => 'textarea',
-                ),
-            ),
-            'is_edit'    => false,
-            'is_insert'  => true,
-        ),
-        'slug'           => array(
-            'type'       => 'common',
-            'name'       => 'slug',
-            'title'      => _a('Slug'),
-            'is_edit'    => false,
-            'is_insert'  => true,
-        ),*/
     ),
 );
