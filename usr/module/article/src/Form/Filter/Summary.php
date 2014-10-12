@@ -30,10 +30,8 @@ class Summary extends Input
         $value = parent::getValue();
         if (empty($value)) {
             $module  = Pi::service('module')->current();
-            $form    = Pi::api('form', $module)->loadForm();
-            $content = $form->get('content')->getValue();
             $value = Draft::generateArticleSummary(
-                $content,
+                _post('content'),
                 Pi::config('max_summary_length', $module)
             );
         }

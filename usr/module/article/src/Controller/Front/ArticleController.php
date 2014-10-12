@@ -41,7 +41,7 @@ class ArticleController extends ActionController
      */
     protected $section = 'front';
     
-        /**
+    /**
      * Parse action name
      * 
      * @param string  $action
@@ -72,6 +72,10 @@ class ArticleController extends ActionController
             return $this->redirect()
                         ->toUrl(Pi::url($this->config('default_homepage')));
         }
+        
+        $module = $this->getModule();
+        $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
+        $this->view()->assign('seo', $seo);
         
         $this->view()->setTemplate('article-index');
     }
@@ -106,7 +110,7 @@ class ArticleController extends ActionController
             'active' => 1,
         ));
         $cluster  = Pi::api('cluster', $module)->getList(array(
-            'id'     => $details['cluster'],
+            'id'     => array_keys($details['cluster']),
             'active' => 1,
         ));
         if (($details['category'] && empty($category))

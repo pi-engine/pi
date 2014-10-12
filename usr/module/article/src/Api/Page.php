@@ -546,4 +546,33 @@ class Page extends AbstractApi
         
         return $action;
     }
+    
+    /**
+     * Get SEO meta data of current page
+     * 
+     * @param string $name
+     * @return array
+     */
+    public function getSeoMeta($name)
+    {
+        $result = array();
+        
+        if (!empty($name)) {
+            $rowset = $this->getList(array(
+                'name'   => $name,
+                'active' => 1,
+            ));
+            $row = $rowset ? array_shift($rowset) : array();
+            
+            if (!empty($row)) {
+                $result = array(
+                    'title'       => $row['seo_title'],
+                    'keywords'    => $row['seo_keywords'],
+                    'description' => $row['seo_description'],
+                );
+            }
+        }
+        
+        return $result;
+    }
 }

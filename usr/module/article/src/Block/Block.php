@@ -493,6 +493,7 @@ class Block
                 $options['day_range'],
                 $where,
                 $columns,
+                0,
                 $limit,
                 $module
             );
@@ -501,6 +502,7 @@ class Block
                 $options['day_range'],
                 $where,
                 $columns,
+                0,
                 $limit,
                 $module
             );

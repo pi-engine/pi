@@ -406,6 +406,31 @@ return array(
             'is_edit'    => true,
             'is_insert'  => false,
         ),
+        'seo_keywords'   => array(
+            'type'       => 'common',
+            'name'       => 'seo_keywords',
+            'title'      => _a('Meta Keywords'),
+            'edit'       => array(
+                'required' => false,
+                'element'  => 'text',
+            ),
+            'is_edit'    => true,
+            'is_insert'  => false,
+        ),
+        'seo_description' => array(
+            'type'       => 'common',
+            'name'       => 'seo_description',
+            'title'      => _a('Meta Description'),
+            'edit'       => array(
+                'required' => false,
+                'element'  => 'textarea',
+                'attributes' => array(
+                    'rows'      => 3,
+                ),
+            ),
+            'is_edit'    => true,
+            'is_insert'  => false,
+        ),
         
         // Compound
         'related'        => array(

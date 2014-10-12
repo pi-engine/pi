@@ -149,6 +149,7 @@ class Topic
         $range,
         $where = array(),
         $columns = null,
+        $offset = null,
         $limit = null,
         $module = null
     ) {
@@ -213,6 +214,9 @@ class Topic
             ->group(sprintf('%s.id', $prefix))
             ->order('s.visits DESC')
             ->limit($limit);
+        if ($offset) {
+            $select->offset($offset);
+        }
         $rowset = $modelArticle->selectWith($select)->toArray();
         
         $result = Entity::canonize($rowset, $module);

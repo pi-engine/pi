@@ -2,14 +2,25 @@
 $this->css(array(
     $this->assetModule('script/block.css'),
 ));
-if (!empty($details['seo'])) {
-    if ($details['seo']['keywords']) {
-        $this->headMeta()->setName('keywords', $details['seo']['keywords']);
-    }
-    if ($details['seo']['description']) {
-        $this->headMeta()->setName('description', $details['seo']['description']);
-    }
+
+if ($details['seo_keywords']) {
+    $this->headMeta()->setName('keywords', $details['seo_keywords']);
+} elseif ($details['tag']) {
+    $this->headMeta()->setName('keywords', $details['tag']);
 }
+if ($details['seo_description']) {
+    $this->headMeta()->setName('description', $details['seo_description']);
+} elseif ($details['summary']) {
+    $this->headMeta()->setName('description', $details['summary']);
+}
+
+$headCluster = array_shift($details['cluster']);
+$siteName  = Pi::config('sitename');
+$headTitle = str_replace('%site%', $siteName, $config['head_title']);
+$headTitle = str_replace('%category%', $details['category']['title'], $headTitle);
+$headTitle = str_replace('%cluster%', $headCluster['title'], $headTitle);
+$headTitle = str_replace('%title%', $details['subject'], $headTitle);
+$this->headTitle($headTitle, 'SET');
 ?>
 
 <div class="pi-article-module">

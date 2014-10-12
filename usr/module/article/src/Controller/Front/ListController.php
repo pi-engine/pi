@@ -50,7 +50,9 @@ class ListController extends ActionController
     public function allAction()
     {
         $module = $this->getModule();
-        $page   = $this->params('p', 1);
+        $page   = (int) $this->params('p', 1);
+        $limit  = (int) $this->config('page_limit_all') ?: 40;
+        $offset = $limit * ($page - 1);
         $sort   = $this->params('sort', 'new');
 
         $params = array('sort' => $sort);
@@ -60,6 +62,7 @@ class ListController extends ActionController
             'time_publish < ?' => time(),
         );
         
+        // Get category condition
         $category = $this->params('category', 0);
         $params['category'] = $category;
         if (!empty($category) && 'all' != $category) {
@@ -71,50 +74,37 @@ class ListController extends ActionController
             $where['category'] = $children;
         }
         
-        //@todo Get limit from module config
-        $limit  = (int) $this->config('page_limit_all');
-        $limit  = $limit ?: 40;
-        $offset = $limit * ($page - 1);
-
-        $model  = $this->getModel('article');
-        $select = $model->select()->where($where);
+        // Get cluster condition
+        $cluster = $this->params('cluster', 0);
+        $params['cluster'] = $cluster;
+        if (!empty($cluster) && 'all' != $cluster) {
+            $cluster  = Pi::api('cluster', $module)->slugToId($cluster);
+            $children = $this->getModel('cluster')->getDescendantIds($cluster);
+            if (empty($children)) {
+                return $this->jumpTo404(__('Invalid cluster id'));
+            }
+            $where['cluster'] = $children;
+        }
+        
+        $columns = array('subject', 'summary', 'author', 'time_publish', 'image');
+        
         if ('hot' == $sort) {
-            $modelStats = $this->getModel('stats');
-            $select->join(
-                array('st' => $modelStats->getTable()),
-                sprintf('%s.id = st.article', $model->getTable()),
-                array()
+            $items = Entity::getTopVisitArticles(
+                'A',
+                $where,
+                $columns,
+                $offset,
+                $limit,
+                $module
             );
-            $order = 'st.visits DESC';
         } else {
-            $order = 'time_update DESC, time_publish DESC';
-        }
-        $select->order($order)->offset($offset)->limit($limit);
-        
-        $route     = Pi::api('api', $module)->getRouteName();
-        $resultset = $model->selectWith($select);
-        $items     = array();
-        $categoryIds = $authorIds = array();
-        foreach ($resultset as $row) {
-            $items[$row->id] = $row->toArray();
-            $publishTime     = date('Ymd', $row->time_publish);
-            $items[$row->id]['url'] = $this->url(
-                $route, 
-                array(
-                    'module'    => $module,
-                    'id'   => $row->id, 
-                    'time' => $publishTime
-                )
-            );
-            $authorIds[]   = $row->author;
-            $categoryIds[] = $row->category;
-        }
-        
-        // Get author
-        $authors = array();
-        if (!empty($authorIds)) {
-            $authors = Pi::api('api', $module)->getAuthorList(
-                array('id' => $authorIds)
+            $items = Entity::getAvailableArticlePage(
+                $where,
+                $page,
+                $limit,
+                $columns,
+                'time_update DESC, time_publish DESC',
+                $module
             );
         }
         
@@ -139,6 +129,7 @@ class ListController extends ActionController
         $config = Pi::config('', $module);
         
         // Get category nav
+        $route  = Pi::api('api', $module)->getRouteName();
         $rowset = Pi::api('category', $module)->getList(array(), null, false);
         $navs   = $this->canonizeCategory($rowset['child'], $route);
         $categoryTitle = $this->getCategoryTitle($category, $rowset['child']);
@@ -188,6 +179,9 @@ class ListController extends ActionController
         
         $urlHot = $this->url($route, array('category' => $category, 'sort' => 'hot'));
         $urlNew = $this->url($route, array('category' => $category));
+        
+        // Get SEO meta
+        $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
 
         $title = $categoryTitle ?: __('All Articles');
         $this->view()->assign(array(
@@ -195,7 +189,6 @@ class ListController extends ActionController
             'articles'   => $items,
             'paginator'  => $paginator,
             'elements'   => $config['list_item'],
-            'authors'    => $authors,
             'categories' => $categories,
             'length'     => $config['list_summary_length'],
             'navs'       => $this->config('enable_list_nav') ? $navs : '',
@@ -204,6 +197,7 @@ class ListController extends ActionController
                 'hot'       => $urlHot,
                 'new'       => $urlNew,
             ),
+            'seo'        => $seo,
         ));
         
         $this->view()->setTemplate('list-all');

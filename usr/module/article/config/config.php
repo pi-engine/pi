@@ -433,38 +433,12 @@ return array(
         ),
 
         // SEO
-        'seo_keywords'    => array(
+        'head_title'      => array(
             'category'    => 'seo',
-            'title'       => _t('Keywords'),
-            'description' => _t('Setup head keywords.'),
-            'value'       => 0,
-            'filter'      => 'int',
-            'edit'        => array(
-                'type'    => 'select',
-                'options' => array(
-                    'options' => array(
-                        0  => _a('Site default'),
-                        1  => _a('Use tag'),
-                        2  => _a('Use category'),
-                    ),
-                ),
-            ),
-        ),
-        'seo_description' => array(
-            'category'    => 'seo',
-            'title'       => _t('Description'),
-            'description' => _t('Setup head description.'),
-            'value'       => 0,
-            'filter'      => 'int',
-            'edit'        => array(
-                'type'    => 'select',
-                'options' => array(
-                    'options' => array(
-                        0  => _a('Site default'),
-                        1  => _a('Use summary'),
-                    ),
-                ),
-            ),
+            'title'       => _t('Head Title Format'),
+            'description' => _t('Head title in article detail page, site name, category name, cluster name and article title are allowed'),
+            'value'       => '%title%-%category%-%site%',
+            'filter'      => 'string',
         ),
     ),
 );
