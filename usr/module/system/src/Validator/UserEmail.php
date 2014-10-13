@@ -10,14 +10,15 @@
 namespace Module\System\Validator;
 
 use Pi;
-use Zend\Validator\AbstractValidator;
+//use Zend\Validator\AbstractValidator;
+use Zend\Validator\EmailAddress;
 
 /**
  * User email check
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class UserEmail extends AbstractValidator
+class UserEmail extends EmailAddress
 {
     /** @var string */
     const RESERVED  = 'userEmailReserved';
@@ -29,19 +30,25 @@ class UserEmail extends AbstractValidator
      * Message templates
      * @var array
      */
-    protected $messageTemplates = array(
-        self::RESERVED  => 'User email is reserved',
-        self::USED      => 'User email is already used',
-    );
+    //protected $messageTemplates = array();
 
     /**
-     * Options
-     * @var array
+     * {@inheritDoc}
      */
-    protected $options = array(
-        'backlist'          => array(),
-        'checkDuplication'  => true,
-    );
+    public function __construct($options = null)
+    {
+        $options = $options ?: array();
+        $options = array_merge(array(
+            'blacklist'         => array(),
+            'check_duplication' => true,
+        ), $options);
+
+        parent::__construct($options);
+        $this->abstractOptions['messageTemplates'] = array(
+            static::RESERVED    => __('User email is reserved'),
+            static::USED        => __('User email is already used'),
+        ) + $this->abstractOptions['messageTemplates'];
+    }
 
     /**
      * User name validate
@@ -54,17 +61,22 @@ class UserEmail extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!empty($this->options['backlist'])) {
-            $pattern = is_array($this->options['backlist'])
-                ? implode('|', $this->options['backlist'])
-                : $this->options['backlist'];
+        $result = parent::isValid($value, $context);
+        if (!$result) {
+            return false;
+        }
+
+        if (!empty($this->options['blacklist'])) {
+            $pattern = is_array($this->options['blacklist'])
+                ? implode('|', $this->options['blacklist'])
+                : $this->options['blacklist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
                 $this->error(static::RESERVED);
                 return false;
             }
         }
 
-        if ($this->options['checkDuplication']) {
+        if ($this->options['check_duplication']) {
             $where = array('email' => $value);
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];

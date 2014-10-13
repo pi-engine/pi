@@ -19,7 +19,7 @@ use Zend\View\Helper\AbstractHelper;
  * Usage inside a phtml template
  *
  * ```
- *  $this->i18n('theme/default', 'main');
+ *  $this->i18n('theme/default', 'default');
  *  $this->i18n('module/demo', 'block');
  * ```
  *

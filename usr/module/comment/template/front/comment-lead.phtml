@@ -4,7 +4,7 @@
         <strong>(<?php echo $count ?: 0; ?>)</strong>
     </div>
     <div class="panel-body">
-        <?php include '_post-form.phtml'; ?>
+        <?php include $this->template('./_post-form.phtml'); ?>
         <?php if (count($posts)) { ?>
         <?php foreach ($posts as $item) { ?>
         <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">

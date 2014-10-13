@@ -153,7 +153,7 @@ class Navigation extends AbstractResource
      * @param array $list
      * @return void
      */
-    protected function canonizePages(&$list)
+    protected function canonizePages(array &$list)
     {
         foreach ($list as $key => &$page) {
             $pages = array();
@@ -218,6 +218,7 @@ class Navigation extends AbstractResource
             } else {
                 $name = $module . '-' . $key;
             }
+            $data = is_array($data) ? $data : array();
             $this->canonizePages($data);
             $node = array(
                 'module'        => $module,

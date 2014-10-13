@@ -23,12 +23,15 @@ class ControllerAvailable extends AbstractValidator
     const CONTROLLER_UNAVAILABLE = 'controllerUnavailable';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::CONTROLLER_UNAVAILABLE    => 'The controller is not available.',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::CONTROLLER_UNAVAILABLE => __('The controller is not available.'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * Page validate

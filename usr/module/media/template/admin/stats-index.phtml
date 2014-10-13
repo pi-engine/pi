@@ -13,7 +13,7 @@
             <?php
                 $items = $medias;
                 $field = 'count';
-                include $this->template('admin/stats-page');
+                include $this->template('./stats-page');
             ?>
         </table>
     </div>
@@ -38,25 +38,25 @@
                 <?php
                     $items = $user['today'];
                     $field = 'total';
-                    include 'stats-page.phtml';
+                include $this->template('./stats-page');
                 ?>
             </table>
             <table class="table table-striped tab-pane" id="top-submitter-2">
                 <?php
                    $items = $user['week'];
-                   include 'stats-page.phtml';
+                include $this->template('./stats-page');
                ?>
             </table>
             <table class="table table-striped tab-pane" id="top-submitter-3">
                 <?php
                    $items = $user['month'];
-                   include 'stats-page.phtml';
+                include $this->template('./stats-page');
                 ?>
             </table>
             <table class="table table-striped tab-pane" id="top-submitter-4">
                 <?php
                    $items = $user['ever'];
-                   include 'stats-page.phtml';
+                include $this->template('./stats-page');
                 ?>
             </table>
         </div>

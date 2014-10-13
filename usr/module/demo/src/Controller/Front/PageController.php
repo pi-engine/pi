@@ -9,7 +9,6 @@
 
 namespace Module\Demo\Controller\Front;
 
-//use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Form\Form as BaseForm;
 use Pi\Paginator\Paginator;

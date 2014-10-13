@@ -1,0 +1,102 @@
+.pi-comment {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+.pi-comment-header {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dddddd;
+}
+.pi-comment a.highlight {
+    color: #0088cc;
+}
+.pi-comment div.media > .pull-left {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.pi-comment img {
+    border-radius: 3px;
+}
+.pi-comment-list .media {
+    margin-top: 5px;
+    border-bottom: 1px solid #dddddd;
+}
+.pi-comment-user {
+    font-weight: bold;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+}
+.pi-comment-time {
+    font-size: 13px;
+    font-family: 'Arial';
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.pi-comment-content {
+    margin-top: 10px;
+    color: #333333;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+}
+.pi-comment-operation {
+    margin-top: 10px;
+    font-size: 13px;
+}
+.pi-comment-operation .operation {
+    margin-right: 10px;
+}
+.operation i {
+    margin-right: 2px;
+}
+.operation a {
+    color: #999999;
+}
+a.muted:hover,
+.operation a:hover {
+    color: #0088cc;
+}
+.pi-comment-view-all {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.pi-comment-view-all a {
+    width: 100%;
+    color: #808080;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.pi-comment-none {
+    height: 140px;
+    line-height: 140px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    color: #999999;
+}
+
+.pi-comment-desc {
+    margin: 10px 0 0 0;
+    font-size: 13px;
+}
+
+.nav-tabs a {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0088cc;
+    font-family: helvetica;
+}
+
+.comment-title-hidden {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: auto;
+    max-width: 90%;
+    word-break: keep-all;
+    margin: 0 5px 0 5px;
+}

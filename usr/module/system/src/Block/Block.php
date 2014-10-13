@@ -46,11 +46,21 @@ class Block
         if (!Pi::service('user')->hasIdentity()) {
             return false;
         }
-
-        return array(
-            'identity'  => Pi::service('user')->getIdentity(),
-            'id'        => Pi::service('user')->getId(),
-        );
+        // Get uid
+        $uid = Pi::user()->getId();
+        // Get user
+        $parameters = array('id', 'identity', 'name', 'email');
+        $user = Pi::user()->get($uid, $parameters);
+        $user['profileUrl'] = Pi::service('user')->getUrl('profile');
+        $user['avatar'] = Pi::service('user')->avatar($uid, 'large' , array(
+            'alt' => $user['name'],
+            'class' => 'img-thumbnail'
+        ));
+        if (Pi::service('module')->isActive('user')) {
+            $user['accountUrl'] = Pi::service('user')->getUrl('user' , array('controller' => 'account'));
+            $user['avatarUrl'] = Pi::service('user')->getUrl('user' , array('controller' => 'avatar'));
+        }
+        return $user;
     }
 
     /**
@@ -80,7 +90,7 @@ class Block
 
         if ('js' == $type) {
             $user = array(
-                'uid'       => 0,
+                'uid'       => Pi::service('user')->getUser()->get('id'),
                 'logout'    => Pi::service('authentication')->getUrl('logout', $params),
                 'login'     => Pi::service('authentication')->getUrl('login', $params),
                 'register'  => Pi::service('user')->getUrl('register', $params),

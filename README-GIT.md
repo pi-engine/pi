@@ -36,8 +36,9 @@ Working with forked repo
   * Push a local branch to your repo: `git push`
   * Switch to a branch: `git checkout <another-branch>`
   * Merge code from another branch: `git merge <another-branch>`
+  * Clone a remote branch to local: `git branch --set-upstream-to=origin/<remote-branch> <local-branch>`
   * Delete a local branch: `git branch -d <old-branch>`
-  * Delete a branch from your repo: `git push origin :<old-branch>`
+  * Delete a branch from your remote repo: `git push origin :<old-branch>`
 * Working with tags
   * Check local branches: `git tag`
   * Create a local branch: `git tag -a <new-tag>`

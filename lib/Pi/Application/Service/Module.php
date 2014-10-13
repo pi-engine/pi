@@ -197,10 +197,15 @@ class Module extends AbstractService
      */
     public function loadMeta($module, $type = null, $fetch = false)
     {
-        Pi::service('i18n')->load(array('module/' . $module, 'admin'));
+        $result = array();
 
         // Load module meta data
         $configFile = sprintf('%s/config/module.php', $this->path($module));
+        if (!file_exists($configFile)) {
+            return $result;
+        }
+
+        Pi::service('i18n')->load(array('module/' . $module, 'admin'));
         $config = include $configFile;
 
         // For backward compatibility

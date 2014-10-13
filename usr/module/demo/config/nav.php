@@ -10,17 +10,6 @@
 return array(
     //'translate' => 'navigation',
     'front'   => array(
-        'pages'     => array(
-            'label'         => _a('Pages'),
-            'route'         => 'default',
-            'controller'    => 'page',
-        ),
-        'tree'     => array(
-            'label'         => _a('Test User Call'),
-            'route'         => 'default',
-            'controller'    => 'index',
-            'action'        => 'user',
-        ),
         'pagea'     => array(
             'label'         => _a('Homepage'),
             'route'         => 'default',
@@ -70,10 +59,26 @@ return array(
                 ),
             ),
         ),
+        'pages'     => array(
+            'label'         => _a('Pages'),
+            'route'         => 'default',
+            'controller'    => 'page',
+        ),
+        'files'     => array(
+            'label'         => _a('Files'),
+            'route'         => 'default',
+            'controller'    => 'file',
+        ),
         'route' => array(
             'label'         => _a('Routes'),
             'route'         => 'default',
             'controller'    => 'route'
+        ),
+        'tree'     => array(
+            'label'         => _a('Test User Call'),
+            'route'         => 'default',
+            'controller'    => 'index',
+            'action'        => 'user',
         ),
     ),
     'admin' => array(

@@ -1,5 +1,35 @@
-<h4><?php echo _escape($block['identity']); ?></h4>
-<ul class="nav nav-pills nav-stacked">
-    <li><a href="<?php echo Pi::service('user')->getUrl('profile'); ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
-    <li><a href="<?php echo Pi::service('authentication')->getUrl('logout'); ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
-</ul>
+<div class="user-info clearfix">
+    <div class="clearfix">
+    	<div class="col-md-4 col-sm-6 col-xs-6">
+    		<?php if (isset($block['avatarUrl'])) { ?>
+    		<a href="<?php echo _escape($block['avatarUrl']); ?>" title="<?php echo _escape($block['name']); ?>"><?php echo $block['avatar'] ?></a>
+    		<?php } else { ?>
+            <?php echo $block['avatar'] ?>
+    		<?php } ?>
+    	</div>
+    	<div class="col-md-8 col-sm-6 col-xs-6">
+    		<h4>
+    			<?php echo _escape($block['name']); ?>
+    			<span class="text-muted small"> ( <?php echo _escape($block['identity']); ?> ) </span>
+    		</h4>
+    		<p><span class="text-muted small"><?php echo _escape($block['email']); ?></span></p>
+    	</div>
+    </div>
+    <br />
+    <div class="text-center">
+        <a class="btn btn-default btn-sm" href="<?php echo _escape($block['profileUrl']); ?>" title="<?php echo _b('Profile'); ?>">
+          	<i class="fa fa-user"></i>
+           	<?php echo _b('Profile'); ?>
+        </a>
+        <?php if (isset($block['accountUrl'])) { ?>
+        <a class="btn btn-default btn-sm" href="<?php echo _escape($block['accountUrl']); ?>" title="<?php echo _b('Settings'); ?>">
+          	<i class="fa fa-cog"></i>
+           	<?php echo _b('Settings'); ?>
+        </a>
+        <?php } ?>
+        <a class="btn btn-default btn-sm" href="<?php echo Pi::service('authentication')->getUrl('logout'); ?>" title="<?php echo _b('Logout'); ?>">
+          	<i class="fa fa-power-off"></i>
+           	<?php echo _b('Logout'); ?>
+        </a>
+    </div>
+</div>

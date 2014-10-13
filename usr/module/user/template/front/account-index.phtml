@@ -9,8 +9,7 @@
             <div class="text-muted"><?php _e('Basic settings'); ?></div>
         </div>
         
-        <?php include $this->templateComponent('form'); ?>
-
+        <?php echo $this->form($form); ?>
 
     </div>
 </div>
@@ -167,12 +166,14 @@
             emailVerifyAction: function() {
                 var emailVal = $.trim(this.$email.val());
                 switch ( true ) {
-                    case !/^[0-9a-z_][_.0-9a-z-]{0,31}@([0-9a-z][0-9a-z-]{0,30}\.){1,4}[a-z]{2,4}$/i.test(emailVal):
+
+                    case emailVal == '':
                         this.$email.next().remove();
-                        this.$email.after('<span class="help-inline"><?php _e('Invalid email.'); ?></span>');
+                        this.$email.after('<span class="help-inline"><?php _e('Email is required.'); ?></span>');
                         this.isEmailValid = false;
                         this.isValid();
                         break;
+
                     case emailVal == this.emailInitVal:
                         this.$email.next().remove();
                         this.$email.after('<span class="help-inline">' + this.options.THAT_IS_YOU + '</span>');
@@ -183,11 +184,12 @@
                         if (this.checkEmailRequest) {
                             clearTimeout(this.checkEmailRequest);
                         }
-                        this.checkEmailRequest = setTimeout($.proxy(function(){
-                            $.getJSON(this.options.checkExistUrl, { 'email': emailVal }, $.proxy(function(result) {
-                                if (result.status) {
+                        this.checkEmailRequest = setTimeout($.proxy(function() {
+
+                            $.getJSON(this.options.validateUrl, { 'key': 'email', 'value': emailVal }, $.proxy(function(result) {
+                                if (!result.status) {
                                     this.$email.next().remove();
-                                    this.$email.after('<span class="help-inline"><?php _e('Email has been used.'); ?></span>');
+                                    this.$email.after('<span class="help-inline">' + result.message + '</span>');
                                     this.isEmailValid = false;
                                     this.isValid();
                                 } else {
@@ -196,6 +198,7 @@
                                     this.isValid();
                                 }
                             }, this));
+
                         }, this), 400);
                 }
             },
@@ -203,12 +206,14 @@
             nameVerifyAction: function() {
                 var nameVal = $.trim(this.$name.val());
                 switch ( true ) {
-                    case nameVal == '' || /\s/i.test(nameVal):
+
+                    case nameVal == '':
                         this.$name.next().remove();
-                        this.$name.after('<span class="help-inline"><?php _e('Invalid display name.'); ?></span>');
+                        this.$name.after('<span class="help-inline"><?php _e('Display name is required.'); ?></span>');
                         this.isNameValid = false;
                         this.isValid();
                         break;
+
                     case nameVal == this.nameInitVal:
                         this.$name.next().remove();
                         this.$name.after('<span class="help-inline">' + this.options.THAT_IS_YOU + '</span>');
@@ -219,11 +224,12 @@
                         if (this.checkNameRequest) {
                             clearTimeout(this.checkNameRequest);
                         }
-                        this.checkNameRequest = setTimeout($.proxy(function(){
-                            $.getJSON(this.options.checkExistUrl, { 'name': nameVal }, $.proxy(function(result) {
-                                if (result.status) {
+                        this.checkNameRequest = setTimeout($.proxy(function() {
+
+                            $.getJSON(this.options.validateUrl, { 'key': 'name', 'value': nameVal }, $.proxy(function(result) {
+                                if (!result.status) {
                                     this.$name.next().remove();
-                                    this.$name.after('<span class="help-inline"><?php _e('Display name has been used.'); ?></span>');
+                                    this.$name.after('<span class="help-inline">' + result.message + '</span>');
                                     this.isNameValid = false;
                                     this.isValid();
                                 } else {
@@ -232,6 +238,7 @@
                                     this.isValid();
                                 }
                             }, this));
+
                         }, this), 400);
                 }
             },
@@ -250,7 +257,8 @@
 
     userAccountIndex.init({
         accountIndexUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'index')); ?>',
-        checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
+        validateUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'validate')); ?>',
+        //checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
         confirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>',
         THAT_IS_YOU: '<?php _e('No change!'); ?>'
     });

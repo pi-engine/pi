@@ -23,12 +23,15 @@ class NavNameDuplicate extends AbstractValidator
     const TAKEN        = 'navExists';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Navigation name already exists',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::TAKEN     => __('Navigation name is already taken'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * Navigation name validate
@@ -46,7 +49,6 @@ class NavNameDuplicate extends AbstractValidator
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }
-            //$rowset = Pi::model('navigation')->select($where);
             $count = Pi::model('navigation')->count($where);
             if ($count) {
                 $this->error(static::TAKEN);

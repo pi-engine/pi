@@ -208,9 +208,12 @@ $config = array(
             'type'      => 'select',
             'options'   => array(
                 'options'       => array(
-                    'strict'    => _t('Strict: alphabet or number only'),
-                    'medium'    => _t('Medium: ASCII characters'),
-                    'loose'     => _t('Loose: multi-byte characters'),
+                    'strict'        => _t('Strict: alphabet or number only'),
+                    'strict-space'  => _t('Strict: alphabet, number or space only'),
+                    'medium'        => _t('Medium: ASCII characters'),
+                    'medium-space'  => _t('Medium: ASCII characters and spaces'),
+                    'loose'         => _t('Loose: multi-byte characters'),
+                    'loose-space'   => _t('Loose: multi-byte characters and spaces'),
                 ),
             ),
         ),
@@ -241,14 +244,17 @@ $config = array(
             'type'      => 'select',
             'options'   => array(
                 'options'       => array(
-                    'strict'    => _t('Strict: alphabet or number only'),
-                    'medium'    => _t('Medium: ASCII characters'),
-                    'loose'     => _t('Loose: multi-byte characters'),
+                    'strict'        => _t('Strict: alphabet or number only'),
+                    'strict-space'  => _t('Strict: alphabet, number or space only'),
+                    'medium'        => _t('Medium: ASCII characters'),
+                    'medium-space'  => _t('Medium: ASCII characters and spaces'),
+                    'loose'         => _t('Loose: multi-byte characters'),
+                    'loose-space'   => _t('Loose: multi-byte characters and spaces'),
                 ),
             ),
         ),
         'filter'        => 'string',
-        'value'         => 'loose',
+        'value'         => 'loose-space',
         'category'      => 'account',
     ),
 
@@ -284,7 +290,7 @@ $config = array(
         'category'      => 'account',
     ),
 
-    'uname_backlist'    => array(
+    'uname_blacklist'   => array(
         'title'         => _t('Username blacklist'),
         'description'   => _t('Reserved and forbidden username list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',
@@ -292,7 +298,7 @@ $config = array(
         'category'      => 'account',
     ),
 
-    'name_backlist'    => array(
+    'name_blacklist'    => array(
         'title'         => _t('Display blacklist'),
         'description'   => _t('Reserved and forbidden display name list, separated with `|`, regexp syntax is allowed.'),
         'edit'          => 'textarea',

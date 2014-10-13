@@ -19,8 +19,7 @@ use Pi;
  *
  * ```
  *  include $this->templateComponent('form');
- *  include $this->templateComponent('form-vertical');
- *  include $this->templateComponent('form-popup');
+ *  include $this->templateComponent('forms');
  * ```
  *
  * @see Pi\View\Resolver\ModuleTemplate

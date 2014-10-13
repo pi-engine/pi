@@ -23,12 +23,15 @@ class RoleNameDuplicate extends AbstractValidator
     const TAKEN = 'roleExists';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::TAKEN => 'Role name already exists',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::TAKEN     => __('Role name is already taken'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * Role name validate
@@ -46,7 +49,6 @@ class RoleNameDuplicate extends AbstractValidator
             if (!empty($context['id'])) {
                 $where['id <> ?'] = $context['id'];
             }
-            //$rowset = Pi::model('acl_role')->select($where);
             $count = Pi::model('acl_role')->count($where);
             if ($count) {
                 $this->error(static::TAKEN);

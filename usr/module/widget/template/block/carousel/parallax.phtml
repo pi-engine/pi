@@ -24,7 +24,7 @@ $this->HeadLink(array(
 
 // Options: interval, pause, height
 $options    = (array) $block['options'];
-$target     = empty($options['target_new']) ? '' : '_blank';
+$target     = empty($options['target_new']) ? '_self' : '_blank';
 $ellipsis   = empty($options['max_rows'])
             ? 'pi-ellipsis'
             : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);

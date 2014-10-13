@@ -1,61 +1,78 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2014-08-24 14:56+0800\n"
-"PO-Revision-Date: 2014-08-24 14:56+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-09-12 13:45+0330\n"
+"PO-Revision-Date: 2014-09-12 13:45+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\Code\\pi\\\\usr\\module\\system\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"system\n"
 
-#: c:\Code\pi\\usr\module\system/src/Block/Block.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Block/Block.php:31
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/src/Block/Block.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Block/Block.php:33
 msgid "Site name"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/src/Block/Block.php:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Block/Block.php:34
 msgid "Slogan"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:8
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:61
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:92
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:90
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:91
 msgid "Login"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:13
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:66
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:96
 msgid "Register"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:19
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:20
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:79
-#: c:\Code\pi\\usr\module\system/template/block/user.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:22
 msgid "Profile"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:24
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:25
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:80
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:108
 msgid "Message"
 msgstr ""
 
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:30
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:81
-#: c:\Code\pi\\usr\module\system/template/block/user-bar.phtml:116
-#: c:\Code\pi\\usr\module\system/template/block/user.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user-bar.phtml:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:32
 msgid "Logout"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/block/user.phtml:27
+msgid "Settings"
 msgstr ""

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2014-03-20 09:39+0330\n"
-"PO-Revision-Date: 2014-03-20 09:43+0330\n"
+"POT-Creation-Date: 2014-08-29 15:33+0330\n"
+"PO-Revision-Date: 2014-08-29 15:33+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -12,46 +12,47 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/tag\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"tag\n"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:6
 msgid "All"
 msgstr "همه"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:22
 msgid "Tagged list"
 msgstr "فهرست برچسب ها"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:29
 msgid "Tag"
 msgstr "برچسب"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:30
 msgid "Item"
 msgstr "آیتم"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:31
 msgid "Module"
 msgstr "ماژول"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:32
 msgid "Type"
 msgstr "نوع"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/admin/link.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:33
 msgid "Time"
 msgstr "زمان"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/front/list.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:5
 msgid "View all tagged items."
 msgstr "نمایش همه آیتم های برچسب گذاری شد"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/front/list.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:8
 #, php-format
 msgid "Items in <em>%s</em> tagged by: <strong>%s</strong>"
 msgstr "آیتم های در <em>%s</em> برچسب گذاری شده با : <strong>%s</strong>"
 
-#: /var/www/html/local/pi/pi/usr/module/tag/template/front/list.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:12
 #, php-format
 msgid "Items tagged by: <strong>%s</strong>"
 msgstr "آیتم های برچسب گذاری شده با <strong>%s</strong>"

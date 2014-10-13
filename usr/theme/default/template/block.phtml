@@ -48,17 +48,10 @@
  */
 ?>
 <?php
-$isTab = is_array($block['content']);
-$class = '';
-if ($block['class']) {
-    $class .= ' ' . $block['class'];
-}
-if ($isTab) {
-    $class .= ' pi-panel-tab';
-}
-$isHiddenTitle = $block['title_hidden'] && !$isTab;
-//Render heading and body
-if ($isTab) {
+// Render heading and body
+if (is_array($block['content'])) {
+    // Tab block
+    $class = sprintf('panel panel-default pi-panel-tab %s', $block['class']);
     $heading = '<ul class="pi-panel-tab-indicators">';
     $body = '<div class="panel-body tab-content">';
     foreach ($block['content'] as $key => $item) {
@@ -78,7 +71,9 @@ if ($isTab) {
     }
     $heading .= '</ul>';
     $body .= '</div>';
+    $heading = sprintf('<div class="panel-heading">%s</div>', $heading);
 } else {
+    // Check subline
     if (!empty($block['subline'])) {
         $heading = sprintf(
             '<div class="pi-panel-subline">%s</div>%s',
@@ -88,18 +83,25 @@ if ($isTab) {
     } else {
         $heading = $block['title'];
     }
-    if (empty($block['body_fullsize'])) {
-        $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
+    // Check fullsize
+    if ($block['body_fullsize']) {
+        $class = sprintf('pi-block %s', $block['class']);
+        if (!$block['title_hidden']) {
+            $heading = sprintf('<div class="pi-block-title"><h3>%s</h3></div>', $heading);
+        }
+        $body = sprintf('<div class="pi-block-content">%s</div>', $block['content']);
     } else {
-        $body = $block['content'];
+        $class = sprintf('panel panel-default %s', $block['class']);
+        if (!$block['title_hidden']) {
+            $heading = sprintf('<div class="panel-heading"><h3 class="panel-title">%s</h3></div>', $heading);
+        }
+        $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
     }
 }
 ?>
-<div class="panel panel-default<?php echo $class; ?>">
+<div class="<?php echo $class; ?>">
 <?php
-    if (!$isHiddenTitle) {
-        echo sprintf('<div class="panel-heading">%s</div>', $heading);
-    }
+    echo $heading;
     echo $body;
 ?>
 </div>

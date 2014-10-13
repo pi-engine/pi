@@ -65,7 +65,6 @@ class ViewStrategyListener extends AbstractListenerAggregate
             10000
         );
 
-
         // Register ob_* functions
         $this->listeners[] = $events->attach(
             MvcEvent::EVENT_ROUTE,
@@ -385,8 +384,12 @@ class ViewStrategyListener extends AbstractListenerAggregate
                     if ($this->type
                         && (!$template || '__NULL_' == $template)
                     ) {
-                        $model->setVariable('content', is_scalar($result)
-                            ? $result : json_encode($result));
+                        $model->setVariable(
+                            'content',
+                            is_scalar($result)
+                            ? $result
+                            : json_encode($result)
+                        );
                     } elseif (ArrayUtils::hasStringKeys($result, true)) {
                         $model->setVariables($result);
                     } elseif (is_scalar($result)) {
@@ -514,6 +517,9 @@ class ViewStrategyListener extends AbstractListenerAggregate
             return;
         }
 
+        // Set target explicitly
+        $model->setCaptureTo('content');
+
         // Preload  module/controller/action variables
         // for regular theme template
         $routeMatch = $e->getRouteMatch();
@@ -568,12 +574,18 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $viewConfig = $config['view_manager'];
         // Specify AJAX layout
         if ('ajax' == $this->type) {
-            $viewModel->setTemplate(isset($viewConfig['layout_ajax'])
-                ? $viewConfig['layout_ajax'] : 'layout-content');
+            $viewModel->setTemplate(
+                isset($viewConfig['layout_ajax'])
+                ? $viewConfig['layout_ajax']
+                : 'layout-content'
+            );
         // Specify error page layout
         } elseif ($e->isError()) {
-            $viewModel->setTemplate(isset($viewConfig['layout_error'])
-                ? $viewConfig['layout_error'] : 'layout-style');
+            $viewModel->setTemplate(
+                isset($viewConfig['layout_error'])
+                ? $viewConfig['layout_error']
+                : 'layout-style'
+            );
         }
     }
 

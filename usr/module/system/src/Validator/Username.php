@@ -29,16 +29,6 @@ class Username extends AbstractValidator
     const TAKEN     = 'usernameTaken';
 
     /**
-     * Message templates
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::INVALID   => 'Invalid username: %formatHint%',
-        self::RESERVED  => 'Username is reserved',
-        self::TAKEN     => 'Username is already taken',
-    );
-
-    /**
      * Message variables
      * @var array
      */
@@ -52,24 +42,23 @@ class Username extends AbstractValidator
      */
     protected $formatHint;
 
-    /**
-     * Format messages
-     * @var array
-     */
-    protected $formatMessage = array(
-        'strict'    => 'Only alphabetic and digits are allowed with leading alphabetic',
-        'medium'    => 'Only ASCII characters are allowed',
-        'loose'     => 'Multibyte characters are allowed',
-    );
+    /** @var array */
+    protected $messageTemplates = array();
+
+    /** @var array */
+    protected $formatMessage = array();
 
     /**
      * Format pattern
      * @var array
      */
     protected $formatPattern = array(
-        'strict'    => '/[^a-zA-Z0-9\_\-]/',
-        'medium'    => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
-        'loose'     => '/[\000-\040]/',
+        'strict'        => '/[^a-zA-Z0-9\_\-]/',
+        'strict-space'  => '/[^a-zA-Z0-9\_\-\s]/',
+        'medium'        => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"]/',
+        'medium-space'  => '/[^a-zA-Z0-9\_\-\<\>\,\.\$\%\#\@\!\\\'\"\s]/',
+        'loose'         => '/[\000-\040]/',
+        'loose-space'   => '/[\000-\040][\s]/',
     );
 
     /**
@@ -78,9 +67,33 @@ class Username extends AbstractValidator
      */
     protected $options = array(
         'format'            => 'strict',
-        'backlist'          => array(),
-        'checkDuplication'  => true,
+        'blacklist'         => array(),
+        'check_duplication' => true,
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = $this->messageTemplates + array(
+            self::INVALID   => __('Invalid username: %formatHint%'),
+            self::RESERVED  => __('Username is reserved'),
+            self::TAKEN     => __('Username is already taken'),
+        );
+
+        $this->formatMessage = array(
+            'strict'        => __('Only alphabetic and digits are allowed'),
+            'strict-space'  => __('Only alphabetic, digits and spaces are allowed'),
+            'medium'        => __('Only ASCII characters are allowed'),
+            'medium-space'  => __('Only ASCII characters and spaces are allowed'),
+            'loose'         => __('Only multi-byte characters are allowed'),
+            'loose-space'   => __('Only multi-byte characters and spaces are allowed'),
+        );
+
+        parent::__construct($options);
+        $this->setConfigOption();
+    }
 
     /**
      * User name validate
@@ -100,17 +113,17 @@ class Username extends AbstractValidator
             return false;
         }
 
-        if (!empty($this->options['backlist'])) {
-            $pattern = is_array($this->options['backlist'])
-                ? implode('|', $this->options['backlist'])
-                : $this->options['backlist'];
+        if (!empty($this->options['blacklist'])) {
+            $pattern = is_array($this->options['blacklist'])
+                ? implode('|', $this->options['blacklist'])
+                : $this->options['blacklist'];
             if (preg_match('/(' . $pattern . ')/', $value)) {
                 $this->error(static::RESERVED);
                 return false;
             }
         }
 
-        if ($this->options['checkDuplication']) {
+        if ($this->options['check_duplication']) {
             $isDuplicated = $this->isDuplicated($value, $context);
             if ($isDuplicated) {
                 $this->error(static::TAKEN);

@@ -13,6 +13,9 @@ use Pi;
 use Pi\Mvc\Controller\ActionController;
 use Module\User\Form\AccountForm;
 use Module\User\Form\AccountFilter;
+use Module\User\Validator\UserEmail as UserEmailValidator;
+use Module\User\Validator\Username as UsernameValidator;
+use Module\User\Validator\Name as NameValidator;
 
 /**
  * Account controller
@@ -150,7 +153,6 @@ class AccountController extends ActionController
             'message' => __('Invalid data provided for email change.'),
         );
         $token   = _get('token');
-        //$email   = _get('email');
 
         $view = $this->view();
         $fallback = function () use ($view, $result) {
@@ -241,6 +243,70 @@ class AccountController extends ActionController
         if ($user['credential'] == $user->transformCredential($credential)) {
             $result['message'] = __('Password verified.');
             $result['status']  = 1;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Validate user username, email and display name /nickname
+     *
+     * @return array
+     */
+    public function validateAction()
+    {
+        $result = array(
+            'status' => 1,
+            'message' => __('Valid input.'),
+        );
+        $uid        = Pi::service('user')->getId();
+        $key    = $this->params('key');
+        $value  = $this->params('value');
+
+        // Check params
+        if (!$uid || !$key || !$value) {
+            return $result;
+        }
+
+        // Check user
+        $user = Pi::model('user_account')->find($uid, 'id');
+        if (!$user) {
+            return $result;
+        }
+
+        switch ($key) {
+            // Username
+            case 'username':
+                $validator = new UsernameValidator;
+                break;
+            // Nickname / display name
+            case 'name':
+                $validator = new NameValidator;
+                break;
+            // Email
+            case 'email':
+                $validator = new UserEmailValidator;
+                break;
+            // Invalid
+            default:
+                $validator = null;
+                break;
+        }
+        if ($validator) {
+            $isValid = $validator->isValid($value, array('id' => $uid));
+            if (!$isValid) {
+                //d($validator->getMessages()); exit;
+                $messages = array_values($validator->getMessages());
+                $result = array(
+                    'status' => 0,
+                    'message' => implode(PHP_EOL, $messages),
+                );
+            }
+        } else {
+            $result = array(
+                'status' => 0,
+                'message' => __('Invalid input.'),
+            );
         }
 
         return $result;

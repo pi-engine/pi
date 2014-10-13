@@ -117,6 +117,7 @@ class DownloadController extends ActionController
      * 
      * @param array $options
      */
+    /*
     protected function ____httpOutputFile(array $options)
     {
         if ((!isset($options['file']) && !isset($options['raw']))) {
@@ -172,4 +173,5 @@ class DownloadController extends ActionController
             exit();
         }
     }
+    */
 }

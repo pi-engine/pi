@@ -24,12 +24,12 @@ return array(
                 'value'         => 10,
             ),
             // Module
-            'module'    => array(
+            /* 'module'    => array(
                 'title'         => _a('Module'),
                 'description'   => _a('Select module for articles.'),
                 'edit'          => 'module_select',
                 'value'         => ''
-            ),
+            ), */
         ),
     ),
 
@@ -49,14 +49,14 @@ return array(
                 'value'         => 10,
             ),
             // Module
-            'module'    => array(
+            /* 'module'    => array(
                 'title'         => _a('Module'),
                 'description'   => _a('Select module for articles.'),
                 'edit'          => 'module_select',
                 'value'         => ''
-            ),
+            ), */
             // Order
-            'order'    => array(
+            /* 'order'    => array(
                 'title'         => _a('Sort order'),
                 'description'   => _a('Criteria to select articles.'),
                 'edit'          => array(
@@ -70,7 +70,7 @@ return array(
                     ),
                 ),
                 'value'         => 'recent'
-            ),
+            ), */
         ),
     ),
 
@@ -90,14 +90,14 @@ return array(
                 'value'         => 10,
             ),
             // Uid exception
-            'uid_exception'    => array(
+            /* 'uid_exception'    => array(
                 'title'         => _a('Excluded user ids'),
                 'description'   => _a('Users to exclude, separated by ",".'),
                 'edit'          => 'text',
                 'value'         => '1,2',
-            ),
+            ), */
             // Role exception
-            'role_exception'    => array(
+            /* 'role_exception'    => array(
                 'title'         => _a('Excluded roles'),
                 'description'   => _a('Roles to exclude.'),
                 'edit'          => array(
@@ -107,7 +107,7 @@ return array(
                     ),
                 ),
                 'value'         => array('webmaster')
-            ),
+            ), */
         ),
     ),
 );

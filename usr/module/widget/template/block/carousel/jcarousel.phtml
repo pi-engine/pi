@@ -2,7 +2,7 @@
 $options    = (array) $block['options'];
 $items      = $block['items'];
 $class      = isset($block['class']) ? $block['class'] : 'jcarousel-skin';
-$target     = empty($options['target_new']) ? '' : '_blank';
+$target     = empty($options['target_new']) ? '_self' : '_blank';
 $imgStyle   = '';
 if (!empty($options['width'])) {
     $imgStyle .= 'width: '  . $options['width'] . 'px;';

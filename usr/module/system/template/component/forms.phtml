@@ -1,4 +1,8 @@
 <?php
+$style = 'multiple';
+echo $this->form($form, $style);
+return;
+
 /**
  * Renders a horizontal form with side columns
  */
@@ -41,7 +45,7 @@ echo $this->form()->openTag($form);
  * Preparation
  */
 $elements   = $form->elementList();
-$validate   = $form->getMessages();
+//$validate   = $form->getMessages();
 $groups     = $form->getGroups();
 $this->FormElementErrors()->setMessageOpenFormat('')->setMessageCloseString('');
 /**#@-**/
@@ -105,7 +109,7 @@ $renderElement = function ($element) use ($markRequired, $emptyControl, $isMulti
     echo $rendered;
 };
 
-$renderRow = function ($element) use ($validate, $renderElement) {
+$renderRow = function ($element) use (/*$validate, */$renderElement) {
     if (method_exists($element, 'getElements')) {
         echo '<legend>' .  $this->formLabel($element) . '</legend>';
 
