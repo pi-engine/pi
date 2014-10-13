@@ -19,8 +19,6 @@ class IndexController extends ActionController
 {
     protected function render($row)
     {
-        $this->view()->setTemplate('page-view');
-
         if (!$row instanceof RowGateway || !$row->active) {
             $title      = __('Page request');
             $content    = __('The page requested does not exist.');
@@ -55,6 +53,12 @@ class IndexController extends ActionController
             }
         }
 
+        if ($row->template) {
+            $this->view()->setTemplate($row->template);
+        } else {
+            $this->view()->setTemplate('page-view');
+        }
+        
         $this->view()->assign(array(
             'title'     => $title,
             'content'   => $content,
