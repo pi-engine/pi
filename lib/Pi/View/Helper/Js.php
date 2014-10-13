@@ -25,8 +25,11 @@ use Pi;
  *  $this->js('some.js', 'prepend');
  *
  *  // Load specific file with attributes
- *  $this->js('some.js',
- *            array('conditional' => '...', 'postion' => 'prepend'));
+ *  $this->js('some.js', array(
+ *      'defer'         => false,   // Disable `defer` explicitly
+ *      'conditional'   => '...',
+ *      'position'      => 'prepend',
+ *  ));
  *
  *  // Load a list of files
  *  $this->js(array(
