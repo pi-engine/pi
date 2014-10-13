@@ -15,7 +15,7 @@ return array(
         // Description, for admin, optional
         'description'   => _a('Examples and tests for developers.'),
         // Version number, required
-        'version'       => '1.1.0',
+        'version'       => '1.1.1',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional

@@ -36,11 +36,15 @@ $this->css($this->assetModule('admin/admin.css'));
                         <dl class="dl-horizontal">
                             <dt><?php echo _a('Directory:'); ?></dt>
                             <dd><?php echo $directory; ?></dd>
+                            <?php if (!empty($module['author'])) { ?>
                             <dd>&nbsp;
-                            <?php foreach ($module['author'] as $key => $value) {
+                            <?php
+                            foreach ($module['author'] as $key => $value) {
                                 echo '<dt>' . _escape($key) . ':</dt>';
                                 echo '<dd>' . _escape($value) . '</dd>';
-                            }?>
+                            }
+                            ?>
+                            <?php } ?>
                         </dl>
                     </div>
                 </td>

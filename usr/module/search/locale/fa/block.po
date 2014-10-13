@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-03-20 09:53+0330\n"
-"PO-Revision-Date: 2014-03-20 09:53+0330\n"
+"POT-Creation-Date: 2014-09-12 11:27+0330\n"
+"PO-Revision-Date: 2014-09-12 11:27+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -13,24 +13,23 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: _b\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/search\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"search\n"
 
-#: /var/www/html/local/pi/pi/usr/module/search/src/Block/Block.php:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/src/Block/Block.php:26
 msgid "Global"
 msgstr "سراسری"
 
-#: /var/www/html/local/pi/pi/usr/module/search/src/Block/Block.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/src/Block/Block.php:27
 msgid "Current module"
 msgstr "ماژول فعلی"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/block.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/template/block/search.phtml:4
 msgid "Search"
 msgstr "جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/block.php:13
-msgid "Search box."
-msgstr "باکس جستجو"
+#~ msgid "Search box."
+#~ msgstr "باکس جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/template/block/search.phtml:5
-msgid "Keywords"
-msgstr "کلمات کلیدی"
+#~ msgid "Keywords"
+#~ msgstr "کلمات کلیدی"

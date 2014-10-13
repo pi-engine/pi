@@ -1,0 +1,18 @@
+[comment]Pi account register notification[/comment]
+
+[format]html[/format]
+
+[subject]تبت نام در %site_name%[/subject]
+
+[body]
+<div style="direction: rtl;">
+<p style="margin-bottom: 5px"><strong>%username%</strong> عزیز:</p>
+
+<p style="margin-top: 5px">حساب کاربری شما در وب سایت %site_adminname% ایجاد گردیده است</p>
+<p style="margin-top: 5px">لطفا تا زمان تایید حساب کاربری توسط مدیران وب سایت صبر نمایید</p>
+
+<p style="margin-top: 10px">
+    <a href="%site_url%" title="%site_name%">%site_name%</a>
+</p>
+</div>
+[/body]

@@ -17,13 +17,16 @@ class Block
         $formAction = Pi::service('url')->assemble('search');
 
         $list = array();
-        $module = Pi::service('module')->current();
-        $modules = Pi::registry('search')->read();
-        if ($module && isset($modules[$module])) {
-            $list = array(
-               ''       => _b('Global'),
-               $module  => _b('Current module'),
-            );
+
+        if ($options['module'] == 'all') {
+            $module = Pi::service('module')->current();
+            $modules = Pi::registry('search')->read();
+            if ($module && isset($modules[$module])) {
+                $list = array(
+                   ''       => _b('Global'),
+                   $module  => _b('Current module'),
+                );
+            }
         }
 
         return array(

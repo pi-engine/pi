@@ -19,13 +19,13 @@ return array(
         'post'    => array(
             'title' => _a('Comment posts by me'),
             //'link'  => Pi::service('url')->assemble('default', array('module' => 'comment')),
-            'icon'  => 'icon-post',
+            'icon'  => 'fa-comment',
             'callback'  => 'Module\Comment\Comment\Post',
         ),
         'article'   => array(
             'title' => _a('Comment posts on my articles'),
             //'link'  => Pi::service('url')->assemble('default', array('module' => 'comment')),
-            'icon'  => 'icon-post',
+            'icon'  => 'fa-comment',
             'callback'  => 'Module\Comment\Comment\Post',
         ),
     ),

@@ -106,7 +106,7 @@ class Gravatar extends AbstractAvatar
      */
     public function getUrl($email, $size = 80)
     {
-        $src = '%s://www.gravatar.com/avatar/%s%s?s=%d&d=%s&r=%s';
+        $src = '%s://www.gravatar.com/avatar/%s%s?s=%d&amp;d=%s&amp;r=%s';
         $hash = md5(strtolower($email));
         $options = $this->options;
         $src = sprintf(

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-search\n"
-"POT-Creation-Date: 2014-03-20 09:53+0330\n"
-"PO-Revision-Date: 2014-03-20 10:04+0330\n"
+"POT-Creation-Date: 2014-09-12 11:27+0330\n"
+"PO-Revision-Date: 2014-09-12 11:27+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -12,116 +12,130 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/search\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"search\n"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/block.php:18
-msgid "Target"
-msgstr "هدف"
-
-#: /var/www/html/local/pi/pi/usr/module/search/config/block.php:23
-msgid "_self"
-msgstr "_self"
-
-#: /var/www/html/local/pi/pi/usr/module/search/config/block.php:24
-msgid "_blank"
-msgstr "_blank"
-
-#: /var/www/html/local/pi/pi/usr/module/search/config/module.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:12
 msgid "Search"
 msgstr "جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/module.php:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:13
+msgid "Search box."
+msgstr "باکس جستجو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:18
+msgid "Target"
+msgstr "هدف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:23
+msgid "_self"
+msgstr "_self"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:24
+msgid "_blank"
+msgstr "_blank"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:31
+msgid "Module"
+msgstr "ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/block.php:32
+msgid "Module for search"
+msgstr "ماژول منبع برای جستجو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/module.php:13
 msgid "Search service applications."
 msgstr "ابزار سرویس جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:12
 msgid "Leading search result limit"
 msgstr "پیشتاز نتایج جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:13
 msgid "Number of found items on leading page."
 msgstr "تعداد موارد یافت شده در صفحه اصلی از هر ماژول"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:19
 msgid "List search result limit"
 msgstr "محدودیت صفحه نمایش نتایج جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:20
 msgid "Number of found items on list page."
 msgstr "تعداد موارد یافت شده در هر صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:26
 msgid "Minimum query"
 msgstr "کمترین کوئری"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:27
 msgid "Minimum length for query term."
 msgstr "کمترین طول برای کلمه مورد جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:33
 msgid "Search interval limit"
 msgstr "محدودیت فاصله دو جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:34
 msgid "Limit for search time interval."
 msgstr "محدودیت زمان برای فاصله بین دو جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:40
 msgid "Anonymous interval limit"
 msgstr "محدودیت جستجو کاربر مهمان"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:41
 msgid "Limit for anonymous search time interval."
 msgstr "محدودیت زمان برای فاصله بین دو جستجو توسط کاربر مهمان"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:47
 msgid "Log search terms"
 msgstr "گزارش از کلمات جستجو شده"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:54
 msgid "Search result cache"
 msgstr "کَش نتایج جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:60
 msgid "Hot search"
 msgstr "جستجوی داغ"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:61
 msgid "Hot words for global auto-complete, separated by comma `,`."
 msgstr ""
 "کلمات داغ برای جستجوی سراسری به صورت اتو-کمپلیت ، با استفاده از کاما `,` جدا "
 "کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:67
 msgid "Google local host"
 msgstr "آدرس محلی گوگل"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:68
 msgid "Specify a google local host if it is not https://www.google.com"
 msgstr "آدرس محلی گوگل را اگر https://www.google.com نیست مشخص کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:73
 msgid "Google custom search code"
 msgstr "کد جستجو شخصی گوگل"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:74
 msgid "Google CSE provided at https://www.google.com/cse/"
 msgstr "گوگل CSE ارائه شده در https://www.google.com/cse/"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:79
 msgid "Baidu custom search code"
 msgstr "ایجاد کد جستجوی شخصی"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:80
 msgid "Custom search provided by Baidu at http://zhanzhang.baidu.com/search/"
 msgstr ""
 "کد جستجوی شخصی ارائه شده توسط بایدو در http://zhanzhang.baidu.com/search/"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:84
 msgid "Modules to search"
 msgstr "ماژول ها برای جستجو"
 
-#: /var/www/html/local/pi/pi/usr/module/search/config/config.php:85
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/search/config/config.php:85
 msgid "Only specified modules are allowed to search, separated by \",\"."
 msgstr ""
 "تنها ماژول های مشخص شده برای جستجو در دسترس هستند. با استفاده از \",\" جدا "

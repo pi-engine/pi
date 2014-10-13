@@ -1,6 +1,17 @@
 Changelog
 
 
+September 6th, Taiwen Jiang
+=========================
+1. Upgrade bootstrap to v3.2.0
+2. Replaced Glyphicons fonts with font-awesome
+
+
+Aug 30th, Kris Kris_fr
+=========================
+1. Update Font Awesome v4.2.0
+
+
 Feb 21th, Liao wei
 =========================
 1. Update bootstap to version v3.1.1.

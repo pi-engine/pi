@@ -24,6 +24,9 @@ $this->bootstrap(array(
 // Load admin.css
 $this->css($this->assetTheme('css/admin.css'));
 
+// Load localization css
+$this->css($this->assetLocale('locale.css'));
+
 // Explicitly load favicon
 // @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
@@ -40,7 +43,7 @@ $module = Pi::service('module')->current();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-admin">
     <!-- header: brand, navbar-nav, user link -->
     <header class="navbar navbar-fixed-top" role="navigation">
         <div class="navbar-header">
@@ -93,7 +96,7 @@ $module = Pi::service('module')->current();
         <?php include $this->template('flash-messenger'); ?>
         <article class="pi-module-content">
             <div ng-view></div>
-            <?php echo $content; ?>
+            <div class="<?php echo $module; ?>"><?php echo $content; ?></div>
         </article>
 
         <footer class="pi-footer">

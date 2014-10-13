@@ -2,7 +2,7 @@
 $options    = (array) $block['options'];
 $items      = $block['items'] ?: array();
 $count      = count($items);
-$target     = empty($options['target_new']) ? '' : '_blank';
+$target     = empty($options['target_new']) ? '_self' : '_blank';
 $ellipsis   = empty($options['max_rows'])
             ? 'pi-ellipsis'
             : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
@@ -12,6 +12,9 @@ if (!empty($options['width'])) {
 }
 if (!empty($options['height'])) {
     $imgStyle .= 'height: '  . $options['height'] . 'px;';
+}
+if (!empty($imgStyle)) {
+    $imgStyle = sprintf('style="%s" ', $imgStyle);
 }
 
 $towcols    = empty($options['two_col']) ? false : true;
@@ -26,7 +29,7 @@ if ($towcols) {
         $itemPattern =<<<EOT
             <div class="row">
                 <div class="col-sm-7">
-                    <a href="%s" target="%s" title="%s"><img class="img-responsive" src="%s" alt="%s" style="%s"></a>
+                    <a href="%s" target="%s" title="%s"><img class="img-responsive" src="%s" alt="%s" %s/></a>
                 </div>
                 <div class="col-sm-5">
                     <h4 class="pi-ellipsis"><a href="%s" title="%s" target="%s">%s</a></h4>
@@ -83,7 +86,7 @@ EOT;
     $render = function ($item) use ($imgStyle, $ellipsis, $target) {
         $itemPattern =<<<EOT
             <a href="%s" target="%s" title="%s">
-                <img src="%s" alt="%s" class="img-responsive" style="%s" />
+                <img src="%s" alt="%s" class="img-responsive" %s/>
             </a>
             <div class="carousel-caption">
                 <h4>%s</h4>

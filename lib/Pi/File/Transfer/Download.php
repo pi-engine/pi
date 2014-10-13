@@ -17,7 +17,7 @@ use ZipArchive;
  *
  * Download content generated on-fly
  *
- * <code>
+ * ```
  *  $source = 'Generated content';
  *  $options = array(
  *      // Required
@@ -29,11 +29,11 @@ use ZipArchive;
  *  );
  *  $downloader = new Download;
  *  $downloader->send($source, $options);
- * </code>
+ * ```
  *
  * Download a file
  *
- * <code>
+ * ```
  *  $source = 'path/to/file';
  *  $options = array(
  *      // Optional
@@ -46,11 +46,11 @@ use ZipArchive;
  *  $downloader = new Download;
  *  $downloader->send($source, options);
  *
- * </code>
+ * ```
  *
  * Download multiple files, compressed and sent as a zip file
  *
- * <code>
+ * ```
  *  $source = array(
  *      'path/to/file1',
  *      'path/to/file2',
@@ -78,16 +78,16 @@ use ZipArchive;
  *  );
  *  $downloader = new Download;
  *  $downloader->send($source, $options);
- * </code>
+ * ```
  *
- * Download with specified exit
+ * Download with explicit exit
  *
- * <code>
+ * ```
  *  $downloader = new Download(array('exit' => false));
  *  $downloader->send(array(...));
  *  // Do something
  *  exit;
- * </code>
+ * ```
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -135,9 +135,10 @@ class Download
     /**
      * Send the file to the client (Download)
      *
-     * @param string|array $source File or file meta to download
-     * @param array $options Options for the file(s) to send
+     * @param string|array $source  File or file meta to download
+     * @param array        $options Options for the file(s) to send
      *
+     * @throws \Exception
      * @return bool|void
      */
     public function send($source, array $options = array())
@@ -145,34 +146,40 @@ class Download
         // Disable logging service
         Pi::service('log')->mute();
 
+        $error = '';
+
         // Canonize download options
         $source = $this->canonizeDownload($source, $options);
         if (!$source) {
-            return false;
-        }
-
-        if ('raw' == $options['type']) {
+            $error = 'Invalid source';
+        } elseif ('raw' == $options['type']) {
             $source = $options['source'];
-        } else {
+        } elseif (file_exists($source)) {
             $source = fopen($source, 'rb');
+        } else {
+            $error = 'Source not found';
         }
 
-        // Send the content to client
-        $this->download(
-            $source,
-            $options['filename'],
-            $options['content_type'],
-            $options['content_length']
-        );
+        if (!$error) {
+            // Send the content to client
+            $this->download(
+                $source,
+                $options['filename'],
+                $options['content_type'],
+                $options['content_length']
+            );
 
-        // Close resource handler
-        if (is_resource($source)) {
-            fclose($source);
-        }
+            // Close resource handler
+            if (is_resource($source)) {
+                fclose($source);
+            }
 
-        // Remove tmp zip file
-        if ('zip' == $options['type']) {
-            @unlink($options['source']);
+            // Remove tmp zip file
+            if ('zip' == $options['type']) {
+                @unlink($options['source']);
+            }
+        } else {
+            throw new \Exception($error);
         }
 
         if ($this->exit) {
@@ -233,19 +240,21 @@ class Download
             if (!isset($options['content_length'])) {
                 $options['content_length'] = strlen($source);
             }
+            $options['source'] = $source;
         } else {
             if (!isset($options['filename'])) {
-                $options['filename'] = basename($source);
+                $filename = str_replace('\\\\', '/', $source);
+                $segs = explode('/', $filename);
+                $options['filename'] = array_pop($segs);
             }
             if (!isset($options['content_length'])) {
                 $options['content_length'] = filesize($source);
             }
         }
-        if (!isset($options['filename'])) {
+        if (empty($options['filename'])) {
             $options['filename'] = 'pi-download';
         }
-        $options['filename'] = rawurlencode($options['filename']);
-        if (!isset($options['content_type'])) {
+        if (empty($options['content_type'])) {
             $options['content_type'] = 'application/octet-stream';
         }
 
@@ -268,6 +277,14 @@ class Download
         $contentType,
         $contentLength = 0
     ) {
+        $isIe = Pi::service('browser')->isIe();
+        if ($isIe) {
+            $contentType = $contentType ?: 'application/octet-stream';
+            $filename = urlencode($filename);
+        } else {
+            $contentType = $contentType ?: 'application/force-download';
+        }
+
         header('Content-Description: File Transfer');
         header('Content-Type: ' . $contentType);
         header('Content-Disposition: attachment; filename="' . $filename . '"');

@@ -95,6 +95,7 @@ class ComponentTemplate implements ResolverInterface
         if (false === strpos($name, ':')) {
             return false;
         }
+        $renderer->context('component');
         list($component, $template) = $this->canonizeTemplate($name);
         // Check custom template in theme
         $path = sprintf(
@@ -120,6 +121,7 @@ class ComponentTemplate implements ResolverInterface
         if (file_exists($path)) {
             return $path;
         }
+        $renderer->context('');
 
         return false;
     }

@@ -37,11 +37,12 @@ class IndexController extends FeedController
         $select = $model->select()->order('time DESC')->limit(10);
         $rowset = $model->selectWith($select);
         foreach ($rowset as $row) {
-            $entry = array();
-            $entry['title'] = $row->title;
-            $entry['description'] = $row->content;
-            $entry['date_modified'] = (int) $row->time;
-            $entry['link'] = $this->getHref($row);
+            $entry = array(
+                'title'         => $row->title,
+                'description'   => $row->content,
+                'date_modified' => (int) $row->time,
+                'link'          => $this->getHref($row),
+            );
             $feed->entry = $entry;
         }
 

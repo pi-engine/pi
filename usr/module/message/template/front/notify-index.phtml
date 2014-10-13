@@ -103,7 +103,7 @@
             <option value="delete"><?php _e('Delete'); ?></option>
         </select>
     </form>
-    <?php include '_confirm-modal.phtml' ?>
+    <?php include $this->template('./_confirm-modal.phtml'); ?>
 </div>
 
 <script src="<?php echo $this->assetModule('script/notify-index.js'); ?>"></script>

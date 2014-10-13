@@ -233,12 +233,13 @@ class ArticleController extends ActionController
             return $this->jumpTo404();
         }
 
+        $module     = $this->getModule();
         $page       = $this->params('p', 1);
         $limit      = $this->params('limit', 40);
         $from       = $this->params('from', 'my');
         $keyword    = $this->params('keyword', '');
-        $category   = $this->params('category', 0);
-        $cluster    = $this->params('cluster', 0);
+        $category   = $this->params('category', null);
+        $cluster    = $this->params('cluster', null);
         $filter     = $this->params('filter', '');
         $order      = 'time_publish DESC';
 
@@ -246,13 +247,13 @@ class ArticleController extends ActionController
         // Get permission
         $rules = Rule::getPermission();
         if (empty($rules)) {
-            return $this->jumpToDenied();
+            //return $this->jumpToDenied();
         }
         $categories = array();
         foreach (array_keys($rules) as $key) {
             $categories[$key] = true;
         }
-        $where['category'] = array_keys($categories);
+        $where['category'] = array_keys($categories) ?: 0;
         
         $where['cluster'] = $cluster;
         
@@ -260,15 +261,12 @@ class ArticleController extends ActionController
         if ('my' == $from) {
             $where['uid'] = Pi::user()->getId() ?: 0;
         }
-
-        $module         = $this->getModule();
-        $categoryModel  = $this->getModel('category');
-
+        
         if (!empty($category) and !in_array($category, $where['category'])) {
             return $this->jumpToDenied();
         }
         if ($category > 1) {
-            $categoryIds = $categoryModel->getDescendantIds($category);
+            $categoryIds = Pi::api('category', $module)->getDescendantIds($category);
             if ($categoryIds) {
                 $where['category'] = $categoryIds;
             }
@@ -280,7 +278,9 @@ class ArticleController extends ActionController
         if (!empty($keyword)) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
-        $where = array_filter($where);
+        $where = array_filter($where, function($v) {
+            return $v !== null;
+        });
         
         // The where must be added after array_filter function
         if ($filter == 'active') {

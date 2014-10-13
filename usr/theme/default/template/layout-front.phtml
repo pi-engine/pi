@@ -24,6 +24,9 @@ $this->bootstrap(array(
 // Load front.css
 $this->css($this->assetTheme('css/front.css'));
 
+// Load localization css
+$this->css($this->assetLocale('locale.css'));
+
 // Apple icons
 // Apple icon for iphone
 $this->headLink(array(
@@ -61,56 +64,58 @@ $this->headLink(array(
 // Load google analytics code
 $this->ga();
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
 <head>
     <meta charset="<?php echo $charset; ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
     <!-- Header: brand, slogan, user bar -->
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <h1 class="hide">
-                <?php echo _escape($sitename . ' - ' . $slogan); ?>
-            </h1>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
-               title="<?php echo _escape($slogan); ?>">
-               <?php echo _escape($sitename); ?>
-            </a>
-            <?php
-            echo $this->widget('system-user-bar', array('type' => 'js'));
-            ?>
-        </div>
-    </div>
-    <div class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
+    <header class="pi-header">
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <h1>
+                    <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                        <?php echo _escape($sitename); ?>
+                    </a>
+                </h1>
                 <?php
-                $navigation = $this->nav('front');
-                echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav');
+                echo $this->widget('system-user-bar', array('type' => 'js'));
                 ?>
-                <div class="navbar-form navbar-left">
-                    <?php echo $this->widget('search-search'); ?>
+            </div>
+        </div>
+        <div class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <?php
+                    $navigation = $this->nav('front');
+                    echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav');
+                    ?>
+                    <div class="navbar-form navbar-right">
+                        <?php echo $this->widget('search-search'); ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </header>
     <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
     <?php
         $blocks         = $this->blocks();
         $blockTemplate  = $this->template('block');
     ?>
-    <div class="container pi-main-container">
+    <section class="container pi-main-container">
         <?php
-        $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home')))));
+        $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home'), 'href' => $this->url('home')))));
         if ($breadcrumbs) {
             echo $breadcrumbs;
         }
@@ -176,10 +181,12 @@ $module = Pi::service('module')->current();
 
                 <!-- Module content starts -->
                 <?php if (!empty($content)) { ?>
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
-                </div>
-                <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
+                    <div class="<?php echo $module; ?>">
+                        <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                            <?php echo $content; ?>
+                        </div>
+                        <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
+                    </div>
                 <?php } ?>
                 <!-- Module content ends -->
 
@@ -232,10 +239,9 @@ $module = Pi::service('module')->current();
             } ?>
         </div>
         <?php } ?>
-    </div>
-
+    </section>
     <!-- Footer: sitelink -->
-    <div class="pi-footer text-center">
+    <footer class="pi-footer text-center">
         <div class="container">
             <?php
             $footer = Pi::config('footer');
@@ -243,7 +249,6 @@ $module = Pi::service('module')->current();
                 echo $footer;
             } else {
             ?>
-
             <ul class="pi-footer-links muted">
                 <li>
                     <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
@@ -267,7 +272,7 @@ $module = Pi::service('module')->current();
             </ul>
             <?php } ?>
         </div>    
-    </div>
+    </footer>
     <?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>
 </body>
 </html>

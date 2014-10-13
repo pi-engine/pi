@@ -444,9 +444,12 @@ class Api extends AbstractApi
      * ```
      *  $posts = Pi::api('api', 'comment')->renderList($posts, array(
      *      'user'      => array(
-     *          'field'     => 'name',
-     *          'url'       => 'comment',
-     *          'avatar'    => 'small',
+     *          'field'         => 'name',
+     *          'url'           => 'comment',
+     *          'avatar'        => 'small',
+     *          'attributes'    => array(
+     *              'alt'   => __('View profile'),
+     *          ),
      *      ),
      *      'target'    => true,
      *      'operation'     => array(
@@ -484,12 +487,14 @@ class Api extends AbstractApi
 
         $ops = array();
         // Build authors
-        if (!isset($options['user']) || $options['user']) {
+        if (!isset($options['user']) || false !== $options['user']) {
             $op = isset($options['user'])
-                ? (array) $options['user'] : array();
-            $label = !empty($op['field']) ? $op['field'] : 'name';
+                ? (array) $options['user']
+                : array();
+            $label  = !empty($op['field']) ? $op['field'] : 'name';
             $avatar = isset($op['avatar']) ? $op['avatar'] : 'small';
-            $url = isset($op['url']) ? $op['url'] : 'profile';
+            $url    = isset($op['url']) ? $op['url'] : 'profile';
+            $attrs  = isset($op['attributes']) ? $op['attributes'] : array();
 
             $uids = array();
             foreach ($posts as $post) {
@@ -500,7 +505,11 @@ class Api extends AbstractApi
                 $users = Pi::service('user')->mget($uids, array($label));
                 $avatars = null;
                 if (false !== $avatar) {
-                    $avatars = Pi::service('avatar')->getList($uids, $avatar);
+                    $avatars = Pi::service('avatar')->getList(
+                        $uids,
+                        $avatar,
+                        $attrs
+                    );
                 }
                 array_walk(
                     $users,

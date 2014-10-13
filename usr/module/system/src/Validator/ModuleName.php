@@ -26,26 +26,29 @@ class ModuleName extends AbstractValidator
     const TAKEN     = 'moduleNameTaken';
 
     /**
-     * Message templates
-     * @var array
-     */
-    protected $messageTemplates = array(
-        self::RESERVED  => 'Module name is reserved',
-        self::TAKEN     => 'Module name is already taken',
-    );
-
-    /**
      * Options
      * @var array
      */
     protected $options = array(
         // Reserved module name which could be
         // potentially conflicted with system
-        'backlist'  => array(
+        'blacklist' => array(
             'pi', 'zend', 'module', 'service', 'theme',
             'application', 'event', 'registry', 'config'
         ),
     );
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::RESERVED  => __('Module name is reserved'),
+            static::TAKEN     => __('Module name is already taken'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * User name validate
@@ -58,8 +61,8 @@ class ModuleName extends AbstractValidator
     {
         $this->setValue($value);
 
-        if (!empty($this->options['backlist'])) {
-            $pattern = implode('|', $this->options['backlist']);
+        if (!empty($this->options['blacklist'])) {
+            $pattern = implode('|', $this->options['blacklist']);
             if (preg_match('/(' . $pattern . ')/', $value)) {
                 $this->error(static::RESERVED);
                 return false;
@@ -70,7 +73,6 @@ class ModuleName extends AbstractValidator
         if (!empty($context['id'])) {
             $where['id <> ?'] = $context['id'];
         }
-        //$rowset = Pi::model('module')->select($where);
         $count = Pi::model('module')->count($where);
         if ($count) {
             $this->error(static::TAKEN);

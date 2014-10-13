@@ -19,7 +19,7 @@
                 <?php 
                 foreach ($modules as $name => $data) {
                     echo sprintf(
-                        '<a data-name="%s" href="#" class="js-search-module%s">%s</a>',
+                        ' <a data-name="%s" href="#" class="js-search-module%s">%s</a> ',
                         $name,
                         $name == $searchModule ? ' active' : '',
                         _escape($data['title'])
@@ -41,7 +41,7 @@
                 <?php
                 foreach ($service as $name => $data) {
                     echo sprintf(
-                        '<a data-name="%s" href="#" class="js-search-service">%s</a>',
+                        ' <a data-name="%s" href="#" class="js-search-service">%s</a> ',
                         $name,
                         _escape($data['title'])
                     );  

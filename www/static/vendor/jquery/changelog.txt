@@ -1,6 +1,14 @@
 
 jQuery/jQueryUI changelog
 
+
+September 8th, 2014
+=============
+1. Upgraded jQueryUI to 1.11.1
+2. Upgraded jquery.Jcrop to 0.9.12
+3. Upgraded modernizr to 2.8.3 from http://modernizr.com/download/
+
+
 July 9th, 2014
 =============
 Upgraded jQueryUI to 1.11.0

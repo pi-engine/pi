@@ -23,12 +23,15 @@ class ModuleTitle extends AbstractValidator
     const TAKEN     = 'moduleTitleTaken';
 
     /**
-     * Message templates
-     * @var array
+     * {@inheritDoc}
      */
-    protected $messageTemplates = array(
-        self::TAKEN     => 'Module title is already taken',
-    );
+    public function __construct($options = null)
+    {
+        $this->messageTemplates = array(
+            static::TAKEN     => __('Module title is already taken'),
+        );
+        parent::__construct($options);
+    }
 
     /**
      * User name validate

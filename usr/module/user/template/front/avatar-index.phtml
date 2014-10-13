@@ -41,12 +41,14 @@ $viewPreview = '<li class="inline">
             <h3><?php _e('Change avatar'); ?></h3>
             <div class="text-muted"><?php _e('Customize your avatar anyway you like'); ?></div>
         </div>
-        <div>
-            <h4><?php _e('Current avatar'); ?></h4>
-            <p>
-                <?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?>
-            <p class="text-warning">
-                <?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?>
+            <div class="user-avatar-box well">
+                <div class="clearfix">
+                    <div class="col-md-2 col-sm-3 col-xs-3"><?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?></div>
+                    <div class="col-md-10 col-sm-9 col-xs-9 text-warning">
+                        <h4><?php _e('Current avatar'); ?></h4>
+                        <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
+                    </div>
+                </div>
         </div>
         <ul class="nav nav-tabs">
             <?php 
@@ -55,7 +57,7 @@ $viewPreview = '<li class="inline">
                     continue;
                 }
                 echo sprintf(
-                    '<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a>',
+                    '<li><a data-toggle="tab" data-source="%s" href="%s" class="avatar-source-nav">%s</a></li>',
                     $item['source'],
                     $item['href'],
                     $item['text']
@@ -96,15 +98,19 @@ $viewPreview = '<li class="inline">
             <?php } ?>
             <?php if (in_array('gravatar', $adapters)) { ?>
             <div class="tab-pane" id="fromGravatar">
-                <p>
-                    <a href="https://gravatar.com" target="_blank"><?php _e('Configure at Gravatar'); ?></a>
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-md-2 control-label">
                             <?php _e('Gravatar email'); ?>
                         </label>
-                        <div class="col-sm-4">
-                            <input name="email" value="<?php echo $email; ?>" type="email" class="form-control">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon">@</div>
+                                    <input name="email" value="<?php echo $email; ?>" type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-right">
+                                <a class="btn btn-success" title="<?php _e('Configure at Gravatar'); ?>" href="https://gravatar.com" target="_blank"><i class="fa fa-picture-o"></i> <?php _e('Configure at Gravatar'); ?></a>
                         </div>
                     </div>
                 </div>
@@ -165,8 +171,7 @@ $viewPreview = '<li class="inline">
                 </div>
                 <ul class="list-unstyled avatar-preview-inline">
                     <?php foreach ($local as $key => $value) { ?>
-                    <li class="inline">
-                        <img src="<?php echo $value; ?>">
+                        <li class="inline"><img src="<?php echo $value; ?>"></li>    
                     <?php } ?>
                 </ul>
             </div>

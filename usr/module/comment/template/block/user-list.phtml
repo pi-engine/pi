@@ -1,0 +1,23 @@
+<div class="pi-comment-block-user">
+    <table class="table table-striped">
+        <tr>
+            <th></th>
+            <th><?php echo _b('Submitters'); ?></th>
+            <th><?php echo _b('Comments'); ?></th>
+        </tr>
+        <?php 
+            $index = 0;
+            foreach ($block['users'] as $uid => $data) { 
+        ?>
+        <tr>
+            <td><?php echo _escape(++$index); ?></td>
+            <td><?php echo _escape($data['name']); ?></td>
+            <td>
+                <a href="<?php echo $data['url']; ?>" title="<?php echo _escape($data['name']); ?>" target="_blank">
+                    <?php echo $data['count']; ?>
+                </a>
+            </td>
+        </tr>
+        <?php } ?>
+    </table>
+</div>

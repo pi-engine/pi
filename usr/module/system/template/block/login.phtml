@@ -1,3 +1,4 @@
+<div class="user-login">
 <?php
     $form = $block['form'];
     echo $this->form()->openTag($form);
@@ -32,10 +33,8 @@
         <?php echo $this->formElement($credential); ?>
     </div>
 </div>
-
 <?php
-if ($form->has('captcha')) {
-    ?>
+if ($form->has('captcha')) { ?>
     <div class="form-group">
         <?php
         $captcha    = $form->get('captcha');
@@ -48,10 +47,8 @@ if ($form->has('captcha')) {
         ?>
     </div>
 <?php } ?>
-
 <?php
-if ($form->has('rememberme')) {
-    ?>
+if ($form->has('rememberme')) { ?>
     <div class="form-group">
         <?php
         $rememberme = $form->get('rememberme');
@@ -59,7 +56,6 @@ if ($form->has('rememberme')) {
         ?>
     </div>
 <?php } ?>
-
 <?php
     echo $this->formElement($form->get('security'));
     $submit =  $form->get('submit');
@@ -67,3 +63,4 @@ if ($form->has('rememberme')) {
     echo $this->formElement($submit);
     echo $this->form()->closeTag();
 ?>
+</div>

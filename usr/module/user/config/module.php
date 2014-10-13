@@ -16,7 +16,7 @@ return array(
     'meta'  => array(
         'title'         => _a('User'),
         'description'   => _a('User profile and services.'),
-        'version'       => '1.3.5',
+        'version'       => '1.3.7',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org',
         'icon'          => 'fa-user',

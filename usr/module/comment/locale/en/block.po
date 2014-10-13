@@ -1,38 +1,37 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-05-21 12:40+0800\n"
-"PO-Revision-Date: 2014-05-21 12:40+0800\n"
-"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"POT-Creation-Date: 2014-09-19 18:05+0330\n"
+"PO-Revision-Date: 2014-09-19 18:05+0330\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: C:\\wamp\\www\\master\\usr\\module\\comment\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"comment\n"
 
-#, fuzzy
-#~ msgid "All"
-#~ msgstr "All Categories"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/post-list.phtml:20
+msgid "On "
+msgstr ""
 
-#, fuzzy
-#~ msgid "All Posts"
-#~ msgstr "All Categories"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/post-list.phtml:33
+msgid "No comments available yet."
+msgstr ""
 
-#, fuzzy
-#~ msgid "All comments "
-#~ msgstr "All Categories"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/article-list.phtml:5
+msgid "Article title"
+msgstr ""
 
-#, fuzzy
-#~ msgid "All comments"
-#~ msgstr "All Categories"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/article-list.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/user-list.phtml:6
+msgid "Comments"
+msgstr ""
 
-#, fuzzy
-#~ msgid "Categories"
-#~ msgstr "All Categories"
-
-#, fuzzy
-#~ msgid "Comment categories"
-#~ msgstr "All Categories"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/block/user-list.phtml:5
+msgid "Submitters"
+msgstr ""

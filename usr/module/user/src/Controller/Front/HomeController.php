@@ -34,24 +34,6 @@ class HomeController extends ActionController
         Pi::service('authentication')->requireLogin();
         Pi::api('profile', 'user')->requireComplete();
         $uid = Pi::user()->getId();
-        /*
-        // Check profile complete
-        if ($this->config('profile_complete_form')) {
-            $completeProfile = Pi::api('user', 'user')->get($uid, 'level');
-            if (!$completeProfile) {
-                $this->redirect()->toRoute(
-                    'user',
-                    array(
-                        'controller' => 'register',
-                        'action' => 'profile.complete',
-                    )
-                );
-                return;
-            }
-        }
-        */
-        // Get user information
-        //$user = $this->getUser($uid);
 
         // Get timeline
         $count    = Pi::api('timeline', 'user')->getCount($uid);
@@ -65,13 +47,6 @@ class HomeController extends ActionController
             $item['icon']  = $timelineMetaList[$item['timeline']]['icon'];
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
-
-        // Get activity meta for nav display
-        //$nav = Pi::api('nav', 'user')->getList('homepage');
-
-        // Get quick link
-        //$quicklink = Pi::api('quicklink', 'user')->getList();
-
 
         // Set paginator
         $paginatorOption = array(
@@ -85,13 +60,9 @@ class HomeController extends ActionController
 
         $this->view()->assign(array(
             'uid'           => $uid,
-            //'user'          => $user,
             'timeline'      => $timeline,
             'paginator'     => $paginator,
             'name'          => 'homepage',
-            //'quicklink'    => $quicklink,
-            //'owner'     => true,
-            //'nav'          => $nav,
         ));
     }
 
@@ -103,32 +74,7 @@ class HomeController extends ActionController
         $page   = $this->params('page', 1);
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
-
-        $uid = $this->params('uid', '');
-
-        /*
-        // Get user information
-        $user = $this->getUser($uid);
-        if (!$user) {
-            $this->jump(
-                array(
-                    'controller' => 'profile',
-                    'action'     => 'index'
-                ),
-                __('User was not found.'),
-                'error'
-            );
-        }
-
-        // Get viewer role: public member follower following owner
-        $role = Pi::user()->hasIdentity() ? 'member' : 'public';
-        $user = Pi::api('privacy', 'user')->filterProfile(
-            $uid,
-            $role,
-            $user,
-            'user'
-        );
-        */
+        $uid    = _get('uid');
 
         // Get timeline
         $count    = Pi::api('timeline', 'user')->getCount($uid);
@@ -142,12 +88,6 @@ class HomeController extends ActionController
             $item['icon']  = $timelineMetaList[$item['timeline']]['icon'];
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
-
-        // Get activity meta for nav display
-        //$nav = Pi::api('nav', 'user')->getList('homepage', $uid);
-
-        // Get quick link
-        //$quicklink = Pi::api('quicklink', 'user')->getList();
 
         // Set paginator
         $paginatorOption = array(
@@ -162,13 +102,9 @@ class HomeController extends ActionController
 
         $this->view()->assign(array(
             'uid'           => $uid,
-            //'user'          => $user,
             'name'          => 'homepage',
             'timeline'      => $timeline,
             'paginator'     => $paginator,
-            //'quicklink'    => $quicklink,
-            //'owner'         => false,
-            //'nav'          => $nav,
         ));
 
         $this->view()->setTemplate('home-index');

@@ -87,6 +87,5 @@ class Nav extends AbstractApi
         }
 
         return $result;
-
     }
 }

@@ -1,8 +1,7 @@
 <form method="get" action="<?php echo $block['action']; ?>"
     <?php if (!empty($block['options']['target'])) { echo ' target="' . $block['options']['target'] . '"'; } ?>>
     <div class="input-group">
-        <input type="text" class="form-control" name="q"
-               placeholder="<?php echo _b('Keywords'); ?>">
+        <input type="text" class="form-control" name="q" placeholder="<?php echo _b('Search'); ?>">
         <div class="input-group-btn">
             <?php if (!empty($block['list'])) { ?>
             <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -15,10 +14,14 @@
                     <a href="#" data-value="<?php echo _escape($name); ?>">
                         <?php echo _escape($label); ?>
                     </a>
+                </li>    
                 <?php } ?>
             </ul>
             <input type="hidden" name="m">
             <?php } else { ?>
+            <?php if ($block['options']['module'] != 'all') { ?>
+            <input type="hidden" name="m" value="<?php echo $block['options']['module']; ?>">
+            <?php } ?>
             <button class="btn btn-default">
                 <i class="fa fa-search"></i>
             </button>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-03-20 08:39+0330\n"
-"PO-Revision-Date: 2014-03-20 09:07+0330\n"
+"POT-Creation-Date: 2014-09-12 13:44+0330\n"
+"PO-Revision-Date: 2014-09-12 13:45+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: بش\n"
@@ -12,473 +12,448 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi/usr/module/system\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"system\n"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Navigation.php:161
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Navigation.php:161
 msgid "Edit a block"
 msgstr "ویرایش بلاک"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Navigation.php:172
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Navigation.php:172
 msgid "Clone a block"
 msgstr "تکثیر بلاک"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Navigation.php:218
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Navigation.php:218
 msgid "Block layout"
 msgstr "طرح بندی بلاک"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Navigation.php:229
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Navigation.php:229
 msgid "Setup page"
 msgstr "نصب صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Menu.php:240
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:240
 msgid "Uncategorized"
 msgstr "شاخه بندی نشده"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:31
 #, php-format
 msgid "Module `%s` installed"
 msgstr "ماژول `%s` نصب شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:33
 #, php-format
 msgid "The module `%s` is installed successfully."
 msgstr "ماژول `%s` با موفقیت نصب شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:51
 #, php-format
 msgid "Module `%s` uninstalled"
 msgstr "ماژول `%s` از نصب خارج شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:53
 #, php-format
 msgid "The module `%s` is uninstalled successfully."
 msgstr "ماژول `%s` با موفقیت از نصب خارج شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:71
 #, php-format
 msgid "Module `%s` updated"
 msgstr "ماژول `%s` به روز شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:73
 #, php-format
 msgid "The module `%s` is updated successfully."
 msgstr "ماژول `%s` با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:91
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:91
 #, php-format
 msgid "Module `%s` activated"
 msgstr "ماژول `%s` فعال شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:93
 #, php-format
 msgid "The module `%s` is activated successfully."
 msgstr "ماژول `%s` با موفقیت فعال شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:111
 #, php-format
 msgid "Module %s deactivated"
 msgstr "ماژول `%s` غیرفعال شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Api/Event.php:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Api/Event.php:113
 #, php-format
 msgid "The module %s is deactivated successfully."
 msgstr "ماژول `%s` با موفقیت غیر فعال شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Validator/Password.php:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Validator/Password.php:39
 msgid "Password is less than %min% characters long"
 msgstr "کلمه عبور کمتر از مقدار حداقل %min% کارکتر است"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Validator/Password.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Validator/Password.php:40
 msgid "Password is more than %max% characters long"
 msgstr "کلمه عبور بیشتر از مقدار حداکثر %max% کارکتر است"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ConfigForm.php:58
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:200
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageEditForm.php:74
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ResetPasswordForm.php:73
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:157
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RoleForm.php:115
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageAddForm.php:126
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PasswordForm.php:84
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:100
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ModuleForm.php:58
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:131
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavForm.php:67
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/AccountForm.php:93
-#: /var/www/html/local/pi/pi/usr/module/system/template/admin/cache-list.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ConfigForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:207
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageEditForm.php:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ResetPasswordForm.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:157
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RoleForm.php:115
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageAddForm.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:100
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:131
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavForm.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/AccountForm.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:49
 msgid "Submit"
 msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:61
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RoleForm.php:54
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageAddForm.php:45
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ModuleForm.php:40
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavForm.php:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RoleForm.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageAddForm.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleForm.php:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavForm.php:40
 msgid "Title"
 msgstr "عنوان"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:70
 msgid "Block label for display."
 msgstr "عنوان بلاک برای نمایش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:78
 msgid "Hide title"
 msgstr "مخفی کردن عنوان"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:81
 msgid "Hide block title from display."
 msgstr "مخفی کردن عنوان برای نمایش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:89
 msgid "Full-size body"
 msgstr "بنده تمام اندازه"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:87
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:92
 msgid "Display block body in full-size w/o padding."
 msgstr "نمایش بنده بلاک در اندازه کامل بدون پدینگ"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:94
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ModuleForm.php:30
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavForm.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleForm.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr "شناسه یکتا"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:98
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:103
 msgid "A unique name to be called as widget."
 msgstr "نام یکتا برای فراخوانی به صورت ویجت"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:106
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:117
-msgid "Template"
-msgstr "الگو"
-
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:122
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:111
 msgid "PHTML rendering template, file extension is optional."
 msgstr ""
 "الگوی PHTML ، پسوند فایل انتخابی است. شما میتوانید آن را در قالب یا ماژول یا "
 "ماژول کاستوم قرار دهید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:130
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:126
+msgid "Template"
+msgstr "الگو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:141
 msgid "Description"
 msgstr "توضیحات"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:134
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:145
 msgid "Set a hint to distinguish the block."
 msgstr "تنظیم توضیحات مربوط به بلاک"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:141
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:152
 msgid "Subline"
 msgstr "زیر خط"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:156
 msgid "Header subline. HTML is allowed."
 msgstr "هدر زیر خط ، HTML مجاز است"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:152
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:163
 msgid "Style class"
 msgstr "کلاس سی اس اس"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:156
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:167
 msgid "Specified block container CSS class."
 msgstr "نام کلاس سی اس اس مخصوص این بلاک"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:164
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageEditForm.php:46
-msgid "Cache TTL"
-msgstr "کَش TTL"
-
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:172
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageEditForm.php:54
-msgid "Cache level"
-msgstr "سطح کَش"
-
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/BlockModuleForm.php:220
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/BlockModuleForm.php:227
 msgid "Configs"
 msgstr "تنظیمات"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageEditForm.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageEditForm.php:31
 msgid "Cache type"
 msgstr "نوع کَش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageEditForm.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageEditForm.php:35
 msgid "Page wide"
 msgstr "تمام صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageEditForm.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageEditForm.php:36
 msgid "Action data"
 msgstr "داده های اکشن"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ResetPasswordForm.php:42
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:93
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PasswordForm.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ResetPasswordForm.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:93
 msgid "New password"
 msgstr "کلمه عبور جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/ResetPasswordForm.php:52
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:101
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PasswordForm.php:52
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ResetPasswordForm.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:101
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:72
 msgid "Confirm password"
 msgstr "تایید کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:59
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:32
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/AccountForm.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/AccountForm.php:47
 msgid "User account"
 msgstr "حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:70
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:42
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/AccountForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:70
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/AccountForm.php:58
 msgid "Display name"
 msgstr "نام نمایشی"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:81
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:52
 msgid "Email address"
 msgstr "آدرس ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:110
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:110
 msgid "User role"
 msgstr "نقش کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:121
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:121
 msgid "Management role"
 msgstr "مدیریت نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/MemberForm.php:133
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/MemberForm.php:133
 msgid "Active"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RoleForm.php:44
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RoleForm.php:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:60
 msgid "Name"
 msgstr "نام"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RoleForm.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RoleForm.php:65
 msgid "Section"
 msgstr "بخش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RoleForm.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RoleForm.php:67
 msgid "Front"
 msgstr "بخش کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RoleForm.php:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RoleForm.php:68
 msgid "Admin"
 msgstr "بخش مدیر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageAddForm.php:63
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageAddForm.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:54
 msgid "Controller"
 msgstr "کنترولر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PageAddForm.php:72
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/PageAddForm.php:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:61
 msgid "Action"
 msgstr "اکشن"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PasswordForm.php:32
-msgid "Current password"
-msgstr "کلمه عبور فعلی"
-
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/PasswordForm.php:64
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:84
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/LoginForm.php:70
-msgid "Please type the word."
-msgstr "لطفا این عبارت را وارد کنید"
-
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/RegisterForm.php:62
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/LoginForm.php:58
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/LoginForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:62
 msgid "Password"
 msgstr "کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/RegisterForm.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/LoginForm.php:70
+msgid "Please type the word."
+msgstr "لطفا این عبارت را وارد کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:30
 msgid "Label"
 msgstr "عنوان"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:37
 msgid "Route"
 msgstr "روتر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:40
 msgid "Route to assemble URI."
 msgstr "روتر برای ایجاد آدرس"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:47
 msgid "Module"
 msgstr "ماژول"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:68
 msgid "URI"
 msgstr "آدرس"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:76
 msgid "Open target"
 msgstr "حالت باز شدن"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:78
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/Element/Controller.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/Element/Controller.php:53
 msgid "None"
 msgstr "هیچ"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:79
 msgid "Current window"
 msgstr "در همان صفحه"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:80
 msgid "Open a new window"
 msgstr "در صفحه جدید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:88
 msgid "Permission resource"
 msgstr "منبع دسترسی"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:92
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:92
 msgid "The resource identity for permission check."
 msgstr "هویت منبع دسترسی برای بررسی"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:100
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:100
 msgid "Display"
 msgstr "نمایش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/NavPageForm.php:103
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/NavPageForm.php:103
 msgid "To display in menu."
 msgstr "برای نمایش در منو"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/LoginForm.php:81
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/LoginForm.php:85
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/LoginForm.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/LoginForm.php:85
 msgid "Remember me"
 msgstr "به خاطر بسپار"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/LoginForm.php:109
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:93
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-logout.phtml:17
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/LoginForm.php:109
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-logout.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register.phtml:10
 msgid "Login"
 msgstr "ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/FindPasswordForm.php:26
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/FindPasswordForm.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:59
 msgid "Email"
 msgstr "ایمیل"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/FindPasswordForm.php:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/FindPasswordForm.php:36
 msgid "Please type the word"
 msgstr "لطفا این عبارت را وارد کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/FindPasswordForm.php:51
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:127
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:128
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/password-find.phtml:2
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register.phtml:9
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/FindPasswordForm.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/PasswordController.php:127
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/PasswordController.php:128
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/password-find.phtml:2
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login.phtml:14
 msgid "Find password"
 msgstr "یافتن کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Form/AccountForm.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/AccountForm.php:69
 msgid "Birthdate"
 msgstr "تاریخ تولد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Feed/IndexController.php:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Feed/IndexController.php:32
 msgid "What's new"
 msgstr "تازه ها"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Feed/IndexController.php:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Feed/IndexController.php:33
 msgid "Recent module updates."
 msgstr "آخرین به روز رسانی ماژول ها"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Admin/ThemeController.php:334
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ThemeController.php:332
 msgid "Bootstrap compiled successfully."
 msgstr "بوت استرپ با موفقیت نصب شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Admin/ThemeController.php:377
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ThemeController.php:375
 msgid "Bootstrap reset successfully."
 msgstr "بوت استرپ با موفقیت بازیابی شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:47
 msgid "Change password"
 msgstr "تعویض کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:54
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:63
 msgid "Logout"
 msgstr "خروج"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:57
 msgid "ID"
 msgstr "شناسه"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:58
 msgid "Username"
 msgstr "نام کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:61
 msgid "Role"
 msgstr "نقش"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:67
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:75
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:76
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/ProfileController.php:76
 msgid "User profile"
 msgstr "پروفایل کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/ProfileController.php:77
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:129
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:54
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:95
-msgid "login,register,find,password,user,account"
-msgstr "ورود,ثبت نام,یافتن,کلمه عبور,کاربر,حساب کاربری"
-
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/TestController.php:46
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/TestController.php:46
 msgid "site name"
 msgstr "نام سایت"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/TestController.php:170
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/TestController.php:170
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr "Greetings in raw body %d"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/PasswordController.php:50
 msgid "Find password failed."
 msgstr "یافتن کلمه عبور موفقیت آمیز نبود"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:118
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/PasswordController.php:118
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 "ایمیل تایید با موفقیت ارسال شد. لطفا ایمیل را بررسی کنید و کلمه عبور را "
 "بازیابی کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/PasswordController.php:146
 msgid "Invalid token for password reset."
 msgstr "توکن نا معتبر برای بازیابی کلمه عبور"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/PasswordController.php:197
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/PasswordController.php:200
 msgid "Password reset successfully."
 msgstr "کلمه عبور با موفقیت بازیابی شد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:49
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/RegisterController.php:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/RegisterController.php:53
 msgid "User account register"
 msgstr "ایجاد حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:52
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:110
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-logout.phtml:18
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/RegisterController.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/RegisterController.php:113
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-logout.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login.phtml:17
 msgid "Register"
 msgstr "ثبت نام"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/RegisterController.php:83
 msgid "Invalid input, please try again."
 msgstr "ورودی اشتباه، لطفا دوباره تلاش کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/RegisterController.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/RegisterController.php:102
 msgid "The account is not created in database, please try again."
 msgstr "حساب کاربری در دیتابیس ذخیره نشد. لطفا دوباره تلاش کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:71
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
@@ -487,111 +462,110 @@ msgstr ""
 "با حساب کاربری وارد شده اید که مسدود است,\n"
 "لطفا برای %d دقیقه صبر کنید و مجددا تلاش کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:80
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:80
 #, php-format
 msgid "You have %d times to try."
 msgstr "شما میتوانید %d بار دیگر تلاش کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:88
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:94
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-disabled.phtml:2
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:94
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "ورود کاربر"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:112
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:115
 msgid "Invalid request."
 msgstr "درخواست اشتباه"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:156
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:159
 msgid "You have tried too many times. Please try later."
 msgstr "شما دفعات زیادی تلاش کردید. لطفا بعدا امتحان کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:180
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:183
 msgid "Invalid credentials provided, please try again."
 msgstr "Invalid credentials provided, please try again."
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:222
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:225
 msgid "You have logged in successfully."
 msgstr "شما با موفقیت وارد شدید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Front/LoginController.php:241
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:244
 msgid "You logged out successfully."
 msgstr "شما با موفقیت خارج شدید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/src/Controller/Module/IndexController.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Module/IndexController.php:30
 msgid "Admin area"
 msgstr "بخش مدیریت"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/component/form.phtml:77
-#: /var/www/html/local/pi/pi/usr/module/system/template/admin/cache-list.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:50
 msgid "Cancel"
 msgstr "لغو"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/admin/theme-customize.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-customize.phtml:19
 msgid "In process of compiling"
 msgstr "در حال پروسس کامپایل"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/admin/theme-customize.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-customize.phtml:20
 msgid "Compile"
 msgstr "کامپایل"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/admin/theme-customize.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-customize.phtml:21
 msgid "Rebuild"
 msgstr "دوباره سازی"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/admin/theme-index.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:32
 msgid "Customize"
 msgstr "شخصی سازی"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-disabled.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
 msgstr "متاسفانه ورود کاربران موقتا ممکن نیست. لطفا بعدا مراجعه کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-logout.phtml:8
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-success.phtml:8
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register-success.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-logout.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-success.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register-success.phtml:8
 msgid "homepage"
 msgstr "صفحه اصلی"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-logout.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-logout.phtml:10
 msgid "re-login"
 msgstr "ورود مجدد"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-logout.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-logout.phtml:11
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "شما با موفقیت وارد شدید . لطفا به %s یا %s مراجعه کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-logout.phtml:16
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-logout.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register.phtml:8
 msgid "Choose: "
 msgstr "انتخاب : "
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/password-process.phtml:1
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/password-process.phtml:1
 msgid "Reset password"
 msgstr "بازیابی واژه رمز"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/password-process.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/password-process.phtml:8
 msgid "Try to find password again"
 msgstr "دوباره برای یافتن کلمه عبور تلاش کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/password-process.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/password-process.phtml:13
 msgid "Congratulations!"
 msgstr "تبریک می گوییم"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/password-process.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/password-process.phtml:14
 msgid "Your new password has worked"
 msgstr "کلمه عبور جدید شما کار می کند."
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/password-process.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/password-process.phtml:16
 msgid "Please login"
 msgstr "لطفا وارد شوید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-message.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-message.phtml:8
 msgid "logout"
 msgstr "خروج"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-message.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-message.phtml:9
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
@@ -600,27 +574,39 @@ msgstr ""
 "شما با حساب کاربری <strong>%s</strong> وارد شدید. لطفا برای ورود مجدد %s "
 "کنید."
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register-disabled.phtml:2
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register-disabled.phtml:2
 msgid "User account registration"
 msgstr "ثبت حساب کاربری"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register-disabled.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register-disabled.phtml:5
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr "متاسفانه ایجاد حساب کاربری موقتا غیر فعال است. لطفا بعدا مراجعه کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/login-success.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-success.phtml:9
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr "شما با موفقیت وارد شدید. لطفا به %s مراجعه کنید"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register-success.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register-success.phtml:11
 msgid "login"
 msgstr "ورود"
 
-#: /var/www/html/local/pi/pi/usr/module/system/template/front/register-success.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register-success.phtml:12
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "حساب کاربری شما با موفقیت ایجاد شد. لطفا به %s یا %s مراجعه کنید"
+
+#~ msgid "Cache TTL"
+#~ msgstr "کَش TTL"
+
+#~ msgid "Cache level"
+#~ msgstr "سطح کَش"
+
+#~ msgid "Current password"
+#~ msgstr "کلمه عبور فعلی"
+
+#~ msgid "login,register,find,password,user,account"
+#~ msgstr "ورود,ثبت نام,یافتن,کلمه عبور,کاربر,حساب کاربری"
 
 #, fuzzy
 #~ msgid "time"

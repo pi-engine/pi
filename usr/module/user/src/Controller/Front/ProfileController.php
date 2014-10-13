@@ -539,6 +539,9 @@ class ProfileController extends ActionController
                 $fields = Pi::registry('display_field', 'user')->read($gid);
                 $list   = array();
                 foreach ($fields as $field) {
+                    if (!isset($meta[$field]['title'])) {
+                        continue;
+                    }
                     $list[$field] = array(
                         'title' => $meta[$field]['title'],
                         'value' => isset($profile[$field]) ? $profile[$field] : '',

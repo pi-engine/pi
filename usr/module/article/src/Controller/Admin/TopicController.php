@@ -501,6 +501,7 @@ class TopicController extends ActionController
                 $row
             );
         }
+        unset($row);
         
         // Fetch topic article count
         $modelCount = $this->getModel('article_topic');

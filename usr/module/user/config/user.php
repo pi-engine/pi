@@ -270,7 +270,7 @@ return array(
     'timeline'  => array(
         'operation' => array(
             'title' => _a('User action'),
-            'icon'  => 'icon-user',
+            'icon'  => 'fa-user',
         ),
     ),
 
@@ -282,8 +282,11 @@ return array(
     'quicklink' => array(
         'logout'    => array(
             'title' => _a('Logout'),
-            'link'  => Pi::service('authentication')->getUrl('logout'),
-            'icon'  => 'icon-off',
+            'link'  => Pi::service('authentication')->getUrl(
+                    'logout',
+                    array('section' => 'front')
+                ),
+            'icon'  => 'fa-power-off',
         ),
     ),
 );

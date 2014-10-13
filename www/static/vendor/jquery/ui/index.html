@@ -53,8 +53,7 @@
 <h1>Welcome to jQuery UI!</h1>
 
 <div class="ui-widget">
-	<p>This page demonstrates the widgets you downloaded using the theme you selected in the download builder. We've included and linked to a version of <a href="jquery.js">jQuery (jquery.js)</a>, your personalized <a href="jquery-ui.js">jQuery UI (jquery-ui.js)</a>, and the entire <a href="jquery-ui.css">jQuery UI CSS Framework (jquery-ui.css)</a>.</p>
-	<p>You've downloaded components and a theme that are compatible with jQuery 1.6+. Please make sure you are using jQuery 1.6+ in your production environment.</p>
+	<p>This page demonstrates the widgets and theme you selected in Download Builder. Please make sure you are using them with a compatible jQuery version.</p>
 </div>
 
 <h1>YOUR COMPONENTS:</h1>
@@ -341,6 +340,41 @@
 </select>
 
 
+
+<!-- Spinner -->
+<h2 class="demoHeaders">Spinner</h2>
+<input id="spinner">
+
+
+
+<!-- Menu -->
+<h2 class="demoHeaders">Menu</h2>
+<ul style="width:100px;" id="menu">
+	<li>Item 1</li>
+	<li>Item 2</li>
+	<li>Item 3
+		<ul>
+			<li>Item 3-1</li>
+			<li>Item 3-2</li>
+			<li>Item 3-3</li>
+			<li>Item 3-4</li>
+			<li>Item 3-5</li>
+		</ul>
+	</li>
+	<li>Item 4</li>
+	<li>Item 5</li>
+</ul>
+
+
+
+<!-- Tooltip -->
+<h2 class="demoHeaders">Tooltip</h2>
+<p id="tooltip">
+	<a href="#" title="That&apos;s what this widget is">Tooltips</a> can be attached to any element. When you hover
+the element with your mouse, the title attribute is displayed in a little box next to the element, just like a native tooltip.
+</p>
+
+
 <!-- Highlight / Error -->
 <h2 class="demoHeaders">Highlight / Error</h2>
 <div class="ui-widget">
@@ -447,6 +481,18 @@ $( "#slider" ).slider({
 $( "#progressbar" ).progressbar({
 	value: 20
 });
+
+
+
+$( "#spinner" ).spinner();
+
+
+
+$( "#menu" ).menu();
+
+
+
+$( "#tooltip" ).tooltip();
 
 
 

@@ -132,7 +132,6 @@ class Upload extends AbstractAvatar
      * ```
      *  // Get meta of existent avatar
      *  $meta = Pi::service('avatar')->upload->getMeta(123, 'hashed', 'small');
-
      *  // Create meta
      *  $meta = Pi::service('avatar')->upload->getMeta(123, '', 'small');
      *
@@ -144,7 +143,6 @@ class Upload extends AbstractAvatar
      * ```
      *  // Get meta of existent avatars
      *  $meta = Pi::service('avatar')->upload->getMeta(123, 'hashed');
-
      *  // Create meta of avatars
      *  $meta = Pi::service('avatar')->upload->getMeta(123);
      *

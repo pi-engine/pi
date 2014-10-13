@@ -183,7 +183,7 @@ class View extends AbstractPlugin
     {
         if (!$this->viewModel) {
             $this->viewModel = new ViewModel($variables, $options);
-            $this->viewModel->setCaptureTo('content');
+            //$this->viewModel->setCaptureTo('content');
         } elseif ($variables || $options) {
             if ($variables) {
                 $this->viewModel->setVariables($variables);

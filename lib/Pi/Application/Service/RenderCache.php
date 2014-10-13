@@ -21,12 +21,15 @@ use Zend\Cache\Storage\Adapter\AbstractAdapter;
  */
 class RenderCache extends AbstractService
 {
+    /** {@inheritDoc} */
+    protected $fileIdentifier = 'render-cache';
+
     /**
      * Cache Storage
      *
      * @var AbstractAdapter|string
      */
-    protected $storage = 'filesystem';
+    protected $storage;
 
     /**
      * Rendering type, potential values: page, action, block
@@ -121,8 +124,10 @@ class RenderCache extends AbstractService
     public function getStorage()
     {
         if (!$this->storage instanceof AbstractAdapter) {
-            $storage = !empty($this->options['storage'])
-                ? $this->options['storage'] : ($this->storage ?: '');
+            $storage = $this->storage;
+            if (!$storage && !empty($this->options['storage'])) {
+                $storage = $this->options['storage'];
+            }
             if ($storage) {
                 $storage = Pi::service('cache')->loadStorage($storage);
             } else {
