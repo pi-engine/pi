@@ -101,7 +101,12 @@ class Draft
                     $row = array();
                 }
 
-                $row['title'] = trim(strip_tags($text));
+                $text = strip_tags($text);
+                if (preg_replace('/&nbsp;/', '', trim($text)) !== '') {
+                    $row['title'] = trim($text);
+                } else {
+                    $row['title'] = '';
+                }
             } else {
                 $row['content'] = trim($text);
             }

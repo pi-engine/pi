@@ -28,11 +28,9 @@
             <?php
                 } ?>
                 </td>
-                <td><a target="_blank" href="<?php echo $this->url($route, array(
-                    'controller' => 'topic',
-                    'action'     => 'index',
-                    'topic'      => $topic['slug'] ?: $topic['id']))
-                ?>"><?php echo _escape($topic['title']); ?></a>
+                <td><a target="_blank" href="<?php echo _escape($topic['url']); ?>">
+                        <?php echo _escape($topic['title']); ?>
+                    </a>
                     <?php if (!$topic['active']) { ?>
                     - <strong class="text-warning"><?php echo _a('Deactive'); ?></strong>
                     <?php } ?>

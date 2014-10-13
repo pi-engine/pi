@@ -409,16 +409,14 @@ class DraftController extends ActionController
         $result['status']   = true;
         $result['data']     = array('id' => $id);
 
-        $route = 'article';
-        $result['data']['preview_url'] = $this->url(
-            $route,
+        $result['data']['preview_url'] = Pi::api('api', $module)->getUrl(
+            'detail',
             array(
-                'module'    => $module,
                 'time'      => date('Ymd', time()),
                 'id'        => $id,
-                'slug'      => $data['slug'],
                 'preview'   => 1,
-            )
+            ),
+            $data
         );
         $result['message'] = __('Draft saved successfully.');
 
@@ -478,6 +476,7 @@ class DraftController extends ActionController
             'summary' => Entity::getSummary($from, $rules),
             'flags'   => $flags,
             'rules'   => $rules,
+            'section' => $this->section,
         ));
         
         $module = $this->getModule();
@@ -929,13 +928,8 @@ class DraftController extends ActionController
     public function previewAction()
     {
         $id       = $this->params('id');
-        //$slug     = $this->params('slug', '');
         $page     = $this->params('p', 1);
         $remain   = $this->params('r', '');
-        
-        if ('' !== $remain) {
-            $this->view()->assign('remain', $remain);
-        }
 
         $time    = time();
         $module  = $this->getModule();
@@ -945,62 +939,33 @@ class DraftController extends ActionController
         
         $params = array(
             'module'    => $module,
-            'preview'   => 1
+            'preview'   => 1,
+            'time'      => date('Ymd', $details['time_publish']),
+            'id'        => $id,
         );
         
         if (!$id) {
             return $this->jumpTo404(__('Page not found'));
         }
-        /*if (strval($slug) != $details['slug']) {
-            $routeParams = array(
-                'time'      => $time,
-                'id'        => $id,
-                'slug'      => $details['slug'],
-                'p'         => $page,
-            );
-            if ($remain) {
-                $params['r'] = $remain;
-            }
-            return $this->redirect()->setStatusCode(301)->toRoute(
-                '',
-                array_merge($routeParams, $params)
-            );
-        }*/
         
-        $route = 'article';
         foreach ($details['content'] as &$value) {
-            $value['url'] = $this->url($route, array_merge(array(
-                'time'      => date('Ymd', $time),
-                'id'        => $id,
-                //'slug'      => $slug,
-                'p'         => $value['page'],
-            ), $params));
-            if (isset($value['title']) 
-                and preg_replace('/&nbsp;/', '', trim($value['title'])) !== ''
-            ) {
-                $showTitle = true;
-            } else {
-                $value['title'] = '';
-            }
+            $value['url'] = Pi::api('api', $module)->getUrl(
+                'detail',
+                array_merge($params, array('p' => $value['page'])),
+                $details
+            );
         }
-        $details['view'] = $this->url($route, array_merge(array(
-            'time'        => date('Ymd', $time),
-            'id'          => $id,
-            //'slug'        => $slug,
-            'r'           => 0,
-        ), $params));
-        $details['remain'] = $this->url($route, array_merge(array(
-            'time'        => date('Ymd', $time),
-            'id'          => $id,
-            //'slug'        => $slug,
-            'r'           => $page,
-        ), $params));
+        
+        $params['r']       =  -1;
+        $details['view']   = Pi::api('api', $module)->getUrl('detail', $params, $details);;
+        $params['r']       = $page;
+        $details['remain'] = Pi::api('api', $module)->getUrl('detail', $params, $details);
 
         $this->view()->assign(array(
             'details'     => $details,
             'page'        => $page,
-            'showTitle'   => isset($showTitle) ? $showTitle : null,
             'config'      => Pi::config('', $module),
+            'remain'      => $remain,
         ));
 
         $this->view()->setTemplate('article-detail');

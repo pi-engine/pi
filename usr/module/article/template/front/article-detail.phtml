@@ -1,6 +1,7 @@
 <?php
 $this->css(array(
     $this->assetModule('script/block.css'),
+    $this->assetModule('script/front.css'),
 ));
 
 if ($details['seo_keywords']) {
@@ -66,55 +67,34 @@ $this->headTitle($headTitle, 'SET');
     <div class="clearfix mb10 article-content">
         <div class="clearfix">
             <div class="article-body">
-                <?php if (isset($remain) and '0' === $remain) {
+                <?php if ($remain and '-1' === $remain) {
                     foreach ($details['content'] as $content) {
                         if ( $content['title']) {
-                            echo '<div class="title title18">' . _escape($content['title']) . '</div>';
+                            echo '<div class="title title18">' . $content['title'] . '</div>';
                         }
                         echo $content['content'];
                     } 
-                } elseif (isset($remain) and (int) $remain > 0) {
+                } elseif ($remain and (int) $remain > 0) {
                     for ($p = (int) $remain; $p < $details['pages']; $p++) {
                         if ($details['content'][$p]['title']) {
                             echo '<div class="title title18">' 
-                            . _escape($details['content'][$p]['title']) . '</div>';
+                            . $details['content'][$p]['title'] . '</div>';
                         }
                         echo $details['content'][$p]['content'];
                     }
                 } else {
                     if ($details['content'][$page - 1]['title']) {
                         echo '<div class="title title18">' 
-                        . _escape(isset($details['content'][$page-1]['title']) 
+                        . (isset($details['content'][$page-1]['title']) 
                             ? $details['content'][$page-1]['title'] : '') .'</div>';
                     }
                     echo $details['content'][$page - 1]['content'];
                 }
                 ?>  
             </div>
-            <?php /*
-            <div class="article-subline-desc text-muted" style="margin-bottom: 10px"><?php _e('Tags: '); ?>
-            <?php if (empty($details['tag'])) {
-                echo '<span>' . __('None') . '</span>';
-            } ?>
-            <?php foreach ($details['tag'] as $tag) { ?>
-                <span>
-                    <a href="<?php echo $this->url('', array(
-                        'controller' => 'tag', 
-                        'action'     => 'list', 
-                        'tag'        => $tag
-                    )); ?>">
-                        <?php echo _escape($tag); ?>
-                    </a>
-                </span>
-                <?php if ($tag != end($details['tag'])) {
-                    echo '<span>, </span>'; ?>
-                <?php } ?>
-            <?php } ?>
-            </div>
-            */?>
         </div>
         <div class="clearfix">
-            <?php if (!isset($remain) and (int) $page < $details['pages']) { ?>
+            <?php if (empty($remain) and (int) $page < $details['pages']) { ?>
                 <div class="pull-right text-muted">
                     <a class="link mr10" href="<?php echo _escape($details['content'][$page]['url']); ?>">
                         <?php _e('Next Page'); ?>
@@ -129,13 +109,13 @@ $this->headTitle($headTitle, 'SET');
         <div style="text-align: center">
             <ul class="pagination">
             <?php for ($i = 1; $i <= $details['pages']; $i++) { ?>
-                <li <?php if ($i == $page && !isset($remain)) echo 'class="active"'; ?>>
+                <li <?php if ($i == $page && empty($remain)) echo 'class="active"'; ?>>
                     <a href="<?php echo _escape($details['content'][$i-1]['url']); ?>">
                         <?php echo $i; ?>
                     </a>
                 </li>
             <?php } ?>
-                <li class="<?php if (isset($remain) and $remain === '0') echo 'active'; ?>">
+                <li class="<?php if ($remain and $remain === '-1') echo 'active'; ?>">
                     <a href="<?php echo _escape($details['view']); ?>" rel="nofollow">
                         <?php _e('Read More'); ?>
                     </a>

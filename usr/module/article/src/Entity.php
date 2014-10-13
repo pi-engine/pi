@@ -208,13 +208,12 @@ class Entity
             if (isset($clusters[$row['id']])) {
                 $row['clusters'] = $clusters[$row['id']];
             }
-
-            $route      = Pi::api('api', $module)->getRouteName();
-            $row['url'] = Pi::service('url')->assemble($route, array(
-                'module'    => $module,
-                'time'      => date('Ymd', $row['time_publish']),
-                'id'        => $row['id'],
-            ));
+            
+            $params = array(
+                'time' => date('Ymd', $row['time_publish']),
+                'id'   => $row['id'],
+            );
+            $row['url'] = Pi::api('api', $module)->getUrl('detail', $params, $row);
         }
         
         return $result;
@@ -314,12 +313,18 @@ class Entity
             $result[$name] = $handler->resolve(array_pop($data));
         }
         
-        // Getting stats data
-        $modelStatis    = Pi::model('stats', $module);
-        $rowStatis      = $modelStatis->find($id, 'article');
-        if ($rowStatis) {
-            $result['visits'] = $rowStatis->visits;
+        // Get page URL
+        foreach ($result['content'] as &$value) {
+            $params = array(
+                'time' => date('Ymd', $result['time_publish']),
+                'id'   => $id,
+                'p'    => $value['page'],
+            );
+            $value['url'] = Pi::api('api', $module)->getUrl('detail', $params, $result);
         }
+        
+        // Getting stats data
+        $result['visits'] = Stats::getTotalVisit($id, 'A');
 
         return $result;
     }

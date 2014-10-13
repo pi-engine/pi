@@ -57,6 +57,19 @@ class Page extends AbstractApi
     }
     
     /**
+     * Get single detail by name
+     * @param string  $name  Page unique name
+     * @return array
+     */
+    public function get($name)
+    {
+        $rowset = $this->getList(array('name' => $name));
+        $result = $rowset ? array_shift($rowset) : array();
+        
+        return $result;
+    }
+    
+    /**
      * Get all conditions
      * 
      * @return array
@@ -479,11 +492,11 @@ class Page extends AbstractApi
         $pages = Pi::api('page', $module)->getList(array('active' => 1));
         
         if ('list' === $params['controller']
-            && 'all' === $params['action']
+            && 'index' === $params['action']
         ) {
             foreach ($pages as $row) {
                 if ('list' !== $row['controller']
-                    || 'all' !== $row['action']
+                    || 'index' !== $row['action']
                 ) {
                     continue;
                 }

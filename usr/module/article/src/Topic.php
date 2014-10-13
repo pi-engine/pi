@@ -11,8 +11,6 @@ namespace Module\Article;
 
 use Pi;
 use Module\Article\Entity;
-use Module\Article\Model\Article;
-use Zend\Db\Sql\Expression;
 
 /**
  * Topic service class
@@ -122,14 +120,14 @@ class Topic
         }
         $rowset = $modelTopic->selectWith($select);
         $topics = array();
-        $route  = Pi::api('api', $module)->getRouteName();
         foreach ($rowset as $row) {
             $id   = $row->id;
             $topics[$id] = $row->toArray();
-            $topics[$id]['url'] = Pi::service('url')->assemble($route, array(
-                'module'    => $module,
-                'topic'     => $row->slug ?: $row->id,
-            ));
+            $topics[$id]['url'] = Pi::api('api', $module)->getUrl(
+                'topic-home',
+                array('topic'     => $row->slug ?: $row->id),
+                $row->toArray()
+            );
         }
         
         return $topics;

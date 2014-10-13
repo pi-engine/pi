@@ -149,16 +149,14 @@ class TopicController extends ActionController
      */
     public function allTopicAction()
     {
-        $page       = $this->params('p', 1);
-        $page       = $page > 0 ? $page : 1;
+        $page = $this->params('p', 1);
+        $page = $page > 0 ? $page : 1;
 
         $module = $this->getModule();
         $config = Pi::config('', $module);
         $limit  = (int) $config['page_limit_all'];
         
-        $where = array(
-            'active' => 1,
-        );
+        $where = array('active' => 1);
         
         // Get topics
         $resultsetTopic = TopicService::getTopics($where, $page, $limit);
@@ -167,6 +165,11 @@ class TopicController extends ActionController
                 ? Pi::url($topic['image'])
                 : Pi::service('asset')
                     ->getModuleAsset($config['default_topic_image']);
+            $topic['url'] = Pi::api('api', $module)->getUrl(
+                'topic-list',
+                array('topic' => $topic['slug'] ?: $topic['id']),
+                $topic
+            );
         }
         $topicIds = array_keys($resultsetTopic) ?: array(0);
         
@@ -204,7 +207,6 @@ class TopicController extends ActionController
         $totalCount = $modelTopic->count($where);
 
         // Pagination
-        $route     = Pi::api('api', $module)->getRouteName();
         $paginator = Paginator::factory($totalCount, array(
             'limit'       => $limit,
             'page'        => $page,
@@ -225,7 +227,6 @@ class TopicController extends ActionController
             'paginator'     => $paginator,
             'count'         => $articleCount,
             'config'        => $config,
-            'route'         => $route,
             'lastAdded'     => $lastAdded,
             'seo'           => $seo,
         ));

@@ -77,15 +77,16 @@ class Related extends CustomCompoundHandler
             $select = $model->select()->columns($columns)->where($where);
             $rowset = $model->selectWith($select);
             
-            $route  = 'article';
-            
             foreach ($rowset as $row) {
                 $item = $row->toArray();
-                $item['url'] = Pi::service('url')->assemble($route, array(
-                        'module'    => $this->module,
-                        'time'      => date('Ymd', $row->time_publish),
-                        'id'        => $row->id,
-                    ));
+                $item['url'] = Pi::api('api', $this->module)->getUrl(
+                    'detail',
+                    array(
+                        'time' => date('Ymd', $row->time_publish),
+                        'id'   => $row->id,
+                    ),
+                    $item
+                );
                 $result[$row->id] = $item;
             }
         }
@@ -111,9 +112,7 @@ class Related extends CustomCompoundHandler
         
         $rows = array();
         foreach ($article as $value) {
-            $rows[] = array(
-                'related' => $value,
-            );
+            $rows[] = array('related' => $value);
         }
         
         parent::add($id, $rows);

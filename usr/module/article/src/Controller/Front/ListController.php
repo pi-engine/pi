@@ -45,11 +45,13 @@ class ListController extends ActionController
     }
     
     /**
-     * Listing all articles for users to review 
+     * List articles for users to review 
      */
-    public function allAction()
+    public function indexAction()
     {
         $module = $this->getModule();
+        $config = $this->config('');
+        
         $page   = (int) $this->params('p', 1);
         $limit  = (int) $this->config('page_limit_all') ?: 40;
         $offset = $limit * ($page - 1);
@@ -67,11 +69,19 @@ class ListController extends ActionController
         $params['category'] = $category;
         if (!empty($category) && 'all' != $category) {
             $category = Pi::api('category', $module)->slugToId($category);
-            $children = $this->getModel('category')->getDescendantIds($category);
+            $children = Pi::api('category', $module)->getDescendantIds($category);
             if (empty($children)) {
                 return $this->jumpTo404(__('Invalid category id'));
             }
             $where['category'] = $children;
+        }
+        
+        // Jump to 404 if category is not activated
+        if ('all' != $category) {
+            $categoryDetail = Pi::api('category', $module)->get($category);
+            if (empty($categoryDetail) || !$categoryDetail['active']) {
+                $this->jumpTo404(__('Page not found.'));
+            }
         }
         
         // Get cluster condition
@@ -79,14 +89,24 @@ class ListController extends ActionController
         $params['cluster'] = $cluster;
         if (!empty($cluster) && 'all' != $cluster) {
             $cluster  = Pi::api('cluster', $module)->slugToId($cluster);
-            $children = $this->getModel('cluster')->getDescendantIds($cluster);
+            $children = Pi::api('cluster', $module)->getDescendantIds($cluster);
             if (empty($children)) {
                 return $this->jumpTo404(__('Invalid cluster id'));
             }
             $where['cluster'] = $children;
         }
         
-        $columns = array('subject', 'summary', 'author', 'time_publish', 'image');
+        // Jump to 404 if cluster is not activated
+        if ('all' != $cluster) {
+            $clusterDetail = Pi::api('cluster', $module)->get($cluster);
+            if (empty($clusterDetail) || !$clusterDetail['active']) {
+                $this->jumpTo404(__('Page not found.'));
+            }
+        }
+        
+        $columns = array(
+            'subject', 'summary', 'author', 'time_publish', 'image', 'category',
+        );
         
         if ('hot' == $sort) {
             $items = Entity::getTopVisitArticles(
@@ -125,73 +145,38 @@ class ListController extends ActionController
                 ),
             ),
         ));
-
-        $config = Pi::config('', $module);
         
-        // Get category nav
-        $route  = Pi::api('api', $module)->getRouteName();
-        $rowset = Pi::api('category', $module)->getList(array(), null, false);
-        $navs   = $this->canonizeCategory($rowset['child'], $route);
-        $categoryTitle = $this->getCategoryTitle($category, $rowset['child']);
-        $allNav['all'] = array(
-            'label'      => __('All'),
-            'route'      => $route,
+        // Get category navigation
+        $options = array(
             'controller' => 'list',
-            'params'     => array(
-                'category'   => 'all',
-            ),
+            'action'     => 'index',
         );
-        $navs = $allNav + $navs;
+        $navs   = Pi::api('category', $module)->navigation($options);
         
-        // Get all categories
-        $categories = array(
-            'all' => array(
-                'id'    => 0,
-                'title' => __('All articles'),
-                'image' => '',
-                'url'   => Pi::service('url')->assemble(
-                    'article',
-                    array(
-                        'module'    => $module,
-                        'list'      => 'all',
-                    )
-                ),
-            ),
+        $urlOptions = array(
+            'category' => $categoryDetail,
+            'cluster'  => $clusterDetail,
         );
-        $rowset = Pi::api('category', $module)->getList(
-            array('active' => 1),
-            array('id', 'title', 'image', 'slug')
+        $urlHot = Pi::api('api', $module)->getUrl(
+            'list',
+            array('category' => $category, 'sort' => 'hot'),
+            $urlOptions
         );
-        foreach ($rowset as $row) {
-            $url = Pi::service('url')->assemble('', array(
-                'module'     => $module,
-                'controller' => 'category',
-                'action'     => 'list',
-                'category'   => $row['id'],
-            ));
-            $categories[$row['id']] = array(
-                'id'    => $row['id'],
-                'title' => $row['title'],
-                'image' => $row['image'],
-                'url'   => $url,
-            );
-        }
-        
-        $urlHot = $this->url($route, array('category' => $category, 'sort' => 'hot'));
-        $urlNew = $this->url($route, array('category' => $category));
+        $urlNew = Pi::api('api', $module)->getUrl(
+            'list',
+            array('category' => $category),
+            $urlOptions
+        );
         
         // Get SEO meta
         $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
 
-        $title = $categoryTitle ?: __('All Articles');
         $this->view()->assign(array(
-            'title'      => $title,
             'articles'   => $items,
             'paginator'  => $paginator,
-            'elements'   => $config['list_item'],
-            'categories' => $categories,
-            'length'     => $config['list_summary_length'],
-            'navs'       => $this->config('enable_list_nav') ? $navs : '',
+            'config'     => $config,
+            'categories' => Pi::api('category', $module)->getList(),
+            'navs'       => $navs,
             'category'   => $category,
             'url'        => array(
                 'hot'       => $urlHot,
@@ -201,58 +186,5 @@ class ListController extends ActionController
         ));
         
         $this->view()->setTemplate('list-all');
-    }
-    
-    /**
-     * Canonize category structure
-     * 
-     * @params array  $categories
-     * @params string $route
-     */
-    protected function canonizeCategory(&$categories, $route)
-    {
-        foreach ($categories as $key => &$row) {
-            if (!$row['active']) {
-                unset($categories[$key]);
-                continue;
-            }
-            $row['label']      = $row['title'];
-            $row['params']     = array(
-                'category' => $row['slug'] ?: $row['id'],
-            );
-            $row['route']      = $route;
-            if (isset($row['child'])) {
-                $row['pages'] = $row['child'];
-                unset($row['child']);
-                $this->canonizeCategory($row['pages'], $route);
-            }
-        }
-        
-        return $categories;
-    }
-    
-    /**
-     * Get category title
-     * 
-     * @param int   $id    Category ID
-     * @param array $items Category rowset
-     * @return string 
-     */
-    protected function getCategoryTitle($id, $items)
-    {
-        if (empty($id)) {
-            return '';
-        }
-        foreach ($items as $item) {
-            if ($id == $item['id']) {
-                return $item['title'];
-            }
-            if (isset($item['pages'])) {
-                $title = $this->getCategoryTitle($id, $item['pages']);
-                if ($title) {
-                    return $title;
-                }
-            }
-        }
     }
 }

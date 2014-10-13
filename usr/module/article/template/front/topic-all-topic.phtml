@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <span class="pull-right col-md-2" style="text-align: right">
-                    <a href="<?php echo $this->url($route, array('topic' => $row['slug'] ?: $row['id'], 'list' => 'all')); ?>">
+                    <a href="<?php echo _escape($row['url']); ?>">
                         <?php echo _escape($eachCount) . __(' articles'); ?>
                     </a>
                 </span>

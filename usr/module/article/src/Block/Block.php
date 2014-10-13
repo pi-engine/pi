@@ -39,7 +39,6 @@ class Block
         
         $maxTopCount = $options['top_category'];
         $maxSubCount = $options['sub_category'];
-        $route = 'article';
 
         $categories  = Pi::api('category', $module)->getList(
             array(),
@@ -49,7 +48,7 @@ class Block
         
         $allItems = static::canonizeCategories(
             $categories['child'],
-            array('route' => $route)
+            array('module' => $module)
         );
         
         $i = 0;
@@ -87,52 +86,15 @@ class Block
             return false;
         }
         
-        $route = 'article';
-        
-        // Get all categories
-        $categories = array(
-            'all' => array(
-                'id'    => 0,
-                'title' => __('All articles'),
-                'depth' => 0,
-                'image' => '',
-                'url'   => Pi::service('url')->assemble(
-                    $route,
-                    array(
-                        'module'        => $module,
-                        'controller'    => 'list',
-                        'action'        => 'all',
-                        'list'          => 'all',
-                    )
-                ),
-            ),
+        $params = array(
+            'controller' => 'list',
+            'action'     => 'index',
         );
-        $rowset = Pi::model('category', $module)->enumerate(null, null, true);
-        foreach ($rowset as $row) {
-            if ('root' == $row['name']) {
-                continue;
-            }
-            $url = Pi::service('url')->assemble($route, array(
-                'module'        => $module,
-                'controller'    => 'category',
-                'action'        => 'list',
-                'category'      => $row['slug'] ?: $row['id'],
-            ));
-            $categories[$row['id']] = array(
-                'id'    => $row['id'],
-                'title' => $row['title'],
-                'depth' => $row['depth'],
-                'image' => $row['image'],
-                'url'   => $url,
-            );
-        }
-        
-        $params = Pi::service('url')->getRouteMatch()->getParams();
+        $navs = Pi::api('category', $module)->navigation($params);
         
         return array(
-            'items'    => $categories,
-            'options'  => $options,
-            'category' => $params['category'],
+            'navs'     => $navs,
+            'category' => _get('category', ''),
         );
     }
     
@@ -149,9 +111,9 @@ class Block
             return false;
         }
         
-        $limit = (int) $options['list_count'];
-        $limit = $limit < 0 ? 0 : $limit;
-        $day = (int) $options['day_range'];
+        $limit    = (int) $options['list_count'];
+        $limit    = $limit < 0 ? 0 : $limit;
+        $day      = (int) $options['day_range'];
         $endDay   = time();
         $startDay = $endDay - $day * 3600 * 24;
         
@@ -176,18 +138,15 @@ class Block
         }
         
         // Get category Info
-        $route = Pi::api('api', $module)->getRouteName();
-        $where = array('id' => $categoryIds);
-        $rowCategory = Pi::model('category', $module)->select($where);
-        $categories = array();
-        foreach ($rowCategory as $row) {
-            $categories[$row->id]['title'] = $row->title;
-            $categories[$row->id]['url']   = Pi::service('url')->assemble(
-                $route,
-                array(
-                    'module'    => $module,
-                    'category'  => $row->slug ?: $row->id,
-                )
+        $categories = Pi::api('category', $module)->getList(array(
+            'id'     => $categoryIds,
+            'active' => 1,
+        ));
+        foreach ($categories as &$row) {
+            $row['url'] = Pi::api('api', $module)->getUrl(
+                'list',
+                array('category' => $row['slug'] ?: $row['id']),
+                array('category' => $row)
             );
         }
         
@@ -306,8 +265,10 @@ class Block
         }
         
         $config   = Pi::config('', $module);
-        $image    = $config['default_feature_image'];
-        $image    = Pi::service('asset')->getModuleAsset($image, $module);
+        $image    = Pi::service('asset')->getModuleAsset(
+            $config['default_feature_image'],
+            $module
+        );
         
         $columns  = array('subject', 'summary', 'time_publish', 'image');
         $ids      = explode(',', $options['articles']);
@@ -337,9 +298,7 @@ class Block
                 $options['max_summary_length'],
                 'UTF-8'
             );
-            $article['image'] = $article['image'] 
-                ? Media::getThumbFromOriginal(Pi::url($article['image']))
-                : $image;
+            $article['image'] = $article['image'] ?: $image;
         }
         
         return array(
@@ -426,8 +385,10 @@ class Block
         $order  = 'id DESC';
         $topics = Topic::getTopics(array(), 1, $limit, null, $order, $module);
         $config = Pi::config('', $module);
-        $image  = Pi::service('asset')
-            ->getModuleAsset($config['default_topic_image'], $module);
+        $image  = Pi::service('asset')->getModuleAsset(
+            $config['default_topic_image'],
+            $module
+        );
         
         foreach ($topics as &$topic) {
             $topic['title'] = mb_substr(
@@ -566,8 +527,10 @@ class Block
         );
         
         $config   = Pi::config('', $module);
-        $image    = $config['default_feature_image'];
-        $image    = Pi::service('asset')->getModuleAsset($image, $module);
+        $image    = Pi::service('asset')->getModuleAsset(
+            $config['default_feature_image'],
+            $module
+        );
         foreach ($articles as &$article) {
             $article['subject'] = mb_substr(
                 $article['subject'],
@@ -581,9 +544,7 @@ class Block
                 $options['max_summary_length'],
                 'UTF-8'
             );
-            $article['image'] = $article['image'] 
-                ? Media::getThumbFromOriginal(Pi::url($article['image']))
-                : $image;
+            $article['image'] = $article['image'] ?: $image;
         }
         
         // Getting image link url
@@ -685,11 +646,12 @@ class Block
             $result[$category['id']] = array(
                 'title' => $category['title'],
                 'depth' => $category['depth'],
-                'url'   => Pi::service('url')->assemble(
-                    $options['route'],
+                'url'   => Pi::api('api', $options['module'])->getUrl(
+                    'list',
                     array(
-                        'category'  => $category['slug'] ?: $category['id'],
-                    )
+                        'category' => $category['slug'] ?: $category['id'],
+                    ),
+                    array('category' => $category)
                 ),
             );
             if (isset($category['child'])) {
