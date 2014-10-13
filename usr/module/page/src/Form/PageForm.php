@@ -87,6 +87,18 @@ class PageForm extends BaseForm
             ),
         ));
 
+        $this->add(array(
+            'name' => 'template',
+            'type' => 'select',
+            'options' => array(
+                'label' => __('Template'),
+                'value_options' => array(
+                    'page-view' => __('Default'),
+                    'page-view-simple' => __('Simple'),
+                ),
+            ),
+        ));
+
         if ('phtml' == $this->markup) {
             $this->add(array(
                 'name'          => 'content',
