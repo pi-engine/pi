@@ -26,6 +26,7 @@ CREATE TABLE `{page}` (
   -- For rendering
   `theme`           varchar(64)             NOT NULL default '',
   `layout`          varchar(64)             NOT NULL default '',
+  `template`        varchar(64)             NOT NULL default '',
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`),
