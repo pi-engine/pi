@@ -37,6 +37,7 @@ class Install extends BasicInstall
     protected function attachDefaultListeners()
     {
         $events = $this->events;
+        $events->attach('install.post', array($this, 'initMeta'), 0);
         $events->attach('install.post', array($this, 'initCategory'), 1);
         $events->attach('install.post', array($this, 'initPage'), -10);
         $events->attach(
@@ -71,6 +72,19 @@ class Install extends BasicInstall
         );
         parent::attachDefaultListeners();
         return $this;
+    }
+    
+    /**
+     * Insert module meta into module.meta.php, or else, the directory can not
+     * be parsed by module name.
+     * 
+     * @param Event $e 
+     */
+    public function initMeta(Event $e)
+    {
+        Pi::service('module')->createMeta();
+        
+        return true;
     }
     
     /**
@@ -111,13 +125,13 @@ class Install extends BasicInstall
     }
     
     /**
-     * Add a root category
+     * Add a root page
      * 
      * @param Event $e 
      */
     public function initPage(Event $e)
     {
-        // Add a root category
+        // Add a root page
         $module = $this->event->getParam('module');
         $model  = Pi::model('page', $module);
         $data   = array(
