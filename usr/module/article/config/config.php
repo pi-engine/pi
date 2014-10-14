@@ -158,6 +158,13 @@ return array(
             'value'       => 1,
             'filter'      => 'int',
         ),
+        'use_permission'  => array(
+            'category'    => 'general',
+            'title'       => _t('Whether to enable permission'),
+            'edit'        => 'checkbox',
+            'value'       => 1,
+            'filter'      => 'int',
+        ),
 
         // Autosave
         'autosave_interval' => array(
