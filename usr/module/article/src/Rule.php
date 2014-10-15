@@ -10,14 +10,6 @@
 namespace Module\Article;
 
 use Pi;
-use Zend\Db\Sql\Expression;
-use Module\Article\Model\Article;
-use Pi\Mvc\Controller\ActionController;
-use Module\Article\Controller\Admin\SetupController as Config;
-use Module\Article\Form\DraftEditForm;
-use Module\Article\Compiled;
-use Module\Article\Media;
-use Module\Article\Installer\Resource\Route;
 
 /**
  * Common rule API
@@ -88,6 +80,12 @@ class Rule
     ) {
         $module     = Pi::service('module')->current();
         
+        // Enabled all resources if disabled permission
+        $usePermission = Pi::config('use_permission', $module);
+        if (!$usePermission) {
+            return self::getAndEnableAll($module);
+        }
+        
         // Get role of current section
         $uid     = $uid ?: Pi::user()->getId();
         $roles   = array_values(Pi::user()->getRole($uid, 'admin'));
@@ -97,7 +95,7 @@ class Rule
         
         // Get all categories
         if (is_string($category)) {
-            $category = Pi::model('category', $module)->slugToId($category);
+            $category = Pi::api('category', $module)->slugToId($category);
         }
         $rowCategories = Pi::api('category', $module)->getList(
             array('active' => 1)
@@ -172,5 +170,36 @@ class Rule
         }
         
         return array_filter($rules);
+    }
+    
+    /**
+     * Enabled all resources and return data.
+     * 
+     * @param string $module
+     * @return array
+     */
+    public static function getAndEnableAll($module = null)
+    {
+        $module     = $module ?: Pi::service('module')->current();
+        
+        // Get all categories
+        $rowset = Pi::api('category', $module)->getList();
+        
+        // Get all resources
+        $allResources = self::getResources();
+        $resources  = array();
+        foreach ($allResources as $row) {
+            $resources = array_merge($resources, array_keys($row));
+        }
+        array_walk($resources, function (&$val) {
+            $val = true;
+        });
+        
+        $rules = array();
+        foreach ($rowset as $row) {
+            $rules[$row['id']] = $resources;
+        }
+        
+        return $rules;
     }
 }

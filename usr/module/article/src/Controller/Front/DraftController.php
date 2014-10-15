@@ -517,7 +517,7 @@ class DraftController extends ActionController
                 $delete[] = $key;
             }
         }
-        if ($denied) {
+        if ($rules && $denied) {
             return $this->jumpToDenied();
         }
         
@@ -526,7 +526,7 @@ class DraftController extends ActionController
         if ($form->has('category')) {
             $categories = $form->get('category')->getValueOptions();
             $form->get('category')->setValueOptions(
-                array_intersect_key($categories, $listCategory)
+                array_intersect_key($categories, $listCategory) ?: array(0 => __('Null'))
             );
         }
         

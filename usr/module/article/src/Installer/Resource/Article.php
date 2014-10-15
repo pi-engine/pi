@@ -136,6 +136,19 @@ use Module\Article\Field\AbstractCustomHandler;
 class Article extends AbstractResource
 {
     /**
+     * Load custom navigation config
+     */
+    protected function loadConfig()
+    {
+        $module = $this->getModule();
+        $config = Api::getCustomConfig('article', $module);
+        
+        if (!empty($config)) {
+            $this->config = $config;
+        }
+    }
+    
+    /**
      * Check if article spec is applicable
      *
      * @return bool
@@ -373,6 +386,8 @@ class Article extends AbstractResource
         if (!$this->isActive()) {
             return;
         }
+        
+        $this->loadConfig();
         if (empty($this->config)) {
             return;
         }
@@ -446,6 +461,7 @@ class Article extends AbstractResource
         $custom         = array();
         $fieldsNew      = array();
         $itemsDeleted   = array();
+        $this->loadConfig();
         $config = $this->canonize($this->config);
         foreach (array(
             'field',
@@ -580,6 +596,7 @@ class Article extends AbstractResource
         Pi::registry('field', $module)->clear();
         Pi::registry('compound_field', $module)->clear();
 
+        $this->loadConfig();
         $config = $this->canonize($this->config);
         $customs = array();
         foreach ($config['field'] as $row) {

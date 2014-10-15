@@ -49,7 +49,7 @@ class MultiCluster extends MultiCheckbox
                 $result[$row['id']] = $row['title'];
             }
             
-            $this->valueOptions = $result;
+            $this->valueOptions = $result ?: array(0 => __('Null'));
         }
 
         return $this->valueOptions;
