@@ -6,12 +6,13 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th style="width: 200px"><?php echo _a('Title'); ?></th>
-                <th><?php echo _a('Category'); ?></th>
-                <th><?php echo _a('Cluster'); ?></th>
-                <th><?php echo _a('Type'); ?></th>
-                <th><?php echo _a('Controller'); ?></th>
-                <th><?php echo _a('Action'); ?></th>
+                <th style="width: 200px"><?php _e('Title'); ?></th>
+                <th><?php _e('Dressup'); ?></th>
+                <th><?php _e('Category'); ?></th>
+                <th><?php _e('Cluster'); ?></th>
+                <th><?php _e('Type'); ?></th>
+                <th><?php _e('Controller'); ?></th>
+                <th><?php _e('Action'); ?></th>
             </tr>
             <?php foreach ($items as $item) {
                 if (1 == $item['id']) {
@@ -41,6 +42,7 @@
                            onclick="return window.confirm('Really delete it?');"><?php echo _a('Delete'); ?></a>
                     </div>
                 </td>
+                <td><a target="blank" href="<?php echo _escape($item['dressup']); ?>" class="btn btn-primary"><?php _e('Dressup'); ?></a></td>
                 <td><?php echo _escape($category[$meta['category']]['title']); ?></td>
                 <td><?php echo _escape($cluster[$meta['cluster']]['title']); ?></td>
                 <td><?php echo _escape($meta['type']); ?></td>

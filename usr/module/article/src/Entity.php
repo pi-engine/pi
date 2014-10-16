@@ -47,8 +47,11 @@ class Entity
         $modelCluster = Pi::model('cluster_article', $module);
         $modelStats   = Pi::model('stats', $module);
         
+        $tableColumns = $modelArticle->getColumns(true, true);
         if (null === $columns) {
-            $columns = $modelArticle->getColumns(true, true);
+            $columns = $tableColumns;
+        } else {
+            $columns = array_intersect($tableColumns, $columns);
         }
         if (!in_array('id', $columns)) {
             $columns[] = 'id';
@@ -124,8 +127,11 @@ class Entity
         $modelArticle = Pi::model('article', $module);
         $modelCluster = Pi::model('cluster_article', $module);
         
+        $tableColumns = $modelArticle->getColumns(true, true);
         if (null === $columns) {
-            $columns = $modelArticle->getColumns(true, true);
+            $columns = $tableColumns;
+        } else {
+            $columns = array_intersect($tableColumns, $columns);
         }
         if (!in_array('id', $columns)) {
             $columns[] = 'id';

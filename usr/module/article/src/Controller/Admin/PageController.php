@@ -47,6 +47,29 @@ class PageController extends ActionController
         $module   = $this->getModule();
         $category = Pi::api('category', $module)->getList();
         $cluster  = Pi::api('cluster', $module)->getList();
+        
+        // Get module page from core_page
+        $pages = Pi::registry('page')->read('front', $module);
+        foreach ($rowset as &$row) {
+            if (empty($row['controller']) || empty($row['action'])) {
+                continue;
+            }
+            $key = sprintf(
+                '%s-%s-%s',
+                $module,
+                $row['controller'],
+                $row['name']
+            );
+            if (isset($pages[$key])) {
+                $row['dressup'] = $this->url('admin', array(
+                    'module'     => 'system',
+                    'controller' => 'page',
+                    'action'     => 'block',
+                    'page'       => $pages[$key],
+                    'name'       => $module,
+                ));
+            }
+        }
 
         $this->view()->assign(array(
             'title'      => _a('Page List'),
@@ -316,7 +339,7 @@ class PageController extends ActionController
             unset($data['id']);
         }
         
-        $parent = $data['parent'];
+        $parent = 1/*$data['parent']*/;
         unset($data['parent']);
         unset($data['submit']);
         unset($data['security']);

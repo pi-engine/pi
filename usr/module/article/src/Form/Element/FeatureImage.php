@@ -39,7 +39,7 @@ class FeatureImage extends Media
                 '', 
                 array(
                     'controller' => 'ajax',
-                    'action'     => 'save-image',
+                    'action'     => 'save-media',
                     'name'       => 'feature',
                     'width'      => isset($size['width']) ? $size['width'] : 0,
                     'height'     => isset($size['height']) ? $size['height'] : 0,

@@ -35,16 +35,15 @@ class Form extends AbstractApi
      */
     public function loadForm($name, $withFilter = false)
     {
+        $module = $this->getModule();
+        
         $class = str_replace(' ', '', ucwords(
             str_replace(array('-', '_', '.', '\\', '/'), ' ', $name)
         ));
         $formClass = $class . 'Form';
-        $formClassName = 'Custom\Article\Form\\' . $formClass;
+        $formClassName = sprintf('Custom\%s\Form\\%s', ucfirst($module), $formClass);
         if (!class_exists($formClassName)) {
-            $formClassName = 'Module\Article\Form\\' . $formClass;
-            if (!class_exists($formClassName)) {
-                $formClassName = 'Module\Article\Form\DraftForm';
-            }
+            $formClassName = 'Module\Article\Form\DraftForm';
         }
 
         if ($withFilter) {
@@ -280,13 +279,13 @@ class Form extends AbstractApi
         if (!empty($data['edit']['validators'])) {
             $result['validators'] = $data['edit']['validators'];
         }
-        if (!empty($data['allow_empty'])) {
-            $result['allow_empty'] = $data['allow_empty'];
+        if (!empty($data['edit']['allow_empty'])) {
+            $result['allow_empty'] = $data['edit']['allow_empty'];
         }
         if (!empty($data['is_required'])) {
-            $result['required']= $data['is_required'];
+            $result['required'] = $data['is_required'];
         } else {
-            $result['required']= 0;
+            $result['required'] = 0;
         }
         
         // Enabled validator callback
