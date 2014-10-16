@@ -103,13 +103,13 @@ class AjaxController extends ActionController
     }
     
     /**
-     * Save image into indicated folder
+     * Save media into indicated folder
      * 
      * @param `name` Folder name under upload folder
      * @param `id`   Session ID or media ID
      * @return JSON
      */
-    protected function saveImageAction()
+    protected function saveMediaAction()
     {
         Pi::service('log')->mute();
         
@@ -153,7 +153,7 @@ class AjaxController extends ActionController
             }
         }
         if (!file_exists($filename)) {
-            $return['message'] = __('Image is missing.');
+            $return['message'] = __('Media is missing.');
             echo json_encode($return);
             exit;
         }
@@ -167,14 +167,20 @@ class AjaxController extends ActionController
             @unlink($filename);
         }
         
-        // Resize image
-        $width  = $this->params('width', 0);
-        $height = $this->params('height', 0);
-        if (!empty($width) && !empty($height)) {
-            Pi::service('image')->resize(Pi::path($newPath), array(
-                $width,
-                $height
-            ));
+        // Resize if media is image
+        $imageExts = array('jpg', 'jpeg', 'gif', 'png');
+        $imageExts = array_merge($imageExts, explode(
+            ',', $this->config('image_format')));
+        $imageExts = array_unique($imageExts);
+        if (in_array($ext, $imageExts)) {
+            $width  = $this->params('width', 0);
+            $height = $this->params('height', 0);
+            if (!empty($width) && !empty($height)) {
+                Pi::service('image')->resize(Pi::path($newPath), array(
+                    $width,
+                    $height
+                ));
+            }
         }
         
         $id       = $newPath;
@@ -188,6 +194,7 @@ class AjaxController extends ActionController
                 'url'      => $url,
                 'title'    => $title,
                 'download' => '',
+                'raw_name' => $uploadInfo['tmp_name'],
             )
         );
         echo json_encode($return);

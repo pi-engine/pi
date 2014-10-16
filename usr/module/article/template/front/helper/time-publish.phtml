@@ -28,6 +28,11 @@
         },
         initialize : function() {
             _.bindAll(this);
+            
+            $("#datepicker").datepicker({
+                format   : "yyyy-mm-dd",
+                language : "zh-CN"
+            });
         },
         hourAction  : function(e) {
             var el = this.$(".text-hour"),

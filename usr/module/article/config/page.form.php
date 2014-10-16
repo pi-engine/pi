@@ -67,13 +67,22 @@ return array(
             ),
             'is_required' => true,
         ),
-        'parent'    => array(
+        /*'parent'    => array(
             'name'        => 'parent',
             'title'       => _a('Parent'),
             'edit'        => array(
                 'element'    => 'Module\Article\Form\Element\Page',
                 'attributes' => array(
                     'description'   => _a('Blocks of this page will be used and current page donot need to dress up again.'),
+                ),
+            ),
+        ),*/
+        'parent'    => array(
+            'name'        => 'parent',
+            'edit'        => array(
+                'element'    => 'hidden',
+                'attributes' => array(
+                    'value'         => 1,
                 ),
             ),
         ),

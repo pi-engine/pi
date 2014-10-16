@@ -185,9 +185,8 @@ class Page extends AbstractApi
         );
         if (!file_exists($filename)) {
             $filename = sprintf(
-                '%s/%s/config/page.%s.php',
+                '%s/article/config/page.%s.php',
                 Pi::path('module'),
-                $this->module,
                 $name
             );
             if (!file_exists($filename)) {
@@ -456,7 +455,7 @@ class Page extends AbstractApi
         $module = isset($params['module'])
             ? $params['module'] : Pi::service('module')->current();
         
-        $class = 'Custom\Article\Api\Page';
+        $class = sprintf('Custom\%s\Api\Page', ucfirst($module));
         if (class_exists($class)) {
             $handler = new $class($module);
             $action = $handler->parseAction($params, $module);
@@ -537,19 +536,6 @@ class Page extends AbstractApi
                 $article = Pi::model('article', $module)->find($params['id']);
                 $meta    = json_decode($row['meta'], true);
                 if ($meta['category'] == $article->category) {
-                    $page = $row;
-                    break;
-                }
-            }
-        }
-        
-        // Get parent page, if it exists, its page blocks will be used
-        if ($page && 1 != $page['depth']) {
-            foreach ($pages as $row) {
-                if ($row['left'] < $page['left']
-                    && $row['right'] > $page['right']
-                    && 1 == $row['depth']
-                ) {
                     $page = $row;
                     break;
                 }

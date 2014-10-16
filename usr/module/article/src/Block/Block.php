@@ -10,7 +10,6 @@
 namespace Module\Article\Block;
 
 use Pi;
-use Module\Article\Media;
 use Module\Article\Topic;
 use Module\Article\Stats;
 use Module\Article\Entity;
@@ -194,7 +193,7 @@ class Block
         if (!empty($options['category'])) {
             $category = Pi::model('category', $module)
                 ->getDescendantIds($options['category']);
-            $where['category'] = $category;
+            $where['category'] = $category ?: 0;
         }
         if (!empty($options['cluster'])) {
             $cluster = Pi::model('cluster', $module)

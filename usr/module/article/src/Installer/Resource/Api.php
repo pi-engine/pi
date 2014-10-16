@@ -60,7 +60,14 @@ class Api
             $customConfigFile
         );
         if (!file_exists($filename)) {
-            return array();
+            $filename = sprintf(
+                '%s/article/config/%s',
+                Pi::path('module'),
+                $customConfigFile
+            );
+            if (!file_exists($filename)) {
+                return array();
+            }
         }
         
         return include $filename;

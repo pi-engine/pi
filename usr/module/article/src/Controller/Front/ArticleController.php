@@ -50,16 +50,9 @@ class ArticleController extends ActionController
     public static function getMethodFromAction($action)
     {
         $module = Pi::service('module')->current();
-        $pages  = Pi::registry('page', $module)->read();
-        
-        $name = '';
-        foreach ($pages as $page) {
-            if ($action === $page['name']) {
-                $name = $page['action'];
-                break;
-            }
-        }
- 
+        $page   = Pi::api('page', $module)->get($action);
+        $name   = isset($page['action']) ? $page['action'] : '';
+
         return parent::getMethodFromAction($name ?: $action);
     }
     

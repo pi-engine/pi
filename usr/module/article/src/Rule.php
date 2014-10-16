@@ -180,7 +180,7 @@ class Rule
      */
     public static function getAndEnableAll($module = null)
     {
-        $module     = $module ?: Pi::service('module')->current();
+        $module = $module ?: Pi::service('module')->current();
         
         // Get all categories
         $rowset = Pi::api('category', $module)->getList();
@@ -191,9 +191,12 @@ class Rule
         foreach ($allResources as $row) {
             $resources = array_merge($resources, array_keys($row));
         }
+        $resources = array_flip($resources);
         array_walk($resources, function (&$val) {
             $val = true;
         });
+        $resources['draft-edit']   = 1;
+        $resources['draft-delete'] = 1;
         
         $rules = array();
         foreach ($rowset as $row) {

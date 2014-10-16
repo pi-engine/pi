@@ -414,10 +414,6 @@ var ReleaseProcess = Backbone.View.extend({
         "click .cancel-time": "cancelTime"
     },
     initialize  : function() {
-        $("#datepicker").datepicker({
-            format   : "yyyy-mm-dd",
-            language : "zh-CN"
-        });
     },
     save        : function() {
          page.submit();

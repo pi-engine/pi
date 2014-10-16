@@ -206,7 +206,7 @@ class Article extends Model
         $data    = (array) $data;
         $columns = $this->getColumns(true);
         foreach (array_keys($data) as $key) {
-            if (!in_array($key, $columns)) {
+            if (!in_array($key, $columns) || null === $data[$key]) {
                 unset($data[$key]);
             }
         }

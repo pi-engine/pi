@@ -134,6 +134,9 @@ class Media
         $config  = Pi::config('', $module);
         $pathKey = sprintf('path_%s', strtolower($section));
         $path    = isset($config[$pathKey]) ? $config[$pathKey] : '';
+        if (empty($path)) {
+            $path = sprintf('upload/%s/%s', $module, $section);
+        }
 
         if ($autoSplit && !empty($config['sub_dir_pattern'])) {
             $path .= '/' . date($config['sub_dir_pattern']);
