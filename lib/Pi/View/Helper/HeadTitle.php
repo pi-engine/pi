@@ -21,12 +21,11 @@ use Zend\View\Helper\HeadTitle as ZendHeadTitle;
  */
 class HeadTitle extends ZendHeadTitle
 {
+    /** @var bool */
+    protected $isReset = false;
+
     /**
-     * Retrieve placeholder for title element and optionally set state
-     *
-     * @param  string $title
-     * @param  string $setType
-     * @return $this
+     * {@inheritDoc}
      */
     public function __invoke($title = null, $setType = null)
     {
@@ -35,5 +34,26 @@ class HeadTitle extends ZendHeadTitle
         }
 
         return parent::__invoke($title, $setType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function set($value)
+    {
+        $this->isReset = true;
+        parent::set($value);
+
+        return $this;
+    }
+
+    /**
+     * Check if head title is reset
+     *
+     * @return bool
+     */
+    public function isReset()
+    {
+        return $this->isReset;
     }
 }
