@@ -100,6 +100,11 @@ class ThemeAssemble extends AbstractHelper
             ?: $configGeneral['charset'];
         $this->view->plugin('view_model')->getRoot()
             ->setVariables($configGeneral);
+
+        // Initialize headTitle helper
+        $headTitle = $this->view->headTitle();
+        // Set separator
+        $separator = $headTitle->setSeparator(' - ');
     }
 
     /**
@@ -109,21 +114,17 @@ class ThemeAssemble extends AbstractHelper
      */
     public function renderStrategy()
     {
-        $headTitle = $this->view->headTitle();
-        $separator = $headTitle->getSeparator();
-        // Set separator
-        if (!$separator) {
-            $separator = ' - ';
-            $headTitle->setSeparator($separator);
+        $headTitle      = $this->view->headTitle();
+        $separator      = $headTitle->getSeparator();
+        $currentModule  = Pi::service('module')->current();
+
+        // Set slogan as page title for homepage
+        if ((!$currentModule || 'system' == $currentModule)
+            && !$headTitle->count()
+        ) {
+            $headTitle->set(Pi::config('slogan'));
         }
 
-        $currentModule = Pi::service('module')->current();
-        // Set slogan as page title for homepage
-        if (!$headTitle->isReset()) {
-            if (!$currentModule || 'system' == $currentModule && !$headTitle->count()) {
-                $headTitle->append(Pi::config('slogan'));
-            }
-        }
         // Set postfix
         $postfix = $headTitle->getPostfix();
         if (!$postfix) {
