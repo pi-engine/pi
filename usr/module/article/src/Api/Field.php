@@ -37,7 +37,7 @@ class Field extends AbstractApi
         
         foreach ($data as $field => $value) {
             $name  = $this->canonizeClassName($field);
-            $class = sprintf('Custom\Article\Field\%s', $name);
+            $class = sprintf('Custom\%s\Field\%s', ucfirst($this->module), $name);
             if (!class_exists($class)) {
                 $class = sprintf('Module\Article\Field\%s', $name);
                 if (!class_exists($class)) {

@@ -595,8 +595,9 @@ class DraftController extends ActionController
         }
         $isMine = $row->uid == Pi::user()->getId();
         $rules  = Rule::getPermission($isMine);
-        if (!(isset($rules[$row->category][$status . '-edit']) 
-            and $rules[$row->category][$status . '-edit'])
+        if ($row->category
+            && !(isset($rules[$row->category][$status . '-edit']) 
+            && $rules[$row->category][$status . '-edit'])
         ) {
             return $this->jumpToDenied();
         }
@@ -632,10 +633,7 @@ class DraftController extends ActionController
         $data['time_publish'] = $data['time_publish'] ? _date($data['time_publish']) : '';
 
         $form = Pi::api('form', $module)->loadForm('draft');
-        $allCategory = $form->get('category')->getValueOptions();
-        $form->get('category')->setValueOptions(
-            array_intersect_key($allCategory, $categories)
-        );
+        $form->get('category')->getValueOptions($categories);
         $form->setData($data);
         
         // Get update user info

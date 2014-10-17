@@ -70,7 +70,7 @@ EOD;
             'id' => (array) $value,
         ));
         
-        return $result;
+        return array_shift($result);
     }
     
     /**

@@ -33,9 +33,12 @@
                         <?php } ?>
                     </td>
                     <td>
-                        <?php if ($field['is_edit']) { ?>
-                        <input type="checkbox" data-name="is_required" class="check-one"<?php echo $field['is_required'] ? ' checked="checked"' : ''; ?>>
-                        <?php } ?>
+                    <?php if ($field['is_edit']) { ?>
+                        <input type="checkbox" data-name="is_required"
+                               class="check-one"<?php echo $field['is_required'] ? ' checked="checked"' : ''; ?>>
+                    <?php } elseif ($field['is_required']) { ?>
+                        <i class="fa fa-check fa-lg text-success ng-scope"></i>
+                    <?php } ?>
                     </td>
                     <td><?php echo _escape($module); ?></td>
                 </tr>

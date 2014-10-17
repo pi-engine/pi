@@ -37,6 +37,7 @@ class FieldController extends ActionController
         $module    = $this->getModule();
         $fields    = Pi::registry('field', $module)->read();
         
+        $compounds = array();
         foreach ($fields as $field) {
             if ('compound' !== $field['type']) {
                 continue;

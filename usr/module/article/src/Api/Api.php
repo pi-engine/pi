@@ -259,4 +259,57 @@ class Api extends AbstractApi
         
         return $data;
     }
+    
+    /**
+     * Custom order for different pages
+     * 
+     * @param array $options  Page info
+     * <code>
+     * 'section': 'front', 'admin' or 'block'
+     * 'controller'
+     * 'action'
+     * </code>
+     * @return string
+     */
+    public function canonizeOrder($options = array())
+    {
+        // Get custom URL
+        $module = $this->getModule();
+        $class  = sprintf('Custom\%s\Api\Api', ucfirst($module));
+        $method = substr(__METHOD__, strpos(__METHOD__, '::') + 2);
+        if (class_exists($class) && method_exists($class, $method)) {
+            $handler = new $class($module);
+            return $handler->canonizeOrder($options);
+        }
+        
+        return '';
+    }
+    
+    /**
+     * Custom columns to fetch for different pages
+     * 
+     * @param array $options  Page info
+     * <code>
+     * 'section': 'front', 'admin' or 'block'
+     * 'controller'
+     * 'action'
+     * </code>
+     * @return string
+     */
+    public function canonizeColumns($options = array())
+    {
+        // Get custom URL
+        $module = $this->getModule();
+        $class  = sprintf('Custom\%s\Api\Api', ucfirst($module));
+        $method = substr(__METHOD__, strpos(__METHOD__, '::') + 2);
+        if (class_exists($class) && method_exists($class, $method)) {
+            $handler = new $class($module);
+            return $handler->canonizeColumns($options);
+        }
+        
+        return array(
+            'id', 'subject', 'summary', 'time_publish', 'category', 
+            'cluster', 'uid', 'author'
+        );
+    }
 }

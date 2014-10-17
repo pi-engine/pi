@@ -61,9 +61,9 @@ class Article extends Model
             if ($row['name'] == 'id') {
                 continue;
             }
-            if ($default && 'content' == $row['name']) {
+            /*if ($default && 'content' == $row['name']) {
                 continue;
-            }
+            }*/
             $fields[] = $row['name'];
         }
         

@@ -69,6 +69,7 @@ class ListController extends ActionController
             $where['category'] = $children;
         }
         
+        $categoryDetail = $clusterDetail = array();
         // Jump to 404 if category is not activated
         if ('all' != $category) {
             $categoryDetail = Pi::api('category', $module)->get($category);
@@ -97,27 +98,28 @@ class ListController extends ActionController
             }
         }
         
-        $columns = array(
-            'subject', 'summary', 'author', 'time_publish', 'image', 'category',
-            'cluster',
-        );
-        
         if ('hot' == $sort) {
             $items = Entity::getTopVisitArticles(
                 'A',
                 $where,
-                $columns,
+                null,
                 $offset,
                 $limit,
                 $module
             );
         } else {
+            $options = array(
+                'section'    => 'front',
+                'controller' => 'list',
+                'action'     => 'index',
+            );
+            $order = Pi::api('api', $module)->canonizeOrder($options);
             $items = Entity::getAvailableArticlePage(
                 $where,
                 $page,
                 $limit,
-                $columns,
-                'time_update DESC, time_publish DESC',
+                null,
+                $order ?: 'time_update DESC, time_publish DESC',
                 $module
             );
         }
@@ -133,7 +135,7 @@ class ListController extends ActionController
                     array(
                         'module'        => $module,
                         'controller'    => 'list',
-                        'action'        => 'all',
+                        'action'        => 'index',
                     ),
                     $params
                 ),
@@ -172,6 +174,7 @@ class ListController extends ActionController
             'categories' => Pi::api('category', $module)->getList(),
             'navs'       => $navs,
             'category'   => $category,
+            'cluster'    => $cluster,
             'url'        => array(
                 'hot'       => $urlHot,
                 'new'       => $urlNew,
@@ -179,6 +182,6 @@ class ListController extends ActionController
             'seo'        => $seo,
         ));
         
-        $this->view()->setTemplate('list-all');
+        $this->view()->setTemplate('list-index');
     }
 }
