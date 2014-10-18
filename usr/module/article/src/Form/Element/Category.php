@@ -30,7 +30,7 @@ class Category extends Select
      * 
      * @return array 
      */
-    public function getValueOptions()
+    public function getValueOptions($filter = array())
     {
         if (empty($this->valueOptions)) {
             $module = $this->getOption('module') 
@@ -60,6 +60,9 @@ class Category extends Select
             $willAll  = (bool) $this->getOption('all') ?: false;
             if ($willAll) {
                 $default['all'] = _a('All');
+            }
+            if ($filter) {
+                $result = array_intersect_key($result, $filter);
             }
             
             $this->valueOptions = $default + $result;

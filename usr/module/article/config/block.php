@@ -19,6 +19,21 @@ return array(
         'render'      => 'block::allCategories',
         'template'    => 'all-categories',
         'config'      => array(
+            'identifier'       => array(
+                'title'        => _t('Identifier'),
+                'description'  => _t('Wether to list clusters or categories'),
+                'edit'         => array(
+                    'type'        => 'select',
+                    'attributes'  => array(
+                        'options'    => array(
+                            'cluster'   => _t('Cluster'),
+                            'category'  => _t('Category'),
+                        ),
+                    ),
+                ),
+                'filter'       => 'string',
+                'value'        => 'category',
+            ),
             'top_category'     => array(
                 'title'        => _t('Top-Category Count'),
                 'description'  => _t('The max top category count want to display'),
@@ -32,13 +47,6 @@ return array(
                 'edit'         => 'text',
                 'filter'       => 'int',
                 'value'        => 2,
-            ),
-            'default_category' => array(
-                'title'        => _t('Default Category Name'),
-                'description'  => _t('Default category name when there is no category acquired'),
-                'edit'         => 'text',
-                'filter'       => 'string',
-                'value'        => _a('None'),
             ),
             'target'           => array(
                 'title'        => _t('Target'),

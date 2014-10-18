@@ -36,16 +36,18 @@ class Block
             return false;
         }
         
+        $identifier  = $options['identifier'];
         $maxTopCount = $options['top_category'];
         $maxSubCount = $options['sub_category'];
 
-        $categories  = Pi::api('category', $module)->getList(
+        $categories  = Pi::api($identifier, $module)->getList(
             array(),
             null,
             false
         );
         
         $allItems = static::canonizeCategories(
+            $identifier,
             $categories['child'],
             array('module' => $module)
         );
@@ -629,11 +631,13 @@ class Block
     /**
      * Added all sub-categories as children array of top category.
      * 
+     * @param string  $identifier  Whether to operate cluster or category
      * @param array  $categories
      * @param array  $options
      * @return array 
      */
     protected static function canonizeCategories(
+        $identifier,
         $categories,
         $options = array()
     ) {
@@ -648,13 +652,14 @@ class Block
                 'url'   => Pi::api('api', $options['module'])->getUrl(
                     'list',
                     array(
-                        'category' => $category['slug'] ?: $category['id'],
+                        $identifier => $category['slug'] ?: $category['id'],
                     ),
-                    array('category' => $category)
+                    array($identifier => $category)
                 ),
             );
             if (isset($category['child'])) {
                 $children = self::canonizeCategories(
+                    $identifier,
                     $category['child'],
                     $options
                 );

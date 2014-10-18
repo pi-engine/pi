@@ -5,7 +5,7 @@
 ?>
 <div class="row">
     <?php if (isset($clusters)) { ?>
-    <div class="col-md-2"><?php include 'cluster-nav.phtml'; ?></div>
+    <div class="col-md-2"><?php include $this->template('./cluster-nav.phtml'); ?></div>
     <?php } ?>
     <div class="col-md-<?php echo isset($clusters) ? 10 : 12; ?>">
     <div id="jsList">

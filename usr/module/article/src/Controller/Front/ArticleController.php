@@ -93,7 +93,7 @@ class ArticleController extends ActionController
             'active' => 1,
         ));
         $cluster  = Pi::api('cluster', $module)->getList(array(
-            'id'     => array_keys($details['cluster']),
+            'id'     => $details['cluster']['id'],
             'active' => 1,
         ));
         if (($details['category'] && empty($category))
@@ -157,8 +157,9 @@ class ArticleController extends ActionController
         $rules = Rule::getPermission();
         $slug  = Draft::getStatusSlug($row->status);
         $resource = $slug . '-edit';
-        if (!(isset($rules[$row->category][$resource]) 
-            and $rules[$row->category][$resource])
+        if ($row->category
+            && !(isset($rules[$row->category][$resource]) 
+            && $rules[$row->category][$resource])
         ) {
             return $this->jumpToDenied();
         }
@@ -234,40 +235,34 @@ class ArticleController extends ActionController
         $category   = $this->params('category', null);
         $cluster    = $this->params('cluster', null);
         $filter     = $this->params('filter', '');
-        $order      = 'time_publish DESC';
-
-        $where      = array();
+        
         // Get permission
-        $rules = Rule::getPermission();
-        if (empty($rules)) {
-            //return $this->jumpToDenied();
+        $rules      = Rule::getPermission();
+        $allowedCategories = array_keys($rules);
+        if ($category > 1) {
+            $children = Pi::api('category', $module)->getDescendantIds($category);
+            $allowedCategories = array_intersect($allowedCategories, $children);
+        } else {
+            // In case an article is not belong to any category
+            $allowedCategories[] = 0;
         }
-        $categories = array();
-        foreach (array_keys($rules) as $key) {
-            $categories[$key] = true;
+        if (!empty($category)
+            && !in_array($category, $allowedCategories)
+        ) {
+            return $this->jumpToDenied();
         }
-        $where['category'] = array_keys($categories) ?: 0;
         
-        $where['cluster'] = $cluster;
-        
-        // Select article of mine
+        // Build where
+        $where = array(
+            'status' => Article::FIELD_STATUS_PUBLISHED,
+        );
+        if ($cluster) {
+            $where['cluster'] = $cluster;
+        }
         if ('my' == $from) {
             $where['uid'] = Pi::user()->getId() ?: 0;
         }
-        
-        if (!empty($category) and !in_array($category, $where['category'])) {
-            return $this->jumpToDenied();
-        }
-        if ($category > 1) {
-            $categoryIds = Pi::api('category', $module)->getDescendantIds($category);
-            if ($categoryIds) {
-                $where['category'] = $categoryIds;
-            }
-        }
-
-        // Build where
-        $where['status'] = Article::FIELD_STATUS_PUBLISHED;
-        
+        $where['category'] = $allowedCategories ?: 0;
         if (!empty($keyword)) {
             $where['subject like ?'] = sprintf('%%%s%%', $keyword);
         }
@@ -275,7 +270,7 @@ class ArticleController extends ActionController
             return $v !== null;
         });
         
-        // The where must be added after array_filter function
+        // Active condition
         if ($filter == 'active') {
             $where['active'] = 1;
         } else if ($filter == 'deactive') {
@@ -283,7 +278,20 @@ class ArticleController extends ActionController
         }
 
         // Retrieve data
-        $data = Entity::getArticlePage($where, $page, $limit, null, $order);
+        $options = array(
+            'section'    => 'admin',
+            'controller' => 'article',
+            'action'     => 'published',
+        );
+        $order   = Pi::api('api', $module)->canonizeOrder($options);
+        $columns = Pi::api('api', $module)->canonizeColumns($options);
+        $data = Entity::getArticlePage(
+            $where,
+            $page,
+            $limit,
+            $columns ?: null,
+            $order ?: 'time_publish DESC'
+        );
         
         // Get article operation stats data
         $ids   = array_keys($data);
@@ -320,7 +328,9 @@ class ArticleController extends ActionController
             'published' => Article::FIELD_STATUS_PUBLISHED,
         );
 
-        $cacheCategories = Pi::api('category', $module)->getList();
+        $categories = Pi::api('category', $module)->getList(array(
+            'id' => array_keys($rules),
+        ));
         
         if (Pi::api('form', $module)->isDisplayField('cluster')) {
             $clusters = Pi::api('cluster', $module)->getList();
@@ -335,7 +345,7 @@ class ArticleController extends ActionController
             'summary'    => Entity::getSummary($from, $rules),
             'category'   => $category,
             'filter'     => $filter,
-            'categories' => array_intersect_key($cacheCategories, $categories),
+            'categories' => $categories,
             'action'     => 'published',
             'flags'      => $flags,
             'status'     => Article::FIELD_STATUS_PUBLISHED,
@@ -432,8 +442,8 @@ class ArticleController extends ActionController
             $handler->delete($ids);
         }
 
-        // Delete visits
-        $this->getModel('visit')->delete(array('article' => $ids));
+        // Delete stats data
+        $this->getModel('stats')->delete(array('article' => $ids));
 
         // Delete article directly
         $modelArticle->delete(array('id' => $ids));
