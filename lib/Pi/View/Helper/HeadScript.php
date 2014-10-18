@@ -62,10 +62,7 @@ class HeadScript extends ZendHeadScript
      */
     public function itemToString($item, $indent, $escapeStart, $escapeEnd)
     {
-        // Enable defer for js loading
-        if (!isset($item->attributes['defer'])) {
-            $item->attributes['defer'] = 'defer';
-        } elseif (false === $item->attributes['defer']) {
+        if (isset($item->attributes['defer']) && !$item->attributes['defer']) {
             unset($item->attributes['defer']);
         }
 

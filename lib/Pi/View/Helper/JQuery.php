@@ -77,9 +77,11 @@ class JQuery extends AssetCanonize
                     'file'  => $baseAttrs
                 );
             }
+            /*
             if (!isset($baseAttrs['defer'])) {
                 $baseAttrs['defer'] = false;
             }
+            */
             $files = array('jquery.min.js' => $baseAttrs) + $files;
             static::$rootLoaded = true;
         }
