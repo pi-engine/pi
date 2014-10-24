@@ -103,6 +103,11 @@ class TagController extends ActionController
             'config'    => $config,
             'count'     => $totalCount,
         ));
+        
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
 
         $this->view()->viewModel()->getRoot()->setVariables(array(
             'breadCrumbs' => true,

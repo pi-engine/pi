@@ -320,13 +320,15 @@ class Entity
         }
         
         // Get page URL
-        foreach ($result['content'] as &$value) {
-            $params = array(
-                'time' => date('Ymd', $result['time_publish']),
-                'id'   => $id,
-                'p'    => $value['page'],
-            );
-            $value['url'] = Pi::api('api', $module)->getUrl('detail', $params, $result);
+        if (is_array($result['content'])) {
+            foreach ($result['content'] as &$value) {
+                $params = array(
+                    'time' => date('Ymd', $result['time_publish']),
+                    'id'   => $id,
+                    'p'    => $value['page'],
+                );
+                $value['url'] = Pi::api('api', $module)->getUrl('detail', $params, $result);
+            }
         }
         
         // Getting stats data

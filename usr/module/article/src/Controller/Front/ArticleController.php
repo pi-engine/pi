@@ -70,6 +70,10 @@ class ArticleController extends ActionController
         $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
         $this->view()->assign('seo', $seo);
         
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
         $this->view()->setTemplate('article-index');
     }
     
@@ -128,6 +132,10 @@ class ArticleController extends ActionController
             'remain'      => $remain,
         ));
         
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
         $this->view()->setTemplate('article-detail');
     }
 

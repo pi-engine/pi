@@ -38,6 +38,14 @@ return array(
 
     'item' => array(
         // General
+        'theme'           => array(
+            'category'    => 'general',
+            'title'       => _t('Theme'),
+            'description' => _t('Theme for this module.'),
+            'edit'        => 'Module\Article\Form\Element\Theme',
+            'value'       => 'default',
+            'filter'      => 'string',
+        ),
         'page_limit_all'  => array(
             'category'    => 'general',
             'title'       => _t('Article List Page Limit'),

@@ -309,7 +309,7 @@ class Api extends AbstractApi
         
         return array(
             'id', 'subject', 'summary', 'time_publish', 'category', 
-            'cluster', 'uid', 'author'
+            'cluster', 'uid', 'author', 'active', 'image'
         );
     }
 }
