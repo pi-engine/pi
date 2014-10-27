@@ -80,6 +80,11 @@ class SearchController extends ActionController
         // Prepare search form
         $form = new SimpleSearchForm;
         $form->setData($this->params()->fromQuery());
+        
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
 
         $this->view()->assign(array(
             'title'        => __('Search result of '),

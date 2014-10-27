@@ -132,6 +132,11 @@ class TopicController extends ActionController
             'seo'       => $seo,
         ));
         
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
+        
         $template = ('default' == $row->template)
             ? 'topic-index' : 'topic-custom-' . $row->template;
         $this->view()->setTemplate($template);
@@ -214,6 +219,10 @@ class TopicController extends ActionController
         
         $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
 
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
         $this->view()->assign(array(
             'title'         => __('All Topics'),
             'topics'        => $resultsetTopic,
@@ -305,6 +314,11 @@ class TopicController extends ActionController
         ));
 
         $seo = Pi::api('page', $module)->getSeoMeta($this->params('action'));
+        
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
         
         $this->view()->assign(array(
             'title'         => empty($topic) ? __('All') : $title,

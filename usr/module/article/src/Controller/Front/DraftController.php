@@ -966,6 +966,10 @@ class DraftController extends ActionController
             'remain'      => $remain,
         ));
 
+        $theme = $this->config('theme');
+        if ($theme) {
+            Pi::service('theme')->setTheme($theme);
+        }
         $this->view()->setTemplate('article-detail');
     }
 
