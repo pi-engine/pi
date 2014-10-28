@@ -29,7 +29,7 @@ $config = array(
         'edit'          => array(
             'type'      => 'select',
             'options'   => array(
-                'options'   => array(
+                'value_options'     => array(
                     ''          => _t('Disable'),
                     'member'    => _t('For members'),
                     'author'    => _t('For authors'),
@@ -44,6 +44,40 @@ $config = array(
         'edit'          => 'checkbox',
         'value'         => 1,
         'filter'        => 'int',
+    ),
+
+    'markup_format' => array(
+        'title'         => _t('Content format'),
+        'edit'          => array(
+            'type'  => 'select',
+            'options'   => array(
+                'value_options' => array(
+                    'text'       => _t('Plain text'),
+                    'markdown'  => _t('Markdown'),
+                    'html'      => _t('HTML'),
+                    'js'        => _t('JavaScript/HTML'),
+                    'custom'    => _t('Custom (must be defined in `Custom\Comment\Api\Markup`)')
+                ),
+            ),
+        ),
+        'value'         => 'text',
+    ),
+
+    'markup_filters'    => array(
+        'title'         => _t('Filters for text format'),
+        'edit'          => array(
+            'type'  => 'multi_checkbox',
+            'options'   => array(
+                'value_options' => array(
+                    'linebreak' => _t('Linebreak'),
+                    'tag'       => _t('Tag link'),
+                    'user'      => _t('Username link'),
+                    'link'      => _t('URL link'),
+                ),
+            ),
+        ),
+        'value'         => array('linkbreak'),
+        'filter'        => 'array',
     ),
 
      /*

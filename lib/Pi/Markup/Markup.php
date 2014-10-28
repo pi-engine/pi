@@ -165,13 +165,19 @@ class Markup
     /**
      * Get renderer, load Raw as default renderer if no one is set
      *
+     * @param array  $options
+     *
      * @return AbstractRenderer
      */
-    public static function getRenderer()
+    public static function getRenderer($options = array())
     {
         if (!static::$renderer) {
             static::$renderer = static::loadRenderer('text');
         }
+        if ($options) {
+            static::$renderer->setOptions($options);
+        }
+
         return static::$renderer;
     }
 
@@ -187,16 +193,16 @@ class Markup
      */
     public static function render(
         $content,
-        $renderer = null,
-        $parser = null,
-        $options = array()
+        $renderer   = null,
+        $parser     = null,
+        $options    = array()
     ) {
         if (is_array($parser)) {
             $options = $parser;
             $parser = null;
         }
         if (!$renderer) {
-            $renderer = static::getRenderer();
+            $renderer = static::getRenderer($options);
         } elseif (!$renderer instanceof AbstractRenderer) {
             $renderer = static::loadRenderer($renderer, $options);
         }

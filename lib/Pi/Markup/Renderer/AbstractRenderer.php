@@ -49,6 +49,17 @@ abstract class AbstractRenderer
      */
     public function __construct($options = array())
     {
+        $this->setOptions($options);
+    }
+
+    /**
+     * Set options
+     *
+     * @param array|\Traversable $options
+     * @return $this
+     */
+    public function setOptions($options)
+    {
         if ($options instanceof Traversable) {
             $options = ArrayUtils::iteratorToArray($options);
         }
@@ -67,17 +78,6 @@ abstract class AbstractRenderer
             unset($options['filters']);
         }
 
-        $this->setOptions($options);
-    }
-
-    /**
-     * Set options
-     *
-     * @param array|\Traversable $options
-     * @return $this
-     */
-    public function setOptions($options)
-    {
         foreach ($options as $key => $val) {
             $this->options[$key] = $val;
         }
@@ -91,7 +91,7 @@ abstract class AbstractRenderer
      * @param \Zend\Filter\AbstractFilter[] $filters
      * @return $this
      */
-    public function setFilters($filters)
+    public function setFilters(array $filters)
     {
         if (!$this->filterChain instanceof FilterChain) {
             $this->filterChain = new FilterChain;
