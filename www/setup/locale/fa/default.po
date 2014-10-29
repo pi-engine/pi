@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-setup\n"
-"POT-Creation-Date: 2014-09-15 20:02+0330\n"
-"PO-Revision-Date: 2014-09-15 20:02+0330\n"
+"POT-Creation-Date: 2014-10-29 09:30+0330\n"
+"PO-Revision-Date: 2014-10-29 09:30+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
@@ -706,15 +706,15 @@ msgstr "حذف پوشه نصب <strong>{www}/setup/</strong> از روی سرو�
 msgid "Set configuration directories and files to readonly: "
 msgstr "تنظیم مسیر ها و فایل های پیکربندی زیر به صورت فقط قابل خواندن :"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:66
+#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:68
 msgid "Previous"
 msgstr "قبلی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:71
+#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:73
 msgid "Reload"
 msgstr "بارگذاری مجدد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:79
-#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:83
+#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:81
+#: /var/www/html/local/pi/pi-release-2.5.0/www/setup/include/template.phtml:85
 msgid "Next"
 msgstr "بعدی"
