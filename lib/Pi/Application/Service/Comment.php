@@ -87,7 +87,7 @@ class Comment extends AbstractService
                 'action'        => 'load',
             ));
             $content =<<<EOT
-<div id="pi-comment-lead" style="display: none;"></div>
+<div id="pi-comment-lead" class="hidden"></div>
 <script>
     $.getJSON("{$callback}", {
         uri: $(location).attr('href'),
@@ -96,7 +96,7 @@ class Comment extends AbstractService
     .done(function (data) {
         if (data.content) {
             var el = $('#pi-comment-lead');
-            el.show().html(data.content);
+            el.attr('class','show').html(data.content);
         }
     });
 </script>
