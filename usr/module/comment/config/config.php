@@ -64,15 +64,14 @@ $config = array(
     ),
 
     'markup_filters'    => array(
-        'title'         => _t('Filters for text format'),
+        'title'         => _t('Options for text format'),
         'edit'          => array(
             'type'  => 'multi_checkbox',
             'options'   => array(
                 'value_options' => array(
-                    'linebreak' => _t('Linebreak'),
-                    'tag'       => _t('Tag link'),
-                    'user'      => _t('Username link'),
-                    'link'      => _t('URL link'),
+                    'tag'       => _t('Enable tag link'),
+                    'user'      => _t('Enable username link'),
+                    'link'      => _t('Enable URL link'),
                 ),
             ),
         ),

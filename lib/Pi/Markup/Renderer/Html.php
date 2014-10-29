@@ -13,7 +13,7 @@ use Pi;
 use Pi\Markup\Parser\AbstractParser;
 
 /**
- * HTML renderer
+ * Render to HTML format
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -26,30 +26,22 @@ class Html extends AbstractRenderer
     {
         if ($this->parser instanceof AbstractParser) {
             $content = $this->parser->parse($content);
-        } elseif ('text' == $this->parser) {
+        } elseif ('text' === $this->parser) {
             if (!isset($this->options['newline'])
                 || !empty($this->options['newline'])
             ) {
                 $content = nl2br($content);
             }
+        } else {
+            if (!isset($this->options['xss_filter'])
+                || !empty($this->options['xss_filter'])
+            ) {
+                $content = Pi::service('security')->filter($content);
+            }
         }
+
         if (!empty($this->options['tags'])) {
             $content = strip_tags($content, $this->options['tags']);
-        }
-
-        return $content;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function render($content)
-    {
-        $content = parent::render($content);
-        if (!isset($this->options['xss_filter'])
-            || !empty($this->options['xss_filter'])
-        ) {
-            $content = Pi::service('security')->filter($content);
         }
 
         return $content;

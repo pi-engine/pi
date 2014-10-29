@@ -41,35 +41,28 @@ class Markup extends AbstractApi
         }
 
         $options = array();
+        $renderer = 'html';
         switch ($format) {
             case 'javascript':
                 $options = array(
                     'xss_filter'    => false,
                 );
-                $renderer = 'html';
                 $parser = 'html';
                 break;
             case 'html':
-                $renderer = 'html';
                 $parser = 'html';
                 $options = array(
                     'xss_filter'    => false,
                 );
                 break;
             case 'markdown':
-                $renderer = 'html';
                 $parser = 'markdown';
                 break;
             case 'text':
             default:
-                $renderer = 'text';
                 $parser = 'text';
                 if (!empty($filters)) {
                     $options['filters'] = array_fill_keys($filters, array());
-                    if (isset($options['filters']['linebreak'])) {
-                        $options['newline'] = true;
-                        unset($options['filters']['linebreak']);
-                    }
                 }
                 break;
         }
