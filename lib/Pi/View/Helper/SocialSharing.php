@@ -14,45 +14,58 @@ use Pi;
 use Zend\View\Helper\AbstractHtmlElement;
 
 /**
- * Helper for loading ridiculously responsive social sharing buttons
+ * Helper for loading `rrssb` (or ridiculously responsive social sharing buttons)
  *
  * Usage inside a phtml template
  *
  * ```
- *  $options = array(
- *      'social_email'      => 1,
- *      'social_facebook'   => 1,
- *      'social_twitter'    => 1,
- *      'social_tumblr'     => 1,
- *      'social_linkedin'   => 1,
- *      'social_gplus'      => 1,
- *      'social_pinterest'  => 1,
+ *  // Sorted items
+ *  $items = array(
+ *      'email',
+ *      'facebook',
+ *      'twitter',
+ *      'tumblr',
+ *      'linkedin',
+ *      'gplus',
+ *      'pinterest'
  *  );
- *  $this->$this->SocialSharing($options, $pageTitle, $pageUrl); 
- *  $this->$this->SocialSharing($options, $pageTitle, $pageUrl, $imageUrl); 
+ *  // Or display all buttons in default order
+ *  $items = true; // or $items = null; or $items = array();
+ *  $this->socialSharing($items, $pageTitle, $pageUrl);
+ *  $this->socialSharing($items, $pageTitle, $pageUrl, $imageUrl);
  * ```
  *
- * @see https://github.com/kni-labs/rrssb
+ * @see https://github.com/kni-labs/rrssb For Ridiculously Responsive Social Sharing Buttons
  * @author Hossein Azizabadi <djvoltan@gmail.com>
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class SocialSharing extends AbstractHtmlElement
 {
     /**
-     * Add a Social Sharing share button
-     * @param array     $options       List of social networks
-     * @param string    $pageTitle     Title
-     * @param string    $pageUrl       Page URL
-     * @param string    $imageUrl      Image url
+     * Display social sharing buttons
+     *
+     * @todo The icon is not responsive yet
+     *
+     * @param string[]|true|null|   $items      List of social network items
+     * @param string                $title      Title
+     * @param string                $url        Page URL
+     * @param string                $image      Image url for pinterest
+     *
      * @return  string
      */
-    public function __invoke($options, $pageTitle, $pageUrl, $imageUrl = '')
+    public function __invoke($items, $title, $url, $image = '')
     {
-        $links = '';
-        
-        // Set email
-        if ($options['social_email']) {
-            $html = <<<'EOT'
+        $title = _escape($title);
+        $url = $this->view->escapeUrl($url);
+        if ($image) {
+            $image = $this->view->escapeUrl($image);
+        }
+
+        $rrssbList = array('email', 'facebook', 'twitter', 'tumblr', 'linkedin', 'gplus', 'pinterest');
+        $rrssbRender = function ($item) use ($title, $url, $image) {
+            switch ($item) {
+                case 'email':
+                    $template = <<<'EOT'
 <li class="email">
     <a title="%s" href="mailto:?subject=%s;body=%s">
         <span class="icon"><i class="fa fa-at"></i></span>
@@ -60,12 +73,11 @@ class SocialSharing extends AbstractHtmlElement
    </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Email'), $pageTitle, $pageUrl, __('Email'));
-        }
+                    $button = sprintf($template, __('Email'), $title, $url, __('Email'));
+                    break;
 
-        // Set facebook
-        if ($options['social_facebook']) {
-            $html = <<<'EOT'
+                case 'facebook':
+                    $template = <<<'EOT'
 <li class="facebook">
     <a title="%s" href="https://www.facebook.com/sharer/sharer.php?u=%s" class="popup">
         <span class="icon"><i class="fa fa-facebook"></i></span>
@@ -73,12 +85,11 @@ EOT;
     </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Facebook'), $pageUrl, __('Facebook'));
-        }
+                    $button = sprintf($template, __('Facebook'), $url, __('Facebook'));
+                    break;
 
-        // Set twitter
-        if ($options['social_twitter']) {
-            $html = <<<'EOT'
+                case 'twitter':
+                    $template = <<<'EOT'
 <li class="twitter">
     <a title="%s" href="http://www.twitter.com/home?status=%s%s" class="popup">
         <span class="icon"><i class="fa fa-twitter"></i></span>
@@ -86,12 +97,11 @@ EOT;
     </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Twitter'), $pageTitle, $pageUrl, __('Twitter'));
-        }
+                    $button = sprintf($template, __('Twitter'), $title, $url, __('Twitter'));
+                    break;
 
-        // Set tumblr
-        if ($options['social_tumblr']) {
-            $html = <<<'EOT'
+                case 'tumblr':
+                    $template = <<<'EOT'
 <li class="tumblr">
     <a title="%s" href="http://tumblr.com/share?s=&amp;v=3&t=%s&amp;u=%s">
         <span class="icon"><i class="fa fa-tumblr"></i></span>
@@ -99,12 +109,11 @@ EOT;
     </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Tumblr'), $pageTitle, $pageUrl, __('Tumblr'));
-        }
+                    $button = sprintf($template, __('Tumblr'), $title, $url, __('Tumblr'));
+                    break;
 
-        // Set linkedin
-        if ($options['social_linkedin']) {
-            $html = <<<'EOT'
+                case 'linkedin':
+                    $template = <<<'EOT'
 <li class="linkedin">
     <a title="%s" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=%s&amp;title=%s&amp;summary=%s" class="popup">
         <span class="icon"><i class="fa fa-linkedin"></i></span>
@@ -112,12 +121,11 @@ EOT;
     </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Linkedin'), $pageUrl, $pageTitle, $pageTitle, __('Linkedin'));
-        }
+                    $button = sprintf($template, __('Linkedin'), $url, $title, $title, __('Linkedin'));
+                    break;
 
-        // Set gplus
-        if ($options['social_gplus']) {
-            $html = <<<'EOT'
+                case 'gplus':
+                    $template = <<<'EOT'
 <li class="googleplus">
     <a title="%s" href="https://plus.google.com/share?url=%s%s" class="popup">
         <span class="icon"><i class="fa fa-google-plus"></i></span>
@@ -125,12 +133,11 @@ EOT;
     </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Google +'), $pageTitle, $pageUrl, __('Google +'));
-        }
+                    $button = sprintf($template, __('Google +'), $title, $url, __('Google +'));
+                    break;
 
-        // Set pinterest
-        if ($options['social_pinterest'] && !empty($imageUrl)) {
-            $html = <<<'EOT'
+                case 'pinterest':
+                    $template = <<<'EOT'
 <li class="pinterest">
     <a title="%s" href="http://www.pinterest.com/pin/create/button/?url=%s&amp;media=%s&amp;description=%s">
         <span class="icon"><i class="fa fa-pinterest"></i></span>
@@ -138,11 +145,25 @@ EOT;
     </a>
 </li>
 EOT;
-            $links .= sprintf($html, __('Pinterest'), $pageUrl, $imageUrl, $pageTitle, __('Pinterest'));
+                    $button = sprintf($template, __('Pinterest'), $url, $image, $title, __('Pinterest'));
+                    break;
+
+                default:
+                    $button = '';
+                    break;
+            }
+
+            return $button;
+        };
+
+        $items = $items ? (array) $items: $rrssbList;
+        $buttons = '';
+        foreach ($items as $item) {
+            $buttons .= $rrssbRender($item);
         }
 
         // Generagt
-        if (!empty($links)) {
+        if (!empty($buttons)) {
         	// Set css and js
         	$this->view->jQuery(array(
             	'extension/rrssb.css',
@@ -156,10 +177,11 @@ EOT;
     </ul>
 </div>
 EOT;
-            $content = sprintf($content, $links);
+            $content = sprintf($content, $buttons);
         } else {
         	$content = '';
         }
+
         return $content;
     }
 }
