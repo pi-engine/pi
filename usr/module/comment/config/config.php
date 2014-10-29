@@ -75,7 +75,6 @@ $config = array(
                 ),
             ),
         ),
-        'value'         => array('linkbreak'),
         'filter'        => 'array',
     ),
 
