@@ -12,8 +12,7 @@
                 <?php echo $item['user']['avatar']; ?>
             </a>
             <div class="media-body">
-                <?php
-                echo sprintf('
+                <?php echo sprintf('
                     <div class="media-heading">
                         <a href="%s" target="_blank" style="margin-right: 20px;">%s</a>
                         <span class="muted">%s</span>
@@ -24,8 +23,7 @@
                     $item['user']['name'],
                     _date($item['time']),
                     $item['content']
-                ); 
-                ?>
+                ); ?>
                 <div class="comment-operation">
                     <?php
                     if ($uid == $item['uid']) {

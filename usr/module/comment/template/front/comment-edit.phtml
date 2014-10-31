@@ -24,10 +24,8 @@ if ($uid) {
             <img class="media-object" src="<?php echo $avatar; ?>">
         </a>
         <div class="media-body">
-        <?php
-            if ($post) {
-        ?>
-            <div>
+        <?php  if ($post) { ?>
+            <div class="clearfix">
                 <span class="pi-comment-user">
                     <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
                         <?php echo $post['user']['name']; ?>
@@ -57,13 +55,9 @@ if ($uid) {
                 }
             ?>
             <?php echo $this->form()->closeTag(); ?>
-        <?php
-            } else {
-        ?>
+        <?php } else { ?>
             <div class="pi-comment-none"><?php _e('No content.'); ?></div>
-        <?php
-            }
-        ?>
+        <?php } ?>
         </div>
     </div>
 </div>

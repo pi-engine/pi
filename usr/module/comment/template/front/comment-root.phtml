@@ -14,11 +14,9 @@ $posts = $comment['posts'];
 // Pagination object
 $paginator = $comment['paginator'];
 ?>
-
 <?php
 if (!$target) {
     echo '<div class="alert">' . __('Item not found.') . '</div>';
-
     return;
 }
 $this->css($this->assetModule('css/front.css', 'comment'));
@@ -33,7 +31,6 @@ $uid = Pi::user()->getId();
     <div class="comments-header">
         <h4><?php _e('All comments '); ?> (<?php echo $comment['count'] ?: 0; ?>)</h4>
     </div>
-
     <?php if (count($comment['posts'])) { ?>
     <?php foreach ($comment['posts'] as $item) { ?>
     <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">
@@ -41,8 +38,7 @@ $uid = Pi::user()->getId();
             <?php echo $item['user']['avatar']; ?>
         </a>
         <div class="media-body">
-            <?php
-            echo sprintf('
+            <?php echo sprintf('
                 <div class="media-heading">
                     <a href="%s" target="_blank" style="margin-right: 20px;">%s</a>
                     <span class="muted">%s</span>
@@ -53,19 +49,16 @@ $uid = Pi::user()->getId();
                 $item['user']['name'],
                 _date($item['time']),
                 $item['content']
-            ); 
-            ?>
+            ); ?>
             <div class="comment-operation">
-                <?php
-                if ($uid == $item['uid']) {
+                <?php if ($uid == $item['uid']) {
                     echo sprintf(
                         '<a href="%s#comments" onclick="return confirm(\'%s\')">%s</a>',
                         $this->url('', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
                         __('Are you sure to delete this comment?'),
                         __('Delete')
                     );
-                }
-                ?>
+                } ?>
             </div>
         </div>
     </div>
@@ -85,4 +78,3 @@ if ($paginator) {
     array('class' => 'pagination-right'));
 }
 ?>
-

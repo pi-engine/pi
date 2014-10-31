@@ -12,7 +12,6 @@ $target = $comment['target'];
 // content, time, user
 $post = $comment['post'];
 ?>
-
 <div class="pi-comment">
     <div class="pi-comment-header"><?php _e('Comment detail'); ?></div>
     <div class="media">
@@ -20,10 +19,8 @@ $post = $comment['post'];
             <?php echo Pi::avatar()->get($post['uid'], 'medium'); ?>
         </a>
         <div class="media-body">
-        <?php
-            if ($post) {
-        ?>
-            <div>
+        <?php if ($post) { ?>
+            <div class="clearfix">
                 <span class="pi-comment-user">
                     <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
                         <?php echo $post['user']['name']; ?>
@@ -35,7 +32,7 @@ $post = $comment['post'];
                         <?php echo sprintf(__('Comment #%d'), $post['reply']); ?>
                     </a>
                 </span>
-            <?php } ?>
+                <?php } ?>
                 <span class="pull-right muted pi-comment-time"><?php echo _date($post['time']); ?></span>
             </div>
             <div class="pi-comment-desc">
@@ -48,25 +45,17 @@ $post = $comment['post'];
                 <?php echo $post['content']; ?>
             </div>
             <div class="pi-comment-operation">
-            <?php 
-                foreach ($post['operations'] as $operation => $optData) {
-            ?>
+            <?php foreach ($post['operations'] as $operation => $optData) { ?>
                 <span class="operation muted">
                     <a href="<?php echo $optData['url']; ?>"<?php echo 'delete' == $operation ? sprintf(' onclick="return confirm(\'%s\')"', __('Are you sure to delete this comment?')) : ''; ?>>
                         <?php echo _escape($optData['title']); ?>
                     </a>
                 </span>
-            <?php
-                }
-            ?>
+            <?php } ?>
             </div>
-        <?php
-            } else {
-        ?>
+        <?php } else { ?>
             <div class="pi-comment-none"><?php _e('No content.'); ?></div>
-        <?php
-            }
-        ?>
+        <?php } ?>
         </div>
     </div>
 </div>
