@@ -49,4 +49,4 @@ $this->css($this->assetModule('front/front.css'));
         </div>
     </form>
 </div>
-<script src="<?php echo $this->assetModule('front/search-tabs.js'); ?>"></script>
+<?php $this->footScript()->appendFile($this->assetModule('front/search-tabs.js')); ?>
