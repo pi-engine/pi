@@ -33,12 +33,14 @@
         </li>
     </ul>
     <?php
-    $script = "$.getJSON('%s?' + new Date().getTime(), function (user) {
+    $script = <<<'EOT'
+        $.getJSON('%s?' + new Date().getTime(), function (user) {
             if (user.uid > 0) {
                 $('#member-message').attr('href', user.message);
                 $('#member-profile').attr('href', user.profile).html(user.avatar + ' ' + user.name);
             }
-        });";
+        });
+EOT;
     $script = sprintf($script, $block['callback']);
     $this->footScript()->appendScript($script);
     ?>

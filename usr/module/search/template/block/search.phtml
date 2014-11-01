@@ -30,7 +30,8 @@
     </div>
 </form>
 <?php if (!empty($block['list'])) { 
-$script = "$('#js-search-menu').on('click', 'a', function(e) {
+    $script = <<<'EOT'
+    $('#js-search-menu').on('click', 'a', function(e) {
     var $this = $(this);
     var val = $this.data('value');
     var form = $this.parents('form');
@@ -39,6 +40,7 @@ $script = "$('#js-search-menu').on('click', 'a', function(e) {
     e.preventDefault();
     m.val(val);
     form[0].submit();
-});";
-$this->footScript()->appendScript($script);
+});
+EOT;
+    $this->footScript()->appendScript($script);
 } ?>

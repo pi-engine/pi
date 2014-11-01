@@ -59,7 +59,8 @@ EOT;
     };
     
     // Add head style
-    $style = ".widget-carousel-bootstrap .carousel-indicators {
+    $style = <<<'EOT'
+        .widget-carousel-bootstrap .carousel-indicators {
             text-align: right;
             margin: 0;
             left: auto;
@@ -76,7 +77,9 @@ EOT;
             margin: 0 3px 0 0 !important;
             width: 14px !important;
             height: 14px !important;
-        }";
+        }
+EOT;
+
     $this->headStyle()->appendStyle($style);
 
 } else {

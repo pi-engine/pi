@@ -17,8 +17,9 @@ if ($uid) {
 } else {
     $url = Pi::url('www');
 }
-    // Add head style
-    $style = "textarea {
+// Add head style
+$style = <<<'EOT'
+    textarea {
         border: 0;
         padding: 0;
         margin: 0;
@@ -41,7 +42,8 @@ if ($uid) {
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
         border-radius: 4px;
         height: 75px;
-    }";
+    }
+EOT;
     $this->headStyle()->appendStyle($style);
 
 ?>
