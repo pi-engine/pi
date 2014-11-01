@@ -10,6 +10,10 @@ if (!empty($options['width'])) {
 if (!empty($options['height'])) {
     $imgStyle .= 'height: '  . $options['height'] . 'px;';
 }
+if (!empty($imgStyle)) {
+    $imgStyle = sprintf('style="%s" ', $imgStyle);
+}
+
 $carouselId = uniqid('carousel-');
 
 $this->css($this->assetModule('script/jcarousel/jcarousel.css', 'widget'));
@@ -23,7 +27,7 @@ $this->js($this->assetModule('script/jcarousel/jcarousel-min.js', 'widget'));
         ?>
         <li class="jcarousel-item">
             <a href="<?php echo $href; ?>" target="<?php echo $target; ?>">
-                <img src="<?php echo $item['image']; ?>" style="<?php echo $imgStyle; ?>" />
+                <img src="<?php echo $item['image']; ?>" <?php echo $imgStyle; ?> />
             </a>
             <div style="text-align: center; margin-top: 5px;">
                 <a href="<?php echo $href; ?>" target="<?php echo $target; ?>" title="<?php echo _escape($item['caption']); ?>" class="link"><?php echo _escape($item['caption']); ?></a>

@@ -1,7 +1,7 @@
 <?php
 $options    = (array) $block['options'];
 $items      = (array) $block['items'];
-$target     = empty($options['target_new']) ? '' : '_blank';
+$target     = empty($options['target_new']) ? '_self' : '_blank';
 $ellipsis   = empty($options['max_rows'])
             ? 'pi-ellipsis'
             : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
@@ -12,13 +12,16 @@ if (!empty($options['width'])) {
 if (!empty($options['height'])) {
     $imgStyle .= 'height: '  . $options['height'] . 'px;';
 }
+if (!empty($imgStyle)) {
+    $imgStyle = sprintf('style="%s" ', $imgStyle);
+}
 $imgRight   = empty($options['image_right']) ? false : true;
 ?>
 <div class="widget-media-list">
     <?php foreach($items as $item) { ?>
     <div class="media">
         <a class="<?php echo $imgRight ? 'pull-right' : 'pull-left'; ?>" href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>">
-            <img class="media-object" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>" style="<?php echo $imgStyle; ?>">
+            <img class="media-object" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>" <?php echo $imgStyle; ?>>
         </a>
         <div class="media-body">
             <h4 class="media-heading">

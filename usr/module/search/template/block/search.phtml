@@ -29,9 +29,8 @@
         </div>
     </div>
 </form>
-<?php if (!empty($block['list'])) { ?>
-<script>
-$('#js-search-menu').on('click', 'a', function(e) {
+<?php if (!empty($block['list'])) { 
+$script = "$('#js-search-menu').on('click', 'a', function(e) {
     var $this = $(this);
     var val = $this.data('value');
     var form = $this.parents('form');
@@ -40,6 +39,6 @@ $('#js-search-menu').on('click', 'a', function(e) {
     e.preventDefault();
     m.val(val);
     form[0].submit();
-});
-</script>
-<?php } ?>
+});";
+$this->footScript()->appendScript($script);
+} ?>

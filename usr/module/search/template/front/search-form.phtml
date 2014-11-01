@@ -52,4 +52,4 @@
     </div>
 </div>
 <hr>
-<script src="<?php echo $this->assetModule('front/search-tabs.js'); ?>"></script>
+<?php $this->footScript()->appendFile($this->assetModule('front/search-tabs.js')); ?>

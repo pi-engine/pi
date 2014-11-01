@@ -43,7 +43,7 @@
                     } else {
                         echo $this->url('', array('action' => 'delete', 'ids' => $notification['id']));
                     }
-                ?>" data-confirm="Once you delete this message, it cannot be undone.">
+                ?>" data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
                     <?php _e('Delete'); ?>
                     </a>
                 </span>
@@ -105,12 +105,12 @@
     </form>
     <?php include $this->template('./_confirm-modal.phtml'); ?>
 </div>
+<?php 
+    $paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
+    $host = $this->url('', array('module' => 'message'));
+    $script = "messageIndex({p: '%s', host: '%s'});";
+    $script = sprintf($script, $paginator, $host);
 
-<script src="<?php echo $this->assetModule('script/notify-index.js'); ?>"></script>
-<script>
-    messageIndex({
-        p: '<?php echo isset($paginator) ? $paginator->getCurrentPageNumber() : ''; ?>',
-        host: '<?php echo $this->url('', array('module' => 'message')); ?>'
-    });
-</script>
-
+    $this->footScript()->appendFile($this->assetModule('script/notify-index.js'));
+    $this->footScript()->appendScript($script);
+?>

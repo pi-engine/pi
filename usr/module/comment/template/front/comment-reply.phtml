@@ -17,10 +17,8 @@ if ($uid) {
 } else {
     $url = Pi::url('www');
 }
-?>
-
-<style>
-    textarea {
+    // Add head style
+    $style = "textarea {
         border: 0;
         padding: 0;
         margin: 0;
@@ -43,9 +41,10 @@ if ($uid) {
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
         border-radius: 4px;
         height: 75px;
-    }
-</style>
+    }";
+    $this->headStyle()->appendStyle($style);
 
+?>
 <div class="pi-comment">
     <div class="pi-comment-header"><?php echo sprintf(__('Comment reply to %s'), $post['user']['name']); ?></div>
     <div class="media">
@@ -53,10 +52,8 @@ if ($uid) {
             <img class="media-object" src="<?php echo $avatar; ?>">
         </a>
         <div class="media-body">
-        <?php
-            if ($post) {
-        ?>
-            <div>
+        <?php if ($post) { ?>
+            <div class="clearfix">
                 <span class="pi-comment-user">
                     <a href="<?php echo $post['user']['url']; ?>" target="_blank" title="<?php echo $post['user']['name']; ?>" class="highlight">
                         <?php echo $post['user']['name']; ?>
@@ -86,13 +83,9 @@ if ($uid) {
                 }
             ?>
             <?php echo $this->form()->closeTag(); ?>
-        <?php
-            } else {
-        ?>
+        <?php} else {?>
             <div class="pi-comment-none"><?php _e('No content.'); ?></div>
-        <?php
-            }
-        ?>
+        <?php}?>
         </div>
     </div>
 </div>
