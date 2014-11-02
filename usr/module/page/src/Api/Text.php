@@ -38,9 +38,13 @@ class Text extends AbstractApi
      * @param int $number
      *
      * @return string
+     *
+     * @deprecated Handled by `Pi\Mvc\Controller\Plugin\View::headKeywords()`
      */
     public function keywords($keywords, $number = 6)
     {
+        return $keywords;
+
         $keywords = _strip($keywords);
         $keywords = strtolower(trim($keywords));
         $keywords = array_unique(array_filter(explode(' ', $keywords)));
@@ -57,10 +61,14 @@ class Text extends AbstractApi
      *
      * @param  string $description
      * @return string
+     *
+     * @deprecated Handled by `Pi\Mvc\Controller\Plugin\View::headDescription()`
      */
     public function description($description) 
     {
-        $description = _strip($description); 
+        return $description;
+
+        $description = _strip($description);
         $description = strtolower(trim($description));
         $description = preg_replace('/[\s]+/', ' ', $description);
 
@@ -74,10 +82,14 @@ class Text extends AbstractApi
      *
      * @param  string $title
      * @return string
+     *
+     * @deprecated Handled by `Pi\Mvc\Controller\Plugin\View::headTitle()`
      */
     public function title($title) 
     {
-        $title = _strip($title); 
+        return $title;
+
+        $title = _strip($title);
         $title = strtolower(trim($title));
         $title = preg_replace('/[\s]+/', ' ', $title);
 
@@ -90,9 +102,13 @@ class Text extends AbstractApi
      * @param string $slug
      *
      * @return string
+     *
+     * @deprecated
      */
     public function slug($slug)
     {
+        return $slug;
+
         $slug = _strip($slug);
         $slug = strtolower(trim($slug));
         $slug = array_filter(explode(' ', $slug));
@@ -107,9 +123,13 @@ class Text extends AbstractApi
      * @param string $name
      *
      * @return string
+     *
+     * @deprecated
      */
     public function name($name)
     {
+        return $name;
+
         $name = _strip($name);
         $name = strtolower(trim($name));
         $name = array_filter(explode(' ', $name));

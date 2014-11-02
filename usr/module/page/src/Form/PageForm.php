@@ -67,7 +67,7 @@ class PageForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => _a('Unique slug for SEO URL.'),
+                'description'   => _a('Unique slug for SEO URL, space is not allowed.'),
             )
         ));
 

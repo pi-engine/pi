@@ -41,9 +41,9 @@ class IndexController extends ActionController
             // Module config
             $config = Pi::config('', $this->getModule());
             // Set view
-            $this->view()->headTitle($row->seo_title);
-            $this->view()->headdescription($row->seo_description, 'set');
-            $this->view()->headkeywords($row->seo_keywords, 'set');
+            $this->view()->headTitle($row['seo_title']);
+            $this->view()->headDescription($row['seo_description'], 'set');
+            $this->view()->headKeywords($row['seo_keywords'], 'set');
             $this->view()->assign('config', $config);
             if ($row->theme) {
                 $this->view()->setTheme($row->theme);
