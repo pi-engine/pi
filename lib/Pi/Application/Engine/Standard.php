@@ -190,8 +190,13 @@ class Standard extends AbstractEngine
                 $resourceInstance = new $class($this, $options);
 
                 $result = $resourceInstance->boot();
-                $this->resources['instances'][$resource] = (null === $result)
-                    ? true : $result;
+                $result = (null === $result) ? true : $result;
+                $this->resources['instances'][$resource] = $result;
+                if (Pi::service()->hasService('log')) {
+                    Pi::service('log')->info(
+                        sprintf('Resource "%s" is booted', $resource)
+                    );
+                }
             }
         }
 
