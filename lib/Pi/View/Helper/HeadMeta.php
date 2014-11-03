@@ -75,7 +75,7 @@ class HeadMeta extends ZendHeadMeta
     /**
      * Append an element
      *
-     * @param \stdClass $value
+     * @param stdClass $value
      * @return void
      */
     public function append($value)
@@ -84,7 +84,7 @@ class HeadMeta extends ZendHeadMeta
             $container = $this->getContainer();
             $content = '';
             foreach ($container->getArrayCopy() as $index => $item) {
-                if ($item->name == $value->name) {
+                if ('name' == $item->type && $item->name == $value->name) {
                     $content = $item->content;
                     $this->offsetUnset($index);
                 }
@@ -101,7 +101,7 @@ class HeadMeta extends ZendHeadMeta
     /**
      * Prepend an element
      *
-     * @param \stdClass $value
+     * @param stdClass $value
      * @return void
      */
     public function prepend($value)
@@ -110,7 +110,7 @@ class HeadMeta extends ZendHeadMeta
             $container = $this->getContainer();
             $content = '';
             foreach ($container->getArrayCopy() as $index => $item) {
-                if ($item->name == $value->name) {
+                if ('name' == $item->type && $item->name == $value->name) {
                     $content = $item->content;
                     $this->offsetUnset($index);
                 }
