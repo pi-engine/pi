@@ -10,7 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
+use stdClass;
 use Zend\View\Helper\HeadMeta as ZendHeadMeta;
 use Zend\View\Helper\Placeholder;
 
@@ -24,14 +24,7 @@ use Zend\View\Helper\Placeholder;
 class HeadMeta extends ZendHeadMeta
 {
     /**
-     * Retrieve object instance; optionally add meta tag
-     *
-     * @param  string $content
-     * @param  string $keyValue
-     * @param  string $keyType
-     * @param  array $modifiers
-     * @param  string $placement
-     * @return self
+     * {@inheritDoc}
      */
     public function __invoke(
         $content = null,
@@ -43,10 +36,40 @@ class HeadMeta extends ZendHeadMeta
         if (null === $placement) {
             $placement = Placeholder\Container\AbstractContainer::SET;
         }
-        parent::__invoke($content, $keyValue, $keyType, $modifiers,
-                         $placement);
+        parent::__invoke($content, $keyValue, $keyType, $modifiers, $placement);
 
         return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function itemToString(stdClass $item)
+    {
+        // Skip `property` rendering for invalid doctype
+        if ('property' === $item->type) {
+            if (!$this->view->plugin('doctype')->isRdfa()) {
+                return '';
+            }
+        }
+
+        return parent::itemToString($item);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function isValid($item)
+    {
+        // Skip doctype check for setting `property`
+        if ($item instanceof stdClass && 'property' === $item->type) {
+            if (!isset($item->modifiers) || !isset($item->content)) {
+                return false;
+            }
+            return true;
+        }
+
+        return parent::isValid($item);
     }
 
     /**
