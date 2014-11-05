@@ -58,6 +58,7 @@ class Form extends FormHelper
             $options['style'] = 'single';
         }
         $style = $options['style'];
+        //$style = 'multiple';
 
         // Render Zend Form directly if style is not desired
         if (!in_array($style, array('single', 'multiple', 'popup'))) {
@@ -140,10 +141,6 @@ EOT;
                 $vars['label_size'] = 'col-md-3';
                 $vars['element_size'] = 'col-sm-8';
                 $vars['error_size'] = 'col-sm-8';
-                if ($type == 'multi_checkbox' || $type == 'checkbox') {
-                    $vars['element_size'] = 'col-sm-8';
-                    $vars['error_size'] = '';
-                }
                 $labelPattern =<<<EOT
 <label class="%label_size% control-label">
     %mark_required%%label_content%
@@ -164,19 +161,9 @@ EOT;
                 $vars['element_size'] = 'col-md-4';
                 $vars['error_size'] = 'col-md-4';
             } else {
-                $vars['label_size'] = 'col-sm-3 col-lg-2';
+                $vars['label_size'] = 'col-sm-3';
                 $vars['element_size'] = 'col-sm-5';
                 $vars['error_size'] = 'col-sm-4';
-                if ($type == 'multi_checkbox' || $type == 'checkbox') {
-                    $vars['element_size'] = 'col-sm-9';
-                    $vars['error_size'] = '';
-                    $elementPattern =<<<EOT
-<div class="%element_size% js-form-element">
-    %element_content%%desc_html%
-    <div class="%error_size% help-block">%error_content%</div>
-</div>
-EOT;
-                }
             }
 
             $parsePattern = function ($pattern, $vars) {
@@ -190,8 +177,14 @@ EOT;
                 return $result;
             };
 
-            $vars['desc_content'] = $element->getAttribute('description');
-            $vars['desc_html'] = $parsePattern($descPattern, $vars);
+            if ('checkbox' == $type) {
+                $desc = $element->getAttribute('description');
+                $vars['desc_html'] = '';
+                $vars['element_content'] = '<div class="checkbox"><label>' . $vars['element_content'] . $desc . "</label></div>";
+            } else {
+                $vars['desc_content'] = $element->getAttribute('description');
+                $vars['desc_html'] = $parsePattern($descPattern, $vars);
+            }
             $vars['label_content'] = $element->getLabel();
             $vars['mark_required'] = $element->getAttribute('required') ? $markRequired : '';
             $vars['label_html'] = $parsePattern($labelPattern, $vars);
@@ -299,7 +292,7 @@ EOT;
             } else {
                 $submitSize = ('multiple' == $style)
                     ? 'col-md-offset-2 col-md-10'
-                    : 'col-sm-offset-3 col-lg-offset-2 col-md-4';
+                    : 'col-sm-offset-3 col-md-4';
                 $htmlSubmit = sprintf(
                     '<div class="form-group"><div class="%s">%s%s</div></div>',
                     $submitSize,
