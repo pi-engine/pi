@@ -265,14 +265,6 @@ class User extends AbstractService
         $this->model = $model;
         // Bind user model to service adapter
         $this->getAdapter()->bind($this->model);
-        /*
-        // Bind user model to handlers
-        foreach ($this->resource as $key => $handler) {
-            if ($handler instanceof BindInterface) {
-                $handler->bind($this->model);
-            }
-        }
-        */
 
         // Store current session user model for first time
         if (null === $this->modelSession) {
@@ -295,7 +287,7 @@ class User extends AbstractService
     }
 
     /**
-     * Destory current user session
+     * Destroy current user session
      *
      * @return self
      */
