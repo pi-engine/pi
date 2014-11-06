@@ -61,11 +61,11 @@ class PriorityList extends ZendPriorityList
     /**
      * Set loader for extra routes which do not belong to current section
      *
-     * @param Closure $loader
+     * @param Closure|array $loader
      *
      * @return $this
      */
-    public function setExtraRouteLoader(Closure $loader)
+    public function setExtraRouteLoader($loader)
     {
         $this->extraRouteLoader = $loader;
 

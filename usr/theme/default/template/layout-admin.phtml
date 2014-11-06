@@ -72,12 +72,7 @@ $module = Pi::service('module')->current();
                     </a>
             </ul>
             <?php
-            echo $this->widget('system-user-bar', 
-                    array(
-                        //'params' => array('route' => 'sysuser'),
-                        'type' => 'flat'
-                    )
-                 ); 
+            echo $this->widget('system-user-bar', array('type' => 'flat'));
             ?>
         </nav>
     </header>

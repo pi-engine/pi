@@ -605,29 +605,6 @@ class User extends AbstractService
      */
     public function __get($var)
     {
-        /*
-        switch ($var) {
-            // User activity
-            case 'activity':
-            // User data
-            case 'data':
-            // User message
-            case 'message':
-            // User timeline
-            case 'timeline':
-                $result = $this->getResource($var);
-                break;
-            // Avatar
-            case 'avatar':
-                $result = Pi::service('avatar')->setUser($this->getUser());
-                break;
-            // User profile field
-            default:
-                $result = $this->getAdapter()->{$var};
-                break;
-        }
-        */
-
         $result = $this->getAdapter()->{$var};
 
         return $result;
@@ -644,35 +621,6 @@ class User extends AbstractService
      */
     public function __call($method, $args)
     {
-        /*
-        switch ($method) {
-            // User activity
-            case 'activity':
-            // User data
-            case 'data':
-            // User message
-            case 'message':
-            // User timeline
-            case 'timeline':
-                $result = $this->getResource($method, $args);
-                break;
-            // Avatar
-            case 'avatar':
-                $result = Pi::service('avatar')->setUser($this->getUser());
-                if ($args) {
-                    $result = call_user_func_array(array($result,'get'), $args);
-                }
-                break;
-            // User profile adapter methods
-            default:
-                $result = call_user_func_array(
-                    array($this->getAdapter(), $method),
-                    $args
-                );
-                break;
-        }
-        */
-
         $result = call_user_func_array(
             array($this->getAdapter(), $method),
             $args
