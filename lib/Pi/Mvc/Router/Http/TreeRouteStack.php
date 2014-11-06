@@ -145,6 +145,24 @@ class TreeRouteStack extends ZendTreeRouteStack
     }
 
     /**
+     * Load routes
+     *
+     * @param array $options
+     *
+     * @return void
+     */
+    public function loadRoutes(array $options = array())
+    {
+        $section = !empty($options['section'])
+            ? $options['section'] : Pi::engine()->section();
+        $routes = Pi::registry('route')->read($section, $exclude = 0);
+        if (!empty($options['routes'])) {
+            $routes = array_merge($routes, $options['routes']);
+        }
+        $this->setRoutes($routes);
+    }
+
+    /**
      * Get an extra route which does not belong to current section;
      * If the extra routes stack is not loaded,
      * load them from route registry cache
@@ -164,5 +182,18 @@ class TreeRouteStack extends ZendTreeRouteStack
         }
 
         return $extraRoutes;
+    }
+
+    /**
+     * Reload routes
+     *
+     * @param array $options
+     *
+     * @return void
+     */
+    public function load(array $options = array())
+    {
+        $this->loadRoutes($options);
+        $this->routes->loadExtraRoutes(true);
     }
 }
