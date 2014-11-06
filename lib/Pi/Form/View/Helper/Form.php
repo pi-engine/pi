@@ -42,38 +42,61 @@ class Form extends FormHelper
 
     /**
      * {@inheritDoc}
-     * @param array|string|false $options Options for rendering: `style` - single, multiple, popup, raw
+     * @param array|string|false $options Options for rendering:
+     *                                    `style`   - horizontal, vertical, inline, popup, raw
+     *                                    `column`  - single, multiple
      */
     public function render(FormInterface $form, $options = array())
     {
         // Canonize options
         if (!is_array($options)) {
             if (is_string($options)) {
-                $options = array('style' => $options);
+                $options = array('column' => $options);
             } elseif (!$options) {
-                $options = array('style' => '');
+                $options = array('column' => '');
             }
         }
         if (!isset($options['style'])) {
-            $options['style'] = 'single';
+            $options['style'] = '';
         }
-        $style = $options['style'];
-        //$style = 'multiple';
+        switch ($options['style']) {
+            case 'vertical':
+                $style = 'vertical';
+                $class = '';
+                break;
+            case 'inline':
+                $style = 'inline';
+                $class = 'form-inline';
+                break;
+            case 'popup':
+                $style = 'popup';
+                $class = 'form-horizontal';
+                break;
+            case 'horizontal':
+            case '':
+                $style = 'horizontal';
+                $class = 'form-horizontal';
+                break;
+            default:
+                $style = '';
+                $class = '';
+                break;
+        }
 
         // Render Zend Form directly if style is not desired
-        if (!in_array($style, array('single', 'multiple', 'popup'))) {
+        if (!$style) {
             return parent::render($form);
         }
 
-        $class = $form->getAttribute('class');
-        $class = ($class ? $class . ' ' : '')
-            . (empty($options['class'])
-                ? 'form-horizontal'
-                : $options['class']
-            );
-        $attributes = array(
-            'class' => $class,
-        );
+        $column = isset($options['column']) ? $options['column'] : '';
+
+        $attributes = array();
+        $formClass = array($class);
+        $formClass[] = $form->getAttribute('class');
+        $class = implode(' ', array_filter($formClass));
+        if ($class) {
+            $attributes['class'] = $class;
+        }
 
         if ('popup' == $style) {
             $this->view->jQuery();
@@ -97,7 +120,9 @@ class Form extends FormHelper
         $elements   = $form->elementList();
         $groups     = $form->getGroups();
         $emptyControl = array('checkbox', 'multi_checkbox', 'radio', 'file');
-        $markRequired = '<i class="text-danger" style="margin-right: 5px;">*</i>';
+        $markRequired =<<<EOT
+        <i class="text-danger" style="margin-right: 5px;">*</i>
+EOT;
         $this->view->FormElementErrors()
             ->setMessageOpenFormat('')
             ->setMessageCloseString('');
@@ -106,7 +131,8 @@ class Form extends FormHelper
         $renderElement = function ($element) use (
             $markRequired,
             $emptyControl,
-            $style
+            $style,
+            $column
         ) {
             $type = $element->getAttribute('type') ? : 'text';
             $isEmptyControl = in_array($type, $emptyControl);
@@ -123,47 +149,95 @@ class Form extends FormHelper
     %element_html%
 </div>
 EOT;
-            $labelPattern = '<label class="%label_size% control-label">%mark_required%%label_content%</label>';
-            $descPattern = '<div class="text-muted">%desc_content%</div>';
-            $elementPattern =<<<EOT
+            $labelPattern =<<<EOT
+<label class="%label_size% control-label">%mark_required%%label_content%</label>
+EOT;
+            $descPattern =<<<EOT
+<div class="text-muted">%desc_content%</div>
+EOT;
+
+            switch ($type) {
+                case 'checkbox':
+                    $elementPattern =<<<EOT
+<div class="%element_size% js-form-element">
+    <div class="checkbox">
+        <label>
+            %element_content%%desc_html%
+        </label>
+    </div>
+</div>
+<div class="%error_size% help-block">%error_content%</div>
+EOT;
+                    break;
+                case 'multi_checkbox':
+                    $elementPattern =<<<EOT
+<div class="%element_size% js-form-element">
+    <div class="checkbox">
+        %element_content%%desc_html%
+    </div>
+</div>
+<div class="%error_size% help-block">%error_content%</div>
+EOT;
+                    break;
+                case 'radio':
+                    $elementPattern =<<<EOT
+<div class="%element_size% js-form-element">
+    <div class="radio">
+        %element_content%%desc_html%
+    </div>
+</div>
+<div class="%error_size% help-block">%error_content%</div>
+EOT;
+                    break;
+                default:
+                    $elementPattern =<<<EOT
 <div class="%element_size% js-form-element">
     %element_content%%desc_html%
 </div>
 <div class="%error_size% help-block">%error_content%</div>
 EOT;
-            $vars = array();
-            $vars['element_name'] = $element->getName();
-            $vars['element_content'] = $this->view->formElement($element);
-            $vars['error_content'] = $this->view->formElementErrors($element);
-            $vars['error_class'] = $element->getMessages() ? ' has-error' : '';
+                    break;
+            }
 
-            if ('popup' == $style) {
-                $vars['label_size'] = 'col-md-3';
-                $vars['element_size'] = 'col-sm-8';
-                $vars['error_size'] = 'col-sm-8';
-                $labelPattern =<<<EOT
-<label class="%label_size% control-label">
-    %mark_required%%label_content%
+            $vars = array();
+
+            switch ($style) {
+                case 'popup':
+                    $vars['label_size'] = 'col-md-3';
+                    $vars['element_size'] = 'col-sm-8';
+                    $vars['error_size'] = 'col-sm-8';
+                    break;
+
+                case 'inline':
+                    $labelPattern =<<<EOT
+<label class="sr-only">
+    %label_content%
 </label>
-%desc_html%
 EOT;
-                $descPattern =<<<EOT
-<i class="icon-question-sign" data-original-title="%desc_content%"></i>
-EOT;
-                $elementPattern =<<<EOT
-<div class="%element_size% js-form-element">
+                    $elementPattern =<<<EOT
     %element_content%
-</div>
-<div class="%error_size% help-block">%error_content%</div>
 EOT;
-            } elseif ('multiple' == $style) {
-                $vars['label_size'] = 'col-md-2';
-                $vars['element_size'] = 'col-md-4';
-                $vars['error_size'] = 'col-md-4';
-            } else {
-                $vars['label_size'] = 'col-sm-3';
-                $vars['element_size'] = 'col-sm-5';
-                $vars['error_size'] = 'col-sm-4';
+                    break;
+
+                case 'vertical':
+                    $vars['label_size'] = '';
+                    $vars['element_size'] = '';
+                    $vars['error_size'] = '';
+                    break;
+
+                case 'horizontal':
+                default:
+                    if ('multiple' == $column) {
+                        $vars['label_size'] = 'col-md-2';
+                        $vars['element_size'] = 'col-md-4';
+                        $vars['error_size'] = 'col-md-4';
+                    } else {
+                        $vars['label_size'] = 'col-sm-3 col-lg-2';
+                        $vars['element_size'] = 'col-sm-5';
+                        $vars['error_size'] = 'col-sm-4';
+                    }
+                    break;
+
             }
 
             $parsePattern = function ($pattern, $vars) {
@@ -177,14 +251,12 @@ EOT;
                 return $result;
             };
 
-            if ('checkbox' == $type) {
-                $desc = $element->getAttribute('description');
-                $vars['desc_html'] = '';
-                $vars['element_content'] = '<div class="checkbox"><label>' . $vars['element_content'] . $desc . "</label></div>";
-            } else {
-                $vars['desc_content'] = $element->getAttribute('description');
-                $vars['desc_html'] = $parsePattern($descPattern, $vars);
-            }
+            $vars['element_name'] = $element->getName();
+            $vars['element_content'] = $this->view->formElement($element);
+            $vars['error_content'] = $this->view->formElementErrors($element);
+            $vars['error_class'] = $element->getMessages() ? ' has-error' : '';
+            $vars['desc_content'] = $element->getAttribute('description');
+            $vars['desc_html'] = $parsePattern($descPattern, $vars);
             $vars['label_content'] = $element->getLabel();
             $vars['mark_required'] = $element->getAttribute('required') ? $markRequired : '';
             $vars['label_html'] = $parsePattern($labelPattern, $vars);
@@ -281,24 +353,36 @@ EOT;
         if (!empty($elements['submit'])) {
             $submit = $this->view->formElement($elements['submit']);
             $cancel = !empty($elements['cancel']) ? $this->view->formElement($elements['cancel']) : '';
-            if ('popup' == $style) {
-                $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
-                $htmlSubmit = sprintf(
-                    '<div class="modal-footer">' . '%s%s%s' . '</div>',
-                    $waiting,
-                    $submit,
-                    $cancel
-                );
-            } else {
-                $submitSize = ('multiple' == $style)
-                    ? 'col-md-offset-2 col-md-10'
-                    : 'col-sm-offset-3 col-md-4';
-                $htmlSubmit = sprintf(
-                    '<div class="form-group"><div class="%s">%s%s</div></div>',
-                    $submitSize,
-                    $submit,
-                    $cancel
-                );
+            switch ($style) {
+                case 'popup':
+                    $waiting = '<img src="' . $this->view->assetTheme('image/wait.gif') . '" class="hide">';
+                    $htmlSubmit = sprintf(
+                        '<div class="modal-footer">' . '%s%s%s' . '</div>',
+                        $waiting,
+                        $submit,
+                        $cancel
+                    );
+                    break;
+
+                case 'horizontal':
+                    $submitSize = ('multiple' == $column)
+                        ? 'col-md-offset-2 col-md-10'
+                        : 'col-sm-offset-3 col-md-4';
+                    $htmlSubmit = sprintf(
+                        '<div class="form-group"><div class="%s">%s%s</div></div>',
+                        $submitSize,
+                        $submit,
+                        $cancel
+                    );
+                    break;
+
+                default:
+                    $htmlSubmit = sprintf(
+                        '<div class="form-group">%s%s</div>',
+                        $submit,
+                        $cancel
+                    );
+                    break;
             }
 
             $html .= $htmlSubmit;

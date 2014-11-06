@@ -1,4 +1,7 @@
 <?php
-$style = 'multiple';
-echo $this->form($form, $style);
+$options = array(
+    'style'     => 'horizontal',
+    'column'    => 'multiple',
+);
+echo $this->form($form, $options);
 return;
