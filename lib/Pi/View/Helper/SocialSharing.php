@@ -66,10 +66,10 @@ class SocialSharing extends AbstractHtmlElement
             switch ($item) {
                 case 'email':
                     $template = <<<'EOT'
-<li class="email">
+<li class="rrssb-email">
     <a title="%s" href="mailto:?subject=%s;body=%s">
-        <span class="icon"><i class="fa fa-at"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-at"></i></span>
+        <span class="rrssb-text">%s</span>
    </a>
 </li>
 EOT;
@@ -78,10 +78,10 @@ EOT;
 
                 case 'facebook':
                     $template = <<<'EOT'
-<li class="facebook">
+<li class="rrssb-facebook">
     <a title="%s" href="https://www.facebook.com/sharer/sharer.php?u=%s" class="popup">
-        <span class="icon"><i class="fa fa-facebook"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-facebook"></i></span>
+        <span class="rrssb-text">%s</span>
     </a>
 </li>
 EOT;
@@ -90,10 +90,10 @@ EOT;
 
                 case 'twitter':
                     $template = <<<'EOT'
-<li class="twitter">
+<li class="rrssb-twitter">
     <a title="%s" href="http://www.twitter.com/home?status=%s%s" class="popup">
-        <span class="icon"><i class="fa fa-twitter"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-twitter"></i></span>
+        <span class="rrssb-text">%s</span>
     </a>
 </li>
 EOT;
@@ -102,10 +102,10 @@ EOT;
 
                 case 'tumblr':
                     $template = <<<'EOT'
-<li class="tumblr">
+<li class="rrssb-tumblr">
     <a title="%s" href="http://tumblr.com/share?s=&amp;v=3&t=%s&amp;u=%s">
-        <span class="icon"><i class="fa fa-tumblr"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-tumblr"></i></span>
+        <span class="rrssb-text">%s</span>
     </a>
 </li>
 EOT;
@@ -114,10 +114,10 @@ EOT;
 
                 case 'linkedin':
                     $template = <<<'EOT'
-<li class="linkedin">
+<li class="rrssb-linkedin">
     <a title="%s" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=%s&amp;title=%s&amp;summary=%s" class="popup">
-        <span class="icon"><i class="fa fa-linkedin"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-linkedin"></i></span>
+        <span class="rrssb-text">%s</span>
     </a>
 </li>
 EOT;
@@ -126,10 +126,10 @@ EOT;
 
                 case 'gplus':
                     $template = <<<'EOT'
-<li class="googleplus">
+<li class="rrssb-googleplus">
     <a title="%s" href="https://plus.google.com/share?url=%s%s" class="popup">
-        <span class="icon"><i class="fa fa-google-plus"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-google-plus"></i></span>
+        <span class="rrssb-text">%s</span>
     </a>
 </li>
 EOT;
@@ -138,10 +138,10 @@ EOT;
 
                 case 'pinterest':
                     $template = <<<'EOT'
-<li class="pinterest">
+<li class="rrssb-pinterest">
     <a title="%s" href="http://www.pinterest.com/pin/create/button/?url=%s&amp;media=%s&amp;description=%s">
-        <span class="icon"><i class="fa fa-pinterest"></i></span>
-        <span class="text">%s</span>
+        <span class="rrssb-icon"><i class="fa fa-pinterest"></i></span>
+        <span class="rrssb-text">%s</span>
     </a>
 </li>
 EOT;
@@ -164,11 +164,14 @@ EOT;
 
         // Generagt
         if (!empty($buttons)) {
-        	// Set css and js
+        	// Load jQuery and css file
         	$this->view->jQuery(array(
             	'extension/rrssb.css',
-        		'extension/rrssb.min.js',
         	));
+            // Load rrssb.min.js on footer
+            $url = 'vendor/jquery/extension/rrssb.min.js';
+            $url = Pi::service('asset')->getStaticUrl($url);
+            $this->view->footScript()->appendFile($url);
         	// Set content
             $content = <<<'EOT'
 <div class="share-container clearfix">
