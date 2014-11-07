@@ -151,22 +151,23 @@ class Form extends FormHelper
                 $element->setAttribute('class', $attrClass);
             }
 
-            $renderPattern =<<<EOT
+            $renderPattern = <<<EOT
 <div class="form-group%error_class%" data-name="%element_name%">
     %label_html%
     %element_html%
 </div>
 EOT;
-            $labelPattern =<<<EOT
+            $labelPattern = <<<EOT
 <label class="%label_size% control-label">
     %mark_required%%label_content%
 </label>
 EOT;
-            $descPattern =<<<EOT
+            $descPattern = <<<EOT
 <div class="text-muted">%desc_content%</div>
 EOT;
-            $markRequired =<<<EOT
-<i class="text-danger" style="margin-right: 5px;">*</i>
+            $required = __('Required');
+            $markRequired = <<<EOT
+<i class="text-danger" style="margin-right: 5px;" title="{$required}">*</i>
 EOT;
 
             switch ($type) {
