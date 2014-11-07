@@ -109,8 +109,9 @@ class TopicController extends ActionController
         }
 
         // Get list page url
-        $url = $this->url(
-            'article',
+        $route = Pi::api('api', $module)->getRouteName();
+        $url   = $this->url(
+            $route,
             array(
                 'module'    => $module,
                 'topic'     => $row->slug ?: $row->id,

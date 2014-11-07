@@ -102,7 +102,7 @@ class Rule
         );
         $categories = array();
         foreach ($rowCategories as $row) {
-            $categories[$row['name']] = $row['id'];
+            $categories[$row['id']] = $row['id'];
         }
         
         // Get all resources

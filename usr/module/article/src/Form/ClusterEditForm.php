@@ -37,17 +37,6 @@ class ClusterEditForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'       => 'name',
-            'options'    => array(
-                'label'       => __('Name'),
-            ),
-            'attributes' => array(
-                'type'        => 'text',
-                'description' => __('The unique identifier of cluster.'),
-            ),
-        ));
-
-        $this->add(array(
             'name'       => 'slug',
             'options'    => array(
                 'label'       => __('Slug'),
@@ -113,7 +102,7 @@ class ClusterEditForm extends BaseForm
             '', 
             array(
                 'controller' => 'ajax',
-                'action'     => 'save-image',
+                'action'     => 'save-media',
                 'name'       => 'cluster',
                 'width'      => $config['cluster_width'],
                 'height'     => $config['cluster_height'],

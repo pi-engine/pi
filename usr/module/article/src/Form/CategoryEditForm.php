@@ -37,17 +37,6 @@ class CategoryEditForm extends BaseForm
         ));
 
         $this->add(array(
-            'name'       => 'name',
-            'options'    => array(
-                'label'       => __('Name'),
-            ),
-            'attributes' => array(
-                'type'        => 'text',
-                'description' => __('The unique identifier of category.'),
-            ),
-        ));
-
-        $this->add(array(
             'name'       => 'slug',
             'options'    => array(
                 'label'       => __('Slug'),
@@ -113,7 +102,7 @@ class CategoryEditForm extends BaseForm
             '', 
             array(
                 'controller' => 'ajax',
-                'action'     => 'save-image',
+                'action'     => 'save-media',
                 'name'       => 'category',
                 'width'      => $config['category_width'],
                 'height'     => $config['category_height'],
