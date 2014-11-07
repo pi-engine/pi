@@ -25,17 +25,6 @@ class MediaEditForm extends BaseForm
     public function init()
     {
         $this->add(array(
-            'name'       => 'name',
-            'options'    => array(
-                'label'       => __('Name'),
-            ),
-            'attributes' => array(
-                'type'        => 'text',
-                'description' => __('The unique identifier of media.'),
-            ),
-        ));
-
-        $this->add(array(
             'name'       => 'title',
             'options'    => array(
                 'label'       => __('Title'),

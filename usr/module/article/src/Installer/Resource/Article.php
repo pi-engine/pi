@@ -383,10 +383,6 @@ class Article extends AbstractResource
      */
     public function installAction()
     {
-        if (!$this->isActive()) {
-            return;
-        }
-        
         $this->loadConfig();
         if (empty($this->config)) {
             return;

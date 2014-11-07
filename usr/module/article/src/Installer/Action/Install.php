@@ -39,6 +39,7 @@ class Install extends BasicInstall
         $events = $this->events;
         $events->attach('install.post', array($this, 'initMeta'), 0);
         $events->attach('install.post', array($this, 'initCategory'), 1);
+        $events->attach('install.post', array($this, 'initCluster'), 2);
         $events->attach('install.post', array($this, 'initPage'), -10);
         $events->attach(
             'install.post',
@@ -105,21 +106,42 @@ class Install extends BasicInstall
         $model  = Pi::model('category', $module);
         $data   = array(
             'id'          => null,
-            'name'        => 'root',
             'slug'        => 'root',
             'title'       => _a('Root'),
             'description' => _a('Module root category'),
+            'active'      => 1,
         );
         $result = $model->add($data);
         $defaultCategory = array(
             'id'          => null,
-            'name'        => 'default',
-            'slug'        => 'slug',
+            'slug'        => 'default',
             'title'       => _a('Default'),
             'description' => _a('The default category can not be delete, but can be modified!'),
+            'active'      => 1,
         );
-        $parent = $model->select(array('name' => 'root'))->current();
+        $parent = $model->select(array('slug' => 'root'))->current();
         $model->add($defaultCategory, $parent);
+        
+        return $result;
+    }
+    
+    /**
+     * Add a root cluster
+     * 
+     * @param Event $e 
+     */
+    public function initCluster(Event $e)
+    {
+        $module = $this->event->getParam('module');
+        $model  = Pi::model('cluster', $module);
+        $data   = array(
+            'id'          => null,
+            'slug'        => 'root',
+            'title'       => _a('Root'),
+            'description' => _a('Module root cluster'),
+            'active'      => 1,
+        );
+        $result = $model->add($data);
         
         return $result;
     }
@@ -138,6 +160,7 @@ class Install extends BasicInstall
             'id'          => null,
             'name'        => 'root',
             'title'       => _a('Null'),
+            'active'      => 1,
         );
         $result = $model->add($data);
         
@@ -451,7 +474,7 @@ EOD;
         $rowset = $model->select(array());
         foreach ($rowset as $row) {
             $sql .=<<<VALUE
-('category-{$row->name}', '{$module}', 'admin', '{$role}'),
+('category-{$row->id}', '{$module}', 'admin', '{$role}'),
 
 VALUE;
         }

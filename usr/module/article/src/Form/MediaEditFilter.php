@@ -22,30 +22,8 @@ class MediaEditFilter extends InputFilter
     /**
      * Initializing validator and filter 
      */
-    public function __construct($options = array())
+    public function __construct()
     {
-        $params = array(
-            'table'  => 'media',
-        );
-        if (isset($options['id']) and $options['id']) {
-            $params['id'] = $options['id'];
-        }
-        $this->add(array(
-            'name'     => 'name',
-            'required' => true,
-            'filters'  => array(
-                array(
-                    'name' => 'StringTrim',
-                ),
-            ),
-            'validators' => array(
-                array(
-                    'name'    => 'Module\Article\Validator\RepeatName',
-                    'options' => $params,
-                ),
-            ),
-        ));
-
         $this->add(array(
             'name'     => 'title',
             'required' => true,

@@ -36,7 +36,7 @@ class Block
             return false;
         }
         
-        $identifier  = $options['identifier'];
+        $identifier  = $options['identifier'] ?: 'cluster';
         $maxTopCount = $options['top_category'];
         $maxSubCount = $options['sub_category'];
 

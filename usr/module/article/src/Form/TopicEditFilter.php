@@ -30,21 +30,6 @@ class TopicEditFilter extends InputFilter
         if (isset($options['id']) and $options['id']) {
             $params['id'] = $options['id'];
         }
-        $this->add(array(
-            'name'     => 'name',
-            'required' => true,
-            'filters'  => array(
-                array(
-                    'name' => 'StringTrim',
-                ),
-            ),
-            'validators' => array(
-                array(
-                    'name'    => 'Module\Article\Validator\RepeatName',
-                    'options' => $params,
-                ),
-            ),
-        ));
         
         $this->add(array(
             'name'     => 'slug',

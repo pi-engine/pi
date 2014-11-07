@@ -25,17 +25,6 @@ class TopicEditForm extends BaseForm
     public function init()
     {
         $this->add(array(
-            'name'       => 'name',
-            'options'    => array(
-                'label'       => __('Name'),
-            ),
-            'attributes' => array(
-                'type'        => 'text',
-                'description' => __('The unique identifier of category.'),
-            ),
-        ));
-        
-        $this->add(array(
             'name'       => 'slug',
             'options'    => array(
                 'label'       => __('Slug'),
@@ -120,7 +109,7 @@ class TopicEditForm extends BaseForm
             '', 
             array(
                 'controller' => 'ajax',
-                'action'     => 'save-image',
+                'action'     => 'save-media',
                 'name'       => 'topic',
                 'width'      => $config['topic_width'],
                 'height'     => $config['topic_height'],

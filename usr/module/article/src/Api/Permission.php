@@ -33,7 +33,7 @@ class Permission extends AbstractApi
         $model  = Pi::model('category', $module);
         $rowset = $model->select(array());
         foreach ($rowset as $row) {
-            $name = 'category-' . $row->name;
+            $name = 'category-' . $row->id;
             $title = ucwords('category ' . $row->title);
             $resources[$name] = $title;
         }

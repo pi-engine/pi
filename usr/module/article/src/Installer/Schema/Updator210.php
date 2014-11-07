@@ -307,6 +307,30 @@ EOD;
                 return $result;
             }
         }
+        
+        // Removed `name` field for some table
+        if (version_compare($version, '1.9.3', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            $category  = Pi::db()->prefix('category', $module);
+            $cluster   = Pi::db()->prefix('cluster', $module);
+            $topic     = Pi::db()->prefix('topic', $module);
+            $media     = Pi::db()->prefix('media', $module);
+            $sql    =<<<EOD
+ALTER TABLE {$category} DROP INDEX `name`;
+ALTER TABLE {$category} DROP COLUMN `name`;
+ALTER TABLE {$cluster} DROP INDEX `name`;
+ALTER TABLE {$cluster} DROP COLUMN `name`;
+ALTER TABLE {$topic} DROP INDEX `name`;
+ALTER TABLE {$topic} DROP COLUMN `name`;
+ALTER TABLE {$media} DROP INDEX `name`;
+ALTER TABLE {$media} DROP COLUMN `name`;
+EOD;
+            $result = $this->querySchema($sql, $module);
+            if (false === $result) {
+                return $result;
+            }
+        }
 
         return $result;
     }

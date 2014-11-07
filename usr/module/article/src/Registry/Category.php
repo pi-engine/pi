@@ -39,7 +39,7 @@ class Category extends AbstractRegistry
         $model  = Pi::model($this->table, $module);
         
         if (!$options['plain']) {
-            $root   = $model->find('root', 'name');
+            $root   = $model->find('root', 'slug');
             $rowset = $model->enumerate($root->id);
             $rows   = array_shift($rowset);
         } else {
