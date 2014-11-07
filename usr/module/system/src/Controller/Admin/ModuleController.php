@@ -71,22 +71,6 @@ class ModuleController extends ActionController
             $data['description'] = $meta['description'];
             $data['author'] = $author;
             $data['active'] = isset($active[$name]) ? true : false;
-            /*
-            if (empty($meta['logo'])) {
-                $data['logo'] = Pi::url('static/image/module.png');
-            } elseif (empty($data['active'])) {
-                $data['logo'] = Pi::url('script/browse.php') . '?' . sprintf(
-                    'module/%s/asset/%s',
-                    $data['directory'],
-                    $meta['logo']
-                );
-            } else {
-                $data['logo'] = Pi::service('asset')->getModuleAsset(
-                    $meta['logo'],
-                    $data['name']
-                );
-            }
-            */
             $data['icon'] = $data['icon'] ?: 'fa-th';
             if (empty($data['update'])) {
                 $data['update'] = _a('Never updated.');
@@ -95,7 +79,6 @@ class ModuleController extends ActionController
             }
         }
         $this->view()->assign('modules', $modules);
-        //$this->view()->setTemplate('module-list');
         $this->view()->assign('title', _a('Installed modules'));
     }
 
@@ -377,6 +360,7 @@ class ModuleController extends ActionController
                 $name ?: $directory
             );
 
+            Pi::service('url')->getRouter()->load();
             Pi::service('event')->trigger(
                 'module_install',
                 $name ?: $directory
@@ -488,6 +472,7 @@ class ModuleController extends ActionController
                 $row->title
             );
 
+            Pi::service('url')->getRouter()->load();
             Pi::service('event')->trigger('module_uninstall', $row->name);
         } elseif ($row) {
             $message = sprintf(
@@ -584,8 +569,8 @@ class ModuleController extends ActionController
                 $row->title
             );
 
+            Pi::service('url')->getRouter()->load();
             Pi::service('event')->trigger('module_update', $row->name);
-
         } elseif ($row) {
             $message = sprintf(_a('Module "%s" is not updated.'), $row->title);
         } elseif ($id || $name) {
@@ -650,6 +635,7 @@ class ModuleController extends ActionController
                     $row->title
                 );
 
+                Pi::service('url')->getRouter()->load();
                 Pi::service('event')->trigger('module_activate', $row['name']);
             } elseif ($row) {
                 $message = sprintf(
@@ -671,6 +657,7 @@ class ModuleController extends ActionController
                     $row->title
                 );
 
+                Pi::service('url')->getRouter()->load();
                 Pi::service('event')->trigger('module_deactivate', $row['name']);
             } elseif ($row) {
                 $message = sprintf(

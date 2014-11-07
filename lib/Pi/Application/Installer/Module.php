@@ -208,7 +208,6 @@ class Module
         Pi::service('cache')->clearByNamespace($e->getParam('module'));
         Pi::registry('module')->clear($e->getParam('module'));
         Pi::registry('modulelist')->clear($e->getParam('module'));
-        Pi::service('url')->getRouter()->load();
     }
 
     /**
