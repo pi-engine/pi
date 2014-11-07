@@ -99,9 +99,6 @@ class Form extends FormHelper
         }
 
         if ('popup' == $style) {
-            $this->view->jQuery();
-            $this->view->bootstrap('js/bootstrap.min.js');
-
             if (!empty($options['label'])) {
                 $form->setLabel($options['label']);
             }
@@ -392,6 +389,9 @@ EOT;
         $html .= $this->closeTag() . PHP_EOL;
 
         if ('popup' == $style) {
+            $this->view->jQuery();
+            $this->view->bootstrap('js/bootstrap.min.js');
+	    
             $script =<<<EOT
 <script>
 var formModule = (function($) {
@@ -429,8 +429,10 @@ var formModule = (function($) {
 })(jQuery)
 </script>
 EOT;
+            $script = sprintf($script, $form->getAttribute('id'));
+
+            $html .= $script;
             $html .= '</div></div>';
-            $html .= sprintf($script, $form->getAttribute('id'));
         }
 
         return $html;
