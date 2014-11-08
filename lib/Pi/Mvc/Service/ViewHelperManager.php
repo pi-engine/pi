@@ -117,6 +117,7 @@ class ViewHelperManager extends HelperPluginManager
         'formweek'                => 'Form\View\Helper\FormWeek',
 
         // Pi defined helpers
+        'formdatepicker'        => 'Form\View\Helper\FormDatepicker',
         'formdescription'       => 'Form\View\Helper\FormDescription',
         'formfieldset'          => 'Form\View\Helper\FormFieldset',
         'formeditor'            => 'Form\View\Helper\FormEditor',
