@@ -104,7 +104,7 @@ class FormDateSelect extends ZendFormDateSelect
         $data[$pattern['year']]  = $selectHelper->render($yearElement);
 
         // Support for bootstrap form-inline
-        $markup = '<div class="form-inline">';
+        $markup = '<div class="form-inline" style="margin-bottom: 0;">';
         foreach ($pattern as $key => $value) {
             // Delimiter
             if (is_numeric($key)) {
