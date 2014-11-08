@@ -12,8 +12,11 @@
     } elseif (401 == (int) $code) {
         $url = Pi::service('authentication')->getUrl('login');
         $link = '<a href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
+        $button = '<a class="btn btn-primary" href="' . $url . '" title="' . __('login') . '">' . __('login') . '</a>';
         echo sprintf(__('You are not allowed to access the page. Please %s and try again.'), $link);
+        echo '<p>' . $button . '</p>';
 
+        Pi::service('url')->redirect($url);
     // Point to website user guide otherwise
     } else {
         if ('admin' == Pi::engine()->application()->getSection()) {
