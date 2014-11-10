@@ -1,6 +1,6 @@
 <?php
 // Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
-// $this->doctype('HTML4_LOOSE');
+$this->doctype('HTML5');
 
 // Load translation data
 $this->i18nTheme();
@@ -58,6 +58,14 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
+// Dublin Core
+$this->headMeta(_escape($sitename), 'dc:title', 'property', array('lang' => $locale));
+$this->headMeta(_escape($slogan), 'dc:subject', 'property', array('lang' => $locale));
+$this->headMeta(_escape($sitename . ' - ' . $slogan) , 'dc:description', 'property', array('lang' => $locale));
+$this->headMeta('text', 'dc:type', 'property');
+$this->headMeta(_escape($sitename), 'dc:publisher', 'property');
+$this->headMeta($locale, 'dc:language', 'property');
+
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
@@ -67,7 +75,9 @@ $this->headLink(array(
 // Load google analytics code
 $this->ga();
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -85,17 +95,12 @@ $module = Pi::service('module')->current();
                title="<?php echo _escape($slogan); ?>">
                <?php echo _escape($sitename); ?>
             </a>
-            <?php
-            echo $this->widget('system-user-bar');
-            ?>
+            <?php echo $this->widget('system-user-bar'); ?>
         </div>
     </div>
-
     <div class="container pi-main-container">
-
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>
             <div class="<?php echo $module; ?>">
@@ -105,9 +110,7 @@ $module = Pi::service('module')->current();
             </div>
         <?php } ?>
         <!-- Module content ends -->
-
     </div>
-
    <!-- Footer: sitelink -->
    <div class="pi-footer text-center">
        <div class="container">
@@ -117,7 +120,6 @@ $module = Pi::service('module')->current();
                echo $footer;
            } else {
            ?>
-
            <ul class="pi-footer-links muted">
                <li>
                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
@@ -126,7 +128,7 @@ $module = Pi::service('module')->current();
                </li>
                <li>·</li>
                <li>
-                   <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                   <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
                        Powered by Pi Engine
                    </a>
                </li>
