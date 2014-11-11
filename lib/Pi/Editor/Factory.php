@@ -47,15 +47,17 @@ class Factory
                 $editor = $type;
                 break;
         }
-        $editorFile = sprintf(
-            '%s/editor/%s/src/Renderer.php',
-            Pi::path('usr'),
-            $editor
-        );
-        if (file_exists($editorFile)) {
-            include $editorFile;
-        }
         $rendererClass =  'Editor\\' . ucfirst($editor) . '\Renderer';
+        if (!class_exists($rendererClass)) {
+            $editorFile = sprintf(
+                '%s/editor/%s/src/Renderer.php',
+                Pi::path('usr'),
+                $editor
+            );
+            if (file_exists($editorFile)) {
+                include $editorFile;
+            }
+        }
         if (!class_exists($rendererClass)
             || !is_subclass_of($rendererClass, 'Pi\Editor\AbstractRenderer')
         ) {
