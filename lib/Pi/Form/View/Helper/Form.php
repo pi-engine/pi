@@ -297,22 +297,40 @@ EOT;
         $htmlAlert      = '';
         $hiddenMessages = $form->getHiddenMessages();
         if ($hiddenMessages) {
-            $htmlAlert = '<div class="alert alert-danger">' . PHP_EOL;
+            $csrfMessages = '';
             if (!empty($hiddenMessages['security'])) {
                 foreach ($hiddenMessages['security'] as $elMessage) {
-                    $htmlAlert .= '<p>' . $elMessage . '</p>' . PHP_EOL;
+                    $csrfMessages .= <<<EOT
+    <p>{$elMessage}</p>
+EOT;
                 }
                 unset($hiddenMessages['security']);
             }
+            $elementMessages = '';
             foreach ($hiddenMessages as $elName => $elMessages) {
-                $htmlAlert .= '<h4>' . $elName . '</h4>' . PHP_EOL;
-                $htmlAlert .= '<ol>' . PHP_EOL;
-                foreach ($elMessages as $elMessage) {
-                    $htmlAlert .= '<li>' . $elMessage . '</li>' . PHP_EOL;
+                $element = $form->get($elName);
+                if ($element) {
+                    $elName = $element->getLabel() . ' (' . $elName . ')';
                 }
-                $htmlAlert .= '</ol>' . PHP_EOL;
+                $elMessages = '';
+                foreach ($elMessages as $elMessage) {
+                    $elMessages .= <<<EOT
+        <li>{$elMessage}</li>
+EOT;
+                }
+                $elementMessages .= <<<EOT
+    <h4>{$elName}</h4>
+    <ol>
+        {$elMessages}
+    </ol>
+EOT;
             }
-            $htmlAlert .= '</div>' . PHP_EOL;
+            $htmlAlert = <<<EOT
+<div class="alert alert-danger">
+    {$csrfMessages}
+    {$elementMessages}
+</div>
+EOT;
         }
 
         // Render form content
