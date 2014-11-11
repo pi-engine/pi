@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2014-10-29 17:22+0330\n"
-"PO-Revision-Date: 2014-10-29 17:22+0330\n"
+"POT-Creation-Date: 2014-11-10 14:17+0330\n"
+"PO-Revision-Date: 2014-11-10 14:17+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: en\n"
@@ -20,47 +20,48 @@ msgid "Access denied"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:15
 msgid "login"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:16
 #, php-format
 msgid "You are not allowed to access the page. Please %s and try again."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:27
 msgid "homepage"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:29
 msgid "logout"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:31
 #, php-format
 msgid ""
 "You are not allowed to access the page. Please go to %s or %s and try other "
 "account."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:9
 msgid "Admin >> "
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:68
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:72
 msgid "Front"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:126
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:125
 msgid "Execution time"
 msgstr "Application Execution Time"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:118
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:127
 msgid "Home"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:271
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-simple.phtml:138
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:280
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-simple.phtml:143
 #, php-format
 msgid "Execution time: %.4f s"
 msgstr ""

@@ -34,13 +34,14 @@ $this->css($this->assetTheme('css/admin.css'));
 $this->css($this->assetLocale('locale.css'));
 
 // Explicitly load favicon
-// @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon()
 ));
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -109,7 +110,7 @@ $module = Pi::service('module')->current();
                 </li>
                 <li>·</li>
                 <li>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
                         Powered by Pi Engine
                     </a>
                 </li>
