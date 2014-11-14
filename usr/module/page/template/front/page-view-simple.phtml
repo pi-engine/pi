@@ -12,7 +12,7 @@
     <div class="col-md-10">
     <?php } ?>
     <?php if ('phtml' == $markup && $content) { ?>
-        <h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
+        <h1 class="article-header headline"><?php echo $this->escape($title); ?></h1>
         <div class="article-body">
             <?php include $this->template('./' . $content); ?>
         </div>
@@ -22,7 +22,7 @@
             <?php if ($config['social_gplus']) { echo $this->plusone(); } ?>
         </div>
     <?php } else {  ?>
-        <h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
+        <h1 class="article-header headline"><?php echo $this->escape($title); ?></h1>
         <div class="article-body clearfix">
             <?php echo $content; ?> 
         </div>
