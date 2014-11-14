@@ -18,6 +18,11 @@ foreach ($result as $name => $data) {
     $total = $data->getTotal();
 ?>
 <div class="row">
+    <?php if (isset($query) && !empty($query)) { ?>
+        <h1><?php echo sprintf(__('Search result of %s'), _escape($query)); ?></h1>
+    <?php } else { ?>
+        <h1><?php _e('Search result'); ?></h1>
+    <?php } ?>
     <div class="col-md-2">
         <h4 class="text-muted text-right" style="margin-top: 10px;">
             <?php echo _escape($modules[$name]['title']); ?>
