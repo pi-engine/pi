@@ -167,11 +167,22 @@ class Model
      */
     public function initialize()
     {
-        $logoFile = 'public/custom/image/logo.png';
-        if (!file_exists(Pi::path($logoFile))) {
-            $logoFile = 'static/image/logo.png';
+        // Set logo
+        $customFile = 'asset/custom/image/logo.png';
+        if (file_exists(Pi::path($customFile))) {
+            $logo = Pi::url($customFile, true);
+        } else {
+            $theme = Pi::service('theme')->current();
+            $component = 'theme/' . $theme;
+            $asset = 'image/logo.png';
+            $file = Pi::service('asset')->getAssetPath($component, $asset);
+            if (file_exists($file)) {
+                $logo = Pi::service('asset')->getAssetUrl($component, $asset);
+            } else {
+                $file = 'static/image/logo.png';
+                $logo = Pi::url($file, true);
+            }
         }
-        $logo = Pi::url($logoFile, true);
 
         $this->assign(array(
             'copyright'     => Pi::config('copyright')
