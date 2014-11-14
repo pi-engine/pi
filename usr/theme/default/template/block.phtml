@@ -87,13 +87,13 @@ if (is_array($block['content'])) {
     if ($block['body_fullsize']) {
         $class = sprintf('pi-block %s', $block['class']);
         if (!$block['title_hidden']) {
-            $heading = sprintf('<div class="pi-block-title"><h3>%s</h3></div>', $heading);
+            $heading = sprintf('<div class="pi-block-title"><h2>%s</h2></div>', $heading);
         }
         $body = sprintf('<div class="pi-block-content">%s</div>', $block['content']);
     } else {
         $class = sprintf('panel panel-default %s', $block['class']);
         if (!$block['title_hidden']) {
-            $heading = sprintf('<div class="panel-heading"><h3 class="panel-title">%s</h3></div>', $heading);
+            $heading = sprintf('<div class="panel-heading"><h2 class="panel-title">%s</h2></div>', $heading);
         }
         $body = sprintf('<div class="panel-body">%s</div>', $block['content']);
     }

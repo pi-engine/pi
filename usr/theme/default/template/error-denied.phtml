@@ -1,13 +1,11 @@
 <?php $this->i18nTheme('default', 'default'); ?>
-
 <div class="alert alert-danger">
-    <h2 class="page-header"><?php _e('Access denied'); ?></h2>
+    <h1 class="page-header"><?php _e('Access denied'); ?></h1>
     <p>
     <?php
     // Display custom message
     if (!empty($message)) {
         echo $message;
-
     // Prompt to login for guests
     } elseif (401 == (int) $code) {
         $url = Pi::service('authentication')->getUrl('login');
@@ -35,7 +33,6 @@
     }
     ?>
     </p>
-
     <div class="text-right">
         <a href="<?php echo Pi::url('www'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>

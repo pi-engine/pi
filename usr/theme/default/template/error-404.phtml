@@ -1,8 +1,6 @@
 <?php $this->i18nTheme('default', 'default'); ?>
-
 <div class="alert alert-danger">
-
-    <h2 class="page-header"><?php _e('A 404 error occurred'); ?></h2>
+    <h1 class="page-header"><?php _e('A 404 error occurred'); ?></h1>
     <p><?php echo $message ?: __('The page request is not found.'); ?></p>
     <p class="text-right">
         <a href="<?php echo Pi::url('www'); ?>">
@@ -10,12 +8,9 @@
         </a>
     </p>
 </div>
-
 <?php if ('production' == Pi::environment()) return; ?>
-
     <?php if (!empty($reason)): ?>
-    <h3 class="page-header">Additional information:</h3>
-
+    <h2 class="page-header">Additional information:</h2>
     <?php
     $reasonMessage= '';
     switch ($reason) {
@@ -36,14 +31,9 @@
             break;
     }
     ?>
-
     <p><?php echo $reasonMessage; ?></p>
-
     <?php endif ?>
-
-
     <?php if (isset($this->controller) && $this->controller): ?>
-
     <dl>
         <dt>Controller:</dt>
         <dd><?php echo _escape($this->controller);
@@ -57,16 +47,12 @@
         </dd>
     </dl>
     <?php endif ?>
-
     <?php if (isset($this->exception) && $this->exception): ?>
-
-    <h3 class="page-header">Exception:</h3>
+    <h2 class="page-header">Exception:</h2>
     <p><?php echo _escape(Pi::service('security')->path($this->exception->getMessage())); ?></p>
-
-    <h4 class="page-header">Stack trace</h4>
+    <h3 class="page-header">Stack trace</h3>
     <pre>
     <?php echo Pi::service('security')->path($this->exception->getTraceAsString()); ?>
     </pre>
-
     <?php endif ?>
 </div>
