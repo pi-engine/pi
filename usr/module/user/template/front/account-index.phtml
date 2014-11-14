@@ -5,12 +5,10 @@
     <?php include $this->template('./profile-sidebar.phtml'); ?>
     <div class="col-md-9">
         <div class="user-page-header">
-            <h3><?php _e('Account settings'); ?></h3>
+            <h1><?php _e('Account settings'); ?></h1>
             <div class="text-muted"><?php _e('Basic settings'); ?></div>
         </div>
-        
         <?php echo $this->form($form); ?>
-
     </div>
 </div>
 <form class="modal fade user-js-confirm" tabindex="-1" aria-hidden="true">
