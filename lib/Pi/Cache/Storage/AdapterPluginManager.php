@@ -25,9 +25,10 @@ class AdapterPluginManager extends ZendAdapterPluginManager
      */
     protected $invokableClasses = array(
         'filesystem'     => 'Pi\Cache\Storage\Adapter\Filesystem',
+        'memcached'      => 'Pi\Cache\Storage\Adapter\Memcached',
 
         'apc'            => 'Zend\Cache\Storage\Adapter\Apc',
-        'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
+        //'memcached'      => 'Zend\Cache\Storage\Adapter\Memcached',
         'memory'         => 'Zend\Cache\Storage\Adapter\Memory',
         'redis'          => 'Zend\Cache\Storage\Adapter\Redis',
         'dba'            => 'Zend\Cache\Storage\Adapter\Dba',
