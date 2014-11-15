@@ -13,25 +13,17 @@ if (!empty($root['id'])) {
 } else {
     $formData = array(
         'module'    => $root['module'],
-        'type'  => $root['type'],
+        'type'      => $root['type'],
         'item'      => $root['item'],
     );
 }
 $formData['redirect'] = rawurlencode($uri);
 $form = Pi::service('comment')->getForm($formData);
-
 ?>
 <div class="comment-item" id="js-comment-form">
     <textarea placeholder="<?php _e('Type your content'); ?>" class="form-control js-comment-txt" rows="3"></textarea>
     <div class="hide clearfix comment-form">
         <?php echo $this->form()->openTag($form);
-        /*
-        ?>
-        <div class="form-group">
-            <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="form-control" rows="3"></textarea>
-        </div>
-        <?php
-        */
         echo $this->formElement($form->get('content'));
         foreach (array( 'id', 'root', 'reply', 'module', 'type', 'item', 'redirect', 'markup') as $hiddenElement) {
             echo $this->formElement($form->get($hiddenElement));
