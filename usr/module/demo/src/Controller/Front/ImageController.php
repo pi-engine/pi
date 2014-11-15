@@ -14,10 +14,29 @@ use Pi\Mvc\Controller\ActionController;
 
 class ImageController extends ActionController
 {
+    public function indexAction()
+    {
+        $path = Pi::path('upload/demo/image');
+        $origin = $path . '/origin.png';
+
+        if (is_file($origin)) {
+            $redirect = $this->url('', array('action' => 'process'));
+            $response = <<<EOT
+    <p><a href="{$redirect}" title="Click to process">Click to process.</a></p>
+EOT;
+        } else {
+            $response = <<<EOT
+    <p>Image resource is required.</p>
+EOT;
+        }
+
+        return $response;
+    }
+
     /**
      * Test for image service
      */
-    public function indexAction()
+    public function processAction()
     {
         $path = Pi::path('upload/demo/image');
         $origin = $path . '/origin.png';
@@ -93,8 +112,6 @@ class ImageController extends ActionController
             $specifiedBottomRight = $mark($watermark, 'bottom-right', 'specified-bottom-right.png');
             $specifiedSpecified = $mark($watermark, array(500, 200), 'specified.png');
         endif;
-
-        $this->view()->setTemplate(false);
 
         return 'Manipulation completed with operation(s): ' . implode(', ', $ops);
     }

@@ -33,6 +33,64 @@ class DemoForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'content_text',
+            'type'          => 'text',
+            'options'   => array(
+                'label' => __('Input'),
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'content_textarea',
+            'type'          => 'textarea',
+            'options'   => array(
+                'label' => __('Text'),
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'content_html',
+            'type'          => 'editor',
+            'options'       => array(
+                'label'     => __('HTML'),
+                'editor'    => 'html',
+            ),
+            'attributes'    => array(
+                'placeholder'   => __('Type your content'),
+                'class'         => 'span6',
+                'rows'          => 5,
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'content_html_second',
+            'type'          => 'editor',
+            'options'       => array(
+                'label'     => __('HTML2'),
+                'editor'    => 'html',
+            ),
+            'attributes'    => array(
+                'placeholder'   => __('Type your content'),
+                'class'         => 'span6',
+                'rows'          => 5,
+            ),
+        ));
+
+        $this->add(array(
+            'name'          => 'content_markdown',
+            'type'          => 'editor',
+            'options'       => array(
+                'label'     => __('Markdown'),
+                'editor'    => 'makeitup',
+            ),
+            'attributes'    => array(
+                'placeholder'   => __('Type your content'),
+                'class'         => 'span6',
+                'rows'          => 5,
+            ),
+        ));
+
+        $this->add(array(
             'name'          => 'upload_file',
             'type'          => 'file',
             'options'   => array(
