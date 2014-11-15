@@ -30,10 +30,10 @@ class PostForm extends BaseForm
     /**
      * Constructor
      *
-     * @param null|string|int $name   Optional name for the element
-     * @param string          $markup Page type: text, html, markdown
+     * @param string|int    $name   Optional name for the element
+     * @param string        $markup Page type: text, html, markdown
      */
-    public function __construct($name = null, $markup = null)
+    public function __construct($name = '', $markup = '')
     {
         $name = $name ?: 'comment-post';
         $this->markup = $markup ?: $this->markup;
@@ -78,13 +78,13 @@ class PostForm extends BaseForm
 
         $this->add(array(
             'name'          => 'content',
+            'type'          => 'editor',
             'options'       => array(
                 'label'     => __('Comment'),
                 'editor'    => $editor,
                 'set'       => $set,
             ),
             'attributes'    => array(
-                'type'          => 'editor',
                 'placeholder'   => __('Type your content'),
                 'class'         => 'span6',
                 'rows'          => 5,

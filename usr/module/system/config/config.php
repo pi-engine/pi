@@ -514,6 +514,7 @@ $config['item'] = array(
     'editor'        => array(
         'title'         => _t('Text editor'),
         'description'   => _t('Default editor for text processing'),
+        'edit'          => 'editor_select',
         'category'      => 'text',
     ),
 

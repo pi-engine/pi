@@ -19,15 +19,20 @@ if (!empty($root['id'])) {
 }
 $formData['redirect'] = rawurlencode($uri);
 $form = Pi::service('comment')->getForm($formData);
+
 ?>
 <div class="comment-item" id="js-comment-form">
     <textarea placeholder="<?php _e('Type your content'); ?>" class="form-control js-comment-txt" rows="3"></textarea>
     <div class="hide clearfix comment-form">
-        <?php echo $this->form()->openTag($form); ?>
+        <?php echo $this->form()->openTag($form);
+        /*
+        ?>
         <div class="form-group">
             <textarea placeholder="<?php _e('Type your content'); ?>" name="content" class="form-control" rows="3"></textarea>
         </div>
         <?php
+        */
+        echo $this->formElement($form->get('content'));
         foreach (array( 'id', 'root', 'reply', 'module', 'type', 'item', 'redirect', 'markup') as $hiddenElement) {
             echo $this->formElement($form->get($hiddenElement));
         }
@@ -49,7 +54,6 @@ $url = Pi::service('url')->assemble('default', array(
     'controller'    => 'index',
     'action'        => 'user',
 ));
-
 ?>
 <script>
 (function ($) {
@@ -80,6 +84,7 @@ var comment = {
 comment.init();
 })(jQuery)
 </script>
+
 <div class="pi-status active js-video-status" data-id="">
     <div class="pi-status-director"></div>
 </div>

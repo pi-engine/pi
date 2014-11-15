@@ -10,7 +10,7 @@
 
 namespace Pi\Form\View\Helper;
 
-use Pi\Editor\Factory as EditorFactory;
+use Pi;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -43,7 +43,7 @@ class FormEditor extends AbstractHelper
 
         $options = array_replace($element->getOptions(), $options);
         $editorType = $element->getOption('editor') ?: 'textarea';
-        $editor = EditorFactory::load($editorType, $options);
+        $editor = Pi::service('editor')->load($editorType, $options);
 
         $html = '';
         if ($editor) {
