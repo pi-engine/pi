@@ -38,17 +38,17 @@ $viewPreview = '<li class="inline">
     <?php include $this->template('./profile-sidebar.phtml'); ?>
     <div class="col-md-9" id="js-user-avatar">
         <div class="user-page-header">
-            <h3><?php _e('Change avatar'); ?></h3>
+            <h1><?php _e('Change avatar'); ?></h1>
             <div class="text-muted"><?php _e('Customize your avatar anyway you like'); ?></div>
         </div>
-            <div class="user-avatar-box well">
-                <div class="clearfix">
-                    <div class="col-md-2 col-sm-3 col-xs-3"><?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?></div>
-                    <div class="col-md-10 col-sm-9 col-xs-9 text-warning">
-                        <h4><?php _e('Current avatar'); ?></h4>
-                        <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
-                    </div>
+        <div class="user-avatar-box well">
+            <div class="clearfix">
+                <div class="col-md-2 col-sm-3 col-xs-3"><?php echo Pi::service('user')->avatar()->get($uid, '', array('class' => 'img-polaroid')); ?></div>
+                <div class="col-md-10 col-sm-9 col-xs-9 text-warning">
+                    <h4><?php _e('Current avatar'); ?></h4>
+                    <p><?php _e('Once source type is switched and saved, the old avatar image will be deleted.'); ?></p>
                 </div>
+            </div>
         </div>
         <ul class="nav nav-tabs">
             <?php 
