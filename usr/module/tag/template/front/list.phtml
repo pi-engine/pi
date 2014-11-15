@@ -4,13 +4,13 @@
            class="pull-right" style="margin-top: 5px;">
             <?php _e('View all tagged items.'); ?>
         </a>
-        <h3>
+        <h1>
             <?php echo sprintf(__('Items in <em>%s</em> tagged by: <strong>%s</strong>'), _escape($moduleTitle), _escape($tag)); ?>
-        </h3>
+        </h1>
     <?php } else { ?>
-        <h3>
+        <h1>
             <?php echo sprintf(__('Items tagged by: <strong>%s</strong>'), _escape($tag)); ?>
-        </h3>
+        </h1>
     <?php } ?>
 </div>
 <div class="tag-list">

@@ -1,5 +1,3 @@
-@import url('style.css');
-
 /* Base */
 html {
   min-height: 100%;
@@ -156,7 +154,8 @@ html {
 }
 
 /* header */
-.pi-header h1 {
+.pi-header h1,
+.pi-header h2 {
   padding: 1px;
   margin: 1px;
 }

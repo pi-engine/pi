@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-theme-default\n"
-"POT-Creation-Date: 2014-11-10 14:17+0330\n"
-"PO-Revision-Date: 2014-11-10 14:17+0330\n"
+"POT-Creation-Date: 2014-11-14 16:43+0330\n"
+"PO-Revision-Date: 2014-11-14 16:43+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: en\n"
@@ -15,29 +15,29 @@ msgstr ""
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/"
 "default\n"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:4
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:3
 msgid "Access denied"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:14
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:13
 msgid "login"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:14
 #, php-format
 msgid "You are not allowed to access the page. Please %s and try again."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:25
 msgid "homepage"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:27
 msgid "logout"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-denied.phtml:29
 #, php-format
 msgid ""
 "You are not allowed to access the page. Please go to %s or %s and try other "
@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:9
-msgid "Admin >> "
+msgid "Admin - "
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-admin.phtml:72
@@ -56,50 +56,50 @@ msgstr ""
 msgid "Execution time"
 msgstr "Application Execution Time"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:127
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:130
 msgid "Home"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:280
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-front.phtml:283
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/layout-simple.phtml:143
 #, php-format
 msgid "Execution time: %.4f s"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:3
 msgid "A 404 error occurred"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:4
 msgid "The page request is not found."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:18
 msgid "The requested controller was unable to dispatch the request."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:21
 msgid ""
 "The requested controller could not be mapped to an existing controller class."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:24
 msgid "The requested controller was not dispatchable."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:27
 msgid "The requested URL could not be matched by routing."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error-404.phtml:30
 msgid "We cannot determine at this time why a 404 was generated."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error.phtml:5
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error.phtml:3
 msgid "Error occurred"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error.phtml:6
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/theme/default/template/error.phtml:4
 msgid "Please verify your request or visit later."
 msgstr ""
 
