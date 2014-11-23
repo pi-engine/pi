@@ -10,22 +10,22 @@
 namespace Module\Article\Installer\Resource;
 
 use Pi;
-use Pi\Application\Installer\Resource\Route as ParentRoute;
+use Pi\Application\Installer\Resource\Config as ParentConfig;
 
 /**
- * Custom route handler
+ * Custom config handler
  *
  * @author Zongshu Lin <lin40553024@163.com>
  */
-class Route extends ParentRoute
+class Config extends ParentConfig
 {
     /**
-     * Load custom navigation config
+     * Load custom config
      */
     protected function loadConfig()
     {
         $module = $this->getModule();
-        $config = Api::getCustomConfig('route', $module);
+        $config = Api::getCustomConfig('config', $module);
         
         if (!empty($config)) {
             $this->config = $config;

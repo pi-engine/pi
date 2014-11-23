@@ -46,7 +46,7 @@ class ListController extends ActionController
         $config = $this->config('');
         
         $page   = (int) $this->params('p', 1);
-        $limit  = (int) $this->config('page_limit_all') ?: 40;
+        $limit  = (int) $this->params('limit', $this->config('page_limit_all'));
         $offset = $limit * ($page - 1);
         $sort   = $this->params('sort', 'new');
 

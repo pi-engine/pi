@@ -35,6 +35,17 @@ class CategoryEditForm extends BaseForm
             ),
             'type'       => 'Module\Article\Form\Element\Category',
         ));
+        
+        $this->add(array(
+            'name'       => 'title',
+            'options'    => array(
+                'label'       => __('Title'),
+            ),
+            'attributes' => array(
+                'type'        => 'text',
+                'description' => __('Will be displayed on your website.'),
+            ),
+        ));
 
         $this->add(array(
             'name'       => 'slug',
@@ -44,17 +55,6 @@ class CategoryEditForm extends BaseForm
             'attributes' => array(
                 'type'        => 'text',
                 'description' => __('The "Slug" is category name in URL.'),
-            ),
-        ));
-
-        $this->add(array(
-            'name'       => 'title',
-            'options'    => array(
-                'label'       => __('Title'),
-            ),
-            'attributes' => array(
-                'type'        => 'text',
-                'description' => __('Will be displayed on your website.'),
             ),
         ));
 

@@ -1,5 +1,5 @@
 <div id="time-publish-element" style="width: 250px">
-    <input type="hidden" value="<?php echo $value; ?>" name="<?php echo $name; ?>" <?php echo $attributes . ' ' . $required; ?>>
+    <input type="hidden" value="<?php echo $value ? _date($value) : '';; ?>" name="<?php echo $name; ?>" <?php echo $attributes . ' ' . $required; ?>>
     <div class="pull-right">
         <div class="time-control-item">
             <input type="text" value="<?php echo $hour; ?>" class="input-small text-hour form-control" maxlength="2">

@@ -524,10 +524,7 @@ class DraftController extends ActionController
         $module     = $this->getModule();
         $form       = Pi::api('form', $module)->loadForm('draft');
         if ($form->has('category')) {
-            $categories = $form->get('category')->getValueOptions();
-            $form->get('category')->setValueOptions(
-                array_intersect_key($categories, $listCategory) ?: array(0 => __('Null'))
-            );
+            $form->get('category')->getValueOptions($listCategory);
         }
         
         $form->setData(array(
@@ -628,10 +625,7 @@ class DraftController extends ActionController
         }
         
         // prepare data
-        $data                 = (array) $row;
-        $data['category']     = $data['category'] ?: $this->config('default_category');
-        $data['time_publish'] = $data['time_publish'] ? _date($data['time_publish']) : '';
-
+        $data = (array) $row;
         $form = Pi::api('form', $module)->loadForm('draft');
         $form->get('category')->getValueOptions($categories);
         $form->setData($data);

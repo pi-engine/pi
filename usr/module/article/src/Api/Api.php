@@ -214,30 +214,34 @@ class Api extends AbstractApi
             if (!empty($where)) {
                 foreach ($where as $key => $val) {
                     if (false === strpos($key, '?')) {
-                        if ((!is_array($val) && $row[$key] != $val)
-                            || (is_array($val) && !in_array($row[$key], $val))) {
+                        if ((!is_array($val)
+                            && strtolower($row[$key]) != strtolower($val))
+                            || (is_array($val)
+                            && !in_array(strtolower($row[$key]), $val))) {
                             unset($data[$id]);
                             break;
                         }
                     } else {
                         if (!is_array($val)) {
                             list($key, $symbol) = explode(' ', $key);
+                            $val      = strtolower($val);
+                            $cacheVal = strtolower($row[$key]);
                             switch ($symbol) {
                                 case '>=':
-                                    $result = ($row[$key] >= $val);
+                                    $result = ($cacheVal >= $val);
                                     break;
                                 case '>':
-                                    $result = ($row[$key] > $val);
+                                    $result = ($cacheVal > $val);
                                     break;
                                 case '<=':
-                                    $result = ($row[$key] <= $val);
+                                    $result = ($cacheVal <= $val);
                                     break;
                                 case '<':
-                                    $result = ($row[$key] < $val);
+                                    $result = ($cacheVal < $val);
                                     break;
                                 case '!=':
                                 case '<>':
-                                    $result = ($row[$key] != $val);
+                                    $result = ($cacheVal != $val);
                                     break;
                             }
                             if (!$result) {

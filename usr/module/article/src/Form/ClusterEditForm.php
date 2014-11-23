@@ -35,6 +35,17 @@ class ClusterEditForm extends BaseForm
             ),
             'type'       => 'Module\Article\Form\Element\Cluster',
         ));
+        
+        $this->add(array(
+            'name'       => 'title',
+            'options'    => array(
+                'label'       => __('Title'),
+            ),
+            'attributes' => array(
+                'type'        => 'text',
+                'description' => __('Will be displayed on your website.'),
+            ),
+        ));
 
         $this->add(array(
             'name'       => 'slug',
@@ -44,17 +55,6 @@ class ClusterEditForm extends BaseForm
             'attributes' => array(
                 'type'        => 'text',
                 'description' => __('The "Slug" is cluster name in URL.'),
-            ),
-        ));
-
-        $this->add(array(
-            'name'       => 'title',
-            'options'    => array(
-                'label'       => __('Title'),
-            ),
-            'attributes' => array(
-                'type'        => 'text',
-                'description' => __('Will be displayed on your website.'),
             ),
         ));
 
