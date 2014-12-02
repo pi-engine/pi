@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-12-02 11:30+0330\n"
-"PO-Revision-Date: 2014-12-02 11:45+0330\n"
+"POT-Creation-Date: 2014-12-02 12:55+0330\n"
+"PO-Revision-Date: 2014-12-02 12:55+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -242,23 +242,27 @@ msgstr "آخرین به روز رسانی"
 msgid "Action"
 msgstr "عملکرد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:43
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
 msgid "Edit"
 msgstr "ویرایش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
 msgid "Disable"
 msgstr "غیر فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:51
 msgid "Enable"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+msgid "Are you sure you want delete this page?"
+msgstr "آیا اطمینان دارید که می خواهید این صفحه را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:64
 msgid "Add to menu"
 msgstr "درج در منو"
 
