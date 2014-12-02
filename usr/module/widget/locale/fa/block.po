@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2014-08-29 15:31+0330\n"
-"PO-Revision-Date: 2014-08-29 15:31+0330\n"
+"POT-Creation-Date: 2014-12-02 11:28+0330\n"
+"PO-Revision-Date: 2014-12-02 11:28+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "widget\n"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/block/list/title-summary.phtml:24
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/block/carousel/parallax.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/block/list/title-summary.phtml:24
 msgid "More"
 msgstr "ادامه"

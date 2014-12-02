@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-10-13 17:08+0330\n"
-"PO-Revision-Date: 2014-10-13 17:08+0330\n"
+"POT-Creation-Date: 2014-12-02 11:30+0330\n"
+"PO-Revision-Date: 2014-12-02 11:45+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -34,8 +34,8 @@ msgid "SEO slug"
 msgstr "اسلاگ"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:70
-msgid "Unique slug for SEO URL."
-msgstr "اسلاگ یکتا برای آدرس سئو"
+msgid "Unique slug for SEO URL, space is not allowed."
+msgstr "اسلاگ یکتا برای آدرس سئو - استفاده از اسپیس مجاز نیست"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:106
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/template-list.phtml:8
@@ -242,23 +242,23 @@ msgstr "آخرین به روز رسانی"
 msgid "Action"
 msgstr "عملکرد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:43
 msgid "Edit"
 msgstr "ویرایش"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:45
-msgid "Delete"
-msgstr "حذف"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
 msgid "Disable"
 msgstr "غیر فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
 msgid "Enable"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
+msgid "Delete"
+msgstr "حذف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:59
 msgid "Add to menu"
 msgstr "درج در منو"
 

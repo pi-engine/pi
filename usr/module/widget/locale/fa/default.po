@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2014-08-29 15:56+0330\n"
-"PO-Revision-Date: 2014-08-29 16:13+0330\n"
+"POT-Creation-Date: 2014-12-02 11:28+0330\n"
+"PO-Revision-Date: 2014-12-02 11:29+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -56,6 +56,57 @@ msgstr "ویجت های اسپات لایت"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:231
 msgid "Compound tabs"
 msgstr "تب های ترکیبی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:104
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:138
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:172
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:206
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:240
+msgid "Widget list"
+msgstr "فهرست ویجت ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:31
+msgid "Activate"
+msgstr "فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:56
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:145
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:179
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:213
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:247
+msgid "Edit"
+msgstr "ویرایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:65
+msgid "Add HTML"
+msgstr "HTML جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:74
+msgid "Add text"
+msgstr "متن جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:83
+msgid "Add markdown"
+msgstr "markdown جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:120
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:154
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:188
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:222
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:256
+msgid "Add new"
+msgstr "جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:163
+msgid "Carousel"
+msgstr "اسلاید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:197
+msgid "Spotlight"
+msgstr "اسپات لایت"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:13
 msgid "Max file size"
@@ -130,57 +181,6 @@ msgstr "بازکردن در صفحه جدید"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/config.php:83
 msgid "Open new window for widgets not specified"
 msgstr "بازکردن در صفحه جدید برای ویجت هایی که تنظیم نشده باشند"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:25
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:49
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:104
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:138
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:172
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:206
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:240
-msgid "Widget list"
-msgstr "فهرست ویجت ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:31
-msgid "Activate"
-msgstr "فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:56
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:111
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:145
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:179
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:213
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:247
-msgid "Edit"
-msgstr "ویرایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:65
-msgid "Add HTML"
-msgstr "HTML جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:74
-msgid "Add text"
-msgstr "متن جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:83
-msgid "Add markdown"
-msgstr "markdown جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:120
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:154
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:188
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:222
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:256
-msgid "Add new"
-msgstr "جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:163
-msgid "Carousel"
-msgstr "اسلاید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/config/nav.php:197
-msgid "Spotlight"
-msgstr "اسپات لایت"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/widget/template/front/block-preview.phtml:6
 msgid "Block Preview"
