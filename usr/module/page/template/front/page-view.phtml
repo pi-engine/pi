@@ -1,4 +1,4 @@
-<div class="page">
+<div class="clearfix">
     <?php if (!empty($nav)) { ?>
     <div class="col-md-2">
         <ul class="nav nav-pills">
@@ -17,9 +17,15 @@
             <?php include $this->template('./' . $content); ?>
         </div>
         <div class="article-footer">
-            <?php if ($config['social_facebook']) { echo $this->facebook(); } ?>
-            <?php if ($config['social_twitter']) { echo $this->twitter(); } ?>
-            <?php if ($config['social_gplus']) { echo $this->plusone(); } ?>
+            <?php if ($config['social_sharing']) {
+                $items = array(
+                    'email',
+                    'facebook',
+                    'twitter',
+                    'gplus',
+                );
+                echo $this->socialSharing($items, $this->escape($title), $this->escape($url));
+            } ?>
         </div>
     <?php } else {  ?>
         <div class="panel panel-default">
@@ -27,20 +33,18 @@
                 <h1 class="panel-title"><?php echo $this->escape($title); ?></h1>
             </div>
             <div class="panel-body clearfix">
-                <?php echo $content; ?> 
-                <div class="social-list text-left clearfix">
-                    <ul class="list-inline">
-                        <?php if(!empty($config['social_facebook'])) { ?>
-                        <li class="social-facebook"><?php echo $this->facebook(); ?></li>
-                        <?php } ?>
-                        <?php if(!empty($config['social_twitter'])) { ?>
-                        <li class="social-twitter"><?php echo $this->twitter(); ?></li>
-                        <?php } ?>
-                        <?php if(!empty($config['social_gplus'])) { ?>
-                        <li class="social-gplus"><?php echo $this->plusone(); ?></li>
-                        <?php } ?>
-                    </ul>
+                <div class="clearfix">
+                    <?php echo $content; ?>
                 </div>
+                <?php if ($config['social_sharing']) {
+                    $items = array(
+                        'email',
+                        'facebook',
+                        'twitter',
+                        'gplus',
+                    );
+                    echo $this->socialSharing($items, $this->escape($title), $this->escape($url));
+                } ?>
             </div>
         </div>
     <?php } ?>
@@ -48,4 +52,3 @@
     </div>
     <?php } ?>
 </div>
-<div class="clearfix"></div>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-12-02 12:55+0330\n"
-"PO-Revision-Date: 2014-12-02 12:55+0330\n"
+"POT-Creation-Date: 2014-12-02 13:10+0330\n"
+"PO-Revision-Date: 2014-12-02 13:11+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -210,12 +210,8 @@ msgid "Pi Engine"
 msgstr "پای انجین"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:21
-msgid "Enable Google Plus"
-msgstr "فعال کردن گوگل پلاس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:29
-msgid "Enable Facebook"
-msgstr "فعال کردن فیسبوک"
+msgid "Enable sharing on social networks"
+msgstr "اشتراک گذاری در شبکه های اجتماعی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:10
 msgid "Name"
@@ -317,6 +313,12 @@ msgstr "الگوی PHTML"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:8
 msgid "PHTML"
 msgstr "PHTML"
+
+#~ msgid "Enable Google Plus"
+#~ msgstr "فعال کردن گوگل پلاس"
+
+#~ msgid "Enable Facebook"
+#~ msgstr "فعال کردن فیسبوک"
 
 #~ msgid "Sitemap feed"
 #~ msgstr "خواک نقشه سایت"
