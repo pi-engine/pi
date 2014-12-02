@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2014-12-02 11:29+0330\n"
-"PO-Revision-Date: 2014-12-02 11:47+0330\n"
+"PO-Revision-Date: 2014-12-02 13:25+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -1919,7 +1919,9 @@ msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:3
 msgid "There is no entry page for this module management. Please:"
-msgstr "هیچ صفحه‌ی ورودی برای این ماژول مدیریتی وجود ندارد. لطفا:"
+msgstr ""
+"این ماژول فاقد بخش مدیریت است و تمام قسمت های آن از بخش تنظیمات یا بخش "
+"کاربری کنترل می شود. شما می توانید :"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:5
 msgid "Module config"
@@ -1927,7 +1929,7 @@ msgstr "پیکربندی ماژول"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:5
 msgid "Go to set up module configs;"
-msgstr "به پیکربندی‌های ماژول ست‌آپ بروید."
+msgstr "به بخش پیکربندی در تنظیمات ماژول بروید."
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:6
 msgid "System admin"
