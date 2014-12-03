@@ -16,25 +16,9 @@ return array(
     ),
     'item' => array(
         // Social
-        'social_gplus' => array(
+        'social_sharing' => array(
             'category'      => 'social',
-            'title'         => _t('Enable Google Plus'),
-            'description'   => '',
-            'edit'          => 'checkbox',
-            'filter'        => 'int',
-            'value'         => 0
-        ),
-        'social_facebook' => array(
-            'category'      => 'social',
-            'title'         => _t('Enable Facebook'),
-            'description'   => '',
-            'edit'          => 'checkbox',
-            'filter'        => 'int',
-            'value'         => 0
-        ),
-        'social_twitter' => array(
-            'category'      => 'social',
-            'title'         => __('Enable Twitter'),
+            'title'         => _t('Enable sharing on social networks'),
             'description'   => '',
             'edit'          => 'checkbox',
             'filter'        => 'int',

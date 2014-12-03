@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-10-13 17:08+0330\n"
-"PO-Revision-Date: 2014-10-13 17:08+0330\n"
+"POT-Creation-Date: 2014-12-02 13:10+0330\n"
+"PO-Revision-Date: 2014-12-02 13:10+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -33,7 +33,7 @@ msgid "SEO slug"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:70
-msgid "Unique slug for SEO URL."
+msgid "Unique slug for SEO URL, space is not allowed."
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:106
@@ -210,11 +210,7 @@ msgid "Pi Engine"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:21
-msgid "Enable Google Plus"
-msgstr ""
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:29
-msgid "Enable Facebook"
+msgid "Enable sharing on social networks"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:10
@@ -244,23 +240,27 @@ msgstr "主题更新失败。"
 msgid "Action"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
 msgid "Edit"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:45
-msgid "Delete"
-msgstr ""
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
 msgid "Disable"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:51
 msgid "Enable"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+msgid "Are you sure you want delete this page?"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
+msgid "Delete"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:64
 #, fuzzy
 msgid "Add to menu"
 msgstr "主题更新失败。"

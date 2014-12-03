@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2014-09-19 18:04+0330\n"
-"PO-Revision-Date: 2014-09-19 18:04+0330\n"
+"POT-Creation-Date: 2014-12-02 11:31+0330\n"
+"PO-Revision-Date: 2014-12-02 11:44+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -356,6 +356,46 @@ msgstr "برای مدیران"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:43
 msgid "Auto approve submission"
 msgstr "تایید خودکار نظرات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:50
+msgid "Content format"
+msgstr "قالب محتوا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:55
+msgid "Plain text"
+msgstr "Plain text"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:56
+msgid "Markdown"
+msgstr "Markdown"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:57
+msgid "HTML"
+msgstr "HTML"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:58
+msgid "JavaScript/HTML"
+msgstr "JavaScript/HTML"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:59
+msgid "Custom (must be defined in `Custom\\Comment\\Api\\Markup`)"
+msgstr "شخصی سازی ( در مسیر `Custom\\Comment\\Api\\Markup` تنظیم شود )"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:67
+msgid "Options for text format"
+msgstr "گزینه های قالب متن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:72
+msgid "Enable tag link"
+msgstr "فعال کردن لینک تگ"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:73
+msgid "Enable username link"
+msgstr "فعال کردن لینک نام کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/config/config.php:74
+msgid "Enable URL link"
+msgstr "فعال کردن URL لینک"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/admin/comment-index.phtml:5
 msgid "Comment stats"

@@ -34,6 +34,7 @@ class IndexController extends ActionController
                 );
             }
             $title = $row->title;
+            $url = Pi::url($this->url('page', $row->toArray()));
             // update clicks
             $model = $this->getModel('page');
             $model->increment('clicks', array('id' => $row->id));
@@ -63,6 +64,7 @@ class IndexController extends ActionController
             'title'     => $title,
             'content'   => $content,
             'markup'    => $markup,
+            'url'       => $url,
         ));
         //return $content;
     }

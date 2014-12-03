@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-09-15 21:23+0330\n"
-"PO-Revision-Date: 2014-09-15 21:23+0330\n"
+"POT-Creation-Date: 2014-12-02 11:57+0330\n"
+"PO-Revision-Date: 2014-12-02 11:58+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
@@ -35,6 +35,10 @@ msgstr "کارمند"
 #: /var/www/html/local/pi/pi-release-2.5.0/www/setup/src/Controller/Admin.php:277
 msgid "Member"
 msgstr "کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Filter/Link.php:36
+msgid "Click to open"
+msgstr "برای بازشدن کلیک کنید"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Filter/YesNo.php:40
 msgid "No"
@@ -185,6 +189,10 @@ msgstr "نقش ها"
 msgid "Submit"
 msgstr "ارسال"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/EditorSelect.php:43
+msgid "Editor select"
+msgstr "انتخاب ویرایشگر"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Locale.php:34
 msgid "Auto-detection"
 msgstr "خودکار"
@@ -192,6 +200,18 @@ msgstr "خودکار"
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/Element/Locale.php:69
 msgid "Language"
 msgstr "زبان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/View/Helper/Form.php:168
+msgid "Required"
+msgstr "ضروری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/View/Helper/Form.php:437
+msgid "Close"
+msgstr "بستن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/View/Helper/Form.php:438
+msgid "Form"
+msgstr "فرم"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Form/View/Helper/FormDateSelect.php:91
 msgid "Day"
@@ -228,6 +248,10 @@ msgstr "فقط محتوی ( با استایل )"
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Theme.php:136
 msgid "Raw content (no style)"
 msgstr "محتوی خام ( بدون استایل )"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Editor.php:78
+msgid "Pi Default Editor"
+msgstr "ادیتور پیشفرض پای"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Application/Service/Comment.php:548
 msgid "Posted a new comment."
@@ -312,7 +336,7 @@ msgstr "ورود"
 msgid "Please <a href=\"%s\" title=\"\">login</a> and come again."
 msgstr "لطفا <a href=\"%s\" title=\"\">وارد شوید</a> و سپس به اینجا برگردید."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Feed/Model.php:203
+#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Feed/Model.php:200
 #, php-format
 msgid "Feed of %s"
 msgstr "خوراک  %s"
@@ -320,10 +344,6 @@ msgstr "خوراک  %s"
 #: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/User/Model/AbstractModel.php:239
 msgid "Guest"
 msgstr "مهمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/lib/Pi/Editor/Factory.php:77
-msgid "Pi Default Editor"
-msgstr "ادیتور پیشفرض پای"
 
 #~ msgid "No level"
 #~ msgstr "بدون مرحله"

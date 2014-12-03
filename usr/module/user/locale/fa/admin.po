@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-10-01 17:43+0330\n"
-"PO-Revision-Date: 2014-10-01 17:43+0330\n"
+"POT-Creation-Date: 2014-12-02 11:29+0330\n"
+"PO-Revision-Date: 2014-12-02 11:48+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -598,81 +598,96 @@ msgid "Format of username for registration."
 msgstr "قالب شناسه برای ثبت‌نام"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:211
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:244
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:247
 msgid "Strict: alphabet or number only"
-msgstr "اسکریپت: حروف الفبا یا اعداد"
+msgstr "اسکریپت: حروف الفبا یا اعداد انگلیسی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:212
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:245
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:248
+msgid "Strict: alphabet, number or space only"
+msgstr "اسکریپت: حروف الفبا یا اعداد انگلیسی و اسپیس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:213
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:249
 msgid "Medium: ASCII characters"
 msgstr "متوسط: کاراکترهای ASCII"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:213
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:246
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:214
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:250
+msgid "Medium: ASCII characters and spaces"
+msgstr "متوسط: کاراکترهای ASCII و اسپیس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:215
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:251
 msgid "Loose: multi-byte characters"
 msgstr "راحت: کاراکترهای مالتی بایت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:223
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:216
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:252
+msgid "Loose: multi-byte characters and spaces"
+msgstr "راحت: کاراکترهای مالتی بایت و اسپیس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:226
 msgid "Minimum username"
 msgstr "کمترین طول نام کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:224
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:227
 msgid "Minimum length of username for user registration"
 msgstr "کمترین طول نام کاربری برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:231
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:234
 msgid "Maximum username"
 msgstr "بیشترین طول نام کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:232
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:235
 msgid "Maximum length of username for user registration"
 msgstr "بیشترین طول نام کاربری برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:238
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:241
 msgid "Display name format"
 msgstr "قالب نام نمایشی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:239
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:242
 msgid "Format of display name for registration."
 msgstr "قالب نام نمایشی برای ثبت نام"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:256
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:262
 msgid "Minimum display name"
 msgstr "کمترین طول نام نمایشی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:257
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:263
 msgid "Minimum length of display name for user registration"
 msgstr "کمترین طول نام نمایشی برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:264
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:270
 msgid "Maximum display name"
 msgstr "بیشترین طول نام نمایشی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:265
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:271
 msgid "Maximum length of display name for user registration"
 msgstr "بیشترین طول نام نمایشی برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:272
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:278
 msgid "Minimum password"
 msgstr "کمترین طول کلمه عبور"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:273
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:279
 msgid "Minimum length of password for user registration"
 msgstr "کمترین طول کلمه عبور برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:280
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:286
 msgid "Maximum password"
 msgstr "بیشترین طول کلمه عبور"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:281
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:287
 msgid "Maximum length of password for user registration"
 msgstr "بیشترین طول کلمه عبور برای ثبت نام کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:288
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:294
 msgid "Username blacklist"
 msgstr "لیست سایه نام کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:289
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:295
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -680,11 +695,11 @@ msgstr ""
 "فهرست نام های کاربری غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده "
 "مجاز است."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:296
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:302
 msgid "Display blacklist"
 msgstr "لیست سیاه نام نمایشی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:297
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:303
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
@@ -692,47 +707,47 @@ msgstr ""
 "فهرست نام های نمایشی غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده "
 "مجاز است."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:304
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:310
 msgid "Email blacklist"
 msgstr "لیست سیاه ایمیل"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:305
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:311
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "فهرست ایمیل ها غیر مجاز، با استفاده از `|` جدا کنید، عبارات با قاعده مجاز "
 "است."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:314
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:320
 msgid "Max Avatar Width"
 msgstr "بیشترین عرض آواتار"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:315
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:321
 msgid "Allowed image width, 0 for no limit"
 msgstr "عرض تصویر مجار، صفر یعنی بدون محدودیت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:322
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:328
 msgid "Max Avatar Height"
 msgstr "بیشترین ارتفاع آواتار"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:323
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:329
 msgid "Allowed image height, 0 for no limit"
 msgstr "ارتفاع تصویر مجار، صفر یعنی بدون محدودیت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:330
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:336
 msgid "Max File Size"
 msgstr "بیشترین حجم فایل"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:331
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:337
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "فایل های آواتار مورد تایید برای بارگذاری ( به کیلوبایت ) ، صفر یعنی بدون "
 "محدودیت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:347
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:353
 msgid "Temporary Path"
 msgstr "مسیر موقت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:348
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/config.php:354
 msgid "For temporary storage of avatar"
 msgstr "برای منبع موقت ذخیره سازی آواتار"
 
