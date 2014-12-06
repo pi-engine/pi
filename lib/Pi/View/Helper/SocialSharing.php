@@ -21,14 +21,23 @@ use Zend\View\Helper\AbstractHtmlElement;
  * ```
  *  // Sorted items
  *  $items = array(
+ *      // Predefined items
  *      'email',
  *      'facebook',
  *      'twitter',
  *      'tumblr',
  *      'linkedin',
  *      'gplus',
- *      'pinterest'
+ *      'pinterest',
+ *      // on-fly custom items
+ *      array(
+ *          'identifier'    => 'weibo',
+ *          'title'         => 'Weibo',
+ *          'icon'          => 'fa-weibo',
+ *          'url'           => 'http://weibo.com/?url=%url%&amp;title=%title%',
+ *      )
  *  );
+ *
  *  // Or display all buttons in default order
  *  $items = true; // or $items = null; or $items = array();
  *  $this->socialSharing($items, $pageTitle, $pageUrl);
@@ -61,108 +70,38 @@ class SocialSharing extends AbstractHtmlElement
             $image = $this->view->escapeUrl($image);
         }
 
-        $rrssbList = array('email', 'facebook', 'twitter', 'tumblr', 'linkedin', 'gplus', 'pinterest');
-        $rrssbRender = function ($item) use ($title, $url, $image) {
-            switch ($item) {
-                case 'email':
-                    $template = <<<'EOT'
-<li class="rrssb-email">
-    <a title="%s" href="mailto:?subject=%s;body=%s">
-        <span class="rrssb-icon"><i class="fa fa-at"></i></span>
+        if (!$items) {
+            $itemList = Pi::service('social_sharing')->buildItems($title, $url, $image);
+        } else {
+            $itemList = array();
+            foreach ($items as $item) {
+                $itemList[$item] = Pi::service('social_sharing')->buildItem($item, $title, $url, $image);
+            }
+        }
+        $render = function ($item) {
+            if (!$item) {
+                return '';
+            }
+
+            $template = <<<'EOT'
+<li class="rrssb-%s">
+    <a title="%s" href="%s">
+        <span class="rrssb-icon"><i class="fa %s"></i></span>
         <span class="rrssb-text">%s</span>
    </a>
 </li>
 EOT;
-                    $button = sprintf($template, __('Email'), $title, $url, __('Email'));
-                    break;
-
-                case 'facebook':
-                    $template = <<<'EOT'
-<li class="rrssb-facebook">
-    <a title="%s" href="https://www.facebook.com/sharer/sharer.php?u=%s" class="popup">
-        <span class="rrssb-icon"><i class="fa fa-facebook"></i></span>
-        <span class="rrssb-text">%s</span>
-    </a>
-</li>
-EOT;
-                    $button = sprintf($template, __('Facebook'), $url, __('Facebook'));
-                    break;
-
-                case 'twitter':
-                    $template = <<<'EOT'
-<li class="rrssb-twitter">
-    <a title="%s" href="http://www.twitter.com/home?status=%s%s" class="popup">
-        <span class="rrssb-icon"><i class="fa fa-twitter"></i></span>
-        <span class="rrssb-text">%s</span>
-    </a>
-</li>
-EOT;
-                    $button = sprintf($template, __('Twitter'), $title, $url, __('Twitter'));
-                    break;
-
-                case 'tumblr':
-                    $template = <<<'EOT'
-<li class="rrssb-tumblr">
-    <a title="%s" href="http://tumblr.com/share?s=&amp;v=3&t=%s&amp;u=%s">
-        <span class="rrssb-icon"><i class="fa fa-tumblr"></i></span>
-        <span class="rrssb-text">%s</span>
-    </a>
-</li>
-EOT;
-                    $button = sprintf($template, __('Tumblr'), $title, $url, __('Tumblr'));
-                    break;
-
-                case 'linkedin':
-                    $template = <<<'EOT'
-<li class="rrssb-linkedin">
-    <a title="%s" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=%s&amp;title=%s&amp;summary=%s" class="popup">
-        <span class="rrssb-icon"><i class="fa fa-linkedin"></i></span>
-        <span class="rrssb-text">%s</span>
-    </a>
-</li>
-EOT;
-                    $button = sprintf($template, __('Linkedin'), $url, $title, $title, __('Linkedin'));
-                    break;
-
-                case 'gplus':
-                    $template = <<<'EOT'
-<li class="rrssb-googleplus">
-    <a title="%s" href="https://plus.google.com/share?url=%s%s" class="popup">
-        <span class="rrssb-icon"><i class="fa fa-google-plus"></i></span>
-        <span class="rrssb-text">%s</span>
-    </a>
-</li>
-EOT;
-                    $button = sprintf($template, __('Google +'), $title, $url, __('Google +'));
-                    break;
-
-                case 'pinterest':
-                    $template = <<<'EOT'
-<li class="rrssb-pinterest">
-    <a title="%s" href="http://www.pinterest.com/pin/create/button/?url=%s&amp;media=%s&amp;description=%s">
-        <span class="rrssb-icon"><i class="fa fa-pinterest"></i></span>
-        <span class="rrssb-text">%s</span>
-    </a>
-</li>
-EOT;
-                    $button = sprintf($template, __('Pinterest'), $url, $image, $title, __('Pinterest'));
-                    break;
-
-                default:
-                    $button = '';
-                    break;
-            }
+            $button = sprintf($template, $item['identifier'], $item['title'], $item['url'], $item['icon'], $item['title']);
 
             return $button;
         };
 
-        $items = $items ? (array) $items: $rrssbList;
         $buttons = '';
-        foreach ($items as $item) {
-            $buttons .= $rrssbRender($item);
+        foreach ($itemList as $key => $item) {
+            $buttons .= $render($item);
         }
 
-        // Generagt
+        // Generate
         if (!empty($buttons)) {
         	// Load jQuery and css file
         	$this->view->jQuery(array(

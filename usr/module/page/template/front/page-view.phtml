@@ -17,15 +17,11 @@
             <?php include $this->template('./' . $content); ?>
         </div>
         <div class="article-footer">
-            <?php if ($config['social_sharing']) {
-                $items = array(
-                    'email',
-                    'facebook',
-                    'twitter',
-                    'gplus',
-                );
-                echo $this->socialSharing($items, $this->escape($title), $this->escape($url));
-            } ?>
+            <?php
+            if ($config['social_sharing']) {
+                echo $this->socialSharing($config['social_sharing'], $title, $url);
+            }
+            ?>
         </div>
     <?php } else {  ?>
         <div class="panel panel-default">
@@ -36,15 +32,11 @@
                 <div class="clearfix">
                     <?php echo $content; ?>
                 </div>
-                <?php if ($config['social_sharing']) {
-                    $items = array(
-                        'email',
-                        'facebook',
-                        'twitter',
-                        'gplus',
-                    );
-                    echo $this->socialSharing($items, $this->escape($title), $this->escape($url));
-                } ?>
+                <?php
+                if ($config['social_sharing']) {
+                    echo $this->socialSharing($config['social_sharing'], $title, $url);
+                }
+                ?>
             </div>
         </div>
     <?php } ?>

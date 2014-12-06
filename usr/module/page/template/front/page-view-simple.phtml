@@ -19,15 +19,11 @@
             <?php include $this->template('./' . $content); ?>
         </div>
         <div class="article-footer">
-            <?php if ($config['social_sharing']) {
-                $items = array(
-                    'email',
-                    'facebook',
-                    'twitter',
-                    'gplus',
-                );
-                echo $this->socialSharing($items, $this->escape($title), $this->escape($url));
-            } ?>
+            <?php
+            if ($config['social_sharing']) {
+                echo $this->socialSharing($config['social_sharing'], $title, $url);
+            }
+            ?>
         </div>
     <?php } else {  ?>
         <div class="article-header page-header">
@@ -37,15 +33,11 @@
             <?php echo $content; ?> 
         </div>
         <div class="article-footer">
-            <?php if ($config['social_sharing']) {
-                $items = array(
-                    'email',
-                    'facebook',
-                    'twitter',
-                    'gplus',
-                );
-                echo $this->socialSharing($items, $this->escape($title), $this->escape($url));
-            } ?>
+            <?php
+            if ($config['social_sharing']) {
+                echo $this->socialSharing($config['social_sharing'], $title, $url);
+            }
+            ?>
         </div>
     <?php } ?>
     <?php if (!empty($nav)) { ?>
