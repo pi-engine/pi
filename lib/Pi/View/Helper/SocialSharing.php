@@ -85,7 +85,7 @@ class SocialSharing extends AbstractHtmlElement
 
             $template = <<<'EOT'
 <li class="rrssb-%s">
-    <a title="%s" href="%s">
+    <a title="%s" href="%s" class="popup">
         <span class="rrssb-icon"><i class="fa %s"></i></span>
         <span class="rrssb-text">%s</span>
    </a>
