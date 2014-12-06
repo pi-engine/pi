@@ -18,9 +18,9 @@
         </thead>
         <tbody>
         <?php foreach ($pages as $page) { ?>
-            <tr<?php if ($page['active'] != 1) { ?> class="danger"<?php } ?>>
+            <tr<?php if (empty($page['active'])) { ?> class="danger"<?php } ?>>
                 <td>
-                    <?php if ($page['active'] == 1) { ?>
+                    <?php if (!empty($page['active'])) { ?>
                     <a href="<?php echo $page['url']; ?>" target="_blank">
                     <?php echo _escape($page['title']); ?>
                     </a>
@@ -51,7 +51,7 @@
                     <a class="btn btn-sm btn-success" href="<?php echo $this->url('', array('action' => 'activate', 'id' => $page['id'])); ?>"><?php echo _a('Enable'); ?></a>
                     <?php }?>
                     <a class="btn btn-sm btn-danger" href="<?php echo $this->url('', array('action' => 'delete', 'id' => $page['id'])); ?>" 
-                        onclick="return confirm('<?php echo _a('Are you sure you want delete this page?'); ?>')"><?php echo _a('Delete'); ?></a>
+                        onclick="return confirm('<?php echo _a('Are you sure to delete this page?'); ?>')"><?php echo _a('Delete'); ?></a>
                 </td>
                 <td>
                     <input type="text" name="order[<?php echo $page['id']; ?>]" value="<?php echo $page['nav_order']; ?>" class="form-control">
