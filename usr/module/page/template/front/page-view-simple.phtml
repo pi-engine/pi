@@ -18,13 +18,13 @@
         <div class="article-body">
             <?php include $this->template('./' . $content); ?>
         </div>
-        <div class="article-footer">
-            <?php
-            if ($config['social_sharing']) {
-                echo $this->socialSharing($config['social_sharing'], $title, $url);
-            }
-            ?>
+        <?php if ($config['social_sharing']) { ?>
+        <div class="article-footer clearfix">
+            <div class="col-md-5 col-sm-10 col-xs-12">
+                <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+            </div>
         </div>
+        <?php } ?>
     <?php } else {  ?>
         <div class="article-header page-header">
             <h1><?php echo $this->escape($title); ?></h1>
@@ -32,13 +32,13 @@
         <div class="article-body clearfix">
             <?php echo $content; ?> 
         </div>
-        <div class="article-footer">
-            <?php
-            if ($config['social_sharing']) {
-                echo $this->socialSharing($config['social_sharing'], $title, $url);
-            }
-            ?>
+        <?php if ($config['social_sharing']) { ?>
+        <div class="article-footer clearfix">
+            <div class="col-md-5 col-sm-10 col-xs-12">
+                <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+            </div>
         </div>
+        <?php } ?>
     <?php } ?>
     <?php if (!empty($nav)) { ?>
     </div>
