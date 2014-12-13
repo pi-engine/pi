@@ -27,8 +27,8 @@ class HeadTitle extends AbstractFilter
      */
     public function filter($value)
     {
-        // Strip HTML tags and remove unrecognizable characters
-        $value =trim(_strip($value));
+        // Strip HTML tags
+        $value =trim(strip_tags($value));
         // Remove duplicated spaces
         $value = preg_replace('/[\s]+/', ' ', $value);
 

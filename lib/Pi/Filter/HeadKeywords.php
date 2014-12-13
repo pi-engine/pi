@@ -19,7 +19,7 @@ use Zend\Filter\AbstractFilter;
 class HeadKeywords extends AbstractFilter
 {
     /** @var array */
-    protected $optioins = array(
+    protected $options = array(
         // Force lower case
         'force_lower'   => false,
         // Maximum count
@@ -38,17 +38,22 @@ class HeadKeywords extends AbstractFilter
         if (is_array($value)) {
             $value = implode(',', $value);
         }
-        // Strip HTML tags and remove unrecognizable characters
-        $value =trim(_strip($value));
+        // Strip HTML tags
+        $value =trim(strip_tags($value));
         // Transform multi-spaces/commas to single comma
-        $value = preg_replace('/[\,]+[\s]?/', ',', $value);
+        $value = preg_replace('/[\s]?[\,]+[\s]?/', ',', $value);
         // Transform to lower case
         if (!empty($this->options['force_lower'])) {
             $value = strtolower($value);
         }
         // Remove duplicated keywords
-        $keywords = array_unique(array_filter(explode(',', $value)));
-        // Slice extra keywords
+        $keywords = array_filter(explode(',', $value));
+        if (!empty($this->options['force_lower'])) {
+            $keywords = array_unique($keywords);
+        } else {
+            $keywords = array_intersect_key($keywords, array_unique(array_map('strtolower', $keywords)));
+        }
+        // Slice exceeded keywords
         if (!empty($this->options['max_count'])) {
             $keywords = array_slice($keywords, 0, $this->options['max_count']);
         }
