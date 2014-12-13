@@ -29,8 +29,12 @@ class HeadTitle extends AbstractFilter
     {
         // Strip HTML tags
         $value =trim(strip_tags($value));
-        // Remove duplicated spaces
-        $value = preg_replace('/[\s]+/', ' ', $value);
+        // Remove duplicated spaces and commas
+        $value = preg_replace(
+            array('/[\s]+/', '/[\s]?[\,]+/', '/[\,]?[\,]+/'),
+            array(' ', ',', ','),
+            $value
+        );
 
         return $value;
     }

@@ -39,15 +39,18 @@ class HeadKeywords extends AbstractFilter
             $value = implode(',', $value);
         }
         // Strip HTML tags
-        $value =trim(strip_tags($value));
-        // Transform multi-spaces/commas to single comma
-        $value = preg_replace('/[\s]?[\,]+[\s]?/', ',', $value);
+        $value = strip_tags($value);
+        // Remove spaces
+        $value = preg_replace('/[\s]+/', ' ', trim($value));
         // Transform to lower case
         if (!empty($this->options['force_lower'])) {
             $value = strtolower($value);
         }
+        $keywords = explode(',', $value);
+        // Remove spaces
+        $keywords = array_map('trim', $keywords);
         // Remove duplicated keywords
-        $keywords = array_filter(explode(',', $value));
+        $keywords = array_filter($keywords);
         if (!empty($this->options['force_lower'])) {
             $keywords = array_unique($keywords);
         } else {
