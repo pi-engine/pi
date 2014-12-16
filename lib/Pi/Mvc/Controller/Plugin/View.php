@@ -336,7 +336,7 @@ class View extends AbstractPlugin
             $keywords = implode(',', $keywords);
         }
         //$keywords = preg_replace('/[\s]+/', ' ', trim(strip_tags($keywords)));
-        $filter = new Filter\HeadDescription;
+        $filter = new Filter\HeadKeywords;
         $keywords = $filter($keywords);
         $this->helper('headMeta')->__invoke(
             $keywords,

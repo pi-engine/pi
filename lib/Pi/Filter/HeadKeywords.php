@@ -22,6 +22,8 @@ class HeadKeywords extends AbstractFilter
     protected $options = array(
         // Force lower case
         'force_lower'   => false,
+        // replace space by ,
+        'force_replace' => false,
         // Maximum count
         'max_count'     => 0,
     );
@@ -41,7 +43,11 @@ class HeadKeywords extends AbstractFilter
         // Strip HTML tags
         $value = strip_tags($value);
         // Remove spaces
-        $value = preg_replace('/[\s]+/', ' ', trim($value));
+        if (!empty($this->options['force_replace'])) {
+            $value = preg_replace('/[\s]+/', ',', trim($value));
+        } else {
+            $value = preg_replace('/[\s]+/', ' ', trim($value));
+        }
         // Transform to lower case
         if (!empty($this->options['force_lower'])) {
             $value = strtolower($value);

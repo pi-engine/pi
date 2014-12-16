@@ -32,29 +32,10 @@ class Api extends AbstractApi
     public function add($page)
     {
         $id = 0;
-        /*
-        foreach (array_keys($page) as $key) {
-            if (!in_array($key, $this->pageColumns)) {
-                unset($page[$key]);
-            }
-        }
-        */
         // Set time_created
         if (!isset($page['time_created'])) {
             $page['time_created'] = time();
         }
-        /*
-        // Set name
-        $page['name'] = empty($page['name']) ? null : Pi::api('text', 'page')->name($page['name']);
-        // Set slug
-        $page['slug'] = empty($page['slug']) ? null : Pi::api('text', 'page')->slug($page['slug']);
-        // Set seo_title
-        $page['seo_title'] = Pi::api('text', 'page')->title($page['title']);
-        // Set seo_keywords
-        $page['seo_keywords'] = Pi::api('text', 'page')->keywords($page['title']);
-        // Set seo_description
-        $page['seo_description'] = Pi::api('text', 'page')->description($page['title']);
-        */
         // Save
         $row = Pi::model('page', $this->getModule())->createRow($page);
         $row->save();
@@ -78,7 +59,6 @@ class Api extends AbstractApi
         $row = Pi::model('page')->createRow($page);
         $row->save();
 
-        //Pi::registry('page')->clear($this->getModule());
         Pi::registry('page', $this->getModule())->flush();
 
         return $id;

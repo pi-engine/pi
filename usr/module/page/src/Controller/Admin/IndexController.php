@@ -10,6 +10,7 @@
 namespace Module\Page\Controller\Admin;
 
 use Pi;
+use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Module\Page\Form\PageForm;
 use Module\Page\Form\PageFilter;
@@ -50,34 +51,25 @@ class IndexController extends ActionController
      */
     public function addAction()
     {
-        //$markup = 'text';
-        //$module = $this->getModule();
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
             $markup = $data['markup'];
-            /*
             // Set slug
             if (!empty($data['slug'])) {
-                $data['slug'] = Pi::api('text', 'page')->slug($data['slug']);
+                $filter = new Filter\Slug;
+                $data['slug'] = $filter($data['slug']);
             }
             // Set name
             if (!empty($data['name'])) {
-                $data['name'] = Pi::api('text', 'page')->name($data['name']);
+                $filter = new Filter\Slug;
+                $data['name'] = $filter($data['name']);
             }
-            */
             // Set form
             $form = new PageForm('page-form', $markup);
             $form->setInputFilter(new PageFilter);
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                /*
-                foreach (array_keys($values) as $key) {
-                    if (!in_array($key, $this->pageColumns)) {
-                        unset($values[$key]);
-                    }
-                }
-                */
                 if (empty($values['name'])) {
                     $values['name'] = null;
                 }
@@ -88,30 +80,24 @@ class IndexController extends ActionController
                 $values['user'] = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
                 unset($values['id']);
-
-                /*
                 // Set seo_title
-                $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
-                $values['seo_title'] = Pi::api('text', 'page')->title($title);
+                if (!empty($values['seo_title'])) {
+                    $filter = new Filter\HeadTitle;
+                    $values['seo_title'] = $filter($values['seo_title']);
+                }
                 // Set seo_keywords
-                $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
-                $values['seo_keywords'] = Pi::api('text', 'page')->keywords($keywords);
+                if (!empty($values['seo_keywords'])) {
+                    $filter = new Filter\HeadKeywords;
+                    $values['seo_keywords'] = $filter($values['seo_keywords']);
+                }
                 // Set seo_description
-                $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
-                $values['seo_description'] = Pi::api('text', 'page')->description($description);
-                */
-
+                if (!empty($values['seo_description'])) {
+                    $filter = new Filter\HeadDescription;
+                    $values['seo_description'] = $filter($values['seo_description']);
+                }
                 // Save
                 $id = Pi::api('api', $this->getModule())->add($values);
-                //$row = $this->getModel('page')->createRow($values);
-                //$row->save();
                 if ($id) {
-                    /*
-                    if ($row->name) {
-                        $this->setPage($row->name, $row->title);
-                    }
-                    Pi::registry('page')->clear($this->getModule());
-                    */
                     $message = _a('Page data saved successfully.');
                     return $this->jump(array('action' => 'index'), $message);
                 } else {
@@ -152,32 +138,24 @@ class IndexController extends ActionController
     {
         if ($this->request->isPost()) {
             $data = $this->request->getPost();
-
             $id = $data['id'];
             $row = $this->getModel('page')->find($id);
-            /*
             // Set slug
             if (!empty($data['slug'])) {
-                $data['slug'] = Pi::api('text', 'page')->slug($data['slug']);
+                $filter = new Filter\Slug;
+                $data['slug'] = $filter($data['slug']);
             }
             // Set name
             if (!empty($data['name'])) {
-                $data['name'] = Pi::api('text', 'page')->name($data['name']);
+                $filter = new Filter\Slug;
+                $data['name'] = $filter($data['name']);
             }
-            */
             // Set form
             $form = new PageForm('page-form', $row->markup);
             $form->setInputFilter(new PageFilter);
             $form->setData($data);
             if ($form->isValid()) {
                 $values = $form->getData();
-                /*
-                foreach (array_keys($values) as $key) {
-                    if (!in_array($key, $this->pageColumns)) {
-                        unset($values[$key]);
-                    }
-                }
-                */
                 if (empty($values['name'])) {
                     $values['name'] = null;
                 }
@@ -191,19 +169,21 @@ class IndexController extends ActionController
                     $this->setPage($values['name'], $values['title']);
                 }
                 $values['time_updated'] = time();
-
-                /*
                 // Set seo_title
-                $title = ($values['seo_title']) ? $values['seo_title'] : $values['title'];
-                $values['seo_title'] = Pi::api('text', 'page')->title($title);
+                if (!empty($values['seo_title'])) {
+                    $filter = new Filter\HeadTitle;
+                    $values['seo_title'] = $filter($values['seo_title']);
+                }
                 // Set seo_keywords
-                $keywords = ($values['seo_keywords']) ? $values['seo_keywords'] : $values['title'];
-                $values['seo_keywords'] = Pi::api('text', 'page')->keywords($keywords);
+                if (!empty($values['seo_keywords'])) {
+                    $filter = new Filter\HeadKeywords;
+                    $values['seo_keywords'] = $filter($values['seo_keywords']);
+                }
                 // Set seo_description
-                $description = ($values['seo_description']) ? $values['seo_description'] : $values['title'];
-                $values['seo_description'] = Pi::api('text', 'page')->description($description);
-                */
-
+                if (!empty($values['seo_description'])) {
+                    $filter = new Filter\HeadDescription;
+                    $values['seo_description'] = $filter($values['seo_description']);
+                }
                 // Save
                 $row->assign($values);
                 $row->save();
