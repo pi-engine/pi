@@ -13,7 +13,7 @@ use Pi;
 use Zend\Authentication\Storage\Session as ZendSession;
 
 /**
- * Sessioin storage for authentication
+ * Session storage for authentication
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

@@ -15,7 +15,7 @@ use Zend\Filter\AbstractFilter;
 /**
  * URI filter
  *
- * Tranform URI to full URI
+ * Transform URI to full URI
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */

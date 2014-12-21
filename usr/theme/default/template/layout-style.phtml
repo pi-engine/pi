@@ -1,18 +1,28 @@
 <?php
+// Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
+// $this->doctype('HTML4_LOOSE');
+
+// Load translation data
 $this->i18nTheme();
+
+// Load Bootstrap
 $this->bootstrap();
+
+// Load style.css
 $this->css($this->assetTheme('css/style.css'));
 
 // Explicitly load favicon
-// @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon()
 ));
+
 // Load google analytics code
 $this->ga();
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -20,12 +30,9 @@ $module = Pi::service('module')->current();
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
-
     <div class="container pi-main-container">
-
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-
         <?php if (!empty($content)) { ?>
             <div class="<?php echo $module; ?>">
                 <div class="pi-module-content" ng-app="<?php echo $module; ?>">
@@ -34,6 +41,5 @@ $module = Pi::service('module')->current();
             </div>
         <?php } ?>
     </div>
-
 </body>
 </html>

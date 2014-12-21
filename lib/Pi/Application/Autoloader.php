@@ -38,13 +38,17 @@ class Autoloader
     /** @var string Top namespace for module custom classes */
     const TOP_NAMESPACE_CUSTOM = 'Custom';
 
+    /** @var string Top namespace for custom editor classes */
+    const TOP_NAMESPACE_EDITOR = 'Editor';
+
     /**
-     * Directory for module and extra custom source code.
+     * Directory for source code.
      * Module classes are located in `/usr/module/<module-name>/src/`
-     * and custom classes in `/usr/custom/module/<module-name>/src/`
+     * Custom classes in `/usr/custom/module/<module-name>/src/`
+     * Editor classes in `/usr/editor/<module-name>/src/`
      * @var string
      */
-    const MODULE_SOURCE_DIRECTORY = 'src';
+    const SOURCE_DIRECTORY = 'src';
 
     /**
      * Namespace separator
@@ -81,6 +85,13 @@ class Autoloader
      * @var string
      */
     protected $customPath = '';
+
+    /**
+     * Directory of editors
+     *
+     * @var string
+     */
+    protected $editorPath = '';
 
     /**#@+
      * Factory variables
@@ -144,6 +155,10 @@ class Autoloader
         // Extra custom directory
         if (!empty($options['custom_path'])) {
             $this->customPath = $options['custom_path'];
+        }
+        // Editor directory
+        if (!empty($options['editor_path'])) {
+            $this->editorPath = $options['editor_path'];
         }
         // class map
         if (!empty($options['class_map'])) {
@@ -277,7 +292,7 @@ class Autoloader
 
             $path = $this->modulePath . DIRECTORY_SEPARATOR
                   . strtolower($directory) . DIRECTORY_SEPARATOR
-                  . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+                  . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
                 $path
@@ -292,11 +307,27 @@ class Autoloader
             );
             $path = $this->customPath . DIRECTORY_SEPARATOR
                   . strtolower($module) . DIRECTORY_SEPARATOR
-                  . static::MODULE_SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+                  . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
             $filePath = $this->transformClassNameToFilename(
                 $trimmedClass,
                 $path
             );
+
+        // Editor classes, Editor\EditorName\ClassNamespace\ClassName
+        } elseif (static::TOP_NAMESPACE_EDITOR === $top) {
+            list($top, $editor, $trimmedClass) = explode(
+                static::NS_SEPARATOR,
+                $class,
+                3
+            );
+            $path = $this->editorPath . DIRECTORY_SEPARATOR
+                . strtolower($editor) . DIRECTORY_SEPARATOR
+                . static::SOURCE_DIRECTORY . DIRECTORY_SEPARATOR;
+            $filePath = $this->transformClassNameToFilename(
+                $trimmedClass,
+                $path
+            );
+
         // Top namespaces
         } elseif (!empty($this->tops[$top])) {
             // Trim off leader

@@ -2,6 +2,7 @@
 $this->css($this->assetModule('front/front.css'));
 ?>
 <div class="row">
+    <h1><?php _e('Search'); ?></h1>
     <form method="get" class="col-md-6 col-md-offset-3" id="js-search-form"
           data-url="<?php echo $this->url('search'); ?>"
           data-module-url="<?php echo $this->url('search', array('m' => '_NAME')); ?>"
@@ -49,4 +50,4 @@ $this->css($this->assetModule('front/front.css'));
         </div>
     </form>
 </div>
-<script src="<?php echo $this->assetModule('front/search-tabs.js'); ?>"></script>
+<?php $this->footScript()->appendFile($this->assetModule('front/search-tabs.js')); ?>

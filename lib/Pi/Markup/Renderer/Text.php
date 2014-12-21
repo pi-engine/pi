@@ -13,7 +13,7 @@ use Pi;
 use Pi\Markup\Parser\AbstractParser;
 
 /**
- * Text renderer
+ * Render to text format
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
@@ -32,6 +32,7 @@ class Text extends AbstractRenderer
             }
             $content = strip_tags($content);
         }
+        // To keep linebreak?
         if (!empty($this->options['newline'])) {
             $content = nl2br($content);
         }

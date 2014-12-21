@@ -1,8 +1,5 @@
 <?php if ($this->pageCount <= 1) { return; } ?>
-
-<!--
-See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination
--->
+<?php // See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination ?>
 <ul class="pagination<?php if (!empty($class)) { echo ' ' . $class; } ?>">
     <!-- First page link -->
     <?php if ($this->previous) { ?>

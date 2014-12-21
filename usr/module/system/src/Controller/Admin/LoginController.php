@@ -55,6 +55,7 @@ class LoginController extends ActionController
         parent::renderForm($form, $message);
         $this->view()->setTemplate('login', '', 'front');
         $this->view()->setLayout('layout-simple');
+        $this->view()->assign('title', __('Admin login'));
     }
 
     /**

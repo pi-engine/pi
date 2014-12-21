@@ -182,7 +182,7 @@ class Api extends AbstractApi
     {
         $url    = $this->url($tag, $module, $type);
         $html   = '<a href="' . $url . '" title="' . _escape($tag)
-                . '" target="_blank">' . _escape($tag) . '</a>';
+                . '" target="_blank" rel="tag">' . _escape($tag) . '</a>';
 
         return $html;
     }

@@ -1,13 +1,12 @@
 <?php $this->css($this->assetModule('front/front.css')); ?>
 <div class="page-header">
-    <h2><?php echo _escape($title); ?></h2>
+    <h1><?php echo _escape($title); ?></h1>
 </div>
 <?php if (!empty($message)) { ?>
     <div class="alert alert-danger">
         <?php echo _escape($message); ?>
     </div>
 <?php } ?>
-
 <?php echo $this->form($form); ?>
 <div class="user-action-bar">
     <div class="col-md-offset-2 col-md-10">

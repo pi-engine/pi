@@ -10,7 +10,7 @@
 
 namespace Pi\View\Helper;
 
-use Pi;
+use stdClass;
 use Zend\View\Helper\HeadMeta as ZendHeadMeta;
 use Zend\View\Helper\Placeholder;
 
@@ -24,14 +24,7 @@ use Zend\View\Helper\Placeholder;
 class HeadMeta extends ZendHeadMeta
 {
     /**
-     * Retrieve object instance; optionally add meta tag
-     *
-     * @param  string $content
-     * @param  string $keyValue
-     * @param  string $keyType
-     * @param  array $modifiers
-     * @param  string $placement
-     * @return self
+     * {@inheritDoc}
      */
     public function __invoke(
         $content = null,
@@ -43,16 +36,46 @@ class HeadMeta extends ZendHeadMeta
         if (null === $placement) {
             $placement = Placeholder\Container\AbstractContainer::SET;
         }
-        parent::__invoke($content, $keyValue, $keyType, $modifiers,
-                         $placement);
+        parent::__invoke($content, $keyValue, $keyType, $modifiers, $placement);
 
         return $this;
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function itemToString(stdClass $item)
+    {
+        // Skip `property` rendering for invalid doctype
+        if ('property' === $item->type) {
+            if (!$this->view->plugin('doctype')->isRdfa()) {
+                return '';
+            }
+        }
+
+        return parent::itemToString($item);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function isValid($item)
+    {
+        // Skip doctype check for setting `property`
+        if ($item instanceof stdClass && 'property' === $item->type) {
+            if (!isset($item->modifiers) || !isset($item->content)) {
+                return false;
+            }
+            return true;
+        }
+
+        return parent::isValid($item);
+    }
+
+    /**
      * Append an element
      *
-     * @param \stdClass $value
+     * @param stdClass $value
      * @return void
      */
     public function append($value)
@@ -61,7 +84,7 @@ class HeadMeta extends ZendHeadMeta
             $container = $this->getContainer();
             $content = '';
             foreach ($container->getArrayCopy() as $index => $item) {
-                if ($item->name == $value->name) {
+                if ('name' == $item->type && $item->name == $value->name) {
                     $content = $item->content;
                     $this->offsetUnset($index);
                 }
@@ -78,7 +101,7 @@ class HeadMeta extends ZendHeadMeta
     /**
      * Prepend an element
      *
-     * @param \stdClass $value
+     * @param stdClass $value
      * @return void
      */
     public function prepend($value)
@@ -87,7 +110,7 @@ class HeadMeta extends ZendHeadMeta
             $container = $this->getContainer();
             $content = '';
             foreach ($container->getArrayCopy() as $index => $item) {
-                if ($item->name == $value->name) {
+                if ('name' == $item->type && $item->name == $value->name) {
                     $content = $item->content;
                     $this->offsetUnset($index);
                 }

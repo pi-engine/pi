@@ -38,6 +38,27 @@ class Update extends BasicUpdate
         $table          = $model->getTable();
         $adapter        = $model->getAdapter();
 
+        // Add `template` field
+        if (version_compare($moduleVersion, '1.2.2', '<=')) {
+            $sql =<<<'EOD'
+ALTER TABLE %s
+ADD  `template`        varchar(64)             NOT NULL default '';
+EOD;
+
+            $sql = sprintf($sql, $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
+
         // Add `theme` `layout` fields
         if (version_compare($moduleVersion, '1.2.1', '<=')) {
             $sql =<<<'EOD'

@@ -23,9 +23,6 @@ class Config extends AbstractResource
      */
     public function boot()
     {
-        // Config will be fetched from database if not cached yet
-        //$this->bootstrap->bootResource('db');
-
         // Load system general configuration
         Pi::config()->loadDomain();
 

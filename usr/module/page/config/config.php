@@ -8,37 +8,17 @@
  */
 
 return array(
-    'category' => array(
-        array(
-            'title' => __('Social networking'),
-            'name' => 'social'
-        ),
-    ),
-    'item' => array(
-        // Social
-        'social_gplus' => array(
-            'category'      => 'social',
-            'title'         => _t('Enable Google Plus'),
+    'item'  => array(
+        'social_sharing'    => array(
+            'title'         => _t('Social sharing items'),
             'description'   => '',
-            'edit'          => 'checkbox',
-            'filter'        => 'int',
-            'value'         => 0
-        ),
-        'social_facebook' => array(
-            'category'      => 'social',
-            'title'         => _t('Enable Facebook'),
-            'description'   => '',
-            'edit'          => 'checkbox',
-            'filter'        => 'int',
-            'value'         => 0
-        ),
-        'social_twitter' => array(
-            'category'      => 'social',
-            'title'         => __('Enable Twitter'),
-            'description'   => '',
-            'edit'          => 'checkbox',
-            'filter'        => 'int',
-            'value'         => 0
+            'edit'          => array(
+                'type'      => 'multi_checkbox',
+                'options'   => array(
+                    'options'   => Pi::service('social_sharing')->getList(),
+                ),
+            ),
+            'filter'        => 'array',
         ),
     ),
 );

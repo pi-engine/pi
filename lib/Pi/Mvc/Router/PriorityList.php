@@ -9,6 +9,7 @@
 
 namespace Pi\Mvc\Router;
 
+use Closure;
 use Zend\Mvc\Router\PriorityList as ZendPriorityList;
 use Zend\Mvc\Router\RouteInterface;
 
@@ -51,13 +52,8 @@ class PriorityList extends ZendPriorityList
      */
     protected function loadExtraRoute($name)
     {
-        if (null === $this->extraRoutes && $this->extraRouteLoader) {
-            $this->extraRoutes = call_user_func($this->extraRouteLoader);
-        }
-        $route = null;
-        if ($this->extraRoutes && isset($this->extraRoutes[$name])) {
-            $route = $this->extraRoutes[$name];
-        }
+        $extraRoutes = $this->loadExtraRoutes();
+        $route = isset($extraRoutes[$name]) ? $extraRoutes[$name] : null;
 
         return $route;
     }
@@ -65,7 +61,7 @@ class PriorityList extends ZendPriorityList
     /**
      * Set loader for extra routes which do not belong to current section
      *
-     * @param Closure $loader
+     * @param Closure|array $loader
      *
      * @return $this
      */
@@ -74,5 +70,23 @@ class PriorityList extends ZendPriorityList
         $this->extraRouteLoader = $loader;
 
         return $this;
+    }
+
+    /**
+     * Load extra routes
+     *
+     * @param bool $reset
+     *
+     * @return array
+     */
+    public function loadExtraRoutes($reset = false)
+    {
+        if (($reset || null === $this->extraRoutes)
+            && $this->extraRouteLoader
+        ) {
+            $this->extraRoutes = call_user_func($this->extraRouteLoader);
+        }
+
+        return (array) $this->extraRoutes;
     }
 }

@@ -108,8 +108,8 @@ class Block
                 'register'  => Pi::service('user')->getUrl('register', $params),
             );
         } else {
-            $uid = Pi::service('user')->getUser()->get('id');
-            $name = Pi::service('user')->getUser()->get('name');
+            $uid    = Pi::service('user')->getUser()->get('id');
+            $name   = Pi::service('user')->getUser()->get('name');
             $avatar = Pi::service('user')->getPersist('avatar-mini');
             if (!$avatar) {
                 $avatar = Pi::service('user')->avatar($uid, 'mini');

@@ -103,9 +103,9 @@ class Markup extends AbstractService
      */
     public function render(
         $content,
-        $renderer = null,
-        $parser = null,
-        $options = array()
+        $renderer   = null,
+        $parser     = null,
+        $options    = array()
     ) {
         return Renderer::render($content, $renderer, $parser, $options);
     }

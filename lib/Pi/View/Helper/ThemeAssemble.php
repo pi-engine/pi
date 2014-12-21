@@ -78,14 +78,6 @@ class ThemeAssemble extends AbstractHelper
         // Load general config
         $configGeneral = Pi::config('', 'system', 'general');
 
-        // Set Google Analytics scripts in case available
-        /*
-        if ($configGeneral['ga_account']) {
-            $this->view->headScript()->appendScript(
-                $this->view->ga($configGeneral['ga_account'])
-            );
-        }
-        */
         // Set foot scripts in case available
         if ($configGeneral['foot_script']) {
             if (false !== stripos($configGeneral['foot_script'], '<script ')) {
@@ -99,7 +91,7 @@ class ThemeAssemble extends AbstractHelper
                 );
             }
         }
-        unset($configGeneral['ga_account'], $configGeneral['foot_script']);
+        unset($configGeneral['foot_script']);
 
         // Set global variables to root ViewModel, e.g. theme template
         $configGeneral['locale'] = Pi::service('i18n')->locale
@@ -108,6 +100,11 @@ class ThemeAssemble extends AbstractHelper
             ?: $configGeneral['charset'];
         $this->view->plugin('view_model')->getRoot()
             ->setVariables($configGeneral);
+
+        // Initialize headTitle helper
+        $headTitle = $this->view->headTitle();
+        // Set separator
+        $separator = $headTitle->setSeparator(' - ');
     }
 
     /**
@@ -117,23 +114,29 @@ class ThemeAssemble extends AbstractHelper
      */
     public function renderStrategy()
     {
-        $headTitle = $this->view->headTitle();
-        $hasCustom = $headTitle->count();
-        $headTitle->setSeparator(' - ');
+        $headTitle      = $this->view->headTitle();
+        $separator      = $headTitle->getSeparator();
+        $currentModule  = Pi::service('module')->current();
 
-        // Append module name for non-system module
-        $currentModule = Pi::service('module')->current();
-        if ($currentModule && 'system' != $currentModule) {
-            $moduleMeta = Pi::registry('module')
-                ->read($currentModule);
-            $headTitle->append($moduleMeta['title']);
+        // Set slogan as page title for homepage
+        if ((!$currentModule || 'system' == $currentModule)
+            && !$headTitle->count()
+        ) {
+            $headTitle->set(Pi::config('slogan'));
         }
-        // Append site name
-        $headTitle->append(Pi::config('sitename'));
 
-        // Append site slogan if no custom title available
-        if (!$hasCustom) {
-            $headTitle->append(Pi::config('slogan'));
+        // Set postfix
+        $postfix = $headTitle->getPostfix();
+        if (!$postfix) {
+            $postfix = Pi::config('sitename');
+            if ($currentModule && 'system' != $currentModule) {
+                $moduleMeta = Pi::registry('module')->read($currentModule);
+                $postfix = $moduleMeta['title'] . $separator . $postfix;
+            }
+            if ($headTitle->count()) {
+                $postfix = $separator . $postfix;
+            }
+            $headTitle->setPostfix($postfix);
         }
     }
 

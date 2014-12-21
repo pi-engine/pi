@@ -82,7 +82,7 @@ class LoginForm extends BaseForm
                 ),
                 'attributes'    => array(
                     'value'         => '1',
-                    'description'   => __('Remember me')
+                    'description'   => __('Remember login status')
                 )
             ));
         }

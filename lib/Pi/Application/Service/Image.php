@@ -16,7 +16,6 @@ use Imagine\Image\ImagineInterface;
 use Imagine\Image\FontInterface;
 use Imagine\Image\Box;
 use Imagine\Image\Point;
-//use Imagine\Image\Color;
 use Imagine\Image\Palette\Color\ColorInterface;
 use Imagine\Image\Palette\CMYK;
 use Imagine\Image\Palette\RGB;
@@ -26,6 +25,30 @@ use Imagine\Image\Palette\Grayscale;
  * Image handler service
  *
  * Use {@link Imagaine} as image manipulation library
+ *
+ *
+ * - Size options, applicable to `resize`, `thumbnail`, `crop`;
+ *      in `thumbnail`, aspect ratio is always kept; in `crop`, aspect ratio is not applicable
+ *
+ * ```
+ *  // With specified width and height
+ *  $size = array(<width>, <height>);
+ *
+ *  // With specified width
+ *  $size = array(<width>, 0);
+ *
+ *  // With specified height
+ *  $size = array(0, <height>);
+ *
+ *  // Square size with specified integer width (height)
+ *  $size = 500; // integer, in pix
+ *
+ *  // With specified width and height but keep aspect ratio
+ *  $size = array(<width>, <height>, true);
+ *
+ *  // With size ratio (0.0 - 1.0)
+ *  $size = 0.5;
+ * ```
  *
  * Use cases:
  *
@@ -87,26 +110,37 @@ use Imagine\Image\Palette\Grayscale;
  *
  * - Resize
  * ```
- *  // Resize with specified size
+ *  // Resize with specified target and options
  *  Pi::service('image')->resize(
  *      <path/to/source/image>,
- *      array(<width>, <height>),
+ *      <size>,
  *      <path/to/saved/image>,
- *      <filter>
- *  );
- *
- *  // Resize with ratio size
- *  Pi::service('image')->resize(
- *      <path/to/source/image>,
- *      0.5,
- *      <path/to/saved/image>,
- *      <filter>
+ *      <filter>,
+ *      array(<options>)
  *  );
  *
  *  // Overwrite original image
  *  Pi::service('image')->resize(
  *      <path/to/source/image>,
- *      array(<width>, <height>)
+ *      <size>
+ *  );
+ * ```
+ *
+ * - Thumbnail
+ * ```
+ *  // With specified target and options
+ *  Pi::service('image')->thumbnail(
+ *      <path/to/source/image>,
+ *      <size>,
+ *      <path/to/saved/image>,
+ *      <mode>,
+ *      array(<options>)
+ *  );
+ *
+ *  // Overwrite original image
+ *  Pi::service('image')->thumbnail(
+ *      <path/to/source/image>,
+ *      <size>
  *  );
  * ```
  *
@@ -143,31 +177,6 @@ use Imagine\Image\Palette\Grayscale;
  *      <path/to/source/image>,
  *      <path/to/child/image>,
  *      array(<X>, <Y>)
- *  );
- * ```
- *
- * - Thumbnail
- * ```
- *  // Thumbnail with specified size
- *  Pi::service('image')->thumbnail(
- *      <path/to/source/image>,
- *      array(<width>, <height>),
- *      <path/to/saved/image>,
- *      <mode>
- *  );
- *
- *  // Thumbnail with ratio size
- *  Pi::service('image')->thumbnail(
- *      <path/to/source/image>,
- *      0.5,
- *      <path/to/saved/image>,
- *      <mode>
- *  );
- *
- *  // Overwrite original image
- *  Pi::service('image')->thumbnail(
- *      <path/to/source/image>,
- *      array(<width>, <height>)
  *  );
  * ```
  *
@@ -442,10 +451,10 @@ class Image extends AbstractService
      */
     public function watermark(
         $sourceImage,
-        $to = '',
+        $to             = '',
         $watermarkImage = '',
-        $position = '',
-        array $options = array()
+        $position       = '',
+        array $options  = array()
     ) {
         if (!$this->getDriver()) {
             return false;
@@ -505,9 +514,9 @@ class Image extends AbstractService
      *
      * @param string|Image      $sourceImage
      * @param array|Point       $start
-     * @param array|float|Box   $size
+     * @param array|float|int|Box   $size
      * @param string            $to
-     * @param array             $options
+     * @param array             $options Options:
      *
      * @return bool
      */
@@ -527,13 +536,33 @@ class Image extends AbstractService
             $image = $this->getDriver()->open($sourceImage);
         }
         $start = $this->point($start);
-        if (is_float($size)) {
-            $size = $image->getSize()->scale($size);
-        } else {
-            $size = $this->box($size);
+        $origin = $image->getSize();
+
+        // Check if square
+        if (is_integer($size)) {
+            $size = array($size, $size);
         }
+        // With specified width and/or height
+        if (is_array($size)) {
+            // Specified height only
+            if (!$size[0]) {
+                $size[0] = $origin->getWidth();
+            // Specified width only
+            } elseif (!$size[1]) {
+                $size[1] = $origin->getHeight();
+            }
+            $box = $this->box($size);
+        // With size ratio
+        } elseif (is_float($size)) {
+            $box = $origin->scale($size);
+        } elseif ($size instanceof Box) {
+            $box = $size;
+        } else {
+            $box = null;
+        }
+
         try {
-            $image->crop($start, $size);
+            $image->crop($start, $box);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
             $result = false;
@@ -543,7 +572,7 @@ class Image extends AbstractService
     }
 
     /**
-     * Resizes current image and returns self
+     * Resizes current image
      *
      * @param string|Image      $sourceImage
      * @param array|float|Box   $size
@@ -556,9 +585,9 @@ class Image extends AbstractService
     public function resize(
         $sourceImage,
         $size,
-        $to = '',
-        $filter = '',
-        array $options = array()
+        $to             = '',
+        $filter         = '',
+        array $options  = array()
     ) {
         if (!$this->getDriver()) {
             return false;
@@ -569,15 +598,50 @@ class Image extends AbstractService
             $image = $this->getDriver()->open($sourceImage);
         }
         $filter = $filter ?: ImageInterface::FILTER_UNDEFINED;
-        if (is_float($size)) {
-            $size = $image->getSize()->scale($size);
-        } else {
-            $size = $this->box($size);
-        }
+        $box = $this->canonizeSize($size, $image->getSize());
         try {
-            $image->resize($size, $filter);
+            $image->resize($box, $filter);
             $result = $this->saveImage($image, $to, $sourceImage, $options);
         } catch(\Exception $e) {
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Generates a thumbnail from a current image
+     * Returns it as a new image, doesn't modify the current image
+     *
+     * @param string|Image      $sourceImage
+     * @param array|float|Box   $size
+     * @param string            $to
+     * @param string            $mode
+     * @param array             $options
+     *
+     * @return bool|ImageInterface
+     */
+    public function thumbnail(
+        $sourceImage,
+        $size,
+        $to,
+        $mode = '',
+        array $options = array()
+    ) {
+        if (!$this->getDriver()) {
+            return false;
+        }
+        if ($sourceImage instanceof ImageInterface) {
+            $image = $sourceImage;
+        } else {
+            $image = $this->getDriver()->open($sourceImage);
+        }
+        $box = $this->canonizeSize($size, $image->getSize());
+        $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
+        try {
+            $thumbnail = $image->thumbnail($box, $mode);
+            $result = $this->saveImage($thumbnail, $to, $sourceImage, $options);
+        } catch (\Exception $e) {
             $result = false;
         }
 
@@ -600,9 +664,9 @@ class Image extends AbstractService
     public function rotate(
         $sourceImage,
         $angle,
-        $to = '',
-        $background = null,
-        array $options = array()
+        $to             = '',
+        $background     = null,
+        array $options  = array()
     ) {
         if (!$this->getDriver()) {
             return false;
@@ -668,49 +732,6 @@ class Image extends AbstractService
     }
 
     /**
-     * Generates a thumbnail from a current image
-     * Returns it as a new image, doesn't modify the current image
-     *
-     * @param string|Image      $sourceImage
-     * @param array|float|Box   $size
-     * @param string            $to
-     * @param string            $mode
-     * @param array             $options
-     *
-     * @return bool|ImageInterface
-     */
-    public function thumbnail(
-        $sourceImage,
-        $size,
-        $to,
-        $mode = '',
-        array $options = array()
-    ) {
-        if (!$this->getDriver()) {
-            return false;
-        }
-        if ($sourceImage instanceof ImageInterface) {
-            $image = $sourceImage;
-        } else {
-            $image = $this->getDriver()->open($sourceImage);
-        }
-        if (is_float($size)) {
-            $size = $image->getSize()->scale($size);
-        } else {
-            $size = $this->box($size);
-        }
-        $mode = $mode ?: ImageInterface::THUMBNAIL_INSET;
-        try {
-            $thumbnail = $image->thumbnail($size, $mode);
-            $result = $this->saveImage($thumbnail, $to, $sourceImage, $options);
-        } catch (\Exception $e) {
-            $result = false;
-        }
-
-        return $result;
-    }
-
-    /**
      * Saves the image at a specified path, the target file extension is used
      * to determine file format, only jpg, jpeg, gif, png, wbmp and xbm are
      * supported
@@ -743,7 +764,7 @@ class Image extends AbstractService
     /**
      * Create path for image file to be stored
      *
-     * @param      $file
+     * @param string $file
      * @param bool $isFile
      *
      * @return mixed
@@ -777,7 +798,8 @@ class Image extends AbstractService
         }
         if ($to) {
             $result = true;
-            if ($this->getOption('auto_mkdir') && !$this->mkdir($to)) {
+            $mkdir = $this->getOption('auto_mkdir');
+            if ((null === $mkdir || $mkdir) && !$this->mkdir($to)) {
                 $result = false;
             } else {
                 try {
@@ -791,5 +813,52 @@ class Image extends AbstractService
         }
 
         return $result;
+    }
+
+    /**
+     * Canonize image size
+     *
+     * @param array|int|float|Box $size float, Box, or integer for square, or array: array(width, weight); array(width, 0); array(0, height); array(width, height, keepAspectRatio)
+     * @param Box $origin
+     *
+     * @return Box
+     */
+    protected function canonizeSize($size, Box $origin = null)
+    {
+        // Check if square
+        if (is_integer($size)) {
+            $size = array($size, $size);
+        }
+        // With specified width and/or height
+        if (is_array($size)) {
+            // To keep aspect ratio
+            if ($size[0] && $size[1] && isset($size[2])) {
+                $ratio = ($size[0] * $origin->getHeight()) / ($size[1] * $origin->getWidth());
+                if ($ratio >= 1) {
+                    $size[0] = 0;
+                } else {
+                    $size[1] = 0;
+                }
+            }
+            // Specified height only
+            if (!$size[0]) {
+                $box = $origin->heighten($size[1]);
+            // Specified width only
+            } elseif (!$size[1]) {
+                $box = $origin->widen($size[0]);
+            // Specified width and height
+            } else {
+                $box = $this->box($size);
+            }
+        // With size ratio
+        } elseif (is_float($size)) {
+            $box = $origin->scale($size);
+        } elseif ($size instanceof Box) {
+            $box = $size;
+        } else {
+            $box = null;
+        }
+
+        return $box;
     }
 }

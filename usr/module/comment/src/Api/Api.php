@@ -416,7 +416,9 @@ class Api extends AbstractApi
         $renderer = ('markdown' == $markup || 'html' == $markup)
             ? 'html' : 'text';
         $parser = ('markdown' == $markup) ? 'markdown' : false;
-        $result = Pi::service('markup')->render($content, $renderer, $parser);
+        //$result = Pi::service('markup')->render($content, $renderer, $parser);
+
+        $result = Pi::api('markup', 'comment')->render($content, $renderer, $parser);
 
         return $result;
     }
@@ -741,9 +743,15 @@ class Api extends AbstractApi
      *
      * @return PostForm
      */
-    public function getForm(array $data = array())
+    public function getForm(array $data = array(), array $options = array())
     {
-        $form = new PostForm;
+        $name = isset($options['name']) ? $options['name'] : '';
+        $markup = isset($options['markup'])
+            ? $options['markup']
+            : Pi::config('markup_format', $this->module);
+
+        $form = new PostForm($name, $markup);
+
         if ($data) {
             $form->setData($data);
         }

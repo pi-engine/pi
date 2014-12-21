@@ -196,12 +196,16 @@ class Pi
             'module_path'   => static::path('module'),
             // Directory of module custom classes
             'custom_path'   => !empty($paths['custom'])
-                               ? $paths['custom'] . '/module'
-                               : static::path('usr') . '/custom/module',
+                ? $paths['custom'] . '/module'
+                : static::path('usr') . '/custom/module',
+            // Directory of editor classes
+            'editor_path'   => !empty($paths['editor'])
+                ? $paths['editor']
+                : static::path('usr') . '/editor',
             // Vendor directory
             'include_path'  => !empty($paths['vendor'])
-                               ? $paths['vendor']
-                               : static::path('lib') . '/vendor',
+                ? $paths['vendor']
+                : static::path('lib') . '/vendor',
         );
         static::autoloader($options);
 

@@ -907,4 +907,37 @@ class Asset extends AbstractService
         return Pi::url('static') . '/' . $file;
     }
     /**#@-*/
+
+    /**
+     * Get logo URL
+     *
+     * @param  string $name    Logo filename
+     *
+     * @return string
+     */
+    public function logo($name = '')
+    {
+        $src = '';
+        $name = $name ?: 'logo.png';
+
+        $customFile = 'asset/custom/image/' . $name;
+        if (file_exists(Pi::path($customFile))) {
+            $src = Pi::url($customFile);
+        } else {
+            $theme = Pi::service('theme')->current();
+            $component = 'theme/' . $theme;
+            $asset = 'image/' . $name;
+            $file = $this->getAssetPath($component, $asset);
+            if (file_exists($file)) {
+                $src = $this->getAssetUrl($component, $asset);
+            } else {
+                $file = 'static/image/' . $name;
+                if (file_exists(Pi::path($file))) {
+                    $src = Pi::url($file);
+                }
+            }
+        }
+
+        return $src;
+    }
 }

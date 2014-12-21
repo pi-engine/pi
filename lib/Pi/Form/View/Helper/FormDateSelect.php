@@ -93,12 +93,18 @@ class FormDateSelect extends ZendFormDateSelect
             $monthElement->setEmptyOption(__('Month'));
         }
 
+        // Support for bootstrap form-control
+        $dayElement->setAttribute('class', 'form-control');
+        $monthElement->setAttribute('class', 'form-control');
+        $yearElement->setAttribute('class', 'form-control');
+
         $data = array();
         $data[$pattern['day']]   = $selectHelper->render($dayElement);
         $data[$pattern['month']] = $selectHelper->render($monthElement);
         $data[$pattern['year']]  = $selectHelper->render($yearElement);
 
-        $markup = '';
+        // Support for bootstrap form-inline
+        $markup = '<div class="form-inline" style="margin-bottom: 0;">';
         foreach ($pattern as $key => $value) {
             // Delimiter
             if (is_numeric($key)) {
@@ -107,6 +113,7 @@ class FormDateSelect extends ZendFormDateSelect
                 $markup .= $data[$value];
             }
         }
+        $markup .= '</div>';
 
         return $markup;
 

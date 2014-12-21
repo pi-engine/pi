@@ -69,6 +69,16 @@ return array(
             'route'         => 'default',
             'controller'    => 'file',
         ),
+        'images'     => array(
+            'label'         => _a('Images'),
+            'route'         => 'default',
+            'controller'    => 'image',
+        ),
+        'forms'     => array(
+            'label'         => _a('Forms'),
+            'route'         => 'default',
+            'controller'    => 'form',
+        ),
         'route' => array(
             'label'         => _a('Routes'),
             'route'         => 'default',

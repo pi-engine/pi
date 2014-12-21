@@ -29,14 +29,8 @@ class Router extends AbstractResource
         $routerClass = !empty($options['class'])
                        ? $options['class'] : 'Pi\Mvc\Router\Http\TreeRouteStack';
 
-        $section = !empty($options['section'])
-                   ? $options['section'] : Pi::engine()->section();
-        $routes = Pi::registry('route')->read($section, $exclude = 0);
-        if (!empty($options['routes'])) {
-            $routes = array_merge($routes, $options['routes']);
-        }
-        $options['routes'] =  $routes;
-        $router = $routerClass::factory($options);
+        $router = $routerClass::factory();
+        $router->load($options);
 
         if (is_callable(array($router, 'setBaseUrl'))) {
             $router->setBaseUrl(Pi::host()->get('baseUrl'));

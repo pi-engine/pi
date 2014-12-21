@@ -1,7 +1,7 @@
 <?php
 $options    = (array) $block['options'];
 $items      = (array) $block['items'];
-$target     = empty($options['target_new']) ? '' : '_blank';
+$target     = empty($options['target_new']) ? '_self' : '_blank';
 $ellipsis   = empty($options['max_rows'])
             ? 'pi-ellipsis'
             : 'pi-ellipsis pi-ellipsis-' . intval($options['max_rows']);
@@ -12,6 +12,9 @@ if (!empty($options['width'])) {
 if (!empty($options['height'])) {
     $imgStyle .= 'height: '  . $options['height'] . 'px;';
 }
+if (!empty($imgStyle)) {
+    $imgStyle = sprintf('style="%s" ', $imgStyle);
+}
 
 $spotLeft  = empty($options['spot_left']) ? false : true;
 $spotlight = array_shift($items);
@@ -21,12 +24,11 @@ $spotlight = array_shift($items);
     <div class="row">
         <div class="col-sm-6">
 <?php } ?>
-
     <div class="media" style="margin-bottom: 10px">
         <?php
             echo sprintf(
                 '<a href="%s" title="%s" class="pull-left" target="%s">
-                    <img src="%s" class="img-responsive" alt="%s" style="%s">
+                    <img src="%s" class="img-responsive" alt="%s" %s>
                 </a>',
                 $spotlight['link'],
                 _escape($spotlight['caption']),
@@ -53,7 +55,6 @@ $spotlight = array_shift($items);
         </div>
         <div class="col-sm-6">
     <?php } ?>
-
     <ul>
     <?php foreach($items as $item) { ?>
         <li>
@@ -66,10 +67,8 @@ $spotlight = array_shift($items);
         </li>
     <?php } ?>
     </ul>
-
 <?php if ($spotLeft) { ?>
         </div>
     </div>
 <?php } ?>
-
 </div>

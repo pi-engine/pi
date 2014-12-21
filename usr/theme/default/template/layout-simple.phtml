@@ -1,4 +1,7 @@
 <?php
+// Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
+$this->doctype('HTML5');
+
 // Load translation data
 $this->i18nTheme();
 
@@ -55,6 +58,14 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
+// Dublin Core
+$this->headMeta(_escape($sitename), 'dc:title', 'property', array('lang' => $locale));
+$this->headMeta(_escape($slogan), 'dc:subject', 'property', array('lang' => $locale));
+$this->headMeta(_escape($sitename . ' - ' . $slogan) , 'dc:description', 'property', array('lang' => $locale));
+$this->headMeta('text', 'dc:type', 'property');
+$this->headMeta(_escape($sitename), 'dc:publisher', 'property');
+$this->headMeta($locale, 'dc:language', 'property');
+
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
@@ -64,7 +75,9 @@ $this->headLink(array(
 // Load google analytics code
 $this->ga();
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -72,27 +85,23 @@ $module = Pi::service('module')->current();
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
-   <!-- Header: brand, slogan, user bar -->
-    <div class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-            <h1 class="hide">
-                <?php echo _escape($sitename . ' - ' . $slogan); ?>
-            </h1>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>"
-               title="<?php echo _escape($slogan); ?>">
-               <?php echo _escape($sitename); ?>
-            </a>
-            <?php
-            echo $this->widget('system-user-bar');
-            ?>
+    <!-- Header: brand, slogan, user bar -->
+    <header class="pi-header">
+        <div class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+                <h2>
+                    <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                        <?php echo _escape($sitename); ?>
+                    </a>
+                </h2>
+                <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
+            </div>
         </div>
-    </div>
-
-    <div class="container pi-main-container">
-
+    </header>
+    <!-- Page main content: flash-messenger,and module content -->
+    <section class="container pi-main-container">
         <!-- Flash messenger -->
         <?php include $this->template('flash-messenger'); ?>
-
         <!-- Module content starts -->
         <?php if (!empty($content)) { ?>
             <div class="<?php echo $module; ?>">
@@ -102,43 +111,39 @@ $module = Pi::service('module')->current();
             </div>
         <?php } ?>
         <!-- Module content ends -->
-
-    </div>
-
-   <!-- Footer: sitelink -->
-   <div class="pi-footer text-center">
-       <div class="container">
-           <?php
-           $footer = Pi::config('footer');
-           if ($footer) {
-               echo $footer;
-           } else {
-           ?>
-
-           <ul class="pi-footer-links muted">
-               <li>
-                   <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                       &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                   </a>
-               </li>
-               <li>·</li>
-               <li>
-                   <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                       Powered by Pi Engine
-                   </a>
-               </li>
-               <li>·</li>
-               <li>
-                   <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                       Design of Pi Engine
-                   </a>
-               </li>
-               <li>·</li>
-
-               <i class="fa fa-spinner fa-spin" title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"></i>
-           </ul>
-           <?php } ?>
-       </div>
-   </div>
+    </section>
+    <!-- Footer: sitelink -->
+    <footer class="pi-footer text-center">
+        <div class="container">
+            <?php
+            $footer = Pi::config('footer');
+            if ($footer) {
+                echo $footer;
+            } else {
+            ?>
+            <ul class="pi-footer-links muted">
+                <li>
+                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Powered by Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+                <li>
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                        Design of Pi Engine
+                    </a>
+                </li>
+                <li>·</li>
+                <li><a title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"><i class="fa fa-spinner fa-spin"></i></a></li>      
+            </ul>
+            <?php } ?>
+        </div>    
+    </footer>
 </body>
 </html>

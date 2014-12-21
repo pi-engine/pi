@@ -10,10 +10,7 @@ $targets = $comment['targets'];
 // Pagination object
 $paginator = $comment['paginator'];
 ?>
-
-<?php 
-    if (empty($tabs)) {
-?>
+<?php  if (empty($tabs)) { ?>
 <div class="pi-comment-header" style="margin: 20px 0; border-bottom: 0">
     <?php echo _escape($comment['title']); ?>
 </div>
@@ -22,14 +19,9 @@ $paginator = $comment['paginator'];
         echo $this->tab($tabs);
     }
 ?>
-    
-<?php
-if ($targets) {
-?>
+<?php if ($targets) { ?>
 <div class="pi-comment-article pi-comment-list">
-<?php
-    foreach ($targets as $root => $target) {
-?>
+<?php foreach ($targets as $root => $target) { ?>
     <div class="media">
         <a class="pi-comment-count pull-left" href="<?php echo $target['comment_url']; ?>" target="_blank" title="<?php echo sprintf(__('%s comments'), $target['count']); ?>" target="_blank">
             <?php echo $target['count']; ?>
@@ -56,17 +48,13 @@ if ($targets) {
             </div>
         </div>
     </div>
-<?php
-    }
+<?php } ?>
+<?php 
     if ($paginator) {
         echo $this->pagination($paginator);
     }
 ?>
 </div>
-<?php
-} else {
-?>
+<?php } else { ?>
 <div class="pi-comment-none"><?php _e('No data available yet.'); ?></div>
-<?php
-}
-?>
+<?php } ?>

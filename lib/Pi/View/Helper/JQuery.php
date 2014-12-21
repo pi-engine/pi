@@ -67,11 +67,22 @@ class JQuery extends AssetCanonize
     ) {
         $files = $this->canonize($files, $attributes);
         if (empty(static::$rootLoaded)) {
-            if (!isset($files['jquery.min.js'])) {
-                $files = array('jquery.min.js' =>
-                        $this->canonizeFile('jquery.min.js'))
-                    + $files;
+            if (isset($files['jquery.min.js'])) {
+                $baseAttrs = $files['jquery.min.js'];
+            } else {
+                $baseAttrs = $this->canonizeFile('jquery.min.js');
             }
+            if (!is_array($baseAttrs)) {
+                $baseAttrs = array(
+                    'file'  => $baseAttrs
+                );
+            }
+            /*
+            if (!isset($baseAttrs['defer'])) {
+                $baseAttrs['defer'] = false;
+            }
+            */
+            $files = array('jquery.min.js' => $baseAttrs) + $files;
             static::$rootLoaded = true;
         }
 

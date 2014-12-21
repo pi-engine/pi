@@ -53,14 +53,6 @@ class Route extends AbstractRegistry
             if ($row->priority) {
                 $spec['priority'] = $row->priority;
             }
-            /*
-            $directory = Pi::service('module')->directory($row->module);
-            if ($directory && $row->module != $directory) {
-                $name = $row->module . '-' . $row->name;
-            } else {
-                $name = $row->name;
-            }
-            */
             $name = $row->name;
             $configs[$name] = $spec;
         }

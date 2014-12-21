@@ -32,14 +32,18 @@
             </a>
         </li>
     </ul>
-    <script>
-        $.getJSON("<?php echo $block['callback']; ?>?" + new Date().getTime(), function (user) {
+    <?php
+    $script = <<<'EOT'
+        $.getJSON('%s?' + new Date().getTime(), function (user) {
             if (user.uid > 0) {
                 $('#member-message').attr('href', user.message);
                 $('#member-profile').attr('href', user.profile).html(user.avatar + ' ' + user.name);
             }
         });
-    </script>
+EOT;
+    $script = sprintf($script, $block['callback']);
+    $this->footScript()->appendScript($script);
+    ?>
     <?php } ?>
 <?php break; ?>
 <?php case 'dropdown': ?>

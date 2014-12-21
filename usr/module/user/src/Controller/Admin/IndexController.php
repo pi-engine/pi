@@ -42,6 +42,7 @@ class IndexController extends ActionController
         $limit  = Pi::config('list_limit', 'user');
         $offset = (int) ($page -1) * $limit;
 
+        $condition['activated']     = _get('activated') ?: '';
         $condition['active']        = _get('active') ?: '';
         $condition['enable']        = _get('enable') ?: '';
         $condition['front_role']    = _get('front_role') ?: '';
@@ -66,7 +67,6 @@ class IndexController extends ActionController
         );
 
         return $data;
-
     }
 
     /**

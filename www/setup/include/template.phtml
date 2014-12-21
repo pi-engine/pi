@@ -16,13 +16,15 @@
         }
     ?>
 </head>
-<body>
+<body id="pi-setup-<?php echo $data['locale']; ?>">
     <!-- header -->
-    <div id="header">
+    <header id="header">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h1 class="logo-text"><a title="<?php echo $data['title']; ?>" href="<?php echo $data['baseUrl']; ?>"><?php echo $data['title']; ?></a></h1>
+                    <h1 class="logo-text">
+                        <a title="<?php echo $data['title']; ?>" href="<?php echo $data['baseUrl']; ?>"><?php echo $data['title']; ?></a>
+                    </h1>
                 </div>
                 <?php
                     $countPages = count($data['navPages']);
@@ -42,10 +44,10 @@
                 ?>
             </div>
         </div>
-    </div>
+    </header>
 
     <!-- content -->
-    <div id="main-content">
+    <section id="main-content">
         <div class="container">
             <div class="row">
             <?php
@@ -95,16 +97,16 @@
                 ?>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- footer -->
-    <div id="footer">
+    <footer id="footer">
         <div class="container">
             <div class="row">
                 <p>Powered by <a href="http://pialog.org" title="Pi Engine">Pi Engine</a></p>
             </div>
         </div>
-    </div>
+    </footer>
     <?php
         if (!empty($data['footContent'])) {
             echo $data['footContent'];

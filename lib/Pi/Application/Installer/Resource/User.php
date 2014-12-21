@@ -734,7 +734,6 @@ class User extends AbstractResource
             return;
         }
 
-        $module = $this->getModule();
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
         Pi::registry('display_group', 'user')->clear();
@@ -755,10 +754,12 @@ class User extends AbstractResource
      */
     public function deactivateAction()
     {
-        if (!$this->isActive()) {
+        $module = $this->getModule();
+        // Skip for active user module, or other modules w/o user installed
+        if (!$this->isActive() || ($this->isActive() && 'user' == $module)) {
             return;
         }
-        $module = $this->getModule();
+
         Pi::registry('field', 'user')->clear();
         Pi::registry('compound_field', 'user')->clear();
         Pi::registry('display_group', 'user')->clear();
@@ -783,7 +784,6 @@ class User extends AbstractResource
      */
     protected function addFields(array $fields)
     {
-        //$meta = Pi::registry('field', 'user')->read('account');
         $table = Pi::model('profile', 'user')->getTable();
         $meta = Pi::db()->metadata()->getColumns($table);
         $pattern = 'ALTER TABLE ' . $table . ' ADD `%s` text';

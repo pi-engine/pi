@@ -58,8 +58,6 @@ class I18n extends AbstractResource
             if ($global) {
                 foreach ($global as $domain) {
                     $translator->load($domain);
-                    // Custom translations
-                    //$translator->load('custom:' . $domain);
                 }
             }
             // Register listener to load module translation
@@ -86,10 +84,8 @@ class I18n extends AbstractResource
      */
     public function loadTranslator(MvcEvent $e)
     {
-        //$module = Pi::service('module')->current();
         foreach ((array) $this->options['translator']['module'] as $domain) {
             Pi::service('i18n')->loadModule($domain);
-            //Pi::service('i18n')->load('custom/' . $module . ':' . $domain);
         }
     }
 }

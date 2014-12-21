@@ -49,11 +49,13 @@ if ($form->has('captcha')) { ?>
 <?php } ?>
 <?php
 if ($form->has('rememberme')) { ?>
-    <div class="form-group">
+    <div class="form-group checkbox">
+    	<label>
         <?php
         $rememberme = $form->get('rememberme');
-        echo $this->formElement($rememberme);
+        echo $this->formElement($rememberme) . $rememberme->getLabel();
         ?>
+	</label>
     </div>
 <?php } ?>
 <?php

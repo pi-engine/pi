@@ -46,10 +46,27 @@ return array(
             'value'         => 'Configuration text for testing'
         ),
 
-        'add'   => array(
+        'add_select_one'   => array(
             'category'      => 'general',
             'title'         => _t('Add Item'),
-            'description'   => _t('An example for adding configuration.'),
+            'description'   => _t('Example for single select.'),
+            'edit'          => array(
+                'type'      => 'select',
+                'options'   => array(
+                    'options'   => array(
+                        1   => _t('One'),
+                        2   => _t('Two'),
+                        3   => _t('Three'),
+                    ),
+                ),
+            ),
+            'value'         => 2,
+        ),
+
+        'add_select_multiple'   => array(
+            'category'      => 'general',
+            'title'         => _t('Add Item'),
+            'description'   => _t('Example for multiple select.'),
             'edit'          => array(
                 'type'      => 'select',
                 'attributes'    => array(
@@ -65,6 +82,58 @@ return array(
             ),
             'filter'        => 'array',
             'value'         => array(1, 2),
-        )
-    )
+        ),
+
+        'add_checkbox'   => array(
+            'category'      => 'general',
+            'title'         => _t('Add Item'),
+            'description'   => _t('Example for checkbox.'),
+            'edit'          => array(
+                'type'      => 'checkbox',
+                'options'   => array(
+                    'options'   => array(
+                        1   => _t('One'),
+                        2   => _t('Two'),
+                        3   => _t('Three'),
+                    ),
+                ),
+            ),
+            'value'         => 2,
+        ),
+
+        'add_multi_checkbox'   => array(
+            'category'      => 'general',
+            'title'         => _t('Add Item'),
+            'description'   => _t('Example for multiple checkbox.'),
+            'edit'          => array(
+                'type'      => 'multi_checkbox',
+                'options'   => array(
+                    'options'   => array(
+                        1   => _t('One'),
+                        2   => _t('Two'),
+                        3   => _t('Three'),
+                    ),
+                ),
+            ),
+            'filter'        => 'array',
+            'value'         => array(1, 2),
+        ),
+
+        'add_radio'   => array(
+            'category'      => 'general',
+            'title'         => _t('Add Item'),
+            'description'   => _t('Example for radio.'),
+            'edit'          => array(
+                'type'      => 'radio',
+                'options'   => array(
+                    'options'   => array(
+                        1   => _t('One'),
+                        2   => _t('Two'),
+                        3   => _t('Three'),
+                    ),
+                ),
+            ),
+            'value'         => 2,
+        ),
+    ),
 );

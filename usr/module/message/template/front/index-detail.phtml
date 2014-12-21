@@ -86,12 +86,13 @@ if (!empty($message)) { ?>
     ?>
 </div>
 <?php } ?>
-<script src="<?php echo $this->assetModule('script/index-detail.js'); ?>"></script>
-    
-<script>
-messageIndex({
-    p: '<?php echo isset($paginator) ? $paginator->getCurrentPageNumber() : ''; ?>',
-    host: '<?php echo $this->url('', array('module' => 'message')); ?>',
-    confirm: '<?php _e('Once you delete this message, it cannot be undone.'); ?>'
-});
-</script>  
+<?php 
+    $paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
+    $host = $this->url('', array('module' => 'message'));
+    $confirm = __('Once you delete this message, it cannot be undone.');
+    $script = "messageIndex({p: '%s', host: '%s', confirm: '%s'});";
+    $script = sprintf($script, $paginator, $host, $confirm);
+
+    $this->footScript()->appendFile($this->assetModule('script/index-detail.js'));
+    $this->footScript()->appendScript($script);
+?>

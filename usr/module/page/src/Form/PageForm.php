@@ -67,7 +67,7 @@ class PageForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'          => 'text',
-                'description'   => _a('Unique slug for SEO URL.'),
+                'description'   => _a('Unique slug for SEO URL, space is not allowed.'),
             )
         ));
 
@@ -84,6 +84,18 @@ class PageForm extends BaseForm
             'type'          => 'layout',
             'options'       => array(
                 'theme' => '', // Specify theme name here
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'template',
+            'type' => 'select',
+            'options' => array(
+                'label' => __('Template'),
+                'value_options' => array(
+                    'page-view' => __('Default'),
+                    'page-view-simple' => __('Simple'),
+                ),
             ),
         ));
 

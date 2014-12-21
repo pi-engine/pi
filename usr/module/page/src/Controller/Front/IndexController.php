@@ -19,8 +19,6 @@ class IndexController extends ActionController
 {
     protected function render($row)
     {
-        $this->view()->setTemplate('page-view');
-
         if (!$row instanceof RowGateway || !$row->active) {
             $title      = __('Page request');
             $content    = __('The page requested does not exist.');
@@ -36,16 +34,21 @@ class IndexController extends ActionController
                 );
             }
             $title = $row->title;
+            $url = Pi::url($this->url('page', $row->toArray()));
             // update clicks
             $model = $this->getModel('page');
             $model->increment('clicks', array('id' => $row->id));
 
             // Module config
             $config = Pi::config('', $this->getModule());
+            // Set SEO informations
+            $seoTitle = empty($row->seo_title) ? $row->title : $row->seo_title;
+            $seoDescription = empty($row->seo_description) ? $row->title : $row->seo_description;
+            $seoKeywords = empty($row->seo_keywords) ? $row->title : $row->seo_keywords;
             // Set view
-            $this->view()->headTitle($row->seo_title);
-            $this->view()->headdescription($row->seo_description, 'set');
-            $this->view()->headkeywords($row->seo_keywords, 'set');
+            $this->view()->headTitle($seoTitle);
+            $this->view()->headDescription($seoDescription, 'set');
+            $this->view()->headKeywords($seoKeywords, 'set');
             $this->view()->assign('config', $config);
             if ($row->theme) {
                 $this->view()->setTheme($row->theme);
@@ -55,10 +58,17 @@ class IndexController extends ActionController
             }
         }
 
+        if ($row->template) {
+            $this->view()->setTemplate($row->template);
+        } else {
+            $this->view()->setTemplate('page-view');
+        }
+        
         $this->view()->assign(array(
             'title'     => $title,
             'content'   => $content,
             'markup'    => $markup,
+            'url'       => $url,
         ));
         //return $content;
     }

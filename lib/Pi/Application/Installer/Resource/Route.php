@@ -127,14 +127,6 @@ class Route extends AbstractResource
         $modelRoute = Pi::model('route');
         $routes = $this->canonize($this->config);
 
-        /*
-        // Skip existing routes, created by the module it clones from
-        $rowset = $modelRoute->select(array('name' => array_keys($routes)));
-        foreach ($rowset as $row) {
-            unset($routes[$row->name]);
-        }
-        */
-
         // Add new routes
         foreach ($routes as $name => $data) {
             $row = $modelRoute->createRow($data);
@@ -163,7 +155,6 @@ class Route extends AbstractResource
         }
 
         $modelRoute = Pi::model('route');
-        //$modelRoute->delete(array('module' => $module, 'custom' => 0));
         $routes = $this->canonize($this->config);
 
         // Update existing routes
@@ -178,13 +169,6 @@ class Route extends AbstractResource
             unset($routes[$row->name]);
         }
 
-        /*
-        // Skip existing routes, created by the module it clones from
-        $rowset = $modelRoute->select(array('name' => array_keys($routes)));
-        foreach ($rowset as $row) {
-            unset($routes[$row->name]);
-        }
-        */
         // Add new routes
         foreach ($routes as $name => $data) {
             $row = $modelRoute->createRow($data);

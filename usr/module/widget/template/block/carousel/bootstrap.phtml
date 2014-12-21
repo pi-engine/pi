@@ -57,9 +57,9 @@ EOT;
 
         return $content;
     };
-    ?>
-
-    <style>
+    
+    // Add head style
+    $style = <<<'EOT'
         .widget-carousel-bootstrap .carousel-indicators {
             text-align: right;
             margin: 0;
@@ -78,11 +78,12 @@ EOT;
             width: 14px !important;
             height: 14px !important;
         }
-    </style>
+EOT;
 
-<?php
+    $this->headStyle()->appendStyle($style);
+
 } else {
-
+    
     $render = function ($item) use ($imgStyle, $ellipsis, $target) {
         $itemPattern =<<<EOT
             <a href="%s" target="%s" title="%s">
@@ -120,7 +121,6 @@ EOT;
                 <li data-target="#<?php echo $carouselId; ?>" data-slide-to="<?php echo $i; ?>"></li>
             <?php } ?>
         </ol>
-
         <!-- Carousel items -->
         <div class="carousel-inner">
             <div class="item active">
@@ -132,7 +132,6 @@ EOT;
                 </div>
             <?php } ?>
         </div>
-
         <!-- Carousel nav -->
         <a class="left carousel-control" href="#<?php echo $carouselId; ?>" data-slide="prev">
             <span class="icon-prev fa fa-chevron-left"></span>

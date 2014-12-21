@@ -43,6 +43,24 @@ class SessionManager extends ZendSessionManager implements
     protected $isValid;
 
     /**
+     * {@inheritDoc}
+     * Start with specified session ID
+     * @param string $sessionId
+     */
+    public function start($preserveStorage = false, $sessionId = '')
+    {
+        if ($this->sessionExists()) {
+            return;
+        }
+
+        if ($sessionId) {
+            session_id($sessionId);
+        }
+
+        parent::start($preserveStorage);
+    }
+
+    /**
      * Is this session valid?
      *
      * Notifies the Validator Chain until either all validators have returned

@@ -16,6 +16,9 @@ use Zend\View\Helper\HeadScript as ZendHeadScript;
 /**
  * Helper for setting and retrieving script elements for HTML head section
  *
+ * Note: `defer` attribute is enabled by default for JavaScript.
+ * To disable it, specify the attribute explicitly `'defer' => false`
+ *
  * A new use case with raw type content
  *
  * ```
@@ -48,9 +51,23 @@ class HeadScript extends ZendHeadScript
     /**#@+
      * Added by Taiwen Jiang
      */
-    /** @var string[] Segment names for captch */
+    /** @var string[] Segment names for capture */
     protected static $captureNames = array();
     /**#@-*/
+
+    /**
+     * {@inheritDoc}
+     *
+     * Handles `defer` attribute for JavaScript loading
+     */
+    public function itemToString($item, $indent, $escapeStart, $escapeEnd)
+    {
+        if (isset($item->attributes['defer']) && !$item->attributes['defer']) {
+            unset($item->attributes['defer']);
+        }
+
+        return parent::itemToString($item, $indent, $escapeStart, $escapeEnd);
+    }
 
     /**#@+
      * Added by Taiwen Jiang

@@ -54,6 +54,12 @@ class PageFilter extends InputFilter
                 ),
             ),
             'validators'    => array(
+                array(
+                    'name'      => 'Regex',
+                    'options'   => array(
+                        'pattern'   => '/[^\s]/',
+                    ),
+                ),
                 new Validator\PageSlugDuplicate(),
             ),
         ));
@@ -78,6 +84,11 @@ class PageFilter extends InputFilter
 
         $this->add(array(
             'name'          => 'layout',
+            'required'      => false,
+        ));
+
+        $this->add(array(
+            'name'          => 'template',
             'required'      => false,
         ));
 

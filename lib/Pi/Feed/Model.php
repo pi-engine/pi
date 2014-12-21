@@ -167,10 +167,7 @@ class Model
      */
     public function initialize()
     {
-        $logoFile = 'public/custom/image/logo.png';
-        if (!file_exists(Pi::path($logoFile))) {
-            $logoFile = 'static/image/logo.png';
-        }
+        $logoFile = Pi::service('asset')->logo();
         $logo = Pi::url($logoFile, true);
 
         $this->assign(array(

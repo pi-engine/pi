@@ -29,9 +29,9 @@
         </div>
     </div>
 </form>
-<?php if (!empty($block['list'])) { ?>
-<script>
-$('#js-search-menu').on('click', 'a', function(e) {
+<?php if (!empty($block['list'])) { 
+    $script = <<<'EOT'
+    $('#js-search-menu').on('click', 'a', function(e) {
     var $this = $(this);
     var val = $this.data('value');
     var form = $this.parents('form');
@@ -41,5 +41,6 @@ $('#js-search-menu').on('click', 'a', function(e) {
     m.val(val);
     form[0].submit();
 });
-</script>
-<?php } ?>
+EOT;
+    $this->footScript()->appendScript($script);
+} ?>

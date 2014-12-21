@@ -1,6 +1,12 @@
 <?php
+// Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
+$this->doctype('HTML5');
+
 // Load translation data
 $this->i18nTheme();
+
+// Set prefix for head title
+$this->headTitle()->setPrefix(_a('Admin - '));
 
 //HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
 $this->js(array(
@@ -28,13 +34,14 @@ $this->css($this->assetTheme('css/admin.css'));
 $this->css($this->assetLocale('locale.css'));
 
 // Explicitly load favicon
-// @see http://en.wikipedia.org/wiki/Favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
     'href'  => $this->favicon()
 ));
 
+// Get module name
 $module = Pi::service('module')->current();
+
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale ?>">
@@ -66,12 +73,7 @@ $module = Pi::service('module')->current();
                     </a>
             </ul>
             <?php
-            echo $this->widget('system-user-bar', 
-                    array(
-                        //'params' => array('route' => 'sysuser'),
-                        'type' => 'flat'
-                    )
-                 ); 
+            echo $this->widget('system-user-bar', array('type' => 'flat'));
             ?>
         </nav>
     </header>
@@ -108,7 +110,7 @@ $module = Pi::service('module')->current();
                 </li>
                 <li>·</li>
                 <li>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
                         Powered by Pi Engine
                     </a>
                 </li>

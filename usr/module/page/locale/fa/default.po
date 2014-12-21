@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-08-29 15:35+0330\n"
-"PO-Revision-Date: 2014-08-29 15:35+0330\n"
+"POT-Creation-Date: 2014-12-02 11:30+0330\n"
+"PO-Revision-Date: 2014-12-02 11:30+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -16,15 +16,27 @@ msgstr ""
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "page\n"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:207
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:94
+msgid "Template"
+msgstr "الگو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:96
+msgid "Default"
+msgstr "پیشفرض"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:97
+msgid "Simple"
+msgstr "ساده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:219
 msgid "Submit"
 msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:23
 msgid "Page request"
 msgstr "صفحه درخواستی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:24
 msgid "The page requested does not exist."
 msgstr "صفحه درخواستی یافت نشد"
 

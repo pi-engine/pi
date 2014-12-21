@@ -1,4 +1,7 @@
 <?php
+// Set doctype explicitly if it is not `HTML4_LOOSE`, i.e. 'HTML 4.01 Transitional'
+$this->doctype('HTML5');
+
 // Load translation data
 $this->i18nTheme();
 
@@ -22,7 +25,10 @@ $this->bootstrap(array(
 ));
 
 // Load front.css
-$this->css($this->assetTheme('css/front.css'));
+$this->css(array(
+    $this->assetTheme('css/style.css'),
+    $this->assetTheme('css/front.css')
+));
 
 // Load localization css
 $this->css($this->assetLocale('locale.css'));
@@ -55,6 +61,14 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
+// Dublin Core
+$this->headMeta(_escape($sitename), 'dc:title', 'property', array('lang' => $locale));
+$this->headMeta(_escape($slogan), 'dc:subject', 'property', array('lang' => $locale));
+$this->headMeta(_escape($sitename . ' - ' . $slogan) , 'dc:description', 'property', array('lang' => $locale));
+$this->headMeta('text', 'dc:type', 'property');
+$this->headMeta(_escape($sitename), 'dc:publisher', 'property');
+$this->headMeta($locale, 'dc:language', 'property');
+
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
@@ -79,14 +93,12 @@ $module = Pi::service('module')->current();
     <header class="pi-header">
         <div class="navbar navbar-inverse" role="navigation">
             <div class="container">
-                <h1>
+                <h2>
                     <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
                         <?php echo _escape($sitename); ?>
                     </a>
-                </h1>
-                <?php
-                echo $this->widget('system-user-bar', array('type' => 'js'));
-                ?>
+                </h2>
+                <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
             </div>
         </div>
         <div class="navbar navbar-default">
@@ -257,7 +269,7 @@ $module = Pi::service('module')->current();
                 </li>
                 <li>·</li>
                 <li>
-                    <a href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
                         Powered by Pi Engine
                     </a>
                 </li>

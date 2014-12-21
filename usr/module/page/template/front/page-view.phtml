@@ -1,4 +1,4 @@
-<div class="page">
+<div class="clearfix">
     <?php if (!empty($nav)) { ?>
     <div class="col-md-2">
         <ul class="nav nav-pills">
@@ -12,37 +12,33 @@
     <div class="col-md-10">
     <?php } ?>
     <?php if ('phtml' == $markup && $content) { ?>
-        <h2 class="article-header headline"><?php echo $this->escape($title); ?></h2>
+        <h1 class="article-header headline"><?php echo $this->escape($title); ?></h1>
         <div class="article-body">
             <?php include $this->template('./' . $content); ?>
         </div>
-        <div class="article-footer">
-            <?php if ($config['social_facebook']) { echo $this->facebook(); } ?>
-            <?php if ($config['social_twitter']) { echo $this->twitter(); } ?>
-            <?php if ($config['social_gplus']) { echo $this->plusone(); } ?>
+        <?php if ($config['social_sharing']) { ?>
+        <div class="article-footer clearfix">
+            <div class="col-md-5 col-sm-10 col-xs-12">
+                <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+            </div>
         </div>
+        <?php } ?>
     <?php } else {  ?>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title"><?php echo $this->escape($title); ?></h3>
+                <h1 class="panel-title"><?php echo $this->escape($title); ?></h1>
             </div>
             <div class="panel-body clearfix">
-                <?php echo $content; ?> 
-            </div>
-            <div class="panel-footer">
-                <div class="social-list text-left">
-                    <ul class="list-inline">
-                        <?php if(!empty($config['social_facebook'])) { ?>
-                        <li class="social-facebook"><?php echo $this->facebook(); ?></li>
-                        <?php } ?>
-                        <?php if(!empty($config['social_twitter'])) { ?>
-                        <li class="social-twitter"><?php echo $this->twitter(); ?></li>
-                        <?php } ?>
-                        <?php if(!empty($config['social_gplus'])) { ?>
-                        <li class="social-gplus"><?php echo $this->plusone(); ?></li>
-                        <?php } ?>
-                    </ul>
+                <div class="clearfix">
+                    <?php echo $content; ?>
                 </div>
+                <?php if ($config['social_sharing']) { ?>
+                <div class="clearfix">
+                    <div class="col-md-5 col-sm-10 col-xs-12">
+                        <?php echo $this->socialSharing($config['social_sharing'], $title, $url); ?>
+                    </div>
+                </div>
+                <?php } ?>
             </div>
         </div>
     <?php } ?>
@@ -50,4 +46,3 @@
     </div>
     <?php } ?>
 </div>
-<div class="clearfix"></div>
