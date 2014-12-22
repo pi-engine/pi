@@ -125,7 +125,7 @@ class Form extends FormHelper
             $form->prepare();
         }
 
-        $column     = isset($options['column']) ? $options['column'] : '';
+        $column     = isset($options['column']) ? $options['column'] : 'single';
         $elements   = $form->elementList();
         $groups     = $form->getGroups();
         $this->view->FormElementErrors()
