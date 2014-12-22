@@ -17,7 +17,7 @@ return array(
     'article' => array(
         'title'     => _a('Demo comments'),
         'icon'      => 'icon-post',
-        'callback'  => 'Module\Demo\Comment\Article',
+        //'callback'  => 'Module\Demo\Comment\Article',
         'locator'       => array(
             'controller'    => 'article',
             'action'        => 'index',

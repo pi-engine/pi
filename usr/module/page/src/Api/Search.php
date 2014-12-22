@@ -38,13 +38,13 @@ class Search extends AbstractSearch
     /**
      * {@inheritDoc}
      */
-    protected function buildLink(array $item)
+    protected function buildUrl(array $item)
     {
-        $link = Pi::service('url')->assemble(
+        $url = Pi::service('url')->assemble(
             'page',
             array('module' => $this->module, 'id' => $item['id'])
         );
 
-        return $link;
+        return $url;
     }
 }

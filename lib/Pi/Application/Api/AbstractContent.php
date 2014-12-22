@@ -84,7 +84,6 @@ abstract class AbstractContent extends AbstractApi
         }
 
         return $result;
-
     }
 
     /**
