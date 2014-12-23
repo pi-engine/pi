@@ -9,6 +9,7 @@
 
 namespace Pi\Application\Api;
 
+use Pi;
 use Zend\Mvc\Router\RouteMatch;
 
 /**
