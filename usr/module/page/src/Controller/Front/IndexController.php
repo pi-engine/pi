@@ -10,6 +10,7 @@
 namespace Module\Page\Controller\Front;
 
 use Pi;
+use Pi\Filter;
 use Pi\Mvc\Controller\ActionController;
 use Pi\Db\RowGateway\RowGateway;
 use Zend\Mvc\MvcEvent;
@@ -45,6 +46,11 @@ class IndexController extends ActionController
             $seoTitle = empty($row->seo_title) ? $row->title : $row->seo_title;
             $seoDescription = empty($row->seo_description) ? $row->title : $row->seo_description;
             $seoKeywords = empty($row->seo_keywords) ? $row->title : $row->seo_keywords;
+            $filter = new Filter\HeadKeywords;
+            $filter->setOptions(array(
+                'force_replace' => true
+            ));
+            $seoKeywords = $filter($seoKeywords);
             // Set view
             $this->view()->headTitle($seoTitle);
             $this->view()->headDescription($seoDescription, 'set');

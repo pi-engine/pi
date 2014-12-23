@@ -80,14 +80,6 @@ class IndexController extends ActionController
                 $values['user'] = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
                 unset($values['id']);
-                // Set seo_keywords
-                if (!empty($values['seo_keywords'])) {
-                    $filter = new Filter\HeadKeywords;
-                    $filter->setOptions(array(
-                        'force_replace' => true
-                    ));
-                    $values['seo_keywords'] = $filter($values['seo_keywords']);
-                }
                 // Save
                 $id = Pi::api('api', $this->getModule())->add($values);
                 if ($id) {
@@ -162,14 +154,6 @@ class IndexController extends ActionController
                     $this->setPage($values['name'], $values['title']);
                 }
                 $values['time_updated'] = time();
-                // Set seo_keywords
-                if (!empty($values['seo_keywords'])) {
-                    $filter = new Filter\HeadKeywords;
-                    $filter->setOptions(array(
-                        'force_replace' => true
-                    ));
-                    $values['seo_keywords'] = $filter($values['seo_keywords']);
-                }
                 // Save
                 $row->assign($values);
                 $row->save();
