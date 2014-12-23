@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-12-02 11:30+0330\n"
-"PO-Revision-Date: 2014-12-02 11:30+0330\n"
+"POT-Creation-Date: 2014-12-23 11:03+0330\n"
+"PO-Revision-Date: 2014-12-23 11:03+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -40,10 +40,8 @@ msgstr "صفحه درخواستی"
 msgid "The page requested does not exist."
 msgstr "صفحه درخواستی یافت نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:13
-msgid "Social networking"
-msgstr "شبکه های اجتماعی"
+#~ msgid "Social networking"
+#~ msgstr "شبکه های اجتماعی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:37
-msgid "Enable Twitter"
-msgstr "فعال کردن تویتر"
+#~ msgid "Enable Twitter"
+#~ msgstr "فعال کردن تویتر"
