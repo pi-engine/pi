@@ -83,6 +83,16 @@ class IndexController extends ActionController
                 // Save
                 $id = Pi::api('api', $this->getModule())->add($values);
                 if ($id) {
+                    // Add / Edit sitemap link
+                    if (Pi::service('module')->isActive('sitemap')) {
+                        $loc = Pi::url($this->url('page', array(
+                            'slug'  => $values['slug'],
+                            'name'  => $values['name'],
+                            'id'    => $id,
+                        )));
+                        Pi::api('sitemap', 'sitemap')->singleLink($loc, $values['active'], $this->getModule(), 'page', $id);
+                    }
+                    // Set jump
                     $message = _a('Page data saved successfully.');
                     return $this->jump(array('action' => 'index'), $message);
                 } else {
@@ -159,6 +169,15 @@ class IndexController extends ActionController
                 $row->save();
                 Pi::registry('page')->clear($this->getModule());
                 Pi::service('cache')->flush('module', $this->getModule());
+                // Add / Edit sitemap link
+                if (Pi::service('module')->isActive('sitemap')) {
+                    $loc = Pi::url($this->url('page', array(
+                        'slug'  => $row->slug,
+                        'name'  => $row->name,
+                        'id'    => $row->id,
+                    )));
+                    Pi::api('sitemap', 'sitemap')->singleLink($loc, $row->active, $this->getModule(), 'page', $row->id);
+                }
                 $message = _a('Page data saved successfully.');
                 return $this->jump(array('action' => 'index'), $message);
             } else {
