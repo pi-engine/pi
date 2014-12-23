@@ -80,20 +80,13 @@ class IndexController extends ActionController
                 $values['user'] = Pi::service('user')->getUser()->id;
                 $values['time_created'] = time();
                 unset($values['id']);
-                // Set seo_title
-                if (!empty($values['seo_title'])) {
-                    $filter = new Filter\HeadTitle;
-                    $values['seo_title'] = $filter($values['seo_title']);
-                }
                 // Set seo_keywords
                 if (!empty($values['seo_keywords'])) {
                     $filter = new Filter\HeadKeywords;
+                    $filter->setOptions(array(
+                        'force_replace' => true
+                    ));
                     $values['seo_keywords'] = $filter($values['seo_keywords']);
-                }
-                // Set seo_description
-                if (!empty($values['seo_description'])) {
-                    $filter = new Filter\HeadDescription;
-                    $values['seo_description'] = $filter($values['seo_description']);
                 }
                 // Save
                 $id = Pi::api('api', $this->getModule())->add($values);
@@ -169,20 +162,13 @@ class IndexController extends ActionController
                     $this->setPage($values['name'], $values['title']);
                 }
                 $values['time_updated'] = time();
-                // Set seo_title
-                if (!empty($values['seo_title'])) {
-                    $filter = new Filter\HeadTitle;
-                    $values['seo_title'] = $filter($values['seo_title']);
-                }
                 // Set seo_keywords
                 if (!empty($values['seo_keywords'])) {
                     $filter = new Filter\HeadKeywords;
+                    $filter->setOptions(array(
+                        'force_replace' => true
+                    ));
                     $values['seo_keywords'] = $filter($values['seo_keywords']);
-                }
-                // Set seo_description
-                if (!empty($values['seo_description'])) {
-                    $filter = new Filter\HeadDescription;
-                    $values['seo_description'] = $filter($values['seo_description']);
                 }
                 // Save
                 $row->assign($values);
