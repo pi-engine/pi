@@ -20,5 +20,12 @@ return array(
             ),
             'filter'        => 'array',
         ),
+        'view_breadcrumbs' => array(
+            'title'        => _a('Show breadcrumbs'),
+            'description'  => '',
+            'edit'         => 'checkbox',
+            'filter'       => 'number_int',
+            'value'        => 1
+        ),
     ),
 );

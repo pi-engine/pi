@@ -24,6 +24,7 @@ class IndexController extends ActionController
             $title      = __('Page request');
             $content    = __('The page requested does not exist.');
             $markup     = '';
+            $url        = '';
         } else {
             $content    = $row->content;
             $markup     = $row->markup ?: 'text';
@@ -39,9 +40,6 @@ class IndexController extends ActionController
             // update clicks
             $model = $this->getModel('page');
             $model->increment('clicks', array('id' => $row->id));
-
-            // Module config
-            $config = Pi::config('', $this->getModule());
             // Set SEO informations
             $seoTitle = empty($row->seo_title) ? $row->title : $row->seo_title;
             $seoDescription = empty($row->seo_description) ? $row->title : $row->seo_description;
@@ -55,7 +53,6 @@ class IndexController extends ActionController
             $this->view()->headTitle($seoTitle);
             $this->view()->headDescription($seoDescription, 'set');
             $this->view()->headKeywords($seoKeywords, 'set');
-            $this->view()->assign('config', $config);
             if ($row->theme) {
                 $this->view()->setTheme($row->theme);
             }
@@ -63,20 +60,22 @@ class IndexController extends ActionController
                 $this->view()->setLayout($row->layout);
             }
         }
-
-        if ($row->template) {
+        // Module config
+        $config = Pi::config('', $this->getModule());
+        // Set template
+        if (!empty($row->template)) {
             $this->view()->setTemplate($row->template);
         } else {
             $this->view()->setTemplate('page-view');
         }
-        
+        // Set view
         $this->view()->assign(array(
             'title'     => $title,
             'content'   => $content,
             'markup'    => $markup,
             'url'       => $url,
+            'config'    => $config,
         ));
-        //return $content;
     }
 
     /**

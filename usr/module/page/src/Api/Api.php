@@ -15,12 +15,6 @@ use Pi\Application\Api\AbstractApi;
 class Api extends AbstractApi
 {
     protected $module = 'page';
-    /*
-    protected $pageColumns = array(
-        'name', 'title', 'slug', 'content', 'markup', 'active',
-        'user', 'time_created', 'seo_title', 'seo_keywords', 'seo_description'
-    );
-    */
 
     /**
      * Add a new page and register to system page settings if name is available
