@@ -20,7 +20,7 @@ return array(
             ),
             'filter'        => 'array',
         ),
-        'view_breadcrumbs' => array(
+        'show_breadcrumbs' => array(
             'title'        => _a('Show breadcrumbs'),
             'description'  => '',
             'edit'         => 'checkbox',
