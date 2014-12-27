@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-12-02 13:10+0330\n"
-"PO-Revision-Date: 2014-12-02 13:11+0330\n"
+"POT-Creation-Date: 2014-12-26 09:40+0330\n"
+"PO-Revision-Date: 2014-12-26 09:41+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -92,43 +92,43 @@ msgstr "فایل تمپلیت انتخابی موجود نیست"
 msgid "Page slug already exists."
 msgstr "اسلاگ صفحه هم اکنون استفاده شده است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:45
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:21
 msgid "Page list"
 msgstr "فهرست صفحات"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:115
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:212
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:181
 msgid "Page data saved successfully."
 msgstr "اطلاعات صفحه با موفقیت ذخیره شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:118
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:99
 msgid "Page data not saved."
 msgstr "اطلاعات صفحه ذخیره نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:121
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:215
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:184
 msgid "Invalid data, please check and re-submit."
 msgstr "اطلاعات اشتباه، لطفا بررسی کنید و دوباره ارسال کنید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:124
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:44
 msgid "Add a page"
 msgstr "صفحه جدید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:231
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:200
 msgid "Page edit"
 msgstr "ویرایش صفحه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:256
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:225
 msgid "Page deleted successfully."
 msgstr "صفحه با موفقیت حذف شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:278
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:247
 msgid "Page updated successfully."
 msgstr "صفحه با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:300
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:269
 msgid "Page navigation menu updated successfully."
 msgstr "منو صفحه با موفقیت به روز شد"
 
@@ -163,7 +163,11 @@ msgstr "صفحه"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/module.php:16
 msgid "Single page for direct content display."
-msgstr "صفحه یکتا براینمایش مطلب مستقیم"
+msgstr "ابزار ساخت صفحات یکتا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/comment.php:18
+msgid "Page comments"
+msgstr "نظرات صفحه"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:13
 msgid "Custom site navigation"
@@ -209,9 +213,13 @@ msgstr "اپلیکشن ها"
 msgid "Pi Engine"
 msgstr "پای انجین"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:21
-msgid "Enable sharing on social networks"
-msgstr "اشتراک گذاری در شبکه های اجتماعی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:13
+msgid "Social sharing items"
+msgstr "اشتراک در شبکه های اجتماعی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:24
+msgid "Show breadcrumbs"
+msgstr "نمایش ناوبری"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:10
 msgid "Name"
@@ -251,7 +259,7 @@ msgid "Enable"
 msgstr "فعال"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
-msgid "Are you sure you want delete this page?"
+msgid "Are you sure to delete this page?"
 msgstr "آیا اطمینان دارید که می خواهید این صفحه را حذف کنید؟"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
@@ -313,6 +321,9 @@ msgstr "الگوی PHTML"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-add.phtml:8
 msgid "PHTML"
 msgstr "PHTML"
+
+#~ msgid "Enable sharing on social networks"
+#~ msgstr "اشتراک گذاری در شبکه های اجتماعی"
 
 #~ msgid "Enable Google Plus"
 #~ msgstr "فعال کردن گوگل پلاس"

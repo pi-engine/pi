@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-12-02 11:30+0330\n"
-"PO-Revision-Date: 2014-12-02 11:30+0330\n"
+"POT-Creation-Date: 2014-12-26 09:40+0330\n"
+"PO-Revision-Date: 2014-12-26 09:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -15,6 +15,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "page\n"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Api/Breadcrumbs.php:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:24
+msgid "Page request"
+msgstr "صفحه درخواستی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Form/PageForm.php:94
 msgid "Template"
@@ -32,18 +37,12 @@ msgstr "ساده"
 msgid "Submit"
 msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:23
-msgid "Page request"
-msgstr "صفحه درخواستی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Front/IndexController.php:25
 msgid "The page requested does not exist."
 msgstr "صفحه درخواستی یافت نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:13
-msgid "Social networking"
-msgstr "شبکه های اجتماعی"
+#~ msgid "Social networking"
+#~ msgstr "شبکه های اجتماعی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:37
-msgid "Enable Twitter"
-msgstr "فعال کردن تویتر"
+#~ msgid "Enable Twitter"
+#~ msgstr "فعال کردن تویتر"

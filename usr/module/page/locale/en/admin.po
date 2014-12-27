@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-page\n"
-"POT-Creation-Date: 2014-12-02 13:10+0330\n"
-"PO-Revision-Date: 2014-12-02 13:10+0330\n"
+"POT-Creation-Date: 2014-12-26 09:40+0330\n"
+"PO-Revision-Date: 2014-12-26 09:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -89,45 +89,45 @@ msgstr ""
 msgid "Page slug already exists."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:45
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:21
 msgid "Page list"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:115
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:212
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:181
 msgid "Page data saved successfully."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:118
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:99
 msgid "Page data not saved."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:121
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:215
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:184
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:124
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:44
 msgid "Add a page"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:231
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:200
 msgid "Page edit"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:256
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:225
 #, fuzzy
 msgid "Page deleted successfully."
 msgstr "主题更新成功。"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:278
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:247
 #, fuzzy
 msgid "Page updated successfully."
 msgstr "主题更新成功。"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:300
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/src/Controller/Admin/IndexController.php:269
 #, fuzzy
 msgid "Page navigation menu updated successfully."
 msgstr "主题更新成功。"
@@ -163,6 +163,10 @@ msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/module.php:16
 msgid "Single page for direct content display."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/comment.php:18
+msgid "Page comments"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/nav.php:13
@@ -209,8 +213,12 @@ msgstr ""
 msgid "Pi Engine"
 msgstr ""
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:21
-msgid "Enable sharing on social networks"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:13
+msgid "Social sharing items"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/config/config.php:24
+msgid "Show breadcrumbs"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:10
@@ -253,7 +261,7 @@ msgid "Enable"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
-msgid "Are you sure you want delete this page?"
+msgid "Are you sure to delete this page?"
 msgstr ""
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/page/template/admin/page-list.phtml:54
