@@ -28,12 +28,8 @@ class PostController extends ActionController
      */
     public function indexAction()
     {
-        $currentUser    = Pi::service('user')->getUser();
-        $currentUid     = $currentUser->get('id');
-
         $id             = _get('id', 'int') ?: 1;
         $post           = Pi::api('api', 'comment')->getPost($id);
-        $target         = array();
 
         if ($post && $post['active']) {
             $post['content'] = Pi::api('api', 'comment')->renderPost($post);
@@ -42,7 +38,6 @@ class PostController extends ActionController
             $user['url'] =  Pi::service('user')->getUrl('profile', $post['uid']);
             $user['avatar'] = Pi::service('avatar')->get($post['uid']);
             $post['user'] = $user;
-            $active = $post['active'];
 
             // User operations
             $operations = array(
@@ -53,69 +48,17 @@ class PostController extends ActionController
                     )),
                 ),
             );
-            /*
-            if ($currentUid) {
-                $operations['reply'] = array(
-                    'title' => __('Reply'),
-                    'url'   => Pi::api('api', 'comment')->getUrl('reply', array(
-                        'post'  => $id,
-                    )),
-                );
-            }
-            // Author
-            if ($post['uid'] == $currentUid) {
-                $operations = array_merge($operations, array(
-                    'edit'  => array(
-                        'title' => __('Edit'),
-                        'url'   => Pi::api('api', 'comment')->getUrl('edit', array(
-                            'post'  => $id,
-                        )),
-                    ),
-                    'delete'  => array(
-                        'title' => __('Delete'),
-                        'url'   => Pi::api('api', 'comment')->getUrl('delete', array(
-                            'post'  => $id,
-                        )),
-                    ),
-                ));
-            }
-            // Admin
-            if ($currentUser->isAdmin()) {
-                $operations = array_merge($operations, array(
-                    'edit'  => array(
-                        'title' => __('Edit'),
-                        'url'   => Pi::api('api', 'comment')->getUrl('edit', array(
-                            'post'  => $id,
-                        )),
-                    ),
-                    'delete'  => array(
-                        'title' => __('Delete'),
-                        'url'   => Pi::api('api', 'comment')->getUrl('delete', array(
-                            'post'  => $id,
-                        )),
-                    ),
-                    'approve'  => array(
-                        'title' => $active ? __('Disable') : __('Enable'),
-                        'url'   => Pi::api('api', 'comment')->getUrl('approve', array(
-                            'post'  => $id,
-                            'flag'  => $active ? 0 : 1,
-                        )),
-                    ),
-                ));
-            }
-            */
             $post['operations'] = $operations;
+            $title = __('Comment post');
+            $this->view()->assign('comment', array(
+                'title'     => $title,
+                'post'      => $post,
+                'target'    => $target,
+            ));
+            $this->view()->setTemplate('comment-view');
         } else {
-            $this->jumpTo404(__('Comment post not found.'));
+            $this->view()->setTemplate('comment-404');
         }
-
-        $title = __('Comment post');
-        $this->view()->assign('comment', array(
-            'title'     => $title,
-            'post'      => $post,
-            'target'    => $target,
-        ));
-        $this->view()->setTemplate('comment-view');
     }
 
     /**
@@ -125,23 +68,19 @@ class PostController extends ActionController
     {
         $currentUser    = Pi::service('user')->getUser();
         $currentUid     = $currentUser->get('id');
-
         $id             = _get('id', 'int') ?: 1;
         $redirect       = _get('redirect');
 
-        //$status     = 1;
         $message    = '';
         $target     = array();
         $post = Pi::api('api', 'comment')->getPost($id);
         // Verify post
         if (!$post) {
-            //$status = -1;
             $message = __('Invalid post parameter.');
         // Verify author
         } elseif (!$currentUid
             || ($post['uid'] != $currentUid && !$currentUser->isAdmin('comment'))
         ) {
-            //$status = 0;
             $message = __('Operation denied.');
             $post = array();
         } else {
@@ -178,17 +117,14 @@ class PostController extends ActionController
     {
         $currentUser    = Pi::service('user')->getUser();
         $currentUid     = $currentUser->get('id');
-
         $id             = _get('id', 'int') ?: 1;
         $redirect       = _get('redirect');
 
-        //$status     = 1;
         $message    = '';
         $target     = array();
         $post = Pi::api('api', 'comment')->getPost($id);
         // Verify post
         if (!$post) {
-            //$status = -1;
             $message = __('Invalid post parameter.');
         // Verify authentication
         } elseif (!$currentUid) {
@@ -383,8 +319,6 @@ class PostController extends ActionController
     public function approveAction()
     {
         $currentUser    = Pi::service('user')->getUser();
-        //$currentUid     = $currentUser->get('id');
-
         $id         = _get('id', 'int');
         $flag       = _get('flag');
         $return     = _get('return');
@@ -409,7 +343,6 @@ class PostController extends ActionController
             } else {
                 Pi::service('event')->trigger('post_disable', $id);
             }
-            //Pi::service('comment')->clearCache($id);
         }
 
         if (!$return) {
