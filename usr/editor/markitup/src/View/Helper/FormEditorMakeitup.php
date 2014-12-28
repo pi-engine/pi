@@ -76,10 +76,10 @@ $(document).ready(function()    {
     $('#%s').markItUp(mySettings);
 });
 EOT;
-        if (isset($attributes['id'])) {
+        if (!empty($attributes['id'])) {
             $id = $attributes['id'];
         } else {
-            $id = uniqid($element->getName());
+            $id = uniqid($element->getName() . '_');
         }
         $element->setAttribute('id', $id);
         $js = sprintf($scriptJs, $id);

@@ -21,8 +21,6 @@ use Zend\Form\ElementInterface;
  */
 class FormEditorCkeditor extends AbstractEditor
 {
-    const ID_PREFIX = 'CKEDITOR_';
-
     /** @var string */
     protected $configFile = 'editor.ckeditor.php';
 
@@ -76,7 +74,7 @@ class FormEditorCkeditor extends AbstractEditor
         $this->init();
         $id = $element->getAttribute('id');
         if (!$id) {
-            $id = static::ID_PREFIX . $element->getName();
+            $id = uniqid($element->getName() . '_');
             $element->setAttribute('id', $id);
         }
         $html = parent::render($element);
