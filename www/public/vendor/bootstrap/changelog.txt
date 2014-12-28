@@ -1,6 +1,10 @@
 Changelog
 
 
+December 28th, Taiwen Jiang
+=========================
+1. Upgrade bootstrap to v3.3.1 (Replaced Glyphicons fonts with font-awesome)
+
 November 3rd, Taiwen Jiang
 =========================
 1. Upgrade bootstrap to v3.3.0 (Replaced Glyphicons fonts with font-awesome)
