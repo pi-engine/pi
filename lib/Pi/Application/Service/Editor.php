@@ -19,8 +19,8 @@ use Pi\Form\View\Helper\AbstractEditor;
  */
 class Editor extends AbstractService
 {
-    /** {@inheritDoc} */
-    //protected $fileIdentifier = 'editor';
+    /** @var array */
+    protected $loadedEditors = array();
 
     /**
      * Loads an editor view helper with configs
@@ -62,8 +62,13 @@ class Editor extends AbstractService
         ) {
             $rendererClass = 'Pi\Form\View\Helper\FormEditorPi';
         }
-
-        $renderer = new $rendererClass($options);
+        if (isset($this->loadedEditors[$rendererClass])) {
+            $renderer = $this->loadedEditors[$rendererClass];
+        } else {
+            $renderer = new $rendererClass;
+            $this->loadedEditors[$rendererClass] = $renderer;
+        }
+        $renderer->setOptions($options);
 
         return $renderer;
     }

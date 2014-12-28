@@ -28,15 +28,33 @@ abstract class AbstractEditor extends FormTextarea
      */
     protected $configFile = '';
 
+    /** @var array Global options */
+    protected $globalOptions = array();
+
     /** @var array Options */
     protected $options = array();
 
     /**
      * Constructor
+     *
+     * @param null|array $options
      */
-    public function __construct()
+    public function __construct($options = null)
     {
         $this->loadConfig();
+        if (null !== $options) {
+            $this->setOptions($options);
+        }
+    }
+
+    /**
+     * Set specific options
+     *
+     * @param array $options
+     */
+    public function setOptions(array $options = array())
+    {
+        $this->options = array_replace($this->globalOptions, $options);
     }
 
     /**
@@ -45,7 +63,7 @@ abstract class AbstractEditor extends FormTextarea
     protected function loadConfig()
     {
         if (!empty($this->configFile)) {
-            $this->options = Pi::config()->load($this->configFile);
+            $this->globalOptions = Pi::config()->load($this->configFile);
         }
     }
 }

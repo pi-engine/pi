@@ -32,7 +32,7 @@ class FormEditor extends AbstractHelper
             return '';
         }
 
-        $name   = $element->getName();
+        $name = $element->getName();
         if (empty($name) && $name !== 0) {
             throw new Exception\DomainException(sprintf(
                 '%s requires that the element has an assigned name;'
@@ -49,7 +49,6 @@ class FormEditor extends AbstractHelper
         if ($editor) {
             $html = $editor->setView($renderer)->render($element);
         }
-
         if (!$html) {
             $html = $renderer->formTextarea($element);
         }
