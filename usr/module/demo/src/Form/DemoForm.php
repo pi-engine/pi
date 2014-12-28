@@ -49,6 +49,20 @@ class DemoForm extends BaseForm
         ));
 
         $this->add(array(
+            'name'          => 'description',
+            'type'          => 'editor',
+            'options'       => array(
+                'label'     => __('Description'),
+                'editor'    => 'html',
+            ),
+            'attributes'    => array(
+                'placeholder'   => __('Type your content'),
+                'class'         => 'span6',
+                'rows'          => 5,
+            ),
+        ));
+
+        $this->add(array(
             'name'          => 'content_html',
             'type'          => 'editor',
             'options'       => array(

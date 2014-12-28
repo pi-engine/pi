@@ -21,6 +21,8 @@ use Zend\Form\ElementInterface;
  */
 class FormEditorCkeditor extends AbstractEditor
 {
+    const ID_PREFIX = 'CKEDITOR_';
+
     /** @var string */
     protected $configFile = 'editor.ckeditor.php';
 
@@ -72,15 +74,20 @@ class FormEditorCkeditor extends AbstractEditor
             $element->setAttributes((array) $this->options['attributes']);
         }
         $this->init();
+        $id = $element->getAttribute('id');
+        if (!$id) {
+            $id = static::ID_PREFIX . $element->getName();
+            $element->setAttribute('id', $id);
+        }
         $html = parent::render($element);
 
         $js = $this->renderGlobalEvents($globalEvents);
-        $name = $element->getAttribute('id') ?: $element->getName();
+        //$name = $element->getAttribute('id') ?: $element->getName();
         $config = $this->configSettings($configs, $events);
         if (!empty($config)) {
-            $js .= 'CKEDITOR.replace("' . $name . '", ' . json_encode($config) . ');';
+            $js .= 'CKEDITOR.replace("' . $id . '", ' . json_encode($config) . ');';
         } else {
-            $js .= 'CKEDITOR.replace("' . $name . '");';
+            $js .= 'CKEDITOR.replace("' . $id . '");';
         }
         $this->view->footScript()->appendScript($js);
 
