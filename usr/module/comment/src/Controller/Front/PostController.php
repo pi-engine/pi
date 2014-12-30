@@ -254,6 +254,7 @@ class PostController extends ActionController
                     if (empty($values['id'])) {
                         if ($this->config('auto_approve')) {
                             $values['active'] = 1;
+                            $isEnabled = true;
                         } else {
                             $values['active'] = 0;
                         }
@@ -270,12 +271,13 @@ class PostController extends ActionController
                         ) {
                             $status = -1;
                             $message = __('Operation denied.');
+                        } else {
+                            $isEnabled = empty($post['active']) ? false : true;
                         }
                     }
                 }
                 if (0 < $status) {
                     $id = Pi::api('api', 'comment')->addPost($values);
-                    $isEnabled = empty($values['active']) ? false : true;
                     if ($id) {
                         $status = 1;
                         $message = __('Comment post saved successfully.');
