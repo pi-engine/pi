@@ -10,7 +10,7 @@
 namespace Module\Page\Api;
 
 use Pi;
-use Pi\Search\AbstractSearch;
+use Pi\Application\Api\AbstractSearch;
 
 /**
  * Class for module search

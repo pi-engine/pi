@@ -43,8 +43,28 @@ class Install extends BasicInstall
                 'en'
             ) . '/install';
         }
-        $metaFile = $path . '/meta.txt';
+        $metaFile = $path . '/meta.ini';
+        $metaList = parse_ini_file($metaFile, true);
+        foreach ($metaList as $name => $meta) {
+            if (!isset($meta['name'])) {
+                $meta['name'] = $name;
+            }
+            $file = sprintf('%s/%s.txt', $path, $name);
+            if (file_exists($file)) {
+                $content = file_get_contents($file);
+                $content = str_replace(
+                    array('SITE_URL', 'SITE_NAME'),
+                    array(Pi::url('www'), Pi::config('sitename')),
+                    $content
+                );
+            } else {
+                $content = '';
+            }
+            $meta['content'] = $content;
+            $apiHandler->add($meta);
+        }
 
+        /*
         $meta = array_map('trim', file($metaFile));
         $meta = array_filter($meta);
 
@@ -68,6 +88,7 @@ class Install extends BasicInstall
             $page = compact('name', 'markup', 'title', 'content');
             $apiHandler->add($page);
         }
+        */
 
         // Add pre-defined pages
         $pages = array(
