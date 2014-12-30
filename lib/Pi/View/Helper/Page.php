@@ -55,15 +55,15 @@ class Page extends AbstractHtmlElement
             $type = $attributes['type'];
             unset($attributes['type']);
         }
-        $attribs    = $this->htmlAttribs($attributes);
+        $attribs = $this->htmlAttribs($attributes);
         try {
             $params = array('name' => $name);
             if ($type) {
                 $params['type'] = $type;
             }
-            $href   = $this->view->url('page-page', $params);
+            $href = $this->view->url('page', $params);
         } catch (\Exception $e) {
-            $href   = '#';
+            $href = '#';
         }
 
         $html = sprintf(
