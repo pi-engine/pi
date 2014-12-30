@@ -25,15 +25,19 @@ $form = Pi::service('comment')->getForm($formData);
     <div class="hide clearfix comment-form">
         <?php echo $this->form()->openTag($form);
         echo $this->formElement($form->get('content'));
+        /*
         foreach (array( 'id', 'root', 'reply', 'module', 'type', 'item', 'redirect', 'markup') as $hiddenElement) {
             echo $this->formElement($form->get($hiddenElement));
         }
+        */
+        echo $this->formElement($form->get('submit'));
+
+        $elements = $form->elementList();
+        foreach ($elements['hidden'] as $element) {
+            echo $this->formElement($element);
+        }
         ?>
-        <div class="pull-right js-comment-btn">
-            <button class="btn btn-primary">
-                <?php _e('Post comment'); ?>
-            </button>
-        </div>
+
     </div>
     <?php echo $this->form()->closeTag(); ?>
     <div class="hide well well-sm">
@@ -77,11 +81,11 @@ comment.init();
 })(jQuery)
 </script>
 
-<div class="pi-status active js-video-status" data-id="">
+<div class="pi-status active js-comment-status" data-id="">
     <div class="pi-status-director"></div>
 </div>
 <script>
-$('.js-video-status').click(function() {
+$('.js-comment-status').click(function() {
     location.href = '<?php $this->url(); ?>' + $(this).data('id');
 });
 </script>

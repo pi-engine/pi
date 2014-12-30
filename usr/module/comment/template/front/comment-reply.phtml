@@ -72,19 +72,17 @@ EOT;
             <div class="pi-comment-content">
                 <?php echo $post['content']; ?>
             </div>
-            <?php echo $this->form()->openTag($form); ?>
-            <div class="form-textarea">
-                <textarea placeholder="<?php _e('Type your content'); ?>" name="content"><?php echo $form->get('content')->getValue(); ?></textarea>
-            </div>
-            <input class="btn form-submit pull-right" type="submit" value="<?php _e('Reply'); ?>" name="submit">
-            <?php 
-                foreach (array(
-                    'id', 'root', 'reply', 'module', 'type',
-                    'item', 'redirect', 'markup') as $hiddenElement) {
-                    echo $this->formElement($form->get($hiddenElement));
-                }
+            <?php
+            echo $this->form()->openTag($form);
+            echo $this->formElement($form->get('content'));
+            echo $this->formElement($form->get('submit'));
+
+            $elements = $form->elementList();
+            foreach ($elements['hidden'] as $element) {
+                echo $this->formElement($element);
+            }
+            echo $this->form()->closeTag();
             ?>
-            <?php echo $this->form()->closeTag(); ?>
         <?php } else { ?>
             <div class="pi-comment-none"><?php _e('No content.'); ?></div>
         <?php } ?>

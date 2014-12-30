@@ -86,16 +86,18 @@ class PostForm extends BaseForm
             ),
             'attributes'    => array(
                 'placeholder'   => __('Type your content'),
-                'class'         => 'span6',
+                'class'         => 'form-control',
                 'rows'          => 5,
             ),
         ));
 
         $this->add(array(
             'name'          => 'submit',
+            //'type'          => 'button',
             'attributes'    => array(
                 'type'  => 'submit',
-                'value' => __('Submit'),
+                'value' => __('Save'),
+                'class' => 'btn btn-primary',
             ),
         ));
 
