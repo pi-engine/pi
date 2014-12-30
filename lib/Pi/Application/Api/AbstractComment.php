@@ -56,9 +56,9 @@ abstract class AbstractComment extends AbstractApi
         $model = Pi::model($this->table, $this->module);
         $rowset = $model->select($where);
         foreach ($rowset as $row) {
-            $item = $row->toArray();
+            $item = $this->canonizeResult($row->toArray());
             $item['url'] = $this->buildUrl($item);
-            $result[] = $this->canonizeResult($item);
+            $result[] = $item;
         }
         if (is_scalar($id)) {
             $result = array_pop($result);
