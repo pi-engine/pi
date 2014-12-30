@@ -25,7 +25,6 @@ class Api extends AbstractApi
      */
     public function add($page)
     {
-        $id = 0;
         // Set time_created
         if (!isset($page['time_created'])) {
             $page['time_created'] = time();
@@ -90,5 +89,27 @@ class Api extends AbstractApi
         Pi::registry('page')->clear($this->getModule());
 
         return true;
+    }
+
+    /**
+     * Get page url from its ID
+     *
+     * @param int $id
+     *
+     * @return string
+     */
+    public function url($id)
+    {
+        $params = array(
+            'module'    => $this->module,
+            'id'        => $id,
+        );
+        $pageList = Pi::registry('page', $this->module)->read();
+        if (isset($pageList[$id])) {
+            $params = array_merge($pageList[$id], $params);
+        }
+        $url = Pi::service('url')->assemble('page', $params);
+
+        return $url;
     }
 }
