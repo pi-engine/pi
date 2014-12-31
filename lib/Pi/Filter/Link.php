@@ -19,10 +19,19 @@ use Zend\Filter\AbstractFilter;
  * From `http://url.tld` to `<a href="http://url.tld" title="Click to open">http://url.tld</a>`
  *
  * @see http://stackoverflow.com/questions/5341168/best-way-to-make-links-clickable-in-block-of-text
+ * @see https://bitbucket.org/kwi/urllinker/src
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Link extends AbstractFilter
 {
+    /** @var array */
+    protected $options = array(
+        // attributes
+        'attributes'    => array(),
+        // open in new window
+        'open_new'      => true,
+    );
+
     /**
      * Filter text
      *
@@ -31,12 +40,31 @@ class Link extends AbstractFilter
      */
     public function filter($value)
     {
-        $value = preg_replace(
-            '!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i',
-            '<a href="$1" title="' . __('Click to open') . '">$1</a>',
-            $value
-        );
+        $attributes = array();
+        if (!empty($this->options['attributes'])) {
+            $attributes = $this->options['attributes'];
+        }
+        if (!isset($attributes['target']) && !empty($this->options['open_new'])) {
+            $attributes['target'] = '_blank';
+        }
+        if (!isset($attributes['title'])) {
+            $attributes['title'] = __('Click to open');
+        }
+        $helper = Pi::service('view')->getHelper('html_link');
 
-        return $value;
+        $pattern = '!((((f|ht)tp(s)?:)?//|www\.)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i';
+        $link = preg_replace_callback($pattern, function ($matches) use ($attributes, $helper) {
+            $url = $matches[1];
+            if ('www.' == $matches[2]) {
+                $href = 'http://' . $url;
+            } else {
+                $href = $url;
+            }
+            $link = $helper($href, $url, $attributes);
+
+            return $link;
+        }, $value);
+
+        return $link;
     }
 }
