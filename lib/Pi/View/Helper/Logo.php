@@ -11,7 +11,7 @@
 namespace Pi\View\Helper;
 
 use Pi;
-use Zend\View\Helper\AbstractHtmlElement;
+use Zend\View\Helper\AbstractHelper;
 
 /**
  * Helper for building logo URL
@@ -23,12 +23,12 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Logo extends AbstractHtmlElement
+class Logo extends AbstractHelper
 {
     /**
      * Output logo URL
      *
-     * @param  string $name    Logo filename
+     * @param  string $name Logo filename
      *
      * @return string
      */
