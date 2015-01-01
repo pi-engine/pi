@@ -53,7 +53,7 @@ class Link extends AbstractFilter
         $helper = Pi::service('view')->getHelper('html_link');
 
         $pattern = '!((((f|ht)tp(s)?:)?//|www\.)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i';
-        $link = preg_replace_callback($pattern, function ($matches) use ($attributes, $helper) {
+        $value = preg_replace_callback($pattern, function ($matches) use ($attributes, $helper) {
             $url = $matches[1];
             if ('www.' == $matches[2]) {
                 $href = 'http://' . $url;
@@ -65,6 +65,6 @@ class Link extends AbstractFilter
             return $link;
         }, $value);
 
-        return $link;
+        return $value;
     }
 }

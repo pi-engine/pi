@@ -25,11 +25,6 @@ $form = Pi::service('comment')->getForm($formData);
     <div class="hide clearfix comment-form">
         <?php echo $this->form()->openTag($form);
         echo $this->formElement($form->get('content'));
-        /*
-        foreach (array( 'id', 'root', 'reply', 'module', 'type', 'item', 'redirect', 'markup') as $hiddenElement) {
-            echo $this->formElement($form->get($hiddenElement));
-        }
-        */
         echo $this->formElement($form->get('submit'));
 
         $elements = $form->elementList();

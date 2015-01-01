@@ -231,7 +231,7 @@ class PostController extends ActionController
             $data = $this->request->getPost();
 
             // Temporarily force to text
-            $data['markup'] = 'text';
+            //$data['markup'] = 'text';
 
             $markup = $data['markup'];
             $form = new PostForm('comment-post', $markup);

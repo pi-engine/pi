@@ -20,9 +20,7 @@ use Zend\Filter\FilterChain as ZendFilterChain;
 class FilterChain extends ZendFilterChain
 {
     /**
-     * Get plugin manager instance
-     *
-     * @return FilterPluginManager
+     * {@inheritDoc}
      */
     public function getPluginManager()
     {

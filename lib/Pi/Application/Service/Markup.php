@@ -10,7 +10,6 @@
 
 namespace Pi\Application\Service;
 
-use Pi;
 use Pi\Markup\Markup as Renderer;
 
 /**

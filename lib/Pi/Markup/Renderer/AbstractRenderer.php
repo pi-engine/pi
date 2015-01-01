@@ -11,7 +11,6 @@ namespace Pi\Markup\Renderer;
 
 use Pi\Markup\Parser\AbstractParser;
 use Pi\Filter\FilterChain;
-use Zend\Filter\AbstractFilter;
 use Traversable;
 use Zend\Stdlib\ArrayUtils;
 
@@ -41,6 +40,9 @@ abstract class AbstractRenderer
 
     /** @var FilterChain Filters */
     protected $filterChain;
+
+    /** @var array */
+    protected $filters = array();
 
     /**
      * Constructor
@@ -98,7 +100,11 @@ abstract class AbstractRenderer
         }
 
         foreach ($filters as $name => $options) {
+            if (isset($this->filters[$name])) {
+                continue;
+            }
             $this->filterChain->attachByName($name, $options);
+            $this->filters[$name] = true;
         }
 
         return $this;

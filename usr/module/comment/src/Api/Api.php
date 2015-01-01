@@ -416,8 +416,6 @@ class Api extends AbstractApi
         $renderer = ('markdown' == $markup || 'html' == $markup)
             ? 'html' : 'text';
         $parser = ('markdown' == $markup) ? 'markdown' : false;
-        //$result = Pi::service('markup')->render($content, $renderer, $parser);
-
         $result = Pi::api('markup', 'comment')->render($content, $renderer, $parser);
 
         return $result;
@@ -749,7 +747,6 @@ class Api extends AbstractApi
         $markup = isset($options['markup'])
             ? $options['markup']
             : Pi::config('markup_format', $this->module);
-
         $form = new PostForm($name, $markup);
 
         if ($data) {
@@ -906,10 +903,7 @@ class Api extends AbstractApi
             $row = Pi::model('root', 'comment')->find($condition);
             $result = $row ? $row->toArray() : array();
         } else {
-            //if (!$condition) b();
-            //vd($condition);
             $where = $this->canonizeRoot($condition);
-            //vd($where);
             $rowset = Pi::model('root', 'comment')->select($where);
             if (count($rowset) == 1) {
                 $result = $rowset->current()->toArray();
@@ -983,25 +977,6 @@ class Api extends AbstractApi
             'callback'  => $target['callback'],
         );
         $result = $this->getTargetContent($rootData['item'], $data);
-        /*
-        if (!empty($target['callback'])) {
-            $handler = new $target['callback']($rootData['module']);
-            $result = $handler->get($rootData['item']);
-        } else {
-            $vars = array('title', 'url', 'uid', 'time');
-            $conditions = array(
-                'module'    => $rootData['module'],
-                'type'      => $rootData['type'],
-                'id'        => $rootData['item']
-            );
-            $list = Pi::service('module')->content($vars, $conditions);
-            if ($list) {
-                $result = current($list);
-            } else {
-                $result = false;
-            }
-        }
-        */
 
         return $result;
     }
