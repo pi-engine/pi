@@ -29,9 +29,8 @@ class IndexController extends ActionController
             $content    = $row->content;
             $markup     = $row->markup ?: 'text';
             if ($content && 'pthml' != $markup) {
-                $content = Pi::service('markup')->render(
+                $content = Pi::service('markup')->compile(
                     $content, 
-                    'html',
                     $markup
                 );
             }

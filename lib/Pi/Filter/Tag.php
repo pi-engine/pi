@@ -28,9 +28,9 @@ class Tag extends AbstractFilter
      */
     protected $options = array(
         'tag'           => '%tag%',
-        'pattern'       => '#([^\s\,]{3,32})#',
-        'replacement'   =>
-            '<a href="pi.url/tag/%tag%" title="%tag%">#%tag%#</a>',
+        'pattern'       => '#([^\s\,\;]{3,32})#',
+        'replacement'   => '<a href="pi.url/tag/%tag%" title="%tag%">#%tag%#</a>',
+        'callback'      => null,
     );
 
     /**
@@ -51,15 +51,19 @@ class Tag extends AbstractFilter
      */
     public function filter($value)
     {
-        $tag = $this->options['tag'];
-        $replacement = $this->options['replacement'];
-        $value = preg_replace_callback(
-            '`' . $this->options['pattern'] . '`',
-            function ($m) use ($replacement, $tag) {
-                return str_replace($tag, $m[1], $replacement);
-            },
-            $value
-        );
+        if (!empty($this->options['callback'])) {
+            $value = $this->options['callback']($value);
+        } else {
+            $tag = $this->options['tag'];
+            $replacement = $this->options['replacement'];
+            $value = preg_replace_callback(
+                '`' . $this->options['pattern'] . '`',
+                function ($m) use ($replacement, $tag) {
+                    return str_replace($tag, $m[1], $replacement);
+                },
+                $value
+            );
+        }
 
         return $value;
     }

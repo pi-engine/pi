@@ -106,11 +106,10 @@ class NotifyController extends ActionController
 
             array_walk($notificationList, function (&$v, $k) {
                 //markup content
-                $v['content'] = Pi::service('markup')->render(
+                $v['content'] = Pi::service('markup')->compile(
                     $v['content'],
                     'text',
-                    false,
-                    array('newline' => false)
+                    array('nl2br' => false)
                 );
             });
 

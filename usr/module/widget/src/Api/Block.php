@@ -297,7 +297,7 @@ class Block extends AbstractApi
 
             // static HTML
             case 'html':
-                $result = Pi::service('markup')->render(
+                $result = Pi::service('markup')->compile(
                     $block['content'],
                     'html'
                 );
@@ -305,9 +305,8 @@ class Block extends AbstractApi
                 break;
             // static markdown
             case 'markdown':
-                $result = Pi::service('markup')->render(
+                $result = Pi::service('markup')->compile(
                     $block['content'],
-                    'html',
                     'markdown'
                 );
                 $result = $transliterateGlobals($result);
@@ -315,7 +314,7 @@ class Block extends AbstractApi
             // static text
             case 'text':
             default:
-                $result = Pi::service('markup')->render(
+                $result = Pi::service('markup')->compile(
                     $block['content'],
                     'text'
                 );

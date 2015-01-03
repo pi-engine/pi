@@ -55,8 +55,8 @@ $config = array(
                     'text'       => _t('Plain text'),
                     'markdown'  => _t('Markdown'),
                     'html'      => _t('HTML'),
-                    'js'        => _t('JavaScript/HTML'),
-                    'custom'    => _t('Custom (must be defined in `Custom\Comment\Api\Markup`)')
+                    //'js'        => _t('JavaScript/HTML'),
+                    //'custom'    => _t('Custom (must be defined in `Custom\Comment\Api\Markup\`)')
                 ),
             ),
         ),
@@ -71,7 +71,7 @@ $config = array(
                 'value_options' => array(
                     'tag'       => _t('Enable tag link'),
                     'user'      => _t('Enable username link'),
-                    'link'      => _t('Enable URL link'),
+                    'linkify'   => _t('Enable URL link'),
                 ),
             ),
         ),

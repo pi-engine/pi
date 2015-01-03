@@ -9,9 +9,8 @@
 
 namespace Pi\Markup\Renderer;
 
-use Pi\Markup\Parser\AbstractParser;
-use Pi\Filter\FilterChain;
 use Traversable;
+use Pi\Markup\Parser\AbstractParser;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -33,16 +32,10 @@ abstract class AbstractRenderer
      *
      * @var string
      */
-    protected $encoding = 'UTF-8';
+    //protected $encoding = 'UTF-8';
 
     /** @var array Options */
     protected $options = array();
-
-    /** @var FilterChain Filters */
-    protected $filterChain;
-
-    /** @var array */
-    protected $filters = array();
 
     /**
      * Constructor
@@ -66,45 +59,13 @@ abstract class AbstractRenderer
             $options = ArrayUtils::iteratorToArray($options);
         }
 
-        if (isset($options['encoding'])) {
-            $this->setEncoding($options['encoding']);
-            unset($options['encoding']);
-        }
         if (isset($options['parser'])) {
             $this->setParser($options['parser']);
             unset($options['parser']);
         }
 
-        if (isset($options['filters'])) {
-            $this->setFilters($options['filters']);
-            unset($options['filters']);
-        }
-
         foreach ($options as $key => $val) {
             $this->options[$key] = $val;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set filters
-     *
-     * @param \Zend\Filter\AbstractFilter[] $filters
-     * @return $this
-     */
-    public function setFilters(array $filters)
-    {
-        if (!$this->filterChain instanceof FilterChain) {
-            $this->filterChain = new FilterChain;
-        }
-
-        foreach ($filters as $name => $options) {
-            if (isset($this->filters[$name])) {
-                continue;
-            }
-            $this->filterChain->attachByName($name, $options);
-            $this->filters[$name] = true;
         }
 
         return $this;
@@ -116,7 +77,7 @@ abstract class AbstractRenderer
      * @param AbstractParser|string $parser
      * @return $this
      */
-    public function setParser($parser)
+    public function setParser(AbstractParser $parser)
     {
         $this->parser = $parser;
 
@@ -134,29 +95,6 @@ abstract class AbstractRenderer
     }
 
     /**
-     * Set the renderer's encoding
-     *
-     * @param string $encoding
-     * @return $this
-     */
-    public function setEncoding($encoding)
-    {
-        $this->encoding = $encoding;
-
-        return $this;
-    }
-
-    /**
-     * Get the renderer's encoding
-     *
-     * @return string
-     */
-    public function getEncoding()
-    {
-        return $this->encoding;
-    }
-
-    /**
      * Render function
      *
      * @param string $content
@@ -164,10 +102,8 @@ abstract class AbstractRenderer
      */
     public function render($content)
     {
-        $content = $this->parse($content);
-        if ($this->filterChain instanceof FilterChain) {
-            $content = $this->filterChain->filter($content);
-        }
+        $content = $this->getParser()->parse($content);
+        $content = $this->renderContent($content);
 
         return $content;
     }
@@ -178,5 +114,5 @@ abstract class AbstractRenderer
      * @param string $content
      * @return string
      */
-    abstract protected function parse($content);
+    abstract protected function renderContent($content);
 }

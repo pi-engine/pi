@@ -413,10 +413,11 @@ class Api extends AbstractApi
         } elseif (is_string($post)) {
             $content = $post;
         }
-        $renderer = ('markdown' == $markup || 'html' == $markup)
-            ? 'html' : 'text';
-        $parser = ('markdown' == $markup) ? 'markdown' : false;
-        $result = Pi::api('markup', 'comment')->render($content, $renderer, $parser);
+        //$renderer = ('markdown' == $markup || 'html' == $markup) ? 'html' : 'text';
+        //$parser = ('markdown' == $markup) ? 'markdown' : false;
+        //$result = Pi::service('markup')->render($content, $renderer, $parser);
+
+        $result = Pi::api('markup', 'comment')->compile($content, $markup);
 
         return $result;
     }

@@ -30,7 +30,7 @@ class Compiled
      */
     public static function compiled($srcType, $content, $destType)
     {
-        $content = Pi::service('markup')->render($content, $destType, $srcType);
+        $content = Pi::service('markup')->compile($content, $srcType, $destType);
         return $content;
     }
     

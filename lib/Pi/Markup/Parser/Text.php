@@ -9,14 +9,15 @@
 
 namespace Pi\Markup\Parser;
 
-use MarkdownDocument;
+use Pi;
+use Zend\Escaper\Escaper;
 
 /**
- * Markdown parser
+ * Text parser
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Markdown extends AbstractParser
+class Text extends AbstractParser
 {
     /**
      * Parse a string
@@ -26,13 +27,16 @@ class Markdown extends AbstractParser
      */
     public function parseContent($value)
     {
-        if (!class_exists('MarkdownDocument')) {
+        $encoding = empty($this->options['encoding'])
+            ? Pi::service('i18n')->getCharset()
+            : $this->options['encoding'];
+        $escaper = new Escaper($encoding);
+        $value = $escaper->escapeHtml($value);
+
+        // To keep linebreak?
+        if (!empty($this->options['nl2br'])) {
             $value = nl2br($value);
-            return $value;
         }
-        $markdown = MarkdownDocument::createFromString($value);
-        $markdown->compile();
-        $value = $markdown->getHtml();
 
         return $value;
     }

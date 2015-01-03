@@ -28,8 +28,8 @@ class PostController extends ActionController
      */
     public function indexAction()
     {
-        $id             = _get('id', 'int') ?: 1;
-        $post           = Pi::api('api', 'comment')->getPost($id);
+        $id      = _get('id', 'int') ?: 1;
+        $post   = Pi::api('api', 'comment')->getPost($id);
 
         if ($post && $post['active']) {
             $post['content'] = Pi::api('api', 'comment')->renderPost($post);
@@ -104,7 +104,10 @@ class PostController extends ActionController
         $data = array_merge($post, array(
             'redirect' => $redirect,
         ));
-        $form = Pi::api('api', 'comment')->getForm($data);
+        $options = array(
+            'markup'    => $post['markup'],
+        );
+        $form = Pi::api('api', 'comment')->getForm($data, $options);
 
         $this->view()->assign('form', $form);
         $this->view()->setTemplate('comment-edit');

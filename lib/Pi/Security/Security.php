@@ -127,6 +127,6 @@ class Security
             return $class::check($options);
         }
 
-        return null;
+        return;
     }
 }

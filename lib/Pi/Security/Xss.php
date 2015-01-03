@@ -9,6 +9,8 @@
 
 namespace Pi\Security;
 
+use Pi\Filter\XssSanitizer;
+
 /**
  * Cross site scripting check
  *
@@ -53,7 +55,7 @@ class Xss extends AbstractAdapter
             }
         }
 
-        return null;
+        return;
     }
 
     /**
@@ -97,16 +99,9 @@ class Xss extends AbstractAdapter
     /**
      * Check XSS code
      *
-     *
-     * Inspired by:
-     *
-     *  - Daniel Morris: http://www.phpclasses.org/browse/file/9402.html
-     *  - kallahar@quickwired.com's RemoveXSS
-     *  - htmlLawed
-     *  - HTMLpurifier
-     *
      * @param string    $content    Text to be checked
      * @param bool      $filter     Filter malicious code or just return status
+     *
      * @return string|null
      */
     public static function checkXss(&$content, $filter = true)
@@ -115,6 +110,14 @@ class Xss extends AbstractAdapter
             || (static::$length && strlen($content) < static::$length)
         ) {
             return $filter ? $content : null;
+        }
+        if ($filter) {
+            $xssFilter = new XssSanitizer;
+            $content = $xssFilter->filter($content);
+
+            return $content;
+        } else {
+            return;
         }
 
         // Remove NULL bytes
@@ -179,7 +182,7 @@ class Xss extends AbstractAdapter
 
             return $content;
         } else {
-            return null;
+            return;
         }
     }
 }

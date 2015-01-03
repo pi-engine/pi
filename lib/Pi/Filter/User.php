@@ -36,7 +36,7 @@ class User extends AbstractFilter
         // <a href="/url/to/user/name/%user%" title="%user%">%user%</a>
         'replacement'   => '',
         // Callback for user identity replacement if no direct replacement
-        'callback'      => '',
+        'callback'      => null,
     );
 
     /**
@@ -74,23 +74,19 @@ class User extends AbstractFilter
      */
     public function filter($value)
     {
-        $replacement = $this->options['replacement'];
-        if ($replacement) {
-            $tag = $this->options['tag'];
-            $callback = function ($m) use ($replacement, $tag) {
-                return str_replace($tag, $m[1], $replacement);
-            };
+        if (!empty($this->options['callback'])) {
+            $value = $this->options['callback']($value);
         } else {
-            $func = $this->options['callback'];
-            $callback = function($m) use ($func) {
-                return $func($m[1]);
-            };
+            $replacement = $this->options['replacement'];
+            $tag = $this->options['tag'];
+            $value = preg_replace_callback(
+                '`' . $this->options['pattern'] . '`',
+                function ($m) use ($replacement, $tag) {
+                    return str_replace($tag, $m[1], $replacement);
+                },
+                $value
+            );
         }
-        $value = preg_replace_callback(
-            '`' . $this->options['pattern'] . '`',
-            $callback,
-            $value
-        );
 
         return $value;
     }

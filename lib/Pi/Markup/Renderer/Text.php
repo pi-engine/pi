@@ -22,20 +22,9 @@ class Text extends AbstractRenderer
     /**
      * {@inheritDoc}
      */
-    protected function parse($content)
+    protected function renderContent($content)
     {
-        if (!$this->parser || 'text' == $this->parser) {
-            $content = Pi::service('security')->escape($content);
-        } else {
-            if ($this->parser instanceof AbstractParser) {
-                $content = $this->parser->parse($content);
-            }
-            $content = strip_tags($content);
-        }
-        // To keep linebreak?
-        if (!empty($this->options['newline'])) {
-            $content = nl2br($content);
-        }
+        $content = strip_tags($content);
 
         return $content;
     }

@@ -107,11 +107,10 @@ class IndexController extends ActionController
 //                $v['content'] = Service::messageSummary($v['content']);
 
                 // markup content
-                $v['content'] = Pi::service('markup')->render(
+                $v['content'] = Pi::service('markup')->compile(
                     $v['content'],
                     'text',
-                    false,
-                    array('newline' => false)
+                    array('nl2br' => false)
                 );
 
                 if ($userId == $v['uid_from']) {

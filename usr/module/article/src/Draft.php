@@ -270,8 +270,8 @@ class Draft
 
         $subject = $subtitle = $content = '';
         if ($row->markup) {
-            $subject    = Pi::service('markup')->render($row->subject, 'html', $row->markup);
-            $subtitle   = Pi::service('markup')->render($row->subtitle, 'html', $row->markup);
+            $subject    = Pi::service('markup')->compile($row->subject, $row->markup);
+            $subtitle   = Pi::service('markup')->compile($row->subtitle, $row->markup);
         } else {
             $subject    = Pi::service('markup')->render($row->subject, 'html');
             $subtitle   = Pi::service('markup')->render($row->subtitle, 'html');

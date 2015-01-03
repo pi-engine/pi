@@ -19,57 +19,60 @@ use Pi\Application\Api\AbstractApi;
  */
 class Markup extends AbstractApi
 {
-
     /**
      * Render post content
      *
      * @param string $content   Raw content
-     * @param array $options Source type: `markdown`, `html`, `text`; array for options
+     * @param array|string $options Source type: `markdown`, `html`, `text`; array for options
      *
      * @return string
      */
-    public function render($content, $options = array()) {
+    public function render($content, $options = array())
+    {
+        if (is_string($options)) {
+            $options = array('format' => $options);
+        }
         if (isset($options['format'])) {
             $format = $options['format'];
         } else {
             $format = Pi::config('markup_format', $this->module);
         }
-        if (isset($options['filters'])) {
-            $filters = $options['filters'];
-        } else {
-            $filters = Pi::config('markup_filters', $this->module);
-        }
 
         $options = array();
-        $renderer = 'html';
         switch ($format) {
             case 'javascript':
                 $options = array(
-                    'xss_filter'    => false,
+                    'filters'   => array(
+                        'xss_sanitizer'    => false,
+                    )
                 );
-                $parser = 'html';
                 break;
             case 'html':
-                $parser = 'html';
                 $options = array(
-                    'xss_filter'    => false,
+                    'filters'   => array(
+                        'xss_sanitizer'    => false,
+                    )
                 );
                 break;
             case 'markdown':
-                $parser = 'markdown';
                 break;
             case 'text':
             default:
-                $parser = 'text';
-                if (!empty($filters)) {
-                    $options['filters'] = array_fill_keys($filters, array());
+                if (isset($options['filters'])) {
+                    $filters = $options['filters'];
+                } else {
+                    $filters = Pi::config('markup_filters', $this->module);
+                    if (!empty($filters)) {
+                        $filters = array_fill_keys($filters, array());
+                    }
                 }
+                $options['filters'] = $filters;
                 break;
         }
-        $result = Pi::service('markup')->render(
+        $markup = $format ?: 'text';
+        $result = Pi::service('markup')->compile(
             $content,
-            $renderer,
-            $parser,
+            $markup,
             $options
         );
 

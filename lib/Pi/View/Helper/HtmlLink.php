@@ -38,6 +38,6 @@ class HtmlLink extends AbstractHtmlElement
             $attribs = '';
         }
 
-        return '<a href="' . $href . '"' . $attribs . '>' . $label . '</a>' . PHP_EOL;
+        return '<a href="' . $href . '"' . $attribs . '>' . $label . '</a>';// . PHP_EOL;
     }
 }

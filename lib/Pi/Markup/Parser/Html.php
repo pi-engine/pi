@@ -7,23 +7,27 @@
  * @license         http://pialog.org/license.txt BSD 3-Clause License
  */
 
-namespace Pi\Markup\Renderer;
-
-use Pi;
-use Pi\Markup\Parser\AbstractParser;
+namespace Pi\Markup\Parser;
 
 /**
- * Render to HTML format
+ * HTML content parser
  *
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
-class Html extends AbstractRenderer
+class Html extends AbstractParser
 {
     /**
-     * {@inheritDoc}
+     * Parse a string
+     *
+     * @param  string $value
+     * @return string
      */
-    protected function renderContent($content)
+    public function parseContent($value)
     {
-        return $content;
+        if (!empty($this->options['safe_tags'])) {
+            $value = strip_tags($value, $this->options['safe_tags']);
+        }
+
+        return $value;
     }
 }
