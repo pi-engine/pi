@@ -417,7 +417,7 @@ class Api extends AbstractApi
         //$parser = ('markdown' == $markup) ? 'markdown' : false;
         //$result = Pi::service('markup')->render($content, $renderer, $parser);
 
-        $result = Pi::api('markup', 'comment')->compile($content, $markup);
+        $result = Pi::api('markup', 'comment')->render($content, $markup);
 
         return $result;
     }

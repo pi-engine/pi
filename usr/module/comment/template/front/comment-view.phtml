@@ -15,7 +15,7 @@ $post = $comment['post'];
 <div class="pi-comment">
     <div class="pi-comment-header"><?php _e('Comment detail'); ?></div>
     <div class="media">
-        <a class="pull-left" href="<?php echo $url; ?>">
+        <a class="pull-left" href="<?php echo $post['user']['url']; ?>">
             <?php echo Pi::avatar()->get($post['uid'], 'medium'); ?>
         </a>
         <div class="media-body">

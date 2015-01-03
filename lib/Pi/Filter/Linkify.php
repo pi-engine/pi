@@ -18,7 +18,6 @@ use Zend\Filter\AbstractFilter;
  * Transliterate a URL to clickable link:
  * From `http://url.tld` to `<a href="http://url.tld" title="Click to open">http://url.tld</a>`
  *
- * @see https://bitbucket.org/kwi/urllinker/src
  * @author Taiwen Jiang <taiwenjiang@tsinghua.org.cn>
  */
 class Linkify extends AbstractFilter
