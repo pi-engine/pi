@@ -130,6 +130,7 @@ CREATE TABLE `{cluster_article}` (
   `cluster`         int(10) UNSIGNED      NOT NULL DEFAULT 0,
 
   PRIMARY KEY           (`id`),
+  KEY                   (`article`),
   KEY `cluster_item`    (`cluster`, `article`)
 );
 

@@ -331,6 +331,20 @@ EOD;
                 return $result;
             }
         }
+        
+        // Add index for article_cluster_article
+        if (version_compare($version, '1.9.4', '<')) {
+            $module = $this->handler->getParam('module');
+            
+            $clusterArticle = Pi::db()->prefix('cluster_article', $module);
+            $sql    =<<<EOD
+ALTER TABLE {$clusterArticle} ADD INDEX (`article`);
+EOD;
+            $result = $this->querySchema($sql, $module);
+            if (false === $result) {
+                return $result;
+            }
+        }
 
         return $result;
     }

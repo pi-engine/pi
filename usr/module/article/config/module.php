@@ -17,7 +17,7 @@ return array(
     'meta'         => array(
         'title'         => _a('Article'),
         'description'   => _a('General module for content management.'),
-        'version'       => '1.9.3',
+        'version'       => '1.9.4',
         'license'       => 'New BSD',
         'logo'          => 'image/logo.png',
         'readme'        => 'README.md',
