@@ -92,7 +92,20 @@ class LoginForm extends BaseForm
             'type'  => 'csrf',
         ));
 
-        $redirect = _get('redirect') ?: Pi::service('url')->getRequestUri();
+        $redirect = _get('redirect');
+        if (!$redirect) {
+            $routeMatch = Pi::engine()->application()->getRouteMatch();
+            if ($routeMatch) {
+                $module = $routeMatch->getParam('module');
+                $controller = $routeMatch->getParam('controller');
+                if (('user' == $module || 'system' == $module)
+                     && ('login' == $controller || 'register' == $controller)
+                ) {
+                } else {
+                    $redirect = Pi::service('url')->getRequestUri();
+                }
+            }
+        }
         $redirect = $redirect ? rawurlencode($redirect) : '';
         $this->add(array(
             'name'  => 'redirect',

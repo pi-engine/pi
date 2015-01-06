@@ -628,12 +628,6 @@ abstract class AbstractUser extends AbstractApi
                 } else {
                     $params = (array) $var;
                 }
-                if (isset($params['redirect'])) {
-                    $options['query']['redirect'] = $params['redirect'];
-                    unset($params['redirect']);
-                } else {
-                    $options['query']['redirect'] = Pi::service('url')->getRequestUri();
-                }
                 if (!isset($params['module'])) {
                     $params['module'] = 'system';
                 }
@@ -645,15 +639,27 @@ abstract class AbstractUser extends AbstractApi
                     unset($params['route']);
                 }
                 if (isset($params['section'])) {
-                    $section = $params['section'];
+                    if ('admin' == $params['section']) {
+                        $route = 'admin';
+                    }
                     unset($params['section']);
+                }
+                if (isset($params['redirect'])) {
+                    $options['query']['redirect'] = $params['redirect'];
+                    unset($params['redirect']);
                 } else {
-                    $section = Pi::engine()->application()->getSection();
+                    $routeMatch = Pi::engine()->application()->getRouteMatch();
+                    if ($routeMatch) {
+                        $module = $routeMatch->getParam('module');
+                        $controller = $routeMatch->getParam('controller');
+                        if (('user' == $module || 'system' == $module)
+                            && ('login' == $controller || 'register' == $controller)
+                        ) {
+                        } else {
+                            $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                        }
+                    }
                 }
-                if ('admin' == $section) {
-                    $route = 'admin';
-                }
-
                 $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
@@ -684,13 +690,10 @@ abstract class AbstractUser extends AbstractApi
                     unset($params['route']);
                 }
                 if (isset($params['section'])) {
-                    $section = $params['section'];
+                    if ('admin' == $params['section']) {
+                        $route = 'admin';
+                    }
                     unset($params['section']);
-                } else {
-                    $section = Pi::engine()->application()->getSection();
-                }
-                if ('admin' == $section) {
-                    $route = 'admin';
                 }
                 $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
@@ -704,12 +707,6 @@ abstract class AbstractUser extends AbstractApi
                 } else {
                     $params = (array) $var;
                 }
-                if (isset($params['redirect'])) {
-                    $options['query']['redirect'] = $params['redirect'];
-                    unset($params['redirect']);
-                } else {
-                    $options['query']['redirect'] = Pi::service('url')->getRequestUri();
-                }
                 if (!isset($params['controller'])) {
                     $params['controller'] = 'register';
                 }
@@ -717,6 +714,23 @@ abstract class AbstractUser extends AbstractApi
                     $route = $params['route'];
                     unset($params['route']);
                 }
+                if (isset($params['redirect'])) {
+                    $options['query']['redirect'] = $params['redirect'];
+                    unset($params['redirect']);
+                } else {
+                    $routeMatch = Pi::engine()->application()->getRouteMatch();
+                    if ($routeMatch) {
+                        $module = $routeMatch->getParam('module');
+                        $controller = $routeMatch->getParam('controller');
+                        if (('user' == $module || 'system' == $module)
+                            && ('login' == $controller || 'register' == $controller)
+                        ) {
+                        } else {
+                            $options['query']['redirect'] = Pi::service('url')->getRequestUri();
+                        }
+                    }
+                }
+
                 $url = Pi::service('url')->assemble($route, $params, $options);
                 break;
 
@@ -755,18 +769,6 @@ abstract class AbstractUser extends AbstractApi
                 $url = Pi::service('url')->assemble($route, $params);
                 break;
         }
-
-        // Append redirect with query
-        // @see http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes
-        /*
-        if ($redirect) {
-            if (false == strpos($url, '?')) {
-                $url .= '?redirect=' . rawurlencode($redirect);
-            } else {
-                $url .= '&redirect=' . rawurlencode($redirect);
-            }
-        }
-        */
 
         return $url;
     }
