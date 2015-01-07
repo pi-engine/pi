@@ -18,8 +18,8 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  * Usage inside a phtml template
  *
- * $this->Videojs($source, $poster);
- * $this->Videojs($source, $poster, $width, $height);
+ * $this->videojs($source, $poster);
+ * $this->videojs($source, $poster, $width, $height);
  *
  * @see http://www.videojs.com/
  * @author Hossein Azizabadi <djvoltan@gmail.com>
@@ -28,14 +28,14 @@ use Zend\View\Helper\AbstractHtmlElement;
 class Videojs extends AbstractHtmlElement
 {
     /**
-     * Display social sharing buttons
+     * Render video/audio player with video-js
      *
      * @todo The icon is not responsive yet
      *
-     * @param string                $source     MP4 video or MP3 audio full url
-     * @param string                $poster     Player image full url
-     * @param string                $width      Player width
-     * @param string                $height     Player height
+     * @param string    $source MP4 video or MP3 audio full url
+     * @param string    $poster Player image full url
+     * @param int       $width  Player width
+     * @param int       $height Player height
      *
      * @return  string
      */
@@ -44,42 +44,42 @@ class Videojs extends AbstractHtmlElement
         // Set template
         $extension = pathinfo($source, PATHINFO_EXTENSION);
         switch ($extension) {
-        	case 'mp3':
+            case 'mp3':
                 $template = <<<'EOT'
-<audio id="%s" class="video-js vjs-default-skin" width="%s" height="%s" poster="%s" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+<audio id="%s" class="video-js vjs-default-skin" width="%d" height="%d" poster="%s" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
     <source src="%s" type='audio/mp3' />
 </audio>
 EOT;
-        		break;
+                break;
 
-        	case 'mp4':
+            case 'mp4':
                 $template = <<<'EOT'
-<video id="%s" class="video-js vjs-default-skin" width="%s" height="%s" poster="%s" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+<video id="%s" class="video-js vjs-default-skin" width="%d" height="%d" poster="%s" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
     <source src="%s" type='video/mp4' />
 </video>
 EOT;
-        		break;
+                break;
 
-        	default:
+            default:
                 return '';
-        		break;
         }
 
         // Load js file
-        $js = 'vendor/player/video-js/video.js';
+        $js = 'vendor/video-js/video.js';
         $js = Pi::service('asset')->getStaticUrl($js);
-    	$this->view->js($js);
+        $this->view->js($js);
         
         // Load css file
-        $css = 'vendor/player/video-js/video-js.min.css';
+        $css = 'vendor/video-js/video-js.min.css';
         $css = Pi::service('asset')->getStaticUrl($css);
-    	$this->view->css($css);
+        $this->view->css($css);
 
-    	// Set random ID
-    	$id = "video-js-" . rand(1000, 9999);
+        // Set random unique ID
+        $id = uniqid("video-js-");
        
         // Set final content
         $content = sprintf($template, $id, $width, $height, $poster, $source);
+
         return $content;
     }
 }
