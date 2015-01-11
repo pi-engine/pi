@@ -133,9 +133,9 @@ class Config extends AbstractResource
      * @param array $config
      * @return array
      */
-    protected function canonize($config)
+    protected function canonize(array $config, $module = '')
     {
-        $ret = array();
+        $module = $module ?: $this->event->getParam('module');
         // Canonize categories and items
         if (!isset($config['item']) && !isset($config['category'])) {
             $ret = array(
@@ -150,6 +150,36 @@ class Config extends AbstractResource
                                 ? $config['item'] : array()
             );
         }
+        // Formulate category order
+        $order = 1;
+        foreach ($ret['category'] as $key => &$item) {
+            $item['order'] = $order++;
+        }
+
+        if ('system' != $module) {
+            $rowCategory = Pi::model('config_category')->select(array(
+                'module'    => 'system',
+                'name'      => 'head_meta',
+            ))->current();
+            if ($rowCategory) {
+                $ret['category'][] = array(
+                    'name'      => $rowCategory->name,
+                    'title'     => $rowCategory->title,
+                    'module'    => $module,
+                    'order'     => 99,
+                );
+                $rowset = Pi::model('config')->select(array(
+                    'module'    => 'system',
+                    'category'  => $rowCategory->name,
+                ));
+                foreach ($rowset as $row) {
+                    $configItem = $row->toArray();
+                    unset($configItem['id']);
+                    $configItem['value']  = '';
+                    $ret['item'][$row->name] = $configItem;
+                }
+            }
+        }
 
         // Formulate config name and order
         $order = 1;
@@ -157,11 +187,6 @@ class Config extends AbstractResource
             if (!isset($item['name'])) {
                 $item['name'] = strval($key);
             }
-            $item['order'] = $order++;
-        }
-        // Formulate category order
-        $order = 1;
-        foreach ($ret['category'] as $key => &$item) {
             $item['order'] = $order++;
         }
 
@@ -174,9 +199,9 @@ class Config extends AbstractResource
      * @param array $config
      * @return array
      */
-    protected function canonizeConfig($config)
+    protected function canonizeConfig(array $config, $module = '')
     {
-        $module = $this->event->getParam('module');
+        $module = $module ?: $this->event->getParam('module');
         $config['module'] = $module;
         if (!isset($config['category'])) {
             $config['category'] = static::DEFAULT_CATEGORY;
@@ -204,14 +229,8 @@ class Config extends AbstractResource
         $config = $this->canonize($this->config);
         if (!empty($config['category'])) {
             $modelCategory = Pi::model('config_category');
-            //$order = 0;
             foreach ($config['category'] as $category) {
                 $category['module'] = $module;
-                /*
-                if (!isset($category['order'])) {
-                    $category['order'] = ++$order;
-                }
-                */
                 $status = $modelCategory->insert($category);
                 if (!$status) {
                     return array(
@@ -226,13 +245,7 @@ class Config extends AbstractResource
         }
 
         $model = Pi::model('config');
-        //$order = 0;
         foreach ($config['item'] as $item) {
-            /*
-            if (!isset($item['order'])) {
-                $item['order'] = ++$order;
-            }
-            */
             $item = $this->canonizeConfig($item);
             $row = $model->createRow($item);
             $status = $row->save();
@@ -262,7 +275,40 @@ class Config extends AbstractResource
             return;
         }
 
-        $config = $this->canonize($this->config);
+        $result = $this->update($this->config, $module);
+
+        return $result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function uninstallAction()
+    {
+        $module = $this->event->getParam('module');
+        Pi::registry('config')->clear($module);
+
+        $modelCategory = Pi::model('config_category');
+        $modelConfig = Pi::model('config');
+        $modelCategory->delete(array('module' => $module));
+        $modelConfig->delete(array('module' => $module));
+
+        return true;
+    }
+
+    /**
+     * Update module config
+     *
+     * @param array $config
+     * @param string $module
+     *
+     * @return array|bool
+     */
+    public function update(array $config = array(), $module = '')
+    {
+        $module = $module ?: $this->event->getParam('module');
+        $config = $config ?: $this->config;
+        $config = $this->canonize($config, $module);
         $modelCategory = Pi::model('config_category');
         $modelConfig = Pi::model('config');
         $categories = array();
@@ -332,7 +378,7 @@ class Config extends AbstractResource
 
         $configList = array();
         foreach ($config['item'] as $item) {
-            $item = $this->canonizeConfig($item);
+            $item = $this->canonizeConfig($item, $module);
             $configList[$item['name']] = $item;
         }
         $rowsetConfig = $modelConfig->select(array('module' => $module));
@@ -374,22 +420,6 @@ class Config extends AbstractResource
                 );
             }
         }
-
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function uninstallAction()
-    {
-        $module = $this->event->getParam('module');
-        Pi::registry('config')->clear($module);
-
-        $modelCategory = Pi::model('config_category');
-        $modelConfig = Pi::model('config');
-        $modelCategory->delete(array('module' => $module));
-        $modelConfig->delete(array('module' => $module));
 
         return true;
     }

@@ -21,7 +21,7 @@ $config['category'] = array(
         'title'     => _t('General'),
     ),
     array(
-        'name'      => 'meta',
+        'name'      => 'head_meta',
         'title'     => _t('Head meta'),
     ),
     array(
@@ -357,7 +357,7 @@ $config['item'] = array(
         'description'   => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
         'edit'          => 'text',
         'value'         => 'Pi Engine',
-        'category'      => 'meta',
+        'category'      => 'head_meta',
     ),
 
     'generator'     => array(
@@ -365,7 +365,7 @@ $config['item'] = array(
         'description'   => _t('Generator of the document being read.'),
         'edit'          => 'text',
         'value'         => 'Pi Engine',
-        'category'      => 'meta',
+        'category'      => 'head_meta',
     ),
 
     'keywords'      => array(
@@ -373,7 +373,7 @@ $config['item'] = array(
         'description'   => _t('The keywords meta tag is a series of keywords that represents the content of your site. Separated keywords by a comma.'),
         'edit'          => 'textarea',
         'value'         => 'Pi Engine,Web application,PHP,Zend Framework',
-        'category'      => 'meta',
+        'category'      => 'head_meta',
     ),
 
     'description'   => array(
@@ -381,7 +381,7 @@ $config['item'] = array(
         'description'   => _t('The description meta tag is a general description of what is contained in your web page'),
         'edit'          => 'textarea',
         'value'         => 'Pi Engine is an extensible development engine for web and mobile applications written in PHP.',
-        'category'      => 'meta',
+        'category'      => 'head_meta',
     ),
 
     // I18n section

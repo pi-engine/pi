@@ -72,9 +72,9 @@ use Zend\Mvc\InjectApplicationEventInterface;
  * Set head description, default as set by overwriting
  *
  * ```
- *  $this->view()->headKeywords('Custom description of the page.'[, 'set']);
- *  $this->view()->headKeywords('Custom description of the page.', 'append');
- *  $this->view()->headKeywords('Custom description of the page.', 'prepend');
+ *  $this->view()->headDescription('Custom description of the page.'[, 'set']);
+ *  $this->view()->headDescription('Custom description of the page.', 'append');
+ *  $this->view()->headDescription('Custom description of the page.', 'prepend');
  * ```
  *
  * Load a view helper
@@ -184,7 +184,6 @@ class View extends AbstractPlugin
     {
         if (!$this->viewModel) {
             $this->viewModel = new ViewModel($variables, $options);
-            //$this->viewModel->setCaptureTo('content');
         } elseif ($variables || $options) {
             if ($variables) {
                 $this->viewModel->setVariables($variables);
@@ -292,7 +291,6 @@ class View extends AbstractPlugin
         if (func_num_args() == 0) {
             return $this->helper('headTitle');
         }
-        //$title = preg_replace('/[\s]+/', ' ', trim(strip_tags($title)));
         $filter = new Filter\HeadTitle;
         $title = $filter($title);
         $this->helper('headTitle')->__invoke($title, $setType);
@@ -309,7 +307,6 @@ class View extends AbstractPlugin
      */
     public function headDescription($description, $placement = null)
     {
-        //$description = preg_replace('/[\s]+/', ' ', trim(strip_tags($description)));
         $filter = new Filter\HeadDescription;
         $description = $filter($description);
         $this->helper('headMeta')->__invoke(
@@ -335,7 +332,6 @@ class View extends AbstractPlugin
         if (is_array($keywords)) {
             $keywords = implode(',', $keywords);
         }
-        //$keywords = preg_replace('/[\s]+/', ' ', trim(strip_tags($keywords)));
         $filter = new Filter\HeadKeywords;
         $keywords = $filter($keywords);
         $this->helper('headMeta')->__invoke(

@@ -59,21 +59,16 @@ class ThemeAssemble extends AbstractHelper
     }
 
     /**
-     * Load meta from configuration
+     * Load basic meta from configuration
      *
      * @return void
      */
     public function initStrategy()
     {
-        // Load meta config
-        $configMeta = Pi::config('', 'system', 'meta');
-        // Set head meta
-        foreach ($configMeta as $key => $value) {
-            if (!$value) {
-                continue;
-            }
-            $this->view->headMeta()->appendName($key, $value);
-        }
+        // Initialize headTitle helper
+        $headTitle = $this->view->headTitle();
+        // Set separator
+        $headTitle->setSeparator(' - ');
 
         // Load general config
         $configGeneral = Pi::config('', 'system', 'general');
@@ -94,32 +89,56 @@ class ThemeAssemble extends AbstractHelper
         unset($configGeneral['foot_script']);
 
         // Set global variables to root ViewModel, e.g. theme template
-        $configGeneral['locale'] = Pi::service('i18n')->locale
+        $configGeneral['locale'] = Pi::service('i18n')->getLocale()
             ?: $configGeneral['locale'];
-        $configGeneral['charset'] = Pi::service('i18n')->charset
+        $configGeneral['charset'] = Pi::service('i18n')->getCharset()
             ?: $configGeneral['charset'];
         $this->view->plugin('view_model')->getRoot()
             ->setVariables($configGeneral);
+    }
 
-        // Initialize headTitle helper
-        $headTitle = $this->view->headTitle();
-        // Set separator
-        $separator = $headTitle->setSeparator(' - ');
+    /**
+     * Load head meta from configuration
+     *
+     * @param string $module
+     *
+     * @return void
+     */
+    public function bootStrategy($module)
+    {
+        // Load meta config
+        $configMeta = Pi::config('', 'system', 'head_meta');
+        $moduleMeta = array();
+        if ('system' != $module) {
+            $moduleMeta = Pi::config('', $module, 'head_meta');
+            if (!empty($moduleMeta['head_title'])) {
+                $this->view->headTitle($moduleMeta['head_title']);
+            }
+        }
+        // Set head meta
+        foreach ($configMeta as $key => $value) {
+            $meta = empty($moduleMeta[$key]) ? $value : $moduleMeta[$key];
+            if (!$meta) {
+                continue;
+            }
+            $this->view->headMeta()->appendName($key, $meta);
+        }
     }
 
     /**
      * Canonize head title by appending site name and/or slogan
      *
+     * @param string $module
+     *
      * @return void
      */
-    public function renderStrategy()
+    public function renderStrategy($module)
     {
         $headTitle      = $this->view->headTitle();
         $separator      = $headTitle->getSeparator();
-        $currentModule  = Pi::service('module')->current();
 
         // Set slogan as page title for homepage
-        if ((!$currentModule || 'system' == $currentModule)
+        if ((!$module || 'system' == $module)
             && !$headTitle->count()
         ) {
             $headTitle->set(Pi::config('slogan'));
@@ -129,8 +148,8 @@ class ThemeAssemble extends AbstractHelper
         $postfix = $headTitle->getPostfix();
         if (!$postfix) {
             $postfix = Pi::config('sitename');
-            if ($currentModule && 'system' != $currentModule) {
-                $moduleMeta = Pi::registry('module')->read($currentModule);
+            if ($module && 'system' != $module) {
+                $moduleMeta = Pi::registry('module')->read($module);
                 $postfix = $moduleMeta['title'] . $separator . $postfix;
             }
             if ($headTitle->count()) {

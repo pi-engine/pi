@@ -196,6 +196,9 @@ class ViewStrategyListener extends AbstractListenerAggregate
      */
     public function prepareActionResult(MvcEvent $e)
     {
+        // Boot theme assemble
+        $this->bootThemeAssemble($e);
+
         // Skip if error
         if ($e->isError()) {
             return;
@@ -608,6 +611,24 @@ class ViewStrategyListener extends AbstractListenerAggregate
     }
 
     /**
+     * Preload head meta data
+     *
+     * @param MvcEvent $e
+     * @return void
+     */
+    public function bootThemeAssemble(MvcEvent $e)
+    {
+        if ($this->skipThemeAssemble($e)) {
+            return;
+        }
+
+        // Get ViewRenderer
+        $viewRenderer = $e->getApplication()->getServiceManager()
+            ->get('ViewRenderer');
+        $viewRenderer->themeAssemble()->bootStrategy($e->getRouteMatch()->getParam('module'));
+    }
+
+    /**
      * Canonize head title by appending site name and/or slogan
      *
      * @param MvcEvent $e
@@ -622,7 +643,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
         // Get ViewRenderer
         $viewRenderer = $e->getApplication()->getServiceManager()
             ->get('ViewRenderer');
-        $viewRenderer->themeAssemble()->renderStrategy();
+        $viewRenderer->themeAssemble()->renderStrategy($e->getRouteMatch()->getParam('module'));
     }
 
     /**
@@ -642,9 +663,9 @@ class ViewStrategyListener extends AbstractListenerAggregate
         $response->getHeaders()->addHeaders(array(
             'content-type'      => sprintf(
                 'text/html; charset=%s',
-                Pi::service('i18n')->charset
+                Pi::service('i18n')->getCharset()
             ),
-            'content-language'  => Pi::service('i18n')->locale,
+            'content-language'  => Pi::service('i18n')->getLocale(),
         ));
 
         // Get ViewRenderer

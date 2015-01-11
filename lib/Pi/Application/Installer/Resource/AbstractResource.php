@@ -23,7 +23,7 @@ class AbstractResource
     protected $event;
 
     /** @var array Meta config data */
-    protected $config;
+    protected $config = array();
 
     /**
      * Constructor
@@ -32,7 +32,7 @@ class AbstractResource
      */
     public function __construct($config)
     {
-        $this->config = $config;
+        $this->config = (array) $config;
     }
 
     /**
@@ -51,7 +51,7 @@ class AbstractResource
     /**
      * Determine whether to skip upgrade for current resource
      *
-     * Performe upgrade in anyway if system is in development mode;
+     * Perform upgrade in anyway if system is in development mode;
      * Skip upgrade if module version is already greater than configuration
      *
      * @return bool
