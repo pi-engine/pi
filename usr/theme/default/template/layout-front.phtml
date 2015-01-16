@@ -61,13 +61,15 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
+/*
 // Dublin Core
-$this->headMeta(_escape($sitename), 'dc:title', 'property', array('lang' => $locale));
-$this->headMeta(_escape($slogan), 'dc:subject', 'property', array('lang' => $locale));
-$this->headMeta(_escape($sitename . ' - ' . $slogan) , 'dc:description', 'property', array('lang' => $locale));
+$this->headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
+$this->headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
+$this->headMeta($sitename . ' - ' . $slogan, 'dc:description', 'property', array('lang' => $locale));
 $this->headMeta('text', 'dc:type', 'property');
-$this->headMeta(_escape($sitename), 'dc:publisher', 'property');
+$this->headMeta($sitename, 'dc:publisher', 'property');
 $this->headMeta($locale, 'dc:language', 'property');
+*/
 
 // Explicitly load favicon
 $this->headLink(array(

@@ -109,12 +109,18 @@ class ThemeAssemble extends AbstractHelper
         // Load meta config
         $configMeta = Pi::config('', 'system', 'head_meta');
         $moduleMeta = array();
+        $headTitle  = $configMeta['head_title'];
+        unset($configMeta['head_title']);
         if ('system' != $module) {
             $moduleMeta = Pi::config('', $module, 'head_meta');
-            if (!empty($moduleMeta['head_title'])) {
-                $this->view->headTitle($moduleMeta['head_title']);
+            if (isset($moduleMeta['head_title'])) {
+                if (!empty($moduleMeta['head_title'])) {
+                    $headTitle = $moduleMeta['head_title'];
+                }
+                unset($moduleMeta['head_title']);
             }
         }
+        $this->view->headTitle($headTitle);
         // Set head meta
         foreach ($configMeta as $key => $value) {
             $meta = empty($moduleMeta[$key]) ? $value : $moduleMeta[$key];
@@ -123,6 +129,17 @@ class ThemeAssemble extends AbstractHelper
             }
             $this->view->headMeta()->appendName($key, $meta);
         }
+
+        // Dublin Core
+        $sitename = Pi::config('sitename');
+        $slogan = Pi::config('slogan');
+        $locale = Pi::service('i18n')->getLocale();
+        $this->view->headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
+        $this->view->headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
+        $this->view->headMeta($sitename . ' - ' . $slogan, 'dc:description', 'property', array('lang' => $locale));
+        $this->view->headMeta('text', 'dc:type', 'property');
+        $this->view->headMeta($sitename, 'dc:publisher', 'property');
+        $this->view->headMeta($locale, 'dc:language', 'property');
     }
 
     /**

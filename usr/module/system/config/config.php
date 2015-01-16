@@ -352,6 +352,7 @@ $config['item'] = array(
 
     // Meta section
 
+    /*
     'author'        => array(
         'title'         => '`author`',
         'description'   => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
@@ -367,12 +368,21 @@ $config['item'] = array(
         'value'         => 'Pi Engine',
         'category'      => 'head_meta',
     ),
+    */
+
+    'head_title'   => array(
+        'title'         => '`title`',
+        'description'   => _t('Head title for web page'),
+        'edit'          => 'text',
+        'value'         => 'A multi-tenant application development engine for cloud ready SaaS platform.',
+        'category'      => 'head_meta',
+    ),
 
     'keywords'      => array(
         'title'         => '`keywords`',
         'description'   => _t('The keywords meta tag is a series of keywords that represents the content of your site. Separated keywords by a comma.'),
         'edit'          => 'textarea',
-        'value'         => 'Pi Engine,Web application,PHP,Zend Framework',
+        'value'         => 'Pi Engine,Web application,SaaS,Multi-tenant,PHP,Zend Framework',
         'category'      => 'head_meta',
     ),
 
@@ -380,7 +390,7 @@ $config['item'] = array(
         'title'         => '`description`',
         'description'   => _t('The description meta tag is a general description of what is contained in your web page'),
         'edit'          => 'textarea',
-        'value'         => 'Pi Engine is an extensible development engine for web and mobile applications written in PHP.',
+        'value'         => 'Pi Engine is an open source project developed in PHP and MySQL upon frameworks including Zend Framework, jQuery, AngularJS, Bootstrap as well as icons by FontAwesome.',
         'category'      => 'head_meta',
     ),
 
