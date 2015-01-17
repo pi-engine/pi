@@ -106,40 +106,36 @@ class ThemeAssemble extends AbstractHelper
      */
     public function bootStrategy($module)
     {
+        $headMeta = $this->view->headMeta();
         // Load meta config
         $configMeta = Pi::config('', 'system', 'head_meta');
         $moduleMeta = array();
-        $headTitle  = $configMeta['head_title'];
         unset($configMeta['head_title']);
         if ('system' != $module) {
             $moduleMeta = Pi::config('', $module, 'head_meta');
             if (isset($moduleMeta['head_title'])) {
-                if (!empty($moduleMeta['head_title'])) {
-                    $headTitle = $moduleMeta['head_title'];
-                }
                 unset($moduleMeta['head_title']);
             }
         }
-        $this->view->headTitle($headTitle);
         // Set head meta
         foreach ($configMeta as $key => $value) {
             $meta = empty($moduleMeta[$key]) ? $value : $moduleMeta[$key];
             if (!$meta) {
                 continue;
             }
-            $this->view->headMeta()->appendName($key, $meta);
+            $headMeta->appendName($key, $meta);
         }
 
         // Dublin Core
         $sitename = Pi::config('sitename');
         $slogan = Pi::config('slogan');
         $locale = Pi::service('i18n')->getLocale();
-        $this->view->headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
-        $this->view->headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
-        $this->view->headMeta($sitename . ' - ' . $slogan, 'dc:description', 'property', array('lang' => $locale));
-        $this->view->headMeta('text', 'dc:type', 'property');
-        $this->view->headMeta($sitename, 'dc:publisher', 'property');
-        $this->view->headMeta($locale, 'dc:language', 'property');
+        $headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
+        $headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
+        $headMeta($sitename . ' - ' . $slogan, 'dc:description', 'property', array('lang' => $locale));
+        $headMeta('text', 'dc:type', 'property');
+        $headMeta($sitename, 'dc:publisher', 'property');
+        $headMeta($locale, 'dc:language', 'property');
     }
 
     /**
@@ -151,21 +147,29 @@ class ThemeAssemble extends AbstractHelper
      */
     public function renderStrategy($module)
     {
-        $headTitle      = $this->view->headTitle();
-        $separator      = $headTitle->getSeparator();
+        $headTitle = $this->view->headTitle();
+        $separator = $headTitle->getSeparator();
 
-        // Set slogan as page title for homepage
-        if ((!$module || 'system' == $module)
-            && !$headTitle->count()
-        ) {
-            $headTitle->set(Pi::config('slogan'));
+        // Head title for system module
+        if ('system' == $module) {
+            if (!$headTitle->count()) {
+                $headTitle->set(Pi::config('sitename'));
+                $headTitle->setPostfix($separator . Pi::config('slogan'));
+            }
+        }
+        // Set head title
+        if (!$headTitle->count()) {
+            $headTitleStr = Pi::config('head_title', $module);
+            if ($headTitleStr) {
+                $headTitle->set($headTitleStr);
+            }
         }
 
         // Set postfix
         $postfix = $headTitle->getPostfix();
         if (!$postfix) {
             $postfix = Pi::config('sitename');
-            if ($module && 'system' != $module) {
+            if ($module) {
                 $moduleMeta = Pi::registry('module')->read($module);
                 $postfix = $moduleMeta['title'] . $separator . $postfix;
             }
