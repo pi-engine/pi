@@ -156,9 +156,11 @@ class RenderCache extends AbstractResource
                     && '1.1' == $response->getVersion()
                 ) {
                     $etag = md5($content);
+                    $datetime = new \DateTime();
                     $response->getHeaders()->addHeaders(array(
                         'etag'          => $etag,
                         'cache-control' => 'must-revalidate, post-check=0, pre-check=0',
+                        'expires'       => $datetime->modify('+1 month')->format('D, d M Y H:i:s \G\M\T'),
                     ));
                     $ifNoneMatch = $e->getRequest()->getHeader('if_none_match');
                     if ($ifNoneMatch) {
