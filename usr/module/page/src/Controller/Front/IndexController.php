@@ -28,7 +28,7 @@ class IndexController extends ActionController
         } else {
             $content    = $row->content;
             $markup     = $row->markup ?: 'text';
-            if ($content && 'pthml' != $markup) {
+            if ($content && 'phtml' != $markup) {
                 $content = Pi::service('markup')->compile(
                     $content, 
                     $markup
