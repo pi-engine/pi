@@ -130,9 +130,10 @@ class ThemeAssemble extends AbstractHelper
         $sitename = Pi::config('sitename');
         $slogan = Pi::config('slogan');
         $locale = Pi::service('i18n')->getLocale();
+        $description = Pi::config('description');
         $headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
         $headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
-        $headMeta($sitename . ' - ' . $slogan, 'dc:description', 'property', array('lang' => $locale));
+        $headMeta($description, 'dc:description', 'property', array('lang' => $locale));
         $headMeta('text', 'dc:type', 'property');
         $headMeta($sitename, 'dc:publisher', 'property');
         $headMeta($locale, 'dc:language', 'property');

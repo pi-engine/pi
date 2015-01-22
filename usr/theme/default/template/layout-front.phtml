@@ -61,16 +61,6 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
-/*
-// Dublin Core
-$this->headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
-$this->headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
-$this->headMeta($sitename . ' - ' . $slogan, 'dc:description', 'property', array('lang' => $locale));
-$this->headMeta('text', 'dc:type', 'property');
-$this->headMeta($sitename, 'dc:publisher', 'property');
-$this->headMeta($locale, 'dc:language', 'property');
-*/
-
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
@@ -95,11 +85,17 @@ $module = Pi::service('module')->current();
     <header class="pi-header">
         <div class="navbar navbar-inverse" role="navigation">
             <div class="container">
-                <h2>
+                <?php if ($module == 'system') { ?>
+                <h1>
                     <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
                         <?php echo _escape($sitename); ?>
                     </a>
-                </h2>
+                </h1>
+                <?php } else { ?>
+                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                    <?php echo _escape($sitename); ?>
+                </a>
+                <?php } ?>
                 <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
             </div>
         </div>
