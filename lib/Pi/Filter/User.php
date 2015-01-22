@@ -50,18 +50,26 @@ class User extends AbstractFilter
         if (empty($this->options['replacement'])
             && empty($this->options['callback'])
         ) {
-            $this->options['callback'] = function ($name) {
-                $url = Pi::service('user')->getUrl(
-                    'profile',
-                    array('name' => $name)
+            $this->options['callback'] = function ($value) {
+                $value = preg_replace_callback(
+                    '`(^|\s)@([a-zA-Z0-9]{3,32})`',
+                    function ($m) {
+                        $url = Pi::service('user')->getUrl(
+                            'profile',
+                            array('name' => $m[2])
+                        );
+                        $escapedName = _escape($m[2]);
+                        return sprintf(
+                            '%s<a href="%s" title="%s">@%s</a>',
+                            $m[1],
+                            $url,
+                            $escapedName,
+                            $escapedName
+                        );
+                    },
+                    $value
                 );
-                $escapedName = _escape($name);
-                return sprintf(
-                    '<a href="%s" title="%s">@%s</a>',
-                    $url,
-                    $escapedName,
-                    $escapedName
-                );
+                return $value;
             };
         }
     }

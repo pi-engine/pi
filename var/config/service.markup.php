@@ -16,6 +16,7 @@ return array(
                 // Linkify
                 // @see Pi\Filter\Linkify
                 'linkify'   => array(),
+
                 // User filter
                 // @see Pi\Filter\User
                 'user'  => array(
@@ -59,19 +60,6 @@ return array(
         ),
         'markdown'  => array(
             'filters'   => array(
-                // User filter
-                // @see Pi\Filter\User
-                'user'  => array(
-                    'tag'           => '%term%',
-                    'pattern'       => '@([a-zA-Z0-9]{3,32})',
-                ),
-                // Tag filter
-                // @see Pi\Filter\Tag
-                'tag'   => array(
-                    'tag'           => '%term%',
-                    'pattern'       => '#([^\s\,]{3,32})#',
-                    'replacement'   => '<a href="' . Pi::url('www') . '/tag/%term%" title="%term%">#%term%#</a>',
-                ),
             ),
         ),
         'html'  => array(

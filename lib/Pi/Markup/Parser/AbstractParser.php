@@ -92,6 +92,9 @@ abstract class AbstractParser
         }
 
         foreach ($filters as $name => $options) {
+            if (false === $options) {
+                continue;
+            }
             if (isset($options['priority'])) {
                 $priority = $options['priority'];
                 unset($options['priority']);
@@ -99,14 +102,6 @@ abstract class AbstractParser
                 $priority = null;
             }
             if (is_string($name)) {
-                if (false === $options) {
-                    /*
-                    if (isset($this->filters[$name])) {
-                        unset($this->filters[$name]);
-                    }
-                    */
-                    continue;
-                }
                 if (isset($this->filters[$name])) {
                     continue;
                 }
