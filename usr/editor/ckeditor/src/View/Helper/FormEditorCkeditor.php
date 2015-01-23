@@ -71,6 +71,13 @@ class FormEditorCkeditor extends AbstractEditor
         if (!empty($this->options['attributes'])) {
             $element->setAttributes((array) $this->options['attributes']);
         }
+
+        // Add fileman support
+        $basePath = Pi::url('script') . '/editor/fileman/index.html?integration=ckeditor';
+        $configs['filebrowserBrowseUrl'] = $basePath;
+        $configs['filebrowserImageBrowseUrl'] = $basePath . '&type=image';
+        $configs['removeDialogTabs'] = 'link:upload;image:upload';
+
         $this->init();
         $id = $element->getAttribute('id');
         if (!$id) {
