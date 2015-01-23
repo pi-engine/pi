@@ -1,37 +1,43 @@
 Changelog
 
 
-December 28th, Taiwen Jiang
+January 22th, 2015 
+=========================
+1. Update Font Awesome v4.3.0
+
+
+
+December 28th, 2014 Taiwen Jiang
 =========================
 1. Upgrade bootstrap to v3.3.1 (Replaced Glyphicons fonts with font-awesome)
 
-November 3rd, Taiwen Jiang
+November 3rd, 2014 Taiwen Jiang
 =========================
 1. Upgrade bootstrap to v3.3.0 (Replaced Glyphicons fonts with font-awesome)
 
 
-September 6th, Taiwen Jiang
+September 6th, 2014 Taiwen Jiang
 =========================
 1. Upgrade bootstrap to v3.2.0
 2. Replaced Glyphicons fonts with font-awesome
 
 
-Aug 30th, Kris Kris_fr
+Aug 30th, 2014 Kris Kris_fr
 =========================
 1. Update Font Awesome v4.2.0
 
 
-Feb 21th, Liao wei
+Feb 21th, 2014 Liao wei
 =========================
 1. Update bootstap to version v3.1.1.
 2. Remove Glyphicons component, Choose font-awesome replace with it.
 
-Nov 29th, Liao Wei
+Nov 29th, 2013 Liao Wei
 =========================
 1. Update bootstrap to version v3.0.2
 
 
-Nov 19th, Liao Wei
+Nov 19th, 2013 Liao Wei
 ========================
  1. fixed ie8 style with bootstrap.css and bootstrap.min.css files
     note this code (101 line):
@@ -46,7 +52,7 @@ Nov 19th, Liao Wei
 
 
 
-May 15th, Liao Wei
+May 15th, 2013 Liao Wei
 ========================
 1. Update FontAwesome (Version 3.1.1)
         medthods:
@@ -55,14 +61,14 @@ May 15th, Liao Wei
             3. replace font with newest file to 'bootstrap/font' folder
 
 
-April 2th, Liao Wei
+April 2th, 2013 Liao Wei
 ========================
 1. Update bootstrap (Version 2.3.1)
         methods:
             1. replace bootstrap-responsive.css bootstrap-responsive.min.css bootstrap.css bootstrap.min.css with newest file into 'bootstrap/css' folder
             2. replace bootstrap.js bootstrap.min.js with newest file into 'bootstrap/js' folder
 
-Jan 14th, Liao Wei
+Jan 14th, 2013 Liao Wei
 ========================
 1. Update Font-Awesome
 		methods:
@@ -73,7 +79,7 @@ Jan 14th, Liao Wei
 					<link rel="stylesheet" href="bootstrap/css/font-awesome.css">
 				</code>
 
-November 2nd, Liao Wei
+November 2nd, 2012 Liao Wei
 =========================
 1. Upgraded to 2.2.1
 2. Split Font Awesome
@@ -81,7 +87,7 @@ November 2nd, Liao Wei
 4. Added datepicker
 
 
-Oct 18th, Liao Wei
+Oct 18th, 2012 Liao Wei
 =========================
 1. Replace bootstrap's native sprite image with Font-Awesome glyph font icons to support on-fly change of size, color, etc. for icons.
     Sources:
