@@ -114,7 +114,7 @@ return array(
         'error_template'            => 'error',
         'denied_template'           => 'error-denied',
         'layout'                    => 'layout-front',
-        'layout_error'              => 'layout-style',
+        'layout_error'              => 'layout-simple',
         'layout_ajax'               => 'layout-content',
 
         'mvc_strategies'            => array(
