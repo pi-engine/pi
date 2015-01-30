@@ -48,6 +48,14 @@ class HomeController extends ActionController
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
 
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array('name', 'gender', 'birthdate'),
+            true,
+            true
+        );
+
         // Set paginator
         $paginatorOption = array(
             'count'      => $count,
@@ -63,7 +71,12 @@ class HomeController extends ActionController
             'timeline'      => $timeline,
             'paginator'     => $paginator,
             'name'          => 'homepage',
+            'user'          => $user,
         ));
+
+        $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
@@ -89,6 +102,14 @@ class HomeController extends ActionController
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
 
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array('name', 'gender', 'birthdate'),
+            true,
+            true
+        );
+
         // Set paginator
         $paginatorOption = array(
             'count'      => $count,
@@ -105,9 +126,14 @@ class HomeController extends ActionController
             'name'          => 'homepage',
             'timeline'      => $timeline,
             'paginator'     => $paginator,
+            'user'          => $user,
         ));
 
         $this->view()->setTemplate('home-index');
+
+        $this->view()->headTitle(sprintf(__('%s activities') , $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s activities') , $user['name']), 'set');
+        $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
     /**
