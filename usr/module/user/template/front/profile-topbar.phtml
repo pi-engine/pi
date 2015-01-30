@@ -20,12 +20,14 @@ if (!isset($name)) {
 }
 
 // Get user base info
-$user = Pi::api('user', 'user')->get(
-    $uid,
-    array('name', 'gender', 'birthdate'),
-    true,
-    true
-);
+if (!isset($user) || empty($user)) {
+    $user = Pi::api('user', 'user')->get(
+        $uid,
+        array('name', 'gender', 'birthdate'),
+        true,
+        true
+    );
+}
 
 // Check user
 if (!$user) {

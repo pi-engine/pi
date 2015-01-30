@@ -13,7 +13,7 @@ $target = $comment['target'];
 $post = $comment['post'];
 ?>
 <div class="pi-comment">
-    <div class="pi-comment-header"><?php _e('Comment detail'); ?></div>
+    <h1 class="pi-comment-header"><?php _e('Comment detail'); ?></h1>
     <div class="media">
         <a class="pull-left" href="<?php echo $post['user']['url']; ?>">
             <?php echo Pi::avatar()->get($post['uid'], 'medium'); ?>

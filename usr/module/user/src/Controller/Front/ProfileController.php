@@ -39,17 +39,26 @@ class ProfileController extends ActionController
         // Get display group
         $groups = $this->getProfile($uid);
 
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array('name', 'gender', 'birthdate'),
+            true,
+            true
+        );
+
         $this->view()->assign(array(
             'groups'        => $groups,
             'name'          => 'profile',
             'uid'           => $uid,
             'owner'         => true,
+            'user'          => $user,
         ));
 
         $this->view()->setTemplate('profile-index');
 
-        $this->view()->headTitle(__('User profile'));
-        $this->view()->headdescription(__('view profile'), 'set');
+        $this->view()->headTitle(sprintf(__('%s profile') , $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s profile') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
@@ -73,17 +82,28 @@ class ProfileController extends ActionController
             $groups,
             'group'
         );
+
+        // Get user base info
+        $user = Pi::api('user', 'user')->get(
+            $uid,
+            array('name', 'gender', 'birthdate'),
+            true,
+            true
+        );
+
+        // Set view
         $this->view()->assign(array(
             'groups'        => $groups,
             'name'          => 'profile',
             'uid'           => $uid,
             'owner'         => false,
+            'user'          => $user,
         ));
 
         $this->view()->setTemplate('profile-view');
 
-        $this->view()->headTitle(__('User profile'));
-        $this->view()->headdescription(__('view profile'), 'set');
+        $this->view()->headTitle(sprintf(__('%s profile') , $user['name']));
+        $this->view()->headdescription(sprintf(__('View %s profile') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
