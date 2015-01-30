@@ -16,6 +16,10 @@
   margin-bottom: 20px;
 }
 
+.user-underline-list i {
+  padding: 0 10px;
+}
+
 .user-avatar-header {
   padding: 15px 20px;
   background-color: #565656;
