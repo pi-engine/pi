@@ -7,7 +7,6 @@ Disallow: /public/
 Disallow: /script/
 Disallow: /setup/
 Disallow: /static/
-Disallow: /upload/
 
 User-agent: Mediapartners-Google
 Allow: /
@@ -17,7 +16,6 @@ Allow: /
  
 User-agent: Googlebot-Image
 Allow: /
-Allow: /upload/
  
 User-agent: Googlebot-Mobile
 Allow: /
