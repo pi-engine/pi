@@ -49,13 +49,16 @@ class PostController extends ActionController
                 ),
             );
             $post['operations'] = $operations;
-            $title = __('Comment post');
+            $title = sprintf(__('Comment post %s'), _number($post['id']));
             $this->view()->assign('comment', array(
                 'title'     => $title,
                 'post'      => $post,
                 'target'    => $target,
             ));
             $this->view()->setTemplate('comment-view');
+            $this->view()->headTitle($title);
+            $this->view()->headDescription($title, 'set');
+            $this->view()->headKeywords(__('Comment,information,post,user'), 'set');
         } else {
             $this->view()->setTemplate('comment-404');
         }

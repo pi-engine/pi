@@ -31,12 +31,12 @@ class IndexController extends ActionController
                 )),
             ),
             */
-            'demo'   => array(
+            /* 'demo'   => array(
                 'title' => __('Demo article with comments'),
                 'url'   => $this->url('', array(
                     'controller'    => 'demo'
                 )),
-            ),
+            ), */
             /*
             'all'   => array(
                 'title' => __('All comment posts'),

@@ -35,6 +35,9 @@ class Block
         $renderOptions = array(
             'user'      => array(
                 'avatar'    => 'medium',
+                'attributes'    => array(
+                    'alt'   => __('View profile'),
+                ),
             ),
         );
         // Get render posts list

@@ -47,7 +47,10 @@ class ListController extends ActionController
         $renderOptions = array(
             'operation' => $this->config('display_operation'),
             'user'      => array(
-                'avatar'    => 'medium',
+                'avatar'      => 'medium',
+                'attributes'  => array(
+                    'alt'     => __('View profile'),
+                ),
             ),
         );
         $posts = Pi::api('api', 'comment')->renderList($posts, $renderOptions);
@@ -78,6 +81,9 @@ class ListController extends ActionController
         ));
 
         $this->view()->setTemplate('comment-list');
+        $this->view()->headTitle($title);
+        $this->view()->headDescription($title, 'set');
+        $this->view()->headKeywords(__('all comments,comment,information,post,user'), 'set');
     }
 
     /**
@@ -104,7 +110,10 @@ class ListController extends ActionController
             $renderOptions = array(
                 'operation' => $this->config('display_operation'),
                 'user'      => array(
-                    'avatar'    => 'medium',
+                    'avatar'      => 'medium',
+                    'attributes'  => array(
+                        'alt'     => __('View profile'),
+                    ),
                 ),
             );
             $posts = Pi::api('api', 'comment')->renderList($posts, $renderOptions);
@@ -137,6 +146,9 @@ class ListController extends ActionController
         ));
 
         $this->view()->setTemplate('comment-root');
+        $this->view()->headTitle($title);
+        $this->view()->headDescription($title, 'set');
+        $this->view()->headKeywords(__('all comments,comment,information,post,user'), 'set');
     }
 
     /**
@@ -242,6 +254,9 @@ class ListController extends ActionController
         ));
 
         $this->view()->setTemplate($template);
+        $this->view()->headTitle($title);
+        $this->view()->headDescription($title, 'set');
+        $this->view()->headKeywords(__('all comments,comment,information,post,user'), 'set');
     }
 
     /**
@@ -279,7 +294,10 @@ class ListController extends ActionController
         $renderOptions = array(
             'operation' => $this->config('display_operation'),
             'user'      => array(
-                'avatar'    => 'medium',
+                'avatar'      => 'medium',
+                'attributes'  => array(
+                    'alt'     => __('View profile'),
+                ),
             ),
         );
         $posts = Pi::api('api', 'comment')->renderList($posts, $renderOptions);
@@ -337,6 +355,9 @@ class ListController extends ActionController
         ));
 
         $this->view()->setTemplate('comment-module');
+        $this->view()->headTitle($title);
+        $this->view()->headDescription($title, 'set');
+        $this->view()->headKeywords(__('all comments,comment,information,post,user'), 'set');
     }
 
     /**
@@ -480,6 +501,9 @@ class ListController extends ActionController
         }
 
         $this->view()->setTemplate('comment-article');
+        $this->view()->headTitle($title);
+        $this->view()->headDescription($title, 'set');
+        $this->view()->headKeywords(__('all comments,comment,information,post,user'), 'set');
     }
 
     /**
@@ -523,7 +547,10 @@ class ListController extends ActionController
         );
         $options = array(
             'user'  => array(
-                'avatar'    => 'medium',
+                'avatar'      => 'medium',
+                'attributes'  => array(
+                    'alt'     => __('View profile'),
+                ),
             ),
         );
         $posts = Pi::api('api', 'comment')->renderList($posts, $options);
@@ -599,5 +626,8 @@ class ListController extends ActionController
         ));
 
         $this->view()->setTemplate($template);
+        $this->view()->headTitle($title);
+        $this->view()->headDescription($title, 'set');
+        $this->view()->headKeywords(__('all comments,comment,information,post,user'), 'set');
     }
 }

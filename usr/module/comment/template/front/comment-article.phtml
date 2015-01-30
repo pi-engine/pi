@@ -11,9 +11,9 @@ $targets = $comment['targets'];
 $paginator = $comment['paginator'];
 ?>
 <?php  if (empty($tabs)) { ?>
-<div class="pi-comment-header" style="margin: 20px 0; border-bottom: 0">
+<h1 class="pi-comment-header">
     <?php echo _escape($comment['title']); ?>
-</div>
+</h1>
 <?php
     } else {
         echo $this->tab($tabs);

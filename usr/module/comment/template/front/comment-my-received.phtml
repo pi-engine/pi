@@ -26,9 +26,9 @@ if (empty($user)) {
 ?>
 <div class="pi-comment">
     <?php echo $this->tab($tabs); ?>
-    <?phpif ($posts) {?>
+    <?php if ($posts) { ?>
     <div class="pi-comment-list">
-    <?phpforeach ($posts as $post) {?>
+    <?php foreach ($posts as $post) { ?>
         <div class="media<?php echo 0 == $post['active'] ? ' muted' : ''; ?>">
             <a class="pull-left" href="<?php echo $user['url']; ?>" target="_blank">
                 <img src="<?php echo $user['avatar']; ?>">
