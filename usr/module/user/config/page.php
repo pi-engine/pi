@@ -47,4 +47,19 @@ return array(
             'permission'    => 'inquiry',
         ),
     ),
+    // Front section
+    'front' => array(
+        array(
+            'title'         => _a('Profile view'),
+            'controller'    => 'profile',
+            'permission'    => 'profile-page',
+            'block'         => 0,
+        ),
+        array(
+            'title'         => _a('Activities view'),
+            'controller'    => 'home',
+            'permission'    => 'profile-page',
+            'block'         => 0,
+        ),
+    ),
 );

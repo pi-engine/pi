@@ -13,6 +13,16 @@
  * @author Liu Chuang <liuchuang@eefocus.com>
  */
 return array(
+    // Front section
+    'front' => array(
+        'profile-page'         => array(
+            'title'         => _a('Profile pages'),
+            'access'        => array(
+                'member',
+            ),
+        ),
+    ),
+    // Admin section
     'admin' => array(
         'account'       => array(
             'title'         => _a('User account'),
