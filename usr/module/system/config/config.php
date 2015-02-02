@@ -25,6 +25,14 @@ $config['category'] = array(
         'title'     => _t('Head meta'),
     ),
     array(
+        'name'      => 'head_meta_extra',
+        'title'     => _t('Extra head meta'),
+    ),
+    array(
+        'name'      => 'geo_tag',
+        'title'     => _t('Geo tags'),
+    ),
+    array(
         'name'      => 'intl',
         'title'     => _t('Internationalization'),
     ),
@@ -578,6 +586,78 @@ $config['item'] = array(
         'visible'       => 0,
     ),
 
+    'author'        => array(
+        'title'         => '`author`',
+        'description'   => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
+        'edit'          => 'text',
+        'value'         => 'Pi Engine',
+        'category'      => 'head_meta_extra',
+    ),
+
+    'generator'     => array(
+        'title'         => '`generator`',
+        'description'   => _t('Generator of the document being read.'),
+        'edit'          => 'text',
+        'value'         => 'Pi Engine',
+        'category'      => 'head_meta_extra',
+    ),
+
+    'og_local'      => array(
+        'title'         => _t('Website local'),
+        'description'   => _t('Set website local, like en_GB'),
+        'edit'          => 'text',
+        'value'         => 'en_GB',
+        'category'      => 'head_meta_extra',
+    ),
+
+    'twitter_account'   => array(
+        'title'         => _t('Twitter account'),
+        'description'   => _t('Username for the website used in the card footer. Add @ before username like @PiEnable or leave it empty'),
+        'edit'          => 'text',
+        'category'      => 'head_meta_extra',
+    ),
+
+    'facebook_appid'   => array(
+        'title'         => _t('Facebook app id'),
+        'description'   => _t('Set facebook app id here for use open graph tags on facebook page, its your website facebook page id'),
+        'edit'          => 'text',
+        'category'      => 'head_meta_extra',
+    ),
+
+    'pinterest_verify'   => array(
+        'title'         => _t('Pinterest domain verify'),
+        'description'   => _t('Set pinterest domain verify code here, if your website have page on pinterest'),
+        'edit'          => 'text',
+        'category'      => 'head_meta_extra',
+    ),
+
+    'geo_latitude'   => array(
+        'title'         => _t('Latitude'),
+        'description'   => '',
+        'edit'          => 'text',
+        'category'      => 'geo_tag',
+    ),
+
+    'geo_longitude'   => array(
+        'title'         => _t('Longitude'),
+        'description'   => '',
+        'edit'          => 'text',
+        'category'      => 'geo_tag',
+    ),
+
+    'geo_placename'   => array(
+        'title'         => _t('Placename'),
+        'description'   => '',
+        'edit'          => 'text',
+        'category'      => 'geo_tag',
+    ),
+
+    'geo_region'   => array(
+        'title'         => _t('Region'),
+        'description'   => '',
+        'edit'          => 'text',
+        'category'      => 'geo_tag',
+    ),
 );
 
 return $config;
