@@ -156,7 +156,7 @@ class ThemeAssemble extends AbstractHelper
         $headMeta($sitename, 'og:title', 'property');
         $headMeta($sitename, 'og:site_name', 'property');
         $headMeta($description, 'og:description', 'property');
-        $headMeta(Pi::url(), 'og:url', 'property');
+        $headMeta(Pi::url('home'), 'og:url', 'property');
         $headMeta($ogLocale, 'og:locale', 'property');
         $headMeta('website', 'og:type', 'property');
         $headMeta(Pi::service('asset')->logo(), 'og:image', 'property');
@@ -174,8 +174,8 @@ class ThemeAssemble extends AbstractHelper
             $headMeta($sitename, 'twitter:title');
             $headMeta($description, 'twitter:description');
             $headMeta(Pi::service('asset')->logo(), 'twitter:image');
-            $headMeta(Pi::url(), 'twitter:domain');
-            $headMeta(Pi::url(), 'twitter:url');
+            $headMeta(Pi::url('home'), 'twitter:domain');
+            $headMeta(Pi::url('home'), 'twitter:url');
         }
 
         // Pinterest

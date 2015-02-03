@@ -209,6 +209,17 @@ EOT;
 EOT;
                     break;
 
+                case 'description':
+                    $elementPattern =<<<EOT
+<div class="%element_size% js-form-element">
+    <div class="description">
+        %element_content%
+    </div>
+</div>
+<div class="%error_size% help-block">%error_content%</div>
+EOT;
+                    break;
+
                 default:
                     $elementPattern =<<<EOT
 <div class="%element_size% js-form-element">
