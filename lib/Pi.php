@@ -621,7 +621,7 @@ class Pi
      * @return string
      * @api
      */
-    public static function url($url, $absolute = false)
+    public static function url($url = '', $absolute = false)
     {
         return static::$host->url($url, $absolute);
     }

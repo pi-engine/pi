@@ -442,7 +442,7 @@ class Host
      * @return string
      * @see Pi::url()
      */
-    public function url($url, $absolute = false)
+    public function url($url = '', $absolute = false)
     {
         $uri        = null;
         $section    = null;
