@@ -98,6 +98,9 @@ class HomeController extends ActionController
 
         // Set timeline meta
         foreach ($timeline as &$item) {
+            if (!isset($timelineMetaList[$item['timeline']])) {
+                continue;
+            }
             $item['icon']  = $timelineMetaList[$item['timeline']]['icon'];
             $item['title'] = $timelineMetaList[$item['timeline']]['title'];
         }
