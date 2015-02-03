@@ -58,7 +58,7 @@ return array(
             // Whether to check `site_close` for maintenance, default as true
             //'check_close'   => true,
             // Whether to check page access
-            'check_page'    => false,
+            'check_page'    => true,
         ),
 
         // Instantiate render cache manager
