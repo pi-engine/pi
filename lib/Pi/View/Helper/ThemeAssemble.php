@@ -126,17 +126,67 @@ class ThemeAssemble extends AbstractHelper
             $headMeta->appendName($key, $meta);
         }
 
-        // Dublin Core
+        // Get informations
         $sitename = Pi::config('sitename');
         $slogan = Pi::config('slogan');
-        $locale = Pi::service('i18n')->getLocale();
         $description = Pi::config('description');
+        $locale = Pi::service('i18n')->getLocale();
+        $ogLocale = Pi::config('og_local');
+        $twitter = Pi::config('twitter_account');
+        $facebook = Pi::config('facebook_appid');
+        $pinterest = Pi::config('pinterest_verify');
+        $geoLatitude = Pi::config('geo_latitude');
+        $geoLongitudet = Pi::config('geo_longitude');
+        $geoPlacename = Pi::config('geo_placename');
+        $geoRegion = Pi::config('geo_region');
+
+        // Meta author and generator
+        $headMeta($sitename, 'author');
+        $headMeta($sitename, 'generator');
+
+        // Dublin Core
         $headMeta($sitename, 'dc:title', 'property', array('lang' => $locale));
         $headMeta($slogan, 'dc:subject', 'property', array('lang' => $locale));
         $headMeta($description, 'dc:description', 'property', array('lang' => $locale));
         $headMeta('text', 'dc:type', 'property');
         $headMeta($sitename, 'dc:publisher', 'property');
         $headMeta($locale, 'dc:language', 'property');
+
+        // Open Graph
+        $headMeta($sitename, 'og:title', 'property');
+        $headMeta($sitename, 'og:site_name', 'property');
+        $headMeta($description, 'og:description', 'property');
+        $headMeta(Pi::url(), 'og:url', 'property');
+        $headMeta($ogLocale, 'og:locale', 'property');
+        $headMeta('website', 'og:type', 'property');
+        $headMeta(Pi::service('asset')->logo(), 'og:image', 'property');
+        
+        // Facebook
+        if (!empty($facebook)) {
+            $headMeta($facebook, 'fb:app_id', 'property');
+        }
+        
+        // Twitter Cards
+        if (!empty($twitter)) {
+            $headMeta('summary', 'twitter:card');
+            $headMeta($twitter, 'twitter:site');
+            $headMeta($twitter, 'twitter:creator');
+            $headMeta($sitename, 'twitter:title');
+            $headMeta($description, 'twitter:description');
+            $headMeta(Pi::service('asset')->logo(), 'twitter:image');
+            $headMeta(Pi::url(), 'twitter:domain');
+            $headMeta(Pi::url(), 'twitter:url');
+        }
+
+        // Pinterest
+        if (!empty($pinterest)) {
+            $headMeta($pinterest, 'p:domain_verify');
+        }
+        
+        // Geo tags
+        if (!empty($geoLatitude) && !empty($geoLongitudet)) {
+            $this->view->geoTag($geoLatitude, $geoLongitudet, $geoPlacename, $geoRegion);
+        }
     }
 
     /**
