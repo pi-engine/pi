@@ -202,7 +202,7 @@ class ThemeAssemble extends AbstractHelper
         $separator = $headTitle->getSeparator();
 
         // Head title for system module
-        if ('system' == $module) {
+        if ('system' == $module || !Pi::service('module')->isActive($module)) {
             if (!$headTitle->count()) {
                 $headTitle->set(Pi::config('sitename'));
                 $headTitle->setPostfix($separator . Pi::config('slogan'));
