@@ -87,7 +87,7 @@ $module = Pi::service('module')->current();
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
     <!-- Header: brand, slogan, user bar -->
     <header class="pi-header">
-        <div class="navbar navbar-inverse" role="navigation">
+        <div class="navbar navbar-inverse" style="margin-bottom: 20px" role="navigation">
             <div class="container">
                 <h2>
                     <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
