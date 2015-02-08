@@ -19,12 +19,12 @@
         Pi::service('url')->redirect($url);
     // Point to website user guide otherwise
     } else {
-        _e('You are not allowed to access the page. Return home.');
+        _e('You are not allowed to access the page.');
     }
     ?>
     </p>
     <div class="text-right">
-        <a href="<?php echo Pi::url('www'); ?>">
+        <a href="<?php echo Pi::url('www'); ?>" title="<?php _e('Homepage'); ?>">
             <?php echo _escape(Pi::config('sitename')); ?>
         </a>
     </div>
