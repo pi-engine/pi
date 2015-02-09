@@ -25,6 +25,14 @@ class Breadcrumbs extends AbstractBreadcrumbs
             return '';
         }
 
+        // Set module link
+        $moduleData = Pi::registry('module')->read($this->getModule());
+        $result = array(
+            array(
+                'label' => $moduleData['title'],
+            ),
+        );
+
         $model = Pi::model('page', $this->getModule());
         // Get row
         $row = null;
@@ -36,9 +44,9 @@ class Breadcrumbs extends AbstractBreadcrumbs
             $row = $model->find($slug, 'slug');
         }
         $title = $row ? $row->title : __('Page request');
-        $result = array(array(
+        $result[] = array(
             'label' => $title,
-        ));
+        );
 
         return $result;
     }

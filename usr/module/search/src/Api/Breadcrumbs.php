@@ -34,7 +34,7 @@ class Breadcrumbs extends AbstractBreadcrumbs
         );
 
         switch ($params['action']) {
-        	case 'service':
+            case 'service':
                 $result[] = array(
                     'label' => __(ucfirst($params['service'])),
                     'href'  => Pi::url(Pi::service('url')->assemble('search', array(
@@ -42,18 +42,18 @@ class Breadcrumbs extends AbstractBreadcrumbs
                        	'service' => $params['service'],
                	   	))),
                 );
-        		break;
+                break;
 
-        	case 'module':
-        	    $moduleData = Pi::registry('module')->read($params['m']);
+            case 'module':
+        	      $moduleData = Pi::registry('module')->read($params['m']);
                 $result[] = array(
                     'label' => $moduleData['title'],
                     'href'  => Pi::url(Pi::service('url')->assemble('search', array(
-                       	'module' => $this->getModule(),
-                       	'm' => $moduleData['name'],
-               	   	))),
+                        'module' => $this->getModule(),
+                        'm' => $moduleData['name'],
+                    ))),
                 );
-        		break;
+                break;
         }
 
         $query = _get('q');
