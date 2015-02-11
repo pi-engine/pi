@@ -137,6 +137,16 @@ class ErrorStrategy extends AbstractListenerAggregate
         }
         $viewModel->setVariable('code', $statusCode);
 
+        $routeMatch = $e->getRouteMatch();
+        if ($routeMatch) {
+            $module = $routeMatch->getParam('module');
+            $controller = $routeMatch->getParam('controller');
+            $action = $routeMatch->getParam('action');
+            $viewModel->setVariable('module', $module);
+            $viewModel->setVariable('controller', $controller);
+            $viewModel->setVariable('action', $action);
+        }
+
         $e->setResult($viewModel);
 
         // Inject error ViewModel to root ViewModel in case

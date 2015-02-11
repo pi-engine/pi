@@ -1,5 +1,4 @@
 <?php $this->i18nTheme('default', 'default'); ?>
-<hr />
 <div class="alert alert-danger">
     <h1 class="page-header"><?php _e('A 404 error occurred'); ?></h1>
     <p><?php echo $message ?: __('The page request is not found.'); ?></p>
@@ -37,7 +36,7 @@
     <?php if (isset($this->controller) && $this->controller): ?>
     <dl>
         <dt>Controller:</dt>
-        <dd><?php echo _escape($this->controller);
+        <dd><?php echo _escape($this->module . '-' . $this->controller . '-' . $this->action);
             if (isset($this->controller_class)
                 && $this->controller_class
                 && $this->controller_class != $this->controller
