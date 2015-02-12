@@ -58,14 +58,6 @@ $this->headLink(array(
 // Meta Viewport Tag
 $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 
-// Dublin Core
-$this->headMeta(_escape($sitename), 'dc:title', 'property', array('lang' => $locale));
-$this->headMeta(_escape($slogan), 'dc:subject', 'property', array('lang' => $locale));
-$this->headMeta(_escape($sitename . ' - ' . $slogan) , 'dc:description', 'property', array('lang' => $locale));
-$this->headMeta('text', 'dc:type', 'property');
-$this->headMeta(_escape($sitename), 'dc:publisher', 'property');
-$this->headMeta($locale, 'dc:language', 'property');
-
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
@@ -84,10 +76,10 @@ $module = Pi::service('module')->current();
 <head>
     <meta charset="<?php echo $charset; ?>">
 </head>
-<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-layout-simple">
     <!-- Header: brand, slogan, user bar -->
     <header class="pi-header">
-        <div class="navbar navbar-inverse" style="margin-bottom: 20px" role="navigation">
+        <div class="navbar navbar-inverse" role="navigation">
             <div class="container">
                 <h2>
                     <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
