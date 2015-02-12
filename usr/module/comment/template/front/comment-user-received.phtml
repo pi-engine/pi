@@ -16,9 +16,9 @@ $paginator = $comment['paginator'];
 <div class="pi-comment">
     <?php if ($posts) { ?>
     <div class="pi-comment-list">
-        <div class="pi-comment-header">
+        <h1 class="pi-comment-header">
             <?php echo sprintf('%s\'s received comments ', $user['name']) .  "({$count})"; ?>
-        </div>
+        </h1>
         <?php foreach ($posts as $post) { ?>
         <div class="media">
             <a class="pull-left" href="<?php echo $user['url']; ?>" target="_blank">
