@@ -1,8 +1,8 @@
 <div class="panel panel-default" id="comments">
-    <div class="panel-heading">
+    <h1 class="panel-heading">
         <?php _e('All comments '); ?> 
         <strong>(<?php echo $count ?: 0; ?>)</strong>
-    </div>
+    </h1>
     <div class="panel-body">
         <?php include $this->template('./_post-form.phtml'); ?>
         <?php if (count($posts)) { ?>

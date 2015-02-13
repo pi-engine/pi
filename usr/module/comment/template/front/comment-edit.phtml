@@ -18,7 +18,9 @@ if ($uid) {
 }
 ?>
 <div class="pi-comment">
-    <div class="pi-comment-header"><?php _e('Comment edit'); ?></div>
+    <h1 class="pi-comment-header">
+        <?php _e('Comment edit'); ?>
+    </h1>
     <?php if (!empty($comment['message'])) { ?>
     <div class="alert alert-danger"><?php echo _escape($comment['message']); ?></div>
     <?php } ?>
