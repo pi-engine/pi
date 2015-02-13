@@ -8,6 +8,10 @@ html {
   padding-bottom: 80px;
 }
 
+.pi-layout-simple .pi-main-container {
+  margin-top: 20px;
+}
+
 /* Bootstrap custom */
 .nav-tabs {
   margin-bottom: 20px;
@@ -198,4 +202,3 @@ html {
 .tag-terms a {
   padding: 0 5px;
 }
-
