@@ -62,8 +62,6 @@ class PostController extends ActionController
         } else {
             $this->view()->setTemplate('comment-404');
         }
-
-        print_r($target);
     }
 
     /**
