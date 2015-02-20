@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
-"POT-Creation-Date: 2015-02-20 12:16+0330\n"
-"PO-Revision-Date: 2015-02-20 12:17+0330\n"
+"POT-Creation-Date: 2015-02-20 13:53+0330\n"
+"PO-Revision-Date: 2015-02-20 13:53+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -45,7 +45,7 @@ msgid "Guest"
 msgstr "مهمان"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:580
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:459
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:461
 msgid "Edit"
 msgstr "ویرایش"
 
@@ -55,14 +55,14 @@ msgid "Enable"
 msgstr "فعال"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:582
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:466
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:468
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-lead.phtml:34
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/comment-root.phtml:59
 msgid "Delete"
 msgstr "حذف"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Api/Api.php:583
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:473
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:475
 msgid "Reply"
 msgstr "پاسخ"
 
@@ -94,15 +94,15 @@ msgid "View profile"
 msgstr "نمایش حساب کاربری"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:301
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:82
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:134
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:274
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:136
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:276
 msgid "Invalid post parameter."
 msgstr "مقداری نا معتبر در پست ارسالی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Admin/PostController.php:305
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:345
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:403
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:347
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:405
 msgid "Operation succeeded."
 msgstr "با موفقیت انجام شد"
 
@@ -251,73 +251,73 @@ msgstr "پیوند پایدار"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:52
 #, php-format
-msgid "Comment post %s"
-msgstr "ارسال نظر %s"
+msgid "Comment %s on %s"
+msgstr "نظر شماره %s در %s"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:61
 msgid "Comment,information,post,user"
 msgstr "نظر های ارسال شده توسط کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:87
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:138
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:232
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:279
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:337
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:89
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:140
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:234
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:281
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:339
 msgid "Operation denied."
 msgstr "عملکرد غیر مجاز"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:101
 msgid "Comment post edit"
 msgstr "ویرایش نظر ارسال شده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:151
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:153
 msgid "Comment post reply"
 msgstr "پاسخ به نظر ارسال شده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:235
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:237
 msgid "Invalid submission."
 msgstr "ارسال اشتباه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:252
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:254
 msgid "Root not found."
 msgstr "ریشه پیدا نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:255
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:257
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/template/front/_post-form.phtml:3
 msgid "Comment is disabled."
 msgstr "نظر غیر فعال شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:289
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:291
 msgid "Comment post saved successfully."
 msgstr "نظر ارسال شده با موفقیت ذخیره شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:292
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:294
 msgid "Comment post not saved."
 msgstr "نظر ارسال شده ذخیره نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:297
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:299
 msgid "Invalid data, please check and re-submit."
 msgstr "اطلاعات اشتباه، لطفا بررسی کنید و مجددا ارسال کنید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:345
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:403
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:347
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:405
 msgid "Operation failed"
 msgstr "خطا در عملکرد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:394
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:449
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:396
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:451
 msgid "Invalid parameters."
 msgstr "پارامتر های اشتباه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:399
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:401
 msgid "Forbidden."
 msgstr "غیر مجاز"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:455
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:457
 msgid "Login"
 msgstr "وارد شوید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:480
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/comment/src/Controller/Front/PostController.php:482
 msgid "Enable/Disable"
 msgstr "فعال / غیر فعال"
 

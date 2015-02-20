@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2015-02-20 11:58+0330\n"
-"PO-Revision-Date: 2015-02-20 11:58+0330\n"
+"POT-Creation-Date: 2015-02-20 13:54+0330\n"
+"PO-Revision-Date: 2015-02-20 13:55+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -100,7 +100,6 @@ msgid "You have %d times to try."
 msgstr "شما میتوانید %d بار دیگر تلاش کنید"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:88
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:94
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "ورود کاربر"
@@ -111,6 +110,15 @@ msgstr "ورود کاربر"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/front/register.phtml:6
 msgid "Login"
 msgstr "ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:94
+msgid ""
+"Use this page to connect to our website and participate, share contents, use "
+"our features, and interacts with other members"
+msgstr ""
+"برای ورود به وب سایت ما از این صفحه استفاده نمایید بعد از مرود می تواند "
+"مطالب مختلف را به اشتراک بگذارید و از امکانات ما استفاده کرده و با دیگر "
+"کاربران در ارتباط باشید."
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Front/LoginController.php:115
 msgid "Invalid request."

@@ -58,7 +58,7 @@ class ProfileController extends ActionController
         $this->view()->setTemplate('profile-index');
 
         $this->view()->headTitle(sprintf(__('%s profile') , $user['name']));
-        $this->view()->headdescription(sprintf(__('View %s profile') , $user['name']), 'set');
+        $this->view()->headdescription(sprintf(__('To know more about %s profile : his bio, websites and social networks, and his activity on the website') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 
@@ -103,7 +103,7 @@ class ProfileController extends ActionController
         $this->view()->setTemplate('profile-view');
 
         $this->view()->headTitle(sprintf(__('%s profile') , $user['name']));
-        $this->view()->headdescription(sprintf(__('View %s profile') , $user['name']), 'set');
+        $this->view()->headdescription(sprintf(__('To know more about %s profile : his bio, websites and social networks, and his activity on the website') , $user['name']), 'set');
         $this->view()->headkeywords($this->config('head_keywords'), 'set');
     }
 

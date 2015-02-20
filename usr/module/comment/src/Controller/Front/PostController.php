@@ -49,7 +49,7 @@ class PostController extends ActionController
                 ),
             );
             $post['operations'] = $operations;
-            $title = sprintf(__('Comment post %s'), _number($post['id']));
+            $title = sprintf(__('Comment %s on %s'), _number($post['id']), $target['title']);
             $this->view()->assign('comment', array(
                 'title'     => $title,
                 'post'      => $post,
@@ -62,6 +62,8 @@ class PostController extends ActionController
         } else {
             $this->view()->setTemplate('comment-404');
         }
+
+        print_r($target);
     }
 
     /**

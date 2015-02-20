@@ -612,7 +612,7 @@ $config['item'] = array(
 
     'twitter_account'   => array(
         'title'         => _t('Twitter account'),
-        'description'   => _t('Username for the website used in the card footer. Add @ before username like @PiEnable or leave it empty'),
+        'description'   => _t('Username for the website used in the Twitter card. Add @ before username like @PiEnable or leave it empty'),
         'edit'          => 'text',
         'category'      => 'head_meta_extra',
     ),

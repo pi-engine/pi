@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2015-02-20 11:50+0330\n"
-"PO-Revision-Date: 2015-02-20 11:52+0330\n"
+"POT-Creation-Date: 2015-02-20 13:50+0330\n"
+"PO-Revision-Date: 2015-02-20 13:51+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -400,8 +400,12 @@ msgstr "حساب کاربری %s"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:61
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:106
 #, php-format
-msgid "View %s profile"
-msgstr "مشاهده حساب کاربری %s"
+msgid ""
+"To know more about %s profile : his bio, websites and social networks, and "
+"his activity on the website"
+msgstr ""
+"اطلاعات بیشتر در مورد حساب کاربری %s : بیوگرافی ، وب سایت و شبکه های اجتماعی "
+"و فعالیت های در وب سایت"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:133
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:213
@@ -1007,6 +1011,9 @@ msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:106
 msgid "Already sent"
 msgstr "قبلا ارسال شده است"
+
+#~ msgid "View %s profile"
+#~ msgstr "مشاهده حساب کاربری %s"
 
 #~ msgid "view profile"
 #~ msgstr "نمایش حساب کاربری"
