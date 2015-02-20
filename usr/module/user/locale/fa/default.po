@@ -1,41 +1,151 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-12-02 11:29+0330\n"
-"PO-Revision-Date: 2014-12-02 11:49+0330\n"
+"POT-Creation-Date: 2015-02-20 11:50+0330\n"
+"PO-Revision-Date: 2015-02-20 11:52+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "user\n"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:55
-msgid "Public"
-msgstr "عمومی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:21
+msgid "User logged in"
+msgstr "کاربر وارد شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:59
-msgid "Member"
-msgstr "عضو"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:27
+msgid "User logged out"
+msgstr "کاربر خارج شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:63
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Privacy.php:95
-msgid "Follower"
-msgstr "دنبال کننده"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:33
+msgid "User registered"
+msgstr "کاربر ثبت شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:67
-msgid "Following"
-msgstr "دنبال شونده"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:39
+msgid "User activated"
+msgstr "کاربر فعال شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:71
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Privacy.php:97
-msgid "Owner"
-msgstr "سازنده"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:45
+msgid "User enabled"
+msgstr "کاربر فعال شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:51
+msgid "User disabled"
+msgstr "کاربر غیر فعال شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:57
+msgid "User deleted"
+msgstr "کاربر حذف شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:63
+msgid "User profile updated"
+msgstr "پروفایل کاربر به روز شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:69
+msgid "Display name changed"
+msgstr "نام نمایشی تغییر کرد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:75
+msgid "Email changed"
+msgstr "ایمیل تغییر کرد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:81
+msgid "Avatar changed"
+msgstr "آواتار تغییر کرد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:87
+msgid "Password changed"
+msgstr "عوض کردن کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:93
+msgid "Role assigned"
+msgstr "نقش اضافه شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:99
+msgid "Role removed"
+msgstr "نقش حذف شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/form.register.php:28
+msgid "Confirm credential"
+msgstr "تایید واژه رمز"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/form.register.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResendActivationForm.php:38
+msgid "Please type the word."
+msgstr "لطفا این عبارت را وارد کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:20
+msgid "Login"
+msgstr "ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/RegisterController.php:96
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-disabled.phtml:2
+msgid "Register"
+msgstr "ثبت نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Nav.php:62
+msgid "Feed"
+msgstr "خوراک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AccountController.php:137
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-index.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:32
+msgid "Account settings"
+msgstr "تنظیمات حساب کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AvatarController.php:185
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/avatar-index.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:40
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:133
+msgid "Change avatar"
+msgstr "تغییر آواتار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:52
+msgid "Privacy"
+msgstr "حریم خصوصی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-index.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:36
+msgid "Change password"
+msgstr "تغییر کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:83
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:200
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:201
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/FindPasswordForm.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login.phtml:15
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-find.phtml:2
+msgid "Find password"
+msgstr "یافتن کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:93
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Nav.php:46
+msgid "Profile"
+msgstr "پروفایل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Breadcrumbs.php:105
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:189
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:237
+msgid "Edit profile"
+msgstr "نمایش اطلاعات حساب کاربری"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Privacy.php:93
 msgid "Everyone"
@@ -45,230 +155,39 @@ msgstr "همه"
 msgid "Logged-in user"
 msgstr "کاربران وارد شده به سایت"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Privacy.php:95
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:63
+msgid "Follower"
+msgstr "دنبال کننده"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Privacy.php:96
 msgid "Followed"
 msgstr "دنبال میکند"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Nav.php:46
-msgid "Profile"
-msgstr "پروفایل"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Privacy.php:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:71
+msgid "Owner"
+msgstr "سازنده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Nav.php:62
-msgid "Feed"
-msgstr "خوراک"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:55
+msgid "Public"
+msgstr "عمومی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:29
-msgid "Active state"
-msgstr "آمار فعالیت"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:59
+msgid "Member"
+msgstr "عضو"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:31
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:45
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:59
-msgid "Any"
-msgstr "هر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Api/Relation.php:67
+msgid "Following"
+msgstr "دنبال شونده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:32
-msgid "Active"
-msgstr "فعال"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Api/TimelineController.php:46
+msgid "Timeline post failed."
+msgstr "خطا در ارسال پست در نوار زمان"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:33
-msgid "Inactive"
-msgstr "غیر فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:43
-msgid "Enable state"
-msgstr "آمار فعالیت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:46
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:106
-msgid "Enable"
-msgstr "فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:47
-msgid "Disable"
-msgstr "غیر فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:57
-msgid "Activated state"
-msgstr "آمار فعالیت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:60
-msgid "Pending"
-msgstr "در انتظار تایید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:61
-msgid "Activated"
-msgstr "فعال شده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:71
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:75
-msgid "Front role"
-msgstr "نقش های کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:80
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:84
-msgid "Admin role"
-msgstr "نقش های مدیریت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:90
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:30
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:27
-msgid "Username"
-msgstr "نام کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:99
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:39
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:48
-msgid "Display name"
-msgstr "نام نمایشی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:108
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/FindPasswordForm.php:27
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:48
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:38
-msgid "Email"
-msgstr "ایمیل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:117
-msgid "Register date from"
-msgstr "تاریخ ثبت نام از"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:126
-msgid "Register date end"
-msgstr "تاریخ ثبت نام تا"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:135
-msgid "Register ip from"
-msgstr "آی پی ثبت نام کننده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:143
-msgid "Search"
-msgstr "جستجو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResetPasswordForm.php:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:53
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:57
-msgid "New password"
-msgstr "کلمه عبور جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResetPasswordForm.php:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:63
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:66
-msgid "Confirm password"
-msgstr "تایید کلمه عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResetPasswordForm.php:73
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:87
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResendActivationForm.php:47
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/CompoundForm.php:58
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ProfileEditForm.php:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:122
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:72
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EditUserForm.php:45
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EmailForm.php:58
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/RoleForm.php:99
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-index.phtml:35
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:40
-msgid "Submit"
-msgstr "ارسال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/FindPasswordForm.php:37
-msgid "Please type the word"
-msgstr "لطفا این واژه را وارد نمایید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/FindPasswordForm.php:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:200
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:201
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login.phtml:15
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-find.phtml:2
-msgid "Find password"
-msgstr "یافتن کلمه عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EmailForm.php:37
-msgid "Current password"
-msgstr "کلمه عبور فعلی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResendActivationForm.php:27
-msgid "Email address"
-msgstr "آدرس ایمیل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResendActivationForm.php:38
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/form.register.php:60
-msgid "Please type the word."
-msgstr "لطفا این عبارت را وارد کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:94
-msgid "Activate"
-msgstr "فعالیت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EmailForm.php:27
-msgid "New email"
-msgstr "ایمیل جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/RoleForm.php:44
-msgid "Name"
-msgstr "نام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/RoleForm.php:54
-msgid "Title"
-msgstr "عنوان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/Element/Gender.php:36
-msgid "Male"
-msgstr "مرد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/Element/Gender.php:37
-msgid "Female"
-msgstr "زن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:26
-msgid "Invalid name: %formatHint%"
-msgstr "نام نا معتبر : %formatHint%"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:27
-msgid "User name is reserved"
-msgstr "نام کاربر دریافت شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:28
-msgid "User name is already taken"
-msgstr "نام انتخابی شما قبلا گرفته شده است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:29
-msgid "User name is less than %min% characters long"
-msgstr "نام کاربری شما از حداقل مجاز %min% کارکتر کمتر است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:30
-msgid "User name is more than %max% characters long"
-msgstr "نام کاربری شما از حداکثر مجاز %max% کارکتر بیشتر است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Username.php:49
-msgid "Username is less than %min% characters long"
-msgstr "نام کاربری شما از حداقل مجاز %min% کارکتر کمتر است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Username.php:50
-msgid "Username is more than %max% characters long"
-msgstr "نام کاربری شما از حداکثر مجاز %max% کارکتر بیشتر است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Password.php:40
-msgid "Password is less than %min% characters long"
-msgstr "کلمه عبور شما کمتر از حداقل مقدار مجاز %min% کارکتر است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Password.php:41
-msgid "Password is more than %max% characters long"
-msgstr "کلمه عبور شما بیشتر از حداکثر مقدار مجاز %max% کارکتر است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/UserEmail.php:36
-msgid "User email is reserved"
-msgstr "ایمیل کاربر دریافت شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/UserEmail.php:37
-msgid "User email is already used"
-msgstr "ایمیل کاربر قبلا استفاده شده است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/CredentialVerify.php:34
-msgid "Invalid password."
-msgstr "کلمه عبور اشتباه است"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Api/TimelineController.php:89
+msgid "Timeline added successfully."
+msgstr "نوار زمان با موفقیت اضافه شد"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AccountController.php:76
 msgid ""
@@ -297,12 +216,6 @@ msgstr "نام با موفقیت تغییر یافت"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AccountController.php:113
 msgid "It was failed to save new name. Please try later."
 msgstr "خطا در ثبت نام جدید، لطفا بعدا تلاش کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AccountController.php:137
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-index.phtml:8
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:32
-msgid "Account settings"
-msgstr "تنظیمات حساب کاربری"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AccountController.php:138
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-index.phtml:9
@@ -334,43 +247,13 @@ msgstr "ورودی صحیح"
 msgid "Invalid input."
 msgstr "ورودی اشتباه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:42
-msgid "Reset password failed."
-msgstr "خطا در بازیابی کلمه عبور"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ActivityController.php:40
+msgid "User was not found."
+msgstr "کاربر یافت نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:82
-msgid "Reset password successfully."
-msgstr "کلمه عبور با موفقیت بازیابی شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:99
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-index.phtml:8
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:36
-msgid "Change password"
-msgstr "تغییر کلمه عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:100
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-index.phtml:9
-msgid "To ensure your account security, complex password is required."
-msgstr "برای تایید امنیت حساب کاربری شما هر دو کلمه عبور لازم است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:120
-msgid "Find password failed."
-msgstr "خطا در یافتن کلمه عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:191
-msgid ""
-"Confirmation email sent successfully. Please check email and reset password."
-msgstr ""
-"ایمیل تایید برای شما با موفقیت ارسال شد، لطفا ایمیل خود را بررسی نموده و طبق "
-"دستور عمل آن کلمه عبور خود را بازیابی کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:213
-msgid "Invalid token for password reset."
-msgstr "توکن غیر معتبر برای بازیابی کلمه عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:270
-msgid "Password reset successfully."
-msgstr "کلمه عبور با موفقیت ریست شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ActivityController.php:55
+msgid "An error occurred."
+msgstr "یک خطا روی داد"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AvatarController.php:85
 msgid "Allowed extensions:"
@@ -387,13 +270,6 @@ msgstr "بیشترین حجم تصویر :"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AvatarController.php:171
 msgid "Avatar Settings"
 msgstr "تنظیمات آواتار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AvatarController.php:185
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:40
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/avatar-index.phtml:41
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:131
-msgid "Change avatar"
-msgstr "تغییر آواتار"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/AvatarController.php:186
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/avatar-index.phtml:42
@@ -458,59 +334,106 @@ msgstr "تصویر حذف نشد"
 msgid "Image removed successfully."
 msgstr "تصویر با موفلقیت حذف شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:51
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:85
-msgid "User profile"
-msgstr "حساب کاربری"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/HomeController.php:77
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/HomeController.php:137
+#, php-format
+msgid "%s activities"
+msgstr "فعالیت های %s"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:86
-msgid "view profile"
-msgstr "نمایش حساب کاربری"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/HomeController.php:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/HomeController.php:138
+#, php-format
+msgid "View %s activities"
+msgstr "مشاهده فعالیت های %s"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:113
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:193
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:243
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:382
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:42
+msgid "Reset password failed."
+msgstr "خطا در بازیابی کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:82
+msgid "Reset password successfully."
+msgstr "کلمه عبور با موفقیت بازیابی شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:100
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-index.phtml:9
+msgid "To ensure your account security, complex password is required."
+msgstr "برای تایید امنیت حساب کاربری شما هر دو کلمه عبور لازم است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:120
+msgid "Find password failed."
+msgstr "خطا در یافتن کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:191
+msgid ""
+"Confirmation email sent successfully. Please check email and reset password."
+msgstr ""
+"ایمیل تایید برای شما با موفقیت ارسال شد، لطفا ایمیل خود را بررسی نموده و طبق "
+"دستور عمل آن کلمه عبور خود را بازیابی کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:213
+msgid "Invalid token for password reset."
+msgstr "توکن غیر معتبر برای بازیابی کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PasswordController.php:270
+msgid "Password reset successfully."
+msgstr "کلمه عبور با موفقیت ریست شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PrivacyController.php:61
+msgid "Privacy settings saved successfully."
+msgstr "تنظیمات حریم خصوصی با موفقیت ذخیره شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PrivacyController.php:100
+msgid "Privacy Settings"
+msgstr "تنظیمات حریم شخصی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PrivacyController.php:101
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:11
+msgid "Set profile field privacy."
+msgstr "تنظیم حریم خصوصی حساب کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:105
+#, php-format
+msgid "%s profile"
+msgstr "حساب کاربری %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:106
+#, php-format
+msgid "View %s profile"
+msgstr "مشاهده حساب کاربری %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:133
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:213
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:263
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:402
 msgid "Profile group ID is invalid."
 msgstr "شناسه گروه حساب کاربری صحیح نیست"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:147
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:167
 msgid "Profile updated successfully."
 msgstr "اطلاعات حساب کاربری با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:149
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:169
 msgid "Profile update failed."
 msgstr "خطا در به روز رسانی اطلاعات حساب کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:169
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:217
-msgid "Edit profile"
-msgstr "نمایش اطلاعات حساب کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:170
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:218
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:190
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:238
 msgid "Edit profile data."
 msgstr "ویرایش اطلاعات حساب کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:400
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:420
 msgid "Profile compound requires at least one set of data."
 msgstr "حساب کاربری حداقل به یک بخش از داده ها نیاز دارد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:405
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:425
 msgid "Profile compound data was not deleted."
 msgstr "اطلاعات اضافی حساب کاربری حذف نشد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:426
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ProfileController.php:446
 msgid "User ID or Profile group ID is invalid."
 msgstr "شناسه کاربر یا شناسه گروه حساب کاربری صحیح نیست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/RegisterController.php:96
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login.phtml:18
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-disabled.phtml:2
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:23
-msgid "Register"
-msgstr "ثبت نام"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/RegisterController.php:97
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:2
@@ -565,94 +488,205 @@ msgstr ""
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدیرتماس بگیرید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ActivityController.php:40
-msgid "User was not found."
-msgstr "کاربر یافت نشد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:90
+msgid "Username"
+msgstr "نام کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/ActivityController.php:55
-msgid "An error occurred."
-msgstr "یک خطا روی داد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/FindPasswordForm.php:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:108
+msgid "Email"
+msgstr "ایمیل"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PrivacyController.php:61
-msgid "Privacy settings saved successfully."
-msgstr "تنظیمات حریم خصوصی با موفقیت ذخیره شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:99
+msgid "Display name"
+msgstr "نام نمایشی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PrivacyController.php:100
-msgid "Privacy Settings"
-msgstr "تنظیمات حریم شخصی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/AccountForm.php:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/CompoundForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EditUserForm.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EmailForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:122
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:87
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ProfileEditForm.php:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResendActivationForm.php:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResetPasswordForm.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/RoleForm.php:99
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-index.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:40
+msgid "Submit"
+msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Front/PrivacyController.php:101
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:11
-msgid "Set profile field privacy."
-msgstr "تنظیم حریم خصوصی حساب کاربری"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/Element/Gender.php:36
+msgid "Male"
+msgstr "مرد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Api/TimelineController.php:46
-msgid "Timeline post failed."
-msgstr "خطا در ارسال پست در نوار زمان"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/Element/Gender.php:37
+msgid "Female"
+msgstr "زن"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Controller/Api/TimelineController.php:89
-msgid "Timeline added successfully."
-msgstr "نوار زمان با موفقیت اضافه شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EmailForm.php:27
+msgid "New email"
+msgstr "ایمیل جدید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:21
-msgid "User logged in"
-msgstr "کاربر وارد شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/EmailForm.php:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:42
+msgid "Current password"
+msgstr "کلمه عبور فعلی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:27
-msgid "User logged out"
-msgstr "کاربر خارج شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/FindPasswordForm.php:37
+msgid "Please type the word"
+msgstr "لطفا این واژه را وارد نمایید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:33
-msgid "User registered"
-msgstr "کاربر ثبت شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:57
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResetPasswordForm.php:42
+msgid "New password"
+msgstr "کلمه عبور جدید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:39
-msgid "User activated"
-msgstr "کاربر فعال شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/PasswordForm.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResetPasswordForm.php:52
+msgid "Confirm password"
+msgstr "تایید کلمه عبور"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:45
-msgid "User enabled"
-msgstr "کاربر فعال شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:75
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:71
+msgid "Front role"
+msgstr "نقش های کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:51
-msgid "User disabled"
-msgstr "کاربر غیر فعال شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:80
+msgid "Admin role"
+msgstr "نقش های مدیریت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:57
-msgid "User deleted"
-msgstr "کاربر حذف شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:94
+msgid "Activate"
+msgstr "فعالیت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:63
-msgid "User profile updated"
-msgstr "پروفایل کاربر به روز شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/MemberForm.php:106
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:46
+msgid "Enable"
+msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:69
-msgid "Display name changed"
-msgstr "نام نمایشی تغییر کرد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/ResendActivationForm.php:27
+msgid "Email address"
+msgstr "آدرس ایمیل"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:75
-msgid "Email changed"
-msgstr "ایمیل تغییر کرد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/RoleForm.php:44
+msgid "Name"
+msgstr "نام"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:81
-msgid "Avatar changed"
-msgstr "آواتار تغییر کرد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/RoleForm.php:54
+msgid "Title"
+msgstr "عنوان"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:87
-msgid "Password changed"
-msgstr "عوض کردن کلمه عبور"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:29
+msgid "Active state"
+msgstr "آمار فعالیت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:93
-msgid "Role assigned"
-msgstr "نقش اضافه شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:59
+msgid "Any"
+msgstr "هر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/event.php:99
-msgid "Role removed"
-msgstr "نقش حذف شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:32
+msgid "Active"
+msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/config/form.register.php:28
-msgid "Confirm credential"
-msgstr "تایید واژه رمز"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:33
+msgid "Inactive"
+msgstr "غیر فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:43
+msgid "Enable state"
+msgstr "آمار فعالیت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:47
+msgid "Disable"
+msgstr "غیر فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:57
+msgid "Activated state"
+msgstr "آمار فعالیت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:60
+msgid "Pending"
+msgstr "در انتظار تایید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:61
+msgid "Activated"
+msgstr "فعال شده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:117
+msgid "Register date from"
+msgstr "تاریخ ثبت نام از"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:126
+msgid "Register date end"
+msgstr "تاریخ ثبت نام تا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:135
+msgid "Register ip from"
+msgstr "آی پی ثبت نام کننده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Form/SearchForm.php:143
+msgid "Search"
+msgstr "جستجو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/CredentialVerify.php:34
+msgid "Invalid password."
+msgstr "کلمه عبور اشتباه است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:26
+msgid "Invalid name: %formatHint%"
+msgstr "نام نا معتبر : %formatHint%"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:27
+msgid "User name is reserved"
+msgstr "نام کاربر دریافت شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:28
+msgid "User name is already taken"
+msgstr "نام انتخابی شما قبلا گرفته شده است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:29
+msgid "User name is less than %min% characters long"
+msgstr "نام کاربری شما از حداقل مجاز %min% کارکتر کمتر است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Name.php:30
+msgid "User name is more than %max% characters long"
+msgstr "نام کاربری شما از حداکثر مجاز %max% کارکتر بیشتر است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Password.php:40
+msgid "Password is less than %min% characters long"
+msgstr "کلمه عبور شما کمتر از حداقل مقدار مجاز %min% کارکتر است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Password.php:41
+msgid "Password is more than %max% characters long"
+msgstr "کلمه عبور شما بیشتر از حداکثر مقدار مجاز %max% کارکتر است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/UserEmail.php:36
+msgid "User email is reserved"
+msgstr "ایمیل کاربر دریافت شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/UserEmail.php:37
+msgid "User email is already used"
+msgstr "ایمیل کاربر قبلا استفاده شده است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Username.php:49
+msgid "Username is less than %min% characters long"
+msgstr "نام کاربری شما از حداقل مجاز %min% کارکتر کمتر است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/src/Validator/Username.php:50
+msgid "Username is more than %max% characters long"
+msgstr "نام کاربری شما از حداکثر مجاز %max% کارکتر بیشتر است"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-index.phtml:19
 msgid "Verify identity"
@@ -680,21 +714,15 @@ msgstr "وارد کردن نام نمایشی ضروری است"
 msgid "No change!"
 msgstr "بدون تغییر !"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:12
-#, php-format
-msgid "Update %s"
-msgstr "به روز کردن %s"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-reset-email.phtml:1
 msgid "Change email"
 msgstr "تغییر ایمیل"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/account-reset-email.phtml:3
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-process.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:5
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:18
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:47
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:5
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-process.phtml:12
 msgid "Congratulations!"
 msgstr "تبریک می گویم"
 
@@ -703,141 +731,15 @@ msgstr "تبریک می گویم"
 msgid "Login right now."
 msgstr "هم اکنون وارد شوید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-disabled.phtml:2
-msgid "User login"
-msgstr "ورود کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-disabled.phtml:5
-msgid "Sorry, login is temporarily disabled. Please come back later."
-msgstr "متاسفانه هم اکنون ورود به سایت ممکن نیست. لطفا بعدا بازگردید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-disabled.phtml:5
-msgid "Sorry, register is temporarily disabled. Please come back later."
-msgstr "متاسفانه ثبت نام در حال حاضر غیر فعال است. لطفا بعدا مراجعه کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-success.phtml:7
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:8
-msgid "homepage"
-msgstr "صفحه اصلی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-success.phtml:8
-#, php-format
-msgid "You have logged in successfully, please go to %s."
-msgstr "با موفقیت وارد شدید. برمی گردید به %s"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/activity-index.phtml:25
 msgid "View all"
 msgstr "همه شاخه ها"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/activity-index.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/home-index.phtml:38
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-view.phtml:29
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/home-index.phtml:37
 msgid "No data available."
 msgstr "هیچ اطلاعاتی در دسترس نیست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:22
-#, php-format
-msgid ""
-"Your account has been registered successfully. Please <a href=\"%s\">login</"
-"a> with your account."
-msgstr ""
-"حساب کاربری شما با موفقیت ایجاد شد. لطفا به حساب کاربری خود <a href=\"%s"
-"\">وارد شوید</a>"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:27
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:14
-#, php-format
-msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
-msgstr "یا مستقیم به <a href=\"%s\">صفحه مورد نظر</a> برگردید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:38
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:54
-msgid "Registration was not completed."
-msgstr "ثبت نام تکمیل نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:48
-msgid ""
-"You account has been registered successfully. However it needs to be "
-"approved by our admins before you can use it."
-msgstr ""
-"حساب کاربری شما با موفقیت ایجاد شد. ولی برای فعال شدن به تایید مدیر وب سایت "
-"نیاز دارد تا بتوانید از وب سایت استفاده کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:63
-msgid "An email with activation link has been sent to you."
-msgstr "یک ایمیل با لینک فعال سازی حساب کاربری برای شما ارسال شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:64
-msgid "Please check it to finish the registration."
-msgstr ""
-"لطفا ایمیل خود را بررسی کنید و از طریق متن راهنمای داخل آن ثبت نام خود را "
-"تکمیل کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:67
-msgid "If you do not receive the activation email:"
-msgstr "اگر شما ایمیل فعال سازی را دریافت نکرده اید‌ :"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:69
-msgid "Wait a few minutes and check again."
-msgstr "چند دقیقه صبر کنید و مجددا بررسی کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:70
-msgid "Check your email spam box."
-msgstr "بخش اسپم ایمیل خود را بررسی کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:71
-msgid "Request to resend activation email"
-msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:106
-msgid "Already sent"
-msgstr "قبلا ارسال شده است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:2
-msgid "Activate account"
-msgstr "فعال سازی حساب کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:6
-msgid "Your account has been activated."
-msgstr "حساب کاربری شما فعال شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:20
-msgid "Sorry, account activation is failed."
-msgstr "متاسفانه فعال سازی حساب کاربری موفقیت آمیز نبود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:22
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-resend-activation.phtml:2
-msgid "Resend activation email."
-msgstr "ارسال مجدد ایمیل فعال سازی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-view.phtml:20
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-index.phtml:33
-msgid "Unfiled"
-msgstr "Unfiled"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:13
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:21
-msgid "Add new"
-msgstr "اضافه کردن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:31
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-index.phtml:20
-msgid "Edit"
-msgstr "ویرایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:53
-msgid "Are you sure to delete this record?"
-msgstr "آیا اطمینان دارید که میخواهید این مورد را حذف کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:25
-msgid "View my profile"
-msgstr "نمایش پروفایل من"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:10
-msgid "Privacy"
-msgstr "حریم خصوصی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/avatar-index.phtml:13
 msgid "Upload"
@@ -900,38 +802,18 @@ msgstr "لغو"
 msgid "Uploading"
 msgstr "در حال بارگذاری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:75
-msgid "Switch to public"
-msgstr "نمایش عمومی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-disabled.phtml:2
+msgid "User login"
+msgstr "ورود کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:80
-msgid "Settings"
-msgstr "تنظیمات"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-disabled.phtml:5
+msgid "Sorry, login is temporarily disabled. Please come back later."
+msgstr "متاسفانه هم اکنون ورود به سایت ممکن نیست. لطفا بعدا بازگردید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:86
-msgid "Quicklinks"
-msgstr "لینک های سریع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:109
-msgid "Switch to own"
-msgstr "نمایش شخصی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:115
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:120
-msgid "Send message"
-msgstr "ارسال پیام شخصی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:139
-msgid "Gender:"
-msgstr "جنسیت:"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:145
-msgid "Birthdate:"
-msgstr "تاریخ تولد:"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:201
-msgid "More"
-msgstr "بیشتر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-success.phtml:7
+msgid "homepage"
+msgstr "صفحه اصلی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:11
 msgid "re-login"
@@ -941,19 +823,6 @@ msgstr "دوباره وارد شوید"
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "با موفقیت خاریج شدید، لطفا برگردید به %s یا %s"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-logout.phtml:20
-msgid "Login"
-msgstr "ورود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-index.phtml:42
-#, php-format
-msgid "Add %s"
-msgstr "اضافه کردن %s"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:16
-msgid "No available privacy setting"
-msgstr "هیچ تنظیم حریم خصوصی در دسترس نیست"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-message.phtml:7
 msgid "logout"
@@ -966,6 +835,11 @@ msgid ""
 "login."
 msgstr ""
 "شما با حساب کاربری <strong>%s</strong> وارد شده اید. لطفا %s دوباره وارد شوید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/login-success.phtml:8
+#, php-format
+msgid "You have logged in successfully, please go to %s."
+msgstr "با موفقیت وارد شدید. برمی گردید به %s"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-process.phtml:1
 msgid "Reset password"
@@ -982,6 +856,160 @@ msgstr "کلمه عبور جدید شما فعال شد"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/password-process.phtml:16
 msgid "Please login"
 msgstr "لطفا وارد شوید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/privacy-index.phtml:16
+msgid "No available privacy setting"
+msgstr "هیچ تنظیم حریم خصوصی در دسترس نیست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit.phtml:10
+#, php-format
+msgid "Update %s"
+msgstr "به روز کردن %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:21
+msgid "Add new"
+msgstr "اضافه کردن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-index.phtml:20
+msgid "Edit"
+msgstr "ویرایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-index.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-view.phtml:20
+msgid "Unfiled"
+msgstr "Unfiled"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-edit-compound.phtml:53
+msgid "Are you sure to delete this record?"
+msgstr "آیا اطمینان دارید که میخواهید این مورد را حذف کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-index.phtml:42
+#, php-format
+msgid "Add %s"
+msgstr "اضافه کردن %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-sidebar.phtml:25
+msgid "View my profile"
+msgstr "نمایش پروفایل من"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:77
+msgid "Switch to public"
+msgstr "نمایش عمومی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:82
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:88
+msgid "Quicklinks"
+msgstr "لینک های سریع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:111
+msgid "Switch to own"
+msgstr "نمایش شخصی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:117
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:122
+msgid "Send message"
+msgstr "ارسال پیام شخصی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:141
+msgid "Gender:"
+msgstr "جنسیت:"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:147
+msgid "Birthdate:"
+msgstr "تاریخ تولد:"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/profile-topbar.phtml:203
+msgid "More"
+msgstr "بیشتر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:2
+msgid "Activate account"
+msgstr "فعال سازی حساب کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:6
+msgid "Your account has been activated."
+msgstr "حساب کاربری شما فعال شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:27
+#, php-format
+msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
+msgstr "یا مستقیم به <a href=\"%s\">صفحه مورد نظر</a> برگردید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:20
+msgid "Sorry, account activation is failed."
+msgstr "متاسفانه فعال سازی حساب کاربری موفقیت آمیز نبود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-activate.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-resend-activation.phtml:2
+msgid "Resend activation email."
+msgstr "ارسال مجدد ایمیل فعال سازی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-disabled.phtml:5
+msgid "Sorry, register is temporarily disabled. Please come back later."
+msgstr "متاسفانه ثبت نام در حال حاضر غیر فعال است. لطفا بعدا مراجعه کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:22
+#, php-format
+msgid ""
+"Your account has been registered successfully. Please <a href=\"%s\">login</"
+"a> with your account."
+msgstr ""
+"حساب کاربری شما با موفقیت ایجاد شد. لطفا به حساب کاربری خود <a href=\"%s"
+"\">وارد شوید</a>"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:54
+msgid "Registration was not completed."
+msgstr "ثبت نام تکمیل نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:48
+msgid ""
+"You account has been registered successfully. However it needs to be "
+"approved by our admins before you can use it."
+msgstr ""
+"حساب کاربری شما با موفقیت ایجاد شد. ولی برای فعال شدن به تایید مدیر وب سایت "
+"نیاز دارد تا بتوانید از وب سایت استفاده کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:63
+msgid "An email with activation link has been sent to you."
+msgstr "یک ایمیل با لینک فعال سازی حساب کاربری برای شما ارسال شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:64
+msgid "Please check it to finish the registration."
+msgstr ""
+"لطفا ایمیل خود را بررسی کنید و از طریق متن راهنمای داخل آن ثبت نام خود را "
+"تکمیل کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:67
+msgid "If you do not receive the activation email:"
+msgstr "اگر شما ایمیل فعال سازی را دریافت نکرده اید‌ :"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:69
+msgid "Wait a few minutes and check again."
+msgstr "چند دقیقه صبر کنید و مجددا بررسی کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:70
+msgid "Check your email spam box."
+msgstr "بخش اسپم ایمیل خود را بررسی کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:71
+msgid "Request to resend activation email"
+msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/user/template/front/register-index.phtml:106
+msgid "Already sent"
+msgstr "قبلا ارسال شده است"
+
+#~ msgid "view profile"
+#~ msgstr "نمایش حساب کاربری"
 
 #~ msgid "Username is reserved"
 #~ msgstr "نام کاربر گرفته شده"

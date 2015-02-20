@@ -2,11 +2,11 @@
 
 [format]html[/format]
 
-[subject]Greetings from %site_name% in HTML[/subject]
+[subject]یک ایمیل از وب سایت %site_name% در حالت HTML[/subject]
 
 [body]
-<div style="margin-bottom: 5px">Dear <strong>%username%</strong>:</div>
-<div style="margin: 5px">This is a greeting mail from %site_name%.</div>
+<div style="margin-bottom: 5px"><strong>%username%</strong> عزیز :</div>
+<div style="margin: 5px">این یک ایمیل از وب سایت %site_name% است</div>
 <div style="margin-top: 10px">
     %site_adminname%<br />
     %site_adminmail%<br />
