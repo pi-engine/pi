@@ -25,88 +25,88 @@ class Breadcrumbs extends AbstractBreadcrumbs
         // Set module link
         $moduleData = Pi::registry('module')->read($this->getModule());
         $result = array(
-           	array(
-               	'label' => $moduleData['title'],
-               	'href'  => Pi::url(Pi::service('url')->assemble('user', array(
-                    'module' => $this->getModule(),
-               	))),
-           	),
+            array(
+               'label' => $moduleData['title'],
+               'href'  => Pi::url(Pi::service('url')->assemble('user', array(
+                   'module' => $this->getModule(),
+               ))),
+            ),
         );
 
         switch ($params['controller']) {
-        	case 'login':
-        		$result[] = array(
-            		'label' => __('Login'),
-        		);
-        		break;
+            case 'login':
+                $result[] = array(
+                    'label' => __('Login'),
+                );
+                break;
 
-        	case 'register':
-        		$result[] = array(
-            		'label' => __('Register'),
-        		);
-        		break;
+            case 'register':
+                $result[] = array(
+                    'label' => __('Register'),
+                );
+                break;
 
-        	case 'home':
-        		$result[] = array(
-            		'label' => __('Feed'),
-        		);
-        		break;
+            case 'home':
+                $result[] = array(
+                    'label' => __('Feed'),
+                );
+                break;
 
-        	case 'account':
-        		$result[] = array(
-            		'label' => __('Account settings'),
-        		);
-        		break;
+            case 'account':
+                $result[] = array(
+                    'label' => __('Account settings'),
+                );
+                break;
 
-        	case 'avatar':
-        		$result[] = array(
-            		'label' => __('Change avatar'),
-        		);
-        		break;
+            case 'avatar':
+                $result[] = array(
+                    'label' => __('Change avatar'),
+                );
+                break;
 
-        	case 'privacy':
-        		$result[] = array(
-            		'label' => __('Privacy'),
-        		);
-        		break;
+            case 'privacy':
+                $result[] = array(
+                    'label' => __('Privacy'),
+                );
+                break;
 
-        	case 'password':
+            case 'password':
                 switch ($params['action']) {
-                	case 'index':
-        				$result[] = array(
-            				'label' => __('Change password'),
-        				);
-                		break;
+                    case 'index':
+                        $result[] = array(
+                            'label' => __('Change password'),
+                        );
+                        break;
 
-                	case 'find':
-        				$result[] = array(
-            				'label' => __('Find password'),
-        				);
-                		break;
+                    case 'find':
+                        $result[] = array(
+                            'label' => __('Find password'),
+                        );
+                        break;
                 }
-        		break;
+                break;
 
-        	case 'profile':
+            case 'profile':
                 switch ($params['action']) {
-                	case 'index':
-        				$result[] = array(
-            				'label' => __('Profile'),
-        				);
-                		break;
+                    case 'index':
+                        $result[] = array(
+                            'label' => __('Profile'),
+                        );
+                        break;
 
-                	case 'edit.profile':
-        				$result[] = array(
-            				'label' => __('Edit profile'),
-        				);
-                		break;
+                    case 'edit.profile':
+                        $result[] = array(
+                            'label' => __('Edit profile'),
+                        );
+                        break;
 
-                	case 'edit.compound':
-        				$result[] = array(
-            				'label' => __('Edit profile'),
-        				);
-                		break;
+                    case 'edit.compound':
+                        $result[] = array(
+                            'label' => __('Edit profile'),
+                        );
+                        break;
                 }
-        		break;	
+                break;    
         }
 
         return $result;
