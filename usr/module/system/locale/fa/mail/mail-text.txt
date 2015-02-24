@@ -2,14 +2,14 @@
 
 [format]text[/format]
 
-[subject]Greetings from %site_name% in text[/subject]
+[subject]یک ایمیل از وب سایت %site_name% در حالت متنی[/subject]
 
 [body]
-Dear %username%:
+%username%: عزیز
 
-This is a greeting mail from %site_name%.
+این یک ایمیل از وب سایت %site_name% است.
 
-Yours sincerely,
+موفق باشید
 
 %site_adminname%
 %site_adminmail%

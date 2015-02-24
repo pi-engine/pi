@@ -1201,6 +1201,7 @@ th {
 .nav-justified > .dropdown .dropdown-menu {
   right: auto;
 }
+
 .nav-tabs-justified > li > a {
   margin-left: 0;
   margin-right: auto;
@@ -1638,6 +1639,10 @@ th {
   }
 }
 
+.btn-group .dropdown-menu {
+  text-align: right;
+}
+
 /* Add by @voltan */
 .pagination {
   direction: ltr;
@@ -1766,4 +1771,9 @@ th {
 }
 .text-right {
   text-align: left !important;
+}
+
+/* fixs */
+.nav-justified li {
+  width: auto;
 }

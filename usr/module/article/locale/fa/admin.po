@@ -1,580 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-article\n"
-"POT-Creation-Date: 2014-09-11 17:59+0330\n"
-"PO-Revision-Date: 2014-09-11 18:00+0330\n"
+"POT-Creation-Date: 2015-02-20 12:17+0330\n"
+"PO-Revision-Date: 2015-02-20 12:19+0330\n"
 "Last-Translator: \n"
 "Language-Team: Pi Engine\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "article\n"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:101
-msgid "Root"
-msgstr "ریشه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:102
-msgid "Module root category"
-msgstr "طبقه بندی ریشه ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:109
-msgid "Default"
-msgstr "پیش فرض"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:110
-msgid "The default category can not be delete, but can be modified!"
-msgstr "دسته به طور پیش فرض نمی تواند حذف، اما می تواند اصلاح شود!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:57
-msgid "Add author info"
-msgstr "اضافه کردن اطلاعات نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:71
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:124
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:196
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:84
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:385
-msgid "There are some error occured!"
-msgstr "برخی از خطا وجود دارد رخ داده است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:81
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:205
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:94
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:177
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:395
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:462
-msgid "Can not save data!"
-msgstr "می تواند داده ها را ذخیره کرد!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:111
-msgid "Edit author info"
-msgstr "ویرایش اطلاعات نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:141
-msgid "Invalid author id"
-msgstr "نویسنده نامعتبر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:146
-msgid "The author is not exists"
-msgstr "نویسنده است، وجود دارد نمی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:163
-msgid "Invalid author id!"
-msgstr "نویسنده نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:235
-msgid "Author List"
-msgstr "فهرست نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:259
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:134
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:489
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:609
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:102
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:431
-msgid "Invalid ID!"
-msgstr "ID نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:266
-msgid "Invalid image fake ID!"
-msgstr "تصویر نامعتبر ID جعلی!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:277
-msgid "Image is not exists!"
-msgstr "تصویر است، وجود دارد نیست!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:291
-msgid "Image width or height is needed"
-msgstr "عرض تصویر و یا ارتفاع مورد نیاز است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:410
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:489
-msgid "Invalid fake ID!"
-msgstr "ID جعلی نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:114
-msgid "All Media"
-msgstr "تمام رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:151
-msgid "This page have not been considered yet!"
-msgstr "این صفحه در نظر گرفته نشده است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:158
-msgid "Media Detail"
-msgstr "جزئیات رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:181
-msgid "Add Media"
-msgstr "اضافه کردن رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:225
-msgid "Edit Media Info"
-msgstr "ویرایش رسانه اطلاعات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:243
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:138
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:436
-msgid "Can not update data!"
-msgstr "می توانید اطلاعات را به روز رسانی کنید!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:254
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:267
-msgid "Invalid media ID!"
-msgstr "ID رسانه نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:260
-msgid "Can not find media!"
-msgstr "آیا می توانم رسانه را پیدا کند!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:284
-msgid "Invalid media ID"
-msgstr "ID رسانه های نامعتبر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:295
-msgid "The following medias is in used, and can not be delete: "
-msgstr "رسانه های زیر در استفاده می شود، و نمی تواند حذف شود: "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:70
-msgid "Add Category Info"
-msgstr "اضافه کردن اطلاعات رده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:123
-msgid "Edit Category Info"
-msgstr "اطلاعات ویرایش رده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:158
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:224
-msgid "Invalid category ID!"
-msgstr "ID رده نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:164
-msgid "Can not find category!"
-msgstr "آیا می توانم دسته را پیدا کند!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:185
-msgid "Root node cannot be deleted."
-msgstr "گره ریشه پاک نمی شود."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:191
-msgid "Cannot remove default category"
-msgstr "آیا می توانم رده به طور پیش فرض را حذف کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:197
-msgid "Cannot remove category with children"
-msgstr "آیا می توانم رده با کودکان حذف کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:205
-msgid "Cannot remove category in used"
-msgstr "آیا می توانم رده در استفاده را حذف کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:236
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:63
-msgid "Category List"
-msgstr "لیست شاخه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:250
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:244
-msgid "Merge Category"
-msgstr "ادغام گروه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:262
-msgid "Can not merge category!"
-msgstr "آیا می توانم رده ادغام نیست!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:275
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:366
-msgid "Category cannot be moved to self or a child!"
-msgstr "رده می تواند به خود یا یک کودک نمی تواند منتقل شود!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:284
-msgid "Cannot merge default category"
-msgstr "آیا می توانم رده به طور پیش فرض ادغام نمی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:296
-msgid "Move children error."
-msgstr "حرکت خطا کودکان."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:341
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:251
-msgid "Move Category"
-msgstr "حرکت رده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:353
-msgid "Can not move category!"
-msgstr "آیا می توانم دسته حرکت نمی کند!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:417
-msgid "Sort Category"
-msgstr "مرتب سازی بر رده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:427
-msgid "Can not sort category!"
-msgstr "آیا می توانم رده مرتب سازی نیست!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:441
-msgid "Category cannot be moved to another category!"
-msgstr "رده می تواند به دسته دیگر منتقل نمی شود!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:507
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:626
-msgid "Media is not exists!"
-msgstr "رسانه است وجود دارد نیست!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:513
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:632
-msgid "Invalid file extension!"
-msgstr "فرمت فایل نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:522
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:641
-msgid "Can not create image file!"
-msgstr "آیا می توانم فایل تصویر ایجاد کنید!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:675
-msgid "Category is not exists."
-msgstr "رده است، وجود دارد نیست."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:688
-msgid "Category cannot be moved to self or a child."
-msgstr "رده می تواند به خود یا یک کودک نمی توان نقل مکان کرد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:123
-msgid "Form Configuration"
-msgstr "پیکربندی فرم"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:144
-msgid "Items marked red is required!"
-msgstr "موارد مشخص شده با رنگ قرمز مورد نیاز است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:183
-msgid "Data saved successful!"
-msgstr "داده های ذخیره شده موفق!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:203
-msgid "Success!"
-msgstr "با موفقیت!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:203
-msgid "Can not save file!"
-msgstr "آیا می توانم فایل را ذخیره کنید!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:219
-msgid "Invalid mode!"
-msgstr "حالت نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:155
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:450
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:474
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:573
-msgid "Invalid topic ID!"
-msgstr "نامعتبر ID موضوع!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:255
-msgid "All Articles"
-msgstr "همه مقالات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:282
-msgid "Target topic is needed!"
-msgstr "موضوع هدف مورد نیاز است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:286
-msgid "No articles are selected, please try again!"
-msgstr "هیچ مقاله ای انتخاب می شوند، لطفا دوباره سعی کنید!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:368
-msgid "Add Topic Info"
-msgstr "اضافه کردن موضوع اطلاعات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:417
-msgid "Edit Topic Info"
-msgstr "ویرایش اطلاعات موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:456
-msgid "Can not find topic!"
-msgstr "آیا می توانم موضوع را پیدا کند!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:553
-msgid "Topic List"
-msgstr "فهرست موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:801
-msgid "Success"
-msgstr "موفقیت آمیز"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:820
-msgid "Invalid template name!"
-msgstr "نام قالب نامعتبر است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/StatsController.php:51
-msgid "Statistic"
-msgstr "آمار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:55
-msgid "Raw image width and height data is needed!"
-msgstr "عرض تصویر خام و ارتفاع داده مورد نیاز است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:61
-msgid "The limitation data is needed!"
-msgstr "داده ها با محدودیت مورد نیاز است!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:282
-msgid "Can not find file!"
-msgstr "می توانید فایل را پیدا کند!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:471
-msgid "Media data saved successful!"
-msgstr "اطلاعات رسانه ذخیره موفق!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:18
-msgid "Article management"
-msgstr "مدیریت مقالات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:22
-msgid "Author management"
-msgstr "نویسنده مدیریت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:26
-msgid "Category management"
-msgstr "مدیریت گروه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:30
-msgid "Topic management"
-msgstr "مدیریت موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:34
-msgid "Media management"
-msgstr "مدیریت رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:38
-msgid "Statistics page view"
-msgstr "نمایش صفحه آمار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:42
-msgid "Permission management"
-msgstr "مدیریت اجازه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:46
-msgid "Setup management"
-msgstr "مدیریت راه اندازی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:51
-msgid "Published Active/Deactivate"
-msgstr "انتشار فعال / غیرفعال کردن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:54
-msgid "Publish Edit"
-msgstr "انتشار ویرایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:57
-msgid "Published Delete"
-msgstr "انتشار حذف"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:60
-msgid "Draft Compose"
-msgstr "پیش نویس نوشتن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:63
-msgid "Rejected Edit"
-msgstr "ویرایش رد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:66
-msgid "Rejected Delete"
-msgstr "رد حذف"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:69
-msgid "Pending Edit"
-msgstr "در انتظار ویرایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:72
-msgid "Pending Delete"
-msgstr "در انتظار حذف"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:75
-msgid "Pending Approve"
-msgstr "در انتظار تصویب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:18
-msgid "Article site navigation"
-msgstr "ناوبری سایت مقاله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:26
-msgid "Homepage"
-msgstr "صفحه خانگی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:32
-msgid "My Draft"
-msgstr "پیش نویس من"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:45
-msgid "All Article"
-msgstr "تمامی مقالات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:58
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:98
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-nav.phtml:10
-msgid "Published"
-msgstr "تاریخ انتشار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:67
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:107
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-nav.phtml:15
-msgid "Pending"
-msgstr "در انتظار "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:79
-msgid "Compose"
-msgstr "ایجاد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:88
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:339
-msgid "My Article"
-msgstr "مقاله من"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:117
-msgid "Rejected"
-msgstr "رد شده."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:127
-msgid "Draft"
-msgstr "Draft"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:139
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:333
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:164
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:80
-msgid "Topic"
-msgstr "عنوان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:149
-msgid "All topics"
-msgstr "همه موضوعات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:155
-msgid "Add topic"
-msgstr "اضافه کردن موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:161
-msgid "List topic articles"
-msgstr "مقالات فهرست موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:168
-msgid "Pull topic articles"
-msgstr "نگه دار، مقالات موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:175
-msgid "Edit topic"
-msgstr "ویرایش موضوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:184
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:35
-msgid "Media"
-msgstr "رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:194
-msgid "Media list"
-msgstr "لیست رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:200
-msgid "Upload Media"
-msgstr "بارگذاری رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:206
-msgid "Edit Media"
-msgstr "ویرایش رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:215
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:144
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:148
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:79
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:67
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:22
-msgid "Category"
-msgstr "دسته"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:225
-msgid "Category list"
-msgstr "لیست شاخه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:231
-msgid "Add Category"
-msgstr "اضافه کردن رده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:237
-msgid "Edit Category"
-msgstr "ویرایش دسته بندی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:260
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:147
-msgid "Author"
-msgstr "نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:270
-msgid "Author list"
-msgstr "لیست نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:276
-msgid "Add author"
-msgstr "اضافه کردن نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:282
-msgid "Edit author"
-msgstr "ویرایش نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:291
-msgid "Setup"
-msgstr "راه اندازی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:301
-msgid "Custom form"
-msgstr "فرم سفارشی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:307
-msgid "Preview form"
-msgstr "فرم پیش نمایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:316
-msgid "Statistics"
-msgstr "آمار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:328
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:18
-msgid "Article Homepage"
-msgstr "صفحه خانگی مقاله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:24
-msgid "All Article List Page"
-msgstr "لیست تمام مقاله صفحه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:30
-msgid "Category Related Article List Page"
-msgstr "رده فهرست مقالات مرتبط صفحه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:36
-msgid "Tag Related Article List Page"
-msgstr "برچسب فهرست مقالات مرتبط صفحه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:42
-msgid "Article Detail Page"
-msgstr "مقاله جزئیات صفحه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:48
-msgid "Search Result Page"
-msgstr "برگه نتایج جستجو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:54
-msgid "Topic Homepage"
-msgstr "موضوع صفحه خانگی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:60
-msgid "Topic Article List Page"
-msgstr "موضوع فهرست مقالات صفحه"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:17
 msgid "All Categories"
@@ -637,6 +76,11 @@ msgstr "جهت بازشدن لینک"
 msgid "Open url in which window"
 msgstr "آدرس گسترش است که در آن پنجره"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:63
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:236
+msgid "Category List"
+msgstr "لیست شاخه ها"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:64
 msgid "Listing all category"
 msgstr "لیست تمام رده"
@@ -688,6 +132,15 @@ msgstr "لیست جدید ترین مقالات منتشر شده از موضو�
 msgid "The max articles to display"
 msgstr "مقالات حداکثر برای نمایش"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:144
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:148
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:215
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:67
+msgid "Category"
+msgstr "دسته"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:145
 msgid "Which category article want to list"
 msgstr "کدام مقاله رده می خواهید به لیست"
@@ -701,6 +154,13 @@ msgstr "آیا موضوع"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:508
 msgid "Whether to list topic articles"
 msgstr "آیا برای لیست مقالات موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:164
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:139
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:333
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:80
+msgid "Topic"
+msgstr "عنوان"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:165
 msgid "Which topic article want to list"
@@ -764,8 +224,8 @@ msgstr "خلاصه"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:378
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:548
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:144
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:106
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:106
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:92
 msgid "Feature image"
 msgstr "ویژگی تصویر"
@@ -930,9 +390,9 @@ msgstr "برای عضویت کلیک کنید مقاله"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/block.php:629
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:493
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:15
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:108
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:108
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:15
 msgid "Description"
 msgstr "توضیحات"
 
@@ -944,16 +404,9 @@ msgstr "توضیحات بعد از RSS آرم"
 msgid "Subscribe content of this website"
 msgstr "مشترک شدن محتوای این وب سایت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/module.php:18
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:148
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:165
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:186
-msgid "Article"
-msgstr "Article"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/module.php:19
-msgid "General module for content management."
-msgstr "ماژول عمومی برای مدیریت محتوا."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/comment.php:18
+msgid "Article comments"
+msgstr "نظر مقاله"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:19
 msgid "General"
@@ -970,6 +423,11 @@ msgstr "SEO"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:31
 msgid "Summary and subject"
 msgstr "خلاصه و موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:184
+msgid "Media"
+msgstr "رسانه ها"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:43
 msgid "Article List Page Limit"
@@ -1094,6 +552,11 @@ msgstr "مطلبی برای نمایش در فهرست صفحه"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:146
 msgid "Created time"
 msgstr "زمان ایجاد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:147
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:260
+msgid "Author"
+msgstr "نویسنده"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:156
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/config.php:204
@@ -1463,31 +926,772 @@ msgstr "راه اندازی توضیحات سر."
 msgid "Use summary"
 msgstr "خلاصه استفاده از"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/comment.php:18
-msgid "Article comments"
-msgstr "نظر مقاله"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/module.php:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:148
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:165
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:186
+msgid "Article"
+msgstr "مطالب"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list-normal.phtml:4
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/module.php:19
+msgid "General module for content management."
+msgstr "ماژول عمومی برای مدیریت محتوا."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:18
+msgid "Article site navigation"
+msgstr "ناوبری سایت مقاله"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:26
+msgid "Homepage"
+msgstr "صفحه خانگی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:32
+msgid "My Draft"
+msgstr "پیش نویس من"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:45
+msgid "All Article"
+msgstr "تمامی مقالات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:98
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-nav.phtml:10
+msgid "Published"
+msgstr "تاریخ انتشار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:67
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-nav.phtml:15
+msgid "Pending"
+msgstr "در انتظار "
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:79
+msgid "Compose"
+msgstr "ایجاد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:88
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:339
+msgid "My Article"
+msgstr "مقاله من"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:117
+msgid "Rejected"
+msgstr "رد شده."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:127
+msgid "Draft"
+msgstr "Draft"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:149
+msgid "All topics"
+msgstr "همه موضوعات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:155
+msgid "Add topic"
+msgstr "اضافه کردن موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:161
+msgid "List topic articles"
+msgstr "مقالات فهرست موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:168
+msgid "Pull topic articles"
+msgstr "نگه دار، مقالات موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:175
+msgid "Edit topic"
+msgstr "ویرایش موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:194
+msgid "Media list"
+msgstr "لیست رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:200
+msgid "Upload Media"
+msgstr "بارگذاری رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:206
+msgid "Edit Media"
+msgstr "ویرایش رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:225
+msgid "Category list"
+msgstr "لیست شاخه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:231
+msgid "Add Category"
+msgstr "اضافه کردن رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:237
+msgid "Edit Category"
+msgstr "ویرایش دسته بندی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:244
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:250
+msgid "Merge Category"
+msgstr "ادغام گروه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:251
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:341
+msgid "Move Category"
+msgstr "حرکت رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:270
+msgid "Author list"
+msgstr "لیست نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:276
+msgid "Add author"
+msgstr "اضافه کردن نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:282
+msgid "Edit author"
+msgstr "ویرایش نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:291
+msgid "Setup"
+msgstr "راه اندازی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:301
+msgid "Custom form"
+msgstr "فرم سفارشی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:307
+msgid "Preview form"
+msgstr "فرم پیش نمایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:316
+msgid "Statistics"
+msgstr "آمار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/navigation.php:328
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:18
+msgid "Article Homepage"
+msgstr "صفحه خانگی مقاله"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:24
+msgid "All Article List Page"
+msgstr "لیست تمام مقاله صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:30
+msgid "Category Related Article List Page"
+msgstr "رده فهرست مقالات مرتبط صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:36
+msgid "Tag Related Article List Page"
+msgstr "برچسب فهرست مقالات مرتبط صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:42
+msgid "Article Detail Page"
+msgstr "مقاله جزئیات صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:48
+msgid "Search Result Page"
+msgstr "برگه نتایج جستجو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:54
+msgid "Topic Homepage"
+msgstr "موضوع صفحه خانگی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/page.php:60
+msgid "Topic Article List Page"
+msgstr "موضوع فهرست مقالات صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:18
+msgid "Article management"
+msgstr "مدیریت مقالات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:22
+msgid "Author management"
+msgstr "نویسنده مدیریت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:26
+msgid "Category management"
+msgstr "مدیریت گروه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:30
+msgid "Topic management"
+msgstr "مدیریت موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:34
+msgid "Media management"
+msgstr "مدیریت رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:38
+msgid "Statistics page view"
+msgstr "نمایش صفحه آمار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:42
+msgid "Permission management"
+msgstr "مدیریت اجازه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:46
+msgid "Setup management"
+msgstr "مدیریت راه اندازی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:51
+msgid "Published Active/Deactivate"
+msgstr "انتشار فعال / غیرفعال کردن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:54
+msgid "Publish Edit"
+msgstr "انتشار ویرایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:57
+msgid "Published Delete"
+msgstr "انتشار حذف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:60
+msgid "Draft Compose"
+msgstr "پیش نویس نوشتن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:63
+msgid "Rejected Edit"
+msgstr "ویرایش رد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:66
+msgid "Rejected Delete"
+msgstr "رد حذف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:69
+msgid "Pending Edit"
+msgstr "در انتظار ویرایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:72
+msgid "Pending Delete"
+msgstr "در انتظار حذف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/config/permission.php:75
+msgid "Pending Approve"
+msgstr "در انتظار تصویب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:57
+msgid "Add author info"
+msgstr "اضافه کردن اطلاعات نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:124
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:84
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:196
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:385
+msgid "There are some error occured!"
+msgstr "برخی از خطا وجود دارد رخ داده است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:94
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:205
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:177
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:395
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:492
+msgid "Can not save data!"
+msgstr "می تواند داده ها را ذخیره کرد!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:111
+msgid "Edit author info"
+msgstr "ویرایش اطلاعات نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:141
+msgid "Invalid author id"
+msgstr "نویسنده نامعتبر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:146
+msgid "The author is not exists"
+msgstr "نویسنده است، وجود دارد نمی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:163
+msgid "Invalid author id!"
+msgstr "نویسنده نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:235
+msgid "Author List"
+msgstr "فهرست نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:259
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:489
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:134
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:609
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:102
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:461
+msgid "Invalid ID!"
+msgstr "ID نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:266
+msgid "Invalid image fake ID!"
+msgstr "تصویر نامعتبر ID جعلی!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:277
+msgid "Image is not exists!"
+msgstr "تصویر است، وجود دارد نیست!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:291
+msgid "Image width or height is needed"
+msgstr "عرض تصویر و یا ارتفاع مورد نیاز است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:410
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/AuthorController.php:489
+msgid "Invalid fake ID!"
+msgstr "ID جعلی نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:70
+msgid "Add Category Info"
+msgstr "اضافه کردن اطلاعات رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:123
+msgid "Edit Category Info"
+msgstr "اطلاعات ویرایش رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:138
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:243
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:436
+msgid "Can not update data!"
+msgstr "می توانید اطلاعات را به روز رسانی کنید!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:158
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:224
+msgid "Invalid category ID!"
+msgstr "ID رده نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:164
+msgid "Can not find category!"
+msgstr "آیا می توانم دسته را پیدا کند!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:185
+msgid "Root node cannot be deleted."
+msgstr "گره ریشه پاک نمی شود."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:191
+msgid "Cannot remove default category"
+msgstr "آیا می توانم رده به طور پیش فرض را حذف کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:197
+msgid "Cannot remove category with children"
+msgstr "آیا می توانم رده با کودکان حذف کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:205
+msgid "Cannot remove category in used"
+msgstr "آیا می توانم رده در استفاده را حذف کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:262
+msgid "Can not merge category!"
+msgstr "آیا می توانم رده ادغام نیست!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:275
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:366
+msgid "Category cannot be moved to self or a child!"
+msgstr "رده می تواند به خود یا یک کودک نمی تواند منتقل شود!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:284
+msgid "Cannot merge default category"
+msgstr "آیا می توانم رده به طور پیش فرض ادغام نمی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:296
+msgid "Move children error."
+msgstr "حرکت خطا کودکان."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:353
+msgid "Can not move category!"
+msgstr "آیا می توانم دسته حرکت نمی کند!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:417
+msgid "Sort Category"
+msgstr "مرتب سازی بر رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:427
+msgid "Can not sort category!"
+msgstr "آیا می توانم رده مرتب سازی نیست!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:441
+msgid "Category cannot be moved to another category!"
+msgstr "رده می تواند به دسته دیگر منتقل نمی شود!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:507
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:626
+msgid "Media is not exists!"
+msgstr "رسانه است وجود دارد نیست!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:513
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:632
+msgid "Invalid file extension!"
+msgstr "فرمت فایل نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:522
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:641
+msgid "Can not create image file!"
+msgstr "آیا می توانم فایل تصویر ایجاد کنید!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:675
+msgid "Category is not exists."
+msgstr "رده است، وجود دارد نیست."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/CategoryController.php:688
+msgid "Category cannot be moved to self or a child."
+msgstr "رده می تواند به خود یا یک کودک نمی توان نقل مکان کرد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:114
+msgid "All Media"
+msgstr "تمام رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:151
+msgid "This page have not been considered yet!"
+msgstr "این صفحه در نظر گرفته نشده است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:158
+msgid "Media Detail"
+msgstr "جزئیات رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:181
+msgid "Add Media"
+msgstr "اضافه کردن رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:225
+msgid "Edit Media Info"
+msgstr "ویرایش رسانه اطلاعات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:254
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:267
+msgid "Invalid media ID!"
+msgstr "ID رسانه نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:260
+msgid "Can not find media!"
+msgstr "آیا می توانم رسانه را پیدا کند!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:284
+msgid "Invalid media ID"
+msgstr "ID رسانه های نامعتبر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/MediaController.php:295
+msgid "The following medias is in used, and can not be delete: "
+msgstr "رسانه های زیر در استفاده می شود، و نمی تواند حذف شود: "
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:123
+msgid "Form Configuration"
+msgstr "پیکربندی فرم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:144
+msgid "Items marked red is required!"
+msgstr "موارد مشخص شده با رنگ قرمز مورد نیاز است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:183
+msgid "Data saved successful!"
+msgstr "داده های ذخیره شده موفق!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:203
+msgid "Success!"
+msgstr "با موفقیت!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:203
+msgid "Can not save file!"
+msgstr "آیا می توانم فایل را ذخیره کنید!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/SetupController.php:219
+msgid "Invalid mode!"
+msgstr "حالت نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/StatsController.php:51
+msgid "Statistic"
+msgstr "آمار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:155
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:450
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:474
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:573
+msgid "Invalid topic ID!"
+msgstr "نامعتبر ID موضوع!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:255
+msgid "All Articles"
+msgstr "همه مقالات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:282
+msgid "Target topic is needed!"
+msgstr "موضوع هدف مورد نیاز است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:286
+msgid "No articles are selected, please try again!"
+msgstr "هیچ مقاله ای انتخاب می شوند، لطفا دوباره سعی کنید!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:368
+msgid "Add Topic Info"
+msgstr "اضافه کردن موضوع اطلاعات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:417
+msgid "Edit Topic Info"
+msgstr "ویرایش اطلاعات موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:456
+msgid "Can not find topic!"
+msgstr "آیا می توانم موضوع را پیدا کند!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:553
+msgid "Topic List"
+msgstr "فهرست موضوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:801
+msgid "Success"
+msgstr "موفقیت آمیز"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Admin/TopicController.php:820
+msgid "Invalid template name!"
+msgstr "نام قالب نامعتبر است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:55
+msgid "Raw image width and height data is needed!"
+msgstr "عرض تصویر خام و ارتفاع داده مورد نیاز است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:61
+msgid "The limitation data is needed!"
+msgstr "داده ها با محدودیت مورد نیاز است!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:289
+msgid "Can not find file!"
+msgstr "می توانید فایل را پیدا کند!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Controller/Front/MediaController.php:501
+msgid "Media data saved successful!"
+msgstr "اطلاعات رسانه ذخیره موفق!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:101
+msgid "Root"
+msgstr "ریشه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:102
+msgid "Module root category"
+msgstr "طبقه بندی ریشه ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:109
+msgid "Default"
+msgstr "پیش فرض"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/src/Installer/Action/Install.php:110
+msgid "The default category can not be delete, but can be modified!"
+msgstr "دسته به طور پیش فرض نمی تواند حذف، اما می تواند اصلاح شود!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:148
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:231
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:263
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:117
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:26
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:46
+msgid "Modify Photo"
+msgstr "اصلاح عکس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:54
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:121
+#, php-format
+msgid "Format supported: %s"
+msgstr "قالب های پشتیبانی شده: %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:61
+msgid "Please make sure your photo is clearly."
+msgstr "لطفا مطمئن شوید که عکس خود را به وضوح."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:66
+msgid "Size: "
+msgstr "اندازه: "
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:72
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:77
+msgid "Cancel"
+msgstr "لغو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:78
+msgid "Yes"
+msgstr "بله"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:132
+msgid "In process ..."
+msgstr "در روند ..."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:147
+msgid "Error occured, please try again!"
+msgstr "خطا رخ داده است، لطفا دوباره سعی کنید!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:185
+msgid "Name"
+msgstr "نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:57
+msgid "Search"
+msgstr "جستجو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:18
+msgid "Photo"
+msgstr "عکس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:20
+msgid "Biography"
+msgstr "زندگی‌نامه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:62
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list-normal.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:135
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:94
+msgid "Edit"
+msgstr "ویرایش"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list-normal.phtml:4
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:43
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:85
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:137
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:67
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:17
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:96
 msgid "Delete"
 msgstr "حذف"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list-normal.phtml:29
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:50
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:41
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:135
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:62
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:94
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:38
-msgid "Edit"
-msgstr "ویرایش"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:184
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:233
+msgid "Error ocurred when request saving image!"
+msgstr "خطا رخ هنگامی که درخواست صرفه جویی در تصویر!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:254
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:47
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:103
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:306
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1747
+msgid "Image"
+msgstr "تصویر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:255
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:104
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:307
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:78
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:66
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1748
+msgid "Title"
+msgstr "عنوان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:256
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:308
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1749
+msgid "Size"
+msgstr "اندازه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:257
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:309
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1750
+msgid "Select"
+msgstr "انتخاب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:61
+msgid "Add"
+msgstr "افزودن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:65
+msgid "Merge"
+msgstr "ادغام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:66
+msgid "Move"
+msgstr "حرکت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:67
+msgid "Sort"
+msgstr "ترتیب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:14
+msgid "Move all articles from source category to target category"
+msgstr "انتقال همه مقالات از دسته های منابع به هدف قرار دادن طبقه بندی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:20
+msgid "Source Category"
+msgstr "منبع رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:32
+msgid "merge into"
+msgstr "ادغام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:37
+msgid "Target Category"
+msgstr "هدف رده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:33
+msgid "move into"
+msgstr "حرکت به"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:14
+msgid "Move a category after the target category"
+msgstr "حرکت یک دسته بندی پس از طبقه بندی هدف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:33
+msgid "move after"
+msgstr "حرکت بعد از"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:12
+msgid "Media must be uploaded!"
+msgstr "رسانه ها باید آپلود شود!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:153
+msgid "No item!"
+msgstr "موردی!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:7
+msgid "Choose Image"
+msgstr "انتخاب تصویر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:14
+msgid "Upload Image"
+msgstr "بارگذاری تصویر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:18
+msgid "Choose From Media"
+msgstr "را انتخاب کنید از رسانه ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:59
+msgid "Prev"
+msgstr "قبل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:64
+msgid "Next"
+msgstr "بعدی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:92
+msgid "Insert"
+msgstr "درج"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:102
+msgid "Image choosed: "
+msgstr "تصویر انتخاب: "
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list-normal.phtml:31
 msgid "Full size"
@@ -1502,122 +1706,77 @@ msgstr "آیا مطمئن به حذف تصاویر انتخاب شده؟"
 msgid "Are you sure want to delete this images?"
 msgstr "آیا مطمئن هستید که می خواهید به حذف این تصاویر؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:26
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:26
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:28
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:117
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:35
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:143
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:148
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:231
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:263
-msgid "Upload"
-msgstr "بارگذاری"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:17
+msgid "Images"
+msgstr "تصاویر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:184
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:233
-msgid "Error ocurred when request saving image!"
-msgstr "خطا رخ هنگامی که درخواست صرفه جویی در تصویر!"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:22
+msgid "Docs"
+msgstr "اسناد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:254
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:306
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:47
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:11
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:103
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:9
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1747
-msgid "Image"
-msgstr "تصویر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:27
+msgid "Videos"
+msgstr "ویدئو ها"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:255
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:307
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:37
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:48
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:74
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:104
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:78
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:29
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:66
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1748
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:21
-msgid "Title"
-msgstr "عنوان"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:32
+msgid "Zips"
+msgstr "ظبرس"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:256
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:308
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:49
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:107
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1749
-msgid "Size"
-msgstr "اندازه"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:14
+msgid "Bulk operation"
+msgstr "عملیات فله"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-edit.phtml:257
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:309
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:50
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-edit.phtml:1750
-msgid "Select"
-msgstr "انتخاب"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:42
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:109
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:139
+msgid "Download"
+msgstr "دانلود"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:29
-msgid "Feature image for topic"
-msgstr "تصویر ویژگی برای موضوع"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:48
+msgid "All"
+msgstr "همه"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:30
-msgid "Required size: "
-msgstr "اندازه مورد نیاز: "
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:102
+msgid "ID"
+msgstr "شناسه  "
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:44
-msgid "This is screenshot"
-msgstr "این صفحه است"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:105
+msgid "Type"
+msgstr "نوع"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:46
-msgid "Change"
-msgstr "تغییر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:106
+msgid "File size"
+msgstr "حجم فایل"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:58
-msgid "Apply"
-msgstr "اجرا"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:110
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:130
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:73
+msgid "Submitter"
+msgstr "ارسال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:61
-msgid "Fullsize"
-msgstr "Fullsize"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:111
+msgid "Uploaded date"
+msgstr "تاریخ آپلود"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:471
-msgid "Error occured when required url!"
-msgstr "خطا رخ داده است آدرس زمانی که مورد نیاز!"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:153
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:75
+msgid "No description"
+msgstr "بدون توضیح"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-nav.phtml:4
-msgid "All Topics"
-msgstr "همه پست ها"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:272
+msgid "Are you sure delete selected media?"
+msgstr "آیا مطمئن رسانه انتخاب شده حذف شود؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-nav.phtml:9
-msgid "Add Topic"
-msgstr "اضافه کردن موضوع"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:326
+msgid "Are you sure delete this article"
+msgstr "آیا مطمئن حذف این مقاله"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:14
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:13
-msgid "Move all articles from source category to target category"
-msgstr "انتقال همه مقالات از دسته های منابع به هدف قرار دادن طبقه بندی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:20
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:20
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:19
-msgid "Source Category"
-msgstr "منبع رده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:33
-msgid "move into"
-msgstr "حرکت به"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-move.phtml:37
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:37
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:36
-msgid "Target Category"
-msgstr "هدف رده"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/operation-error.phtml:8
+msgid "You have an error operation: "
+msgstr "شما باید یک عملیات خطا: "
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/setup-form.phtml:27
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:169
@@ -1631,58 +1790,6 @@ msgstr "فرم عناصر"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/setup-form.phtml:44
 msgid "Save"
 msgstr "ذخیره"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:7
-msgid "Choose Image"
-msgstr "انتخاب تصویر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:14
-msgid "Upload Image"
-msgstr "بارگذاری تصویر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:18
-msgid "Choose From Media"
-msgstr "را انتخاب کنید از رسانه ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:39
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:79
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:69
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:57
-msgid "Search"
-msgstr "جستجو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:59
-msgid "Prev"
-msgstr "قبل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:64
-msgid "Next"
-msgstr "بعدی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:77
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:72
-msgid "Cancel"
-msgstr "لغو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:78
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:73
-msgid "Yes"
-msgstr "بله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:92
-msgid "Insert"
-msgstr "درج"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:102
-msgid "Image choosed: "
-msgstr "تصویر انتخاب: "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-image-box.phtml:121
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:54
-#, php-format
-msgid "Format supported: %s"
-msgstr "قالب های پشتیبانی شده: %s"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:8
 msgid "Article amounts"
@@ -1737,14 +1844,6 @@ msgstr "مشاهده"
 msgid "Top editors"
 msgstr "سردبیران بالا"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:130
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:110
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:81
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:73
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:26
-msgid "Submitter"
-msgstr "ارسال"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:131
 msgid "Total"
 msgstr "مجموع"
@@ -1753,19 +1852,68 @@ msgstr "مجموع"
 msgid "Top Tags"
 msgstr "برچسب ها بالا"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/stats-index.phtml:185
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:9
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:19
-msgid "Name"
-msgstr "نام"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:29
+msgid "Feature image for topic"
+msgstr "تصویر ویژگی برای موضوع"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:14
-msgid "Move a category after the target category"
-msgstr "حرکت یک دسته بندی پس از طبقه بندی هدف"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:30
+msgid "Required size: "
+msgstr "اندازه مورد نیاز: "
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-sort.phtml:33
-msgid "move after"
-msgstr "حرکت بعد از"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:44
+msgid "This is screenshot"
+msgstr "این صفحه است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:46
+msgid "Change"
+msgstr "تغییر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:58
+msgid "Apply"
+msgstr "اجرا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:61
+msgid "Fullsize"
+msgstr "Fullsize"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-edit.phtml:471
+msgid "Error occured when required url!"
+msgstr "خطا رخ داده است آدرس زمانی که مورد نیاز!"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:18
+msgid "Topic: "
+msgstr "موضوع "
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:19
+msgid " articles"
+msgstr " مقالات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:21
+msgid "Pull articles"
+msgstr "نگه دار، مقالات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:30
+msgid "Pulled date"
+msgstr "تاریخ کشیده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:31
+msgid "Pulled by"
+msgstr "کشیده شده توسط"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:32
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:82
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:75
+msgid "Publish date"
+msgstr "تاریخ انتشار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:38
+msgid "Deactive"
+msgstr "Deactive"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:65
+msgid "Remove Pull"
+msgstr "حذف نگه دار،"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:13
 msgid "Article Number"
@@ -1774,11 +1922,6 @@ msgstr "شماره مقاله"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:14
 msgid "Template"
 msgstr "قالب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:38
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:50
-msgid "Deactive"
-msgstr "Deactive"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:42
 msgid "Manage"
@@ -1801,112 +1944,17 @@ msgstr "غیرفعال کردن"
 msgid "Active"
 msgstr "فعال"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-topic.phtml:75
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:153
-msgid "No description"
-msgstr "بدون توضیح"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-nav.phtml:4
+msgid "All Topics"
+msgstr "همه پست ها"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:18
-msgid "Photo"
-msgstr "عکس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-list.phtml:20
-msgid "Biography"
-msgstr "زندگی‌نامه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:17
-msgid "Images"
-msgstr "تصاویر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:22
-msgid "Docs"
-msgstr "اسناد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:27
-msgid "Videos"
-msgstr "ویدئو ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:32
-msgid "Zips"
-msgstr "ظبرس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:41
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:14
-msgid "Bulk operation"
-msgstr "عملیات فله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:109
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:139
-msgid "Download"
-msgstr "دانلود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:48
-msgid "All"
-msgstr "همه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:102
-msgid "ID"
-msgstr "شناسه  "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:105
-msgid "Type"
-msgstr "نوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:106
-msgid "File size"
-msgstr "حجم فایل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:111
-msgid "Uploaded date"
-msgstr "تاریخ آپلود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:272
-msgid "Are you sure delete selected media?"
-msgstr "آیا مطمئن رسانه انتخاب شده حذف شود؟"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-list.phtml:326
-msgid "Are you sure delete this article"
-msgstr "آیا مطمئن حذف این مقاله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:12
-msgid "Media must be uploaded!"
-msgstr "رسانه ها باید آپلود شود!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:48
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/media-edit.phtml:153
-msgid "No item!"
-msgstr "موردی!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-merge.phtml:32
-msgid "merge into"
-msgstr "ادغام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:61
-msgid "Add"
-msgstr "افزودن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:65
-msgid "Merge"
-msgstr "ادغام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:66
-msgid "Move"
-msgstr "حرکت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/category-list.phtml:67
-msgid "Sort"
-msgstr "ترتیب"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-nav.phtml:9
+msgid "Add Topic"
+msgstr "اضافه کردن موضوع"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:23
 msgid "Pull articles for "
 msgstr "نگه دار، مقاله "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:82
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:32
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:75
-msgid "Publish date"
-msgstr "تاریخ انتشار"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-pull.phtml:103
 msgid "Pulled"
@@ -1916,61 +1964,14 @@ msgstr "کشیده"
 msgid "No topics"
 msgstr "بدون موضوعات"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/operation-error.phtml:8
-msgid "You have an error operation: "
-msgstr "شما باید یک عملیات خطا: "
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:42
+msgid "Approve"
+msgstr "تصویب"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:46
-msgid "Modify Photo"
-msgstr "اصلاح عکس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:61
-msgid "Please make sure your photo is clearly."
-msgstr "لطفا مطمئن شوید که عکس خود را به وضوح."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:66
-msgid "Size: "
-msgstr "اندازه: "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:132
-msgid "In process ..."
-msgstr "در روند ..."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/author-edit.phtml:147
-msgid "Error occured, please try again!"
-msgstr "خطا رخ داده است، لطفا دوباره سعی کنید!"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:18
-msgid "Topic: "
-msgstr "موضوع "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:19
-msgid " articles"
-msgstr " مقالات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:21
-msgid "Pull articles"
-msgstr "نگه دار، مقالات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:30
-msgid "Pulled date"
-msgstr "تاریخ کشیده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:31
-msgid "Pulled by"
-msgstr "کشیده شده توسط"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/admin/topic-list-article.phtml:65
-msgid "Remove Pull"
-msgstr "حذف نگه دار،"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-list.phtml:151
-msgid "Are you sure want to delete selected articles?"
-msgstr "آیا مطمئن میخواهید مقالات انتخاب شده را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-list.phtml:175
-msgid "Are you sure want to delete this article?"
-msgstr "آیا مطمئن این مقاله را حذف کنید؟"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:27
+msgid "Last update"
+msgstr "آخرین به روز رسانی"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:15
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-published.phtml:102
@@ -1994,14 +1995,13 @@ msgstr "آیا مطمئن مقاله انتخاب شده حذف شود؟"
 msgid "Are you sure delete this article?"
 msgstr "آیا مطمئن این مقاله را حذف کنید؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:42
-msgid "Approve"
-msgstr "تصویب"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-list.phtml:151
+msgid "Are you sure want to delete selected articles?"
+msgstr "آیا مطمئن میخواهید مقالات انتخاب شده را حذف کنید؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/article-pending.phtml:27
-msgid "Last update"
-msgstr "آخرین به روز رسانی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/article/template/front/draft-list.phtml:175
+msgid "Are you sure want to delete this article?"
+msgstr "آیا مطمئن این مقاله را حذف کنید؟"
 
 #, fuzzy
 #~ msgid "Submit time"

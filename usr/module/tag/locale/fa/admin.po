@@ -1,31 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2014-12-02 11:29+0330\n"
-"PO-Revision-Date: 2014-12-02 11:29+0330\n"
+"POT-Creation-Date: 2015-02-20 11:54+0330\n"
+"PO-Revision-Date: 2015-02-20 11:54+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "tag\n"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:14
-msgid "Top tags"
-msgstr "برچسب های برتر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:20
-msgid "New tags"
-msgstr "برچسب های جدید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:26
-msgid "Tagged items"
-msgstr "آیتم های برچسب گذاری شده"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/block.php:13
 msgid "Top tag list"
@@ -84,14 +72,6 @@ msgstr "تنظیم کمترین اندازه فونت"
 msgid "The latest tag"
 msgstr "آخرین برچسب ها"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/module.php:18
-msgid "Tags"
-msgstr "برچسب ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/module.php:20
-msgid "Tag"
-msgstr "برچسب"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:13
 msgid "Tag delimiter"
 msgstr "جدا کننده برچسب"
@@ -143,6 +123,26 @@ msgstr "لینک در هر صفحه"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/config.php:72
 msgid "Number of items on one relationships page."
 msgstr "تعداد آیتم ها پر هر صفحه ارتباطی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/module.php:18
+msgid "Tags"
+msgstr "برچسب ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/module.php:20
+msgid "Tag"
+msgstr "برچسب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:14
+msgid "Top tags"
+msgstr "برچسب های برتر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:20
+msgid "New tags"
+msgstr "برچسب های جدید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/config/navigation.php:26
+msgid "Tagged items"
+msgstr "آیتم های برچسب گذاری شده"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-new.phtml:7
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/list-top.phtml:7
