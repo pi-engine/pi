@@ -201,33 +201,27 @@ class ThemeAssemble extends AbstractHelper
         $headTitle = $this->view->headTitle();
         $separator = $headTitle->getSeparator();
 
-        // Head title for system module
-        if ('system' == $module || !Pi::service('module')->isActive($module)) {
-            if (!$headTitle->count()) {
-                $headTitle->set(Pi::config('sitename'));
-                $headTitle->setPostfix($separator . Pi::config('slogan'));
+        // Set postfix
+        $postfix = $headTitle->getPostfix();
+        if (!$postfix) {
+            $postfix = Pi::config('sitename');
+            if ($headTitle->count()) {
+                if ($module && 'system' != $module) {
+                    $moduleMeta = Pi::registry('module')->read($module);
+                    $postfix = $moduleMeta['title'] . $separator . $postfix;
+                }
             }
+            $postfix = $separator . $postfix;
+            $headTitle->setPostfix($postfix);
         }
         // Set head title
         if (!$headTitle->count()) {
             $headTitleStr = Pi::config('head_title', $module);
             if ($headTitleStr) {
                 $headTitle->set($headTitleStr);
+            } else {
+                $headTitle->set(Pi::config('slogan'));
             }
-        }
-
-        // Set postfix
-        $postfix = $headTitle->getPostfix();
-        if (!$postfix) {
-            $postfix = Pi::config('sitename');
-            if ($module) {
-                $moduleMeta = Pi::registry('module')->read($module);
-                $postfix = $moduleMeta['title'] . $separator . $postfix;
-            }
-            if ($headTitle->count()) {
-                $postfix = $separator . $postfix;
-            }
-            $headTitle->setPostfix($postfix);
         }
     }
 
