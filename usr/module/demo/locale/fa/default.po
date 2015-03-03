@@ -1,0 +1,312 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-demo\n"
+"POT-Creation-Date: 2015-02-20 12:14+0330\n"
+"PO-Revision-Date: 2015-02-20 12:14+0330\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
+"demo\n"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Api/Breadcrumbs.php:29
+msgid "Demo breadcrumbs"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Api/Search.php:47
+#, php-format
+msgid "Test term %d"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Api/Search.php:48
+#, php-format
+msgid "Some content for term %d"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/ApiController.php:25
+msgid "Test for Demo API"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/FileController.php:66
+msgid "Error action."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/FileController.php:113
+#, php-format
+msgid "File uploaded: %s"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/FileController.php:119
+msgid "File not uploaded."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/FileController.php:153
+#, php-format
+msgid "File \"%s\" deleted."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/FileController.php:157
+#, php-format
+msgid "File \"%s\" not deleted: %s."
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/IndexController.php:27
+msgid "Demo page"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/IndexController.php:129
+#, php-format
+msgid "<br />No template rendering.<br />Test is now at %s"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/IndexController.php:135
+msgid "Triggered data from Demo module"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/IndexController.php:146
+msgid "Test for user_call event"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:53
+msgid "Default with ID"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:62
+#, fuzzy
+msgid "Slug"
+msgstr "اسلاگ"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:69
+msgid "Slug & ID"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:78
+#, fuzzy
+msgid "Category"
+msgstr "شاخه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:88
+#, fuzzy
+msgid "Time"
+msgstr "زمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:98
+msgid "Time and category"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Controller/Front/RouteController.php:123
+msgid "List"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:39
+msgid "Input"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:39
+msgid "Textarea"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:53
+#, fuzzy
+msgid "Select"
+msgstr "انتخاب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:111
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/FileForm.php:23
+#, fuzzy
+msgid "File"
+msgstr "فایل تمپلیت انتخابی موجود نیست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:73
+#, fuzzy
+msgid "Disabled"
+msgstr "غیر تایید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:84
+msgid "Custom class"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:96
+msgid "Custom width"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:107
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:123
+msgid "Radios"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:141
+msgid "Checkbox"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:149
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:168
+msgid "Checkboxs"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/BootstrapForm.php:206
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/RouteForm.php:86
+#, fuzzy
+msgid "Submit"
+msgstr "ارسال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:22
+#, fuzzy
+msgid "Date"
+msgstr "فرمت پیش‌فرض برای نمایش تاریخ زمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:47
+#, fuzzy
+msgid "Text"
+msgstr "Text"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:55
+#, fuzzy
+msgid "Description"
+msgstr "توضیح"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:73
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:87
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:101
+msgid "Type your content"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:69
+#, fuzzy
+msgid "HTML"
+msgstr "HTML"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:83
+msgid "HTML2"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:97
+#, fuzzy
+msgid "Markdown"
+msgstr "Markdown"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:119
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/FileForm.php:31
+msgid "File naming"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:121
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/FileForm.php:33
+msgid "Keep name and overwrite when duplicated"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:122
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/FileForm.php:34
+msgid "Rename to random"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/DemoForm.php:134
+msgid "Ready to go!"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/Element/Choose.php:24
+msgid "First Param"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/Element/Choose.php:25
+msgid "Second Param"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/Element/Choose.php:26
+msgid "Third Param"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/FileForm.php:58
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/file-list.phtml:27
+#, fuzzy
+msgid "Upload"
+msgstr "بارگذاری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/RouteForm.php:31
+msgid "Route name"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/RouteForm.php:41
+#, fuzzy
+msgid "Class"
+msgstr "کلاس ul برای منو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Form/RouteForm.php:51
+msgid "Priority"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Installer/Action/Install.php:41
+#, fuzzy, php-format
+msgid "The module is installed on %s"
+msgstr "ماژول  \"%s\" نصب نشده است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/src/Installer/Action/Update.php:32
+#, fuzzy, php-format
+msgid "The module is updated on %s"
+msgstr "ماژول  \"%s\"به روز نشده است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/article-index.phtml:1
+#, php-format
+msgid "Article of ID %d"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/demo-index.phtml:1
+msgid "DEMO page"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/demo-route.phtml:10
+msgid "Route list"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/demo-route.phtml:13
+msgid "Routes"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/demo-route.phtml:21
+#, fuzzy
+msgid "URL"
+msgstr "آدرس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/demo-route.phtml:25
+msgid "Params"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/file-list.phtml:1
+msgid "Demo File List"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/file-list.phtml:7
+msgid "Download"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/file-list.phtml:8
+#, fuzzy
+msgid "Delete"
+msgstr "حذف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/file-list.phtml:14
+msgid "Upload a new file"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/form-index.phtml:1
+msgid "Demo for form"
+msgstr ""
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/index-page.phtml:1
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/index-simple.phtml:1
+#, fuzzy
+msgid "Paginator"
+msgstr "صفحه بندی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/demo/template/front/page-list.phtml:6
+msgid "Demo Page List"
+msgstr ""

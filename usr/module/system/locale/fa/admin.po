@@ -1,72 +1,1097 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2014-12-02 11:29+0330\n"
-"PO-Revision-Date: 2014-12-02 13:25+0330\n"
+"POT-Creation-Date: 2015-02-20 12:02+0330\n"
+"PO-Revision-Date: 2015-02-20 12:09+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "system\n"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:34
-msgid "Operation"
-msgstr "عملیات"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:18
+msgid "Site Info"
+msgstr "مشخصات سایت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:39
-msgid "Setting"
-msgstr "تنظیمات"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:19
+msgid "Website information"
+msgstr "مشخصات وب‌سایت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:44
-msgid "Deployment"
-msgstr "به کار بستن"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:116
+msgid "User"
+msgstr "کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:30
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:18
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:9
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:17
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:9
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:13
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:14
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:26
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:11
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:22
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:30
-msgid "Title"
-msgstr "عنوان"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:41
+msgid "User account"
+msgstr "حساب کاربری"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:40
-msgid "Font-awesome icon"
-msgstr "آیکن Font-awesome"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:34
+msgid "User bar"
+msgstr "نوار ابزار کاربر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:44
-msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:35
+msgid "User profile or login bar"
+msgstr "حساب کاربری یا نوار لاگین"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:40
+msgid "Display type"
+msgstr "نوع نمایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:41
+msgid "Mode to render."
+msgstr "حال رندر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:47
+msgid "Flat"
+msgstr "مسطح"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:48
+msgid "Dropdown menu"
+msgstr "منوی کشویی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:49
+msgid "JavaScript"
+msgstr "جاوا اسکریپت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:59
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:30
+msgid "Login"
+msgstr "ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:60
+msgid "User login block"
+msgstr "بلاک لاگین کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:67
+msgid "Pi feature"
+msgstr "ویژگی پای انجین"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:68
+msgid "Introduction to Pi Engine"
+msgstr "معرفی پای انجین"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ConfigController.php:95
+msgid "General"
+msgstr "عمومی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:25
+msgid "Head meta"
+msgstr "متا هدر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:29
+msgid "Extra head meta"
+msgstr "متا هدر اضافی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:33
+msgid "Geo tags"
+msgstr "نشان‌گذاری جغرافیایی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:37
+msgid "Internationalization"
+msgstr "بین‌المللی سازی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:45
+msgid "Admin login"
+msgstr "ورود مدیریت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:49
+msgid "Text processing"
+msgstr "پردازش متن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:300
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:9
+msgid "Mailing"
+msgstr "ارسال میل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:65
+msgid "Site name"
+msgstr "نام سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:66
+msgid "Website name."
+msgstr "نام وب‌سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:73
+msgid "Slogan"
+msgstr "شعار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:74
+msgid "Website slogan."
+msgstr "شعار وب سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:80
+msgid "Locale"
+msgstr "انتخاب زبان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:81
+msgid "Locale for application content."
+msgstr "زبان برای محتوای برنامه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:88
+msgid "Charset"
+msgstr "کاراکترسِت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:89
+msgid "Charset for page display."
+msgstr "کاراکترست برای نمایش صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:95
+msgid "Timezone"
+msgstr "منطقه زمانی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:96
+msgid "Timezone for application system."
+msgstr "منطقه زمانی برای سیستم برنامه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:102
+msgid "List count"
+msgstr "تعداد لیست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:103
+msgid "Number of items on a list."
+msgstr "تعداد گزینه‌های یک لیست"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:110
+msgid "Footer"
+msgstr "فوتر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:111
+msgid "Content to be displayed on footer of front pages, HTML tags allowed."
+msgstr "محتوی برای نمایش در بخش فوتر در سمت کاربر، تگ های HTML مجاز است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:117
+msgid "GA account"
+msgstr "حساب گوگل آنالیتیک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:118
+msgid ""
+"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append to "
+"the code `UA-XXXXXXXX-X; XXXX.tld`."
 msgstr ""
-"این آدرس را بررسی کنید  http://fortawesome.github.io/Font-Awesome/icons/"
+"شناسه ردیابی گوگل آنالیتیک `UA-XXXXXXXX-X` . برای جدا کردن میزبان ها ، کد را به "
+"شکل `UA-XXXXXXXX-X; XXXX.tld` درج نمایید."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:51
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:78
-msgid "Order"
-msgstr "ترتیب"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:123
+msgid "Foot scripts"
+msgstr "اسکریپت‌های فوتر"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Module/DashboardController.php:96
-msgid "No permitted operation available."
-msgstr "هیچ عملیات مجازی وجود ندارد."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:124
+msgid ""
+"Scripts that will be appended to each page footer. Either naked or wrapped js "
+"scripts are allowed."
+msgstr ""
+"اسکریپت‌هایی که به فوتر هر صفحه متصل می‌شوند، به صورت خالص یا اسکریپت‌های جاوای "
+"پوشیده که مجاز هستند."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Module/DashboardController.php:374
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ComponentController.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:130
+msgid "Theme"
+msgstr "قالب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:137
+msgid "Admin theme"
+msgstr "قالب مدیریت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:165
+msgid "Username format"
+msgstr "قالب شناسه‌ی کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:166
+msgid "Format of username for registration."
+msgstr "قالب شناسه برای ثبت‌نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:171
+msgid "Strict: alphabet or number only"
+msgstr "اسکریپت: حروف الفبا یا اعدا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:172
+msgid "Strict/space: alphabet, number or space only"
+msgstr "اسکریپت/اسپیس: حروف الفبا یا اعدا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:173
+msgid "Medium: ASCII characters"
+msgstr "متوسط: کاراکترهای ASCII"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:174
+msgid "Medium/space: ASCII characters and spaces"
+msgstr "متوسط/اسپیس: کاراکترهای ASCII"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:175
+msgid "Loose: multi-byte characters"
+msgstr "راحت: کاراکترهای مالتی بایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:176
+msgid "Loose/space: multi-byte characters and spaces"
+msgstr "راحت/اسپیس: کاراکترهای مالتی بایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:186
+msgid "Minimum username"
+msgstr "شناسه‌ی مینیمم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:187
+msgid "Minimum length of username for user registration"
+msgstr "حداقل طول شناسه‌ی کاربری برای ثبت‌نام کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:194
+msgid "Maximum username"
+msgstr "حداکثر شناسه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:195
+msgid "Maximum length of username for user registration"
+msgstr "حدااکثر طول شناسه‌ی کاربر برای ثبت‌نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:202
+msgid "Minimum password"
+msgstr "کلمه عبور حداقل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:203
+msgid "Minimum length of password for user registration"
+msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:210
+msgid "Maximum password"
+msgstr "حداکثر کلمه عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:211
+msgid "Maximum length of password for user registration"
+msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:218
+msgid "Username blacklist"
+msgstr "لیست سیاه نام کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:219
+msgid ""
+"Reserved and forbidden username list. Separate each with a <strong>|</strong>, "
+"regexp syntax is allowed."
+msgstr ""
+"فهرست شناسه‌های کاربری رزرو و یا ممنوع.  هر کدام را با یک  <strong>|</strong> از "
+"هم جدا کنید.  سیتکس رجکس قابل استفاده است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:226
+msgid "Email blacklist"
+msgstr "لیست سیاه ایمیل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:227
+msgid ""
+"Forbidden username list. Separate each with a <strong>|</strong>, regexp syntax "
+"is allowed."
+msgstr ""
+"فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس "
+"ریجکس را می‌توان استفاده کرد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:234
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:316
+msgid "Remember me"
+msgstr "من را به خاطر بسپار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:235
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:317
+msgid "Days to remember login, 0 for disable."
+msgstr "روزهایی که برای لاگین باقی مانده، 0 روز تا غیر فعال شدن."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:242
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:324
+msgid "Login field"
+msgstr "فیلد ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:243
+msgid "Identity field(s) for authentication."
+msgstr "فیلدها لازم برای شناسایی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:251
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:333
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:23
+msgid "Username"
+msgstr "شناسه کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:252
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:334
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:25
+msgid "Email"
+msgstr "ایمیل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:262
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:308
+msgid "Maximum attempts"
+msgstr "ماکزیمم تلاش‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:263
+msgid "Maximum attempts allowed to try for user login"
+msgstr "ماکزیمم تعداد تلاش‌های مجاز برای ورود کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:270
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:344
+msgid "Login disable"
+msgstr "ورود غیرفعال شده است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:271
+msgid "Disable user login"
+msgstr "ورود کاربر عیرفعال شده است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:279
+msgid "Register disable"
+msgstr "غیرفعال‌سازی ثبت‌نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:280
+msgid "Disable user registration"
+msgstr "ثبت‌نام کاربران غیرفعال شده است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:288
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:353
+msgid "Login CAPTCHA"
+msgstr "کپچا برای ورود"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:289
+msgid "Enable CAPTCHA for user login"
+msgstr "فعال کردن کپچا برای ورود کاربران"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:297
+msgid "Register CAPTCHA"
+msgstr "کپچا برای ثبت نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:298
+msgid "Enable CAPTCHA for user registration"
+msgstr "فعال کردن کپچا برای ثبت‌نام کاربران"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:309
+msgid "Maximum attempts allowed to try for admin login"
+msgstr "ماکزیمم تعداد تلاش‌هایی که برای ورود مدیر مجاز است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:325
+msgid "Identity field(s) for admin authentication."
+msgstr "فیلدهایی که برای شناسایی مدیر نیاز است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:345
+msgid "Disable admin login"
+msgstr "غیرفعال کردن ورود مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:354
+msgid "Enable CAPTCHA for admin login"
+msgstr "فعال کردن کپچا برای ورود مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:383
+msgid "Head title for web page"
+msgstr "عنوان هدر برای صفحات وب سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:391
+msgid ""
+"The keywords meta tag is a series of keywords that represents the content of "
+"your site. Separated keywords by a comma."
+msgstr ""
+"متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت هستند. "
+"این کلمات کلیدی را با ویرگول از هم جدا کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:399
+msgid ""
+"The description meta tag is a general description of what is contained in your "
+"web page"
+msgstr "متا تگ توضیح، توضیحی عمومی از محتوای صفحه‌ی وب است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:408
+msgid "Default number style"
+msgstr "فرمت پیش‌فرض اعداد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:409
+msgid ""
+"See http://www.php.net/manual/en/class.numberformatter.php#intl.numberformatter-"
+"constants.unumberformatstyle"
+msgstr ""
+"این آدرس را ببینید: http://www.php.net/manual/en/class.numberformatter.php#intl."
+"numberformatter-constants.unumberformatstyle"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:414
+msgid "Default format for the locale"
+msgstr "فرمت پیش‌فرض برای زبان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:415
+msgid "Decimal format defined by pattern"
+msgstr "فرمت ده‌دهی تعریف شده توسط الگو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:416
+msgid "Decimal format"
+msgstr "فرمت ده‌دهی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:417
+msgid "Percent format"
+msgstr "فرمت درصد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:418
+msgid "Scientific format"
+msgstr "فرمت علمی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:419
+msgid "Spellout rule-based format"
+msgstr "Spellout rule-based format"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:420
+msgid "Ordinal rule-based format"
+msgstr "Ordinal rule-based format"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:421
+msgid "Duration rule-based format"
+msgstr "Duration rule-based format"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:422
+msgid "Rule-based format defined by pattern"
+msgstr "Rule-based format defined by pattern"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:431
+msgid "Default pattern for selected number style"
+msgstr "،فرمت پیش‌فرض برای شیوه‌ی انتخاب شده‌ی اعداد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:432
+msgid "Only if required by style"
+msgstr "فقط اگر استایل به آن نیاز دارد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:439
+msgid "Default currency type"
+msgstr "فرمت پیش‌فرض پول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:440
+msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
+msgstr "کد سه رقمی ISO 4217 که مشخص کننده‌ی پول رایج است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:447
+msgid "Default calendar for the locale"
+msgstr "تقویم پیش‌فرض برای زبان انتخابی."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:448
+msgid ""
+"\"persian\" is suggested for Persian language. See http://www.php.net/manual/en/"
+"class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
+msgstr ""
+"برای زبان فارسی \"persian\" توصیه می‌شود. این آدرس را ببینید:  http://www.php."
+"net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
+"calendartypes"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:455
+msgid "Default date type"
+msgstr "فرمت پیش‌فرض داده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:456
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:475
+msgid ""
+"See http://www.php.net/manual/en/class.intldateformatter.php#intl."
+"intldateformatter-constants"
+msgstr ""
+"این آدرس را ببینید:  http://www.php.net/manual/en/class.intldateformatter."
+"php#intl.intldateformatter-constants"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:461
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:480
+msgid "Do not include this element"
+msgstr "این جزو را لحاظ نکنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:462
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:481
+msgid "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
+msgstr "فرمت کامل  (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:463
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:482
+msgid "Long style (January 12, 1952 or 3:30:32pm)"
+msgstr "فرمت طولانی(January 12, 1952 or 3:30:32pm)"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:464
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:483
+msgid "Medium style (Jan 12, 1952)"
+msgstr "فرمت متوسط (Jan 12, 1952)"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:465
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:484
+msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
+msgstr "فرمت خلاصه شده که فقط شامل داده‌های ضروری است(12/13/52 or 3:30pm)"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:474
+msgid "Default time type"
+msgstr "فرمت پیش‌فرض نوع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:493
+msgid "Default formatting pattern for date-time"
+msgstr "فرمت پیش‌فرض برای نمایش تاریخ زمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:494
+msgid "See http://userguide.icu-project.org/formatparse/datetime"
+msgstr "این آدرس را ببینید: http://userguide.icu-project.org/formatparse/datetime"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:501
+msgid "Default format for legacy date function"
+msgstr "فرمت پیش‌فرض برای نمایش تابع زمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:502
+msgid ""
+"The format is required in case Intl extension is not available. See http://www."
+"php.net/manual/en/function.date.php"
+msgstr ""
+"در صورتی که Intl در دسترس نباشد، قالب مورد نیاز است.  این آدرس را ببینید:  See "
+"http://www.php.net/manual/en/function.date.php"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:511
+msgid "Admin email"
+msgstr "ایمیل مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:512
+msgid "Admin email address for contact."
+msgstr "ایمیل مدیر برای برقراری ارتباط"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:518
+msgid "Admin name"
+msgstr "نام مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:519
+msgid "User name used to send emails"
+msgstr "شناسه‌‌ای که برای ارسال ایمیل استفاده می‌شود."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:524
+msgid "Email encoding"
+msgstr "کدگذاری ایمیل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:525
+msgid "Encoding for email contents"
+msgstr "کذگذاری برای محتوای ایمیل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:533
+msgid "Text editor"
+msgstr "پردازنده‌ی متن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:534
+msgid "Default editor for text processing"
+msgstr "پردازنده‌ی پیش‌فرض برای پردازش متن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:540
+msgid "Enable word censoring"
+msgstr "فعال‌سازی سانسور کلمات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:541
+msgid ""
+"Words will be censored if this option is enabled. This option may be turned off "
+"for enhanced site speed."
+msgstr ""
+"در صورتی که این گزینه فعال شود، کلمات سانسور می‌شوند. این گزینه را می‌توان برای "
+"بهبود سرعت سایت غیرفعال کرد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:549
+msgid "Words to censor"
+msgstr "کلماتی که باید سانسور شوند"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:550
+msgid ""
+"Enter words that should be censored in user posts. Separate each with a \"|\", "
+"case insensitive."
+msgstr ""
+"کلماتی را که می‌خواهید در پست‌های کاربران سانسور شوند وارد کنید.  کلمات را با  \"|"
+"\" از هم جدا کنید.  بزرگ و کوچکی مهم نیست."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:557
+msgid "Word to replace censored words"
+msgstr "کلمات مورد نظر برای جایگزینی کلمات سانسور شده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:558
+msgid ""
+"Censored words will be replaced with the characters entered in this textbox"
+msgstr ""
+"کلمات سانسور شده با کارکترهایی که در این باکس وارد می‌شوند، جایگزین خواهند شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:565
+msgid "Module themes"
+msgstr "قالب‌های ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:566
+msgid "Themes for modules."
+msgstr "قالب‌های ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:574
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.php:21
+msgid "Front navigation"
+msgstr "منو سمت کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:575
+msgid "Global navigation for front end."
+msgstr "منوی سراسری برای سمت کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:582
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.php:27
+msgid "Admin navigation"
+msgstr "منو سمت مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:583
+msgid "Global navigation for admin."
+msgstr "منوی سراسری برای سمت مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:591
+msgid ""
+"The author meta tag defines the name of the author of the document being read. "
+"Supported data formats include the name, email address of the webmaster, "
+"company name or URL."
+msgstr ""
+"متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. "
+"قالب‌های قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:599
+msgid "Generator of the document being read."
+msgstr "تولید کننده‌ی مقاله‌ای که در حال خوانده شدن است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:606
+msgid "Website local"
+msgstr "کد بومی سازی وب سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:607
+msgid "Set website local, like en_GB"
+msgstr "تنظیم کد بومی سازی وب سایت ، مشابه en_GB"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:614
+msgid "Twitter account"
+msgstr "حساب کاربری در تویتر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:615
+msgid ""
+"Username for the website used in the Twitter card. Add @ before username like "
+"@PiEnable or leave it empty"
+msgstr ""
+"اگر وب سایت شما در تویتر حساب کاربری دارد ، برای استفاده از خدمات تویتر کارت ، "
+"نام کاربری حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به "
+"طور مثال @PiEnable یا این گزینه را خالی بگذارید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:621
+msgid "Facebook app id"
+msgstr "شناسه آپ فیسبوک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:622
+msgid ""
+"Set facebook app id here for use open graph tags on facebook page, its your "
+"website facebook page id"
+msgstr ""
+"اگر وب سایت شما در فیسبوک صفحه ای دارد ، شناسه آپ فیسبوک را برای استفاده از تگ "
+"های  اوپن گراف اینجا وارد کنید. این شناسه در اصل آی دی صفحه فیسبوک شما است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:628
+msgid "Pinterest domain verify"
+msgstr "کد تایید دامنه در سایت pinterest"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:629
+msgid ""
+"Set pinterest domain verify code here, if your website have page on pinterest"
+msgstr ""
+"اگر وب سایت شما در pinterest صفحه ای دارد ، کد تایید دامنه وب سایت در pinterest "
+"را اینجا وارد کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:635
+msgid "Latitude"
+msgstr "عرض جغرافیایی ( Latitude )"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:642
+msgid "Longitude"
+msgstr "طول جغرافیایی ( Longitude )"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:649
+msgid "Placename"
+msgstr "نام مکان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:656
+msgid "Region"
+msgstr "منطقه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:21
+msgid "Module installed"
+msgstr "ماژول نصب شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:24
+msgid "Module uninstalled"
+msgstr "ماژول از نصب خارج شد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:27
+msgid "Module activated"
+msgstr "ماژول فعال شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:30
+msgid "Module deactivated"
+msgstr "ماژول غیرفعال شد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:33
+msgid "Module updated"
+msgstr "به روز رسانی ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/module.php:19
+msgid "System"
+msgstr "سیستم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/module.php:22
+msgid "For administration of core functions of the site."
+msgstr "برای مدیریت عملکردهای هسته‌ی این سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:91
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:23
+msgid "Modules"
+msgstr "ماژول‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:104
+msgid "Installed"
+msgstr "نصب شده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:112
+msgid "Availables"
+msgstr "در دسترس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:67
+msgid "Category"
+msgstr "شاخه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:120
+msgid "Repository"
+msgstr "مخزن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:85
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:97
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:36
+msgid "Themes"
+msgstr "قالب‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:96
+msgid "In action"
+msgstr "فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:132
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:103
+msgid "Navigation"
+msgstr "ناوبری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:79
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:127
+msgid "Navigation list"
+msgstr "فهرست منو ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:152
+msgid "Data manipulation"
+msgstr "دستکاری داده‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:163
+msgid "Add"
+msgstr "اضافه کردن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:172
+msgid "Navigation setup"
+msgstr "نصب منو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:183
+msgid "Role"
+msgstr "نقش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:194
+msgid "Role list"
+msgstr "فهرست نقش‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:202
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:18
+msgid "Add role"
+msgstr "اضافه کردن نقش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:260
+msgid "Cache flush"
+msgstr "تخلیه‌ی کَش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:270
+msgid "Asset publish"
+msgstr "انتشار Asset"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:281
+msgid "Toolkit"
+msgstr "نوار ابزار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:292
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:8
+msgid "Audit"
+msgstr "Audit"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:17
+msgid "Configurations"
+msgstr "پیکربندی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:65
+msgid "Blocks"
+msgstr "بلاک‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:71
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:22
+msgid "Pages"
+msgstr "صفحه‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:135
+msgid "Cache"
+msgstr "کَش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:74
+msgid "Permission"
+msgstr "دسترسی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:72
+msgid "Event/Hook"
+msgstr "رویداد / قلاب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:19
+msgid "Home"
+msgstr "خانه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:24
+msgid "Profile"
+msgstr "پروفایل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:37
+msgid "Register"
+msgstr "ثبت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:37
+msgid "Password"
+msgstr "کلمه ی عبور"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:52
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:16
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:36
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:17
+msgid "Admin"
+msgstr "مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:58
+msgid "RSS Feed"
+msgstr "خوراک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.php:33
+msgid "Managed components"
+msgstr "اجزا مدیریت شده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:20
+msgid "Homepage"
+msgstr "صفحه‌ی اصلی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:28
+msgid "Utility"
+msgstr "امکانات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:35
+msgid "Error reporting"
+msgstr "گزارش خطا"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ComponentController.php:81
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Module/DashboardController.php:374
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
 msgstr "داشبرد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:51
+msgid "Readme"
+msgstr "من را بخوان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:59
+msgid "Config"
+msgstr "پیکربندی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:77
+msgid "Event/listener"
+msgstr "رویداد / شنونده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:83
+msgid "Permissions"
+msgstr "دسترسی ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:110
+msgid "Roles"
+msgstr "نقش‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:123
+msgid "Asset"
+msgstr "Asset"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:129
+msgid "Auditing"
+msgstr "حسابرسی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:145
+msgid "What's new"
+msgstr "تازه‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:20
+msgid "Global public resource"
+msgstr "دسترسی عمومی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:28
+msgid "Guest only"
+msgstr "فقط میهمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:35
+msgid "Member only"
+msgstr "ققط اعضا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:45
+msgid "Generic permission"
+msgstr "دسترسی عمومی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:57
+msgid "Operation: modules"
+msgstr "عملیات: ماژول‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:64
+msgid "Operation: themes"
+msgstr "عملیات: قالب‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:72
+msgid "Operation: navigation"
+msgstr "عملیات: رهیابی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:80
+msgid "Operation: roles"
+msgstr "عملیات: نقش‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:96
+msgid "Operation: maintenance"
+msgstr "عملیات: نگه‌داری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:106
+msgid "Management: configs"
+msgstr "مدیریت: پیکربندی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:114
+msgid "Management: blocks"
+msgstr "مدیریت: بلاک ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:122
+msgid "Management: pages"
+msgstr "مدیریت: صفحه‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:130
+msgid "Management: caches"
+msgstr "مدیریت :کَش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:137
+msgid "Management: permissions"
+msgstr "مدیریت: ‌دسترسی ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:144
+msgid "Management: events/hooks"
+msgstr "مدیریت: رویداد ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:19
+msgid "Administrator"
+msgstr "مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:21
+msgid "Staff"
+msgstr "کاربران"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:35
+msgid "Webmaster"
+msgstr "مدیر سایت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:37
+msgid "Member"
+msgstr "عضو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:39
+msgid "Guest"
+msgstr "میهمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:50
+msgid "Asset component list"
+msgstr "فهرست مولفه های Asset"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:100
+msgid ""
+"Some old files were not able to remove and asset publish was not completed."
+msgstr "برخی فایل‌های قدیمی قابل حذف نبودند و انتشار محتوا کامل نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:105
+msgid "Asset publish was not completed, please check and copy manually."
+msgstr "انتشار محتوا کامل نشده، لطفا بررسی و به صورت دستی کپی کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:110
+msgid ""
+"Asset publish was not completed because some old files were not able to remove."
+msgstr "انتشار محتوا کامل نشد زیار برخی فایل‌های قدیمی را نمی‌شد حذف کرد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:115
+msgid "Asset files are not published correctly, please copy asset files manually."
+msgstr "فایل‌های محتوا به درستی منتشر نشده‌اند، فایل ها را به صورت دستی کپی کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:120
+msgid "Asset files are published correctly."
+msgstr "فایل‌های محتوا به درستی منتشر شده‌اند."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:187
+msgid "Publish is not completed, please check and re-publish one by one."
+msgstr "انتشار به طور کامل انجام نشده، لطفا بررسی و مجددا منتشر کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:192
+msgid "All assets published successfully."
+msgstr "تمام محتوا با موفقیت به روز شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:136
+msgid "Block list"
+msgstr "فهرست بلاک ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:152
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:204
+msgid "Base block is not found."
+msgstr "بلاک پیدا نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:188
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:286
+msgid "Block data saved successfully."
+msgstr "محتوای بلاک با موفقیت ذخیره شد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:195
+msgid "Block data not saved."
+msgstr "داده‌ی بلاک ذخیره نشد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:198
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:293
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:169
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:280
+msgid "Invalid data, please check and re-submit."
+msgstr "داده‌ی نامعتبر، لطفا بررسی کنید و دوباره ارسال کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:229
+#, php-format
+msgid "%s clone"
+msgstr "کپی %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:255
+#, php-format
+msgid "Block clone from: %s"
+msgstr "کلون بلاک از %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:299
+msgid "Block is not found."
+msgstr "بلاک پیدا نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:314
+#, php-format
+msgid "Block edit: %s"
+msgstr "ویرایش بلاک %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:334
+msgid "Block is deleted."
+msgstr "بلاک حذف شده است"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/CacheController.php:77
 msgid "Page cache updated successfully."
@@ -74,11 +1099,11 @@ msgstr "کَش صفحه با موفقیت به روز شد."
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/CacheController.php:94
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:64
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:24
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:15
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:21
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:24
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr "کاربر"
 
@@ -110,6 +1135,79 @@ msgstr "صفحه اصلی ماژول"
 msgid "Cache list"
 msgstr "فهرست کَش"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ComponentController.php:74
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ModuleController.php:76
+msgid "Never updated."
+msgstr "هرگز به روز نشده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ConfigController.php:174
+msgid "Configuration data saved successfully."
+msgstr "داده‌های پیکربندی با موفقیت ذخیره شدند."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ConfigController.php:188
+msgid "Module configurations"
+msgstr "پیکربندی ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:143
+#, php-format
+msgid "Event listeners of module %s"
+msgstr "فهرست رویداد های ماژول %s"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:168
+msgid "The item not found."
+msgstr "گزینه‌ی مورد نظر پیدا نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:183
+msgid "The item is not allowed to activate since module is inactive."
+msgstr "به دلیل غیرفعال بودن ماژول، فعال کردن این آیتم مجاز نیست."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:190
+msgid "The item updated successfully."
+msgstr "این گزینه با موفقیت به روز رسانی شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:37
+msgid "File status cache"
+msgstr "وضعیت کَش فایل"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:38
+msgid "APC file cache"
+msgstr "فایل کَش APC"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:39
+msgid "System cache files"
+msgstr "فایل‌های کَش سیستم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:40
+msgid "System persistent data"
+msgstr "داده‌های ثابت سیستم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:41
+msgid "Module cache"
+msgstr "کَش ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:42
+msgid "Comment cache"
+msgstr "کَش کامنت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:63
+#, php-format
+msgid "Application cache [%s]"
+msgstr "کَش برنامه [%s]"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:81
+#, php-format
+msgid "Page cache [%s]"
+msgstr "کَش صفحه [%s]"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:110
+msgid "Cache is flushed successfully."
+msgstr "کَش با موفقیت خالی شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:113
+#, php-format
+msgid "Cache flush failed: %s"
+msgstr "تخلیه‌ی کَش %s انجام نشد "
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/IndexController.php:31
 msgid "Security: `setup` folder is not removed!"
 msgstr "گزارش امنیتی : پوشه `setup` از روی سرور حذف نشده است!"
@@ -124,23 +1222,9 @@ msgstr "گزارش امنیتی : `%s` قابل نوشتن است!"
 msgid "Permission: `%s` is not available for write!"
 msgstr "دسترسی : `%s` قابل نوشتن نیست!"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ConfigController.php:95
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:21
-msgid "General"
-msgstr "عمومی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ConfigController.php:174
-msgid "Configuration data saved successfully."
-msgstr "داده‌های پیکربندی با موفقیت ذخیره شدند."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ConfigController.php:188
-msgid "Module configurations"
-msgstr "پیکربندی ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ModuleController.php:76
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ComponentController.php:74
-msgid "Never updated."
-msgstr "هرگز به روز نشده"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/LoginController.php:44
+msgid "Not privileged."
+msgstr "مجاز نیست"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ModuleController.php:82
 msgid "Installed modules"
@@ -307,34 +1391,12 @@ msgstr "فعال سازی ماژول"
 msgid "Title is required."
 msgstr "عنوان ضروری است."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:60
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:84
-#, php-format
-msgid "A new version %s is available"
-msgstr "نسخه‌ی جدید %s موجود است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:65
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:89
-msgid "No update available"
-msgstr "هیچ به روز رسانی وجود ندارد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:69
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:93
-msgid "Error occurred, check later."
-msgstr "بروز خطا، بعدا بررسی کنید."
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:63
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:90
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:42
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:37
 msgid "Custom"
 msgstr "شخصی سازی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:79
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:127
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:143
-msgid "Navigation list"
-msgstr "فهرست منو ها"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/NavController.php:159
 msgid "Navigation set up successfully."
@@ -390,6 +1452,49 @@ msgstr "منو یافت نشد"
 msgid "Only custom navigations are allowed to manipulate."
 msgstr "تنها منو های دست ساز را می‌توان تغییر داد"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:128
+msgid "Pages list"
+msgstr "فهرست صفحه‌ها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:154
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:214
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:278
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:326
+msgid "Page data saved successfully."
+msgstr "داده‌های صفحه با موفقیت ذخیره شدند"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:166
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:236
+msgid "Page data not saved."
+msgstr "داده‌های صفحه ذخیره نشدند"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:181
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:9
+msgid "Setup a page"
+msgstr "ساختن صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:294
+msgid "Pages edit"
+msgstr "ویرایش صفحه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:370
+msgid "Page is deleted."
+msgstr "صفحه حذف شده است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:375
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:550
+msgid "Page is not found."
+msgstr "صفحه پیدا نشد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:490
+#, php-format
+msgid "%s blocks"
+msgstr "%s بلاک"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:576
+msgid "Page block links are updated."
+msgstr "بلاک پیوندهای صفحه به روز شدند."
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PermController.php:80
 msgid "Module access"
 msgstr "دسترسی به ماژول"
@@ -402,154 +1507,55 @@ msgstr "دیریت ماژول"
 msgid "Permission assigned successfully."
 msgstr "دسترسی با موفقیت اعطا شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:143
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:60
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:84
 #, php-format
-msgid "Event listeners of module %s"
-msgstr "فهرست رویداد های ماژول %s"
+msgid "A new version %s is available"
+msgstr "نسخه‌ی جدید %s موجود است"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:168
-msgid "The item not found."
-msgstr "گزینه‌ی مورد نظر پیدا نشد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:65
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:89
+msgid "No update available"
+msgstr "هیچ به روز رسانی وجود ندارد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:183
-msgid "The item is not allowed to activate since module is inactive."
-msgstr "به دلیل غیرفعال بودن ماژول، فعال کردن این آیتم مجاز نیست."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:69
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RepoController.php:93
+msgid "Error occurred, check later."
+msgstr "بروز خطا، بعدا بررسی کنید."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/EventController.php:190
-msgid "The item updated successfully."
-msgstr "این گزینه با موفقیت به روز رسانی شد"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:156
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:210
+msgid "Role data saved successfully."
+msgstr "داده‌های نقش با موفقیت ذخیره شدند."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:37
-msgid "File status cache"
-msgstr "وضعیت کَش فایل"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:159
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:213
+msgid "Role data not saved."
+msgstr "داده‌های نقش ذخیره نشدند."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:38
-msgid "APC file cache"
-msgstr "فایل کَش APC"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:181
+msgid "Add a role"
+msgstr "اضافه کردن نقش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:39
-msgid "System cache files"
-msgstr "فایل‌های کَش سیستم"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:239
+msgid "Edit a role"
+msgstr "ویرایش نقش"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:40
-msgid "System persistent data"
-msgstr "داده‌های ثابت سیستم"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:259
+msgid "Only custom roles are allowed to activate/deactivate."
+msgstr "تنها نقش‌های دست ساز را می‌توان فعال یا غیرفعال کرد."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:41
-msgid "Module cache"
-msgstr "کَش ماژول"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:269
+msgid "Role updated successfully."
+msgstr "نقش با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:42
-msgid "Comment cache"
-msgstr "کَش کامنت"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:308
+msgid "Only custom roles are allowed to delete."
+msgstr "تنها نقش‌های دست ساز را می‌توان حذف کرد."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:63
-#, php-format
-msgid "Application cache [%s]"
-msgstr "کَش برنامه [%s]"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:81
-#, php-format
-msgid "Page cache [%s]"
-msgstr "کَش صفحه [%s]"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:110
-msgid "Cache is flushed successfully."
-msgstr "کَش با موفقیت خالی شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/FlushController.php:113
-#, php-format
-msgid "Cache flush failed: %s"
-msgstr "تخلیه‌ی کَش %s انجام نشد "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/LoginController.php:44
-msgid "Not privileged."
-msgstr "مجاز نیست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:50
-msgid "Asset component list"
-msgstr "فهرست مولفه های Asset"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:100
-msgid ""
-"Some old files were not able to remove and asset publish was not completed."
-msgstr "برخی فایل‌های قدیمی قابل حذف نبودند و انتشار محتوا کامل نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:105
-msgid "Asset publish was not completed, please check and copy manually."
-msgstr "انتشار محتوا کامل نشده، لطفا بررسی و به صورت دستی کپی کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:110
-msgid ""
-"Asset publish was not completed because some old files were not able to "
-"remove."
-msgstr "انتشار محتوا کامل نشد زیار برخی فایل‌های قدیمی را نمی‌شد حذف کرد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:115
-msgid ""
-"Asset files are not published correctly, please copy asset files manually."
-msgstr ""
-"فایل‌های محتوا به درستی منتشر نشده‌اند، فایل ها را به صورت دستی کپی کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:120
-msgid "Asset files are published correctly."
-msgstr "فایل‌های محتوا به درستی منتشر شده‌اند."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:187
-msgid "Publish is not completed, please check and re-publish one by one."
-msgstr "انتشار به طور کامل انجام نشده، لطفا بررسی و مجددا منتشر کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/AssetController.php:192
-msgid "All assets published successfully."
-msgstr "تمام محتوا با موفقیت به روز شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:136
-msgid "Block list"
-msgstr "فهرست بلاک ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:152
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:204
-msgid "Base block is not found."
-msgstr "بلاک پیدا نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:188
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:286
-msgid "Block data saved successfully."
-msgstr "محتوای بلاک با موفقیت ذخیره شد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:195
-msgid "Block data not saved."
-msgstr "داده‌ی بلاک ذخیره نشد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:198
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:293
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:169
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:280
-msgid "Invalid data, please check and re-submit."
-msgstr "داده‌ی نامعتبر، لطفا بررسی کنید و دوباره ارسال کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:229
-#, php-format
-msgid "%s clone"
-msgstr "کپی %s"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:255
-#, php-format
-msgid "Block clone from: %s"
-msgstr "کلون بلاک از %s"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:299
-msgid "Block is not found."
-msgstr "بلاک پیدا نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:314
-#, php-format
-msgid "Block edit: %s"
-msgstr "ویرایش بلاک %s"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/BlockController.php:334
-msgid "Block is deleted."
-msgstr "بلاک حذف شده است"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:314
+msgid "Role deleted successfully."
+msgstr "نقش با موفقیت حذف شد"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/ThemeController.php:49
 msgid "admin"
@@ -610,90 +1616,38 @@ msgstr "قالب  \"%s\" آن اینستال نشده است"
 msgid "The theme \"%s\" is uninstalled."
 msgstr "قالب \"%s\" آن اینستال شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:128
-msgid "Pages list"
-msgstr "فهرست صفحه‌ها"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Module/DashboardController.php:96
+msgid "No permitted operation available."
+msgstr "هیچ عملیات مجازی وجود ندارد."
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:154
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:214
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:278
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:326
-msgid "Page data saved successfully."
-msgstr "داده‌های صفحه با موفقیت ذخیره شدند"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:30
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:26
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:9
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:22
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:30
+msgid "Title"
+msgstr "عنوان"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:166
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:236
-msgid "Page data not saved."
-msgstr "داده‌های صفحه ذخیره نشدند"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:40
+msgid "Font-awesome icon"
+msgstr "آیکن Font-awesome"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:181
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:9
-msgid "Setup a page"
-msgstr "ساختن صفحه"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:44
+msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
+msgstr "این آدرس را بررسی کنید  http://fortawesome.github.io/Font-Awesome/icons/"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:294
-msgid "Pages edit"
-msgstr "ویرایش صفحه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:370
-msgid "Page is deleted."
-msgstr "صفحه حذف شده است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:375
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:550
-msgid "Page is not found."
-msgstr "صفحه پیدا نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:490
-#, php-format
-msgid "%s blocks"
-msgstr "%s بلاک"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/PageController.php:576
-msgid "Page block links are updated."
-msgstr "بلاک پیوندهای صفحه به روز شدند."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:156
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:210
-msgid "Role data saved successfully."
-msgstr "داده‌های نقش با موفقیت ذخیره شدند."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:159
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:213
-msgid "Role data not saved."
-msgstr "داده‌های نقش ذخیره نشدند."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:181
-msgid "Add a role"
-msgstr "اضافه کردن نقش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:239
-msgid "Edit a role"
-msgstr "ویرایش نقش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:259
-msgid "Only custom roles are allowed to activate/deactivate."
-msgstr "تنها نقش‌های دست ساز را می‌توان فعال یا غیرفعال کرد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:269
-msgid "Role updated successfully."
-msgstr "نقش با موفقیت به روز شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:308
-msgid "Only custom roles are allowed to delete."
-msgstr "تنها نقش‌های دست ساز را می‌توان حذف کرد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Controller/Admin/RoleController.php:314
-msgid "Role deleted successfully."
-msgstr "نقش با موفقیت حذف شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Installer/Action/Update.php:47
-msgid "System updated"
-msgstr "به روز رسانی سیستم"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Installer/Action/Update.php:48
-msgid "The system is updated successfully."
-msgstr "سیستم با موفقیت به روز شد."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Form/ModuleCategoryForm.php:51
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:78
+msgid "Order"
+msgstr "ترتیب"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Installer/Action/Install.php:87
 msgid "Default taxonomy"
@@ -715,920 +1669,98 @@ msgstr "برنامه"
 msgid "Service"
 msgstr "خدمات"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:20
-msgid "Global public resource"
-msgstr "دسترسی عمومی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:28
-msgid "Guest only"
-msgstr "فقط میهمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:35
-msgid "Member only"
-msgstr "ققط اعضا"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:45
-msgid "Generic permission"
-msgstr "دسترسی عمومی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:57
-msgid "Operation: modules"
-msgstr "عملیات: ماژول‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:64
-msgid "Operation: themes"
-msgstr "عملیات: قالب‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:72
-msgid "Operation: navigation"
-msgstr "عملیات: رهیابی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:80
-msgid "Operation: roles"
-msgstr "عملیات: نقش‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:96
-msgid "Operation: maintenance"
-msgstr "عملیات: نگه‌داری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:106
-msgid "Management: configs"
-msgstr "مدیریت: پیکربندی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:114
-msgid "Management: blocks"
-msgstr "مدیریت: بلاک ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:122
-msgid "Management: pages"
-msgstr "مدیریت: صفحه‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:130
-msgid "Management: caches"
-msgstr "مدیریت :کَش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:137
-msgid "Management: permissions"
-msgstr "مدیریت: ‌دسترسی ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/permission.php:144
-msgid "Management: events/hooks"
-msgstr "مدیریت: رویداد ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:17
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:91
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:23
-msgid "Modules"
-msgstr "ماژول‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:28
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:104
-msgid "Installed"
-msgstr "نصب شده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:48
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:112
-msgid "Availables"
-msgstr "در دسترس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:67
-msgid "Category"
-msgstr "شاخه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:74
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:120
-msgid "Repository"
-msgstr "مخزن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:85
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:97
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:36
-msgid "Themes"
-msgstr "قالب‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:96
-msgid "In action"
-msgstr "فعال"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:132
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:103
-msgid "Navigation"
-msgstr "ناوبری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:152
-msgid "Data manipulation"
-msgstr "دستکاری داده‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:163
-msgid "Add"
-msgstr "اضافه کردن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:172
-msgid "Navigation setup"
-msgstr "نصب منو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:183
-msgid "Role"
-msgstr "نقش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:194
-msgid "Role list"
-msgstr "فهرست نقش‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:202
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:18
-msgid "Add role"
-msgstr "اضافه کردن نقش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:260
-msgid "Cache flush"
-msgstr "تخلیه‌ی کَش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:270
-msgid "Asset publish"
-msgstr "انتشار Asset"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:281
-msgid "Toolkit"
-msgstr "نوار ابزار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:292
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:8
-msgid "Audit"
-msgstr "Audit"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.admin.php:300
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:45
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:9
-msgid "Mailing"
-msgstr "ارسال میل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:18
-msgid "Site Info"
-msgstr "مشخصات سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:19
-msgid "Website information"
-msgstr "مشخصات وب‌سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:26
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:116
-msgid "User"
-msgstr "کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:27
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:33
-msgid "User account"
-msgstr "حساب کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:34
-msgid "User bar"
-msgstr "نوار ابزار کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:35
-msgid "User profile or login bar"
-msgstr "حساب کاربری یا نوار لاگین"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:40
-msgid "Display type"
-msgstr "نوع نمایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:41
-msgid "Mode to render."
-msgstr "حال رندر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:47
-msgid "Flat"
-msgstr "مسطح"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:48
-msgid "Dropdown menu"
-msgstr "منوی کشویی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:49
-msgid "JavaScript"
-msgstr "جاوا اسکریپت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:59
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:30
-msgid "Login"
-msgstr "ورود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:60
-msgid "User login block"
-msgstr "بلاک لاگین کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:67
-msgid "Pi feature"
-msgstr "ویژگی پای انجین"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/block.php:68
-msgid "Introduction to Pi Engine"
-msgstr "معرفی پای انجین"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/module.php:19
-msgid "System"
-msgstr "سیستم"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/module.php:22
-msgid "For administration of core functions of the site."
-msgstr "برای مدیریت عملکردهای هسته‌ی این سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:20
-msgid "Homepage"
-msgstr "صفحه‌ی اصلی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:28
-msgid "Utility"
-msgstr "امکانات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:35
-msgid "Error reporting"
-msgstr "گزارش خطا"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:51
-msgid "Readme"
-msgstr "من را بخوان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:59
-msgid "Config"
-msgstr "پیکربندی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:65
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:28
-msgid "Blocks"
-msgstr "بلاک‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:71
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:39
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:22
-msgid "Pages"
-msgstr "صفحه‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:77
-msgid "Event/listener"
-msgstr "رویداد / شنونده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:83
-msgid "Permissions"
-msgstr "دسترسی ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:110
-msgid "Roles"
-msgstr "نقش‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:123
-msgid "Asset"
-msgstr "Asset"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:129
-msgid "Auditing"
-msgstr "حسابرسی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:135
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:50
-msgid "Cache"
-msgstr "کَش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/page.php:145
-msgid "What's new"
-msgstr "تازه‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.php:21
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:556
-msgid "Front navigation"
-msgstr "منو سمت کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.php:27
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:564
-msgid "Admin navigation"
-msgstr "منو سمت مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.php:33
-msgid "Managed components"
-msgstr "اجزا مدیریت شده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:17
-msgid "Configurations"
-msgstr "پیکربندی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:61
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:74
-msgid "Permission"
-msgstr "دسترسی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.component.php:72
-msgid "Event/Hook"
-msgstr "رویداد / قلاب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:25
-msgid "Head meta"
-msgstr "متا هدر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:29
-msgid "Internationalization"
-msgstr "بین‌المللی سازی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:37
-msgid "Admin login"
-msgstr "ورود مدیریت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:41
-msgid "Text processing"
-msgstr "پردازش متن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:57
-msgid "Site name"
-msgstr "نام سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:58
-msgid "Website name."
-msgstr "نام وب‌سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:65
-msgid "Slogan"
-msgstr "شعار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:66
-msgid "Website slogan."
-msgstr "شعار وب سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:72
-msgid "Locale"
-msgstr "انتخاب زبان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:73
-msgid "Locale for application content."
-msgstr "زبان برای محتوای برنامه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:80
-msgid "Charset"
-msgstr "کاراکترسِت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:81
-msgid "Charset for page display."
-msgstr "کاراکترست برای نمایش صفحه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:87
-msgid "Timezone"
-msgstr "منطقه زمانی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:88
-msgid "Timezone for application system."
-msgstr "منطقه زمانی برای سیستم برنامه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:94
-msgid "List count"
-msgstr "تعداد لیست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:95
-msgid "Number of items on a list."
-msgstr "تعداد گزینه‌های یک لیست"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:102
-msgid "Footer"
-msgstr "فوتر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:103
-msgid "Content to be displayed on footer of front pages, HTML tags allowed."
-msgstr "محتوی برای نمایش در بخش فوتر در سمت کاربر، تگ های HTML مجاز است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:109
-msgid "GA account"
-msgstr "حساب گوگل آنالیتیک"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:110
-msgid ""
-"Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
-"to the code `UA-XXXXXXXX-X; XXXX.tld`."
-msgstr ""
-"شناسه ردیابی گوگل آنالیتیک `UA-XXXXXXXX-X` . برای جدا کردن میزبان ها ، کد را "
-"به شکل `UA-XXXXXXXX-X; XXXX.tld` درج نمایید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:115
-msgid "Foot scripts"
-msgstr "اسکریپت‌های فوتر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:116
-msgid ""
-"Scripts that will be appended to each page footer. Either naked or wrapped "
-"js scripts are allowed."
-msgstr ""
-"اسکریپت‌هایی که به فوتر هر صفحه متصل می‌شوند، به صورت خالص یا اسکریپت‌های جاوای "
-"پوشیده که مجاز هستند."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:122
-msgid "Theme"
-msgstr "قالب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:129
-msgid "Admin theme"
-msgstr "قالب مدیریت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:157
-msgid "Username format"
-msgstr "قالب شناسه‌ی کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:158
-msgid "Format of username for registration."
-msgstr "قالب شناسه برای ثبت‌نام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:163
-msgid "Strict: alphabet or number only"
-msgstr "اسکریپت: حروف الفبا یا اعدا"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:164
-msgid "Strict/space: alphabet, number or space only"
-msgstr "اسکریپت/اسپیس: حروف الفبا یا اعدا"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:165
-msgid "Medium: ASCII characters"
-msgstr "متوسط: کاراکترهای ASCII"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:166
-msgid "Medium/space: ASCII characters and spaces"
-msgstr "متوسط/اسپیس: کاراکترهای ASCII"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:167
-msgid "Loose: multi-byte characters"
-msgstr "راحت: کاراکترهای مالتی بایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:168
-msgid "Loose/space: multi-byte characters and spaces"
-msgstr "راحت/اسپیس: کاراکترهای مالتی بایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:178
-msgid "Minimum username"
-msgstr "شناسه‌ی مینیمم"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:179
-msgid "Minimum length of username for user registration"
-msgstr "حداقل طول شناسه‌ی کاربری برای ثبت‌نام کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:186
-msgid "Maximum username"
-msgstr "حداکثر شناسه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:187
-msgid "Maximum length of username for user registration"
-msgstr "حدااکثر طول شناسه‌ی کاربر برای ثبت‌نام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:194
-msgid "Minimum password"
-msgstr "کلمه عبور حداقل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:195
-msgid "Minimum length of password for user registration"
-msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:202
-msgid "Maximum password"
-msgstr "حداکثر کلمه عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:203
-msgid "Maximum length of password for user registration"
-msgstr "حداکثر طول کلمه عبور در هنگام ثبت‌نام کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:210
-msgid "Username blacklist"
-msgstr "لیست سیاه نام کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:211
-msgid ""
-"Reserved and forbidden username list. Separate each with a <strong>|</"
-"strong>, regexp syntax is allowed."
-msgstr ""
-"فهرست شناسه‌های کاربری رزرو و یا ممنوع.  هر کدام را با یک  <strong>|</strong> "
-"از هم جدا کنید.  سیتکس رجکس قابل استفاده است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:218
-msgid "Email blacklist"
-msgstr "لیست سیاه ایمیل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:219
-msgid ""
-"Forbidden username list. Separate each with a <strong>|</strong>, regexp "
-"syntax is allowed."
-msgstr ""
-"فهرست شناسه‌های ممنوع. آن‌ها را با <strong>|</strong> از هم جدا کنید. .سینتکس "
-"ریجکس را می‌توان استفاده کرد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:226
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:308
-msgid "Remember me"
-msgstr "من را به خاطر بسپار"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:227
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:309
-msgid "Days to remember login, 0 for disable."
-msgstr "روزهایی که برای لاگین باقی مانده، 0 روز تا غیر فعال شدن."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:234
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:316
-msgid "Login field"
-msgstr "فیلد ورود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:235
-msgid "Identity field(s) for authentication."
-msgstr "فیلدها لازم برای شناسایی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:243
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:325
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:23
-msgid "Username"
-msgstr "شناسه کاربری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:244
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:326
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:25
-msgid "Email"
-msgstr "ایمیل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:254
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:300
-msgid "Maximum attempts"
-msgstr "ماکزیمم تلاش‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:255
-msgid "Maximum attempts allowed to try for user login"
-msgstr "ماکزیمم تعداد تلاش‌های مجاز برای ورود کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:262
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:336
-msgid "Login disable"
-msgstr "ورود غیرفعال شده است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:263
-msgid "Disable user login"
-msgstr "ورود کاربر عیرفعال شده است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:271
-msgid "Register disable"
-msgstr "غیرفعال‌سازی ثبت‌نام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:272
-msgid "Disable user registration"
-msgstr "ثبت‌نام کاربران غیرفعال شده است"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:280
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:345
-msgid "Login CAPTCHA"
-msgstr "کپچا برای ورود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:281
-msgid "Enable CAPTCHA for user login"
-msgstr "فعال کردن کپچا برای ورود کاربران"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:289
-msgid "Register CAPTCHA"
-msgstr "کپچا برای ثبت نام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:290
-msgid "Enable CAPTCHA for user registration"
-msgstr "فعال کردن کپچا برای ثبت‌نام کاربران"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:301
-msgid "Maximum attempts allowed to try for admin login"
-msgstr "ماکزیمم تعداد تلاش‌هایی که برای ورود مدیر مجاز است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:317
-msgid "Identity field(s) for admin authentication."
-msgstr "فیلدهایی که برای شناسایی مدیر نیاز است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:337
-msgid "Disable admin login"
-msgstr "غیرفعال کردن ورود مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:346
-msgid "Enable CAPTCHA for admin login"
-msgstr "فعال کردن کپچا برای ورود مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:357
-msgid ""
-"The author meta tag defines the name of the author of the document being "
-"read. Supported data formats include the name, email address of the "
-"webmaster, company name or URL."
-msgstr ""
-"متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. "
-"قالب‌های قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:365
-msgid "Generator of the document being read."
-msgstr "تولید کننده‌ی مقاله‌ای که در حال خوانده شدن است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:373
-msgid ""
-"The keywords meta tag is a series of keywords that represents the content of "
-"your site. Separated keywords by a comma."
-msgstr ""
-"متا تگِ کلمات کلیدی مجموعه‌ای از کلمات کلیدی است که نماینده‌ی محتوای سایت "
-"هستند. این کلمات کلیدی را با ویرگول از هم جدا کنید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:381
-msgid ""
-"The description meta tag is a general description of what is contained in "
-"your web page"
-msgstr "متا تگ توضیح، توضیحی عمومی از محتوای صفحه‌ی وب است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:390
-msgid "Default number style"
-msgstr "فرمت پیش‌فرض اعداد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:391
-msgid ""
-"See http://www.php.net/manual/en/class.numberformatter.php#intl."
-"numberformatter-constants.unumberformatstyle"
-msgstr ""
-"این آدرس را ببینید: http://www.php.net/manual/en/class.numberformatter."
-"php#intl.numberformatter-constants.unumberformatstyle"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:396
-msgid "Default format for the locale"
-msgstr "فرمت پیش‌فرض برای زبان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:397
-msgid "Decimal format defined by pattern"
-msgstr "فرمت ده‌دهی تعریف شده توسط الگو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:398
-msgid "Decimal format"
-msgstr "فرمت ده‌دهی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:399
-msgid "Percent format"
-msgstr "فرمت درصد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:400
-msgid "Scientific format"
-msgstr "فرمت علمی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:401
-msgid "Spellout rule-based format"
-msgstr "Spellout rule-based format"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:402
-msgid "Ordinal rule-based format"
-msgstr "Ordinal rule-based format"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:403
-msgid "Duration rule-based format"
-msgstr "Duration rule-based format"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:404
-msgid "Rule-based format defined by pattern"
-msgstr "Rule-based format defined by pattern"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:413
-msgid "Default pattern for selected number style"
-msgstr "،فرمت پیش‌فرض برای شیوه‌ی انتخاب شده‌ی اعداد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:414
-msgid "Only if required by style"
-msgstr "فقط اگر استایل به آن نیاز دارد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:421
-msgid "Default currency type"
-msgstr "فرمت پیش‌فرض پول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:422
-msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
-msgstr "کد سه رقمی ISO 4217 که مشخص کننده‌ی پول رایج است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:429
-msgid "Default calendar for the locale"
-msgstr "تقویم پیش‌فرض برای زبان انتخابی."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:430
-msgid ""
-"\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
-"en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
-msgstr ""
-"برای زبان فارسی \"persian\" توصیه می‌شود. این آدرس را ببینید:  http://www.php."
-"net/manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
-"calendartypes"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:437
-msgid "Default date type"
-msgstr "فرمت پیش‌فرض داده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:438
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:457
-msgid ""
-"See http://www.php.net/manual/en/class.intldateformatter.php#intl."
-"intldateformatter-constants"
-msgstr ""
-"این آدرس را ببینید:  http://www.php.net/manual/en/class.intldateformatter."
-"php#intl.intldateformatter-constants"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:443
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:462
-msgid "Do not include this element"
-msgstr "این جزو را لحاظ نکنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:444
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:463
-msgid ""
-"Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
-msgstr "فرمت کامل  (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:445
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:464
-msgid "Long style (January 12, 1952 or 3:30:32pm)"
-msgstr "فرمت طولانی(January 12, 1952 or 3:30:32pm)"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:446
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:465
-msgid "Medium style (Jan 12, 1952)"
-msgstr "فرمت متوسط (Jan 12, 1952)"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:447
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:466
-msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
-msgstr "فرمت خلاصه شده که فقط شامل داده‌های ضروری است(12/13/52 or 3:30pm)"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:456
-msgid "Default time type"
-msgstr "فرمت پیش‌فرض نوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:475
-msgid "Default formatting pattern for date-time"
-msgstr "فرمت پیش‌فرض برای نمایش تاریخ زمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:476
-msgid "See http://userguide.icu-project.org/formatparse/datetime"
-msgstr ""
-"این آدرس را ببینید: http://userguide.icu-project.org/formatparse/datetime"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:483
-msgid "Default format for legacy date function"
-msgstr "فرمت پیش‌فرض برای نمایش تابع زمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:484
-msgid ""
-"The format is required in case Intl extension is not available. See http://"
-"www.php.net/manual/en/function.date.php"
-msgstr ""
-"در صورتی که Intl در دسترس نباشد، قالب مورد نیاز است.  این آدرس را ببینید:  "
-"See http://www.php.net/manual/en/function.date.php"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:493
-msgid "Admin email"
-msgstr "ایمیل مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:494
-msgid "Admin email address for contact."
-msgstr "ایمیل مدیر برای برقراری ارتباط"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:500
-msgid "Admin name"
-msgstr "نام مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:501
-msgid "User name used to send emails"
-msgstr "شناسه‌‌ای که برای ارسال ایمیل استفاده می‌شود."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:506
-msgid "Email encoding"
-msgstr "کدگذاری ایمیل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:507
-msgid "Encoding for email contents"
-msgstr "کذگذاری برای محتوای ایمیل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:515
-msgid "Text editor"
-msgstr "پردازنده‌ی متن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:516
-msgid "Default editor for text processing"
-msgstr "پردازنده‌ی پیش‌فرض برای پردازش متن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:522
-msgid "Enable word censoring"
-msgstr "فعال‌سازی سانسور کلمات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:523
-msgid ""
-"Words will be censored if this option is enabled. This option may be turned "
-"off for enhanced site speed."
-msgstr ""
-"در صورتی که این گزینه فعال شود، کلمات سانسور می‌شوند. این گزینه را می‌توان "
-"برای بهبود سرعت سایت غیرفعال کرد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:531
-msgid "Words to censor"
-msgstr "کلماتی که باید سانسور شوند"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:532
-msgid ""
-"Enter words that should be censored in user posts. Separate each with a \"|"
-"\", case insensitive."
-msgstr ""
-"کلماتی را که می‌خواهید در پست‌های کاربران سانسور شوند وارد کنید.  کلمات را با  "
-"\"|\" از هم جدا کنید.  بزرگ و کوچکی مهم نیست."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:539
-msgid "Word to replace censored words"
-msgstr "کلمات مورد نظر برای جایگزینی کلمات سانسور شده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:540
-msgid ""
-"Censored words will be replaced with the characters entered in this textbox"
-msgstr ""
-"کلمات سانسور شده با کارکترهایی که در این باکس وارد می‌شوند، جایگزین خواهند شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:547
-msgid "Module themes"
-msgstr "قالب‌های ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:548
-msgid "Themes for modules."
-msgstr "قالب‌های ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:557
-msgid "Global navigation for front end."
-msgstr "منوی سراسری برای سمت کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/config.php:565
-msgid "Global navigation for admin."
-msgstr "منوی سراسری برای سمت مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:21
-msgid "Module installed"
-msgstr "ماژول نصب شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:24
-msgid "Module uninstalled"
-msgstr "ماژول از نصب خارج شد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:27
-msgid "Module activated"
-msgstr "ماژول فعال شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:30
-msgid "Module deactivated"
-msgstr "ماژول غیرفعال شد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/event.php:33
-msgid "Module updated"
-msgstr "به روز رسانی ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:19
-msgid "Administrator"
-msgstr "مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:21
-msgid "Staff"
-msgstr "کاربران"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:35
-msgid "Webmaster"
-msgstr "مدیر سایت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:37
-msgid "Member"
-msgstr "عضو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/role.php:39
-msgid "Guest"
-msgstr "میهمان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:19
-msgid "Home"
-msgstr "خانه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:24
-msgid "Profile"
-msgstr "پروفایل"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:37
-msgid "Register"
-msgstr "ثبت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:44
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:37
-msgid "Password"
-msgstr "کلمه ی عبور"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:52
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:16
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:22
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:17
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:25
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:36
-msgid "Admin"
-msgstr "مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/config/nav.front.php:58
-msgid "RSS Feed"
-msgstr "خوراک"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Installer/Action/Update.php:47
+msgid "System updated"
+msgstr "به روز رسانی سیستم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Installer/Action/Update.php:48
+msgid "The system is updated successfully."
+msgstr "سیستم با موفقیت به روز شد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:34
+msgid "Operation"
+msgstr "عملیات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:39
+msgid "Setting"
+msgstr "تنظیمات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/src/Menu.php:44
+msgid "Deployment"
+msgstr "به کار بستن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:21
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:11
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:12
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:114
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:13
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:14
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:28
+msgid "Action"
+msgstr "اکشن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:19
+msgid "Re-publish all"
+msgstr "انتشار مجدد همه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:31
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:44
+msgid "Publish"
+msgstr "انتشار"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:54
+msgid "Asset publish in process"
+msgstr "انتشار محتوا در جریان است"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:12
+msgid "Audit list"
+msgstr "فهرست حسابرسی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:16
+msgid "time"
+msgstr "زمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:17
+msgid "User ID"
+msgstr "شناسه‌ی کاربری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:18
+msgid "IP"
+msgstr "آی‌پی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:24
+msgid "Message"
+msgstr "پیغام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:25
+msgid "extra"
+msgstr "اضافه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:48
+msgid "Count of items to display: "
+msgstr "تعداد آیتم‌ها برای نمایش"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:51
+msgid "10"
+msgstr "10"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:52
+msgid "20"
+msgstr "20"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:53
+msgid "50"
+msgstr "50"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:19
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:11
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:55
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:11
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:11
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:27
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:55
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "توضیح"
 
@@ -1636,36 +1768,23 @@ msgstr "توضیح"
 msgid "Related pages"
 msgstr "صفحات مرتبط"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:21
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:13
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:114
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:18
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:14
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:11
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:13
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:28
-msgid "Action"
-msgstr "اکشن"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:23
 msgid "Preview"
 msgstr "پیش نمایش"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:24
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:27
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:21
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:48
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:35
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:48
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:27
 msgid "Edit"
 msgstr "ویرایش"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/block-list.phtml:25
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:34
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:49
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:19
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:39
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:49
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:19
 msgid "Delete"
 msgstr "حذف"
 
@@ -1683,18 +1802,265 @@ msgstr "هنوز این بلاک در هیچ صفحه ای استفاده نشد
 msgid "Search in block title"
 msgstr "جستجو در عنوان بلاک"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:15
+msgid "Expiration"
+msgstr "انقضا"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:16
+msgid "Granularity"
+msgstr "دانه دانه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:17
+msgid "Scope"
+msgstr "محدوده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:38
+msgid "Force for all pages"
+msgstr "اجبار برای همه صفحات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/config-index.phtml:3
+msgid "Select a module on the left to set up configurations."
+msgstr "یک ماژول از سمت چپ انتخاب کنید تا پیکربندی انجام شود."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/config-index.phtml:5
+msgid "No configuration available."
+msgstr "هیچ پیکربندی وجود ندارد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:6
+msgid "About"
+msgstr "درباره‌ی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:14
+msgid "Module information"
+msgstr "اطلاعات ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:16
+msgid "Title:"
+msgstr "عنوان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:18
+msgid "Version:"
+msgstr "نسخه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:20
+msgid "Update:"
+msgstr "به روز رسانی"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:22
+msgid "Description:"
+msgstr "توضیح"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:25
+msgid "Demo:"
+msgstr "دمو"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:29
+msgid "Author information"
+msgstr "مشخصات نویسنده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:45
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:28
+msgid "Summary"
+msgstr "خلاصه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:22
+msgid "Announcement"
+msgstr "اعلان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:123
+msgid "Save"
+msgstr "ذخیره"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:32
+msgid "Cancel"
+msgstr "انصراف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:25
+msgid "Quicklinks"
+msgstr "لینک های سریع"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:27
+msgid "URL"
+msgstr "آدرس"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:29
+msgid "Powered by"
+msgstr "با قدرت"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:30
+msgid ""
+"Pi Engine is a role oriented application development engine for web and mobile, "
+"designed as the next generation and a successor to Xoops. Pi is developed upon "
+"PHP and MySQL with selected third-party frameworks including but not limited to "
+"Zend Framework library, jQuery, Bootstrap and Backbone."
+msgstr ""
+"پای انجین یک موتور نقش محور برای توسعه‌ی برنامه‌های وب و موبایل است که نسل بعدی "
+"Xoops است.  پای بر اساس PHP و Mysql طراحی شده و با استفاده از فریم‌ورک‌های Third "
+"party از جمله Zend,Jquery,Bootstrap و Backbone،  ,ولی محدود به آن‌ها نمی‌شود "
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:31
+msgid ""
+" Pi Project follows the philosophy of open standard, open design, open "
+"development and open structure. Pi is born as a complete open source project "
+"and intended to build a sustainable ecosystem that benefits all contributors "
+"and users."
+msgstr ""
+"پروژه‌ی پای از فلسفه‌ی استانداردهای باز، طراحی باز و توسعه و ساختار باز تبعیت "
+"می‌کند. پای یک پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد شود "
+"که تمام کاربران و برنامه‌نویس‌ها از آن استفاده کنند. "
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:19
+msgid "Events"
+msgstr "رخ‌دادها"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:20
+msgid "Listeners"
+msgstr "شنوندگان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:21
+msgid "No listeners available"
+msgstr "هیچ شنوده ای وجود ندارد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:22
+msgid "No events available"
+msgstr "هیچ رخدادی وجود ندارد."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:20
+msgid "Error, please try again later."
+msgstr "خطا، لطفا بعدا تلاش کنید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:17
+msgid "Flush all"
+msgstr "تخلیه‌ی همه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:33
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:41
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:50
+msgid "Flush"
+msgstr "تخلیه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:39
+msgid "Registry"
+msgstr "رجیستری"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:62
+msgid "Cache flush in process"
+msgstr "تخلیه‌ی کَش درحال انجام است."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:6
+msgid "There is no entry page for this module management. Please:"
+msgstr ""
+"این ماژول فاقد بخش مدیریت است و تمام قسمت های آن از بخش تنظیمات یا بخش کاربری "
+"کنترل می شود. شما می توانید :"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:9
+msgid "Module config"
+msgstr "پیکربندی ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:9
+msgid "Go to set up module configs;"
+msgstr "به بخش پیکربندی در تنظیمات ماژول بروید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:10
+msgid "System admin"
+msgstr "مدیر سیستم"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:10
+msgid "Go back to system dashboard."
+msgstr "به داشبورد سیستم باز گردید."
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:6
+msgid "Add a member"
+msgstr "یک عضو اضافه کنید"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:11
+msgid "Select a role: "
+msgstr "یک نقش انتخاب کنید:"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:24
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:21
+msgid "Name"
+msgstr "نام"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:26
+msgid "Front role"
+msgstr "نقش سمت کاربر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:27
+msgid "Admin role"
+msgstr "نقش سمت مدیر"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:28
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:25
+msgid "Active"
+msgstr "فعال"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:43
+msgid "Not set"
+msgstr "تنظیم نشده"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:46
+msgid "Yes"
+msgstr "بله"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:46
+msgid "No"
+msgstr "خیر"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:8
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:8
 msgid "Icon"
 msgstr "آیکون"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:53
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:10
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:29
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:10
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:23
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:53
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "نسخه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:38
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:18
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:50
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:22
+msgid "Detail"
+msgstr "جزییات"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:37
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:42
+msgid "Directory:"
+msgstr "شاخه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:61
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:17
+msgid "Install"
+msgstr "نصب"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:38
+msgid "Assign to:"
+msgstr "تخصیص به"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:56
+msgid "Edit this category"
+msgstr "ویرایش این طبقه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:59
+msgid "Delete this category"
+msgstr "حذف این طبقه"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:73
+msgid "Remove"
+msgstr "حذف"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:92
+msgid "Sort modules"
+msgstr "مرتب‌سازی ماژول‌ها"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:12
 msgid "Last Update"
@@ -1704,22 +2070,9 @@ msgstr "آخرین به روز رسانی"
 msgid "Rename"
 msgstr "تغییر نام"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:38
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:50
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:34
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:22
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:18
-msgid "Detail"
-msgstr "جزییات"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:40
 msgid "Name:"
 msgstr "نام"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:42
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:37
-msgid "Directory:"
-msgstr "شاخه"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-index.phtml:44
 msgid "Author"
@@ -1751,61 +2104,24 @@ msgstr "غیرفعال سازی"
 msgid "Enable"
 msgstr "فعال‌سازی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:38
-msgid "Assign to:"
-msgstr "تخصیص به"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-operation.phtml:7
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:7
+msgid "Press to continue ..."
+msgstr "برای ادامه فشار دهید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:56
-msgid "Edit this category"
-msgstr "ویرایش این طبقه"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-operation.phtml:17
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:23
+msgid "Failed"
+msgstr "ناموفق"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:59
-msgid "Delete this category"
-msgstr "حذف این طبقه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:73
-msgid "Remove"
-msgstr "حذف"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-category.phtml:92
-msgid "Sort modules"
-msgstr "مرتب‌سازی ماژول‌ها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-block.phtml:163
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:31
-msgid "Submit"
-msgstr "ثبت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-block.phtml:169
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-block.phtml:170
-msgid "Available Themes"
-msgstr "قالب‌های موجود"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:17
-msgid "Module Global permission"
-msgstr "دسترسی سراسری ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:18
-msgid "Module resource"
-msgstr "منابع ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:19
-msgid "Block"
-msgstr "بلاک"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:20
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:23
-msgid "Error, please try again later."
-msgstr "خطا، لطفا بعدا تلاش کنید."
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-operation.phtml:19
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:25
+msgid "Succeeded"
+msgstr "با موفقیت انجام شد"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:6
 msgid "Module updates finished."
 msgstr "به روز رسانی ماژول‌ها انجام شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:7
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-operation.phtml:7
-msgid "Press to continue ..."
-msgstr "برای ادامه فشار دهید"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:16
 msgid "Update succeeded."
@@ -1814,34 +2130,6 @@ msgstr "به روز رسانی با موفقیت انجام شد"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:16
 msgid "Update failed."
 msgstr "به روز رسانی انجام نشد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:23
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-operation.phtml:17
-msgid "Failed"
-msgstr "ناموفق"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-refresh.phtml:25
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-operation.phtml:19
-msgid "Succeeded"
-msgstr "با موفقیت انجام شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:23
-msgid "Theme in use"
-msgstr "قالب فعلی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:37
-msgid "Themes available to use"
-msgstr "قالب‌های در دسترس برای استفاده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:44
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:12
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:10
-msgid "Click To preview"
-msgstr "برای بازبینی کلیک کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:49
-msgid "Apply"
-msgstr "به کار بستن"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:15
 msgid "Only click this button to save data"
@@ -1907,209 +2195,10 @@ msgstr "کنترل کننده"
 msgid "Module"
 msgstr "ماژول"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:123
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:23
-msgid "Save"
-msgstr "ذخیره"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-data.phtml:425
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 "تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:3
-msgid "There is no entry page for this module management. Please:"
-msgstr ""
-"این ماژول فاقد بخش مدیریت است و تمام قسمت های آن از بخش تنظیمات یا بخش "
-"کاربری کنترل می شود. شما می توانید :"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:5
-msgid "Module config"
-msgstr "پیکربندی ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:5
-msgid "Go to set up module configs;"
-msgstr "به بخش پیکربندی در تنظیمات ماژول بروید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:6
-msgid "System admin"
-msgstr "مدیر سیستم"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/index.phtml:6
-msgid "Go back to system dashboard."
-msgstr "به داشبورد سیستم باز گردید."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:19
-msgid "Events"
-msgstr "رخ‌دادها"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:20
-msgid "Listeners"
-msgstr "شنوندگان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:21
-msgid "No listeners available"
-msgstr "هیچ شنوده ای وجود ندارد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/event.phtml:22
-msgid "No events available"
-msgstr "هیچ رخدادی وجود ندارد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/module-available.phtml:61
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:17
-msgid "Install"
-msgstr "نصب"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:31
-msgid "Dress up"
-msgstr "چیدن"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:86
-msgid "Are you sure to delete the page?"
-msgstr "آیا مطمئنید قصد دارید این صفحه را حذف کنید؟"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:15
-msgid "Expiration"
-msgstr "انقضا"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:16
-msgid "Granularity"
-msgstr "دانه دانه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:17
-msgid "Scope"
-msgstr "محدوده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/cache-list.phtml:38
-msgid "Force for all pages"
-msgstr "اجبار برای همه صفحات"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:22
-msgid "Announcement"
-msgstr "اعلان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:24
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:32
-msgid "Cancel"
-msgstr "انصراف"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:25
-msgid "Quicklinks"
-msgstr "لینک های سریع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:27
-msgid "URL"
-msgstr "آدرس"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:28
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:45
-msgid "Summary"
-msgstr "خلاصه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:29
-msgid "Powered by"
-msgstr "با قدرت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:30
-msgid ""
-"Pi Engine is a role oriented application development engine for web and "
-"mobile, designed as the next generation and a successor to Xoops. Pi is "
-"developed upon PHP and MySQL with selected third-party frameworks including "
-"but not limited to Zend Framework library, jQuery, Bootstrap and Backbone."
-msgstr ""
-"پای انجین یک موتور نقش محور برای توسعه‌ی برنامه‌های وب و موبایل است که نسل "
-"بعدی Xoops است.  پای بر اساس PHP و Mysql طراحی شده و با استفاده از "
-"فریم‌ورک‌های Third party از جمله Zend,Jquery,Bootstrap و Backbone،  ,ولی محدود "
-"به آن‌ها نمی‌شود "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-system.phtml:31
-msgid ""
-" Pi Project follows the philosophy of open standard, open design, open "
-"development and open structure. Pi is born as a complete open source project "
-"and intended to build a sustainable ecosystem that benefits all contributors "
-"and users."
-msgstr ""
-"پروژه‌ی پای از فلسفه‌ی استانداردهای باز، طراحی باز و توسعه و ساختار باز تبعیت "
-"می‌کند. پای یک پروژه‌ی تماما متن باز است و هدف این بوده تا محیط مناسبی ایجاد "
-"شود که تمام کاربران و برنامه‌نویس‌ها از آن استفاده کنند. "
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/config-index.phtml:3
-msgid "Select a module on the left to set up configurations."
-msgstr "یک ماژول از سمت چپ انتخاب کنید تا پیکربندی انجام شود."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/config-index.phtml:5
-msgid "No configuration available."
-msgstr "هیچ پیکربندی وجود ندارد."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:17
-msgid "Flush all"
-msgstr "تخلیه‌ی همه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:24
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:33
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:41
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:50
-msgid "Flush"
-msgstr "تخلیه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:39
-msgid "Registry"
-msgstr "رجیستری"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/flush-index.phtml:62
-msgid "Cache flush in process"
-msgstr "تخلیه‌ی کَش درحال انجام است."
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:6
-msgid "About"
-msgstr "درباره‌ی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:14
-msgid "Module information"
-msgstr "اطلاعات ماژول"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:16
-msgid "Title:"
-msgstr "عنوان"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:18
-msgid "Version:"
-msgstr "نسخه"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:20
-msgid "Update:"
-msgstr "به روز رسانی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:22
-msgid "Description:"
-msgstr "توضیح"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:25
-msgid "Demo:"
-msgstr "دمو"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/dashboard-module.phtml:29
-msgid "Author information"
-msgstr "مشخصات نویسنده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:24
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:20
-msgid "Check"
-msgstr "بررسی"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:31
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:34
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:25
-msgid "Type"
-msgstr "نوع"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:66
-msgid "Theme Updated successfully."
-msgstr "قالب با موفقیت به روز شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:74
-msgid "Are you sure to uninstall this theme ? "
-msgstr "آیا مطمئنید می‌خواهید این قالب را آن اینستال کنید؟"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/nav-index.phtml:11
 msgid "Setup"
@@ -2135,18 +2224,35 @@ msgstr "نمایش"
 msgid "Are you sure to delete this navigation"
 msgstr "آیا از پاک کردن این منو مطمئن هستید؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:19
-msgid "Re-publish all"
-msgstr "انتشار مجدد همه"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-block.phtml:163
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:31
+msgid "Submit"
+msgstr "ثبت"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:31
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:44
-msgid "Publish"
-msgstr "انتشار"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-block.phtml:169
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-block.phtml:170
+msgid "Available Themes"
+msgstr "قالب‌های موجود"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/asset-index.phtml:54
-msgid "Asset publish in process"
-msgstr "انتشار محتوا در جریان است"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:31
+msgid "Dress up"
+msgstr "چیدن"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/page-list.phtml:86
+msgid "Are you sure to delete the page?"
+msgstr "آیا مطمئنید قصد دارید این صفحه را حذف کنید؟"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:17
+msgid "Module Global permission"
+msgstr "دسترسی سراسری ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:18
+msgid "Module resource"
+msgstr "منابع ماژول"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/perm.phtml:19
+msgid "Block"
+msgstr "بلاک"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:14
 msgid "Admin roles"
@@ -2168,11 +2274,6 @@ msgstr "نقش سمت کاربر جدید"
 msgid "Edit permission"
 msgstr "ویرایش دسترسی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:21
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:24
-msgid "Name"
-msgstr "نام"
-
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:23
 msgid "Users in role"
 msgstr "کاربرانن با این نقش"
@@ -2180,11 +2281,6 @@ msgstr "کاربرانن با این نقش"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:24
 msgid "Status"
 msgstr "وضعیت"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:25
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:28
-msgid "Active"
-msgstr "فعال"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:26
 msgid "Activated"
@@ -2202,6 +2298,12 @@ msgstr "نام منحصر به فرد"
 msgid "Required"
 msgstr "ضروری"
 
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:34
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:25
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:31
+msgid "Type"
+msgstr "نوع"
+
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/role.phtml:37
 msgid "Role name is already taken"
 msgstr "این نام نقش از پیش گرفته شده است"
@@ -2210,73 +2312,36 @@ msgstr "این نام نقش از پیش گرفته شده است"
 msgid "Are you sure to delete this role?"
 msgstr "آیا مطمئن هستید که می‌خواهید این نقش را پاک کنید؟"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:12
-msgid "Audit list"
-msgstr "فهرست حسابرسی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:10
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:44
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:12
+msgid "Click To preview"
+msgstr "برای بازبینی کلیک کنید"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:16
-msgid "time"
-msgstr "زمان"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-available.phtml:20
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:24
+msgid "Check"
+msgstr "بررسی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:17
-msgid "User ID"
-msgstr "شناسه‌ی کاربری"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:23
+msgid "Theme in use"
+msgstr "قالب فعلی"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:18
-msgid "IP"
-msgstr "آی‌پی"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:37
+msgid "Themes available to use"
+msgstr "قالب‌های در دسترس برای استفاده"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:24
-msgid "Message"
-msgstr "پیغام"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-index.phtml:49
+msgid "Apply"
+msgstr "به کار بستن"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:25
-msgid "extra"
-msgstr "اضافه"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:66
+msgid "Theme Updated successfully."
+msgstr "قالب با موفقیت به روز شد"
 
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:48
-msgid "Count of items to display: "
-msgstr "تعداد آیتم‌ها برای نمایش"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:51
-msgid "10"
-msgstr "10"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:52
-msgid "20"
-msgstr "20"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/audit-index.phtml:53
-msgid "50"
-msgstr "50"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:6
-msgid "Add a member"
-msgstr "یک عضو اضافه کنید"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:11
-msgid "Select a role: "
-msgstr "یک نقش انتخاب کنید:"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:26
-msgid "Front role"
-msgstr "نقش سمت کاربر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:27
-msgid "Admin role"
-msgstr "نقش سمت مدیر"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:43
-msgid "Not set"
-msgstr "تنظیم نشده"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:46
-msgid "Yes"
-msgstr "بله"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/member-index.phtml:46
-msgid "No"
-msgstr "خیر"
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/system/template/admin/theme-installed.phtml:74
+msgid "Are you sure to uninstall this theme ? "
+msgstr "آیا مطمئنید می‌خواهید این قالب را آن اینستال کنید؟"
 
 #~ msgid "The block is not allowed to clone."
 #~ msgstr "از این بلاک نمی‌توان کلون گرفت"

@@ -36,24 +36,22 @@ class Api extends AbstractApi
         if (!$id) {
             return $id;
         }
-
-        if (!$row->name) {
-            return $id;
+        // Set system page
+        if (!empty($row->name)) {
+            $page = array(
+                'section'       => 'front',
+                'module'        => $this->getModule(),
+                'controller'    => 'index',
+                'action'        => $row->name,
+                'title'         => $row->title,
+                'block'         => 1,
+                'custom'        => 0,
+            );
+            $row = Pi::model('page')->createRow($page);
+            $row->save();
         }
-        $page = array(
-            'section'       => 'front',
-            'module'        => $this->getModule(),
-            'controller'    => 'index',
-            'action'        => $row->name,
-            'title'         => $row->title,
-            'block'         => 1,
-            'custom'        => 0,
-        );
-        $row = Pi::model('page')->createRow($page);
-        $row->save();
-
+        // Flush page registry
         Pi::registry('page', $this->getModule())->flush();
-
         return $id;
     }
 

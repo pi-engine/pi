@@ -1,33 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-tag\n"
-"POT-Creation-Date: 2014-12-02 11:29+0330\n"
-"PO-Revision-Date: 2014-12-02 11:29+0330\n"
+"POT-Creation-Date: 2015-02-20 11:54+0330\n"
+"PO-Revision-Date: 2015-02-20 11:54+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
 "tag\n"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:5
-msgid "View all tagged items."
-msgstr "نمایش همه آیتم های برچسب گذاری شد"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:8
-#, php-format
-msgid "Items in <em>%s</em> tagged by: <strong>%s</strong>"
-msgstr "آیتم های در <em>%s</em> برچسب گذاری شده با : <strong>%s</strong>"
-
-#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:12
-#, php-format
-msgid "Items tagged by: <strong>%s</strong>"
-msgstr "آیتم های برچسب گذاری شده با <strong>%s</strong>"
 
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:6
 msgid "All"
@@ -56,6 +42,20 @@ msgstr "نوع"
 #: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/admin/link.phtml:33
 msgid "Time"
 msgstr "زمان"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:5
+msgid "View all tagged items."
+msgstr "نمایش همه آیتم های برچسب گذاری شد"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:8
+#, php-format
+msgid "Items in <em>%s</em> tagged by: <strong>%s</strong>"
+msgstr "آیتم های در <em>%s</em> برچسب گذاری شده با : <strong>%s</strong>"
+
+#: /var/www/html/local/pi/pi-release-2.5.0/usr/module/tag/template/front/list.phtml:12
+#, php-format
+msgid "Items tagged by: <strong>%s</strong>"
+msgstr "آیتم های برچسب گذاری شده با <strong>%s</strong>"
 
 #, fuzzy
 #~ msgid "Link time"
