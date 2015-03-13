@@ -196,6 +196,7 @@ class Install extends BasicInstall
                     'solution',
                     'video',
                     'forum',
+                    'form',
                     'page',
                     'demo',
                     'news',
@@ -203,6 +204,7 @@ class Install extends BasicInstall
                     'contact',
                     'guide',
                     'portfolio',
+                    'download',
                     'ask'
                 ),
             ),
@@ -220,6 +222,7 @@ class Install extends BasicInstall
                     'saml',
                     'favourite',
                     'payment',
+                    'order',
                     'vote',
                     'sitemap',
                     'ads'
