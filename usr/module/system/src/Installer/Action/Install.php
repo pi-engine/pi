@@ -204,6 +204,7 @@ class Install extends BasicInstall
                     'contact',
                     'guide',
                     'portfolio',
+                    'gallery',
                     'download',
                     'ask'
                 ),
