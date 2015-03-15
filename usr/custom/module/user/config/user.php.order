@@ -27,6 +27,12 @@ $customConfig = array(
             'is_search'     => false,
         ),
 
+        // Profile: identification_number
+        'identification_number'  => array(
+            'name'  => 'identification_number',
+            'title' => _a('Identification number'),
+        ),
+
         // Profile: first_name
         'first_name'  => array(
             'name'  => 'first_name',
