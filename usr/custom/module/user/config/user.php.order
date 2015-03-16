@@ -28,8 +28,9 @@ $customConfig = array(
         ),
 
         // Profile: identification_number
-        'identification_number'  => array(
-            'name'  => 'identification_number',
+        // See : https://en.wikipedia.org/wiki/National_identification_number
+        'id_number'  => array(
+            'name'  => 'id_number',
             'title' => _a('Identification number'),
         ),
 
