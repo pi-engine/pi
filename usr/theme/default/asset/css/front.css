@@ -202,3 +202,12 @@ html {
 .tag-terms a {
   padding: 0 5px;
 }
+
+/* Player */
+.pi-player {
+  padding: 10px 0;
+}
+
+.pi-player .video-js {
+  margin: 0 auto;
+}
