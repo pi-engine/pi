@@ -211,3 +211,7 @@ html {
 .pi-player .video-js {
   margin: 0 auto;
 }
+
+.pi-map-canvas {
+  height: 400px;
+}
