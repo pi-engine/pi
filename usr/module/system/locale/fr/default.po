@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2015-04-20 18:43+0100\n"
-"PO-Revision-Date: 2015-04-20 18:44+0100\n"
+"POT-Creation-Date: 2015-04-20 19:14+0100\n"
+"PO-Revision-Date: 2015-04-20 19:15+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -218,7 +218,7 @@ msgstr "N°"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
 msgid "Username"
-msgstr "Nom utilisateur"
+msgstr "Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
@@ -305,7 +305,7 @@ msgstr "Nom utilisateur"
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:70
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:42
 msgid "Display name"
-msgstr "Pseudo"
+msgstr "Nom"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:69
@@ -676,17 +676,17 @@ msgstr "Cet email utilisateur est déja pris"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:80
 msgid "Invalid username: %formatHint%"
-msgstr "Ce nom utilisateur n'est pas valide : %formatHint%"
+msgstr "Ce nom de compte n'est pas valide : %formatHint%"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:81
 msgid "Username is reserved"
-msgstr "Ce nom utilisateur est réservé"
+msgstr "Ce nom de compte est réservé"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:82
 msgid "Username is already taken"
-msgstr "Ce nom d'utilisateur est déja pris"
+msgstr "Ce nom de compte est déja pris"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:86

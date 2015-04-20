@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
 "POT-Creation-Date: 2015-04-20 18:09+0100\n"
-"PO-Revision-Date: 2015-04-20 18:10+0100\n"
+"PO-Revision-Date: 2015-04-20 19:13+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -250,12 +250,12 @@ msgstr "Administration du Thème"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:165
 msgid "Username format"
-msgstr "Format du Nom utilisateur"
+msgstr "Format du Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:166
 msgid "Format of username for registration."
-msgstr "Format du nom utilisateur pour s'inscrire"
+msgstr "Format du nom de compte pour s'inscrire"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:171
@@ -291,22 +291,22 @@ msgstr "Bas/espaces : caractères multi-byte et espaces"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:186
 msgid "Minimum username"
-msgstr "Nom utilisateur minimum"
+msgstr "Minimum Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:187
 msgid "Minimum length of username for user registration"
-msgstr "Longueur minimum du nom utilisateur pour s'inscrire"
+msgstr "Longueur minimum du nom de compte pour s'inscrire"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:194
 msgid "Maximum username"
-msgstr "Nom utilisateur maximum"
+msgstr "Maximum Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:195
 msgid "Maximum length of username for user registration"
-msgstr "Longueur maximum du nom utilisateur pour s'inscrire"
+msgstr "Longueur maximum du nom de compte pour s'inscrire"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:202
@@ -331,7 +331,7 @@ msgstr "Longueur maximum du mot de passe pour s'inscrire"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:218
 msgid "Username blacklist"
-msgstr "Liste noire Nom utilisateur"
+msgstr "Liste noire Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:219
@@ -339,8 +339,8 @@ msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
-"Liste des noms utilisateurs interdits et réservés. Séparer chaque valeur par "
-"<strong>|</strong>, la syntaxe regexp est autorisée."
+"Liste des noms de compte utilisateurs interdits et réservés. Séparer chaque "
+"valeur par <strong>|</strong>, la syntaxe regexp est autorisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:226
@@ -353,8 +353,8 @@ msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
-"Liste des noms interdits. Séparer chaque valeur par <strong>|</strong>, la "
-"syntaxe regexp est autorisée."
+"Liste des noms de compte interdits. Séparer chaque valeur par <strong>|</"
+"strong>, la syntaxe regexp est autorisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:234
@@ -384,7 +384,7 @@ msgstr "Champs d'identification pour l'authentification"
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:333
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:23
 msgid "Username"
-msgstr "Nom utilisateur"
+msgstr "Nom du Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:252
@@ -811,8 +811,8 @@ msgid ""
 "Username for the website used in the Twitter card. Add @ before username "
 "like @PiEnable or leave it empty"
 msgstr ""
-"Nom utilisateur du site utilisé dans les Twitter Cards. Ajouter @ avant le "
-"nom utilisateur (ex : @PiEnable) ou laisser vide"
+"Nom de compte du site utilisé dans les Twitter Cards. Ajouter @ avant le nom "
+"de compte (ex : @PiEnable) ou laisser vide"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:621

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2015-04-20 17:42+0100\n"
-"PO-Revision-Date: 2015-04-20 17:42+0100\n"
+"PO-Revision-Date: 2015-04-20 19:22+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -59,7 +59,7 @@ msgstr "Profil utilisateur mis à jour"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:69
 msgid "Display name changed"
-msgstr "Pseudo modifié"
+msgstr "Nom modifié"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/event.php:75
@@ -604,7 +604,7 @@ msgstr ""
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:30
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:90
 msgid "Username"
-msgstr "Nom utilisateur"
+msgstr "Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Form/AccountForm.php:38
@@ -619,7 +619,7 @@ msgstr "Email"
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Form/MemberForm.php:39
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Form/SearchForm.php:99
 msgid "Display name"
-msgstr "Pseudo"
+msgstr "Nom"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Form/AccountForm.php:72
@@ -835,12 +835,12 @@ msgstr "Le mail utilisateur est déja utilisé"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:49
 msgid "Username is less than %min% characters long"
-msgstr "Le nom utilisateur a moins de %min% caractères"
+msgstr "Le nom de compte utilisateur a moins de %min% caractères"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/src/Validator/Username.php:50
 msgid "Username is more than %max% characters long"
-msgstr "Le nom utilisateur a plus de %max% caractères"
+msgstr "Le nom de compte utilisateur a plus de %max% caractères"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:19
@@ -867,7 +867,7 @@ msgstr "L'Email est exigé"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:210
 msgid "Display name is required."
-msgstr "Le Pseudo est exigé"
+msgstr "Le Nom est exigé"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/front/account-index.phtml:261

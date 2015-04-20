@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2015-04-20 17:41+0100\n"
-"PO-Revision-Date: 2015-04-20 17:41+0100\n"
+"POT-Creation-Date: 2015-04-20 19:16+0100\n"
+"PO-Revision-Date: 2015-04-20 19:22+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -160,7 +160,7 @@ msgstr "Champs d'identité utilisé(s) pour se connecter"
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:43
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:67
 msgid "Username"
-msgstr "Nom utilisateur"
+msgstr "Nom compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:123
@@ -266,12 +266,12 @@ msgstr ""
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:205
 msgid "Username format"
-msgstr "Format Nom utilisateur"
+msgstr "Format Nom Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:206
 msgid "Format of username for registration."
-msgstr "Format du nom utilisateur lors de l'inscription"
+msgstr "Format du nom compte lors de l'inscription"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:211
@@ -312,32 +312,32 @@ msgstr "Faible : caractères multi-bit et espaces"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:226
 msgid "Minimum username"
-msgstr "Nom utilisateur minimum"
+msgstr "Minimum Nom de Compte"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:227
 msgid "Minimum length of username for user registration"
-msgstr "Longueur minimum du nom utilisateur lors de l'inscription"
+msgstr "Longueur minimum du nom de compte utilisateur lors de l'inscription"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:234
 msgid "Maximum username"
-msgstr "Nom utilisateur maximum"
+msgstr "Nom compte utilisateur maximum"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:235
 msgid "Maximum length of username for user registration"
-msgstr "Longueur maximum du nom utilisateur lors de l'inscription"
+msgstr "Longueur maximum du nom compte utilisateur lors de l'inscription"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:241
 msgid "Display name format"
-msgstr "Format du pseudo"
+msgstr "Format du Nom"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:242
 msgid "Format of display name for registration."
-msgstr "Format du pseudo lors de l'inscription"
+msgstr "Format du Nom lors de l'inscription"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:262
@@ -357,7 +357,7 @@ msgstr "Nom maximum"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:271
 msgid "Maximum length of display name for user registration"
-msgstr "Longueur maximum du pseudo lors de l'inscription"
+msgstr "Longueur maximum du nom utilisateur lors de l'inscription"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:278
@@ -382,7 +382,7 @@ msgstr "Longueur maximale du mot de passe lors de l'inscription"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:294
 msgid "Username blacklist"
-msgstr "Liste noire Nom utilisateur"
+msgstr "Liste noire Nom compte utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:295
@@ -390,13 +390,13 @@ msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
 msgstr ""
-"Liste des noms utilisateurs réservés/interdits, séparés par `|`, la syntaxe "
-"regexp est autorisée."
+"Liste des noms compte utilisateurs réservés/interdits, séparés par `|`, la "
+"syntaxe regexp est autorisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:302
 msgid "Display blacklist"
-msgstr "Liste noire pseudo"
+msgstr "Liste noire Nom"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:303
@@ -404,8 +404,8 @@ msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
 msgstr ""
-"Liste des pseudos réservés / interdits, séparés par `|`, la syntaxe regexp "
-"est autorisée."
+"Liste des noms réservés / interdits, séparés par `|`, la syntaxe regexp est "
+"autorisée."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:310
@@ -613,7 +613,7 @@ msgstr "Mot de passe"
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:32
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:22
 msgid "Display name"
-msgstr "Pseudo"
+msgstr "Nom"
 
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/user.php:96
 msgid "Gender"
@@ -969,7 +969,7 @@ msgstr "Valider"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:16
 msgid "Inquire of user via ID, username, display name or email."
-msgstr "Rechercher le compte par numéro, nom utilisateur, pseudo ou email."
+msgstr "Rechercher le compte par numéro, nom compte, nom utilisateur ou email."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:20
@@ -1129,7 +1129,7 @@ msgstr "IP"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:45
 msgid "Displayname"
-msgstr "Pseudo"
+msgstr "Nom"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:46
@@ -1460,7 +1460,7 @@ msgstr "Les mots de passe ne correspondent pas."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:38
 msgid "Username is already taken."
-msgstr "Le nom utilisateur est déja pris."
+msgstr "Le nom de compte est déja pris."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:39
@@ -1470,7 +1470,7 @@ msgstr "L\\'email est déja pris."
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:40
 msgid "Display name is already taken."
-msgstr "Le pseudo est déja pris"
+msgstr "Le nom est déja pris"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:41
