@@ -1,523 +1,391 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2014-08-22 09:53+0330\n"
-"PO-Revision-Date: 2014-08-22 09:53+0330\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2015-04-20 17:41+0100\n"
+"PO-Revision-Date: 2015-04-20 17:41+0100\n"
+"Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-user/usr/module/user\n"
+"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
+"\\module\\user\n"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Installer/Action/Install.php:138
-msgid "Basic profile"
-msgstr "Informations générales"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:177
-msgid "Add user failed: user already exists."
-msgstr "L'ajout de l'utilisateur a échoué : l'utilisateur existe déja."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:193
-msgid "Add user failed: invalid operation."
-msgstr "L'ajout de l'utilisateur a échoué : l'opération n'est pas valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:214
-msgid "Add user successfully"
-msgstr "L'ajout de l'utilisateur a réussi"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:325
-msgid "Enable user failed: invalid uid."
-msgstr ""
-"L'activation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
-"pas valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:346
-#, php-format
-msgid "%d users enabled."
-msgstr "%d utilisateurs activés."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:366
-msgid "Disable user failed: invalid uid."
-msgstr ""
-"La désactivation de l'utilisateur a échoué : l'uid (numéro utilisateur) "
-"n'est pas valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:387
-#, php-format
-msgid "%d disable user successfully"
-msgstr "%d utilisaterus désactivés avec succès"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:407
-msgid "Delete user failed: invalid uid"
-msgstr ""
-"La suppression de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
-"pas valide"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:436
-#, php-format
-msgid "%d delete user successfully"
-msgstr "%d utilisateurs supprimés avec succès"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:456
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:462
-msgid "Activate user failed: invalid uid."
-msgstr ""
-"La confirmation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
-"pas valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:483
-#, php-format
-msgid "%d users activated."
-msgstr "%d utilisateurs confirmés."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:508
-msgid "Role assignment failed: invalid parameters."
-msgstr "L'affectation du rôle a échoué : paramètres non valides."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:514
-msgid "Role assignment failed: invalid user ids."
-msgstr "L'affectation du rôle a échoué : uid (numéro utilisateur) non valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:519
-msgid "Role assignment failed: invalid operation."
-msgstr "L'affectation du rôle a échoué : opération non valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:529
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:547
-msgid "Role assignment failed."
-msgstr "L'affectation du rôle a échoué."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/IndexController.php:566
-msgid "Role assignment succeeded."
-msgstr "Succès de l'affectation du rôle."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/ProfileController.php:242
-msgid "Profile dress-up data saved successfully."
-msgstr "Habillage des données de profil enregistré avec succès."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/ProfileController.php:366
-msgid "Privacy set up failed: invalid field."
-msgstr "Le paramétrage de la confidentialité a échoué : champs non valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/ProfileController.php:371
-msgid "Privacy set up failed: invalid privacy."
-msgstr ""
-"Le paramétrage de la confidentialité a échoué : confidentialité non valide."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/ProfileController.php:393
-msgid "Privacy set up failed: update error."
-msgstr "Le paramétrage de la confidentialité a échoué : erreur de mise à jour"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/ProfileController.php:408
-msgid "Privacy set up successfully."
-msgstr "Le paramétrage de la confidentialité a été un succès."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:47
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:173
-msgid "User data update failed."
-msgstr ""
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:61
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:214
-#, fuzzy
-msgid "User data update successful."
-msgstr "Le paramétrage de la confidentialité a été un succès."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:107
-#, fuzzy
-msgid "User avatar change failed."
-msgstr "Le changement d'avatar utilisateur a échoué"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:112
-#, fuzzy
-msgid "User avatar change successful."
-msgstr "Le changement d'avatar utilisateur a réussi"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:264
-#, fuzzy
-msgid "Group deleted successfully."
-msgstr "%d utilisateurs supprimés avec succès"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:324
-msgid "Base info"
-msgstr "Informations générales"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:331
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:37
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:134
-msgid "Avatar"
-msgstr "Avatar"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/EditController.php:376
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/MaintenanceController.php:55
-msgid "User was not found."
-msgstr "L'utilisateur n'a pas été trouvé"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/RoleController.php:102
-msgid "User removed from the role."
-msgstr "L'utilisateur a été supprimé du rôle."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/RoleController.php:106
-msgid "User not in the role."
-msgstr "L'utilisateur n'est pas dans le rôle."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/RoleController.php:124
-msgid "User added to the role."
-msgstr "L'utilisateur a été ajouté au rôle."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/RoleController.php:135
-msgid "User already in the role."
-msgstr "L'utilisateur est déja dans ce rôle."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/RoleController.php:140
-msgid "User not found."
-msgstr "Utilisateur non trouvé."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/RoleController.php:193
-#, php-format
-msgid "Users of role %s"
-msgstr "Utilisateurs du rôle %s"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/MaintenanceController.php:208
-msgid "Clear failed."
-msgstr "Le nettoyage a échoué."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/MaintenanceController.php:218
-#: /var/www/html/local/pi/pi-user/usr/module/user/src/Controller/Admin/MaintenanceController.php:235
-msgid "Clear all deleted user successfully."
-msgstr "Le nettoyage de tous les utilsateurs supprimés a été un succès."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:18
-msgid "User account"
-msgstr "Compte utilisateur"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:24
-msgid "User profile"
-msgstr "Profil utilisateur"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:30
-msgid "Roles"
-msgstr "Rôles"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:36
-msgid "Profile fields"
-msgstr "Champs profil"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:51
-msgid "Avatars"
-msgstr "Avatars"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:57
-msgid "Forms"
-msgstr "Formulaire"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:63
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:141
-msgid "Plugin management"
-msgstr "Gestion Plugins"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:69
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:179
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/permission.php:75
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:217
-msgid "Inquiry"
-msgstr "Recherche Compte"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/module.php:17
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:21
-msgid "User"
-msgstr "User"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/module.php:18
-msgid "User profile and services."
-msgstr "Management des comptes utilisateurs et services associés"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:25
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:25
 msgid "Login"
 msgstr "Connexion"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:29
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:29
 msgid "Registration"
 msgstr "Inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:33
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:25
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:33
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:25
 msgid "Account"
 msgstr "Compte"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:44
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:37
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:134
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:331
+msgid "Avatar"
+msgstr "Avatar"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:44
 msgid "List limit"
 msgstr "Limite de liste"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:45
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:45
 msgid "Number of items on list page."
 msgstr "Nombre d'éléments sur la page de liste"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:51
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:51
 msgid "Birthdate format"
 msgstr "Format date de naissance"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:52
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:52
 msgid "Format for birthdate display."
 msgstr "Format de l'affichage de la date de naissance"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:57
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:57
 msgid "Email expiration"
 msgstr "Durée expiration Email"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:58
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:58
 msgid "Expiration time for email/password reset (in hours)."
 msgstr ""
 "Durée d'expiration pour la réinitialisation de l'adresse email/mot de passe "
 "(en heure)"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:64
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:64
 msgid "Email confirmation"
 msgstr "Confirmation de l'Email"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:65
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:65
 msgid "Email confirmation with token is required for email change."
 msgstr "Une confirmation par mail et token est requise pour modifier l'email"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:72
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:72
 msgid "Profile complete"
 msgstr "Profil complet"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:73
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:73
 msgid "Require user to complete profile data."
 msgstr "Exiger de l'utilisateur qu'il complète ses données profil"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:80
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:80
 msgid "Head keywords"
-msgstr ""
+msgstr "Mots clefs principaux"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:81
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:81
 msgid "Head keywords for SEO."
-msgstr ""
+msgstr "Mots Clefs principaux pour SEO"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:82
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:82
 msgid ""
 "account,social,tools,privacy,settings,profile,user,login,register,password,"
 "avatar"
 msgstr ""
+"compte, réseaux, sociaux, outils, données confidentielles, utilisateur, "
+"connexion, inscription, mot de passe, avatar"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:87
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:87
 msgid "Login disable"
 msgstr "Désactiver la connexion"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:88
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:88
 msgid "Disable user login"
 msgstr "Désactiver la connexion utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:96
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:96
 msgid "Login CAPTCHA"
 msgstr "Connexion CAPTCHA"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:97
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:97
 msgid "Enable CAPTCHA for user login"
 msgstr "Activer le CAPTCHA pour la connexion utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:105
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:105
 msgid "Remember me"
 msgstr "Se souvenir"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:106
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:106
 msgid "Days to remember login, 0 for disable."
 msgstr "Nb jours pour la fonction Se Souvenir, 0 pour désactiver"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:113
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:113
 msgid "Login field"
 msgstr "Champs de connexion"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:114
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:114
 msgid "Identity field(s) for authentication."
 msgstr "Champs d'identité utilisé(s) pour se connecter"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:122
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:26
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:17
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:30
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:31
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:21
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:43
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:67
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:122
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:26
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:17
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:30
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:31
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:21
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:43
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:67
 msgid "Username"
 msgstr "Nom utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:123
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:58
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:18
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:47
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:33
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:44
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:71
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:123
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:58
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:18
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:47
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:33
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:44
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:71
 msgid "Email"
 msgstr "Email"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:133
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:133
 msgid "Maximum attempts"
 msgstr "Nb tentatives maximums"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:134
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:134
 msgid "Maximum attempts allowed to try for user login"
 msgstr "Nb tentatives maximums autorisées pour se connecter"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:142
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:142
 msgid "Register disable"
 msgstr "Désactiver l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:143
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:143
 msgid "Disable user registration"
 msgstr "Désactiver l'inscription utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:151
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:151
 msgid "Register CAPTCHA"
 msgstr "Inscription CAPTCHA"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:152
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:152
 msgid "Enable CAPTCHA for user registration"
 msgstr "Activer le CAPTCHA pour l'inscription utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:160
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:160
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:19
+msgid "Activation"
+msgstr "Activation"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:161
+msgid "Activation mode for user accounts"
+msgstr "Mode d'activation pour les comptes utilisateurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:166
+msgid "Automatically activated"
+msgstr "Confirmé automatiquement"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:167
+msgid "Activated by user email"
+msgstr "Confirmation par mail utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:168
+msgid "Activated by admin approval"
+msgstr "Confirmé par l'approbation administrateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:178
+msgid "Activation expiration"
+msgstr "Expiration de l'activation"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:179
+msgid "Expiration time for activation email (in hours)."
+msgstr "Durée d'expiration pour l'activation par mail (en heures)."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:186
+msgid "Email notification"
+msgstr "Email de notification"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:187
+msgid "Send email notification on register success by admin approval."
+msgstr ""
+"Envoyer un email de notification en cas de succès de l'inscription après la "
+"validation de l'admin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:195
 msgid "Register complete"
 msgstr "Terminer l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:161
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:196
 msgid "Require user to complete register data in an extra form."
 msgstr ""
 "Exige de l'utilisateur qu'il termine son inscription via un formulaire "
 "additionnel"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:169
-msgid "Email notification"
-msgstr "Email de notification"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:170
-msgid "Send email notification for register success."
-msgstr "Envoyer un mail de notification en cas de succès de l'inscription"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:178
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:19
-msgid "Activation"
-msgstr "Activation"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:179
-msgid "Activation mode for user accounts"
-msgstr "Mode d'activation pour les comptes utilisateurs"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:184
-msgid "Automatically activated"
-msgstr "Confirmé automatiquement"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:185
-msgid "Activated by user email"
-msgstr "Confirmation par mail utilisateur"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:186
-msgid "Activated by admin approval"
-msgstr "Confirmé par l'approbation administrateur"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:196
-msgid "Activation expiration"
-msgstr "Expiration de l'activation"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:197
-msgid "Expiration time for activation email (in hours)."
-msgstr "Durée d'expiration pour l'activation par mail (en heures)."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:205
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:205
 msgid "Username format"
 msgstr "Format Nom utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:206
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:206
 msgid "Format of username for registration."
 msgstr "Format du nom utilisateur lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:211
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:244
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:211
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:247
 msgid "Strict: alphabet or number only"
 msgstr "Strict : alphabet ou numérique seulement"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:212
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:245
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:212
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:248
+msgid "Strict: alphabet, number or space only"
+msgstr "Strict : alphabétiques, numériques et espaces seulement"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:213
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:249
 msgid "Medium: ASCII characters"
 msgstr "Medium : caractères ASCII"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:213
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:246
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:214
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:250
+msgid "Medium: ASCII characters and spaces"
+msgstr "Moyen : caractères ASCII et espaces"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:215
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:251
 msgid "Loose: multi-byte characters"
 msgstr "Bas : caractères multibytes"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:223
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:216
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:252
+msgid "Loose: multi-byte characters and spaces"
+msgstr "Faible : caractères multi-bit et espaces"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:226
 msgid "Minimum username"
 msgstr "Nom utilisateur minimum"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:224
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:227
 msgid "Minimum length of username for user registration"
 msgstr "Longueur minimum du nom utilisateur lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:231
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:234
 msgid "Maximum username"
 msgstr "Nom utilisateur maximum"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:232
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:235
 msgid "Maximum length of username for user registration"
 msgstr "Longueur maximum du nom utilisateur lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:238
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:241
 msgid "Display name format"
 msgstr "Format du pseudo"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:239
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:242
 msgid "Format of display name for registration."
 msgstr "Format du pseudo lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:256
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:262
 msgid "Minimum display name"
 msgstr "Nom minimum"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:257
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:263
 msgid "Minimum length of display name for user registration"
 msgstr "Longueur minimum du nom utilisateur lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:264
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:270
 msgid "Maximum display name"
 msgstr "Nom maximum"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:265
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:271
 msgid "Maximum length of display name for user registration"
 msgstr "Longueur maximum du pseudo lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:272
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:278
 msgid "Minimum password"
 msgstr "Mot de passe minimum"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:273
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:279
 msgid "Minimum length of password for user registration"
 msgstr "Longueur minimale du mot de passe lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:280
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:286
 msgid "Maximum password"
 msgstr "Mot de passe maximum"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:281
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:287
 msgid "Maximum length of password for user registration"
 msgstr "Longueur maximale du mot de passe lors de l'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:288
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:294
 msgid "Username blacklist"
 msgstr "Liste noire Nom utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:289
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:295
 msgid ""
 "Reserved and forbidden username list, separated with `|`, regexp syntax is "
 "allowed."
@@ -525,11 +393,13 @@ msgstr ""
 "Liste des noms utilisateurs réservés/interdits, séparés par `|`, la syntaxe "
 "regexp est autorisée."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:296
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:302
 msgid "Display blacklist"
 msgstr "Liste noire pseudo"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:297
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:303
 msgid ""
 "Reserved and forbidden display name list, separated with `|`, regexp syntax "
 "is allowed."
@@ -537,259 +407,800 @@ msgstr ""
 "Liste des pseudos réservés / interdits, séparés par `|`, la syntaxe regexp "
 "est autorisée."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:304
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:310
 msgid "Email blacklist"
 msgstr "Liste noire Email"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:305
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:311
 msgid "Forbidden email list, separated with `|`, regexp syntax is allowed."
 msgstr ""
 "Liste des emails interdits, séparés par `|`, la syntaxe regexp est autorisée"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:314
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:320
 msgid "Max Avatar Width"
 msgstr "Largeur maximale avatar"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:315
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:321
 msgid "Allowed image width, 0 for no limit"
 msgstr "Largeur autorisée de l'image, 0 pour aucune limite"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:322
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:328
 msgid "Max Avatar Height"
 msgstr "Hauteur maximimale avatar"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:323
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:329
 msgid "Allowed image height, 0 for no limit"
 msgstr "Hauteur autorisée de l'image, 0 pour aucune limite"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:330
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:336
 msgid "Max File Size"
 msgstr "Taille maximal fichier"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:331
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:337
 msgid "Allowed avatar file to upload (in KB), 0 for no limit"
 msgstr ""
 "Taille autorisée de l'upload fichier avatar (en KB), 0 pour aucune limite"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:347
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:353
 msgid "Temporary Path"
 msgstr "Chemin (path) temporaire"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/config.php:348
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/config.php:354
 msgid "For temporary storage of avatar"
 msgstr "Pour stocker temporairement l'avatar"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:38
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/module.php:17
+#: MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:21
+msgid "User"
+msgstr "User"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/module.php:18
+msgid "User profile and services."
+msgstr "Management des comptes utilisateurs et services associés"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:38
 msgid "All"
 msgstr "Tout"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:46
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:46
 msgid "Activated user"
 msgstr "Utilisateur confirmé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:54
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:54
 msgid "Pending user"
 msgstr "Utilisateur en attente"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:62
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:34
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:36
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:66
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:62
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:34
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:36
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:66
 msgid "Add user"
 msgstr "Ajouter un utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:70
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:82
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:70
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:82
 msgid "Advanced search"
 msgstr "Recherche avancée"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:81
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:29
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:81
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:29
 msgid "Role"
 msgstr "Rôles"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:91
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:26
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:91
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:26
 msgid "Profile"
 msgstr "Profil"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:102
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:102
 msgid "Profile field"
 msgstr "Champs profil"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:110
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:110
 msgid "Profile dress up"
 msgstr "Habillage Profil"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:118
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:118
 msgid "Field privacy"
 msgstr "Confidentialité"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:129
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:129
 msgid "Form"
 msgstr "Formulaire"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:152
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:141
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:73
+msgid "Plugin management"
+msgstr "Gestion Plugins"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:152
 msgid "Timeline"
 msgstr "Activité"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:160
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:160
 msgid "Activity"
 msgstr "Activité"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:168
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:168
 msgid "Quicklink"
 msgstr "Lien rapide"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:190
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:179
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:79
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:190
 msgid "Stats"
 msgstr "Stats"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:198
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:198
 msgid "User log"
 msgstr "Logs utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/nav.php:206
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:206
 msgid "Deleted users"
 msgstr "Utilisateurs supprimés"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:42
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:46
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:72
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/nav.php:217
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:85
+msgid "Inquiry"
+msgstr "Recherche Compte"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/page.php:53
+msgid "Profile view"
+msgstr "Voir le Profil"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/page.php:59
+msgid "Activities view"
+msgstr "Voir les Activités"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:19
+msgid "Profile pages"
+msgstr "Pages de Profil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:28
+msgid "User account"
+msgstr "Compte utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:34
+msgid "User profile"
+msgstr "Profil utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:40
+msgid "Roles"
+msgstr "Rôles"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:46
+msgid "Profile fields"
+msgstr "Champs profil"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:61
+msgid "Avatars"
+msgstr "Avatars"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/permission.php:67
+msgid "Forms"
+msgstr "Formulaire"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/user.php:42
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:46
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:72
 msgid "Password"
 msgstr "Mot de passe"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:81
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:14
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:32
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:22
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/user.php:81
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:14
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:32
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:22
 msgid "Display name"
 msgstr "Pseudo"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:96
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\user/config/user.php:96
 msgid "Gender"
 msgstr "Genre"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:106
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:106
 msgid "Birthdate"
 msgstr "Date de naissance"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:145
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:50
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:26
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:48
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:145
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:50
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:26
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:48
 msgid "Active"
 msgstr "Confirmer"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:155
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:31
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:44
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:30
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:155
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:31
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:44
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:30
 msgid "Register time"
 msgstr "Date inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:165
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:165
 msgid "Activation time"
 msgstr "Date activation"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:175
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:53
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:175
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:53
 msgid "Disabled time"
 msgstr "Date désactivée"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:186
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:41
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:186
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:41
 msgid "Deleted time"
 msgstr "Date supprimée"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:199
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:199
 msgid "Level"
 msgstr "Niveau"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:208
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:208
 msgid "Last modified"
 msgstr "Dernière modification"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:216
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:216
 msgid "Personal website"
 msgstr "Site web personnel"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:224
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:224
 msgid "Short bio"
 msgstr "Courte Bio"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:232
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:232
 msgid "Signature"
 msgstr "Signature"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:241
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:32
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:78
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:83
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:241
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:32
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:78
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:83
 msgid "Register IP"
 msgstr "IP d\\'inscription"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:252
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:252
 msgid "Social tools"
 msgstr "Réseaux sociaux"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:259
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:259
 msgid "Tool name"
 msgstr "Nom réseau"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:262
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:262
 msgid "ID or URL"
 msgstr "Numéro ou URL"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:272
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:272
 msgid "User action"
 msgstr "Action utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/config/user.php:284
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/config/user.php:284
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/import.phtml:2
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/import.phtml:4
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:47
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:173
+msgid "User data update failed."
+msgstr "La mise à jour des données utilisateur a échoué"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:61
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:214
+msgid "User data update successful."
+msgstr "La mise à jour des données utilisateurs a réussie"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:107
+msgid "User avatar change failed."
+msgstr "Le changement d'avatar de l'utilisateur a échoué"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:112
+msgid "User avatar change successful."
+msgstr "Modification de l'avatar utilisateur effectuée avec succès"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:264
+msgid "Group deleted successfully."
+msgstr "Groupe supprimé avec succès"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:324
+msgid "Base info"
+msgstr "Informations générales"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/EditController.php:376
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:55
+msgid "User was not found."
+msgstr "L'utilisateur n'a pas été trouvé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:177
+msgid "Add user failed: user already exists."
+msgstr "L'ajout de l'utilisateur a échoué : l'utilisateur existe déja."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:193
+msgid "Add user failed: invalid operation."
+msgstr "L'ajout de l'utilisateur a échoué : l'opération n'est pas valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:214
+msgid "Add user successfully"
+msgstr "L'ajout de l'utilisateur a réussi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:325
+msgid "Enable user failed: invalid uid."
+msgstr ""
+"L'activation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
+"pas valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:346
+#, php-format
+msgid "%d users enabled."
+msgstr "%d utilisateurs activés."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:366
+msgid "Disable user failed: invalid uid."
+msgstr ""
+"La désactivation de l'utilisateur a échoué : l'uid (numéro utilisateur) "
+"n'est pas valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:387
+#, php-format
+msgid "%d disable user successfully"
+msgstr "%d utilisaterus désactivés avec succès"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:407
+msgid "Delete user failed: invalid uid"
+msgstr ""
+"La suppression de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
+"pas valide"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:436
+#, php-format
+msgid "%d delete user successfully"
+msgstr "%d utilisateurs supprimés avec succès"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:456
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:462
+msgid "Activate user failed: invalid uid."
+msgstr ""
+"La confirmation de l'utilisateur a échoué : l'uid (numéro utilisateur) n'est "
+"pas valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:483
+#, php-format
+msgid "%d users activated."
+msgstr "%d utilisateurs confirmés."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:508
+msgid "Role assignment failed: invalid parameters."
+msgstr "L'affectation du rôle a échoué : paramètres non valides."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:514
+msgid "Role assignment failed: invalid user ids."
+msgstr "L'affectation du rôle a échoué : uid (numéro utilisateur) non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:519
+msgid "Role assignment failed: invalid operation."
+msgstr "L'affectation du rôle a échoué : opération non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:529
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:547
+msgid "Role assignment failed."
+msgstr "L'affectation du rôle a échoué."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/IndexController.php:566
+msgid "Role assignment succeeded."
+msgstr "Succès de l'affectation du rôle."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:208
+msgid "Clear failed."
+msgstr "Le nettoyage a échoué."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:218
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/MaintenanceController.php:235
+msgid "Clear all deleted user successfully."
+msgstr "Le nettoyage de tous les utilsateurs supprimés a été un succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/ProfileController.php:242
+msgid "Profile dress-up data saved successfully."
+msgstr "Habillage des données de profil enregistré avec succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/ProfileController.php:366
+msgid "Privacy set up failed: invalid field."
+msgstr "Le paramétrage de la confidentialité a échoué : champs non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/ProfileController.php:371
+msgid "Privacy set up failed: invalid privacy."
+msgstr ""
+"Le paramétrage de la confidentialité a échoué : confidentialité non valide."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/ProfileController.php:393
+msgid "Privacy set up failed: update error."
+msgstr "Le paramétrage de la confidentialité a échoué : erreur de mise à jour"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/ProfileController.php:408
+msgid "Privacy set up successfully."
+msgstr "Le paramétrage de la confidentialité a été un succès."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/RoleController.php:102
+msgid "User removed from the role."
+msgstr "L'utilisateur a été supprimé du rôle."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/RoleController.php:106
+msgid "User not in the role."
+msgstr "L'utilisateur n'est pas dans le rôle."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/RoleController.php:124
+msgid "User added to the role."
+msgstr "L'utilisateur a été ajouté au rôle."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/RoleController.php:135
+msgid "User already in the role."
+msgstr "L'utilisateur est déja dans ce rôle."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/RoleController.php:140
+msgid "User not found."
+msgstr "Utilisateur non trouvé."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Controller/Admin/RoleController.php:193
+#, php-format
+msgid "Users of role %s"
+msgstr "Utilisateurs du rôle %s"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/src/Installer/Action/Install.php:138
+msgid "Basic profile"
+msgstr "Informations générales"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/edit-user.phtml:3
+msgid "Edit user: "
+msgstr "Editer l\\'utilisateur :"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/edit-user.phtml:34
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:88
+msgid "Replace with default avatar."
+msgstr "Remplacer par l\\'avatar par défaut"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/edit-user.phtml:40
+msgid "This user doesn't have any you can view"
+msgstr "Aucune information n\\'est visible pour cet utilisateur"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/edit-user.phtml:65
+msgid "Are you sure delete this group?"
+msgstr "Etes-vous sûr de vouloir supprimer ce groupe?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/form-profile-complete.phtml:4
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/form-register.phtml:4
+msgid "Register form"
+msgstr "Formulaire d\\'inscription"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/form-profile-complete.phtml:9
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/form-register.phtml:9
+msgid "Profile complete form"
+msgstr "Formulaire profil complété"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/import.phtml:2
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/import.phtml:4
 msgid "Import"
 msgstr "Import"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:17
-msgid "Item name"
-msgstr "Nom de l\\'élément"
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:15
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:22
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:75
+msgid "Submit"
+msgstr "Valider"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:18
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:28
-msgid "From module"
-msgstr "Du module"
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:16
+msgid "Inquire of user via ID, username, display name or email."
+msgstr "Rechercher le compte par numéro, nom utilisateur, pseudo ou email."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:19
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:24
-msgid "Display"
-msgstr "Affichage"
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:20
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:43
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:25
+msgid "Activated"
+msgstr "Confirmé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:20
-msgid "Items displayed on the homepage timeline"
-msgstr "Eléments affichés sur la page d\\'activité"
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:21
+msgid "Not activated"
+msgstr "Non confirmé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:21
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:24
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:22
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:27
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:23
+msgid "Enabled"
+msgstr "Activé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:23
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:24
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:24
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:21
 msgid "Yes"
 msgstr "Oui"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:22
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/inquiry.phtml:28
+msgid "Unavailable"
+msgstr "Non disponible"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:17
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:53
+msgid "Today"
+msgstr "Aujourd\\'hui"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:18
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:54
+msgid "Last week"
+msgstr "Semaine dernière"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:19
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:55
+msgid "Last month"
+msgstr "Mois dernier"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:20
+msgid "History"
+msgstr "Historique"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:21
+msgid "Register num"
+msgstr "Nombre d\\'inscriptions"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:22
+msgid "Activated num"
+msgstr "Nombre de confirmés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:23
+msgid "Pending num"
+msgstr "Nombre en attente"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:24
+msgid "Top 10 registered IP"
+msgstr "Top 10 IP enregistrées"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:25
+msgid "None"
+msgstr "Aucun"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:26
+msgid "Sort by key:"
+msgstr "Trier par : "
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:27
+msgid "uid"
+msgstr "uid"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:28
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:34
+msgid "Edit"
+msgstr "Editer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:29
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:85
+msgid "View log"
+msgstr "Voir les logs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:33
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:55
+msgid "Activated time"
+msgstr "Date de confirmation"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:34
+msgid "Last login time"
+msgstr "Date dernière connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:35
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:51
+msgid "Last login ip"
+msgstr "Dernière IP de connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:36
+msgid "Login count"
+msgstr "Nombre de connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:37
+msgid "Sort by:"
+msgstr "Trié par : "
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:38
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:63
+msgid "Are you sure to delete this user?"
+msgstr "Etes-vous sûr de vouloir supprimer cet utilisateur?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:39
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:64
+msgid "Are you sure to delete these users?"
+msgstr "Etes-vous sûr de vouloir supprimer ces utilisateurs?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:40
+msgid "Are you sure to delete all of these users?"
+msgstr "Etes-vous sûr de vouloir supprimer tous ces utilisateurs?"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:42
+msgid "IP"
+msgstr "IP"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:45
+msgid "Displayname"
+msgstr "Pseudo"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:46
+msgid "Clear the users"
+msgstr "Nettoyer les utilisateurs"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:48
+msgid "Clear all deleted users"
+msgstr "Nettoyer tous les utilisateurs supprimés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:49
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:81
+msgid "No user matched your request."
+msgstr "Aucun utilisateur ne correspond à votre requête."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:52
+msgid "Created time"
+msgstr "Date de création"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:54
+msgid "Last login"
+msgstr "Dernière connexion"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/maintenance.phtml:56
+msgid "Null"
+msgstr "Vide"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:17
+msgid "Item name"
+msgstr "Nom de l\\'élément"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:18
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:28
+msgid "From module"
+msgstr "Du module"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:19
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:24
+msgid "Display"
+msgstr "Affichage"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:20
+msgid "Items displayed on the homepage timeline"
+msgstr "Eléments affichés sur la page d\\'activité"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:22
 msgid "No"
 msgstr "Non"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:23
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:23
 msgid "Activities"
 msgstr "Activités"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:24
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:24
 msgid "Activities items repository"
 msgstr "Répertoire des logs Activité"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:25
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:25
 msgid ""
 "Items to display on the user\\'s homepage, Drag items vertically to "
 "determine the order displays"
@@ -797,224 +1208,77 @@ msgstr ""
 "Eléments à afficher sur la page utilisateur, glisser les éléments "
 "verticalement pour choisir l\\'ordre d\\'affichage"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:26
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:26
 msgid "Quicklinks"
 msgstr "Liens rapides"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/plugin.phtml:27
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/plugin.phtml:27
 msgid "Quicklinks items repository"
 msgstr "Répertoire des valeurs de liens rapides"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:15
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:22
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:75
-msgid "Submit"
-msgstr "Valider"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:16
-msgid "Inquire of user via ID, username, display name or email."
-msgstr "Rechercher le compte par numéro, nom utilisateur, pseudo ou email."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:20
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:43
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:25
-msgid "Activated"
-msgstr "Confirmé"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:21
-msgid "Not activated"
-msgstr "Non confirmé"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:22
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:27
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:23
-msgid "Enabled"
-msgstr "Activé"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:23
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:24
-msgid "Disabled"
-msgstr "Désactivé"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/inquiry.phtml:28
-msgid "Unavailable"
-msgstr "Non disponible"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:17
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:53
-msgid "Today"
-msgstr "Aujourd\\'hui"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:18
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:54
-msgid "Last week"
-msgstr "Semaine dernière"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:19
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:55
-msgid "Last month"
-msgstr "Mois dernier"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:20
-msgid "History"
-msgstr "Historique"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:21
-msgid "Register num"
-msgstr "Nombre d\\'inscriptions"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:22
-msgid "Activated num"
-msgstr "Nombre de confirmés"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:23
-msgid "Pending num"
-msgstr "Nombre en attente"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:24
-msgid "Top 10 registered IP"
-msgstr "Top 10 IP enregistrées"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:25
-msgid "None"
-msgstr "Aucun"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:26
-msgid "Sort by key:"
-msgstr "Trier par : "
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:27
-msgid "uid"
-msgstr "uid"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:28
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:34
-msgid "Edit"
-msgstr "Editer"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:29
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:85
-msgid "View log"
-msgstr "Voir les logs"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:33
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:55
-msgid "Activated time"
-msgstr "Date de confirmation"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:34
-msgid "Last login time"
-msgstr "Date dernière connexion"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:35
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:51
-msgid "Last login ip"
-msgstr "Dernière IP de connexion"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:36
-msgid "Login count"
-msgstr "Nombre de connexion"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:37
-msgid "Sort by:"
-msgstr "Trié par : "
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:38
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:63
-msgid "Are you sure to delete this user?"
-msgstr "Etes-vous sûr de vouloir supprimer cet utilisateur?"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:39
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:64
-msgid "Are you sure to delete these users?"
-msgstr "Etes-vous sûr de vouloir supprimer ces utilisateurs?"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:40
-msgid "Are you sure to delete all of these users?"
-msgstr "Etes-vous sûr de vouloir supprimer tous ces utilisateurs?"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:42
-msgid "IP"
-msgstr "IP"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:45
-msgid "Displayname"
-msgstr "Pseudo"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:46
-msgid "Clear the users"
-msgstr "Nettoyer les utilisateurs"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:48
-msgid "Clear all deleted users"
-msgstr "Nettoyer tous les utilisateurs supprimés"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:49
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:81
-msgid "No user matched your request."
-msgstr "Aucun utilisateur ne correspond à votre requête."
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:52
-msgid "Created time"
-msgstr "Date de création"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:54
-msgid "Last login"
-msgstr "Dernière connexion"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/maintenance.phtml:56
-msgid "Null"
-msgstr "Vide"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:18
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:34
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:18
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:34
 msgid "Basic field"
 msgstr "Informations générales"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:19
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:19
 msgid "Field title can be edited for display."
 msgstr "Le nom du champs peut être édité pour l\\'affichage."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:20
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:20
 msgid "Field"
 msgstr "Champs"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:21
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:21
 msgid "Default setting"
 msgstr "Paramètre par défaut"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:22
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:22
 msgid "Forced setting"
 msgstr "Paramètre forcé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:23
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:23
 msgid "Field title"
 msgstr "Nom du champs"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:25
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:25
 msgid "Search"
 msgstr "Rechercher"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:26
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:26
 msgid "Editable"
 msgstr "Editable"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:27
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:23
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:42
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:76
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:27
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:23
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:42
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:76
 msgid "Required"
 msgstr "Requis"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:29
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:29
 msgid "Compound"
 msgstr "Organiser"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:30
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:30
 msgid "Compound to organize a group of fields."
 msgstr "Organiser pour composer un groupe de champs"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:31
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:31
 msgid ""
 "Privacy policy: set default value for profile field privacy setting. If "
 "`Forced` is set, user can not change privacy for corresponding field."
@@ -1024,282 +1288,316 @@ msgstr ""
 "choisie, l\\'utilisateur ne peut pas changer la confidentialité du champs "
 "correspondant."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:32
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:32
 msgid "Add group"
 msgstr "Ajouter un groupe"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:33
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:33
 msgid "Field display on profile page"
 msgstr "Champs affiché sur la page de profil"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:35
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:18
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:21
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:35
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:18
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:21
 msgid "Title"
 msgstr "Titre"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:36
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:36
 msgid "Data will not be saved until `Save` button is hit."
 msgstr ""
 "Les données ne seront pas enregistrées avant que le bouton `Enregistrer` ne "
 "soit cliqué."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:37
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:37
 msgid "Click to choose a group for the field to add."
 msgstr "Cliquer pour choisir le groupe du champs à ajouter."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:38
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:38
 msgid "Click to add a group."
 msgstr "Cliquer pour ajouter un groupe."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:39
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:39
 msgid "Cancel"
 msgstr "Annuler"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:40
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:40
 msgid "Save"
 msgstr "Enregistrer"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:41
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:41
 msgid "Changes are not saved yet. Would you still like to leave this page?"
 msgstr ""
 "Les changements n\\'ont pas été enregistrés. Voulez-vous toujours quitter "
 "cette page? "
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/profile.phtml:42
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/profile.phtml:42
 msgid "Create a group before adding."
 msgstr "Créer un groupe avant d\\'ajouter."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:15
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:15
 msgid "Admin roles"
 msgstr "Rôles admin"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:16
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:16
 msgid "Front roles"
 msgstr "Rôles côté Utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:17
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:17
 msgid "Name"
 msgstr "Nom"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:19
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:27
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:19
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:27
 msgid "Users in role"
 msgstr "Utilisateurs dans le rôle"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:20
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:33
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:20
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:33
 msgid "Action"
 msgstr "Action"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:24
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:24
 msgid "Type"
 msgstr "Type"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:25
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:25
 msgid "Front"
 msgstr "Accueil"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:26
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:26
 msgid "Admin"
 msgstr "Admin"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:28
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:28
 msgid "User id or name"
 msgstr "Numéro utilisateur (uid) ou nom"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:29
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:29
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:30
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:30
 msgid "User id"
 msgstr "Numéro utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/role.phtml:35
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/role.phtml:35
 msgid "None user in this role."
 msgstr "Aucun utilisateur dans ce rôle."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/form-profile-complete.phtml:5
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/form-register.phtml:5
-msgid "Register form"
-msgstr "Formulaire d\\'inscription"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/form-profile-complete.phtml:10
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/form-register.phtml:10
-msgid "Profile complete form"
-msgstr "Formulaire profil complété"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/edit-user.phtml:4
-msgid "Edit user: "
-msgstr "Editer l\\'utilisateur :"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/edit-user.phtml:35
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:88
-msgid "Replace with default avatar."
-msgstr "Remplacer par l\\'avatar par défaut"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/edit-user.phtml:41
-msgid "This user doesn't have any you can view"
-msgstr "Aucune information n\\'est visible pour cet utilisateur"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/edit-user.phtml:66
-msgid "Are you sure delete this group?"
-msgstr "Etes-vous sûr de vouloir supprimer ce groupe?"
-
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:17
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:65
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:17
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:65
 msgid "Active State"
 msgstr "Statut confirmation"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:18
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:18
 msgid "Enable State"
 msgstr "Statut activation"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:19
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:19
 msgid "Select roles"
 msgstr "Selectionner les rôles"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:20
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:20
 msgid "Apply"
 msgstr "Appliquer"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:27
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:27
 msgid "Inactive"
 msgstr "Non confirmé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:28
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:28
 msgid "Pending"
 msgstr "En attente"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:31
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:31
 msgid "Register time from"
 msgstr "Date d\\'inscription après le "
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:32
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:32
 msgid "Register time to"
 msgstr "Date d\\'inscription avant le"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:35
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:35
 msgid "Delete"
 msgstr "Supprimer"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:37
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:37
 msgid "Passwords don\\'t match."
 msgstr "Les mots de passe ne correspondent pas."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:38
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:38
 msgid "Username is already taken."
 msgstr "Le nom utilisateur est déja pris."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:39
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:39
 msgid "Email is already taken."
 msgstr "L\\'email est déja pris."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:40
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:40
 msgid "Display name is already taken."
 msgstr "Le pseudo est déja pris"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:41
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:41
 msgid "Back to users list"
 msgstr "Retour à la liste utilisateurs"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:45
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:45
 msgid "Email invalid"
 msgstr "Email non valide"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:47
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:47
 msgid "Password confirm"
 msgstr "Confirmation mot de passe"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:49
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:49
 msgid "Enable"
 msgstr "Activer"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:50
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:50
 msgid "Disable"
 msgstr "Désactiver"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:51
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:61
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:51
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:61
 msgid "Front role"
 msgstr "Rôle côté Utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:52
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:62
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:52
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:62
 msgid "Admin role"
 msgstr "Rôle côté Admin"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:56
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:56
 msgid "Last three months"
 msgstr "3 derniers mois"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:57
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:57
 msgid "Last six months"
 msgstr "6 derniers mois"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:58
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:58
 msgid "Last year"
 msgstr "Dernière année"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:59
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:59
 msgid "Assign role"
 msgstr "Allouer le rôle"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:60
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:60
 msgid "Remove role"
 msgstr "Supprimer le rôle"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:68
-#, fuzzy
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:68
 msgid "Are you sure to activate this account? It can not be reverted."
 msgstr ""
 "Etes-vous sûr de vouloir confirmer ce compte, cela ne peut pas être annulé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:69
-#, fuzzy
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:69
 msgid "Are you sure to activate these accounts? It can not be reverted."
-msgstr "Etes-vous sûr de vouloir confirmer ce compte, cela ne peut être annulé"
+msgstr ""
+"Etes-vous sûr de vouloir confirmer ces comptes, cela ne peut être annulé"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:70
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:70
 msgid "Choose at least one item before submission."
 msgstr "Choisir au moins un élement avant de soumettre"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:73
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:73
 msgid "Confirm password"
 msgstr "Confirmer le mot de passe"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:74
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:74
 msgid "Activate"
 msgstr "Confirmer"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:77
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:77
 msgid "Invalid email."
 msgstr "Email non valide"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:79
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:79
 msgid "Activation state"
 msgstr "Statut confirmation"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:80
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:80
 msgid "User ID"
 msgstr "N° Utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:84
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:84
 msgid "Search result"
 msgstr "Résultat de recherche"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:86
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:86
 msgid "No pending user."
 msgstr "Aucun utilisateur en attente."
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:87
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:87
 msgid "Edit user"
 msgstr "Editer l\\'utilisateur"
 
-#: /var/www/html/local/pi/pi-user/usr/module/user/template/admin/user.phtml:89
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\user/template/admin/user.phtml:89
 msgid "Are you sure to delete this group?"
 msgstr "Etes-vous sûr de vouloir supprimer ce groupe?"
+
+#~ msgid "Send email notification for register success."
+#~ msgstr "Envoyer un mail de notification en cas de succès de l'inscription"
 
 #~ msgid "Confirm credential"
 #~ msgstr "Confirmer les identifiants"
