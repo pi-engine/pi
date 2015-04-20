@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
 "POT-Creation-Date: 2015-04-20 18:15+0100\n"
-"PO-Revision-Date: 2015-04-20 18:16+0100\n"
+"PO-Revision-Date: 2015-04-20 19:49+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -30,7 +30,7 @@ msgstr "Commentaires"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\comment/template/block/post-list.phtml:20
 msgid "On "
-msgstr "ur"
+msgstr "Sur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\comment/template/block/post-list.phtml:33
