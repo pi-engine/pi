@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-05-20 18:08+0100\n"
-"PO-Revision-Date: 2014-05-28 17:48+0100\n"
+"POT-Creation-Date: 2015-04-20 18:02+0100\n"
+"PO-Revision-Date: 2015-04-20 18:10+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -77,12 +77,17 @@ msgid "The module %s is deactivated successfully."
 msgstr "Le module %s a été désactivé avec succès."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:333
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/LoginController.php:58
+msgid "Admin login"
+msgstr "Connexion Admin"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:332
 msgid "Bootstrap compiled successfully."
 msgstr "Bootstrap a été compilé avec succès."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:376
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:375
 msgid "Bootstrap reset successfully."
 msgstr "Boostrap réinitialisé avec succès"
 
@@ -115,49 +120,49 @@ msgstr "Il vous reste %d  essais"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:88
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:94
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr "Connexion utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:93
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:109
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:17
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:10
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:122
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:13
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:6
 msgid "Login"
 msgstr "Connexion"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:95
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:129
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/ProfileController.php:77
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:54
-msgid "login,register,find,password,user,account"
-msgstr "connexion, inscription, rappel, mot de passe, utilisateur, compte"
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:94
+msgid ""
+"Use this page to connect to our website and participate, share contents, use "
+"our features, and interacts with other members"
+msgstr ""
+"Utiliser cette page pour vous connecter sur le site et participer, partager "
+"des contenus, utiliser nos services et intéragir avec les autres membres"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:112
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:115
 msgid "Invalid request."
 msgstr "Demande non valide."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:156
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:159
 msgid "You have tried too many times. Please try later."
 msgstr "Vous avez tenté trop de fois. Merci d'essayer plus tard."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:180
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:183
 msgid "Invalid credentials provided, please try again."
 msgstr "Identifiants fournis non valides, merci d'essayer de nouveau."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:222
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:225
 msgid "You have logged in successfully."
 msgstr "Vous vous êtes connectés avec succès."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:241
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/LoginController.php:244
 msgid "You logged out successfully."
 msgstr "Vous vous êtes déconnectés avec succès."
 
@@ -178,19 +183,19 @@ msgstr ""
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:127
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:128
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/FindPasswordForm.php:51
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login.phtml:14
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login.phtml:17
 #: MARC\Documents\GitHub\pi\usr\module\system/template/front/password-find.phtml:2
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:9
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:5
 msgid "Find password"
 msgstr "Rappel mot de passe"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:143
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:146
 msgid "Invalid token for password reset."
 msgstr "Token non valide pour la réinitialisation du mot de passe."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:197
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/PasswordController.php:200
 msgid "Password reset successfully."
 msgstr "Le mot de passe a été réinitialisé avec succès."
 
@@ -254,19 +259,19 @@ msgstr "Inscription du compte utilisateur"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:52
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:110
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login.phtml:17
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:113
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:14
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login.phtml:20
 msgid "Register"
 msgstr "S'inscrire"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:80
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:83
 msgid "Invalid input, please try again."
 msgstr "Donnée non valide, merci d'essayer de nouveau."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:99
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Front/RegisterController.php:102
 msgid "The account is not created in database, please try again."
 msgstr ""
 "Le compte n'a pas été créé dans la base de donnée, merci d'essayer de "
@@ -309,14 +314,14 @@ msgstr "Date de naissance"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/AccountForm.php:93
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:189
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:207
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ConfigForm.php:58
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:157
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleForm.php:58
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavForm.php:67
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavPageForm.php:131
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:126
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:74
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:93
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:68
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RegisterForm.php:100
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ResetPasswordForm.php:73
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/RoleForm.php:115
@@ -325,7 +330,7 @@ msgid "Submit"
 msgstr "Valider"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:61
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:66
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleForm.php:40
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavForm.php:40
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageAddForm.php:45
@@ -334,46 +339,41 @@ msgid "Title"
 msgstr "Nom"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:65
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:70
 msgid "Block label for display."
 msgstr "Label du bloc pour l'affichage"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:73
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:78
 msgid "Hide title"
 msgstr "Cacher le nom"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:76
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:81
 msgid "Hide block title from display."
 msgstr "Ne pas afficher le nom du bloc"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:84
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:89
 msgid "Full-size body"
 msgstr "Corps de page (Body) pleine taille"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:87
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:92
 msgid "Display block body in full-size w/o padding."
 msgstr "Afficher le corps de bloc en pleine taille sans effet padding"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:94
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:99
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleForm.php:30
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr "Nom unique"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:98
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:103
 msgid "A unique name to be called as widget."
 msgstr "Nom unique pour être appelé comme widget"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:106
-msgid "Template"
-msgstr "Modèle (Template)"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:111
@@ -382,49 +382,42 @@ msgstr ""
 "Modèle de présentation PHTML (template), extension fichier optionnelle."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:119
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:126
+msgid "Template"
+msgstr "Modèle (Template)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:141
 msgid "Description"
 msgstr "Description"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:123
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:145
 msgid "Set a hint to distinguish the block."
 msgstr "Définir une clef pour distinguer le bloc"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:130
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:152
 msgid "Subline"
 msgstr "Ligne d'en dessous"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:134
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:156
 msgid "Header subline. HTML is allowed."
 msgstr "Sous ligne du Header, HTML autorisé."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:141
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:163
 msgid "Style class"
 msgstr "Style de la classe"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:167
 msgid "Specified block container CSS class."
 msgstr "Classe CSS du bloc container spécifié"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:153
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:46
-msgid "Cache TTL"
-msgstr "Durée de vie du Cache (TTL)"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:161
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/PageEditForm.php:54
-msgid "Cache level"
-msgstr "Niveau de cache"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:209
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/BlockModuleForm.php:227
 msgid "Configs"
 msgstr "Paramètres"
 
@@ -447,9 +440,13 @@ msgstr "Merci de saisir les caractères affichés."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:81
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:85
 msgid "Remember me"
 msgstr "Se souvenir"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/LoginForm.php:85
+msgid "Remember login status"
+msgstr "Se souvenir de moi"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/src/Form/MemberForm.php:81
@@ -612,14 +609,114 @@ msgid "Setup page"
 msgstr "Page de configuration"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Password.php:50
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/ActionAvailable.php:31
+msgid "The action is not available."
+msgstr "Cette action n'est pas disponible."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/BlockNameDuplicate.php:31
+msgid "Block name already exists"
+msgstr "Le nom de bloc est existe déja"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/ControllerAvailable.php:31
+msgid "The controller is not available."
+msgstr "Le contrôleur n'est pas disponible"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/ModuleName.php:47
+msgid "Module name is reserved"
+msgstr "Ce nom de module est réservé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/ModuleName.php:48
+msgid "Module name is already taken"
+msgstr "Ce nom de module est déja pris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/ModuleTitle.php:31
+msgid "Module title is already taken"
+msgstr "Ce titre de module est déja pris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/NavNameDuplicate.php:31
+msgid "Navigation name is already taken"
+msgstr "Ce nom de Navigation est déja pris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/PageDuplicate.php:31
+msgid "The page already exists"
+msgstr "Cette page existe déja"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Password.php:37
 msgid "Password is less than %min% characters long"
 msgstr "Le mot de passe a une longueur de moins de %min% caractères"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Password.php:51
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Password.php:38
 msgid "Password is more than %max% characters long"
 msgstr "Le mot de passe a une longueur de plus de %max% caractères"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/RoleNameDuplicate.php:31
+msgid "Role name is already taken"
+msgstr "Ce nom de rôle est déja pris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/UserEmail.php:48
+msgid "User email is reserved"
+msgstr "Cet email utilisateur est réservé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/UserEmail.php:49
+msgid "User email is already used"
+msgstr "Cet email utilisateur est déja pris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:80
+msgid "Invalid username: %formatHint%"
+msgstr "Ce nom utilisateur n'est pas valide : %formatHint%"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:81
+msgid "Username is reserved"
+msgstr "Ce nom utilisateur est réservé"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:82
+msgid "Username is already taken"
+msgstr "Ce nom d'utilisateur est déja pris"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:86
+msgid "Only alphabetic and digits are allowed"
+msgstr "Seuls les caractères alphabétiques et les nombres sont autorisés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:87
+msgid "Only alphabetic, digits and spaces are allowed"
+msgstr "Seuls les caractères alphabétiques et numériques sont autorisés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:88
+msgid "Only ASCII characters are allowed"
+msgstr "Seuls les caractères ASCII sont autorisés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:89
+msgid "Only ASCII characters and spaces are allowed"
+msgstr "Seuls les caractères ASCII et les espaces sont autorisés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:90
+msgid "Only multi-byte characters are allowed"
+msgstr "Seuls les caractères multi-byte sont autorisés"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\usr\module\system/src/Validator/Username.php:91
+msgid "Only multi-byte characters and spaces are allowed"
+msgstr "Seuls les caractèrs multi-byte et les espaces sont autorisés"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:50
@@ -654,36 +751,36 @@ msgstr ""
 "tard."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:8
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:8
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:5
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:5
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:5
 msgid "homepage"
 msgstr "accueil"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:10
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:7
 msgid "re-login"
 msgstr "se reconnecter"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:11
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:8
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr "Vous vous êtes déconnectés avec succès, merci d'aller %s ou de %s."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:16
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-logout.phtml:12
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register.phtml:4
 msgid "Choose: "
 msgstr "Choisissez :"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-message.phtml:8
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-message.phtml:5
 msgid "logout"
 msgstr "deconnexion"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-message.phtml:9
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-message.phtml:6
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
@@ -693,7 +790,7 @@ msgstr ""
 "vous reconnecter."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:9
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/login-success.phtml:6
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr "Vous vous êtes connectés avec succès, merci d'aller à %s."
@@ -736,12 +833,21 @@ msgstr ""
 "tard."
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:11
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:8
 msgid "login"
 msgstr "vous connecter"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:12
+#: MARC\Documents\GitHub\pi\usr\module\system/template/front/register-success.phtml:9
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr "Vous vous êtes inscrits avec succès, merci d'aller à %s ou %s."
+
+#~ msgid "login,register,find,password,user,account"
+#~ msgstr "connexion, inscription, rappel, mot de passe, utilisateur, compte"
+
+#~ msgid "Cache TTL"
+#~ msgstr "Durée de vie du Cache (TTL)"
+
+#~ msgid "Cache level"
+#~ msgstr "Niveau de cache"
