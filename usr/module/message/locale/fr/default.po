@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
 "POT-Creation-Date: 2015-04-20 18:12+0100\n"
-"PO-Revision-Date: 2015-04-20 18:12+0100\n"
+"PO-Revision-Date: 2015-04-20 19:25+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -32,7 +32,7 @@ msgstr "Notifications(%s non lues)"
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:223
 msgid "Username is invalid, please try again."
-msgstr "Le nom utilisateur est invalide, merci d'essayer de nouveau."
+msgstr "Le nom de compte utilisateur est invalide, merci d'essayer de nouveau."
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:239
