@@ -1,0 +1,105 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2014-06-01 18:00+0800\n"
+"PO-Revision-Date: 2014-06-01 18:01+0800\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: c:\\Code\\pi\\usr\\custom\\module\\user\n"
+
+#: c:\Code\pi\usr\custom\module\user/config/form.register.php:27
+msgid "Confirm credential"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/form.register.php:58
+msgid "Please type the word."
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:25
+msgid "Register source"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:34
+msgid "First Name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:40
+msgid "Last Name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:46
+msgid "Language"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:53
+msgid "Mobile phone"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:71
+msgid "Telephone"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:92
+msgid "Education"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:100
+msgid "School name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:106
+msgid "Department"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:112
+msgid "Major"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:118
+msgid "Degree"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:124
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:193
+msgid "Start time"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:130
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:199
+msgid "End time"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:133
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:183
+msgid "Description"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:148
+msgid "Work"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:156
+msgid "Company name"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:162
+msgid "Work Department"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:168
+msgid "Industry"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:174
+msgid "Sector"
+msgstr ""
+
+#: c:\Code\pi\usr\custom\module\user/config/user.dist.php:177
+msgid "Job title"
+msgstr ""
