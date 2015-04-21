@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-Engine\n"
-"POT-Creation-Date: 2014-05-18 22:49+0100\n"
-"PO-Revision-Date: 2014-05-18 22:51+0100\n"
+"POT-Creation-Date: 2015-04-20 18:30+0100\n"
+"PO-Revision-Date: 2015-04-20 18:33+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: __;_t;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -42,6 +42,31 @@ msgstr "La publication de la ressource Theme a échoué."
 #: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Comment.php:548
 msgid "Posted a new comment."
 msgstr "A publié un nouveau commentaire."
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Editor.php:83
+msgid "Pi Default Editor"
+msgstr "Editeur par défaut Pi"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Theme.php:133
+msgid "Full layout (header/footer and blocks)"
+msgstr "Canevas Complet (header/footer et blocks)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Theme.php:134
+msgid "Simple layout (header/footer)"
+msgstr "Canevas Simple (header/footer)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Theme.php:135
+msgid "Content only (with style)"
+msgstr "Contenu seulement (avec style)"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Application/Service/Theme.php:136
+msgid "Raw content (no style)"
+msgstr "Brouillon (pas de style)"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Authentication/Adapter/DbTable/AbstractAdapter.php:160
@@ -101,11 +126,7 @@ msgstr "Les identifiants founis sont non valides."
 msgid "Authentication successful."
 msgstr "Authentication réussie."
 
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Editor/Factory.php:77
-msgid "Pi Default Editor"
-msgstr "Editeur par défaut Pi"
-
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Feed/Model.php:203
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Feed/Model.php:200
 #, php-format
 msgid "Feed of %s"
 msgstr "Flux de %s"
@@ -122,6 +143,10 @@ msgstr "Femme"
 msgid "Unknown gender"
 msgstr "Genre inconnu"
 
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/Linkify.php:59
+msgid "Click to open"
+msgstr "Cliquer pour ouvrir"
+
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Filter/YesNo.php:40
 msgid "No"
 msgstr "Non"
@@ -132,30 +157,28 @@ msgstr "Oui"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:32
-msgid "No level"
-msgstr "Aucun niveau"
+msgid "As a whole"
+msgstr "En entier"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:33
-#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Locale.php:69
-msgid "Language"
-msgstr "Langage"
+msgid "Per language"
+msgstr "Par langue"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:34
-msgid "Authenticated or not"
-msgstr "Authentifié ou pas"
+msgid "Per role"
+msgstr "Par rôle"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:35
-#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Role.php:55
-msgid "Role"
-msgstr "Rôle"
+msgid "Guest only"
+msgstr "Invité seulement"
 
 #: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:49
-msgid "Cache level"
-msgstr "Niveau de cache"
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheLevel.php:50
+msgid "Cache granularity"
+msgstr "Granularité du cache"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/CacheTtl.php:32
@@ -215,9 +238,22 @@ msgstr "Expiration du cache"
 msgid "Text editor"
 msgstr "Editeur de Texte"
 
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/EditorSelect.php:43
+msgid "Editor select"
+msgstr "Selectionner l'Editeur"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Layout.php:43
+msgid "Layout"
+msgstr "Canevas"
+
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Locale.php:34
 msgid "Auto-detection"
 msgstr "Auto-détection"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Locale.php:69
+msgid "Language"
+msgstr "Langage"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/LoginField.php:36
@@ -248,6 +284,10 @@ msgstr "Navigation"
 msgid "None"
 msgstr "Aucun"
 
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Role.php:55
+msgid "Role"
+msgstr "Rôle"
+
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/Element/RoleAdmin.php:52
 msgid "Admin role"
@@ -266,7 +306,11 @@ msgstr "Soumettre"
 msgid "Tags"
 msgstr "Tags"
 
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Theme.php:48
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Theme.php:35
+msgid "Use system theme"
+msgstr "Utiliser le thème Système"
+
+#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/Form/Element/Theme.php:47
 msgid "Theme"
 msgstr "Thème"
 
@@ -284,6 +328,21 @@ msgstr "Image CAPTCHA"
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/Captcha/Image.php:60
 msgid "Click to refresh CAPTCHA"
 msgstr "Cliquez pour rafraîchir le CAPTCHA"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/Form.php:168
+msgid "Required"
+msgstr "Requis"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/Form.php:448
+msgid "Close"
+msgstr "Fermer"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/Form.php:449
+msgid "Form"
+msgstr "Formulaire"
 
 #: C:\Users\LAPTOP
 #: MARC\Documents\GitHub\pi\lib/Pi/Form/View/Helper/FormDateSelect.php:91
@@ -322,6 +381,16 @@ msgstr ""
 msgid "Guest"
 msgstr "Invité"
 
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/View/Helper/GoogleMap.php:166
+msgid "Choose a location"
+msgstr "Choisir un lieu"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\lib/Pi/View/Helper/GoogleMap.php:167
+msgid "View all"
+msgstr "Voir tout"
+
 #: C:\Users\LAPTOP MARC\Documents\GitHub\pi\lib/Pi/View/Helper/Tag.php:92
 msgid "Tags: "
 msgstr "Tags: "
@@ -350,3 +419,17 @@ msgstr "Equipe"
 #: MARC\Documents\GitHub\pi\www/setup/src/Controller/Admin.php:277
 msgid "Member"
 msgstr "Membre"
+
+#: C:\Users\LAPTOP
+#: MARC\Documents\GitHub\pi\www/static/vendor/jquery/ui/jquery-ui.min.js:8
+msgid "'"
+msgstr ""
+
+#~ msgid "No level"
+#~ msgstr "Aucun niveau"
+
+#~ msgid "Authenticated or not"
+#~ msgstr "Authentifié ou pas"
+
+#~ msgid "Cache level"
+#~ msgstr "Niveau de cache"
