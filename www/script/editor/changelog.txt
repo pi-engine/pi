@@ -1,0 +1,8 @@
+
+
+Script/Editor changelog
+
+
+April 21th, 2015
+================
+1 upgraded to CKEditor 4.4.7 (standard package + colordialog and iframe plugins from full package)
