@@ -1,0 +1,11 @@
+
+
+Script/Editor changelog
+
+
+Please take care about CkEditor plugins : it is advised to clear the /plugins dir before installing a new disto, since plugin list may vary. This to prevent from inconsistencies.
+
+
+April 21th, 2015
+================
+1 upgraded to CKEditor 4.4.7 (standard package + colordialog and iframe plugins from full package)
