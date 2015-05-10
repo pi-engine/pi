@@ -2,6 +2,11 @@
 jQuery/jQueryUI changelog
 
 
+May 10th, 2015
+=============
+1. Upgraded jQuery to 1.11.3
+
+
 April 21th, 2015
 =============
 1. Upgraded jQueryUI to 1.11.4
