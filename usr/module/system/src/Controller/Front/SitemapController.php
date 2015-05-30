@@ -14,6 +14,8 @@ use Pi\Mvc\Controller\ActionController;
 
 /**
  * Sitemap feed controller
+ *
+ * @deprecated
  */
 class SitemapController extends ActionController
 {
@@ -22,6 +24,9 @@ class SitemapController extends ActionController
      */
     public function indexAction()
     {
+        $this->redirect()->toRoute('home');
+        return;
+
         // Disable debugger message
         Pi::service('log')->mute();
 
@@ -33,5 +38,4 @@ class SitemapController extends ActionController
 
         return $content;
     }
-
 }

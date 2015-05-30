@@ -165,7 +165,7 @@ abstract class AbstractNest extends AbstractTableGateway
      * @param mixed   $objective  Target node ID or Node
      * @param string  $position   Position to the target node,
      *      potential value: firstOf, lastOf, nextTo, previousTo
-     * @return  array|false   Postion paramters: left, right
+     * @return  array|false   Position parameters: left, right
      */
     protected function getPosition($objective = null, $position = 'lastOf')
     {

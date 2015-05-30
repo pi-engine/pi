@@ -22,8 +22,11 @@ $this->backbone();
     <fieldset>
         <legend><?php echo _a('Theme in use'); ?></legend>
         <div class="media" style="margin-top: 0;">
-            <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo _escape($theme['title']); ?>" class="pull-left" style="width: 300px;" />
-            <div class="media-body">
+            <div class="col-md-4">
+                <img src="<?php echo $theme['screenshot']; ?>" alt="<?php echo _escape($theme['title']); ?>" class="img-responsive img-thumbnail pull-left" />
+
+            </div>
+            <div class="media-body col-md-8">
                 <h4 class="media-heading"><?php echo _escape($theme['title']); ?></h4>
                 <h5><?php echo $theme['version']; ?></h5>
                 <p style="margin-bottom:15px;">
@@ -41,7 +44,7 @@ $this->backbone();
 <script type="text/template" id="temp-theme">
 <div class="thumbnail">
     <a class="theme-screenshot">
-        <img src="<%= screenshot %>" alt="<%= _.escape(title) %>"  title="<?php echo _a('Click To preview'); ?>">
+        <img src="<%= screenshot %>" alt="<%= _.escape(title) %>"  title="<?php echo _a('Click To preview'); ?>" style="height: 300px;">
     </a>
     <div class="caption">
         <h5><%- title %></h5>
