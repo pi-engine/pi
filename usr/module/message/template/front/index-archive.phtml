@@ -1,3 +1,7 @@
+<div class="col-md-3">
+    <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
+</div>
+<div class="col-md-9">
 <ul class="nav nav-tabs message-nav-tabs">
     <li>
         <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php _e('Private message');; ?></a>
@@ -6,3 +10,4 @@
         <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>" title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
     </li>
 </ul>
+</div>

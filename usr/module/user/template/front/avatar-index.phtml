@@ -35,7 +35,9 @@ $viewPreview = '<li class="inline">
                     </div>';
 ?>
 <div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
+    <div class="col-md-3">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+    </div>
     <div class="col-md-9" id="js-user-avatar">
         <div class="user-page-header">
             <h1><?php _e('Change avatar'); ?></h1>
