@@ -4,7 +4,9 @@ $this->css(array(
 ));
 ?>
 <div class="row">
-    <?php include $this->template('./profile-sidebar.phtml'); ?>
+    <div class="col-md-3">
+        <?php include $this->template('./profile-sidebar.phtml'); ?>
+    </div>
     <div class="col-md-9">
         <div class="user-page-header">
             <h1><?php _e('Privacy'); ?></h1>
