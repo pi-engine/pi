@@ -9,7 +9,7 @@
     </p>
 </div>
 <?php if ('production' == Pi::environment()) return; ?>
-    <?php if (!empty($reason)): ?>
+<?php if (!empty($reason)): ?>
     <h2 class="page-header">Additional information:</h2>
     <?php
     $reasonMessage= '';
@@ -32,8 +32,8 @@
     }
     ?>
     <p><?php echo $reasonMessage; ?></p>
-    <?php endif ?>
-    <?php if (isset($this->controller) && $this->controller): ?>
+<?php endif ?>
+<?php if (isset($this->controller) && $this->controller): ?>
     <dl>
         <dt>Controller:</dt>
         <dd><?php echo _escape($this->module . '-' . $this->controller . '-' . $this->action);
@@ -46,13 +46,13 @@
             ?>
         </dd>
     </dl>
-    <?php endif ?>
-    <?php if (isset($this->exception) && $this->exception): ?>
+<?php endif ?>
+<?php if (isset($this->exception) && $this->exception): ?>
     <h2 class="page-header">Exception:</h2>
     <p><?php echo _escape(Pi::service('security')->path($this->exception->getMessage())); ?></p>
     <h3 class="page-header">Stack trace</h3>
     <pre>
     <?php echo Pi::service('security')->path($this->exception->getTraceAsString()); ?>
     </pre>
-    <?php endif ?>
+<?php endif ?>
 </div>

@@ -63,21 +63,21 @@ return array(
     'title'         => 'Pi Default Theme',
     // Author information: name, email, website
     'author'        => 'Architecture:'
-                     . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>;'
-                     . ' Front-end: @sexnothing; Resources: @loidco',
+        . ' Taiwen Jiang <taiwenjiang@tsinghua.org.cn>;'
+        . ' Front-end: @sexnothing; Resources: @loidco',
     // Screenshot image, relative path in asset.
     // If no screenshot is available, static/image/screenshot.png will be used
     'screenshot'    => 'image/screenshot.png',
     // License or theme images and scripts
     'license'       => 'Creative Common License'
-                     . ' http://creativecommons.org/licenses/by/3.0/',
+        . ' http://creativecommons.org/licenses/by/3.0/',
     // Optional description
     'description'   => 'Default theme for Pi Engine, usability oriented.',
     // Parent theme from which templates can be inherited, default as 'default'
     'parent'        => '',
     // Supported browsers
     'browser'       => 'Internet Explorer: 6+; Chrome: 17+; Firefox: 10+;'
-                     . ' Safari: 5.1+; Opera: 9.8+;',
+        . ' Safari: 5.1+; Opera: 9.8+;',
 
     // List of custom front layouts, optional
     'layout'        => array(
