@@ -1,6 +1,8 @@
-<?php
-    $this->css($this->assetModule('script/front.css'));
-?>
+<?php $this->css($this->assetModule('script/front.css')); ?>
+<div class="col-md-3">
+    <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
+</div>
+<div class="col-md-9">
 <ul class="nav nav-tabs message-nav-tabs">
     <li class="active">
         <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
@@ -86,6 +88,7 @@ if (!empty($message)) { ?>
     ?>
 </div>
 <?php } ?>
+</div>
 <?php 
     $paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
     $host = $this->url('', array('module' => 'message'));

@@ -1,109 +1,109 @@
 /* Base */
 html {
-  min-height: 100%;
-  position: relative;
+    min-height: 100%;
+    position: relative;
 }
 
 .pi-main-container {
-  padding-bottom: 80px;
+    padding-bottom: 80px;
 }
 
 .pi-layout-simple .pi-main-container {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 /* Bootstrap custom */
 .nav-tabs {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
-  .navbar-default .navbar-form {
-    width: 250px;
-  }
+    .navbar-default .navbar-form {
+        width: 250px;
+    }
 }
 
 /* Navbar custom */
 .navbar-inverse {
-  margin-bottom: 0;
-  min-height: 30px;
-  border-radius: 0;
+    margin-bottom: 0;
+    min-height: 30px;
+    border-radius: 0;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  padding: 5px 10px;
+    padding: 5px 10px;
 }
 
 .navbar-inverse .navbar-brand {
-  padding: 5px 15px;
+    padding: 5px 15px;
 }
 
 .navbar-inverse .navbar-right {
-  float: right;
-  margin: 0 -10px 0 !important;
+    float: right;
+    margin: 0 -10px 0 !important;
 }
 
 .navbar-inverse .navbar-nav > li {
-  float: left;
+    float: left;
 }
 
 .navbar-inverse .navbar-brand {
-  height: auto;
+    height: auto;
 }
 
 .pi-navbar-nav ul {
-  display: none;
+    display: none;
 }
 
 @media (min-width: 768px) {
-  .pi-navbar-nav li {
-    position: relative;
-  }
+    .pi-navbar-nav li {
+        position: relative;
+    }
 
-  .pi-navbar-caret {
-    display: none;
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 50%;
-    bottom: -1px;
-    margin-left: -8px;
-    border-bottom: 8px solid #fff;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent;
-    z-index: 1002;
-  }
+    .pi-navbar-caret {
+        display: none;
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: 50%;
+        bottom: -1px;
+        margin-left: -8px;
+        border-bottom: 8px solid #fff;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        z-index: 1002;
+    }
 
-  .pi-navbar-caret-outer {
-    border-bottom: 8px solid #c2c2c2;
-    bottom: 0;
-    z-index: 1001;
-  }
+    .pi-navbar-caret-outer {
+        border-bottom: 8px solid #c2c2c2;
+        bottom: 0;
+        z-index: 1001;
+    }
 
-  .pi-navbar-nav li:hover >ul,
-  .pi-navbar-nav li:hover .pi-navbar-caret {
-    display: block;
-  }
+    .pi-navbar-nav li:hover >ul,
+    .pi-navbar-nav li:hover .pi-navbar-caret {
+        display: block;
+    }
 
-  .pi-navbar-nav ul .dropdown-menu {
-    left: 100%;
-    top: -5px;
-  }
+    .pi-navbar-nav ul .dropdown-menu {
+        left: 100%;
+        top: -5px;
+    }
 }
 
 /* Block */
 .pi-block {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .pi-block-title {
-  padding: 10px;
+    padding: 10px;
 }
 
 .pi-block-title h3 {
-  font-size: 1.2em;
-  padding: 0;
-  margin: 0;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0;
 }
 
 .pi-block-content {
@@ -111,46 +111,46 @@ html {
 }
 
 .pi-panel-subline {
-  float: right;
+    float: right;
 }
 
 .pi-panel-tab  .panel-heading {
-  padding: 0;
-  height: 40px;
+    padding: 0;
+    height: 40px;
 }
 
 .pi-panel-tab-indicators {
-  margin: 0 0 -1px 0;
-  padding: 0;
-  height: 40px;
-  line-height: 40px;
+    margin: 0 0 -1px 0;
+    padding: 0;
+    height: 40px;
+    line-height: 40px;
 }
 
 .pi-panel-tab-indicators li {
-  display: inline-block;
+    display: inline-block;
 }
 
 .pi-panel-tab-indicators a {
-  padding: 0 15px;
-  cursor: pointer;
-  display: block;
-  color: #333;
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
+    padding: 0 15px;
+    cursor: pointer;
+    display: block;
+    color: #333;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 
 .pi-panel-tab-indicators li:first-child a {
-  border-left: none;
+    border-left: none;
 }
 
 .pi-panel-tab-indicators .active a {
-  font-weight: bold;
-  border-color: #ddd;
-  background: #fff;
+    font-weight: bold;
+    border-color: #ddd;
+    background: #fff;
 }
 
 .panel-body >:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 .panel-body ul,
 .panel-body ol {
@@ -160,18 +160,18 @@ html {
 /* header */
 .pi-header h1,
 .pi-header h2 {
-  padding: 1px;
-  margin: 1px;
+    padding: 1px;
+    margin: 1px;
 }
 
 /* Footer */
 .pi-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: 20px 0;
-  border-top: 1px solid #ddd;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 20px 0;
+    border-top: 1px solid #ddd;
 }
 
 .pi-footer-links {
@@ -185,8 +185,8 @@ html {
 }
 
 #pi-logger-output {
-  position: relative;
-  top: -60px;
+    position: relative;
+    top: -60px;
 }
 
 /* list or order list */
@@ -200,18 +200,149 @@ html {
 
 /* Module custom */
 .tag-terms a {
-  padding: 0 5px;
+    padding: 0 5px;
 }
 
 /* Player */
 .pi-player {
-  padding: 10px 0;
+    padding: 10px 0;
 }
 
 .pi-player .video-js {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 .pi-map-canvas {
-  height: 400px;
+    height: 400px;
+}
+
+/* Elements */
+fieldset dl {
+    margin-top: 0;
+}
+
+form .icon-question-sign {
+    color: #0089D1;
+    float: left;
+    cursor: pointer;
+    margin: 6px 0 0 1px;
+    padding: 2px;
+}
+
+/* Components */
+.page-header {
+    margin: 0 0 15px 0;
+}
+
+.page-header h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.page-header .nav {
+    margin-bottom: 0;
+}
+
+.page-header .search-query {
+    border-radius: 5px;
+}
+
+/** Pi Specific **/
+/* Elements */
+.dl-horizontal dt {
+    width: 120px;
+}
+
+.dl-horizontal dd {
+    margin-left: 140px;
+}
+
+/* ellipsis with rows/lines : line height is fixed */
+.pi-ellipsis {
+    overflow: hidden;
+    display: block;
+    line-height: 1.5;
+}
+
+/* Max 1 - 10 row(s)/line(s) */
+.pi-ellipsis-1 { text-overflow: ellipsis; white-space: nowrap; }
+.pi-ellipsis-2 { max-height: 3em; }
+.pi-ellipsis-3 { max-height: 4.5em; }
+.pi-ellipsis-4 { max-height: 6em; }
+.pi-ellipsis-5 { max-height: 7.5em; }
+.pi-ellipsis-6 { max-height: 9em; }
+.pi-ellipsis-7 { max-height: 10.5em; }
+.pi-ellipsis-8 { max-height: 12em; }
+.pi-ellipsis-9 { max-height: 13.5em; }
+.pi-ellipsis-10 { max-height: 15em; }
+
+/* Components */
+.pi-divider {
+    font-family: serif,sans-serif;
+    margin: 0 6px;
+    color: #ccc;
+}
+
+.pi-legend {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    padding: 9px 10px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+/* Box with border */
+.pi-widget {
+    margin-bottom: 20px;
+    border: 1px solid #d7d7d7;
+}
+
+.pi-widget-header {
+    padding: 5px 10px;
+    background: #F8F8F8;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.pi-widget-body {
+    padding: 18px 20px;
+}
+
+.pi-widget-body >:last-child {
+    margin-bottom: 0;
+}
+
+/* Avatar */
+/* @see: https://github.com/pi-engine/pi/wiki/Design.Avatar */
+.pi-avatar {
+    width: 80px;
+}
+
+.pi-avatar-mini {
+    width: 16px;
+}
+
+.pi-avatar-xsmall {
+    width: 24px;
+}
+
+.pi-avatar-small {
+    width: 28px;
+}
+
+.pi-avatar-medium {
+    width: 46px;
+}
+
+.pi-avatar-large {
+    width: 96px;
+}
+
+.pi-avatar-xlarge {
+    width: 120px;
+}
+
+.pi-avatar-xxlarge {
+    width: 214px;
 }

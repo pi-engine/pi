@@ -24,11 +24,11 @@ $class = function ($namespace) {
     return sprintf($pattern, $type);
 };
 foreach ($result as $namespace => $messages) {
-?>
-<div class="<?php echo $class($namespace); ?>">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-    <?php foreach ($messages as $msg) { ?>
-        <div><?php echo $msg; ?></div>
-    <?php } ?>
-</div>
+    ?>
+    <div class="<?php echo $class($namespace); ?>">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <?php foreach ($messages as $msg) { ?>
+            <div><?php echo $msg; ?></div>
+        <?php } ?>
+    </div>
 <?php } ?>

@@ -64,9 +64,9 @@ if (is_array($block['content'])) {
         );
         $body .= sprintf(
             '<div class="tab-pane%s" id="panel-%s">%s</div>',
-             $key == 0 ? ' active' : '',
-             $block['id'] . $key,
-             $item['content']
+            $key == 0 ? ' active' : '',
+            $block['id'] . $key,
+            $item['content']
         );
     }
     $heading .= '</ul>';
@@ -100,8 +100,8 @@ if (is_array($block['content'])) {
 }
 ?>
 <div class="<?php echo $class; ?>">
-<?php
+    <?php
     echo $heading;
     echo $body;
-?>
+    ?>
 </div>

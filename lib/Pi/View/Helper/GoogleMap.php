@@ -79,7 +79,7 @@ class GoogleMap extends AbstractHelper
      * @param   array   $locations
      * @param   string  $apiKey
      * @param   string  $type       point|route|list
-     * @param   string  $htmlClass  Set custom html ID
+     * @param   array   $option     Set custom options
      *
      * @return  $this
      */
@@ -87,11 +87,35 @@ class GoogleMap extends AbstractHelper
     	$locations,
     	$apiKey = '',
     	$type = 'point',
-    	$htmlClass = 'pi-map-canvas'
+        $option = array()
     ) {
         
         // Set uniq id
     	$id = uniqid("google-map-");
+
+        // Set html class
+        $htmlClass = empty($option['htmlClass']) ? 'pi-map-canvas' : $option['htmlClass'];
+
+        // Set mapTypeId
+        $mapTypeId = empty($option['mapTypeId']) ? 'ROADMAP' : $option['mapTypeId'];
+        switch ($mapTypeId) {
+            case 'SATELLITE':
+                $mapTypeId = 'google.maps.MapTypeId.SATELLITE';
+                break;
+
+            case 'HYBRID':
+                $mapTypeId = 'google.maps.MapTypeId.HYBRID';
+                break;
+
+            case 'TERRAIN':
+                $mapTypeId = 'google.maps.MapTypeId.TERRAIN';
+                break;
+
+            case 'ROADMAP':
+            default:
+                $mapTypeId = 'google.maps.MapTypeId.ROADMAP';
+                break;
+        }
 
         // Set map info
 		switch ($type) {
@@ -120,10 +144,13 @@ $(function() {
             avoidHighways: false,
             avoidTolls: false
         },
+        map_options: {
+            mapTypeId: %s
+        },
         afterRoute: function(distance) {
             $("#km").text(": "+(distance/1000)+"km");
         }
-    }).Load(); 
+    }).Load();
 });
 EOT;
 				// Set item info on script
@@ -135,7 +162,8 @@ EOT;
         			$locations['final_latitude'],
         			$locations['final_longitude'],
         			$locations['final_title'],
-        			$id
+        			$id,
+                    $mapTypeId
     			);
                 // Load maplace
     			$this->view->js(pi::url('static/js/maplace.min.js'));
@@ -154,6 +182,7 @@ $(function() {
         map_options: {
             set_center: [%s, %s],
             zoom: %s,
+            mapTypeId: %s
         }
     }).Load();
 });
@@ -167,7 +196,8 @@ EOT;
                     __('View all'), 
         			$locations['latitude'],
         			$locations['longitude'],
-                    $locations['zoom']
+                    $locations['zoom'],
+                    $mapTypeId
                 );
                 // Load maplace
     			$this->view->js(pi::url('static/js/maplace.min.js'));
@@ -180,7 +210,8 @@ EOT;
 var myLatlng = new google.maps.LatLng(%s, %s);
 var mapOptions = {
     zoom: %s,
-    center: myLatlng
+    center: myLatlng,
+    mapTypeId: %s
 }
 var map = new google.maps.Map(document.getElementById("%s"), mapOptions);
 var marker = new google.maps.Marker({
@@ -196,6 +227,7 @@ EOT;
         			$locations['latitude'],
         			$locations['longitude'],
         			$locations['zoom'],
+                    $mapTypeId,
         			$id,
         			$locations['title']
     			);

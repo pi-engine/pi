@@ -77,41 +77,41 @@ $module = Pi::service('module')->current();
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-layout-simple">
-    <!-- Header: brand, slogan, user bar -->
-    <header class="pi-header">
-        <div class="navbar navbar-inverse" role="navigation">
-            <div class="container">
-                <h2>
-                    <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
-                        <?php echo _escape($sitename); ?>
-                    </a>
-                </h2>
-                <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
+<!-- Header: brand, slogan, user bar -->
+<header class="pi-header">
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <h2>
+                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                    <?php echo _escape($sitename); ?>
+                </a>
+            </h2>
+            <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
+        </div>
+    </div>
+</header>
+<!-- Page main content: flash-messenger,and module content -->
+<section class="container pi-main-container">
+    <!-- Flash messenger -->
+    <?php include $this->template('flash-messenger'); ?>
+    <!-- Module content starts -->
+    <?php if (!empty($content)) { ?>
+        <div class="<?php echo $module; ?>">
+            <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                <?php echo $content; ?>
             </div>
         </div>
-    </header>
-    <!-- Page main content: flash-messenger,and module content -->
-    <section class="container pi-main-container">
-        <!-- Flash messenger -->
-        <?php include $this->template('flash-messenger'); ?>
-        <!-- Module content starts -->
-        <?php if (!empty($content)) { ?>
-            <div class="<?php echo $module; ?>">
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
-                </div>
-            </div>
-        <?php } ?>
-        <!-- Module content ends -->
-    </section>
-    <!-- Footer: sitelink -->
-    <footer class="pi-footer text-center">
-        <div class="container">
-            <?php
-            $footer = Pi::config('footer');
-            if ($footer) {
-                echo $footer;
-            } else {
+    <?php } ?>
+    <!-- Module content ends -->
+</section>
+<!-- Footer: sitelink -->
+<footer class="pi-footer text-center">
+    <div class="container">
+        <?php
+        $footer = Pi::config('footer');
+        if ($footer) {
+            echo $footer;
+        } else {
             ?>
             <ul class="pi-footer-links muted">
                 <li>
@@ -132,10 +132,10 @@ $module = Pi::service('module')->current();
                     </a>
                 </li>
                 <li>·</li>
-                <li><a title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"><i class="fa fa-spinner fa-spin"></i></a></li>      
+                <li><a title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"><i class="fa fa-spinner fa-spin"></i></a></li>
             </ul>
-            <?php } ?>
-        </div>    
-    </footer>
+        <?php } ?>
+    </div>
+</footer>
 </body>
 </html>
