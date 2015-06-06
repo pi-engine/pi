@@ -131,9 +131,27 @@ class Breadcrumb extends AbstractHtmlElement
                 ? $options['attributes']
                 : $this->attributes;
 
-            $pattern = '<ol class="breadcrumb"%s>' . PHP_EOL . '%s' . PHP_EOL . '</ol>';
-            $patternLink = '<li><a href="%s">%s</a></li>' . PHP_EOL;
-            $patternLabel = '<li>%s</li>' . PHP_EOL;
+            $pattern = <<<'EOT'
+<ol itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb"%s>
+    %s
+</ol>
+EOT;
+
+            $patternLink = <<<'EOT'
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="%s">
+        <span itemprop="name">%s</span>
+    </a>
+    <meta itemprop="position" content="%s" />
+</li>
+EOT;
+
+            $patternLabel = <<<'EOT'
+<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <span itemprop="name">%s</span>
+    <meta itemprop="position" content="%s" />
+</li>
+EOT;
 
             $elements = '';
             foreach ($data as $item) {

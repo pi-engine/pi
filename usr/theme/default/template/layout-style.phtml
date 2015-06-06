@@ -30,16 +30,16 @@ $module = Pi::service('module')->current();
     <meta charset="<?php echo $charset; ?>">
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-layout-style">
-    <div class="container pi-main-container">
-        <!-- Flash messenger -->
-        <?php include $this->template('flash-messenger'); ?>
-        <?php if (!empty($content)) { ?>
-            <div class="<?php echo $module; ?>">
-                <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                    <?php echo $content; ?>
-                </div>
+<div class="container pi-main-container">
+    <!-- Flash messenger -->
+    <?php include $this->template('flash-messenger'); ?>
+    <?php if (!empty($content)) { ?>
+        <div class="<?php echo $module; ?>">
+            <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                <?php echo $content; ?>
             </div>
-        <?php } ?>
-    </div>
+        </div>
+    <?php } ?>
+</div>
 </body>
 </html>

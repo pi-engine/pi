@@ -51,88 +51,88 @@ $module = Pi::service('module')->current();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-admin">
-    <!-- header: brand, navbar-nav, user link -->
-    <header class="navbar navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
-                <i class="fa fa-leaf"></i>
-                <strong>Pi</strong>
-            </a>
-        </div>
-        <nav class="navbar-collapse collapse">
-            <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>" 
-                       target="_blank">
-                        <i class="fa fa-external-link"></i>
-                        <?php _e('Front'); ?>
-                    </a>
-            </ul>
-            <?php
-            echo $this->widget('system-user-bar', array(
-                'type'      => 'flat',
-                'params'    => array(
-                    'section'   => Pi::engine()->application()->getSection(),
-                ),
-            ));
-            ?>
-        </nav>
-    </header>
-    <aside class="pi-sidebar">
-        <div id="js-modules-nav">
-            <?php echo $this->adminNav()->main('nav pi-modules-nav'); ?>
-        </div>
-    </aside>
-    <section class="pi-content" ng-app="<?php echo $module; ?>">
-        <div pi-message="alert"></div>
-        <nav class="pi-nav-top" id="pi-nav-top" ng-controller="piNavTopCtrl">
-            <?php 
-            echo $this->adminNav()->top(array(
-                'ulClass'  => 'nav nav-tabs',
-                'sub'      => array(
-                    'ulClass' => 'nav nav-pills well well-sm'
-                )
-            ));
-            ?>
-        </nav>
-        <!-- Flash messenger -->
-        <?php include $this->template('flash-messenger'); ?>
-        <article class="pi-module-content">
-            <div ng-view></div>
-            <div class="<?php echo $module; ?>"><?php echo $content; ?></div>
-        </article>
+<!-- header: brand, navbar-nav, user link -->
+<header class="navbar navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand" href="<?php echo $this->url('home'); ?>">
+            <i class="fa fa-leaf"></i>
+            <strong>Pi</strong>
+        </a>
+    </div>
+    <nav class="navbar-collapse collapse">
+        <?php echo $this->adminNav()->modes('nav navbar-nav'); ?>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>"
+                   target="_blank">
+                    <i class="fa fa-external-link"></i>
+                    <?php _e('Front'); ?>
+                </a>
+        </ul>
+        <?php
+        echo $this->widget('system-user-bar', array(
+            'type'      => 'flat',
+            'params'    => array(
+                'section'   => Pi::engine()->application()->getSection(),
+            ),
+        ));
+        ?>
+    </nav>
+</header>
+<aside class="pi-sidebar">
+    <div id="js-modules-nav">
+        <?php echo $this->adminNav()->main('nav pi-modules-nav'); ?>
+    </div>
+</aside>
+<section class="pi-content" ng-app="<?php echo $module; ?>">
+    <div pi-message="alert"></div>
+    <nav class="pi-nav-top" id="pi-nav-top" ng-controller="piNavTopCtrl">
+        <?php
+        echo $this->adminNav()->top(array(
+            'ulClass'  => 'nav nav-tabs',
+            'sub'      => array(
+                'ulClass' => 'nav nav-pills well well-sm'
+            )
+        ));
+        ?>
+    </nav>
+    <!-- Flash messenger -->
+    <?php include $this->template('flash-messenger'); ?>
+    <article class="pi-module-content">
+        <div ng-view></div>
+        <div class="<?php echo $module; ?>"><?php echo $content; ?></div>
+    </article>
 
-        <footer class="pi-footer">
-            <ul class="pi-footer-links muted">
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                    </a>
-                </li>
-                <li>·</li>
-                <li>
-                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                        Powered by Pi Engine
-                    </a>
-                </li>
-                <li>·</li>
-                <li>
-                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                        Design of Pi Engine
-                    </a>
-                </li>
-                <li>·</li>
+    <footer class="pi-footer">
+        <ul class="pi-footer-links muted">
+            <li>
+                <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                    &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                </a>
+            </li>
+            <li>·</li>
+            <li>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Powered by Pi Engine
+                </a>
+            </li>
+            <li>·</li>
+            <li>
+                <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                    Design of Pi Engine
+                </a>
+            </li>
+            <li>·</li>
 
                 <span title="<?php _e('Execution time'); ?>">
                     <?php printf('%.4fs', microtime(true) - Pi::startTime()); ?>
                 </span>
-            </ul>
-        </footer>
-    </section>
-    <?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
+        </ul>
+    </footer>
+</section>
+<?php $this->footScript()->appendFile($this->assetTheme('js/admin.js')); ?>
 </body>
 </html>
