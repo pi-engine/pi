@@ -1,37 +1,35 @@
-<?php
-$this->css($this->assetModule('front/front.css'));
-?>
+<?php $this->css($this->assetModule('front/front.css')); ?>
 <?php include $this->template('./profile-topbar.phtml'); ?>
 <div class="clearfix user-min-body">
     <?php if (!empty($data['content'])) { ?>
         <?php echo  $data['content'];?>
     <?php } else { ?>
-    <?php if ($data['items']) { ?>
-    <?php foreach ($data['items'] as $item) { ?>
-    <div class="user-underline-list">
-        <p style="margin-bottom: 5px;">
-            <?php echo $item['message']; ?>
-        </p>
-        <?php if ($item['time']) { ?>
-        <span class="text-muted"><?php echo _date($item['time']); ?></span>
-        <?php } ?>
-    </div>
-    <?php } ?>
-    <?php 
-    if ($data['link']) { 
-        echo sprintf(
-            '<a class="btn btn-block" href="%s">%s</a>',
-            $data['link'],
-            __('View all')
-        );
-    }
-    ?>
-    <?php } else {
-        echo sprintf(
-            '<div class="well">%s</div>',
-            __('No data available.')
-        );
-    }
-    ?>
+        <?php if ($data['items']) { ?>
+            <?php foreach ($data['items'] as $item) { ?>
+                <div class="user-underline-list">
+                    <p style="margin-bottom: 5px;">
+                        <?php echo $item['message']; ?>
+                    </p>
+                    <?php if ($item['time']) { ?>
+                        <span class="text-muted"><?php echo _date($item['time']); ?></span>
+                    <?php } ?>
+                </div>
+            <?php } ?>
+            <?php
+            if ($data['link']) {
+                echo sprintf(
+                    '<a class="btn btn-block" href="%s">%s</a>',
+                    $data['link'],
+                    __('View all')
+                );
+            }
+            ?>
+        <?php } else {
+            echo sprintf(
+                '<div class="well">%s</div>',
+                __('No data available.')
+            );
+        }
+        ?>
     <?php } ?>
 </div>
