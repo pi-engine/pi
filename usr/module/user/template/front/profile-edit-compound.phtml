@@ -8,12 +8,13 @@
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
     <div class="col-md-9" id="user-js-compound">
-        <div class="user-page-header">
-            <h1><?php echo _escape($title); ?></h1>
-            <div class="text-muted">
-                <?php echo sprintf(__('Update %s'), $title); ?>
+        <div class="page-header">
+            <h1><?php echo _escape($title); ?>
+                <small>
+                    <?php echo sprintf(__('Update %s'), $title); ?>
                     <a href="#user-info-add" class="user-js-add"><?php _e('Add new'); ?></a>
-            </div>
+                </small>
+            </h1>
         </div>
         <div class="user-info-list">
         </div>
