@@ -1,16 +1,11 @@
-<?php
-    $this->css($this->assetModule('front/front.css'));
-?>
+<?php $this->css($this->assetModule('front/front.css')); ?>
 <div class="row">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>
     </div>
     <div class="col-md-9">
-        <div class="user-page-header">
-            <h1><?php echo $title; ?></h1>
-            <div class="text-muted">
-                <?php echo sprintf(__('Update %s'), $title); ?>
-            </div>
+        <div class="page-header">
+            <h1><?php echo $title; ?> <small><?php echo sprintf(__('Update %s'), $title); ?></small></h1>
         </div>
         <?php
         if (isset($result)) {
