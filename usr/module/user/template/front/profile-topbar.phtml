@@ -126,7 +126,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
     </div>
     <div class="inline user-info-left">
         <div class="pull-left">
-            <?php echo Pi::avatar()->get($uid, 'xlarge'); ?>
+            <?php echo Pi::avatar()->get($uid, 'xlarge', _escape($user['name'])); ?>
         </div>
         <?php if ($owner) { ?>
         <a class="user-avatar-upload" href="<?php echo $this->url('user', array('controller' => 'avatar', 'action' => 'index')); ?>">
