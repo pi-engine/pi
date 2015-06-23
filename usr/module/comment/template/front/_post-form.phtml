@@ -3,9 +3,7 @@ if (isset($root['active']) && empty($root['active'])) {
     echo '<div class="well well-sm">' . __('Comment is disabled.') . '</div>';
     return;
 }
-
 //$uid = Pi::user()->getId();
-
 if (!empty($root['id'])) {
     $formData = array(
         'root' => $root['id']
@@ -23,18 +21,17 @@ $form = Pi::service('comment')->getForm($formData);
 <div class="comment-item" id="js-comment-form">
     <textarea placeholder="<?php _e('Type your content'); ?>" class="form-control js-comment-txt" rows="3"></textarea>
     <div class="hide clearfix comment-form">
-        <?php echo $this->form()->openTag($form);
+        <?php
+        echo $this->form()->openTag($form);
         echo $this->formElement($form->get('content'));
         echo $this->formElement($form->get('submit'));
-
         $elements = $form->elementList();
         foreach ($elements['hidden'] as $element) {
             echo $this->formElement($element);
         }
+        echo $this->form()->closeTag();
         ?>
-
     </div>
-    <?php echo $this->form()->closeTag(); ?>
     <div class="hide well well-sm">
         <?php echo sprintf(__('Please <a href="%s">login</a> to leave comments.'), Pi::service('authentication')->getUrl('login', $uri)); ?>
     </div>
@@ -47,40 +44,39 @@ $url = Pi::service('url')->assemble('default', array(
 ));
 ?>
 <script>
-(function ($) {
-var comment = {
-    el: $('#js-comment-form'),
-    $: function (selector) {
-        return this.el.find(selector);
-    },
-    init: function () {
-        this.textarea = this.$('.js-comment-txt');
-        this.events();
-    },
-    events: function () {
-        var self = this;
-        this.textarea.focus(function () {
-            $.getJSON('<?php echo $url; ?>?' + new Date().getTime()).done(function (data) {
-                self.textarea.hide();
-                if (data.uid) {
-                    self.$('.comment-form').removeClass('hide');
-                    self.$('[name=content]').focus();
-                } else {
-                    self.$('.well').removeClass('hide');
-                }
-            });
-        });
-    }
-};
-comment.init();
-})(jQuery)
+    (function ($) {
+        var comment = {
+            el: $('#js-comment-form'),
+            $: function (selector) {
+                return this.el.find(selector);
+            },
+            init: function () {
+                this.textarea = this.$('.js-comment-txt');
+                this.events();
+            },
+            events: function () {
+                var self = this;
+                this.textarea.focus(function () {
+                    $.getJSON('<?php echo $url; ?>?' + new Date().getTime()).done(function (data) {
+                        self.textarea.hide();
+                        if (data.uid) {
+                            self.$('.comment-form').removeClass('hide');
+                            self.$('[name=content]').focus();
+                        } else {
+                            self.$('.well').removeClass('hide');
+                        }
+                    });
+                });
+            }
+        };
+        comment.init();
+    })(jQuery)
 </script>
-
 <div class="pi-status active js-comment-status" data-id="">
     <div class="pi-status-director"></div>
 </div>
 <script>
-$('.js-comment-status').click(function() {
-    location.href = '<?php $this->url(); ?>' + $(this).data('id');
-});
+    $('.js-comment-status').click(function() {
+        location.href = '<?php $this->url(); ?>' + $(this).data('id');
+    });
 </script>
