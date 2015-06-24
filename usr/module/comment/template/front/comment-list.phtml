@@ -47,14 +47,14 @@ $paginator = $comment['paginator'];
                 <?php } ?>
                 </div>
             </div>
-        </div>   
+        </div>
     <?php } ?>
     </div>
     <?php } else { ?>
     <div class="pi-comment-none"><?php _e('No comments available yet.'); ?></div>
     <?php } ?>
 </div>
-<?php 
+<?php
     if ($posts && $paginator) {
         echo $this->pagination(
             $paginator,

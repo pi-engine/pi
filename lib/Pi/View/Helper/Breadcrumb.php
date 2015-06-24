@@ -156,9 +156,9 @@ EOT;
             $elements = '';
             foreach ($data as $item) {
                 if (empty($item['href'])) {
-                    $elements .= sprintf($patternLabel, _escape($item['label']));
+                    $elements .= sprintf($patternLabel, _escape($item['label']), _escape($item['label']));
                 } else {
-                    $elements .= sprintf($patternLink,$item['href'],  _escape($item['label']));
+                    $elements .= sprintf($patternLink,$item['href'],  _escape($item['label']), _escape($item['label']));
                 }
             }
             $attributes = $attribs ? $this->htmlAttribs($attribs) : '';
