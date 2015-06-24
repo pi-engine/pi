@@ -1,51 +1,55 @@
 <div class="panel panel-default" id="comments">
     <div class="panel-heading">
-        <?php _e('All comments '); ?> 
-        <strong>(<?php echo $count ?: 0; ?>)</strong>
+        <h2 class="panel-title">
+            <?php _e('All comments '); ?>
+            <strong>(<?php echo _number($count) ?: _number(0); ?>)</strong>
+        </h2>
     </div>
     <div class="panel-body">
         <?php include $this->template('./_post-form.phtml'); ?>
         <?php if (count($posts)) { ?>
-        <?php foreach ($posts as $item) { ?>
-        <div class="media comment-item" id="comment-<?php echo $item['id']; ?>">
-            <a class="pull-left" href="<?php echo $item['user']['url']; ?>" target="_blank">
-                <?php echo $item['user']['avatar']; ?>
-            </a>
-            <div class="media-body">
-                <?php echo sprintf('
-                    <div class="media-heading">
-                        <a href="%s" target="_blank" style="margin-right: 20px;">%s</a>
-                        <span class="muted">%s</span>
+            <?php
+            $template =<<<'EOT'
+<div class="media-heading">
+    <a href="%s" target="_blank" style="margin-right: 20px; margin-left: 20px;">%s</a>
+    <span class="muted">%s</span>
+</div>
+<div class="clearfix">%s</div>
+EOT;
+            ?>
+            <?php foreach ($posts as $item) { ?>
+                <div class="media comment-item clearfix" id="comment-<?php echo $item['id']; ?>">
+                    <a class="pull-left" href="<?php echo $item['user']['url']; ?>" target="_blank">
+                        <?php echo $item['user']['avatar']; ?>
+                    </a>
+                    <div class="media-body">
+                        <?php echo sprintf(
+                            $template,
+                            $item['user']['url'],
+                            $item['user']['name'],
+                            _date($item['time']),
+                            $item['content']
+                        ); ?>
+                        <div class="comment-operation">
+                            <?php if ($uid == $item['uid']) {
+                                echo sprintf(
+                                    '<a href="%s#comments" onclick="return confirm(\'%s\')">%s</a>',
+                                    $this->url('comment', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
+                                    __('Are you sure to delete this comment?'),
+                                    __('Delete')
+                                );
+                            } ?>
+                        </div>
                     </div>
-                    <p>%s
-                    ',
-                    $item['user']['url'],
-                    $item['user']['name'],
-                    _date($item['time']),
-                    $item['content']
-                ); ?>
-                <div class="comment-operation">
-                    <?php
-                    if ($uid == $item['uid']) {
-                        echo sprintf(
-                            '<a href="%s#comments" onclick="return confirm(\'%s\')">%s</a>',
-                            $this->url('comment', array('controller' => 'post', 'action' => 'delete', 'id' => $item['id'])),
-                            __('Are you sure to delete this comment?'),
-                            __('Delete')
-                        );
-                    }
-                    ?>
                 </div>
-            </div>
-        </div>
-        <?php } ?>
-        <a href="<?php echo $url_list; ?>" class="btn btn-default btn-block" style="margin-top: 10px;">
-            <?php _e('View all comments'); ?>
-        </a>
+            <?php } ?>
+            <a href="<?php echo $url_list; ?>" class="btn btn-default btn-block" style="margin-top: 10px;">
+                <?php _e('View all comments'); ?>
+            </a>
         <?php } else { ?>
-        <div class="text-center comment-none">
-            <strong class="text-muted"><?php _e('No one has commented yet.'); ?></strong>
-        </div>
+            <div class="text-center comment-none">
+                <strong class="text-muted"><?php _e('No one has commented yet.'); ?></strong>
+            </div>
         <?php } ?>
     </div>
 </div>
