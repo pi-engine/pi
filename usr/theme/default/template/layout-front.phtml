@@ -30,6 +30,9 @@ $this->css($this->assetTheme('css/front.css'));
 // Load localization css
 $this->css($this->assetLocale('locale.css'));
 
+// Load front.js on footer
+$this->footScript()->appendFile($this->assetTheme('js/front.js'));
+
 // Apple icons
 // Apple icon for iphone
 $this->headLink(array(
@@ -122,127 +125,129 @@ $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Ho
     </div>
 </header>
 <!-- Page main content: breadcrumb, flash-messenger, blocks and module content -->
-<section class="container pi-main-container">
-    <?php if ($breadcrumbs) { echo $breadcrumbs; } ?>
-    <!-- Flash messenger -->
-    <?php include $this->template('flash-messenger'); ?>
-    <!-- Top head zone -->
-    <?php if (!empty($blocks['0'])) { ?>
-        <div class="pi-zone-0">
-            <?php foreach ($blocks['0'] as $block) {
-                include $blockTemplate;
-            } ?>
-        </div>
-    <?php } ?>
-    <div class="row">
-        <!-- Left zone -->
-        <?php if (!empty($blocks['1'])) { ?>
-            <div class="pi-zone-1 col-md-4">
-                <?php foreach ($blocks['1'] as $block) {
+<section class="pi-section">
+    <div class="container pi-main-container">
+        <?php if ($breadcrumbs) { echo $breadcrumbs; } ?>
+        <!-- Flash messenger -->
+        <?php include $this->template('flash-messenger'); ?>
+        <!-- Top head zone -->
+        <?php if (!empty($blocks['0'])) { ?>
+            <div class="pi-zone-0">
+                <?php foreach ($blocks['0'] as $block) {
                     include $blockTemplate;
                 } ?>
             </div>
         <?php } ?>
-        <div class="<?php
-        if (isset($blocks['1']) && isset($blocks['8'])) {
-            echo 'col-md-4';
-        } elseif (isset($blocks['1']) || isset($blocks['8'])) {
-            echo 'col-md-8';
-        } else {
-            echo 'col-md-12';
-        }
-        ?>">
-            <!-- Center top zone -->
-            <?php if (isset($blocks['2'])) { ?>
-                <div class="pi-zone-2">
-                    <?php foreach ($blocks['2'] as $block) {
+        <div class="row">
+            <!-- Left zone -->
+            <?php if (!empty($blocks['1'])) { ?>
+                <div class="pi-zone-1 col-md-4">
+                    <?php foreach ($blocks['1'] as $block) {
                         include $blockTemplate;
                     } ?>
                 </div>
             <?php } ?>
-            <?php if (isset($blocks['3']) || isset($blocks['4'])) { ?>
-                <div class="row">
-                    <div class="col-md-6 pi-zone-3">
-                        <?php
-                        if (isset($blocks['3'])) {
-                            foreach ($blocks['3'] as $block) {
-                                include $blockTemplate;
+            <div class="<?php
+            if (isset($blocks['1']) && isset($blocks['8'])) {
+                echo 'col-md-4';
+            } elseif (isset($blocks['1']) || isset($blocks['8'])) {
+                echo 'col-md-8';
+            } else {
+                echo 'col-md-12';
+            }
+            ?>">
+                <!-- Center top zone -->
+                <?php if (isset($blocks['2'])) { ?>
+                    <div class="pi-zone-2">
+                        <?php foreach ($blocks['2'] as $block) {
+                            include $blockTemplate;
+                        } ?>
+                    </div>
+                <?php } ?>
+                <?php if (isset($blocks['3']) || isset($blocks['4'])) { ?>
+                    <div class="row">
+                        <div class="col-md-6 pi-zone-3">
+                            <?php
+                            if (isset($blocks['3'])) {
+                                foreach ($blocks['3'] as $block) {
+                                    include $blockTemplate;
+                                }
                             }
-                        }
-                        ?>
-                    </div>
-                    <div class="col-md-6 pi-zone-4">
-                        <?php
-                        if (isset($blocks['4'])) {
-                            foreach ($blocks['4'] as $block) {
-                                include $blockTemplate;
+                            ?>
+                        </div>
+                        <div class="col-md-6 pi-zone-4">
+                            <?php
+                            if (isset($blocks['4'])) {
+                                foreach ($blocks['4'] as $block) {
+                                    include $blockTemplate;
+                                }
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-            <!-- Module content starts -->
-            <?php if (!empty($content)) { ?>
-                <div class="<?php echo $module; ?>">
-                    <div class="pi-module-content" ng-app="<?php echo $module; ?>">
-                        <?php echo $content; ?>
+                <?php } ?>
+                <!-- Module content starts -->
+                <?php if (!empty($content)) { ?>
+                    <div class="<?php echo $module; ?>">
+                        <div class="pi-module-content" ng-app="<?php echo $module; ?>">
+                            <?php echo $content; ?>
+                        </div>
+                        <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
                     </div>
-                    <?php echo Pi::service('comment')->load(array('options' => array('type' => 'js'))); ?>
-                </div>
-            <?php } ?>
-            <!-- Module content ends -->
-            <?php if (isset($blocks['5']) || isset($blocks['6'])) { ?>
-                <div class="row">
-                    <div class="col-md-6 pi-zone-5">
-                        <?php
-                        if (isset($blocks['5'])) {
-                            foreach ($blocks['5'] as $block) {
-                                include $blockTemplate;
+                <?php } ?>
+                <!-- Module content ends -->
+                <?php if (isset($blocks['5']) || isset($blocks['6'])) { ?>
+                    <div class="row">
+                        <div class="col-md-6 pi-zone-5">
+                            <?php
+                            if (isset($blocks['5'])) {
+                                foreach ($blocks['5'] as $block) {
+                                    include $blockTemplate;
+                                }
                             }
-                        }
-                        ?>
-                    </div>
-                    <div class="col-md-6 pi-zone-6">
-                        <?php
-                        if (isset($blocks['6'])) {
-                            foreach ($blocks['6'] as $block) {
-                                include $blockTemplate;
+                            ?>
+                        </div>
+                        <div class="col-md-6 pi-zone-6">
+                            <?php
+                            if (isset($blocks['6'])) {
+                                foreach ($blocks['6'] as $block) {
+                                    include $blockTemplate;
+                                }
                             }
-                        }
-                        ?>
+                            ?>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
-            <!-- Center bottom zone -->
-            <?php if (isset($blocks['7'])) { ?>
-                <div class="pi-zone-7">
-                    <?php foreach ($blocks['7'] as $block) {
+                <?php } ?>
+                <!-- Center bottom zone -->
+                <?php if (isset($blocks['7'])) { ?>
+                    <div class="pi-zone-7">
+                        <?php foreach ($blocks['7'] as $block) {
+                            include $blockTemplate;
+                        } ?>
+                    </div>
+                <?php } ?>
+            </div>
+            <!-- Right zone -->
+            <?php if (isset($blocks['8'])) { ?>
+                <div class="col-md-4 pi-zone-8">
+                    <?php foreach ($blocks['8'] as $block) {
                         include $blockTemplate;
                     } ?>
                 </div>
             <?php } ?>
         </div>
-        <!-- Right zone -->
-        <?php if (isset($blocks['8'])) { ?>
-            <div class="col-md-4 pi-zone-8">
-                <?php foreach ($blocks['8'] as $block) {
+        <!-- Bottom foot zone -->
+        <?php if (isset($blocks['99'])) { ?>
+            <div class="pi-zone-99">
+                <?php foreach ($blocks['99'] as $block) {
                     include $blockTemplate;
                 } ?>
             </div>
         <?php } ?>
     </div>
-    <!-- Bottom foot zone -->
-    <?php if (isset($blocks['99'])) { ?>
-        <div class="pi-zone-99">
-            <?php foreach ($blocks['99'] as $block) {
-                include $blockTemplate;
-            } ?>
-        </div>
-    <?php } ?>
 </section>
 <!-- Footer: sitelink -->
-<footer class="pi-footer text-center">
+<footer class="pi-footer">
     <div class="container">
         <?php
         $footer = Pi::config('footer');
@@ -250,30 +255,31 @@ $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Ho
             echo $footer;
         } else {
             ?>
-            <ul class="pi-footer-links muted">
-                <li>
-                    <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
-                        &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
-                    </a>
-                </li>
-                <li>·</li>
-                <li>
-                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                        Powered by Pi Engine
-                    </a>
-                </li>
-                <li>·</li>
-                <li>
-                    <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
-                        Design of Pi Engine
-                    </a>
-                </li>
-                <li>·</li>
-                <li><a title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"><i class="fa fa-spinner fa-spin"></i></a></li>
-            </ul>
+            <div class="row text-center">
+                <ul class="pi-footer-links muted">
+                    <li>
+                        <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
+                            &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
+                        </a>
+                    </li>
+                    <li>·</li>
+                    <li>
+                        <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                            Powered by Pi Engine
+                        </a>
+                    </li>
+                    <li>·</li>
+                    <li>
+                        <a rel="license" href="http://www.pialog.org" title="Pi Engine" target="_blank">
+                            Design of Pi Engine
+                        </a>
+                    </li>
+                    <li>·</li>
+                    <li><a title="<?php echo sprintf(__('Execution time: %.4f s'), microtime(true) - Pi::startTime()); ?>"><i class="fa fa-spinner fa-spin"></i></a></li>
+                </ul>
+            </div>
         <?php } ?>
     </div>
 </footer>
-<?php $this->footScript()->appendFile($this->assetTheme('js/front.js')); ?>
 </body>
 </html>
