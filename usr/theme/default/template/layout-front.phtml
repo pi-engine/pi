@@ -81,7 +81,14 @@ $blocks = $this->blocks();
 $blockTemplate = $this->template('block');
 
 // Get breadcrumbs
-$breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Home'), 'href' => $this->url('home')))));
+$breadcrumbs = $this->breadcrumb(
+    array('prefix' => array(
+        array(
+            'label' => __('Home'),
+            'href' => Pi::url($this->url('home'))
+        )
+    ))
+);
 ?>
 <!DOCTYPE HTML>
 <html lang="<?php echo $locale; ?>">
@@ -96,12 +103,12 @@ $breadcrumbs = $this->breadcrumb(array('prefix' => array(array('label' => __('Ho
         <div class="container">
             <?php if ($module == 'system') { ?>
                 <h1>
-                    <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                    <a class="navbar-brand" href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
                         <?php echo _escape($sitename); ?>
                     </a>
                 </h1>
             <?php } else { ?>
-                <a class="navbar-brand" href="<?php echo $this->url('home'); ?>" title="<?php echo _escape($slogan); ?>">
+                <a class="navbar-brand" href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
                     <?php echo _escape($sitename); ?>
                 </a>
             <?php } ?>
