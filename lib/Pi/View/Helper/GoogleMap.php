@@ -259,8 +259,8 @@ EOT;
         );
 
         // Load script
-        $this->view->footScript()->appendScript($loadScript);
         $this->view->footScript()->appendScript($script);
+        $this->view->footScript()->appendScript($loadScript);
 
         // render html
         $htmlTemplate =<<<'EOT'
