@@ -71,7 +71,7 @@ class GoogleMap extends AbstractHelper
      * Google map URL
      * @var string
      */
-    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js';
+    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize';
 
     /**
      * Load GA scripts
@@ -84,14 +84,14 @@ class GoogleMap extends AbstractHelper
      * @return  $this
      */
     public function __invoke(
-    	$locations,
-    	$apiKey = '',
-    	$type = 'point',
+        $locations,
+        $apiKey = '',
+        $type = 'point',
         $option = array()
     ) {
-        
+
         // Set uniq id
-    	$id = uniqid("google-map-");
+        $id = uniqid("google-map-");
 
         // Set html class
         $htmlClass = empty($option['htmlClass']) ? 'pi-map-canvas' : $option['htmlClass'];
@@ -118,11 +118,11 @@ class GoogleMap extends AbstractHelper
         }
 
         // Set map info
-		switch ($type) {
+        switch ($type) {
 
-			case 'route':
-        		// Set route script  
-        		$routeScript =<<<'EOT'
+            case 'route':
+                // Set route script
+                $routeScript =<<<'EOT'
 $(function() {
     var Location = [
         {lat: %s, lon: %s, title: "%s"},
@@ -153,25 +153,25 @@ $(function() {
     }).Load();
 });
 EOT;
-				// Set item info on script
-				$script =  sprintf(
-    				$routeScript,
-        			$locations['latitude'],
-        			$locations['longitude'],
-        			$locations['title'],
-        			$locations['final_latitude'],
-        			$locations['final_longitude'],
-        			$locations['final_title'],
-        			$id,
+                // Set item info on script
+                $script =  sprintf(
+                    $routeScript,
+                    $locations['latitude'],
+                    $locations['longitude'],
+                    $locations['title'],
+                    $locations['final_latitude'],
+                    $locations['final_longitude'],
+                    $locations['final_title'],
+                    $id,
                     $mapTypeId
-    			);
+                );
                 // Load maplace
-    			$this->view->js(pi::url('static/js/maplace.min.js'));
-				break;
+                $this->view->js(pi::url('static/js/maplace.min.js'));
+                break;
 
-			case 'list':
-        		// Set script  
-        		$listScript =<<<'EOT'
+            case 'list':
+                // Set script
+                $listScript =<<<'EOT'
 $(function() {
     var Location = [%s];
     new Maplace({
@@ -187,23 +187,23 @@ $(function() {
     }).Load();
 });
 EOT;
-				// Set item info on script
-				$script =  sprintf(
+                // Set item info on script
+                $script =  sprintf(
                     $listScript,
-                    $locations['list'], 
+                    $locations['list'],
                     $id,
-                    __('Choose a location'), 
-                    __('View all'), 
-        			$locations['latitude'],
-        			$locations['longitude'],
+                    __('Choose a location'),
+                    __('View all'),
+                    $locations['latitude'],
+                    $locations['longitude'],
                     $locations['zoom'],
                     $mapTypeId
                 );
                 // Load maplace
-    			$this->view->js(pi::url('static/js/maplace.min.js'));
-				break;
-			
-			case 'point':
+                $this->view->js(pi::url('static/js/maplace.min.js'));
+                break;
+
+            case 'point':
             default:
                 // Set point script
                 $pointScript =<<<'EOT'
@@ -223,18 +223,18 @@ function initialize() {
     });
 }
 EOT;
-			    // Set item info on script
-				$script =  sprintf(
-    				$pointScript,
-        			$locations['latitude'],
-        			$locations['longitude'],
-        			$locations['zoom'],
+                // Set item info on script
+                $script =  sprintf(
+                    $pointScript,
+                    $locations['latitude'],
+                    $locations['longitude'],
+                    $locations['zoom'],
                     $mapTypeId,
-        			$id,
-        			$locations['title']
-    			);
-				break;
-		}
+                    $id,
+                    $locations['title']
+                );
+                break;
+        }
 
         // Set point script
         $loadScript =<<<'EOT'
@@ -259,6 +259,7 @@ EOT;
         );
 
         // Load script
+
         $this->view->footScript()->appendScript($script);
         $this->view->footScript()->appendScript($loadScript);
 
@@ -270,7 +271,7 @@ EOT;
 	</div>
 </div>
 EOT;
-       
+
         $content = sprintf($htmlTemplate, $id, $htmlClass);
 
         return $content;
