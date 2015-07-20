@@ -165,8 +165,16 @@ EOT;
                     $id,
                     $mapTypeId
                 );
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s?key=%s', $url, $apiKey);
+                }
+
                 // Load maplace
+                $this->view->js($url);
                 $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->footScript()->appendScript($script);
                 break;
 
             case 'list':
@@ -199,8 +207,17 @@ EOT;
                     $locations['zoom'],
                     $mapTypeId
                 );
+
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s?key=%s', $url, $apiKey);
+                }
+
                 // Load maplace
+                $this->view->js($url);
                 $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->footScript()->appendScript($script);
                 break;
 
             case 'point':
@@ -233,11 +250,9 @@ EOT;
                     $id,
                     $locations['title']
                 );
-                break;
-        }
 
-        // Set point script
-        $loadScript =<<<'EOT'
+                // Set point script
+                $loadScript =<<<'EOT'
 function loadScript() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
@@ -247,21 +262,20 @@ function loadScript() {
 window.onload = loadScript;
 EOT;
 
-        // Set url and key
-        if (!empty($apiKey)) {
-            $this->jsUrl = sprintf('%s&key=%s', $this->jsUrl, $apiKey);
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s&key=%s', $url, $apiKey);
+                }
+
+                // Set load script
+                $loadScript =  sprintf($loadScript, $url);
+
+                // Load script
+                $this->view->footScript()->appendScript($script);
+                $this->view->footScript()->appendScript($loadScript);
+                break;
         }
-
-        // Set load script
-        $loadScript =  sprintf(
-            $loadScript,
-            $this->jsUrl
-        );
-
-        // Load script
-
-        $this->view->footScript()->appendScript($script);
-        $this->view->footScript()->appendScript($loadScript);
 
         // render html
         $htmlTemplate =<<<'EOT'
