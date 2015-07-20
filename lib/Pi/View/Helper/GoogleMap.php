@@ -71,7 +71,7 @@ class GoogleMap extends AbstractHelper
      * Google map URL
      * @var string
      */
-    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js';
+    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&callback=initialize';
 
     /**
      * Load GA scripts
@@ -204,22 +204,24 @@ EOT;
 				break;
 			
 			case 'point':
-			default:
-        		// Set point script  
-        		$pointScript =<<<'EOT'
-var myLatlng = new google.maps.LatLng(%s, %s);
-var mapOptions = {
-    zoom: %s,
-    center: myLatlng,
-    mapTypeId: %s
+            default:
+                // Set point script
+                $pointScript =<<<'EOT'
+function initialize() {
+    var myLatlng = new google.maps.LatLng(%s, %s);
+    var mapOptions = {
+        zoom: %s,
+        center: myLatlng,
+        mapTypeId: %s
+    };
+    var map = new google.maps.Map(document.getElementById('%s'), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable:true,
+        title: "%s"
+    });
 }
-var map = new google.maps.Map(document.getElementById("%s"), mapOptions);
-var marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    draggable:true,
-    title: "%s"
-});
 EOT;
 			    // Set item info on script
 				$script =  sprintf(
@@ -233,20 +235,39 @@ EOT;
     			);
 				break;
 		}
-       
-		// Set url and key
-		if (!empty($apiKey)) {
-			$this->jsUrl = sprintf('%s?key=%s', $this->jsUrl, $apiKey);
-		}
+
+        // Set point script
+        $loadScript =<<<'EOT'
+function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '%s';
+    document.body.appendChild(script);
+}
+window.onload = loadScript;
+EOT;
+
+        // Set url and key
+        if (!empty($apiKey)) {
+            $this->jsUrl = sprintf('%s?key=%s', $this->jsUrl, $apiKey);
+        }
+
+        // Set load script
+        $loadScript =  sprintf(
+            $loadScript,
+            $this->jsUrl
+        );
 
         // Load script
-        $this->view->headScript()->prependFile($this->jsUrl);
+        $this->view->footScript()->appendScript($loadScript);
         $this->view->footScript()->appendScript($script);
 
         // render html
         $htmlTemplate =<<<'EOT'
-<div class="thumbnail">
-	<div id="%s" class="%s"></div>
+<div class="pi-map clearfix">
+	<div class="thumbnail">
+		<div id="%s" class="%s"></div>
+	</div>
 </div>
 EOT;
        
