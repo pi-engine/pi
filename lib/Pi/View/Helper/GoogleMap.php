@@ -71,7 +71,7 @@ class GoogleMap extends AbstractHelper
      * Google map URL
      * @var string
      */
-    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&callback=initialize';
+    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js';
 
     /**
      * Load GA scripts
