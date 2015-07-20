@@ -280,9 +280,9 @@ EOT;
         // render html
         $htmlTemplate =<<<'EOT'
 <div class="pi-map clearfix">
-	<div class="thumbnail">
-		<div id="%s" class="%s"></div>
-	</div>
+    <div class="thumbnail">
+        <div id="%s" class="%s"></div>
+    </div>
 </div>
 EOT;
 
