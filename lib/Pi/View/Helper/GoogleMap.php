@@ -249,7 +249,7 @@ EOT;
 
         // Set url and key
         if (!empty($apiKey)) {
-            $this->jsUrl = sprintf('%s?key=%s', $this->jsUrl, $apiKey);
+            $this->jsUrl = sprintf('%s&key=%s', $this->jsUrl, $apiKey);
         }
 
         // Set load script
