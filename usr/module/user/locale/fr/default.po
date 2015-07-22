@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2015-07-22 05:47+0100\n"
-"PO-Revision-Date: 2015-07-22 05:51+0100\n"
+"PO-Revision-Date: 2015-07-22 05:57+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -175,7 +175,6 @@ msgid "Timeline added successfully."
 msgstr "L'activité a été ajoutée avec succès."
 
 #: src/Controller/Front/AccountController.php:76
-#, fuzzy
 msgid ""
 "A confirmation email has been sent to you. Please check your email and "
 "confirm."
@@ -745,7 +744,7 @@ msgstr ""
 
 #: template/front/avatar-index.phtml:74 template/front/avatar-index.phtml:192
 msgid "Upload avatar"
-msgstr "Uploader l\\'avatar"
+msgstr "Uploader son avatar"
 
 #: template/front/avatar-index.phtml:84 template/front/avatar-index.phtml:119
 #: template/front/avatar-index.phtml:145 template/front/avatar-index.phtml:171
