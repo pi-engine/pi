@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2015-07-22 05:47+0100\n"
-"PO-Revision-Date: 2015-07-22 05:57+0100\n"
+"PO-Revision-Date: 2015-07-22 06:14+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
@@ -57,7 +57,7 @@ msgstr "Email modifié"
 
 #: config/event.php:81
 msgid "Avatar changed"
-msgstr "Avatar modifié"
+msgstr "Photo modifiée"
 
 #: config/event.php:87
 msgid "Password changed"
@@ -104,7 +104,7 @@ msgstr "Paramétrages du compte"
 #: template/front/profile-sidebar.phtml:39
 #: template/front/profile-topbar.phtml:133
 msgid "Change avatar"
-msgstr "Modifier l'avatar"
+msgstr "Modifier sa photo"
 
 #: src/Api/Breadcrumbs.php:69 template/front/privacy-index.phtml:12
 #: template/front/profile-sidebar.phtml:51
@@ -254,12 +254,12 @@ msgstr "Taille maximale de l'image : "
 
 #: src/Controller/Front/AvatarController.php:171
 msgid "Avatar Settings"
-msgstr "Paramétrages de l'avatar"
+msgstr "Paramétrages de la photo"
 
 #: src/Controller/Front/AvatarController.php:186
 #: template/front/avatar-index.phtml:43
 msgid "Customize your avatar anyway you like"
-msgstr "Personaliser votre avatar comme vous le voulez"
+msgstr "Personnaliser votre photo comme vous le souhaitez"
 
 #: src/Controller/Front/AvatarController.php:204
 msgid "Invalid token!"
@@ -309,7 +309,7 @@ msgstr "Le nom de l'image est manquant."
 
 #: src/Controller/Front/AvatarController.php:477
 msgid "Avatar set successfully."
-msgstr "L'avatar a été paramétré avec succès."
+msgstr "La photo de profil a été paramétrée avec succès."
 
 #: src/Controller/Front/AvatarController.php:492
 msgid "Image is not removed."
@@ -733,23 +733,23 @@ msgstr "Par défaut"
 
 #: template/front/avatar-index.phtml:49
 msgid "Current avatar"
-msgstr "Avatar actuel"
+msgstr "Photo actuelle"
 
 #: template/front/avatar-index.phtml:50
 msgid ""
 "Once source type is switched and saved, the old avatar image will be deleted."
 msgstr ""
 "Une fois que votre source est modifiée et sauvegardée, l'ancienne image "
-"avatar sera supprimée."
+"photo sera supprimée."
 
 #: template/front/avatar-index.phtml:74 template/front/avatar-index.phtml:192
 msgid "Upload avatar"
-msgstr "Uploader son avatar"
+msgstr "Uploader sa photo"
 
 #: template/front/avatar-index.phtml:84 template/front/avatar-index.phtml:119
 #: template/front/avatar-index.phtml:145 template/front/avatar-index.phtml:171
 msgid "Avatar previews"
-msgstr "Prévisualiser l'avatar"
+msgstr "Prévisualisation Photo de Profil"
 
 #: template/front/avatar-index.phtml:105
 msgid "Gravatar email"
@@ -761,7 +761,7 @@ msgstr "Configuration Gravatar"
 
 #: template/front/avatar-index.phtml:167
 msgid "Apply system avatar as your avatar"
-msgstr "Appliquer l'avatar proposé par défaut"
+msgstr "Appliquer l'icône proposée par défaut"
 
 #: template/front/avatar-index.phtml:181
 msgid "Save"
