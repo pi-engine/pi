@@ -70,7 +70,7 @@ class Ga extends AbstractHelper
 EOT;
 
         $scripts = sprintf($gaScripts, $trackingId, $host);
-        $this->view->footScript()->appendScript($scripts);
+        $this->view->headScript()->appendScript($scripts);
 
         return $this;
     }
