@@ -71,7 +71,7 @@ class GoogleMap extends AbstractHelper
      * Google map URL
      * @var string
      */
-    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js';
+    protected $jsUrl = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize';
 
     /**
      * Load GA scripts
@@ -84,14 +84,14 @@ class GoogleMap extends AbstractHelper
      * @return  $this
      */
     public function __invoke(
-    	$locations,
-    	$apiKey = '',
-    	$type = 'point',
+        $locations,
+        $apiKey = '',
+        $type = 'point',
         $option = array()
     ) {
-        
+
         // Set uniq id
-    	$id = uniqid("google-map-");
+        $id = uniqid("google-map-");
 
         // Set html class
         $htmlClass = empty($option['htmlClass']) ? 'pi-map-canvas' : $option['htmlClass'];
@@ -118,11 +118,11 @@ class GoogleMap extends AbstractHelper
         }
 
         // Set map info
-		switch ($type) {
+        switch ($type) {
 
-			case 'route':
-        		// Set route script  
-        		$routeScript =<<<'EOT'
+            case 'route':
+                // Set route script
+                $routeScript =<<<'EOT'
 $(function() {
     var Location = [
         {lat: %s, lon: %s, title: "%s"},
@@ -153,25 +153,33 @@ $(function() {
     }).Load();
 });
 EOT;
-				// Set item info on script
-				$script =  sprintf(
-    				$routeScript,
-        			$locations['latitude'],
-        			$locations['longitude'],
-        			$locations['title'],
-        			$locations['final_latitude'],
-        			$locations['final_longitude'],
-        			$locations['final_title'],
-        			$id,
+                // Set item info on script
+                $script =  sprintf(
+                    $routeScript,
+                    $locations['latitude'],
+                    $locations['longitude'],
+                    $locations['title'],
+                    $locations['final_latitude'],
+                    $locations['final_longitude'],
+                    $locations['final_title'],
+                    $id,
                     $mapTypeId
-    			);
-                // Load maplace
-    			$this->view->js(pi::url('static/js/maplace.min.js'));
-				break;
+                );
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s?key=%s', $url, $apiKey);
+                }
 
-			case 'list':
-        		// Set script  
-        		$listScript =<<<'EOT'
+                // Load maplace
+                $this->view->js($url);
+                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->footScript()->appendScript($script);
+                break;
+
+            case 'list':
+                // Set script
+                $listScript =<<<'EOT'
 $(function() {
     var Location = [%s];
     new Maplace({
@@ -187,69 +195,97 @@ $(function() {
     }).Load();
 });
 EOT;
-				// Set item info on script
-				$script =  sprintf(
+                // Set item info on script
+                $script =  sprintf(
                     $listScript,
-                    $locations['list'], 
+                    $locations['list'],
                     $id,
-                    __('Choose a location'), 
-                    __('View all'), 
-        			$locations['latitude'],
-        			$locations['longitude'],
+                    __('Choose a location'),
+                    __('View all'),
+                    $locations['latitude'],
+                    $locations['longitude'],
                     $locations['zoom'],
                     $mapTypeId
                 );
-                // Load maplace
-    			$this->view->js(pi::url('static/js/maplace.min.js'));
-				break;
-			
-			case 'point':
-			default:
-        		// Set point script  
-        		$pointScript =<<<'EOT'
-var myLatlng = new google.maps.LatLng(%s, %s);
-var mapOptions = {
-    zoom: %s,
-    center: myLatlng,
-    mapTypeId: %s
-}
-var map = new google.maps.Map(document.getElementById("%s"), mapOptions);
-var marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    draggable:true,
-    title: "%s"
-});
-EOT;
-			    // Set item info on script
-				$script =  sprintf(
-    				$pointScript,
-        			$locations['latitude'],
-        			$locations['longitude'],
-        			$locations['zoom'],
-                    $mapTypeId,
-        			$id,
-        			$locations['title']
-    			);
-				break;
-		}
-       
-		// Set url and key
-		if (!empty($apiKey)) {
-			$this->jsUrl = sprintf('%s?key=%s', $this->jsUrl, $apiKey);
-		}
 
-        // Load script
-        $this->view->headScript()->prependFile($this->jsUrl);
-        $this->view->footScript()->appendScript($script);
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s?key=%s', $url, $apiKey);
+                }
+
+                // Load maplace
+                $this->view->js($url);
+                $this->view->js(pi::url('static/js/maplace.min.js'));
+                $this->view->footScript()->appendScript($script);
+                break;
+
+            case 'point':
+            default:
+                // Set point script
+                $pointScript =<<<'EOT'
+function initialize() {
+    var myLatlng = new google.maps.LatLng(%s, %s);
+    var mapOptions = {
+        zoom: %s,
+        center: myLatlng,
+        mapTypeId: %s
+    };
+    var map = new google.maps.Map(document.getElementById('%s'), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable:true,
+        title: "%s"
+    });
+}
+EOT;
+                // Set item info on script
+                $script =  sprintf(
+                    $pointScript,
+                    $locations['latitude'],
+                    $locations['longitude'],
+                    $locations['zoom'],
+                    $mapTypeId,
+                    $id,
+                    $locations['title']
+                );
+
+                // Set point script
+                $loadScript =<<<'EOT'
+function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = '%s';
+    document.body.appendChild(script);
+}
+window.onload = loadScript;
+EOT;
+
+                // Set url and key
+                $url = "https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize";
+                if (!empty($apiKey)) {
+                    $url = sprintf('%s&key=%s', $url, $apiKey);
+                }
+
+                // Set load script
+                $loadScript =  sprintf($loadScript, $url);
+
+                // Load script
+                $this->view->footScript()->appendScript($script);
+                $this->view->footScript()->appendScript($loadScript);
+                break;
+        }
 
         // render html
         $htmlTemplate =<<<'EOT'
-<div class="thumbnail">
-	<div id="%s" class="%s"></div>
+<div class="pi-map clearfix">
+    <div class="thumbnail">
+        <div id="%s" class="%s"></div>
+    </div>
 </div>
 EOT;
-       
+
         $content = sprintf($htmlTemplate, $id, $htmlClass);
 
         return $content;
