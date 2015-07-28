@@ -1,11 +1,13 @@
 Changelog
 
 
+July 28th, 2015 Marco
+=======================
+1. Update bootstrap to v3.3.5 (keep Glyphicons to prevent from 404)
+
 January 22th, 2015 
 =========================
 1. Update Font Awesome v4.3.0
-
-
 
 December 28th, 2014 Taiwen Jiang
 =========================
