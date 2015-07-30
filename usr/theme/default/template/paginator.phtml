@@ -1,28 +1,46 @@
 <?php if ($this->pageCount <= 1) { return; } ?>
 <?php // See http://developer.yahoo.com/ypatterns/pattern.php?pattern=searchpagination ?>
-<div class="text-center">
+<div class="text-center" itemscope itemtype="http://schema.org/SiteNavigationElement">
     <ul class="pagination<?php if (!empty($class)) { echo ' ' . $class; } ?>">
         <!-- First page link -->
         <?php if ($this->previous) { ?>
-            <li><a href="<?php echo $this->first->url; ?>">«</a></li>
+            <li itemprop="url">
+                <a rel="prev" itemprop="name" href="<?php echo Pi::url($this->first->url); ?>">«</a>
+            </li>
         <?php } ?>
         <!-- Previous page link -->
         <?php if ($this->previous) { ?>
-            <li><a href="<?php echo $this->previous->url; ?>">‹</a></li>
+            <li itemprop="url">
+                <a rel="prev" itemprop="name" href="<?php echo Pi::url($this->previous->url); ?>">‹</a>
+            </li>
         <?php } ?>
         <!-- Numbered page links -->
         <?php foreach ($this->pagesInRange as $page): ?>
-            <li class="<?php echo ($page->number == $this->current) ? 'active' : ''; ?>">
-                <a href="<?php echo $page->url; ?>"><?php echo $page->number; ?></a>
-            </li>
+            <?php if ($page->number < $this->current) { ?>
+                <li itemprop="url">
+                    <a rel="prev" itemprop="name" href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
+                </li>
+            <?php } elseif($page->number == $this->current) { ?>
+                <li class="active" itemprop="url">
+                    <a itemprop="name" href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
+                </li>
+            <?php } elseif($page->number > $this->current) { ?>
+                <li itemprop="url">
+                    <a rel="next" itemprop="name" href="<?php echo Pi::url($page->url); ?>"><?php echo _number($page->number); ?></a>
+                </li>
+            <?php } ?>
         <?php endforeach; ?>
         <?php if ($this->next) { ?>
             <!-- Next page link -->
-            <li><a href="<?php echo $this->next->url; ?>">›</a></li>
+            <li itemprop="url">
+                <a rel="next" itemprop="name" href="<?php echo Pi::url($this->next->url); ?>">›</a>
+            </li>
         <?php } ?>
         <!-- Last page link -->
         <?php if ($this->next) { ?>
-            <li><a href="<?php echo $this->last->url; ?>">»</a></li>
+            <li itemprop="url">
+                <a rel="next" itemprop="name" href="<?php echo Pi::url($this->last->url); ?>">»</a>
+            </li>
         <?php } ?>
     </ul>
 </div>
