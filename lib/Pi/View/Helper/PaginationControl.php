@@ -10,6 +10,7 @@
 
 namespace Pi\View\Helper;
 
+use pi;
 use Zend\Paginator\Paginator;
 use Zend\View\Helper\PaginationControl as ZendPaginationControl;
 use Zend\View\Exception;
@@ -106,6 +107,38 @@ class PaginationControl extends ZendPaginationControl
         }
 
         $partialHelper = $this->view->plugin('partial');
+
+        if ($pages['current'] > 1) {
+            $headTitle = $this->view->headTitle();
+            $separator = $headTitle->getSeparator();
+            $sitename = Pi::config('sitename');
+
+            $postfix = sprintf(' %s %s %s %s %s',
+                $separator,
+                __('Page'),
+                _number($pages['current']),
+                $separator,
+                $sitename
+            );
+
+            $headTitle->setPostfix($postfix);
+        }
+
+        if (isset($pages['previous'])) {
+            $previous = get_object_vars($pages['previous']);
+            $this->view->headLink(array(
+                'rel'   => 'prev',
+                'href'  => Pi::url($previous['url']),
+            ));
+        }
+
+        if (isset($pages['next'])) {
+            $next = get_object_vars($pages['next']);
+            $this->view->headLink(array(
+                'rel'   => 'next',
+                'href'  => Pi::url($next['url']),
+            ));
+        }
 
         return $partialHelper($partial, $pages);
     }
