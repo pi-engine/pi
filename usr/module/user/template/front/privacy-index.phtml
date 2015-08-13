@@ -1,7 +1,6 @@
 <?php
-$this->css(array(
-  $this->assetModule('front/front.css')
-));
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
 ?>
 <div class="row">
     <div class="col-md-3">
@@ -12,35 +11,35 @@ $this->css(array(
             <h1><?php _e('Privacy'); ?> <small><?php _e('Set profile field privacy.'); ?></small></h1>
         </div>
         <?php if (empty($privacy)) {?>
-        <div class="alert alert-info">
-            <?php _e('No available privacy setting'); ?>
-        </div>
+            <div class="alert alert-info">
+                <?php _e('No available privacy setting'); ?>
+            </div>
         <?php } else { ?>
-        <form class="form-horizontal" method="post">
-            <?php foreach ($privacy as $item) { ?>
-            <div class="form-group">
-                <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
-                <div class="col-md-4">
-                    <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?> class="form-control">
-                        <?php
-                        foreach ($levels as $key => $label) {
-                            echo sprintf('<option value="%s"%s>%s',
-                                $key,
-                                $key == $item['value'] ? ' selected = selected ' : '',
-                                $label
-                             );
-                        }
-                        ?>
-                    </select>
+            <form class="form-horizontal" method="post">
+                <?php foreach ($privacy as $item) { ?>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label"><?php echo $item['title']; ?></label>
+                        <div class="col-md-4">
+                            <select name="<?php echo $item['field']; ?>" <?php if ($item['is_forced']) echo 'disabled'; ?> class="form-control">
+                                <?php
+                                foreach ($levels as $key => $label) {
+                                    echo sprintf('<option value="%s"%s>%s',
+                                        $key,
+                                        $key == $item['value'] ? ' selected = selected ' : '',
+                                        $label
+                                    );
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                <?php } ?>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-4">
+                        <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
+                    </div>
                 </div>
-            </div>
-            <?php } ?>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-4">
-                    <button type="submit" class="btn btn-primary"><?php _e('Submit'); ?></button>
-                </div>
-            </div>
-        </form>
+            </form>
         <?php } ?>
     </div>
 </div>

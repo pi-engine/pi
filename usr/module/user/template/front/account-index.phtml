@@ -1,4 +1,7 @@
-<?php $this->css($this->assetModule('front/front.css')); ?>
+<?php
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
+?>
 <div class="row">
     <div class="col-md-3">
         <?php include $this->template('./profile-sidebar.phtml'); ?>

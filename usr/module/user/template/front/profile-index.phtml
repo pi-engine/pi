@@ -1,47 +1,48 @@
 <?php
-    $this->css($this->assetModule('front/front.css'));
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
 ?>
 <?php include $this->template('./profile-topbar.phtml'); ?>
 <div class="user-min-body user-profile-list">
     <?php foreach ($groups as $group) {?>
-    <div class="user-profile-item">
-        <div class="clearfix user-legend">
-            <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
-            <?php
+        <div class="user-profile-item">
+            <div class="clearfix user-legend">
+                <h4 class="user-legend-title"><?php echo _escape($group['title']);?></h4>
+                <?php
                 if ($group['compound']) {
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.compound', 'group' => $group['id']));
                     $addUrl = $editUrl . '#user-info-add';
                 } else {
                     $editUrl = $this->url('', array('controller' => 'profile', 'action' => 'edit.profile', 'group' => $group['id']));
                 }
-            ?>
-            <a class="btn btn-default user-legend-edit" href="<?php echo $editUrl; ?>">
-                <i class="fa fa-pencil"></i>
-                <?php _e('Edit'); ?>
-            </a>
-            <div class="user-legend-linea"></div>
+                ?>
+                <a class="btn btn-default user-legend-edit" href="<?php echo $editUrl; ?>">
+                    <i class="fa fa-pencil"></i>
+                    <?php _e('Edit'); ?>
+                </a>
+                <div class="user-legend-linea"></div>
+            </div>
+            <?php if ($group['fields']) { ?>
+                <div class="user-field">
+                    <?php
+                    foreach ($group['fields'] as $set => $fields) {
+                        echo '<dl class="dl-horizontal user-field-dl">';
+                        foreach ($fields as $field) {
+                            echo sprintf(
+                                '<dt>%s<dd>%s',
+                                $field['title'],
+                                $field['value'] ? _escape($field['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
+                            );
+                        }
+                        echo '</dl>';
+                    }
+                    ?>
+                </div>
+            <?php } else { ?>
+                <a href="<?php echo $addUrl; ?>" class="well text-center show">
+                    <?php echo sprintf(__('Add %s'), $group['title']); ?>
+                </a>
+            <?php } ?>
         </div>
-        <?php if ($group['fields']) { ?>
-        <div class="user-field">
-        <?php
-            foreach ($group['fields'] as $set => $fields) {
-                echo '<dl class="dl-horizontal user-field-dl">';
-                foreach ($fields as $field) {
-                    echo sprintf(
-                        '<dt>%s<dd>%s',
-                        $field['title'],
-                        $field['value'] ? _escape($field['value']) : '<em class="text-muted">' . __('Unfiled') . '</em>'
-                    );
-                }
-                echo '</dl>';
-            }
-        ?>
-        </div>
-        <?php } else { ?>
-            <a href="<?php echo $addUrl; ?>" class="well text-center show">
-            <?php echo sprintf(__('Add %s'), $group['title']); ?>
-        </a>
-        <?php } ?>
-    </div>
     <?php } ?>
 </div>

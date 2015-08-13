@@ -71,51 +71,51 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
         }
         ?>
         <?php if ($owner) { ?>
-        <?php if ($module == 'user') { ?>
-        <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
-            <i class="fa fa-eye"></i>
-            <?php _e('Switch to public'); ?>
-        </a>
-        <?php } ?>
-        <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'account', 'action' => 'index')); ?>">
-            <i class="fa fa-cog"></i>
-            <?php _e('Settings'); ?>
-        </a>
-        <?php if ($quicklink) { ?>
-        <div class="dropdown inline">
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="fa fa-magic"></i>
-                <?php _e('Quicklinks'); ?>
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <?php foreach ($quicklink as $item) { ?>
-                <li>
-                    <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
-                        <?php 
-                        if ($item['icon']) {
-                            echo sprintf('<i class="fa %s"></i>',$item['icon']);
-                        }
-                        ?>
-                        <?php echo $item['title']; ?>
-                    </a>
-                </li>
-                <?php } ?>
-            </ul>
-        </div>
-        <?php } ?>
+            <?php if ($module == 'user') { ?>
+                <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'view', 'uid' => $uid)); ?>">
+                    <i class="fa fa-eye"></i>
+                    <?php _e('Switch to public'); ?>
+                </a>
+            <?php } ?>
+            <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'account', 'action' => 'index')); ?>">
+                <i class="fa fa-cog"></i>
+                <?php _e('Settings'); ?>
+            </a>
+            <?php if ($quicklink) { ?>
+                <div class="dropdown inline">
+                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-magic"></i>
+                        <?php _e('Quicklinks'); ?>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($quicklink as $item) { ?>
+                            <li>
+                                <a href="<?php echo $item['link']; ?>" title="<?php echo $item['title']; ?>" target="_blank">
+                                    <?php
+                                    if ($item['icon']) {
+                                        echo sprintf('<i class="fa %s"></i>',$item['icon']);
+                                    }
+                                    ?>
+                                    <?php echo $item['title']; ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            <?php } ?>
         <?php } else { ?>
             <?php if (Pi::user()->getId() == $uid && $module == 'user') { ?>
-            <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'index')); ?>">
-                <i class="fa fa-eye"></i>
-                <?php _e('Switch to own'); ?>
-            </a>
+                <a class="btn btn-default" href="<?php echo $this->url('user', array('controller' => 'profile', 'action' => 'index')); ?>">
+                    <i class="fa fa-eye"></i>
+                    <?php _e('Switch to own'); ?>
+                </a>
             <?php } ?>
             <?php if (Pi::user()->getId() != $uid && Pi::service('module')->isActive('message')) { ?>
-            <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
-                <i class="fa fa-envelope"></i>
-                <?php _e('Send message'); ?>
-            </a>
+                <a class="btn btn-default" href="<?php echo $this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'send', 'uid' => $uid)); ?>">
+                    <i class="fa fa-envelope"></i>
+                    <?php _e('Send message'); ?>
+                </a>
             <?php } else { ?>
                 <a class="btn btn-default disabled">
                     <i class="fa fa-envelope"></i>
@@ -129,24 +129,24 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
             <?php echo Pi::avatar()->get($uid, 'xlarge', _escape($user['name'])); ?>
         </div>
         <?php if ($owner) { ?>
-        <a class="user-avatar-upload" href="<?php echo $this->url('user', array('controller' => 'avatar', 'action' => 'index')); ?>">
-            <?php _e('Change avatar'); ?>
-        </a>
+            <a class="user-avatar-upload" href="<?php echo $this->url('user', array('controller' => 'avatar', 'action' => 'index')); ?>">
+                <?php _e('Change avatar'); ?>
+            </a>
         <?php } ?>
     </div>
     <div class="inline user-info-center">
         <h1 class="user-name"><?php echo _escape($user['name']); ?></h1>
         <?php if (!empty($user['gender'])) { ?>
-        <div style="margin-top: 10px;">
-            <?php _e('Gender:'); ?>
-            <?php echo _escape($user['gender']); ?>
-        </div>
+            <div style="margin-top: 10px;">
+                <?php _e('Gender:'); ?>
+                <?php echo _escape($user['gender']); ?>
+            </div>
         <?php } ?>
         <?php if (!empty($user['birthdate'])) { ?>
-        <div style="margin-top: 5px;">
-            <?php _e('Birthdate:'); ?>
-            <?php echo _escape($user['birthdate']); ?> 
-        </div>
+            <div style="margin-top: 5px;">
+                <?php _e('Birthdate:'); ?>
+                <?php echo _escape($user['birthdate']); ?>
+            </div>
         <?php } ?>
     </div>
 </div>
@@ -197,7 +197,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
         </li>
     <?php }
     if ($length > $maxItem) {
-    ?>
+        ?>
         <li class="dropdown">
             <a data-toggle="dropdown" href="#">
                 <?php _e('More'); ?>
