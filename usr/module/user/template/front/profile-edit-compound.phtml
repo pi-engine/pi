@@ -1,7 +1,8 @@
 <?php
-    $this->css($this->assetModule('front/front.css'));
-    $this->jQuery('ui/jquery-ui.min.js');
-    $this->Backbone();
+$this->css($this->assetModule('front/front.css'));
+$this->jQuery('ui/jquery-ui.min.js');
+$this->Backbone();
+$this->headMeta('noindex', 'robots');
 ?>
 <div class="row">
     <div class="col-md-3">
@@ -44,17 +45,17 @@
                 <% } else { %>
                 <em class="text-muted"><?php _e('Unfiled'); ?></em>
                 <% } %>
-            <% }); %>
+                <% }); %>
         </dl>
     </div>
 </script>
 <script>
-$('#user-js-compound').data('config', {
-    urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
-    groupId: '<?php echo $group_id; ?>',
-    compounds: <?php echo json_encode($compounds) ?>,
-    deleteConfirm: '<?php _e('Are you sure to delete this record?'); ?>'
-});
+    $('#user-js-compound').data('config', {
+        urlRoot: '<?php echo $this->url('default', array('module' => 'user', 'controller' => 'profile')); ?>',
+        groupId: '<?php echo $group_id; ?>',
+        compounds: <?php echo json_encode($compounds) ?>,
+        deleteConfirm: '<?php _e('Are you sure to delete this record?'); ?>'
+    });
 </script>
 <script src="<?php echo $this->assetModule('front/compound.js'); ?>"></script>
 

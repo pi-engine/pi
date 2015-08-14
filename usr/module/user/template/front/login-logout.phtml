@@ -1,4 +1,7 @@
-<?php $this->css($this->assetModule('front/front.css')); ?>
+<?php
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
+?>
 <div class="page-header">
     <h1><?php echo _escape($title); ?></h1>
 </div>

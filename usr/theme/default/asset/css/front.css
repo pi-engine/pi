@@ -4,6 +4,10 @@ html {
     position: relative;
 }
 
+ a {
+    color: #292929;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -316,7 +320,7 @@ form .icon-question-sign {
 
 /* header */
 .pi-header {
-    border-top: 5px solid #292929;
+    border-top: 3px solid #292929;
 }
 .pi-header h1,
 .pi-header h2 {
@@ -337,43 +341,25 @@ form .icon-question-sign {
     background-color: #E0E0E0;
 }
 
-.pi-section .pi-main-container {
+.pi-section .pi-module-content {
     padding: 15px;
     background-color: #fff;
     border: 1px solid transparent;
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
-
-#pi-system .pi-section .pi-main-container {
-    padding: 0;
-    background-color: inherit;
-    border: 0px;
-    border-radius: 0px;
-    -webkit-box-shadow: 0 0px 0 rgba(0, 0, 0, .05);
-    box-shadow: 0 0 0 rgba(0, 0, 0, .05);
-}
-
-.pi-section .pi-module-content {
     margin-bottom: 15px;
 }
 
 /* footer */
 .pi-footer {
-    border-top: 5px solid #EE3E3E;
-    background-color: #323232;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    border-bottom: 3px solid #292929;
+    background-color: #f8f8f8;
     padding: 15px;
     text-align: center;
-    color: #fff;
-}
-
-.pi-footer a {
-    color: #f0f0f0;
-}
-
-.pi-footer a:hover {
-    color: #EE3E3E;
+    color: #292929;
 }
 
 .pi-footer-links {

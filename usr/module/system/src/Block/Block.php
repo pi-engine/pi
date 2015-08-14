@@ -91,9 +91,9 @@ class Block
         if ('js' == $type) {
             $user = array(
                 'uid'       => Pi::service('user')->getUser()->get('id'),
-                'logout'    => Pi::service('authentication')->getUrl('logout', $params),
-                'login'     => Pi::service('authentication')->getUrl('login', $params),
-                'register'  => Pi::service('user')->getUrl('register', $params),
+                'logout'    => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
+                'login'     => Pi::url(Pi::service('authentication')->getUrl('login', $params)),
+                'register'  => Pi::url(Pi::service('user')->getUrl('register', $params)),
             );
             $url = Pi::service('url')->assemble('default', array_replace($params, array(
                 'module'        => 'system',
@@ -104,8 +104,8 @@ class Block
         } elseif (!Pi::service('user')->hasIdentity()) {
             $user = array(
                 'uid'       => 0,
-                'login'     => Pi::service('authentication')->getUrl('login', $params),
-                'register'  => Pi::service('user')->getUrl('register', $params),
+                'login'     => Pi::url(Pi::service('authentication')->getUrl('login', $params)),
+                'register'  => Pi::url(Pi::service('user')->getUrl('register', $params)),
             );
         } else {
             $uid    = Pi::service('user')->getUser()->get('id');
@@ -119,9 +119,9 @@ class Block
                 'uid'       => Pi::service('user')->getId(),
                 'name'      => $name,
                 'avatar'    => $avatar,
-                'profile'   => Pi::service('user')->getUrl('profile', $params),
-                'logout'    => Pi::service('authentication')->getUrl('logout', $params),
-                'message'   => Pi::service('user')->message()->getUrl(),
+                'profile'   => Pi::url(Pi::service('user')->getUrl('profile', $params)),
+                'logout'    => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
+                'message'   => Pi::url(Pi::service('user')->message()->getUrl()),
             );
         }
 

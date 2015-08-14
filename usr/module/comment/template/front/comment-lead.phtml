@@ -5,16 +5,17 @@
             <strong>(<?php echo _number($count) ?: _number(0); ?>)</strong>
         </h2>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" itemscope itemtype="http://schema.org/UserComments">
         <?php include $this->template('./_post-form.phtml'); ?>
         <?php if (count($posts)) { ?>
             <?php
             $template =<<<'EOT'
-<div class="media-heading">
-    <a href="%s" target="_blank" style="margin-right: 20px; margin-left: 20px;">%s</a>
+<div class="media-heading" itemprop="creator" itemscope itemtype="http://schema.org/Person">
+    <a href="%s" target="_blank" style="margin-right: 20px; margin-left: 20px;" itemprop="name">%s</a>
     <span class="muted">%s</span>
 </div>
-<div class="clearfix">%s</div>
+<div class="clearfix" itemprop="commentText">%s</div>
+<meta itemprop="commentTime" content="%s" />
 EOT;
             ?>
             <?php foreach ($posts as $item) { ?>
@@ -28,7 +29,8 @@ EOT;
                             $item['user']['url'],
                             $item['user']['name'],
                             _date($item['time']),
-                            $item['content']
+                            $item['content'],
+                            date("Y-m-d H:i:s", $item['time'])
                         ); ?>
                         <div class="comment-operation">
                             <?php if ($uid == $item['uid']) {

@@ -1,4 +1,7 @@
-<?php $this->css($this->assetModule('front/front.css')); ?>
+<?php
+$this->css($this->assetModule('front/front.css'));
+$this->headMeta('noindex', 'robots');
+?>
 <?php include $this->template('./profile-topbar.phtml'); ?>
 <div class="clearfix user-min-body">
     <?php if (!empty($data['content'])) { ?>
