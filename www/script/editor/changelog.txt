@@ -9,7 +9,7 @@ Please take care  :
 
 Pi CKEditor plugins
 Those are added upon standard package
-Currently we chose >>> colordialog, iframe(iframe), showblocks
+Currently we chose >>> Colordialog, Iframe(iframe), Showblocks, Enhanced Image, Media Embed and Semantic Media Embed
 
 How to build PI CKEditor Package?
 The Pi CKEditor package has to be made through CKEditor Builder http://ckeditor.com/builder
@@ -28,14 +28,19 @@ Each time you want to add a new plugin, you have to build a new package of CKEdi
 Alternatively you can copy/paste the new plugin from full package, but you have to activate it in config.js (config.extraPlugins value - see CKEditor docs) to make it work.
 
 
+August 14th, 2015
+================
+1 Upgrade to CKEditor 4.5.2 with the above listed Pi CKEditor selected plugins (6)
+. we introduce the 2 new CK4.5 plugins Media Embed/Semantic Media Embed, and the Enhanced Image plugin.
+. we did not choose Auto Embed plugin, but can be usefull for some of us
 
 August 2nd, 2015
 ================
-1 Upgrade to CKEditor 4.5.1 with Pi CKEditor selected plugins (3)
+1 Upgrade to CKEditor 4.5.1 with the above listed Pi CKEditor selected plugins (3)
 
 May 9th, 2015
 ================
-1 fix upgrade to CKEditor 4.4.7 with Pi CKEditor selected plugins (3), update changelog
+1 fix upgrade to CKEditor 4.4.7 with the above listed Pi CKEditor selected plugins (3), update changelog
 
 April 21th, 2015
  ================
