@@ -271,6 +271,13 @@ EOT;
                     break;
             }
 
+            // Style settings for editor
+            if ($type == 'editor') {
+                $vars['label_size']     = 'col-md-12';
+                $vars['element_size']   = 'col-md-12';
+                $vars['error_size']     = 'col-md-12';
+            }
+
             $vars['element_name']       = $element->getName();
             $vars['element_content']    = $this->view->formElement($element);
             $vars['error_content']      = $this->view->formElementErrors($element);
