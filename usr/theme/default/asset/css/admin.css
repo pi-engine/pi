@@ -90,8 +90,10 @@ legend {
     bottom: 0;
     overflow-y: auto;
     width: 190px;
-    border-right: 1px solid #ccc;
     background: #f2f2f2;
+    border-right: 1px solid #ddd;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 4px 0 rgba(0, 0, 0, 0.12),
 }
 
 .pi-modules-nav a:focus {
@@ -104,9 +106,20 @@ legend {
     color: #4c4c4c;
 }
 
+.pi-modules-nav > .active {
+    background-color: #005580;
+    color: #fff;
+}
+
 .pi-modules-nav > .active > a {
-    color: #428bca;
+    color: #fff;
     font-weight: bold;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.pi-modules-nav > .active > a:hover {
+    background-color: #005580;
 }
 
 .pi-modules-nav i {
@@ -114,13 +127,23 @@ legend {
     text-align: center;
 }
 
-.pi-modules-nav > .category  i {
+.pi-modules-nav > .category {
+    background-color: #ddd;
+}
+
+.pi-modules-nav > .category i {
     width: 15px;
 }
 
 .pi-modules-nav > .category > a {
     padding-left: 0px;
 }
+
+.pi-modules-nav > .category > a:hover {
+    background-color: #ddd;
+    cursor: auto;
+}
+
 
 /* NOT USED: pi-modules-nav-director */
 .pi-modules-nav-director {

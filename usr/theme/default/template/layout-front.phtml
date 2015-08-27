@@ -106,13 +106,13 @@ $breadcrumbs = $this->breadcrumb(
                     <?php if ($module == 'system') { ?>
                         <h1>
                             <a href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
-                                <?php echo _escape($sitename); ?>
+                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>" alt="<?php echo _escape($sitename); ?>">
                             </a>
                         </h1>
                     <?php } else { ?>
                         <h2>
                             <a href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
-                                <?php echo _escape($sitename); ?>
+                                <img src="<?php echo $this->assetTheme('image/logo.png'); ?>" alt="<?php echo _escape($sitename); ?>">
                             </a>
                         </h2>
                     <?php } ?>
@@ -125,15 +125,17 @@ $breadcrumbs = $this->breadcrumb(
     </div>
     <nav class="navbar navbar-default">
         <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <?php echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav'); ?>
-                <div class="navbar-form navbar-right">
-                    <?php echo $this->widget('search-search'); ?>
+            <div class="row">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <?php echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav'); ?>
+                    <div class="navbar-form navbar-right">
+                        <?php echo $this->widget('search-search'); ?>
+                    </div>
                 </div>
             </div>
         </div>

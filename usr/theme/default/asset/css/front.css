@@ -5,7 +5,7 @@ html {
 }
 
  a {
-    color: #292929;
+    color: #0098E3;
 }
 
 a:hover {
@@ -22,34 +22,6 @@ a:hover {
         width: 250px;
     }
 }
-
-/* Navbar custom */
-/*.navbar-inverse {
-    margin-bottom: 0;
-    min-height: 30px;
-    border-radius: 0;
-}
-
-.navbar-inverse .navbar-nav > li > a {
-    padding: 5px 10px;
-}
-
-.navbar-inverse .navbar-brand {
-    padding: 5px 15px;
-}
-
-.navbar-inverse .navbar-right {
-    float: right;
-    margin: 0 -10px 0 !important;
-}
-
-.navbar-inverse .navbar-nav > li {
-    float: left;
-}
-
-.navbar-inverse .navbar-brand {
-    height: auto;
-} */
 
 .pi-navbar-nav ul {
     display: none;
@@ -320,7 +292,7 @@ form .icon-question-sign {
 
 /* header */
 .pi-header {
-    border-top: 3px solid #292929;
+    border-top: 2px solid #ddd;
 }
 .pi-header h1,
 .pi-header h2 {
@@ -353,9 +325,9 @@ form .icon-question-sign {
 
 /* footer */
 .pi-footer {
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-    border-bottom: 3px solid #292929;
+    -webkit-box-shadow: 0px -2px 5px rgba(0, 0, 0, .05);
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, .05);
+    border-bottom: 2px solid #ddd;
     background-color: #f8f8f8;
     padding: 15px;
     text-align: center;

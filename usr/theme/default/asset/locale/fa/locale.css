@@ -1748,6 +1748,11 @@ th {
   right: 210px;
 }
 
+.pi-sidebar {
+  border-left: 1px solid #ddd;
+  border-right: 0;
+}
+
 /* Nav */
 .pi-navbar-nav ul li {
   text-align: right;
