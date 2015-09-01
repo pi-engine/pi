@@ -57,7 +57,7 @@ class FormDatepicker extends FormInput
         if (!empty($options['language'])) {
             $bsLoad[] = sprintf('datepicker/locales/bootstrap-datepicker.%s.js', $options['language']);
         }
-        $view->bootstrap($bsLoad);
+        $view->bootstrap($bsLoad, array(), null, false);
 
         $format = !empty($options['format']) ? $options['format'] : 'mm/dd/yyy';
         $element->setAttribute('data-date-format', $format);
