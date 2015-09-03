@@ -67,13 +67,14 @@ class Bootstrap extends AssetCanonize
     public function __invoke(
         $files = null,
         $attributes = array(),
-        $appendVersion = null
+        $appendVersion = null,
+        $rootLoaded = true
     ) {
         $files = $this->canonize($files, $attributes);
 
         $bootstrap = 'css/bootstrap.min.css';
 
-        if (!static::$rootLoaded) {
+        if (!static::$rootLoaded && $rootLoaded) {
             $file = static::DIR_ROOT . '/' . $bootstrap;
 
             // Lookup in theme custom bootstrap

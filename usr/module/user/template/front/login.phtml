@@ -1,22 +1,24 @@
 <?php $this->css($this->assetModule('front/front.css')); ?>
-<div class="page-header">
-    <h1><?php echo _escape($title); ?></h1>
-</div>
-<?php if (!empty($message)) { ?>
-    <div class="alert alert-danger">
-        <?php echo _escape($message); ?>
+<div class="clearfix">
+    <div class="page-header">
+        <h1><?php echo _escape($title); ?></h1>
     </div>
-<?php } ?>
-<?php echo $this->form($form); ?>
-<div class="user-action-bar">
-    <div class="col-md-offset-2 col-md-10">
-        <ul class="list-inline">
-            <li>
-                <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
-            </li>
-            <li>
-                <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
-            </li>
-        </ul>
+    <?php if (!empty($message)) { ?>
+        <div class="alert alert-danger">
+            <?php echo _escape($message); ?>
+        </div>
+    <?php } ?>
+    <?php echo $this->form($form); ?>
+    <div class="user-action-bar">
+        <div class="col-md-offset-2 col-md-10">
+            <ul class="list-inline">
+                <li>
+                    <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
+                </li>
+                <li>
+                    <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
