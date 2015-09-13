@@ -126,15 +126,17 @@ $breadcrumbs = $this->breadcrumb(
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="row">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <?php echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav'); ?>
-                    <div class="navbar-form navbar-right">
-                        <?php echo $this->widget('search-search'); ?>
+                <div class="col-md-12">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <?php echo $navigation->menu()->setUlClass('nav navbar-nav pi-navbar-nav'); ?>
+                        <div class="navbar-form navbar-right">
+                            <?php echo $this->widget('search-search'); ?>
+                        </div>
                     </div>
                 </div>
             </div>
