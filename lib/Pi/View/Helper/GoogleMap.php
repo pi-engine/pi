@@ -181,7 +181,7 @@ EOT;
                 // Set script
                 $listScript =<<<'EOT'
 $(function() {
-    var Location = [%s];
+    var Location = %s;
     new Maplace({
         locations: Location,
         map_div: "#%s",
