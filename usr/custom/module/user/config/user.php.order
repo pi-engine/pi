@@ -89,7 +89,7 @@ $customConfig = array(
         ),
 
         // Profile: address2
-        'address1'  => array(
+        'address2'  => array(
             'name'  => 'address2',
             'title' => _a('Address 2'),
         ),

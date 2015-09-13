@@ -434,12 +434,35 @@ class RegisterController extends ActionController
             'uid'       => 0,
             'message'   => '',
         );
+
+        // Check email force set on register form
+        if (!isset($values['email']) || empty($values['email'])) {
+            $result['message'] = __('User information was not completed and user account was not saved.');
+            return $result;
+        }
+
+        // Set email as identity if not set on register form
+        if (!isset($values['identity']) || empty($values['identity'])) {
+            $values['identity'] = $values['email'];
+        }
+
+        // Set name if not set on register form
+        if (!isset($values['name']) || empty($values['name'])) {
+            if (isset($values['first_name']) || isset($values['last_name'])) {
+                $values['name'] = $values['first_name'] . ' ' . $values['last_name'];
+            } else {
+                $values['name'] = $values['identity'];
+            }
+        }
+
+        // Set values
         $values['last_modified'] = time();
         $values['ip_register']   = Pi::user()->getIp();
+
+        // Add user
         $uid = Pi::api('user', 'user')->addUser($values);
         if (!$uid || !is_int($uid)) {
             $result['message'] = __('User account was not saved.');
-
             return $result;
         }
         $result['uid'] = $uid;
