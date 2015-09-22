@@ -112,7 +112,7 @@ $mimetypes = array(
 
 $suffix = strtolower(pathinfo($path, PATHINFO_EXTENSION));
 $contentType = isset($mimetypes[$suffix]) ? $mimetypes[$suffix] : 'text/plain';
-if (in_array($suffix, $allowedExtension)) {
+if ($suffix && in_array($suffix, $allowedExtension)) {
 } else {
     $contentTypeCategory = substr($contentType, 0, strpos($contentType, '/'));
     if (!in_array($contentTypeCategory, array('image', 'text'))) {
