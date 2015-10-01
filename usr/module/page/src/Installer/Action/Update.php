@@ -38,59 +38,6 @@ class Update extends BasicUpdate
         $table          = $model->getTable();
         $adapter        = $model->getAdapter();
 
-        // Add `template` field
-        if (version_compare($moduleVersion, '1.2.2', '<=')) {
-            $sql =<<<'EOD'
-ALTER TABLE %s
-ADD  `template`        varchar(64)             NOT NULL default '';
-EOD;
-
-            $sql = sprintf($sql, $table);
-            try {
-                $adapter->query($sql, 'execute');
-            } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status'    => false,
-                    'message'   => 'Table alter query failed: '
-                        . $exception->getMessage(),
-                ));
-
-                return false;
-            }
-        }
-
-        // Add `theme` `layout` fields
-        if (version_compare($moduleVersion, '1.2.1', '<=')) {
-            $sql =<<<'EOD'
-ALTER TABLE %s
-ADD  `theme`           varchar(64)             NOT NULL default '',
-ADD  `layout`          varchar(64)             NOT NULL default '';
-EOD;
-
-            $sql = sprintf($sql, $table);
-            try {
-                $adapter->query($sql, 'execute');
-            } catch (\Exception $exception) {
-                $this->setResult('db', array(
-                    'status'    => false,
-                    'message'   => 'Table alter query failed: '
-                        . $exception->getMessage(),
-                ));
-
-                return false;
-            }
-        }
-
-        // Drop homepage for blocks
-        if (version_compare($moduleVersion, '1.2.0', '<=')) {
-            Pi::model('page')->delete(array(
-                'section'       => 'front',
-                'module'        => $this->module,
-                'controller'    => 'index',
-                'action'        => 'index',
-            ));
-        }
-
         // Check for version 1.0.0-beta.2
         if (version_compare($moduleVersion, '1.0.0-beta.2', '<')) {
 
@@ -233,11 +180,79 @@ EOD;
             }
         }
 
-        // Check for version 1.2.0
-        if (version_compare($moduleVersion, '1.2.0', '<')) {
+        // Drop homepage for blocks
+        if (version_compare($moduleVersion, '1.2.0', '<=')) {
+            Pi::model('page')->delete(array(
+                'section'       => 'front',
+                'module'        => $this->module,
+                'controller'    => 'index',
+                'action'        => 'index',
+            ));
 
             // Alter table add field `nav_order`
             $sql = sprintf('ALTER TABLE %s ADD `nav_order` smallint(5) unsigned NOT NULL default \'0\'',
+                $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
+
+        // Add `theme` `layout` fields
+        if (version_compare($moduleVersion, '1.2.1', '<=')) {
+            $sql =<<<'EOD'
+ALTER TABLE %s
+ADD  `theme`           varchar(64)             NOT NULL default '',
+ADD  `layout`          varchar(64)             NOT NULL default '';
+EOD;
+
+            $sql = sprintf($sql, $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
+
+        // Add `template` field
+        if (version_compare($moduleVersion, '1.2.2', '<=')) {
+            $sql =<<<'EOD'
+ALTER TABLE %s
+ADD  `template`        varchar(64)             NOT NULL default '';
+EOD;
+
+            $sql = sprintf($sql, $table);
+            try {
+                $adapter->query($sql, 'execute');
+            } catch (\Exception $exception) {
+                $this->setResult('db', array(
+                    'status'    => false,
+                    'message'   => 'Table alter query failed: '
+                        . $exception->getMessage(),
+                ));
+
+                return false;
+            }
+        }
+
+        // Update to version 1.2.6
+        if (version_compare($moduleVersion, '1.2.6', '<=')) {
+
+            // Alter table change `content` to MEDIUMTEXT
+            $sql = sprintf("ALTER TABLE %s CHANGE `content` `content` MEDIUMTEXT",
                 $table);
             try {
                 $adapter->query($sql, 'execute');
