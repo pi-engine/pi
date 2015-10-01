@@ -33,7 +33,8 @@ return array(
                 ),
             ),
             // Is editable by admin, default as true
-            'is_edit'   => false,
+            'is_edit'     => false,
+            'is_required' => true,
         ),
         // Account: password
         'credential'    => array(
@@ -50,6 +51,7 @@ return array(
             ),
             'is_display'    => false,
             'is_search'     => false,
+            'is_required'   => true,
         ),
         // Account: email
         'email'     => array(
@@ -72,7 +74,8 @@ return array(
                     ),
                 ),
             ),
-            'is_edit'   => false,
+            'is_edit'     => false,
+            'is_required' => true,
         ),
         // Account: display name
         'name'      => array(
@@ -87,7 +90,8 @@ return array(
                     ),
                 ),
             ),
-            'is_edit'   => false,
+            'is_edit'     => false,
+            'is_required' => true,
         ),
         // Account: gender
         'gender'    => array(

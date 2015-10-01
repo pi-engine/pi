@@ -33,6 +33,7 @@ class RegisterForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'text',
+                'required' => true,
             )
         ));
 
@@ -43,6 +44,7 @@ class RegisterForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'text',
+                'required' => true,
             )
         ));
 
@@ -53,6 +55,7 @@ class RegisterForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'text',
+                'required' => true,
             )
         ));
 
@@ -63,6 +66,7 @@ class RegisterForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'password',
+                'required' => true,
             )
         ));
 
@@ -73,6 +77,7 @@ class RegisterForm extends BaseForm
             ),
             'attributes'    => array(
                 'type'  => 'password',
+                'required' => true,
             )
         ));
 
@@ -84,6 +89,9 @@ class RegisterForm extends BaseForm
                     'label'     => __('Please type the word.'),
                     'separator'         => '<br />',
                     'captcha_position'  => 'append',
+                ),
+                'attributes'    => array(
+                    'required' => true,
                 )
             ));
         }
