@@ -200,20 +200,60 @@ class ThemeAssemble extends AbstractHelper
     {
         $headTitle = $this->view->headTitle();
         $separator = $headTitle->getSeparator();
-
-        // Set postfix
         $postfix = $headTitle->getPostfix();
-        if (!$postfix) {
-            $postfix = Pi::config('sitename');
-            if ($headTitle->count()) {
-                if ($module && 'system' != $module) {
-                    $moduleMeta = Pi::registry('module')->read($module);
-                    $postfix = $moduleMeta['title'] . $separator . $postfix;
+        $prefix = $headTitle->getPrefix();
+        $type = Pi::config('title_type');
+
+        // Set prefix or postfix
+        switch ($type) {
+            case 1:
+                if (!$postfix) {
+                    $postfix = Pi::config('sitename');
+                    if ($headTitle->count()) {
+                        if ($module && 'system' != $module) {
+                            $moduleMeta = Pi::registry('module')->read($module);
+                            $postfix = $moduleMeta['title'] . $separator . $postfix;
+                        }
+                    }
+                    $postfix = $separator . $postfix;
+                    $headTitle->setPostfix($postfix);
                 }
-            }
-            $postfix = $separator . $postfix;
-            $headTitle->setPostfix($postfix);
+                break;
+
+            case 2:
+                if (!$postfix) {
+                    $postfix = Pi::config('sitename');
+                    $postfix = $separator . $postfix;
+                    $headTitle->setPostfix($postfix);
+                }
+                break;
+
+            case 3:
+                if (!$prefix) {
+                    $prefix = Pi::config('sitename');
+                    if ($headTitle->count()) {
+                        if ($module && 'system' != $module) {
+                            $moduleMeta = Pi::registry('module')->read($module);
+                            $prefix = $prefix . $separator . $moduleMeta['title'];
+                        }
+                    }
+                    $prefix =  $prefix . $separator;
+                    $headTitle->setPrefix($prefix);
+                }
+                break;
+
+            case 4:
+                if (!$prefix) {
+                    $prefix = Pi::config('sitename');
+                    $prefix =  $prefix . $separator;
+                    $headTitle->setPrefix($prefix);
+                }
+                break;
+
+            case 5:
+                break;
         }
+
         // Set head title
         if (!$headTitle->count()) {
             $headTitleStr = Pi::config('head_title', $module);

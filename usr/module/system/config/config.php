@@ -586,6 +586,26 @@ $config['item'] = array(
         'visible'       => 0,
     ),
 
+    'title_type'  => array(
+        'title'         => _t('Meta title type'),
+        'description'   => _t('Set short or lang meta title type'),
+        'edit'          => array(
+            'type'      => 'select',
+            'options'   => array(
+                'options'           => array(
+                    1   => _t('Postfix by page - module - website titles'),
+                    2   => _t('Postfix by page - website titles'),
+                    3   => _t('Prefix by website - module - page titles'),
+                    4   => _t('Prefix by website - page titles'),
+                    5   => _t('Just page title'),
+                ),
+            ),
+        ),
+        'filter'        => 'int',
+        'value'         => 1,
+        'category'      => 'head_meta_extra',
+    ),
+
     'author'        => array(
         'title'         => '`author`',
         'description'   => _t('The author meta tag defines the name of the author of the document being read. Supported data formats include the name, email address of the webmaster, company name or URL.'),
