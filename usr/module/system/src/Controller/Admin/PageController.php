@@ -676,4 +676,14 @@ class PageController extends ComponentController
 
         return $template;
     }
+
+    public function homepageAction()
+    {
+        return $this->redirect()->toRoute('', array(
+            'controller' => 'page',
+            'action' => 'block',
+            'page' => '3',
+            'name' => 'system',
+        ));
+    }
 }

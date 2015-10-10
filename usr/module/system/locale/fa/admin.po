@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2015-10-01 18:42+0330\n"
-"PO-Revision-Date: 2015-10-01 18:45+0330\n"
+"POT-Creation-Date: 2015-10-10 22:30+0330\n"
+"PO-Revision-Date: 2015-10-10 22:32+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -102,7 +102,7 @@ msgstr "ورود مدیریت"
 msgid "Text processing"
 msgstr "پردازش متن"
 
-#: config/config.php:53 config/nav.admin.php:300
+#: config/config.php:53 config/nav.admin.php:311
 #: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr "ارسال میل"
@@ -805,10 +805,14 @@ msgid "Asset publish"
 msgstr "انتشار Asset"
 
 #: config/nav.admin.php:281
+msgid "Homepage layout"
+msgstr "چیدمان صفحه اول"
+
+#: config/nav.admin.php:292
 msgid "Toolkit"
 msgstr "نوار ابزار"
 
-#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
+#: config/nav.admin.php:303 template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr "Audit"
 
@@ -1470,7 +1474,7 @@ msgstr "صفحه پیدا نشد"
 #: src/Controller/Admin/PageController.php:490
 #, php-format
 msgid "%s blocks"
-msgstr "%s بلاک"
+msgstr "چیدمان بلاک های %s"
 
 #: src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
@@ -2177,11 +2181,11 @@ msgstr "نمایش"
 msgid "Are you sure to delete this navigation"
 msgstr "آیا از پاک کردن این منو مطمئن هستید؟"
 
-#: template/admin/page-block.phtml:163 template/admin/role.phtml:31
+#: template/admin/page-block.phtml:165 template/admin/role.phtml:31
 msgid "Submit"
 msgstr "ثبت"
 
-#: template/admin/page-block.phtml:169 template/admin/page-block.phtml:170
+#: template/admin/page-block.phtml:171 template/admin/page-block.phtml:172
 msgid "Available Themes"
 msgstr "قالب‌های موجود"
 
