@@ -25,10 +25,10 @@ class ReplyFilter extends InputFilter
     public function __construct()
     {
         $this->add(array(
-            'name'          => 'content',
-            'filters'       => array(
+            'name' => 'content',
+            'filters' => array(
                 array(
-                    'name'  => 'StringTrim',
+                    'name' => 'StringTrim',
                 ),
             ),
         ));

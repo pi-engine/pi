@@ -16,13 +16,13 @@
 return array(
     // Quicklinks
     'quicklink' => array(
-        'message'    => array(
+        'message' => array(
             'title' => _a('Messages'),
-            'link'  => Pi::service('url')->assemble(
-                    'default',
-                    array('module' => 'message')
-                ),
-            'icon'  => 'icon-bell',
+            'link' => Pi::service('url')->assemble(
+                'default',
+                array('module' => 'message')
+            ),
+            'icon' => 'icon-bell',
         ),
     ),
 );

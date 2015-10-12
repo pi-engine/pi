@@ -10,7 +10,7 @@
 /* Message */
 .message-item {
     padding: 12px 20px 18px 15px;
-    padding-left: 12px\9;
+    padding-left: 12px \9;
     margin-top: 0;
     cursor: pointer;
 }
@@ -30,7 +30,7 @@
 }
 
 .message-detail-primary:hover .message-hidden,
-.message-item:hover .message-hidden{
+.message-item:hover .message-hidden {
     display: block;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .message-media-left {
-   padding-right: 5px;
+    padding-right: 5px;
 }
 
 .message-detail img,
@@ -64,18 +64,18 @@
 
 .message-media-left img {
     margin: 3px 0 0 15px;
-    margin-left: 12px\9;
+    margin-left: 12px \9;
 }
 
 .message-head span {
     color: #999;
 }
 
-.message-head a{
+.message-head a {
     color: #000;
 }
 
-.message-head a:hover{
+.message-head a:hover {
     color: #005580;
 }
 
@@ -93,15 +93,15 @@
 .message-content p a {
     color: #888;
     text-decoration: none;
-} 
+}
 
 .message-foot-form {
-  margin: 15px 0 0 15px;
-  margin-left: 12px\9;
+    margin: 15px 0 0 15px;
+    margin-left: 12px \9;
 }
 
 .message-pagination {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .message-hidden span {
@@ -148,7 +148,7 @@
     border-bottom: 1px solid #e5e5e5;
 }
 
-.message-detail-head,.message-detail-primary {
+.message-detail-head, .message-detail-primary {
     padding: 0 20px 0 15px;
 }
 
@@ -190,11 +190,11 @@
 }
 
 .message-form-posi span {
-    margin:5px 15px 0 0;
+    margin: 5px 15px 0 0;
 }
 
 .message-input-right {
-    margin-left: 90px!important;
+    margin-left: 90px !important;
 }
 
 .message-input-posi span {
@@ -212,13 +212,13 @@
 .message-btn-margin {
     position: absolute;
     left: 520px;
-    top:195px;
-    top: 172px\9;
+    top: 195px;
+    top: 172px \9;
 }
 
-@-moz-document url-prefix(){
+@-moz-document url-prefix() {
     .message-btn-margin {
-        top:210px;
+        top: 210px;
     }
     .message-send-text span {
         top: 215px;
@@ -245,8 +245,8 @@
 }
 
 .message-username {
-    border: 1px #b94a48 solid!important;
-    box-shadow: 0 0 6px #D59392!important;
+    border: 1px #b94a48 solid !important;
+    box-shadow: 0 0 6px #D59392 !important;
 }
 
 .message-error {

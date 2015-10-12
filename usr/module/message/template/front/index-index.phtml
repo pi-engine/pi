@@ -9,17 +9,22 @@
             </div>
             <ul class="nav nav-tabs message-nav-tabs">
                 <li class="active">
-                    <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
+                    <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"
+                       title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
                 </li>
                 <li>
-                    <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>" title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
+                    <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>"
+                       title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
                 </li>
                 <!--    <li>-->
-                <!--        <a href="--><?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" title="--><?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a>-->
+                <!--        <a href="-->
+                <?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" title="-->
+                <?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a>-->
                 <!--    </li>-->
                 <!--    <li>-->
                 <!--        <button type="button" class="btn message-nav-btn" onclick="location.href=-->
-                <!--        '--><?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
+                <!--        '-->
+                <?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
                 <!--        title="--><?php //_e('New message'); ?><!--">--><?php //_e('New message'); ?>
                 <!--        </button>-->
                 <!--    </li>-->
@@ -27,9 +32,12 @@
             <div class="messages" id="message-js">
                 <?php if (!empty($messages)) { ?>
                     <?php foreach ($messages as $message) { ?>
-                        <div class="media message-item<?php if(!$message['is_read']) { echo ' message-item-read'; } ?>">
+                        <div class="media message-item<?php if (!$message['is_read']) {
+                            echo ' message-item-read';
+                        } ?>">
                             <div class='pull-left message-media-left'>
-                                <input type="checkbox" class="message-js-check pull-left" data-id="<?php echo $message['id']; ?>">
+                                <input type="checkbox" class="message-js-check pull-left"
+                                       data-id="<?php echo $message['id']; ?>">
                                 <a href="<?php echo $message['profileUrl']; ?>" class="pull-left">
                                     <?php echo $message['avatar']; ?>
                                 </a>
@@ -38,18 +46,20 @@
                                 <p class="message-time">
                                     <span class="muted"><?php echo _date($message['time_send']); ?></span>
                                 </p>
+
                                 <p class="message-hidden"></p>
 
                 <span>
                     <a href="<?php if (isset($paginator)) {
                         echo $this->url('', array(
                             'action' => 'delete',
-                            'ids'    => $message['id'],
-                            'p'      => $paginator->getCurrentPageNumber()
+                            'ids' => $message['id'],
+                            'p' => $paginator->getCurrentPageNumber()
                         ));
                     } else {
                         echo $this->url('', array('action' => 'delete', 'ids' => $message['id']));
-                    }?>" class="message-js-delete" data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
+                    } ?>" class="message-js-delete"
+                       data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
                         <?php _e('Delete'); ?>
                     </a>
                 </span>
@@ -58,11 +68,12 @@
                     <a href="<?php if (isset($paginator)) {
                         echo $this->url('', array(
                             'action' => 'mark',
-                            'ids'    => $message['id'],
-                            'p'      => $paginator->getCurrentPageNumber()
+                            'ids' => $message['id'],
+                            'p' => $paginator->getCurrentPageNumber()
                         ));
                     } else {
-                        echo $this->url('', array('action' => 'mark', 'ids' => $message['id']));}?>">
+                        echo $this->url('', array('action' => 'mark', 'ids' => $message['id']));
+                    } ?>">
                         <?php _e('Mark as read'); ?>
                     </a>
                 </span>
@@ -78,7 +89,8 @@
                                     </a>
                                 </div>
                                 <p>
-                                    <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $message['id'])); ?>" class="message-content-link"><?php echo $message['content']; ?>
+                                    <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $message['id'])); ?>"
+                                       class="message-content-link"><?php echo $message['content']; ?>
                                     </a>
                                 </p>
                             </div>

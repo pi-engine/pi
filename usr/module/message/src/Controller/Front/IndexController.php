@@ -44,7 +44,7 @@ class IndexController extends ActionController
         $page = _get('p', 'int');
         $page = $page ?: 1;
         $limit = Pi::config('list_number');
-        $offset = (int) ($page - 1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         //current user id
         Pi::service('authentication')->requireLogin();
@@ -56,47 +56,47 @@ class IndexController extends ActionController
         $model = $this->getModel('message');
         //get private message list count
         $select = $model->select()
-                        ->columns(array(
-                            'count' => new \Zend\Db\Sql\Predicate\Expression(
-                                'count(*)'
-                            )
-                        ))
-                        ->where(function($where) use ($userId) {
-                            $fromWhere = clone $where;
-                            $toWhere = clone $where;
-                            $fromWhere->equalTo('uid_from', $userId);
-                            $fromWhere->equalTo('is_deleted_from', 0);
-                            $toWhere->equalTo('uid_to', $userId);
-                            $toWhere->equalTo('is_deleted_to', 0);
-                            $where->andPredicate($fromWhere)
-                                  ->orPredicate($toWhere);
-                        });
+            ->columns(array(
+                'count' => new \Zend\Db\Sql\Predicate\Expression(
+                    'count(*)'
+                )
+            ))
+            ->where(function ($where) use ($userId) {
+                $fromWhere = clone $where;
+                $toWhere = clone $where;
+                $fromWhere->equalTo('uid_from', $userId);
+                $fromWhere->equalTo('is_deleted_from', 0);
+                $toWhere->equalTo('uid_to', $userId);
+                $toWhere->equalTo('is_deleted_to', 0);
+                $where->andPredicate($fromWhere)
+                    ->orPredicate($toWhere);
+            });
         $count = $model->selectWith($select)->current()->count;
 
         if ($count) {
             //get private message list group by user
             $select = $model->select()
-                            ->where(function($where) use ($userId) {
-                                $fromWhere = clone $where;
-                                $toWhere = clone $where;
-                                $fromWhere->equalTo('uid_from', $userId);
-                                $fromWhere->equalTo('is_deleted_from', 0);
-                                $toWhere->equalTo('uid_to', $userId);
-                                $toWhere->equalTo('is_deleted_to', 0);
-                                $where->andPredicate($fromWhere)
-                                      ->orPredicate($toWhere);
-                            })
-                            ->order('time_send DESC')
-                            ->limit($limit)
-                            ->offset($offset);
+                ->where(function ($where) use ($userId) {
+                    $fromWhere = clone $where;
+                    $toWhere = clone $where;
+                    $fromWhere->equalTo('uid_from', $userId);
+                    $fromWhere->equalTo('is_deleted_from', 0);
+                    $toWhere->equalTo('uid_to', $userId);
+                    $toWhere->equalTo('is_deleted_to', 0);
+                    $where->andPredicate($fromWhere)
+                        ->orPredicate($toWhere);
+                })
+                ->order('time_send DESC')
+                ->limit($limit)
+                ->offset($offset);
             $rowset = $model->selectWith($select);
             $messageList = $rowset->toArray();
             //jump to last page
             if (empty($messageList) && $page > 1) {
                 $this->redirect()->toRoute('', array(
                     'controller' => 'index',
-                    'action'     => 'index',
-                    'p'          => ceil($count / $limit),
+                    'action' => 'index',
+                    'p' => ceil($count / $limit),
                 ));
 
                 return;
@@ -109,7 +109,7 @@ class IndexController extends ActionController
                 // markup content
                 $v['content'] = Pi::service('markup')->compile(
                     $v['content'],
-                    'text',
+                    'html',
                     array('nl2br' => false)
                 );
 
@@ -121,7 +121,7 @@ class IndexController extends ActionController
                     $v['name'] = $user->name;
                     // username link, 4 locations
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
-                                                          $v['uid_to']);
+                        $v['uid_to']);
                     //get avatar
                     $v['avatar'] = Pi::user()->avatar($v['uid_to'], 'small');
                 } else {
@@ -131,7 +131,7 @@ class IndexController extends ActionController
                     //get username url
                     $v['name'] = $user->name;
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
-                                                          $v['uid_from']);
+                        $v['uid_from']);
                     //get avatar
                     $v['avatar'] = Pi::user()->avatar($v['uid_from'], 'small');
                 }
@@ -145,14 +145,14 @@ class IndexController extends ActionController
             });
 
             $paginator = Paginator::factory(intval($count), array(
-                'page'          => $page,
-                'limit'         => $limit,
-                'url_options'   => array(
+                'page' => $page,
+                'limit' => $limit,
+                'url_options' => array(
                     'page_param' => 'p',
-                    'params'        => array(
-                        'module'        => $this->getModule(),
-                        'controller'    => 'index',
-                        'action'        => 'index',
+                    'params' => array(
+                        'module' => $this->getModule(),
+                        'controller' => 'index',
+                        'action' => 'index',
                     ),
                 ),
             ));
@@ -201,8 +201,8 @@ class IndexController extends ActionController
         Pi::service('authentication')->requireLogin();
         $uid = Pi::user()->getId();
         $toUserId = _get('uid');
-        $name     = Pi::user()->get($toUserId, 'name');
-        $form     = $this->getSendForm('send');
+        $name = Pi::user()->get($toUserId, 'name');
+        $form = $this->getSendForm('send');
         $form->setData(array('name' => $name));
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
@@ -213,7 +213,7 @@ class IndexController extends ActionController
 
                 return;
             }
-            $data   = $form->getData();
+            $data = $form->getData();
             //check name
             $toUserId = Pi::user()->getUids(array('name' => $data['name']));
             $toUserId = array_shift($toUserId);
@@ -221,7 +221,7 @@ class IndexController extends ActionController
                 $this->view()->assign(
                     'errMessage',
                     __('Username is invalid, please try again.'
-                ));
+                    ));
                 $this->renderSendForm($form);
 
                 return;
@@ -237,7 +237,7 @@ class IndexController extends ActionController
                 $this->view()->assign(
                     'errMessage',
                     __('Send failed, please try again.'
-                ));
+                    ));
                 $this->renderSendForm($form);
 
                 return;
@@ -245,7 +245,7 @@ class IndexController extends ActionController
 
             $this->redirect()->toRoute('', array(
                 'controller' => 'index',
-                'action'     => 'index'
+                'action' => 'index'
             ));
 
             return;
@@ -269,30 +269,30 @@ class IndexController extends ActionController
             //check username
             if (!$uid) {
                 return array(
-                    'status'  => 0,
+                    'status' => 0,
                     'message' => __('User')
-                               . ' '
-                               . $username
-                               . ' '
-                               . __('not found')
+                        . ' '
+                        . $username
+                        . ' '
+                        . __('not found')
                 );
             } elseif ($uid == $selfUid) {
                 return array(
-                    'status'  => 0,
+                    'status' => 0,
                     'message' => __(
                         __('Sorry, you can\'t send message to yourself.')
                     )
                 );
             } else {
                 return array(
-                    'status'   => 1,
+                    'status' => 1,
                     'username' => $username
                 );
             }
         } catch (Exception $e) {
             return array(
-                'status'    => 0,
-                'message'   => __('An error occurred, please try again.')
+                'status' => 0,
+                'message' => __('An error occurred, please try again.')
             );
         }
     }
@@ -300,7 +300,7 @@ class IndexController extends ActionController
     /**
      * Initialize send form instance
      *
-     * @param  string   $name
+     * @param  string $name
      * @return SendForm
      */
     protected function getSendForm($name)
@@ -365,7 +365,7 @@ class IndexController extends ActionController
                 $this->view()->assign(
                     'errMessage',
                     __('Send failed, please try again.'
-                ));
+                    ));
                 $this->view()->assign('form', $form);
                 $this->showDetail($messageId);
 
@@ -393,7 +393,7 @@ class IndexController extends ActionController
     /**
      * Show details of a message
      *
-     * @param  int   $messageId
+     * @param  int $messageId
      * @return array
      */
     protected function showDetail($messageId)
@@ -408,14 +408,14 @@ class IndexController extends ActionController
         $model = $this->getModel('message');
         //get private message
         $select = $model->select()
-                        ->where(function($where) use ($messageId, $userId) {
-                            $subWhere = clone $where;
-                            $subWhere->equalTo('uid_from', $userId);
-                            $subWhere->or;
-                            $subWhere->equalTo('uid_to', $userId);
-                            $where->equalTo('id', $messageId)
-                                  ->andPredicate($subWhere);
-                        });
+            ->where(function ($where) use ($messageId, $userId) {
+                $subWhere = clone $where;
+                $subWhere->equalTo('uid_from', $userId);
+                $subWhere->or;
+                $subWhere->equalTo('uid_to', $userId);
+                $where->equalTo('id', $messageId)
+                    ->andPredicate($subWhere);
+            });
         $rowset = $model->selectWith($select)->current();
         if (!$rowset) {
             return;
@@ -441,7 +441,7 @@ class IndexController extends ActionController
         }
 
         //markup content
-        $detail['content'] = Pi::service('markup')->render($detail['content']);
+        $detail['content'] = Pi::service('markup')->render($detail['content'], 'html', 'html');
 
         if (!$detail['is_read_to'] && $userId == $detail['uid_to']) {
             //mark the message as read
@@ -470,8 +470,8 @@ class IndexController extends ActionController
         if (empty($messageIds)) {
             $this->redirect()->toRoute('', array(
                 'controller' => 'index',
-                'action'     => 'index',
-                'p'          => $page
+                'action' => 'index',
+                'p' => $page
             ));
         }
 
@@ -481,14 +481,14 @@ class IndexController extends ActionController
 
         $model = $this->getModel('message');
         $result = $model->update(array('is_read_to' => 1), array(
-            'id'     => $messageIds,
+            'id' => $messageIds,
             'uid_to' => $userId
         ));
 
         $this->redirect()->toRoute('', array(
             'controller' => 'index',
-            'action'     => 'index',
-            'p'          => $page
+            'action' => 'index',
+            'p' => $page
         ));
     }
 
@@ -510,8 +510,8 @@ class IndexController extends ActionController
         if (empty($messageIds)) {
             $this->redirect()->toRoute('', array(
                 'controller' => 'index',
-                'action'     => 'index',
-                'p'          => $page
+                'action' => 'index',
+                'p' => $page
             ));
         }
         $userId = Pi::user()->getUser()->id;
@@ -520,35 +520,35 @@ class IndexController extends ActionController
         if ($toId) {
             if ($userId == $toId) {
                 $model->update(array('is_deleted_to' => 1), array(
-                    'id'     => $messageIds,
+                    'id' => $messageIds,
                     'uid_to' => $userId
                 ));
             } else {
                 $model->update(array('is_deleted_from' => 1), array(
-                    'id'       => $messageIds,
+                    'id' => $messageIds,
                     'uid_from' => $userId
                 ));
             }
         } else {
             $model->update(array('is_deleted_from' => 1), array(
                 'uid_from' => $userId,
-                'id'       => $messageIds
+                'id' => $messageIds
             ));
             $model->update(array('is_deleted_to' => 1), array(
                 'uid_to' => $userId,
-                'id'     => $messageIds
+                'id' => $messageIds
             ));
         }
 
         $this->redirect()->toRoute('', array(
             'controller' => 'index',
-            'action'     => 'index',
-            'p'          => $page
+            'action' => 'index',
+            'p' => $page
         ));
 
         return;
     }
-    
+
     /*
      * Archive
      */

@@ -25,7 +25,7 @@ class Service
      * Message summary
      *
      * @param  string $message
-     * @param  int    $length
+     * @param  int $length
      * @return string
      */
     public static function messageSummary($message, $length = 40)
@@ -95,8 +95,8 @@ class Service
     /**
      * Get unread message count
      *
-     * @param  int       $uid
-     * @param  string    $type
+     * @param  int $uid
+     * @param  string $type
      * @return int|false
      */
     public static function getUnread($uid, $type = '')
@@ -107,15 +107,15 @@ class Service
                 break;
             default:
                 $type = '';
-            break;
+                break;
         }
         if ('notification' == $type) {
             $where = array(
-                'uid'           => $uid,
-                'is_deleted'    => 0,
-                'is_read'       => 0,
+                'uid' => $uid,
+                'is_deleted' => 0,
+                'is_read' => 0,
             );
-            $model  = Pi::model('notification', 'message');
+            $model = Pi::model('notification', 'message');
             /*
             $select = $model->select();
             $select->columns(array(
@@ -128,11 +128,11 @@ class Service
             $count = $model->count($where);
         } elseif ('message' == $type) {
             $where = array(
-                'uid_to'        => $uid,
+                'uid_to' => $uid,
                 'is_deleted_to' => 0,
-                'is_read_to'    => 0,
+                'is_read_to' => 0,
             );
-            $model  = Pi::model('message', 'message');
+            $model = Pi::model('message', 'message');
             /*
             $select = $model->select();
             $select->columns(array(
