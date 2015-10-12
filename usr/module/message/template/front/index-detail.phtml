@@ -25,27 +25,20 @@
             <!--    </li>-->
         </ul>
 
-        <?php
-        if (!empty($errMessage)) {
-            $class = ' alert-error';
-            ?>
+        <?php if (!empty($errMessage)) { $class = ' alert-error'; ?>
             <div class="alert<?php echo $class; ?>">
-                <button data-dismiss="alert" class="close" type="button">
-                    ×
-                </button>
+                <button data-dismiss="alert" class="close" type="button"> × </button>
                 <?php echo $errMessage; ?>
             </div>
-
-        <?php }
-        if (!empty($message)) { ?>
+        <?php } ?>
+        <?php if (!empty($message)) { ?>
             <div class="messages" id="message-js">
                 <div class="media message-detail">
                     <div class="message-detail-head">
                         <h5 class="media-heading pull-left message-head">
-                            <span><?php echo $uid == $message['uid_from'] ? 'To' : 'From'; ?></span>
+                            <span><?php echo $uid == $message['uid_from'] ? __('To') : __('From'); ?></span>
                             <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['name'] . ':'; ?></a>
                         </h5>
-
                         <p class="message-time text-right">
                             <span class="muted"><?php echo _date($message['time_send']); ?></span>
                         </p>
@@ -54,19 +47,17 @@
                         <a href="<?php echo $message['profileUrl']; ?>" class="pull-left">
                             <?php echo $message['avatar']; ?>
                         </a>
-
                         <div class="media-body message-detail-con">
                             <p>
                                 <?php echo $message['content']; ?>
                             </p>
-
                             <div class="message-detail-hidden">
                                 <p class="pull-right">
-                        <span>
-                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>"
-                               class="js-delete">
-                                <?php _e('Delete'); ?></a>
-                        </span>
+                                    <span>
+                                        <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>"
+                                            class="js-delete">
+                                            <?php _e('Delete'); ?></a>
+                                    </span>
                                 </p>
                             </div>
                         </div>

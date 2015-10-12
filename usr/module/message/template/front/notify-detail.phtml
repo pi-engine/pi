@@ -4,9 +4,11 @@
     </div>
     <div class="col-md-9">
         <ul class="nav nav-tabs message-nav-tabs">
-            <li><a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"
-                   title="<?php _e('Messages'); ?>"><?php echo $messageTitle; ?></a></li>
-            <li class="">
+            <li>
+                <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"
+                   title="<?php _e('Messages'); ?>"><?php echo $messageTitle; ?></a>
+            </li>
+            <li>
                 <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>"
                    title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
             </li>
@@ -41,18 +43,15 @@
                         <h5 class="media-heading pull-left message-head">
                             <?php echo $notification['subject'] ?>
                             <span class="label label-info message-label-type">
-                    <?php
-                    if (!empty($notification['tag'])) {
-                        echo $notification['tag'];
-                    }
-                    ?>
-                </span>
+                            <?php if (!empty($notification['tag'])) {
+                                echo $notification['tag'];
+                            } ?>
+                            </span>
                         </h5>
-
                         <p class="message-time text-right">
-                <span class="muted">
-                    <?php echo _date($notification['time_send']); ?>
-                </span>
+                            <span class="muted">
+                                <?php echo _date($notification['time_send']); ?>
+                            </span>
                         </p>
                     </div>
                     <div class="media message-detail-primary">
@@ -61,12 +60,12 @@
 
                             <div class="message-detail-hidden">
                                 <p class="message-hidden pull-right">
-                        <span>
-                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $notification['id'])); ?>"
-                               data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
-                                <?php _e('Delete'); ?>
-                            </a>
-                        </span>
+                                    <span>
+                                        <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $notification['id'])); ?>"
+                                            data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
+                                            <?php _e('Delete'); ?>
+                                        </a>
+                                    </span>
                                 </p>
                             </div>
                         </div>
