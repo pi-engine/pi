@@ -96,7 +96,7 @@ class Redis extends ZendRedis
         
         // Use namespace to manage all keys belong to it
         $existsKeys = array();
-        $result     = $redis->get($this->namespacePrefix);d($this->namespacePrefix);
+        $result     = $redis->get($this->namespacePrefix);
         if ($result) {
             $existsKeys = unserialize($result);
         }

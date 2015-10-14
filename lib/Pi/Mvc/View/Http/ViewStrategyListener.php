@@ -354,6 +354,7 @@ class ViewStrategyListener extends AbstractListenerAggregate
                         $data = $result->getVariables();
                         $options = $result->getOptions();
                     } elseif (ArrayUtils::hasStringKeys($result, true)) {
+                        $variables = [];
                         if ($viewModel) {
                             $variables = $viewModel->getVariables();
                             $options = $viewModel->getOptions();
