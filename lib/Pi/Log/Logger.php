@@ -98,8 +98,9 @@ class Logger
     {
         $this->writers = new SplPriorityQueue();
         if (!empty($options['writer'])) {
+            $i = 0;
             foreach ($options['writer'] as $writer => $opt) {
-                $this->addWriter($writer, $opt);
+                $this->addWriter($writer, $i++, $opt);
             }
         }
     }
