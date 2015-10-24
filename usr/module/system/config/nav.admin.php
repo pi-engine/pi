@@ -277,17 +277,6 @@ return array(
         ),
     ),
 
-    'layout'     => array(
-        'label'         => _t('Homepage layout'),
-        'route'         => 'admin',
-        'module'        => 'system',
-        'controller'    => 'page',
-        'action'        => 'homepage',
-        'permission'    => array(
-            'resource'  => 'maintenance',
-        ),
-    ),
-
     'toolkit'   => array(
         'label'         => _t('Toolkit'),
         'permission'    => array(
@@ -315,6 +304,17 @@ return array(
                 'action'        => 'index',
                 'visible'       => 0,
             ),
+        ),
+    ),
+
+    'layout'     => array(
+        'label'         => _t('Homepage layout'),
+        'route'         => 'admin',
+        'module'        => 'system',
+        'controller'    => 'page',
+        'action'        => 'homepage',
+        'permission'    => array(
+            'resource'  => 'maintenance',
         ),
     ),
 );
