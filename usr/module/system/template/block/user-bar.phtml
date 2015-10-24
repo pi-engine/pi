@@ -20,12 +20,14 @@
             <a id="member-profile" href="#" title="<?php echo _b('Profile'); ?>">
                 <?php echo _b('Profile'); ?>
             </a>
-        </li> 
+        </li>
+        <?php if (isset($block['user']['message'])) { ?>
         <li>
              <a id="member-message" href="#" title="<?php echo _b('Message'); ?>">
-                <?php echo _b('Message'); ?>
+                <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['count']; ?></span>
             </a>
         </li>
+        <?php } ?>
         <li>
             <a id="member-logout" href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                 <?php echo _b('Logout'); ?>
@@ -71,9 +73,13 @@ EOT;
                 <li>
                     <a href="<?php echo $block['user']['profile']; ?>" title="<?php echo _b('Profile'); ?>"><?php echo _b('Profile'); ?></a>
                 </li>
+                <?php if (isset($block['user']['message'])) { ?>
                 <li>
-                    <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>"><?php echo _b('Message'); ?></a>
+                    <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
+                        <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['count']; ?></span>
+                    </a>
                 </li>
+                <?php } ?>
                 <li>
                     <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
                 </li>
@@ -103,11 +109,13 @@ EOT;
                 <?php echo _escape($block['user']['name']); ?>
             </a>
         </li>
+        <?php if (isset($block['user']['message'])) { ?>
         <li>
             <a href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
-                <?php echo _b('Message'); ?>
+                <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['count']; ?></span>
             </a>
         </li>
+        <?php } ?>
         <li>
             <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>">
                 <?php echo _b('Logout'); ?>

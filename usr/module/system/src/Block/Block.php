@@ -121,8 +121,12 @@ class Block
                 'avatar'    => $avatar,
                 'profile'   => Pi::url(Pi::service('user')->getUrl('profile', $params)),
                 'logout'    => Pi::url(Pi::service('authentication')->getUrl('logout', $params)),
-                'message'   => Pi::url(Pi::service('user')->message()->getUrl()),
             );
+        }
+
+        if (Pi::service('module')->isActive('message')) {
+            $user['message'] = Pi::url(Pi::service('user')->message()->getUrl());
+            $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'message'));
         }
 
         $result['user'] = $user;
