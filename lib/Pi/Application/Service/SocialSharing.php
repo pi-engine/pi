@@ -100,7 +100,7 @@ class SocialSharing extends AbstractService
         if ($item) {
             $item['url'] = str_replace(
                 array('%title%', '%url%', '%image%'),
-                array($title, $url, $image),
+                array($title . ' ', $url, $image),
                 $item['url']
             );
         }

@@ -66,7 +66,8 @@ array_walk($groups, function (&$group, $gid) {
         <?php } ?>
     <?php } ?>
     <?php if (Pi::service('module')->isActive('message')) { ?>
-        <a title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'message') {echo ' active';} ?>"><?php _e('My messages'); ?></a>
+        <?php $count = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
+        <a title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'message') {echo ' active';} ?>"><?php _e('My messages'); ?> <span class="badge"><?php echo $count; ?></span></a>
     <?php } ?>
     <?php if (Pi::service('module')->isActive('order')) { ?>
         <a title="<?php _e('My orders'); ?>" href="<?php echo Pi::url($this->url('order', array('module' => 'order', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'order') {echo ' active';} ?>"><?php _e('My orders'); ?></a>

@@ -1,588 +1,653 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-08-24 14:57+0800\n"
-"PO-Revision-Date: 2014-08-24 14:57+0800\n"
+"POT-Creation-Date: 2015-10-01 18:42+0330\n"
+"PO-Revision-Date: 2015-10-01 18:42+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\system\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:31
+#: src/Api/Event.php:31
 #, php-format
 msgid "Module `%s` installed"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:33
+#: src/Api/Event.php:33
 #, php-format
 msgid "The module `%s` is installed successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:51
+#: src/Api/Event.php:51
 #, php-format
 msgid "Module `%s` uninstalled"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:53
+#: src/Api/Event.php:53
 #, php-format
 msgid "The module `%s` is uninstalled successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:71
+#: src/Api/Event.php:71
 #, php-format
 msgid "Module `%s` updated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:73
+#: src/Api/Event.php:73
 #, php-format
 msgid "The module `%s` is updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:91
+#: src/Api/Event.php:91
 #, php-format
 msgid "Module `%s` activated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:93
+#: src/Api/Event.php:93
 #, php-format
 msgid "The module `%s` is activated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:111
+#: src/Api/Event.php:111
 #, php-format
 msgid "Module %s deactivated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Api/Event.php:113
+#: src/Api/Event.php:113
 #, php-format
 msgid "The module %s is deactivated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:332
+#: src/Controller/Admin/LoginController.php:58
+msgid "Admin login"
+msgstr ""
+
+#: src/Controller/Admin/ThemeController.php:332
 msgid "Bootstrap compiled successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:375
+#: src/Controller/Admin/ThemeController.php:375
 msgid "Bootstrap reset successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Feed/IndexController.php:32
+#: src/Controller/Feed/IndexController.php:32
 msgid "What's new"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Feed/IndexController.php:33
+#: src/Controller/Feed/IndexController.php:33
 msgid "Recent module updates."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:71
+#: src/Controller/Front/LoginController.php:71
 #, php-format
 msgid ""
 "Login with the account is suspended,\n"
 "                            please wait for %d minutes to try again."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:80
+#: src/Controller/Front/LoginController.php:80
 #, php-format
 msgid "You have %d times to try."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:88
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:94
-#: c:\code\pi\usr\module\system/template/front/login-disabled.phtml:2
+#: src/Controller/Front/LoginController.php:88
+#: template/front/login-disabled.phtml:2
 msgid "User login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:93
-#: c:\code\pi\usr\module\system/src/Form/LoginForm.php:109
-#: c:\code\pi\usr\module\system/template/front/login-logout.phtml:17
-#: c:\code\pi\usr\module\system/template/front/register.phtml:10
+#: src/Controller/Front/LoginController.php:93 src/Form/LoginForm.php:122
+#: template/front/login-logout.phtml:13 template/front/register.phtml:6
 msgid "Login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:115
+#: src/Controller/Front/LoginController.php:94
+msgid ""
+"Use this page to connect to our website and participate, share contents, use "
+"our features, and interacts with other members"
+msgstr ""
+
+#: src/Controller/Front/LoginController.php:115
 msgid "Invalid request."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:159
+#: src/Controller/Front/LoginController.php:159
 msgid "You have tried too many times. Please try later."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:183
+#: src/Controller/Front/LoginController.php:183
 msgid "Invalid credentials provided, please try again."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:225
+#: src/Controller/Front/LoginController.php:225
 msgid "You have logged in successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/LoginController.php:244
+#: src/Controller/Front/LoginController.php:244
 msgid "You logged out successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/PasswordController.php:50
+#: src/Controller/Front/PasswordController.php:50
 msgid "Find password failed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/PasswordController.php:118
+#: src/Controller/Front/PasswordController.php:118
 msgid ""
 "Confirmation email sent successfully. Please check email and reset password."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/PasswordController.php:127
-#: c:\code\pi\usr\module\system/src/Controller/Front/PasswordController.php:128
-#: c:\code\pi\usr\module\system/src/Form/FindPasswordForm.php:51
-#: c:\code\pi\usr\module\system/template/front/login.phtml:14
-#: c:\code\pi\usr\module\system/template/front/password-find.phtml:2
-#: c:\code\pi\usr\module\system/template/front/register.phtml:9
+#: src/Controller/Front/PasswordController.php:127
+#: src/Controller/Front/PasswordController.php:128
+#: src/Form/FindPasswordForm.php:51 template/front/login.phtml:17
+#: template/front/password-find.phtml:2 template/front/register.phtml:5
 msgid "Find password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/PasswordController.php:146
+#: src/Controller/Front/PasswordController.php:146
 msgid "Invalid token for password reset."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/PasswordController.php:200
+#: src/Controller/Front/PasswordController.php:200
 msgid "Password reset successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:47
+#: src/Controller/Front/ProfileController.php:47
 msgid "Change password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:54
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:63
+#: src/Controller/Front/ProfileController.php:54
+#: src/Controller/Front/ProfileController.php:63
 msgid "Logout"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:57
+#: src/Controller/Front/ProfileController.php:57
 msgid "ID"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:58
+#: src/Controller/Front/ProfileController.php:58
 msgid "Username"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:59
-#: c:\code\pi\usr\module\system/src/Form/FindPasswordForm.php:26
+#: src/Controller/Front/ProfileController.php:59
+#: src/Form/FindPasswordForm.php:26
 msgid "Email"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:60
-#: c:\code\pi\usr\module\system/src/Form/RoleForm.php:44
+#: src/Controller/Front/ProfileController.php:60 src/Form/RoleForm.php:44
 msgid "Name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:61
+#: src/Controller/Front/ProfileController.php:61
 msgid "Role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:62
-#: c:\code\pi\usr\module\system/src/Form/LoginForm.php:58
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:62
+#: src/Controller/Front/ProfileController.php:62 src/Form/LoginForm.php:58
+#: src/Form/RegisterForm.php:65
 msgid "Password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:67
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:75
-#: c:\code\pi\usr\module\system/src/Controller/Front/ProfileController.php:76
+#: src/Controller/Front/ProfileController.php:67
+#: src/Controller/Front/ProfileController.php:75
+#: src/Controller/Front/ProfileController.php:76
 msgid "User profile"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/RegisterController.php:49
-#: c:\code\pi\usr\module\system/src/Controller/Front/RegisterController.php:53
+#: src/Controller/Front/RegisterController.php:49
+#: src/Controller/Front/RegisterController.php:53
 msgid "User account register"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/RegisterController.php:52
-#: c:\code\pi\usr\module\system/src/Controller/Front/RegisterController.php:113
-#: c:\code\pi\usr\module\system/template/front/login-logout.phtml:18
-#: c:\code\pi\usr\module\system/template/front/login.phtml:17
+#: src/Controller/Front/RegisterController.php:52
+#: src/Controller/Front/RegisterController.php:113
+#: template/front/login-logout.phtml:14 template/front/login.phtml:20
 msgid "Register"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/RegisterController.php:83
+#: src/Controller/Front/RegisterController.php:83
 msgid "Invalid input, please try again."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/RegisterController.php:102
+#: src/Controller/Front/RegisterController.php:102
 msgid "The account is not created in database, please try again."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/TestController.php:46
+#: src/Controller/Front/TestController.php:46
 msgid "site name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Front/TestController.php:170
+#: src/Controller/Front/TestController.php:170
 #, php-format
 msgid "Greetings in raw body %d"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Module/IndexController.php:30
+#: src/Controller/Module/IndexController.php:30
 msgid "Admin area"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/AccountForm.php:47
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:59
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:32
+#: src/Form/AccountForm.php:47 src/Form/MemberForm.php:59
+#: src/Form/RegisterForm.php:32
 msgid "User account"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/AccountForm.php:58
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:70
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:42
+#: src/Form/AccountForm.php:58 src/Form/MemberForm.php:70
+#: src/Form/RegisterForm.php:43
 msgid "Display name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/AccountForm.php:69
+#: src/Form/AccountForm.php:69
 msgid "Birthdate"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/AccountForm.php:93
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:207
-#: c:\code\pi\usr\module\system/src/Form/ConfigForm.php:58
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:157
-#: c:\code\pi\usr\module\system/src/Form/ModuleForm.php:58
-#: c:\code\pi\usr\module\system/src/Form/NavForm.php:67
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:131
-#: c:\code\pi\usr\module\system/src/Form/PageAddForm.php:93
-#: c:\code\pi\usr\module\system/src/Form/PageEditForm.php:68
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:100
-#: c:\code\pi\usr\module\system/src/Form/ResetPasswordForm.php:73
-#: c:\code\pi\usr\module\system/src/Form/RoleForm.php:115
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:49
+#: src/Form/AccountForm.php:93 src/Form/BlockModuleForm.php:207
+#: src/Form/ConfigForm.php:58 src/Form/MemberForm.php:157
+#: src/Form/ModuleForm.php:58 src/Form/NavForm.php:67
+#: src/Form/NavPageForm.php:131 src/Form/PageAddForm.php:93
+#: src/Form/PageEditForm.php:68 src/Form/RegisterForm.php:108
+#: src/Form/ResetPasswordForm.php:73 src/Form/RoleForm.php:115
+#: template/admin/cache-list.phtml:49
 msgid "Submit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:66
-#: c:\code\pi\usr\module\system/src/Form/ModuleForm.php:40
-#: c:\code\pi\usr\module\system/src/Form/NavForm.php:40
-#: c:\code\pi\usr\module\system/src/Form/PageAddForm.php:45
-#: c:\code\pi\usr\module\system/src/Form/RoleForm.php:54
+#: src/Form/BlockModuleForm.php:66 src/Form/ModuleForm.php:40
+#: src/Form/NavForm.php:40 src/Form/PageAddForm.php:45
+#: src/Form/RoleForm.php:54
 msgid "Title"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:70
+#: src/Form/BlockModuleForm.php:70
 msgid "Block label for display."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:78
+#: src/Form/BlockModuleForm.php:78
 msgid "Hide title"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:81
+#: src/Form/BlockModuleForm.php:81
 msgid "Hide block title from display."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:89
+#: src/Form/BlockModuleForm.php:89
 msgid "Full-size body"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:92
+#: src/Form/BlockModuleForm.php:92
 msgid "Display block body in full-size w/o padding."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:99
-#: c:\code\pi\usr\module\system/src/Form/ModuleForm.php:30
-#: c:\code\pi\usr\module\system/src/Form/NavForm.php:30
+#: src/Form/BlockModuleForm.php:99 src/Form/ModuleForm.php:30
+#: src/Form/NavForm.php:30
 msgid "Unique name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:103
+#: src/Form/BlockModuleForm.php:103
 msgid "A unique name to be called as widget."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:111
+#: src/Form/BlockModuleForm.php:111
 msgid "PHTML rendering template, file extension is optional."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:126
+#: src/Form/BlockModuleForm.php:126
 msgid "Template"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:141
+#: src/Form/BlockModuleForm.php:141
 msgid "Description"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:145
+#: src/Form/BlockModuleForm.php:145
 msgid "Set a hint to distinguish the block."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:152
+#: src/Form/BlockModuleForm.php:152
 msgid "Subline"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:156
+#: src/Form/BlockModuleForm.php:156
 msgid "Header subline. HTML is allowed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:163
+#: src/Form/BlockModuleForm.php:163
 msgid "Style class"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:167
+#: src/Form/BlockModuleForm.php:167
 msgid "Specified block container CSS class."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/BlockModuleForm.php:227
+#: src/Form/BlockModuleForm.php:227
 msgid "Configs"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/Element/Controller.php:53
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:78
+#: src/Form/Element/Controller.php:53 src/Form/NavPageForm.php:78
 msgid "None"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/FindPasswordForm.php:36
+#: src/Form/FindPasswordForm.php:36
 msgid "Please type the word"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/LoginForm.php:70
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:84
+#: src/Form/LoginForm.php:70 src/Form/RegisterForm.php:89
 msgid "Please type the word."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/LoginForm.php:81
-#: c:\code\pi\usr\module\system/src/Form/LoginForm.php:85
+#: src/Form/LoginForm.php:81
 msgid "Remember me"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:81
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:52
+#: src/Form/LoginForm.php:85
+msgid "Remember login status"
+msgstr ""
+
+#: src/Form/MemberForm.php:81 src/Form/RegisterForm.php:54
 msgid "Email address"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:93
-#: c:\code\pi\usr\module\system/src/Form/ResetPasswordForm.php:42
+#: src/Form/MemberForm.php:93 src/Form/ResetPasswordForm.php:42
 msgid "New password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:101
-#: c:\code\pi\usr\module\system/src/Form/RegisterForm.php:72
-#: c:\code\pi\usr\module\system/src/Form/ResetPasswordForm.php:52
+#: src/Form/MemberForm.php:101 src/Form/RegisterForm.php:76
+#: src/Form/ResetPasswordForm.php:52
 msgid "Confirm password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:110
+#: src/Form/MemberForm.php:110
 msgid "User role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:121
+#: src/Form/MemberForm.php:121
 msgid "Management role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/MemberForm.php:133
+#: src/Form/MemberForm.php:133
 msgid "Active"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:30
+#: src/Form/NavPageForm.php:30
 msgid "Label"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:37
+#: src/Form/NavPageForm.php:37
 msgid "Route"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:40
+#: src/Form/NavPageForm.php:40
 msgid "Route to assemble URI."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:47
+#: src/Form/NavPageForm.php:47
 msgid "Module"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:54
-#: c:\code\pi\usr\module\system/src/Form/PageAddForm.php:63
+#: src/Form/NavPageForm.php:54 src/Form/PageAddForm.php:63
 msgid "Controller"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:61
-#: c:\code\pi\usr\module\system/src/Form/PageAddForm.php:72
+#: src/Form/NavPageForm.php:61 src/Form/PageAddForm.php:72
 msgid "Action"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:68
+#: src/Form/NavPageForm.php:68
 msgid "URI"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:76
+#: src/Form/NavPageForm.php:76
 msgid "Open target"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:79
+#: src/Form/NavPageForm.php:79
 msgid "Current window"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:80
+#: src/Form/NavPageForm.php:80
 msgid "Open a new window"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:88
+#: src/Form/NavPageForm.php:88
 msgid "Permission resource"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:92
+#: src/Form/NavPageForm.php:92
 msgid "The resource identity for permission check."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:100
+#: src/Form/NavPageForm.php:100
 msgid "Display"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/NavPageForm.php:103
+#: src/Form/NavPageForm.php:103
 msgid "To display in menu."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/PageEditForm.php:31
+#: src/Form/PageEditForm.php:31
 msgid "Cache type"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/PageEditForm.php:35
+#: src/Form/PageEditForm.php:35
 msgid "Page wide"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/PageEditForm.php:36
+#: src/Form/PageEditForm.php:36
 msgid "Action data"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/RoleForm.php:65
+#: src/Form/RoleForm.php:65
 msgid "Section"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/RoleForm.php:67
+#: src/Form/RoleForm.php:67
 msgid "Front"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/RoleForm.php:68
+#: src/Form/RoleForm.php:68
 msgid "Admin"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Menu.php:240
+#: src/Menu.php:240
 msgid "Uncategorized"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Navigation.php:161
+#: src/Navigation.php:161
 msgid "Edit a block"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Navigation.php:172
+#: src/Navigation.php:172
 msgid "Clone a block"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Navigation.php:218
+#: src/Navigation.php:218
 msgid "Block layout"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Navigation.php:229
+#: src/Navigation.php:229
 msgid "Setup page"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Validator/Password.php:39
+#: src/Validator/ActionAvailable.php:31
+msgid "The action is not available."
+msgstr ""
+
+#: src/Validator/BlockNameDuplicate.php:31
+msgid "Block name already exists"
+msgstr ""
+
+#: src/Validator/ControllerAvailable.php:31
+msgid "The controller is not available."
+msgstr ""
+
+#: src/Validator/ModuleName.php:47
+msgid "Module name is reserved"
+msgstr ""
+
+#: src/Validator/ModuleName.php:48
+msgid "Module name is already taken"
+msgstr ""
+
+#: src/Validator/ModuleTitle.php:31
+msgid "Module title is already taken"
+msgstr ""
+
+#: src/Validator/NavNameDuplicate.php:31
+msgid "Navigation name is already taken"
+msgstr ""
+
+#: src/Validator/PageDuplicate.php:31
+msgid "The page already exists"
+msgstr ""
+
+#: src/Validator/Password.php:37
 msgid "Password is less than %min% characters long"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Validator/Password.php:40
+#: src/Validator/Password.php:38
 msgid "Password is more than %max% characters long"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:50
+#: src/Validator/RoleNameDuplicate.php:31
+msgid "Role name is already taken"
+msgstr ""
+
+#: src/Validator/UserEmail.php:48
+msgid "User email is reserved"
+msgstr ""
+
+#: src/Validator/UserEmail.php:49
+msgid "User email is already used"
+msgstr ""
+
+#: src/Validator/Username.php:80
+msgid "Invalid username: %formatHint%"
+msgstr ""
+
+#: src/Validator/Username.php:81
+msgid "Username is reserved"
+msgstr ""
+
+#: src/Validator/Username.php:82
+msgid "Username is already taken"
+msgstr ""
+
+#: src/Validator/Username.php:86
+msgid "Only alphabetic and digits are allowed"
+msgstr ""
+
+#: src/Validator/Username.php:87
+msgid "Only alphabetic, digits and spaces are allowed"
+msgstr ""
+
+#: src/Validator/Username.php:88
+msgid "Only ASCII characters are allowed"
+msgstr ""
+
+#: src/Validator/Username.php:89
+msgid "Only ASCII characters and spaces are allowed"
+msgstr ""
+
+#: src/Validator/Username.php:90
+msgid "Only multi-byte characters are allowed"
+msgstr ""
+
+#: src/Validator/Username.php:91
+msgid "Only multi-byte characters and spaces are allowed"
+msgstr ""
+
+#: template/admin/cache-list.phtml:50
 msgid "Cancel"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-customize.phtml:19
+#: template/admin/theme-customize.phtml:19
 msgid "In process of compiling"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-customize.phtml:20
+#: template/admin/theme-customize.phtml:20
 msgid "Compile"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-customize.phtml:21
+#: template/admin/theme-customize.phtml:21
 msgid "Rebuild"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:32
+#: template/admin/theme-index.phtml:35
 msgid "Customize"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-disabled.phtml:5
+#: template/front/login-disabled.phtml:5
 msgid "Sorry, login is temporarily disabled. Please come back later."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-logout.phtml:8
-#: c:\code\pi\usr\module\system/template/front/login-success.phtml:8
-#: c:\code\pi\usr\module\system/template/front/register-success.phtml:8
+#: template/front/login-logout.phtml:5 template/front/login-success.phtml:5
+#: template/front/register-success.phtml:5
 msgid "homepage"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-logout.phtml:10
+#: template/front/login-logout.phtml:7
 msgid "re-login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-logout.phtml:11
+#: template/front/login-logout.phtml:8
 #, php-format
 msgid "You have logged out successfully, please go to %s or to %s."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-logout.phtml:16
-#: c:\code\pi\usr\module\system/template/front/register.phtml:8
+#: template/front/login-logout.phtml:12 template/front/register.phtml:4
 msgid "Choose: "
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-message.phtml:8
+#: template/front/login-message.phtml:5
 msgid "logout"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-message.phtml:9
+#: template/front/login-message.phtml:6
 #, php-format
 msgid ""
 "You have been logged on with account <strong>%s</strong>, please %s to re-"
 "login."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/login-success.phtml:9
+#: template/front/login-success.phtml:6
 #, php-format
 msgid "You have logged in successfully, please go to %s."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/password-process.phtml:1
+#: template/front/password-process.phtml:1
 msgid "Reset password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/password-process.phtml:8
+#: template/front/password-process.phtml:8
 msgid "Try to find password again"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/password-process.phtml:13
+#: template/front/password-process.phtml:13
 msgid "Congratulations!"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/password-process.phtml:14
+#: template/front/password-process.phtml:14
 msgid "Your new password has worked"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/password-process.phtml:16
+#: template/front/password-process.phtml:16
 msgid "Please login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/register-disabled.phtml:2
+#: template/front/register-disabled.phtml:2
 msgid "User account registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/register-disabled.phtml:5
+#: template/front/register-disabled.phtml:5
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/register-success.phtml:11
+#: template/front/register-success.phtml:8
 msgid "login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/front/register-success.phtml:12
+#: template/front/register-success.phtml:9
 #, php-format
 msgid "You have registered successfully, please go to %s or to %s."
 msgstr ""

@@ -301,27 +301,30 @@
 }
 
 /* Customize */
-.projectSingle .owl-carousel {
-    min-height: 230px;
+.owl-carousel {
+    height: 103px;
 }
 
-.projectSingle .owl-carousel .owl-stage {
-    min-height: 230px;
+.owl-carousel .owl-stage {
+    height: 100px;
 }
 
-.projectSingle .owl-carousel .owl-stage-outer {
-    min-height: 230px;
+.owl-carousel .owl-stage-outer {
+    height: 100px;
     z-index: -10;
 }
 
-.owl-carousel .owl-item {}
+.owl-carousel .owl-item {
+    max-height: 100px;
+}
 
 .owl-carousel .owl-item img {
+    max-height: 100px;
     width: auto;
 }
 
 .owl-carousel .owl-controls .owl-nav {
-    margin-top: -150px;
+    margin-top: -80px;
     z-index: 1000;
 }
 

@@ -1,78 +1,86 @@
 <?php $this->css($this->assetModule('script/front.css')); ?>
-<div class="col-md-3">
-    <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
-</div>
-<div class="col-md-9">
-<ul class="nav nav-tabs message-nav-tabs">
-    <li><a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>" title="<?php _e('Messages'); ?>"><?php echo $messageTitle; ?></a></li>
-    <li class="">
-        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>" title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
-    </li>
-<!--    <li class="active"><a href=-->
-<!--        "--><?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" -->
-<!--        title="--><?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a></li>-->
-<!--    <li><button type="button" class="btn message-nav-btn" onclick="location.href=-->
-<!--        '--><?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
-<!--        title="--><?php //_e('New message'); ?><!--">--><?php //_e('New message'); ?><!--</button></li>-->
-</ul>
-
-<?php if (!empty($errMessage)) { ?>
-<div class="alert alert-error">
-    <button data-dismiss="alert" class="close" type="button">
-        ×
-    </button>
-    <?php echo $errMessage; ?>
-</div>
-<?php 
-    $script = "$('.alert').alert();";
-    $this->footScript()->appendScript($script);
-?>
-<?php } ?>
-<?php if (!empty($notification)) { ?>
-<div class="messages" id="message-js">
-    <div class="media message-detail">
-        <div class="message-detail-head">
-            <h5 class="media-heading pull-left message-head">                
-                <?php echo $notification['subject']?>
-                <span class="label label-info message-label-type">
-                    <?php
-                        if (!empty($notification['tag'])) {
-                            echo  $notification['tag'];
-                        }
-                    ?>
-                </span>
-            </h5>
-            <p class="message-time text-right">
-                <span class="muted">
-                    <?php echo _date($notification['time_send']); ?>
-                </span>
-            </p>
-        </div>
-        <div class="media message-detail-primary">
-            <div class="media-body">
-                <p class="message-body"><?php echo $notification['content']; ?></p>
-                <div class="message-detail-hidden">
-                    <p class="message-hidden pull-right">
-                        <span>
-                            <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $notification['id'])); ?>" data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
-                                <?php _e('Delete'); ?>
-                            </a>
-                        </span>
-                    </p>
-                </div>
-            </div> 
-        </div>  
+    <div class="col-md-3">
+        <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
     </div>
-</div>
-<?php } ?>
-<?php include $this->template('./_confirm-modal.phtml'); ?>
-</div>
-<?php 
-    $paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
-    $host = $this->url('', array('module' => 'message'));
-    $script = "messageIndex({p: '%s', host: '%s'});";
-    $script = sprintf($script, $paginator, $host);
+    <div class="col-md-9">
+        <ul class="nav nav-tabs message-nav-tabs">
+            <li>
+                <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"
+                   title="<?php _e('Messages'); ?>"><?php echo $messageTitle; ?></a>
+            </li>
+            <li>
+                <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>"
+                   title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
+            </li>
+            <!--    <li class="active"><a href=-->
+            <!--        "-->
+            <?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" -->
+            <!--        title="--><?php //_e('Notification'); ?><!--">-->
+            <?php //echo $notificationTitle; ?><!--</a></li>-->
+            <!--    <li><button type="button" class="btn message-nav-btn" onclick="location.href=-->
+            <!--        '-->
+            <?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
+            <!--        title="--><?php //_e('New message'); ?><!--">-->
+            <?php //_e('New message'); ?><!--</button></li>-->
+        </ul>
 
-    $this->footScript()->appendFile($this->assetModule('script/notify-index.js'));
-    $this->footScript()->appendScript($script);
+        <?php if (!empty($errMessage)) { ?>
+            <div class="alert alert-error">
+                <button data-dismiss="alert" class="close" type="button">
+                    ×
+                </button>
+                <?php echo $errMessage; ?>
+            </div>
+            <?php
+            $script = "$('.alert').alert();";
+            $this->footScript()->appendScript($script);
+            ?>
+        <?php } ?>
+        <?php if (!empty($notification)) { ?>
+            <div class="messages" id="message-js">
+                <div class="media message-detail">
+                    <div class="message-detail-head">
+                        <h5 class="media-heading pull-left message-head">
+                            <?php echo $notification['subject'] ?>
+                            <span class="label label-info message-label-type">
+                            <?php if (!empty($notification['tag'])) {
+                                echo $notification['tag'];
+                            } ?>
+                            </span>
+                        </h5>
+                        <p class="message-time text-right">
+                            <span class="muted">
+                                <?php echo _date($notification['time_send']); ?>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="media message-detail-primary">
+                        <div class="media-body">
+                            <p class="message-body"><?php echo $notification['content']; ?></p>
+
+                            <div class="message-detail-hidden">
+                                <p class="message-hidden pull-right">
+                                    <span>
+                                        <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $notification['id'])); ?>"
+                                            data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
+                                            <?php _e('Delete'); ?>
+                                        </a>
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <?php include $this->template('./_confirm-modal.phtml'); ?>
+    </div>
+<?php
+$paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
+$host = $this->url('', array('module' => 'message'));
+$script = "messageIndex({p: '%s', host: '%s'});";
+$script = sprintf($script, $paginator, $host);
+
+$this->footScript()->appendFile($this->assetModule('script/notify-index.js'));
+$this->footScript()->appendScript($script);
 ?>

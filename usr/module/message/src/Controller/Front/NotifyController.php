@@ -60,7 +60,7 @@ class NotifyController extends ActionController
         $page = _get('p', 'int');
         $page = $page ?: 1;
         $limit = Pi::config('list_number');
-        $offset = (int) ($page - 1) * $limit;
+        $offset = (int)($page - 1) * $limit;
 
         //current user id
         $userId = Pi::user()->getUser()->id;
@@ -84,21 +84,21 @@ class NotifyController extends ActionController
         if ($count) {
             //get notification list
             $select = $model->select()
-                            ->where(array(
-                                'uid' => $userId,
-                                'is_deleted' => 0
-                            ))
-                            ->order('time_send DESC')
-                            ->limit($limit)
-                            ->offset($offset);
+                ->where(array(
+                    'uid' => $userId,
+                    'is_deleted' => 0
+                ))
+                ->order('time_send DESC')
+                ->limit($limit)
+                ->offset($offset);
             $rowset = $model->selectWith($select);
             $notificationList = $rowset->toArray();
             //jump to last page
             if (empty($notificationList) && $page > 1) {
                 $this->redirect()->toRoute('', array(
                     'controller' => 'notify',
-                    'action'     => 'index',
-                    'p'          => ceil($count / $limit),
+                    'action' => 'index',
+                    'p' => ceil($count / $limit),
                 ));
 
                 return;
@@ -114,14 +114,14 @@ class NotifyController extends ActionController
             });
 
             $paginator = Paginator::factory(intval($count), array(
-                'page'          => $page,
-                'limit'         => $limit,
-                'url_options'   => array(
+                'page' => $page,
+                'limit' => $limit,
+                'url_options' => array(
                     'page_param' => 'p',
-                    'params'        => array(
-                        'module'        => $this->getModule(),
-                        'controller'    => 'notify',
-                        'action'        => 'index',
+                    'params' => array(
+                        'module' => $this->getModule(),
+                        'controller' => 'notify',
+                        'action' => 'index',
                     ),
                 ),
             ));
@@ -153,10 +153,10 @@ class NotifyController extends ActionController
         $model = $this->getModel('notification');
         //get notification
         $select = $model->select()
-                        ->where(array(
-                            'id' => $notificationId,
-                            'uid' => $userId
-                        ));
+            ->where(array(
+                'id' => $notificationId,
+                'uid' => $userId
+            ));
         $rowset = $model->selectWith($select)->current();
         if (!$rowset) {
             return;
@@ -169,7 +169,7 @@ class NotifyController extends ActionController
         if (!$detail['is_read']) {
             //mark the notification as read
             $model->update(array('is_read' => 1),
-                           array('id' => $notificationId));
+                array('id' => $notificationId));
         }
 
         $this->view()->assign('notification', $detail);
@@ -186,8 +186,8 @@ class NotifyController extends ActionController
     public function markAction()
     {
         $notificationIds = _get('ids',
-                                'regexp',
-                                array('regexp' => '/^[0-9,]+$/'));
+            'regexp',
+            array('regexp' => '/^[0-9,]+$/'));
         $page = _get('p', 'int');
         $page = $page ?: 1;
         //current user id
@@ -195,8 +195,8 @@ class NotifyController extends ActionController
         if (empty($notificationIds)) {
             $this->redirect()->toRoute('', array(
                 'controller' => 'notify',
-                'action'     => 'index',
-                'p'          => $page
+                'action' => 'index',
+                'p' => $page
             ));
         }
 
@@ -206,14 +206,14 @@ class NotifyController extends ActionController
 
         $model = $this->getModel('notification');
         $model->update(array('is_read' => 1), array(
-            'id'  => $notificationIds,
+            'id' => $notificationIds,
             'uid' => $userId
         ));
 
         $this->redirect()->toRoute('', array(
             'controller' => 'notify',
-            'action'     => 'index',
-            'p'          => $page
+            'action' => 'index',
+            'p' => $page
         ));
     }
 
@@ -225,8 +225,8 @@ class NotifyController extends ActionController
     public function deleteAction()
     {
         $notificationIds = _get('ids',
-                                'regexp',
-                                array('regexp' => '/^[0-9,]+$/'));
+            'regexp',
+            array('regexp' => '/^[0-9,]+$/'));
         $page = _get('p', 'int');
         $page = $page ?: 1;
 
@@ -236,21 +236,21 @@ class NotifyController extends ActionController
         if (empty($notificationIds)) {
             $this->redirect()->toRoute('', array(
                 'controller' => 'notify',
-                'action'     => 'index',
-                'p'          => $page
+                'action' => 'index',
+                'p' => $page
             ));
         }
         $userId = Pi::user()->getUser()->id;
         $model = $this->getModel('notification');
         $model->update(array('is_deleted' => 1), array(
-            'id'  => $notificationIds,
+            'id' => $notificationIds,
             'uid' => $userId
         ));
 
         $this->redirect()->toRoute('', array(
             'controller' => 'notify',
-            'action'     => 'index',
-            'p'          => $page
+            'action' => 'index',
+            'p' => $page
         ));
 
         return;

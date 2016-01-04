@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2015-09-01 10:42+0430\n"
-"PO-Revision-Date: 2015-09-01 10:42+0430\n"
+"POT-Creation-Date: 2015-10-10 22:30+0330\n"
+"PO-Revision-Date: 2015-10-10 22:32+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -102,7 +102,7 @@ msgstr "ورود مدیریت"
 msgid "Text processing"
 msgstr "پردازش متن"
 
-#: config/config.php:53 config/nav.admin.php:300
+#: config/config.php:53 config/nav.admin.php:311
 #: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr "ارسال میل"
@@ -606,7 +606,35 @@ msgstr "منو سمت مدیر"
 msgid "Global navigation for admin."
 msgstr "منوی سراسری برای سمت مدیر"
 
+#: config/config.php:590
+msgid "Meta title type"
+msgstr "نوع عنوان متا ( Meta title )"
+
 #: config/config.php:591
+msgid "Set short or lang meta title type"
+msgstr "تنظیم نوع عنوان صفحه به صورت کوتاه یا بلند"
+
+#: config/config.php:596
+msgid "Postfix by page - module - website titles"
+msgstr "پسوند با عنوان صفحه - ماژول - وب‌سایت"
+
+#: config/config.php:597
+msgid "Postfix by page - website titles"
+msgstr "پسوند با عنوان صفحه - وب‌سایت"
+
+#: config/config.php:598
+msgid "Prefix by website - module - page titles"
+msgstr "پیشوند با عنوان وب‌سایت - ماژول - صفحه"
+
+#: config/config.php:599
+msgid "Prefix by website - page titles"
+msgstr "پیشوند با عنوان وب‌سایت - صفحه"
+
+#: config/config.php:600
+msgid "Just page title"
+msgstr "فقط عنوان صفحه"
+
+#: config/config.php:611
 msgid ""
 "The author meta tag defines the name of the author of the document being read. "
 "Supported data formats include the name, email address of the webmaster, "
@@ -615,23 +643,23 @@ msgstr ""
 "متا تگ نویسنده نام نویسنده‌ی مطلبی که در حال خوانده شدن است را مشخص می‌کند. "
 "قالب‌های قابل قبول شامل نام، آدرس ایمیل مدیر سایت، شرکت و یا آدرس سایت می‌شود."
 
-#: config/config.php:599
+#: config/config.php:619
 msgid "Generator of the document being read."
 msgstr "تولید کننده‌ی مقاله‌ای که در حال خوانده شدن است."
 
-#: config/config.php:606
+#: config/config.php:626
 msgid "Website local"
 msgstr "کد بومی سازی وب سایت"
 
-#: config/config.php:607
+#: config/config.php:627
 msgid "Set website local, like en_GB"
 msgstr "تنظیم کد بومی سازی وب سایت ، مشابه en_GB"
 
-#: config/config.php:614
+#: config/config.php:634
 msgid "Twitter account"
 msgstr "حساب کاربری در تویتر"
 
-#: config/config.php:615
+#: config/config.php:635
 msgid ""
 "Username for the website used in the Twitter card. Add @ before username like "
 "@PiEnable or leave it empty"
@@ -640,11 +668,11 @@ msgstr ""
 "نام کاربری حساب را وارد نمایید. قبل از نام کاربری حتما از @ استفاده کنید ، به "
 "طور مثال @PiEnable یا این گزینه را خالی بگذارید."
 
-#: config/config.php:621
+#: config/config.php:641
 msgid "Facebook app id"
 msgstr "شناسه آپ فیسبوک"
 
-#: config/config.php:622
+#: config/config.php:642
 msgid ""
 "Set facebook app id here for use open graph tags on facebook page, its your "
 "website facebook page id"
@@ -652,30 +680,30 @@ msgstr ""
 "اگر وب سایت شما در فیسبوک صفحه ای دارد ، شناسه آپ فیسبوک را برای استفاده از تگ "
 "های  اوپن گراف اینجا وارد کنید. این شناسه در اصل آی دی صفحه فیسبوک شما است"
 
-#: config/config.php:628
+#: config/config.php:648
 msgid "Pinterest domain verify"
 msgstr "کد تایید دامنه در سایت pinterest"
 
-#: config/config.php:629
+#: config/config.php:649
 msgid ""
 "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 "اگر وب سایت شما در pinterest صفحه ای دارد ، کد تایید دامنه وب سایت در pinterest "
 "را اینجا وارد کنید"
 
-#: config/config.php:635
+#: config/config.php:655
 msgid "Latitude"
 msgstr "عرض جغرافیایی ( Latitude )"
 
-#: config/config.php:642
+#: config/config.php:662
 msgid "Longitude"
 msgstr "طول جغرافیایی ( Longitude )"
 
-#: config/config.php:649
+#: config/config.php:669
 msgid "Placename"
 msgstr "نام مکان"
 
-#: config/config.php:656
+#: config/config.php:676
 msgid "Region"
 msgstr "منطقه"
 
@@ -739,8 +767,8 @@ msgstr "فعال"
 msgid "Navigation"
 msgstr "ناوبری"
 
-#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:79
-#: src/Controller/Admin/NavController.php:127
+#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:80
+#: src/Controller/Admin/NavController.php:128
 msgid "Navigation list"
 msgstr "فهرست منو ها"
 
@@ -777,10 +805,14 @@ msgid "Asset publish"
 msgstr "انتشار Asset"
 
 #: config/nav.admin.php:281
+msgid "Homepage layout"
+msgstr "چیدمان صفحه اول"
+
+#: config/nav.admin.php:292
 msgid "Toolkit"
 msgstr "نوار ابزار"
 
-#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
+#: config/nav.admin.php:303 template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr "Audit"
 
@@ -801,7 +833,7 @@ msgstr "صفحه‌ها"
 msgid "Cache"
 msgstr "کَش"
 
-#: config/nav.component.php:61 template/admin/nav-data.phtml:74
+#: config/nav.component.php:61 template/admin/nav-data.phtml:76
 msgid "Permission"
 msgstr "دسترسی"
 
@@ -1346,63 +1378,63 @@ msgstr "فعال سازی ماژول"
 msgid "Title is required."
 msgstr "عنوان ضروری است."
 
-#: src/Controller/Admin/NavController.php:63
-#: src/Controller/Admin/NavController.php:90 template/admin/nav-data.phtml:42
+#: src/Controller/Admin/NavController.php:64
+#: src/Controller/Admin/NavController.php:91 template/admin/nav-data.phtml:44
 #: template/admin/nav-index.phtml:37
 msgid "Custom"
 msgstr "شخصی سازی"
 
-#: src/Controller/Admin/NavController.php:159
+#: src/Controller/Admin/NavController.php:160
 msgid "Navigation set up successfully."
 msgstr "منو با موفقیت نصب شد"
 
-#: src/Controller/Admin/NavController.php:190
+#: src/Controller/Admin/NavController.php:194
 msgid "Navigation added successfully."
 msgstr "منو با موفقیت اضافه شد"
 
-#: src/Controller/Admin/NavController.php:205
+#: src/Controller/Admin/NavController.php:209
 msgid "Add a navigation"
 msgstr "منو جدید"
 
-#: src/Controller/Admin/NavController.php:238
+#: src/Controller/Admin/NavController.php:245
 msgid "Navigation saved successfully."
 msgstr "منو با موفقیت ذخیره شد"
 
-#: src/Controller/Admin/NavController.php:244
+#: src/Controller/Admin/NavController.php:251
 msgid "Navigation data not saved."
 msgstr "داده‌های منو ذخیره نشده‌اند"
 
-#: src/Controller/Admin/NavController.php:282
+#: src/Controller/Admin/NavController.php:289
 msgid "Clone navigation"
 msgstr "کپی برداری از منو"
 
-#: src/Controller/Admin/NavController.php:302
+#: src/Controller/Admin/NavController.php:309
 msgid "The navigation is in use and not allowed to delete."
 msgstr "منو در حال استفاده است و نمی‌توان آن را حذف کرد"
 
-#: src/Controller/Admin/NavController.php:314
+#: src/Controller/Admin/NavController.php:321
 msgid "The navigation is deleted successfully."
 msgstr "منو با موفقیت حذف شد"
 
-#: src/Controller/Admin/NavController.php:381
+#: src/Controller/Admin/NavController.php:388
 #, php-format
 msgid "View of navigation details: %s"
 msgstr "مشاهده‌ی جزییات منو :%s"
 
-#: src/Controller/Admin/NavController.php:383
+#: src/Controller/Admin/NavController.php:390
 #, php-format
 msgid "Navigation data edit: %s"
 msgstr "ویرایش داده‌های منو %s"
 
-#: src/Controller/Admin/NavController.php:469
+#: src/Controller/Admin/NavController.php:476
 msgid "Navigation data saved successfully."
 msgstr "داده‌های منو با موفقیت ذخیره شدند"
 
-#: src/Controller/Admin/NavController.php:476
+#: src/Controller/Admin/NavController.php:483
 msgid "Navigation not found."
 msgstr "منو یافت نشد"
 
-#: src/Controller/Admin/NavController.php:480
+#: src/Controller/Admin/NavController.php:487
 msgid "Only custom navigations are allowed to manipulate."
 msgstr "تنها منو های دست ساز را می‌توان تغییر داد"
 
@@ -1442,7 +1474,7 @@ msgstr "صفحه پیدا نشد"
 #: src/Controller/Admin/PageController.php:490
 #, php-format
 msgid "%s blocks"
-msgstr "%s بلاک"
+msgstr "چیدمان بلاک های %s"
 
 #: src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
@@ -1476,37 +1508,37 @@ msgstr "هیچ به روز رسانی وجود ندارد"
 msgid "Error occurred, check later."
 msgstr "بروز خطا، بعدا بررسی کنید."
 
-#: src/Controller/Admin/RoleController.php:156
-#: src/Controller/Admin/RoleController.php:210
+#: src/Controller/Admin/RoleController.php:160
+#: src/Controller/Admin/RoleController.php:214
 msgid "Role data saved successfully."
 msgstr "داده‌های نقش با موفقیت ذخیره شدند."
 
-#: src/Controller/Admin/RoleController.php:159
-#: src/Controller/Admin/RoleController.php:213
+#: src/Controller/Admin/RoleController.php:163
+#: src/Controller/Admin/RoleController.php:217
 msgid "Role data not saved."
 msgstr "داده‌های نقش ذخیره نشدند."
 
-#: src/Controller/Admin/RoleController.php:181
+#: src/Controller/Admin/RoleController.php:185
 msgid "Add a role"
 msgstr "اضافه کردن نقش"
 
-#: src/Controller/Admin/RoleController.php:239
+#: src/Controller/Admin/RoleController.php:243
 msgid "Edit a role"
 msgstr "ویرایش نقش"
 
-#: src/Controller/Admin/RoleController.php:259
+#: src/Controller/Admin/RoleController.php:263
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr "تنها نقش‌های دست ساز را می‌توان فعال یا غیرفعال کرد."
 
-#: src/Controller/Admin/RoleController.php:269
+#: src/Controller/Admin/RoleController.php:273
 msgid "Role updated successfully."
 msgstr "نقش با موفقیت به روز شد"
 
-#: src/Controller/Admin/RoleController.php:308
+#: src/Controller/Admin/RoleController.php:312
 msgid "Only custom roles are allowed to delete."
 msgstr "تنها نقش‌های دست ساز را می‌توان حذف کرد."
 
-#: src/Controller/Admin/RoleController.php:314
+#: src/Controller/Admin/RoleController.php:318
 msgid "Role deleted successfully."
 msgstr "نقش با موفقیت حذف شد"
 
@@ -1638,7 +1670,7 @@ msgstr "به کار بستن"
 #: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
 #: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
 #: template/admin/module-available.phtml:12 template/admin/module-index.phtml:13
-#: template/admin/nav-data.phtml:114 template/admin/nav-index.phtml:13
+#: template/admin/nav-data.phtml:116 template/admin/nav-index.phtml:13
 #: template/admin/page-list.phtml:14 template/admin/role.phtml:28
 msgid "Action"
 msgstr "اکشن"
@@ -1799,7 +1831,7 @@ msgstr "خلاصه"
 msgid "Announcement"
 msgstr "اعلان"
 
-#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:123
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:125
 msgid "Save"
 msgstr "ذخیره"
 
@@ -2047,71 +2079,80 @@ msgstr "به روز رسانی با موفقیت انجام شد"
 msgid "Update failed."
 msgstr "به روز رسانی انجام نشد"
 
-#: template/admin/nav-data.phtml:15
+#: template/admin/nav-data.phtml:13
+msgid ""
+"Add new element on menu or edit current elements, save each element box after "
+"edit and finally save menu by blue button."
+msgstr ""
+"یک گزینه جدید برای منو اضافه کنید یا گزینه های موجود را ویرایش کنید ، بعد از "
+"ویرایش هر گزینه حتما همان گزینه را ذخیره نمایید و در انتها با استفاده از دکمه "
+"آبی رنگ بالای صفحه کل تغییرات منو را مجدد ذخیره نمایید."
+
+#: template/admin/nav-data.phtml:17
 msgid "Only click this button to save data"
 msgstr "این دکمه را برای ذخیره‌سازی داده کلیک کنید"
 
-#: template/admin/nav-data.phtml:16
+#: template/admin/nav-data.phtml:18
 msgid "Save menu"
 msgstr "منوی ذخیره سازی"
 
-#: template/admin/nav-data.phtml:24
+#: template/admin/nav-data.phtml:26
 msgid "Add to menu"
 msgstr "اضافه کردن به منو"
 
-#: template/admin/nav-data.phtml:33
+#: template/admin/nav-data.phtml:35
 msgid "This navgation is only for viewing"
 msgstr "این منو تنها برای مشاهده است."
 
-#: template/admin/nav-data.phtml:41
+#: template/admin/nav-data.phtml:43
 msgid "Click to toggle edit"
 msgstr "کلیک برای ویرایش"
 
-#: template/admin/nav-data.phtml:53
+#: template/admin/nav-data.phtml:55
 msgid "Label"
 msgstr "برچسب"
 
-#: template/admin/nav-data.phtml:59
+#: template/admin/nav-data.phtml:61
 msgid "Url"
 msgstr "آدرس"
 
-#: template/admin/nav-data.phtml:61
+#: template/admin/nav-data.phtml:63
 msgid "Page link by url or by the after of route"
 msgstr "لینک صفحه با یو آر ال و یا با مسیر یاب"
 
-#: template/admin/nav-data.phtml:65
+#: template/admin/nav-data.phtml:67
 msgid "Target"
 msgstr "هدف"
 
-#: template/admin/nav-data.phtml:68
+#: template/admin/nav-data.phtml:70
 msgid "None"
 msgstr "هیچ کدام"
 
-#: template/admin/nav-data.phtml:69
+#: template/admin/nav-data.phtml:71
 msgid "_blank"
 msgstr "خالی"
 
-#: template/admin/nav-data.phtml:82
+#: template/admin/nav-data.phtml:84
 msgid "To display in menu."
 msgstr "برای نمایش دادن منو"
 
-#: template/admin/nav-data.phtml:87
+#: template/admin/nav-data.phtml:89
 msgid "Page link by route"
 msgstr "لینک به صفحه با مسیر یاب"
 
-#: template/admin/nav-data.phtml:92
+#: template/admin/nav-data.phtml:94
 msgid "Route"
 msgstr "مسیر یاب"
 
-#: template/admin/nav-data.phtml:98
+#: template/admin/nav-data.phtml:100
 msgid "Controller"
 msgstr "کنترل کننده"
 
-#: template/admin/nav-data.phtml:108
+#: template/admin/nav-data.phtml:110
 msgid "Module"
 msgstr "ماژول"
 
-#: template/admin/nav-data.phtml:425
+#: template/admin/nav-data.phtml:427
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 "تغییراتی که انجام داده‌اید ذخیره نشده‌اند، آیا می‌خواهید این صفحه را ترک کنید؟"
@@ -2140,11 +2181,11 @@ msgstr "نمایش"
 msgid "Are you sure to delete this navigation"
 msgstr "آیا از پاک کردن این منو مطمئن هستید؟"
 
-#: template/admin/page-block.phtml:163 template/admin/role.phtml:31
+#: template/admin/page-block.phtml:165 template/admin/role.phtml:31
 msgid "Submit"
 msgstr "ثبت"
 
-#: template/admin/page-block.phtml:169 template/admin/page-block.phtml:170
+#: template/admin/page-block.phtml:171 template/admin/page-block.phtml:172
 msgid "Available Themes"
 msgstr "قالب‌های موجود"
 

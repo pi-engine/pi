@@ -1,1787 +1,1828 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-system\n"
-"POT-Creation-Date: 2014-08-24 14:57+0800\n"
-"PO-Revision-Date: 2014-08-24 14:57+0800\n"
+"POT-Creation-Date: 2015-10-01 18:42+0330\n"
+"PO-Revision-Date: 2015-10-01 18:42+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-KeywordsList: _a;_t\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: c:\\code\\pi\\usr\\module\\system\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: c:\code\pi\usr\module\system/config/block.php:18
+#: config/block.php:18
 msgid "Site Info"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:19
+#: config/block.php:19
 msgid "Website information"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:26
-#: c:\code\pi\usr\module\system/config/page.php:116
+#: config/block.php:26 config/page.php:116
 msgid "User"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:27
-#: c:\code\pi\usr\module\system/config/config.php:33
+#: config/block.php:27 config/config.php:41
 msgid "User account"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:34
+#: config/block.php:34
 msgid "User bar"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:35
+#: config/block.php:35
 msgid "User profile or login bar"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:40
+#: config/block.php:40
 msgid "Display type"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:41
+#: config/block.php:41
 msgid "Mode to render."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:47
+#: config/block.php:47
 msgid "Flat"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:48
+#: config/block.php:48
 msgid "Dropdown menu"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:49
+#: config/block.php:49
 msgid "JavaScript"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:59
-#: c:\code\pi\usr\module\system/config/nav.front.php:30
+#: config/block.php:59 config/nav.front.php:30
 msgid "Login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:60
+#: config/block.php:60
 msgid "User login block"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:67
+#: config/block.php:67
 msgid "Pi feature"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/block.php:68
+#: config/block.php:68
 msgid "Introduction to Pi Engine"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:21
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:95
+#: config/config.php:21 src/Controller/Admin/ConfigController.php:95
 msgid "General"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:25
+#: config/config.php:25
 msgid "Head meta"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:29
+#: config/config.php:29
+msgid "Extra head meta"
+msgstr ""
+
+#: config/config.php:33
+msgid "Geo tags"
+msgstr ""
+
+#: config/config.php:37
 msgid "Internationalization"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:37
+#: config/config.php:45
 msgid "Admin login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:41
+#: config/config.php:49
 msgid "Text processing"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:45
-#: c:\code\pi\usr\module\system/config/nav.admin.php:300
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:9
+#: config/config.php:53 config/nav.admin.php:300
+#: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:57
+#: config/config.php:65
 msgid "Site name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:58
+#: config/config.php:66
 msgid "Website name."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:65
+#: config/config.php:73
 msgid "Slogan"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:66
+#: config/config.php:74
 msgid "Website slogan."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:72
+#: config/config.php:80
 msgid "Locale"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:73
+#: config/config.php:81
 msgid "Locale for application content."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:80
+#: config/config.php:88
 msgid "Charset"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:81
+#: config/config.php:89
 msgid "Charset for page display."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:87
+#: config/config.php:95
 msgid "Timezone"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:88
+#: config/config.php:96
 msgid "Timezone for application system."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:94
+#: config/config.php:102
 msgid "List count"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:95
+#: config/config.php:103
 msgid "Number of items on a list."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:102
+#: config/config.php:110
 msgid "Footer"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:103
+#: config/config.php:111
 msgid "Content to be displayed on footer of front pages, HTML tags allowed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:109
+#: config/config.php:117
 msgid "GA account"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:110
+#: config/config.php:118
 msgid ""
 "Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
 "to the code `UA-XXXXXXXX-X; XXXX.tld`."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:115
+#: config/config.php:123
 msgid "Foot scripts"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:116
+#: config/config.php:124
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:122
+#: config/config.php:130
 msgid "Theme"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:129
+#: config/config.php:137
 msgid "Admin theme"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:157
+#: config/config.php:165
 msgid "Username format"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:158
+#: config/config.php:166
 msgid "Format of username for registration."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:163
+#: config/config.php:171
 msgid "Strict: alphabet or number only"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:164
+#: config/config.php:172
+msgid "Strict/space: alphabet, number or space only"
+msgstr ""
+
+#: config/config.php:173
 msgid "Medium: ASCII characters"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:165
+#: config/config.php:174
+msgid "Medium/space: ASCII characters and spaces"
+msgstr ""
+
+#: config/config.php:175
 msgid "Loose: multi-byte characters"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:175
+#: config/config.php:176
+msgid "Loose/space: multi-byte characters and spaces"
+msgstr ""
+
+#: config/config.php:186
 msgid "Minimum username"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:176
+#: config/config.php:187
 msgid "Minimum length of username for user registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:183
+#: config/config.php:194
 msgid "Maximum username"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:184
+#: config/config.php:195
 msgid "Maximum length of username for user registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:191
+#: config/config.php:202
 msgid "Minimum password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:192
+#: config/config.php:203
 msgid "Minimum length of password for user registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:199
+#: config/config.php:210
 msgid "Maximum password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:200
+#: config/config.php:211
 msgid "Maximum length of password for user registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:207
+#: config/config.php:218
 msgid "Username blacklist"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:208
+#: config/config.php:219
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:215
+#: config/config.php:226
 msgid "Email blacklist"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:216
+#: config/config.php:227
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:223
-#: c:\code\pi\usr\module\system/config/config.php:305
+#: config/config.php:234 config/config.php:316
 msgid "Remember me"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:224
-#: c:\code\pi\usr\module\system/config/config.php:306
+#: config/config.php:235 config/config.php:317
 msgid "Days to remember login, 0 for disable."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:231
-#: c:\code\pi\usr\module\system/config/config.php:313
+#: config/config.php:242 config/config.php:324
 msgid "Login field"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:232
+#: config/config.php:243
 msgid "Identity field(s) for authentication."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:240
-#: c:\code\pi\usr\module\system/config/config.php:322
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:23
+#: config/config.php:251 config/config.php:333
+#: template/admin/member-index.phtml:23
 msgid "Username"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:241
-#: c:\code\pi\usr\module\system/config/config.php:323
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:25
+#: config/config.php:252 config/config.php:334
+#: template/admin/member-index.phtml:25
 msgid "Email"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:251
-#: c:\code\pi\usr\module\system/config/config.php:297
+#: config/config.php:262 config/config.php:308
 msgid "Maximum attempts"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:252
+#: config/config.php:263
 msgid "Maximum attempts allowed to try for user login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:259
-#: c:\code\pi\usr\module\system/config/config.php:333
+#: config/config.php:270 config/config.php:344
 msgid "Login disable"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:260
+#: config/config.php:271
 msgid "Disable user login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:268
+#: config/config.php:279
 msgid "Register disable"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:269
+#: config/config.php:280
 msgid "Disable user registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:277
-#: c:\code\pi\usr\module\system/config/config.php:342
+#: config/config.php:288 config/config.php:353
 msgid "Login CAPTCHA"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:278
+#: config/config.php:289
 msgid "Enable CAPTCHA for user login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:286
+#: config/config.php:297
 msgid "Register CAPTCHA"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:287
+#: config/config.php:298
 msgid "Enable CAPTCHA for user registration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:298
+#: config/config.php:309
 msgid "Maximum attempts allowed to try for admin login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:314
+#: config/config.php:325
 msgid "Identity field(s) for admin authentication."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:334
+#: config/config.php:345
 msgid "Disable admin login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:343
+#: config/config.php:354
 msgid "Enable CAPTCHA for admin login"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:354
+#: config/config.php:383
+msgid "Head title for web page"
+msgstr ""
+
+#: config/config.php:391
+msgid ""
+"The keywords meta tag is a series of keywords that represents the content of "
+"your site. Separated keywords by a comma."
+msgstr ""
+
+#: config/config.php:399
+msgid ""
+"The description meta tag is a general description of what is contained in "
+"your web page"
+msgstr ""
+
+#: config/config.php:408
+msgid "Default number style"
+msgstr ""
+
+#: config/config.php:409
+msgid ""
+"See http://www.php.net/manual/en/class.numberformatter.php#intl."
+"numberformatter-constants.unumberformatstyle"
+msgstr ""
+
+#: config/config.php:414
+msgid "Default format for the locale"
+msgstr ""
+
+#: config/config.php:415
+msgid "Decimal format defined by pattern"
+msgstr ""
+
+#: config/config.php:416
+msgid "Decimal format"
+msgstr ""
+
+#: config/config.php:417
+msgid "Percent format"
+msgstr ""
+
+#: config/config.php:418
+msgid "Scientific format"
+msgstr ""
+
+#: config/config.php:419
+msgid "Spellout rule-based format"
+msgstr ""
+
+#: config/config.php:420
+msgid "Ordinal rule-based format"
+msgstr ""
+
+#: config/config.php:421
+msgid "Duration rule-based format"
+msgstr ""
+
+#: config/config.php:422
+msgid "Rule-based format defined by pattern"
+msgstr ""
+
+#: config/config.php:431
+msgid "Default pattern for selected number style"
+msgstr ""
+
+#: config/config.php:432
+msgid "Only if required by style"
+msgstr ""
+
+#: config/config.php:439
+msgid "Default currency type"
+msgstr ""
+
+#: config/config.php:440
+msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
+msgstr ""
+
+#: config/config.php:447
+msgid "Default calendar for the locale"
+msgstr ""
+
+#: config/config.php:448
+msgid ""
+"\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
+"en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
+msgstr ""
+
+#: config/config.php:455
+msgid "Default date type"
+msgstr ""
+
+#: config/config.php:456 config/config.php:475
+msgid ""
+"See http://www.php.net/manual/en/class.intldateformatter.php#intl."
+"intldateformatter-constants"
+msgstr ""
+
+#: config/config.php:461 config/config.php:480
+msgid "Do not include this element"
+msgstr ""
+
+#: config/config.php:462 config/config.php:481
+msgid ""
+"Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
+msgstr ""
+
+#: config/config.php:463 config/config.php:482
+msgid "Long style (January 12, 1952 or 3:30:32pm)"
+msgstr ""
+
+#: config/config.php:464 config/config.php:483
+msgid "Medium style (Jan 12, 1952)"
+msgstr ""
+
+#: config/config.php:465 config/config.php:484
+msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
+msgstr ""
+
+#: config/config.php:474
+msgid "Default time type"
+msgstr ""
+
+#: config/config.php:493
+msgid "Default formatting pattern for date-time"
+msgstr ""
+
+#: config/config.php:494
+msgid "See http://userguide.icu-project.org/formatparse/datetime"
+msgstr ""
+
+#: config/config.php:501
+msgid "Default format for legacy date function"
+msgstr ""
+
+#: config/config.php:502
+msgid ""
+"The format is required in case Intl extension is not available. See http://"
+"www.php.net/manual/en/function.date.php"
+msgstr ""
+
+#: config/config.php:511
+msgid "Admin email"
+msgstr ""
+
+#: config/config.php:512
+msgid "Admin email address for contact."
+msgstr ""
+
+#: config/config.php:518
+msgid "Admin name"
+msgstr ""
+
+#: config/config.php:519
+msgid "User name used to send emails"
+msgstr ""
+
+#: config/config.php:524
+msgid "Email encoding"
+msgstr ""
+
+#: config/config.php:525
+msgid "Encoding for email contents"
+msgstr ""
+
+#: config/config.php:533
+msgid "Text editor"
+msgstr ""
+
+#: config/config.php:534
+msgid "Default editor for text processing"
+msgstr ""
+
+#: config/config.php:540
+msgid "Enable word censoring"
+msgstr ""
+
+#: config/config.php:541
+msgid ""
+"Words will be censored if this option is enabled. This option may be turned "
+"off for enhanced site speed."
+msgstr ""
+
+#: config/config.php:549
+msgid "Words to censor"
+msgstr ""
+
+#: config/config.php:550
+msgid ""
+"Enter words that should be censored in user posts. Separate each with a \"|"
+"\", case insensitive."
+msgstr ""
+
+#: config/config.php:557
+msgid "Word to replace censored words"
+msgstr ""
+
+#: config/config.php:558
+msgid ""
+"Censored words will be replaced with the characters entered in this textbox"
+msgstr ""
+
+#: config/config.php:565
+msgid "Module themes"
+msgstr ""
+
+#: config/config.php:566
+msgid "Themes for modules."
+msgstr ""
+
+#: config/config.php:574 config/nav.php:21
+msgid "Front navigation"
+msgstr ""
+
+#: config/config.php:575
+msgid "Global navigation for front end."
+msgstr ""
+
+#: config/config.php:582 config/nav.php:27
+msgid "Admin navigation"
+msgstr ""
+
+#: config/config.php:583
+msgid "Global navigation for admin."
+msgstr ""
+
+#: config/config.php:590
+msgid "Meta title type"
+msgstr ""
+
+#: config/config.php:591
+msgid "Set short or lang meta title type"
+msgstr ""
+
+#: config/config.php:596
+msgid "Postfix by page - module - website titles"
+msgstr ""
+
+#: config/config.php:597
+msgid "Postfix by page - website titles"
+msgstr ""
+
+#: config/config.php:598
+msgid "Prefix by website - module - page titles"
+msgstr ""
+
+#: config/config.php:599
+msgid "Prefix by website - page titles"
+msgstr ""
+
+#: config/config.php:600
+msgid "Just page title"
+msgstr ""
+
+#: config/config.php:611
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
 "webmaster, company name or URL."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:362
+#: config/config.php:619
 msgid "Generator of the document being read."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:370
+#: config/config.php:626
+msgid "Website local"
+msgstr ""
+
+#: config/config.php:627
+msgid "Set website local, like en_GB"
+msgstr ""
+
+#: config/config.php:634
+msgid "Twitter account"
+msgstr ""
+
+#: config/config.php:635
 msgid ""
-"The keywords meta tag is a series of keywords that represents the content of "
-"your site. Separated keywords by a comma."
+"Username for the website used in the Twitter card. Add @ before username "
+"like @PiEnable or leave it empty"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:378
+#: config/config.php:641
+msgid "Facebook app id"
+msgstr ""
+
+#: config/config.php:642
 msgid ""
-"The description meta tag is a general description of what is contained in "
-"your web page"
+"Set facebook app id here for use open graph tags on facebook page, its your "
+"website facebook page id"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:387
-msgid "Default number style"
+#: config/config.php:648
+msgid "Pinterest domain verify"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:388
+#: config/config.php:649
 msgid ""
-"See http://www.php.net/manual/en/class.numberformatter.php#intl."
-"numberformatter-constants.unumberformatstyle"
+"Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:393
-msgid "Default format for the locale"
+#: config/config.php:655
+msgid "Latitude"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:394
-msgid "Decimal format defined by pattern"
+#: config/config.php:662
+msgid "Longitude"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:395
-msgid "Decimal format"
+#: config/config.php:669
+msgid "Placename"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:396
-msgid "Percent format"
+#: config/config.php:676
+msgid "Region"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/config.php:397
-msgid "Scientific format"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:398
-msgid "Spellout rule-based format"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:399
-msgid "Ordinal rule-based format"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:400
-msgid "Duration rule-based format"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:401
-msgid "Rule-based format defined by pattern"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:410
-msgid "Default pattern for selected number style"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:411
-msgid "Only if required by style"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:418
-msgid "Default currency type"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:419
-msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:426
-msgid "Default calendar for the locale"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:427
-msgid ""
-"\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
-"en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:434
-msgid "Default date type"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:435
-#: c:\code\pi\usr\module\system/config/config.php:454
-msgid ""
-"See http://www.php.net/manual/en/class.intldateformatter.php#intl."
-"intldateformatter-constants"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:440
-#: c:\code\pi\usr\module\system/config/config.php:459
-msgid "Do not include this element"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:441
-#: c:\code\pi\usr\module\system/config/config.php:460
-msgid ""
-"Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:442
-#: c:\code\pi\usr\module\system/config/config.php:461
-msgid "Long style (January 12, 1952 or 3:30:32pm)"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:443
-#: c:\code\pi\usr\module\system/config/config.php:462
-msgid "Medium style (Jan 12, 1952)"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:444
-#: c:\code\pi\usr\module\system/config/config.php:463
-msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:453
-msgid "Default time type"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:472
-msgid "Default formatting pattern for date-time"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:473
-msgid "See http://userguide.icu-project.org/formatparse/datetime"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:480
-msgid "Default format for legacy date function"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:481
-msgid ""
-"The format is required in case Intl extension is not available. See http://"
-"www.php.net/manual/en/function.date.php"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:490
-msgid "Admin email"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:491
-msgid "Admin email address for contact."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:497
-msgid "Admin name"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:498
-msgid "User name used to send emails"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:503
-msgid "Email encoding"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:504
-msgid "Encoding for email contents"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:512
-msgid "Text editor"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:513
-msgid "Default editor for text processing"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:518
-msgid "Enable word censoring"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:519
-msgid ""
-"Words will be censored if this option is enabled. This option may be turned "
-"off for enhanced site speed."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:527
-msgid "Words to censor"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:528
-msgid ""
-"Enter words that should be censored in user posts. Separate each with a \"|"
-"\", case insensitive."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:535
-msgid "Word to replace censored words"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:536
-msgid ""
-"Censored words will be replaced with the characters entered in this textbox"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:543
-msgid "Module themes"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:544
-msgid "Themes for modules."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:552
-#: c:\code\pi\usr\module\system/config/nav.php:21
-msgid "Front navigation"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:553
-msgid "Global navigation for front end."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:560
-#: c:\code\pi\usr\module\system/config/nav.php:27
-msgid "Admin navigation"
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/config.php:561
-msgid "Global navigation for admin."
-msgstr ""
-
-#: c:\code\pi\usr\module\system/config/event.php:21
+#: config/event.php:21
 msgid "Module installed"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/event.php:24
+#: config/event.php:24
 msgid "Module uninstalled"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/event.php:27
+#: config/event.php:27
 msgid "Module activated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/event.php:30
+#: config/event.php:30
 msgid "Module deactivated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/event.php:33
+#: config/event.php:33
 msgid "Module updated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/module.php:19
+#: config/module.php:19
 msgid "System"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/module.php:22
+#: config/module.php:22
 msgid "For administration of core functions of the site."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:17
-#: c:\code\pi\usr\module\system/config/page.php:91
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:23
+#: config/nav.admin.php:17 config/page.php:91
+#: template/admin/asset-index.phtml:23
 msgid "Modules"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:28
-#: c:\code\pi\usr\module\system/config/nav.admin.php:104
+#: config/nav.admin.php:28 config/nav.admin.php:104
 msgid "Installed"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:48
-#: c:\code\pi\usr\module\system/config/nav.admin.php:112
+#: config/nav.admin.php:48 config/nav.admin.php:112
 msgid "Availables"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:67
+#: config/nav.admin.php:67
 msgid "Category"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:74
-#: c:\code\pi\usr\module\system/config/nav.admin.php:120
+#: config/nav.admin.php:74 config/nav.admin.php:120
 msgid "Repository"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:85
-#: c:\code\pi\usr\module\system/config/page.php:97
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:36
+#: config/nav.admin.php:85 config/page.php:97
+#: template/admin/asset-index.phtml:36
 msgid "Themes"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:96
+#: config/nav.admin.php:96
 msgid "In action"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:132
-#: c:\code\pi\usr\module\system/config/page.php:103
+#: config/nav.admin.php:132 config/page.php:103
 msgid "Navigation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:143
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:79
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:127
+#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:80
+#: src/Controller/Admin/NavController.php:128
 msgid "Navigation list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:152
+#: config/nav.admin.php:152
 msgid "Data manipulation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:163
+#: config/nav.admin.php:163
 msgid "Add"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:172
+#: config/nav.admin.php:172
 msgid "Navigation setup"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:183
+#: config/nav.admin.php:183
 msgid "Role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:194
+#: config/nav.admin.php:194
 msgid "Role list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:202
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:18
+#: config/nav.admin.php:202 template/admin/role.phtml:18
 msgid "Add role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:260
+#: config/nav.admin.php:260
 msgid "Cache flush"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:270
+#: config/nav.admin.php:270
 msgid "Asset publish"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:281
+#: config/nav.admin.php:281
 msgid "Toolkit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.admin.php:292
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:8
+#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.component.php:17
+#: config/nav.component.php:17
 msgid "Configurations"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.component.php:28
-#: c:\code\pi\usr\module\system/config/page.php:65
+#: config/nav.component.php:28 config/page.php:65
 msgid "Blocks"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.component.php:39
-#: c:\code\pi\usr\module\system/config/page.php:71
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:22
+#: config/nav.component.php:39 config/page.php:71
+#: template/admin/block-list.phtml:22
 msgid "Pages"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.component.php:50
-#: c:\code\pi\usr\module\system/config/page.php:135
+#: config/nav.component.php:50 config/page.php:135
 msgid "Cache"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.component.php:61
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:74
+#: config/nav.component.php:61 template/admin/nav-data.phtml:76
 msgid "Permission"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.component.php:72
+#: config/nav.component.php:72
 msgid "Event/Hook"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.front.php:19
+#: config/nav.front.php:19
 msgid "Home"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.front.php:24
+#: config/nav.front.php:24
 msgid "Profile"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.front.php:37
+#: config/nav.front.php:37
 msgid "Register"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.front.php:44
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:37
+#: config/nav.front.php:44 template/admin/member-index.phtml:37
 msgid "Password"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.front.php:52
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:25
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:16
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:22
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:36
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:17
+#: config/nav.front.php:52 template/admin/event.phtml:25
+#: template/admin/perm.phtml:16 template/admin/perm.phtml:22
+#: template/admin/role.phtml:36 template/admin/theme-index.phtml:17
 msgid "Admin"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.front.php:58
+#: config/nav.front.php:58
 msgid "RSS Feed"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/nav.php:33
+#: config/nav.php:33
 msgid "Managed components"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:20
+#: config/page.php:20
 msgid "Homepage"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:28
+#: config/page.php:28
 msgid "Utility"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:35
+#: config/page.php:35
 msgid "Error reporting"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:45
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:81
-#: c:\code\pi\usr\module\system/src/Controller/Module/DashboardController.php:374
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:20
+#: config/page.php:45 src/Controller/Admin/ComponentController.php:81
+#: src/Controller/Module/DashboardController.php:374
+#: template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:51
+#: config/page.php:51
 msgid "Readme"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:59
+#: config/page.php:59
 msgid "Config"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:77
+#: config/page.php:77
 msgid "Event/listener"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:83
+#: config/page.php:83
 msgid "Permissions"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:110
+#: config/page.php:110
 msgid "Roles"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:123
+#: config/page.php:123
 msgid "Asset"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:129
+#: config/page.php:129
 msgid "Auditing"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/page.php:145
+#: config/page.php:145
 msgid "What's new"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:20
+#: config/permission.php:20
 msgid "Global public resource"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:28
+#: config/permission.php:28
 msgid "Guest only"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:35
+#: config/permission.php:35
 msgid "Member only"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:45
+#: config/permission.php:45
 msgid "Generic permission"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:57
+#: config/permission.php:57
 msgid "Operation: modules"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:64
+#: config/permission.php:64
 msgid "Operation: themes"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:72
+#: config/permission.php:72
 msgid "Operation: navigation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:80
+#: config/permission.php:80
 msgid "Operation: roles"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:96
+#: config/permission.php:96
 msgid "Operation: maintenance"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:106
+#: config/permission.php:106
 msgid "Management: configs"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:114
+#: config/permission.php:114
 msgid "Management: blocks"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:122
+#: config/permission.php:122
 msgid "Management: pages"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:130
+#: config/permission.php:130
 msgid "Management: caches"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:137
+#: config/permission.php:137
 msgid "Management: permissions"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/permission.php:144
+#: config/permission.php:144
 msgid "Management: events/hooks"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/role.php:19
+#: config/role.php:19
 msgid "Administrator"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/role.php:21
+#: config/role.php:21
 msgid "Staff"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/role.php:35
+#: config/role.php:35
 msgid "Webmaster"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/role.php:37
+#: config/role.php:37
 msgid "Member"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/config/role.php:39
+#: config/role.php:39
 msgid "Guest"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:50
+#: src/Controller/Admin/AssetController.php:50
 msgid "Asset component list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:100
+#: src/Controller/Admin/AssetController.php:100
 msgid ""
 "Some old files were not able to remove and asset publish was not completed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:105
+#: src/Controller/Admin/AssetController.php:105
 msgid "Asset publish was not completed, please check and copy manually."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:110
+#: src/Controller/Admin/AssetController.php:110
 msgid ""
 "Asset publish was not completed because some old files were not able to "
 "remove."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:115
+#: src/Controller/Admin/AssetController.php:115
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:120
+#: src/Controller/Admin/AssetController.php:120
 msgid "Asset files are published correctly."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:187
+#: src/Controller/Admin/AssetController.php:187
 msgid "Publish is not completed, please check and re-publish one by one."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/AssetController.php:192
+#: src/Controller/Admin/AssetController.php:192
 msgid "All assets published successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:136
+#: src/Controller/Admin/BlockController.php:136
 msgid "Block list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:152
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:204
+#: src/Controller/Admin/BlockController.php:152
+#: src/Controller/Admin/BlockController.php:204
 msgid "Base block is not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:188
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:286
+#: src/Controller/Admin/BlockController.php:188
+#: src/Controller/Admin/BlockController.php:286
 msgid "Block data saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:195
+#: src/Controller/Admin/BlockController.php:195
 msgid "Block data not saved."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:198
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:293
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:169
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:280
+#: src/Controller/Admin/BlockController.php:198
+#: src/Controller/Admin/BlockController.php:293
+#: src/Controller/Admin/PageController.php:169
+#: src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:229
+#: src/Controller/Admin/BlockController.php:229
 #, php-format
 msgid "%s clone"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:255
+#: src/Controller/Admin/BlockController.php:255
 #, php-format
 msgid "Block clone from: %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:299
+#: src/Controller/Admin/BlockController.php:299
 msgid "Block is not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:314
+#: src/Controller/Admin/BlockController.php:314
 #, php-format
 msgid "Block edit: %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/BlockController.php:334
+#: src/Controller/Admin/BlockController.php:334
 msgid "Block is deleted."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:77
+#: src/Controller/Admin/CacheController.php:77
 msgid "Page cache updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:64
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:24
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:15
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:21
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:35
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:12
+#: src/Controller/Admin/CacheController.php:94
+#: src/Controller/Admin/PageController.php:64 template/admin/event.phtml:24
+#: template/admin/perm.phtml:15 template/admin/perm.phtml:21
+#: template/admin/role.phtml:35 template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:98
+#: src/Controller/Admin/CacheController.php:98
 msgid "Feed"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
+#: src/Controller/Admin/CacheController.php:111
 msgid "Page wide"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
+#: src/Controller/Admin/CacheController.php:112
 msgid "Action data"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:161
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:87
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:417
+#: src/Controller/Admin/CacheController.php:161
+#: src/Controller/Admin/PageController.php:87
+#: src/Controller/Admin/PageController.php:417
 msgid "Module wide"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:171
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:97
+#: src/Controller/Admin/CacheController.php:171
+#: src/Controller/Admin/PageController.php:97
 msgid "Module home"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/CacheController.php:195
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
+#: src/Controller/Admin/CacheController.php:195
+#: src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ComponentController.php:74
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:92
+#: src/Controller/Admin/ComponentController.php:74
+#: src/Controller/Admin/ModuleController.php:76
 msgid "Never updated."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:174
+#: src/Controller/Admin/ConfigController.php:174
 msgid "Configuration data saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ConfigController.php:188
+#: src/Controller/Admin/ConfigController.php:188
 msgid "Module configurations"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/EventController.php:143
+#: src/Controller/Admin/EventController.php:143
 #, php-format
 msgid "Event listeners of module %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/EventController.php:168
+#: src/Controller/Admin/EventController.php:168
 msgid "The item not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/EventController.php:183
+#: src/Controller/Admin/EventController.php:183
 msgid "The item is not allowed to activate since module is inactive."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/EventController.php:190
+#: src/Controller/Admin/EventController.php:190
 msgid "The item updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:37
+#: src/Controller/Admin/FlushController.php:37
 msgid "File status cache"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:38
+#: src/Controller/Admin/FlushController.php:38
 msgid "APC file cache"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:39
+#: src/Controller/Admin/FlushController.php:39
 msgid "System cache files"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:40
+#: src/Controller/Admin/FlushController.php:40
 msgid "System persistent data"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:41
+#: src/Controller/Admin/FlushController.php:41
 msgid "Module cache"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:42
+#: src/Controller/Admin/FlushController.php:42
 msgid "Comment cache"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:63
+#: src/Controller/Admin/FlushController.php:63
 #, php-format
 msgid "Application cache [%s]"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:81
+#: src/Controller/Admin/FlushController.php:81
 #, php-format
 msgid "Page cache [%s]"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:110
+#: src/Controller/Admin/FlushController.php:110
 msgid "Cache is flushed successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/FlushController.php:113
+#: src/Controller/Admin/FlushController.php:113
 #, php-format
 msgid "Cache flush failed: %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/IndexController.php:31
+#: src/Controller/Admin/IndexController.php:31
 msgid "Security: `setup` folder is not removed!"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/IndexController.php:37
+#: src/Controller/Admin/IndexController.php:37
 #, php-format
 msgid "Security: `%s` is writable!"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/IndexController.php:47
+#: src/Controller/Admin/IndexController.php:47
 #, php-format
 msgid "Permission: `%s` is not available for write!"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/LoginController.php:44
+#: src/Controller/Admin/LoginController.php:44
 msgid "Not privileged."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:99
+#: src/Controller/Admin/ModuleController.php:82
 msgid "Installed modules"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:135
+#: src/Controller/Admin/ModuleController.php:118
 msgid "Modules ready for installation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:176
+#: src/Controller/Admin/ModuleController.php:159
 msgid "Module moved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:183
+#: src/Controller/Admin/ModuleController.php:166
 msgid "Category deleted successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:223
+#: src/Controller/Admin/ModuleController.php:206
 msgid "Category updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:235
+#: src/Controller/Admin/ModuleController.php:218
 msgid "Modules sorted successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:268
+#: src/Controller/Admin/ModuleController.php:251
 msgid "All categorized"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:276
+#: src/Controller/Admin/ModuleController.php:259
 msgid "Uncategorized"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:295
+#: src/Controller/Admin/ModuleController.php:278
 msgid "+ New category"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:338
+#: src/Controller/Admin/ModuleController.php:321
 msgid "Directory is not specified."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:344
+#: src/Controller/Admin/ModuleController.php:327
 #, php-format
 msgid "Meta data are not loaded for \"%s\"."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:361
+#: src/Controller/Admin/ModuleController.php:344
 msgid "The module has already been installed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:376
+#: src/Controller/Admin/ModuleController.php:359
 #, php-format
 msgid "Module \"%s\" is installed successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:386
+#: src/Controller/Admin/ModuleController.php:370
 #, php-format
 msgid "Module \"%s\" is not installed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:390
+#: src/Controller/Admin/ModuleController.php:374
 msgid "Module is not installed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:394
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:448
+#: src/Controller/Admin/ModuleController.php:378
+#: src/Controller/Admin/ModuleController.php:432
 msgid "Module installation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:467
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:565
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:626
+#: src/Controller/Admin/ModuleController.php:451
+#: src/Controller/Admin/ModuleController.php:550
+#: src/Controller/Admin/ModuleController.php:611
 msgid "Module is not specified."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:476
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:574
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:635
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:728
+#: src/Controller/Admin/ModuleController.php:460
+#: src/Controller/Admin/ModuleController.php:559
+#: src/Controller/Admin/ModuleController.php:620
+#: src/Controller/Admin/ModuleController.php:715
 msgid "Module is not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:478
+#: src/Controller/Admin/ModuleController.php:462
 msgid "System module is protected."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:487
+#: src/Controller/Admin/ModuleController.php:471
 #, php-format
 msgid "Module \"%s\" is uninstalled successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:494
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:499
+#: src/Controller/Admin/ModuleController.php:479
+#: src/Controller/Admin/ModuleController.php:484
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:503
+#: src/Controller/Admin/ModuleController.php:488
 msgid "Module is not uninstalled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:507
+#: src/Controller/Admin/ModuleController.php:492
 msgid "Module uninstallation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:542
+#: src/Controller/Admin/ModuleController.php:527
 msgid "Module updates"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:583
+#: src/Controller/Admin/ModuleController.php:568
 #, php-format
 msgid "Module \"%s\" is updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:590
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:592
+#: src/Controller/Admin/ModuleController.php:575
+#: src/Controller/Admin/ModuleController.php:577
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:595
+#: src/Controller/Admin/ModuleController.php:580
 msgid "Module is not updated."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:599
+#: src/Controller/Admin/ModuleController.php:584
 msgid "Module update"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:649
+#: src/Controller/Admin/ModuleController.php:634
 #, php-format
 msgid "Module \"%s\" is enabled successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:656
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:661
+#: src/Controller/Admin/ModuleController.php:642
+#: src/Controller/Admin/ModuleController.php:647
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:665
+#: src/Controller/Admin/ModuleController.php:651
 msgid "Module is not enabled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:670
+#: src/Controller/Admin/ModuleController.php:656
 #, php-format
 msgid "Module \"%s\" is disabled successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:677
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:682
+#: src/Controller/Admin/ModuleController.php:664
+#: src/Controller/Admin/ModuleController.php:669
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:686
+#: src/Controller/Admin/ModuleController.php:673
 msgid "Module is not disabled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:691
+#: src/Controller/Admin/ModuleController.php:678
 msgid "Module activation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ModuleController.php:714
+#: src/Controller/Admin/ModuleController.php:701
 msgid "Title is required."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:63
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:90
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:42
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:37
+#: src/Controller/Admin/NavController.php:64
+#: src/Controller/Admin/NavController.php:91 template/admin/nav-data.phtml:44
+#: template/admin/nav-index.phtml:37
 msgid "Custom"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:159
+#: src/Controller/Admin/NavController.php:160
 msgid "Navigation set up successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:190
+#: src/Controller/Admin/NavController.php:194
 msgid "Navigation added successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:205
+#: src/Controller/Admin/NavController.php:209
 msgid "Add a navigation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:238
+#: src/Controller/Admin/NavController.php:245
 msgid "Navigation saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:244
+#: src/Controller/Admin/NavController.php:251
 msgid "Navigation data not saved."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:282
+#: src/Controller/Admin/NavController.php:289
 msgid "Clone navigation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:302
+#: src/Controller/Admin/NavController.php:309
 msgid "The navigation is in use and not allowed to delete."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:314
+#: src/Controller/Admin/NavController.php:321
 msgid "The navigation is deleted successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:381
+#: src/Controller/Admin/NavController.php:388
 #, php-format
 msgid "View of navigation details: %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:383
+#: src/Controller/Admin/NavController.php:390
 #, php-format
 msgid "Navigation data edit: %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:469
+#: src/Controller/Admin/NavController.php:476
 msgid "Navigation data saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:476
+#: src/Controller/Admin/NavController.php:483
 msgid "Navigation not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/NavController.php:480
+#: src/Controller/Admin/NavController.php:487
 msgid "Only custom navigations are allowed to manipulate."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:128
+#: src/Controller/Admin/PageController.php:128
 msgid "Pages list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:154
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:214
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:278
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:326
+#: src/Controller/Admin/PageController.php:154
+#: src/Controller/Admin/PageController.php:214
+#: src/Controller/Admin/PageController.php:278
+#: src/Controller/Admin/PageController.php:326
 msgid "Page data saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:166
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:236
+#: src/Controller/Admin/PageController.php:166
+#: src/Controller/Admin/PageController.php:236
 msgid "Page data not saved."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:181
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:9
+#: src/Controller/Admin/PageController.php:181
+#: template/admin/page-list.phtml:9
 msgid "Setup a page"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:294
+#: src/Controller/Admin/PageController.php:294
 msgid "Pages edit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:370
+#: src/Controller/Admin/PageController.php:370
 msgid "Page is deleted."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:375
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:550
+#: src/Controller/Admin/PageController.php:375
+#: src/Controller/Admin/PageController.php:550
 msgid "Page is not found."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:490
+#: src/Controller/Admin/PageController.php:490
 #, php-format
 msgid "%s blocks"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PageController.php:576
+#: src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PermController.php:80
+#: src/Controller/Admin/PermController.php:80
 msgid "Module access"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PermController.php:87
+#: src/Controller/Admin/PermController.php:87
 msgid "Module admin"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/PermController.php:329
+#: src/Controller/Admin/PermController.php:329
 msgid "Permission assigned successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RepoController.php:60
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RepoController.php:84
+#: src/Controller/Admin/RepoController.php:60
+#: src/Controller/Admin/RepoController.php:84
 #, php-format
 msgid "A new version %s is available"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RepoController.php:65
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RepoController.php:89
+#: src/Controller/Admin/RepoController.php:65
+#: src/Controller/Admin/RepoController.php:89
 msgid "No update available"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RepoController.php:69
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RepoController.php:93
+#: src/Controller/Admin/RepoController.php:69
+#: src/Controller/Admin/RepoController.php:93
 msgid "Error occurred, check later."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:156
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:210
+#: src/Controller/Admin/RoleController.php:160
+#: src/Controller/Admin/RoleController.php:214
 msgid "Role data saved successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:159
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:213
+#: src/Controller/Admin/RoleController.php:163
+#: src/Controller/Admin/RoleController.php:217
 msgid "Role data not saved."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:181
+#: src/Controller/Admin/RoleController.php:185
 msgid "Add a role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:239
+#: src/Controller/Admin/RoleController.php:243
 msgid "Edit a role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:259
+#: src/Controller/Admin/RoleController.php:263
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:269
+#: src/Controller/Admin/RoleController.php:273
 msgid "Role updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:308
+#: src/Controller/Admin/RoleController.php:312
 msgid "Only custom roles are allowed to delete."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/RoleController.php:314
+#: src/Controller/Admin/RoleController.php:318
 msgid "Role deleted successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:49
+#: src/Controller/Admin/ThemeController.php:49
 msgid "admin"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:52
+#: src/Controller/Admin/ThemeController.php:52
 msgid "front"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:66
+#: src/Controller/Admin/ThemeController.php:66
 #, php-format
 msgid "Select theme for %s"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:109
+#: src/Controller/Admin/ThemeController.php:109
 msgid "Theme set up successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:124
+#: src/Controller/Admin/ThemeController.php:124
 msgid "Installed themes"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:163
+#: src/Controller/Admin/ThemeController.php:163
 msgid "Themes available for installation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:182
+#: src/Controller/Admin/ThemeController.php:182
 #, php-format
 msgid "The theme \"%s\" is not updated."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:185
+#: src/Controller/Admin/ThemeController.php:185
 #, php-format
 msgid "The theme \"%s\" is updated."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:206
+#: src/Controller/Admin/ThemeController.php:206
 #, php-format
 msgid "The theme \"%s\" is not installed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:210
+#: src/Controller/Admin/ThemeController.php:210
 #, php-format
 msgid "The theme \"%s\" is installed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:229
+#: src/Controller/Admin/ThemeController.php:229
 msgid "Default theme is protected from uninstallation."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:238
+#: src/Controller/Admin/ThemeController.php:238
 #, php-format
 msgid "The theme \"%s\" is not uninstalled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Admin/ThemeController.php:244
+#: src/Controller/Admin/ThemeController.php:244
 #, php-format
 msgid "The theme \"%s\" is uninstalled."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Controller/Module/DashboardController.php:96
+#: src/Controller/Module/DashboardController.php:96
 msgid "No permitted operation available."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:30
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:11
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:18
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:14
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:26
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:17
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:10
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:9
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:9
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:10
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:13
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:22
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:30
+#: src/Form/ModuleCategoryForm.php:30 template/admin/asset-index.phtml:11
+#: template/admin/block-list.phtml:18 template/admin/cache-list.phtml:14
+#: template/admin/dashboard-system.phtml:26 template/admin/event.phtml:17
+#: template/admin/flush-index.phtml:10 template/admin/module-available.phtml:9
+#: template/admin/module-index.phtml:9 template/admin/nav-index.phtml:10
+#: template/admin/page-list.phtml:13 template/admin/role.phtml:22
+#: template/admin/role.phtml:30
 msgid "Title"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:40
+#: src/Form/ModuleCategoryForm.php:40
 msgid "Font-awesome icon"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:44
+#: src/Form/ModuleCategoryForm.php:44
 msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Form/ModuleCategoryForm.php:51
-#: c:\code\pi\usr\module\system/template/admin/module-category.phtml:78
+#: src/Form/ModuleCategoryForm.php:51 template/admin/module-category.phtml:78
 msgid "Order"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Install.php:87
+#: src/Installer/Action/Install.php:87
 msgid "Default taxonomy"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Install.php:89
+#: src/Installer/Action/Install.php:89
 msgid "Default global taxonomy domain. Not allowed to change."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Install.php:94
+#: src/Installer/Action/Install.php:94
 msgid "Welcome to Pi powered system."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Install.php:189
+#: src/Installer/Action/Install.php:189
 msgid "Application"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Install.php:204
+#: src/Installer/Action/Install.php:213
 msgid "Service"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Update.php:47
+#: src/Installer/Action/Update.php:47
 msgid "System updated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Installer/Action/Update.php:48
+#: src/Installer/Action/Update.php:48
 msgid "The system is updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Menu.php:34
+#: src/Menu.php:34
 msgid "Operation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Menu.php:39
+#: src/Menu.php:39
 msgid "Setting"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/src/Menu.php:44
+#: src/Menu.php:44
 msgid "Deployment"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:12
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:21
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:18
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:11
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:12
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:13
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:114
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:13
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:14
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:28
+#: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
+#: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
+#: template/admin/module-available.phtml:12
+#: template/admin/module-index.phtml:13 template/admin/nav-data.phtml:116
+#: template/admin/nav-index.phtml:13 template/admin/page-list.phtml:14
+#: template/admin/role.phtml:28
 msgid "Action"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:19
+#: template/admin/asset-index.phtml:19
 msgid "Re-publish all"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:31
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:44
+#: template/admin/asset-index.phtml:31 template/admin/asset-index.phtml:44
 msgid "Publish"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/asset-index.phtml:54
+#: template/admin/asset-index.phtml:54
 msgid "Asset publish in process"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:12
+#: template/admin/audit-index.phtml:12
 msgid "Audit list"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:16
+#: template/admin/audit-index.phtml:16
 msgid "time"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:17
+#: template/admin/audit-index.phtml:17
 msgid "User ID"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:18
+#: template/admin/audit-index.phtml:18
 msgid "IP"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:24
+#: template/admin/audit-index.phtml:24
 msgid "Message"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:25
+#: template/admin/audit-index.phtml:25
 msgid "extra"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:48
+#: template/admin/audit-index.phtml:48
 msgid "Count of items to display: "
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:51
+#: template/admin/audit-index.phtml:51
 msgid "10"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:52
+#: template/admin/audit-index.phtml:52
 msgid "20"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/audit-index.phtml:53
+#: template/admin/audit-index.phtml:53
 msgid "50"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:19
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:11
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:11
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:27
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:55
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:33
+#: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
+#: template/admin/module-index.phtml:11
+#: template/admin/theme-available.phtml:27 template/admin/theme-index.phtml:58
+#: template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:20
+#: template/admin/block-list.phtml:20
 msgid "Related pages"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:23
+#: template/admin/block-list.phtml:23
 msgid "Preview"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:24
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:21
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:35
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:48
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:27
+#: template/admin/block-list.phtml:24 template/admin/dashboard-system.phtml:21
+#: template/admin/member-index.phtml:35 template/admin/nav-index.phtml:48
+#: template/admin/page-list.phtml:27
 msgid "Edit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:25
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:39
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:49
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:34
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:19
+#: template/admin/block-list.phtml:25 template/admin/member-index.phtml:39
+#: template/admin/nav-index.phtml:49 template/admin/page-list.phtml:34
+#: template/admin/role.phtml:19
 msgid "Delete"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:26
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:62
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:45
+#: template/admin/block-list.phtml:26 template/admin/module-available.phtml:66
+#: template/admin/nav-index.phtml:45
 msgid "Clone"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:27
+#: template/admin/block-list.phtml:27
 msgid "No page uses this block yet."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/block-list.phtml:28
+#: template/admin/block-list.phtml:28
 msgid "Search in block title"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:15
+#: template/admin/cache-list.phtml:15
 msgid "Expiration"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:16
+#: template/admin/cache-list.phtml:16
 msgid "Granularity"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:17
+#: template/admin/cache-list.phtml:17
 msgid "Scope"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/cache-list.phtml:38
+#: template/admin/cache-list.phtml:38
 msgid "Force for all pages"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/config-index.phtml:3
+#: template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/config-index.phtml:5
+#: template/admin/config-index.phtml:5
 msgid "No configuration available."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:6
+#: template/admin/dashboard-module.phtml:6
 msgid "About"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:14
+#: template/admin/dashboard-module.phtml:14
 msgid "Module information"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:16
+#: template/admin/dashboard-module.phtml:16
 msgid "Title:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:18
+#: template/admin/dashboard-module.phtml:18
 msgid "Version:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:20
+#: template/admin/dashboard-module.phtml:20
 msgid "Update:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:22
+#: template/admin/dashboard-module.phtml:22
 msgid "Description:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:25
+#: template/admin/dashboard-module.phtml:25
 msgid "Demo:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:29
+#: template/admin/dashboard-module.phtml:29
 msgid "Author information"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-module.phtml:45
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:28
+#: template/admin/dashboard-module.phtml:45
+#: template/admin/dashboard-system.phtml:28
 msgid "Summary"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:22
+#: template/admin/dashboard-system.phtml:22
 msgid "Announcement"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:23
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:123
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:125
 msgid "Save"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:24
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:32
+#: template/admin/dashboard-system.phtml:24 template/admin/role.phtml:32
 msgid "Cancel"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:25
+#: template/admin/dashboard-system.phtml:25
 msgid "Quicklinks"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:27
+#: template/admin/dashboard-system.phtml:27
 msgid "URL"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:29
+#: template/admin/dashboard-system.phtml:29
 msgid "Powered by"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:30
+#: template/admin/dashboard-system.phtml:30
 msgid ""
 "Pi Engine is a role oriented application development engine for web and "
 "mobile, designed as the next generation and a successor to Xoops. Pi is "
@@ -1789,7 +1830,7 @@ msgid ""
 "but not limited to Zend Framework library, jQuery, Bootstrap and Backbone."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/dashboard-system.phtml:31
+#: template/admin/dashboard-system.phtml:31
 msgid ""
 " Pi Project follows the philosophy of open standard, open design, open "
 "development and open structure. Pi is born as a complete open source project "
@@ -1797,431 +1838,425 @@ msgid ""
 "and users."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:19
+#: template/admin/event.phtml:19
 msgid "Events"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:20
+#: template/admin/event.phtml:20
 msgid "Listeners"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:21
+#: template/admin/event.phtml:21
 msgid "No listeners available"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:22
+#: template/admin/event.phtml:22
 msgid "No events available"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/event.phtml:23
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:20
+#: template/admin/event.phtml:23 template/admin/perm.phtml:20
 msgid "Error, please try again later."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:17
+#: template/admin/flush-index.phtml:17
 msgid "Flush all"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:24
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:33
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:41
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:50
+#: template/admin/flush-index.phtml:24 template/admin/flush-index.phtml:33
+#: template/admin/flush-index.phtml:41 template/admin/flush-index.phtml:50
 msgid "Flush"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:39
+#: template/admin/flush-index.phtml:39
 msgid "Registry"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/flush-index.phtml:62
+#: template/admin/flush-index.phtml:62
 msgid "Cache flush in process"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/index.phtml:3
+#: template/admin/index.phtml:6
 msgid "There is no entry page for this module management. Please:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/index.phtml:5
+#: template/admin/index.phtml:9
 msgid "Module config"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/index.phtml:5
+#: template/admin/index.phtml:9
 msgid "Go to set up module configs;"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/index.phtml:6
+#: template/admin/index.phtml:10
 msgid "System admin"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/index.phtml:6
+#: template/admin/index.phtml:10
 msgid "Go back to system dashboard."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:6
+#: template/admin/member-index.phtml:6
 msgid "Add a member"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:11
+#: template/admin/member-index.phtml:11
 msgid "Select a role: "
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:24
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:21
+#: template/admin/member-index.phtml:24 template/admin/role.phtml:21
 msgid "Name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:26
+#: template/admin/member-index.phtml:26
 msgid "Front role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:27
+#: template/admin/member-index.phtml:27
 msgid "Admin role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:28
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:25
+#: template/admin/member-index.phtml:28 template/admin/role.phtml:25
 msgid "Active"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:43
+#: template/admin/member-index.phtml:43
 msgid "Not set"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:46
 msgid "Yes"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:46
 msgid "No"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:8
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:8
+#: template/admin/module-available.phtml:8 template/admin/module-index.phtml:8
 msgid "Icon"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:10
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:10
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:23
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:53
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:29
+#: template/admin/module-available.phtml:10
+#: template/admin/module-index.phtml:10
+#: template/admin/theme-available.phtml:23 template/admin/theme-index.phtml:56
+#: template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:34
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:38
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:18
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:50
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:22
+#: template/admin/module-available.phtml:34
+#: template/admin/module-index.phtml:38
+#: template/admin/theme-available.phtml:18 template/admin/theme-index.phtml:53
+#: template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:37
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:42
+#: template/admin/module-available.phtml:37
+#: template/admin/module-index.phtml:42
 msgid "Directory:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-available.phtml:57
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:17
+#: template/admin/module-available.phtml:61
+#: template/admin/theme-available.phtml:17
 msgid "Install"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-category.phtml:38
+#: template/admin/module-category.phtml:38
 msgid "Assign to:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-category.phtml:56
+#: template/admin/module-category.phtml:56
 msgid "Edit this category"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-category.phtml:59
+#: template/admin/module-category.phtml:59
 msgid "Delete this category"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-category.phtml:73
+#: template/admin/module-category.phtml:73
 msgid "Remove"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-category.phtml:92
+#: template/admin/module-category.phtml:92
 msgid "Sort modules"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:12
+#: template/admin/module-index.phtml:12
 msgid "Last Update"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:30
+#: template/admin/module-index.phtml:30
 msgid "Rename"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:40
+#: template/admin/module-index.phtml:40
 msgid "Name:"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:44
+#: template/admin/module-index.phtml:44
 msgid "Author"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:61
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:26
+#: template/admin/module-index.phtml:61
+#: template/admin/theme-installed.phtml:26
 msgid "Update"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:63
+#: template/admin/module-index.phtml:63
 msgid "Update all"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:65
+#: template/admin/module-index.phtml:65
 msgid "Are you sure to uninstall this module?"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:65
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:20
+#: template/admin/module-index.phtml:65
+#: template/admin/theme-installed.phtml:20
 msgid "Uninstall"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:67
+#: template/admin/module-index.phtml:67
 msgid "Disable"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-index.phtml:69
+#: template/admin/module-index.phtml:69
 msgid "Enable"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-operation.phtml:7
-#: c:\code\pi\usr\module\system/template/admin/module-refresh.phtml:7
+#: template/admin/module-operation.phtml:7
+#: template/admin/module-refresh.phtml:7
 msgid "Press to continue ..."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-operation.phtml:17
-#: c:\code\pi\usr\module\system/template/admin/module-refresh.phtml:23
+#: template/admin/module-operation.phtml:17
+#: template/admin/module-refresh.phtml:23
 msgid "Failed"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-operation.phtml:19
-#: c:\code\pi\usr\module\system/template/admin/module-refresh.phtml:25
+#: template/admin/module-operation.phtml:19
+#: template/admin/module-refresh.phtml:25
 msgid "Succeeded"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-refresh.phtml:6
+#: template/admin/module-refresh.phtml:6
 msgid "Module updates finished."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:16
 msgid "Update succeeded."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:16
 msgid "Update failed."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:15
+#: template/admin/nav-data.phtml:13
+msgid ""
+"Add new element on menu or edit current elements, save each element box "
+"after edit and finally save menu by blue button."
+msgstr ""
+
+#: template/admin/nav-data.phtml:17
 msgid "Only click this button to save data"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:16
+#: template/admin/nav-data.phtml:18
 msgid "Save menu"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:24
+#: template/admin/nav-data.phtml:26
 msgid "Add to menu"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:33
+#: template/admin/nav-data.phtml:35
 msgid "This navgation is only for viewing"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:41
+#: template/admin/nav-data.phtml:43
 msgid "Click to toggle edit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:53
+#: template/admin/nav-data.phtml:55
 msgid "Label"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:59
+#: template/admin/nav-data.phtml:61
 msgid "Url"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:61
+#: template/admin/nav-data.phtml:63
 msgid "Page link by url or by the after of route"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:65
+#: template/admin/nav-data.phtml:67
 msgid "Target"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:68
+#: template/admin/nav-data.phtml:70
 msgid "None"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:69
+#: template/admin/nav-data.phtml:71
 msgid "_blank"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:82
+#: template/admin/nav-data.phtml:84
 msgid "To display in menu."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:87
+#: template/admin/nav-data.phtml:89
 msgid "Page link by route"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:92
+#: template/admin/nav-data.phtml:94
 msgid "Route"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:98
+#: template/admin/nav-data.phtml:100
 msgid "Controller"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:108
+#: template/admin/nav-data.phtml:110
 msgid "Module"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-data.phtml:425
+#: template/admin/nav-data.phtml:427
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:11
+#: template/admin/nav-index.phtml:11
 msgid "Setup"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:12
+#: template/admin/nav-index.phtml:12
 msgid "Related"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:20
+#: template/admin/nav-index.phtml:20
 msgid "None to use"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:31
+#: template/admin/nav-index.phtml:31
 msgid "Set global"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:43
+#: template/admin/nav-index.phtml:43
 msgid "View"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/nav-index.phtml:82
+#: template/admin/nav-index.phtml:82
 msgid "Are you sure to delete this navigation"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/page-block.phtml:163
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:31
+#: template/admin/page-block.phtml:163 template/admin/role.phtml:31
 msgid "Submit"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/page-block.phtml:169
-#: c:\code\pi\usr\module\system/template/admin/page-block.phtml:170
+#: template/admin/page-block.phtml:169 template/admin/page-block.phtml:170
 msgid "Available Themes"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:31
+#: template/admin/page-list.phtml:31
 msgid "Dress up"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/page-list.phtml:86
+#: template/admin/page-list.phtml:86
 msgid "Are you sure to delete the page?"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:17
+#: template/admin/perm.phtml:17
 msgid "Module Global permission"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:18
+#: template/admin/perm.phtml:18
 msgid "Module resource"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/perm.phtml:19
+#: template/admin/perm.phtml:19
 msgid "Block"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:14
+#: template/admin/role.phtml:14
 msgid "Admin roles"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:15
+#: template/admin/role.phtml:15
 msgid "Add admin role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:16
+#: template/admin/role.phtml:16
 msgid "Front roles"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:17
+#: template/admin/role.phtml:17
 msgid "Add front role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:20
+#: template/admin/role.phtml:20
 msgid "Edit permission"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:23
+#: template/admin/role.phtml:23
 msgid "Users in role"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:24
+#: template/admin/role.phtml:24
 msgid "Status"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:26
+#: template/admin/role.phtml:26
 msgid "Activated"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:27
+#: template/admin/role.phtml:27
 msgid "Inactive"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:29
+#: template/admin/role.phtml:29
 msgid "Unique name"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:33
+#: template/admin/role.phtml:33
 msgid "Required"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:34
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:25
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:31
+#: template/admin/role.phtml:34 template/admin/theme-available.phtml:25
+#: template/admin/theme-installed.phtml:31
 msgid "Type"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:37
+#: template/admin/role.phtml:37
 msgid "Role name is already taken"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/role.phtml:38
+#: template/admin/role.phtml:38
 msgid "Are you sure to delete this role?"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:10
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:44
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:12
+#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:47
+#: template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-available.phtml:20
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:24
+#: template/admin/theme-available.phtml:20
+#: template/admin/theme-installed.phtml:24
 msgid "Check"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:23
+#: template/admin/theme-index.phtml:23
 msgid "Theme in use"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:37
+#: template/admin/theme-index.phtml:40
 msgid "Themes available to use"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-index.phtml:49
+#: template/admin/theme-index.phtml:52
 msgid "Apply"
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:66
+#: template/admin/theme-installed.phtml:66
 msgid "Theme Updated successfully."
 msgstr ""
 
-#: c:\code\pi\usr\module\system/template/admin/theme-installed.phtml:74
+#: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr ""

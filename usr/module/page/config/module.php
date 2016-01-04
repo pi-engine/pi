@@ -15,7 +15,7 @@ return array(
         // Description, for admin, optional
         'description'   => _a('Single page for direct content display.'),
         // Version number, required
-        'version'       => '1.2.5',
+        'version'       => '1.2.6',
         // Distribution license, required
         'license'       => 'New BSD',
         // Logo image, for admin, optional

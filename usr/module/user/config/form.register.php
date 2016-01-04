@@ -29,6 +29,7 @@ return array(
             ),
             'attributes'    => array(
                 'type'  => 'password',
+                'required' => true,
             ),
         ),
 
@@ -60,6 +61,9 @@ return array(
                 'label'     => __('Please type the word.'),
                 'separator'         => '<br />',
                 'captcha_position'  => 'append',
+            ),
+            'attributes'    => array(
+                'required' => true,
             ),
         ),
     ),

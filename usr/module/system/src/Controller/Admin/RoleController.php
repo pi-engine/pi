@@ -11,6 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Filter;
 //use Pi\Paginator\Paginator;
 use Module\System\Form\RoleForm;
 use Module\System\Form\RoleFilter;
@@ -147,6 +148,9 @@ class RoleController extends ActionController
                 }
                 $values['custom'] = 1;
                 unset($values['id']);
+
+                $filter = new Filter\Slug;
+                $values['name'] = $filter($values['name']);
 
                 $row = $this->model()->createRow($values);
                 $row->save();

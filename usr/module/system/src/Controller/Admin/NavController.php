@@ -11,6 +11,7 @@ namespace Module\System\Controller\Admin;
 
 use Pi;
 use Pi\Mvc\Controller\ActionController;
+use Pi\Filter;
 use Module\System\Form\NavFilter;
 use Module\System\Form\NavForm;
 use Module\System\Form\NavPageFilter;
@@ -182,6 +183,9 @@ class NavController extends ActionController
                 $values['active'] = 1;
                 unset($values['id']);
 
+                $filter = new Filter\Slug;
+                $values['name'] = $filter($values['name']);
+
                 $row = Pi::model('navigation')->createRow($values);
                 $row->save();
                 if ($row->id) {
@@ -231,6 +235,9 @@ class NavController extends ActionController
                 $values['active'] = 1;
                 unset($values['id']);
                 unset($values['module']);
+
+                $filter = new Filter\Slug;
+                $values['name'] = $filter($values['name']);
 
                 $row = Pi::model('navigation')->createRow($values);
                 $row->save();

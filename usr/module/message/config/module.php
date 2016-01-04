@@ -12,43 +12,43 @@
  */
 return array(
     // Module meta
-    'meta'  => array(
+    'meta' => array(
         // Module title, required
-        'title'         => _a('Message'),
+        'title' => _a('Message'),
         // Description, for admin, optional
-        'description'   => _a('A module to send message'),
+        'description' => _a('A module to send message'),
         // Version number, required
-        'version'       => '1.0.0',
+        'version' => '1.0.0',
         // Distribution license, required
-        'license'       => 'New BSD',
+        'license' => 'New BSD',
         // Module is ready for clone? Default as false
-        'clonable'      => false,
-        'icon'          => 'fa-envelope-o',
+        'clonable' => false,
+        'icon' => 'fa-envelope-o',
     ),
     // Author information
-    'author'    => array(
+    'author' => array(
         // Author full name, required
-        'Dev'      => 'Xingyu Ji; Liu Chuang',
+        'Dev' => 'Xingyu Ji; Liu Chuang',
         // Email address, optional
-        'Email'     => 'xingyu@eefocus.com',
-        'UI/UE'     => '@zhangsimon, @loidco',
-        'QA'        => 'Zhang Hua, @lavenderli',
+        'Email' => 'xingyu@eefocus.com',
+        'UI/UE' => '@zhangsimon, @loidco',
+        'QA' => 'Zhang Hua, @lavenderli',
         // Website link, optional
-        'Website'   => 'http://pialog.org',
+        'Website' => 'http://pialog.org',
         // Credits and aknowledgement, optional
-        'Credits'   => 'Zend Framework Team; Pi Engine Team; EEFOCUS Team.'
+        'Credits' => 'Zend Framework Team; Pi Engine Team; EEFOCUS Team.'
     ),
     // resource
     'resource' => array(
         // Database meta
-        'database'  => array(
+        'database' => array(
             // SQL schema/data file
-            'sqlfile'   => 'sql/mysql.sql',
+            'sqlfile' => 'sql/mysql.sql',
         ),
         // Navigation definition
-        'navigation'    => 'navigation.php',
+        'navigation' => 'navigation.php',
         // User specs
-        'user'          => 'user.php',
+        'user' => 'user.php',
     ),
 
 );

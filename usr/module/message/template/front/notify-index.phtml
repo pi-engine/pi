@@ -1,116 +1,123 @@
 <?php
-    $this->bootstrap();
-    $this->css($this->assetModule('script/front.css'));
-    $this->jQuery();
-    $this->bootstrap('js/bootstrap.min.js');
+$this->bootstrap();
+$this->css($this->assetModule('script/front.css'));
+$this->jQuery();
+$this->bootstrap('js/bootstrap.min.js');
 ?>
 
-<ul class="nav nav-tabs message-nav-tabs">
-    <li>
-        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
-    </li>
-    <li class="">
-        <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>" title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
-    </li>
-<!--    <li class="active"><a href=-->
-<!--        "--><?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" -->
-<!--        title="--><?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a></li>-->
-<!--    <li><button type="button" class="btn message-nav-btn" onclick="location.href=-->
-<!--        '--><?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
-<!--        title="--><?php //_e('New message'); ?><!--">--><?php //_e('New message'); ?><!--</button></li>-->
-</ul>
+    <ul class="nav nav-tabs message-nav-tabs">
+        <li>
+            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"
+               title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
+        </li>
+        <li>
+            <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>"
+               title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
+        </li>
+        <!--    <li class="active"><a href=-->
+        <!--        "--><?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" -->
+        <!--        title="--><?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a></li>-->
+        <!--    <li><button type="button" class="btn message-nav-btn" onclick="location.href=-->
+        <!--        '--><?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
+        <!--        title="--><?php //_e('New message'); ?><!--">--><?php //_e('New message'); ?><!--</button></li>-->
+    </ul>
 
-<div class="messages" id="message-js">
-    <?php if (!empty($notifications)) { ?>
-    <?php foreach ($notifications as $notification) { ?>   
-    <div class="media message-item<?php if(!$notification['is_read']) { echo ' message-item-read'; } ?>">
-        <div class='pull-left'>
-            <input type="checkbox" class="message-js-check" data-id="<?php echo $notification['id']; ?>">
-        </div>
-        <div class="pull-right text-right message-media-right">
-            <p class="message-time">
-                <span class="muted"><?php echo _date($notification['time_send']); ?></span>
-            </p>
-            <p class="message-hidden">
+    <div class="messages" id="message-js">
+        <?php if (!empty($notifications)) { ?>
+            <?php foreach ($notifications as $notification) { ?>
+                <div class="media message-item<?php if (!$notification['is_read']) {
+                    echo ' message-item-read';
+                } ?>">
+                    <div class='pull-left'>
+                        <input type="checkbox" class="message-js-check" data-id="<?php echo $notification['id']; ?>">
+                    </div>
+                    <div class="pull-right text-right message-media-right">
+                        <p class="message-time">
+                            <span class="muted"><?php echo _date($notification['time_send']); ?></span>
+                        </p>
+
+                        <p class="message-hidden">
                 <span>
                     <a href="<?php
                     if (isset($paginator)) {
                         echo $this->url('', array(
                             'action' => 'delete',
-                            'ids'    => $notification['id'],
-                            'p'      => $paginator->getCurrentPageNumber()
+                            'ids' => $notification['id'],
+                            'p' => $paginator->getCurrentPageNumber()
                         ));
                     } else {
                         echo $this->url('', array('action' => 'delete', 'ids' => $notification['id']));
                     }
-                ?>" data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
-                    <?php _e('Delete'); ?>
+                    ?>" data-confirm="<?php _e('Once you delete this message, it cannot be undone.'); ?>">
+                        <?php _e('Delete'); ?>
                     </a>
                 </span>
-                <span class="message-divider">|</span>
+                            <span class="message-divider">|</span>
                 <span class="message-mark">
                     <a href="<?php
                     if (isset($paginator)) {
                         echo $this->url('', array(
                             'action' => 'mark',
-                            'ids'    => $notification['id'],
-                            'p'      => $paginator->getCurrentPageNumber()
+                            'ids' => $notification['id'],
+                            'p' => $paginator->getCurrentPageNumber()
                         ));
                     } else {
                         echo $this->url('', array('action' => 'mark', 'ids' => $notification['id']));
                     }
-                ?>">
-                    <?php _e('Mark as read'); ?>
+                    ?>">
+                        <?php _e('Mark as read'); ?>
                     </a>
-                </span>                
-            </p>
-        </div>
-        <div class="media-body message-content">
-            <h5 class="media-heading message-head">                
-                <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>"><?php echo _escape($notification['subject']); ?></a>
+                </span>
+                        </p>
+                    </div>
+                    <div class="media-body message-content">
+                        <h5 class="media-heading message-head">
+                            <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>"><?php echo _escape($notification['subject']); ?></a>
                 <span class="label label-info message-label-type">
                     <?php
-                        if (!empty($notification['tag'])) {
-                            echo  $notification['tag'];
-                        }
+                    if (!empty($notification['tag'])) {
+                        echo $notification['tag'];
+                    }
                     ?>
                 </span>
-            </h5>
-            <p class="message-body">
-                <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>" class="message-content-link">
-                    <?php echo $notification['content']; ?>
-                </a>
-            </p>
-        </div>   
-    </div>
-        <?php } ?>
+                        </h5>
+
+                        <p class="message-body">
+                            <a href="<?php echo $this->url('', array('action' => 'detail', 'mid' => $notification['id'])); ?>"
+                               class="message-content-link">
+                                <?php echo $notification['content']; ?>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            <?php } ?>
         <?php } else {
             _e('<div class="alert alert-info message-alert">No notification for you!</div>');
         } ?>
-    <?php
+        <?php
         if (isset($paginator)) {
             echo $this->paginationControl($paginator, 'Sliding', 'paginator.phtml', array(
                 'class' => 'pagination-right pull-right message-pagination'
             ));
         }
-    ?>
+        ?>
 
-    <form class="form-inline message-foot-form" action="">
-        <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
-        <select class="message-batch-action">
-            <option value=""><?php _e('Massive operation'); ?></option>
-            <option value="mark" ><?php _e('Mark as read'); ?></option>
-            <option value="delete"><?php _e('Delete'); ?></option>
-        </select>
-    </form>
-    <?php include $this->template('./_confirm-modal.phtml'); ?>
-</div>
-<?php 
-    $paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
-    $host = $this->url('', array('module' => 'message'));
-    $script = "messageIndex({p: '%s', host: '%s'});";
-    $script = sprintf($script, $paginator, $host);
+        <form class="form-inline message-foot-form" action="">
+            <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
+            <select class="message-batch-action">
+                <option value=""><?php _e('Massive operation'); ?></option>
+                <option value="mark"><?php _e('Mark as read'); ?></option>
+                <option value="delete"><?php _e('Delete'); ?></option>
+            </select>
+        </form>
+        <?php include $this->template('./_confirm-modal.phtml'); ?>
+    </div>
+<?php
+$paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
+$host = $this->url('', array('module' => 'message'));
+$script = "messageIndex({p: '%s', host: '%s'});";
+$script = sprintf($script, $paginator, $host);
 
-    $this->footScript()->appendFile($this->assetModule('script/notify-index.js'));
-    $this->footScript()->appendScript($script);
+$this->footScript()->appendFile($this->assetModule('script/notify-index.js'));
+$this->footScript()->appendScript($script);
 ?>
