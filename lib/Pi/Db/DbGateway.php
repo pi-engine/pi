@@ -494,7 +494,7 @@ class DbGateway
      */
     public function insert($table = '')
     {
-        $sql = new insert($table);
+        $sql = new Insert($table);
 
         return $sql;
     }
@@ -508,7 +508,7 @@ class DbGateway
      */
     public function update($table = '')
     {
-        $sql = new update($table);
+        $sql = new Update($table);
 
         return $sql;
     }
@@ -522,7 +522,7 @@ class DbGateway
      */
     public function delete($table = '')
     {
-        $sql = new delete($table);
+        $sql = new Delete($table);
 
         return $sql;
     }

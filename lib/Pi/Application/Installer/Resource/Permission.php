@@ -78,7 +78,7 @@ class Permission extends AbstractResource
                     );
                 }
                 if (!isset($resource['name'])) {
-                    $name = preg_replace('/[^a-z0-9_]/i', '_', $key);
+                    $name = preg_replace('/[^a-z0-9_]/i', '-', $key);
                     $resource['name'] = $name;
                 } else {
                     $name = $resource['name'];
