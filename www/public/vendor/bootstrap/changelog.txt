@@ -1,5 +1,10 @@
 Changelog
 
+November 29th, 2015 Marc
+========================
+1. Upgrade to Bootstrap to v3.3.6 (keep Glyphicons to prevent from 404)
+2. Upgrade to Font-Awesome v4.5.0
+
 
 July 30th, 2015 Kris_fr
 =======================
