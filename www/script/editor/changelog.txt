@@ -30,7 +30,7 @@ Alternatively you can copy/paste the new plugin from full package, but you have 
 
 January 5th, 2016
 ================
-1. Upgrade to CKEditor 4.5.6 (full package) - with previous custom config.js
+1. Upgrade to CKEditor 4.5.6 (full package) - with previous custom config.js (add Allow theme div classes)
 
 August 27th, 2015
 ================
