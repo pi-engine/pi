@@ -30,11 +30,11 @@ Alternatively you can copy/paste the new plugin from full package, but you have 
 
 January 5th, 2016
 ================
-1. Upgrade to CKEditor 4.5.6 (full package)
+1. Upgrade to CKEditor 4.5.6 (full package) - with previous custom config.js
 
 August 27th, 2015
 ================
-1 Upgrade to CKEditor to full plugin version
+1 Upgrade to CKEditor to full plugin version, add custom config.js
 
 August 14th, 2015
 ================
