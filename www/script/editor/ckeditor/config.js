@@ -34,7 +34,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.format_tags = 'p;h1;h2;h3;pre';
 
 	// Allow all div classes (from theme and for Boostrap and FontAwesome), allow empty <i>
-    config.extraAllowedContent = 'div(*)[*]{*}; a[!href]; span(*)[*]{*};table(*)[*]{*}; p(*)[*]{*}; li(*)[*]{*}; ul(*)[*]{*}';
+    config.extraAllowedContent = 'div(*)[*]{*}; a[!href]; span(*)[*]{*};table(*)[*]{*}; p(*)[*]{*}; li(*)[*]{*}; ul(*)[*]{*}; img(*)[*]{*}';
 	CKEDITOR.dtd.$removeEmpty.i = 0;
 	CKEDITOR.dtd.$removeEmpty.span = 0;
 	
