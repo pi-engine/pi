@@ -36,6 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Allow all div classes (from theme and for Boostrap and FontAwesome), allow empty <i>
     config.extraAllowedContent = 'div(*)[*]{*}; a[!href]; span(*)[*]{*};table(*)[*]{*}; p(*)[*]{*}; li(*)[*]{*}; ul(*)[*]{*}';
 	CKEDITOR.dtd.$removeEmpty.i = 0;
+	CKEDITOR.dtd.$removeEmpty['span'] = 0;
 	
     // Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
