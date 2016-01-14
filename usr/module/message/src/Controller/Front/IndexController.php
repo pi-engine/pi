@@ -86,6 +86,7 @@ class IndexController extends ActionController
                     $where->andPredicate($fromWhere)
                         ->orPredicate($toWhere);
                 })
+                ->group(new \Zend\Db\Sql\Predicate\Expression('conversation DESC'))
                 ->order('time_send DESC')
                 ->limit($limit)
                 ->offset($offset);
@@ -103,15 +104,13 @@ class IndexController extends ActionController
             }
 
             array_walk($messageList, function (&$v, $k) use ($userId) {
-                //format messages
-//                $v['content'] = Service::messageSummary($v['content']);
-
                 // markup content
                 $v['content'] = Pi::service('markup')->compile(
                     $v['content'],
                     'html',
                     array('nl2br' => false)
                 );
+                $v['content'] = (mb_strlen(strip_tags($v['content']), 'utf-8') > 300) ? mb_substr(strip_tags($v['content']), 0, 300, 'utf-8' )  . ' ... ' : strip_tags($v['content']);
 
                 if ($userId == $v['uid_from']) {
                     $v['is_read'] = 1;
@@ -122,8 +121,6 @@ class IndexController extends ActionController
                     // username link, 4 locations
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                         $v['uid_to']);
-                    //get avatar
-                    $v['avatar'] = Pi::user()->avatar($v['uid_to'], 'small');
                 } else {
                     $v['is_read'] = $v['is_read_to'];
                     $user = Pi::user()->getUser($v['uid_from'])
@@ -132,9 +129,13 @@ class IndexController extends ActionController
                     $v['name'] = $user->name;
                     $v['profileUrl'] = Pi::user()->getUrl('profile',
                         $v['uid_from']);
-                    //get avatar
-                    $v['avatar'] = Pi::user()->avatar($v['uid_from'], 'small');
                 }
+
+                //get avatar
+                $v['avatar'] = Pi::user()->avatar($v['uid_from'], 'medium', array(
+                    'alt' => $user->name,
+                    'class' => 'img-circle',
+                ));
 
                 unset(
                     $v['is_read_from'],
@@ -180,12 +181,12 @@ class IndexController extends ActionController
         $userId = Pi::user()->getUser()->id;
 
         $messageTitle = sprintf(
-            __('Private message(%s unread)'),
-            Service::getUnread($userId, 'message')
+            __('Private message ( <span class="label label-danger">%s</span> unread )'),
+            _number(Pi::api('api', 'message')->getUnread($userId, 'message'))
         );
         $notificationTitle = sprintf(
-            __('Notification(%s  unread)'),
-            Service::getUnread($userId, 'notification')
+            __('Notification ( <span class="label label-danger">%s</span> unread )'),
+            _number(Pi::api('api', 'message')->getUnread($userId, 'notification'))
         );
         $this->view()->assign('messageTitle', $messageTitle);
         $this->view()->assign('notificationTitle', $notificationTitle);
@@ -260,6 +261,7 @@ class IndexController extends ActionController
      */
     public function checkUsernameAction()
     {
+        Pi::service('authentication')->requireLogin();
         try {
             $username = _get('username', 'string');
             $user = Pi::user()->getUser($username, 'identity');
@@ -336,14 +338,22 @@ class IndexController extends ActionController
         Pi::service('authentication')->requireLogin();
         $messageId = _get('mid', 'int');
         $messageId = $messageId ?: 0;
-        //current user id
+        // Current user id
         $userId = Pi::user()->getUser()->id;
-
+        // Get message detail
+        $detail = $this->showDetail($messageId);
+        if ($userId == $detail['uid_from']) {
+            $toId = $detail['uid_to'];
+        } else {
+            $toId = $detail['uid_from'];
+        }
+        // Set form
         $form = new ReplyForm('reply');
         $form->setAttribute('action', $this->url('', array(
             'action' => 'detail',
             'mid' => $messageId,
         )));
+        // Manage post reply
         if ($this->request->isPost()) {
             $post = $this->request->getPost();
             $form->setData($post);
@@ -355,11 +365,11 @@ class IndexController extends ActionController
                 return;
             }
             $data = $form->getData();
-
             $result = Pi::api('api', 'message')->send(
                 $data['uid_to'],
                 $data['content'],
-                $userId
+                $userId,
+                $detail['conversation']
             );
             if (!$result) {
                 $this->view()->assign(
@@ -378,16 +388,27 @@ class IndexController extends ActionController
             ));
 
             return;
-        } else {
-            $detail = $this->showDetail($messageId);
-            if ($userId == $detail['uid_from']) {
-                $toId = $detail['uid_to'];
-            } else {
-                $toId = $detail['uid_from'];
-            }
-            $form->setData(array('uid_to' => $toId));
-            $this->view()->assign('form', $form);
         }
+        // Set to form
+        $form->setData(array('uid_to' => $toId));
+        // Get list of conversations
+        $list = array();
+        $where = array(
+            'conversation' => $detail['conversation'],
+            'is_deleted_from' => 0,
+            'is_deleted_to' => 0
+        );
+        $order = array('time_send ASC', 'id ASC');
+        $model = $this->getModel('message');
+        $select = $model->select()->where($where)->order($order);
+        $rowset = $model->selectWith($select);
+        foreach ($rowset as $row) {
+            $list[$row->id] = Pi::api('api', 'message')->canonizeMessage($row);
+        }
+
+        // Set view
+        $this->view()->assign('form', $form);
+        $this->view()->assign('list', $list);
     }
 
     /**
@@ -421,13 +442,8 @@ class IndexController extends ActionController
             return;
         }
         $detail = $rowset->toArray();
-        //get avatar
-        $detail['avatar'] = Pi::user()->avatar($detail['uid_from'], 'small');
-        $detail['profileUrl'] = Pi::user()->getUrl(
-            'profile',
-            $detail['uid_from']
-        );
 
+        // Get user
         if ($userId == $detail['uid_from']) {
             //get username url
             $user = Pi::user()->getUser($detail['uid_to'])
@@ -439,6 +455,18 @@ class IndexController extends ActionController
                 ?: Pi::user()->getUser(0);
             $detail['name'] = $user->name;
         }
+
+        // Get avatar
+        $detail['avatar'] = Pi::user()->avatar($detail['uid_from'], 'medium', array(
+            'alt' => $user->name,
+            'class' => 'img-circle',
+        ));
+
+        // Set profile Url
+        $detail['profileUrl'] = Pi::user()->getUrl(
+            'profile',
+            $detail['uid_from']
+        );
 
         //markup content
         $detail['content'] = Pi::service('markup')->render($detail['content'], 'html', 'html');
@@ -462,6 +490,7 @@ class IndexController extends ActionController
      */
     public function markAction()
     {
+        Pi::service('authentication')->requireLogin();
         $messageIds = _get('ids', 'regexp', array('regexp' => '/^[0-9,]+$/'));
         $page = _get('p', 'int');
         $page = $page ?: 1;
@@ -499,6 +528,7 @@ class IndexController extends ActionController
      */
     public function deleteAction()
     {
+        Pi::service('authentication')->requireLogin();
         $messageIds = _get('ids', 'regexp', array('regexp' => '/^[0-9,]+$/'));
         $toId = _get('tid', 'int');
         $page = _get('p', 'int');
@@ -547,14 +577,5 @@ class IndexController extends ActionController
         ));
 
         return;
-    }
-
-    /*
-     * Archive
-     */
-    public function archiveAction()
-    {
-        Pi::service('authentication')->requireLogin();
-        $this->renderNav();
     }
 }

@@ -81,8 +81,8 @@ class SendForm extends BaseForm
             'attributes' => array(
                 'type' => 'editor',
                 'placeholder' => __('Message content'),
-                'rows' => 5
-            ),
+                'rows' => '5',
+              ),
         ));
 
         $this->add(array(

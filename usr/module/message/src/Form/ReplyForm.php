@@ -69,6 +69,7 @@ class ReplyForm extends BaseForm
             ),
             'attributes' => array(
                 'type' => 'editor',
+                'rows' => '5',
             ),
         ));
 
@@ -81,8 +82,9 @@ class ReplyForm extends BaseForm
 
         $this->add(array(
             'name' => 'submit',
+            'type' => 'submit',
             'attributes' => array(
-                'type' => 'submit',
+                'class' => 'btn btn-primary',
                 'value' => __('Send'),
             )
         ));

@@ -1,196 +1,301 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2015-04-20 18:12+0100\n"
-"PO-Revision-Date: 2015-04-20 19:25+0100\n"
+"POT-Creation-Date: 2015-10-24 20:11+0100\n"
+"PO-Revision-Date: 2015-10-24 20:34+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ..\\..\\\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
-"\\module\\message\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:183
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/NotifyController.php:42
-#, php-format
-msgid "Private message(%s unread)"
-msgstr "Messages privés (%s non lus)"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:187
-#, php-format
-msgid "Notification(%s  unread)"
-msgstr "Notifications(%s non lues)"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:223
-msgid "Username is invalid, please try again."
-msgstr "Le nom de compte utilisateur est invalide, merci d'essayer de nouveau."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:239
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:367
-msgid "Send failed, please try again."
-msgstr "Envoi non effectué, merci d'essayer de nouveau"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:273
-msgid "User"
-msgstr "Utilisateur"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:277
-msgid "not found"
-msgstr "non trouvé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:283
-msgid "Sorry, you can't send message to yourself."
-msgstr "Désolé, vous ne pouvez pas vous envoyer un message à vous-même."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:295
-msgid "An error occurred, please try again."
-msgstr "Une erreur est survenue, merci d'essayer de nouveau."
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/IndexController.php:324
-msgid "Send message"
-msgstr "Envoyer le message"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Controller/Front/NotifyController.php:46
-#, php-format
-msgid "Notification(%s unread)"
-msgstr "Notifications(%s non lues)"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Form/ReplyForm.php:66
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Form/SendForm.php:77
-msgid "Content"
-msgstr "Contenu"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Form/ReplyForm.php:86
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Form/SendForm.php:93
-msgid "Send"
-msgstr "Envoyer"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Form/SendForm.php:55
-msgid "Recipient"
-msgstr "Destinataire"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/src/Form/SendForm.php:83
-msgid "Message content"
-msgstr "Contenu du message"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-archive.phtml:3
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-detail.phtml:6
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:6
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:10
-msgid "Private message"
-msgstr "Message privé"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-archive.phtml:6
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-detail.phtml:9
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-detail.phtml:7
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:13
+#: src/Api/Breadcrumbs.php:47 template/front/index-archive.phtml:17
+#: template/front/index-detail.phtml:14 template/front/index-index.phtml:17
+#: template/front/notify-detail.phtml:13 template/front/notify-index.phtml:15
 msgid "Archive"
 msgstr "Archive"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-detail.phtml:57
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:47
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:96
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-detail.phtml:56
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:47
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:103
-msgid "Delete"
-msgstr "Supprimer"
+#: src/Api/Breadcrumbs.php:53
+msgid "Message detail"
+msgstr "Détail du message"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-detail.phtml:92
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:46
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-detail.phtml:55
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:46
+#: src/Api/Breadcrumbs.php:59 src/Controller/Front/IndexController.php:325
+msgid "Send message"
+msgstr "Envoyer le message"
+
+#: src/Controller/Admin/PruneController.php:24
+msgid ""
+"You can prune all old message, select time to remove messages before that "
+"time and you can filter list  of removed messages by this from option."
+msgstr ""
+"Vous pouvez purger les anciens messages, sélectionnez la date avant laquelle "
+"les messages seront supprimés. Vous pouvez également filtrer la liste des "
+"messages à supprimer en sélectionnant l'une des options de sélection."
+
+#: src/Controller/Admin/PruneController.php:41
+#, php-format
+msgid "%s old messages removed"
+msgstr "%s anciens messages ont été supprimés définitement"
+
+#: src/Controller/Admin/PruneController.php:43
+msgid "No messages removed ! check your selected filter and try again"
+msgstr ""
+"Aucun message supprimé ! Vérifiez vos filtres de sélection et essayez de "
+"nouveau."
+
+#: src/Controller/Admin/PruneController.php:48
+msgid "Prune old messages"
+msgstr "Purger les anciens messages"
+
+#: src/Controller/Front/IndexController.php:183
+#: src/Controller/Front/NotifyController.php:42
+#, php-format
+msgid "Private message ( <span class=\"label label-danger\">%s</span> unread )"
+msgstr "Message Privé ( <span class=\"label label-danger\">%s</span> non lu )"
+
+#: src/Controller/Front/IndexController.php:187
+#: src/Controller/Front/NotifyController.php:46
+#, php-format
+msgid "Notification ( <span class=\"label label-danger\">%s</span> unread )"
+msgstr "Notification ( <span class=\"label label-danger\">%s</span> non lu)"
+
+#: src/Controller/Front/IndexController.php:223
+msgid "Username is invalid, please try again."
+msgstr "Le nom de compte utilisateur est invalide, merci d'essayer de nouveau."
+
+#: src/Controller/Front/IndexController.php:239
+#: src/Controller/Front/IndexController.php:368
+msgid "Send failed, please try again."
+msgstr "Envoi non effectué, merci d'essayer de nouveau"
+
+#: src/Controller/Front/IndexController.php:274
+msgid "User"
+msgstr "Utilisateur"
+
+#: src/Controller/Front/IndexController.php:278
+msgid "not found"
+msgstr "non trouvé"
+
+#: src/Controller/Front/IndexController.php:284
+msgid "Sorry, you can't send message to yourself."
+msgstr "Désolé, vous ne pouvez pas vous envoyer un message à vous-même."
+
+#: src/Controller/Front/IndexController.php:296
+msgid "An error occurred, please try again."
+msgstr "Une erreur est survenue, merci d'essayer de nouveau."
+
+#: src/Form/PruneForm.php:34
+msgid "All messages Before"
+msgstr "Tous les messages Avant"
+
+#: src/Form/PruneForm.php:50
+msgid "Just read messages by user"
+msgstr "Uniquement les messages lus par l'utilisateur"
+
+#: src/Form/PruneForm.php:54
+msgid "Remove read messages by user before selected time"
+msgstr "Supprimer les messages lus par les utilisateurs avant la date limite"
+
+#: src/Form/PruneForm.php:62
+msgid "Just deleted messages by user"
+msgstr "Uniquement les messages supprimés par l'utilisateur"
+
+#: src/Form/PruneForm.php:66
+msgid "Remove deleted messages by user before selected time"
+msgstr ""
+"Supprimer les messages supprimés par les utilisateurs avant la date limite"
+
+#: src/Form/PruneForm.php:74
+msgid "Prune"
+msgstr "Purge"
+
+#: src/Form/ReplyForm.php:66 src/Form/SendForm.php:77
+msgid "Content"
+msgstr "Contenu"
+
+#: src/Form/ReplyForm.php:86 src/Form/SendForm.php:93
+msgid "Send"
+msgstr "Envoyer"
+
+#: src/Form/SendForm.php:55
+msgid "Recipient"
+msgstr "Destinataire"
+
+#: src/Form/SendForm.php:83
+msgid "Message content"
+msgstr "Contenu du message"
+
+#: template/admin/list-index.phtml:4
+msgid "List of messages"
+msgstr "Liste des messages"
+
+#: template/admin/list-index.phtml:19 template/admin/list-index.phtml:40
+#: template/admin/list-index.phtml:48 template/front/index-detail.phtml:40
+#: template/front/index-index.phtml:50
+msgid "From"
+msgstr "De"
+
+#: template/admin/list-index.phtml:21 template/admin/list-index.phtml:41
+#: template/admin/list-index.phtml:60 template/front/index-detail.phtml:40
+#: template/front/index-index.phtml:50
+msgid "To"
+msgstr "A"
+
+#: template/admin/list-index.phtml:23 template/admin/list-index.phtml:42
+msgid "Send on"
+msgstr "Envoyé le"
+
+#: template/admin/list-index.phtml:25
+msgid "ID"
+msgstr "ID"
+
+#: template/admin/list-index.phtml:31
+msgid "Full details"
+msgstr "En détail"
+
+#: template/admin/list-index.phtml:38
+msgid "Close"
+msgstr "Fermer"
+
+#: template/admin/list-index.phtml:50 template/admin/list-index.phtml:62
+msgid "Name"
+msgstr "Nom"
+
+#: template/admin/list-index.phtml:51 template/admin/list-index.phtml:63
+msgid "Identity"
+msgstr "Identité"
+
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:64
+msgid "Email"
+msgstr "Email"
+
+#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:65
+msgid "Is read ?"
+msgstr "Lu?"
+
+#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:54
+#: template/admin/list-index.phtml:65 template/admin/list-index.phtml:66
+msgid "Yes"
+msgstr "Oui"
+
+#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:54
+#: template/admin/list-index.phtml:65 template/admin/list-index.phtml:66
+msgid "No"
+msgstr "Non"
+
+#: template/admin/list-index.phtml:54 template/admin/list-index.phtml:66
+msgid "Is deleted ?"
+msgstr "Supprimé?"
+
+#: template/admin/list-index.phtml:85
+msgid "Message list is empty !"
+msgstr "La liste de message est vide !"
+
+#: template/admin/send-index.phtml:3
+msgid "This part not finished now !"
+msgstr "Cette fonctionnalité n'est pas encore finalisée !"
+
+#: template/front/_confirm-modal.phtml:4
+msgid "Delete this message?"
+msgstr "Supprimer ce message?"
+
+#: template/front/_confirm-modal.phtml:7 template/front/index-detail.phtml:97
+#: template/front/index-index.phtml:69 template/front/notify-detail.phtml:65
+#: template/front/notify-index.phtml:51
 msgid "Once you delete this message, it cannot be undone."
 msgstr ""
 "Une fois la suppression de ce message effectuée, vous ne pourrez pas "
 "l'annuler."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:60
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:95
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:63
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:102
+#: template/front/_confirm-modal.phtml:11
+msgid "Delete message"
+msgstr "Supprimer ce message"
+
+#: template/front/_confirm-modal.phtml:20
+msgid "Delete these messages?"
+msgstr "Supprimer ces messages?"
+
+#: template/front/_confirm-modal.phtml:23
+msgid "Once you delete these messages, they cannot be undone."
+msgstr ""
+"Une fois que vous avez supprimé ces messages,  l'action ne peut être annulée."
+
+#: template/front/_confirm-modal.phtml:27
+msgid "Delete messages"
+msgstr "Supprimer les messages"
+
+#: template/front/index-archive.phtml:8
+msgid "Message archive"
+msgstr "Archive des messages"
+
+#: template/front/index-archive.phtml:13 template/front/index-detail.phtml:10
+#: template/front/index-index.phtml:13 template/front/notify-index.phtml:11
+msgid "Private message"
+msgstr "Message privé"
+
+#: template/front/index-detail.phtml:60 template/front/index-index.phtml:70
+#: template/front/index-index.phtml:111 template/front/notify-detail.phtml:66
+#: template/front/notify-index.phtml:52 template/front/notify-index.phtml:110
+msgid "Delete"
+msgstr "Supprimer"
+
+#: template/front/index-index.phtml:8
+msgid "Message"
+msgstr "Message"
+
+#: template/front/index-index.phtml:84 template/front/index-index.phtml:110
+#: template/front/notify-index.phtml:68 template/front/notify-index.phtml:109
 msgid "Mark as read"
 msgstr "Marquer comme lu"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:68
-msgid "To"
-msgstr "A"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:68
-msgid "From"
-msgstr "De"
-
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:82
+#: template/front/index-index.phtml:97
 msgid "<div class=\"alert alert-info message-alert\">No message for you!</div>"
 msgstr ""
 "<div class=\"alert alert-info message-alert\">Aucun message pour vous !</div>"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:92
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:99
+#: template/front/index-index.phtml:107 template/front/notify-index.phtml:106
 msgid "Checked all"
 msgstr "Sélectionner Tout"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:94
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:101
+#: template/front/index-index.phtml:109 template/front/notify-index.phtml:108
 msgid "Massive operation"
 msgstr "Opération de masse"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-index.phtml:104
+#: template/front/index-index.phtml:120
 msgid "Once you delete those message, it cannot be undone."
 msgstr ""
 "Une fois la suppression du message effectuée, vous ne pourrez pas l'annuler."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-send.phtml:3
+#: template/front/index-send.phtml:9
 msgid "Return message list page"
 msgstr "Retourner à la page de liste des messages"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/index-send.phtml:5
+#: template/front/index-send.phtml:11
 msgid "Write message"
 msgstr "Ecrire un message"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-detail.phtml:5
+#: template/front/notify-detail.phtml:9
 msgid "Messages"
 msgstr "Messages"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/template/front/notify-index.phtml:88
+#: template/front/notify-index.phtml:95
 msgid ""
 "<div class=\"alert alert-info message-alert\">No notification for you!</div>"
 msgstr ""
 "<div class=\"alert alert-info message-alert\">Aucune notification pour vous !"
 "</div>"
+
+#~ msgid "Private message(%s unread)"
+#~ msgstr "Messages privés (%s non lus)"
+
+#~ msgid "Notification(%s  unread)"
+#~ msgstr "Notifications(%s non lues)"
+
+#~ msgid "Notification(%s unread)"
+#~ msgstr "Notifications(%s non lues)"

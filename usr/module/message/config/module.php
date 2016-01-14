@@ -18,7 +18,7 @@ return array(
         // Description, for admin, optional
         'description' => _a('A module to send message'),
         // Version number, required
-        'version' => '1.0.0',
+        'version' => '1.0.5',
         // Distribution license, required
         'license' => 'New BSD',
         // Module is ready for clone? Default as false
@@ -45,10 +45,13 @@ return array(
             // SQL schema/data file
             'sqlfile' => 'sql/mysql.sql',
         ),
+        // permission
+        'permission' => 'permission.php',
+        // page
+        'page' => 'page.php',
         // Navigation definition
         'navigation' => 'navigation.php',
         // User specs
         'user' => 'user.php',
     ),
-
 );

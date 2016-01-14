@@ -44,10 +44,9 @@
             if (checked.length) {
                 if (action == "delete") {
                     if (checked.length > 1) {
-                        $('#confirm-modals').modal({show: true});
-                    }
-                    else {
-                        $('#confirm-modal').modal({show: true});
+                        $('#confirm-modal').modal('show');
+                    } else {
+                        $('#confirm-modal').modal('show');
                     }
                     return false;
                 }
@@ -63,9 +62,6 @@
             } else {
                 this.$select.attr('value', '');
             }
-            if ($(this).val() == 'delete') {
-
-            }
         },
         itemsBind: function (c) {
             if (c.target.tagName === "A" || c.target.tagName === "INPUT" || c.target.tagName === "IMG") {
@@ -77,7 +73,7 @@
             var href = $(this).attr('href');
             $('#confirm-modal').find('.modal-body').text($(this).attr('data-confirm'));
             $('.confirm-ok').attr('href', href);
-            $('#confirm-modal').modal({show: true});
+            $('#confirm-modal').modal('show');
             return false;
         },
     };
