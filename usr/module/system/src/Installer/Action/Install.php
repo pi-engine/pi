@@ -190,7 +190,6 @@ class Install extends BasicInstall
                 'order' => 1,
                 'modules'   => array(
                     'user',
-                    'uclient',
                     'article',
                     'document',
                     'solution',
@@ -206,7 +205,11 @@ class Install extends BasicInstall
                     'portfolio',
                     'gallery',
                     'download',
-                    'ask'
+                    'ask',
+                    'event',
+                    'plans',
+                    'support',
+                    'blog'
                 ),
             ),
             array(
@@ -226,7 +229,9 @@ class Install extends BasicInstall
                     'order',
                     'vote',
                     'sitemap',
-                    'ads'
+                    'ads',
+                    'usmartphone',
+                    'notification'
                 ),
             )
         );
