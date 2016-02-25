@@ -24,7 +24,7 @@ class ListController extends ActionController
         // Get page
         $page = $this->params('page', 1);
         $list = array();
-        $limit = 25;
+        $limit = 50;
         // Set info
         $order = array('time_send DESC', 'id DESC');
         $offset = (int)($page - 1) * $limit;

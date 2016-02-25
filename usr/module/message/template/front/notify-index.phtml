@@ -44,14 +44,16 @@
                     ));
                 }
                 ?>
-                <form class="form-inline message-foot-form" action="">
-                    <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
-                    <select class="message-batch-action">
-                        <option value=""><?php _e('Massive operation'); ?></option>
-                        <option value="mark"><?php _e('Mark as read'); ?></option>
-                        <option value="delete"><?php _e('Delete'); ?></option>
-                    </select>
-                </form>
+                <div class="clearfix">
+                    <form class="form-inline message-foot-form col-md-12" action="">
+                        <input type="checkbox" class="message-js-batch" title="<?php _e('Checked all'); ?>">
+                        <select class="message-batch-action">
+                            <option value=""><?php _e('Massive operation'); ?></option>
+                            <option value="mark"><?php _e('Mark as read'); ?></option>
+                            <option value="delete"><?php _e('Delete'); ?></option>
+                        </select>
+                    </form>
+                </div>
                 <?php include $this->template('./_confirm-modal.phtml'); ?>
             </div>
         </div>

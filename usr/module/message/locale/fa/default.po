@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2016-01-08 17:11+0330\n"
-"PO-Revision-Date: 2016-01-08 17:12+0330\n"
+"POT-Creation-Date: 2016-02-25 15:54+0330\n"
+"PO-Revision-Date: 2016-02-25 15:55+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -132,13 +132,13 @@ msgid "List of messages"
 msgstr "فهرست پیام ها"
 
 #: template/admin/list-index.phtml:19 template/admin/list-index.phtml:40
-#: template/admin/list-index.phtml:48 template/front/index-detail.phtml:29
+#: template/admin/list-index.phtml:47 template/front/index-detail.phtml:28
 #: template/front/index-index.phtml:36
 msgid "From"
 msgstr "از"
 
 #: template/admin/list-index.phtml:21 template/admin/list-index.phtml:41
-#: template/admin/list-index.phtml:60 template/front/index-detail.phtml:29
+#: template/admin/list-index.phtml:59 template/front/index-detail.phtml:28
 #: template/front/index-index.phtml:36
 msgid "To"
 msgstr "به"
@@ -159,33 +159,33 @@ msgstr "اطلاعات کامل"
 msgid "Close"
 msgstr "بستن"
 
-#: template/admin/list-index.phtml:50 template/admin/list-index.phtml:62
+#: template/admin/list-index.phtml:49 template/admin/list-index.phtml:61
 msgid "Name"
 msgstr "نام"
 
-#: template/admin/list-index.phtml:51 template/admin/list-index.phtml:63
+#: template/admin/list-index.phtml:50 template/admin/list-index.phtml:62
 msgid "Identity"
 msgstr "هویت"
 
-#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:64
+#: template/admin/list-index.phtml:51 template/admin/list-index.phtml:63
 msgid "Email"
 msgstr "ایمیل"
 
-#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:65
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:64
 msgid "Is read ?"
 msgstr "خوانده شده ؟"
 
-#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:54
-#: template/admin/list-index.phtml:65 template/admin/list-index.phtml:66
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:53
+#: template/admin/list-index.phtml:64 template/admin/list-index.phtml:65
 msgid "Yes"
 msgstr "بله"
 
-#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:54
-#: template/admin/list-index.phtml:65 template/admin/list-index.phtml:66
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:53
+#: template/admin/list-index.phtml:64 template/admin/list-index.phtml:65
 msgid "No"
 msgstr "خیر"
 
-#: template/admin/list-index.phtml:54 template/admin/list-index.phtml:66
+#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:65
 msgid "Is deleted ?"
 msgstr "حذف شده ؟"
 
@@ -193,15 +193,11 @@ msgstr "حذف شده ؟"
 msgid "Message list is empty !"
 msgstr "فهرست پیام ها خالی است !"
 
-#: template/admin/send-index.phtml:3
-msgid "This part not finished now !"
-msgstr "این بخش هنوز تکمیل نشده است !"
-
 #: template/front/_confirm-modal.phtml:5
 msgid "Delete this message?"
 msgstr "این پیام حذف شود؟"
 
-#: template/front/_confirm-modal.phtml:8 template/front/index-detail.phtml:65
+#: template/front/_confirm-modal.phtml:8 template/front/index-detail.phtml:64
 #: template/front/index-index.phtml:55 template/front/notify-detail.phtml:52
 msgid "Once you delete this message, it cannot be undone."
 msgstr "شما این پیام را حذف کردید ، این فرایند برگشت پذیر نیست."
@@ -225,9 +221,9 @@ msgstr "پیام شخصی"
 msgid "Notification"
 msgstr "آگاهی رسانی"
 
-#: template/front/index-detail.phtml:46 template/front/index-index.phtml:56
-#: template/front/index-index.phtml:101 template/front/notify-detail.phtml:53
-#: template/front/notify-index.phtml:50
+#: template/front/index-detail.phtml:45 template/front/index-index.phtml:56
+#: template/front/index-index.phtml:102 template/front/notify-detail.phtml:53
+#: template/front/notify-index.phtml:53
 msgid "Delete"
 msgstr "حذف"
 
@@ -235,8 +231,8 @@ msgstr "حذف"
 msgid "Message"
 msgstr "پیام"
 
-#: template/front/index-index.phtml:70 template/front/index-index.phtml:100
-#: template/front/notify-index.phtml:49
+#: template/front/index-index.phtml:70 template/front/index-index.phtml:101
+#: template/front/notify-index.phtml:52
 msgid "Mark as read"
 msgstr "به عنوان خوانده شده نشان کن"
 
@@ -248,15 +244,15 @@ msgstr "مشاهده"
 msgid "No message for you!"
 msgstr "هیچ پیامی برای شما وجود ندارد !"
 
-#: template/front/index-index.phtml:97 template/front/notify-index.phtml:46
+#: template/front/index-index.phtml:98 template/front/notify-index.phtml:49
 msgid "Checked all"
-msgstr "All Categories"
+msgstr "انتخاب همه"
 
-#: template/front/index-index.phtml:99 template/front/notify-index.phtml:48
+#: template/front/index-index.phtml:100 template/front/notify-index.phtml:51
 msgid "Massive operation"
 msgstr "عملکرد های پیام"
 
-#: template/front/index-index.phtml:111
+#: template/front/index-index.phtml:113
 msgid "Once you delete those message, it cannot be undone."
 msgstr "شما این پیام را حذف کردید ، این فرایند برگشت پذیر نیست."
 
@@ -268,9 +264,12 @@ msgstr "بازگشت به صفحه فهرست پیام ها"
 msgid "Write message"
 msgstr "نوشتن پیام"
 
-#: template/front/notify-index.phtml:36
+#: template/front/notify-index.phtml:38
 msgid "No notification for you!"
 msgstr "هیچ اطلاع رسانی برای شما وجود ندارد !"
+
+#~ msgid "This part not finished now !"
+#~ msgstr "این بخش هنوز تکمیل نشده است !"
 
 #~ msgid "Delete these messages?"
 #~ msgstr "این پیام ها حذف شوند؟"

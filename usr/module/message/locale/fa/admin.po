@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2016-01-08 17:11+0330\n"
-"PO-Revision-Date: 2016-01-08 17:11+0330\n"
+"POT-Creation-Date: 2016-02-25 15:54+0330\n"
+"PO-Revision-Date: 2016-02-25 15:54+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -30,13 +30,12 @@ msgstr "فهرست"
 msgid "Prune"
 msgstr "پاکسازی"
 
-#: config/navigation.php:36 config/page.php:27 config/permission.php:25
-msgid "Send"
-msgstr "ارسال پیام گروهی"
-
 #: config/user.php:20
 msgid "Messages"
 msgstr "پیام ها"
+
+#~ msgid "Send"
+#~ msgstr "ارسال پیام گروهی"
 
 #~ msgid "Private message"
 #~ msgstr "پیام شخصی"

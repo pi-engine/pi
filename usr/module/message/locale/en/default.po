@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2016-01-08 17:11+0330\n"
-"PO-Revision-Date: 2016-01-08 17:11+0330\n"
+"POT-Creation-Date: 2016-02-25 15:54+0330\n"
+"PO-Revision-Date: 2016-02-25 15:54+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -127,13 +127,13 @@ msgid "List of messages"
 msgstr ""
 
 #: template/admin/list-index.phtml:19 template/admin/list-index.phtml:40
-#: template/admin/list-index.phtml:48 template/front/index-detail.phtml:29
+#: template/admin/list-index.phtml:47 template/front/index-detail.phtml:28
 #: template/front/index-index.phtml:36
 msgid "From"
 msgstr ""
 
 #: template/admin/list-index.phtml:21 template/admin/list-index.phtml:41
-#: template/admin/list-index.phtml:60 template/front/index-detail.phtml:29
+#: template/admin/list-index.phtml:59 template/front/index-detail.phtml:28
 #: template/front/index-index.phtml:36
 msgid "To"
 msgstr ""
@@ -154,33 +154,33 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: template/admin/list-index.phtml:50 template/admin/list-index.phtml:62
+#: template/admin/list-index.phtml:49 template/admin/list-index.phtml:61
 msgid "Name"
 msgstr ""
 
-#: template/admin/list-index.phtml:51 template/admin/list-index.phtml:63
+#: template/admin/list-index.phtml:50 template/admin/list-index.phtml:62
 msgid "Identity"
 msgstr ""
 
-#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:64
+#: template/admin/list-index.phtml:51 template/admin/list-index.phtml:63
 msgid "Email"
 msgstr ""
 
-#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:65
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:64
 msgid "Is read ?"
 msgstr ""
 
-#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:54
-#: template/admin/list-index.phtml:65 template/admin/list-index.phtml:66
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:53
+#: template/admin/list-index.phtml:64 template/admin/list-index.phtml:65
 msgid "Yes"
 msgstr ""
 
-#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:54
-#: template/admin/list-index.phtml:65 template/admin/list-index.phtml:66
+#: template/admin/list-index.phtml:52 template/admin/list-index.phtml:53
+#: template/admin/list-index.phtml:64 template/admin/list-index.phtml:65
 msgid "No"
 msgstr ""
 
-#: template/admin/list-index.phtml:54 template/admin/list-index.phtml:66
+#: template/admin/list-index.phtml:53 template/admin/list-index.phtml:65
 msgid "Is deleted ?"
 msgstr ""
 
@@ -188,15 +188,11 @@ msgstr ""
 msgid "Message list is empty !"
 msgstr ""
 
-#: template/admin/send-index.phtml:3
-msgid "This part not finished now !"
-msgstr ""
-
 #: template/front/_confirm-modal.phtml:5
 msgid "Delete this message?"
 msgstr ""
 
-#: template/front/_confirm-modal.phtml:8 template/front/index-detail.phtml:65
+#: template/front/_confirm-modal.phtml:8 template/front/index-detail.phtml:64
 #: template/front/index-index.phtml:55 template/front/notify-detail.phtml:52
 msgid "Once you delete this message, it cannot be undone."
 msgstr ""
@@ -220,9 +216,9 @@ msgstr ""
 msgid "Notification"
 msgstr ""
 
-#: template/front/index-detail.phtml:46 template/front/index-index.phtml:56
-#: template/front/index-index.phtml:101 template/front/notify-detail.phtml:53
-#: template/front/notify-index.phtml:50
+#: template/front/index-detail.phtml:45 template/front/index-index.phtml:56
+#: template/front/index-index.phtml:102 template/front/notify-detail.phtml:53
+#: template/front/notify-index.phtml:53
 msgid "Delete"
 msgstr ""
 
@@ -230,8 +226,8 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: template/front/index-index.phtml:70 template/front/index-index.phtml:100
-#: template/front/notify-index.phtml:49
+#: template/front/index-index.phtml:70 template/front/index-index.phtml:101
+#: template/front/notify-index.phtml:52
 msgid "Mark as read"
 msgstr ""
 
@@ -243,15 +239,15 @@ msgstr ""
 msgid "No message for you!"
 msgstr ""
 
-#: template/front/index-index.phtml:97 template/front/notify-index.phtml:46
+#: template/front/index-index.phtml:98 template/front/notify-index.phtml:49
 msgid "Checked all"
 msgstr "All Categories"
 
-#: template/front/index-index.phtml:99 template/front/notify-index.phtml:48
+#: template/front/index-index.phtml:100 template/front/notify-index.phtml:51
 msgid "Massive operation"
 msgstr ""
 
-#: template/front/index-index.phtml:111
+#: template/front/index-index.phtml:113
 msgid "Once you delete those message, it cannot be undone."
 msgstr ""
 
@@ -263,6 +259,6 @@ msgstr ""
 msgid "Write message"
 msgstr ""
 
-#: template/front/notify-index.phtml:36
+#: template/front/notify-index.phtml:38
 msgid "No notification for you!"
 msgstr ""

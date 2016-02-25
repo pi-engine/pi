@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2016-01-08 17:11+0330\n"
-"PO-Revision-Date: 2016-01-08 17:11+0330\n"
+"POT-Creation-Date: 2016-02-25 15:54+0330\n"
+"PO-Revision-Date: 2016-02-25 15:54+0330\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -28,10 +28,6 @@ msgstr ""
 
 #: config/navigation.php:26 config/page.php:22 config/permission.php:21
 msgid "Prune"
-msgstr ""
-
-#: config/navigation.php:36 config/page.php:27 config/permission.php:25
-msgid "Send"
 msgstr ""
 
 #: config/user.php:20

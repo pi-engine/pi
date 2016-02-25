@@ -42,34 +42,34 @@
                                                 <?php _e('Send on'); ?> : <?php echo $message['time_send_view']; ?>
                                             </h4>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="clearfix">
-                                                <div class="col-md-6">
-                                                    <div class=" well well-xs">                                                    <h5><?php _e('From'); ?> : <?php echo $message['userFrom']['avatar']; ?> <?php echo $message['userFrom']['name']; ?></h5>
-                                                        <ul class="list-unstyled">
-                                                            <li><?php _e('Name'); ?> : <?php echo $message['userFrom']['name']; ?></li>
-                                                            <li><?php _e('Identity'); ?> : <?php echo $message['userFrom']['identity']; ?></li>
-                                                            <li><?php _e('Email'); ?> : <?php echo $message['userFrom']['email']; ?></li>
-                                                            <li><?php _e('Is read ?'); ?> : <?php $message['is_read_from'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
-                                                            <li><?php _e('Is deleted ?'); ?> : <?php $message['is_delete_from'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class=" well well-xs">
-                                                        <h5><?php _e('To'); ?> : <?php echo $message['userTo']['avatar']; ?> <?php echo $message['userTo']['name']; ?></h5>
-                                                        <ul class="list-unstyled">
-                                                            <li><?php _e('Name'); ?> : <?php echo $message['userTo']['name']; ?></li>
-                                                            <li><?php _e('Identity'); ?> : <?php echo $message['userTo']['identity']; ?></li>
-                                                            <li><?php _e('Email'); ?> : <?php echo $message['userTo']['email']; ?></li>
-                                                            <li><?php _e('Is read ?'); ?> : <?php $message['is_read_to'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
-                                                            <li><?php _e('Is deleted ?'); ?> : <?php $message['is_delete_to'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
-                                                        </ul>
-                                                    </div>
+                                        <div class="modal-body clearfix">
+                                            <div class="col-md-6">
+                                                <div class="well well-xs">                                                    <h5><?php _e('From'); ?> : <?php echo $message['userFrom']['avatar']; ?> <?php echo $message['userFrom']['name']; ?></h5>
+                                                    <ul class="list-unstyled">
+                                                        <li><?php _e('Name'); ?> : <?php echo $message['userFrom']['name']; ?></li>
+                                                        <li><?php _e('Identity'); ?> : <?php echo $message['userFrom']['identity']; ?></li>
+                                                        <li><?php _e('Email'); ?> : <?php echo $message['userFrom']['email']; ?></li>
+                                                        <li><?php _e('Is read ?'); ?> : <?php $message['is_read_from'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
+                                                        <li><?php _e('Is deleted ?'); ?> : <?php $message['is_delete_from'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <div class="clearfix">
-                                                <?php echo $message['content']; ?>
+                                            <div class="col-md-6">
+                                                <div class="well well-xs">
+                                                    <h5><?php _e('To'); ?> : <?php echo $message['userTo']['avatar']; ?> <?php echo $message['userTo']['name']; ?></h5>
+                                                    <ul class="list-unstyled">
+                                                        <li><?php _e('Name'); ?> : <?php echo $message['userTo']['name']; ?></li>
+                                                        <li><?php _e('Identity'); ?> : <?php echo $message['userTo']['identity']; ?></li>
+                                                        <li><?php _e('Email'); ?> : <?php echo $message['userTo']['email']; ?></li>
+                                                        <li><?php _e('Is read ?'); ?> : <?php $message['is_read_to'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
+                                                        <li><?php _e('Is deleted ?'); ?> : <?php $message['is_delete_to'] ? $text = __('Yes') : $text = __('No'); ?><?php echo $text; ?></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="well well-xs">
+                                                    <?php echo $message['content']; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -85,5 +85,7 @@
             <?php _e('Message list is empty !'); ?>
         </div>
     <?php } ?>
-    <div class="paginator"><?php echo $this->paginationControl($paginator, 'Sliding', 'paginator'); ?></div>
+    <div class="paginator">
+        <?php echo $this->paginationControl($paginator, 'Sliding', 'paginator'); ?>
+    </div>
 </div>

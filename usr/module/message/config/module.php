@@ -18,7 +18,7 @@ return array(
         // Description, for admin, optional
         'description' => _a('A module to send message'),
         // Version number, required
-        'version' => '1.0.5',
+        'version' => '1.0.6',
         // Distribution license, required
         'license' => 'New BSD',
         // Module is ready for clone? Default as false
