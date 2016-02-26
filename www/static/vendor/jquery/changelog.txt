@@ -1,6 +1,10 @@
 
 jQuery/jQueryUI changelog
 
+February 26th, 2016
+=================
+1. Upgrade jQuery to 1.12.1
+
 
 January 22th, 2016
 =================
