@@ -12,7 +12,6 @@
     padding: 12px 20px 18px 15px;
     padding-left: 12px \9;
     margin-top: 0;
-    cursor: pointer;
 }
 
 .message-hidden .message-mark,
@@ -31,7 +30,7 @@
 
 .message-detail-primary:hover .message-hidden,
 .message-item:hover .message-hidden {
-    display: block;
+    /* display: block; */
 }
 
 .message-hidden {
@@ -40,8 +39,7 @@
 }
 
 .message-media-right {
-    width: 160px;
-    margin-left: 60px;
+    width: 200px;
 }
 
 .message-time {
@@ -79,20 +77,20 @@
     color: #005580;
 }
 
-.message-content p {
-    width: 628px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.message-content p.message-body {
-    width: 690px;
-}
-
-.message-content p a {
-    color: #888;
+.message-content a {
+    color: #000;
     text-decoration: none;
+    width: 100%;
+    padding: 8px;
+    display: block;
+    margin: 0 -8px;
+}
+
+.message-content a:hover {
+    color: #000;
+    text-decoration: none;
+    background-color: #e0e0e0;
+    border-radius: 4px;
 }
 
 .message-foot-form {
@@ -272,3 +270,14 @@
     font-weight: bold;
 }
 
+.form-group label.col-md-12 {
+    text-align: left;
+}
+
+.message-checkbox {
+    margin-top: 10px;
+}
+
+.message-avatar {
+    margin: 0 20px;
+}

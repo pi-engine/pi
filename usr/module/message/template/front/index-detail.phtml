@@ -1,4 +1,5 @@
 <?php $this->css($this->assetModule('script/front.css')); ?>
+<div class="clearfix">
     <div class="col-md-3">
         <?php include $this->templateModule('front/user-profile-sidebar.phtml', 'user'); ?>
     </div>
@@ -8,87 +9,55 @@
                 <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'index')); ?>"
                    title="<?php _e('Private message'); ?>"><?php echo $messageTitle; ?></a>
             </li>
-            <li class="">
-                <a href="<?php echo $this->url('', array('controller' => 'index', 'action' => 'archive')); ?>"
-                   title="<?php _e('Archive'); ?>"><?php _e('Archive'); ?></a>
+            <li>
+                <a href="<?php echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?>"
+                   title="<?php _e('Notification'); ?>"><?php echo $notificationTitle; ?></a>
             </li>
-            <!--    <li>-->
-            <!--        <a href="-->
-            <?php //echo $this->url('', array('controller' => 'notify', 'action' => 'index')); ?><!--" title="-->
-            <?php //_e('Notification'); ?><!--">--><?php //echo $notificationTitle; ?><!--</a>-->
-            <!--    </li>-->
-            <!--    <li>-->
-            <!--        <button type="button" class="btn message-nav-btn" onclick="location.href=-->
-            <!--        '-->
-            <?php //echo $this->url('', array('controller' => 'index', 'action' => 'send')); ?><!--'" -->
-            <!--        title="--><?php //_e('New message'); ?><!--">--><?php //_e('New message'); ?><!--</button>-->
-            <!--    </li>-->
         </ul>
-
         <?php if (!empty($errMessage)) { $class = ' alert-error'; ?>
             <div class="alert<?php echo $class; ?>">
-                <button data-dismiss="alert" class="close" type="button"> × </button>
                 <?php echo $errMessage; ?>
             </div>
         <?php } ?>
-        <?php if (!empty($message)) { ?>
-            <div class="messages" id="message-js">
+        <?php if (!empty($list)) { ?>
+            <?php foreach($list as $singleMessage) { ?>
+                <div class="messages" id="message-js">
                 <div class="media message-detail">
                     <div class="message-detail-head">
-                        <h5 class="media-heading pull-left message-head">
-                            <span><?php echo $uid == $message['uid_from'] ? __('To') : __('From'); ?></span>
-                            <a href="<?php echo $message['profileUrl']; ?>"><?php echo $message['name'] . ':'; ?></a>
-                        </h5>
+                        <h4 class="media-heading pull-left message-head">
+                            <span><?php echo $uid == $singleMessage['uid_from'] ? __('To') : __('From'); ?></span>
+                            <a href="<?php echo $singleMessage['profileUrl']; ?>"><?php echo $singleMessage['name']; ?></a>
+                        </h4>
                         <p class="message-time text-right">
-                            <span class="muted"><?php echo _date($message['time_send']); ?></span>
+                            <span class="muted"><?php echo _date($singleMessage['time_send']); ?></span>
                         </p>
                     </div>
                     <div class="media message-detail-primary">
-                        <a href="<?php echo $message['profileUrl']; ?>" class="pull-left">
-                            <?php echo $message['avatar']; ?>
+                        <a href="<?php echo $singleMessage['profileUrl']; ?>" class="pull-left">
+                            <?php echo $singleMessage['avatar']; ?>
                         </a>
                         <div class="media-body message-detail-con">
-                            <p>
-                                <?php echo $message['content']; ?>
-                            </p>
+                            <p><?php echo $singleMessage['content']; ?></p>
                             <div class="message-detail-hidden">
                                 <p class="pull-right">
-                                    <span>
-                                        <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $message['id'], 'tid' => $message['uid_to'])); ?>"
-                                            class="js-delete">
-                                            <?php _e('Delete'); ?></a>
-                                    </span>
+                                    <a href="<?php echo $this->url('', array('action' => 'delete', 'ids' => $singleMessage['id'], 'tid' => $singleMessage['uid_to'])); ?>"
+                                       class="js-delete">
+                                        <?php _e('Delete'); ?>
+                                    </a>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <?php
-                $form->setAttribute('class', 'message-form-posi');
-                echo $this->form()->openTag($form);
-                ?>
-                <?php
-                $element = $form->get('content');
-                $element->setAttributes(array(
-                    'class' => 'form-control message-textarea',
-                    'rows' => '6'
-                ));
-                echo '<div class="message-send-text message-detail-text">' . $this->formElement($element);
-                echo $this->formElementErrors($element);
-                echo '</div>'
-                ?>
-                <?php
-                echo $this->formElement($form->get('uid_to'));
-                $element = $form->get('submit');
-                $element->setAttributes(array(
-                    'class' => 'btn btn-primary pull-right',
-                ));
-                echo $this->formSubmit($element);
-                echo $this->form()->closeTag($form);
-                ?>
+            <?php } ?>
+                <div class="clearfix well">
+                    <?php echo $this->form($form, 'horizontal'); ?>
+                </div>
             </div>
         <?php } ?>
+        <?php include $this->template('./_confirm-modal.phtml'); ?>
     </div>
+</div>
 <?php
 $paginator = isset($paginator) ? $paginator->getCurrentPageNumber() : '';
 $host = $this->url('', array('module' => 'message'));

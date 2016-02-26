@@ -1,33 +1,41 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-message\n"
-"POT-Creation-Date: 2015-04-20 18:12+0100\n"
-"PO-Revision-Date: 2015-04-20 18:12+0100\n"
+"POT-Creation-Date: 2015-10-24 20:08+0100\n"
+"PO-Revision-Date: 2015-10-24 20:08+0100\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-KeywordsList: _a;_t\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ..\\..\\\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
-"\\module\\message\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/config/module.php:17
+#: config/module.php:17
 msgid "Message"
 msgstr "Message"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/config/module.php:19
+#: config/module.php:19
 msgid "A module to send message"
 msgstr "Module de gestion des messages et notifications"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\message/config/user.php:20
+#: config/navigation.php:16 config/page.php:17 config/permission.php:17
+msgid "List"
+msgstr "Liste"
+
+#: config/navigation.php:26 config/page.php:22 config/permission.php:21
+msgid "Prune"
+msgstr "Purger"
+
+#: config/navigation.php:36 config/page.php:27 config/permission.php:25
+msgid "Send"
+msgstr "Envoyer"
+
+#: config/user.php:20
 msgid "Messages"
 msgstr "Messages"
 

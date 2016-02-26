@@ -38,7 +38,7 @@
             var href = app.$delete.attr('href');
             $('#confirm-modal').find('.modal-body').text($(this).attr('data-confirm'));
             $('.confirm-ok').attr('href', href);
-            $('#confirm-modal').modal({show: true});
+            $('#confirm-modal').modal('show');
             return false;
         },
     };

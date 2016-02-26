@@ -8,35 +8,29 @@
  */
 
 return array(
-
     // Hide from front menu
     'front' => false,
-    /*
-    'front'      => array(
-        'private' => array(
-            'label'         => _a('Private message'),
-            'route'         => 'default',
-            'controller'    => 'index',
-            'action'        => 'index',
+    // Admin side
+    'admin' => array(
+        'list' => array(
+            'label' => _a('List'),
+            'permission' => array(
+                'resource' => 'list',
+            ),
+            'route' => 'admin',
+            'module' => 'message',
+            'controller' => 'list',
+            'action' => 'index',
         ),
-        'archive' => array(
-            'label'         => _a('Archive'),
-            'route'         => 'default',
-            'controller'    => 'index',
-            'action'        => 'archive'
-        ),
-        'notify' => array(
-            'label'         => _a('Notification'),
-            'route'         => 'default',
-            'controller'    => 'notify',
-            'action'        => 'index',
-        ),
-        'send' => array(
-            'label'         => _a('New message'),
-            'route'         => 'default',
-            'controller'    => 'index',
-            'action'        => 'send',
+        'prune' => array(
+            'label' => _a('Prune'),
+            'permission' => array(
+                'resource' => 'prune',
+            ),
+            'route' => 'admin',
+            'module' => 'message',
+            'controller' => 'prune',
+            'action' => 'index',
         ),
     ),
-    */
 );

@@ -36,15 +36,16 @@ class NotifyController extends ActionController
     protected function renderNav()
     {
         //current user id
+        Pi::service('authentication')->requireLogin();
         $userId = Pi::user()->getUser()->id;
 
         $messageTitle = sprintf(
-            __('Private message(%s unread)'),
-            Service::getUnread($userId, 'message')
+            __('Private message ( <span class="label label-danger">%s</span> unread )'),
+            _number(Pi::api('api', 'message')->getUnread($userId, 'message'))
         );
         $notificationTitle = sprintf(
-            __('Notification(%s unread)'),
-            Service::getUnread($userId, 'notification')
+            __('Notification ( <span class="label label-danger">%s</span> unread )'),
+            _number(Pi::api('api', 'message')->getUnread($userId, 'notification'))
         );
         $this->view()->assign('messageTitle', $messageTitle);
         $this->view()->assign('notificationTitle', $notificationTitle);
@@ -131,8 +132,6 @@ class NotifyController extends ActionController
         }
         $this->renderNav();
         $this->view()->assign('notifications', $notificationList);
-
-        return;
     }
 
     /**
@@ -164,7 +163,7 @@ class NotifyController extends ActionController
         $detail = $rowset->toArray();
 
         //markup content
-        $detail['content'] = Pi::service('markup')->render($detail['content']);
+        $detail['content'] = Pi::service('markup')->render($detail['content'], 'html', 'html');
 
         if (!$detail['is_read']) {
             //mark the notification as read
