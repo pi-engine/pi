@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
 "POT-Creation-Date: 2016-03-01 14:27+0330\n"
-"PO-Revision-Date: 2016-03-01 14:28+0330\n"
+"PO-Revision-Date: 2016-03-01 14:33+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -33,7 +33,7 @@ msgstr "%s%s تکمیل شده"
 
 #: template/block/completeness.phtml:40 template/block/completeness.phtml:42
 msgid "update"
-msgstr "ه روز رسانی"
+msgstr "به روز رسانی"
 
 #, fuzzy
 #~ msgid "Register template file name"
