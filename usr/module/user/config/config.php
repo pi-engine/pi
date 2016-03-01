@@ -186,7 +186,16 @@ $config = array(
         'title'         => _t('Email notification'),
         'description'   => _t('Send email notification on register success by admin approval.'),
         'edit'          => 'checkbox',
-        'value'         => 0,
+        'value'         => 1,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_notification_admin' => array(
+        'title'         => _t('Email notification to admin'),
+        'description'   => _t('Send email notification for new user registration to admin'),
+        'edit'          => 'checkbox',
+        'value'         => 1,
         'filter'        => 'int',
         'category'      => 'register',
     ),
