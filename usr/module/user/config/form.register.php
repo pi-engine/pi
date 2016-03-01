@@ -12,6 +12,17 @@
 */
 
 $captchaEnable = Pi::user()->config('register_captcha');
+$termEnable = Pi::user()->config('register_term');
+$termUrl = Pi::user()->config('register_term_url');
+
+if ($termEnable && !empty($termUrl)) {
+    $termEnable = true;
+    $term = sprintf('<a href="%s" target="_blank">%s</a>', $termUrl, __('Terms & Conditions'));
+    $term = sprintf(__('Accept %s'), $term);
+} else {
+    $termEnable = false;
+    $term = '';
+}
 
 return array(
     // Use user module field
@@ -65,6 +76,20 @@ return array(
             'attributes'    => array(
                 'required' => true,
             ),
+        ),
+    ),
+
+    'term'  => !$termEnable ? false : array(
+        'element' => array(
+            'name'          => 'term',
+            'type'          => 'checkbox',
+            'options'       => array(
+                'label'     => '',
+            ),
+            'attributes' => array(
+                'description' => $term,
+                'required' => true,
+            )
         ),
     ),
 );
