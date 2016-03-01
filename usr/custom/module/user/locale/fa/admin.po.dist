@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Pi-user\n"
+"POT-Creation-Date: 2016-03-01 11:39+0330\n"
+"PO-Revision-Date: 2016-03-01 11:43+0330\n"
+"Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-KeywordsList: _a;_t\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: config/form.register.php:39
+msgid "Confirm credential"
+msgstr "تایید واژه رمز"
+
+#: config/form.register.php:72
+msgid "Please type the word."
+msgstr "لطفا این عبارت را وارد کنید "
+
+#: config/user.php:25
+msgid "Register source"
+msgstr "منبع ثبت نام"
+
+#: config/user.php:34 config/user1.php:40
+msgid "First Name"
+msgstr "نام"
+
+#: config/user.php:40 config/user1.php:46
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: config/user.php:46
+msgid "Language"
+msgstr "زبان"
+
+#: config/user.php:53 config/user1.php:52
+msgid "Mobile phone"
+msgstr "تلفن همراه"
+
+#: config/user.php:59 config/user1.php:58
+msgid "Telephone"
+msgstr "تلفن"
+
+#: config/user.php:68
+msgid "Education"
+msgstr "آموزش"
+
+#: config/user.php:76
+msgid "School name"
+msgstr "نام دانشگاه"
+
+#: config/user.php:82
+msgid "Department"
+msgstr "بخش"
+
+#: config/user.php:88
+msgid "Major"
+msgstr "رشته"
+
+#: config/user.php:94
+msgid "Degree"
+msgstr "مدرک"
+
+#: config/user.php:100 config/user.php:169
+msgid "Start time"
+msgstr "تاریخ شروع"
+
+#: config/user.php:106 config/user.php:175
+msgid "End time"
+msgstr "تاریخ پایان"
+
+#: config/user.php:109 config/user.php:159
+msgid "Description"
+msgstr "توضیحات"
+
+#: config/user.php:124
+msgid "Work"
+msgstr "شغل"
+
+#: config/user.php:132
+msgid "Company name"
+msgstr "نام شرکت"
+
+#: config/user.php:138
+msgid "Work Department"
+msgstr "بخش"
+
+#: config/user.php:144
+msgid "Industry"
+msgstr "صنعت"
+
+#: config/user.php:150
+msgid "Sector"
+msgstr "زیر بخش"
+
+#: config/user.php:153
+msgid "Job title"
+msgstr "عنوان شغلی"
+
+#: config/user1.php:24
+msgid "Credit"
+msgstr "اعتبار"
+
+#: config/user1.php:34
+msgid "Identification number"
+msgstr "کد مل"
+
+#: config/user1.php:64
+msgid "Address 1"
+msgstr "آدرس"
+
+#: config/user1.php:70
+msgid "Address 2"
+msgstr "آدرس دوم"
+
+#: config/user1.php:76
+msgid "Country"
+msgstr "کشور"
+
+#: config/user1.php:82
+msgid "State"
+msgstr "استان"
+
+#: config/user1.php:88
+msgid "City"
+msgstr "شهر"
+
+#: config/user1.php:94
+msgid "Zip code"
+msgstr "کد پستی"
+
+#: config/user1.php:100
+msgid "Company"
+msgstr "شرکت"
+
+#: config/user1.php:106
+msgid "Company ID"
+msgstr "شماره ثبت شرکت"
+
+#: config/user1.php:112
+msgid "Company VAT"
+msgstr "کد اقتصادی شرکت"
