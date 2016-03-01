@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-03-01 11:49+0330\n"
-"PO-Revision-Date: 2016-03-01 11:49+0330\n"
+"POT-Creation-Date: 2016-03-01 14:26+0330\n"
+"PO-Revision-Date: 2016-03-01 14:27+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -470,7 +470,7 @@ msgstr "ایمیل فعال سازی ارسال نشد"
 
 #: src/Controller/Front/RegisterController.php:440
 msgid "User information was not completed and user account was not saved."
-msgstr ""
+msgstr "اطلاعات کاربری تکمیل نشده است و حساب کاربری در سیستم ثبت نشده است."
 
 #: src/Controller/Front/RegisterController.php:465
 msgid "User account was not saved."

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-03-01 11:46+0330\n"
-"PO-Revision-Date: 2016-03-01 11:49+0330\n"
+"POT-Creation-Date: 2016-03-01 14:25+0330\n"
+"PO-Revision-Date: 2016-03-01 14:26+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -13,6 +13,18 @@ msgstr ""
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: config/block.php:17
+msgid "Profile completeness"
+msgstr "تکمیل پروفایل"
+
+#: config/block.php:23
+msgid "Max percent to active block visibility"
+msgstr "بیشترین درصد تکمیل برای نمایش بلاک"
+
+#: config/block.php:30
+msgid "Hide after complete main fields"
+msgstr "مخفی کردن بلاک بعد از تکمیل فیلد های ضروری"
 
 #: config/config.php:25
 msgid "Login"
