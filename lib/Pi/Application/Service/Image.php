@@ -215,17 +215,17 @@ class Image extends AbstractService
                     break;
                 case 'imagick':
                     if (class_exists('Imagick')) {
-                        $driverClass = 'Imagine\Gmagick\Imagine';
+                        $driverClass = 'Imagine\Imagick\Imagine';
                     }
                     break;
                 case 'auto':
                 default:
-                    if (function_exists('gd_info')) {
-                        $driverClass = 'Imagine\Gd\Imagine';
-                    } elseif (class_exists('Gmagick')) {
+                    if (class_exists('Gmagick')) {
                         $driverClass = 'Imagine\Gmagick\Imagine';
                     } elseif (class_exists('Imagick')) {
-                        $driverClass = 'Imagine\Gmagick\Imagine';
+                        $driverClass = 'Imagine\Imagick\Imagine';
+                    } elseif (function_exists('gd_info')) {
+                        $driverClass = 'Imagine\Gd\Imagine';
                     }
                     break;
             }
