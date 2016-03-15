@@ -87,6 +87,8 @@ class Block
                 'alt' => $block['user']['name'],
                 'class' => 'img-circle'
             ));
+        } else {
+            return false;
         }
         return $block;
     }
