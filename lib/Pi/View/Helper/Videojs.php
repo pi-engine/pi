@@ -18,6 +18,7 @@ use Zend\View\Helper\AbstractHtmlElement;
  *
  * Usage inside a phtml template
  *
+ * $this->videojs($source);
  * $this->videojs($source, $poster);
  * $this->videojs($source, $poster, $width, $height);
  *
@@ -39,22 +40,55 @@ class Videojs extends AbstractHtmlElement
      *
      * @return  string
      */
-    public function __invoke($source, $poster, $width = 640, $height = 264)
+    public function __invoke($source, $poster = '', $width = '', $height = '')
     {
-        // Set template
+        // Get media extension
         $extension = pathinfo($source, PATHINFO_EXTENSION);
+
+        // Set template
         switch ($extension) {
+
             case 'mp3':
+                // Set player poster
+                if (empty($poster)) {
+                    $image = Pi::path('upload/video-js/audio.jpg');
+                    if (Pi::service('file')->exists($image)) {
+                        $poster = Pi::url('upload/video-js/audio.jpg');
+                    } else {
+                        $poster = Pi::url('static/vendor/video-js/image/audio.jpg');
+                    }
+                }
+
+                // Set player width and height
+                $width = !empty($width) ? $width : 1280;
+                $height = !empty($height) ? $height : 180;
+
+                // Set html template
                 $template = <<<'EOT'
-<audio id="%s" class="video-js vjs-default-skin" width="%d" height="%d" poster="%s" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+<audio id="%s" class="video-js vjs-default-skin" width="%d" height="%d" controls preload="none" poster="%s" data-setup='{"aspectRatio":"%s:%s"}'>
     <source src="%s" type='audio/mp3' />
 </audio>
 EOT;
                 break;
 
             case 'mp4':
+                // Set player poster
+                if (empty($poster)) {
+                    $image = Pi::path('upload/video-js/video.jpg');
+                    if (Pi::service('file')->exists($image)) {
+                        $poster = Pi::url('upload/video-js/video.jpg');
+                    } else {
+                        $poster = Pi::url('static/vendor/video-js/image/video.jpg');
+                    }
+                }
+
+                // Set player width and height
+                $width = !empty($width) ? $width : 1280;
+                $height = !empty($height) ? $height : 720;
+
+                // Set html template
                 $template = <<<'EOT'
-<video id="%s" class="video-js vjs-default-skin" width="%d" height="%d" poster="%s" data-setup='{ "controls": true, "autoplay": false, "preload": "auto" }'>
+<video id="%s" class="video-js vjs-default-skin" width="%d" height="%d" controls preload="none" poster="%s" data-setup='{"aspectRatio":"%s:%s"}'>
     <source src="%s" type='video/mp4' />
 </video>
 EOT;
@@ -65,10 +99,10 @@ EOT;
         }
 
         // Load js file
-        $js = 'vendor/video-js/video.js';
+        $js = 'vendor/video-js/video.min.js';
         $js = Pi::service('asset')->getStaticUrl($js);
         $this->view->js($js);
-        
+
         // Load css file
         $css = 'vendor/video-js/video-js.min.css';
         $css = Pi::service('asset')->getStaticUrl($css);
@@ -78,7 +112,7 @@ EOT;
         $id = uniqid("video-js-");
        
         // Set final content
-        $content = sprintf($template, $id, $width, $height, $poster, $source);
+        $content = sprintf($template, $id, $width, $height, $poster, $width, $height, $source);
 
         return $content;
     }
