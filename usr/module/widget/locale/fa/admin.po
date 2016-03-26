@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2015-09-01 10:36+0430\n"
-"PO-Revision-Date: 2015-09-01 10:36+0430\n"
+"POT-Creation-Date: 2016-03-26 13:19+0430\n"
+"PO-Revision-Date: 2016-03-26 13:19+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-KeywordsList: _a;_t;__\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -98,7 +98,7 @@ msgid "Script widgets"
 msgstr "ویجت های اسکریپت"
 
 #: config/nav.php:25 config/nav.php:49 config/nav.php:104 config/nav.php:138
-#: config/nav.php:172 config/nav.php:206 config/nav.php:240
+#: config/nav.php:172 config/nav.php:206 config/nav.php:240 config/nav.php:274
 msgid "Widget list"
 msgstr "فهرست ویجت ها"
 
@@ -111,7 +111,8 @@ msgid "Static widgets"
 msgstr "ویجت های استاتیک"
 
 #: config/nav.php:56 config/nav.php:111 config/nav.php:145 config/nav.php:179
-#: config/nav.php:213 config/nav.php:247 template/admin/ng.phtml:11
+#: config/nav.php:213 config/nav.php:247 config/nav.php:281
+#: template/admin/ng.phtml:11
 msgid "Edit"
 msgstr "ویرایش"
 
@@ -132,7 +133,7 @@ msgid "List group"
 msgstr "فهرست گروهی"
 
 #: config/nav.php:120 config/nav.php:154 config/nav.php:188 config/nav.php:222
-#: config/nav.php:256
+#: config/nav.php:256 config/nav.php:290
 msgid "Add new"
 msgstr "جدید"
 
@@ -151,6 +152,10 @@ msgstr "اسپات لایت"
 #: config/nav.php:231 config/permission.php:31
 msgid "Compound tabs"
 msgstr "تب های ترکیبی"
+
+#: config/nav.php:265 config/permission.php:34
+msgid "Video and audio"
+msgstr "ویدیو و صدا"
 
 #: config/permission.php:25
 msgid "Carousel widgets"
@@ -395,6 +400,14 @@ msgstr "اسپات لایت در بالا"
 msgid "Spot on left"
 msgstr "اسپات لایت در سمت چپ"
 
+#: src/Form/Element/VideoTemplate.php:25
+msgid "Player only"
+msgstr "فقط پلیر"
+
+#: src/Form/Element/VideoTemplate.php:26
+msgid "Player and summary"
+msgstr "پلیر و توضیحات"
+
 #: src/Installer/Action/Install.php:42
 msgid "Pi Highlights"
 msgstr "نماد های پای"
@@ -466,7 +479,7 @@ msgid "Delete"
 msgstr "حذف"
 
 #: template/admin/widget-list.phtml:10 template/admin/widget-media.phtml:14
-#: template/admin/widget-tab.phtml:11
+#: template/admin/widget-tab.phtml:11 template/admin/widget-video.phtml:14
 msgid "Items"
 msgstr "موارد"
 
@@ -475,11 +488,12 @@ msgid "Click to add new item."
 msgstr "برای درج مورد جدید کلیک کنید"
 
 #: template/admin/widget-list.phtml:24 template/admin/widget-media.phtml:31
-#: template/admin/widget-tab.phtml:47
+#: template/admin/widget-tab.phtml:47 template/admin/widget-video.phtml:31
 msgid "Click to remove"
 msgstr "برای حذف کلیک کنید"
 
 #: template/admin/widget-list.phtml:27 template/admin/widget-media.phtml:36
+#: template/admin/widget-video.phtml:40
 msgid "Caption"
 msgstr "عنوان"
 
@@ -488,10 +502,11 @@ msgid "Link"
 msgstr "لینک"
 
 #: template/admin/widget-list.phtml:35 template/admin/widget-media.phtml:44
+#: template/admin/widget-video.phtml:44
 msgid "Summary"
 msgstr "خلاصه"
 
-#: template/admin/widget-media.phtml:18
+#: template/admin/widget-media.phtml:18 template/admin/widget-video.phtml:18
 msgid "Click to upload image then add item contents."
 msgstr "برای بارگذاری تصویر کلیک کنید بعد از آن محتوی این مورد را درج کنید."
 
@@ -502,6 +517,13 @@ msgstr "بلاک های در دسترس ماژول ها را از زیر انت�
 #: template/admin/widget-tab.phtml:26
 msgid "Module blocks"
 msgstr "بلاک های ماژول"
+
+#: template/admin/widget-video.phtml:36
+msgid "Video (mp4) or audio (mp3) link"
+msgstr "لینک فایل ویدیو (mp4) یا صدا (mp3)"
+
+#~ msgid "Video or audio link"
+#~ msgstr "لینک فایل ویدیو (.mp4) یا صدا (.mp3)"
 
 #~ msgid "The widget \"%s\" is uninstalled."
 #~ msgstr "ویجت \"%s\" از نصب خارج شد"

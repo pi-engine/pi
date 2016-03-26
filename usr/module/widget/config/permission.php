@@ -30,5 +30,8 @@ return array(
         'tab'       => array(
             'title'         => _t('Compound tabs'),
         ),
+        'video'     => array(
+            'title'         => _t('Video and audio'),
+        ),
     ),
 );

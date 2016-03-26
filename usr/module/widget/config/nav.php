@@ -260,6 +260,40 @@ return array(
                     ),
                 ),
             ),
+
+            'video'   => array(
+                'label'         => _t('Video and audio'),
+                'route'         => 'admin',
+                'controller'    => 'video',
+                'permission'    => array(
+                    'resource'  => 'video',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Widget list'),
+                        'route'         => 'admin',
+                        'controller'    => 'video',
+                        'action'        => 'index',
+
+                        'pages'         => array(
+                            'edit'   => array(
+                                'label'         => _t('Edit'),
+                                'route'         => 'admin',
+                                'controller'    => 'video',
+                                'action'        => 'edit',
+                                'visible'       => 0,
+                            ),
+                        )
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Add new'),
+                        'route'         => 'admin',
+                        'controller'    => 'video',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
         ),
     ),
 );
