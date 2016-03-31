@@ -62,6 +62,8 @@ $module = Pi::service('module')->current();
 // Load quicklinks
 $quicklink = Pi::api('quicklink', 'user')->getList();
 
+// Check show nav
+$showNav = isset($showNav) ? $showNav : 1;
 ?>
 <div class="clearfix user-avatar-header">
     <div class="user-info-right">
@@ -150,6 +152,7 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
         <?php } ?>
     </div>
 </div>
+<?php if ($showNav) { ?>
 <ul class="nav nav-tabs">
     <?php
     $maxItem    = 7;
@@ -221,3 +224,4 @@ $quicklink = Pi::api('quicklink', 'user')->getList();
         </li>
     <?php } ?>
 </ul>
+<?php } ?>
