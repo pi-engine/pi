@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-03-01 14:26+0330\n"
-"PO-Revision-Date: 2016-03-01 14:27+0330\n"
+"POT-Creation-Date: 2016-03-31 14:33+0430\n"
+"PO-Revision-Date: 2016-03-31 14:33+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -109,7 +109,7 @@ msgstr "تنظیمات حساب کاربری"
 
 #: src/Api/Breadcrumbs.php:63 src/Controller/Front/AvatarController.php:185
 #: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:39
-#: template/front/profile-topbar.phtml:133
+#: template/front/profile-topbar.phtml:135
 msgid "Change avatar"
 msgstr "تغییر آواتار"
 
@@ -878,16 +878,16 @@ msgid "My items"
 msgstr "آیتم های من"
 
 #: template/front/profile-sidebar.phtml:61
-msgid "My events"
-msgstr "رویداد های من"
-
-#: template/front/profile-sidebar.phtml:64
 msgid "Sponsorship"
 msgstr "اسپانسر"
 
-#: template/front/profile-sidebar.phtml:70
+#: template/front/profile-sidebar.phtml:67
 msgid "My messages"
 msgstr "پیام های من"
+
+#: template/front/profile-sidebar.phtml:70
+msgid "My events"
+msgstr "رویداد های من"
 
 #: template/front/profile-sidebar.phtml:73
 msgid "My orders"
@@ -897,36 +897,40 @@ msgstr "سفارش های من"
 msgid "My favorites"
 msgstr "مورد علاقه های من"
 
-#: template/front/profile-topbar.phtml:77
+#: template/front/profile-sidebar.phtml:79
+msgid "My videos"
+msgstr "ویدیو های من"
+
+#: template/front/profile-topbar.phtml:79
 msgid "Switch to public"
 msgstr "نمایش عمومی"
 
-#: template/front/profile-topbar.phtml:82
+#: template/front/profile-topbar.phtml:84
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: template/front/profile-topbar.phtml:88
+#: template/front/profile-topbar.phtml:90
 msgid "Quicklinks"
 msgstr "لینک های سریع"
 
-#: template/front/profile-topbar.phtml:111
+#: template/front/profile-topbar.phtml:113
 msgid "Switch to own"
 msgstr "نمایش شخصی"
 
-#: template/front/profile-topbar.phtml:117
-#: template/front/profile-topbar.phtml:122
+#: template/front/profile-topbar.phtml:119
+#: template/front/profile-topbar.phtml:124
 msgid "Send message"
 msgstr "ارسال پیام شخصی"
 
-#: template/front/profile-topbar.phtml:141
+#: template/front/profile-topbar.phtml:143
 msgid "Gender:"
 msgstr "جنسیت:"
 
-#: template/front/profile-topbar.phtml:147
+#: template/front/profile-topbar.phtml:149
 msgid "Birthdate:"
 msgstr "تاریخ تولد:"
 
-#: template/front/profile-topbar.phtml:203
+#: template/front/profile-topbar.phtml:206
 msgid "More"
 msgstr "بیشتر"
 

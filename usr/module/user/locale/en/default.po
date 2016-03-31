@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-03-01 14:30+0330\n"
-"PO-Revision-Date: 2016-03-01 14:30+0330\n"
+"POT-Creation-Date: 2016-03-31 14:33+0430\n"
+"PO-Revision-Date: 2016-03-31 14:33+0430\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -109,7 +109,7 @@ msgstr ""
 
 #: src/Api/Breadcrumbs.php:63 src/Controller/Front/AvatarController.php:185
 #: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:39
-#: template/front/profile-topbar.phtml:133
+#: template/front/profile-topbar.phtml:135
 msgid "Change avatar"
 msgstr ""
 
@@ -867,15 +867,15 @@ msgid "My items"
 msgstr ""
 
 #: template/front/profile-sidebar.phtml:61
-msgid "My events"
-msgstr ""
-
-#: template/front/profile-sidebar.phtml:64
 msgid "Sponsorship"
 msgstr ""
 
-#: template/front/profile-sidebar.phtml:70
+#: template/front/profile-sidebar.phtml:67
 msgid "My messages"
+msgstr ""
+
+#: template/front/profile-sidebar.phtml:70
+msgid "My events"
 msgstr ""
 
 #: template/front/profile-sidebar.phtml:73
@@ -886,36 +886,40 @@ msgstr ""
 msgid "My favorites"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:77
+#: template/front/profile-sidebar.phtml:79
+msgid "My videos"
+msgstr ""
+
+#: template/front/profile-topbar.phtml:79
 msgid "Switch to public"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:82
+#: template/front/profile-topbar.phtml:84
 msgid "Settings"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:88
+#: template/front/profile-topbar.phtml:90
 msgid "Quicklinks"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:111
+#: template/front/profile-topbar.phtml:113
 msgid "Switch to own"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:117
-#: template/front/profile-topbar.phtml:122
+#: template/front/profile-topbar.phtml:119
+#: template/front/profile-topbar.phtml:124
 msgid "Send message"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:141
+#: template/front/profile-topbar.phtml:143
 msgid "Gender:"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:147
+#: template/front/profile-topbar.phtml:149
 msgid "Birthdate:"
 msgstr ""
 
-#: template/front/profile-topbar.phtml:203
+#: template/front/profile-topbar.phtml:206
 msgid "More"
 msgstr ""
 
