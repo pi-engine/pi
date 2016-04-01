@@ -1,17 +1,28 @@
 <?php
 /**
-* Pi Engine (http://pialog.org)
-*
-* @link            http://code.pialog.org for the Pi Engine source repository
-* @copyright       Copyright (c) Pi Engine http://pialog.org
-* @license         http://pialog.org/license.txt BSD 3-Clause License
-*/
+ * Pi Engine (http://pialog.org)
+ *
+ * @link            http://code.pialog.org for the Pi Engine source repository
+ * @copyright       Copyright (c) Pi Engine http://pialog.org
+ * @license         http://pialog.org/license.txt BSD 3-Clause License
+ */
 
 /**
-* User register form config
-*/
+ * User register form config
+ */
 
 $captchaEnable = Pi::user()->config('register_captcha');
+$termEnable = Pi::user()->config('register_term');
+$termUrl = Pi::user()->config('register_term_url');
+
+if ($termEnable && !empty($termUrl)) {
+    $termEnable = true;
+    $term = sprintf('<a href="%s" target="_blank">%s</a>', $termUrl, __('Terms & Conditions'));
+    $term = sprintf(__('Accept %s'), $term);
+} else {
+    $termEnable = false;
+    $term = '';
+}
 
 return array(
     // Use user module field
@@ -63,8 +74,22 @@ return array(
                 'captcha_position'  => 'append',
             ),
             'attributes'    => array(
-                 'required' => true,
+                'required' => true,
             ),
+        ),
+    ),
+
+    'term'  => !$termEnable ? false : array(
+        'element' => array(
+            'name'          => 'term',
+            'type'          => 'checkbox',
+            'options'       => array(
+                'label'     => '',
+            ),
+            'attributes' => array(
+                'description' => $term,
+                'required' => true,
+            )
         ),
     ),
 

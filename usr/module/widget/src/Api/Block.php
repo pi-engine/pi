@@ -203,6 +203,9 @@ class Block extends AbstractApi
             'carousel'  => array(
                 'type'  =>  'Module\Widget\Form\Element\CarouselTemplate',
             ),
+            'video'     => array(
+                'type'  =>  'Module\Widget\Form\Element\VideoTemplate',
+            ),
             'html'      => false,
             'text'      => false,
             'markdown'  => false,
@@ -259,6 +262,8 @@ class Block extends AbstractApi
             case 'list':
                 // media object
             case 'media':
+               // video player
+            case 'video':
                 // carousel
             case 'carousel':
                 $items = empty($block['content'])

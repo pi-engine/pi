@@ -1,19 +1,39 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2015-02-20 11:50+0330\n"
-"PO-Revision-Date: 2015-02-20 11:50+0330\n"
+"POT-Creation-Date: 2016-03-01 14:27+0330\n"
+"PO-Revision-Date: 2016-03-01 14:33+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-KeywordsList: _b\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/local/pi/pi-release-2.5.0/usr/module/"
-"user\n"
+"X-Poedit-Basepath: ../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: src/Block/Block.php:58
+msgid "Avatar"
+msgstr "آواتار"
+
+#: template/block/completeness.phtml:21
+msgid "Please complete your profile information, to can use all website features"
+msgstr "لطفا اطلاعات حساب کاربری خود را تکمیل فرمایید تا بتوانید از تمام امکانات وب سایت استفاده نمایید."
+
+#: template/block/completeness.phtml:22
+msgid "update all"
+msgstr "به روز رسانی همه"
+
+#: template/block/completeness.phtml:26
+#, php-format
+msgid "%s%s Complete"
+msgstr "%s%s تکمیل شده"
+
+#: template/block/completeness.phtml:40 template/block/completeness.phtml:42
+msgid "update"
+msgstr "به روز رسانی"
 
 #, fuzzy
 #~ msgid "Register template file name"

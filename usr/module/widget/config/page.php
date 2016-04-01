@@ -38,5 +38,9 @@ return array(
             'controller'    => 'tab',
             'permission'    => 'tab',
         ),
+        array(
+            'controller'    => 'video',
+            'permission'    => 'video',
+        ),
     ),
 );

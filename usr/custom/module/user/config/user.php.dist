@@ -51,36 +51,12 @@ $customConfig = array(
         'mobile'      => array(
             'name'      => 'mobile',
             'title'     => _a('Mobile phone'),
-            // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Zend\I18n\Validator\PhoneNumber',
-                        'options'   => array(
-                            'country'       => 'cn',
-                            'allowed_types' => array('mobile'),
-                        ),
-                    ),
-                ),
-            ),
         ),
 
         // Profile: phone
         'phone'  => array(
             'name'  => 'phone',
             'title' => _a('Telephone'),
-            // Edit element specs
-            'edit'      => array(
-                'validators'    => array(
-                    array(
-                        'name'      => 'Zend\I18n\Validator\PhoneNumber',
-                        'options'   => array(
-                            'country'       => 'cn',
-                            'allowed_types' => array('general'),
-                        ),
-                    ),
-                ),
-            ),
         ),
 
 

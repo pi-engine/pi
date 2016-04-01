@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2015-09-01 10:37+0430\n"
-"PO-Revision-Date: 2015-09-01 10:37+0430\n"
+"POT-Creation-Date: 2016-03-26 13:16+0430\n"
+"PO-Revision-Date: 2016-03-26 13:17+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-KeywordsList: __;_e;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -89,7 +89,7 @@ msgid "Script widgets"
 msgstr "ویجت های اسکریپت"
 
 #: config/nav.php:25 config/nav.php:49 config/nav.php:104 config/nav.php:138
-#: config/nav.php:172 config/nav.php:206 config/nav.php:240
+#: config/nav.php:172 config/nav.php:206 config/nav.php:240 config/nav.php:274
 msgid "Widget list"
 msgstr "فهرست ویجت ها"
 
@@ -102,7 +102,7 @@ msgid "Static widgets"
 msgstr "ویجت های استاتیک"
 
 #: config/nav.php:56 config/nav.php:111 config/nav.php:145 config/nav.php:179
-#: config/nav.php:213 config/nav.php:247
+#: config/nav.php:213 config/nav.php:247 config/nav.php:281
 msgid "Edit"
 msgstr "ویرایش"
 
@@ -123,7 +123,7 @@ msgid "List group"
 msgstr "فهرست گروهی"
 
 #: config/nav.php:120 config/nav.php:154 config/nav.php:188 config/nav.php:222
-#: config/nav.php:256
+#: config/nav.php:256 config/nav.php:290
 msgid "Add new"
 msgstr "جدید"
 
@@ -142,6 +142,10 @@ msgstr "اسپات لایت"
 #: config/nav.php:231 config/permission.php:31
 msgid "Compound tabs"
 msgstr "تب های ترکیبی"
+
+#: config/nav.php:265 config/permission.php:34
+msgid "Video and audio"
+msgstr "ویدیو و صدا"
 
 #: config/permission.php:25
 msgid "Carousel widgets"

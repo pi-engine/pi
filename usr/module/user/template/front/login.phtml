@@ -1,4 +1,13 @@
-<?php $this->css($this->assetModule('front/front.css')); ?>
+<?php
+$this->css($this->assetModule('front/front.css'));
+if (!empty(Pi::user()->config('login_description'))) {
+    $description = Pi::user()->config('login_description');
+    $class = 'col-md-8 col-sm-7 col-xs-12';
+} else {
+    $description = '';
+    $class = 'col-md-12';
+}
+?>
 <div class="clearfix">
     <div class="page-header">
         <h1><?php echo _escape($title); ?></h1>
@@ -8,17 +17,26 @@
             <?php echo _escape($message); ?>
         </div>
     <?php } ?>
-    <?php echo $this->form($form); ?>
-    <div class="user-action-bar">
-        <div class="col-md-offset-2 col-md-10">
-            <ul class="list-inline">
-                <li>
-                    <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
-                </li>
-                <li>
-                    <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
-                </li>
-            </ul>
+    <div class="row clearfix">
+        <?php if (!empty($description)) { ?>
+        <div class="col-md-4 col-sm-5 col-xs-12">
+            <?php echo $description; ?>
+        </div>
+        <?php } ?>
+        <div class="<?php echo $class; ?>">
+            <?php echo $this->form($form); ?>
+            <div class="user-action-bar">
+                <div class="col-md-offset-2 col-md-10">
+                    <ul class="list-inline">
+                        <li>
+                            <a title="<?php _e('Find password'); ?>" href="<?php echo Pi::service('user')->getUrl('password'); ?>"><?php _e('Find password'); ?></a>
+                        </li>
+                        <li>
+                            <a title="<?php _e('Register'); ?>" href="<?php echo Pi::service('user')->getUrl('register'); ?>"><?php _e('Register'); ?></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

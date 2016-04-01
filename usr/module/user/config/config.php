@@ -137,6 +137,15 @@ $config = array(
         'category'      => 'login',
     ),
 
+    'login_description' => array(
+        'title'         => _t('Login description'),
+        'description'   => _t('Description text for login page side bar, html allowed'),
+        'edit'          => 'textarea',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 'login',
+    ),
+
     // Register
     'register_disable'  => array(
         'title'         => _t('Register disable'),
@@ -186,7 +195,16 @@ $config = array(
         'title'         => _t('Email notification'),
         'description'   => _t('Send email notification on register success by admin approval.'),
         'edit'          => 'checkbox',
-        'value'         => 0,
+        'value'         => 1,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_notification_admin' => array(
+        'title'         => _t('Email notification to admin'),
+        'description'   => _t('Send email notification for new user registration to admin'),
+        'edit'          => 'checkbox',
+        'value'         => 1,
         'filter'        => 'int',
         'category'      => 'register',
     ),
@@ -197,6 +215,33 @@ $config = array(
         'edit'          => 'checkbox',
         'value'         => 0,
         'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_term' => array(
+        'title'         => _t('Register term and conditions'),
+        'description'   => _t('Show term and conditions check box to user'),
+        'edit'          => 'checkbox',
+        'value'         => 0,
+        'filter'        => 'int',
+        'category'      => 'register',
+    ),
+
+    'register_term_url' => array(
+        'title'         => _t('Term and conditions page url'),
+        'description'   => _t('Set term and conditions page url, if empty term and conditions check box not active'),
+        'edit'          => 'text',
+        'value'         => '',
+        'filter'        => 'string',
+        'category'      => 'register',
+    ),
+
+    'register_description' => array(
+        'title'         => _t('Register description'),
+        'description'   => _t('Description text for register page side bar, html allowed'),
+        'edit'          => 'textarea',
+        'value'         => '',
+        'filter'        => 'string',
         'category'      => 'register',
     ),
 

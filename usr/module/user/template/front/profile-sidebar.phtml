@@ -57,9 +57,6 @@ array_walk($groups, function (&$group, $gid) {
         <?php $guideConfig = Pi::service('registry')->config->read('guide'); ?>
         <?php if ($guideConfig['manage_active']) { ?>
             <a title="<?php _e('My items'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'dashboard'))); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'dashboard') {echo ' active';} ?>"><?php _e('My items'); ?></a>
-            <?php if ($guideConfig['event_byuser']) { ?>
-                <a title="<?php _e('My events'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'event'))); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'event') {echo ' active';} ?>"><?php _e('My events'); ?></a>
-            <?php } ?>
             <?php if ($guideConfig['sponsor_active']) { ?>
                 <a title="<?php _e('Sponsorship'); ?>" href="<?php echo Pi::url($this->url('guide', array('module' => 'guide', 'controller' => 'manage', 'action' => 'sponsor'))); ?>" class="list-group-item<?php if (isset($sideActive) && $sideActive == 'sponsor') {echo ' active';} ?>"><?php _e('Sponsorship'); ?></a>
             <?php } ?>
@@ -69,10 +66,16 @@ array_walk($groups, function (&$group, $gid) {
         <?php $count = _number(Pi::api('api', 'message')->getUnread($uid, 'message')); ?>
         <a title="<?php _e('My messages'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'message', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'message') {echo ' active';} ?>"><?php _e('My messages'); ?> <span class="badge"><?php echo $count; ?></span></a>
     <?php } ?>
+    <?php if (Pi::service('module')->isActive('event')) { ?>
+        <a title="<?php _e('My events'); ?>" href="<?php echo Pi::url($this->url('event', array('module' => 'event', 'controller' => 'manage', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'event') {echo ' active';} ?>"><?php _e('My events'); ?></a>
+    <?php } ?>
     <?php if (Pi::service('module')->isActive('order')) { ?>
         <a title="<?php _e('My orders'); ?>" href="<?php echo Pi::url($this->url('order', array('module' => 'order', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'order') {echo ' active';} ?>"><?php _e('My orders'); ?></a>
     <?php } ?>
     <?php if (Pi::service('module')->isActive('favourite')) { ?>
         <a title="<?php _e('My favorites'); ?>" href="<?php echo Pi::url($this->url('default', array('module' => 'favourite', 'controller' => 'index', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'favourite') {echo ' active';} ?>"><?php _e('My favorites'); ?></a>
+    <?php } ?>
+    <?php if (Pi::service('module')->isActive('video')) { ?>
+        <a title="<?php _e('My videos'); ?>" href="<?php echo Pi::url($this->url('video', array('module' => 'video', 'controller' => 'channel', 'action' => 'index'))); ?>" class="list-group-item<?php if ($module == 'video') {echo ' active';} ?>"><?php _e('My videos'); ?></a>
     <?php } ?>
 </div>

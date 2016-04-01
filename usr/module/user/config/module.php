@@ -16,7 +16,7 @@ return array(
     'meta'  => array(
         'title'         => _a('User'),
         'description'   => _a('User profile and services.'),
-        'version'       => '1.3.8',
+        'version'       => '1.3.9',
         'license'       => 'New BSD',
         'demo'          => 'http://demo.pialog.org',
         'icon'          => 'fa-user',
@@ -51,5 +51,6 @@ return array(
         'route'         => 'route.php',
         'navigation'    => 'nav.php',
         'event'         => 'event.php',
+        'block'         => 'block.php',
     ),
 );

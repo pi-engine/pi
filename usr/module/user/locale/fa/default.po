@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2015-09-01 10:40+0430\n"
-"PO-Revision-Date: 2015-09-01 10:41+0430\n"
+"POT-Creation-Date: 2016-03-31 14:33+0430\n"
+"PO-Revision-Date: 2016-03-31 14:33+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -70,11 +70,20 @@ msgstr "نقش اضافه شد"
 msgid "Role removed"
 msgstr "نقش حذف شد"
 
-#: config/form.register.php:28
+#: config/form.register.php:20
+msgid "Terms & Conditions"
+msgstr "شرایط و مقررات"
+
+#: config/form.register.php:21
+#, php-format
+msgid "Accept %s"
+msgstr "پذیرش %s"
+
+#: config/form.register.php:39
 msgid "Confirm credential"
 msgstr "تایید واژه رمز"
 
-#: config/form.register.php:60 src/Form/ResendActivationForm.php:38
+#: config/form.register.php:72 src/Form/ResendActivationForm.php:38
 msgid "Please type the word."
 msgstr "لطفا این عبارت را وارد کنید"
 
@@ -83,7 +92,7 @@ msgid "Login"
 msgstr "ورود"
 
 #: src/Api/Breadcrumbs.php:45 src/Controller/Front/RegisterController.php:96
-#: template/front/login-logout.phtml:26 template/front/login.phtml:19
+#: template/front/login-logout.phtml:26 template/front/login.phtml:35
 #: template/front/register-disabled.phtml:3
 msgid "Register"
 msgstr "ثبت نام"
@@ -99,9 +108,8 @@ msgid "Account settings"
 msgstr "تنظیمات حساب کاربری"
 
 #: src/Api/Breadcrumbs.php:63 src/Controller/Front/AvatarController.php:185
-#: template/front/avatar-index.phtml:44
-#: template/front/profile-sidebar.phtml:39
-#: template/front/profile-topbar.phtml:133
+#: template/front/avatar-index.phtml:44 template/front/profile-sidebar.phtml:39
+#: template/front/profile-topbar.phtml:135
 msgid "Change avatar"
 msgstr "تغییر آواتار"
 
@@ -118,7 +126,7 @@ msgstr "تغییر کلمه عبور"
 
 #: src/Api/Breadcrumbs.php:83 src/Controller/Front/PasswordController.php:200
 #: src/Controller/Front/PasswordController.php:201
-#: src/Form/FindPasswordForm.php:52 template/front/login.phtml:16
+#: src/Form/FindPasswordForm.php:52 template/front/login.phtml:32
 #: template/front/password-find.phtml:3
 msgid "Find password"
 msgstr "یافتن کلمه عبور"
@@ -424,7 +432,7 @@ msgid "User ID or Profile group ID is invalid."
 msgstr "شناسه کاربر یا شناسه گروه حساب کاربری صحیح نیست"
 
 #: src/Controller/Front/RegisterController.php:97
-#: template/front/register-index.phtml:2
+#: template/front/register-index.phtml:13
 msgid "Account registration"
 msgstr "ثبت نام"
 
@@ -460,11 +468,15 @@ msgstr "ایمیل فعال سازی با موفقیت ارسال شد"
 msgid "Activation mail was not sent."
 msgstr "ایمیل فعال سازی ارسال نشد"
 
-#: src/Controller/Front/RegisterController.php:441
+#: src/Controller/Front/RegisterController.php:440
+msgid "User information was not completed and user account was not saved."
+msgstr "اطلاعات کاربری تکمیل نشده است و حساب کاربری در سیستم ثبت نشده است."
+
+#: src/Controller/Front/RegisterController.php:465
 msgid "User account was not saved."
 msgstr "حساب کاربری ذخیره نشد"
 
-#: src/Controller/Front/RegisterController.php:465
+#: src/Controller/Front/RegisterController.php:488
 msgid ""
 "User account is registered successfully but activation was failed, please "
 "contact admin."
@@ -472,7 +484,7 @@ msgstr ""
 "حساب کاربری با موفقیت ثبت شده است اما فعال سازی آن با موفقیت همراه نبوده "
 "است، لطفا با مدیر تماس بگیرید"
 
-#: src/Controller/Front/RegisterController.php:493
+#: src/Controller/Front/RegisterController.php:514
 msgid "Account activation email was not able to send, please contact admin."
 msgstr "ناتوان در ارسال ایمیل فعال سازی، با مدیرتماس بگیرید"
 
@@ -692,8 +704,8 @@ msgstr "تغییر ایمیل"
 #: template/front/account-reset-email.phtml:4
 #: template/front/password-process.phtml:13
 #: template/front/register-activate.phtml:6
-#: template/front/register-index.phtml:18
-#: template/front/register-index.phtml:47
+#: template/front/register-index.phtml:35
+#: template/front/register-index.phtml:67
 msgid "Congratulations!"
 msgstr "تبریک می گویم"
 
@@ -866,55 +878,59 @@ msgid "My items"
 msgstr "آیتم های من"
 
 #: template/front/profile-sidebar.phtml:61
-msgid "My events"
-msgstr "رویداد های من"
-
-#: template/front/profile-sidebar.phtml:64
 msgid "Sponsorship"
 msgstr "اسپانسر"
 
-#: template/front/profile-sidebar.phtml:69
+#: template/front/profile-sidebar.phtml:67
 msgid "My messages"
 msgstr "پیام های من"
 
-#: template/front/profile-sidebar.phtml:72
+#: template/front/profile-sidebar.phtml:70
+msgid "My events"
+msgstr "رویداد های من"
+
+#: template/front/profile-sidebar.phtml:73
 msgid "My orders"
 msgstr "سفارش های من"
 
-#: template/front/profile-sidebar.phtml:75
+#: template/front/profile-sidebar.phtml:76
 msgid "My favorites"
 msgstr "مورد علاقه های من"
 
-#: template/front/profile-topbar.phtml:77
+#: template/front/profile-sidebar.phtml:79
+msgid "My videos"
+msgstr "ویدیو های من"
+
+#: template/front/profile-topbar.phtml:79
 msgid "Switch to public"
 msgstr "نمایش عمومی"
 
-#: template/front/profile-topbar.phtml:82
+#: template/front/profile-topbar.phtml:84
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: template/front/profile-topbar.phtml:88
+#: template/front/profile-topbar.phtml:90
 msgid "Quicklinks"
 msgstr "لینک های سریع"
 
-#: template/front/profile-topbar.phtml:111
+#: template/front/profile-topbar.phtml:113
 msgid "Switch to own"
 msgstr "نمایش شخصی"
 
-#: template/front/profile-topbar.phtml:117
-#: template/front/profile-topbar.phtml:122
+#: template/front/profile-topbar.phtml:119
+#: template/front/profile-topbar.phtml:124
 msgid "Send message"
 msgstr "ارسال پیام شخصی"
 
-#: template/front/profile-topbar.phtml:141
+#: template/front/profile-topbar.phtml:143
 msgid "Gender:"
 msgstr "جنسیت:"
 
-#: template/front/profile-topbar.phtml:147
+#: template/front/profile-topbar.phtml:149
 msgid "Birthdate:"
 msgstr "تاریخ تولد:"
 
-#: template/front/profile-topbar.phtml:203
+#: template/front/profile-topbar.phtml:206
 msgid "More"
 msgstr "بیشتر"
 
@@ -927,7 +943,7 @@ msgid "Your account has been activated."
 msgstr "حساب کاربری شما فعال شد"
 
 #: template/front/register-activate.phtml:15
-#: template/front/register-index.phtml:27
+#: template/front/register-index.phtml:47
 #, php-format
 msgid "Or go back to <a href=\"%s\">the requested page</a> directly."
 msgstr "یا مستقیم به <a href=\"%s\">صفحه مورد نظر</a> برگردید."
@@ -945,7 +961,7 @@ msgstr "ارسال مجدد ایمیل فعال سازی"
 msgid "Sorry, register is temporarily disabled. Please come back later."
 msgstr "متاسفانه ثبت نام در حال حاضر غیر فعال است. لطفا بعدا مراجعه کنید"
 
-#: template/front/register-index.phtml:22
+#: template/front/register-index.phtml:40
 #, php-format
 msgid ""
 "Your account has been registered successfully. Please <a href=\"%s\">login</"
@@ -954,12 +970,12 @@ msgstr ""
 "حساب کاربری شما با موفقیت ایجاد شد. لطفا به حساب کاربری خود <a href=\"%s"
 "\">وارد شوید</a>"
 
-#: template/front/register-index.phtml:38
-#: template/front/register-index.phtml:54
+#: template/front/register-index.phtml:57
+#: template/front/register-index.phtml:76
 msgid "Registration was not completed."
 msgstr "ثبت نام تکمیل نشد"
 
-#: template/front/register-index.phtml:48
+#: template/front/register-index.phtml:70
 msgid ""
 "You account has been registered successfully. However it needs to be "
 "approved by our admins before you can use it."
@@ -967,33 +983,33 @@ msgstr ""
 "حساب کاربری شما با موفقیت ایجاد شد. ولی برای فعال شدن به تایید مدیر وب سایت "
 "نیاز دارد تا بتوانید از وب سایت استفاده کنید."
 
-#: template/front/register-index.phtml:63
+#: template/front/register-index.phtml:85
 msgid "An email with activation link has been sent to you."
 msgstr "یک ایمیل با لینک فعال سازی حساب کاربری برای شما ارسال شد"
 
-#: template/front/register-index.phtml:64
+#: template/front/register-index.phtml:86
 msgid "Please check it to finish the registration."
 msgstr ""
 "لطفا ایمیل خود را بررسی کنید و از طریق متن راهنمای داخل آن ثبت نام خود را "
 "تکمیل کنید"
 
-#: template/front/register-index.phtml:67
+#: template/front/register-index.phtml:89
 msgid "If you do not receive the activation email:"
 msgstr "اگر شما ایمیل فعال سازی را دریافت نکرده اید‌ :"
 
-#: template/front/register-index.phtml:69
+#: template/front/register-index.phtml:91
 msgid "Wait a few minutes and check again."
 msgstr "چند دقیقه صبر کنید و مجددا بررسی کنید."
 
-#: template/front/register-index.phtml:70
+#: template/front/register-index.phtml:92
 msgid "Check your email spam box."
 msgstr "بخش اسپم ایمیل خود را بررسی کنید."
 
-#: template/front/register-index.phtml:71
+#: template/front/register-index.phtml:94
 msgid "Request to resend activation email"
 msgstr "درخواست ارسال مجددا ایمیل فعال سازی"
 
-#: template/front/register-index.phtml:106
+#: template/front/register-index.phtml:130
 msgid "Already sent"
 msgstr "قبلا ارسال شده است"
 

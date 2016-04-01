@@ -487,7 +487,6 @@ class RegisterController extends ActionController
             if (!$status) {
                 $result['message'] = __('User account is registered successfully but activation was failed, please contact admin.');
             }
-            /*
             if (Pi::user()->config('register_notification')) {
                 $this->sendNotification('success', array(
                     'email'     => $values['email'],
@@ -495,11 +494,10 @@ class RegisterController extends ActionController
                     'identity'  => $values['identity'],
                 ));
             }
-            */
         // Activated by admin
         } elseif ('admin' == $activationMode) {
             if (Pi::user()->config('register_notification')) {
-                $this->sendNotification('success', array(
+                $this->sendNotification('admin', array(
                     'email'     => $values['email'],
                     'uid'       => $uid,
                     'identity'  => $values['identity'],
@@ -517,6 +515,16 @@ class RegisterController extends ActionController
             }
         }
         $result['status'] = $status;
+
+        // Send notification email to admin
+        if (Pi::user()->config('register_notification_admin')) {
+            $this->sendNotificationToAdmin($activationMode, array(
+                'email'     => $values['email'],
+                'identity'  => $values['identity'],
+                'name'      => $values['name'],
+                'uid'       => $uid,
+            ));
+        }
 
         return $result;
     }
@@ -540,11 +548,6 @@ class RegisterController extends ActionController
      */
     protected function sendNotification($type, array $data)
     {
-        /*
-        if (!Pi::user()->config('register_notification')) {
-            return true;
-        }
-        */
         $params = array();
         $template = '';
         switch ($type) {
@@ -601,6 +604,69 @@ class RegisterController extends ActionController
         // Send email
         $message    = Pi::service('mail')->message($subject, $body, $type);
         $message->addTo($data['email']);
+        $result     = Pi::service('mail')->send($message);
+
+        return $result;
+    }
+
+    /**
+     * Send notification email to website admin
+     *
+     * There are three types of activation:
+     *  - (1) Automatically activated after registration
+     *  - (2) Activated by an administrator
+     *  - (3) Activated by email by the user himself
+     *
+     * For all types, an email notification is to send to admin after if `register_notification_admin` is enabled
+     *
+     * @param string $type
+     * @param array $data   Data: email, uid, identity
+     *
+     * @return bool
+     */
+    protected function sendNotificationToAdmin($type, array $data)
+    {
+        $params = array();
+        $template = '';
+        switch ($type) {
+            case 'auto':
+                $template = 'admin-notification-register-auto';
+                break;
+
+            case 'email':
+                $template = 'admin-notification-register-email';
+                break;
+
+            case 'approval':
+                $template = 'admin-notification-register-approval';
+                break;
+
+            default:
+                break;
+        }
+
+        $params = array(
+            'identity'    => $data['identity'],
+            'email'       => $data['email'],
+            'name'        => $data['name'],
+        );
+
+        // Set admin mail
+        $adminmail = Pi::config('adminmail');
+        $adminname = Pi::config('adminname');
+        $toAdmin = array(
+            $adminmail => $adminname,
+        );
+
+        // Load from HTML template
+        $template   = Pi::service('mail')->template($template, $params);
+        $subject    = $template['subject'];
+        $body       = $template['body'];
+        $type       = $template['format'];
+
+        // Send email
+        $message    = Pi::service('mail')->message($subject, $body, $type);
+        $message->addTo($toAdmin);
         $result     = Pi::service('mail')->send($message);
 
         return $result;
