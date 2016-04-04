@@ -26,6 +26,9 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'tools', groups: [ 'tools' ] }
     ];
 
+    // Active this part and disable all editor filters
+    // config.allowedContent = true;
+    
     // Remove some buttons provided by the standard plugins, which are
     // not needed in the Standard(s) toolbar.
     config.removeButtons = 'Underline,Subscript,Superscript';
@@ -33,11 +36,11 @@ CKEDITOR.editorConfig = function( config ) {
     // Set the most common block elements.
     config.format_tags = 'p;h1;h2;h3;pre';
 
-	// Allow all div classes (from theme and for Boostrap and FontAwesome), allow empty <i>
+    // Allow all div classes (from theme and for Boostrap and FontAwesome), allow empty <i>
     config.extraAllowedContent = 'div(*)[*]{*}; a[!href]; span(*)[*]{*};table(*)[*]{*}; p(*)[*]{*}; li(*)[*]{*}; ul(*)[*]{*}; img(*)[*]{*}';
-	CKEDITOR.dtd.$removeEmpty.i = 0;
-	CKEDITOR.dtd.$removeEmpty.span = 0;
-	
+    CKEDITOR.dtd.$removeEmpty.i = 0;
+    CKEDITOR.dtd.$removeEmpty.span = 0;
+
     // Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
 
@@ -49,3 +52,4 @@ CKEDITOR.editorConfig = function( config ) {
     // config.filebrowserBrowseUrl = roxyFileman;
     // config.filebrowserImageBrowseUrl = roxyFileman+'&type=image';
 };
+
