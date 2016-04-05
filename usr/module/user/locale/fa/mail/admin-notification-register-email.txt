@@ -2,7 +2,7 @@
 
 [format]html[/format]
 
-[subject]%site_name% Account Register[/subject]
+[subject]ثبت نام کاربر جدید در وب سایت %site_name%[/subject]
 
 [body]
 <div style="direction: rtl;">
