@@ -178,6 +178,7 @@ abstract class AbstractSearch extends AbstractApi
                 }
             }
             $item['url'] = $this->buildUrl($item);
+            $item['image'] = $this->buildImage($item);
             $data[] = $item;
         }
 
@@ -208,6 +209,18 @@ abstract class AbstractSearch extends AbstractApi
     protected function buildUrl(array $item)
     {
         return Pi::url('www');
+    }
+
+    /**
+     * Build item link URL
+     *
+     * @param array $item
+     *
+     * @return string
+     */
+    protected function buildImage(array $item)
+    {
+        return '';
     }
 
     /**
