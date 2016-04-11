@@ -212,7 +212,7 @@ abstract class AbstractSearch extends AbstractApi
     }
 
     /**
-     * Build item link URL
+     * Build item image URL
      *
      * @param array $item
      *
