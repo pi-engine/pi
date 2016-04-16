@@ -22,9 +22,6 @@ body
 {
 	font-size: 13px;
 	line-height: 1.6;
-
-	/* Fix for missing scrollbars with RTL texts. (#10488) */
-	word-wrap: break-word;
 }
 
 blockquote
