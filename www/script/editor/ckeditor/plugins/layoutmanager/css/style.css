@@ -1,0 +1,11 @@
+.layoutmanager {}
+.layoutmanager .layout-container {
+    margin: 1px;
+    margin-top: 20px;
+}
+
+.layoutmanager .layout-column {
+    border: 1px dashed black;
+    word-wrap: break-word;
+    padding-top:30px;
+}
