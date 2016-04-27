@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+define('APPLICATION_ENGINE', 'Command');
+define('PI_BOOT_ENABLE', 1);
+
+//Load application boot
+include __DIR__ . '/boot.php';
+exit();
