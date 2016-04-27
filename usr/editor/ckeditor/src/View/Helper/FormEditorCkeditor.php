@@ -100,8 +100,21 @@ class FormEditorCkeditor extends AbstractEditor
     protected function init()
     {
         if (!$this->initialized) {
+            $section = Pi::engine()->section();
             $basePath = Pi::url('script') . '/editor/ckeditor';
+            // Set load config file
+            switch ($section) {
+                case 'front':
+                    $config = sprintf("CKEDITOR.config.customConfig = '%s/config-front.js';", $basePath);
+                    break;
+
+                case 'admin':
+                    $config = sprintf("CKEDITOR.config.customConfig = '%s/config-admin.js';", $basePath);
+                    break;
+            }
+            // Set view
             $this->view->footScript()->appendScript('window.CKEDITOR_BASEPATH="' . $basePath . '/";');
+            $this->view->footScript()->appendScript($config);
             $this->view->headScript()->appendFile($basePath . '/ckeditor.js');
             $this->initialized = true;
         }
