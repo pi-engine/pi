@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pi-comment\n"
 "POT-Creation-Date: 2016-04-28 19:19+0200\n"
-"PO-Revision-Date: 2016-04-28 19:27+0200\n"
+"PO-Revision-Date: 2016-04-28 21:58+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
@@ -340,7 +340,7 @@ msgstr "Es-tu sûr de vouloir supprimer ce commentaire?"
 #: template/front/_post-form.phtml:36
 #, php-format
 msgid "Please <a href=\"%s\">login</a> to leave comments."
-msgstr "Connecte-toi <a href=\"%s\">ici</a> pour laisser un commentaire."
+msgstr "Connecte-toi pour laisser un commentaire !"
 
 #: template/front/comment-404.phtml:6 template/front/comment-view.phtml:17
 msgid "Comment detail"
