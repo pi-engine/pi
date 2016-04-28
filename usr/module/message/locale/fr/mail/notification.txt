@@ -6,7 +6,7 @@
 
 [body]
 <div style="padding: 1px; direction: ltr;">
-	<h3 style="font-size: 1.1em;">Dear %name%,</h3>
+	<h3 style="font-size: 1.1em;">Cher %name%,</h3>
 	<div style="padding: 3px 0; margin: 1px; 0">Tu as reçu un nouveau message de la part de %sender% sur le site %site_name% .</div>
 	<div style="padding: 3px 0; margin: 1px; 0">Connecte-toi sur le site pour lire tes messages.</div>
 	<div style="padding: 3px 0; margin: 1px; 0">Merci de ne pas répondre à ce mail !</div>

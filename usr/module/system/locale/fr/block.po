@@ -1,87 +1,64 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2015-04-20 18:10+0100\n"
-"PO-Revision-Date: 2015-07-22 05:38+0100\n"
+"POT-Creation-Date: 2016-04-28 20:46+0200\n"
+"PO-Revision-Date: 2016-04-28 20:47+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc Desrousseaux\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-KeywordsList: _b\n"
-"X-Poedit-Basepath: ..\\..\\..\\user\\\n"
+"X-Poedit-Basepath: ../../../user\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Block/Block.php:31
+#: src/Block/Block.php:58
+msgid "Avatar"
+msgstr "Avatar"
+
+#: template/block/completeness.phtml:21
+msgid "Please complete your profile information, to can use all website features"
+msgstr "Merci de finaliser la saisie de ton profil, afin de pouvoir utiliser toutes les fonctionnalités du site"
+
+#: template/block/completeness.phtml:22
+msgid "update all"
+msgstr "tout mettre à jour"
+
+#: template/block/completeness.phtml:26
 #, php-format
-msgid "About %s"
-msgstr "A propos de %s"
+msgid "%s%s Complete"
+msgstr "%s%s Finalisation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Block/Block.php:33
-msgid "Site name"
-msgstr "Nom du Site"
+#: template/block/completeness.phtml:40 template/block/completeness.phtml:42
+msgid "update"
+msgstr "mettre à jour"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Block/Block.php:34
-msgid "Slogan"
-msgstr "Slogan"
+#~ msgid "About %s"
+#~ msgstr "A propos de %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:7
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:8
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:54
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:55
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:90
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:91
-msgid "Login"
-msgstr "Connexion"
+#~ msgid "Site name"
+#~ msgstr "Nom du Site"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:12
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:13
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:59
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:60
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:95
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:96
-msgid "Register"
-msgstr "Inscription"
+#~ msgid "Slogan"
+#~ msgstr "Slogan"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:20
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:21
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:72
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:20
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:22
-msgid "Profile"
-msgstr "Profil"
+#~ msgid "Login"
+#~ msgstr "Connexion"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:25
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:26
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:75
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:107
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:108
-msgid "Message"
-msgstr "Message"
+#~ msgid "Register"
+#~ msgstr "Inscription"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:30
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:31
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:78
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:112
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user-bar.phtml:113
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:30
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:32
-msgid "Logout"
-msgstr "Déconnexion"
+#~ msgid "Profile"
+#~ msgstr "Profil"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:25
-#: MARC\Documents\GitHub\pi\usr\module\system/template/block/user.phtml:27
-msgid "Settings"
-msgstr "Paramètres"
+#~ msgid "Message"
+#~ msgstr "Message"
+
+#~ msgid "Logout"
+#~ msgstr "Déconnexion"
+
+#~ msgid "Settings"
+#~ msgstr "Paramètres"
