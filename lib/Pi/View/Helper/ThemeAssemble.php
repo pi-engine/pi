@@ -174,7 +174,6 @@ class ThemeAssemble extends AbstractHelper
             $headMeta($sitename, 'twitter:title');
             $headMeta($description, 'twitter:description');
             $headMeta(Pi::service('asset')->logo(), 'twitter:image');
-            $headMeta(Pi::url(), 'twitter:domain');
             $headMeta(Pi::url(), 'twitter:url');
         }
 
