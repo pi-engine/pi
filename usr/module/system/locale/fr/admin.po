@@ -1,221 +1,176 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2015-04-20 18:09+0100\n"
-"PO-Revision-Date: 2015-04-20 19:13+0100\n"
+"POT-Creation-Date: 2016-04-28 20:40+0200\n"
+"PO-Revision-Date: 2016-04-28 20:45+0200\n"
 "Last-Translator: Marc Desrousseaux\n"
 "Language-Team: Marc / Pi-Team\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-KeywordsList: _a;_t\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: C:\\Users\\LAPTOP MARC\\Documents\\GitHub\\pi\\usr"
-"\\module\\system\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:18
+#: config/block.php:18
 msgid "Site Info"
 msgstr "Information site"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:19
+#: config/block.php:19
 msgid "Website information"
 msgstr "Information sur le site web"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:26
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:116
+#: config/block.php:26 config/page.php:116
 msgid "User"
 msgstr "Utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:27
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:41
+#: config/block.php:27 config/config.php:41
 msgid "User account"
 msgstr "Compte utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:34
+#: config/block.php:34
 msgid "User bar"
 msgstr "Barre utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:35
+#: config/block.php:35
 msgid "User profile or login bar"
 msgstr "Barre profil utilisateur ou de connexion"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:40
+#: config/block.php:40
 msgid "Display type"
 msgstr "Type d'affichage"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:41
+#: config/block.php:41
 msgid "Mode to render."
 msgstr "Mode à afficher."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:47
+#: config/block.php:47
 msgid "Flat"
 msgstr "A plat"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:48
+#: config/block.php:48
 msgid "Dropdown menu"
 msgstr "Menu Dropdown"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:49
+#: config/block.php:49
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:59
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:30
+#: config/block.php:59 config/nav.front.php:30
 msgid "Login"
 msgstr "Connexion"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:60
+#: config/block.php:60
 msgid "User login block"
 msgstr "Bloc de connexion utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:67
+#: config/block.php:67
 msgid "Pi feature"
 msgstr "Fonctionnalités Pi"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/block.php:68
+#: config/block.php:68
 msgid "Introduction to Pi Engine"
 msgstr "Quelques remarques à propose de Pi Engine"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:21
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ConfigController.php:95
+#: config/config.php:21 src/Controller/Admin/ConfigController.php:95
 msgid "General"
 msgstr "Général"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:25
+#: config/config.php:25
 msgid "Head meta"
 msgstr "Balises Meta En-Tête"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:29
+#: config/config.php:29
 msgid "Extra head meta"
 msgstr "Extra head meta"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:33
+#: config/config.php:33
 msgid "Geo tags"
 msgstr "Tags Geo"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:37
+#: config/config.php:37
 msgid "Internationalization"
 msgstr "Paramètres de localisation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:45
+#: config/config.php:45
 msgid "Admin login"
 msgstr "Connexion Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:49
+#: config/config.php:49
 msgid "Text processing"
 msgstr "Editeur de Texte et Mots censurés"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:53
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:300
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:9
+#: config/config.php:53 config/nav.admin.php:300
+#: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr "Mailing"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:65
+#: config/config.php:65
 msgid "Site name"
 msgstr "Nom du site"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:66
+#: config/config.php:66
 msgid "Website name."
 msgstr "Nom du site web."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:73
+#: config/config.php:73
 msgid "Slogan"
 msgstr "Slogan"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:74
+#: config/config.php:74
 msgid "Website slogan."
 msgstr "Slogan du site web."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:80
+#: config/config.php:80
 msgid "Locale"
 msgstr "Paramètres régionaux"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:81
+#: config/config.php:81
 msgid "Locale for application content."
 msgstr "Paramètres régionaux pour le contenu de l'application."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:88
+#: config/config.php:88
 msgid "Charset"
 msgstr "Jeu de caractère"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:89
+#: config/config.php:89
 msgid "Charset for page display."
 msgstr "Jeu de cartactère pour l'affichage de page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:95
+#: config/config.php:95
 msgid "Timezone"
 msgstr "Fuseau Horaire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:96
+#: config/config.php:96
 msgid "Timezone for application system."
 msgstr "Fuseau horaire pour le système applicatif"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:102
+#: config/config.php:102
 msgid "List count"
 msgstr "Nbre Eléments Listes"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:103
+#: config/config.php:103
 msgid "Number of items on a list."
 msgstr "Nombre d'éléments affichés dans une liste"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:110
+#: config/config.php:110
 msgid "Footer"
 msgstr "Pied de page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:111
+#: config/config.php:111
 msgid "Content to be displayed on footer of front pages, HTML tags allowed."
 msgstr ""
 "Contenu à affichager sur le pied de page dans les pages d'accueil, tags HTML "
 "autorisés."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:117
+#: config/config.php:117
 msgid "GA account"
 msgstr "Compte GA"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:118
+#: config/config.php:118
 msgid ""
 "Google Analytics trackingID `UA-XXXXXXXX-X`. To specify host as well, append "
 "to the code `UA-XXXXXXXX-X; XXXX.tld`."
@@ -223,13 +178,11 @@ msgstr ""
 "Google Analytics tracking ID `UA-XXXXXXXX-X`. Pour indiquer également le "
 "host, ajouter au code `UA-XXXXXXXX-X; XXXX.tld`."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:123
+#: config/config.php:123
 msgid "Foot scripts"
 msgstr "Scripts de pied de page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:124
+#: config/config.php:124
 msgid ""
 "Scripts that will be appended to each page footer. Either naked or wrapped "
 "js scripts are allowed."
@@ -237,104 +190,84 @@ msgstr ""
 "Les scripts seront ajoutés dans le pied de page de chaque page.  Les scripts "
 "js bruts ou encapsulés sont autorisés. "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:130
+#: config/config.php:130
 msgid "Theme"
 msgstr "Thème"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:137
+#: config/config.php:137
 msgid "Admin theme"
 msgstr "Administration du Thème"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:165
+#: config/config.php:165
 msgid "Username format"
 msgstr "Format du Nom de Compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:166
+#: config/config.php:166
 msgid "Format of username for registration."
 msgstr "Format du nom de compte pour s'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:171
+#: config/config.php:171
 msgid "Strict: alphabet or number only"
 msgstr "Strict : alphabétique ou numérique seulement"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:172
+#: config/config.php:172
 msgid "Strict/space: alphabet, number or space only"
 msgstr ""
 "Strict/Espaces : caractères alphabétiques, numériques ou espaces seulement"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:173
+#: config/config.php:173
 msgid "Medium: ASCII characters"
 msgstr "Medium : caractères ASCII"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:174
+#: config/config.php:174
 msgid "Medium/space: ASCII characters and spaces"
 msgstr "Moyen/espace : caractères ASCII et espaces"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:175
+#: config/config.php:175
 msgid "Loose: multi-byte characters"
 msgstr "Faible : caractères multibytes"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:176
+#: config/config.php:176
 msgid "Loose/space: multi-byte characters and spaces"
 msgstr "Bas/espaces : caractères multi-byte et espaces"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:186
+#: config/config.php:186
 msgid "Minimum username"
 msgstr "Minimum Nom de Compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:187
+#: config/config.php:187
 msgid "Minimum length of username for user registration"
 msgstr "Longueur minimum du nom de compte pour s'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:194
+#: config/config.php:194
 msgid "Maximum username"
 msgstr "Maximum Nom de Compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:195
+#: config/config.php:195
 msgid "Maximum length of username for user registration"
 msgstr "Longueur maximum du nom de compte pour s'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:202
+#: config/config.php:202
 msgid "Minimum password"
 msgstr "Mot de passe minimum"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:203
+#: config/config.php:203
 msgid "Minimum length of password for user registration"
 msgstr "Longueur minimum du mot de passe pour s'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:210
+#: config/config.php:210
 msgid "Maximum password"
 msgstr "Mot de passe maximum"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:211
+#: config/config.php:211
 msgid "Maximum length of password for user registration"
 msgstr "Longueur maximum du mot de passe pour s'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:218
+#: config/config.php:218
 msgid "Username blacklist"
 msgstr "Liste noire Nom de Compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:219
+#: config/config.php:219
 msgid ""
 "Reserved and forbidden username list. Separate each with a <strong>|</"
 "strong>, regexp syntax is allowed."
@@ -342,13 +275,11 @@ msgstr ""
 "Liste des noms de compte utilisateurs interdits et réservés. Séparer chaque "
 "valeur par <strong>|</strong>, la syntaxe regexp est autorisée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:226
+#: config/config.php:226
 msgid "Email blacklist"
 msgstr "Liste noire email"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:227
+#: config/config.php:227
 msgid ""
 "Forbidden username list. Separate each with a <strong>|</strong>, regexp "
 "syntax is allowed."
@@ -356,124 +287,94 @@ msgstr ""
 "Liste des noms de compte interdits. Séparer chaque valeur par <strong>|</"
 "strong>, la syntaxe regexp est autorisée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:234
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:316
+#: config/config.php:234 config/config.php:316
 msgid "Remember me"
 msgstr "Se souvenir"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:235
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:317
+#: config/config.php:235 config/config.php:317
 msgid "Days to remember login, 0 for disable."
 msgstr "Nombre de jours pour la mémorisation du compte, 0 pour désactiver."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:242
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:324
+#: config/config.php:242 config/config.php:324
 msgid "Login field"
 msgstr "Champ de connexion"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:243
+#: config/config.php:243
 msgid "Identity field(s) for authentication."
 msgstr "Champs d'identification pour l'authentification"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:251
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:333
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:23
+#: config/config.php:251 config/config.php:333
+#: template/admin/member-index.phtml:23
 msgid "Username"
 msgstr "Nom du Compte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:252
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:334
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:25
+#: config/config.php:252 config/config.php:334
+#: template/admin/member-index.phtml:25
 msgid "Email"
 msgstr "Email"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:262
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:308
+#: config/config.php:262 config/config.php:308
 msgid "Maximum attempts"
 msgstr "Tentatives maximum"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:263
+#: config/config.php:263
 msgid "Maximum attempts allowed to try for user login"
 msgstr "Tentatives maximum autorisées pour essayer de se connecter"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:270
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:344
+#: config/config.php:270 config/config.php:344
 msgid "Login disable"
 msgstr "Désactiver la connexion"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:271
+#: config/config.php:271
 msgid "Disable user login"
 msgstr "Désactiver la connexion utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:279
+#: config/config.php:279
 msgid "Register disable"
 msgstr "Désactiver l'inscription"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:280
+#: config/config.php:280
 msgid "Disable user registration"
 msgstr "Désactiver l'inscription utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:288
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:353
+#: config/config.php:288 config/config.php:353
 msgid "Login CAPTCHA"
 msgstr "Connexion CAPTCHA"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:289
+#: config/config.php:289
 msgid "Enable CAPTCHA for user login"
 msgstr "Activer le CAPTCHA pour la connexion utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:297
+#: config/config.php:297
 msgid "Register CAPTCHA"
 msgstr "Inscription CAPTCHA"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:298
+#: config/config.php:298
 msgid "Enable CAPTCHA for user registration"
 msgstr "Activer le CAPTCHA pour l'inscription utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:309
+#: config/config.php:309
 msgid "Maximum attempts allowed to try for admin login"
 msgstr ""
 "Tentatives maximum autorisées pour essayer de se connecter en tant qu'admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:325
+#: config/config.php:325
 msgid "Identity field(s) for admin authentication."
 msgstr "Champs d'identité pour l'authentification admin."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:345
+#: config/config.php:345
 msgid "Disable admin login"
 msgstr "Désactiver la connexion admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:354
+#: config/config.php:354
 msgid "Enable CAPTCHA for admin login"
 msgstr "Activer le CAPTCHA pour la connexion admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:383
+#: config/config.php:383
 msgid "Head title for web page"
 msgstr "Titre Header pour la page web"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:391
+#: config/config.php:391
 msgid ""
 "The keywords meta tag is a series of keywords that represents the content of "
 "your site. Separated keywords by a comma."
@@ -481,8 +382,7 @@ msgstr ""
 "Le tag meta keyworks est une série de mots clefs qui représentent le contenu "
 "de votre site. Séparer les mots par une virgule."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:399
+#: config/config.php:399
 msgid ""
 "The description meta tag is a general description of what is contained in "
 "your web page"
@@ -490,13 +390,11 @@ msgstr ""
 "Le tag meta description est une description générale du contenu de vos pages "
 "web"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:408
+#: config/config.php:408
 msgid "Default number style"
 msgstr "Style par défaut pour les nombres"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:409
+#: config/config.php:409
 msgid ""
 "See http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
@@ -504,79 +402,64 @@ msgstr ""
 "Voir http://www.php.net/manual/en/class.numberformatter.php#intl."
 "numberformatter-constants.unumberformatstyle"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:414
+#: config/config.php:414
 msgid "Default format for the locale"
 msgstr "Format par défaut pour les paramètres régionaux"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:415
+#: config/config.php:415
 msgid "Decimal format defined by pattern"
 msgstr "Format de décimales définis par un canevas (pattern)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:416
+#: config/config.php:416
 msgid "Decimal format"
 msgstr "Format de décimale"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:417
+#: config/config.php:417
 msgid "Percent format"
 msgstr "Format de pourcentage"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:418
+#: config/config.php:418
 msgid "Scientific format"
 msgstr "Format scientifique"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:419
+#: config/config.php:419
 msgid "Spellout rule-based format"
 msgstr "Format basé sur des règles spécifiques"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:420
+#: config/config.php:420
 msgid "Ordinal rule-based format"
 msgstr "Format basé sur des règles ordinales"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:421
+#: config/config.php:421
 msgid "Duration rule-based format"
 msgstr "Format basé sur des règles de durée"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:422
+#: config/config.php:422
 msgid "Rule-based format defined by pattern"
 msgstr "Format basé sur une règle définie par le canevas"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:431
+#: config/config.php:431
 msgid "Default pattern for selected number style"
 msgstr "Format par défaut pour le style de nombre sélectionné"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:432
+#: config/config.php:432
 msgid "Only if required by style"
 msgstr "Seulement si requis par le style"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:439
+#: config/config.php:439
 msgid "Default currency type"
 msgstr "Type de monnaie par défaut"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:440
+#: config/config.php:440
 msgid "The 3-letter ISO 4217 currency code indicating the currency to use."
 msgstr ""
 "Les 3 lettres ISO 4217 du code monnaie indiquent la monnaie à utiliser. "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:447
+#: config/config.php:447
 msgid "Default calendar for the locale"
 msgstr "Calendrier par défaut pour les paramètres régionaux"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:448
+#: config/config.php:448
 msgid ""
 "\"persian\" is suggested for Persian language. See http://www.php.net/manual/"
 "en/class.intldateformatter.php#intl.intldateformatter-constants.calendartypes"
@@ -585,14 +468,11 @@ msgstr ""
 "manual/en/class.intldateformatter.php#intl.intldateformatter-constants."
 "calendartypes"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:455
+#: config/config.php:455
 msgid "Default date type"
 msgstr "Type de date par défaut"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:456
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:475
+#: config/config.php:456 config/config.php:475
 msgid ""
 "See http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
@@ -600,60 +480,45 @@ msgstr ""
 "Voir http://www.php.net/manual/en/class.intldateformatter.php#intl."
 "intldateformatter-constants"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:461
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:480
+#: config/config.php:461 config/config.php:480
 msgid "Do not include this element"
 msgstr "Ne pas inclure cet élément"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:462
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:481
+#: config/config.php:462 config/config.php:481
 msgid ""
 "Completely specified style (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 msgstr "Style Etendu (Tuesday, April 12, 1952 AD or 3:30:42pm PST)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:463
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:482
+#: config/config.php:463 config/config.php:482
 msgid "Long style (January 12, 1952 or 3:30:32pm)"
 msgstr "Style Long (January 12, 1952 or 3:30:32pm)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:464
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:483
+#: config/config.php:464 config/config.php:483
 msgid "Medium style (Jan 12, 1952)"
 msgstr "Style Medium (Jan 12, 1952)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:465
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:484
+#: config/config.php:465 config/config.php:484
 msgid "Most abbreviated style, only essential data (12/13/52 or 3:30pm)"
 msgstr ""
 "Style le plus court, seulement les données essentielles (12/13/52 or 3:30pm)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:474
+#: config/config.php:474
 msgid "Default time type"
 msgstr "Type d'heure par défaut"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:493
+#: config/config.php:493
 msgid "Default formatting pattern for date-time"
 msgstr "Format par défaut pour les dates et les heures"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:494
+#: config/config.php:494
 msgid "See http://userguide.icu-project.org/formatparse/datetime"
 msgstr "Voir http://userguide.icu-project.org/formatparse/datetime"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:501
+#: config/config.php:501
 msgid "Default format for legacy date function"
 msgstr "Format par défaut pour les fonctions date standards"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:502
+#: config/config.php:502
 msgid ""
 "The format is required in case Intl extension is not available. See http://"
 "www.php.net/manual/en/function.date.php"
@@ -661,53 +526,43 @@ msgstr ""
 "Le format est requis lorsque l'extension Intl n'est pas disponible. Se "
 "référer à http://www.php.net/manual/en/function.date.php"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:511
+#: config/config.php:511
 msgid "Admin email"
 msgstr "Email Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:512
+#: config/config.php:512
 msgid "Admin email address for contact."
 msgstr "Adresse email de l'admin pour le contacter"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:518
+#: config/config.php:518
 msgid "Admin name"
 msgstr "Nom Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:519
+#: config/config.php:519
 msgid "User name used to send emails"
 msgstr "Nom utilisateur pour l'envoi des emails"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:524
+#: config/config.php:524
 msgid "Email encoding"
 msgstr "Encodage mail"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:525
+#: config/config.php:525
 msgid "Encoding for email contents"
 msgstr "Encodage des contenus de mail"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:533
+#: config/config.php:533
 msgid "Text editor"
 msgstr "Editeur de texte"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:534
+#: config/config.php:534
 msgid "Default editor for text processing"
 msgstr "Editeur par défaut pour la gestion des textes"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:540
+#: config/config.php:540
 msgid "Enable word censoring"
 msgstr "Activer la censure de mots"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:541
+#: config/config.php:541
 msgid ""
 "Words will be censored if this option is enabled. This option may be turned "
 "off for enhanced site speed."
@@ -715,13 +570,11 @@ msgstr ""
 "Les mots seront censurés si cette option est activée. Cette option peut être "
 "désactivée pour améliorer la vitesse du site."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:549
+#: config/config.php:549
 msgid "Words to censor"
 msgstr "Mots à censurer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:550
+#: config/config.php:550
 msgid ""
 "Enter words that should be censored in user posts. Separate each with a \"|"
 "\", case insensitive."
@@ -729,53 +582,70 @@ msgstr ""
 "Entrer les mots qui seront censurés dans les saisies utilisateurs. Séparer "
 "chaque mot par un  \"|\" , non sensible à la casse"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:557
+#: config/config.php:557
 msgid "Word to replace censored words"
 msgstr "Mot de remplacement pour les mots censurés"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:558
+#: config/config.php:558
 msgid ""
 "Censored words will be replaced with the characters entered in this textbox"
 msgstr ""
 "Les mots censurés seront remplacés par les caractères entrés dans cette zone "
 "de texte."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:565
+#: config/config.php:565
 msgid "Module themes"
 msgstr "Thèmes du module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:566
+#: config/config.php:566
 msgid "Themes for modules."
 msgstr "Thèmes pour les modules."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:574
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.php:21
+#: config/config.php:574 config/nav.php:21
 msgid "Front navigation"
 msgstr "Navigation côté utilisateur (front)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:575
+#: config/config.php:575
 msgid "Global navigation for front end."
 msgstr "Système de navigation global pour le côté utilisateur."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:582
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.php:27
+#: config/config.php:582 config/nav.php:27
 msgid "Admin navigation"
 msgstr "Navigation Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:583
+#: config/config.php:583
 msgid "Global navigation for admin."
 msgstr "Navigation globale pour les admins."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:591
+#: config/config.php:590
+msgid "Meta title type"
+msgstr "Type de Meta Title"
+
+#: config/config.php:591
+msgid "Set short or lang meta title type"
+msgstr "Définir le type de meta Title Short ou Lang"
+
+#: config/config.php:596
+msgid "Postfix by page - module - website titles"
+msgstr "Postfix Page Title - module - Website"
+
+#: config/config.php:597
+msgid "Postfix by page - website titles"
+msgstr "Postfix Page Title - Website"
+
+#: config/config.php:598
+msgid "Prefix by website - module - page titles"
+msgstr "Préfix Website - module - Page Title"
+
+#: config/config.php:599
+msgid "Prefix by website - page titles"
+msgstr "Préfix WebSite - Page Title"
+
+#: config/config.php:600
+msgid "Just page title"
+msgstr "Seulement le Title de la page"
+
+#: config/config.php:611
 msgid ""
 "The author meta tag defines the name of the author of the document being "
 "read. Supported data formats include the name, email address of the "
@@ -785,28 +655,23 @@ msgstr ""
 "lecture. Les formats de données supportés sont le nom, l'adresse email du "
 "webmaster, le nom de l'entreprise our l'URL."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:599
+#: config/config.php:619
 msgid "Generator of the document being read."
 msgstr "Générateur du document qui est lu."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:606
+#: config/config.php:626
 msgid "Website local"
 msgstr "Langue du Site"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:607
+#: config/config.php:627
 msgid "Set website local, like en_GB"
 msgstr "Définir la langue du site (ex: en_GB)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:614
+#: config/config.php:634
 msgid "Twitter account"
 msgstr "Compte Twitter"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:615
+#: config/config.php:635
 msgid ""
 "Username for the website used in the Twitter card. Add @ before username "
 "like @PiEnable or leave it empty"
@@ -814,13 +679,11 @@ msgstr ""
 "Nom de compte du site utilisé dans les Twitter Cards. Ajouter @ avant le nom "
 "de compte (ex : @PiEnable) ou laisser vide"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:621
+#: config/config.php:641
 msgid "Facebook app id"
 msgstr "Facebook app id"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:622
+#: config/config.php:642
 msgid ""
 "Set facebook app id here for use open graph tags on facebook page, its your "
 "website facebook page id"
@@ -828,442 +691,347 @@ msgstr ""
 "Saisir ici le numéro d'app id Facebook pour utiliser les tags OpenGraph sur "
 "la page Facebook, c'est votre numéro page Facebook"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:628
+#: config/config.php:648
 msgid "Pinterest domain verify"
 msgstr "Vérification de domaine Pinterest"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:629
+#: config/config.php:649
 msgid ""
 "Set pinterest domain verify code here, if your website have page on pinterest"
 msgstr ""
 "Saisir le code Pinterest de vérification du domaine, si votre site a une "
 "page sur Pinterest"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:635
+#: config/config.php:655
 msgid "Latitude"
 msgstr "Latitude"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:642
+#: config/config.php:662
 msgid "Longitude"
 msgstr "Longitude"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:649
+#: config/config.php:669
 msgid "Placename"
 msgstr "Lieu"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/config.php:656
+#: config/config.php:676
 msgid "Region"
 msgstr "Région"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/event.php:21
+#: config/event.php:21
 msgid "Module installed"
 msgstr "Module installé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/event.php:24
+#: config/event.php:24
 msgid "Module uninstalled"
 msgstr "Module désinstallé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/event.php:27
+#: config/event.php:27
 msgid "Module activated"
 msgstr "Module activé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/event.php:30
+#: config/event.php:30
 msgid "Module deactivated"
 msgstr "Module désactivé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/event.php:33
+#: config/event.php:33
 msgid "Module updated"
 msgstr "Module mis à jour"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/module.php:19
+#: config/module.php:19
 msgid "System"
 msgstr "Système"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/module.php:22
+#: config/module.php:22
 msgid "For administration of core functions of the site."
 msgstr "Pour administrer les fonctions coeur du site"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:17
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:91
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:23
+#: config/nav.admin.php:17 config/page.php:91
+#: template/admin/asset-index.phtml:23
 msgid "Modules"
 msgstr "Modules"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:28
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:104
+#: config/nav.admin.php:28 config/nav.admin.php:104
 msgid "Installed"
 msgstr "Installés"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:48
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:112
+#: config/nav.admin.php:48 config/nav.admin.php:112
 msgid "Availables"
 msgstr "Disponibles"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:67
+#: config/nav.admin.php:67
 msgid "Category"
 msgstr "Catégorie"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:74
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:120
+#: config/nav.admin.php:74 config/nav.admin.php:120
 msgid "Repository"
 msgstr "Répertoire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:85
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:97
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:36
+#: config/nav.admin.php:85 config/page.php:97
+#: template/admin/asset-index.phtml:36
 msgid "Themes"
 msgstr "Thèmes"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:96
+#: config/nav.admin.php:96
 msgid "In action"
 msgstr "En action"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:132
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:103
+#: config/nav.admin.php:132 config/page.php:103
 msgid "Navigation"
 msgstr "Navigation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:143
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:79
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:127
+#: config/nav.admin.php:143 src/Controller/Admin/NavController.php:80
+#: src/Controller/Admin/NavController.php:128
 msgid "Navigation list"
 msgstr "Liste des navigations"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:152
+#: config/nav.admin.php:152
 msgid "Data manipulation"
 msgstr "Manipulation de données"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:163
+#: config/nav.admin.php:163
 msgid "Add"
 msgstr "Ajouter"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:172
+#: config/nav.admin.php:172
 msgid "Navigation setup"
 msgstr "Paramétrage de la navigation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:183
+#: config/nav.admin.php:183
 msgid "Role"
 msgstr "Rôle"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:194
+#: config/nav.admin.php:194
 msgid "Role list"
 msgstr "Liste des Rôles"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:202
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:18
+#: config/nav.admin.php:202 template/admin/role.phtml:18
 msgid "Add role"
 msgstr "Ajouter un rôle"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:260
+#: config/nav.admin.php:260
 msgid "Cache flush"
 msgstr "Vider le cache"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:270
+#: config/nav.admin.php:270
 msgid "Asset publish"
 msgstr "Publier la ressource"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:281
+#: config/nav.admin.php:281
 msgid "Toolkit"
 msgstr "Boite à Outils"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.admin.php:292
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:8
+#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr "Audit"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:17
+#: config/nav.admin.php:311
+msgid "Homepage layout"
+msgstr "Design HomePage"
+
+#: config/nav.component.php:17
 msgid "Configurations"
 msgstr "Paramètres"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:28
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:65
+#: config/nav.component.php:28 config/page.php:65
 msgid "Blocks"
 msgstr "Blocs"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:39
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:71
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:22
+#: config/nav.component.php:39 config/page.php:71
+#: template/admin/block-list.phtml:22
 msgid "Pages"
 msgstr "Pages"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:50
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:135
+#: config/nav.component.php:50 config/page.php:135
 msgid "Cache"
 msgstr "Cache"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:61
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:74
+#: config/nav.component.php:61 template/admin/nav-data.phtml:76
 msgid "Permission"
 msgstr "Autorisations"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.component.php:72
+#: config/nav.component.php:72
 msgid "Event/Hook"
 msgstr "Evènement/Hook"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:19
+#: config/nav.front.php:19
 msgid "Home"
 msgstr "Accueil"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:24
+#: config/nav.front.php:24
 msgid "Profile"
 msgstr "Profil"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:37
+#: config/nav.front.php:37
 msgid "Register"
 msgstr "S'inscrire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:44
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:37
+#: config/nav.front.php:44 template/admin/member-index.phtml:37
 msgid "Password"
 msgstr "Mot de passe"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:52
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:25
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:16
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:22
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:36
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:17
+#: config/nav.front.php:52 template/admin/event.phtml:25
+#: template/admin/perm.phtml:16 template/admin/perm.phtml:22
+#: template/admin/role.phtml:36 template/admin/theme-index.phtml:17
 msgid "Admin"
 msgstr "Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.front.php:58
+#: config/nav.front.php:58
 msgid "RSS Feed"
 msgstr "Flux RSS"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/nav.php:33
+#: config/nav.php:33
 msgid "Managed components"
 msgstr "Composants gérés"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:20
+#: config/page.php:20
 msgid "Homepage"
 msgstr "Accueil"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:28
+#: config/page.php:28
 msgid "Utility"
 msgstr "Utilitaire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:35
+#: config/page.php:35
 msgid "Error reporting"
 msgstr "Error reporting"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:45
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ComponentController.php:81
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Module/DashboardController.php:374
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:20
+#: config/page.php:45 src/Controller/Admin/ComponentController.php:81
+#: src/Controller/Module/DashboardController.php:374
+#: template/admin/dashboard-system.phtml:20
 msgid "Dashboard"
 msgstr "Tableau de bord"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:51
+#: config/page.php:51
 msgid "Readme"
 msgstr "Guide utilisation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:59
+#: config/page.php:59
 msgid "Config"
 msgstr "Paramétrage"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:77
+#: config/page.php:77
 msgid "Event/listener"
 msgstr "Event/listener"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:83
+#: config/page.php:83
 msgid "Permissions"
 msgstr "Autorisations"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:110
+#: config/page.php:110
 msgid "Roles"
 msgstr "Rôles"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:123
+#: config/page.php:123
 msgid "Asset"
 msgstr "Ressource"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:129
+#: config/page.php:129
 msgid "Auditing"
 msgstr "Audit"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/page.php:145
+#: config/page.php:145
 msgid "What's new"
 msgstr "Quoi de neuf"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:20
+#: config/permission.php:20
 msgid "Global public resource"
 msgstr "Ressource globale publique"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:28
+#: config/permission.php:28
 msgid "Guest only"
 msgstr "Invité seulement"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:35
+#: config/permission.php:35
 msgid "Member only"
 msgstr "Membre seulement"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:45
+#: config/permission.php:45
 msgid "Generic permission"
 msgstr "Permission générique"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:57
+#: config/permission.php:57
 msgid "Operation: modules"
 msgstr "Exploitation : modules"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:64
+#: config/permission.php:64
 msgid "Operation: themes"
 msgstr "Exploitation : thèmes"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:72
+#: config/permission.php:72
 msgid "Operation: navigation"
 msgstr "Exploitation : navigation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:80
+#: config/permission.php:80
 msgid "Operation: roles"
 msgstr "Exploitation : rôles"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:96
+#: config/permission.php:96
 msgid "Operation: maintenance"
 msgstr "Exploitation : maintenance"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:106
+#: config/permission.php:106
 msgid "Management: configs"
 msgstr "Management : paramètres"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:114
+#: config/permission.php:114
 msgid "Management: blocks"
 msgstr "Management : blocs"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:122
+#: config/permission.php:122
 msgid "Management: pages"
 msgstr "Management : pages"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:130
+#: config/permission.php:130
 msgid "Management: caches"
 msgstr "Management : caches"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:137
+#: config/permission.php:137
 msgid "Management: permissions"
 msgstr "Management : permissions"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/permission.php:144
+#: config/permission.php:144
 msgid "Management: events/hooks"
 msgstr "Management : Evènements/Hooks"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/role.php:19
+#: config/role.php:19
 msgid "Administrator"
 msgstr "Administrateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/role.php:21
+#: config/role.php:21
 msgid "Staff"
 msgstr "Equipe"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/role.php:35
+#: config/role.php:35
 msgid "Webmaster"
 msgstr "Webmaster"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/role.php:37
+#: config/role.php:37
 msgid "Member"
 msgstr "Membre"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/config/role.php:39
+#: config/role.php:39
 msgid "Guest"
 msgstr "Invité"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:50
+#: src/Controller/Admin/AssetController.php:50
 msgid "Asset component list"
 msgstr "Liste des Ressources"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:100
+#: src/Controller/Admin/AssetController.php:100
 msgid ""
 "Some old files were not able to remove and asset publish was not completed."
 msgstr ""
 "Certains fichiers anciens ne peuvent être supprimés et la publication des "
 "ressources ne s'est pas réalisée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:105
+#: src/Controller/Admin/AssetController.php:105
 msgid "Asset publish was not completed, please check and copy manually."
 msgstr ""
 "La publication des ressources n'a pas été réalisée, merci de vérifier et de "
 "les copier manuellement."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:110
+#: src/Controller/Admin/AssetController.php:110
 msgid ""
 "Asset publish was not completed because some old files were not able to "
 "remove."
@@ -1271,1061 +1039,849 @@ msgstr ""
 "La publication des ressources ne s'est pas terminées car des fichiers "
 "anciens n'ont pas pu être supprimés."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:115
+#: src/Controller/Admin/AssetController.php:115
 msgid ""
 "Asset files are not published correctly, please copy asset files manually."
 msgstr ""
 "Les fichiers de ressource n'ont pas été publiées correctement, merci de "
 "copier les fichiers manuellement."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:120
+#: src/Controller/Admin/AssetController.php:120
 msgid "Asset files are published correctly."
 msgstr "Fichiers de ressource publiés correctement."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:187
+#: src/Controller/Admin/AssetController.php:187
 msgid "Publish is not completed, please check and re-publish one by one."
 msgstr ""
 "La publication n'a pas été réalisée, merci de vérifier et de re-publier les "
 "fichiers un par un."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/AssetController.php:192
+#: src/Controller/Admin/AssetController.php:192
 msgid "All assets published successfully."
 msgstr "Toutes les ressources ont été publiées avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:136
+#: src/Controller/Admin/BlockController.php:136
 msgid "Block list"
 msgstr "Liste des blocs"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:152
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:204
+#: src/Controller/Admin/BlockController.php:152
+#: src/Controller/Admin/BlockController.php:204
 msgid "Base block is not found."
 msgstr "Le bloc d'origine n'a pas été trouvé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:188
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:286
+#: src/Controller/Admin/BlockController.php:188
+#: src/Controller/Admin/BlockController.php:286
 msgid "Block data saved successfully."
 msgstr "Les données du bloc ont été enregistrées."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:195
+#: src/Controller/Admin/BlockController.php:195
 msgid "Block data not saved."
 msgstr "Les données du bloc n'ont pas été enregistrées."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:198
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:293
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:169
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:280
+#: src/Controller/Admin/BlockController.php:198
+#: src/Controller/Admin/BlockController.php:293
+#: src/Controller/Admin/PageController.php:169
+#: src/Controller/Admin/PageController.php:280
 msgid "Invalid data, please check and re-submit."
 msgstr "Données invalides, merci de vérifier et de re-valider."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:229
+#: src/Controller/Admin/BlockController.php:229
 #, php-format
 msgid "%s clone"
 msgstr "Clone - %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:255
+#: src/Controller/Admin/BlockController.php:255
 #, php-format
 msgid "Block clone from: %s"
 msgstr "Clone du bloc à partir de : %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:299
+#: src/Controller/Admin/BlockController.php:299
 msgid "Block is not found."
 msgstr "Le bloc n'a pas été trouvé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:314
+#: src/Controller/Admin/BlockController.php:314
 #, php-format
 msgid "Block edit: %s"
 msgstr "Edition du bloc : %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/BlockController.php:334
+#: src/Controller/Admin/BlockController.php:334
 msgid "Block is deleted."
 msgstr "Le bloc a été supprimé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:77
+#: src/Controller/Admin/CacheController.php:77
 msgid "Page cache updated successfully."
 msgstr "Cache de page mis à jour avec succès"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:94
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:64
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:24
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:15
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:21
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:35
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:12
+#: src/Controller/Admin/CacheController.php:94
+#: src/Controller/Admin/PageController.php:64 template/admin/event.phtml:24
+#: template/admin/perm.phtml:15 template/admin/perm.phtml:21
+#: template/admin/role.phtml:35 template/admin/theme-index.phtml:12
 msgid "Front"
 msgstr "Front de Page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:98
+#: src/Controller/Admin/CacheController.php:98
 msgid "Feed"
 msgstr "Flux"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:111
+#: src/Controller/Admin/CacheController.php:111
 msgid "Page wide"
 msgstr "Largeur de page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:112
+#: src/Controller/Admin/CacheController.php:112
 msgid "Action data"
 msgstr "Nom de l'action"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:161
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:87
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:417
+#: src/Controller/Admin/CacheController.php:161
+#: src/Controller/Admin/PageController.php:87
+#: src/Controller/Admin/PageController.php:417
 msgid "Module wide"
 msgstr "Global Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:171
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:97
+#: src/Controller/Admin/CacheController.php:171
+#: src/Controller/Admin/PageController.php:97
 msgid "Module home"
 msgstr "Accueil Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/CacheController.php:195
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:93
+#: src/Controller/Admin/CacheController.php:195
+#: src/Controller/Admin/FlushController.php:93
 msgid "Cache list"
 msgstr "Liste des caches"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ComponentController.php:74
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:76
+#: src/Controller/Admin/ComponentController.php:74
+#: src/Controller/Admin/ModuleController.php:76
 msgid "Never updated."
 msgstr "Jamais mis à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ConfigController.php:174
+#: src/Controller/Admin/ConfigController.php:174
 msgid "Configuration data saved successfully."
 msgstr "Les données de paramétrage ont été sauvegardées avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ConfigController.php:188
+#: src/Controller/Admin/ConfigController.php:188
 msgid "Module configurations"
 msgstr "Paramétrages Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/EventController.php:143
+#: src/Controller/Admin/EventController.php:143
 #, php-format
 msgid "Event listeners of module %s"
 msgstr "Event listeners du module %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/EventController.php:168
+#: src/Controller/Admin/EventController.php:168
 msgid "The item not found."
 msgstr "L'élément n'a pas été trouvé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/EventController.php:183
+#: src/Controller/Admin/EventController.php:183
 msgid "The item is not allowed to activate since module is inactive."
 msgstr "L'élément ne peut être activé car le module est inactif."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/EventController.php:190
+#: src/Controller/Admin/EventController.php:190
 msgid "The item updated successfully."
 msgstr "L'éléments a été mis à jour avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:37
+#: src/Controller/Admin/FlushController.php:37
 msgid "File status cache"
 msgstr "Statut du cache fichier"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:38
+#: src/Controller/Admin/FlushController.php:38
 msgid "APC file cache"
 msgstr "Cache fichier APC"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:39
+#: src/Controller/Admin/FlushController.php:39
 msgid "System cache files"
 msgstr "Fichiers de cache système"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:40
+#: src/Controller/Admin/FlushController.php:40
 msgid "System persistent data"
 msgstr "Données persistantes système"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:41
+#: src/Controller/Admin/FlushController.php:41
 msgid "Module cache"
 msgstr "Cache module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:42
+#: src/Controller/Admin/FlushController.php:42
 msgid "Comment cache"
 msgstr "Cache commentaire"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:63
+#: src/Controller/Admin/FlushController.php:63
 #, php-format
 msgid "Application cache [%s]"
 msgstr "Cache applicatif [%s]"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:81
+#: src/Controller/Admin/FlushController.php:81
 #, php-format
 msgid "Page cache [%s]"
 msgstr "Cache des pages [%s]"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:110
+#: src/Controller/Admin/FlushController.php:110
 msgid "Cache is flushed successfully."
 msgstr "Le cache a été vidé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/FlushController.php:113
+#: src/Controller/Admin/FlushController.php:113
 #, php-format
 msgid "Cache flush failed: %s"
 msgstr "Le vidage du cache a échoué : %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/IndexController.php:31
+#: src/Controller/Admin/IndexController.php:31
 msgid "Security: `setup` folder is not removed!"
 msgstr "Sécurité : le répertoire `setup` n'a pas été supprimé !"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/IndexController.php:37
+#: src/Controller/Admin/IndexController.php:37
 #, php-format
 msgid "Security: `%s` is writable!"
 msgstr "Sécurité : `%s` est ouvert en écriture !"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/IndexController.php:47
+#: src/Controller/Admin/IndexController.php:47
 #, php-format
 msgid "Permission: `%s` is not available for write!"
 msgstr "Permission : `%s` n'est pas disponible en écriture !"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/LoginController.php:44
+#: src/Controller/Admin/LoginController.php:44
 msgid "Not privileged."
 msgstr "Sans privilège."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:82
+#: src/Controller/Admin/ModuleController.php:82
 msgid "Installed modules"
 msgstr "Modules installés"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:118
+#: src/Controller/Admin/ModuleController.php:118
 msgid "Modules ready for installation"
 msgstr "Modules disponible à l'installation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:159
+#: src/Controller/Admin/ModuleController.php:159
 msgid "Module moved successfully."
 msgstr "Module déplacé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:166
+#: src/Controller/Admin/ModuleController.php:166
 msgid "Category deleted successfully."
 msgstr "Catégorie supprimée avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:206
+#: src/Controller/Admin/ModuleController.php:206
 msgid "Category updated successfully."
 msgstr "Catégorie mise à jour avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:218
+#: src/Controller/Admin/ModuleController.php:218
 msgid "Modules sorted successfully."
 msgstr "Modules triés avec succè."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:251
+#: src/Controller/Admin/ModuleController.php:251
 msgid "All categorized"
 msgstr "Toutes les catégories"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:259
+#: src/Controller/Admin/ModuleController.php:259
 msgid "Uncategorized"
 msgstr "Non catégorisé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:278
+#: src/Controller/Admin/ModuleController.php:278
 msgid "+ New category"
 msgstr "+ Nouv. catégorie"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:321
+#: src/Controller/Admin/ModuleController.php:321
 msgid "Directory is not specified."
 msgstr "Le répertoire n'est pas spécifié."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:327
+#: src/Controller/Admin/ModuleController.php:327
 #, php-format
 msgid "Meta data are not loaded for \"%s\"."
 msgstr "Les Meta data ne sont pas chargées pour \"%s\"."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:344
+#: src/Controller/Admin/ModuleController.php:344
 msgid "The module has already been installed."
 msgstr "Le module est déja installé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:359
+#: src/Controller/Admin/ModuleController.php:359
 #, php-format
 msgid "Module \"%s\" is installed successfully."
 msgstr "Le module \"%s\" s'est installé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:370
+#: src/Controller/Admin/ModuleController.php:370
 #, php-format
 msgid "Module \"%s\" is not installed."
 msgstr "Le module \"%s\" n'est pas installé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:374
+#: src/Controller/Admin/ModuleController.php:374
 msgid "Module is not installed."
 msgstr "Le module n'est pas installé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:378
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:432
+#: src/Controller/Admin/ModuleController.php:378
+#: src/Controller/Admin/ModuleController.php:432
 msgid "Module installation"
 msgstr "Installation du module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:451
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:550
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:611
+#: src/Controller/Admin/ModuleController.php:451
+#: src/Controller/Admin/ModuleController.php:550
+#: src/Controller/Admin/ModuleController.php:611
 msgid "Module is not specified."
 msgstr "Le module n'a pas été sélectionné."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:460
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:559
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:620
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:715
+#: src/Controller/Admin/ModuleController.php:460
+#: src/Controller/Admin/ModuleController.php:559
+#: src/Controller/Admin/ModuleController.php:620
+#: src/Controller/Admin/ModuleController.php:715
 msgid "Module is not found."
 msgstr "Le module n'a pas été trouvé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:462
+#: src/Controller/Admin/ModuleController.php:462
 msgid "System module is protected."
 msgstr "Le module Système est protégé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:471
+#: src/Controller/Admin/ModuleController.php:471
 #, php-format
 msgid "Module \"%s\" is uninstalled successfully."
 msgstr "Le module \"%s\" s'est désinstallé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:479
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:484
+#: src/Controller/Admin/ModuleController.php:479
+#: src/Controller/Admin/ModuleController.php:484
 #, php-format
 msgid "Module \"%s\" is not uninstalled."
 msgstr "Le module \"%s\" ne s'est pas désinstallé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:488
+#: src/Controller/Admin/ModuleController.php:488
 msgid "Module is not uninstalled."
 msgstr "Le module n'est pas désinstallé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:492
+#: src/Controller/Admin/ModuleController.php:492
 msgid "Module uninstallation"
 msgstr "Désinstallation Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:527
+#: src/Controller/Admin/ModuleController.php:527
 msgid "Module updates"
 msgstr "Mises à jour Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:568
+#: src/Controller/Admin/ModuleController.php:568
 #, php-format
 msgid "Module \"%s\" is updated successfully."
 msgstr "Le module \"%s\" a été mis à jour avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:575
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:577
+#: src/Controller/Admin/ModuleController.php:575
+#: src/Controller/Admin/ModuleController.php:577
 #, php-format
 msgid "Module \"%s\" is not updated."
 msgstr "Le module \"%s\" n'a pas été mis à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:580
+#: src/Controller/Admin/ModuleController.php:580
 msgid "Module is not updated."
 msgstr "Le module n'est pas à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:584
+#: src/Controller/Admin/ModuleController.php:584
 msgid "Module update"
 msgstr "Mise à jour module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:634
+#: src/Controller/Admin/ModuleController.php:634
 #, php-format
 msgid "Module \"%s\" is enabled successfully."
 msgstr "Le module \"%s\" a été activé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:642
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:647
+#: src/Controller/Admin/ModuleController.php:642
+#: src/Controller/Admin/ModuleController.php:647
 #, php-format
 msgid "Module \"%s\" is not enabled."
 msgstr "Le module \"%s\" n'a pas été activé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:651
+#: src/Controller/Admin/ModuleController.php:651
 msgid "Module is not enabled."
 msgstr "Le module n'est pas activé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:656
+#: src/Controller/Admin/ModuleController.php:656
 #, php-format
 msgid "Module \"%s\" is disabled successfully."
 msgstr "Le module \"%s\" n'a pas été désactivé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:664
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:669
+#: src/Controller/Admin/ModuleController.php:664
+#: src/Controller/Admin/ModuleController.php:669
 #, php-format
 msgid "Module \"%s\" is not disabled."
 msgstr "Le module \"%s\" n'a pas été désactivé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:673
+#: src/Controller/Admin/ModuleController.php:673
 msgid "Module is not disabled."
 msgstr "Le module n'est pas désactivé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:678
+#: src/Controller/Admin/ModuleController.php:678
 msgid "Module activation"
 msgstr "Activation du Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ModuleController.php:701
+#: src/Controller/Admin/ModuleController.php:701
 msgid "Title is required."
 msgstr "Un nom est requis."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:63
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:90
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:42
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:37
+#: src/Controller/Admin/NavController.php:64
+#: src/Controller/Admin/NavController.php:91 template/admin/nav-data.phtml:44
+#: template/admin/nav-index.phtml:37
 msgid "Custom"
 msgstr "Personalisé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:159
+#: src/Controller/Admin/NavController.php:160
 msgid "Navigation set up successfully."
 msgstr "Navigation paramétrée avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:190
+#: src/Controller/Admin/NavController.php:194
 msgid "Navigation added successfully."
 msgstr "Navigation ajoutée avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:205
+#: src/Controller/Admin/NavController.php:209
 msgid "Add a navigation"
 msgstr "Ajouter une navigation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:238
+#: src/Controller/Admin/NavController.php:245
 msgid "Navigation saved successfully."
 msgstr "La navigation a été enregistrée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:244
+#: src/Controller/Admin/NavController.php:251
 msgid "Navigation data not saved."
 msgstr "Les données de navigation n'ont pas été enregistrées."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:282
+#: src/Controller/Admin/NavController.php:289
 msgid "Clone navigation"
 msgstr "Cloner la navigation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:302
+#: src/Controller/Admin/NavController.php:309
 msgid "The navigation is in use and not allowed to delete."
 msgstr ""
 "La navigation est utilisée actuellement et il n'est pas possible de la "
 "supprimer."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:314
+#: src/Controller/Admin/NavController.php:321
 msgid "The navigation is deleted successfully."
 msgstr "La navigation a été supprimée avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:381
+#: src/Controller/Admin/NavController.php:388
 #, php-format
 msgid "View of navigation details: %s"
 msgstr "Voir les détails de la navigation : %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:383
+#: src/Controller/Admin/NavController.php:390
 #, php-format
 msgid "Navigation data edit: %s"
 msgstr "Edition des données de navigation : %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:469
+#: src/Controller/Admin/NavController.php:476
 msgid "Navigation data saved successfully."
 msgstr "Données de navigation enregistrées avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:476
+#: src/Controller/Admin/NavController.php:483
 msgid "Navigation not found."
 msgstr "Navigation non trouvée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/NavController.php:480
+#: src/Controller/Admin/NavController.php:487
 msgid "Only custom navigations are allowed to manipulate."
 msgstr "Seul les navigations personalisées peuvent être modifiées."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:128
+#: src/Controller/Admin/PageController.php:128
 msgid "Pages list"
 msgstr "Liste des pages"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:154
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:214
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:278
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:326
+#: src/Controller/Admin/PageController.php:154
+#: src/Controller/Admin/PageController.php:214
+#: src/Controller/Admin/PageController.php:278
+#: src/Controller/Admin/PageController.php:326
 msgid "Page data saved successfully."
 msgstr "Données de page enregistrées avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:166
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:236
+#: src/Controller/Admin/PageController.php:166
+#: src/Controller/Admin/PageController.php:236
 msgid "Page data not saved."
 msgstr "Données de pages non enregistrées."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:181
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:9
+#: src/Controller/Admin/PageController.php:181 template/admin/page-list.phtml:9
 msgid "Setup a page"
 msgstr "Paramétrer une page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:294
+#: src/Controller/Admin/PageController.php:294
 msgid "Pages edit"
 msgstr "Editier une page"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:370
+#: src/Controller/Admin/PageController.php:370
 msgid "Page is deleted."
 msgstr "La page a été supprimée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:375
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:550
+#: src/Controller/Admin/PageController.php:375
+#: src/Controller/Admin/PageController.php:550
 msgid "Page is not found."
 msgstr "La page n'a pas été trouvée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:490
+#: src/Controller/Admin/PageController.php:490
 #, php-format
 msgid "%s blocks"
 msgstr "%s blocs"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PageController.php:576
+#: src/Controller/Admin/PageController.php:576
 msgid "Page block links are updated."
 msgstr "Les liens du bloc de page ont été mis à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PermController.php:80
+#: src/Controller/Admin/PermController.php:80
 msgid "Module access"
 msgstr "Accès au module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PermController.php:87
+#: src/Controller/Admin/PermController.php:87
 msgid "Module admin"
 msgstr "Administrateur du Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/PermController.php:329
+#: src/Controller/Admin/PermController.php:329
 msgid "Permission assigned successfully."
 msgstr "Permissions assignéers avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RepoController.php:60
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RepoController.php:84
+#: src/Controller/Admin/RepoController.php:60
+#: src/Controller/Admin/RepoController.php:84
 #, php-format
 msgid "A new version %s is available"
 msgstr "Une nouvelle version %s est disponible"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RepoController.php:65
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RepoController.php:89
+#: src/Controller/Admin/RepoController.php:65
+#: src/Controller/Admin/RepoController.php:89
 msgid "No update available"
 msgstr "Aucune mise à jour disponible"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RepoController.php:69
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RepoController.php:93
+#: src/Controller/Admin/RepoController.php:69
+#: src/Controller/Admin/RepoController.php:93
 msgid "Error occurred, check later."
 msgstr "Une erreur est survenue, essayez plus tard."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:156
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:210
+#: src/Controller/Admin/RoleController.php:160
+#: src/Controller/Admin/RoleController.php:214
 msgid "Role data saved successfully."
 msgstr "Données de rôles enregistrées avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:159
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:213
+#: src/Controller/Admin/RoleController.php:163
+#: src/Controller/Admin/RoleController.php:217
 msgid "Role data not saved."
 msgstr "Données de rôle non enregistrées."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:181
+#: src/Controller/Admin/RoleController.php:185
 msgid "Add a role"
 msgstr "Ajouter un rôle"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:239
+#: src/Controller/Admin/RoleController.php:243
 msgid "Edit a role"
 msgstr "Editer un rôle"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:259
+#: src/Controller/Admin/RoleController.php:263
 msgid "Only custom roles are allowed to activate/deactivate."
 msgstr "Seuls les rôles personalisés peuvent être activés/désactivés."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:269
+#: src/Controller/Admin/RoleController.php:273
 msgid "Role updated successfully."
 msgstr "Rôle mis à jour avec succès"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:308
+#: src/Controller/Admin/RoleController.php:312
 msgid "Only custom roles are allowed to delete."
 msgstr "Seuls les rôles personalisés peuvent être supprimés."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/RoleController.php:314
+#: src/Controller/Admin/RoleController.php:318
 msgid "Role deleted successfully."
 msgstr "Le rôle a été supprimé avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:49
+#: src/Controller/Admin/ThemeController.php:49
 msgid "admin"
 msgstr "côté administrateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:52
+#: src/Controller/Admin/ThemeController.php:52
 msgid "front"
 msgstr "côté utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:66
+#: src/Controller/Admin/ThemeController.php:66
 #, php-format
 msgid "Select theme for %s"
 msgstr "Sélectionner le thème pour le %s"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:109
+#: src/Controller/Admin/ThemeController.php:109
 msgid "Theme set up successfully."
 msgstr "Thème paramétré avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:124
+#: src/Controller/Admin/ThemeController.php:124
 msgid "Installed themes"
 msgstr "Thèmes installés"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:163
+#: src/Controller/Admin/ThemeController.php:163
 msgid "Themes available for installation"
 msgstr "Thèmes disponibles pour installation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:182
+#: src/Controller/Admin/ThemeController.php:182
 #, php-format
 msgid "The theme \"%s\" is not updated."
 msgstr "Le thème \"%s\" n'a pas été mis à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:185
+#: src/Controller/Admin/ThemeController.php:185
 #, php-format
 msgid "The theme \"%s\" is updated."
 msgstr "Le thème \"%s\" a été mis à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:206
+#: src/Controller/Admin/ThemeController.php:206
 #, php-format
 msgid "The theme \"%s\" is not installed."
 msgstr "Le thème \"%s\" n'est pas installé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:210
+#: src/Controller/Admin/ThemeController.php:210
 #, php-format
 msgid "The theme \"%s\" is installed."
 msgstr "Le thème \"%s\" a été installé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:229
+#: src/Controller/Admin/ThemeController.php:229
 msgid "Default theme is protected from uninstallation."
 msgstr "Le thème par défaut ne peut être désinstallé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:238
+#: src/Controller/Admin/ThemeController.php:238
 #, php-format
 msgid "The theme \"%s\" is not uninstalled."
 msgstr "Le thème \"%s\" n'a pas été désinstallé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Admin/ThemeController.php:244
+#: src/Controller/Admin/ThemeController.php:244
 #, php-format
 msgid "The theme \"%s\" is uninstalled."
 msgstr "Le thème \"%s\" a été déinstallé."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Controller/Module/DashboardController.php:96
+#: src/Controller/Module/DashboardController.php:96
 msgid "No permitted operation available."
 msgstr "Aucune opération autorisée disponible"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleCategoryForm.php:30
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:11
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:14
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:26
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:17
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:9
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:9
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:13
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:22
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:30
+#: src/Form/ModuleCategoryForm.php:30 template/admin/asset-index.phtml:11
+#: template/admin/block-list.phtml:18 template/admin/cache-list.phtml:14
+#: template/admin/dashboard-system.phtml:26 template/admin/event.phtml:17
+#: template/admin/flush-index.phtml:10 template/admin/module-available.phtml:9
+#: template/admin/module-index.phtml:9 template/admin/nav-index.phtml:10
+#: template/admin/page-list.phtml:13 template/admin/role.phtml:22
+#: template/admin/role.phtml:30
 msgid "Title"
 msgstr "Nom"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleCategoryForm.php:40
+#: src/Form/ModuleCategoryForm.php:40
 msgid "Font-awesome icon"
 msgstr "Icône Font-awesome"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleCategoryForm.php:44
+#: src/Form/ModuleCategoryForm.php:44
 msgid "Check http://fortawesome.github.io/Font-Awesome/icons/"
 msgstr "Se référer à http://fortawesome.github.io/Font-Awesome/icons/"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Form/ModuleCategoryForm.php:51
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-category.phtml:78
+#: src/Form/ModuleCategoryForm.php:51 template/admin/module-category.phtml:78
 msgid "Order"
 msgstr "Ordre"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:87
+#: src/Installer/Action/Install.php:87
 msgid "Default taxonomy"
 msgstr "Erreur de Taxonomie"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:89
+#: src/Installer/Action/Install.php:89
 msgid "Default global taxonomy domain. Not allowed to change."
 msgstr ""
 "Erreur du domaine par défaut pour la taxonomie. La modification n'est pas "
 "autorisée."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:94
+#: src/Installer/Action/Install.php:94
 msgid "Welcome to Pi powered system."
 msgstr "Bienvenue dans votre application propulsée par Pi Engine"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:189
+#: src/Installer/Action/Install.php:189
 msgid "Application"
 msgstr "Application"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Install.php:213
+#: src/Installer/Action/Install.php:216
 msgid "Service"
 msgstr "Service"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Update.php:47
+#: src/Installer/Action/Update.php:47
 msgid "System updated"
 msgstr "Système mis à our"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/src/Installer/Action/Update.php:48
+#: src/Installer/Action/Update.php:48
 msgid "The system is updated successfully."
 msgstr "Le système a été mis à jour avec succès."
 
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\system/src/Menu.php:34
+#: src/Menu.php:34
 msgid "Operation"
 msgstr "Exploitation"
 
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\system/src/Menu.php:39
+#: src/Menu.php:39
 msgid "Setting"
 msgstr "Configuration"
 
-#: C:\Users\LAPTOP MARC\Documents\GitHub\pi\usr\module\system/src/Menu.php:44
+#: src/Menu.php:44
 msgid "Deployment"
 msgstr "Déploiement"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:12
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:21
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:11
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:12
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:13
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:114
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:13
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:14
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:28
+#: template/admin/asset-index.phtml:12 template/admin/block-list.phtml:21
+#: template/admin/event.phtml:18 template/admin/flush-index.phtml:11
+#: template/admin/module-available.phtml:12
+#: template/admin/module-index.phtml:13 template/admin/nav-data.phtml:116
+#: template/admin/nav-index.phtml:13 template/admin/page-list.phtml:14
+#: template/admin/role.phtml:28
 msgid "Action"
 msgstr "Action"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:19
+#: template/admin/asset-index.phtml:19
 msgid "Re-publish all"
 msgstr "Re-publier tout"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:31
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:44
+#: template/admin/asset-index.phtml:31 template/admin/asset-index.phtml:44
 msgid "Publish"
 msgstr "Publier"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/asset-index.phtml:54
+#: template/admin/asset-index.phtml:54
 msgid "Asset publish in process"
 msgstr "Publication de la ressource en cours"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:12
+#: template/admin/audit-index.phtml:12
 msgid "Audit list"
 msgstr "Traces d'Audit"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:16
+#: template/admin/audit-index.phtml:16
 msgid "time"
 msgstr "date"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:17
+#: template/admin/audit-index.phtml:17
 msgid "User ID"
 msgstr "N° utilisateur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:18
+#: template/admin/audit-index.phtml:18
 msgid "IP"
 msgstr "IP"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:24
+#: template/admin/audit-index.phtml:24
 msgid "Message"
 msgstr "Message"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:25
+#: template/admin/audit-index.phtml:25
 msgid "extra"
 msgstr "extra"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:48
+#: template/admin/audit-index.phtml:48
 msgid "Count of items to display: "
 msgstr "Nombre d'éléments à afficher : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:51
+#: template/admin/audit-index.phtml:51
 msgid "10"
 msgstr "10"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:52
+#: template/admin/audit-index.phtml:52
 msgid "20"
 msgstr "20"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/audit-index.phtml:53
+#: template/admin/audit-index.phtml:53
 msgid "50"
 msgstr "50"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:19
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:11
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:11
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:27
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:55
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:33
+#: template/admin/block-list.phtml:19 template/admin/module-available.phtml:11
+#: template/admin/module-index.phtml:11 template/admin/theme-available.phtml:27
+#: template/admin/theme-index.phtml:58 template/admin/theme-installed.phtml:33
 msgid "Description"
 msgstr "Description"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:20
+#: template/admin/block-list.phtml:20
 msgid "Related pages"
 msgstr "Pages associées"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:23
+#: template/admin/block-list.phtml:23
 msgid "Preview"
 msgstr "Prévisualiser"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:24
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:21
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:35
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:48
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:27
+#: template/admin/block-list.phtml:24 template/admin/dashboard-system.phtml:21
+#: template/admin/member-index.phtml:35 template/admin/nav-index.phtml:48
+#: template/admin/page-list.phtml:27
 msgid "Edit"
 msgstr "Editer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:25
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:39
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:49
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:34
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:19
+#: template/admin/block-list.phtml:25 template/admin/member-index.phtml:39
+#: template/admin/nav-index.phtml:49 template/admin/page-list.phtml:34
+#: template/admin/role.phtml:19
 msgid "Delete"
 msgstr "Supprimer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:26
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:66
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:45
+#: template/admin/block-list.phtml:26 template/admin/module-available.phtml:66
+#: template/admin/nav-index.phtml:45
 msgid "Clone"
 msgstr "Cloner"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:27
+#: template/admin/block-list.phtml:27
 msgid "No page uses this block yet."
 msgstr "Aucune page n\\'utilise ce bloc actuellement."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/block-list.phtml:28
+#: template/admin/block-list.phtml:28
 msgid "Search in block title"
 msgstr "Rechercher sur le nom du bloc"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:15
+#: template/admin/cache-list.phtml:15
 msgid "Expiration"
 msgstr "Expiration"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:16
+#: template/admin/cache-list.phtml:16
 msgid "Granularity"
 msgstr "Granularité"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:17
+#: template/admin/cache-list.phtml:17
 msgid "Scope"
 msgstr "Scope"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/cache-list.phtml:38
+#: template/admin/cache-list.phtml:38
 msgid "Force for all pages"
 msgstr "Forcer pour toutes les pages"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/config-index.phtml:3
+#: template/admin/config-index.phtml:3
 msgid "Select a module on the left to set up configurations."
 msgstr "Sélectionner un module sur la gauche pour définir les paramètres."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/config-index.phtml:5
+#: template/admin/config-index.phtml:5
 msgid "No configuration available."
 msgstr "Aucun paramètre disponible."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:6
+#: template/admin/dashboard-module.phtml:6
 msgid "About"
 msgstr "A propos"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:14
+#: template/admin/dashboard-module.phtml:14
 msgid "Module information"
 msgstr "Information module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:16
+#: template/admin/dashboard-module.phtml:16
 msgid "Title:"
 msgstr "Nom :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:18
+#: template/admin/dashboard-module.phtml:18
 msgid "Version:"
 msgstr "Version : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:20
+#: template/admin/dashboard-module.phtml:20
 msgid "Update:"
 msgstr "Mis à jour :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:22
+#: template/admin/dashboard-module.phtml:22
 msgid "Description:"
 msgstr "Description :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:25
+#: template/admin/dashboard-module.phtml:25
 msgid "Demo:"
 msgstr "Demo : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:29
+#: template/admin/dashboard-module.phtml:29
 msgid "Author information"
 msgstr "Information auteur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-module.phtml:45
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:28
+#: template/admin/dashboard-module.phtml:45
+#: template/admin/dashboard-system.phtml:28
 msgid "Summary"
 msgstr "Résumé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:22
+#: template/admin/dashboard-system.phtml:22
 msgid "Announcement"
 msgstr "Annonce"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:23
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:123
+#: template/admin/dashboard-system.phtml:23 template/admin/nav-data.phtml:125
 msgid "Save"
 msgstr "Enregistrer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:24
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:32
+#: template/admin/dashboard-system.phtml:24 template/admin/role.phtml:32
 msgid "Cancel"
 msgstr "Annuler"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:25
+#: template/admin/dashboard-system.phtml:25
 msgid "Quicklinks"
 msgstr "Liens rapides"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:27
+#: template/admin/dashboard-system.phtml:27
 msgid "URL"
 msgstr "URL"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:29
+#: template/admin/dashboard-system.phtml:29
 msgid "Powered by"
 msgstr "Propulsé par"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:30
+#: template/admin/dashboard-system.phtml:30
 msgid ""
 "Pi Engine is a role oriented application development engine for web and "
 "mobile, designed as the next generation and a successor to Xoops. Pi is "
@@ -2338,8 +1894,7 @@ msgstr ""
 "utilise des frameworks tiers dûment sélectionnés, notamment Zend Framework, "
 "jQuery, Boostrap et Backbone."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/dashboard-system.phtml:31
+#: template/admin/dashboard-system.phtml:31
 msgid ""
 " Pi Project follows the philosophy of open standard, open design, open "
 "development and open structure. Pi is born as a complete open source project "
@@ -2351,536 +1906,429 @@ msgstr ""
 "comme un projet opensource et tente de construire un écosystème durable qui "
 "fournit des solutions à tous les contributeurs et utilisateurs."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:19
+#: template/admin/event.phtml:19
 msgid "Events"
 msgstr "Events"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:20
+#: template/admin/event.phtml:20
 msgid "Listeners"
 msgstr "Listeners"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:21
+#: template/admin/event.phtml:21
 msgid "No listeners available"
 msgstr "No listeners available"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:22
+#: template/admin/event.phtml:22
 msgid "No events available"
 msgstr "No events available"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/event.phtml:23
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:20
+#: template/admin/event.phtml:23 template/admin/perm.phtml:20
 msgid "Error, please try again later."
 msgstr "Erreur, merci d\\'essayer plus tard."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:17
+#: template/admin/flush-index.phtml:17
 msgid "Flush all"
 msgstr "Vider tout"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:24
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:33
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:41
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:50
+#: template/admin/flush-index.phtml:24 template/admin/flush-index.phtml:33
+#: template/admin/flush-index.phtml:41 template/admin/flush-index.phtml:50
 msgid "Flush"
 msgstr "Vider"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:39
+#: template/admin/flush-index.phtml:39
 msgid "Registry"
 msgstr "Registre"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/flush-index.phtml:62
+#: template/admin/flush-index.phtml:62
 msgid "Cache flush in process"
 msgstr "Vidage du cache en cours"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/index.phtml:6
+#: template/admin/index.phtml:6
 msgid "There is no entry page for this module management. Please:"
 msgstr ""
 "Il n'y a pas de page d'accueil pour le management de ce module. Merci de  : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/index.phtml:9
+#: template/admin/index.phtml:9
 msgid "Module config"
 msgstr "Configuration Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/index.phtml:9
+#: template/admin/index.phtml:9
 msgid "Go to set up module configs;"
 msgstr "Aller au paramétrage module;"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/index.phtml:10
+#: template/admin/index.phtml:10
 msgid "System admin"
 msgstr "Admin Système"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/index.phtml:10
+#: template/admin/index.phtml:10
 msgid "Go back to system dashboard."
 msgstr "Retourner au tableau de bord Système"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:6
+#: template/admin/member-index.phtml:6
 msgid "Add a member"
 msgstr "Ajouter un membre"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:11
+#: template/admin/member-index.phtml:11
 msgid "Select a role: "
 msgstr "Sélectionner un rôle :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:24
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:21
+#: template/admin/member-index.phtml:24 template/admin/role.phtml:21
 msgid "Name"
 msgstr "Nom"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:26
+#: template/admin/member-index.phtml:26
 msgid "Front role"
 msgstr "Rôle Front"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:27
+#: template/admin/member-index.phtml:27
 msgid "Admin role"
 msgstr "Rôle côté Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:28
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:25
+#: template/admin/member-index.phtml:28 template/admin/role.phtml:25
 msgid "Active"
 msgstr "Actif"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:43
+#: template/admin/member-index.phtml:43
 msgid "Not set"
 msgstr "Non paramétré"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:46
 msgid "Yes"
 msgstr "Oui"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/member-index.phtml:46
+#: template/admin/member-index.phtml:46
 msgid "No"
 msgstr "Non"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:8
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:8
+#: template/admin/module-available.phtml:8 template/admin/module-index.phtml:8
 msgid "Icon"
 msgstr "Icône"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:23
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:53
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:29
+#: template/admin/module-available.phtml:10
+#: template/admin/module-index.phtml:10 template/admin/theme-available.phtml:23
+#: template/admin/theme-index.phtml:56 template/admin/theme-installed.phtml:29
 msgid "Version"
 msgstr "Version"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:34
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:38
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:18
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:50
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:22
+#: template/admin/module-available.phtml:34
+#: template/admin/module-index.phtml:38 template/admin/theme-available.phtml:18
+#: template/admin/theme-index.phtml:53 template/admin/theme-installed.phtml:22
 msgid "Detail"
 msgstr "Détail"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:37
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:42
+#: template/admin/module-available.phtml:37
+#: template/admin/module-index.phtml:42
 msgid "Directory:"
 msgstr "Répertoire : "
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-available.phtml:61
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:17
+#: template/admin/module-available.phtml:61
+#: template/admin/theme-available.phtml:17
 msgid "Install"
 msgstr "Installer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-category.phtml:38
+#: template/admin/module-category.phtml:38
 msgid "Assign to:"
 msgstr "Allouer à :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-category.phtml:56
+#: template/admin/module-category.phtml:56
 msgid "Edit this category"
 msgstr "Editer cette catégorie"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-category.phtml:59
+#: template/admin/module-category.phtml:59
 msgid "Delete this category"
 msgstr "Supprimer cette catégorie"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-category.phtml:73
+#: template/admin/module-category.phtml:73
 msgid "Remove"
 msgstr "Retirer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-category.phtml:92
+#: template/admin/module-category.phtml:92
 msgid "Sort modules"
 msgstr "Trier les modules"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:12
+#: template/admin/module-index.phtml:12
 msgid "Last Update"
 msgstr "Dernière mise à jour"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:30
+#: template/admin/module-index.phtml:30
 msgid "Rename"
 msgstr "Renommer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:40
+#: template/admin/module-index.phtml:40
 msgid "Name:"
 msgstr "Nom :"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:44
+#: template/admin/module-index.phtml:44
 msgid "Author"
 msgstr "Auteur"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:61
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:26
+#: template/admin/module-index.phtml:61 template/admin/theme-installed.phtml:26
 msgid "Update"
 msgstr "Mettre à jour"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:63
+#: template/admin/module-index.phtml:63
 msgid "Update all"
 msgstr "Tout mettre à jour"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:65
+#: template/admin/module-index.phtml:65
 msgid "Are you sure to uninstall this module?"
 msgstr "Etes-vous certains de vouloir déinstaller ce module?"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:65
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:20
+#: template/admin/module-index.phtml:65 template/admin/theme-installed.phtml:20
 msgid "Uninstall"
 msgstr "Désinstaller"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:67
+#: template/admin/module-index.phtml:67
 msgid "Disable"
 msgstr "Désactiver"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-index.phtml:69
+#: template/admin/module-index.phtml:69
 msgid "Enable"
 msgstr "Activer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-operation.phtml:7
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-refresh.phtml:7
+#: template/admin/module-operation.phtml:7
+#: template/admin/module-refresh.phtml:7
 msgid "Press to continue ..."
 msgstr "Cliquer pour continuer..."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-operation.phtml:17
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-refresh.phtml:23
+#: template/admin/module-operation.phtml:17
+#: template/admin/module-refresh.phtml:23
 msgid "Failed"
 msgstr "Echec"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-operation.phtml:19
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-refresh.phtml:25
+#: template/admin/module-operation.phtml:19
+#: template/admin/module-refresh.phtml:25
 msgid "Succeeded"
 msgstr "Succès"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-refresh.phtml:6
+#: template/admin/module-refresh.phtml:6
 msgid "Module updates finished."
 msgstr "Les mises à jour du module sont terminées"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:16
 msgid "Update succeeded."
 msgstr "Succès de la mise à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/module-refresh.phtml:16
+#: template/admin/module-refresh.phtml:16
 msgid "Update failed."
 msgstr "Echec de la mise à jour."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:15
+#: template/admin/nav-data.phtml:13
+msgid ""
+"Add new element on menu or edit current elements, save each element box "
+"after edit and finally save menu by blue button."
+msgstr ""
+"Ajouter un nouvel élément dans le menu ou éditer les éléments actuels : "
+"enregistrer chaque élément/box après l'édition, puis enregistrer le menu à "
+"l'aide du bouton bleu."
+
+#: template/admin/nav-data.phtml:17
 msgid "Only click this button to save data"
 msgstr "Cliquer simplement sur ce bouton pour enregistrer les données"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:16
+#: template/admin/nav-data.phtml:18
 msgid "Save menu"
 msgstr "Enregistrer le menu"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:24
+#: template/admin/nav-data.phtml:26
 msgid "Add to menu"
 msgstr "Ajouter au menu"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:33
+#: template/admin/nav-data.phtml:35
 msgid "This navgation is only for viewing"
 msgstr "Cette navigation est disponible uniquement pour être visualisée"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:41
+#: template/admin/nav-data.phtml:43
 msgid "Click to toggle edit"
 msgstr "Cliquer pour sélectionner Modifier"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:53
+#: template/admin/nav-data.phtml:55
 msgid "Label"
 msgstr "Label"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:59
+#: template/admin/nav-data.phtml:61
 msgid "Url"
 msgstr "Url"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:61
+#: template/admin/nav-data.phtml:63
 #, fuzzy
 msgid "Page link by url or by the after of route"
 msgstr "Lien de page par l'URL ou par la route"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:65
+#: template/admin/nav-data.phtml:67
 msgid "Target"
 msgstr "Cible (Target)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:68
+#: template/admin/nav-data.phtml:70
 msgid "None"
 msgstr "Aucun"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:69
+#: template/admin/nav-data.phtml:71
 msgid "_blank"
 msgstr "_blank"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:82
+#: template/admin/nav-data.phtml:84
 msgid "To display in menu."
 msgstr "A afficher dans le menu"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:87
+#: template/admin/nav-data.phtml:89
 msgid "Page link by route"
 msgstr "Lien de page par la route"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:92
+#: template/admin/nav-data.phtml:94
 msgid "Route"
 msgstr "Route"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:98
+#: template/admin/nav-data.phtml:100
 msgid "Controller"
 msgstr "Controller"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:108
+#: template/admin/nav-data.phtml:110
 msgid "Module"
 msgstr "Module"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-data.phtml:425
+#: template/admin/nav-data.phtml:427
 msgid "You have made unsaved changes. Would you still like to leave this page?"
 msgstr ""
 "Vous n\\'avez pas enregistré vos modifications. Souhaitez vous toujours "
 "quitter cette page?"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:11
+#: template/admin/nav-index.phtml:11
 msgid "Setup"
 msgstr "Configuration"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:12
+#: template/admin/nav-index.phtml:12
 msgid "Related"
 msgstr "Relatif"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:20
+#: template/admin/nav-index.phtml:20
 msgid "None to use"
 msgstr "Désactiver tout"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:31
+#: template/admin/nav-index.phtml:31
 msgid "Set global"
 msgstr "Activer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:43
+#: template/admin/nav-index.phtml:43
 msgid "View"
 msgstr "Voir"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/nav-index.phtml:82
+#: template/admin/nav-index.phtml:82
 msgid "Are you sure to delete this navigation"
 msgstr "Etes-vous certains de vouloir supprimer cette navigation"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-block.phtml:163
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:31
+#: template/admin/page-block.phtml:165 template/admin/role.phtml:31
 msgid "Submit"
 msgstr "Valider"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-block.phtml:169
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-block.phtml:170
+#: template/admin/page-block.phtml:171 template/admin/page-block.phtml:172
 msgid "Available Themes"
 msgstr "Thèmes disponibles"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:31
+#: template/admin/page-list.phtml:31
 msgid "Dress up"
 msgstr "Habillage"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/page-list.phtml:86
+#: template/admin/page-list.phtml:86
 msgid "Are you sure to delete the page?"
 msgstr "Etes-vous certains de vouloir supprimer cette page?"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:17
+#: template/admin/perm.phtml:17
 msgid "Module Global permission"
 msgstr "Global"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:18
+#: template/admin/perm.phtml:18
 msgid "Module resource"
 msgstr "Type de Ressource"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/perm.phtml:19
+#: template/admin/perm.phtml:19
 msgid "Block"
 msgstr "Bloc"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:14
+#: template/admin/role.phtml:14
 msgid "Admin roles"
 msgstr "Rôles Admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:15
+#: template/admin/role.phtml:15
 msgid "Add admin role"
 msgstr "Ajouter un rôle admin"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:16
+#: template/admin/role.phtml:16
 msgid "Front roles"
 msgstr "Rôles côté utilisateur (front)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:17
+#: template/admin/role.phtml:17
 msgid "Add front role"
 msgstr "Ajouter un rôle côté utilisateur (front)"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:20
+#: template/admin/role.phtml:20
 msgid "Edit permission"
 msgstr "Editer la permission"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:23
+#: template/admin/role.phtml:23
 msgid "Users in role"
 msgstr "Utilisateurs dans le rôel"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:24
+#: template/admin/role.phtml:24
 msgid "Status"
 msgstr "Statut"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:26
+#: template/admin/role.phtml:26
 msgid "Activated"
 msgstr "Activé"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:27
+#: template/admin/role.phtml:27
 msgid "Inactive"
 msgstr "Inactif"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:29
+#: template/admin/role.phtml:29
 msgid "Unique name"
 msgstr "Nom unique"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:33
+#: template/admin/role.phtml:33
 msgid "Required"
 msgstr "Requis"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:34
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:25
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:31
+#: template/admin/role.phtml:34 template/admin/theme-available.phtml:25
+#: template/admin/theme-installed.phtml:31
 msgid "Type"
 msgstr "Type"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:37
+#: template/admin/role.phtml:37
 msgid "Role name is already taken"
 msgstr "Ce nom de rôle est déja pris"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/role.phtml:38
+#: template/admin/role.phtml:38
 msgid "Are you sure to delete this role?"
 msgstr "Etes-vous certains de vouloir supprimer ce rôle?"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:10
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:44
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:12
+#: template/admin/theme-available.phtml:10 template/admin/theme-index.phtml:47
+#: template/admin/theme-installed.phtml:12
 msgid "Click To preview"
 msgstr "Cliquer pour prévisualiser"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-available.phtml:20
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:24
+#: template/admin/theme-available.phtml:20
+#: template/admin/theme-installed.phtml:24
 msgid "Check"
 msgstr "Vérifier"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:23
+#: template/admin/theme-index.phtml:23
 msgid "Theme in use"
 msgstr "Thème utilisé actuellement"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:37
+#: template/admin/theme-index.phtml:40
 msgid "Themes available to use"
 msgstr "Thèmes disponibles"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-index.phtml:49
+#: template/admin/theme-index.phtml:52
 msgid "Apply"
 msgstr "Appliquer"
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:66
+#: template/admin/theme-installed.phtml:66
 msgid "Theme Updated successfully."
 msgstr "Thème mis à jour avec succès."
 
-#: C:\Users\LAPTOP
-#: MARC\Documents\GitHub\pi\usr\module\system/template/admin/theme-installed.phtml:74
+#: template/admin/theme-installed.phtml:74
 msgid "Are you sure to uninstall this theme ? "
 msgstr "Etes-vous certains de vouloir désinstaller ce thème?"
 

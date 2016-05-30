@@ -7,8 +7,8 @@
 [body]
 <p style="margin-bottom: 5px">Chère/Cher <strong>%username%</strong>,</p>
 
-<p style="margin-top: 5px">L'adresse email de votre compte sur %site_name% a été modifiée avec succès de la valeur %old_email% à %new_email%.</p>
-
+<p style="margin-top: 5px">L'adresse email de ton compte sur %site_name% a été modifiée avec succès de la valeur %old_email% à %new_email%.</p>
+<p style="margin-top: 5px">A tout de suite sur le site !</p>
 <p style="margin-top: 10px">
     <a href="%site_url%" title="%site_name%">%site_name%</a>
 </p>
