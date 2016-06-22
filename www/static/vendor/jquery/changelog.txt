@@ -1,6 +1,10 @@
 
 jQuery/jQueryUI changelog
 
+June 22th, 2016
+================
+1. Upgrade jQuery to 1.12.4 (last version of 1.x branch, 3x is out !)
+
 April 16th, 2016
 =================
 1. Upgrade jQuery to 1.12.3
