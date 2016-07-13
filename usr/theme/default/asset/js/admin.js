@@ -1,5 +1,5 @@
 (function ($) {
-    //For angularjs nav
+    // For angularjs nav
     var fragReg = /#!?(.*)$/;
     $('#pi-nav-top').find('.nav-pills li').each(function () {
         var $this = $(this);
@@ -7,9 +7,12 @@
         if (!match) return false;
         $this.removeClass('active').attr('ng-class', 'navClass("' + match[1] + '")');
     });
-    //For debug
+    // For debug
     $(function () {
         var debug = $('#pi-logger-output');
         debug.length && debug.insertAfter($('.pi-module-content'));
     });
+    // For set menu
+    var height = $('#js-modules-nav').height();
+    $('.pi-sidebar').css({"min-height":height});
 })(jQuery)

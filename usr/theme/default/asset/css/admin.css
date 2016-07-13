@@ -242,21 +242,28 @@ form .icon-question-sign {
     background: #4DB1E3;
 }
 
+.navbar-go-front {
+    margin-left: 20px;
+}
+
 .badge-success {
     background-color: #5cb85c;
 }
 
 /* Sidebar */
 .pi-sidebar {
-    position: fixed;
+    position: absolute;
     top: 51px;
+    left: 0;
     bottom: 0;
+    height: 100%;
     overflow-y: auto;
     width: 190px;
     background: #f2f2f2;
     border-right: 1px solid #ddd;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 1px 4px 0 rgba(0, 0, 0, 0.12),
+    0 1px 4px 0 rgba(0, 0, 0, 0.12);
+    float: left;
 }
 
 .pi-modules-nav a:focus {

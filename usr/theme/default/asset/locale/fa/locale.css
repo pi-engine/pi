@@ -1946,9 +1946,29 @@ th {
     right: 210px;
 }
 
-.pi-sidebar {
+.pi-admin .pi-sidebar {
     border-left: 1px solid #ddd;
     border-right: 0;
+    float: right;
+    right: 0;
+    left: inherit;
+}
+
+@media (max-width: 767px) {
+    .pi-admin .pi-modules-nav-sub {
+        left: 0;
+        right: 45px;
+    }
+
+    .pi-admin .pi-content {
+        margin-left: 0;
+        margin-right: 65px;
+    }
+
+    .pi-admin .pi-footer {
+        left: 0;
+        right: 65px;
+    }
 }
 
 /* Nav */
