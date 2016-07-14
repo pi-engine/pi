@@ -3,11 +3,10 @@
 namespace GeoIp2\Model;
 
 /**
- * This class provides a model for the data returned by the GeoIP2 Country
- * end point.
+ * Model class for the data returned by GeoIP2 Country web service and database.
  *
- * The only difference between the City, City/ISP/Org, and Omni model
- * classes is which fields in each record may be populated. See
+ * The only difference between the City and Insights model classes is which
+ * fields in each record may be populated. See
  * http://dev.maxmind.com/geoip/geoip2/web-services more details.
  *
  * @property \GeoIp2\Record\Continent $continent Continent data for the
@@ -27,29 +26,28 @@ namespace GeoIp2\Model;
  *
  * @property \GeoIp2\Record\RepresentedCountry $representedCountry
  * Represented country data for the requested IP address. The represented
- * country is used for things like military bases or embassies. It is only
- * present when the represented country differs from the country.
+ * country is used for things like military bases. It is only present when
+ * the represented country differs from the country.
  *
  * @property \GeoIp2\Record\Traits $traits Data for the traits of the
  * requested IP address.
  */
-class Country implements \JsonSerializable
+class Country extends AbstractModel
 {
-    private $continent;
-    private $country;
-    private $locales;
-    private $maxmind;
-    private $registeredCountry;
-    private $representedCountry;
-    private $traits;
-    private $raw;
+    protected $continent;
+    protected $country;
+    protected $locales;
+    protected $maxmind;
+    protected $registeredCountry;
+    protected $representedCountry;
+    protected $traits;
 
     /**
      * @ignore
      */
     public function __construct($raw, $locales = array('en'))
     {
-        $this->raw = $raw;
+        parent::__construct($raw);
 
         $this->continent = new \GeoIp2\Record\Continent(
             $this->get('continent'),
@@ -71,38 +69,5 @@ class Country implements \JsonSerializable
         $this->traits = new \GeoIp2\Record\Traits($this->get('traits'));
 
         $this->locales = $locales;
-    }
-
-    /**
-     * @ignore
-     */
-    protected function get($field)
-    {
-        return isset($this->raw[$field]) ? $this->raw[$field] : array();
-    }
-
-    /**
-     * @ignore
-     */
-    public function __get($attr)
-    {
-        if ($attr != "instance" && isset($this->$attr)) {
-            return $this->$attr;
-        }
-
-        throw new \RuntimeException("Unknown attribute: $attr");
-    }
-
-    /**
-     * @ignore
-     */
-    public function __isset($attr)
-    {
-        return $attr != "instance" && isset($this->$attr);
-    }
-
-    public function jsonSerialize()
-    {
-        return $this->raw;
     }
 }
