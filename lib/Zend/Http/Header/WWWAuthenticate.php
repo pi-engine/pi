@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -15,7 +15,9 @@ namespace Zend\Http\Header;
  */
 class WWWAuthenticate implements MultipleHeaderInterface
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $value;
 
     public static function fromString($headerLine)
@@ -24,7 +26,10 @@ class WWWAuthenticate implements MultipleHeaderInterface
 
         // check to ensure proper header type for this factory
         if (strtolower($name) !== 'www-authenticate') {
-            throw new Exception\InvalidArgumentException('Invalid header line for WWW-Authenticate string: "' . $name . '"');
+            throw new Exception\InvalidArgumentException(sprintf(
+                'Invalid header line for WWW-Authenticate string: "%s"',
+                $name
+            ));
         }
 
         // @todo implementation details
@@ -35,7 +40,10 @@ class WWWAuthenticate implements MultipleHeaderInterface
 
     public function __construct($value = null)
     {
-        $this->value = $value;
+        if ($value) {
+            HeaderValue::assertValid($value);
+            $this->value = $value;
+        }
     }
 
     public function getFieldName()
@@ -59,7 +67,8 @@ class WWWAuthenticate implements MultipleHeaderInterface
         foreach ($headers as $header) {
             if (!$header instanceof WWWAuthenticate) {
                 throw new Exception\RuntimeException(
-                    'The WWWAuthenticate multiple header implementation can only accept an array of WWWAuthenticate headers'
+                    'The WWWAuthenticate multiple header implementation can only'
+                    . ' accept an array of WWWAuthenticate headers'
                 );
             }
             $strings[] = $header->toString();

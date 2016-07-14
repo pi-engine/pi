@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -61,9 +61,38 @@ class MethodGenerator extends AbstractMemberGenerator
             $method->setParameter(ParameterGenerator::fromReflection($reflectionParameter));
         }
 
-        $method->setBody($reflectionMethod->getBody());
+        $method->setBody(static::clearBodyIndention($reflectionMethod->getBody()));
 
         return $method;
+    }
+
+    /**
+     * Identify the space indention from the first line and remove this indention
+     * from all lines
+     *
+     * @param string $body
+     *
+     * @return string
+     */
+    protected static function clearBodyIndention($body)
+    {
+        if (empty($body)) {
+            return $body;
+        }
+
+        $lines = explode(PHP_EOL, $body);
+
+        $indention = str_replace(trim($lines[1]), '', $lines[1]);
+
+        foreach ($lines as $key => $line) {
+            if (substr($line, 0, strlen($indention)) == $indention) {
+                $lines[$key] = substr($line, strlen($indention));
+            }
+        }
+
+        $body = implode(PHP_EOL, $lines);
+
+        return $body;
     }
 
     /**

@@ -3,13 +3,14 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 namespace Zend\Barcode;
 
 use Traversable;
+use Zend\Barcode\Renderer\RendererInterface;
 use Zend\Stdlib\ArrayUtils;
 
 /**
@@ -74,7 +75,7 @@ abstract class Barcode
      * Factory for Zend\Barcode classes.
      *
      * First argument may be a string containing the base of the adapter class
-     * name, e.g. 'int25' corresponds to class Object\Int25.  This
+     * name, e.g. 'code25' corresponds to class Object\Code25.  This
      * is case-insensitive.
      *
      * First argument may alternatively be an object of type Traversable.
@@ -92,7 +93,7 @@ abstract class Barcode
      * @param  mixed $barcodeConfig   OPTIONAL; an array or Traversable object with barcode parameters.
      * @param  mixed $rendererConfig  OPTIONAL; an array or Traversable object with renderer parameters.
      * @param  bool $automaticRenderError  OPTIONAL; set the automatic rendering of exception
-     * @return Barcode
+     * @return RendererInterface
      * @throws Exception\ExceptionInterface
      */
     public static function factory(
@@ -146,7 +147,7 @@ abstract class Barcode
      * @param mixed $barcode        String name of barcode class, or Traversable object, or barcode object.
      * @param mixed $barcodeConfig  OPTIONAL; an array or Traversable object with barcode parameters.
      * @throws Exception\InvalidArgumentException
-     * @return Object
+     * @return Object\ObjectInterface
      */
     public static function makeBarcode($barcode, $barcodeConfig = array())
     {

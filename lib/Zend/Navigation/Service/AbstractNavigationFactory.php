@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -73,6 +73,7 @@ abstract class AbstractNavigationFactory implements FactoryInterface
     /**
      * @param ServiceLocatorInterface $serviceLocator
      * @param array|\Zend\Config\Config $pages
+     * @return null|array
      * @throws \Zend\Navigation\Exception\InvalidArgumentException
      */
     protected function preparePages(ServiceLocatorInterface $serviceLocator, $pages)
@@ -122,10 +123,14 @@ abstract class AbstractNavigationFactory implements FactoryInterface
      * @param RouteMatch $routeMatch
      * @param Router $router
      * @param null|Request $request
-     * @return mixed
+     * @return array
      */
-    protected function injectComponents(array $pages, RouteMatch $routeMatch = null, Router $router = null, $request = null)
-    {
+    protected function injectComponents(
+        array $pages,
+        RouteMatch $routeMatch = null,
+        Router $router = null,
+        $request = null
+    ) {
         foreach ($pages as &$page) {
             $hasUri = isset($page['uri']);
             $hasMvc = isset($page['action']) || isset($page['controller']) || isset($page['route']);

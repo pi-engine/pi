@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -16,7 +16,6 @@ namespace Zend\Http\Header;
  */
 class AcceptRanges implements HeaderInterface
 {
-
     protected $rangeUnit;
 
     public static function fromString($headerLine)
@@ -25,7 +24,9 @@ class AcceptRanges implements HeaderInterface
 
         // check to ensure proper header type for this factory
         if (strtolower($name) !== 'accept-ranges') {
-            throw new Exception\InvalidArgumentException('Invalid header line for Accept-Ranges string');
+            throw new Exception\InvalidArgumentException(
+                'Invalid header line for Accept-Ranges string'
+            );
         }
 
         $header = new static($value);
@@ -35,7 +36,9 @@ class AcceptRanges implements HeaderInterface
 
     public function __construct($rangeUnit = null)
     {
-        $this->rangeUnit = $rangeUnit;
+        if ($rangeUnit) {
+            $this->setRangeUnit($rangeUnit);
+        }
     }
 
     public function getFieldName()
@@ -50,6 +53,7 @@ class AcceptRanges implements HeaderInterface
 
     public function setRangeUnit($rangeUnit)
     {
+        HeaderValue::assertValid($rangeUnit);
         $this->rangeUnit = $rangeUnit;
         return $this;
     }

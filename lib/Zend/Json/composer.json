@@ -8,11 +8,10 @@
     ],
     "homepage": "https://github.com/zendframework/zf2",
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Zend\\Json\\": ""
         }
     },
-    "target-dir": "Zend/Json",
     "require": {
         "php": ">=5.3.23",
         "zendframework/zend-stdlib": "self.version"
@@ -23,12 +22,13 @@
     },
     "suggest": {
         "zendframework/zend-http": "Zend\\Http component",
-        "zendframework/zend-server": "Zend\\Server component"
+        "zendframework/zend-server": "Zend\\Server component",
+        "zendframework/zendxml": "To support Zend\\Json\\Json::fromXml() usage"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.3-dev",
-            "dev-develop": "2.4-dev"
+            "dev-master": "2.4-dev",
+            "dev-develop": "2.5-dev"
         }
     }
 }

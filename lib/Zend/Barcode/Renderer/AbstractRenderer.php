@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -52,13 +52,13 @@ abstract class AbstractRenderer implements RendererInterface
 
     /**
      * Horizontal position of the barcode in the rendering resource
-     * @var int
+     * @var string
      */
     protected $horizontalPosition = 'left';
 
     /**
      * Vertical position of the barcode in the rendering resource
-     * @var int
+     * @var string
      */
     protected $verticalPosition = 'top';
 
@@ -501,7 +501,7 @@ abstract class AbstractRenderer implements RendererInterface
      * @param string $font
      * @param int $color
      * @param string $alignment
-     * @param float $orientation
+     * @param float|int $orientation
      */
     abstract protected function drawText(
         $text,

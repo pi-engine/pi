@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -38,7 +38,6 @@ use stdClass;
  */
 abstract class AbstractAccept implements HeaderInterface
 {
-
     /**
      *
      * @var stdClass[]
@@ -53,7 +52,6 @@ abstract class AbstractAccept implements HeaderInterface
      * @var bool
      */
     protected $sorted = false;
-
 
     /**
      * Parse a full header line or just the field value part.
@@ -70,6 +68,8 @@ abstract class AbstractAccept implements HeaderInterface
         } else {
             $value = $headerLine;
         }
+
+        HeaderValue::assertValid($value);
 
         foreach ($this->getFieldValuePartsFromHeaderLine($value) as $value) {
             $this->addFieldValuePartToQueue($value);
@@ -103,14 +103,13 @@ abstract class AbstractAccept implements HeaderInterface
                 || !isset($values[0])
         ) {
             throw new Exception\InvalidArgumentException(
-                    'Invalid header line for ' . $this->getFieldName() . ' header string'
+                'Invalid header line for ' . $this->getFieldName() . ' header string'
             );
         }
 
         $out = array();
         foreach ($values[0] as $value) {
             $value = trim($value);
-
             $out[] = $this->parseFieldValuePart($value);
         }
 
@@ -183,7 +182,6 @@ abstract class AbstractAccept implements HeaderInterface
         return $params;
     }
 
-
     /**
      * Get field value
      *
@@ -206,7 +204,6 @@ abstract class AbstractAccept implements HeaderInterface
         return implode(', ', $strings);
     }
 
-
     /**
      * Assemble and escape the field value parameters based on RFC 2616 section 2.1
      *
@@ -220,7 +217,8 @@ abstract class AbstractAccept implements HeaderInterface
         $separators = array('(', ')', '<', '>', '@', ',', ';', ':',
                             '/', '[', ']', '?', '=', '{', '}',  ' ',  "\t");
 
-        $escaped = preg_replace_callback('/[[:cntrl:]"\\\\]/', // escape cntrl, ", \
+        $escaped = preg_replace_callback(
+            '/[[:cntrl:]"\\\\]/', // escape cntrl, ", \
             function ($v) {
                 return '\\' . $v[0];
             },
@@ -270,14 +268,13 @@ abstract class AbstractAccept implements HeaderInterface
         }
 
         $assembledString = $this->getFieldValue(
-                                array((object) array('typeString' => $type, 'params' => $params))
-                            );
+            array((object) array('typeString' => $type, 'params' => $params))
+        );
 
         $value = $this->parseFieldValuePart($assembledString);
         $this->addFieldValuePartToQueue($value);
         return $this;
     }
-
 
     /**
      * Does the header have the requested type?
@@ -313,11 +310,9 @@ abstract class AbstractAccept implements HeaderInterface
                 }
 
                 if ($left->type == $right->type) {
-                    if ((($left->subtype == $right->subtype ||
-                            ($right->subtype == '*' || $left->subtype == '*')) &&
-                            ($left->format == $right->format ||
-                                    $right->format == '*' || $left->format == '*')))
-                    {
+                    if (($left->subtype == $right->subtype || ($right->subtype == '*' || $left->subtype == '*')) &&
+                        ($left->format == $right->format || $right->format == '*' || $left->format == '*')
+                    ) {
                         if ($this->matchAcceptParams($left, $right)) {
                             $left->setMatchedAgainst($right);
 
@@ -325,8 +320,6 @@ abstract class AbstractAccept implements HeaderInterface
                         }
                     }
                 }
-
-
             }
         }
 
@@ -375,12 +368,10 @@ abstract class AbstractAccept implements HeaderInterface
                     return false;
                 }
             }
-
         }
 
         return $match1;
     }
-
 
     /**
      * Add a key/value combination to the internal queue
