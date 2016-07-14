@@ -70,9 +70,7 @@ class Effects implements EffectsInterface
     public function colorize(ColorInterface $color)
     {
         if (!$color instanceof RGBColor) {
-            throw new RuntimeException(
-                'Colorize effects only accepts RGB color in GD context'
-            );
+            throw new RuntimeException('Colorize effects only accepts RGB color in GD context');
         }
 
         if (false === imagefilter($this->resource, IMG_FILTER_COLORIZE, $color->getRed(), $color->getGreen(), $color->getBlue())) {
@@ -92,6 +90,18 @@ class Effects implements EffectsInterface
 
         if (false === imageconvolution($this->resource, $sharpenMatrix, $divisor, 0)) {
             throw new RuntimeException('Failed to sharpen the image');
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function blur($sigma = 1)
+    {
+        if (false === imagefilter($this->resource, IMG_FILTER_GAUSSIAN_BLUR)) {
+            throw new RuntimeException('Failed to blur the image');
         }
 
         return $this;
