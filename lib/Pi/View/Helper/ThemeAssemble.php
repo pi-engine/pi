@@ -160,12 +160,12 @@ class ThemeAssemble extends AbstractHelper
         $headMeta($ogLocale, 'og:locale', 'property');
         $headMeta('website', 'og:type', 'property');
         $headMeta(Pi::service('asset')->logo(), 'og:image', 'property');
-        
+
         // Facebook
         if (!empty($facebook)) {
             $headMeta($facebook, 'fb:app_id', 'property');
         }
-        
+
         // Twitter Cards
         if (!empty($twitter)) {
             $headMeta('summary', 'twitter:card');
@@ -181,7 +181,7 @@ class ThemeAssemble extends AbstractHelper
         if (!empty($pinterest)) {
             $headMeta($pinterest, 'p:domain_verify');
         }
-        
+
         // Geo tags
         if (!empty($geoLatitude) && !empty($geoLongitudet)) {
             $this->view->geoTag($geoLatitude, $geoLongitudet, $geoPlacename, $geoRegion);
@@ -202,12 +202,13 @@ class ThemeAssemble extends AbstractHelper
         $postfix = $headTitle->getPostfix();
         $prefix = $headTitle->getPrefix();
         $type = Pi::config('title_type');
+        $sitename = Pi::config('sitename');
 
         // Set prefix or postfix
         switch ($type) {
             case 1:
                 if (!$postfix) {
-                    $postfix = Pi::config('sitename');
+                    $postfix = $sitename;
                     if ($headTitle->count()) {
                         if ($module && 'system' != $module) {
                             $moduleMeta = Pi::registry('module')->read($module);
@@ -221,7 +222,7 @@ class ThemeAssemble extends AbstractHelper
 
             case 2:
                 if (!$postfix) {
-                    $postfix = Pi::config('sitename');
+                    $postfix = $sitename;
                     $postfix = $separator . $postfix;
                     $headTitle->setPostfix($postfix);
                 }
@@ -229,7 +230,7 @@ class ThemeAssemble extends AbstractHelper
 
             case 3:
                 if (!$prefix) {
-                    $prefix = Pi::config('sitename');
+                    $prefix = $sitename;
                     if ($headTitle->count()) {
                         if ($module && 'system' != $module) {
                             $moduleMeta = Pi::registry('module')->read($module);
@@ -243,7 +244,7 @@ class ThemeAssemble extends AbstractHelper
 
             case 4:
                 if (!$prefix) {
-                    $prefix = Pi::config('sitename');
+                    $prefix = $sitename;
                     $prefix =  $prefix . $separator;
                     $headTitle->setPrefix($prefix);
                 }
@@ -256,7 +257,11 @@ class ThemeAssemble extends AbstractHelper
         // Set head title
         if (!$headTitle->count()) {
             $headTitleStr = Pi::config('head_title', $module);
-            if ($headTitleStr) {
+            if (empty($headTitleStr) && $module && 'system' != $module) {
+                $moduleMeta = Pi::registry('module')->read($module);
+                $headTitleStr = $moduleMeta['title'];
+            }
+            if ($headTitleStr && $headTitleStr != $sitename) {
                 $headTitle->set($headTitleStr);
             } else {
                 $headTitle->set(Pi::config('slogan'));
@@ -279,12 +284,12 @@ class ThemeAssemble extends AbstractHelper
         if ($pos) {
             $head = '';
             foreach (array(
-                'headTitle',
-                'headMeta',
-                'headLink',
-                'headStyle',
-                'headScript'
-            ) as $section) {
+                         'headTitle',
+                         'headMeta',
+                         'headLink',
+                         'headStyle',
+                         'headScript'
+                     ) as $section) {
                 $sectionContent = $this->view->plugin($section)->toString();
                 $sectionContent .= $sectionContent ? PHP_EOL : '';
                 if (!empty($this->sectionLabel[$section])) {
@@ -323,7 +328,7 @@ class ThemeAssemble extends AbstractHelper
                 $preFoot = substr($content, 0, $pos);
                 $postFoot = substr($content, $pos);
                 $content = $preFoot . PHP_EOL . $sectionContent . PHP_EOL . PHP_EOL
-                         . $postFoot;
+                    . $postFoot;
             }
         }
         /**#@-*/

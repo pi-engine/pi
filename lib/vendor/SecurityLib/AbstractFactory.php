@@ -62,9 +62,9 @@ abstract class AbstractFactory {
     /**
      * Load a set of classes from a directory into the factory
      *
-     * @param string $directory The directory to search for classes in
-     * @param string $namespace The namespace prefix for any found classes
-     * @param string $callback  The callback with which to register the class
+     * @param string $directory  The directory to search for classes in
+     * @param string $namespace  The namespace prefix for any found classes
+     * @param callable $callback The callback with which to register the class
      *
      * @return void
      */
