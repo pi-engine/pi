@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-widget\n"
-"POT-Creation-Date: 2016-03-26 13:19+0430\n"
-"PO-Revision-Date: 2016-03-26 13:19+0430\n"
+"POT-Creation-Date: 2016-07-26 09:56+0430\n"
+"PO-Revision-Date: 2016-07-26 09:56+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-KeywordsList: _a;_t;__\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -93,69 +93,69 @@ msgstr "ویجت"
 msgid "Management of custom blocks/widgets."
 msgstr "مدیریت بلاک ها ویجت های اختصاصی"
 
-#: config/nav.php:15 config/permission.php:13
-msgid "Script widgets"
-msgstr "ویجت های اسکریپت"
-
-#: config/nav.php:25 config/nav.php:49 config/nav.php:104 config/nav.php:138
-#: config/nav.php:172 config/nav.php:206 config/nav.php:240 config/nav.php:274
-msgid "Widget list"
-msgstr "فهرست ویجت ها"
-
-#: config/nav.php:31 template/admin/ng-script.phtml:11
-msgid "Activate"
-msgstr "فعال"
-
-#: config/nav.php:40 config/permission.php:16
+#: config/nav.php:15 config/permission.php:16
 msgid "Static widgets"
 msgstr "ویجت های استاتیک"
 
-#: config/nav.php:56 config/nav.php:111 config/nav.php:145 config/nav.php:179
-#: config/nav.php:213 config/nav.php:247 config/nav.php:281
+#: config/nav.php:24 config/nav.php:79 config/nav.php:113 config/nav.php:147
+#: config/nav.php:181 config/nav.php:215 config/nav.php:249 config/nav.php:284
+msgid "Widget list"
+msgstr "فهرست ویجت ها"
+
+#: config/nav.php:31 config/nav.php:86 config/nav.php:120 config/nav.php:154
+#: config/nav.php:188 config/nav.php:222 config/nav.php:256
 #: template/admin/ng.phtml:11
 msgid "Edit"
 msgstr "ویرایش"
 
-#: config/nav.php:65
+#: config/nav.php:40
 msgid "Add HTML"
 msgstr "HTML جدید"
 
-#: config/nav.php:74
+#: config/nav.php:49
 msgid "Add text"
 msgstr "متن جدید"
 
-#: config/nav.php:83
+#: config/nav.php:58
 msgid "Add markdown"
 msgstr "Markdown جدید"
 
-#: config/nav.php:95 config/permission.php:19
+#: config/nav.php:70 config/permission.php:19
 msgid "List group"
 msgstr "فهرست گروهی"
 
-#: config/nav.php:120 config/nav.php:154 config/nav.php:188 config/nav.php:222
-#: config/nav.php:256 config/nav.php:290
+#: config/nav.php:95 config/nav.php:129 config/nav.php:163 config/nav.php:197
+#: config/nav.php:231 config/nav.php:265
 msgid "Add new"
 msgstr "جدید"
 
-#: config/nav.php:129 config/permission.php:22
+#: config/nav.php:104 config/permission.php:22
 msgid "Media list"
 msgstr "فهرست رسانه ها"
 
-#: config/nav.php:163
+#: config/nav.php:138
 msgid "Carousel"
 msgstr "اسلاید"
 
-#: config/nav.php:197
+#: config/nav.php:172
 msgid "Spotlight"
 msgstr "اسپات لایت"
 
-#: config/nav.php:231 config/permission.php:31
+#: config/nav.php:206 config/permission.php:31
 msgid "Compound tabs"
 msgstr "تب های ترکیبی"
 
-#: config/nav.php:265 config/permission.php:34
+#: config/nav.php:240 config/permission.php:34
 msgid "Video and audio"
 msgstr "ویدیو و صدا"
+
+#: config/nav.php:274 config/permission.php:13
+msgid "Script widgets"
+msgstr "ویجت های اسکریپت"
+
+#: config/nav.php:290 template/admin/ng-script.phtml:11
+msgid "Activate"
+msgstr "فعال"
 
 #: config/permission.php:25
 msgid "Carousel widgets"
@@ -391,6 +391,10 @@ msgstr "تصویر در سمت چپ"
 #: src/Form/Element/MediaTemplate.php:64
 msgid "Image on right"
 msgstr "تصویر در سمت راست"
+
+#: src/Form/Element/MediaTemplate.php:65
+msgid "List of images on lines"
+msgstr "تصاویر در یک یا چند خط"
 
 #: src/Form/Element/SpotlightTemplate.php:25
 msgid "Spot on top"

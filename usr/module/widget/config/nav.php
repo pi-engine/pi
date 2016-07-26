@@ -11,31 +11,6 @@ return array(
     'item'  => array(
         'front'     => false,
         'admin'     => array(
-            'script'     => array(
-                'label'         => _t('Script widgets'),
-                'route'         => 'admin',
-                'controller'    => 'script',
-                'action'        => 'index',
-                'permission'    => array(
-                    'resource'  => 'script',
-                ),
-
-                'pages'         => array(
-                    'list'   => array(
-                        'label'         => _t('Widget list'),
-                        'route'         => 'admin',
-                        'controller'    => 'script',
-                        'action'        => 'index',
-                    ),
-                    'add'   => array(
-                        'label'         => _t('Activate'),
-                        'route'         => 'admin',
-                        'controller'    => 'script',
-                        'action'        => 'add',
-                    ),
-                ),
-            ),
-
             'static'     => array(
                 'label'         => _t('Static widgets'),
                 'route'         => 'admin',
@@ -290,6 +265,31 @@ return array(
                         'label'         => _t('Add new'),
                         'route'         => 'admin',
                         'controller'    => 'video',
+                        'action'        => 'add',
+                    ),
+                ),
+            ),
+
+            'script'     => array(
+                'label'         => _t('Script widgets'),
+                'route'         => 'admin',
+                'controller'    => 'script',
+                'action'        => 'index',
+                'permission'    => array(
+                    'resource'  => 'script',
+                ),
+
+                'pages'         => array(
+                    'list'   => array(
+                        'label'         => _t('Widget list'),
+                        'route'         => 'admin',
+                        'controller'    => 'script',
+                        'action'        => 'index',
+                    ),
+                    'add'   => array(
+                        'label'         => _t('Activate'),
+                        'route'         => 'admin',
+                        'controller'    => 'script',
                         'action'        => 'add',
                     ),
                 ),
