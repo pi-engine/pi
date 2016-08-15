@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2015-09-01 10:42+0430\n"
-"PO-Revision-Date: 2015-09-01 10:42+0430\n"
+"POT-Creation-Date: 2016-08-15 20:20+0430\n"
+"PO-Revision-Date: 2016-08-15 20:20+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -28,32 +28,42 @@ msgid "Slogan"
 msgstr "شعار"
 
 #: template/block/user-bar.phtml:7 template/block/user-bar.phtml:8
-#: template/block/user-bar.phtml:54 template/block/user-bar.phtml:55
-#: template/block/user-bar.phtml:90 template/block/user-bar.phtml:91
+#: template/block/user-bar.phtml:70 template/block/user-bar.phtml:71
+#: template/block/user-bar.phtml:110 template/block/user-bar.phtml:111
 msgid "Login"
 msgstr "ورود"
 
 #: template/block/user-bar.phtml:12 template/block/user-bar.phtml:13
-#: template/block/user-bar.phtml:59 template/block/user-bar.phtml:60
-#: template/block/user-bar.phtml:95 template/block/user-bar.phtml:96
+#: template/block/user-bar.phtml:75 template/block/user-bar.phtml:76
+#: template/block/user-bar.phtml:115 template/block/user-bar.phtml:116
 msgid "Register"
 msgstr "ثبت نام"
 
 #: template/block/user-bar.phtml:20 template/block/user-bar.phtml:21
-#: template/block/user-bar.phtml:72 template/block/user.phtml:20
+#: template/block/user-bar.phtml:88 template/block/user.phtml:20
 #: template/block/user.phtml:22
 msgid "Profile"
 msgstr "حساب کاربری"
 
-#: template/block/user-bar.phtml:25 template/block/user-bar.phtml:26
-#: template/block/user-bar.phtml:75 template/block/user-bar.phtml:107
-#: template/block/user-bar.phtml:108
+#: template/block/user-bar.phtml:26 template/block/user-bar.phtml:27
+#: template/block/user-bar.phtml:92 template/block/user-bar.phtml:93
+#: template/block/user-bar.phtml:128 template/block/user-bar.phtml:129
 msgid "Message"
 msgstr "پیام"
 
-#: template/block/user-bar.phtml:30 template/block/user-bar.phtml:31
-#: template/block/user-bar.phtml:78 template/block/user-bar.phtml:112
-#: template/block/user-bar.phtml:113 template/block/user.phtml:30
+#: template/block/user-bar.phtml:33 template/block/user-bar.phtml:34
+#: template/block/user-bar.phtml:135 template/block/user-bar.phtml:136
+msgid "Follow up orders"
+msgstr "پیگیری سفارش‌ها"
+
+#: template/block/user-bar.phtml:40 template/block/user-bar.phtml:41
+#: template/block/user-bar.phtml:142 template/block/user-bar.phtml:143
+msgid "Credit"
+msgstr "اعتبار"
+
+#: template/block/user-bar.phtml:46 template/block/user-bar.phtml:47
+#: template/block/user-bar.phtml:98 template/block/user-bar.phtml:148
+#: template/block/user-bar.phtml:149 template/block/user.phtml:30
 #: template/block/user.phtml:32
 msgid "Logout"
 msgstr "خروج"
