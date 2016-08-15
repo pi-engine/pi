@@ -124,9 +124,33 @@ class Block
             );
         }
 
-        if (Pi::service('module')->isActive('message')) {
+        if (Pi::service('module')->isActive('message') && Pi::service('user')->hasIdentity()) {
             $user['message'] = Pi::url(Pi::service('user')->message()->getUrl());
-            $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'message'));
+            $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid']));
+        }
+
+        if (Pi::service('module')->isActive('order') && Pi::service('user')->hasIdentity()) {
+            $user['order'] = $action = Pi::service('url')->assemble(
+                'order',
+                array(
+                    'module'        => 'order',
+                    'controller'    => 'index',
+                    'action'        => 'index',
+                )
+            );
+            $orderConfig = Pi::service('registry')->config->read('order');
+            if ($orderConfig['credit_active']) {
+                $credit = Pi::api('credit', 'order')->getCredit();
+                $user['amount'] = $credit['amount_view'];
+                $user['credit'] = $action = Pi::service('url')->assemble(
+                    'order',
+                    array(
+                        'module'        => 'order',
+                        'controller'    => 'credit',
+                        'action'        => 'index',
+                    )
+                );
+            }
         }
 
         $result['user'] = $user;
