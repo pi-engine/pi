@@ -85,9 +85,13 @@ $module = Pi::service('module')->current();
             </li>
         </ul>
         <?php echo $this->widget('system-user-bar', array(
-            'type'      => 'flat',
-            'params'    => array(
-                'section'   => Pi::engine()->application()->getSection(),
+            'type'         => 'flat',
+            'show_message' => 'merge',
+            'show_support' => 0,
+            'show_order'   => 0,
+            'show_credit'  => 0,
+            'params'       => array(
+                'section'  => Pi::engine()->application()->getSection(),
             ),
         )); ?>
     </nav>

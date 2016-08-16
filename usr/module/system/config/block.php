@@ -51,6 +51,44 @@ return array(
                     ),
                 ),
             ),
+            'show_message'      => array(
+                'title'         => _a('Display message'),
+                'description'   => _a('Display message type'),
+                'value'         => 'merge',
+                'edit'          => array(
+                    'type'      => 'select',
+                    'options'   => array(
+                        'options'   => array(
+                            'none'          => _a('Don\'t display message and notification'),
+                            'boot'          => _a('Boot message and notification'),
+                            'message'       => _a('Just message'),
+                            'notification'  => _a('Just notification'),
+                            'merge'         => _a('Merge message abd notification'),
+                        ),
+                    ),
+                ),
+            ),
+            'show_order' => array(
+                'title' => _a('Display order'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 1,
+            ),
+            'show_credit' => array(
+                'title' => _a('Display credit'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 1,
+            ),
+            'show_support' => array(
+                'title' => _a('Display support'),
+                'description' => '',
+                'edit' => 'checkbox',
+                'filter' => 'number_int',
+                'value' => 1,
+            ),
         ),
     ),
 

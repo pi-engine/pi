@@ -23,8 +23,30 @@
                     </li>
                     <?php if (isset($block['user']['message'])) { ?>
                         <li>
-                            <a id="member-message" href="#" title="<?php echo _b('Message'); ?>">
+                            <a id="member-message" href="<?php echo $block['user']['message']; ?>" title="<?php echo _b('Message'); ?>">
                                 <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['count']; ?></span>
+                            </a>
+                        </li>
+                    <?php } else { ?>
+                        <?php if (isset($block['user']['message_url'])) { ?>
+                            <li>
+                                <a id="member-message" href="<?php echo $block['user']['message_url']; ?>" title="<?php echo _b('Message'); ?>">
+                                    <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset($block['user']['notification_url'])) { ?>
+                            <li>
+                                <a id="member-notification" href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo _b('Notification'); ?>">
+                                    <?php echo _b('Notification'); ?> <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    <?php } ?>
+                    <?php if (isset($block['user']['support_url'])) { ?>
+                        <li>
+                            <a id="member-support" href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                                <?php echo _b('Support'); ?> <span class="badge"><?php echo $block['user']['support_count']; ?></span>
                             </a>
                         </li>
                     <?php } ?>
@@ -93,6 +115,42 @@ EOT;
                                         <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['count']; ?></span>
                                     </a>
                                 </li>
+                            <?php } else { ?>
+                                <?php if (isset($block['user']['message_url'])) { ?>
+                                    <li>
+                                        <a href="<?php echo $block['user']['message_url']; ?>" title="<?php echo _b('Message'); ?>">
+                                            <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if (isset($block['user']['notification_url'])) { ?>
+                                    <li>
+                                        <a href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo _b('Notification'); ?>">
+                                            <?php echo _b('Notification'); ?> <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if (isset($block['user']['support_url'])) { ?>
+                                    <li>
+                                        <a href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                                            <?php echo _b('Support'); ?> <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            <?php } ?>
+                            <?php if (isset($block['user']['order'])) { ?>
+                                <li>
+                                    <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
+                                        <?php echo _b('Follow up orders'); ?>
+                                    </a>
+                                </li>
+                            <?php } ?>
+                            <?php if (isset($block['user']['credit'])) { ?>
+                                <li>
+                                    <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
+                                        <?php echo _b('Credit'); ?> <span class="badge"><?php echo $block['user']['amount']; ?></span>
+                                    </a>
+                                </li>
                             <?php } ?>
                             <li>
                                 <a href="<?php echo $block['user']['logout']; ?>" title="<?php echo _b('Logout'); ?>"><?php echo _b('Logout'); ?></a>
@@ -129,17 +187,39 @@ EOT;
                                 <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['count']; ?></span>
                             </a>
                         </li>
+                    <?php } else { ?>
+                        <?php if (isset($block['user']['message_url'])) { ?>
+                            <li>
+                                <a href="<?php echo $block['user']['message_url']; ?>" title="<?php echo _b('Message'); ?>">
+                                    <?php echo _b('Message'); ?> <span class="badge"><?php echo $block['user']['message_count']; ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if (isset($block['user']['notification_url'])) { ?>
+                            <li>
+                                <a href="<?php echo $block['user']['notification_url']; ?>" title="<?php echo _b('Notification'); ?>">
+                                    <?php echo _b('Notification'); ?> <span class="badge"><?php echo $block['user']['notification_count']; ?></span>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    <?php } ?>
+                    <?php if (isset($block['user']['support_url'])) { ?>
+                        <li>
+                            <a href="<?php echo $block['user']['support_url']; ?>" title="<?php echo _b('Support'); ?>">
+                                <?php echo _b('Support'); ?> <span class="badge"><?php echo $block['user']['support_count']; ?></span>
+                            </a>
+                        </li>
                     <?php } ?>
                     <?php if (isset($block['user']['order'])) { ?>
                         <li>
-                            <a id="member-order" href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
+                            <a href="<?php echo $block['user']['order']; ?>" title="<?php echo _b('Follow up orders'); ?>">
                                 <?php echo _b('Follow up orders'); ?>
                             </a>
                         </li>
                     <?php } ?>
                     <?php if (isset($block['user']['credit'])) { ?>
                         <li>
-                            <a id="member-credit" href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
+                            <a href="<?php echo $block['user']['credit']; ?>" title="<?php echo _b('Credit'); ?>">
                                 <?php echo _b('Credit'); ?> <span class="badge"><?php echo $block['user']['amount']; ?></span>
                             </a>
                         </li>

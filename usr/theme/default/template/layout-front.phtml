@@ -108,7 +108,7 @@ $breadcrumbs = $this->breadcrumb(
     <div class="pi-header-body">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <?php if ($module == 'system') { ?>
                         <h1>
                             <a href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
@@ -123,8 +123,8 @@ $breadcrumbs = $this->breadcrumb(
                         </h2>
                     <?php } ?>
                 </div>
-                <div class="col-md-6">
-                    <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
+                <div class="col-md-9">
+                    <?php echo $this->widget('system-user-bar'); ?>
                 </div>
             </div>
         </div>
