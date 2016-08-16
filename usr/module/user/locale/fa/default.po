@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-08-15 20:05+0430\n"
-"PO-Revision-Date: 2016-08-15 20:05+0430\n"
+"POT-Creation-Date: 2016-08-16 12:29+0430\n"
+"PO-Revision-Date: 2016-08-16 12:30+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -889,23 +889,27 @@ msgstr "پیام های من"
 msgid "My notifications"
 msgstr "آگاهی رسانی های من"
 
-#: template/front/profile-sidebar.phtml:72
+#: template/front/profile-sidebar.phtml:73
+msgid "My support tickets"
+msgstr "درخواست های پشتیبانی من"
+
+#: template/front/profile-sidebar.phtml:76
 msgid "My events"
 msgstr "رویداد های من"
 
-#: template/front/profile-sidebar.phtml:76
+#: template/front/profile-sidebar.phtml:80
 msgid "My orders"
 msgstr "سفارش های من"
 
-#: template/front/profile-sidebar.phtml:79
+#: template/front/profile-sidebar.phtml:83
 msgid "My credit"
 msgstr "اعتبار خرید من"
 
-#: template/front/profile-sidebar.phtml:83
+#: template/front/profile-sidebar.phtml:87
 msgid "My favorites"
 msgstr "مورد علاقه های من"
 
-#: template/front/profile-sidebar.phtml:86
+#: template/front/profile-sidebar.phtml:90
 msgid "My videos"
 msgstr "ویدیو های من"
 

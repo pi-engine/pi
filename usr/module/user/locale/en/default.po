@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-08-15 20:05+0430\n"
-"PO-Revision-Date: 2016-08-15 20:05+0430\n"
+"POT-Creation-Date: 2016-08-16 12:29+0430\n"
+"PO-Revision-Date: 2016-08-16 12:29+0430\n"
 "Last-Translator: Taiwen Jiang <taiwenjiang@tsinghua.org.cn>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -878,23 +878,27 @@ msgstr ""
 msgid "My notifications"
 msgstr ""
 
-#: template/front/profile-sidebar.phtml:72
-msgid "My events"
+#: template/front/profile-sidebar.phtml:73
+msgid "My support tickets"
 msgstr ""
 
 #: template/front/profile-sidebar.phtml:76
+msgid "My events"
+msgstr ""
+
+#: template/front/profile-sidebar.phtml:80
 msgid "My orders"
 msgstr ""
 
-#: template/front/profile-sidebar.phtml:79
+#: template/front/profile-sidebar.phtml:83
 msgid "My credit"
 msgstr ""
 
-#: template/front/profile-sidebar.phtml:83
+#: template/front/profile-sidebar.phtml:87
 msgid "My favorites"
 msgstr ""
 
-#: template/front/profile-sidebar.phtml:86
+#: template/front/profile-sidebar.phtml:90
 msgid "My videos"
 msgstr ""
 

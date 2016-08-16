@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-admin\n"
-"POT-Creation-Date: 2015-10-10 22:30+0330\n"
-"PO-Revision-Date: 2015-10-10 22:32+0330\n"
+"POT-Creation-Date: 2016-08-16 12:30+0430\n"
+"PO-Revision-Date: 2016-08-16 12:32+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: _a;_t\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -58,19 +58,59 @@ msgstr "منوی کشویی"
 msgid "JavaScript"
 msgstr "جاوا اسکریپت"
 
-#: config/block.php:59 config/nav.front.php:30
+#: config/block.php:55
+msgid "Display message"
+msgstr "نمایش پیام"
+
+#: config/block.php:56
+msgid "Display message type"
+msgstr "نوع نمایش پیام و آگاهی رسانی"
+
+#: config/block.php:62
+msgid "Don't display message and notification"
+msgstr "پیام و آگاهی رسانی نمایش داده نشود"
+
+#: config/block.php:63
+msgid "Boot message and notification"
+msgstr "هر دو گزینه پیام و آگاهی رسانی جدای از هم نمایش داده شود"
+
+#: config/block.php:64
+msgid "Just message"
+msgstr "فقط پیام نمایش داده شود"
+
+#: config/block.php:65
+msgid "Just notification"
+msgstr "فقط آگاهی رسانی نمایش داده شود"
+
+#: config/block.php:66
+msgid "Merge message abd notification"
+msgstr "نمایش ترکیبی پیام و آگاهی رسانی"
+
+#: config/block.php:72
+msgid "Display order"
+msgstr "نمایش سفارش"
+
+#: config/block.php:79
+msgid "Display credit"
+msgstr "نمایش اعتبار"
+
+#: config/block.php:86
+msgid "Display support"
+msgstr "نمایش پشتیبانی"
+
+#: config/block.php:97 config/nav.front.php:30
 msgid "Login"
 msgstr "ورود"
 
-#: config/block.php:60
+#: config/block.php:98
 msgid "User login block"
 msgstr "بلاک لاگین کاربر"
 
-#: config/block.php:67
+#: config/block.php:105
 msgid "Pi feature"
 msgstr "ویژگی پای انجین"
 
-#: config/block.php:68
+#: config/block.php:106
 msgid "Introduction to Pi Engine"
 msgstr "معرفی پای انجین"
 
@@ -102,7 +142,7 @@ msgstr "ورود مدیریت"
 msgid "Text processing"
 msgstr "پردازش متن"
 
-#: config/config.php:53 config/nav.admin.php:311
+#: config/config.php:53 config/nav.admin.php:300
 #: template/admin/audit-index.phtml:9
 msgid "Mailing"
 msgstr "ارسال میل"
@@ -805,16 +845,16 @@ msgid "Asset publish"
 msgstr "انتشار Asset"
 
 #: config/nav.admin.php:281
-msgid "Homepage layout"
-msgstr "چیدمان صفحه اول"
-
-#: config/nav.admin.php:292
 msgid "Toolkit"
 msgstr "نوار ابزار"
 
-#: config/nav.admin.php:303 template/admin/audit-index.phtml:8
+#: config/nav.admin.php:292 template/admin/audit-index.phtml:8
 msgid "Audit"
 msgstr "Audit"
+
+#: config/nav.admin.php:311
+msgid "Homepage layout"
+msgstr "چیدمان صفحه اول"
 
 #: config/nav.component.php:17
 msgid "Configurations"
@@ -1643,7 +1683,7 @@ msgstr "به سیستم پای خوش آمدید."
 msgid "Application"
 msgstr "برنامه"
 
-#: src/Installer/Action/Install.php:213
+#: src/Installer/Action/Install.php:216
 msgid "Service"
 msgstr "خدمات"
 
@@ -2057,13 +2097,11 @@ msgstr "فعال‌سازی"
 msgid "Press to continue ..."
 msgstr "برای ادامه فشار دهید"
 
-#: template/admin/module-operation.phtml:17
-#: template/admin/module-refresh.phtml:23
+#: template/admin/module-operation.phtml:17 template/admin/module-refresh.phtml:23
 msgid "Failed"
 msgstr "ناموفق"
 
-#: template/admin/module-operation.phtml:19
-#: template/admin/module-refresh.phtml:25
+#: template/admin/module-operation.phtml:19 template/admin/module-refresh.phtml:25
 msgid "Succeeded"
 msgstr "با موفقیت انجام شد"
 
@@ -2271,8 +2309,7 @@ msgstr "آیا مطمئن هستید که می‌خواهید این نقش را
 msgid "Click To preview"
 msgstr "برای بازبینی کلیک کنید"
 
-#: template/admin/theme-available.phtml:20
-#: template/admin/theme-installed.phtml:24
+#: template/admin/theme-available.phtml:20 template/admin/theme-installed.phtml:24
 msgid "Check"
 msgstr "بررسی"
 
