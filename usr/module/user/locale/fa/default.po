@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-user\n"
-"POT-Creation-Date: 2016-03-31 14:33+0430\n"
-"PO-Revision-Date: 2016-03-31 14:33+0430\n"
+"POT-Creation-Date: 2016-08-16 12:29+0430\n"
+"PO-Revision-Date: 2016-08-16 12:30+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -885,19 +885,31 @@ msgstr "اسپانسر"
 msgid "My messages"
 msgstr "پیام های من"
 
-#: template/front/profile-sidebar.phtml:70
+#: template/front/profile-sidebar.phtml:69
+msgid "My notifications"
+msgstr "آگاهی رسانی های من"
+
+#: template/front/profile-sidebar.phtml:73
+msgid "My support tickets"
+msgstr "درخواست های پشتیبانی من"
+
+#: template/front/profile-sidebar.phtml:76
 msgid "My events"
 msgstr "رویداد های من"
 
-#: template/front/profile-sidebar.phtml:73
+#: template/front/profile-sidebar.phtml:80
 msgid "My orders"
 msgstr "سفارش های من"
 
-#: template/front/profile-sidebar.phtml:76
+#: template/front/profile-sidebar.phtml:83
+msgid "My credit"
+msgstr "اعتبار خرید من"
+
+#: template/front/profile-sidebar.phtml:87
 msgid "My favorites"
 msgstr "مورد علاقه های من"
 
-#: template/front/profile-sidebar.phtml:79
+#: template/front/profile-sidebar.phtml:90
 msgid "My videos"
 msgstr "ویدیو های من"
 

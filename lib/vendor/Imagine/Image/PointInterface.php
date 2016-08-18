@@ -11,9 +11,6 @@
 
 namespace Imagine\Image;
 
-use Imagine\Image\BoxInterface;
-use Imagine\Image\ImageInterface;
-
 /**
  * The point interface
  */
@@ -34,7 +31,7 @@ interface PointInterface
     public function getY();
 
     /**
-     * Checks if current coordinate is inside a given bo
+     * Checks if current coordinate is inside a given box
      *
      * @param BoxInterface $box
      *

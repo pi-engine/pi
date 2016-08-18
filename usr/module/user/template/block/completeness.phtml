@@ -38,8 +38,6 @@ if ($block['percent'] < 41) {
                                 <i class="fa fa-times"></i> <?php echo $this->escape($mainFields['title']); ?>
                                 <?php if ($mainFields['name'] == 'avatar') { ?>
                                     <a title="<?php echo _b('update'); ?>" href="<?php echo $this->escape($block['avatarUrl']); ?>">( <?php echo _b('update'); ?> )</a>
-                                <?php } else { ?>
-                                    <a title="<?php echo _b('update'); ?>" href="<?php echo $this->escape($block['accountUrl']); ?>">( <?php echo _b('update'); ?> )</a>
                                 <?php } ?>
                             </div>
                         <?php } ?>

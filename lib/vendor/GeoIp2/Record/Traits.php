@@ -6,23 +6,31 @@ namespace GeoIp2\Record;
  *
  * Contains data for the traits record associated with an IP address
  *
- * This record is returned by all the end points.
+ * This record is returned by all location services and databases.
  *
- * @property int $autonomousSystemNumber The {@link
+ * @property int|null $autonomousSystemNumber The {@link
  * http://en.wikipedia.org/wiki/Autonomous_system_(Internet) autonomous
  * system number} associated with the IP address. This attribute is only
- * available from the City/ISP/Org and Omni end points.
+ * available from the City and Insights web service and the GeoIP2
+ * Enterprise database.
  *
- * @property string $autonomousSystemOrganization The organization
+ * @property string|null $autonomousSystemOrganization The organization
  * associated with the registered {@link
  * http://en.wikipedia.org/wiki/Autonomous_system_(Internet) autonomous
  * system number} for the IP address. This attribute is only available from
- * the City/ISP/Org and Omni end points.
+ * the City and Insights web service and the GeoIP2 Enterprise
+ * database.
  *
- * @property string $domain The second level domain associated with the
+ * @property string|null $connectionType The connection type may take the
+ * following  values: "Dialup", "Cable/DSL", "Corporate", "Cellular".
+ * Additional values may be added in the future. This attribute is only
+ * available in the GeoIP2 Enterprise database.
+ *
+ * @property string|null $domain The second level domain associated with the
  * IP address. This will be something like "example.com" or "example.co.uk",
  * not "foo.example.com". This attribute is only available from the
- * City/ISP/Org and Omni end points.
+ * City and Insights web service and the GeoIP2 Enterprise
+ * database.
  *
  * @property string $ipAddress The IP address that the data in the model
  * is for. If you performed a "me" lookup against the web service, this
@@ -31,23 +39,30 @@ namespace GeoIp2\Record;
  * address locally assigned to it. This attribute is returned by all end
  * points.
  *
- * @property boolean $isAnonymousProxy This is true if the IP is an
- * anonymous proxy. See {@link http://dev.maxmind.com/faq/geoip#anonproxy}
- * for further details. This attribute is returned by all end points.
+ * @property boolean $isAnonymousProxy *Deprecated.* Please see our {@link
+ * https://www.maxmind.com/en/geoip2-anonymous-ip-database GeoIP2
+ * Anonymous IP database} to determine whether the IP address is used by an
+ * anonymizing service.
  *
- * @property boolean $isSatelliteProvider This is true if the IP belongs
- * to a satellite Internet provider.  This attribute is returned by all
- * end points.
+ * @property boolean $isLegitimateProxy This attribute is true if MaxMind
+ * believes this IP address to be a legitimate proxy, such as an internal
+ * VPN used by a corporation. This attribute is only available in the GeoIP2
+ * Enterprise database.
  *
- * @property string $isp The name of the ISP associated with the IP address.
- * This attribute is only available from the City/ISP/Org and Omni end
- * points.
+ * @property boolean $isSatelliteProvider *Deprecated.* Due to the
+ * increased coverage by mobile carriers, very few satellite providers now
+ * serve multiple countries. As a result, the output does not provide
+ * sufficiently relevant data for us to maintain it.
  *
- * @property string $organization The name of the organization associated
- * with the IP address. This attribute is only available from the City/ISP/Org
- * and Omni end points.
+ * @property string|null $isp The name of the ISP associated with the IP
+ * address. This attribute is only available from the City and Insights web
+ * services and the GeoIP2 Enterprise database.
  *
- * @property string $userType <p>The user type associated with the IP
+ * @property string|null $organization The name of the organization associated
+ * with the IP address. This attribute is only available from the City and
+ * Insights web services and the GeoIP2 Enterprise database.
+ *
+ * @property string|null $userType <p>The user type associated with the IP
  *  address. This can be one of the following values:</p>
  *  <ul>
  *    <li>business
@@ -66,7 +81,10 @@ namespace GeoIp2\Record;
  *    <li>search_engine_spider
  *    <li>traveler
  * </ul>
- * <p>This attribute is only available from the Omni end point.</p>
+ * <p>
+ *   This attribute is only available from the Insights web service and the
+ *   GeoIP2 Enterprise database.
+ * </p>
  */
 class Traits extends AbstractRecord
 {
@@ -76,8 +94,10 @@ class Traits extends AbstractRecord
     protected $validAttributes = array(
         'autonomousSystemNumber',
         'autonomousSystemOrganization',
+        'connectionType',
         'domain',
         'isAnonymousProxy',
+        'isLegitimateProxy',
         'isSatelliteProvider',
         'isp',
         'ipAddress',

@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pi-block\n"
-"POT-Creation-Date: 2015-10-01 18:42+0330\n"
-"PO-Revision-Date: 2015-10-01 18:42+0330\n"
+"POT-Creation-Date: 2016-08-16 12:30+0430\n"
+"PO-Revision-Date: 2016-08-16 12:30+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: _b\n"
 "X-Poedit-Basepath: ../..\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -28,32 +28,59 @@ msgid "Slogan"
 msgstr ""
 
 #: template/block/user-bar.phtml:7 template/block/user-bar.phtml:8
-#: template/block/user-bar.phtml:54 template/block/user-bar.phtml:55
-#: template/block/user-bar.phtml:90 template/block/user-bar.phtml:91
+#: template/block/user-bar.phtml:92 template/block/user-bar.phtml:93
+#: template/block/user-bar.phtml:168 template/block/user-bar.phtml:169
 msgid "Login"
 msgstr ""
 
 #: template/block/user-bar.phtml:12 template/block/user-bar.phtml:13
-#: template/block/user-bar.phtml:59 template/block/user-bar.phtml:60
-#: template/block/user-bar.phtml:95 template/block/user-bar.phtml:96
+#: template/block/user-bar.phtml:97 template/block/user-bar.phtml:98
+#: template/block/user-bar.phtml:173 template/block/user-bar.phtml:174
 msgid "Register"
 msgstr ""
 
 #: template/block/user-bar.phtml:20 template/block/user-bar.phtml:21
-#: template/block/user-bar.phtml:72 template/block/user.phtml:20
+#: template/block/user-bar.phtml:110 template/block/user.phtml:20
 #: template/block/user.phtml:22
 msgid "Profile"
 msgstr ""
 
-#: template/block/user-bar.phtml:25 template/block/user-bar.phtml:26
-#: template/block/user-bar.phtml:75 template/block/user-bar.phtml:107
-#: template/block/user-bar.phtml:108
+#: template/block/user-bar.phtml:26 template/block/user-bar.phtml:27
+#: template/block/user-bar.phtml:33 template/block/user-bar.phtml:34
+#: template/block/user-bar.phtml:114 template/block/user-bar.phtml:115
+#: template/block/user-bar.phtml:121 template/block/user-bar.phtml:122
+#: template/block/user-bar.phtml:186 template/block/user-bar.phtml:187
+#: template/block/user-bar.phtml:193 template/block/user-bar.phtml:194
 msgid "Message"
 msgstr ""
 
-#: template/block/user-bar.phtml:30 template/block/user-bar.phtml:31
-#: template/block/user-bar.phtml:78 template/block/user-bar.phtml:112
-#: template/block/user-bar.phtml:113 template/block/user.phtml:30
+#: template/block/user-bar.phtml:40 template/block/user-bar.phtml:41
+#: template/block/user-bar.phtml:128 template/block/user-bar.phtml:129
+#: template/block/user-bar.phtml:200 template/block/user-bar.phtml:201
+msgid "Notification"
+msgstr ""
+
+#: template/block/user-bar.phtml:48 template/block/user-bar.phtml:49
+#: template/block/user-bar.phtml:135 template/block/user-bar.phtml:136
+#: template/block/user-bar.phtml:208 template/block/user-bar.phtml:209
+msgid "Support"
+msgstr ""
+
+#: template/block/user-bar.phtml:55 template/block/user-bar.phtml:56
+#: template/block/user-bar.phtml:143 template/block/user-bar.phtml:144
+#: template/block/user-bar.phtml:215 template/block/user-bar.phtml:216
+msgid "Follow up orders"
+msgstr ""
+
+#: template/block/user-bar.phtml:62 template/block/user-bar.phtml:63
+#: template/block/user-bar.phtml:150 template/block/user-bar.phtml:151
+#: template/block/user-bar.phtml:222 template/block/user-bar.phtml:223
+msgid "Credit"
+msgstr ""
+
+#: template/block/user-bar.phtml:68 template/block/user-bar.phtml:69
+#: template/block/user-bar.phtml:156 template/block/user-bar.phtml:228
+#: template/block/user-bar.phtml:229 template/block/user.phtml:30
 #: template/block/user.phtml:32
 msgid "Logout"
 msgstr ""

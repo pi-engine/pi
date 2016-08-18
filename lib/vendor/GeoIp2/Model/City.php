@@ -3,11 +3,10 @@
 namespace GeoIp2\Model;
 
 /**
- * This class provides a model for the data returned by the GeoIP2
- * City end point.
+ * Model class for the data returned by GeoIP2 City web service and database.
  *
- * The only difference between the City, City/ISP/Org, and Omni model
- * classes is which fields in each record may be populated. See
+ * The only difference between the City and Insights model classes is which
+ * fields in each record may be populated. See
  * http://dev.maxmind.com/geoip/geoip2/web-services more details.
  *
  * @property \GeoIp2\Record\City $city City data for the requested IP
@@ -23,6 +22,9 @@ namespace GeoIp2\Model;
  * @property \GeoIp2\Record\Location $location Location data for the
  * requested IP address.
  *
+ * @property \GeoIp2\Record\Postal $postal Postal data for the
+ * requested IP address.
+ *
  * @property \GeoIp2\Record\MaxMind $maxmind Data related to your MaxMind
  * account.
  *
@@ -33,8 +35,8 @@ namespace GeoIp2\Model;
  *
  * @property \GeoIp2\Record\RepresentedCountry $representedCountry
  * Represented country data for the requested IP address. The represented
- * country is used for things like military bases or embassies. It is only
- * present when the represented country differs from the country.
+ * country is used for things like military bases. It is only present when
+ * the represented country differs from the country.
  *
  * @property array $subdivisions An array of {@link \GeoIp2\Record\Subdivision}
  * objects representing the country subdivisions for the requested IP

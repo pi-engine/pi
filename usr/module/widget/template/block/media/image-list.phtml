@@ -1,0 +1,45 @@
+<?php
+$options    = (array) $block['options'];
+$items      = (array) $block['items'];
+$target     = empty($options['target_new']) ? '_self' : '_blank';
+switch ($options['max_rows']) {
+    case '0':
+        $rows = 'col-md-12 col-xs-12';
+        break;
+
+    case '1':
+        $rows = 'col-md-12 col-xs-12';
+        break;
+
+    case '2':
+        $rows = 'col-md-6 col-xs-6';
+        break;
+
+    case '3':
+        $rows = 'col-md-4 col-xs-4';
+        break;
+
+    case '4':
+        $rows = 'col-md-3 col-xs-4';
+        break;
+
+    case '6':
+        $rows = 'col-md-2 col-xs-3';
+        break;
+
+    case '12':
+        $rows = 'col-md-1 col-xs-2';
+        break;
+}
+?>
+<div class="widget-media-list text-center">
+    <div class="row clearfix">
+        <?php foreach($items as $item) { ?>
+            <div class="<?php echo $rows; ?> widget-media-list-image">
+                <a href="<?php echo $item['link']; ?>" target="<?php echo $target; ?>" title="<?php echo _escape($item['caption']); ?>">
+                    <img class="img-responsive" src="<?php echo $item['image']; ?>" alt="<?php echo _escape($item['caption']); ?>">
+                </a>
+            </div>
+        <?php } ?>
+    </div>
+</div>

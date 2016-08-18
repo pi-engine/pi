@@ -27,7 +27,7 @@ class RGB implements PaletteInterface
     /**
      * @var ProfileInterface
      */
-    protected $profile;
+    private $profile;
 
     /**
      * @var array
@@ -83,9 +83,7 @@ class RGB implements PaletteInterface
     public function profile()
     {
         if (!$this->profile) {
-            $this->profile = Profile::fromPath(
-                __DIR__ . '/../../resources/Adobe/RGB/AdobeRGB1998.icc'
-            );
+            $this->profile = Profile::fromPath(__DIR__ . '/../../resources/color.org/sRGB_IEC61966-2-1_black_scaled.icc');
         }
 
         return $this->profile;
@@ -97,7 +95,7 @@ class RGB implements PaletteInterface
     public function color($color, $alpha = null)
     {
         if (null === $alpha) {
-            $alpha = 0;
+            $alpha = 100;
         }
 
         $color = $this->parser->parseToRGB($color);

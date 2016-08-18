@@ -61,7 +61,13 @@ $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
+    'type'  => 'image/x-icon',
     'href'  => $this->favicon(),
+));
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'type'  => 'image/png',
+    'href'  => $this->favicon('favicon.png'),
 ));
 
 // Load google analytics code
@@ -113,7 +119,7 @@ $module = Pi::service('module')->current();
             echo $footer;
         } else {
             ?>
-            <ul class="pi-footer-links muted">
+            <ul class="pi-footer-links muted list-inline">
                 <li>
                     <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
                         &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>

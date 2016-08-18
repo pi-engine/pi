@@ -86,6 +86,10 @@ class Block
         }
         $result = array(
             'type'  => $type,
+            'show_message' => $options['show_message'],
+            'show_order'=> $options['show_order'],
+            'show_credit'=> $options['show_credit'],
+            'show_support'=> $options['show_support'],
         );
 
         if ('js' == $type) {
@@ -124,9 +128,84 @@ class Block
             );
         }
 
-        if (Pi::service('module')->isActive('message')) {
-            $user['message'] = Pi::url(Pi::service('user')->message()->getUrl());
-            $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'message'));
+        if ($options['show_message'] != 'none' && Pi::service('module')->isActive('message') && Pi::service('user')->hasIdentity()) {
+            switch ($options['show_message']) {
+                case 'boot':
+                    $user['message_url'] = Pi::url(Pi::service('user')->message()->getUrl());
+                    $user['message_count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'message'));
+                    $user['notification_url'] = Pi::service('url')->assemble(
+                        'default',
+                        array(
+                            'module'        => 'message',
+                            'controller'    => 'notify',
+                            'action'        => 'index',
+                        )
+                    );
+                    $user['notification_count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'notification'));
+                    break;
+
+                case 'message':
+                    $user['message_url'] = Pi::url(Pi::service('user')->message()->getUrl());
+                    $user['message_count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'message'));
+                    break;
+
+                case 'notification':
+                    $user['notification_url'] = Pi::service('url')->assemble(
+                        'default',
+                        array(
+                            'module'        => 'message',
+                            'controller'    => 'notify',
+                            'action'        => 'index',
+                        )
+                    );
+                    $user['notification_count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'notification'));
+                    break;
+
+                case 'merge':
+                    $user['message'] = Pi::url(Pi::service('user')->message()->getUrl());
+                    $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid']));
+                    break;
+            }
+
+        }
+
+        if ($options['show_order'] && Pi::service('module')->isActive('order') && Pi::service('user')->hasIdentity()) {
+            $user['order'] = Pi::service('url')->assemble(
+                'order',
+                array(
+                    'module'        => 'order',
+                    'controller'    => 'index',
+                    'action'        => 'index',
+                )
+            );
+        }
+
+        if ($options['show_credit'] && Pi::service('module')->isActive('order') && Pi::service('user')->hasIdentity()) {
+            $orderConfig = Pi::service('registry')->config->read('order');
+            if ($orderConfig['credit_active']) {
+                $credit = Pi::api('credit', 'order')->getCredit();
+                $user['amount'] = $credit['amount_view'];
+                $user['credit'] = Pi::service('url')->assemble(
+                    'order',
+                    array(
+                        'module'        => 'order',
+                        'controller'    => 'credit',
+                        'action'        => 'index',
+                    )
+                );
+            }
+        }
+
+        if ($options['show_support'] && Pi::service('module')->isActive('support') && Pi::service('user')->hasIdentity()) {
+            $user['support_count'] = _number(Pi::api('ticket', 'support')->getCount());
+            $user['support_url'] = Pi::service('url')->assemble(
+                'support',
+                array(
+                    'module'        => 'support',
+                    'controller'    => 'index',
+                    'action'        => 'index',
+                )
+            );
         }
 
         $result['user'] = $user;

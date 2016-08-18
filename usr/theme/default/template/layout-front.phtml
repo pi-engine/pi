@@ -64,7 +64,13 @@ $this->headMeta('width=device-width, initial-scale=1.0', 'viewport');
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
+    'type'  => 'image/x-icon',
     'href'  => $this->favicon(),
+));
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'type'  => 'image/png',
+    'href'  => $this->favicon('favicon.png'),
 ));
 
 // Load google analytics code
@@ -96,13 +102,13 @@ $breadcrumbs = $this->breadcrumb(
     <meta charset="<?php echo $charset; ?>">
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 </head>
-<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?>">
+<body id="pi-<?php echo $module; ?>" class="pi-locale-<?php echo $locale; ?> pi-front">
 <!-- Header: brand, slogan, user bar -->
 <header class="pi-header">
     <div class="pi-header-body">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <?php if ($module == 'system') { ?>
                         <h1>
                             <a href="<?php echo Pi::url($this->url('home')); ?>" title="<?php echo _escape($sitename); ?>">
@@ -117,8 +123,8 @@ $breadcrumbs = $this->breadcrumb(
                         </h2>
                     <?php } ?>
                 </div>
-                <div class="col-md-6">
-                    <?php echo $this->widget('system-user-bar', array('type' => 'js')); ?>
+                <div class="col-md-9">
+                    <?php echo $this->widget('system-user-bar'); ?>
                 </div>
             </div>
         </div>
@@ -277,7 +283,7 @@ $breadcrumbs = $this->breadcrumb(
     ?>
         <div class="container">
             <div class="row">
-                <ul class="pi-footer-links muted">
+                <ul class="pi-footer-links muted list-inline">
                     <li>
                         <a href="<?php echo Pi::url('www'); ?>" title="<?php echo _escape($sitename); ?>">
                             &copy; <?php echo date('Y') . ' ' . _escape($sitename); ?>
