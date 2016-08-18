@@ -17,7 +17,7 @@ $this->headMeta('noindex', 'robots');
     <div class="modal-dialog">
         <div class="modal-content form-horizontal">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã—</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title"><?php _e('Verify identity'); ?></h4>
             </div>
             <div class="modal-body">
@@ -104,22 +104,22 @@ $this->headMeta('noindex', 'robots');
 
                             if (result.email_error === 0) {
                                 this.emailInitVal = result.email_value;
-                                this.$email.after('<span class="help-block">' + result.email_message + '</span>');
+                                this.$email.after("<span class='help-block'>" + result.email_message + "</span>");
                             }
 
                             if (result.email_error === 1) {
                                 this.emailReset();
-                                this.$email.after('<span class="help-block">' + result.email_message + '</span>').closest('.control-group').addClass('error');
+                                this.$email.after("<span class='help-block'>" + result.email_message + "</span>").closest('.control-group').addClass('error');
                             }
 
                             if (result.name_error === 0) {
                                 this.nameInitVal = result.name_value;
-                                this.$name.after('<span class="help-block">' + result.name_message + '</span>');
+                                this.$name.after("<span class='help-block'>" + result.name_message + "</span>");
                             }
 
                             if (result.name_error === 1) {
                                 this.nameReset();
-                                this.$name.after('<span class="help-block">' + result.name_message + '</span>').closest('.control-group').addClass('error');
+                                this.$name.after("<span class='help-block'>" + result.name_message + "</span>").closest('.control-group').addClass('error');
                             }
 
                             this.$confirm.modal('hide');
@@ -128,7 +128,7 @@ $this->headMeta('noindex', 'robots');
                     } else {
                         this.confirmReset();
                         this.$confirmPassword.next().remove();
-                        this.$confirmPassword.after('<span class="help-inline">' + result.message + '</span>').closest('.control-group').addClass('error');
+                        this.$confirmPassword.after("<span class='help-block'>" + result.message + "</span>").closest('.control-group').addClass('error');
                     }
                 }, this));
             },
@@ -169,14 +169,14 @@ $this->headMeta('noindex', 'robots');
 
                     case emailVal == '':
                         this.$email.next().remove();
-                        this.$email.after('<span class="help-inline"><?php _e('Email is required.'); ?></span>');
+                        this.$email.after("<span class='help-inline'><?php _e('Email is required.'); ?></span>");
                         this.isEmailValid = false;
                         this.isValid();
                         break;
 
                     case emailVal == this.emailInitVal:
                         this.$email.next().remove();
-                        this.$email.after('<span class="help-inline">' + this.options.THAT_IS_YOU + '</span>');
+                        this.$email.after("<span class='help-inline'>" + this.options.THAT_IS_YOU + "</span>");
                         this.isEmailValid = false;
                         this.isValid();
                         break;
@@ -189,7 +189,7 @@ $this->headMeta('noindex', 'robots');
                             $.getJSON(this.options.validateUrl, { 'key': 'email', 'value': emailVal }, $.proxy(function(result) {
                                 if (!result.status) {
                                     this.$email.next().remove();
-                                    this.$email.after('<span class="help-inline">' + result.message + '</span>');
+                                    this.$email.after("<span class='help-inline'>" + result.message + "</span>");
                                     this.isEmailValid = false;
                                     this.isValid();
                                 } else {
@@ -209,14 +209,14 @@ $this->headMeta('noindex', 'robots');
 
                     case nameVal == '':
                         this.$name.next().remove();
-                        this.$name.after('<span class="help-inline"><?php _e('Display name is required.'); ?></span>');
+                        this.$name.after("<span class='help-inline'><?php _e('Display name is required.'); ?></span>");
                         this.isNameValid = false;
                         this.isValid();
                         break;
 
                     case nameVal == this.nameInitVal:
                         this.$name.next().remove();
-                        this.$name.after('<span class="help-inline">' + this.options.THAT_IS_YOU + '</span>');
+                        this.$name.after("<span class='help-inline'>" + this.options.THAT_IS_YOU + "</span>");
                         this.isNameValid = false;
                         this.isValid();
                         break;
@@ -229,7 +229,7 @@ $this->headMeta('noindex', 'robots');
                             $.getJSON(this.options.validateUrl, { 'key': 'name', 'value': nameVal }, $.proxy(function(result) {
                                 if (!result.status) {
                                     this.$name.next().remove();
-                                    this.$name.after('<span class="help-inline">' + result.message + '</span>');
+                                    this.$name.after("<span class='help-inline'>" + result.message + "</span>");
                                     this.isNameValid = false;
                                     this.isValid();
                                 } else {
@@ -260,6 +260,6 @@ $this->headMeta('noindex', 'robots');
         validateUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'validate')); ?>',
         //checkExistUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'check.exist')); ?>',
         confirmUrl: '<?php echo $this->url('', array('controller' => 'account', 'action' => 'verify.credential')); ?>',
-        THAT_IS_YOU: '<?php _e('No change!'); ?>'
+        THAT_IS_YOU: "<?php _e('No change!'); ?>"
     });
 </script>
