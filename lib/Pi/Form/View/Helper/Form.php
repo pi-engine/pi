@@ -235,9 +235,9 @@ EOT;
 
             switch ($style) {
                 case 'popup':
-                    $vars['label_size']     = 'col-md-3';
+                    $vars['label_size']     = 'col-sm-4';
                     $vars['element_size']   = 'col-sm-8';
-                    $vars['error_size']     = 'col-sm-8';
+                    $vars['error_size']     = 'col-sm-12';
                     break;
 
                 case 'inline':
@@ -273,7 +273,7 @@ EOT;
 
             // Style settings for editor
             if ($type == 'editor') {
-                $vars['label_size']     = 'col-md-12';
+                $vars['label_size']     = 'col-md-12 text-left';
                 $vars['element_size']   = 'col-md-12';
                 $vars['error_size']     = 'col-md-12';
             }

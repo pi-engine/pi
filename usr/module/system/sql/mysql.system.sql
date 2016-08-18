@@ -225,7 +225,7 @@ CREATE TABLE `{core.navigation_node}` (
   `id`              int(10)         unsigned    NOT NULL auto_increment,
   `navigation`      varchar(64)     NOT NULL    default '',
   `module`          varchar(64)     NOT NULL    default '',
-  `data`            text,
+  `data`            MEDIUMTEXT,
 
   PRIMARY KEY  (`id`),
   UNIQUE KEY `nav_name` (`navigation`)

@@ -126,7 +126,7 @@ class Block
 
         if (Pi::service('module')->isActive('message')) {
             $user['message'] = Pi::url(Pi::service('user')->message()->getUrl());
-            $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid'], 'message'));
+            $user['count'] = _number(Pi::api('api', 'message')->getUnread($user['uid']));
         }
 
         $result['user'] = $user;

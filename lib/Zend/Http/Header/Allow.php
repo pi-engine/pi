@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -110,6 +110,12 @@ class Allow implements HeaderInterface
     {
         foreach ((array) $allowedMethods as $method) {
             $method = trim(strtoupper($method));
+            if (preg_match('/\s/', $method)) {
+                throw new Exception\InvalidArgumentException(sprintf(
+                    'Unable to whitelist method; "%s" is not a valid method',
+                    $method
+                ));
+            }
             $this->methods[$method] = true;
         }
 
@@ -126,6 +132,12 @@ class Allow implements HeaderInterface
     {
         foreach ((array) $disallowedMethods as $method) {
             $method = trim(strtoupper($method));
+            if (preg_match('/\s/', $method)) {
+                throw new Exception\InvalidArgumentException(sprintf(
+                    'Unable to blacklist method; "%s" is not a valid method',
+                    $method
+                ));
+            }
             $this->methods[$method] = false;
         }
 

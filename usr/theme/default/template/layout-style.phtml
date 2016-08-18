@@ -14,7 +14,13 @@ $this->css($this->assetTheme('css/style.css'));
 // Explicitly load favicon
 $this->headLink(array(
     'rel'   => 'shortcut icon',
-    'href'  => $this->favicon()
+    'type'  => 'image/x-icon',
+    'href'  => $this->favicon(),
+));
+$this->headLink(array(
+    'rel'   => 'shortcut icon',
+    'type'  => 'image/png',
+    'href'  => $this->favicon('favicon.png'),
 ));
 
 // Load google analytics code

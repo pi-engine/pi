@@ -1,4 +1,3 @@
-@import url('style.css');
 html {
     min-height: 100%;
     position: relative;
@@ -21,6 +20,170 @@ legend {
     font-weight: normal;
 }
 
+/* Bootstrap customization */
+
+/* Base */
+
+/* Elements */
+fieldset dl {
+    margin-top: 0;
+}
+
+form .icon-question-sign {
+    color: #0089D1;
+    float: left;
+    cursor: pointer;
+    margin: 6px 0 0 1px;
+    padding: 2px;
+}
+
+/* Components */
+.page-header {
+    margin: 0 0 15px 0;
+}
+
+.page-header h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.page-header .nav {
+    margin-bottom: 0;
+}
+
+.page-header .search-query {
+    border-radius: 5px;
+}
+
+/** Pi Specific **/
+/* Elements */
+.dl-horizontal dt {
+    width: 120px;
+}
+
+.dl-horizontal dd {
+    margin-left: 140px;
+}
+
+/* ellipsis with rows/lines : line height is fixed */
+.pi-ellipsis {
+    overflow: hidden;
+    display: block;
+    line-height: 1.5;
+}
+
+/* Max 1 - 10 row(s)/line(s) */
+.pi-ellipsis-1 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pi-ellipsis-2 {
+    max-height: 3em;
+}
+
+.pi-ellipsis-3 {
+    max-height: 4.5em;
+}
+
+.pi-ellipsis-4 {
+    max-height: 6em;
+}
+
+.pi-ellipsis-5 {
+    max-height: 7.5em;
+}
+
+.pi-ellipsis-6 {
+    max-height: 9em;
+}
+
+.pi-ellipsis-7 {
+    max-height: 10.5em;
+}
+
+.pi-ellipsis-8 {
+    max-height: 12em;
+}
+
+.pi-ellipsis-9 {
+    max-height: 13.5em;
+}
+
+.pi-ellipsis-10 {
+    max-height: 15em;
+}
+
+/* Components */
+.pi-divider {
+    font-family: serif, sans-serif;
+    margin: 0 6px;
+    color: #ccc;
+}
+
+.pi-legend {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+    padding: 9px 10px;
+    color: #333333;
+    border: 0;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+/* Box with border */
+.pi-widget {
+    margin-bottom: 20px;
+    border: 1px solid #d7d7d7;
+}
+
+.pi-widget-header {
+    padding: 5px 10px;
+    background: #F8F8F8;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.pi-widget-body {
+    padding: 18px 20px;
+}
+
+.pi-widget-body > :last-child {
+    margin-bottom: 0;
+}
+
+/* Avatar */
+/* @see: https://github.com/pi-engine/pi/wiki/Design.Avatar */
+.pi-avatar {
+    width: 80px;
+}
+
+.pi-avatar-mini {
+    width: 16px;
+}
+
+.pi-avatar-xsmall {
+    width: 24px;
+}
+
+.pi-avatar-small {
+    width: 28px;
+}
+
+.pi-avatar-medium {
+    width: 46px;
+}
+
+.pi-avatar-large {
+    width: 96px;
+}
+
+.pi-avatar-xlarge {
+    width: 120px;
+}
+
+.pi-avatar-xxlarge {
+    width: 214px;
+}
 
 /* Util */
 
@@ -79,21 +242,28 @@ legend {
     background: #4DB1E3;
 }
 
+.navbar-go-front {
+    margin-left: 20px;
+}
+
 .badge-success {
     background-color: #5cb85c;
 }
 
 /* Sidebar */
 .pi-sidebar {
-    position: fixed;
+    position: absolute;
     top: 51px;
+    left: 0;
     bottom: 0;
+    height: 100%;
     overflow-y: auto;
     width: 190px;
     background: #f2f2f2;
     border-right: 1px solid #ddd;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 1px 4px 0 rgba(0, 0, 0, 0.12),
+    0 1px 4px 0 rgba(0, 0, 0, 0.12);
+    float: left;
 }
 
 .pi-modules-nav a:focus {
@@ -143,7 +313,6 @@ legend {
     background-color: #ddd;
     cursor: auto;
 }
-
 
 /* NOT USED: pi-modules-nav-director */
 .pi-modules-nav-director {
@@ -363,11 +532,11 @@ legend {
 
 .pi-widget {
     background-color: #F1F1F1;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
-    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
-    background-image: -webkit-linear-gradient(top , #F9F9F9, #ECECEC);
-    background-image: -o-linear-gradient(top , #F9F9F9, #ECECEC);
-    background: linear-gradient(top , #F9F9F9, #ECECEC);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9, endColorstr=#ECECEC);
+    background-image: -moz-linear-gradient(center top, #F9F9F9, #ECECEC);
+    background-image: -webkit-linear-gradient(top, #F9F9F9, #ECECEC);
+    background-image: -o-linear-gradient(top, #F9F9F9, #ECECEC);
+    background: linear-gradient(top, #F9F9F9, #ECECEC);
     padding: 5px 8px;
     box-shadow: 0 1px 0 #FFFFFF inset;
     border: 1px solid #DFDFDF;
@@ -383,9 +552,8 @@ legend {
     color: #999;
 }
 
-
 /* Boostrap custom */
-.panel-body >:last-child {
+.panel-body > :last-child {
     margin-bottom: 0;
 }
 

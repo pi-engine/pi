@@ -11,11 +11,12 @@
 
 namespace Imagine\Gd;
 
+use Imagine\Image\AbstractImagine;
+use Imagine\Image\Metadata\MetadataBag;
 use Imagine\Image\Palette\Color\ColorInterface;
 use Imagine\Image\Palette\RGB;
 use Imagine\Image\Palette\PaletteInterface;
 use Imagine\Image\BoxInterface;
-use Imagine\Image\ImagineInterface;
 use Imagine\Image\Palette\Color\RGB as RGBColor;
 use Imagine\Exception\InvalidArgumentException;
 use Imagine\Exception\RuntimeException;
@@ -23,7 +24,7 @@ use Imagine\Exception\RuntimeException;
 /**
  * Imagine implementation using the GD library
  */
-final class Imagine implements ImagineInterface
+final class Imagine extends AbstractImagine
 {
     /**
      * @var array
@@ -37,22 +38,6 @@ final class Imagine implements ImagineInterface
     {
         $this->loadGdInfo();
         $this->requireGdVersion('2.0.1');
-    }
-
-    private function loadGdInfo()
-    {
-        if (!function_exists('gd_info')) {
-            throw new RuntimeException('Gd not installed');
-        }
-
-        $this->info = gd_info();
-    }
-
-    private function requireGdVersion($version)
-    {
-        if (version_compare(GD_VERSION, $version, '<')) {
-            throw new RuntimeException(sprintf('GD2 version %s or higher is required', $version));
-        }
     }
 
     /**
@@ -73,15 +58,10 @@ final class Imagine implements ImagineInterface
         $color = $color ? $color : $palette->color('fff');
 
         if (!$color instanceof RGBColor) {
-            throw new InvalidArgumentException(
-                'GD driver only supports RGB colors'
-            );
+            throw new InvalidArgumentException('GD driver only supports RGB colors');
         }
 
-        $index = imagecolorallocatealpha(
-            $resource, $color->getRed(), $color->getGreen(), $color->getBlue(),
-            round(127 * $color->getAlpha() / 100)
-        );
+        $index = imagecolorallocatealpha($resource, $color->getRed(), $color->getGreen(), $color->getBlue(), round(127 * (100 - $color->getAlpha()) / 100));
 
         if (false === $index) {
             throw new RuntimeException('Unable to allocate color');
@@ -95,7 +75,7 @@ final class Imagine implements ImagineInterface
             imagecolortransparent($resource, $index);
         }
 
-        return $this->wrap($resource, $palette);
+        return $this->wrap($resource, $palette, new MetadataBag());
     }
 
     /**
@@ -103,21 +83,20 @@ final class Imagine implements ImagineInterface
      */
     public function open($path)
     {
+        $path = $this->checkPath($path);
         $data = @file_get_contents($path);
 
         if (false === $data) {
-            throw new InvalidArgumentException(sprintf(
-                'File %s doesn\'t exist', $path
-            ));
+            throw new RuntimeException(sprintf('Failed to open file %s', $path));
         }
 
         $resource = @imagecreatefromstring($data);
 
         if (!is_resource($resource)) {
-            throw new InvalidArgumentException(sprintf('Unable to open image %s', $path));
+            throw new RuntimeException(sprintf('Unable to open image %s', $path));
         }
 
-        return $this->wrap($resource, new RGB(), $path);
+        return $this->wrap($resource, new RGB(), $this->getMetadataReader()->readFile($path));
     }
 
     /**
@@ -125,13 +104,7 @@ final class Imagine implements ImagineInterface
      */
     public function load($string)
     {
-        $resource = @imagecreatefromstring($string);
-
-        if (!is_resource($resource)) {
-            throw new InvalidArgumentException('An image could not be created from the given input');
-        }
-
-        return $this->wrap($resource, new RGB());
+        return $this->doLoad($string, $this->getMetadataReader()->readData($string));
     }
 
     /**
@@ -149,7 +122,7 @@ final class Imagine implements ImagineInterface
             throw new InvalidArgumentException('Cannot read resource content');
         }
 
-        return $this->load($content);
+        return $this->doLoad($content, $this->getMetadataReader()->readData($content, $resource));
     }
 
     /**
@@ -164,7 +137,7 @@ final class Imagine implements ImagineInterface
         return new Font($file, $size, $color);
     }
 
-    private function wrap($resource, PaletteInterface $palette, $path = null)
+    private function wrap($resource, PaletteInterface $palette, MetadataBag $metadata)
     {
         if (!imageistruecolor($resource)) {
             list($width, $height) = array(imagesx($resource), imagesy($resource));
@@ -182,17 +155,41 @@ final class Imagine implements ImagineInterface
             $resource = $truecolor;
         }
 
-        if (false === imagealphablending($resource, false) ||
-            false === imagesavealpha($resource, true)) {
-            throw new RuntimeException(
-                'Could not set alphablending, savealpha and antialias values'
-            );
+        if (false === imagealphablending($resource, false) || false === imagesavealpha($resource, true)) {
+            throw new RuntimeException('Could not set alphablending, savealpha and antialias values');
         }
 
         if (function_exists('imageantialias')) {
             imageantialias($resource, true);
         }
 
-        return new Image($resource, $palette, $path);
+        return new Image($resource, $palette, $metadata);
+    }
+
+    private function loadGdInfo()
+    {
+        if (!function_exists('gd_info')) {
+            throw new RuntimeException('Gd not installed');
+        }
+
+        $this->info = gd_info();
+    }
+
+    private function requireGdVersion($version)
+    {
+        if (version_compare(GD_VERSION, $version, '<')) {
+            throw new RuntimeException(sprintf('GD2 version %s or higher is required, %s provided', $version, GD_VERSION));
+        }
+    }
+
+    private function doLoad($string, MetadataBag $metadata)
+    {
+        $resource = @imagecreatefromstring($string);
+
+        if (!is_resource($resource)) {
+            throw new RuntimeException('An image could not be created from the given input');
+        }
+
+        return $this->wrap($resource, new RGB(), $metadata);
     }
 }

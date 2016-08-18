@@ -4,7 +4,7 @@ html {
     position: relative;
 }
 
- a {
+a {
     color: #0098E3;
 }
 
@@ -52,7 +52,7 @@ a:hover {
         z-index: 1001;
     }
 
-    .pi-navbar-nav li:hover >ul,
+    .pi-navbar-nav li:hover > ul,
     .pi-navbar-nav li:hover .pi-navbar-caret {
         display: block;
     }
@@ -82,7 +82,7 @@ a:hover {
     float: right;
 }
 
-.pi-panel-tab  .panel-heading {
+.pi-panel-tab .panel-heading {
     padding: 0;
     height: 40px;
 }
@@ -117,9 +117,10 @@ a:hover {
     background: #fff;
 }
 
-.panel-body >:last-child {
+.panel-body > :last-child {
     margin-bottom: 0;
 }
+
 .panel-body ul,
 .panel-body ol {
     /* margin-left: -20px; */
@@ -207,20 +208,50 @@ form .icon-question-sign {
 }
 
 /* Max 1 - 10 row(s)/line(s) */
-.pi-ellipsis-1 { text-overflow: ellipsis; white-space: nowrap; }
-.pi-ellipsis-2 { max-height: 3em; }
-.pi-ellipsis-3 { max-height: 4.5em; }
-.pi-ellipsis-4 { max-height: 6em; }
-.pi-ellipsis-5 { max-height: 7.5em; }
-.pi-ellipsis-6 { max-height: 9em; }
-.pi-ellipsis-7 { max-height: 10.5em; }
-.pi-ellipsis-8 { max-height: 12em; }
-.pi-ellipsis-9 { max-height: 13.5em; }
-.pi-ellipsis-10 { max-height: 15em; }
+.pi-ellipsis-1 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pi-ellipsis-2 {
+    max-height: 3em;
+}
+
+.pi-ellipsis-3 {
+    max-height: 4.5em;
+}
+
+.pi-ellipsis-4 {
+    max-height: 6em;
+}
+
+.pi-ellipsis-5 {
+    max-height: 7.5em;
+}
+
+.pi-ellipsis-6 {
+    max-height: 9em;
+}
+
+.pi-ellipsis-7 {
+    max-height: 10.5em;
+}
+
+.pi-ellipsis-8 {
+    max-height: 12em;
+}
+
+.pi-ellipsis-9 {
+    max-height: 13.5em;
+}
+
+.pi-ellipsis-10 {
+    max-height: 15em;
+}
 
 /* Components */
 .pi-divider {
-    font-family: serif,sans-serif;
+    font-family: serif, sans-serif;
     margin: 0 6px;
     color: #ccc;
 }
@@ -252,7 +283,7 @@ form .icon-question-sign {
     padding: 18px 20px;
 }
 
-.pi-widget-body >:last-child {
+.pi-widget-body > :last-child {
     margin-bottom: 0;
 }
 
@@ -294,6 +325,7 @@ form .icon-question-sign {
 .pi-header {
     border-top: 2px solid #ddd;
 }
+
 .pi-header h1,
 .pi-header h2 {
     padding: 1px;
@@ -307,6 +339,7 @@ form .icon-question-sign {
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     border-radius: 0;
 }
+
 /* section */
 .pi-section {
     padding: 15px 0;
@@ -339,6 +372,7 @@ form .icon-question-sign {
     padding-left: 0;
     color: #333;
 }
+
 .pi-footer-links li {
     display: inline;
     padding: 0 2px;

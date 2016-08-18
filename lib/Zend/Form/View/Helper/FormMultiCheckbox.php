@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -95,7 +95,6 @@ class FormMultiCheckbox extends FormInput
      *
      * @param  ElementInterface $element
      * @throws Exception\InvalidArgumentException
-     * @throws Exception\DomainException
      * @return string
      */
     public function render(ElementInterface $element)
@@ -110,12 +109,6 @@ class FormMultiCheckbox extends FormInput
         $name = static::getName($element);
 
         $options = $element->getValueOptions();
-        if (empty($options)) {
-            throw new Exception\DomainException(sprintf(
-                '%s requires that the element has "value_options"; none found',
-                __METHOD__
-            ));
-        }
 
         $attributes         = $element->getAttributes();
         $attributes['name'] = $name;
@@ -145,8 +138,7 @@ class FormMultiCheckbox extends FormInput
      * @param  array                $attributes
      * @return string
      */
-    protected function renderOptions(MultiCheckboxElement $element, array $options, array $selectedOptions,
-        array $attributes)
+    protected function renderOptions(MultiCheckboxElement $element, array $options, array $selectedOptions, array $attributes)
     {
         $escapeHtmlHelper = $this->getEscapeHtmlHelper();
         $labelHelper      = $this->getLabelHelper();
@@ -176,8 +168,8 @@ class FormMultiCheckbox extends FormInput
             $label           = '';
             $inputAttributes = $attributes;
             $labelAttributes = $globalLabelAttributes;
-            $selected        = isset($inputAttributes['selected']) && $inputAttributes['type'] != 'radio' && $inputAttributes['selected'] != false ? true : false;
-            $disabled        = isset($inputAttributes['disabled']) && $inputAttributes['disabled'] != false ? true : false;
+            $selected        = (isset($inputAttributes['selected']) && $inputAttributes['type'] != 'radio' && $inputAttributes['selected']);
+            $disabled        = (isset($inputAttributes['disabled']) && $inputAttributes['disabled']);
 
             if (is_scalar($optionSpec)) {
                 $optionSpec = array(
@@ -223,7 +215,8 @@ class FormMultiCheckbox extends FormInput
 
             if (null !== ($translator = $this->getTranslator())) {
                 $label = $translator->translate(
-                    $label, $this->getTranslatorTextDomain()
+                    $label,
+                    $this->getTranslatorTextDomain()
                 );
             }
 

@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -184,7 +184,7 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
      * Get method contents
      *
      * @param  bool $includeDocBlock
-     * @return string|bool
+     * @return string
      */
     public function getContents($includeDocBlock = true)
     {
@@ -198,7 +198,7 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
     /**
      * Get method body
      *
-     * @return string|bool
+     * @return string
      */
     public function getBody()
     {
@@ -211,9 +211,9 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
      * @param bool $bodyOnly
      * @return string
      */
-    protected function extractMethodContents($bodyOnly=false)
+    protected function extractMethodContents($bodyOnly = false)
     {
-        $fileName = $this->getDeclaringClass()->getFileName();
+        $fileName = $this->getFileName();
 
         if ((class_exists($this->class) && false === $fileName) || ! file_exists($fileName)) {
             return '';
@@ -240,11 +240,11 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
         $firstBrace = false;
         $body = '';
 
-        foreach($tokens as $key => $token) {
+        foreach ($tokens as $key => $token) {
             $tokenType  = (is_array($token)) ? token_name($token[0]) : $token;
             $tokenValue = (is_array($token)) ? $token[1] : $token;
 
-            switch($tokenType) {
+            switch ($tokenType) {
                 case "T_FINAL":
                 case "T_ABSTRACT":
                 case "T_PUBLIC":
@@ -331,8 +331,8 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
     /**
      * Take current position and find any whitespace
      *
-     * @param $haystack
-     * @param $position
+     * @param array $haystack
+     * @param int $position
      * @return string
      */
     protected function extractPrefixedWhitespace($haystack, $position)
@@ -343,7 +343,7 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
             return $content;
         }
 
-        for($i = $position-1;$i >= 0;$i--) {
+        for ($i = $position-1;$i >= 0;$i--) {
             $tokenType = (is_array($haystack[$i])) ? token_name($haystack[$i][0]) : $haystack[$i];
             $tokenValue = (is_array($haystack[$i])) ? $haystack[$i][1] : $haystack[$i];
 
@@ -361,8 +361,8 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
     /**
      * Test for ending brace
      *
-     * @param $haystack
-     * @param $position
+     * @param array $haystack
+     * @param int $position
      * @return bool
      */
     protected function isEndingBrace($haystack, $position)
@@ -376,9 +376,9 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
             return true;
         }
 
-        for($i = $position;$i < $count; $i++) {
+        for ($i = $position;$i < $count; $i++) {
             $tokenType = (is_array($haystack[$i])) ? token_name($haystack[$i][0]) : $haystack[$i];
-            switch($tokenType) {
+            switch ($tokenType) {
                 case "T_FINAL":
                 case "T_ABSTRACT":
                 case "T_PUBLIC":
@@ -430,15 +430,16 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
      * Test to see if current position is valid function or
      * closure.  Returns true if it's a function and NOT a closure
      *
-     * @param $haystack
-     * @param $position
+     * @param array $haystack
+     * @param int $position
+     * @param string $functionName
      * @return bool
      */
     protected function isValidFunction($haystack, $position, $functionName = null)
     {
         $isValid = false;
         $count = count($haystack);
-        for($i = $position+1;$i < $count; $i++) {
+        for ($i = $position+1; $i < $count; $i++) {
             $tokenType = (is_array($haystack[$i])) ? token_name($haystack[$i][0]) : $haystack[$i];
             $tokenValue = (is_array($haystack[$i])) ? $haystack[$i][1] : $haystack[$i];
 
@@ -460,11 +461,17 @@ class MethodReflection extends PhpReflectionMethod implements ReflectionInterfac
         return $isValid;
     }
 
+    /**
+     * @return string
+     */
     public function toString()
     {
         return parent::__toString();
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return parent::__toString();

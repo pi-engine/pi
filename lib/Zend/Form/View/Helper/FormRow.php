@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -11,6 +11,7 @@ namespace Zend\Form\View\Helper;
 
 use Zend\Form\Element\Button;
 use Zend\Form\Element\MonthSelect;
+use Zend\Form\Element\Captcha;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 use Zend\Form\LabelAwareInterface;
@@ -131,9 +132,7 @@ class FormRow extends AbstractHelper
         if (isset($label) && '' !== $label) {
             // Translate the label
             if (null !== ($translator = $this->getTranslator())) {
-                $label = $translator->translate(
-                    $label, $this->getTranslatorTextDomain()
-                );
+                $label = $translator->translate($label, $this->getTranslatorTextDomain());
             }
         }
 
@@ -166,7 +165,6 @@ class FormRow extends AbstractHelper
         // hidden elements do not need a <label> -https://github.com/zendframework/zf2/issues/5607
         $type = $element->getAttribute('type');
         if (isset($label) && '' !== $label && $type !== 'hidden') {
-
             $labelAttributes = array();
 
             if ($element instanceof LabelAwareInterface) {
@@ -186,11 +184,13 @@ class FormRow extends AbstractHelper
             if ($type === 'multi_checkbox'
                 || $type === 'radio'
                 || $element instanceof MonthSelect
+                || $element instanceof Captcha
             ) {
                 $markup = sprintf(
                     '<fieldset><legend>%s</legend>%s</fieldset>',
                     $label,
-                    $elementString);
+                    $elementString
+                );
             } else {
                 // Ensure element and label will be separated if element has an `id`-attribute.
                 // If element has label option `always_wrap` it will be nested in any case.
@@ -214,6 +214,10 @@ class FormRow extends AbstractHelper
                 // Button element is a special case, because label is always rendered inside it
                 if ($element instanceof Button) {
                     $labelOpen = $labelClose = $label = '';
+                }
+
+                if ($element instanceof LabelAwareInterface && $element->getLabelOption('label_position')) {
+                    $labelPosition = $element->getLabelOption('label_position');
                 }
 
                 switch ($labelPosition) {

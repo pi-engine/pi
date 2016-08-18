@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -65,7 +65,7 @@ class ContentSecurityPolicy implements HeaderInterface
      */
     public function setDirective($name, array $sources)
     {
-        if (!in_array($name, $this->validDirectiveNames, true)) {
+        if (! in_array($name, $this->validDirectiveNames, true)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects a valid directive name; received "%s"',
                 __METHOD__,
@@ -74,9 +74,12 @@ class ContentSecurityPolicy implements HeaderInterface
         }
         if (empty($sources)) {
             $this->directives[$name] = "'none'";
-        } else {
-            $this->directives[$name] = implode(' ', $sources);
+            return $this;
         }
+
+        array_walk($sources, array(__NAMESPACE__ . '\HeaderValue', 'assertValid'));
+
+        $this->directives[$name] = implode(' ', $sources);
         return $this;
     }
 
@@ -107,7 +110,7 @@ class ContentSecurityPolicy implements HeaderInterface
             if ($token) {
                 list($directiveName, $directiveValue) = explode(' ', $token, 2);
                 if (!isset($header->directives[$directiveName])) {
-                    $header->directives[$directiveName] = $directiveValue;
+                    $header->setDirective($directiveName, array($directiveValue));
                 }
             }
         }

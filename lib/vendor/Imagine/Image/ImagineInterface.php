@@ -11,10 +11,7 @@
 
 namespace Imagine\Image;
 
-use Imagine\Image\BoxInterface;
 use Imagine\Image\Palette\Color\ColorInterface;
-use Imagine\Image\FontInterface;
-use Imagine\Image\ImageInterface;
 use Imagine\Exception\InvalidArgumentException;
 use Imagine\Exception\RuntimeException;
 
@@ -23,7 +20,7 @@ use Imagine\Exception\RuntimeException;
  */
 interface ImagineInterface
 {
-    const VERSION = '0.3.0';
+    const VERSION = '0.7-dev';
 
     /**
      * Creates a new empty image with an optional background color
@@ -56,7 +53,6 @@ interface ImagineInterface
      *
      * @throws RuntimeException
      *
-     * @return ImageInterface
      * @return ImageInterface
      */
     public function load($string);
