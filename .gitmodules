@@ -10,3 +10,9 @@
 [submodule "usr/module/sitemap"]
 	path = usr/module/sitemap
 	url = https://github.com/pi-module/sitemap
+[submodule "usr/module/message"]
+	path = usr/module/message
+	url = https://github.com/pi-module/message
+[submodule "usr/module/comment"]
+	path = usr/module/comment
+	url = https://github.com/pi-module/comment
