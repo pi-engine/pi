@@ -220,6 +220,17 @@ EOT;
 EOT;
                     break;
 
+                case 'button':
+                    $labelPattern = '';
+                    $elementPattern =<<<EOT
+<div class="%element_size% js-form-element">
+    %element_content%
+    %desc_html%
+</div>
+<div class="%error_size% help-block">%error_content%</div>
+EOT;
+                    break;
+
                 default:
                     $elementPattern =<<<EOT
 <div class="%element_size% js-form-element">
