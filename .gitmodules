@@ -16,3 +16,6 @@
 [submodule "usr/module/comment"]
 	path = usr/module/comment
 	url = https://github.com/pi-module/comment
+[submodule "usr/module/search"]
+	path = usr/module/search
+	url = https://github.com/pi-module/search
