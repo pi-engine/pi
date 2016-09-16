@@ -261,11 +261,15 @@ class ThemeAssemble extends AbstractHelper
                 $moduleMeta = Pi::registry('module')->read($module);
                 $headTitleStr = $moduleMeta['title'];
             }
-            if ($headTitleStr && $headTitleStr != $sitename) {
-                $headTitle->set($headTitleStr);
-            } else {
-                $headTitle->set(Pi::config('slogan'));
+            if ($headTitleStr && $headTitleStr == $sitename) {
+                $headTitle->setPrefix('');
+                $headTitle->setPostfix('');
             }
+            if (!empty($slogan)) {
+                $slogan = $separator . $slogan;
+                $headTitle->setPostfix($slogan);
+            }
+            $headTitle->set($headTitleStr);
         }
     }
 
