@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -95,6 +95,8 @@ class MemcacheResourceManager
      *
      * @param string $id
      * @param array|Traversable|MemcacheResource $resource
+     * @param callable $failureCallback
+     * @param array|Traversable $serverDefaults
      * @return MemcacheResourceManager
      */
     public function setResource($id, $resource, $failureCallback = null, $serverDefaults = array())
@@ -184,7 +186,8 @@ class MemcacheResourceManager
      * Set compress threshold on a Memcache resource
      *
      * @param MemcacheResource $resource
-     * @param array $libOptions
+     * @param int $threshold
+     * @param float $minSavings
      */
     protected function setResourceAutoCompressThreshold(MemcacheResource $resource, $threshold, $minSavings)
     {
@@ -396,7 +399,7 @@ class MemcacheResourceManager
      * Get callback for server connection failures
      *
      * @param string $id
-     * @return callable|null
+     * @return callable
      * @throws Exception\RuntimeException
      */
     public function getFailureCallback($id)

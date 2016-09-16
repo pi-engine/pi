@@ -22,6 +22,8 @@ return array(
             'DispatchListener'          => 'Zend\Mvc\DispatchListener',
             'RouteListener'             => 'Zend\Mvc\RouteListener',
             //'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
+            'ViewJsonRenderer'          => 'Zend\View\Renderer\JsonRenderer',
+            'ViewFeedRenderer'          => 'Zend\View\Renderer\FeedRenderer',
 
             // Pi custom service
             'SendResponseListener'      => 'Pi\Mvc\SendResponseListener',

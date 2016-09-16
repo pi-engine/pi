@@ -111,7 +111,7 @@ class Form extends ZendForm
             'submit'    => '',
         );
 
-        foreach ($this->byName as $key => $value) {
+        foreach ($this->elements as $key => $value) {
             $type = $value->getAttribute('type');
             if ('submit' == $type) {
                 $elements['submit'] = $value;
@@ -160,7 +160,7 @@ class Form extends ZendForm
     {
         if (null === $elementName) {
             $messages = array();
-            foreach ($this->byName as $name => $element) {
+            foreach ($this->elements as $name => $element) {
                 if ('hidden' != $element->getAttribute('type')) {
                     continue;
                 }

@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -448,7 +448,10 @@ class Server implements ZendServerServer
 
         foreach ($typeMap as $type) {
             if (!is_callable($type['from_xml'])) {
-                throw new Exception\InvalidArgumentException('Invalid from_xml callback for type: ' . $type['type_name']);
+                throw new Exception\InvalidArgumentException(sprintf(
+                    'Invalid from_xml callback for type: %s',
+                    $type['type_name']
+                ));
             }
             if (!is_callable($type['to_xml'])) {
                 throw new Exception\InvalidArgumentException('Invalid to_xml callback for type: ' . $type['type_name']);
@@ -557,13 +560,10 @@ class Server implements ZendServerServer
                     throw new Exception\InvalidArgumentException('One or more invalid functions specified in array');
                 }
             }
-
         } elseif (is_string($function) && function_exists($function)) {
             $this->functions[] = $function;
-
         } elseif ($function == SOAP_FUNCTIONS_ALL) {
             $this->functions = SOAP_FUNCTIONS_ALL;
-
         } else {
             throw new Exception\InvalidArgumentException('Invalid function specified');
         }
@@ -593,7 +593,9 @@ class Server implements ZendServerServer
     public function setClass($class, $namespace = '', $argv = null)
     {
         if (isset($this->class)) {
-            throw new Exception\InvalidArgumentException('A class has already been registered with this soap server instance');
+            throw new Exception\InvalidArgumentException(
+                'A class has already been registered with this soap server instance'
+            );
         }
 
         if (is_object($class)) {
@@ -730,13 +732,10 @@ class Server implements ZendServerServer
 
         if ($request instanceof DOMDocument) {
             $xml = $request->saveXML();
-
         } elseif ($request instanceof DOMNode) {
             $xml = $request->ownerDocument->saveXML();
-
         } elseif ($request instanceof SimpleXMLElement) {
             $xml = $request->asXML();
-
         } elseif (is_object($request) || is_string($request)) {
             if (is_object($request)) {
                 $xml = $request->__toString();
@@ -791,7 +790,7 @@ class Server implements ZendServerServer
      */
     public function setReturnResponse($flag = true)
     {
-        $this->returnResponse = ($flag) ? true : false;
+        $this->returnResponse = (bool) $flag;
         return $this;
     }
 
@@ -920,7 +919,7 @@ class Server implements ZendServerServer
 
         // Restore original error handler
         restore_error_handler();
-        ini_set('display_errors', $displayErrorsOriginalState);
+        ini_set('display_errors', (string) $displayErrorsOriginalState);
 
         // Send a fault, if we have one
         if ($fault instanceof SoapFault && !$this->returnResponse) {
@@ -953,7 +952,7 @@ class Server implements ZendServerServer
     protected function _initializeSoapErrorContext()
     {
         $displayErrorsOriginalState = ini_get('display_errors');
-        ini_set('display_errors', false);
+        ini_set('display_errors', '0');
         set_error_handler(array($this, 'handlePhpErrors'), E_USER_ERROR);
         return $displayErrorsOriginalState;
     }
@@ -961,7 +960,9 @@ class Server implements ZendServerServer
     /**
      * Set the debug mode.
      * In debug mode, all exceptions are send to the client.
-     * @param bool $debug
+     *
+     * @param  bool $debug
+     * @return self
      */
     public function setDebugMode($debug)
     {
@@ -982,15 +983,18 @@ class Server implements ZendServerServer
             foreach ($class as $row) {
                 $this->registerFaultException($row);
             }
-
-        } elseif (is_string($class) && class_exists($class) && (is_subclass_of($class, 'Exception') || 'Exception' === $class)) {
+        } elseif (is_string($class)
+            && class_exists($class)
+            && (is_subclass_of($class, 'Exception') || 'Exception' === $class)
+        ) {
             $ref = new ReflectionClass($class);
 
             $this->faultExceptions[] = $ref->getName();
             $this->faultExceptions = array_unique($this->faultExceptions);
         } else {
             throw new Exception\InvalidArgumentException(
-                'Argument for Zend\Soap\Server::registerFaultException should be string or array of strings with valid exception names'
+                'Argument for Zend\Soap\Server::registerFaultException should be'
+                . ' string or array of strings with valid exception names'
             );
         }
 
@@ -1082,7 +1086,14 @@ class Server implements ZendServerServer
             $message = 'Unknown error';
         }
 
-        $allowedFaultModes = array('VersionMismatch', 'MustUnderstand', 'DataEncodingUnknown', 'Sender', 'Receiver', 'Server');
+        $allowedFaultModes = array(
+            'VersionMismatch',
+            'MustUnderstand',
+            'DataEncodingUnknown',
+            'Sender',
+            'Receiver',
+            'Server'
+        );
         if (!in_array($code, $allowedFaultModes)) {
             $code = 'Receiver';
         }

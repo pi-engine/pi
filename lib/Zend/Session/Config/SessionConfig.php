@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -85,10 +85,11 @@ class SessionConfig extends StandardConfig
                 break;
         }
 
-        $result = ini_set($key, $storageValue);
-        if (FALSE === $result) {
-            throw new Exception\InvalidArgumentException("'" . $key .
-                    "' is not a valid sessions-related ini setting.");
+        $result = ini_set($key, (string) $storageValue);
+        if (false === $result) {
+            throw new Exception\InvalidArgumentException(
+                "'{$key}' is not a valid sessions-related ini setting."
+            );
         }
         return $this;
     }
@@ -160,7 +161,6 @@ class SessionConfig extends StandardConfig
         $this->setOption('save_path', $savePath);
         return $this;
     }
-
 
     /**
      * Set session.serialize_handler

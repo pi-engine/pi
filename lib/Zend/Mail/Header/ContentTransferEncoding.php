@@ -3,12 +3,11 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
 namespace Zend\Mail\Header;
-
 
 class ContentTransferEncoding implements HeaderInterface
 {
@@ -29,7 +28,6 @@ class ContentTransferEncoding implements HeaderInterface
          */
     );
 
-
     /**
      * @var string
      */
@@ -42,8 +40,8 @@ class ContentTransferEncoding implements HeaderInterface
 
     public static function fromString($headerLine)
     {
-        $headerLine = iconv_mime_decode($headerLine, ICONV_MIME_DECODE_CONTINUE_ON_ERROR, 'UTF-8');
         list($name, $value) = GenericHeader::splitHeaderLine($headerLine);
+        $value = HeaderWrap::mimeDecodeValue($value);
 
         // check to ensure proper header type for this factory
         if (strtolower($name) !== 'content-transfer-encoding') {
