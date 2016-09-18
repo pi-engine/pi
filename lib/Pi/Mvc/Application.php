@@ -37,19 +37,6 @@ class Application extends ZendApplication
     protected $engine;
 
     /**
-     * Fix fo update to zf 2.4.9 by voltan
-     * Default application event listeners
-     * @var array
-     */
-    protected $defaultListeners = array(
-        'RouteListener',
-        'DispatchListener',
-        //'HttpMethodListener',
-        'ViewManager',
-        'SendResponseListener',
-    );
-
-    /**
      * Set listeners
      *
      * @param string[] $listeners

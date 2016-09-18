@@ -55,6 +55,7 @@ return array(
             'FilterManager'                  => 'Zend\Mvc\Service\FilterManagerFactory',
             'FormElementManager'             => 'Zend\Mvc\Service\FormElementManagerFactory',
             'HttpRouter'                     => 'Zend\Mvc\Service\RouterFactory',
+            'HttpMethodListener'             => 'Zend\Mvc\Service\HttpMethodListenerFactory',
             'HttpViewManager'                => 'Zend\Mvc\Service\HttpViewManagerFactory',
             'HydratorManager'                => 'Zend\Mvc\Service\HydratorManagerFactory',
             'InputFilterManager'             => 'Zend\Mvc\Service\InputFilterManagerFactory',
