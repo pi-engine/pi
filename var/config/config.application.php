@@ -21,6 +21,7 @@ return array(
             // From ServiceListenerFactory
             'DispatchListener'          => 'Zend\Mvc\DispatchListener',
             'RouteListener'             => 'Zend\Mvc\RouteListener',
+            'InjectTemplateListener'    => 'Zend\Mvc\View\Http\InjectTemplateListener',
             //'SendResponseListener'      => 'Zend\Mvc\SendResponseListener',
             'ViewJsonRenderer'          => 'Zend\View\Renderer\JsonRenderer',
             'ViewFeedRenderer'          => 'Zend\View\Renderer\FeedRenderer',
@@ -86,6 +87,7 @@ return array(
         // Aliases
         'aliases' => array(
             'Zend\EventManager\EventManagerInterface'   => 'EventManager',
+            'Zend\Mvc\View\Http\InjectTemplateListener' => 'InjectTemplateListener',
 
             // From ServiceListenerFactory
             'Configuration'                          => 'Config',

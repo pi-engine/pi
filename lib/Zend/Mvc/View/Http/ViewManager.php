@@ -332,12 +332,7 @@ class ViewManager extends AbstractListenerAggregate
 
     public function getInjectTemplateListener()
     {
-        //return $this->services->get('Zend\Mvc\View\Http\InjectTemplateListener');
-        $listener = new InjectTemplateListener();
-        if (isset($this->config['controller_map'])) {
-            $listener->setControllerMap($this->config['controller_map']);
-        }
-        return $listener;
+        return $this->services->get('Zend\Mvc\View\Http\InjectTemplateListener');
     }
 
     /**
