@@ -140,6 +140,10 @@ tr:hover .row-actions {
 }
 
 /* Module list */
+#js-module {
+  padding-bottom: 50px;
+}
+
 .module-item-title-edit .module-title-input {
   display: block;
 }
@@ -227,7 +231,7 @@ b.caret-big:hover {
   display: block;
 }
 
-.tree-item-header, 
+.tree-item-header,
 .block-hd {
   background-color: #F1F1F1;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#ECECEC);
@@ -239,7 +243,7 @@ b.caret-big:hover {
   border: 1px solid #DFDFDF;
 }
 
-.tree-item-body, 
+.tree-item-body,
 .block-bd {
   width: 400px;
   padding: 10px 0 10px 10px;
