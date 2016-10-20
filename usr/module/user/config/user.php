@@ -104,7 +104,7 @@ return array(
             'filter'    => 'Gender',
         ),
         // Account: birth date
-        'birthdate'  => array(
+        /* 'birthdate'  => array(
             'type'  => 'account',
             'name'  => 'birthdate',
             'title' => _a('Birthdate'),
@@ -130,7 +130,7 @@ return array(
                 )),
             ),
             'filter'   => 'Module\User\Filter\Birthdate',
-        ),
+        ), */
         // Account: avatar
         'avatar'    => array(
             'type'      => 'account',
